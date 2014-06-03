@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="baseLayout" template="/baseLayout.jsp">
+        <put-attribute name="title"  value="Template"/>
+        <put-attribute name="banner" value="/banner.jsp"/>
+        <put-attribute name="menu"   value="/menu.jsp"/>
+    </definition>
+
+    <definition name="index.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Home Page"/>
+        <put-attribute name="body"   value="/index.jsp"/>
+    </definition>
+
+	<!-- CORE module tiles Begin-->
+	
+    <definition name="core.userListView.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="User Page"/>
+        <put-attribute name="body"   value="/core/userListView.jsp"/>
+    </definition>
+
+    <definition name="core.userAdd.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Users Page"/>
+        <put-attribute name="body"   value="/core/userAdd.jsp"/>
+    </definition>
+
+    <definition name="core.userEdit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Users Page"/>
+        <put-attribute name="body"   value="/core/userEdit.jsp"/>
+    </definition>
+
+    <definition name="core.userSaveComplete.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Users Page"/>
+        <put-attribute name="body"   value="/core/userSaveComplete.jsp"/>
+    </definition>
+    
+    <definition name="core.userViewInfo.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Users Page"/>
+        <put-attribute name="body"   value="/core/userViewInfo.jsp"/>
+    </definition>
+
+    <definition name="core.groupListView.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Group Page"/>
+        <put-attribute name="body"   value="/core/groupListView.jsp"/>
+    </definition>
+
+    <definition name="core.groupAdd.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Group Page"/>
+        <put-attribute name="body"   value="/core/groupAdd.jsp"/>
+    </definition>
+
+    <definition name="core.groupEdit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Group Page"/>
+        <put-attribute name="body"   value="/core/groupEdit.jsp"/>
+    </definition>
+
+    <definition name="core.groupSaveComplete.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Group Page"/>
+        <put-attribute name="body"   value="/core/groupSaveComplete.jsp"/>
+    </definition>
+
+<!-- CORE module tiles End-->
+
+<!-- VENDOR module tiles Begin -->
+    
+    <definition name="vendor.vendorSearch.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorSearch.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorAdd.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorAdd.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorAddTrucks.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorAddTrucks.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorListView.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorListView.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorEdit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorEdit.jsp"/>
+    </definition>
+
+<!-- VENDOR module tiles END -->
+
+<!-- CUSTOMER module tiles END -->
+    <definition name="customer.customerSearch.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerSearch.jsp"/>
+    </definition>
+
+    <definition name="customer.customerAdd.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerAddInfo.jsp"/>
+    </definition>
+
+    <definition name="customer.customerEdit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerEditInfo.jsp"/>
+    </definition>
+
+    <definition name="customer.customerList.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-list.jsp"/>
+    </definition>
+<!-- CUSTOMER module tiles END -->
+
+    <!-- ORDER module tiles Begin-->
+
+    <definition name="orders.booking-search.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Booking Page"/>
+        <put-attribute name="body"   value="/orders/booking-search.jsp"/>
+    </definition>
+
+    <definition name="orders.booking-list.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Booking Page"/>
+        <put-attribute name="body"   value="/orders/booking-list.jsp"/>
+    </definition>
+
+    <definition name="booking-info.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Booking Page"/>
+        <put-attribute name="body"   value="/orders/booking-info.jsp"/>
+    </definition>
+
+    <definition name="orders.booking-new.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Booking Page"/>
+        <put-attribute name="body"   value="/orders/booking-new.jsp"/>
+    </definition>
+
+    <definition name="booking-save.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Booking Page"/>
+        <put-attribute name="body"   value="/orders/booking-save.jsp"/>
+    </definition>
+<!-- ORDER module tiles End-->
+    
+    <!-- Please rename your tiles def accordingly (Please refer to above) where name=folderName.jspName.tiles -->
+    <definition name="customer.tiles" extends="baseLayout">
+	    <put-attribute name="title"  value="Customer Page"/>
+	    <put-attribute name="body"   value="/customer/customer.jsp"/>
+    </definition>
+
+
+
+    <definition name="customer-add.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-add.jsp"/>
+    </definition>
+
+    <definition name="customer-add2.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-add2.jsp"/>
+    </definition>
+
+    <definition name="customer-add3.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-add3.jsp"/>
+    </definition>
+
+    <definition name="customer-add4.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-add4.jsp"/>
+    </definition>
+
+    <definition name="customer-add5.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-add5.jsp"/>
+    </definition>
+
+    <definition name="customer-add6.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-add6.jsp"/>
+    </definition>
+
+    <definition name="customer-add7.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-add7.jsp"/>
+    </definition>
+
+
+
+    <definition name="customer-edit2.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-edit2.jsp"/>
+    </definition>
+
+    <definition name="customer-edit3.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-edit3.jsp"/>
+    </definition>
+
+    <definition name="customer-edit4.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-edit4.jsp"/>
+    </definition>
+
+    <definition name="customer-edit5.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-edit5.jsp"/>
+    </definition>
+
+    <definition name="customer-edit6.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-edit6.jsp"/>
+    </definition>
+
+    <definition name="customer-info.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customer-info.jsp"/>
+    </definition>
+
+    <definition name="vendor-list.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorListView.jsp"/>
+    </definition>
+
+    <definition name="vendor-contact-person2.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-contact-person2.jsp"/>
+    </definition>
+
+    <definition name="vendor-contact-person.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-contact-person.jsp"/>
+    </definition>
+
+    <definition name="vendor-address.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-address.jsp"/>
+    </definition>
+
+    <definition name="vendor-trucks.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-trucks.jsp"/>
+    </definition>
+
+    <definition name="vendor-vessel.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-vessel.jsp"/>
+    </definition>
+
+    <definition name="vendor-addvendor.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-addvendor.jsp"/>
+    </definition>
+
+    <definition name="vendor-address2.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-address2.jsp"/>
+    </definition>
+
+    <definition name="vendor-driver.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-driver.jsp"/>
+    </definition>
+
+    <definition name="vendor-list-edit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorEdit.jsp"/>
+    </definition>
+
+    <definition name="vendor-list-info.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-list-info.jsp"/>
+    </definition>
+
+    <definition name="vendor-other-information.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-other-information.jsp"/>
+    </definition>
+
+    <definition name="vendor-other-information2.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-other-information2.jsp"/>
+    </definition>
+
+    <definition name="vendor-save-complete.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-save-complete.jsp"/>
+    </definition>
+
+    <definition name="vendor-address-edit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-address-edit.jsp"/>
+    </definition>
+
+    <definition name="vendor-addvendor-edit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-addvendor-edit.jsp"/>
+    </definition>
+
+    <definition name="vendor-driver-edit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-driver-edit.jsp"/>
+    </definition>
+
+    <definition name="vendor-contact-person-edit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-contact-person-edit.jsp"/>
+    </definition>
+
+    <definition name="vendor-other-information-edit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-other-information-edit.jsp"/>
+    </definition>
+
+    <definition name="vendor-trucks-edit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-trucks-edit.jsp"/>
+    </definition>
+
+    <definition name="vendor-vessel-edit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor-vessel-edit.jsp"/>
+    </definition>
+
+    <definition name="vendor.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendor.jsp"/>
+    </definition>
+
+    <definition name="permission.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Permission Page"/>
+        <put-attribute name="body"   value="/core/permissions.jsp"/>
+    </definition>
+
+    <definition name="permission-edit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Permission Page"/>
+        <put-attribute name="body"   value="/core/permissions-edit.jsp"/>
+    </definition>
+
+    <definition name="help.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Help Page"/>
+        <put-attribute name="body"   value="/help/help.jsp"/>
+    </definition>
+
+    <definition name="full_truck_load.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Reports Page"/>
+        <put-attribute name="body"   value="/reports/full_truck_load.jsp"/>
+    </definition>
+
+    <definition name="container_load.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Reports Page"/>
+        <put-attribute name="body"   value="/reports/container_load.jsp"/>
+    </definition>
+
+    <definition name="cargo.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Reports Page"/>
+        <put-attribute name="body"   value="/reports/cargo.jsp"/>
+    </definition>
+
+    <definition name="customer_relation.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Reports Page"/>
+        <put-attribute name="body"   value="/reports/customer_relation.jsp"/>
+    </definition>
+
+    <definition name="sales.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Reports Page"/>
+        <put-attribute name="body"   value="/reports/sales.jsp"/>
+    </definition>
+
+    <definition name="finance.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Finance Page"/>
+        <put-attribute name="body"   value="/finance/finance.jsp"/>
+    </definition>
+
+    <definition name="finance-search-result.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Finance Page"/>
+        <put-attribute name="body"   value="/finance/finance_search_result.jsp"/>
+    </definition>
+
+    <definition name="finance-add.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Finance Page"/>
+        <put-attribute name="body"   value="/finance/add_finance.jsp"/>
+    </definition>
+
+    <definition name="finance-edit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Finance Page"/>
+        <put-attribute name="body"   value="/finance/edit_finance.jsp"/>
+    </definition>
+
+    <definition name="group.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Group Page"/>
+        <put-attribute name="body"   value="/core/group.jsp"/>
+    </definition>
+
+    <definition name="addgroup.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Group Page"/>
+        <put-attribute name="body"   value="/core/addgroup.jsp"/>
+    </definition>
+
+    <definition name="editgroup.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Group Page"/>
+        <put-attribute name="body"   value="/core/editgroup.jsp"/>
+    </definition>
+
+    <definition name="addgroupsuccess.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Group Page"/>
+        <put-attribute name="body"   value="/core/addgroupsuccess.jsp"/>
+    </definition>
+
+    <definition name="editgroupsuccess.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Group Page"/>
+        <put-attribute name="body"   value="/core/editgroupsuccess.jsp"/>
+    </definition>
+</tiles-definitions>

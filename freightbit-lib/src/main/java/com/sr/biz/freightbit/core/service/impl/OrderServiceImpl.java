@@ -1,0 +1,77 @@
+package com.sr.biz.freightbit.core.service.impl;
+
+import java.util.Date;
+import java.util.List;
+
+import com.sr.biz.freightbit.core.dao.OrderDao;
+import com.sr.biz.freightbit.core.entity.Orders;
+import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
+import com.sr.biz.freightbit.core.service.OrderService;
+
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+/**
+ * Created by JMXPSX on 5/27/14.
+ */
+
+public class OrderServiceImpl implements OrderService{
+
+    private OrderDao orderDao;
+
+    public void setOrderDao(OrderDao orderDao) {this.orderDao = orderDao;}
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addOrder(Orders orders) throws OrderAlreadyExistsException {
+        if (orderDao.findOrdersByOrderNumber(orders.getOrderNumber())!=null)
+            throw new OrderAlreadyExistsException(orders.getOrderNumber());
+        else
+            orderDao.addOrder(orders);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void deleteOrder(Orders orders){
+        orderDao.deleteOrder(orders);
+    }
+
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateOrder(Orders orders) {
+        orderDao.updateOrder(orders);
+    }
+
+    @Override
+    public List<Orders> findAllOrders () {
+        List <Orders> orders = orderDao.findAllOrders();
+        return orders;
+    }
+
+    @Override
+    public List<Orders> findAllOrdersByClientId (Integer clientId) {
+        return orderDao.findAllOrdersByClientId(clientId);
+    }
+
+
+    @Override
+    public Orders findOrdersById(Integer orderId) {
+        return orderDao.findOrdersById(orderId);
+    }
+
+
+    @Override
+    public  Orders findOrdersByOrderNumber (Integer orderNumber) {
+        List<Orders> result = orderDao.findOrdersByOrderNumber(orderNumber);
+        if (result != null && !result.isEmpty())
+            return result.get(0);
+        return null;
+    }
+
+
+    @Override
+    public void updateOrderDate(Orders orders){
+        orders.setOrderDate(new Date());
+        orderDao.updateOrder(orders);
+    }
+}

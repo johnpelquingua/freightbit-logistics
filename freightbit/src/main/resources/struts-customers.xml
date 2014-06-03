@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="customers" namespace="/" extends="struts-default">
+
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>
+
+        <default-action-ref name="Customers" />
+
+        <action name="customerList" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerList">
+            <result name="success" type="tiles">customer.customerList.tiles</result>
+        </action>
+
+        <action name="customerSearch" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerSearch">
+            <result name="success" type="tiles">customer.customerSearch.tiles</result>
+        </action>
+
+        <action name="customerAdd" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerAdd">
+            <result name="success" type="tiles">customer.customerAdd.tiles</result>
+        </action>
+
+        <action name="customerEdit" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerEdit">
+            </action>
+
+        <action name="deleteCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerDeleteExecute">
+            <result name="success" type="redirect">customerList</result>
+        </action>
+
+        <action name="addCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerAddExecute">
+            <result name="input" type="tiles">customer.customerAdd.tiles</result>
+            <result name="success" type="tiles">customer.customerList.tiles</result>
+        </action>
+
+        <action name="editCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerEditExecute">
+            <result name="input" type="tiles">customer.customerEdit.tiles</result>
+            <result name="success" type="tiles">customer.customerList.tiles</result>
+        </action>
+    </package>
+</struts>

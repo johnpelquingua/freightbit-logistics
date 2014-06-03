@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="vendor" namespace="/" extends="struts-default">
+
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>
+
+        <default-action-ref name="Vendor" />
+
+        <!--vendor-->
+        <action name="loadSearchVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSearchVendorPage">
+            <result name="success" type="tiles">vendor.vendorSearch.tiles</result>
+        </action>
+
+        <action name="loadAddVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddVendorPage">
+            <result name="success" type="tiles">vendor.vendorAdd.tiles</result>
+        </action>
+
+        <action name="loadEditVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditVendorPage">
+            <result name="success" type="tiles">vendor.vendorEdit.tiles</result>
+        </action>
+
+        <action name="addVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addVendor">
+            <result name="success" type="redirect">loadAddTrucksPage</result>
+            <result name="input" type="tiles">vendor.vendorAdd.tiles</result>
+        </action>
+
+        <action name="viewVendors" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewVendors">
+            <result name="success" type="tiles">vendor.vendorListView.tiles</result>
+        </action>
+
+        <action name="deleteVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteVendor">
+            <result name="success" type="redirect">viewVendors</result>
+        </action>
+
+        <!--<action name="editVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">-->
+            <!--<result name="success" type="redirect">viewVendors</result>-->
+        <!--</action>-->
+
+        <!--trucks-->
+        <action name="loadAddTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddTrucksPage">
+            <result name="success" type="tiles">vendor.vendorAddTrucks.tiles</result>
+        </action>
+
+    </package>
+</struts>

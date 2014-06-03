@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="freightbit:war">
+    <output-path>$PROJECT_DIR$/../freightbit/target</output-path>
+    <root id="archive" name="freightbit-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="freightbit:war exploded" />
+    </root>
+  </artifact>
+</component>

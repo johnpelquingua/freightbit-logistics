@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+
+    <include file="struts-orders.xml" />
+	<include file="struts-finance.xml" />
+	<include file="struts-permission.xml" />
+	<include file="struts-group.xml" />
+	<include file="struts-help.xml" />
+	<include file="struts-example.xml" />
+	<include file="struts-vendor.xml" />
+	<include file="struts-customers.xml" />
+	<include file="struts-reports.xml" />
+	<include file="struts-admin.xml" />
+	<include file="struts-user.xml" />
+
+	<package name="default" namespace="/" extends="struts-default">
+	    <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>
+
+		<default-action-ref name="index" />
+
+		<action name="index">
+			<result>login.jsp</result>
+		</action>
+
+		<action name="login" method="execute" class="com.sr.apps.freightbit.core.action.LoginAction">
+			<result name="success" type="tiles">index.tiles</result>
+			<result name="input">login.jsp</result>
+		</action>
+		
+		
+
+	</package>
+
+	<!-- Add addition packages and configuration here. -->
+</struts>

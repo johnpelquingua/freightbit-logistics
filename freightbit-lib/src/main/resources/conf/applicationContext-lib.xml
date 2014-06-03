@@ -1,0 +1,164 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:annotation-config />
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="classpath:/jdbc.properties" />
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
+          p:url="${jdbc.databaseurl}" p:username="${jdbc.username}" p:password="${jdbc.password}" />
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan">
+            <array>
+                <value>com.sr.biz.freightbit.core.entity</value>
+                <value>com.sr.biz.freightbit.vendor.entity</value>
+            </array>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${jdbc.dialect}</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+	<!-- Services -->
+    <bean id="rateService" class="com.sr.biz.freightbit.core.service.impl.RateServiceImpl">
+        <property name="ratesDao" ref="ratesDao" />
+    </bean>
+
+
+    <bean id="itemService" class="com.sr.biz.freightbit.core.service.impl.ItemServiceImpl">
+        <property name="itemsDao" ref="itemsDao" />
+    </bean>
+
+	<bean id="userService" class="com.sr.biz.freightbit.core.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	
+	<bean id="groupService" class="com.sr.biz.freightbit.core.service.impl.GroupServiceImpl">
+		<property name="groupDao" ref="groupDao" />
+		<property name="groupUserDao" ref="groupUserDao"/>
+		<property name="userDao" ref="userDao"/>
+	</bean>
+	
+	<bean id="permissionService" class="com.sr.biz.freightbit.core.service.impl.PermissionServiceImpl">
+		<property name="permissionDao" ref="permissionDao" />
+	</bean>
+
+    <bean id="customerService" class="com.sr.biz.freightbit.core.service.impl.CustomerServiceImpl">
+        <property name="customerDao" ref="customerDao" />
+    </bean>
+
+    <bean id="clientService" class="com.sr.biz.freightbit.core.service.impl.ClientServiceImpl">
+        <property name="clientDao" ref="clientDao" />
+    </bean>
+
+    <bean id="parameterService" class="com.sr.biz.freightbit.core.service.impl.ParameterServiceImpl">
+        <property name="parameterDao" ref="parameterDao" />
+    </bean>
+
+    <bean id="driverService" class="com.sr.biz.freightbit.core.service.impl.DriverServiceImpl">
+        <property name="driverDao" ref="driverDao" />
+    </bean>
+
+    <bean id="trailersService" class="com.sr.biz.freightbit.core.service.impl.TrailersServiceImpl">
+        <property name="trailersDao" ref="trailersDao" />
+    </bean>
+
+    <bean id="trucksService" class="com.sr.biz.freightbit.core.service.impl.TrucksServiceImpl">
+        <property name="trucksDao" ref="trucksDao" />
+    </bean>
+
+    <bean id="vendorService" class="com.sr.biz.freightbit.vendor.service.impl.VendorServiceImpl">
+        <property name="vendorDao" ref="vendorDao" />
+    </bean>
+
+    <bean id="vesselService" class="com.sr.biz.freightbit.core.service.impl.VesselServiceImpl">
+        <property name="vesselDao" ref="vesselDao" />
+    </bean>
+
+    <!-- Services End -->
+    <!-- DAOs -->
+
+    <bean id="ratesDao" class="com.sr.biz.freightbit.core.dao.impl.RateDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="itemsDao" class="com.sr.biz.freightbit.core.dao.impl.ItemsDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+	<bean id="userDao" class="com.sr.biz.freightbit.core.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="groupDao" class="com.sr.biz.freightbit.core.dao.impl.GroupDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="groupUserDao" class="com.sr.biz.freightbit.core.dao.impl.GroupUserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="permissionDao" class="com.sr.biz.freightbit.core.dao.impl.PermissionDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+    <bean id="customerDao" class="com.sr.biz.freightbit.core.dao.impl.CustomerDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="clientDao" class="com.sr.biz.freightbit.core.dao.impl.ClientDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="parameterDao" class="com.sr.biz.freightbit.core.dao.impl.ParameterDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+
+    <bean id="trailersDao" class="com.sr.biz.freightbit.core.dao.impl.TrailersDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="trucksDao" class="com.sr.biz.freightbit.core.dao.impl.TrucksDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="vesselDao" class="com.sr.biz.freightbit.core.dao.impl.VesselDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="vendorDao" class="com.sr.biz.freightbit.vendor.dao.impl.VendorDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="driverDao" class="com.sr.biz.freightbit.core.dao.impl.DriverDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <tx:annotation-driven />
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+</beans>

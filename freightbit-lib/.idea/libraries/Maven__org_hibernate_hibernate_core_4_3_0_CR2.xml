@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.hibernate:hibernate-core:4.3.0.CR2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.0.CR2/hibernate-core-4.3.0.CR2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.0.CR2/hibernate-core-4.3.0.CR2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/4.3.0.CR2/hibernate-core-4.3.0.CR2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

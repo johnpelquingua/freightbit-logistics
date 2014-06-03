@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="orders" namespace="/" extends="struts-default">
+
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>
+
+        <default-action-ref name="Orders" />
+
+        <action name="bookingList" class="com.sr.apps.freightbit.core.action.OrderAction" method="bookingList">
+            <result name="success" type="tiles">orders.booking-list.tiles</result>
+        </action>
+
+        <action name="bookingSearch" class="com.sr.apps.freightbit.core.action.OrderAction" method="bookingSearch">
+            <result name="success" type="tiles">orders.booking-search.tiles</result>
+        </action>
+
+        <action name="bookingNew" class="com.sr.apps.freightbit.core.action.OrderAction" method="bookingNew">
+            <result name="success" type="tiles">orders.booking-new.tiles</result>
+        </action>
+
+    </package>
+</struts>
