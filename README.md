@@ -1,4 +1,4 @@
-freightbit-logistics
+Freightbit Logistics
 ====================
 
 Ernest Logistics Service started in April of 2009 as a trucking business providing containerized hauling of cargoes for the domestic market but the young businessman has a larger vision and greater determination to expand his business which eventually lead to the launching of its freight management and domestic forwarding services in the very same year. Difficulties and disappointments in starting the business were encountered and eventually were understandable but Jan Ernest Go, the young entrepreneur only showed optimism and relentless determination.  His idea was to provide genuine services guided through excellence and dedication further creating solid partnerships and business relations and in March of 2012 the company has emerged and incorporated to become Ernest Logistics Corporation.  Our company provides not only freight management and domestic freight forwarding but primarily Options and Solutions custom fit to our clients’ needs and requirements.
