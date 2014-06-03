@@ -31,6 +31,21 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
             throw onfe;
         }
     }
+    
+    @Override
+    public List<Parameters> findParameterMapByRefColumn(String referenceTable, String referenceColumn) {
+        log.debug("Finding parameter for [" + referenceColumn +"]");
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            Query query = session.createQuery(" from Parameters p where referenceColumn = :referenceColumn and referenceTable = :referenceTable");
+            query.setParameter("referenceColumn", referenceColumn);
+            query.setParameter("referenceTable", referenceTable);
+            return (List<Parameters>) query.list();
+        } catch (ObjectNotFoundException onfe) {
+            log.error("Finding parameter for [" + referenceColumn +"] failed.", onfe);
+            throw onfe;
+        }
+    }
 
     @Override
     public List<Parameters> findParametersByProperty(Map<String, Object> params){

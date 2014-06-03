@@ -19,7 +19,11 @@
     </definition>
 
 	<!-- CORE module tiles Begin-->
-	
+	<definition name="core.userSearch.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="User Page"/>
+        <put-attribute name="body"   value="/core/userSearch.jsp"/>
+    </definition>
+    
     <definition name="core.userListView.tiles" extends="baseLayout">
         <put-attribute name="title"  value="User Page"/>
         <put-attribute name="body"   value="/core/userListView.jsp"/>

@@ -23,8 +23,14 @@ public class ParameterServiceImpl implements ParameterService {
         List<Parameters> parameterMap = parameterDao.findParameterMapByRefColumn(referenceColumn);
         return parameterMap;
     }
+    
+    public List<Parameters> getParameterMap(String referenceTable, String referenceColumn) {
+        List<Parameters> parameterMap = parameterDao.findParameterMapByRefColumn(referenceTable, referenceColumn);
+        return parameterMap;
+    }
 
     public List<Parameters> findParametersByProperty(Map<String, Object> params){
         return parameterDao.findParametersByProperty(params);
     }
+   
 }

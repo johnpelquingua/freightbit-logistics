@@ -5,6 +5,10 @@ public class ParameterConstants {
 	public final static String USER_TYPE = "USER_TYPE";
 	
 	public final static String STATUS = "STATUS";
+	
+	public final static String USER = "USER";
+	
+	public final static String SEARCH_CRITERIA = "SEARCH_CRITERIA";
 
     public final static String VENDOR_TYPE = "VENDOR_TYPE";
 

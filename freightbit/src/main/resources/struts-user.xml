@@ -11,6 +11,10 @@
         </result-types>
 
         <default-action-ref name="User" />
+        
+        <action name="loadSearchUserPage" class="com.sr.apps.freightbit.core.action.UserAction" method="loadSearchUserPage">
+            <result name="success" type="tiles">core.userSearch.tiles</result>
+        </action>
 
         <action name="viewUsers" class="com.sr.apps.freightbit.core.action.UserAction" method="viewUsers">
             <result name="success" type="tiles">core.userListView.tiles</result>

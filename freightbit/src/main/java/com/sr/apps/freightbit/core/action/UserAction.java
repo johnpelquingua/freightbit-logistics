@@ -33,20 +33,38 @@ public class UserAction extends ActionSupport implements Preparable {
 	private List<UserBean> users = new ArrayList<UserBean>(); //list of users displayed in User List page
 	private List<Parameters> userTypeList = new ArrayList<Parameters>(); //User type drop down values
 	private List<Parameters> statusList = new ArrayList<Parameters>(); //Status drop down values
+	private List<Parameters> userSearchList = new ArrayList<Parameters>(); 
 	private UserBean user = new UserBean(); //single user object
 	private String userNameParam; //parameter used to identify which specific user is to be edited/deleted/viewed
-	
+
 	private UserService userService;
 	private ClientService clientService;
 	private ParameterService parameterService;
 
+	public String loadSearchUserPage() {
+		return SUCCESS;
+	}
+	
     public String viewUsers() {
-    	List<User> userEntityList = userService.findAllUsers(getClientId());
+    	String column = getColumnFilter();
+    	List<User> userEntityList = userService.findUsersByCriteria(column, user.getUserKeyword(), getClientId());
 		for (User userElem : userEntityList) {
 			users.add(transformToFormBean(userElem));
 		}
         return SUCCESS;
     }
+
+	private String getColumnFilter() {
+		String column = "";
+		if ("USER TYPE".equals(user.getUserSearchCriteria())) {
+    		column = "userType";
+		} else if ("USER NAME".equals(user.getUserSearchCriteria())) {
+    		column = "username";
+		} else if ("NAME".equals(user.getUserSearchCriteria())) {
+    		column = "firstName";
+		}
+		return column;
+	}
 
     public String loadAddUserPage() {
     	return SUCCESS;
@@ -94,6 +112,7 @@ public class UserAction extends ActionSupport implements Preparable {
 */
     @Override
     public void prepare(){
+    	userSearchList = parameterService.getParameterMap(ParameterConstants.USER, ParameterConstants.SEARCH_CRITERIA);
     	userTypeList = parameterService.getParameterMap(ParameterConstants.USER_TYPE);
     	statusList = parameterService.getParameterMap(ParameterConstants.STATUS);
     }
@@ -192,6 +211,15 @@ public class UserAction extends ActionSupport implements Preparable {
 	public void setUserTypeList(List<Parameters> userTypeList) {
 		this.userTypeList = userTypeList;
 	}
+	
+	public List<Parameters> getUserSearchList() {
+		return userSearchList;
+	}
+
+	public void setUserSearchList(List<Parameters> userSearchList) {
+		this.userSearchList = userSearchList;
+	}
+
 
 
 	public UserBean getUser() {
