@@ -19,7 +19,7 @@ public interface ContactsDao {
 
     public Contacts findContactById(long id);
 
-    public List<Contacts> findAllContactsByClientId(long clientId);
+//    public List<Contacts> findAllContactsByClientId(long clientId);
 
     public Contacts findContactByReferenceTableAndId(String referenceTable, String referenceID);
 }
