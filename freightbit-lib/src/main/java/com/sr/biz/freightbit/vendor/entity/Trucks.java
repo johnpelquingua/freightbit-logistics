@@ -8,7 +8,9 @@ package com.sr.biz.freightbit.vendor.entity;
  * To change this template use File | Settings | File Templates.
  */
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,31 +27,34 @@ import com.sr.biz.freightbit.core.entity.Client;
 @Entity
 @Table(name = "trucks", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "truckId"))
 
-public class Trucks implements java.io.Serializable{
+public class Trucks implements Serializable {
 
-    private long truckId;
+    private Integer truckId;
     private Client client;
-    private Vendor vendor;
+    private Integer vendorId;
     private String truckCode;
     private String truckType;
     private String plateNumber;
     private String modelNumber;
-    private int modelYear;
+    private Integer modelYear;
     private String engineNumber;
-    private int grossWeight;
+    private Integer grossWeight;
     private Date createdTimestamp;
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
 
-    public Trucks(long truckId, Client client, Vendor vendor, String truckCode, String truckType,
-                  String plateNumber, String modelNumber, int modelYear, String engineNumber,
-                  int grossWeight, Date createdTimestamp, String createdBy, Date modifiedTimestamp,
-                  String modifiedBy){
+    public Trucks(){}
 
+    public Trucks(Integer truckId, Client client, Integer vendorId,
+                  String truckCode, String truckType, String plateNumber,
+                  String modelNumber, Integer modelYear,
+                  String engineNumber, Integer grossWeight,
+                  Date createdTimestamp, String createdBy,
+                  Date modifiedTimestamp, String modifiedBy) {
         this.truckId = truckId;
         this.client = client;
-        this.vendor = vendor;
+        this.vendorId = vendorId;
         this.truckCode = truckCode;
         this.truckType = truckType;
         this.plateNumber = plateNumber;
@@ -63,37 +68,25 @@ public class Trucks implements java.io.Serializable{
         this.modifiedBy = modifiedBy;
     }
 
-    public Trucks(){}
-
     @Id
     @GeneratedValue
-    @Column(name = "truckId", unique = true, nullable = false)
-    public long getTruckId() {
+    @Column(name = "truckId", unique = true)
+    public Integer getTruckId() {
         return this.truckId;
     }
 
-    public void setTruckId(long truckId) {
+    public void setTruckId(Integer truckId) {
         this.truckId = truckId;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "clientId", nullable = false)
+    @JoinColumn(name = "clientId")
     public Client getClient() {
         return this.client;
     }
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "vendorId", nullable = false)
-    public Vendor getVendor() {
-        return this.vendor;
-    }
-
-    public void setVendor(Vendor vendor) {
-        this.vendor = vendor;
     }
 
     @Column(name = "truckCode", nullable = false)
@@ -133,11 +126,11 @@ public class Trucks implements java.io.Serializable{
     }
 
     @Column(name = "modelYear")
-    public int getModelYear() {
+    public Integer getModelYear() {
         return this.modelYear;
     }
 
-    public void setModelYear(int modelYear) {
+    public void setModelYear(Integer modelYear) {
         this.modelYear = modelYear;
     }
 
@@ -151,11 +144,11 @@ public class Trucks implements java.io.Serializable{
     }
 
     @Column(name = "grossWeight")
-    public int getGrossWeight() {
+    public Integer getGrossWeight() {
         return this.grossWeight;
     }
 
-    public void setGrossWeight(int grossWeight) {
+    public void setGrossWeight(Integer grossWeight) {
         this.grossWeight = grossWeight;
     }
 
@@ -193,5 +186,14 @@ public class Trucks implements java.io.Serializable{
 
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
+    }
+
+    @Column(name = "vendorId")
+    public Integer getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
     }
 }

@@ -60,7 +60,7 @@
 					</div>
 
 					<div class="btn-group" style="float: right;" id="trucking">
-						<button class="btn btn-default" onclick="this.form.action='vendor-list'">Cancel</button>
+						<button class="btn btn-default" onclick="this.form.action='viewVendors'">Cancel</button>
 						<%--<button class="btn btn-default">Next</button>--%>
                         <s:submit cssClass="btn btn-default" value="Next" type="submit" />
 					</div>

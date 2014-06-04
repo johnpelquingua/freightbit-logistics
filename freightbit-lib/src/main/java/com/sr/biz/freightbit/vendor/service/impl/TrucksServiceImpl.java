@@ -63,6 +63,15 @@ public class TrucksServiceImpl implements TrucksService {
         return null;
     }
 
+    @Override
+    public List<Trucks> findTrucksByVendorId(Integer vendorId) {
+        List<Trucks> result = trucksDao.findTrucksByVendorId(vendorId);
+       /* if (result != null && !result.isEmpty()) {
+            return result.get(0);
+        }*/
+        return result;
+    }
+
   /*  @Override
     public void updateLastVisitDate(User user) {
         user.setLastVisitDate(new Date());

@@ -25,7 +25,8 @@ import com.sr.biz.freightbit.core.entity.Client;
 public class Driver implements Serializable{
 
     private Integer driverId;
-    private Vendor vendor;
+//    private Vendor vendor;
+    private Integer vendorId;
     private Client client;
     private String driverCode;
     private String licenseNumber;
@@ -44,7 +45,13 @@ public class Driver implements Serializable{
     public Driver() {
     }
 
-    public Driver(Client client, String driverCode, String licenseNumber, String firstName, String middleName, String lastName, String title, String status, String createdBy, String modifiedBy) {
+    public Driver(Integer driverId, Integer vendorId, Client client,
+                  String driverCode, String licenseNumber, String firstName,
+                  String middleName, String lastName, String title, String status,
+                  Date dateHired, Date dateTerminated, Date createdTimestamp,
+                  String createdBy, Date modifiedTimestamp, String modifiedBy) {
+        this.driverId = driverId;
+        this.vendorId = vendorId;
         this.client = client;
         this.driverCode = driverCode;
         this.licenseNumber = licenseNumber;
@@ -53,7 +60,11 @@ public class Driver implements Serializable{
         this.lastName = lastName;
         this.title = title;
         this.status = status;
+        this.dateHired = dateHired;
+        this.dateTerminated = dateTerminated;
+        this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
+        this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
     }
 
@@ -78,14 +89,13 @@ public class Driver implements Serializable{
         this.client = client;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "vendorId", nullable = false)
-    public Vendor getVendor() {
-        return this.vendor;
+    @Column(name = "vendorId")
+    public Integer getVendorId() {
+        return this.vendorId;
     }
 
-    public void setVendor(Vendor vendor) {
-        this.vendor = vendor;
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
     }
     
     @Column(name = "driverCode", unique = true, nullable = false)

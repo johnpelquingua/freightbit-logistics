@@ -18,4 +18,6 @@ public class ParameterConstants {
 
     public final static String TRUCK_TYPE = "TRUCK_TYPE";
 
+    public final static String VENDOR_CLASS = "VENDOR_CLASS";
+
 }

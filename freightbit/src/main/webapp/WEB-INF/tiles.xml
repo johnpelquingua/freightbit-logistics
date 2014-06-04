@@ -98,6 +98,11 @@
         <put-attribute name="body"   value="/vendor/vendorEdit.jsp"/>
     </definition>
 
+    <definition name="vendor.vendorAddDriver.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorAddDriver.jsp"/>
+    </definition>
+
 <!-- VENDOR module tiles END -->
 
 <!-- CUSTOMER module tiles END -->
@@ -267,7 +272,7 @@
 
     <definition name="vendor-driver.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Vendor Page"/>
-        <put-attribute name="body"   value="/vendor/vendor-driver.jsp"/>
+        <put-attribute name="body"   value="/vendor/vendorAddDriver.jsp"/>
     </definition>
 
     <definition name="vendor-list-edit.tiles" extends="baseLayout">

@@ -10,6 +10,7 @@ import java.util.List;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
 
+
 public interface TrucksDao {
 
     public void updateTrucks(Trucks trucks);
@@ -25,4 +26,6 @@ public interface TrucksDao {
     public List<Trucks> findAllTrucks();
 
     public List<User> findAllUsersByClientId(Long clientId);
+
+    public List<Trucks> findTrucksByVendorId(Integer vendorId);
 }

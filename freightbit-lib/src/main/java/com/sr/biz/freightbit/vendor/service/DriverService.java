@@ -25,4 +25,8 @@ public interface DriverService {
     public void updateDateTerminated(Driver driver);
 
     public void updateDriver(Driver driver);
+
+    public List<Driver> findDriverByVendorId(Integer vendorId);
+
+    public Driver findDriverByDriverCode(String driverCode);
 }

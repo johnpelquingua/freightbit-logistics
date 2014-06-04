@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.sr.biz.freightbit.vendor.dao.DriverDao;
+import com.sr.biz.freightbit.vendor.entity.Trucks;
 import com.sr.biz.freightbit.vendor.exceptions.DriverAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.DriverService;
 import com.sr.biz.freightbit.vendor.entity.Driver;
@@ -75,4 +76,18 @@ public class DriverServiceImpl implements DriverService{
         driverDao.updateDriver(driver);
     }
 
+    @Override
+    public List<Driver> findDriverByVendorId(Integer vendorId) {
+        List<Driver> result = driverDao.findDriverByVendorId(vendorId);
+        return result;
+    }
+
+    @Override
+    public Driver findDriverByDriverCode(String driverCode) {
+        List<Driver> result = driverDao.findDriverByDriverCode(driverCode);
+        if (result != null && !result.isEmpty()) {
+            return result.get(0);
+        }
+        return null;
+    }
 }

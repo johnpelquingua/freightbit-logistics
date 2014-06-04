@@ -12,7 +12,7 @@ import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
 
 public interface VendorService {
 
-    public void addVendor(Vendor vendor) throws VendorAlreadyExistsException;
+    public Integer addVendor(Vendor vendor) throws VendorAlreadyExistsException;
 
     public void updateVendor(Vendor vendor);
 

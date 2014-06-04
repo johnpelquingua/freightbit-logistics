@@ -38,13 +38,48 @@
             <result name="success" type="redirect">viewVendors</result>
         </action>
 
+        <action name="editVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">
+            <result name="success" type="redirect">vendor.vendorSaveComplete.tiles</result>
+        </action>
+
         <!--<action name="editVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">-->
-            <!--<result name="success" type="redirect">viewVendors</result>-->
+        <!--<result name="success" type="redirect">viewVendors</result>-->
         <!--</action>-->
 
         <!--trucks-->
         <action name="loadAddTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddTrucksPage">
             <result name="success" type="tiles">vendor.vendorAddTrucks.tiles</result>
+        </action>
+
+        <action name="loadEditTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditTrucksPage">
+            <result name="success" type="tiles">vendor.vendorAddTrucks.tiles</result>
+        </action>
+
+        <action name="addTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addTrucks">
+            <result name="success" type="redirect">loadAddTrucksPage</result>
+            <result name="input" type="tiles">vendor.vendorAddTrucks.tiles</result>
+        </action>
+
+        <action name="deleteTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteTrucks">
+            <result name="success" type="redirect">loadAddTrucksPage</result>
+        </action>
+
+        <action name="editTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editTrucks">
+            <result name="success" type="redirect">loadAddTrucksPage</result>
+        </action>
+
+        <!--driver-->
+        <action name="loadAddDriverPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddDriverPage">
+            <result name="success" type="tiles">vendor.vendorAddDriver.tiles</result>
+        </action>
+
+        <action name="addDriver" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addDriver">
+            <result name="success" type="redirect">loadAddDriverPage</result>
+            <result name="input" type="tiles">vendor.vendorAddDriver.tiles</result>
+        </action>
+
+        <action name="deleteDriver" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteDriver">
+            <result name="success" type="redirect">loadAddDriverPage</result>
         </action>
 
     </package>

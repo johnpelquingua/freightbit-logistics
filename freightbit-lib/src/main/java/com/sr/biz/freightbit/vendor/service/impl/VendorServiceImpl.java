@@ -25,11 +25,11 @@ public class VendorServiceImpl implements VendorService{
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addVendor(Vendor vendor) throws VendorAlreadyExistsException{
+    public Integer addVendor(Vendor vendor) throws VendorAlreadyExistsException{
         if (vendorDao.findVendorByVendorCode(vendor.getVendorCode()).size() > 0)
             throw new VendorAlreadyExistsException(vendor.getVendorCode());
         else
-            vendorDao.addVendor(vendor);
+            return vendorDao.addVendor(vendor);
     }
 
     @Override

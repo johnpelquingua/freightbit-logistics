@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface VendorDao {
 
-    public void addVendor(Vendor vendor);
+    public Integer addVendor(Vendor vendor);
 
     public void deleteVendor(Vendor vendor);
 

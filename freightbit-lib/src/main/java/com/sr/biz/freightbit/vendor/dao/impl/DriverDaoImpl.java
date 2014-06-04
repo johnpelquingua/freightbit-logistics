@@ -124,4 +124,36 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
         }
     }
 
+    @Override
+    public List<Driver> findDriverByVendorId(Integer vendorId) {
+        Log.debug("Getting Driver instance by vendor id: " + vendorId);
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Drivers d where d.vendorId = :vendorId ");
+            query.setParameter("vendorId", vendorId);
+            List<Driver> results = (List<Driver>) query.list();
+            Log.debug("Find by vendorId successful, result size: " + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            Log.error("Get failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+    public List<Driver> findDriverByDriverCode(String driverCode) {
+        Log.debug("Finding Driver instance");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Drivers d where d.driverCode = :driverCode"
+            );
+            List<Driver> results = (List<Driver>) query.list();
+            Log.debug("Find by driverCode successful, result size: " + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            Log.error("Find by driverCode failed", re);
+            throw re;
+        }
+    }
+
 }

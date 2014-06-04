@@ -2,58 +2,38 @@ package com.sr.apps.freightbit.vendor.formbean;
 
 public class TruckBean {
 
-    private String truckId;
-    private String vendorId;
-    private Integer clientId;
+    private Integer truckId;
     private String truckCode;
     private String truckType;
-    private String truckPlateNumber;
-    private String truckModelNumber;
-    private Integer truckModelYear;
-    private String truckEngineNumber;
-    private Integer truckGrossWeight;
+    private String plateNumber;
+    private String modelNumber;
+    private Integer modelYear;
+    private String engineNumber;
+    private Integer grossWeight;
 
     public TruckBean() {
     }
 
-    public TruckBean(String truckId, String vendorId, Integer clientId,
-                     String truckCode, String truckType, String truckPlateNumber,
-                     String truckModelNumber, Integer truckModelYear, String truckEngineNumber,
-                     Integer truckGrossWeight) {
+    public TruckBean(Integer truckId, String truckCode,
+                     String truckType, String plateNumber,
+                     String modelNumber, Integer modelYear, String engineNumber,
+                     Integer grossWeight) {
         this.truckId = truckId;
-        this.vendorId = vendorId;
-        this.clientId = clientId;
         this.truckCode = truckCode;
         this.truckType = truckType;
-        this.truckPlateNumber = truckPlateNumber;
-        this.truckModelNumber = truckModelNumber;
-        this.truckModelYear = truckModelYear;
-        this.truckEngineNumber = truckEngineNumber;
-        this.truckGrossWeight = truckGrossWeight;
+        this.plateNumber = plateNumber;
+        this.modelNumber = modelNumber;
+        this.modelYear = modelYear;
+        this.engineNumber = engineNumber;
+        this.grossWeight = grossWeight;
     }
 
-    public String getTruckId() {
+    public Integer getTruckId() {
         return truckId;
     }
 
-    public void setTruckId(String truckId) {
+    public void setTruckId(Integer truckId) {
         this.truckId = truckId;
-    }
-
-    public String getVendorId() {
-        return vendorId;
-    }
-
-    public void setVendorId(String vendorId) {
-        this.vendorId = vendorId;
-    }
-
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
     }
 
     public String getTruckCode() {
@@ -72,43 +52,43 @@ public class TruckBean {
         this.truckType = truckType;
     }
 
-    public String getTruckPlateNumber() {
-        return truckPlateNumber;
+    public String getPlateNumber() {
+        return plateNumber;
     }
 
-    public void setTruckPlateNumber(String truckPlateNumber) {
-        this.truckPlateNumber = truckPlateNumber;
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
 
-    public String getTruckModelNumber() {
-        return truckModelNumber;
+    public String getModelNumber() {
+        return modelNumber;
     }
 
-    public void setTruckModelNumber(String truckModelNumber) {
-        this.truckModelNumber = truckModelNumber;
+    public void setModelNumber(String modelNumber) {
+        this.modelNumber = modelNumber;
     }
 
-    public Integer getTruckModelYear() {
-        return truckModelYear;
+    public Integer getModelYear() {
+        return modelYear;
     }
 
-    public void setTruckModelYear(Integer truckModelYear) {
-        this.truckModelYear = truckModelYear;
+    public void setModelYear(Integer modelYear) {
+        this.modelYear = modelYear;
     }
 
-    public String getTruckEngineNumber() {
-        return truckEngineNumber;
+    public String getEngineNumber() {
+        return engineNumber;
     }
 
-    public void setTruckEngineNumber(String truckEngineNumber) {
-        this.truckEngineNumber = truckEngineNumber;
+    public void setEngineNumber(String engineNumber) {
+        this.engineNumber = engineNumber;
     }
 
-    public Integer getTruckGrossWeight() {
-        return truckGrossWeight;
+    public Integer getGrossWeight() {
+        return grossWeight;
     }
 
-    public void setTruckGrossWeight(Integer truckGrossWeight) {
-        this.truckGrossWeight = truckGrossWeight;
+    public void setGrossWeight(Integer grossWeight) {
+        this.grossWeight = grossWeight;
     }
 }

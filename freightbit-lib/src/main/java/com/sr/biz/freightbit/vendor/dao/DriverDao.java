@@ -24,4 +24,8 @@ public interface DriverDao {
 
     public List<Driver> findDriverByLastName(String lastName);
 
+    public List<Driver> findDriverByVendorId(Integer vendorId);
+
+    public List<Driver> findDriverByDriverCode(String driverCode);
+
 }

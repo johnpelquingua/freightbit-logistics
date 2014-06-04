@@ -23,12 +23,13 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
     private static final Logger log = Logger.getLogger(VendorDaoImpl.class);
 
     @Override
-    public void addVendor(Vendor vendor){
+    public Integer addVendor(Vendor vendor){
         log.debug("Adding new Vendor");
         try {
             Session session = getSessionFactory().getCurrentSession();
-            session.save(vendor);
+            Integer vendorId = (Integer) session.save(vendor);
             log.debug("Add vendor successful");
+            return vendorId;
         } catch (RuntimeException re) {
             log.error("Add vendor failed", re);
             throw re;
