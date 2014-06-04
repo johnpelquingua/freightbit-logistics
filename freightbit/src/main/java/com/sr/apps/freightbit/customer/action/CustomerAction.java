@@ -89,7 +89,7 @@ public class CustomerAction extends ActionSupport implements Preparable{
     private CustomerBean transformToFormBean(Customer entity){
 
         CustomerBean formBean = new CustomerBean();
-        formBean.setCustomerId(Long.toString(entity.getCustomerId()));
+        formBean.setCustomerId(entity.getCustomerId());
         formBean.setCustomerName(entity.getCustomerName());
         formBean.setPhone(entity.getPhone());
         formBean.setEmail(entity.getEmail());
