@@ -13,10 +13,10 @@ import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.core.formbean.UserBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.entity.Parameters;
+import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.service.ClientService;
-import com.sr.biz.freightbit.core.service.ParameterService;
+import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.service.UserService;
 
 /**

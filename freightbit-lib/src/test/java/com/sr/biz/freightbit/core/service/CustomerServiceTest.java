@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.sr.biz.freightbit.core.dao.CustomerDao;
+import com.sr.biz.freightbit.customer.dao.CustomerDao;
 import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.entity.Customer;
-import com.sr.biz.freightbit.core.exceptions.CustomerAlreadyExistsException;
-import com.sr.biz.freightbit.core.service.impl.CustomerServiceImpl;
+import com.sr.biz.freightbit.customer.entity.Customer;
+import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
+import com.sr.biz.freightbit.customer.service.impl.CustomerServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

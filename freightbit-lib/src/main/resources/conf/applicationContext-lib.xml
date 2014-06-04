@@ -30,6 +30,8 @@
             <array>
                 <value>com.sr.biz.freightbit.core.entity</value>
                 <value>com.sr.biz.freightbit.vendor.entity</value>
+                <value>com.sr.biz.freightbit.common.entity</value>
+                <value>com.sr.biz.freightbit.customer.entity</value>
             </array>
         </property>
         <property name="hibernateProperties">
@@ -41,12 +43,12 @@
     </bean>
 
 	<!-- Services -->
-    <bean id="rateService" class="com.sr.biz.freightbit.core.service.impl.RateServiceImpl">
+    <bean id="rateService" class="com.sr.biz.freightbit.customer.service.impl.RateServiceImpl">
         <property name="ratesDao" ref="ratesDao" />
     </bean>
 
 
-    <bean id="itemService" class="com.sr.biz.freightbit.core.service.impl.ItemServiceImpl">
+    <bean id="itemService" class="com.sr.biz.freightbit.customer.service.impl.ItemServiceImpl">
         <property name="itemsDao" ref="itemsDao" />
     </bean>
 
@@ -64,7 +66,7 @@
 		<property name="permissionDao" ref="permissionDao" />
 	</bean>
 
-    <bean id="customerService" class="com.sr.biz.freightbit.core.service.impl.CustomerServiceImpl">
+    <bean id="customerService" class="com.sr.biz.freightbit.customer.service.impl.CustomerServiceImpl">
         <property name="customerDao" ref="customerDao" />
     </bean>
 
@@ -72,15 +74,15 @@
         <property name="clientDao" ref="clientDao" />
     </bean>
 
-    <bean id="parameterService" class="com.sr.biz.freightbit.core.service.impl.ParameterServiceImpl">
+    <bean id="parameterService" class="com.sr.biz.freightbit.common.service.impl.ParameterServiceImpl">
         <property name="parameterDao" ref="parameterDao" />
     </bean>
 
-    <bean id="driverService" class="com.sr.biz.freightbit.core.service.impl.DriverServiceImpl">
+    <bean id="driverService" class="com.sr.biz.freightbit.vendor.service.impl.DriverServiceImpl">
         <property name="driverDao" ref="driverDao" />
     </bean>
 
-    <bean id="trailersService" class="com.sr.biz.freightbit.core.service.impl.TrailersServiceImpl">
+    <bean id="trailersService" class="com.sr.biz.freightbit.vendor.service.impl.TrailersServiceImpl">
         <property name="trailersDao" ref="trailersDao" />
     </bean>
 
@@ -92,18 +94,18 @@
         <property name="vendorDao" ref="vendorDao" />
     </bean>
 
-    <bean id="vesselService" class="com.sr.biz.freightbit.core.service.impl.VesselServiceImpl">
+    <bean id="vesselService" class="com.sr.biz.freightbit.vendor.service.impl.VesselServiceImpl">
         <property name="vesselDao" ref="vesselDao" />
     </bean>
 
     <!-- Services End -->
     <!-- DAOs -->
 
-    <bean id="ratesDao" class="com.sr.biz.freightbit.core.dao.impl.RateDaoImpl">
+    <bean id="ratesDao" class="com.sr.biz.freightbit.customer.dao.impl.RateDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean id="itemsDao" class="com.sr.biz.freightbit.core.dao.impl.ItemsDaoImpl">
+    <bean id="itemsDao" class="com.sr.biz.freightbit.customer.dao.impl.ItemsDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
@@ -123,7 +125,7 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
-    <bean id="customerDao" class="com.sr.biz.freightbit.core.dao.impl.CustomerDaoImpl">
+    <bean id="customerDao" class="com.sr.biz.freightbit.customer.dao.impl.CustomerDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
@@ -131,12 +133,12 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean id="parameterDao" class="com.sr.biz.freightbit.core.dao.impl.ParameterDaoImpl">
+    <bean id="parameterDao" class="com.sr.biz.freightbit.common.dao.impl.ParameterDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
 
-    <bean id="trailersDao" class="com.sr.biz.freightbit.core.dao.impl.TrailersDaoImpl">
+    <bean id="trailersDao" class="com.sr.biz.freightbit.vendor.dao.impl.TrailersDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
@@ -144,7 +146,7 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean id="vesselDao" class="com.sr.biz.freightbit.core.dao.impl.VesselDaoImpl">
+    <bean id="vesselDao" class="com.sr.biz.freightbit.vendor.dao.impl.VesselDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
@@ -152,7 +154,7 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean id="driverDao" class="com.sr.biz.freightbit.core.dao.impl.DriverDaoImpl">
+    <bean id="driverDao" class="com.sr.biz.freightbit.vendor.dao.impl.DriverDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 

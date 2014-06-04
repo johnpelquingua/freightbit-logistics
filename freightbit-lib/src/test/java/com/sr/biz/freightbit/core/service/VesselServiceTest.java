@@ -18,10 +18,10 @@ import org.mockito.MockitoAnnotations.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sr.biz.freightbit.core.dao.VesselDao;
+import com.sr.biz.freightbit.vendor.dao.VesselDao;
 import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.exceptions.VesselAlreadyExistsException;
-import com.sr.biz.freightbit.core.service.impl.VesselServiceImpl;
+import com.sr.biz.freightbit.vendor.exceptions.VesselAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.service.impl.VesselServiceImpl;
 import com.sr.biz.freightbit.vendor.entity.Vessel;
 
 @ContextConfiguration(locations = {"classpath:/conf/applicationContext-lib.xml"})

@@ -5,7 +5,6 @@ package com.sr.biz.freightbit.core.service;
  * User: johnpel
  */
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,12 +16,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.sr.biz.freightbit.core.dao.TrailersDao;
-import com.sr.biz.freightbit.core.service.impl.TrailersServiceImpl;
-import com.sr.biz.freightbit.core.exceptions.TrailersAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.dao.TrailersDao;
+import com.sr.biz.freightbit.vendor.service.impl.TrailersServiceImpl;
+import com.sr.biz.freightbit.vendor.exceptions.TrailersAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.entity.Trailers;
 
 @ContextConfiguration(locations = {"classpath:/conf/applicationContext-lib.xml"})

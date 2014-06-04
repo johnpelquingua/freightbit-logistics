@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.sr.biz.freightbit.core.entity.Items;
-import org.junit.Assert;
+import com.sr.biz.freightbit.customer.entity.Items;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,12 +15,11 @@ import org.mockito.MockitoAnnotations.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sr.biz.freightbit.core.dao.ItemsDao;
+import com.sr.biz.freightbit.customer.dao.ItemsDao;
 import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.entity.User;
-import com.sr.biz.freightbit.core.entity.Customer;
-import com.sr.biz.freightbit.core.exceptions.ItemAlreadyExistsException;
-import com.sr.biz.freightbit.core.service.impl.ItemServiceImpl;
+import com.sr.biz.freightbit.customer.entity.Customer;
+import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
+import com.sr.biz.freightbit.customer.service.impl.ItemServiceImpl;
 
 /**
  * Created by Solutions Resource on 5/26/14.

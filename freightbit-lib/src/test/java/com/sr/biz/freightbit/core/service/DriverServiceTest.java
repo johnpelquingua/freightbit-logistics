@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.sr.biz.freightbit.core.dao.DriverDao;
+import com.sr.biz.freightbit.vendor.dao.DriverDao;
 import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.exceptions.DriverAlreadyExistsException;
-import com.sr.biz.freightbit.core.service.impl.DriverServiceImpl;
+import com.sr.biz.freightbit.vendor.exceptions.DriverAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.service.impl.DriverServiceImpl;
 import com.sr.biz.freightbit.vendor.entity.Driver;
 
 @ContextConfiguration(locations = {"classpath:/conf/applicationContext-lib.xml"})

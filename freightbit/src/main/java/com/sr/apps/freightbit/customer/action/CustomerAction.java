@@ -6,11 +6,11 @@ import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.entity.Customer;
-import com.sr.biz.freightbit.core.entity.Parameters;
+import com.sr.biz.freightbit.customer.entity.Customer;
+import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.core.service.ClientService;
-import com.sr.biz.freightbit.core.service.CustomerService;
-import com.sr.biz.freightbit.core.service.ParameterService;
+import com.sr.biz.freightbit.customer.service.CustomerService;
+import com.sr.biz.freightbit.common.service.ParameterService;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;

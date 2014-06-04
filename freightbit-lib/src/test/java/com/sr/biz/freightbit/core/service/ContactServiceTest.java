@@ -1,17 +1,14 @@
 package com.sr.biz.freightbit.core.service;
 
-import com.sr.biz.freightbit.core.dao.ContactsDao;
+import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.entity.Contacts;
-import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
-import com.sr.biz.freightbit.core.service.impl.ContactServiceImpl;
-import org.junit.Assert;
+import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.common.service.impl.ContactServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
