@@ -7,7 +7,7 @@
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -246,6 +246,10 @@ CREATE TABLE IF NOT EXISTS `parameters` (
   KEY `referenceColumn` (`referenceColumn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+
+INSERT INTO `parameters` (`parameterId`, `clientId`, `referenceTable`, `referenceColumn`, `key`, `value`, `label`, `notes`, `createdTimestamp`, `createdBy`, `modifiedTimestamp`, `modifiedBy`) VALUES (1,1,'USER','STATUS','ACTIVE','Active','Active','','2014-05-09 16:19:28','admin','2014-05-09 16:20:50','admin'),(2,1,'USER','STATUS','INACTIVE','Inactive','Inactive','','2014-05-09 17:30:44','admin','2014-05-09 17:30:44','admin'),(3,1,'USER','USER_TYPE','REGISTERED USER','Registered User','Registered User','','2014-05-09 17:30:44','admin','2014-05-12 22:20:33','admin'),(10,1,'USER','USER_TYPE','CUSTOMER RELATIONS DEPARTMENT','Customer Relations Department','Customer Relations Department','','2014-05-09 17:30:44','admin','2014-05-12 22:20:33','admin'),(11,1,'USER','USER_TYPE','FREIGHT OPERATIONS OFFICER','Freight Operations Officer','Freight Operations Officer','','2014-05-09 17:30:44','admin','2014-05-12 22:20:33','admin'),(12,1,'USER','USER_TYPE','FREIGHT OPERATIONS SPECIALIST','Freight Operations Specialist','Freight Operations Specialist','','2014-05-09 17:30:44','admin','2014-05-12 22:20:33','admin'),(13,1,'USER','USER_TYPE','FREIGHT OPERATIONS MANAGER','Freight Operations Manager','Freight Operations Manager','','2014-05-09 17:30:44','admin','2014-05-12 22:20:33','admin'),(14,1,'USER','USER_TYPE','FREIGHT DOCUMENTS SPECIALIST','Freight Documents Specialist','Freight Documents Specialist','','2014-05-09 17:30:44','admin','2014-05-12 22:20:33','admin'),(15,1,'USER','USER_TYPE','INLAND FREIGHT OFFICER','Inland Freight Officer','Inland Freight Officer','','2014-05-09 17:30:44','admin','2014-05-12 22:20:33','admin'),(16,1,'VENDOR','VENDOR_TYPE','TRUCKING','Trucking','Trucking','','2014-05-28 07:04:35','admin','2014-05-28 07:04:35','admin'),(17,1,'VENDOR','VENDOR_TYPE','SHIPPING','Shipping','Shipping','','2014-05-28 07:04:35','admin','2014-05-28 07:04:35','admin'),(18,1,'TRUCKS','TRUCK_TYPE','TRACTOR HEAD','Tractor Head','Tractor Head','','2014-05-29 09:48:36','admin','2014-05-29 09:48:36','admin'),(19,1,'TRUCKS','TRUCK_TYPE','CLOSED VAN','Closed Van','Closed Van','','2014-05-29 09:48:36','admin','2014-05-29 09:48:36','admin'),(20,1,'VENDOR_SEARCH','VENDOR_SEARCH','COMPANY NAME','Company Name','Company Name','','2014-05-30 03:30:24','admin','2014-05-30 03:30:24','admin'),(21,1,'VENDOR_SEARCH','VENDOR_SEARCH','COMPANY CODE','Company Code','Company Code','','2014-05-30 03:30:24','admin','2014-06-04 07:53:42','admin'),(22,1,'VENDOR_SEARCH','VENDOR_SEARCH','VENDOR TYPE','Vendor Type','Vendor Type','','2014-05-30 03:30:24','admin','2014-05-30 03:30:24','admin'),(23,1,'VENDOR_SEARCH','VENDOR_SEARCH','EMAIL ADDRESS','Email Address','Email Address','','2014-05-30 03:30:24','admin','2014-05-30 03:30:24','admin'),(24,1,'VENDOR_SEARCH','VENDOR_SEARCH','CONTACT NUMBER','Contact Number','Contact Number','','2014-05-30 03:30:24','admin','2014-05-30 03:30:24','admin'),(25,1,'VENDOR_SEARCH','VENDOR_SEARCH','CLASS','Class','Class','','2014-05-30 03:30:24','admin','2014-05-30 03:30:24','admin'),(26,1,'VENDOR_SEARCH','VENDOR_SEARCH','CITY','City','City','','2014-05-30 03:30:24','admin','2014-05-30 03:30:24','admin'),(27,1,'VENDOR_CLASS','VENDOR_CLASS','PREMIUM','Premium','Premium','','2014-06-03 02:58:41','admin','2014-06-03 02:58:41',''),(28,1,'VENDOR_CLASS','VENDOR_CLASS','CLASS A','Class A','Class A','','2014-06-03 02:58:41','admin','2014-06-03 02:58:41',''),(29,1,'VENDOR_CLASS','VENDOR_CLASS','CLASS B','Class B','Class B','','2014-06-03 02:58:41','admin','2014-06-03 02:58:41',''),(30,1,'VENDOR_CLASS','VENDOR_CLASS','CLASS C','Class C','Class C','','2014-06-03 02:58:41','admin','2014-06-03 02:58:41',''),(31,1,'VENDOR_CLASS','VENDOR_CLASS','ECONOMY','Economy','Economy','','2014-06-03 02:58:41','admin','2014-06-04 02:28:39','');
+
+
 -- --------------------------------------------------------
 
 --
@@ -457,7 +461,7 @@ CREATE TABLE `group_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
---Permission table
+-- Permission table
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission` (
   `clientId` bigint(20) NOT NULL,
@@ -472,7 +476,7 @@ CREATE TABLE `permission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
---Permission_user_group table
+-- Permission_user_group table
 DROP TABLE IF EXISTS `permission_user_group`;
 CREATE TABLE `permission_user_group` (
   `clientId` bigint(20) NOT NULL,
@@ -486,6 +490,216 @@ CREATE TABLE `permission_user_group` (
   KEY `fk.permissionusergroup_client_idx` (`clientId`),
   KEY `fk.permissionusergroup_group_idx` (`groupId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  `orderId` int(11) NOT NULL AUTO_INCREMENT,
+  `clientId` int(11) NOT NULL,
+  `orderNumber` int(11) NOT NULL,
+  `serviceType` varchar(10) NOT NULL,
+  `serviceMode` varchar(10) NOT NULL,
+  `notificationType` varchar(10) NOT NULL,
+  `orderDate` date NOT NULL,
+  `paymentMode` varchar(10) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `size` varchar(10) NOT NULL,
+  `classification` varchar(50) NOT NULL,
+  `estimatedWeight` float NOT NULL,
+  `declaredValue` float NOT NULL,
+  `commodity` varchar(50) NOT NULL,
+  `comments` varchar(255) NOT NULL,
+  `rate` float NOT NULL,
+  `orderStatus` varchar(10) NOT NULL,
+  `vendorCode` varchar(10) DEFAULT NULL,
+  `truckCode` varchar(10) DEFAULT NULL,
+  `trailerCode` varchar(10) DEFAULT NULL,
+  `driverCode` varchar(10) DEFAULT NULL,
+  `vesselNumber` varchar(50) DEFAULT NULL,
+  `accountRep` varchar(10) DEFAULT NULL,
+  `createdTimestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdBy` varchar(10) NOT NULL,
+  `modifiedTimestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modifiedBy` varchar(10) NOT NULL,
+  PRIMARY KEY (`orderId`),
+  UNIQUE KEY `orderNumber` (`orderNumber`),
+  KEY `clientId` (`clientId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`orderId`, `clientId`, `orderNumber`, `serviceType`, `serviceMode`, `notificationType`, `orderDate`, `paymentMode`, `quantity`, `size`, `classification`, `estimatedWeight`, `declaredValue`, `commodity`, `comments`, `rate`, `orderStatus`, `vendorCode`, `truckCode`, `trailerCode`, `driverCode`, `vesselNumber`, `accountRep`, `createdTimestamp`, `createdBy`, `modifiedTimestamp`, `modifiedBy`) VALUES
+(1, 1, 100000, 'FCL', 'D2D', 'EMAIL', '2014-05-26', 'COD', 100, '100', 'UNCLASSIFIED', 1000, 2000, 'MISC GOODS', 'TEST ORDER CREATE', 1000, 'AVAILABLE', NULL, NULL, NULL, NULL, NULL, 'JCASTR00', '2014-05-27 05:44:08', 'JCASTR00', '0000-00-00 00:00:00', 'JCASTR00');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderstops`
+--
+
+CREATE TABLE IF NOT EXISTS `orderstops` (
+  `orderStopId` int(11) NOT NULL AUTO_INCREMENT,
+  `clientId` int(11) NOT NULL,
+  `orderId` int(11) NOT NULL,
+  `stopNumber` int(11) NOT NULL,
+  `stopType` varchar(10) NOT NULL,
+  `stopName` varchar(50) NOT NULL,
+  `addressId` int(11) NOT NULL,
+  `contactId` int(11) NOT NULL,
+  `appointmentDate` date NOT NULL,
+  `appointmentTime` time NOT NULL,
+  `createdTimestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdBy` varchar(10) NOT NULL,
+  `modifiedTimestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modifiedBy` varchar(10) NOT NULL,
+  PRIMARY KEY (`orderStopId`),
+  KEY `clientId` (`clientId`,`orderId`,`stopNumber`,`addressId`,`contactId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `orderstops`
+--
+
+INSERT INTO `orderstops` (`orderStopId`, `clientId`, `orderId`, `stopNumber`, `stopType`, `stopName`, `addressId`, `contactId`, `appointmentDate`, `appointmentTime`, `createdTimestamp`, `createdBy`, `modifiedTimestamp`, `modifiedBy`) VALUES
+(1, 1, 1, 1, 'PICKUP', 'PICKUP LOCATION', 2, 1, '2014-05-31', '08:00:00', '2014-05-27 05:47:06', 'JCASTR00', '0000-00-00 00:00:00', 'JCASTR00'),
+(2, 1, 1, 1, 'DELIVERY', 'DELIVERY LOCATION', 3, 2, '2014-06-02', '08:00:00', '2014-05-27 05:47:06', 'JCASTR00', '0000-00-00 00:00:00', 'JCASTR00');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE IF NOT EXISTS `customers` (
+  `customerId` int(11) NOT NULL AUTO_INCREMENT,
+  `clientId` int(11) NOT NULL,
+  `customerCode` varchar(10) NOT NULL,
+  `customerName` varchar(50) DEFAULT NULL,
+  `customerType` varchar(10) DEFAULT NULL,
+  `website` varchar(50) DEFAULT NULL,
+  `phone` varchar(30) DEFAULT NULL,
+  `mobile` varchar(30) DEFAULT NULL,
+  `fax` varchar(30) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `dti` tinyint(1) DEFAULT NULL,
+  `mayorsPermit` tinyint(1) DEFAULT NULL,
+  `aaf` tinyint(1) DEFAULT NULL,
+  `signatureCard` tinyint(1) DEFAULT NULL,
+  `createdTimestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `createdBy` varchar(10) NOT NULL,
+  `modifiedTimestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `modifiedBy` varchar(10) NOT NULL,
+  PRIMARY KEY (`customerId`),
+  UNIQUE KEY `customerCode` (`customerCode`),
+  KEY `clientId` (`clientId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`customerId`, `clientId`, `customerCode`, `customerName`, `customerType`, `website`, `phone`, `mobile`, `fax`, `email`, `dti`, `mayorsPermit`, `aaf`, `signatureCard`, `createdTimestamp`, `createdBy`, `modifiedTimestamp`, `modifiedBy`) VALUES
+(1, 1, 'WALMART', 'WALMART', 'NOT_USED', 'WWW.WALMART.COM', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0000-00-00 00:00:00', 'JCASTR00', '2014-05-27 05:38:29', 'JCASTR00');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
+CREATE TABLE IF NOT EXISTS `address` (
+  `addressId` int(11) NOT NULL AUTO_INCREMENT,
+  `clientId` int(11) NOT NULL,
+  `referenceTable` varchar(50) NOT NULL,
+  `referenceId` int(11) NOT NULL,
+  `addressType` varchar(10) NOT NULL,
+  `addressLine1` varchar(50) DEFAULT NULL,
+  `addressLine2` varchar(50) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `state` varchar(50) DEFAULT NULL,
+  `zip` varchar(50) DEFAULT NULL,
+  `createdTimestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdBy` varchar(10) NOT NULL,
+  `modifiedTimestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modifiedBy` varchar(10) NOT NULL,
+  PRIMARY KEY (`addressId`),
+  KEY `clientId` (`clientId`),
+  KEY `referenceTable` (`referenceTable`),
+  KEY `referenceId` (`referenceId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `address`
+--
+
+INSERT INTO `address` (`addressId`, `clientId`, `referenceTable`, `referenceId`, `addressType`, `addressLine1`, `addressLine2`, `city`, `state`, `zip`, `createdTimestamp`, `createdBy`, `modifiedTimestamp`, `modifiedBy`) VALUES
+(1, 1, 'CUSTOMERS', 1, 'MAIN', '14040 NE 8TH STREET', 'SUITE 226', 'BELLEVUE', 'WA', '98007', '2014-05-27 05:19:56', 'JCASTR00', '0000-00-00 00:00:00', 'JCASTR00'),
+(2, 1, 'CUSTOMERS', 1, 'SHIPPER', '14040 NE 8TH STREET', 'SUITE 226', 'BELLEVUE', 'WA', '98007', '2014-05-27 05:20:03', 'JCASTR00', '0000-00-00 00:00:00', 'JCASTR00'),
+(3, 1, 'CUSTOMERS', 1, 'RECEIVER', '2018 156TH AVE NE', 'SUITE 100', 'BELLEVUE', 'WA', '98007', '2014-05-27 05:20:11', 'JCASTR00', '0000-00-00 00:00:00', 'JCASTR00'),
+(4, 1, 'CUSTOMERS', 1, 'BILLTO', '1040 140TH AVE NE', 'SUITE F', 'BELLEVUE', 'WA', '98007', '2014-05-27 05:21:54', 'JCASTR00', '0000-00-00 00:00:00', 'JCASTR00'),
+(5, 1, 'CUSTOMERS', 1, 'SOLICITOR', '2018 156TH AVE NE', 'SUITE 343', 'BELLEVUE', 'WA', '98007', '2014-05-27 05:23:43', 'JCASTR00', '0000-00-00 00:00:00', 'JCASTR00');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE IF NOT EXISTS `contacts` (
+  `contactId` int(11) NOT NULL AUTO_INCREMENT,
+  `clientId` int(11) NOT NULL,
+  `referenceTable` varchar(50) NOT NULL,
+  `referenceId` int(11) NOT NULL,
+  `contactType` varchar(10) NOT NULL,
+  `firstName` varchar(30) DEFAULT NULL,
+  `middleName` varchar(30) DEFAULT NULL,
+  `lastName` varchar(30) DEFAULT NULL,
+  `phone` varchar(30) DEFAULT NULL,
+  `mobile` varchar(30) DEFAULT NULL,
+  `fax` varchar(30) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `createdTimestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdBy` varchar(10) NOT NULL,
+  `modifiedTimestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modifiedBy` varchar(10) NOT NULL,
+  PRIMARY KEY (`contactId`),
+  KEY `clientId` (`clientId`),
+  KEY `referenceTable` (`referenceTable`),
+  KEY `referenceId` (`referenceId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`contactId`, `clientId`, `referenceTable`, `referenceId`, `contactType`, `firstName`, `middleName`, `lastName`, `phone`, `mobile`, `fax`, `email`, `createdTimestamp`, `createdBy`, `modifiedTimestamp`, `modifiedBy`) VALUES
+(1, 1, 'CUSTOMERS', 1, 'SHIPPER', 'JET', 'L', 'CASTRO', '415-439-0697', NULL, NULL, NULL, '2014-05-27 05:25:13', 'JCASTR00', '0000-00-00 00:00:00', 'JCASTR00'),
+(2, 1, 'CUSTOMERS', 1, 'RECEIVER', 'JETHRO', 'L', 'CASTRO', '415-439-0697', NULL, NULL, NULL, '2014-05-27 05:25:13', 'JCASTR00', '0000-00-00 00:00:00', 'JCASTR00');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
