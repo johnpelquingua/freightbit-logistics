@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Clarence C. Victoria on 5/26/14.
  */
 public class ContactServiceImpl implements ContactService {
-//
+
     private ContactsDao contactsDao;
 
     public void setContactsDao(ContactsDao contactsDao) {
@@ -53,8 +53,8 @@ public class ContactServiceImpl implements ContactService {
         return contacts;
     }
 
-    @Override
-    public List<Contacts> findAllContactsByClientId(long clientId){
-        return contactsDao.findAllContactsByClientId(clientId);
-    }
+//    @Override
+//    public List<Contacts> findAllContactsByClientId(long clientId){
+//        return contactsDao.findAllContactsByClientId(clientId);
+//    }
 }

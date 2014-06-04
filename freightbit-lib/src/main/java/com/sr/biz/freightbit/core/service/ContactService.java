@@ -20,5 +20,5 @@ public interface ContactService {
 
     public List<Contacts> findAllContacts(long clientId);
 
-    public List<Contacts> findAllContactsByClientId(long clientId);
+//    public List<Contacts> findAllContactsByClientId(long clientId);
 }

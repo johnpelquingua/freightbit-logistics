@@ -110,10 +110,10 @@ public class CustomerServiceImpl implements CustomerService {
         return contacts;
     }
 
-    @Override
-    public List<Contacts> findAllContactsByClientId(long clientId){
-        return contactsDao.findAllContactsByClientId(clientId);
-    }
+//    @Override
+//    public List<Contacts> findAllContactsByClientId(long clientId){
+//        return contactsDao.findAllContactsByClientId(clientId);
+//    }
 
     //end of Contacts
 
