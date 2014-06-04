@@ -11,8 +11,8 @@
         <li class="topmenu"><a href="#" class="icon-document"><span class="icon-font">Documentations</span></a></li>
         <li class="topmenu"><a> class="icon-vendor"><span class="icon-font">Vendor</span></a>
             <ul>
-                <li class="subfirst"><a href="<s:url action='searchVendor' />" class="icon-vendor"><span class="icon-font">Search Vendor</span></a></li>
-                <li class="subfirst"><a href="<s:url action='addVendor' />" class="icon-vendor"><span class="icon-font">Add Vendor</span></a></li>
+                <li class="subfirst"><a href="<s:url action='loadSearchVendorPage' />" class="icon-vendor"><span class="icon-font">Search Vendor</span></a></li>
+                <li class="subfirst"><a href="<s:url action='loadAddVendorPage' />" class="icon-vendor"><span class="icon-font">Add Vendor</span></a></li>
             </ul>
         </li>
 

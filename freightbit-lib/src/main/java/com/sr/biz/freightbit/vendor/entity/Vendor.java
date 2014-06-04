@@ -31,9 +31,9 @@ public class Vendor implements java.io.Serializable {
     private String vendorType;
     private String vendorClass;
     private String vendorStatus;
-    private String createdTimeStamp;
+    private Date createdTimeStamp;
     private String createdBy;
-    private String modifiedTimeStamp;
+    private Date modifiedTimeStamp;
     private String modifiedBY;
 
     public Vendor(){
@@ -41,8 +41,8 @@ public class Vendor implements java.io.Serializable {
     }
 
     public Vendor(Client client, String vendorCode, String vendorName,
-                  String vendorType, String vendorClass, String vendorStatus, String createdTimeStamp,
-                  String createdBy, String modifiedTimeStamp, String modifiedBY) {
+                  String vendorType, String vendorClass, String vendorStatus, Date createdTimeStamp,
+                  String createdBy, Date modifiedTimeStamp, String modifiedBY) {
 
         this.client = client;
         this.vendorCode = vendorCode;
@@ -124,11 +124,11 @@ public class Vendor implements java.io.Serializable {
     }
 
     @Column(name = "createdTimeStamp")
-    public String getCreatedTimeStamp() {
+    public Date getCreatedTimeStamp() {
         return this.createdTimeStamp;
     }
 
-    public void setCreatedTimeStamp(String createdTimeStamp) {
+    public void setCreatedTimeStamp(Date createdTimeStamp) {
         this.createdTimeStamp = createdTimeStamp;
     }
 
@@ -142,11 +142,11 @@ public class Vendor implements java.io.Serializable {
     }
 
     @Column(name = "modifiedTimeStamp")
-    public String getModifiedTimeStamp() {
+    public Date getModifiedTimeStamp() {
         return modifiedTimeStamp;
     }
 
-    public void setModifiedTimeStamp(String modifiedTimeStamp) {
+    public void setModifiedTimeStamp(Date modifiedTimeStamp) {
         this.modifiedTimeStamp = modifiedTimeStamp;
     }
 

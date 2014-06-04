@@ -84,7 +84,7 @@
         <property name="trailersDao" ref="trailersDao" />
     </bean>
 
-    <bean id="trucksService" class="com.sr.biz.freightbit.core.service.impl.TrucksServiceImpl">
+    <bean id="trucksService" class="com.sr.biz.freightbit.vendor.service.impl.TrucksServiceImpl">
         <property name="trucksDao" ref="trucksDao" />
     </bean>
 
@@ -140,7 +140,7 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean id="trucksDao" class="com.sr.biz.freightbit.core.dao.impl.TrucksDaoImpl">
+    <bean id="trucksDao" class="com.sr.biz.freightbit.vendor.dao.impl.TrucksDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 

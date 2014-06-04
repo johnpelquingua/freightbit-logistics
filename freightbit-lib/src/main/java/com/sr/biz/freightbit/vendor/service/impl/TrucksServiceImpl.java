@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sr.biz.freightbit.vendor.dao.TrucksDao;
-import com.sr.biz.freightbit.core.exceptions.TrucksAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.TrucksService;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
 
@@ -26,7 +26,7 @@ public class TrucksServiceImpl implements TrucksService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addTrucks(Trucks trucks) throws TrucksAlreadyExistsException {
-        if (trucksDao.findTrucksByTruckCode(trucks.getTruckCode())!=null)
+        if (trucksDao.findTrucksByTruckCode(trucks.getTruckCode()).size() > 0)
             throw new TrucksAlreadyExistsException(trucks.getTruckCode());
         else
             trucksDao.addTrucks(trucks);
@@ -55,12 +55,13 @@ public class TrucksServiceImpl implements TrucksService {
         return trucks;
     }
 
-   /* public Trucks findTrucksByTruckCode(String truckCode) {
+    @Override
+    public Trucks findTrucksByTruckCode(String truckCode) {
         List<Trucks> result = trucksDao.findTrucksByTruckCode(truckCode);
         if (result != null && !result.isEmpty())
             return result.get(0);
         return null;
-    }*/
+    }
 
   /*  @Override
     public void updateLastVisitDate(User user) {

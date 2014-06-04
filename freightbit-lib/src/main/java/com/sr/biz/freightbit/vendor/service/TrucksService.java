@@ -7,7 +7,7 @@ package com.sr.biz.freightbit.vendor.service;
 
 import java.util.List;
 
-import com.sr.biz.freightbit.core.exceptions.TrucksAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
 
 public interface TrucksService {
@@ -22,6 +22,6 @@ public interface TrucksService {
 
     public List<Trucks> findAllTrucks();
 
-    /*public List<Trucks> findTrucksByTruckCode(String truckCode);*/
+    public Trucks findTrucksByTruckCode(String truckCode);
 
 }

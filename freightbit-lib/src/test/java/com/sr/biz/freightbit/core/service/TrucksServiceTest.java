@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.sr.biz.freightbit.vendor.dao.TrucksDao;
 import com.sr.biz.freightbit.vendor.service.impl.TrucksServiceImpl;
-import com.sr.biz.freightbit.core.exceptions.TrucksAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
 
 @ContextConfiguration(locations = {"classpath:/conf/applicationContext-lib.xml"})

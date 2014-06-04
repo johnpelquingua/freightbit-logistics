@@ -1,4 +1,6 @@
-package com.sr.biz.freightbit.core.exceptions;
+package com.sr.biz.freightbit.vendor.exceptions;
+
+import com.sr.biz.freightbit.core.exceptions.ObjectAlreadyExistsException;
 
 /**
  * Created with IntelliJ IDEA.
