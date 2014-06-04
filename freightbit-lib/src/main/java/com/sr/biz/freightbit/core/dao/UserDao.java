@@ -19,5 +19,7 @@ public interface UserDao {
     public List<User> findAllUsers(Integer clientId);
 
     public List<User> findAllUsersByClientId(Long clientId);
+	
+	public List<User> findUsersByCriteria(String column, String value, Integer clientId);
 
 }
