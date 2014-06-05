@@ -97,6 +97,12 @@
     <bean id="vesselService" class="com.sr.biz.freightbit.vendor.service.impl.VesselServiceImpl">
         <property name="vesselDao" ref="vesselDao" />
     </bean>
+    
+	<bean id="orderService" class="com.sr.biz.freightbit.order.service.impl.OrderServiceImpl">
+        <property name="orderDao" ref="orderDao" />
+        <property name="orderStopsDao" ref="orderStopsDao" />
+        <property name="orderItemsDao" ref="orderItemsDao" />
+    </bean>
 
     <!-- Services End -->
     <!-- DAOs -->
@@ -155,6 +161,19 @@
     </bean>
 
     <bean id="driverDao" class="com.sr.biz.freightbit.vendor.dao.impl.DriverDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!-- Order Module DAO -->
+    <bean id="orderDao" class="com.sr.biz.freightbit.order.dao.impl.OrderDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <bean id="orderStopsDao" class="com.sr.biz.freightbit.order.dao.impl.OrderStopsDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+    <bean id="orderItemsDao" class="com.sr.biz.freightbit.order.dao.impl.OrderItemsDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
