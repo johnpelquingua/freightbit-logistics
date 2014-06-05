@@ -16,14 +16,14 @@
 
 					<div class="panel-body">
                         <div class="table-responsive list-table">
-                        <s:form cssClass="form-horizontal" action="vesselValidation" theme="bootstrap">
+                        <s:form cssClass="form-horizontal" action="addVessel" theme="bootstrap">
 
 							    <div class="form-group">
 
 							    	<label for="number" class="col-sm-2 control-label">Vessel:</label>
 
 								    <div class="col-sm-10">
-                                        <s:textfield cssClass="form-control" placeholder="Vessel Number" name="number"/>
+                                        <s:textfield cssClass="form-control" placeholder="Vessel Number" name="vessel.vesselNumber" id="vessel.vesselNumber" />
 								    </div>
 
 							  	</div>
@@ -33,7 +33,7 @@
 							    	<label for="name" class="col-sm-2 control-label">Name:</label>
 
 								    <div class="col-sm-10">
-                                        <s:textfield cssClass="form-control" placeholder="Vessel Name" name="name"/>
+                                        <s:textfield cssClass="form-control" placeholder="Vessel Name" name="vessel.vesselName" id="vessel.vesselName" />
 								    </div>
 
 							  	</div>
@@ -43,7 +43,7 @@
 							    	<label for="modelNumber" class="col-sm-2 control-label">Model:</label>
 
 								    <div class="col-sm-10">
-                                        <s:textfield cssClass="form-control" placeholder="Model Number" name="modelNumber"/>
+                                        <s:textfield cssClass="form-control" placeholder="Model Number" name="vessel.modelNumber" id="vessel.modelNumber" />
 								    </div>
 
 							  	</div>
@@ -53,7 +53,7 @@
 							    	<label for="yearModel" class="col-sm-2 control-label">Year Model:</label>
 
 								    <div class="col-sm-10">
-                                        <s:textfield cssClass="form-control" placeholder="Year Model" name="yearModel"/>
+                                        <s:textfield cssClass="form-control" placeholder="Year Model" name="vessel.modelYear" id="vessel.modelYear" />
 								    </div>
 
 							  	</div>

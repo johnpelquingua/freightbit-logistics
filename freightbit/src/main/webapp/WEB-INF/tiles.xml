@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-
 <!DOCTYPE tiles-definitions PUBLIC
         "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
@@ -86,6 +85,11 @@
     <definition name="vendor.vendorAddTrucks.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Vendor Page"/>
         <put-attribute name="body"   value="/vendor/vendorAddTrucks.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorAddVessels.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorAddVessels.jsp"/>
     </definition>
 
     <definition name="vendor.vendorListView.tiles" extends="baseLayout">

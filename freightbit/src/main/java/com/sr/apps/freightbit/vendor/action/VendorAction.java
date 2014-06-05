@@ -161,6 +161,30 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    //vessels
+    public String loadAddVesselsPage() {
+        return SUCCESS;
+    }
+
+    public String viewVessel() {
+
+        return SUCCESS;
+    }
+
+    public String addVessel() {
+
+        return SUCCESS;
+    }
+
+    public String updateVessel() {
+
+        return SUCCESS;
+    }
+
+    public String deleteVessel() {
+        return SUCCESS;
+    }
+
 
     //utils
     private Integer getClientId() {

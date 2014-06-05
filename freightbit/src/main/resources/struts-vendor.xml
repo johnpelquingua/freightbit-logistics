@@ -48,8 +48,8 @@
 
         <!--trucks-->
         <action name="loadAddTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddTrucksPage">
-            <result name="success" type="tiles">vendor.vendorAddTrucks.tiles</result>
-        </action>
+        <result name="success" type="tiles">vendor.vendorAddTrucks.tiles</result>
+    </action>
 
         <action name="loadEditTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditTrucksPage">
             <result name="success" type="tiles">vendor.vendorAddTrucks.tiles</result>
@@ -67,6 +67,31 @@
         <action name="editTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editTrucks">
             <result name="success" type="redirect">loadAddTrucksPage</result>
         </action>
+
+
+        <!-- vessels -->
+
+        <action name="loadAddVesselsPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddVesselsPage">
+            <result name="success" type="tiles">vendor.vendorAddVessels.tiles</result>
+        </action>
+
+        <action name="loadEditVesselsPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditVesselsPage">
+            <result name="success" type="tiles">vendor.vendorAddVessels.tiles</result>
+        </action>
+
+        <action name="addVessel" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addVessel">
+            <result name="success" type="redirect">loadAddVesselsPage</result>
+            <result name="input" type="tiles">vendor.vendorAddVessels.tiles</result>
+        </action>
+
+        <action name="deleteVessel" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteVessel">
+            <result name="success" type="redirect">loadAddVesselsPage</result>
+        </action>
+
+        <action name="updateVessel" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="updateVessel">
+            <result name="success" type="redirect">loadAddVesselsPage</result>
+        </action>
+
 
         <!--driver-->
         <action name="loadAddDriverPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddDriverPage">
