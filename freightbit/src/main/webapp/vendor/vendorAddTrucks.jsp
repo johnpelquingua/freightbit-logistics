@@ -16,8 +16,9 @@
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <s:form cssClass="form-horizontal" action="addTrucks" method="post" theme="bootstrap">
+                    <s:form cssClass="form-horizontal" action="editTrucks" method="post" theme="bootstrap">
 
+                    <s:hidden name="truck.truckId" value="%{truck.truckId}"/>
                     <div class="form-group">
 
                         <label class="col-sm-2 control-label" for="truck.truckType">Type:</label>
@@ -93,7 +94,17 @@
 
             <div class="panel-footer">
                     <%--<button class="btn btn-default pull-left">Add</button>--%>
-                <s:submit cssClass="btn btn-default" value="Add" type="submit" />
+                <%--<s:submit cssClass="btn btn-default" value="Add" type="submit" />--%>
+                        <%--<s:if test="%{truck.truckId=='' || truck.truckId eq null}">--%>
+                            <%--<button cssClass="btn btn-default" name="submit" value="Cancel" onclick="this.form.action='loadAddTrucksPage'" />--%>
+                            <%--<s:submit cssClass="btn btn-default" name="submit" value="Save" />--%>
+
+                        <%--</s:if>--%>
+                        <%--<s:else>--%>
+                            <s:submit cssClass="btn btn-default" name="submit" value="Add" />
+
+                        <%--</s:else>--%>
+
                 <div class="btn-group pull-right">
                     <button class="btn btn-default">Back</button>
                     <button class="btn btn-default" onclick="this.form.action='loadAddDriverPage'" >Next</button>
@@ -164,11 +175,11 @@
                                 <td class="tb-font-black"><s:property value="engineNumber" /></td>
                                 <td class="tb-font-black"><s:property value="grossWeight" /></td>
                                 <td class="tb-font-black">
-                                    <%--<s:url var="editTrucksUrl" action="loadEditTrucksPage">--%>
-                                        <%--<s:param name="truckCodeParam" value="truckCode"></s:param>--%>
-                                    <%--</s:url>--%>
-                                    <%--<s:a class="icon-action-link" href="%{editTruckUrl}" rel="tooltip" title="Edit this truck">--%>
-                                        <img src="includes/images/edit-user.png" class="icon-action circ-icon"> <%--</s:a>--%>
+                                    <s:url var="editTrucksUrl" action="loadEditTrucksPage">
+                                        <s:param name="truckCodeParam" value="truckCode"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{editTrucksUrl}" rel="tooltip" title="Edit this truck">
+                                        <img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
                                     <s:url var="deleteTrucksUrl" action="deleteTrucks">
                                         <s:param name="truckCodeParam" value="truckCode"></s:param>
                                     </s:url>

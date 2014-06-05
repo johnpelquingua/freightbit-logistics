@@ -21,7 +21,7 @@ public class DriverServiceImpl implements DriverService{
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addDriver(Driver driver) throws DriverAlreadyExistsException {
-        if (driverDao.findDriverByLastName(driver.getLastName())!=null)
+        if (driverDao.findDriverByLastName(driver.getLastName()).size() > 0)
             throw new DriverAlreadyExistsException(driver.getLastName());
         else
             driverDao.addDriver(driver);

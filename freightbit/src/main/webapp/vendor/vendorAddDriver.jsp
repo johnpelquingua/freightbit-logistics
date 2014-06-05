@@ -16,8 +16,8 @@
 
 					<div class="panel-body">
                         <div class="table-responsive list-table">
-                        <s:form cssClass="form-horizontal" action="driverValidation" theme="bootstrap">
-
+                        <s:form cssClass="form-horizontal" action="editDriver" theme="bootstrap">
+                            <s:hidden name="driver.driverId" value="%{driver.driverId}"/>
                             <div class="form-group">
 
                                 <label for="driver.driverCode" class="col-sm-2 control-label">Code:</label>
@@ -80,10 +80,10 @@
 
                             <div class="form-group">
 
-                                <label class="col-sm-2 control-label" for="status">Status:</label>
+                                <label class="col-sm-2 control-label" for="driver.status">Status:</label>
 
                                 <div class="col-sm-10">
-                                  <s:select list="statusList" listKey="key" listValue="value" name="status" cssClass="form-control" />
+                                  <s:select list="statusList" listKey="key" listValue="value" name="driver.status" cssClass="form-control" />
                                 </div>
 
                             </div>
@@ -152,6 +152,7 @@
 								</tr>
 							  </thead>
 							  <tbody>
+                            <s:iterator value="drivers" var="driver">
                               <td class="tb-font-black"><s:checkbox name="a" theme="simple" /></td>
                               <td class="tb-font-black"><s:property value="driverCode" /></td>
                               <td class="tb-font-black"><s:property value="licenseNumber" /></td>
@@ -161,17 +162,18 @@
                               <td class="tb-font-black"><s:property value="title" /></td>
                               <td class="tb-font-black"><s:property value="status" /></td>
                               <td class="tb-font-black">
-                                  <%--<s:url var="editTrucksUrl" action="loadEditTrucksPage">--%>
-                                  <%--<s:param name="truckCodeParam" value="truckCode"></s:param>--%>
-                                  <%--</s:url>--%>
-                                  <%--<s:a class="icon-action-link" href="%{editTruckUrl}" rel="tooltip" title="Edit this truck">--%>
-                                  <img src="includes/images/edit-user.png" class="icon-action circ-icon"> <%--</s:a>--%>
+                                  <s:url var="editDriverUrl" action="loadEditDriverPage">
+                                  <s:param name="driverCodeParam" value="driverCode"></s:param>
+                                  </s:url>
+                                  <s:a class="icon-action-link" href="%{editDriverUrl}" rel="tooltip" title="Edit this driver">
+                                  <img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
                                   <s:url var="deleteDriverUrl" action="deleteDriver">
                                       <s:param name="driverCodeParam" value="driverCode"></s:param>
                                   </s:url>
                                   <s:a class="icon-action-link" href="%{deleteDriverUrl}" rel="tooltip" title="Delete this Driver" onclick="return confirm('Do you really want to delete?');">
                                       <img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
                               </td>
+                                </s:iterator>
 							  </tbody>
 							</table>
 						  </div>

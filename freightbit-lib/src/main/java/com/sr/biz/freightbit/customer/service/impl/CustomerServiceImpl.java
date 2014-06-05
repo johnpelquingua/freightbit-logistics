@@ -150,11 +150,11 @@ public class CustomerServiceImpl implements CustomerService {
         return addressDao.findAllAddressByClientId(clientId);
     }
 
-    @Override
-    public List<Address> findAllAddress(Integer addressId) {
-        List<Address> address = addressDao.findAllAddress(addressId);
-        return address;
-    }
+//    @Override
+//    public List<Address> findAllAddress(Integer addressId) {
+//        List<Address> address = addressDao.findAllAddress(addressId);
+//        return address;
+//    }
 
 
     @Override

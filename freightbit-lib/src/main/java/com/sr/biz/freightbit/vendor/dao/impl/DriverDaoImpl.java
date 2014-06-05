@@ -10,10 +10,13 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.sr.biz.freightbit.vendor.dao.DriverDao;
 import com.sr.biz.freightbit.vendor.entity.Driver;
 
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  * Created by JMXPSX on 5/16/14.
  */
 
+@Transactional
 public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
 
     private static final Logger Log = Logger.getLogger(DriverDaoImpl.class);
@@ -129,7 +132,7 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
         Log.debug("Getting Driver instance by vendor id: " + vendorId);
         try{
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from Drivers d where d.vendorId = :vendorId ");
+                    "from Driver d where d.vendorId = :vendorId ");
             query.setParameter("vendorId", vendorId);
             List<Driver> results = (List<Driver>) query.list();
             Log.debug("Find by vendorId successful, result size: " + results.size());
@@ -145,8 +148,8 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
         Log.debug("Finding Driver instance");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from Drivers d where d.driverCode = :driverCode"
-            );
+                    "from Driver d where d.driverCode = :driverCode ");
+            query.setParameter("driverCode", driverCode);
             List<Driver> results = (List<Driver>) query.list();
             Log.debug("Find by driverCode successful, result size: " + results.size());
             return results;

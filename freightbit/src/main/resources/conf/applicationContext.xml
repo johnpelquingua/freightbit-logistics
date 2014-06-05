@@ -29,10 +29,10 @@
 		<!--<property name="groupService" ref="groupService"></property>-->
 	<!--</bean>-->
 
-    <!--<bean id="vendorAction" class="com.sr.apps.freightbit.vendor.action.VendorAction">-->
-        <!--<property name="vendorService" ref="vendorService"></property>-->
-        <!--<property name="parameterService" ref="parameterService"></property>-->
-        <!--<property name="clientService" ref="clientService"></property>-->
-    <!--</bean>-->
+    <bean id="vendorAction" class="com.sr.apps.freightbit.vendor.action.VendorAction">
+        <property name="vendorService" ref="vendorService"></property>
+        <property name="parameterService" ref="parameterService"></property>
+        <property name="clientService" ref="clientService"></property>
+    </bean>
 
  </beans>

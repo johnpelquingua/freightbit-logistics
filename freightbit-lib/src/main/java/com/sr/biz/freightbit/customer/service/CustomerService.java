@@ -51,7 +51,7 @@ public interface CustomerService {
 
     public List<Address> findAllAddressByClientId(Integer clientId);
 
-    public List<Address> findAllAddress(Integer addressId);
+//    public List<Address> findAllAddress(Integer addressId);
 
     public Address findUserById(Integer clientId);
 
