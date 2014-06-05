@@ -25,7 +25,8 @@
         </action>
 
         <action name="customerEdit" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerEdit">
-            </action>
+            <result name="success" type="tiles">customer.customerEdit.tiles</result>
+        </action>
 
         <action name="deleteCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerDeleteExecute">
             <result name="success" type="redirect">customerList</result>

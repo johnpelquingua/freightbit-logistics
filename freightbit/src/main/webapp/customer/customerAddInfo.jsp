@@ -23,6 +23,13 @@
 				 <s:form cssClass="form-horizontal" theme="bootstrap" action="addCustomer">
 				  <div class="form-group">
 
+                 <div class="form-group">
+					<label for="ctype" class="col-sm-2 control-label" style="width:25%;">Customer Code</label>
+					<div class="col-sm-10" style="width:70%;">
+					  <s:textfield  maxLength="3" cssStyle="text-transform:uppercase" required="true" name="customer.customerCode" cssClass="form-control" id="customer.customerCode" />
+					</div>
+				  </div>
+
 				  <div class="form-group">
 					<label for="ctype" class="col-sm-2 control-label" style="width:25%;">Customer Name</label>
 					<div class="col-sm-10" style="width:70%;">
@@ -71,26 +78,6 @@
 					</div>
 				  </div>
             <hr>
-				<div class="col-xs-6    ">
-						<label>
-						  <input required="true" type="checkbox" id="customer.dit" name="customer.dti"> DTI / SEC Certificate
-						</label>
-		        </div>
-					<div class="col-xs-6">
-						<label>
-							<input required="true" type="checkbox"  id="customer.mayorsPermit" name="customer.mayorsPermit"> Mayor's Permit
-						</label>
-					</div>
-					<div class="col-xs-6">
-						<label>
-						  <input required="true" type="checkbox" id="customer.aaf" name="customer.aaf"> Account Application Form
-						</label>
-					</div>
-					<div class="col-xs-6">
-						<label>
-							<input required="true" type="checkbox"id="customer.signatureCard" name="customer.signatureCard"> Signature Specimen Card
-						</label>
-					</div>
             <a href="customerList" class="btn btn-default" id ="groups-btn">Cancel</a>
             <s:submit name="submit" cssClass="btn btn-default" value="Next" />
 

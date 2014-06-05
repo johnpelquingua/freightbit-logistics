@@ -15,6 +15,7 @@
 						
 					  </div>
 					  <div class="panel-body">
+
 						<div class="table-responsive list-table">
 							<table class="table table-striped table-bordered text-center" id="customer-list">
 							  <thead>

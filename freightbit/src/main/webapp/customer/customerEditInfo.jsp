@@ -22,7 +22,14 @@
 				
 				<s:form cssClass="form-horizontal" action="editCustomer" theme="bootstrap">
 
-            				  <div class="form-group">
+                <div class="form-group">
+					<label for="ctype" class="col-sm-2 control-label" style="width:25%;">Customer Code</label>
+					<div class="col-sm-10" style="width:70%;">
+					  <s:textfield  maxLength="3" cssStyle="text-transform:uppercase" required="true" name="customer.customerCode" cssClass="form-control" id="customer.customerCode" />
+					</div>
+				  </div>
+
+                        	  <div class="form-group">
             					<label for="ctype" class="col-sm-2 control-label" style="width:25%;">Customer Name</label>
             					<div class="col-sm-10" style="width:70%;">
             					  <s:textfield name="customer.customerName" required="true" cssClass="form-control"/>
@@ -70,26 +77,6 @@
             					</div>
             				  </div>
             	<hr>
-            	<div class="col-xs-6    ">
-                						<label>
-                						  <input required="true" type="checkbox" name="customer.dti"> DTI / SEC Certificate
-                						</label>
-                		        </div>
-                					<div class="col-xs-6">
-                						<label>
-                							<input required="true" type="checkbox"  name="customer.mayorsPermit"> Mayor's Permit
-                						</label>
-                					</div>
-                					<div class="col-xs-6">
-                						<label>
-                						  <input required="true" type="checkbox" name="customer.aaf"> Account Application Form
-                						</label>
-                					</div>
-                					<div class="col-xs-6">
-                						<label>
-                							<input required="true" type="checkbox" name="customer.signatureCard"> Signature Card
-                						</label>
-                					</div>
 				  <span  style="margin-right:32px;">
 					<a href="customerList" class="btn btn-default" id ="groups-btn">Cancel</a>
 					<s:submit cssClass="btn btn-default" name="submit" value="Save" cssStyle="margin:20px 0px 6px 6px;" />

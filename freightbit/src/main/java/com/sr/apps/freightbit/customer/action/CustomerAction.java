@@ -26,6 +26,8 @@ public class CustomerAction extends ActionSupport implements Preparable{
     private List<Parameters> customerTypeList = new ArrayList<Parameters>();
     private CustomerBean customer = new CustomerBean();
     private String customerNameParam;
+    private String keyword; //search keyword for customer
+    private String searchType; // get the search type
 
     private CustomerService customerService;
     private ClientService clientService;
@@ -90,13 +92,14 @@ public class CustomerAction extends ActionSupport implements Preparable{
 
         CustomerBean formBean = new CustomerBean();
         formBean.setCustomerId(entity.getCustomerId());
+        formBean.setCustomerCode(entity.getCustomerCode());
         formBean.setCustomerName(entity.getCustomerName());
+        formBean.setCustomerType(entity.getCustomerType());
         formBean.setPhone(entity.getPhone());
         formBean.setEmail(entity.getEmail());
         formBean.setWebsite(entity.getWebsite());
         formBean.setFax(entity.getFax());
         formBean.setMobile(entity.getMobile());
-        formBean.setCustomerType(entity.getCustomerType());
 
         return formBean;
     }
@@ -109,17 +112,15 @@ public class CustomerAction extends ActionSupport implements Preparable{
                      entity.setCustomerId(new Integer(formBean.getCustomerId()));
 
             entity.setCustomerName(formBean.getCustomerName());
+            entity.setCustomerCode(formBean.getCustomerCode());
             entity.setCustomerType(formBean.getCustomerType());
             entity.setWebsite(formBean.getWebsite());
             entity.setPhone(formBean.getPhone());
             entity.setMobile(formBean.getMobile());
             entity.setFax(formBean.getFax());
             entity.setEmail(formBean.getEmail());
-            entity.setDti(formBean.getDti());
-            entity.setMayorsPermit(formBean.getMayorsPermit());
-            entity.setAaf(formBean.getAaf());
-            entity.setSignatureCard(formBean.getSignatureCard());
-            entity.setCreatedBy("ADMIN");
+            entity.setCreatedBy(getClientId().toString());
+            entity.setModifiedBy(getClientId().toString());
 
         return entity;
     }
@@ -143,6 +144,22 @@ public class CustomerAction extends ActionSupport implements Preparable{
         if(StringUtils.isBlank(customerBean.getEmail())){
             addFieldError("customer.email", getText("err.email.required"));
         }
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public String getSearchType() {
+        return searchType;
+    }
+
+    public void setSearchType(String searchType) {
+        this.searchType = searchType;
     }
 
     public List<CustomerBean> getCustomers() {
