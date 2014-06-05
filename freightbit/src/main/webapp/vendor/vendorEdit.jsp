@@ -177,7 +177,7 @@
 		</div>
 
 		<div class="btn-group" style="float: left;" id="shipping-option">
-			<button class="btn btn-default" onclick="location.href='vendor-vessel.jsp'">Vessel</button>
+			<button class="btn btn-default" onclick="location.href='vendorAddVessels.jsp'">Vessel</button>
 			<button class="btn btn-default" onclick="location.href='vendor-address.jsp'">Address</button>
 		</div>
 

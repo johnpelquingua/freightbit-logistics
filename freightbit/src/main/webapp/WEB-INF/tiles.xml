@@ -257,7 +257,7 @@
 
     <definition name="vendor-vessel.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Vendor Page"/>
-        <put-attribute name="body"   value="/vendor/vendor-vessel.jsp"/>
+        <put-attribute name="body"   value="/vendor/vendorAddVessels.jsp"/>
     </definition>
 
     <definition name="vendor-addvendor.tiles" extends="baseLayout">

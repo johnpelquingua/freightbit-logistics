@@ -24,6 +24,7 @@ public class VendorBean {
     private List <AddressBean> addressBeanList;
     private List <ContactBean> contactBeanList;
     private OtherInformationBean otherInformationBean;
+    private OtherInformationBean otherInformationBean;
 
 	public VendorBean() {
 
