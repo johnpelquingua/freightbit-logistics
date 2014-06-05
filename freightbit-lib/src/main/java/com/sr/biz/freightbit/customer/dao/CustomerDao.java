@@ -22,4 +22,8 @@ public interface CustomerDao {
     public List<Customer> findCustomerByClientId(Integer clientId);
 
     public List<Customer> findCustomerByName(String customer);
+
+    public List<Customer> findCustomerByType(String customer);
+
+    public Customer findCustomerByEmail(String customer);
 }

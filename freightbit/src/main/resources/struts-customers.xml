@@ -20,6 +20,11 @@
             <result name="success" type="tiles">customer.customerSearch.tiles</result>
         </action>
 
+        <action name="customerSearchExecute" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerSearchExecute">
+            <result name="input" type="tiles">customer.customerSearch.tiles</result>
+            <result name="success" type="tiles">customer.customerList.tiles</result>
+        </action>
+
         <action name="customerAdd" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerAdd">
             <result name="success" type="tiles">customer.customerAdd.tiles</result>
         </action>

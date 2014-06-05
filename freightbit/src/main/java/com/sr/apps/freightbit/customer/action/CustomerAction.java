@@ -24,8 +24,9 @@ public class CustomerAction extends ActionSupport implements Preparable{
 
     private List<CustomerBean> customers = new ArrayList<CustomerBean>();
     private List<Parameters> customerTypeList = new ArrayList<Parameters>();
+    private List<Parameters> customerSearchList = new ArrayList<Parameters>();
     private CustomerBean customer = new CustomerBean();
-    private String customerNameParam;
+    private Integer customerIdParam;
     private String keyword; //search keyword for customer
     private String searchType; // get the search type
 
@@ -35,24 +36,49 @@ public class CustomerAction extends ActionSupport implements Preparable{
 
     @Override
     public void prepare(){
+
         customerTypeList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_TYPE);
+        customerSearchList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_SEARCH);
     }
 
     public String customerSearch(){
         return SUCCESS;
     }
 
+    public String customerSearchExecute(){
+        if(searchType.equals("customerName")) {
+            List<Customer> customerEntityList = customerService.findCustomerByName(keyword);
+            for(Customer customerElem : customerEntityList) {
+                customers.add(transformToFormBean(customerElem));
+            }
+        }else if(searchType.equals("customerId")){
 
+            Customer customerEntity = customerService.findCustomerById(Integer.parseInt(keyword));
+            customers.add(transformToFormBean(customerEntity));
+
+        }else if(searchType.equals("customerType")){
+            List<Customer> customerEntityList = customerService.findCustomerByType(keyword);
+            for(Customer customerElem : customerEntityList){
+                customers.add(transformToFormBean(customerElem));
+            }
+
+        }else if(searchType.equals("email")){
+            Customer customerEntityList = customerService.findCustomerByEmail(keyword);
+            customers.add(transformToFormBean(customerEntityList));
+        }
+        System.out.print(searchType);
+        return SUCCESS;
+    }
 
     public String customerDeleteExecute(){
 
-        Customer customeEntity = customerService.findCustomerByName(customerNameParam);
+        Customer customeEntity =  customerService.findCustomerById(customerIdParam);
         customerService.deleteCustomer(customeEntity);
         return SUCCESS;
     }
     public String customerEdit(){
 
-        Customer customerEntity = customerService.findCustomerByName(customerNameParam);
+        Customer customerEntity = customerService.findCustomerById(customerIdParam);
         customer = transformToFormBean(customerEntity);
         return SUCCESS;
     }
@@ -110,7 +136,6 @@ public class CustomerAction extends ActionSupport implements Preparable{
         entity.setClient(client);
                if (formBean.getCustomerId()!=null)
                      entity.setCustomerId(new Integer(formBean.getCustomerId()));
-
             entity.setCustomerName(formBean.getCustomerName());
             entity.setCustomerCode(formBean.getCustomerCode());
             entity.setCustomerType(formBean.getCustomerType());
@@ -144,6 +169,14 @@ public class CustomerAction extends ActionSupport implements Preparable{
         if(StringUtils.isBlank(customerBean.getEmail())){
             addFieldError("customer.email", getText("err.email.required"));
         }
+    }
+
+    public List<Parameters> getCustomerSearchList() {
+        return customerSearchList;
+    }
+
+    public void setCustomerSearchList(List<Parameters> customerSearchList) {
+        this.customerSearchList = customerSearchList;
     }
 
     public String getKeyword() {
@@ -186,12 +219,12 @@ public class CustomerAction extends ActionSupport implements Preparable{
         this.customer = customer;
     }
 
-    public String getCustomerNameParam() {
-        return customerNameParam;
+    public Integer getCustomerIdParam() {
+        return customerIdParam;
     }
 
-    public void setCustomerNameParam(String customerNameParam) {
-        this.customerNameParam = customerNameParam;
+    public void setCustomerIdParam(Integer customerIdParam) {
+        this.customerIdParam = customerIdParam;
     }
 
     public CustomerService getCustomerService() {

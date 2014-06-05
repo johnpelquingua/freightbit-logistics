@@ -127,4 +127,35 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao{
 
     }
 
+    @Override
+    public List<Customer> findCustomerByType(String customer){
+        log.debug("getting customer by id");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Customer c where c.customerType = :customerType");
+            query.setParameter("customerType", customer);
+            List<Customer> results = (List<Customer>) query.list();
+            log.debug("find by customer id successfl, result size: " + results.size());
+            return results;
+        }catch(RuntimeException re){
+            log.error("find by id failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+    public Customer findCustomerByEmail(String customer){
+        log.debug("getting customer by email");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Customer c where c.email = :email");
+            query.setParameter("email", customer);
+            List<Customer> result = (List<Customer>) query.list();
+            return result.get(0);
+        }catch(RuntimeException re){
+            log.error("find by email failed", re);
+            throw re;
+        }
+    }
+
 }

@@ -78,8 +78,11 @@
 					</div>
 				  </div>
             <hr>
-            <a href="customerList" class="btn btn-default" id ="groups-btn">Cancel</a>
-            <s:submit name="submit" cssClass="btn btn-default" value="Next" />
+
+              <div class="col-sm-10 pull-right" style="width:70%;">
+                    <a href="customerList" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <s:submit name="submit" cssClass="btn btn-default" value="Save and Proceed" />
+              </div>
 
 				</s:form>
 

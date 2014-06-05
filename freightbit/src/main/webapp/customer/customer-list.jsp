@@ -43,12 +43,12 @@
                                     <td>
 
  								    <s:url var="loadEditCustomerUrl" action="customerEdit">
- 								    	<s:param name="customerNameParam" value="customerName"></s:param>
+ 								    	<s:param name="customerIdParam" value="customerId"></s:param>
  								    </s:url>
  								    <s:a href="%{loadEditCustomerUrl}" class="icon-action-link" rel="tooltip" title="Edit this Customer"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
 
                                        <s:url var="deleteCustomerUrl" action="deleteCustomer">
-                                             <s:param name="customerNameParam" value="customerName"></s:param>
+                                             <s:param name="customerIdParam" value="customerId"></s:param>
                                         </s:url>
                                        	<s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip" title="Delete this Customer" onclick="return confirm('Do you really want to delete?');"><img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
 

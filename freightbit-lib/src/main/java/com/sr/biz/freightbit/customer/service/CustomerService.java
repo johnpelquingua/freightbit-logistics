@@ -73,7 +73,12 @@ public interface CustomerService {
 
     public List<Customer> findCustomerByClientId(Integer clientId);
 
-    public Customer findCustomerByName(String customer);
+    public List<Customer> findCustomerByName(String customer);
+
+    public List<Customer> findCustomerByType(String customer);
+
+    public Customer findCustomerByEmail(String customer);
+
 
     //Items
 

@@ -21,7 +21,7 @@
 				<div class="table-responsive list-table">
 				
 				<s:form cssClass="form-horizontal" action="editCustomer" theme="bootstrap">
-
+                <s:hidden name="customer.customerId" value="%{customer.customerId}"/>
                 <div class="form-group">
 					<label for="ctype" class="col-sm-2 control-label" style="width:25%;">Customer Code</label>
 					<div class="col-sm-10" style="width:70%;">

@@ -307,12 +307,25 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDao.findCustomerByClientId(clientId);
     }
 
-    public Customer findCustomerByName(String customer){
+    public List<Customer> findCustomerByName(String customer){
         List<Customer> result = customerDao.findCustomerByName(customer);
         if(result != null && !result.isEmpty())
-            return result.get(0);
+            return result;
         return null;
     }
+
+    public List<Customer> findCustomerByType(String customer){
+        List<Customer> result = customerDao.findCustomerByType(customer);
+        if(result != null && !result.isEmpty())
+            return result;
+        return null;
+    }
+
+
+    public Customer findCustomerByEmail(String customer){
+        return customerDao.findCustomerByEmail(customer);
+    }
+
 
     //End Of Customer
 

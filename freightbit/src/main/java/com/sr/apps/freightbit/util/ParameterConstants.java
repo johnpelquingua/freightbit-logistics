@@ -14,6 +14,8 @@ public class ParameterConstants {
 
     public final static String CUSTOMER_TYPE ="CUSTOMER_TYPE";
 
+    public final static String CUSTOMER_SEARCH = "CUSTOMER_SEARCH";
+
     public final static String VENDOR_SEARCH = "VENDOR_SEARCH";
 
     public final static String TRUCK_TYPE = "TRUCK_TYPE";
