@@ -3,7 +3,10 @@ package com.sr.biz.freightbit.core.service;
 /**
  * Created by JMXPSX on 5/27/14.
  */
-import com.sr.biz.freightbit.core.entity.User;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,15 +18,11 @@ import org.mockito.MockitoAnnotations.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import com.sr.biz.freightbit.core.dao.OrderDao;
-import com.sr.biz.freightbit.core.entity.Orders;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
-import com.sr.biz.freightbit.core.service.impl.OrderServiceImpl;
+import com.sr.biz.freightbit.order.dao.OrderDao;
+import com.sr.biz.freightbit.order.entity.Orders;
+import com.sr.biz.freightbit.order.service.impl.OrderServiceImpl;
 
 
 @ContextConfiguration(locations = {"classpath:/conf/applicationContext-lib.xml"})
@@ -76,20 +75,13 @@ public class OrderServiceTest {
         Client client = new Client("Ernest", new Date(), "JMX", new Date(), "JMX");
 
         Orders orders = new Orders();
-        orders.setClient(client);
+        orders.setClientId(1);
         orders.setOrderNumber(213);
         orders.setServiceType("FCL");
         orders.setServiceMode("D/D");
         orders.setNotificationType("SMS");
         orders.setPaymentMode("on hand");
-        orders.setQuantity(1);
-        orders.setSize("Large");
-        orders.setClassification("A");
-        orders.setEstimatedWeight(2.0f);
-        orders.setDeclaredValue(15.0f);
-        orders.setCommodity("boxes");
         orders.setComments("fragile");
-        orders.setRate(4.0f);
         orders.setOrderStatus("Ready");
         orders.setVendorCode("AAA");
         orders.setTruckCode("AXY");

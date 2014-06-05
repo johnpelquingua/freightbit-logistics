@@ -6,10 +6,8 @@ import java.util.List;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
 import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.dao.OrderItemsDao;
-import com.sr.biz.freightbit.order.dao.OrderStopsDao;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
 /**
@@ -19,12 +17,7 @@ import com.sr.biz.freightbit.order.service.OrderService;
 public class OrderServiceImpl implements OrderService{
 
     private OrderDao orderDao;
-    private OrderStopsDao orderStopsDao;
     private OrderItemsDao orderItemsDao;
-
-    public void setOrderStopsDao(OrderStopsDao orderStopsDao) {
-		this.orderStopsDao = orderStopsDao;
-	}
 
 	public void setOrderItemsDao(OrderItemsDao orderItemsDao) {
 		this.orderItemsDao = orderItemsDao;
@@ -34,10 +27,10 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addOrder(Orders orders) throws OrderAlreadyExistsException {
-        if (orderDao.findOrdersByOrderNumber(orders.getOrderNumber())!=null)
+    public void addOrder(Orders orders) {
+/*        if (orderDao.findOrdersByOrderNumber(orders.getOrderNumber())!=null)
             throw new OrderAlreadyExistsException(orders.getOrderNumber());
-        else
+        else*/
             orderDao.addOrder(orders);
     }
 

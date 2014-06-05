@@ -32,6 +32,7 @@
                 <value>com.sr.biz.freightbit.vendor.entity</value>
                 <value>com.sr.biz.freightbit.common.entity</value>
                 <value>com.sr.biz.freightbit.customer.entity</value>
+                 <value>com.sr.biz.freightbit.order.entity</value>
             </array>
         </property>
         <property name="hibernateProperties">
@@ -100,7 +101,6 @@
     
 	<bean id="orderService" class="com.sr.biz.freightbit.order.service.impl.OrderServiceImpl">
         <property name="orderDao" ref="orderDao" />
-        <property name="orderStopsDao" ref="orderStopsDao" />
         <property name="orderItemsDao" ref="orderItemsDao" />
     </bean>
 
@@ -166,10 +166,6 @@
 
     <!-- Order Module DAO -->
     <bean id="orderDao" class="com.sr.biz.freightbit.order.dao.impl.OrderDaoImpl">
-        <property name="sessionFactory" ref="sessionFactory"></property>
-    </bean>
-    
-    <bean id="orderStopsDao" class="com.sr.biz.freightbit.order.dao.impl.OrderStopsDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     

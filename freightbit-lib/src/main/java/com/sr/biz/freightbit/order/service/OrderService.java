@@ -9,7 +9,7 @@ import com.sr.biz.freightbit.order.entity.Orders;
  */
 public interface OrderService {
 
-    public void addOrder(Orders orders) throws OrderAlreadyExistsException;
+    public void addOrder(Orders orders);
 
     public void deleteOrder(Orders orders);
 

@@ -1,12 +1,13 @@
 package com.sr.biz.freightbit.order.entity;
-// Generated Jun 4, 2014 2:09:24 PM by Hibernate Tools 3.6.0
+// Generated Jun 4, 2014 9:55:23 PM by Hibernate Tools 3.6.0
 
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -32,34 +33,30 @@ public class Orders  implements java.io.Serializable {
      private String notificationType;
      private Date orderDate;
      private String paymentMode;
-     private Integer quantity;
-     private String size;
-     private String classification;
-     private Double estimatedWeight;
-     private Double declaredValue;
-     private String commodity;
      private String comments;
-     private Double rate;
      private String orderStatus;
      private String vendorCode;
      private String truckCode;
      private String trailerCode;
      private String driverCode;
      private String vesselNumber;
+     private String shipperCode;
+     private Integer shipperAddressId;
+     private Integer shipperContactId;
+     private String consigneeCode;
+     private Integer consigneeAddressId;
+     private Integer consigneeContactId;
      private String accountRep;
      private Date createdTimestamp;
      private String createdBy;
      private Date modifiedTimestamp;
      private String modifiedBy;
-     private Integer customerId;
-     private String portOfDestination;
-     private String portOfOrigin;
 
     public Orders() {
     }
 
 	
-    public Orders(Integer clientId, Integer orderNumber, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, Integer quantity, String size, String classification, Double estimatedWeight, Double declaredValue, String commodity, String comments, Double rate, String orderStatus, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Integer customerId, String portOfDestination, String portOfOrigin) {
+    public Orders(Integer clientId, Integer orderNumber, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, Integer shipperAddressId, Integer shipperContactId, Integer consigneeAddressId, Integer consigneeContactId, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
         this.clientId = clientId;
         this.orderNumber = orderNumber;
         this.serviceType = serviceType;
@@ -67,24 +64,18 @@ public class Orders  implements java.io.Serializable {
         this.notificationType = notificationType;
         this.orderDate = orderDate;
         this.paymentMode = paymentMode;
-        this.quantity = quantity;
-        this.size = size;
-        this.classification = classification;
-        this.estimatedWeight = estimatedWeight;
-        this.declaredValue = declaredValue;
-        this.commodity = commodity;
         this.comments = comments;
-        this.rate = rate;
         this.orderStatus = orderStatus;
+        this.shipperAddressId = shipperAddressId;
+        this.shipperContactId = shipperContactId;
+        this.consigneeAddressId = consigneeAddressId;
+        this.consigneeContactId = consigneeContactId;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
-        this.customerId = customerId;
-        this.portOfDestination = portOfDestination;
-        this.portOfOrigin = portOfOrigin;
     }
-    public Orders(Integer clientId, Integer orderNumber, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, Integer quantity, String size, String classification, Double estimatedWeight, Double declaredValue, String commodity, String comments, Double rate, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Integer customerId, String portOfDestination, String portOfOrigin) {
+    public Orders(Integer clientId, Integer orderNumber, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
        this.clientId = clientId;
        this.orderNumber = orderNumber;
        this.serviceType = serviceType;
@@ -92,33 +83,28 @@ public class Orders  implements java.io.Serializable {
        this.notificationType = notificationType;
        this.orderDate = orderDate;
        this.paymentMode = paymentMode;
-       this.quantity = quantity;
-       this.size = size;
-       this.classification = classification;
-       this.estimatedWeight = estimatedWeight;
-       this.declaredValue = declaredValue;
-       this.commodity = commodity;
        this.comments = comments;
-       this.rate = rate;
        this.orderStatus = orderStatus;
        this.vendorCode = vendorCode;
        this.truckCode = truckCode;
        this.trailerCode = trailerCode;
        this.driverCode = driverCode;
        this.vesselNumber = vesselNumber;
+       this.shipperCode = shipperCode;
+       this.shipperAddressId = shipperAddressId;
+       this.shipperContactId = shipperContactId;
+       this.consigneeCode = consigneeCode;
+       this.consigneeAddressId = consigneeAddressId;
+       this.consigneeContactId = consigneeContactId;
        this.accountRep = accountRep;
        this.createdTimestamp = createdTimestamp;
        this.createdBy = createdBy;
        this.modifiedTimestamp = modifiedTimestamp;
        this.modifiedBy = modifiedBy;
-       this.customerId = customerId;
-       this.portOfDestination = portOfDestination;
-       this.portOfOrigin = portOfOrigin;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
-
-    
+     @Id 
+     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="orderId", unique=true, nullable=false)
     public Integer getOrderId() {
         return this.orderId;
@@ -199,66 +185,6 @@ public class Orders  implements java.io.Serializable {
     }
 
     
-    @Column(name="quantity", nullable=false)
-    public Integer getQuantity() {
-        return this.quantity;
-    }
-    
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    
-    @Column(name="size", nullable=false, length=10)
-    public String getSize() {
-        return this.size;
-    }
-    
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    
-    @Column(name="classification", nullable=false, length=50)
-    public String getClassification() {
-        return this.classification;
-    }
-    
-    public void setClassification(String classification) {
-        this.classification = classification;
-    }
-
-    
-    @Column(name="estimatedWeight", nullable=false, precision=12, scale=0)
-    public Double getEstimatedWeight() {
-        return this.estimatedWeight;
-    }
-    
-    public void setEstimatedWeight(Double estimatedWeight) {
-        this.estimatedWeight = estimatedWeight;
-    }
-
-    
-    @Column(name="declaredValue", nullable=false, precision=12, scale=0)
-    public Double getDeclaredValue() {
-        return this.declaredValue;
-    }
-    
-    public void setDeclaredValue(Double declaredValue) {
-        this.declaredValue = declaredValue;
-    }
-
-    
-    @Column(name="commodity", nullable=false, length=50)
-    public String getCommodity() {
-        return this.commodity;
-    }
-    
-    public void setCommodity(String commodity) {
-        this.commodity = commodity;
-    }
-
-    
     @Column(name="comments", nullable=false)
     public String getComments() {
         return this.comments;
@@ -266,16 +192,6 @@ public class Orders  implements java.io.Serializable {
     
     public void setComments(String comments) {
         this.comments = comments;
-    }
-
-    
-    @Column(name="rate", nullable=false, precision=12, scale=0)
-    public Double getRate() {
-        return this.rate;
-    }
-    
-    public void setRate(Double rate) {
-        this.rate = rate;
     }
 
     
@@ -339,6 +255,66 @@ public class Orders  implements java.io.Serializable {
     }
 
     
+    @Column(name="shipperCode", length=10)
+    public String getShipperCode() {
+        return this.shipperCode;
+    }
+    
+    public void setShipperCode(String shipperCode) {
+        this.shipperCode = shipperCode;
+    }
+
+    
+    @Column(name="shipperAddressId", nullable=false)
+    public Integer getShipperAddressId() {
+        return this.shipperAddressId;
+    }
+    
+    public void setShipperAddressId(Integer shipperAddressId) {
+        this.shipperAddressId = shipperAddressId;
+    }
+
+    
+    @Column(name="shipperContactId", nullable=false)
+    public Integer getShipperContactId() {
+        return this.shipperContactId;
+    }
+    
+    public void setShipperContactId(Integer shipperContactId) {
+        this.shipperContactId = shipperContactId;
+    }
+
+    
+    @Column(name="consigneeCode", length=10)
+    public String getConsigneeCode() {
+        return this.consigneeCode;
+    }
+    
+    public void setConsigneeCode(String consigneeCode) {
+        this.consigneeCode = consigneeCode;
+    }
+
+    
+    @Column(name="consigneeAddressId", nullable=false)
+    public Integer getConsigneeAddressId() {
+        return this.consigneeAddressId;
+    }
+    
+    public void setConsigneeAddressId(Integer consigneeAddressId) {
+        this.consigneeAddressId = consigneeAddressId;
+    }
+
+    
+    @Column(name="consigneeContactId", nullable=false)
+    public Integer getConsigneeContactId() {
+        return this.consigneeContactId;
+    }
+    
+    public void setConsigneeContactId(Integer consigneeContactId) {
+        this.consigneeContactId = consigneeContactId;
+    }
+
+    
     @Column(name="accountRep", length=10)
     public String getAccountRep() {
         return this.accountRep;
@@ -388,40 +364,9 @@ public class Orders  implements java.io.Serializable {
         this.modifiedBy = modifiedBy;
     }
 
-    
-    @Column(name="customerId", nullable=false)
-    public Integer getCustomerId() {
-        return this.customerId;
-    }
-    
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
-
-    
-    @Column(name="portOfDestination", nullable=false, length=45)
-    public String getPortOfDestination() {
-        return this.portOfDestination;
-    }
-    
-    public void setPortOfDestination(String portOfDestination) {
-        this.portOfDestination = portOfDestination;
-    }
-
-    
-    @Column(name="portOfOrigin", nullable=false, length=45)
-    public String getPortOfOrigin() {
-        return this.portOfOrigin;
-    }
-    
-    public void setPortOfOrigin(String portOfOrigin) {
-        this.portOfOrigin = portOfOrigin;
-    }
-
 
 
 
 }
-
 
 
