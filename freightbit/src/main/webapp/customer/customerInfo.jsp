@@ -50,7 +50,7 @@
 							  <tbody>
 							    <tr>
 							        <td><s:property value="items.itemName" /></td>
-							        <td><s:property value="items.itemCode"</td>
+							        <td><s:property value="items.itemCode" /></td>
 							    </tr>
 							  </tbody>
 							</table>

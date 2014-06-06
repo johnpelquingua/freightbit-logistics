@@ -8,11 +8,14 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Solutions Resource on 5/26/14.
  */
 
+
+@Transactional
 public class ItemsDaoImpl extends HibernateDaoSupport implements ItemsDao {
     private static final Logger log = Logger.getLogger(ItemsDaoImpl.class);
 

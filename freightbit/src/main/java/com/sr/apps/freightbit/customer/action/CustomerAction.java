@@ -83,6 +83,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Customer customerEntity = customerService.findCustomerById(customerIdParam);
         customer = transformToFormBean(customerEntity);
         return SUCCESS;
+
     }
 
 
@@ -144,7 +145,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         validateOnSubmit(customer);
         if (hasFieldErrors())
             return INPUT;
-        customerService.addCustomer(transformToEntityBean(customer));
+        Integer customerId = customerService.addCustomer(transformToEntityBean(customer));
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("customerId", customerId);
         return SUCCESS;
     }
 
@@ -185,17 +188,17 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (formBean.getCustomerItemsId() != null)
             entity.setCustomerItemsId(new Integer(formBean.getCustomerItemsId()));
 
-        entity.setItemName("test");
-        entity.setItemCode("test123");
-        entity.setCustomerId(7);
-        entity.setSrp(141.00);
-        entity.setLength(11);
-        entity.setWidth(11);
-        entity.setHeight(11);
-        entity.setCriticalQuality(11);
-        entity.setBasePrice(110.00);
-        entity.setNote("awagaea");
-        entity.setDescription("afafaefafaf");
+        entity.setItemName(formBean.getItemName());
+        entity.setItemCode(formBean.getItemCode());
+        entity.setCustomerId(getCustomerSessionId());
+        entity.setSrp(formBean.getSrp());
+        entity.setLength(formBean.getLength());
+        entity.setWidth(formBean.getWidth());
+        entity.setHeight(formBean.getHeight());
+        entity.setCriticalQuality(formBean.getCriticalQuality());
+        entity.setBasePrice(formBean.getBasePrice());
+        entity.setNote(formBean.getNote());
+        entity.setDescription(formBean.getDescription());
         entity.setCreatedBy(getClientId().toString());
         entity.setModifiedBy(getClientId().toString());
 
@@ -259,6 +262,22 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (StringUtils.isBlank(customerBean.getEmail())) {
             addFieldError("customer.email", getText("err.email.required"));
         }
+    }
+
+    public void setItemService(CustomerService itemService) {
+        this.itemService = itemService;
+    }
+
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
+    public void setClientService(ClientService clientService) {
+        this.clientService = clientService;
+    }
+
+    public void setParameterService(ParameterService parameterService) {
+        this.parameterService = parameterService;
     }
 
     public List<CustomerBean> getCustomers() {

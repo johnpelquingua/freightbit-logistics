@@ -30,7 +30,6 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao{
 
             Session session = getSessionFactory().getCurrentSession();
             Integer customerId = (Integer) session.save(customer);
-            session.save(customer);
             return customerId;
         }catch(RuntimeException re){
             log.error("add failed", re);

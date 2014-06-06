@@ -73,7 +73,7 @@ public class Items implements java.io.Serializable {
     public void setClient(Client client) { this.client = client; }
 
 
-    @Column(name = "customerId", nullable = false)
+    @Column(name = "customerId")
     public Integer getCustomerId() { return customerId; }
     public void setCustomerId(Integer customerId) { this.customerId = customerId; }
 
