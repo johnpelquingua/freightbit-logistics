@@ -79,9 +79,4 @@ public class OrderServiceImpl implements OrderService{
         orders.setOrderDate(new Date());
         orderDao.updateOrder(orders);
     }
-    
-    @Override
-    public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId) {
-    	return orderDao.findOrdersByCriteria(column, value, clientId);
-    }
 }

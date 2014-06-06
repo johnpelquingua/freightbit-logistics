@@ -27,7 +27,7 @@ public class Orders  implements java.io.Serializable {
 
      private Integer orderId;
      private Integer clientId;
-     private String orderNumber;
+     private Integer orderNumber;
      private String serviceType;
      private String serviceMode;
      private String notificationType;
@@ -56,7 +56,7 @@ public class Orders  implements java.io.Serializable {
     }
 
 	
-    public Orders(Integer clientId, String orderNumber, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, Integer shipperAddressId, Integer shipperContactId, Integer consigneeAddressId, Integer consigneeContactId, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public Orders(Integer clientId, Integer orderNumber, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, Integer shipperAddressId, Integer shipperContactId, Integer consigneeAddressId, Integer consigneeContactId, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
         this.clientId = clientId;
         this.orderNumber = orderNumber;
         this.serviceType = serviceType;
@@ -75,7 +75,7 @@ public class Orders  implements java.io.Serializable {
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
     }
-    public Orders(Integer clientId, String orderNumber, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public Orders(Integer clientId, Integer orderNumber, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
        this.clientId = clientId;
        this.orderNumber = orderNumber;
        this.serviceType = serviceType;
@@ -126,11 +126,11 @@ public class Orders  implements java.io.Serializable {
 
     
     @Column(name="orderNumber", unique=true, nullable=false)
-    public String getOrderNumber() {
+    public Integer getOrderNumber() {
         return this.orderNumber;
     }
     
-    public void setOrderNumber(String orderNumber) {
+    public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
     }
 

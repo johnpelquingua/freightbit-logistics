@@ -21,16 +21,5 @@ public class ParameterConstants {
     public final static String TRUCK_TYPE = "TRUCK_TYPE";
 
     public final static String VENDOR_CLASS = "VENDOR_CLASS";
-    
-	public static final String SERVICE_REQUIREMENT = "SERVICE REQUIREMENT";
 
-	public static final String ORDER = "ORDER";
-
-	public static final String NOTIFY_BY = "NOTIFY BY";
-	
-	public static final String MODE_OF_PAYMENT = "MODE OF PAYMENT";
-	
-	public static final String MODE_OF_SERVICE = "MODE OF SERVICE";
-	
-	public static final String FREIGHT_TYPE = "FREIGHT TYPE";
 }

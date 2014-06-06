@@ -5,11 +5,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.entity.Orders;
 
@@ -124,15 +122,4 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
             throw re;
         }
     }
-
-    @Override
-	public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId) {
-        Log.debug("Find orders by criteria [" + column + "] value [" + value + "]");
-        Session session = getSessionFactory().getCurrentSession();
-        List<Orders> orders = session.createCriteria(Orders.class)
-            .add(Restrictions.like(column, value))
-            .add(Restrictions.eq("clientId", clientId))
-            .list();
-        return orders;	
-	}
 }
