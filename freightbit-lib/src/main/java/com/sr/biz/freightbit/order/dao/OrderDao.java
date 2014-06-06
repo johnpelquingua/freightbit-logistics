@@ -2,6 +2,10 @@ package com.sr.biz.freightbit.order.dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.order.entity.Orders;
 /**
  * Created by JMXPSX on 5/27/14.
@@ -21,4 +25,6 @@ public interface OrderDao {
     public Orders findOrdersById (Integer orderId);
 
     public List<Orders> findOrdersByOrderNumber (Integer orderNumber);
+    
+	public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId);
 }

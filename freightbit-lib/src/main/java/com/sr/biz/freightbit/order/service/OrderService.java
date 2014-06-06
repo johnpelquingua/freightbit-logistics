@@ -2,6 +2,7 @@ package com.sr.biz.freightbit.order.service;
 
 import java.util.List;
 
+import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
 import com.sr.biz.freightbit.order.entity.Orders;
 /**
@@ -24,4 +25,6 @@ public interface OrderService {
     public  Orders findOrdersByOrderNumber (Integer orderNumber);
 
     public void updateOrderDate(Orders orders);
+    
+    public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId);
 }
