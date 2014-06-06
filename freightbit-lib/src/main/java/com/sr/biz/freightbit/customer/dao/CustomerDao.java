@@ -9,7 +9,7 @@ import com.sr.biz.freightbit.customer.entity.Customer;
 
 public interface CustomerDao {
 
-    public void addCustomer(Customer customer);
+    public Integer addCustomer(Customer customer);
 
     public void deleteCustomer(Customer customer);
 
@@ -26,4 +26,5 @@ public interface CustomerDao {
     public List<Customer> findCustomerByType(String customer);
 
     public Customer findCustomerByEmail(String customer);
+
 }

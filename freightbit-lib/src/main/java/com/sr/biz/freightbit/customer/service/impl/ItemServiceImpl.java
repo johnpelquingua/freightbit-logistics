@@ -59,4 +59,12 @@ public class ItemServiceImpl implements ItemService {
         itemsDao.updateItems(items);
     }
 
+
+    @Override
+    public List<Items> findItemByCustomerId(Integer customerId){
+        List<Items> result = itemsDao.findItemByCustomerId(customerId);
+        return  result;
+
+    }
+
 }

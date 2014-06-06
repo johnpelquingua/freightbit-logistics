@@ -18,15 +18,16 @@
 								<span class="booking panel-title">Personal Information</span>
 							</div>
 							<div class="panel-body">
-							<div style="float:left; width:50%;">
-								<img src="includes/images/default-image.png" style="width:150px;margin:6px;">
-							</div>
-							<div style="float:left; width:50%;">
-								<h2>Solutions Resource (SRI)</h2>
-								<span>Email Address : info@solutionsresource.com</span>
-								<br>
-								<span>Contact Number : 6915661</span>
-							</div>
+
+                                   Customer ID : <s:property value="customer.customerId" />  Customer Code: <s:property value="customer.customerCode" />  Customer Type : <s:property value="customer.customerType" />
+                                   <hr>
+                                   Customer Name : <s:property value="customer.customerName" />
+                                   <hr>
+                                    Tel No. : <s:property value="customer.phone" /> Mobile No : <s:property value="customer.mobile" />
+                                   <hr>
+                                    Email : <s:property value="customer.email" /> Website : <a href="%{customer.website}"><s:property value="customer.website" /></a>
+                                   <hr>
+
 							</div>
 						</div>
 						<div style="float:left; margin:0px 20px;width:45%;">
@@ -34,7 +35,7 @@
 							<div class="panel booking panel-info">
 						  <div class="booking panel-heading"> 
 							<img src="includes/images/listofusers.png" class="box-icon">
-							<span class="booking panel-title">List of Address</span>
+							<span class="booking panel-title">List of Items</span>
 							
 						  </div>
 						<div class="panel-body">
@@ -42,19 +43,15 @@
 							<table class="table table-striped table-bordered text-center" id="customer-list">
 							  <thead>
 								<tr class="header_center">
-								  <th class="tb-font-black"><input type="checkbox" /></th>
+								  <th class="tb-font-black"></th>
 								  <th class="tb-font-black">Address</th>
 								</tr>
 							  </thead>
 							  <tbody>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">Suite 4, UP Ayala Technopark, Katipunan Ave., Quezon City 1101</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">14040 NE 8th Street Suite 226 Bellevue, Washington, 98007</td>
-								</tr>
+							    <tr>
+							        <td><s:property value="items.itemName" /></td>
+							        <td><s:property value="items.itemCode"</td>
+							    </tr>
 							  </tbody>
 							</table>
 							<span class="pull-right">
@@ -64,10 +61,9 @@
 								<a href="#" class="icon-action-link">
 									<img src="includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
 								</a>
-								<a href="#" class="icon-action-link">
-									<img src="includes/images/plus-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-							</span>
+
+								<a href="customerAddItem"><img src="includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;"> </a>
+ 	  						</span>
 						</div>
 						</div>
 					</div>

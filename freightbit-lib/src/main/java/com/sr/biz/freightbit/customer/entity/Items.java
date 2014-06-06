@@ -8,16 +8,7 @@ package com.sr.biz.freightbit.customer.entity;
 import com.sr.biz.freightbit.core.entity.Client;
 
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 
 @Entity
@@ -26,7 +17,7 @@ public class Items implements java.io.Serializable {
 
     private Integer customerItemsId;
     private Client client;
-    private Customer customerId;
+    private Integer customerId;
     private String itemName;
     private String itemCode;
     private Integer length;
@@ -46,7 +37,7 @@ public class Items implements java.io.Serializable {
 
     }
 
-    public Items(Integer customerItemsId, Client client, Customer customerId,
+    public Items(Integer customerItemsId, Client client, Integer customerId,
                  String itemName, String itemCode, Integer length, Integer width,
                  Integer height, Double srp, Integer criticalQuality, Double basePrice,
                  String note, String description, Date createdTimestamp, String createdBy,
@@ -81,10 +72,10 @@ public class Items implements java.io.Serializable {
     public Client getClient() { return client; }
     public void setClient(Client client) { this.client = client; }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customerId", nullable = false)
-    public Customer getCustomerId() { return customerId; }
-    public void setCustomerId(Customer customerId) { this.customerId = customerId; }
+
+    @Column(name = "customerId", nullable = false)
+    public Integer getCustomerId() { return customerId; }
+    public void setCustomerId(Integer customerId) { this.customerId = customerId; }
 
 
     @Column(name = "itemName")
@@ -127,7 +118,7 @@ public class Items implements java.io.Serializable {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    @Column(name = "createdTimestamp", nullable = false)
+    @Column(name = "createdTimestamp")
     public Date getCreatedTimestamp() { return createdTimestamp;}
     public void setCreatedTimestamp(Date createdTimestamp) { this.createdTimestamp = createdTimestamp;}
 
@@ -135,7 +126,7 @@ public class Items implements java.io.Serializable {
     public String getCreatedBy() { return createdBy; }
     public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
 
-    @Column(name = "modifiedTimestamp", nullable = false)
+    @Column(name = "modifiedTimestamp")
     public Date getModifiedTimestamp() { return modifiedTimestamp; }
     public void setModifiedTimestamp(Date modifiedTimestamp) { this.modifiedTimestamp = modifiedTimestamp; }
 

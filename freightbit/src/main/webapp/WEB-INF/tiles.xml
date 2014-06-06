@@ -129,6 +129,17 @@
         <put-attribute name="title"  value="Customer Page"/>
         <put-attribute name="body"   value="/customer/customer-list.jsp"/>
     </definition>
+
+    <definition name="customer.customerAddItems.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Customer Page" />
+        <put-attribute name="body" value="/customer/customerAddItem.jsp" />
+    </definition>
+
+    <definition name="customer.customerInfo.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Customer Page" />
+        <put-attribute name="body" value="/customer/customerInfo.jsp" />
+    </definition>
+
 <!-- CUSTOMER module tiles END -->
 
     <!-- ORDER module tiles Begin-->

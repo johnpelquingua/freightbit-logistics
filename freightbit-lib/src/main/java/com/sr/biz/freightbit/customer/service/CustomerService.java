@@ -61,7 +61,7 @@ public interface CustomerService {
 
     //Customer
 
-    public void addCustomer(Customer customer) throws CustomerAlreadyExistsException;
+    public Integer addCustomer(Customer customer) throws CustomerAlreadyExistsException;
 
     public void deleteCustomer(Customer customer);
 
@@ -95,6 +95,8 @@ public interface CustomerService {
     public void updateItems(Items items);
 
     public List<Items> findAllItemsByClientId(Integer clientId);
+
+    public List<Items> findItemByCustomerId(Integer customerId);
 
     //Rates
 

@@ -24,4 +24,5 @@ public interface ItemsDao {
 
     public List<Items> findAllItemsByClientId(Integer clientId);
 
+    public List<Items> findItemByCustomerId(Integer customerId);
 }

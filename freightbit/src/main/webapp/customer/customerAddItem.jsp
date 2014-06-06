@@ -19,69 +19,102 @@
 				<div class="panel-body">
 				<div class="table-responsive list-table">
 
-				<form class="form-horizontal" role="form">
+
+ <s:form cssClass="form-horizontal" theme="bootstrap" action="addItem">
 				  <div class="form-group">
-					<label for="iname" class="col-sm-2 control-label" style="width:25%;">Item Name</label>
+                 <div class="form-group">
+					<label for="ctype" class="col-sm-2 control-label" style="width:25%;">Item Name :</label>
 					<div class="col-sm-10" style="width:70%;">
-						<input type="text" class="form-control" id="iname" placeholder="Item Name">
+					  <s:textfield name="item.itemName" id="item.itemName" required="true" cssClass="form-control"/>
 					</div>
 				  </div>
+
 				  <div class="form-group">
-					<label for="icode" class="col-sm-2 control-label" style="width:25%;">Item Code</label>
+					<label for="icode" class="col-sm-2 control-label" style="width:25%;">Item Code :</label>
 					<div class="col-sm-10" style="width: 31%;">
-						<input type="text" class="form-control" id="icode" placeholder="Item Code">
+						<s:textfield name="item.itemCode" id="item.itemCode" required="true" cssClass="form-control" style="150px" />
 					</div>
-					<label for="srp" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">SRP</label>
+					<label for="srp" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">SRP :</label>
 					<div class="col-sm-10" style="width: 34.5%;">
-						<input type="text" class="form-control" id="srp" placeholder="SRP">
+						<s:textfield  name="item.srp" id="item.srp" required="true" cssClass="form-control" style="150px" />
 					</div>
 				  </div>
+
 				  <div class="form-group">
-					<label for="length" class="col-sm-2 control-label" style="width:25%;">Length</label>
+					<label for="length" class="col-sm-2 control-label" style="width:25%;">Length :</label>
 					<div class="col-sm-10" style="width: 31%;">
-						<input type="text" class="form-control" id="length" placeholder="Length">
+						<s:textfield name="item.length" id="item.length" required="true" cssClass="form-control" style="150px" />
 					</div>
-					<label for="width" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">Width</label>
+					<label for="width" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">Width :</label>
 					<div class="col-sm-10" style="width: 32.8%;">
-						<input type="text" class="form-control" id="width" placeholder="Width">
+						<s:textfield name="item.width" id="item.width" required="true" cssClass="form-control" style="150px" />
 					</div>
-				  </div>
+				  </div
 				  <div class="form-group">
-					<label for="cquality" class="col-sm-2 control-label" style="width:25%;">Critical Quality</label>
+					<label for="cquality" class="col-sm-2 control-label" style="width:25%;">Critical Quality :</label>
 					<div class="col-sm-10" style="width: 31%;">
-						<input type="text" class="form-control" id="cquality" placeholder="Critical Quality">
+						<s:textfield name="item.criticalQuality" id="item.criticalQuality" required="true" cssClass="form-control" style="150px" />
 					</div>
-					<label for="height" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">Height</label>
+					<label for="height" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">Height :</label>
 					<div class="col-sm-10" style="width: 31.8%;">
-						<input type="text" class="form-control" id="height" placeholder="Height">
+						<s:textfield name="item.height" id="item.height" required="true" cssClass="form-control" style="150px" />
 					</div>
 				  </div>
+
 				  <div class="form-group">
-					<label for="bprice" class="col-sm-2 control-label" style="width:25%;">Base Price</label>
+					<label for="bprice" class="col-sm-2 control-label" style="width:25%;">Base Price :</label>
 					<div class="col-sm-10" style="width:70%;">
-						<input type="text" class="form-control" id="bprice" placeholder="Base Price">
+						<s:textfield name="item.basePrice" id="item.basePrice" required="true" cssClass="form-control"  />
 					</div>
 				  </div>
+
 				  <div class="form-group">
 					<label for="note" class="col-sm-2 control-label" style="width:25%;">Note</label>
 					<div class="col-sm-10" style="width:70%;">
-						<input type="text" class="form-control" id="note" placeholder="Note">
+						<s:textfield name="item.note" id="item.note" required="true" cssClass="form-control"  />
 					</div>
 				  </div>
 				  <div class="form-group">
 					<label for="desc" class="col-sm-2 control-label" style="width:25%;">Description</label>
 					<div class="col-sm-10" style="width:70%;">
-						<textarea class="form-control" id="desc" placeholder="Description of the Item"></textarea>
+						<s:textfield name="item.description" id="item.description" required="true" cssClass="form-control"  />
 					</div>
 				  </div>
-				  <span class="pull-right" style="margin-right:32px;">
-					<a href="customer-add3.html" class="btn btn-default" id ="groups-btn" style="width:70px;">Back</a>
-					<button href="#" class="btn btn-default" id="groups-btn" style="width:70px;">Save</button>
-					<a href="customer-add5.html" class="btn btn-default" id="groups-btn" style="width:70px;">Next</a>
-				  </span>
-				</form>
+            <hr>
+
+              <div class="col-sm-10 pull-right" style="width:70%;">
+                    <a href="customerList" class="btn btn-default" id ="groups-btn">Back</a>
+                    <s:submit name="submit" cssClass="btn btn-default" value="Save" />
+                    <a href="customerList" class="btn btn-default" id ="groups-btn">Next</a>
+              </div>
+
+				</s:form>
+
 
 				</div>
 				</div>
 			</div>
 		</div>
+
+
+		<div class="sidebar-box">
+				  <div class="panel booking panel-info">
+					  <div class="booking panel-heading">
+					  <img src="images/calendar.png" class="box-icon">
+						<span class="booking panel-title">Process</span>
+
+					  </div>
+					  <div class="panel-body">
+						<ul class="nav">
+							<li><a href="customer-add.html" class="side-help"><img src="images/1.png" class="img-sidehelp">Personal Information</a></li>
+							<li><a href="customer-add2.html" class="side-help"><img src="images/2.png" class="img-sidehelp">Contact Person</a></li>
+							<li><a href="customer-add3.html" class="side-help"><img src="images/3.png" class="img-sidehelp">Address</a></li>
+							<li><a href="customer-add4.html" class="side-help"><img src="images/4.png" class="img-sidehelp">Items</a></li>
+							<li><a href="customer-add5.html" class="side-help"><img src="images/5.png" class="img-sidehelp">Documents</a></li>
+							<li><a href="customer-add7.html" class="side-help"><img src="images/6.png" class="img-sidehelp">Rates</a></li>
+							<li><a href="customer-add6.html" class="side-help"><img src="images/7.png" class="img-sidehelp">Consignee Infomation</a></li>
+						</ul>
+					  </div>
+				  </div>
+			    </div>
+			</div>

@@ -42,11 +42,10 @@ public class ItemServiceTest {
 
     private Items initItem(){
         Client client = new Client("Ernest", new Date(), "Juno", new Date(), "Juno");
-        Customer customer = new Customer();
 
         Items item = new Items();
         item.setClient(client);
-        item.setCustomerId(customer);
+        item.setCustomerId(6);
         item.setItemName("ROCK");
         item.setItemCode("ROK-101");
         item.setLength(2);

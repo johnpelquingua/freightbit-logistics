@@ -52,9 +52,13 @@
                                         </s:url>
                                        	<s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip" title="Delete this Customer" onclick="return confirm('Do you really want to delete?');"><img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
 
-                                        <a href="customer-info.html" class="icon-action-link">
-                                            <img src="includes/images/info-b.png" class="icon-action circ-icon">
-                                        </a>
+                                       <s:url var="customerInfoUrl" action="customerInfo">
+                                             <s:param name="customerIdParam" value="customerId"></s:param>
+                                        </s:url>
+                                       	<s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+
+
+
                                     </td>
 								</tr>
                               </s:iterator>

@@ -23,11 +23,15 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao{
     private static final Log log = LogFactory.getLog(CustomerDao.class);
 
     @Override
-    public  void addCustomer(Customer customer){
+    public  Integer addCustomer(Customer customer){
+
         log.debug("adding a new customer");
         try{
+
             Session session = getSessionFactory().getCurrentSession();
+            Integer customerId = (Integer) session.save(customer);
             session.save(customer);
+            return customerId;
         }catch(RuntimeException re){
             log.error("add failed", re);
             throw re;

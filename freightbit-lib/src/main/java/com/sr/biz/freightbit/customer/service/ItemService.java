@@ -22,4 +22,6 @@ public interface ItemService {
 
     public void updateItems(Items items);
 
+    public List<Items> findItemByCustomerId(Integer customerId);
+
 }

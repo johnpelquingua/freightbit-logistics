@@ -258,6 +258,11 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
+    public List<Items> findItemByCustomerId(Integer customerId){
+        List<Items> result = itemsDao.findItemByCustomerId(customerId);
+        return result;
+    }
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateItems(Items items) {
         itemsDao.updateItems(items);
@@ -271,12 +276,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addCustomer(Customer customer) throws CustomerAlreadyExistsException{
+    public Integer addCustomer(Customer customer) throws CustomerAlreadyExistsException{
 
         if (customerDao.findCustomerByName(customer.getCustomerName()).size() > 0)
             throw new CustomerAlreadyExistsException(customer.getCustomerName());
         else
-            customerDao.addCustomer(customer);
+           return customerDao.addCustomer(customer);
     }
 
     @Override
@@ -325,6 +330,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer findCustomerByEmail(String customer){
         return customerDao.findCustomerByEmail(customer);
     }
+
 
 
     //End Of Customer
