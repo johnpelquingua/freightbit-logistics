@@ -15,14 +15,14 @@ public interface VendorDao {
 
     public List<Vendor> findAllVendors();
 
-    public List<Vendor> findAllVendorByClientId(long clientId);
+    public List<Vendor> findAllVendorByClientId(Integer clientId);
 
-    public Vendor findVendorById(long vendorId);
+    public Vendor findVendorById(Integer vendorId);
 
     public List<Vendor> findVendorByVendorCode(String vendorCode);
 
     public void updateVendor(Vendor vendor);
 
-    public List<Vendor> findVendorByCriteria(String column, String value);
+    public List<Vendor> findVendorByCriteria(String column, String value, Integer clientId);
 
 }

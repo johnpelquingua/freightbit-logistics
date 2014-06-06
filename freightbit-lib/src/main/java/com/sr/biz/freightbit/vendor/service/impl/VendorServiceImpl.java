@@ -39,7 +39,7 @@ public class VendorServiceImpl implements VendorService{
     }
 
     @Override
-    public List<Vendor> findAllVendorByClientId(long clientId) {
+    public List<Vendor> findAllVendorByClientId(Integer clientId) {
         List<Vendor> vendor = vendorDao.findAllVendorByClientId(clientId);
         return vendor;
     }
@@ -51,7 +51,7 @@ public class VendorServiceImpl implements VendorService{
     }
 
     @Override
-    public Vendor findVendorById(long vendorId) {
+    public Vendor findVendorById(Integer vendorId) {
         return vendorDao.findVendorById(vendorId);
     }
 

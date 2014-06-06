@@ -97,14 +97,29 @@
         <put-attribute name="body"   value="/vendor/vendorListView.jsp"/>
     </definition>
 
-    <definition name="vendor.vendorEdit.tiles" extends="baseLayout">
+    <definition name="vendor.vendorEditVendorTrucking.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Vendor Page"/>
-        <put-attribute name="body"   value="/vendor/vendorEdit.jsp"/>
+        <put-attribute name="body"   value="/vendor/vendorEditVendorTrucking.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorEditVendorShipping.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorEditVendorShipping.jsp"/>
     </definition>
 
     <definition name="vendor.vendorAddDriver.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Vendor Page"/>
         <put-attribute name="body"   value="/vendor/vendorAddDriver.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorSaveComplete.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorSaveComplete.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorEditTrucks.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Page"/>
+        <put-attribute name="body"   value="/vendor/vendorEditTrucks.jsp"/>
     </definition>
 
 <!-- VENDOR module tiles END -->
@@ -292,7 +307,7 @@
 
     <definition name="vendor-list-edit.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Vendor Page"/>
-        <put-attribute name="body"   value="/vendor/vendorEdit.jsp"/>
+        <put-attribute name="body"   value="/vendor/vendorEditVendorTrucking.jsp"/>
     </definition>
 
     <definition name="vendor-list-info.tiles" extends="baseLayout">
@@ -312,7 +327,7 @@
 
     <definition name="vendor-save-complete.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Vendor Page"/>
-        <put-attribute name="body"   value="/vendor/vendor-save-complete.jsp"/>
+        <put-attribute name="body"   value="/vendor/vendorSaveComplete.jsp"/>
     </definition>
 
     <definition name="vendor-address-edit.tiles" extends="baseLayout">

@@ -40,11 +40,13 @@
                                         <td class="tb-font-black"><s:property value="vendorName" /></td>
                                         <td class="tb-font-black"><s:property value="vendorType" /></td>
                                         <td class="tb-font-black"><s:property value="vendorClass" /></td>
-                                        <td class="tb-font-black"><a
-                                                href="vendor-addvendor" class="icon-action-link"
-                                                rel="tooltip" title="Edit this vendor"><img
-                                                src="includes/images/edit-user.png" class="icon-action circ-icon">
-                                        </a>
+                                        <td class="tb-font-black">
+
+                                            <s:url var="editVendorUrl" action="loadEditVendorPage">
+                                                <s:param name="vendorCodeParam" value="vendorCode"></s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip" title="Edit this vendor">
+                                            <img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
 
                                             <s:url var="deleteVendorUrl" action="deleteVendor">
                                                 <s:param name="vendorCodeParam" value="vendorCode"></s:param>

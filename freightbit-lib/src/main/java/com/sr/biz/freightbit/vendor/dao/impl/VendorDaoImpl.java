@@ -61,7 +61,7 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
         }
     }
     @Override
-    public List<Vendor> findAllVendorByClientId(long clientId) {
+    public List<Vendor> findAllVendorByClientId(Integer clientId) {
         log.debug("Finding Vendor instance by Client");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
@@ -78,17 +78,18 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
     }
 
     @Override
-    public List<Vendor> findVendorByCriteria(String column, String value) {
+    public List<Vendor> findVendorByCriteria(String column, String value, Integer clientId) {
         log.debug("Find vendor by criteria ");
         Session session = getSessionFactory().getCurrentSession();
         List<Vendor> vendors = session.createCriteria(Vendor.class)
                 .add(Restrictions.like(column, value))
+                .add(Restrictions.eq("client.clientId", clientId))
                 .list();
         return vendors;
     }
 
     @Override
-    public Vendor findVendorById(long vendorId) {
+    public Vendor findVendorById(Integer vendorId) {
         log.debug("Getting Vendor instance with vendorId: " + vendorId);
         try {
             Vendor instance = (Vendor) getSessionFactory().getCurrentSession().get(

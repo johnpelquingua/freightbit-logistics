@@ -153,6 +153,7 @@
 							  </thead>
 							  <tbody>
                             <s:iterator value="drivers" var="driver">
+                                <tr>
                               <td class="tb-font-black"><s:checkbox name="a" theme="simple" /></td>
                               <td class="tb-font-black"><s:property value="driverCode" /></td>
                               <td class="tb-font-black"><s:property value="licenseNumber" /></td>
@@ -173,6 +174,7 @@
                                   <s:a class="icon-action-link" href="%{deleteDriverUrl}" rel="tooltip" title="Delete this Driver" onclick="return confirm('Do you really want to delete?');">
                                       <img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
                               </td>
+                                </tr>
                                 </s:iterator>
 							  </tbody>
 							</table>

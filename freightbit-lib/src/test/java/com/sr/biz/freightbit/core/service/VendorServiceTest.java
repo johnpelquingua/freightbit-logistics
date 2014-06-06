@@ -110,7 +110,7 @@ public class VendorServiceTest {
 
     @Test
     public void testFindAllVendors(){
-        long vendorId = 1L;
+        Integer vendorId = 1;
         List <Vendor> vendor = new ArrayList();
         vendor.add(initVendor());
 
@@ -121,7 +121,7 @@ public class VendorServiceTest {
 
     @Test
     public void testFindAllContacts() {
-        long clientId = 1;
+        Integer clientId = 1;
         List<Contacts> contacts = new ArrayList<>();
         contacts.add(initContact());
 

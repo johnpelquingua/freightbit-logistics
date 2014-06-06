@@ -96,11 +96,40 @@ public class VendorAction extends ActionSupport implements Preparable {
     public String loadEditVendorPage() {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendor = transformToFormBean(vendorEntity);
+
+        if ("TRUCKING".equals(vendor.getVendorType())){
+            return "TRUCKING";
+        } else {
+            return "SHIPPING";
+        }
+    }
+
+    public String loadEditVendorTrucksPage() {
+        //load all trucks
+
+        Integer vendorId = getSessionVendorId();
+
+        List<Trucks> truckEntityList = trucksService.findTrucksByVendorId(vendorId);
+        for (Trucks truckElem : truckEntityList) {
+            trucks.add(transformToFormBeanTrucks(truckElem));
+        }
+
+        //load to form
+        Trucks truckEntity = trucksService.findTrucksByTruckCode(truckCodeParam);
+        truck = transformToFormBeanTrucks(truckEntity);
+        return SUCCESS;
+    }
+
+    public String loadSaveCompletePage() {
+        List<Vendor> vendorEntityList = vendorService.findAllVendors();
+        for (Vendor vendorElem : vendorEntityList) {
+            vendors.add(transformToFormBean(vendorElem));
+        }
         return SUCCESS;
     }
 
     public String editVendor() {
-        validateOnSubmit(vendor);
+        validateOnSubmitEdit(vendor);
         if(hasFieldErrors()) {
             return INPUT;
         }
@@ -115,6 +144,16 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
     public void validateOnSubmit(VendorBean vendorBean) {
+        clearErrorsAndMessages();
+        if (StringUtils.isBlank(vendorBean.getVendorName())){
+            addFieldError("vendor.vendorName", getText("err.vendorName.required"));
+        }
+        if (StringUtils.isBlank(vendorBean.getVendorCode())) {
+            addFieldError("vendor.vendorCode", getText("err.vendorCode.required"));
+        }
+    }
+
+    public void validateOnSubmitEdit(VendorBean vendorBean) {
         clearErrorsAndMessages();
         if (StringUtils.isBlank(vendorBean.getVendorName())){
             addFieldError("vendor.vendorName", getText("err.vendorName.required"));

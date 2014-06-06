@@ -18,11 +18,11 @@ public interface VendorService {
 
     public void deleteVendor(Vendor vendor);
 
-    public Vendor findVendorById(long vendorId);
+    public Vendor findVendorById(Integer vendorId);
 
     public List<Vendor> findAllVendors();
 
-    public List<Vendor> findAllVendorByClientId(long clientId);
+    public List<Vendor> findAllVendorByClientId(Integer clientId);
 
     public Vendor findVendorByVendorCode(String vendorCode);
 
