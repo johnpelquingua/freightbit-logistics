@@ -14,8 +14,10 @@ import com.sr.biz.freightbit.customer.dao.RatesDao;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.entity.Rates;
+
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 /**
@@ -116,6 +118,11 @@ public class CustomerServiceImpl implements CustomerService {
         List<Contacts> contacts =contactsDao.findAllContacts(clientId);
         return contacts;
     }
+    
+    @Override
+    public Contacts findContactByRefIdAndType(String contactType, Integer customerId) {
+    	return contactsDao.findContactByRefTableAndIdAndType("CUSTOMERS", customerId, contactType);
+    }
 
 //    @Override
 //    public List<Contacts> findAllContactsByClientId(long clientId){
@@ -158,14 +165,19 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public Address findUserById(Integer clientId) {
-        return addressDao.findAddressById(clientId);
+    public Address findAddressById(Integer addressId) {
+        return addressDao.findAddressById(addressId);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateAddress(Address address) {
         addressDao.updateAddress(address);
+    }
+    
+    @Override
+    public Address findAddressByRefIdAndType(String addressType, Integer customerId) {
+    	return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
     }
 
     //End of Address

@@ -21,5 +21,7 @@ public interface ContactsDao {
 
 //    public List<Contacts> findAllContactsByClientId(long clientId);
 
-    public Contacts findContactByReferenceTableAndId(String referenceTable, String referenceID);
+    public Contacts findContactByReferenceTableAndId(String referenceTable, Integer referenceID);
+    
+    public Contacts  findContactByRefTableAndIdAndType(String referenceTable, Integer referenceId, String contactType);
 }

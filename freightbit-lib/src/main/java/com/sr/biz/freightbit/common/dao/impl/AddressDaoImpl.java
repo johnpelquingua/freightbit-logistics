@@ -1,12 +1,15 @@
 package com.sr.biz.freightbit.common.dao.impl;
 
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
 import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.entity.Address;
+import com.sr.biz.freightbit.common.entity.Contacts;
 
 /**
  * Created by Solutions Resource on 5/28/14.
@@ -113,5 +116,21 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
             throw re;
         }
     }
+    
+    /**
+     * @param addressType: SHIPPER, CONSIGNEE, BILLER TO
+     */
+    @Override
+    public Address findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType){
+        Query query = getSessionFactory().getCurrentSession().createQuery(" from Address where referenceTable = :referenceTable and referenceId = :referenceId and addressType = :addressType");
+        query.setParameter("referenceTable", referenceTable);
+        query.setParameter("referenceId", referenceId);
+        query.setParameter("addressType", addressType);
+        List <Address> addressList = query.list();
+        if (addressList != null && addressList.size() > 0)
+            return addressList.get(0);
+        else
+            return null;
+    }  
 
 }

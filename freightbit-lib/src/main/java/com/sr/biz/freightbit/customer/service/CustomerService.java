@@ -39,6 +39,8 @@ public interface CustomerService {
     public void updateContact(Contacts contacts);
 
     public List<Contacts> findAllContacts(long clientId);
+    
+    public Contacts findContactByRefIdAndType(String contactType, Integer customerId);
 
 //    public List<Contacts> findAllContactsByClientId(long clientId);
 
@@ -51,13 +53,15 @@ public interface CustomerService {
 
     public List<Address> findAllAddressByClientId(Integer clientId);
 
-//    public List<Address> findAllAddress(Integer addressId);
+  // public List<Address> findAllAddress(Integer addressId);
 
-    public Address findUserById(Integer clientId);
+    public Address findAddressById(Integer addressId);
 
     public Address findAddressByRefId(Integer customerId);
 
     public void updateAddress(Address address);
+    
+    public Address findAddressByRefIdAndType(String addressType, Integer customerId);
 
     //Customer
 

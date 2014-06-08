@@ -11,10 +11,10 @@ import java.util.Date;
  */
 public class Contacts implements Serializable {
 //
-    private long contactId;
+    private Integer contactId;
     private Client client;
     private String referenceTable;
-    private int referenceId;
+    private Integer referenceId;
     private String contactType;
     private String firstName;
     private String middleName;
@@ -31,8 +31,8 @@ public class Contacts implements Serializable {
     public Contacts() {
     }
 
-    public Contacts(long contactId, Client client, String referenceTable,
-                    int referenceId, String contactType, String firstName,
+    public Contacts(Integer contactId, Client client, String referenceTable,
+                    Integer referenceId, String contactType, String firstName,
                     String middleName, String lastName, String phone, String mobile,
                     String fax, String email, Date createdTimestamp,
                     String createdBy, Date modifiedTimestamp, String modifiedBy) {
@@ -57,11 +57,11 @@ public class Contacts implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long getContactId() {
+    public Integer getContactId() {
         return contactId;
     }
 
-    public void setContactId(long contactId) {
+    public void setContactId(Integer contactId) {
         this.contactId = contactId;
     }
 
@@ -85,11 +85,11 @@ public class Contacts implements Serializable {
     }
 
     @Column(name = "referenceId", nullable = false)
-    public int getReferenceId() {
+    public Integer getReferenceId() {
         return referenceId;
     }
 
-    public void setReferenceId(int referenceId) {
+    public void setReferenceId(Integer referenceId) {
         this.referenceId = referenceId;
     }
 

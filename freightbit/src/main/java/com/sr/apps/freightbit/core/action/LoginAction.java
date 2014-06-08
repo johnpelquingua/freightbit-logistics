@@ -39,6 +39,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			//log.debug(userBean.toString());
 			//sessionAttributes.put("USER", userBean);
 	    	sessionAttributes.put("clientId", userEntity.getClient().getClientId());
+	    	sessionAttributes.put("user", userEntity);
 			return SUCCESS;
 		}
 		else {

@@ -10,6 +10,7 @@ public class OrderBean {
 	
 	private Integer orderId;
 	private String customerName;
+	private Integer customerId;
 	private String orderNo;
 	private Date bookingDate;
 	private String freightType;
@@ -41,6 +42,12 @@ public class OrderBean {
 	}
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+	public Integer getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 	public String getOrderNo() {
 		return orderNo;
