@@ -11,11 +11,11 @@
     New Booking
     </h1>
 
-    <s:form cssClass="form-horizontal" action="Booking-Validate" method="POST" theme="bootstrap">
+<s:form cssClass="form-horizontal" action="Booking-Validate" method="POST" theme="bootstrap">
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel booking panel-info">
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel booking panel-info">
                 <div class="booking panel-heading" style="margin-bottom: 20px! important;">
                     <img src="includes/images/booking.png" class="box-icon">
                     <span class="booking panel-title">Booking Details</span>
@@ -26,7 +26,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-primary">
                               <div class="panel-heading">
-                                <h3 class="panel-title">Order Details</h3>
+                                <h3 class="panel-title">Order Information</h3>
                               </div>
 
                               <form class="form-horizontal">
@@ -35,9 +35,8 @@
                                         <br/>
 
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label tb-font-black">Booking Date :</label>
+                                            <label class="col-sm-4 control-label tb-font-black">Customer :</label>
                                             <div class="col-sm-6">
-
                                                 <input class="form-control" />
                                             </div>
                                         </div>
@@ -47,15 +46,10 @@
                                                 <input class="form-control" />
                                             </div>
                                         </div>
-
-
                                         <div class="form-group">
                                             <label for="payMode" class="col-md-4 control-label tb-font-black">Date of Booking :</label>
                                             <div class="col-md-6">
                                                 <sj:datepicker id="datepicker1"
-
-                                              <sj:datepicker id="datepicker1"
-
                                                  displayFormat="mm-dd-yy"
                                                  imageUrl="includes/images/datepicker.gif"
                                                  imageTooltip="Select Your Birthdate"
@@ -63,65 +57,21 @@
                                                  changeYear="true"
                                                  changeMonth="true"
                                                  style="width: 88% !important;"
-                                               />
+                                                />
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label tb-font-black">Service Requirement :</label>
+                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Freight Type :</label>
                                             <div class="col-md-6">
                                                 <select class="form-control">
-                                                    <option>Full Cargo Load</option>
-                                                    <option>Less Cargo Load</option>
-                                                    <option>Rolling Cargo</option>
+                                                    <option>Type A</option>
+                                                    <option>Type B</option>
+                                                    <option>Type C</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black">Notification :</label>
-                                            <div class="col-md-6">
-                                                <div class="btn-group btn-group-sm" data-toggle="buttons">
-                                                  <label class="btn btn-primary">
-                                                      <input type="checkbox"> Phone
-                                                    </label>
-                                                    <label class="btn btn-primary">
-                                                      <input type="checkbox"> Mobile
-                                                    </label>
-                                                    <label class="btn btn-primary">
-                                                      <input type="checkbox"> SMS
-                                                    </label>
-                                                    <label class="btn btn-primary">
-                                                      <input type="checkbox"> E-Mail
-                                                    </label>
-                                                    <label class="btn btn-primary">
-                                                      <input type="checkbox"> Fax
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Classification :</label>
-                                            <div class="col-md-6">
-                                                <select class="form-control">
-                                                    <option>Premium A</option>
-                                                    <option>Premium B</option>
-                                                    <option>Economy</option>
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                    <br />
-                                        <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Booking Number :</label>
-                                            <div class="col-md-6">
-                                                <input class="form-control" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label tb-font-black">Service Mode :</label>
+                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Mode of Service :</label>
                                             <div class="col-md-6">
                                                 <select class="form-control">
                                                     <option>Door to Door</option>
@@ -131,32 +81,102 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label tb-font-black">Mode of Payment :</label>
+                                             <div class="col-md-6">
+                                                  <select class="form-control">
+                                                      <option>Freight Prepaid</option>
+                                                      <option>Freight Collect</option>
+                                                      <option>Account Origin</option>
+                                                      <option>Account Destination</option>
+                                                  </select>
+                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label tb-font-black">Port of Origin :</label>
+                                             <div class="col-md-6">
+                                                  <select class="form-control">
+                                                      <option>Manila</option>
+                                                      <option>Navotas</option>
+                                                      <option>Batangas</option>
+                                                  </select>
+                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label tb-font-black">Comments :</label>
+                                             <div class="col-md-6">
+                                                  <textarea class="form-control" rows="3"></textarea>
+                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                    <br />
+                                        <div class="form-group">
+                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Notify By :</label>
+                                            <div class="col-md-6">
+                                                <select class="form-control">
+                                                    <option>Phone</option>
+                                                    <option>Mobile</option>
+                                                    <option>SMS</option>
+                                                    <option>Fax</option>
+                                                    <option>Email</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label tb-font-black">Status :</label>
+                                            <label class="col-md-4 control-label tb-font-black">Reference Number :</label>
+                                            <div class="col-md-6">
+                                                <input class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label tb-font-black">Original Ref. Number :</label>
+                                            <div class="col-md-6">
+                                                <input class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label tb-font-black">Container Number :</label>
+                                            <div class="col-md-6">
+                                                <input class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Seal Number :</label>
+                                            <div class="col-md-6">
+                                                <input class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Status :</label>
                                             <div class="col-md-6">
                                                 <select class="form-control">
                                                     <option>Pending</option>
-                                                    <option>Approved</option>
+                                                    <option>Approve</option>
                                                     <option>Deny</option>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label tb-font-black">Payment Mode :</label>
+                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Port of Destination :</label>
                                             <div class="col-md-6">
                                                 <select class="form-control">
-                                                    <option>Freight Prepaid</option>
-                                                    <option>Freight Collect</option>
-                                                    <option>Account Origin</option>
-                                                    <option>Account Destination</option>
+                                                    <option>Cebu</option>
+                                                    <option>Iloilo</option>
+                                                    <option>Palawan</option>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Processed By :</label>
+                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Booked By :</label>
                                             <div class="col-md-6">
                                                 <input class="form-control" />
                                             </div>
@@ -175,14 +195,22 @@
                     <div class="col-md-6 ">
                       <div class="panel panel-primary">
                           <div class="panel-heading">
-                            <h3 class="panel-title">Shipper Details</h3>
+                            <h3 class="panel-title">Shipper Information</h3>
                           </div>
 
                             <form class="form-horizontal">
                                 <br />
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label tb-font-black">Customer :</label>
+                                    <label class="col-sm-4 control-label tb-font-black">Name :</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control">
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label tb-font-black">Address :</label>
                                     <div class="col-sm-6">
                                       <select class="form-control">
 
@@ -190,7 +218,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label tb-font-black">Contact Person :</label>
+                                    <label class="col-sm-4 control-label tb-font-black">Contact :</label>
                                     <div class="col-sm-6">
                                       <select class="form-control">
 
@@ -198,7 +226,23 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label tb-font-black">Contact Number :</label>
+                                    <label class="col-sm-4 control-label tb-font-black">Phone :</label>
+                                    <div class="col-sm-6">
+                                      <select class="form-control">
+
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label tb-font-black">Mobile :</label>
+                                    <div class="col-sm-6">
+                                      <select class="form-control">
+
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label tb-font-black">Email :</label>
                                     <div class="col-sm-6">
                                       <select class="form-control">
 
@@ -213,14 +257,14 @@
                     <div class="col-md-6">
                       <div class="panel panel-primary">
                           <div class="panel-heading">
-                            <h3 class="panel-title">Consignee Details</h3>
+                            <h3 class="panel-title">Consignee Information</h3>
                           </div>
 
                             <form class="form-horizontal">
                                 <br />
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label tb-font-black">Consignee :</label>
+                                    <label class="col-sm-4 control-label tb-font-black">Name :</label>
                                     <div class="col-sm-6">
                                       <select class="form-control">
 
@@ -228,7 +272,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label tb-font-black">Contact Person :</label>
+                                    <label class="col-sm-4 control-label tb-font-black">Address :</label>
+                                    <div class="col-sm-6">
+                                      <select class="form-control">
+
+                                      </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label tb-font-black">Contact :</label>
                                     <div class="col-sm-6">
                                       <select class="form-control">
 
@@ -236,245 +289,282 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label tb-font-black">Contact Number :</label>
+                                    <label class="col-sm-4 control-label tb-font-black">Phone :</label>
                                     <div class="col-sm-6">
                                       <select class="form-control">
 
                                       </select>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label tb-font-black">Mobile :</label>
+                                    <div class="col-sm-6">
+                                      <select class="form-control">
 
-                            </form>
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-12">
-                      <div class="panel panel-primary">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Cargo Details</h3>
-                          </div>
-
-                            <form class="form-horizontal">
-
-                                <div class="col-md-6">
-
-                                    <br />
-
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label tb-font-black">Quantity :</label>
-                                        <div class="col-sm-6">
-                                          <select class="form-control">
-                                              <option>1</option>
-                                              <option>2</option>
-                                              <option>3</option>
-                                              <option>4</option>
-                                              <option>5</option>
-                                          </select>
-                                        </div>
+                                      </select>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label tb-font-black">Estimated Weight :</label>
-                                        <div class="col-sm-6">
-                                            <div class="input-group">
-                                              <input type="text" class="form-control">
-                                              <span class="input-group-addon">cm&#179;</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label tb-font-black">Commodity Description :</label>
-                                        <div class="col-sm-6">
-                                            <input type="email" class="form-control">
-                                        </div>
-                                    </div>
-
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label tb-font-black">Email :</label>
+                                    <div class="col-sm-6">
+                                      <select class="form-control">
 
-                                <div class="col-md-6">
-
-                                    <br />
-
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label tb-font-black">Size :</label>
-                                        <div class="col-sm-6">
-                                          <input type="email" class="form-control">
-                                        </div>
+                                      </select>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label tb-font-black">Declared Value :</label>
-                                        <div class="col-sm-6">
-                                            <div class="input-group">
-                                              <span class="input-group-addon"> 	&#8369; </span>
-                                              <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label tb-font-black">Comments :</label>
-                                        <div class="col-sm-6">
-                                            <textarea class="form-control" rows="3" style="resize:none;"></textarea>
-                                        </div>
-                                    </div>
-
                                 </div>
-
                             </form>
-
-                            <div class="panel-footer">
-                                <button type="button" class="btn btn-info">
-                                      Add New Item
-                                </button>
-                            </div>
 
                         </div>
                     </div>
 
                 </div>
 
-                <div class="row">
+			<div class="row">
 
-                    <div class="col-md-12">
-                      <div class="panel panel-primary">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Cargo Listing</h3>
-                          </div>
+				<div class="col-md-12">
+				    <div class="panel panel-primary">
+					  <div class="panel-heading">
+						<h3 class="panel-title">Order Items</h3>
+					  </div>
+					    <table class="table table-striped table-striped table-bordered">
+						  <thead>
+							<tr>
+							  <th>Quantity</th>
+							  <th>Classification</th>
+							  <th>Declared Value</th>
+							  <th>Height</th>
+							  <th>Width</th>
+							  <th>Lenght</th>
+							  <th>Weight</th>
 
-                            <form class="form-horizontal">
-                                <br />
-                                  <div class="table-responsive">
-                                    <table class="table table-striped text-center">
-                                      <thead>
-                                        <tr class="header_center">
-                                          <th class="tb-font-black">Quantity</th>
-                                          <th class="tb-font-black">Size</th>
-                                          <th class="tb-font-black">Weight</th>
-                                          <th class="tb-font-black">Value</th>
-                                          <th class="tb-font-black">Description</th>
-                                          <th class="tb-font-black">Comments</th>
-                                          <th class="tb-font-black">Action</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr>
-                                          <td class="tb-font-black"></td>
-                                          <td class="tb-font-black"></td>
-                                          <td class="tb-font-black"></td>
-                                          <td class="tb-font-black"></td>
-                                          <td class="tb-font-black"></td>
-                                          <td class="tb-font-black"></td>
-                                          <td><img src="includes/images/delete.png" /></td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </div>
-                            </form>
+							</tr>
+						  </thead>
+						  <tbody>
 
-                            <div class="panel-footer">
+							<tr>
+							  <td>
+								<select class="span1" style="height: 23px">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+								</select>
+							  </td>
+							  <td>
+								<select class="span1" style="height: 23px">
+									<option>Premium A</option>
+									<option>Premium B</option>
+									<option>Economy</option>
+								</select>
+							  </td>
+							  <td>
+								  <div class="span1">
+									  <input type="text" placeholder=&#8369>
+								  </div>
+							  </td>
+							  <td>
+								 <div class="span1">
+									<input type="text" placeholder="cm.">
+								 </div>
+							  </td>
+							  <td>
+								 <div class="span1">
+									<input type="text" placeholder="cm.">
+								 </div>
+							  </td>
+							  <td>
+								<div class="span1">
+									<input type="text"placeholder="cm.">
+								</div>
+							  </td>
+							  <td>
+								<div class="span1">
+									<input type="text" placeholder="kg.">
+								</div>
+							  </td>
+							</tr>
 
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12" id="cargo_listing">
-                        <div class="panel panel-primary">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Order Stops</h3>
-                          </div>
-                                <br />
-                                    <div class="table-responsive">
-                                    <table class="table table-striped text-center">
-                                      <thead>
-                                        <tr class="header_center">
-                                          <th class="tb-font-black">Stop Number</th>
-                                          <th class="tb-font-black">Stop Type</th>
-                                          <th class="tb-font-black">Stop Name</th>
-                                          <th class="tb-font-black">Address</th>
-                                          <th class="tb-font-black">Appointment Date / Time</th>
-                                          <th class="tb-font-black">Rate</th>
-                                          <th class="tb-font-black">Action</th>
-
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-
-                                        <tr>
-                                          <td class="tb-font-black"><input class="form-control" /></td>
-                                          <td class="tb-font-black">
-                                            <select class="form-control">
-                                                <option>Pick-Up</option>
-                                                <option>Deliver</option>
-                                            </select>
-                                          </td>
-                                          <td class="tb-font-black"><input class="form-control" /></td>
-                                          <td class="tb-font-black">
-                                            <select class="form-control">
-                                                <option>Address 1</option>
-                                                <option>Address 2</option>
-                                            </select>
-                                          </td>
-                                          <td class="tb-font-black">
-                                            <sj:datepicker id="datepicker2"
-                                               displayFormat="mm-dd-yy"
-                                               imageUrl="includes/images/datepicker.gif"
-                                               imageTooltip="Select Your Birthdate"
-                                               showButton="true"
-                                               changeYear="true"
-                                               changeMonth="true"
-                                               style="width: 78% !important;"
-                                             />
-                                          </td>
-                                          <td class="tb-font-black">
-                                             <input class="form-control" />
-                                          </td>
-                                          <td>
-                                            <img src="includes/images/arrow-up.png" />
-                                            <img src="includes/images/arrow-down.png" />
-                                            <img src="includes/images/edit-booking.png" />
-                                            <img src="includes/images/delete-booking.png" />
-                                          </td>
-                                        </tr>
-
-                                      </tbody>
-                                    </table>
+							<tr>
+                              <td>
+                                <select class="span1" style="height: 23px">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                              </td>
+                              <td>
+                                <select class="span1" style="height: 23px">
+                                    <option>Premium A</option>
+                                    <option>Premium B</option>
+                                    <option>Economy</option>
+                                </select>
+                              </td>
+                              <td>
+                                 <div class="span1">
+                                    <input type="text" placeholder="cm.">
+                                 </div>
+                              </td>
+                              <td>
+                                 <div class="span1">
+                                    <input type="text" placeholder="cm.">
+                                 </div>
+                              </td>
+                              <td>
+                                <div class="span1">
+                                    <input type="text"placeholder="cm.">
+                                </div>
+                              </td>
+                              <td>
+                                <div class="span1">
+                                    <input type="text" placeholder="kg.">
+                                </div>
+                              </td>
+                              <td>
+                                    <div class="span1">
+                                        <input type="text" placeholder=&#8369>
                                     </div>
-                            <div class="panel-footer">
-                                <button type="button" class="btn btn-info">
-                                      Add New Stop
-                                </button>
-                                <span class="col-md-offset-6">
-                                    <b>Charge Rate :</b>
-                                </span>
-                            </div>
+                                </td>
+                            </tr>
 
-                        </div>
-                    </div>
+							<tr>
+                              <td>
+                            	<select class="span1" style="height: 23px">
+                            		<option>1</option>
+                            		<option>2</option>
+                            		<option>3</option>
+                            		<option>4</option>
+                            		<option>5</option>
+                            	</select>
+                              </td>
+                              <td>
+                            	<select class="span1" style="height: 23px">
+                            		<option>Premium A</option>
+                            		<option>Premium B</option>
+                            		<option>Economy</option>
+                            	</select>
+                              </td>
+                              <td>
+                            	  <div class="span1">
+                            		  <input type="text" placeholder=&#8369>
+                            	  </div>
+                              </td>
+                              <td>
+                            	 <div class="span1">
+                            		<input type="text" placeholder="cm.">
+                            	 </div>
+                              </td>
+                              <td>
+                            	 <div class="span1">
+                            		<input type="text" placeholder="cm.">
+                            	 </div>
+                              </td>
+                              <td>
+                            	<div class="span1">
+                            		<input type="text"placeholder="cm.">
+                            	</div>
+                              </td>
+                              <td>
+                            	<div class="span1">
+                            		<input type="text" placeholder="kg.">
+                            	</div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                            	<select class="span1" style="height: 23px">
+                            		<option>1</option>
+                            		<option>2</option>
+                            		<option>3</option>
+                            		<option>4</option>
+                            		<option>5</option>
+                            	</select>
+                              </td>
+                              <td>
+                            	<select class="span1" style="height: 23px">
+                            		<option>Premium A</option>
+                            		<option>Premium B</option>
+                            		<option>Economy</option>
+                            	</select>
+                              </td>
+                              <td>
+                            	  <div class="span1">
+                            		  <input type="text" placeholder=&#8369>
+                            	  </div>
+                              </td>
+                              <td>
+                            	 <div class="span1">
+                            		<input type="text" placeholder="cm.">
+                            	 </div>
+                              </td>
+                              <td>
+                            	 <div class="span1">
+                            		<input type="text" placeholder="cm.">
+                            	 </div>
+                              </td>
+                              <td>
+                            	<div class="span1">
+                            		<input type="text"placeholder="cm.">
+                            	</div>
+                              </td>
+                              <td>
+                            	<div class="span1">
+                            		<input type="text" placeholder="kg.">
+                            	</div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td>
+                            	<select class="span1" style="height: 23px">
+                            		<option>1</option>
+                            		<option>2</option>
+                            		<option>3</option>
+                            		<option>4</option>
+                            		<option>5</option>
+                            	</select>
+                              </td>
+                              <td>
+                            	<select class="span1" style="height: 23px">
+                            		<option>Premium A</option>
+                            		<option>Premium B</option>
+                            		<option>Economy</option>
+                            	</select>
+                              </td>
+                              <td>
+                            	  <div class="span1">
+                            		  <input type="text" placeholder=&#8369>
+                            	  </div>
+                              </td>
+                              <td>
+                            	 <div class="span1">
+                            		<input type="text" placeholder="cm.">
+                            	 </div>
+                              </td>
+                              <td>
+                            	 <div class="span1">
+                            		<input type="text" placeholder="cm.">
+                            	 </div>
+                              </td>
+                              <td>
+                            	<div class="span1">
+                            		<input type="text"placeholder="cm.">
+                            	</div>
+                              </td>
+                              <td>
+                            	<div class="span1">
+                            		<input type="text" placeholder="kg.">
+                            	</div>
+                              </td>
+                            </tr>
+
+						  </tbody>
+					    </table>
+					</div>
                 </div>
-
-                <div class="panel-footer">
-
-                    <span class="pull-right">
-                        <button type="button" class="btn new-booking" onclick="location.href='bookingList'">
-                              Cancel
-                        </button>
-                        <button type="button" class="btn btn-info" onclick="location.href='bookingList'">
-                              Save
-                        </button>
-
-                    </span>
-                </div>
-
 				
             </div>
             <div class="panel-footer">
@@ -486,18 +576,13 @@
                           Save
                     </button>
 
-
                 </span>
-
-
             </div>
         </div>
     </div>
-
-    </s:form>
-
 </div>
-
+</s:form>
+</div>
 
 
 
