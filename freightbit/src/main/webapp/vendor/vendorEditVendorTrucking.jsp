@@ -13,6 +13,7 @@
 
                 <s:form theme="bootstrap" cssClass="form-horizontal" action="editVendor">
                 <s:hidden name="vendor.vendorId" value="%{vendor.vendorId}"/>
+                <s:set name="vendorId" value="1" scope="session"/>
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<img src="includes/images/add-user.png" class="box-icon">
@@ -73,6 +74,12 @@
 		<div class="btn-group" style="float: left;" id="trucking-option">
             <button class="btn btn-default" onclick="location.href='vendorAddTrucks.jsp'">Contacts</button>
 			<button class="btn btn-default" onclick="location.href='loadEditVendorTrucksPage'">Trucks</button>
+
+            <%--<s:form action="loadEditVendorTrucksPage">--%>
+                <%--<s:hidden name="vendor.vendorId" value="%{vendor.vendorId}"/>--%>
+                <%--<s:submit cssClass="btn btn-default" name="submit" value="Trucks" />--%>
+            <%--</s:form>--%>
+
 			<button class="btn btn-default" onclick="location.href='vendorAddDriver.jsp'">Driver</button>
 			<button class="btn btn-default" onclick="location.href='vendor-address.jsp'">Address</button>
 		</div>
