@@ -76,7 +76,7 @@ public class OrderServiceTest {
 
         Orders orders = new Orders();
         orders.setClientId(1);
-        orders.setOrderNumber(213);
+        orders.setOrderNumber("213");
         orders.setServiceType("FCL");
         orders.setServiceMode("D/D");
         orders.setNotificationType("SMS");

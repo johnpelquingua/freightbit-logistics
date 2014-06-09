@@ -61,6 +61,14 @@ public class OrderAction extends ActionSupport implements Preparable {
     	orderService.addOrder(transformToOrderEntityBean(orderBean));
 		return SUCCESS;
 	}
+
+    public String bookingList(){
+        return SUCCESS;
+    }
+
+    public String bookingNew() {
+        return SUCCESS;
+    }
 	
 	private OrderBean transformToOrderFormBean(Orders order) {
 		OrderBean orderBean = new OrderBean();

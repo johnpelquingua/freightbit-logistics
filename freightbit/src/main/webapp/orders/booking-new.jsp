@@ -37,7 +37,25 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label tb-font-black">Booking Date :</label>
                                             <div class="col-sm-6">
+
+                                                <input class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label tb-font-black">Order Number :</label>
+                                            <div class="col-md-6">
+                                                <input class="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="payMode" class="col-md-4 control-label tb-font-black">Date of Booking :</label>
+                                            <div class="col-md-6">
+                                                <sj:datepicker id="datepicker1"
+
                                               <sj:datepicker id="datepicker1"
+
                                                  displayFormat="mm-dd-yy"
                                                  imageUrl="includes/images/datepicker.gif"
                                                  imageTooltip="Select Your Birthdate"
@@ -456,6 +474,22 @@
 
                     </span>
                 </div>
+
+				
+            </div>
+            <div class="panel-footer">
+                <span class="pull-right">
+                    <button type="button" class="btn new-booking" onclick="location.href='bookingList'">
+                          Cancel
+                    </button>
+                    <button type="button" class="btn btn-info" onclick="location.href='bookingList'">
+                          Save
+                    </button>
+
+
+                </span>
+
+
             </div>
         </div>
     </div>
