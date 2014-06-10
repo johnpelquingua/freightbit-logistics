@@ -42,16 +42,20 @@
 						<div class="table-responsive list-table">
 							<table class="table table-striped table-bordered text-center" id="customer-list">
 							  <thead>
+
 								<tr class="header_center">
-								  <th class="tb-font-black"></th>
-								  <th class="tb-font-black">Address</th>
+								  <th class="tb-font-black">Item Code</th>
+								  <th class="tb-font-black">Items</th>
 								</tr>
+
 							  </thead>
 							  <tbody>
+							    <s:iterator value="items" var="item">
 							    <tr>
-							        <td><s:property value="items.itemName" /></td>
-							        <td><s:property value="items.itemCode" /></td>
+							        <td><s:property value="item.itemName" /></td>
+							        <td><s:property value="item.itemCode" /></td>
 							    </tr>
+							      </s:iterator>
 							  </tbody>
 							</table>
 							<span class="pull-right">

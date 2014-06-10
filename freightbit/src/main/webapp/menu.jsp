@@ -16,8 +16,12 @@
             </ul>
         </li>
 
-        <li class="topmenu"><a href="customerSearch" class="icon-customer "><span class="icon-font">Customer</span></a>
-        </li>
+        <li class="topmenu"><a class="icon-customer "><span class="icon-font">Customer</span></a>
+            <ul>
+            <li class="subfirst"><a href="<s:url action='customerSearch' />" class="icon-vendor"><span class="icon-font">Search Customer</span></a></li>
+            <li class="subfirst"><a href="<s:url action='customerAdd' />" class="icon-vendor"><span class="icon-font">Add Customer</span></a></li>
+            </ul>
+            </li>
         <li class="topmenu activeaccounts"><a class="icon-account"><span class="icon-font">Accounts</span></a>
             <ul>
                 <li class="subfirst"><a href="<s:url action='loadSearchUserPage' />" class="icon-user"><span class="icon-font">Users</span></a></li>

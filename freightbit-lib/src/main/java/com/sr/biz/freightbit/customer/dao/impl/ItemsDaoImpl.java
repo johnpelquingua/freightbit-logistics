@@ -67,7 +67,7 @@ public class ItemsDaoImpl extends HibernateDaoSupport implements ItemsDao {
     public List<Items> findAllItems(Integer customerItemsId) {
         log.debug("finding all Items");
         try {
-            Query query = getSessionFactory().getCurrentSession().createQuery("from User where customerItemsId = :customerItemsId");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Items where customerItemsId = :customerItemsId");
             query.setParameter("customerItemsId", customerItemsId);
             return query.list();
         } catch (RuntimeException re) {
@@ -124,7 +124,7 @@ public class ItemsDaoImpl extends HibernateDaoSupport implements ItemsDao {
         log.debug("find item by customer id");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from Items u where u.customerId = :customerId");
+                    "from Items i where i.customerId = :customerId");
             query.setParameter("customerId", customerId);
             List<Items> result = (List<Items>) query.list();
             log.debug("find by itemName successful, result size :" + result.size());

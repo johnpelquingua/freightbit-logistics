@@ -36,8 +36,8 @@
                                         <%--<input type="checkbox" />--%>
 
                                         <td class="tb-font-black"><s:checkbox name="a" theme="simple" /></td>
-                                        <td class="tb-font-black"><s:property value="vendorCode" /></td>
-                                        <td class="tb-font-black"><s:property value="vendorName" /></td>
+                                        <td class="tb-font-black"><s:property value="vendor.vendorCode" /></td>
+                                        <td class="tb-font-black"><s:property value="vendorvendorName" /></td>
                                         <td class="tb-font-black"><s:property value="vendorType" /></td>
                                         <td class="tb-font-black"><s:property value="vendorClass" /></td>
                                         <td class="tb-font-black">

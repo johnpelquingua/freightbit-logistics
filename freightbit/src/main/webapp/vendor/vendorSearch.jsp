@@ -17,7 +17,7 @@
 
 					<div class="panel-body">
                         <div class="table-responsive list-table">
-                        <s:form cssClass="form-horizontal" action="viewVendors" theme="bootstrap">
+                        <s:form cssClass="form-horizontal" action="searchVendor" theme="bootstrap">
 
 
 							  	<div class="form-group">
@@ -39,41 +39,8 @@
 
 							  	</div>
 
-						    	<div class="form-group">
-
-								    <label class="col-sm-2 control-label">Filter by:</label>
-
-								    <div class="col-sm-10">
-                                        <label class="checkbox-inline" for="Name">
-                                            <s:checkbox name="Name" /> Name
-                                        </label>
-                                        <label class="checkbox-inline" for="Code">
-                                            <s:checkbox name="Code" /> Code
-                                        </label>
-                                        <label class="checkbox-inline" for="Type">
-                                            <s:checkbox name="Type" /> Type
-                                        </label>
-                                        <label class="checkbox-inline" for="Email">
-                                            <s:checkbox name="Email" /> Email
-                                        </label>
-                                        <label class="checkbox-inline" for="Class">
-                                            <s:checkbox name="Class" /> Class
-                                        </label>
-                                        <label class="checkbox-inline" for="Address">
-                                            <s:checkbox name="Address" /> Address
-                                        </label>
-                                        <label class="checkbox-inline" for="City">
-                                            <s:checkbox name="City" /> City
-                                        </label>
-                                        <label class="checkbox-inline" for="ZIP">
-                                            <s:checkbox name="ZIP" /> ZIP
-                                        </label>
-								    </div>
-
-							  	</div>
-
                         </div>
-						<button class="btn btn-default pull-right">Search</button>
+						<s:submit cssClass="btn btn-default pull-right" name="submit" value="Search" />
                         </s:form>
 					</div>
 

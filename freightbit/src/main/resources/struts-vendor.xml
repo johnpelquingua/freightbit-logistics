@@ -22,16 +22,7 @@
         </action>
 
         <action name="loadEditVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditVendorPage">
-            <result name="TRUCKING" type="tiles">vendor.vendorEditVendorTrucking.tiles</result>
-            <result name="SHIPPING" type="tiles">vendor.vendorEditVendorShipping.tiles</result>
-        </action>
-
-        <action name="loadEditVendorTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditVendorTrucksPage">
-            <result name="success" type="tiles">vendor.vendorEditTrucks.tiles</result>
-        </action>
-
-        <action name="loadSaveCompletePage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompletePage">
-            <result name="success" type="tiles">vendor.vendorSaveComplete.tiles</result>
+            <result name="success" type="tiles">vendor.vendorEdit.tiles</result>
         </action>
 
         <action name="addVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addVendor">
@@ -48,7 +39,7 @@
         </action>
 
         <action name="editVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">
-            <result name="success" type="redirect">loadSaveCompletePage</result>
+            <result name="success" type="redirect">vendor.vendorSaveComplete.tiles</result>
         </action>
 
         <!--<action name="editVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">-->
