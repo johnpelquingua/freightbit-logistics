@@ -16,11 +16,6 @@
         <action name="loadSearchVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSearchVendorPage">
             <result name="success" type="tiles">vendor.vendorSearch.tiles</result>
         </action>
-
-        <action name="searchVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="searchVendor">
-                <result name="success" type="tiles">vendor.vendorListView.tiles</result>
-        </action>
-
         <action name="loadAddVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddVendorPage">
             <result name="success" type="tiles">vendor.vendorAdd.tiles</result>
         </action>

@@ -69,11 +69,23 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
     public String viewVendors() {
-        List<Vendor> vendorEntityList = vendorService.findAllVendors();
+        String column = searchVendor();
+        List<Vendor> vendorEntityList = vendorService.findVendorsByCriteria(column, vendor.getVendorKeyword() , getClientId());
         for (Vendor vendorElem : vendorEntityList) {
             vendors.add(transformToFormBean(vendorElem));
         }
         return SUCCESS;
+    }
+    public String searchVendor(){
+        String column = "";
+        if ("companyCode".equals(vendor.getVendorSearchCriteria())) {
+            column = "vendorCode";
+        } else if ("companyName".equals(vendor.getVendorSearchCriteria())) {
+            column = "vendorName";
+        } else if ("vendorType".equals(vendor.getVendorSearchCriteria())) {
+            column = "vendorType";
+        }
+        return column;
     }
 
     public String loadAddVendorPage() {
@@ -84,16 +96,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String searchVendor(){
-        System.out.print(searchType);
-        System.out.print(vendorKeyword);
-        if (searchType.equals("companyCode")) {
-            Vendor vendorEntityList = vendorService.findVendorByVendorCode(vendorKeyword);
-            vendors.add(transformToFormBean(vendorEntityList));
-        }
 
-        return SUCCESS;
-    }
 
     public String addVendor() throws Exception {
         validateOnSubmit(vendor);

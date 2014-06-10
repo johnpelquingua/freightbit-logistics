@@ -26,4 +26,6 @@ public interface VendorService {
 
     public Vendor findVendorByVendorCode(String vendorCode);
 
+    public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId);
+
 }

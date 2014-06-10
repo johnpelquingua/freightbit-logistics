@@ -78,7 +78,7 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
     }
 
     @Override
-    public List<Vendor> findVendorByCriteria(String column, String value, Integer clientId) {
+    public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId) {
         log.debug("Find vendor by criteria ");
         Session session = getSessionFactory().getCurrentSession();
         List<Vendor> vendors = session.createCriteria(Vendor.class)

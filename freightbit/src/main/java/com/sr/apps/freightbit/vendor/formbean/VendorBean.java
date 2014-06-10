@@ -18,6 +18,8 @@ public class VendorBean {
     private String vendorClass;
     private String vendorType;
     private String status;
+    private String vendorSearchCriteria;
+    private String vendorKeyword;
     private List <VesselBean> vesselBeanList;
     private List <TruckBean> truckBeanList;
     private List <DriverBean> driverBeanList;
@@ -38,6 +40,23 @@ public class VendorBean {
         this.vendorClass = vendorClass;
         this.vendorType = vendorType;
         this.status = status;
+    }
+
+
+    public String getVendorSearchCriteria() {
+        return vendorSearchCriteria;
+    }
+
+    public void setVendorSearchCriteria(String vendorSearchCriteria) {
+        this.vendorSearchCriteria = vendorSearchCriteria;
+    }
+
+    public String getVendorKeyword() {
+        return vendorKeyword;
+    }
+
+    public void setVendorKeyword(String vendorKeyword) {
+        this.vendorKeyword = vendorKeyword;
     }
 
     public String getVendorId() {

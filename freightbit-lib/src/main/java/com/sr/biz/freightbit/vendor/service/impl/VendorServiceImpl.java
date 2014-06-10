@@ -67,4 +67,10 @@ public class VendorServiceImpl implements VendorService{
     public void updateVendor(Vendor vendor) {
         vendorDao.updateVendor(vendor);
     }
+
+    @Override
+    public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId){
+        return vendorDao.findVendorsByCriteria(column, value, clientId);
+    }
+
 }

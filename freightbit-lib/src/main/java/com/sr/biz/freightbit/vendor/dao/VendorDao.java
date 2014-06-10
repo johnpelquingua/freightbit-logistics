@@ -23,6 +23,7 @@ public interface VendorDao {
 
     public void updateVendor(Vendor vendor);
 
-    public List<Vendor> findVendorByCriteria(String column, String value, Integer clientId);
+    public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId);
+
 
 }

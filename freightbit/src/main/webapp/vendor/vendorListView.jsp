@@ -20,7 +20,7 @@
                             <table class="table table-striped table-bordered text-center">
                                 <thead>
                                     <tr class="header_center">
-                                        <th class="tb-font-black"><input type="checkbox" /></th>
+
                                         <th class="tb-font-black">Company Code</th>
                                         <th class="tb-font-black">Company Name</th>
                                         <th class="tb-font-black">Type</th>
@@ -35,9 +35,9 @@
                                     <tr>
                                         <%--<input type="checkbox" />--%>
 
-                                        <td class="tb-font-black"><s:checkbox name="a" theme="simple" /></td>
-                                        <td class="tb-font-black"><s:property value="vendor.vendorCode" /></td>
-                                        <td class="tb-font-black"><s:property value="vendorvendorName" /></td>
+
+                                        <td class="tb-font-black"><s:property value="vendorCode" /></td>
+                                        <td class="tb-font-black"><s:property value="vendorName" /></td>
                                         <td class="tb-font-black"><s:property value="vendorType" /></td>
                                         <td class="tb-font-black"><s:property value="vendorClass" /></td>
                                         <td class="tb-font-black">
