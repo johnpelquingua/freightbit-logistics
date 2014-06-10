@@ -27,4 +27,5 @@ public interface CustomerDao {
 
     public Customer findCustomerByEmail(String customer);
 
+    public List <Customer> findCustomersByCriteria(String column, String value, Integer clientId);
 }

@@ -36,6 +36,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 	private List <Parameters> modeOfServiceList;
 	private List <Parameters> modeOfPaymentList;
 	private List <Parameters> notifyByList;
+	private List <Contacts> shipperList;
+	private List <Contacts> consigneeList;
 	
 	private OrderService orderService;
 	private CustomerService customerService;
@@ -61,14 +63,12 @@ public class OrderAction extends ActionSupport implements Preparable {
     	orderService.addOrder(transformToOrderEntityBean(orderBean));
 		return SUCCESS;
 	}
-
-    public String bookingList(){
-        return SUCCESS;
-    }
-
-    public String bookingNew() {
-        return SUCCESS;
-    }
+	
+	public String loadContactInfoList() {
+		shipperList = customerService.findContactByRefIdAndType("SHIPPER", orderBean.getCustomerId());
+		consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE", orderBean.getCustomerId());
+		return SUCCESS;
+	}
 	
 	private OrderBean transformToOrderFormBean(Orders order) {
 		OrderBean orderBean = new OrderBean();
@@ -80,7 +80,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 		orderBean.setModeOfPayment(order.getPaymentMode());
 		orderBean.setBookingDate(order.getOrderDate());
 		orderBean.setOrderStatus(order.getOrderStatus());
-		orderBean.setCustomerName("Test");
+		
+		List <Customer> customer = customerService.findCustomersByCriteria("customerCode", order.getShipperCode(), getClientId());
+		if (customer != null) {
+			orderBean.setCustomerName(customer.get(0).getCustomerName());
+			orderBean.setShipperCode(customer.get(0).getCustomerCode());
+			orderBean.setConsigneeCode(customer.get(0).getCustomerCode());
+		}
 		
 		//Consignee Info
 		Contacts consigneeContact = customerService.findContactById(order.getConsigneeContactId());	
@@ -132,18 +138,15 @@ public class OrderAction extends ActionSupport implements Preparable {
 		order.setModifiedBy(loggedInUser.getUsername());
 		
 		//Shipper Details
-		order.setShipperCode("WHAT");
-		Address shipperAddress = customerService.findAddressByRefIdAndType("SHIPPER", orderBean.getCustomerId());
-		order.setShipperAddressId(shipperAddress.getAddressId());
-		Contacts shipperContact = customerService.findContactByRefIdAndType("SHIPPER", orderBean.getCustomerId());
-		order.setShipperContactId(shipperContact.getContactId());
+		order.setShipperCode(orderBean.getShipperCode());
+		order.setShipperAddressId(orderBean.getShipperInfoAddress().getAddressId());
+		order.setShipperContactId(orderBean.getShipperInfoContact().getContactId());
 		
 		//Consignee Details
-		Address consigneeAddress = customerService.findAddressByRefIdAndType("SHIPPER", orderBean.getCustomerId());
-		order.setConsigneeAddressId(consigneeAddress.getAddressId());
-		Contacts consigneeContact = customerService.findContactByRefIdAndType("SHIPPER", orderBean.getCustomerId());
-		order.setConsigneeContactId(consigneeContact.getContactId());
-		
+		order.setConsigneeCode(orderBean.getConsigneeCode());
+		order.setConsigneeAddressId(orderBean.getConsigneeInfoAddress().getAddressId());
+		order.setConsigneeContactId(orderBean.getConsigneeInfoContact().getContactId());
+
 		return order;
 	}
 	
@@ -152,6 +155,22 @@ public class OrderAction extends ActionSupport implements Preparable {
        //validate notification type
     }
     
+	public List<Contacts> getShipperList() {
+		return shipperList;
+	}
+
+	public void setShipperList(List<Contacts> shipperList) {
+		this.shipperList = shipperList;
+	}
+
+	public List<Contacts> getConsigneeList() {
+		return consigneeList;
+	}
+
+	public void setConsigneeList(List<Contacts> consigneeList) {
+		this.consigneeList = consigneeList;
+	}
+
 	private Integer getClientId() {
 		Map sessionAttributes = ActionContext.getContext().getSession();
     	Integer clientId = (Integer) sessionAttributes.get("clientId");
@@ -194,8 +213,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 	
 	@Override
 	public void prepare() throws Exception {
-		// TODO Auto-generated method stub
-		customerList = customerService.findCustomerByClientId(getClientId());
+		customerList = customerService.findAllCustomer(getClientId());
 		serviceRequirementList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.SERVICE_REQUIREMENT);
 		freightTypeList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.FREIGHT_TYPE);
 		modeOfPaymentList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.MODE_OF_PAYMENT);

@@ -121,16 +121,12 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
      * @param addressType: SHIPPER, CONSIGNEE, BILLER TO
      */
     @Override
-    public Address findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType){
+    public List <Address> findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType){
         Query query = getSessionFactory().getCurrentSession().createQuery(" from Address where referenceTable = :referenceTable and referenceId = :referenceId and addressType = :addressType");
         query.setParameter("referenceTable", referenceTable);
         query.setParameter("referenceId", referenceId);
         query.setParameter("addressType", addressType);
-        List <Address> addressList = query.list();
-        if (addressList != null && addressList.size() > 0)
-            return addressList.get(0);
-        else
-            return null;
+        return query.list();
     }  
 
 }

@@ -8,9 +8,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.customer.dao.CustomerDao;
 import com.sr.biz.freightbit.customer.entity.Customer;
 
@@ -160,5 +162,16 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao{
             throw re;
         }
     }
+    
+    @Override
+	public List<Customer> findCustomersByCriteria(String column, String value, Integer clientId) {
+        log.debug("Find customers by criteria ");
+        Session session = getSessionFactory().getCurrentSession();
+        List<Customer> customers = session.createCriteria(Customer.class)
+            .add(Restrictions.like(column, value))
+            .add(Restrictions.eq("client.clientId", clientId))
+            .list();
+        return customers;	
+	}
 
 }

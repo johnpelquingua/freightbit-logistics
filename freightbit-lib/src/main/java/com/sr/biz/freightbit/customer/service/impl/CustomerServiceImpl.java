@@ -4,6 +4,7 @@ import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
@@ -120,7 +121,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
     
     @Override
-    public Contacts findContactByRefIdAndType(String contactType, Integer customerId) {
+    public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId) {
     	return contactsDao.findContactByRefTableAndIdAndType("CUSTOMERS", customerId, contactType);
     }
 
@@ -176,7 +177,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
     
     @Override
-    public Address findAddressByRefIdAndType(String addressType, Integer customerId) {
+    public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
     	return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
     }
 
@@ -343,7 +344,10 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDao.findCustomerByEmail(customer);
     }
 
-
+    @Override
+    public List<Customer> findCustomersByCriteria(String column, String value, Integer clientId) {
+    	return customerDao.findCustomersByCriteria(column, value, clientId);
+    }
 
     //End Of Customer
 

@@ -23,6 +23,6 @@ public interface AddressDao {
 
     public Address findContactByReferenceTableAndId(String referenceTable, Integer referenceId);
     
-    public Address findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType);
+    public List <Address> findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType);
 
 }

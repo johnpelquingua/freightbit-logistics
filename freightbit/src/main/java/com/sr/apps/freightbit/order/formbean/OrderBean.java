@@ -23,7 +23,9 @@ public class OrderBean {
 	private String sealNo;
 	private String bookedBy;
 	private String orderStatus;
-	
+	private String shipperCode;
+	private String consigneeCode;
+
 	private AddressBean shipperInfoAddress;
 	private ContactBean shipperInfoContact;
 	private AddressBean consigneeInfoAddress;
@@ -150,6 +152,20 @@ public class OrderBean {
 	}
 	public void setOrderItemsBean(List<OrderItemsBean> orderItemsBean) {
 		this.orderItemsBean = orderItemsBean;
+	}
+	
+	
+	public String getShipperCode() {
+		return shipperCode;
+	}
+	public void setShipperCode(String shipperCode) {
+		this.shipperCode = shipperCode;
+	}
+	public String getConsigneeCode() {
+		return consigneeCode;
+	}
+	public void setConsigneeCode(String consigneeCode) {
+		this.consigneeCode = consigneeCode;
 	}
 	
 }

@@ -8,7 +8,14 @@ public class ContactBean {
 	private String mobile;
 	private String fax;
 	private String email;
+	private Integer contactId;
 	
+	public Integer getContactId() {
+		return contactId;
+	}
+	public void setContactId(Integer contactId) {
+		this.contactId = contactId;
+	}
 	public String getContactType() {
 		return contactType;
 	}

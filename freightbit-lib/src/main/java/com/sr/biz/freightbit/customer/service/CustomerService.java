@@ -40,7 +40,7 @@ public interface CustomerService {
 
     public List<Contacts> findAllContacts(long clientId);
     
-    public Contacts findContactByRefIdAndType(String contactType, Integer customerId);
+    public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
 
 //    public List<Contacts> findAllContactsByClientId(long clientId);
 
@@ -61,7 +61,7 @@ public interface CustomerService {
 
     public void updateAddress(Address address);
     
-    public Address findAddressByRefIdAndType(String addressType, Integer customerId);
+    public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId);
 
     //Customer
 
@@ -83,6 +83,7 @@ public interface CustomerService {
 
     public Customer findCustomerByEmail(String customer);
 
+    public List <Customer> findCustomersByCriteria(String column, String value, Integer clientId);
 
     //Items
 

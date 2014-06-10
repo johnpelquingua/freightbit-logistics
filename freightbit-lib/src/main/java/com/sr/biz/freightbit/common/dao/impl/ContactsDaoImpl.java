@@ -118,16 +118,12 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao{
     }
     
     @Override
-    public Contacts findContactByRefTableAndIdAndType(String referenceTable, Integer referenceId, String contactType){
+    public List <Contacts> findContactByRefTableAndIdAndType(String referenceTable, Integer referenceId, String contactType){
         Query query = getSessionFactory().getCurrentSession().createQuery(" from Contacts where referenceTable = :referenceTable and referenceId = :referenceId and contactType = :contactType");
         query.setParameter("referenceTable", referenceTable);
         query.setParameter("referenceId", referenceId);
         query.setParameter("contactType", contactType);
-        List <Contacts> contactsList = query.list();
-        if (contactsList != null && contactsList.size() > 0)
-            return contactsList.get(0);
-        else
-            return null;
+        return query.list();
     }    
 
 }
