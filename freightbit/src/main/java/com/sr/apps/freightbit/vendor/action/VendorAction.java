@@ -50,6 +50,8 @@ public class VendorAction extends ActionSupport implements Preparable {
     private String vendorCodeParam;
     private String truckCodeParam;
     private String driverCodeParam;
+    private String searchType;
+    private String vendorKeyword;
 
     private VendorService vendorService;
     private ClientService clientService;
@@ -79,6 +81,17 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
     public String loadSearchVendorPage() {
+        return SUCCESS;
+    }
+
+    public String searchVendor(){
+        System.out.print(searchType);
+        System.out.print(vendorKeyword);
+        if (searchType.equals("companyCode")) {
+            Vendor vendorEntityList = vendorService.findVendorByVendorCode(vendorKeyword);
+            vendors.add(transformToFormBean(vendorEntityList));
+        }
+
         return SUCCESS;
     }
 
@@ -443,6 +456,22 @@ public class VendorAction extends ActionSupport implements Preparable {
         statusList = parameterService.getParameterMap(ParameterConstants.STATUS);
         truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
         vendorClassList = parameterService.getParameterMap(ParameterConstants.VENDOR_CLASS);
+    }
+
+    public String getVendorKeyword() {
+        return vendorKeyword;
+    }
+
+    public void setVendorKeyword(String vendorKeyword) {
+        this.vendorKeyword = vendorKeyword;
+    }
+
+    public String getSearchType() {
+        return searchType;
+    }
+
+    public void setSearchType(String searchType) {
+        this.searchType = searchType;
     }
 
     public void setVendorService(VendorService vendorService) {

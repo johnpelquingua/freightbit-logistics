@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be837dfb-b904-4bf7-a0ca-8461f2881958" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerItemEdit.jsp" />
+    <list default="true" id="be837dfb-b904-4bf7-a0ca-8461f2881958" name="Default" comment="added CRUD customer items">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/ItemsDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/ItemsDaoImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerAddItem.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerAddItem.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerInfo.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerInfo.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/menu.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/menu.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-customers.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-customers.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/tiles.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/tiles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorListView.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorListView.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSearch.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSearch.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -80,48 +72,58 @@
       <file leaf-file-name="CustomerAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1377" max-vertical-offset="6698">
-              <caret line="81" column="23" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3449" max-vertical-offset="5576">
+              <caret line="365" column="18" selection-start-line="365" selection-start-column="18" selection-end-line="365" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemBean.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/formbean/ItemBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="3298">
-              <caret line="12" column="35" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VendorAction.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="VendorAction.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3876" max-vertical-offset="10557">
-              <caret line="228" column="9" selection-start-line="228" selection-start-column="9" selection-end-line="228" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.5208333" vertical-offset="820" max-vertical-offset="8755">
+              <caret line="87" column="37" selection-start-line="87" selection-start-column="37" selection-end-line="87" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customerAddItem.jsp" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="customerSearch.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerSearch.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="142" max-vertical-offset="1394">
+              <caret line="42" column="84" selection-start-line="42" selection-start-column="84" selection-end-line="42" selection-end-column="84" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vendorSearch.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSearch.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1394">
+              <caret line="27" column="163" selection-start-line="27" selection-start-column="163" selection-end-line="27" selection-end-column="163" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="struts-vendor.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.296296" vertical-offset="142" max-vertical-offset="2227">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customerAddItem.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerAddItem.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.87061995" vertical-offset="2346" max-vertical-offset="3094">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2346" max-vertical-offset="3094">
               <caret line="157" column="32" selection-start-line="157" selection-start-column="32" selection-end-line="157" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="struts-customers.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../freightbit/src/main/resources/struts-customers.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="1394">
-              <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -130,28 +132,8 @@
       <file leaf-file-name="tiles.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/tiles.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2319" max-vertical-offset="7956">
+            <state vertical-scroll-proportion="-9.538462" vertical-offset="2319" max-vertical-offset="7956">
               <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ItemsDaoImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/ItemsDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2261" max-vertical-offset="2448">
-              <caret line="133" column="21" selection-start-line="133" selection-start-column="21" selection-end-line="133" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomerDaoImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/CustomerDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="703" max-vertical-offset="2873">
-              <caret line="54" column="22" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -193,19 +175,19 @@
         <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/CustomerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/CustomerDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/CustomerDao.java" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSearch.jsp" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorListView.jsp" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/menu.jsp" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddDriver.jsp" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerInfo.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/ItemsDaoImpl.java" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/tiles.xml" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/resources/struts-customers.xml" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerItemEdit.jsp" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerAddItem.jsp" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSearch.jsp" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java" />
       </list>
     </option>
   </component>
@@ -947,6 +929,40 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="order" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="freightbit-lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="freightbit" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="freightbit" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="order" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="action" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1020,29 +1036,14 @@
             <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/ContactsDao.java</PATH>
             <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/impl/AddressDaoImpl.java</PATH>
             <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/impl/ContactsDaoImpl.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/entity/Contacts.java</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/CustomerDao.java</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/CustomerDaoImpl.java</PATH>
             <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/CustomerService.java</PATH>
             <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/impl/CustomerServiceImpl.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/entity/Orders.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/VendorDao.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/VendorDaoImpl.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/VendorService.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/VendorServiceImpl.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/OrderServiceTest.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/VendorServiceTest.java</PATH>
             <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/common/formbean/AddressBean.java</PATH>
             <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/common/formbean/ContactBean.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/LoginAction.java</PATH>
             <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/action/OrderAction.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/util/ParameterConstants.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/resources/struts-orders.xml</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/tiles.xml</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/webapp/orders/booking-new.jsp</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddDriver.jsp</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddTrucks.jsp</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorListView.jsp</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/formbean/OrderBean.java</PATH>
           </FILE-GROUP>
           <FILE-GROUP>
             <option name="myUpdateName" value="Created" />
@@ -1050,12 +1051,6 @@
             <option name="mySupportsDeletion" value="false" />
             <option name="myCanBeAbsent" value="false" />
             <option name="myId" value="CREATED" />
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/formbean/OrderBean.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/formbean/OrderItemsBean.java</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorEditTrucks.jsp</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorEditVendorShipping.jsp</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorEditVendorTrucking.jsp</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSaveComplete.jsp</PATH>
           </FILE-GROUP>
           <FILE-GROUP>
             <option name="myUpdateName" value="Deleted" />
@@ -1063,7 +1058,6 @@
             <option name="mySupportsDeletion" value="false" />
             <option name="myCanBeAbsent" value="true" />
             <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorEdit.jsp</PATH>
           </FILE-GROUP>
           <FILE-GROUP>
             <option name="myUpdateName" value="Restored" />
@@ -1312,7 +1306,11 @@
       <created>1402035178771</created>
       <updated>1402035178771</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added CRUD customer items">
+      <created>1402369142881</created>
+      <updated>1402369142881</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1324,31 +1322,31 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.9907407" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3271605" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3287037" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3287037" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.67058825" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.67058825" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32734805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1400,19 +1398,15 @@
     </option>
     <MESSAGE value="migrated customer module from bitbucket" />
     <MESSAGE value="added sesion save in add customer" />
-    <option name="LAST_COMMIT_MESSAGE" value="added sesion save in add customer" />
+    <MESSAGE value="added CRUD customer items" />
+    <option name="LAST_COMMIT_MESSAGE" value="added CRUD customer items" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerSearch.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49101797" vertical-offset="550" max-vertical-offset="1394">
-          <caret line="42" column="84" selection-start-line="42" selection-start-column="84" selection-end-line="42" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customer-add6.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.9861878" vertical-offset="357" max-vertical-offset="1717">
@@ -1424,6 +1418,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.5914333" vertical-offset="512" max-vertical-offset="2227">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1459,6 +1456,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.428572" vertical-offset="2967" max-vertical-offset="3536">
           <caret line="240" column="27" selection-start-line="240" selection-start-column="19" selection-end-line="240" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1469,17 +1467,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/CustomerAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="620">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/GroupAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.1387098" vertical-offset="1479" max-vertical-offset="4743">
           <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1527,17 +1519,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/action/OrderAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="597">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/entity/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.1675042" vertical-offset="969" max-vertical-offset="2737">
           <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1545,6 +1531,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1870">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1552,6 +1539,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="958" max-vertical-offset="2431">
           <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1580,6 +1570,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6841216" vertical-offset="1703" max-vertical-offset="2295">
           <caret line="190" column="30" selection-start-line="190" selection-start-column="30" selection-end-line="190" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1594,14 +1585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42009884" vertical-offset="408" max-vertical-offset="1530">
           <caret line="39" column="91" selection-start-line="39" selection-start-column="91" selection-end-line="39" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSearch.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42009884" vertical-offset="306" max-vertical-offset="1394">
-          <caret line="33" column="62" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="62" />
           <folding />
         </state>
       </provider>
@@ -1685,14 +1668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.0" vertical-offset="724" max-vertical-offset="2261">
-          <caret line="64" column="77" selection-start-line="64" selection-start-column="11" selection-end-line="64" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/VendorServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3218563" vertical-offset="91" max-vertical-offset="1020">
@@ -1700,42 +1675,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/tiles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2319" max-vertical-offset="7956">
-          <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3876" max-vertical-offset="10557">
-          <caret line="228" column="9" selection-start-line="228" selection-start-column="9" selection-end-line="228" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/ItemsDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1639" max-vertical-offset="2312">
           <caret line="133" column="21" selection-start-line="133" selection-start-column="21" selection-end-line="133" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/CustomerDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="703" max-vertical-offset="2873">
-          <caret line="54" column="22" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/resources/struts-customers.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="1394">
-          <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
           <folding />
         </state>
       </provider>
@@ -1748,14 +1691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1377" max-vertical-offset="6698">
-          <caret line="81" column="23" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerEditInfo.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28333333" vertical-offset="204" max-vertical-offset="2057">
@@ -1763,10 +1698,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/CustomerDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3467742" vertical-offset="533" max-vertical-offset="2703">
+          <caret line="54" column="22" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/tiles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.538462" vertical-offset="2319" max-vertical-offset="7956">
+          <caret line="151" column="0" selection-start-line="151" selection-start-column="0" selection-end-line="151" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/core/searchVendor.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1972">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/resources/struts-customers.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.2947977" vertical-offset="544" max-vertical-offset="1394">
+          <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerAddItem.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.87061995" vertical-offset="2346" max-vertical-offset="3094">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2346" max-vertical-offset="3094">
           <caret line="157" column="32" selection-start-line="157" selection-start-column="32" selection-end-line="157" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/action/OrderAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7841845" vertical-offset="1530" max-vertical-offset="3859">
+          <caret line="144" column="8" selection-start-line="144" selection-start-column="8" selection-end-line="144" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.296296" vertical-offset="142" max-vertical-offset="2227">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerSearch.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="142" max-vertical-offset="1394">
+          <caret line="42" column="84" selection-start-line="42" selection-start-column="84" selection-end-line="42" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/CustomerAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="620">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4979" max-vertical-offset="5576">
+          <caret line="365" column="18" selection-start-line="365" selection-start-column="18" selection-end-line="365" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSearch.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1394">
+          <caret line="27" column="163" selection-start-line="27" selection-start-column="163" selection-end-line="27" selection-end-column="163" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5208333" vertical-offset="820" max-vertical-offset="8755">
+          <caret line="87" column="37" selection-start-line="87" selection-start-column="37" selection-end-line="87" selection-end-column="37" />
           <folding />
         </state>
       </provider>

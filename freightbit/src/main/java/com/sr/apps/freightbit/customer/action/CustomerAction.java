@@ -33,6 +33,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private List<Parameters> customerTypeList = new ArrayList<Parameters>();
     private List<Parameters> customerSearchList = new ArrayList<Parameters>();
 
+    private Integer customersItemIdParam;
     private Integer customerIdParam;
     private String keyword; //search keyword for customer
     private String searchType; // get the search type
@@ -61,8 +62,34 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     ////// START OF ITEMS ///////////////
 
+    public String customerEditItem(){
 
+        Items itemEntity = itemService.findItemByCustomerItemsId(customersItemIdParam);
+        item = transformItemToFormBean(itemEntity);
+
+        return  SUCCESS;
+    }
     public String customerAddItems() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer customerId = (Integer) sessionAttributes.get("customerId");
+
+        List<Items> itemEntityList = itemService.findItemByCustomerId(customerId);
+        for (Items itemElem : itemEntityList) {
+            items.add(transformItemToFormBean(itemElem));
+        }
+
+        return SUCCESS;
+    }
+
+    public String customerEditItemExecute(){
+        itemService.updateItems(transformItemToEntityBean(item));
+        return SUCCESS;
+    }
+    public String customerDeleteItemExecute() {
+
+        Items itemEntity = itemService.findItemByCustomerItemsId(customersItemIdParam);
+        itemService.deleteItem(itemEntity);
         return SUCCESS;
     }
 
@@ -79,9 +106,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String customerInfo() {
-
-        Customer customerEntity = customerService.findCustomerById(customerIdParam);
-        customer = transformToFormBean(customerEntity);
         return SUCCESS;
 
     }
@@ -110,7 +134,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
             Customer customerEntityList = customerService.findCustomerByEmail(keyword);
             customers.add(transformToFormBean(customerEntityList));
         }
-        System.out.print(searchType);
         return SUCCESS;
     }
 
@@ -148,6 +171,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Integer customerId = customerService.addCustomer(transformToEntityBean(customer));
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("customerId", customerId);
+
         return SUCCESS;
     }
 
@@ -164,7 +188,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public ItemBean transformItemToFormBean(Items entity) {
 
         ItemBean formBean = new ItemBean();
-
+        formBean.setCustomerId(entity.getCustomerId());
+        formBean.setCustomerItemsId(entity.getCustomerItemsId());
+        formBean.setCriticalQuality(entity.getCriticalQuality());
         formBean.setItemCode(entity.getItemCode());
         formBean.setItemName(entity.getItemName());
         formBean.setSrp(entity.getSrp());
@@ -262,6 +288,15 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (StringUtils.isBlank(customerBean.getEmail())) {
             addFieldError("customer.email", getText("err.email.required"));
         }
+    }
+
+
+    public Integer getCustomersItemIdParam() {
+        return customersItemIdParam;
+    }
+
+    public void setCustomersItemIdParam(Integer customersItemIdParam) {
+        this.customersItemIdParam = customersItemIdParam;
     }
 
     public void setItemService(CustomerService itemService) {

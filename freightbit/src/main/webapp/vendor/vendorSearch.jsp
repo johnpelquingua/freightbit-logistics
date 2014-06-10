@@ -25,7 +25,7 @@
 								    <label for="vendor.vendorSearchList" class="col-sm-2 control-label">Search by:</label>
 
 								    <div class="col-sm-10">
-                                        <s:select list="vendorSearchList" listValue="value" listKey="key" cssClass="form-control" name="vendor.vendorSearchList"/>
+                                        <s:select id="searchType" name="searchType" list="vendorSearchList" listValue="value" listKey="key" cssClass="form-control"/>
 								    </div>
 							    </div>
 
