@@ -38,7 +38,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 	private List <Parameters> notifyByList;
 	private List <Contacts> shipperList;
 	private List <Contacts> consigneeList;
-	
+
 	private OrderService orderService;
 	private CustomerService customerService;
 	private ParameterService parameterService;
@@ -52,7 +52,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 	}
 	
 	public String loadAddOrderPage() {
-		orderBean.setBookingDate(new Date());
+		//orderBean.setBookingDate(new Date());
 		return SUCCESS;
 	}
 	

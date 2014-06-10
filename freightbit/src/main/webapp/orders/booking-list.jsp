@@ -64,7 +64,7 @@
                         <button type="button" class="btn btn-info new-booking" onclick="location.href='bookingSearch'">
                               Search Booking
                         </button>
-                        <button type="button" class="btn btn-info new-booking" onclick="location.href='bookingNew'">
+                        <button type="button" class="btn btn-info new-booking" onclick="location.href='loadAddOrderPage'">
                               New Booking
                         </button>
                     </span>

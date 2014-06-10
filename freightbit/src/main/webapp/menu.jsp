@@ -6,7 +6,7 @@
 
     <ul id="css3menu1" class="topmenu" style="padding:0;">
         <li class="topfirst"><a href="#" class="icon-home"><span class="icon-font">Dashboard</span></a></li>
-        <li class="topmenu "><a href="<s:url action='bookingList' />" class="icon-booking"><span class="icon-font">Booking</span></a></li>
+        <li class="topmenu "><a href="<s:url action='viewOrders' />" class="icon-booking"><span class="icon-font">Booking</span></a></li>
         <li class="topmenu"><a href="#" class="icon-operation"><span class="icon-font">Operations</span></a></li>
         <li class="topmenu"><a href="#" class="icon-document"><span class="icon-font">Documentations</span></a></li>
         <li class="topmenu"><a> class="icon-vendor"><span class="icon-font">Vendor</span></a>
