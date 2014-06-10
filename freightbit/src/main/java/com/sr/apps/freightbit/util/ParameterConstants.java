@@ -34,4 +34,6 @@ public class ParameterConstants {
     
     public final static String NOTIFY_BY = "NOTIFY BY";
 
+    public final static String ADDRESS_TYPE = "ADDRESS_TYPE";
+
 }

@@ -27,13 +27,13 @@
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan">
-            <array>
+            <list>
                 <value>com.sr.biz.freightbit.core.entity</value>
                 <value>com.sr.biz.freightbit.vendor.entity</value>
                 <value>com.sr.biz.freightbit.common.entity</value>
                 <value>com.sr.biz.freightbit.customer.entity</value>
-                 <value>com.sr.biz.freightbit.order.entity</value>
-            </array>
+                <value>com.sr.biz.freightbit.order.entity</value>
+            </list>
         </property>
         <property name="hibernateProperties">
             <props>
@@ -50,6 +50,10 @@
 
     <bean id="itemService" class="com.sr.biz.freightbit.customer.service.impl.CustomerServiceImpl">
         <property name="itemsDao" ref="itemsDao" />
+    </bean>
+
+    <bean id="addressService" class="com.sr.biz.freightbit.customer.service.impl.CustomerServiceImpl">
+        <property name="addressDao" ref="addressDao" />
     </bean>
 
 	<bean id="userService" class="com.sr.biz.freightbit.core.service.impl.UserServiceImpl">
@@ -105,6 +109,10 @@
 
     <!-- Services End -->
     <!-- DAOs -->
+
+    <bean id="addressDao" class="com.sr.biz.freightbit.common.dao.impl.AddressDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
 
     <bean id="ratesDao" class="com.sr.biz.freightbit.customer.dao.impl.RateDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>

@@ -1,15 +1,12 @@
 package com.sr.biz.freightbit.common.dao.impl;
 
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
 import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.entity.Address;
-import com.sr.biz.freightbit.common.entity.Contacts;
 
 /**
  * Created by Solutions Resource on 5/28/14.
@@ -60,7 +57,7 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
     public List<Address> findAllAddress(Integer addressId) {
         log.debug("finding all Address");
         try {
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Address where addressId = :addressId");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from User where addressId = :addressId");
             query.setParameter("addressId", addressId);
             return query.list();
         } catch (RuntimeException re) {

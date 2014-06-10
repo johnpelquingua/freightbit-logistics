@@ -14,10 +14,9 @@ import com.sr.biz.freightbit.customer.dao.RatesDao;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.entity.Rates;
-
+import com.sun.jndi.cosnaming.IiopUrl;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 /**
@@ -26,6 +25,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
     CustomerDao customerDao;
+
 
     public CustomerDao getCustomerDao() {
         return customerDao;
@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void setItemsDao(ItemsDao itemsDao) { this.itemsDao = itemsDao; }
 
 
-    private AddressDao addressDao;
+    AddressDao addressDao;
     public AddressDao getAddressDao() { return addressDao; }
     public void setAddressDao(AddressDao addressDao) { this.addressDao = addressDao; }
 
@@ -118,11 +118,6 @@ public class CustomerServiceImpl implements CustomerService {
         List<Contacts> contacts =contactsDao.findAllContacts(clientId);
         return contacts;
     }
-    
-    @Override
-    public Contacts findContactByRefIdAndType(String contactType, Integer customerId) {
-    	return contactsDao.findContactByRefTableAndIdAndType("CUSTOMERS", customerId, contactType);
-    }
 
 //    @Override
 //    public List<Contacts> findAllContactsByClientId(long clientId){
@@ -136,7 +131,7 @@ public class CustomerServiceImpl implements CustomerService {
     //Address
 
     @Override
-    public Address findAddressByRefId(Integer customerId) {
+    public List <Address> findAddressByRefId(Integer customerId) {
         return addressDao.findContactByReferenceTableAndId("CUSTOMERS", customerId);
     }
 
@@ -165,19 +160,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public Address findAddressById(Integer addressId) {
-        return addressDao.findAddressById(addressId);
+    public Address findUserById(Integer clientId) {
+        return addressDao.findAddressById(clientId);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateAddress(Address address) {
         addressDao.updateAddress(address);
-    }
-    
-    @Override
-    public Address findAddressByRefIdAndType(String addressType, Integer customerId) {
-    	return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
     }
 
     //End of Address

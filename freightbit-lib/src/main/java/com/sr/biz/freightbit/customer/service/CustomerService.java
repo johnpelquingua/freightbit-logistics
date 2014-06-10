@@ -57,7 +57,7 @@ public interface CustomerService {
 
     public Address findAddressById(Integer addressId);
 
-    public Address findAddressByRefId(Integer customerId);
+    public List <Address> findAddressByRefId(Integer customerId);
 
     public void updateAddress(Address address);
     

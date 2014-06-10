@@ -24,7 +24,6 @@ import javax.persistence.UniqueConstraint;
 public class Address implements java.io.Serializable {
 
 
-
     private Integer addressId;
     private Client clientId;
     private String referenceTable;
@@ -44,9 +43,11 @@ public class Address implements java.io.Serializable {
 
     }
 
-    public Address(Integer addressId, Client clientId, String referenceTable, Integer referenceId,
-                   String addressType, String addressLine1, String addressLine2, String city, String state,
-                   String zip, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public Address(String modifiedBy, Integer addressId, Client clientId,
+                   String referenceTable, Integer referenceId, String addressType, String addressLine1,
+                   String addressLine2, String city, String state, String zip, Date createdTimestamp, String createdBy,
+                   Date modifiedTimestamp) {
+        this.modifiedBy = modifiedBy;
         this.addressId = addressId;
         this.clientId = clientId;
         this.referenceTable = referenceTable;
@@ -60,7 +61,6 @@ public class Address implements java.io.Serializable {
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
-        this.modifiedBy = modifiedBy;
     }
 
     @Id
@@ -121,7 +121,6 @@ public class Address implements java.io.Serializable {
     @Column(name = "modifiedBy")
     public String getModifiedBy() { return modifiedBy; }
     public void setModifiedBy(String modifiedBy) { this.modifiedBy = modifiedBy; }
-
 
 
 }
