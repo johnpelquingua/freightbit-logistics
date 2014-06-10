@@ -33,7 +33,8 @@ public class OrderItems  implements java.io.Serializable {
      private Double height;
      private Double width;
      private Double length;
-     private String comments;
+     private Double weight;
+	 private String comments;
      private Date createdTimestamp;
      private String createdBy;
      private Date modifiedTimestamp;
@@ -160,6 +161,14 @@ public class OrderItems  implements java.io.Serializable {
         this.length = length;
     }
 
+    @Column(name="weight", nullable=false, precision=12, scale=0)
+    public Double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Double weight) {
+		this.weight = weight;
+	}
     
     @Column(name="comments", nullable=false)
     public String getComments() {

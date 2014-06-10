@@ -51,7 +51,14 @@ public class Orders  implements java.io.Serializable {
      private String createdBy;
      private Date modifiedTimestamp;
      private String modifiedBy;
-
+     private Date pickupDate;
+     private Date pickupTime;
+     private String originationPort;
+     private Date deliveryDate;
+     private Date deliveryTime;
+     private String destinationPort;
+     private Double rates;
+     
     public Orders() {
     }
 
@@ -363,6 +370,81 @@ public class Orders  implements java.io.Serializable {
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="pickupDate")
+	public Date getPickupDate() {
+		return pickupDate;
+	}
+
+
+	public void setPickupDate(Date pickupDate) {
+		this.pickupDate = pickupDate;
+	}
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="pickupTime")
+	public Date getPickupTime() {
+		return pickupTime;
+	}
+
+
+	public void setPickupTime(Date pickupTime) {
+		this.pickupTime = pickupTime;
+	}
+
+    @Column(name="originationPort", length=25)
+	public String getOriginationPort() {
+		return originationPort;
+	}
+
+
+	public void setOriginationPort(String originationPort) {
+		this.originationPort = originationPort;
+	}
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="pickupDate")
+	public Date getDeliveryDate() {
+		return deliveryDate;
+	}
+
+
+	public void setDeliveryDate(Date deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="deliveryTime")
+	public Date getDeliveryTime() {
+		return deliveryTime;
+	}
+
+
+	public void setDeliveryTime(Date deliveryTime) {
+		this.deliveryTime = deliveryTime;
+	}
+
+
+    @Column(name="destinationPort", length=25)
+	public String getDestinationPort() {
+		return destinationPort;
+	}
+
+
+	public void setDestinationPort(String destinationPort) {
+		this.destinationPort = destinationPort;
+	}
+
+    @Column(name="rates")
+	public Double getRates() {
+		return rates;
+	}
+
+
+	public void setRates(Double rates) {
+		this.rates = rates;
+	}
 
 
 

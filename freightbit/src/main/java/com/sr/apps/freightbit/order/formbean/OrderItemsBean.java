@@ -2,18 +2,19 @@ package com.sr.apps.freightbit.order.formbean;
 
 public class OrderItemsBean {
 
-	private String quantity;
+	private Integer quantity;
 	private String classification;
 	private String cargoDetails;
 	private Double declaredValue;
 	private Double height;
 	private Double width;
 	private Double length;
+	private Double weight;
 	
-	public String getQuantity() {
+	public Integer getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(String quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 	public String getClassification() {
@@ -51,5 +52,11 @@ public class OrderItemsBean {
 	}
 	public void setLength(Double length) {
 		this.length = length;
+	}
+	public Double getWeight() {
+		return weight;
+	}
+	public void setWeight(Double weight) {
+		this.weight = weight;
 	}
 }

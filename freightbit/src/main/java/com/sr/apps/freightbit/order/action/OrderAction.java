@@ -1,5 +1,6 @@
 package com.sr.apps.freightbit.order.action;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.core.formbean.UserBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
+import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
@@ -21,6 +23,7 @@ import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
+import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
 
@@ -80,6 +83,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 		orderBean.setModeOfPayment(order.getPaymentMode());
 		orderBean.setBookingDate(order.getOrderDate());
 		orderBean.setOrderStatus(order.getOrderStatus());
+		orderBean.setOriginationPort(order.getOriginationPort());
+		orderBean.setDestinationPort(order.getDestinationPort());
+		orderBean.setPickupDate(order.getPickupDate());
+		orderBean.setPickupTime(order.getPickupTime());
+		orderBean.setDeliveryDate(order.getDeliveryDate());
+		orderBean.setDeliveryTime(order.getDeliveryTime());
+		
 		
 		List <Customer> customer = customerService.findCustomersByCriteria("customerCode", order.getShipperCode(), getClientId());
 		if (customer != null) {
@@ -113,8 +123,29 @@ public class OrderAction extends ActionSupport implements Preparable {
 		addressBean = new AddressBean();
 		addressBean.setAddress(getAddress(shipperAddress));
 		orderBean.setShipperInfoAddress(addressBean);
-
+		
+		//Order Items Bean
+/*		List <OrderItems> orderItems = orderService.findOrderItemsByCriteria("orderId", order.getOrderId(), getClientId());
+		List <OrderItemsBean> orderItemsBean = new ArrayList<OrderItemsBean>();
+		for (OrderItems orderItem : orderItems) {
+			orderItemsBean.add(transformToOrderItemsFormBean(orderItem));
+		}
+		orderBean.setOrderItemsBean(orderItemsBean);*/
+		
 		return orderBean;
+	}
+	
+	private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
+		OrderItemsBean orderItemBean = new OrderItemsBean();
+		orderItemBean.setCargoDetails(orderItem.getCommodity());
+		orderItemBean.setQuantity(orderItem.getQuantity());
+		orderItemBean.setClassification(orderItem.getClassification());
+		orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
+		orderItemBean.setHeight(orderItem.getHeight());
+		orderItemBean.setWidth(orderItem.getWidth());
+		orderItemBean.setLength(orderItem.getLength());
+		orderItemBean.setWeight(orderItem.getWeight());
+		return  orderItemBean;
 	}
 	
 	private Orders transformToOrderEntityBean(OrderBean orderBean) {
@@ -126,6 +157,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 		order.setOrderDate(orderBean.getBookingDate());
 		order.setPaymentMode(orderBean.getModeOfPayment());
 		order.setOrderStatus(orderBean.getOrderStatus());
+		order.setOriginationPort(orderBean.getOriginationPort());
+		order.setDestinationPort(orderBean.getDestinationPort());
 		
 		User loggedInUser = getUser();
 		if(StringUtils.isBlank(orderBean.getBookedBy())) { //A NULL Booked By field means, the Order is NEW and not an edit
@@ -146,8 +179,32 @@ public class OrderAction extends ActionSupport implements Preparable {
 		order.setConsigneeCode(orderBean.getConsigneeCode());
 		order.setConsigneeAddressId(orderBean.getConsigneeInfoAddress().getAddressId());
 		order.setConsigneeContactId(orderBean.getConsigneeInfoContact().getContactId());
+		
+		//Order Item Details
+/*		for (OrderItemsBean orderItemBean: orderBean.getOrderItemsBean()) {
+			orderService.updateOrderItem(transformToOrderItemsEntityBean(orderItemBean)); //This will cover both add and update by using Session.saveOrUpdate() in DAO
+		}	*/																			  
 
 		return order;
+	}
+	
+	private OrderItems transformToOrderItemsEntityBean(OrderItemsBean orderItemBean) {
+		OrderItems orderItem = new OrderItems();
+		
+		//TO DO: To included OrderItems entity in Order Entity
+/*		if (orderItem.getOrderItemId() != null && !("").equals(orderItem.getOrderItemId()))
+			orderItem.setOrderItemId(orderItemBean.getOrderItemId());
+		
+		orderItem.setOrderId(orderItemBean.getOrderId());*/
+		orderItem.setCommodity(orderItemBean.getCargoDetails());
+		orderItem.setQuantity(orderItemBean.getQuantity());
+		orderItem.setClassification(orderItemBean.getClassification());
+		orderItem.setDeclaredValue(orderItemBean.getDeclaredValue());
+		orderItem.setHeight(orderItemBean.getHeight());
+		orderItem.setWidth(orderItemBean.getWidth());
+		orderItem.setLength(orderItemBean.getLength());
+		orderItem.setWeight(orderItemBean.getWeight());
+		return orderItem;
 	}
 	
     public void validateOnSubmit(UserBean userBean) {
