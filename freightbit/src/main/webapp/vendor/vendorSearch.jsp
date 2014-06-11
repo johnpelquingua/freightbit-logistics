@@ -25,7 +25,7 @@
 								    <label for="vendor.vendorSearchList" class="col-sm-2 control-label">Search by:</label>
 
 								    <div class="col-sm-10">
-                                        <s:select id="vendor.vendorSearchCriteria" name="vendor.vendorSearchCriteria" list="vendorSearchList" listValue="value" listKey="key" cssClass="form-control"/>
+                                        <s:select id="vendor.vendorSearchList" name="vendor.vendorSearchList" list="vendorSearchList" listValue="value" listKey="key" cssClass="form-control"/>
 								    </div>
 							    </div>
 
@@ -34,7 +34,7 @@
 							    	<label for="vendor.vendorKeyword" class="col-sm-2 control-label">Search:</label>
 
 								    <div class="col-sm-10">
-                                        <s:textfield cssClass="form-control" placeholder="Keyword" id="vendor.vendorKeyword" name="vendor.vendorKeyword"/>
+                                        <s:textfield cssClass="form-control" placeholder="Keyword" name="vendor.vendorKeyword"/>
 								    </div>
 
 							  	</div>

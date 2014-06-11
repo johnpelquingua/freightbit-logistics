@@ -18,9 +18,10 @@
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <s:form cssClass="form-horizontal" action="editTrucks" method="post" theme="bootstrap">
+                    <s:form cssClass="form-horizontal" action="editVendorTrucks" method="post" theme="bootstrap">
 
                     <s:hidden name="truck.truckId" value="%{truck.truckId}"/>
+                    <s:hidden name="vendor.vendorId" value="%{vendor.vendorId}"/>
                     <div class="form-group">
 
                         <label class="col-sm-2 control-label" for="truck.truckType">Type:</label>
@@ -98,15 +99,11 @@
 
                 <s:submit cssClass="btn btn-default" name="submit" value="Add" />
 
-                <div class="btn-group pull-right">
-                    <button class="btn btn-default">Back</button>
-                    <button class="btn btn-default" onclick="this.form.action='loadAddDriverPage'" >Next</button>
-                </div>
             </div>
             </s:form>
         </div>
 
-        <div class="row col-md-12">
+        <div class="row">
             <div class="panel panel-info">
 
                 <div class="panel-heading">

@@ -25,8 +25,8 @@
 
         <action name="loadEditVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadEditVendorPage">
-            <result name="TRUCKING" type="tiles">vendor.vendorEditVendorTrucking.tiles</result>
-            <result name="SHIPPING" type="tiles">vendor.vendorEditVendorShipping.tiles</result>
+            <result name="TRUCKING" type="tiles">vendor.vendorInfoTruckingEdit.tiles</result>
+            <result name="SHIPPING" type="tiles">vendor.vendorInfoShippingEdit.tiles</result>
         </action>
 
         <action name="loadEditVendorTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
@@ -40,11 +40,13 @@
         </action>
 
         <action name="loadVendorInfo" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadVendorInfo">
-            <result name="success" type="tiles">vendor.vendorInfo.tiles</result>
+            <result name="success" type="tiles">vendor.vendorInfoTrucking.tiles</result>
         </action>
 
         <action name="addVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addVendor">
-            <result name="success" type="tiles">vendor.vendorInfo.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorInfoTrucking.tiles</result>-->
+            <result name="TRUCKING" type="tiles">vendor.vendorInfoTrucking.tiles</result>
+            <result name="SHIPPING" type="tiles">vendor.vendorInfoShipping.tiles</result>
             <result name="input" type="tiles">vendor.vendorAdd.tiles</result>
         </action>
 
@@ -56,8 +58,18 @@
             <result name="success" type="redirect">viewVendors</result>
         </action>
 
-        <action name="editVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">
+        <action name="viewInfoVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewInfoVendor">
+            <result name="success" type="tiles">vendor.vendorInfoTrucking.tiles</result>
+        </action>
+
+        <action name="editVendorTrucking" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">
             <result name="success" type="redirect">loadSaveCompletePage</result>
+            <result name="input" type="redirect">vendor.vendorInfoTruckingEdit.tiles</result>
+        </action>
+
+        <action name="editVendorShipping" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">
+            <result name="success" type="redirect">loadSaveCompletePage</result>
+            <result name="input" type="redirect">vendor.vendorInfoShipping.tiles</result>
         </action>
 
         <!--<action name="editVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">-->

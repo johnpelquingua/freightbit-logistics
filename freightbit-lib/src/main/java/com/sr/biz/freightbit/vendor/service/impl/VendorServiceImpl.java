@@ -15,7 +15,7 @@ import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 
-public class VendorServiceImpl implements VendorService{
+public class VendorServiceImpl implements VendorService {
 
     private VendorDao vendorDao;
 
@@ -25,7 +25,7 @@ public class VendorServiceImpl implements VendorService{
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Integer addVendor(Vendor vendor) throws VendorAlreadyExistsException{
+    public Integer addVendor(Vendor vendor) throws VendorAlreadyExistsException {
         if (vendorDao.findVendorByVendorCode(vendor.getVendorCode()).size() > 0)
             throw new VendorAlreadyExistsException(vendor.getVendorCode());
         else
@@ -64,12 +64,12 @@ public class VendorServiceImpl implements VendorService{
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateVendor(Vendor vendor) {
-        vendorDao.updateVendor(vendor);
+    public void updateVendor(Vendor vendor){
+            vendorDao.updateVendor(vendor);
     }
 
     @Override
-    public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId){
+    public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId) {
         return vendorDao.findVendorsByCriteria(column, value, clientId);
     }
 

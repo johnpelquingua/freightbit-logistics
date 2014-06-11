@@ -37,35 +37,30 @@
     </div>
 
     <div class="sidebar-box">
-        <div class="panel panel-info">
-            <div class="panel-heading">
+        <div class="panel booking panel-info">
+            <div class="booking panel-heading">
                 <img src="includes/images/calendar.png" class="box-icon">
-                <span class="panel-title">Process</span>
+                <span class="booking panel-title">Process</span>
             </div>
 
             <div class="panel-body">
 
                 <ul class="nav">
                     <li><a href="vendor-addvendor" class="side-help"><img src="includes/images/1.png"
-                                                                          class="img-sidehelp">Personal
-                        Information</a></li>
-                    <li><a href="vendor-trucks" class="side-help"><img src="includes/images/2.png"
-                                                                       class="img-sidehelp">Trucks
-                        Information</a></li>
-                    <li><a href="vendor-driver" class="side-help"><img src="includes/images/3.png"
-                                                                       class="img-sidehelp">Driver
-                        Information</a></li>
-                    <li><a href="vendor-contact-person" class="side-help"><img src="includes/images/4.png"
-                                                                               class="img-sidehelp">Contact
-                        Person</a></li>
-                    <li><a href="vendor-other-information" class="side-help"><img
-                            src="includes/images/5.png"
-                            class="img-sidehelp">Other
-                        Information</a></li>
-                    <li><a href="vendor-address" class="side-help"><img src="includes/images/6.png"
-                                                                        class="img-sidehelp">Address</a>
+                                                                          class="img-sidehelp">Personal Information</a>
                     </li>
+                    <li><a href="vendor-vessel" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Vessel</a>
+                    </li>
+                    <li><a href="vendor-contact-person2" class="side-help"><img src="includes/images/3.png"
+                                                                                class="img-sidehelp">Contact Person</a>
+                    </li>
+                    <li><a href="vendor-other-information2" class="side-help"><img src="includes/images/4.png"
+                                                                                   class="img-sidehelp">Other
+                        Information</a></li>
+                    <li><a href="vendor-address2" class="side-help"><img src="includes/images/5.png"
+                                                                         class="img-sidehelp">Address</a></li>
                 </ul>
+
             </div>
         </div>
     </div>
