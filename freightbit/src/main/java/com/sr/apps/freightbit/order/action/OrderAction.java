@@ -125,12 +125,12 @@ public class OrderAction extends ActionSupport implements Preparable {
 		orderBean.setShipperInfoAddress(addressBean);
 		
 		//Order Items Bean
-/*		List <OrderItems> orderItems = orderService.findOrderItemsByCriteria("orderId", order.getOrderId(), getClientId());
+		List <OrderItems> orderItems = order.getOrderItems();
 		List <OrderItemsBean> orderItemsBean = new ArrayList<OrderItemsBean>();
 		for (OrderItems orderItem : orderItems) {
 			orderItemsBean.add(transformToOrderItemsFormBean(orderItem));
 		}
-		orderBean.setOrderItemsBean(orderItemsBean);*/
+		orderBean.setOrderItemsBean(orderItemsBean);
 		
 		return orderBean;
 	}
@@ -181,10 +181,12 @@ public class OrderAction extends ActionSupport implements Preparable {
 		order.setConsigneeContactId(orderBean.getConsigneeInfoContact().getContactId());
 		
 		//Order Item Details
-/*		for (OrderItemsBean orderItemBean: orderBean.getOrderItemsBean()) {
-			orderService.updateOrderItem(transformToOrderItemsEntityBean(orderItemBean)); //This will cover both add and update by using Session.saveOrUpdate() in DAO
-		}	*/																			  
-
+		List <OrderItems> orderItems = new ArrayList<OrderItems>();
+		for (OrderItemsBean orderItemBean: orderBean.getOrderItemsBean()) {
+			orderItems.add(transformToOrderItemsEntityBean(orderItemBean));
+		}																	  
+		order.setOrderItems(orderItems);
+		
 		return order;
 	}
 	

@@ -25,7 +25,7 @@
 								    <label for="user.userSearchCriteria" class="col-sm-2 control-label">Search by:</label>
 
 								    <div class="col-sm-10">
-                                        <s:select required="true" list="userSearchList" listValue="value" listKey="key" cssClass="form-control" name="user.userSearchCriteria" value="user.userSearchCriteria"/>
+                                        <s:select emptyOption="true" list="userSearchList" listValue="value" listKey="key" cssClass="form-control" name="user.userSearchCriteria" value="user.userSearchCriteria"/>
 								    </div>
 							    </div>
 

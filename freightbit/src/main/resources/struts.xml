@@ -12,7 +12,6 @@
 	<include file="struts-permission.xml" />
 	<include file="struts-group.xml" />
 	<include file="struts-help.xml" />
-	<include file="struts-example.xml" />
 	<include file="struts-vendor.xml" />
 	<include file="struts-customers.xml" />
 	<include file="struts-reports.xml" />

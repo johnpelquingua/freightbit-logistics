@@ -24,7 +24,7 @@
             </li>
         <li class="topmenu activeaccounts"><a class="icon-account"><span class="icon-font">Accounts</span></a>
             <ul>
-                <li class="subfirst"><a href="<s:url action='viewUsers' />" class="icon-user"><span class="icon-font">Users</span></a></li>
+                <li class="subfirst"><a href="<s:url action='loadSearchUserPage' />" class="icon-user"><span class="icon-font">Users</span></a></li>
                 <li class="subfirst"><a href="<s:url action='viewGroups' />" class="icon-group"><span class="icon-font">Groups</span></a></li>
                 <li class="subfirst"><a href="<s:url action='viewPermissions' />" class="icon-permission"><span class="icon-font">Permissions</span></a></li>
             </ul>

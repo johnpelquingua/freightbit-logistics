@@ -455,11 +455,11 @@ public class Orders  implements java.io.Serializable {
 
     
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade={CascadeType.ALL})
-	public List<OrderItems> getStockDailyRecords() {
+	public List<OrderItems> getOrderItems() {
 		return this.orderItems;
 	}
  
-	public void setStockDailyRecords(List<OrderItems> orderItems) {
+	public void setOrderItems(List<OrderItems> orderItems) {
 		this.orderItems = orderItems;
 	}
     
