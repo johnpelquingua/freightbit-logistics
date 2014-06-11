@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,7 +26,7 @@ public class OrderItems  implements java.io.Serializable {
 
      private Integer orderItemId;
      private Integer clientId;
-     private Integer orderId;
+     private Orders order;
      private Integer quantity;
      private String classification;
      private String commodity;
@@ -43,9 +44,8 @@ public class OrderItems  implements java.io.Serializable {
     public OrderItems() {
     }
 
-    public OrderItems(Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double height, Double width, Double length, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public OrderItems(Integer clientId, Integer quantity, String classification, String commodity, Double declaredValue, Double height, Double width, Double length, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
        this.clientId = clientId;
-       this.orderId = orderId;
        this.quantity = quantity;
        this.classification = classification;
        this.commodity = commodity;
@@ -81,14 +81,13 @@ public class OrderItems  implements java.io.Serializable {
         this.clientId = clientId;
     }
 
-    
-    @Column(name="orderId", nullable=false)
-    public Integer getOrderId() {
-        return this.orderId;
+    @JoinColumn(name = "orderId", nullable = false)
+    public Orders getOrder() {
+        return this.order;
     }
     
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setOrder(Orders order) {
+        this.order = order;
     }
 
     
