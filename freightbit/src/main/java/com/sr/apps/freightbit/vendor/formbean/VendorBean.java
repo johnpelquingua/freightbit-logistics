@@ -20,19 +20,20 @@ public class VendorBean {
     private String vendorStatus;
     private String vendorSearchCriteria;
     private String vendorKeyword;
-    private List <VesselBean> vesselBeanList;
-    private List <TruckBean> truckBeanList;
-    private List <DriverBean> driverBeanList;
-    private List <AddressBean> addressBeanList;
-    private List <ContactBean> contactBeanList;
+    private List<VesselBean> vesselBeanList;
+    private List<TruckBean> truckBeanList;
+    private List<DriverBean> driverBeanList;
+    private List<AddressBean> addressBeanList;
+    private List<ContactBean> contactBeanList;
     private OtherInformationBean otherInformationBean;
 
-	public VendorBean() {
+    public VendorBean() {
 
     }
 
-    public VendorBean(Integer vendorId, Integer clientId, String vendorCode,
-                      String vendorName, String vendorClass, String vendorType, String vendorStatus) {
+    public VendorBean(Integer vendorId, Integer clientId, String vendorCode, String vendorName,
+                      String vendorClass, String vendorType, String vendorStatus, String vendorSearchCriteria,
+                      String vendorKeyword) {
         this.vendorId = vendorId;
         this.clientId = clientId;
         this.vendorCode = vendorCode;
@@ -40,8 +41,9 @@ public class VendorBean {
         this.vendorClass = vendorClass;
         this.vendorType = vendorType;
         this.vendorStatus = vendorStatus;
+        this.vendorSearchCriteria = vendorSearchCriteria;
+        this.vendorKeyword = vendorKeyword;
     }
-
 
     public String getVendorSearchCriteria() {
         return vendorSearchCriteria;
@@ -114,54 +116,54 @@ public class VendorBean {
     public void setVendorType(String vendorType) {
         this.vendorType = vendorType;
     }
-    
+
 
     public List<VesselBean> getVesselBeanList() {
-		return vesselBeanList;
-	}
+        return vesselBeanList;
+    }
 
-	public void setVesselBeanList(List<VesselBean> vesselBeanList) {
-		this.vesselBeanList = vesselBeanList;
-	}
+    public void setVesselBeanList(List<VesselBean> vesselBeanList) {
+        this.vesselBeanList = vesselBeanList;
+    }
 
-	public List<TruckBean> getTruckBeanList() {
-		return truckBeanList;
-	}
+    public List<TruckBean> getTruckBeanList() {
+        return truckBeanList;
+    }
 
-	public void setTruckBeanList(List<TruckBean> truckBeanList) {
-		this.truckBeanList = truckBeanList;
-	}
+    public void setTruckBeanList(List<TruckBean> truckBeanList) {
+        this.truckBeanList = truckBeanList;
+    }
 
-	public List<DriverBean> getDriverBeanList() {
-		return driverBeanList;
-	}
+    public List<DriverBean> getDriverBeanList() {
+        return driverBeanList;
+    }
 
-	public void setDriverBeanList(List<DriverBean> driverBeanList) {
-		this.driverBeanList = driverBeanList;
-	}
+    public void setDriverBeanList(List<DriverBean> driverBeanList) {
+        this.driverBeanList = driverBeanList;
+    }
 
-	public List<AddressBean> getAddressBeanList() {
-		return addressBeanList;
-	}
+    public List<AddressBean> getAddressBeanList() {
+        return addressBeanList;
+    }
 
-	public void setAddressBeanList(List<AddressBean> addressBeanList) {
-		this.addressBeanList = addressBeanList;
-	}
+    public void setAddressBeanList(List<AddressBean> addressBeanList) {
+        this.addressBeanList = addressBeanList;
+    }
 
-	public List<ContactBean> getContactBeanList() {
-		return contactBeanList;
-	}
+    public List<ContactBean> getContactBeanList() {
+        return contactBeanList;
+    }
 
-	public void setContactBeanList(List<ContactBean> contactBeanList) {
-		this.contactBeanList = contactBeanList;
-	}
+    public void setContactBeanList(List<ContactBean> contactBeanList) {
+        this.contactBeanList = contactBeanList;
+    }
 
-	public OtherInformationBean getOtherInformationBean() {
-		return otherInformationBean;
-	}
+    public OtherInformationBean getOtherInformationBean() {
+        return otherInformationBean;
+    }
 
-	public void setOtherInformationBean(OtherInformationBean otherInformationBean) {
-		this.otherInformationBean = otherInformationBean;
-	}
+    public void setOtherInformationBean(OtherInformationBean otherInformationBean) {
+        this.otherInformationBean = otherInformationBean;
+    }
 
 }

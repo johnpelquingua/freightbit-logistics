@@ -25,5 +25,4 @@ public interface VendorDao {
 
     public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId);
 
-
 }

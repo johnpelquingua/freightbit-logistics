@@ -71,7 +71,7 @@
 
 					  <div class="panel-footer">
 							<span class="pull-right">
-								<a href="vendorAdd.jsp" class="icon-action-link" rel="tooltip" title="Add Vendor"><img src="includes/images/add-user.png" class="icon-action circ-icon"> </a>
+								<a href="loadAddVendorPage" class="icon-action-link" rel="tooltip" title="Add Vendor"><img src="includes/images/add-user.png" class="icon-action circ-icon"> </a>
 							</span>
 
 							<ul class="pagination">
@@ -86,26 +86,6 @@
 			    </div>	
 			</div>
 		
-		</div>
-
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-		      </div>
-		      <div class="modal-body">
-		        <div style="text-align:center;">
-					<span>Do you really want to delete <em>'SRI, Solutions Resource, info@solutionsresource.com, 123-4567'</em> ? This action is irreversible.</span>
-				</div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
-		      </div>
-		    </div>
-		  </div>
 		</div>
 
 		<!-- SIDEBAR GOES HERE -->

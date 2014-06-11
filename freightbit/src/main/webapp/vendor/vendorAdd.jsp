@@ -72,7 +72,7 @@
             <div class="panel-footer">
                 <div class="btn-group" style="float: right;">
                     <s:submit cssClass="btn btn-default" value="Save" type="submit"/>
-                    <button class="btn btn-default" onclick="this.form.action='viewVendors'"/>
+                    <button class="btn btn-default" onclick="this.form.action='viewVendors'">
                     Cancel</button>
                 </div>
             </div>

@@ -69,11 +69,31 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
     public String viewVendors() {
-        List<Vendor> vendorEntityList = vendorService.findAllVendors();
+        String column = getColumnFilter();
+        List<Vendor> vendorEntityList = new ArrayList<Vendor>();
+
+        if (StringUtils.isNotBlank(column)) {
+            vendorEntityList = vendorService.findVendorsByCriteria(column, vendor.getVendorKeyword(), getClientId());
+        } else {
+            vendorEntityList = vendorService.findAllVendors();
+        }
+
         for (Vendor vendorElem : vendorEntityList) {
             vendors.add(transformToFormBean(vendorElem));
         }
         return SUCCESS;
+    }
+
+    private String getColumnFilter() {
+        String column = "";
+        if ("COMPANY NAME".equals(vendor.getVendorSearchCriteria())) {
+            column = "vendorName";
+        } else if ("COMPANY CODE".equals(vendor.getVendorSearchCriteria())) {
+            column = "vendorCode";
+        } else if ("VENDOR TYPE".equals(vendor.getVendorSearchCriteria())) {
+            column = "vendorType";
+        }
+        return column;
     }
 
     public String loadAddVendorPage() {
