@@ -26,31 +26,21 @@ import java.util.List;
  */
 public class CustomerServiceImpl implements CustomerService {
 
-    CustomerDao customerDao;
+    private CustomerDao customerDao;
+    private ItemsDao itemsDao;
+    private AddressDao addressDao;
+    private RatesDao ratesDao;
+    private ContactsDao contactsDao;
 
-    public CustomerDao getCustomerDao() {
-        return customerDao;
-    }
+
     public void setCustomerDao(CustomerDao customerDao) {
         this.customerDao = customerDao;
     }
-
-    private ItemsDao itemsDao;
-    public ItemsDao getItemsDao() { return itemsDao; }
     public void setItemsDao(ItemsDao itemsDao) { this.itemsDao = itemsDao; }
-
-
-    private AddressDao addressDao;
-    public AddressDao getAddressDao() { return addressDao; }
     public void setAddressDao(AddressDao addressDao) { this.addressDao = addressDao; }
-
-    private RatesDao ratesDao;
-    public RatesDao getRatesDao() { return ratesDao; }
     public void setRatesDao(RatesDao ratesDao) {
         this.ratesDao = ratesDao;
     }
-
-    private ContactsDao contactsDao;
     public void setContactsDao(ContactsDao contactsDao) {
         this.contactsDao = contactsDao;
     }
@@ -154,6 +144,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateAddress(Address address) {
+        addressDao.updateAddress(address);
+    }
+
+
+    @Override
     public List<Address> findAllAddressByClientId(Integer clientId) {
         return addressDao.findAllAddressByClientId(clientId);
     }
@@ -170,12 +167,7 @@ public class CustomerServiceImpl implements CustomerService {
         return addressDao.findAddressById(addressId);
     }
 
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateAddress(Address address) {
-        addressDao.updateAddress(address);
-    }
-    
+
     @Override
     public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
     	return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);

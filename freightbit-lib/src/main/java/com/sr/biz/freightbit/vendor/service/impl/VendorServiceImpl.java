@@ -5,20 +5,44 @@ package com.sr.biz.freightbit.vendor.service.impl;
  * User: johnpel
  */
 
+import java.util.Date;
 import java.util.List;
 
+import com.sr.biz.freightbit.common.dao.AddressDao;
+import com.sr.biz.freightbit.common.entity.Address;
+import com.sr.biz.freightbit.vendor.dao.*;
+import com.sr.biz.freightbit.vendor.entity.*;
+import com.sr.biz.freightbit.vendor.exceptions.*;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.vendor.dao.VendorDao;
-import com.sr.biz.freightbit.vendor.entity.Vendor;
-import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 
 public class VendorServiceImpl implements VendorService {
 
     private VendorDao vendorDao;
+    private AddressDao addressDao;
+    private TrucksDao trucksDao;
+    private DriverDao driverDao;
+    private TrailersDao trailersDao;
+    private VesselDao vesselDao;
 
+
+    public void setTrucksDao(TrucksDao trucksDao) {
+        this.trucksDao = trucksDao;
+    }
+    public void setDriverDao(DriverDao driverDao) {
+        this.driverDao = driverDao;
+    }
+    public void setTrailersDao(TrailersDao trailersDao) {
+        this.trailersDao = trailersDao;
+    }
+    public void setVesselDao(VesselDao vesselDao) {
+        this.vesselDao = vesselDao;
+    }
+    public void setAddressDao(AddressDao addressDao) {
+        this.addressDao = addressDao;
+    }
     public void setVendorDao(VendorDao vendorDao) {
         this.vendorDao = vendorDao;
     }
@@ -73,4 +97,284 @@ public class VendorServiceImpl implements VendorService {
         return vendorDao.findVendorsByCriteria(column, value, clientId);
     }
 
+
+//    START OF ADDRESS
+    @Override
+    public Address findAddressByRefId(Integer customerId) {
+    return addressDao.findContactByReferenceTableAndId("CUSTOMERS", customerId);
+}
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addAddress(Address address) {
+        addressDao.addAddress(address);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void deleteAddress(Address address) {
+        addressDao.deleteAddress(address);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateAddress(Address address) {
+        addressDao.updateAddress(address);
+    }
+
+
+    @Override
+    public List<Address> findAllAddressByClientId(Integer clientId) {
+        return addressDao.findAllAddressByClientId(clientId);
+    }
+
+//    @Override
+//    public List<Address> findAllAddress(Integer addressId) {
+//        List<Address> address = addressDao.findAllAddress(addressId);
+//        return address;
+//    }
+
+
+    @Override
+    public Address findAddressById(Integer addressId) {
+        return addressDao.findAddressById(addressId);
+    }
+
+
+    @Override
+    public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
+        return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
+    }
+
+//    END OF ADDRESS
+
+//    START OF TRUCKS
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addTrucks(Trucks trucks) throws TrucksAlreadyExistsException {
+        if (trucksDao.findTrucksByTruckCode(trucks.getTruckCode()).size() > 0)
+            throw new TrucksAlreadyExistsException(trucks.getTruckCode());
+        else
+            trucksDao.addTrucks(trucks);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateTrucks(Trucks trucks) {
+        trucksDao.updateTrucks(trucks);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void deleteTrucks(Trucks trucks) {
+        trucksDao.deleteTrucks(trucks);
+    }
+
+   /* @Override
+    public List<Trucks> findTrucksById(long truckId) {
+        return trucksDao.findTrucksById(truckId);
+    }*/
+
+    @Override
+    public List<Trucks> findAllTrucks() {
+        List<Trucks> trucks = trucksDao.findAllTrucks();
+        return trucks;
+    }
+
+    @Override
+    public Trucks findTrucksByTruckCode(String truckCode) {
+        List<Trucks> result = trucksDao.findTrucksByTruckCode(truckCode);
+        if (result != null && !result.isEmpty())
+            return result.get(0);
+        return null;
+    }
+
+    @Override
+    public List<Trucks> findTrucksByVendorId(Integer vendorId) {
+        List<Trucks> result = trucksDao.findTrucksByVendorId(vendorId);
+       /* if (result != null && !result.isEmpty()) {
+            return result.get(0);
+        }*/
+        return result;
+    }
+
+  /*  @Override
+    public void updateLastVisitDate(User user) {
+        user.setLastVisitDate(new Date());
+        userDao.updateUser(user);
+    }*/
+
+//    END OF TRUCKS
+
+
+//    START OF DRIVER
+@Override
+@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+public void addDriver(Driver driver) throws DriverAlreadyExistsException {
+    if (driverDao.findDriverByLastName(driver.getLastName()).size() > 0)
+        throw new DriverAlreadyExistsException(driver.getLastName());
+    else
+        driverDao.addDriver(driver);
+}
+
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void deleteDriver(Driver driver){
+        driverDao.deleteDriver(driver);
+    }
+
+    @Override
+    public List<Driver> findAllDriversByClientId(Integer clientId){
+        return driverDao.findAllDriversByClientId(clientId);
+    }
+
+    @Override
+    public List<Driver> findAllDrivers() {
+        List<Driver> drivers = driverDao.findAllDrivers();
+        return drivers;
+    }
+
+    @Override
+    public Driver findDriverById(Integer driverId ) {
+        return driverDao.findDriverById(driverId);
+    }
+
+    @Override
+    public Driver findDriverByLastName(String lastName){
+        List<Driver> result = driverDao.findDriverByLastName(lastName);
+        if (result != null && !result.isEmpty())
+            return result.get(0);
+        return null;
+    }
+
+    @Override
+    public void updateDateHired(Driver driver){
+        driver.setDateHired(new Date());
+        driverDao.updateDriver(driver);
+    }
+
+    @Override
+    public void updateDateTerminated(Driver driver){
+        driver.setDateTerminated(new Date());
+        driverDao.updateDriver(driver);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateDriver(Driver driver) {
+        driverDao.updateDriver(driver);
+    }
+
+    @Override
+    public List<Driver> findDriverByVendorId(Integer vendorId) {
+        List<Driver> result = driverDao.findDriverByVendorId(vendorId);
+        return result;
+    }
+
+    @Override
+    public Driver findDriverByDriverCode(String driverCode) {
+        List<Driver> result = driverDao.findDriverByDriverCode(driverCode);
+        if (result != null && !result.isEmpty()) {
+            return result.get(0);
+        }
+        return null;
+    }
+//    END OF DRIVER
+
+//    START OF TRAILERS
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addTrailers(Trailers trailers) throws TrailersAlreadyExistsException {
+        if (trailersDao.findTrailersByTrailerCode(trailers.getTrailerCode())!=null)
+            throw new TrailersAlreadyExistsException(trailers.getTrailerCode());
+        else
+            trailersDao.addTrailers(trailers);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateTrailers(Trailers trailers) {
+        trailersDao.updateTrailers(trailers);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void deleteTrailers(Trailers trailers) {
+        trailersDao.deleteTrailers(trailers);
+    }
+
+    @Override
+    public Trailers findTrailersById(Integer trailerId) {
+        return trailersDao.findTrailersById(trailerId);
+    }
+
+    @Override
+    public List<Trailers> findAllTrailersByClientId (Integer clientId) {
+        return trailersDao.findAllTrailersByClientId(clientId);
+    }
+
+    @Override
+    public List<Trailers> findAllTrailers() {
+        List<Trailers> trailers = trailersDao.findAllTrailers();
+        return trailers;
+    }
+
+    @Override
+    public Trailers findTrailersByTrailerCode(String trailerCode) {
+        List<Trailers> result = trailersDao.findTrailersByTrailerCode(trailerCode);
+        if (result != null && !result.isEmpty()) {
+            return result.get(0);
+        }
+        return null;
+    }
+
+//    END OF TRAILERS
+
+//    START OF VESSEL
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addVessel(Vessel vessel) throws VesselAlreadyExistsException {
+        if(vesselDao.findVesselByName(vessel.getVesselName()) != null)
+            throw new VesselAlreadyExistsException(vessel.getVesselName());
+        else
+            vesselDao.addVessel(vessel);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void deleteVessel(Vessel vessel){
+        vesselDao.deleteVessel(vessel);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateVessel(Vessel vessel) {
+        vesselDao.updateVessel(vessel);
+    }
+
+    @Override
+    public List<Vessel> findAllVessel(){
+        List<Vessel> vessels = vesselDao.findAllVessel();
+        return vessels;
+    }
+
+    @Override
+    public Vessel findVesselById(long vesselId){ return vesselDao.findVesselById(vesselId);}
+
+    @Override
+    public List<Vessel> findVesselByClientId(long clientId){ return vesselDao.findVesselByClientId(clientId); }
+
+    public Vessel findVesselByName(String vesselName){
+        List<Vessel> result = vesselDao.findVesselByName(vesselName);
+        if(result != null && !result.isEmpty())
+            return result.get(0);
+        return null;
+    }
+
+
+//    END OF VESSEL
 }
