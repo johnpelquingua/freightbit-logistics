@@ -404,7 +404,7 @@ public class Orders  implements java.io.Serializable {
 	}
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="pickupDate")
+    @Column(name="deliveryDate")
 	public Date getDeliveryDate() {
 		return deliveryDate;
 	}
