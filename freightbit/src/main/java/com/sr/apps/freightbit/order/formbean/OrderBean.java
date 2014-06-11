@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
+import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 
 public class OrderBean {
 	
@@ -16,6 +17,7 @@ public class OrderBean {
 	private String freightType;
 	private String modeOfService;
 	private String modeOfPayment;
+    private String serviceRequirement;
 	private String notifyBy;
 	private String referenceNo;
 	private String originalRefNo;
@@ -38,6 +40,7 @@ public class OrderBean {
 	private AddressBean consigneeInfoAddress;
 	private ContactBean consigneeInfoContact;
 	private List <OrderItemsBean> orderItemsBean;
+    private List <CustomerBean> customerBean;
 	
 	public Integer getOrderId() {
 		return orderId;
@@ -160,9 +163,24 @@ public class OrderBean {
 	public void setOrderItemsBean(List<OrderItemsBean> orderItemsBean) {
 		this.orderItemsBean = orderItemsBean;
 	}
-	
-	
-	public String getShipperCode() {
+
+    public List<CustomerBean> getCustomerBean() {
+        return customerBean;
+    }
+
+    public void setCustomerBean(List<CustomerBean> customerBean) {
+        this.customerBean = customerBean;
+    }
+
+    public String getServiceRequirement() {
+        return serviceRequirement;
+    }
+
+    public void setServiceRequirement(String serviceRequirement) {
+        this.serviceRequirement = serviceRequirement;
+    }
+
+    public String getShipperCode() {
 		return shipperCode;
 	}
 	public void setShipperCode(String shipperCode) {

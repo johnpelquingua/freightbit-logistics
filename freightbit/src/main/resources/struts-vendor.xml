@@ -154,5 +154,28 @@
             <result name="success" type="redirect">loadAddDriverPage</result>
         </action>
 
+        <!--contact -->
+        <action name="loadAddContactPersonPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddContactPersonPage">
+            <result name="success" type="tiles">vendor.vendorAddContact.tiles</result>
+        </action>
+
+        <action name="loadEditContactPersonPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditContactPersonPage">
+            <result name="success" type="tiles">vendor.vendorAddContact.tiles</result>
+        </action>
+
+        <action name="addVendorContactPerson" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addVendorContactPerson">
+            <result name="success" type="redirect">loadAddContactPersonPage</result>
+            <result name="input" type="tiles">vendor.vendorAddContact.tiles</result>
+        </action>
+
+        <action name="editVendorContactPerson" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendorContactPerson">
+            <result name="success" type="redirect">loadAddContactPersonPage</result>
+            <result name="input" type="tiles">vendor.vendorAddContact.tiles</result>
+        </action>
+
+        <action name="deleteVendorContactPersonPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteVendorContactPerson">
+            <result name="success" type="redirect">loadAddContactPersonPage</result>
+        </action>
+
     </package>
 </struts>

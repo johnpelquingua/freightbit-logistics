@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import org.apache.commons.lang3.StringUtils;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -41,6 +42,9 @@ public class OrderAction extends ActionSupport implements Preparable {
 	private List <Parameters> notifyByList;
 	private List <Contacts> shipperList;
 	private List <Contacts> consigneeList;
+    private List <CustomerBean> customerBean;
+
+
 
 	private OrderService orderService;
 	private CustomerService customerService;
@@ -56,7 +60,12 @@ public class OrderAction extends ActionSupport implements Preparable {
 	
 	public String loadAddOrderPage() {
 		//orderBean.setBookingDate(new Date());
-		return SUCCESS;
+
+    /*customerList = customerService.findAllCustomer(getClientId());
+    for (Customer customerElem: customerList ) {
+        customerBean.add(transformToCustomerFormBean(customerElem));
+    }*/
+    return SUCCESS;
 	}
 	
 	public String addOrder() {
@@ -79,6 +88,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 		orderBean.setBookedBy(order.getCreatedBy());
 		orderBean.setFreightType(order.getServiceType());
 		orderBean.setModeOfService(order.getServiceMode());
+        orderBean.setServiceRequirement(order.getServiceRequirement());
 		orderBean.setNotifyBy(order.getNotificationType());
 		orderBean.setModeOfPayment(order.getPaymentMode());
 		orderBean.setBookingDate(order.getOrderDate());
@@ -89,9 +99,9 @@ public class OrderAction extends ActionSupport implements Preparable {
 		orderBean.setPickupTime(order.getPickupTime());
 		orderBean.setDeliveryDate(order.getDeliveryDate());
 		orderBean.setDeliveryTime(order.getDeliveryTime());
-		
-		
-		List <Customer> customer = customerService.findCustomersByCriteria("customerCode", order.getShipperCode(), getClientId());
+        orderBean.setBookingDate(new Date());
+
+        List <Customer> customer = customerService.findCustomersByCriteria("customerCode", order.getShipperCode(), getClientId());
 		if (customer != null) {
 			orderBean.setCustomerName(customer.get(0).getCustomerName());
 			orderBean.setShipperCode(customer.get(0).getCustomerCode());
@@ -101,7 +111,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 		//Consignee Info
 		Contacts consigneeContact = customerService.findContactById(order.getConsigneeContactId());	
 		ContactBean contactBean = new ContactBean();
-		contactBean.setName(getFullName(consigneeContact.getFirstName(), consigneeContact.getMiddleName(), consigneeContact.getLastName()));
+		//contactBean.setName(getFullName(consigneeContact.getFirstName(), consigneeContact.getMiddleName(), consigneeContact.getLastName()));
 		contactBean.setEmail(consigneeContact.getMobile());
 		contactBean.setMobile(consigneeContact.getEmail());
 		orderBean.setConsigneeInfoContact(contactBean);
@@ -114,7 +124,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 		//Shipper Info
 		Contacts shipperContact = customerService.findContactById(order.getShipperContactId());	
 	    contactBean = new ContactBean();
-		contactBean.setName(getFullName(shipperContact.getFirstName(), shipperContact.getMiddleName(), shipperContact.getLastName()));
+		//contactBean.setName(getFullName(shipperContact.getFirstName(), shipperContact.getMiddleName(), shipperContact.getLastName()));
 		contactBean.setEmail(shipperContact.getMobile());
 		contactBean.setMobile(shipperContact.getEmail());
 		orderBean.setShipperInfoContact(contactBean);
@@ -134,6 +144,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 		
 		return orderBean;
 	}
+
+    private CustomerBean transformToCustomerFormBean(Customer customer) {
+
+        CustomerBean formBean = new CustomerBean();
+        formBean.setCustomerName(customer.getCustomerName());
+        return formBean;
+    }
 	
 	private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
 		OrderItemsBean orderItemBean = new OrderItemsBean();
@@ -356,5 +373,11 @@ public class OrderAction extends ActionSupport implements Preparable {
 		this.parameterService = parameterService;
 	}
 
+    public List<CustomerBean> getCustomerBean() {
+        return customerBean;
+    }
 
+    public void setCustomerBean(List<CustomerBean> customerBean) {
+        this.customerBean = customerBean;
+    }
 }

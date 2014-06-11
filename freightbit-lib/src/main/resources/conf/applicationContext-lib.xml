@@ -44,7 +44,6 @@
     </bean>
 
 	<!-- Services -->
-
     <bean id="clientService" class="com.sr.biz.freightbit.core.service.impl.ClientServiceImpl">
         <property name="clientDao" ref="clientDao" />
     </bean>
@@ -56,7 +55,7 @@
 	<bean id="userService" class="com.sr.biz.freightbit.core.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao" />
 	</bean>
-
+	
 	<bean id="groupService" class="com.sr.biz.freightbit.core.service.impl.GroupServiceImpl">
 		<property name="groupDao" ref="groupDao" />
 		<property name="groupUserDao" ref="groupUserDao"/>
@@ -75,8 +74,11 @@
         <property name="itemsDao" ref="itemsDao" />
     </bean>
 
+
+
     <bean id="vendorService" class="com.sr.biz.freightbit.vendor.service.impl.VendorServiceImpl">
         <property name="vendorDao" ref="vendorDao" />
+        <property name="contactsDao" ref="contactsDao" />
         <property name="addressDao" ref="addressDao" />
         <property name="trucksDao" ref="trucksDao" />
         <property name="driverDao" ref="driverDao" />
@@ -96,10 +98,10 @@
     <!-- Services End -->
     <!-- DAOs -->
 
-
     <bean id="contactsDao" class="com.sr.biz.freightbit.common.dao.impl.ContactsDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+
     <bean id="ratesDao" class="com.sr.biz.freightbit.customer.dao.impl.RateDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>

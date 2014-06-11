@@ -9,7 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 import com.sr.biz.freightbit.common.dao.AddressDao;
+import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Address;
+import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.dao.*;
 import com.sr.biz.freightbit.vendor.entity.*;
 import com.sr.biz.freightbit.vendor.exceptions.*;
@@ -26,6 +29,7 @@ public class VendorServiceImpl implements VendorService {
     private DriverDao driverDao;
     private TrailersDao trailersDao;
     private VesselDao vesselDao;
+    private ContactsDao contactsDao;
 
 
     public void setTrucksDao(TrucksDao trucksDao) {
@@ -45,6 +49,10 @@ public class VendorServiceImpl implements VendorService {
     }
     public void setVendorDao(VendorDao vendorDao) {
         this.vendorDao = vendorDao;
+    }
+
+    public void setContactsDao(ContactsDao contactsDao) {
+        this.contactsDao = contactsDao;
     }
 
     @Override
@@ -89,7 +97,7 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateVendor(Vendor vendor){
-            vendorDao.updateVendor(vendor);
+        vendorDao.updateVendor(vendor);
     }
 
     @Override
@@ -98,11 +106,11 @@ public class VendorServiceImpl implements VendorService {
     }
 
 
-//    START OF ADDRESS
+    //    START OF ADDRESS
     @Override
     public Address findAddressByRefId(Integer customerId) {
-    return addressDao.findContactByReferenceTableAndId("CUSTOMERS", customerId);
-}
+        return addressDao.findContactByReferenceTableAndId("CUSTOMERS", customerId);
+    }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -208,15 +216,15 @@ public class VendorServiceImpl implements VendorService {
 //    END OF TRUCKS
 
 
-//    START OF DRIVER
-@Override
-@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-public void addDriver(Driver driver) throws DriverAlreadyExistsException {
-    if (driverDao.findDriverByLastName(driver.getLastName()).size() > 0)
-        throw new DriverAlreadyExistsException(driver.getLastName());
-    else
-        driverDao.addDriver(driver);
-}
+    //    START OF DRIVER
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addDriver(Driver driver) throws DriverAlreadyExistsException {
+        if (driverDao.findDriverByLastName(driver.getLastName()).size() > 0)
+            throw new DriverAlreadyExistsException(driver.getLastName());
+        else
+            driverDao.addDriver(driver);
+    }
 
 
     @Override
@@ -377,4 +385,58 @@ public void addDriver(Driver driver) throws DriverAlreadyExistsException {
 
 
 //    END OF VESSEL
+
+    //Contacts
+
+    @Override
+    public Contacts findContactById(long contactId) {
+        return contactsDao.findContactById(contactId);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addContact(Contacts contacts) throws ContactAlreadyExistsException {
+        if (contactsDao.findContactById(contacts.getContactId()) != null) {
+            throw new ContactAlreadyExistsException(contacts.getContactId());
+        } else {
+            contactsDao.addContact(contacts);
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void deleteContact(Contacts contacts) {
+        contactsDao.deleteContact(contacts);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateContact(Contacts contacts) {
+        contactsDao.updateContact(contacts);
+    }
+
+    @Override
+    public List<Contacts> findAllContacts(long clientId) {
+        List<Contacts> contacts = contactsDao.findAllContacts(clientId);
+        return contacts;
+    }
+
+    @Override
+    public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId) {
+        return contactsDao.findContactByRefTableAndIdAndType("CUSTOMERS", customerId, contactType);
+    }
+
+    @Override
+    public List <Contacts> findContactByReferenceId(Integer vendorId) {
+        List <Contacts> result = contactsDao.findContactByReferenceId(vendorId);
+        return result;
+
+    }
+
+//    @Override
+//    public List<Contacts> findAllContactsByClientId(long clientId){
+//        return contactsDao.findAllContactsByClientId(clientId);
+//    }
+
+    //end of Contacts
 }

@@ -124,6 +124,39 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao{
         query.setParameter("referenceId", referenceId);
         query.setParameter("contactType", contactType);
         return query.list();
-    }    
+    }
+
+    @Override
+    public List<Contacts> findContactByReferenceId(Integer referenceId) {
+        log.debug("Getting Contact instance by vendor id: " + referenceId);
+
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Contacts c where c.referenceId = :referenceId ");
+            query.setParameter("referenceId", referenceId);
+            List<Contacts> results = (List<Contacts>) query.list();
+            log.debug("Find by vendorId successful, result size: " + results.size());
+            return results;
+        }catch(RuntimeException re){
+            log.error("Get failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+    public List<Contacts> findContactByLastName (String lastName){
+        log.debug("finding Contact instance by Last Name");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Contact c where c.lastName = :lastName");
+            query.setParameter("lastName", lastName);
+            List<Contacts> results = (List<Contacts>) query.list();
+            log.debug("find by lastname successful, result size: " + results.size());
+            return results;
+        }catch(RuntimeException re) {
+            log.error("find by lastname failed", re);
+            throw re;
+
+        }
+    }
 
 }

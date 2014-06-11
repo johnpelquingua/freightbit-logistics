@@ -9,6 +9,8 @@ import java.util.Date;
 /**
  * Created by Clarence C. Victoria on 5/26/14.
  */
+@Entity
+@Table(name = "contacts", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "contactId"))
 public class Contacts implements Serializable {
 //
     private Integer contactId;

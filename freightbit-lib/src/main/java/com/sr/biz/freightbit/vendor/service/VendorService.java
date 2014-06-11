@@ -8,6 +8,8 @@ package com.sr.biz.freightbit.vendor.service;
 import java.util.List;
 
 import com.sr.biz.freightbit.common.entity.Address;
+import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.entity.*;
 import com.sr.biz.freightbit.vendor.exceptions.*;
 
@@ -120,5 +122,21 @@ public interface VendorService {
     public List<Vessel> findVesselByClientId(long clientId);
 
     public Vessel findVesselByName(String vesselName);
+
+//   Contact Service
+
+    public Contacts findContactById(long contactId);
+
+    public void addContact(Contacts contacts) throws ContactAlreadyExistsException;
+
+    public void deleteContact(Contacts contacts);
+
+    public void updateContact(Contacts contacts);
+
+    public List<Contacts> findAllContacts(long clientId);
+
+    public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
+
+    public List <Contacts> findContactByReferenceId(Integer vendorId);
 
 }

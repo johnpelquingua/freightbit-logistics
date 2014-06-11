@@ -2,15 +2,16 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib prefix="sx" uri="/struts-dojo-tags" %>
 <sj:head compressed='true' jquerytheme="ui-darkness"/>
-
+<sx:head debug="true" extraLocales="en-us,nl-nl,de-de"/>
 
 <div class="col-md-10 col-md-offset-2">
 
     <h1 class="booking page-header">
     New Booking
     </h1>
-
+<s:form action="addOrder" theme="bootstrap" method="post">
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel booking panel-info">
@@ -27,71 +28,48 @@
                                 <h3 class="panel-title">Order Information</h3>
                               </div>
 
-                              <s:form cssClass="form-horizontal" action="addOrder" method="POST" theme="bootstrap">
 
+                              <div cssClass="form-horizontal" theme="bootstrap">
                                     <div class="col-md-6">
                                         <br/>
 
                                         <div class="form-group">
-                                            <label for="order." class="col-sm-4 control-label tb-font-black">Customer :</label>
+                                            <label class="col-sm-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Customer :</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" />
+                                                <s:select class="form-control" style="margin-bottom: 15px !important;" name="orderBean.customerList" list="customerList" value="orderBean.customerList"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label tb-font-black">Order Number :</label>
+                                            <label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Order Number :</label>
                                             <div class="col-md-6">
-                                                <input class="form-control" />
+                                                <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;" />
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black">Date of Booking :</label>
+                                            <label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Date of Booking :</label>
                                             <div class="col-md-6">
                                                 <sj:datepicker id="datepicker1"
-                                                 displayFormat="mm-dd-yy"
-                                                 imageUrl="includes/images/datepicker.gif"
-                                                 imageTooltip="Select Your Birthdate"
-                                                 showButton="true"
-                                                 changeYear="true"
-                                                 changeMonth="true"
-                                                 style="width: 88% !important;"
+                                                displayFormat="mm-dd-yy"
+                                                imageUrl="includes/images/datepicker.gif"
+                                                imageTooltip="Select Your Birthdate"
+                                                showButton="true"
+                                                changeYear="true"
+                                                changeMonth="true"
+                                                style="width: 88% !important; margin-bottom: 15px !important; display: initial!important; border: 1px solid #ccc; border-radius: 4px; height: 34px;"
+                                                name="orderBean.bookingDate"
+                                                value="%{orderBean.bookingDate}"
                                                 />
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Freight Type :</label>
+                                            <label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Freight Type :</label>
                                             <div class="col-md-6">
-                                                <select class="form-control">
-                                                    <option>Type A</option>
-                                                    <option>Type B</option>
-                                                    <option>Type C</option>
-                                                </select>
+                                                <s:select cssClass="form-control" style="margin-bottom: 15px !important;" name="orderBean.freightType" list="freightTypeList" listKey="key" listValue="value" value="orderBean.freightType" />
                                             </div>
                                         </div>
+
                                         <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Mode of Service :</label>
-                                            <div class="col-md-6">
-                                                <select class="form-control">
-                                                    <option>Door to Door</option>
-                                                    <option>Door to Pier</option>
-                                                    <option>Pier to Door</option>
-                                                    <option>Pier to Pier</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label tb-font-black">Mode of Payment :</label>
-                                             <div class="col-md-6">
-                                                  <select class="form-control">
-                                                      <option>Freight Prepaid</option>
-                                                      <option>Freight Collect</option>
-                                                      <option>Account Origin</option>
-                                                      <option>Account Destination</option>
-                                                  </select>
-                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                        	<label class="col-md-4 control-label tb-font-black">Pick-Up Date :</label>
+                                        	<label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Pick-Up Date :</label>
                                         	 <div class="col-md-6">
                                              	<sj:datepicker id="datepicker2"
                                              	 displayFormat="mm-dd-yy"
@@ -100,30 +78,26 @@
                                              	 showButton="true"
                                              	 changeYear="true"
                                              	 changeMonth="true"
-                                             	 style="width: 88% !important;"
+                                             	 style="width: 88% !important; margin-bottom: 15px !important;"
                                              	/>
                                              </div>
                                         </div>
                                         <div class="form-group">
-                                        	<label class="col-md-4 control-label tb-font-black">Pick-Up Time :</label>
+                                        	<label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Pick-Up Time :</label>
                                         	 <div class="col-md-6">
-                                        		  <input class="form-control" />
+                                        		  <input class="form-control" style="margin-bottom: 15px !important;"/>
                                         	 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label tb-font-black">Port of Origin :</label>
+                                            <label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Port of Origin :</label>
                                              <div class="col-md-6">
-                                                  <select class="form-control">
-                                                      <option>Manila</option>
-                                                      <option>Navotas</option>
-                                                      <option>Batangas</option>
-                                                  </select>
+                                                  <input class="form-control" style="margin-bottom: 15px !important;"/>
                                              </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label tb-font-black">Comments :</label>
+                                            <label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Comments :</label>
                                              <div class="col-md-6">
-                                                  <textarea class="form-control" rows="3" style="resize:none;"></textarea>
+                                                  <textarea class="form-control" rows="6" style="resize:none; margin-bottom: 15px !important;"></textarea>
                                              </div>
                                         </div>
                                     </div>
@@ -131,58 +105,31 @@
                                     <div class="col-md-6">
                                     <br />
                                         <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Notify By :</label>
-                                            <div class="col-md-6">
-                                                <select class="form-control">
-                                                    <option>Phone</option>
-                                                    <option>Mobile</option>
-                                                    <option>SMS</option>
-                                                    <option>Fax</option>
-                                                    <option>Email</option>
-                                                </select>
-                                            </div>
+                                        	<label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Notification Type :</label>
+                                        	<div class="col-md-6">
+                                        	<s:select cssClass="form-control" style="margin-bottom: 15px !important;" name="orderBean.notifyBy" list="notifyByList" listKey="key" listValue="value" value="orderBean.notifyBy" />
+                                        	</div>
                                         </div>
-
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label tb-font-black">Reference Number :</label>
-                                            <div class="col-md-6">
-                                                <input class="form-control" />
-                                            </div>
+                                        	<label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Service Type : </label>
+                                        	<div class="col-md-6">
+                                        	<s:select cssClass="form-control" style="margin-bottom: 15px !important;" name="orderBean.serviceRequirement" list="serviceRequirementList" listKey="key" listValue="value" value="orderBean.serviceRequirement" />
+                                        	</div>
                                         </div>
-
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label tb-font-black">Original Ref. Number :</label>
+                                            <label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Service Mode :</label>
                                             <div class="col-md-6">
-                                                <input class="form-control" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-md-4 control-label tb-font-black">Container Number :</label>
-                                            <div class="col-md-6">
-                                                <input class="form-control" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Seal Number :</label>
-                                            <div class="col-md-6">
-                                                <input class="form-control" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Status :</label>
-                                            <div class="col-md-6">
-                                                <select class="form-control">
-                                                    <option>Pending</option>
-                                                    <option>Approve</option>
-                                                    <option>Deny</option>
-                                                </select>
+                                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" name="orderBean.modeOfService" list="modeOfServiceList" listKey="key" listValue="value" value="orderBean.modeOfService" />
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                        	<label class="col-md-4 control-label tb-font-black">Delivery Date :</label>
+                                        	<label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Payment Mode :</label>
+                                        	<div class="col-md-6">
+                                        	<s:select cssClass="form-control" style="margin-bottom: 15px !important;" name="orderBean.modeOfPaymentList" list="modeOfPaymentList" listKey="key" listValue="value" value="orderBean.modeOfPayment" />
+                                        	</div>
+                                        </div>
+                                        <div class="form-group">
+                                        	<label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Delivery Date :</label>
                                         	 <div class="col-md-6">
                                         		<sj:datepicker id="datepicker3"
                                         		 displayFormat="mm-dd-yy"
@@ -191,42 +138,43 @@
                                         		 showButton="true"
                                         		 changeYear="true"
                                         		 changeMonth="true"
-                                        		 style="width: 88% !important;"
+                                        		 style="width: 88% !important; margin-bottom: 15px !important;"
                                         		/>
                                         	 </div>
                                         </div>
                                         <div class="form-group">
-                                        	<label class="col-md-4 control-label tb-font-black">Delivery Time :</label>
+                                        	<label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Delivery Time :</label>
                                         	 <div class="col-md-6">
-                                        		  <input class="form-control" />
+                                        		  <input class="form-control" style="margin-bottom: 15px !important;"/>
                                         	 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Port of Destination :</label>
+                                        	<label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Port of Destination :</label>
+                                        	 <div class="col-md-6">
+                                        		  <input class="form-control" style="margin-bottom: 15px !important;"/>
+                                        	 </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Rate :</label>
                                             <div class="col-md-6">
-                                                <select class="form-control">
-                                                    <option>Cebu</option>
-                                                    <option>Iloilo</option>
-                                                    <option>Palawan</option>
-                                                </select>
+                                                <input class="form-control" style="margin-bottom: 15px !important;"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                        	<label for="payMode" class="col-md-4 control-label tb-font-black" >Rate :</label>
-                                        	<div class="col-md-6">
-                                        		<input class="form-control" />
-                                        	</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="payMode" class="col-md-4 control-label tb-font-black" >Booked By :</label>
+                                            <label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Status :</label>
                                             <div class="col-md-6">
-                                                <input class="form-control" />
+                                                <input class="form-control" style="margin-bottom: 15px !important;"/>
                                             </div>
                                         </div>
-
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label tb-font-black" style="text-align: right; padding-top: 7px;">Booked By :</label>
+                                            <div class="col-md-6">
+                                                <input class="form-control" style="margin-bottom: 15px !important;"/>
+                                            </div>
+                                        </div>
                                     </div>
 
-                              </form>
+                              </div>
                         </div>
                     </div>
 
@@ -240,7 +188,7 @@
                             <h3 class="panel-title">Shipper Information</h3>
                           </div>
 
-                            <form class="form-horizontal">
+                            <div class="form-horizontal">
                                 <br />
 
                                 <div class="form-group">
@@ -291,7 +239,7 @@
                                       </select>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
 
                         </div>
                     </div>
@@ -302,7 +250,7 @@
                             <h3 class="panel-title">Consignee Information</h3>
                           </div>
 
-                            <form class="form-horizontal">
+                            <div class="form-horizontal">
                                 <br />
 
                                 <div class="form-group">
@@ -354,8 +302,7 @@
                                       </select>
                                     </div>
                                 </div>
-
-                            </s:form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -378,7 +325,7 @@
                 				  <th>Lenght</th>
                 				  <th>Weight</th>
                                   <th>Comments</th>
-                                  <th>Action</th>
+
                 				</tr>
                 			  </thead>
                 			  <tbody>
@@ -435,11 +382,6 @@
                                           <input type="text" placeholder="comments">
                                       </div>
                                   </td>
-                                  <td>
-                                      <div class="span1">
-                                          <a href="#">ADD</a> |  <a href="#">EDIT</a> | <a href="#">DELETE</a>
-                                      </div>
-                                  </td>
                 				</tr>
 
                 			  </tbody>
@@ -462,7 +404,7 @@
     </div>
 
 </div>
-
+</s:form>
 </div>
 
 
