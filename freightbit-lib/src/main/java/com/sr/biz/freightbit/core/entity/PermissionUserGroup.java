@@ -14,23 +14,23 @@ import javax.persistence.Table;
 @Table(name = "permission_user_group", catalog = "freightbit")
 public class PermissionUserGroup implements java.io.Serializable {
 
-    private long permissionId;
-    private long clientId;
-    private Long userId;
-    private Long groupId;
-    private Long projectId;
-    private Long value;
+    private Integer permissionId;
+    private Integer clientId;
+    private Integer userId;
+    private Integer groupId;
+    private Integer projectId;
+    private Integer value;
 
     public PermissionUserGroup() {
     }
 
-    public PermissionUserGroup(long permissionId, long clientId) {
+    public PermissionUserGroup(Integer permissionId, Integer clientId) {
         this.permissionId = permissionId;
         this.clientId = clientId;
     }
 
-    public PermissionUserGroup(long permissionId, long clientId, Long userId,
-                               Long groupId, Long projectId, Long value) {
+    public PermissionUserGroup(Integer permissionId, Integer clientId, Integer userId,
+                               Integer groupId, Integer projectId, Integer value) {
         this.permissionId = permissionId;
         this.clientId = clientId;
         this.userId = userId;
@@ -41,56 +41,56 @@ public class PermissionUserGroup implements java.io.Serializable {
 
     @Id
     @Column(name = "permissionId", unique = true, nullable = false)
-    public long getPermissionId() {
+    public Integer getPermissionId() {
         return this.permissionId;
     }
 
-    public void setPermissionId(long permissionId) {
+    public void setPermissionId(Integer permissionId) {
         this.permissionId = permissionId;
     }
 
     @Column(name = "clientId", nullable = false)
-    public long getClientId() {
+    public Integer getClientId() {
         return this.clientId;
     }
 
-    public void setClientId(long clientId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 
     @Column(name = "userId")
-    public Long getUserId() {
+    public Integer getUserId() {
         return this.userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
     @Column(name = "groupId")
-    public Long getGroupId() {
+    public Integer getGroupId() {
         return this.groupId;
     }
 
-    public void setGroupId(Long groupId) {
+    public void setGroupId(Integer groupId) {
         this.groupId = groupId;
     }
 
     @Column(name = "projectId")
-    public Long getProjectId() {
+    public Integer getProjectId() {
         return this.projectId;
     }
 
-    public void setProjectId(Long projectId) {
+    public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
 
     @Column(name = "value")
-    public Long getValue() {
+    public Integer getValue() {
         return this.value;
     }
 
-    public void setValue(Long value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 

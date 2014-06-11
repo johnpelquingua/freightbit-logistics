@@ -2,11 +2,11 @@ package com.sr.biz.freightbit.core.dao;
 
 import java.util.List;
 
-import com.sr.biz.freightbit.core.entity.Permission;
-import com.sr.biz.freightbit.core.entity.User;
-import com.sr.biz.freightbit.core.entity.Group;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.entity.Group;
+import com.sr.biz.freightbit.core.entity.Permission;
 import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
+import com.sr.biz.freightbit.core.entity.User;
 
 public interface PermissionDao {
     public Permission createPermission(User user, Client client, long value);

@@ -18,8 +18,8 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "permission", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Permission implements java.io.Serializable {
 
-    private Long permissionId;
-    private Long clientId;
+    private Integer permissionId;
+    private Integer clientId;
     private String name;
     private String description;
     private Date creationDate;
@@ -28,7 +28,7 @@ public class Permission implements java.io.Serializable {
     public Permission() {
     }
 
-    public Permission(Long permissionId, Long clientId, String name,
+    public Permission(Integer permissionId, Integer clientId, String name,
                       Date creationDate, Date modifiedDate) {
         this.permissionId = permissionId;
         this.clientId = clientId;
@@ -37,7 +37,7 @@ public class Permission implements java.io.Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-    public Permission(Long permissionId, Long clientId, String name,
+    public Permission(Integer permissionId, Integer clientId, String name,
                       String description, Date creationDate, Date modifiedDate) {
         this.permissionId = permissionId;
         this.clientId = clientId;
@@ -50,20 +50,20 @@ public class Permission implements java.io.Serializable {
     @Id
     @GeneratedValue
     @Column(name = "permissionId", unique = true, nullable = false)
-    public Long getPermissionId() {
+    public Integer getPermissionId() {
         return this.permissionId;
     }
 
-    public void setPermissionId(Long permissionId) {
+    public void setPermissionId(Integer permissionId) {
         this.permissionId = permissionId;
     }
 
     @Column(name = "clientId", nullable = false)
-    public Long getClientId() {
+    public Integer getClientId() {
         return this.clientId;
     }
 
-    public void setClientId(Long clientId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 
