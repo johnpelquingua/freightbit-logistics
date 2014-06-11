@@ -67,6 +67,16 @@
         <put-attribute name="title"  value="Group Page"/>
         <put-attribute name="body"   value="/core/groupSaveComplete.jsp"/>
     </definition>
+    
+    <definition name="core.permissionsView.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Permission Page"/>
+        <put-attribute name="body"   value="/core/permissionsView.jsp"/>
+    </definition>
+
+    <definition name="core.permissionsEdit.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Permission Page"/>
+        <put-attribute name="body"   value="/core/permissionsEdit.jsp"/>
+    </definition>
 
 <!-- CORE module tiles End-->
 

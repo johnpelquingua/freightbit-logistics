@@ -88,5 +88,14 @@
             <result name="success" type="redirect">viewGroups</result>
         </action>
         
+        
+        <action name="viewPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction" method="viewPermissions">
+            <result name="success" type="tiles">core.permissionsView.tiles</result>
+        </action>
+        
+        <action name="editPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction" method="editPermissions">
+            <result name="success" type="tiles">core.permissionsEdit.tiles</result>
+        </action>
+        
     </package>
 </struts>

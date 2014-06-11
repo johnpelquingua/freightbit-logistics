@@ -6,6 +6,7 @@ import com.sr.biz.freightbit.core.entity.Permission;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.entity.Group;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
 
 public interface PermissionDao {
     public Permission createPermission(User user, Client client, long value);
@@ -28,5 +29,7 @@ public interface PermissionDao {
 
     public Permission getPermission(Client client, Group group);
 
-    public List getPermissions(Client client);
+    public List<Permission> getPermissions(Integer clientId);
+    
+    public List<PermissionUserGroup> getPermissionUserGroupsByClientIdAndPermissionId(Integer clientId, Integer permissionId);
 }

@@ -11,7 +11,9 @@ import com.sr.biz.freightbit.core.dao.PermissionDao;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.entity.Group;
 import com.sr.biz.freightbit.core.entity.Permission;
+import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
 import com.sr.biz.freightbit.core.entity.User;
+import org.hibernate.Query;
 
 /**
  *
@@ -84,9 +86,35 @@ public class PermissionDaoImpl extends HibernateDaoSupport implements Permission
     }
 
     @Override
-    public List getPermissions(Client client) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Permission> getPermissions(Integer clientId) {
+        log.debug("finding permissions by clientId");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Permission p where p.clientId = :clientId");
+            query.setParameter("clientId", clientId);
+            List<Permission> results = (List<Permission>) query.list();
+            log.debug("finding permissions by clientId successful, result size: " + results.size());
+            return results;
+        }catch(RuntimeException re){
+            log.error("finding permissions failed", re);
+            throw re;
+        }
+    }
+    
+    public List<PermissionUserGroup> getPermissionUserGroupsByClientIdAndPermissionId(Integer clientId, Integer permissionId){
+        log.debug("finding permissionUserGroups by clientId and permissionId");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from PermissionUserGroup p where p.permissionId = :permissionId and p.clientId = :clientId");
+            query.setParameter("permissionId", permissionId);
+            query.setParameter("clientId", clientId);
+            List<PermissionUserGroup> results = (List<PermissionUserGroup>) query.list();
+            log.debug("finding permissionUserGroups by clientId and permissionId successful, result size: " + results.size());
+            return results;
+        }catch(RuntimeException re){
+            log.error("finding permissionUserGroups failed", re);
+            throw re;
+        }
     }
 
 }

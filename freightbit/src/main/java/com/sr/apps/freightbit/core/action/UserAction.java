@@ -47,8 +47,13 @@ public class UserAction extends ActionSupport implements Preparable {
 	
     public String viewUsers() {
     	String column = getColumnFilter();
-    	List<User> userEntityList = userService.findUsersByCriteria(column, user.getUserKeyword(), getClientId());
-		for (User userElem : userEntityList) {
+    	List<User> userEntityList = new ArrayList<User>();
+    	if (StringUtils.isNotBlank(column)) {
+    		userEntityList = userService.findUsersByCriteria(column, user.getUserKeyword(), getClientId());
+    	} else {
+    		userEntityList = userService.findAllUsers(getClientId());
+    	}
+    	for (User userElem : userEntityList) {
 			users.add(transformToFormBean(userElem));
 		}
         return SUCCESS;
