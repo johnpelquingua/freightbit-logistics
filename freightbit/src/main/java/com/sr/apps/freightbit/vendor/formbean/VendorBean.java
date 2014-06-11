@@ -11,13 +11,13 @@ import com.sr.apps.freightbit.common.formbean.ContactBean;
  */
 public class VendorBean {
 
-    private String vendorId;
+    private Integer vendorId;
     private Integer clientId;
     private String vendorCode;
     private String vendorName;
     private String vendorClass;
     private String vendorType;
-    private String status;
+    private String vendorStatus;
     private String vendorSearchCriteria;
     private String vendorKeyword;
     private List <VesselBean> vesselBeanList;
@@ -31,15 +31,15 @@ public class VendorBean {
 
     }
 
-    public VendorBean(String vendorId, Integer clientId, String vendorCode,
-                      String vendorName, String vendorClass, String vendorType, String status) {
+    public VendorBean(Integer vendorId, Integer clientId, String vendorCode,
+                      String vendorName, String vendorClass, String vendorType, String vendorStatus) {
         this.vendorId = vendorId;
         this.clientId = clientId;
         this.vendorCode = vendorCode;
         this.vendorName = vendorName;
         this.vendorClass = vendorClass;
         this.vendorType = vendorType;
-        this.status = status;
+        this.vendorStatus = vendorStatus;
     }
 
 
@@ -59,11 +59,11 @@ public class VendorBean {
         this.vendorKeyword = vendorKeyword;
     }
 
-    public String getVendorId() {
+    public Integer getVendorId() {
         return vendorId;
     }
 
-    public void setVendorId(String vendorId) {
+    public void setVendorId(Integer vendorId) {
         this.vendorId = vendorId;
     }
 
@@ -99,12 +99,12 @@ public class VendorBean {
         this.vendorClass = vendorClass;
     }
 
-    public String getStatus() {
-        return status;
+    public String getVendorStatus() {
+        return vendorStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setVendorStatus(String vendorStatus) {
+        this.vendorStatus = vendorStatus;
     }
 
     public String getVendorType() {

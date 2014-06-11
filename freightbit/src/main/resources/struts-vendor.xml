@@ -10,22 +10,41 @@
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
         </result-types>
 
-        <default-action-ref name="Vendor" />
+        <default-action-ref name="Vendor"/>
 
         <!--vendor-->
-        <action name="loadSearchVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSearchVendorPage">
+        <action name="loadSearchVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadSearchVendorPage">
             <result name="success" type="tiles">vendor.vendorSearch.tiles</result>
         </action>
-        <action name="loadAddVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddVendorPage">
+
+        <action name="loadAddVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadAddVendorPage">
             <result name="success" type="tiles">vendor.vendorAdd.tiles</result>
         </action>
 
-        <action name="loadEditVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditVendorPage">
-            <result name="success" type="tiles">vendor.vendorEdit.tiles</result>
+        <action name="loadEditVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadEditVendorPage">
+            <result name="TRUCKING" type="tiles">vendor.vendorEditVendorTrucking.tiles</result>
+            <result name="SHIPPING" type="tiles">vendor.vendorEditVendorShipping.tiles</result>
+        </action>
+
+        <action name="loadEditVendorTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadEditVendorTrucksPage">
+            <result name="success" type="tiles">vendor.vendorEditTrucks.tiles</result>
+        </action>
+
+        <action name="loadSaveCompletePage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadSaveCompletePage">
+            <result name="success" type="tiles">vendor.vendorSaveComplete.tiles</result>
+        </action>
+
+        <action name="loadVendorInfo" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadVendorInfo">
+            <result name="success" type="tiles">vendor.vendorInfo.tiles</result>
         </action>
 
         <action name="addVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addVendor">
-            <result name="success" type="redirect">loadAddTrucksPage</result>
+            <result name="success" type="tiles">vendor.vendorInfo.tiles</result>
             <result name="input" type="tiles">vendor.vendorAdd.tiles</result>
         </action>
 
@@ -38,7 +57,7 @@
         </action>
 
         <action name="editVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">
-            <result name="success" type="redirect">vendor.vendorSaveComplete.tiles</result>
+            <result name="success" type="redirect">loadSaveCompletePage</result>
         </action>
 
         <!--<action name="editVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">-->
@@ -46,11 +65,13 @@
         <!--</action>-->
 
         <!--trucks-->
-        <action name="loadAddTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddTrucksPage">
-        <result name="success" type="tiles">vendor.vendorAddTrucks.tiles</result>
-    </action>
+        <action name="loadAddTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadAddTrucksPage">
+            <result name="success" type="tiles">vendor.vendorAddTrucks.tiles</result>
+        </action>
 
-        <action name="loadEditTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditTrucksPage">
+        <action name="loadEditTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadEditTrucksPage">
             <result name="success" type="tiles">vendor.vendorAddTrucks.tiles</result>
         </action>
 
@@ -71,11 +92,13 @@
 
         <!-- vessels -->
 
-        <action name="loadAddVesselsPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddVesselsPage">
+        <action name="loadAddVesselsPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadAddVesselsPage">
             <result name="success" type="tiles">vendor.vendorAddVessels.tiles</result>
         </action>
 
-        <action name="loadEditVesselsPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditVesselsPage">
+        <action name="loadEditVesselsPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadEditVesselsPage">
             <result name="success" type="tiles">vendor.vendorAddVessels.tiles</result>
         </action>
 
@@ -94,11 +117,13 @@
 
 
         <!--driver-->
-        <action name="loadAddDriverPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddDriverPage">
+        <action name="loadAddDriverPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadAddDriverPage">
             <result name="success" type="tiles">vendor.vendorAddDriver.tiles</result>
         </action>
 
-        <action name="loadEditDriverPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditDriverPage">
+        <action name="loadEditDriverPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadEditDriverPage">
             <result name="success" type="tiles">vendor.vendorAddDriver.tiles</result>
         </action>
 
