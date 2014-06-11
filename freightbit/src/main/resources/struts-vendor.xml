@@ -59,7 +59,8 @@
         </action>
 
         <action name="viewInfoVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewInfoVendor">
-            <result name="success" type="tiles">vendor.vendorInfoTrucking.tiles</result>
+            <result name="TRUCKING" type="tiles">vendor.vendorInfoTrucking.tiles</result>
+            <result name="SHIPPING" type="tiles">vendor.vendorInfoShipping.tiles</result>
         </action>
 
         <action name="editVendorTrucking" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">
