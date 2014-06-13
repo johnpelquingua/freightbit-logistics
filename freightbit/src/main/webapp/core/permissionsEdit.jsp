@@ -4,48 +4,48 @@
 
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <script type="text/javascript" language="javascript">
-    $(document).ready(function () {
-        $("#allPermissions .selectIt").click(function() {
-            var permissionId = this.val();
-            alert("permissionId: " + permissionId);
-            $(permissionId).toggleClass("selected_chk");
-        });
-        $("#moveToSelected").click(function() {
-            $("#allPermissions .selected_chk").each(function() {
-            this.each(function() {this.checked = false; });
-                    var clone = $(this).clone(true);
-                    $(clone).addClass("selectedTbl");
-                    $("#selectedPermissions").append(clone);
-            });
-        });
-        $("#checkAll").click(function(event) {  //on click 
-            if (this.checked) { // check select status
-                $(".selectIt").each(function() { //loop through each checkbox
-                    this.checked = true; //select all checkboxes with class "checkbox1"               
+    $(document).ready(function() {
+        $("#checkAll").click(function() {
+            if (this.checked) {
+                $(".selectIt").each(function() {
+                    this.checked = true;
                 });
             } else{
-                $(".selectIt").each(function() { //loop through each checkbox
-                    this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+                $(".selectIt").each(function() {
+                    this.checked = false;
                 });
             }
         });
-        $('#selectedGroupId').change(function(event) {
-//            var v = document.getElementById("selectedGroupId").value;
-//            alert(v);
-//            window.location = "${pageContext.request.contextPath}/populateUserDropdown";
-            document.forms[0].action="editPermissions";
-            document.forms[0].submit(); 
-//            $.ajax({
-//                type: "GET",
-//                url: "populateUserDropdown.action",
-//                dataType: "text/javascript",
-//                success: function(result) {
-//                    if (result !== null && result.length > 0) {
-//                        $("userDivId").append(result);
-//                    }
-//                },
-//                error: alert("No values found..!!")
-//            });
+        $("#selectedGroupId").change(function() {
+            document.forms[0].action = "loadEditPermissions";
+            document.forms[0].submit();
+        });
+        $("#moveToSelected").click(function () {
+            var sel = $(".selectIt:checked ").map(function () {
+                return this.value;
+            }).get();
+            document.forms[0].selectedIds.value = sel;
+            document.forms[0].action = "loadEditPermissions";
+            document.forms[0].submit();
+        });
+        $("#checkAll2").click(function() {
+            if (this.checked) {
+                $(".selectedPermCheckbox").each(function() {
+                    this.checked = true;
+                });
+            } else{
+                $(".selectedPermCheckbox").each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+        $("#removeFromSelected").click(function () {
+            var sel = $(".selectedPermCheckbox:checked ").map(function () {
+                return this.value;
+            }).get();
+            document.forms[0].removedIds.value = sel;
+            document.forms[0].action = "removeSelectedPermissions";
+            document.forms[0].submit();
         });
     });
 </script>
@@ -55,6 +55,11 @@
     <h1 class="page-header">Permissions</h1>
 
     <!-- MAIN BOX -->
+    <s:if test="hasActionMessages()">
+	   <div class="row alert alert-success alert-dismissable">
+	      <s:actionmessage/>
+	   </div>
+	</s:if>
 
     <div class="main-box">			
         <div class="col-md-12">
@@ -82,25 +87,23 @@
                                         <table class="table table-striped table-bordered text-center" id="customer-list">
                                             <thead>
                                                 <tr class="header_center">
-                                                    <th class="tb-font-black"><s:checkbox id="checkAll" name="checkAll" /></th>
+                                                    <th class="tb-font-black"><input id="checkAll" name="checkAll" class="checkAll" type="checkbox"/></th>
                                                     <th class="tb-font-black">Permissions</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="allPermissions">
                                                 <s:iterator value="permissions" var="permission" status="rowStatus">
                                                     <tr id="<s:property value="permissionId"/>">
-                                                        <td class="tb-font-black"><s:checkbox name="rowIndex" value="permissionId" class="selectIt"/></td>
+                                                        <td class="tb-font-black"><input id="selectIt" class="selectIt" name="selectIt" type="checkbox" value="<s:property value="permissionId"/>"/></td>
                                                         <td class="tb-font-black"><s:property value="permissionName"/></td>
                                                     </tr>
                                                 </s:iterator>
+                                                <input type="hidden" name="selectedIds" id="selectedIds"/>
                                             </tbody>
                                         </table>
                                         <span class="pull-right">
                                             <a href="javascript:void(0);" class="icon-action-link" id="moveToSelected">
                                                 <img src="includes/images/check-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-                                            </a>
-                                            <a href="#" class="icon-action-link">
-                                                <img src="includes/images/x-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
                                             </a>
                                         </span>
                                     </div>
@@ -133,23 +136,22 @@
                                         <table class="table table-striped table-bordered text-center" id="customer-list">
                                             <thead>
                                                 <tr class="header_center">
-                                                    <th class="tb-font-black"><s:checkbox name="SelectCheckbox1"/></th>
+                                                    <th class="tb-font-black"><input id="checkAll2" name="checkAll2" class="checkAll2" type="checkbox"/></th>
                                                     <th class="tb-font-black">Permissions</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="selectedPermissions">
-                                                <tr>
-                                                    <td class="tb-font-black"><s:checkbox name="SelectCheckbox2"/></td>
-                                                    <td class="tb-font-black">Create New Booking</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="tb-font-black"><s:checkbox name="SelectCheckbox3"/></td>
-                                                    <td class="tb-font-black">Add Customer</td>
-                                                </tr>
+                                                <s:iterator value="selectedPermissions" var="selectedPermission" status="rowStatus">
+                                                    <tr id="<s:property value="permissionId"/>">
+                                                        <td class="tb-font-black"><input id="selectedPermCheckbox" class="selectedPermCheckbox" name="selectedPermCheckbox" type="checkbox" value="<s:property value="permissionId"/>"/></td>
+                                                        <td class="tb-font-black"><s:property value="permissionName"/></td>
+                                                    </tr>
+                                                </s:iterator>
+                                                <input type="hidden" name="removedIds" id="removedIds"/>
                                             </tbody>
                                         </table>
                                         <span class="pull-right">
-                                            <a href="#" class="icon-action-link">
+                                            <a href="javascript:void(0);" class="icon-action-link" id="removeFromSelected">
                                                 <img src="includes/images/x-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
                                             </a>
                                         </span>
@@ -170,7 +172,7 @@
                     <div>
                         <a href = "permissions-edit.html" class="btn btn-default pull-right" id = "groups-add-btn" style="margin:20px 0px 6px 6px;">Cancel</a>
 
-                        <a href ="<s:url value='permissions' />" class="btn btn-default pull-right" id = "groups-add-btn" style="margin:20px 10px 6px 6px;">Save</a>
+                        <a href ="<s:url value='editPermission' />" class="btn btn-default pull-right" id = "groups-add-btn" style="margin:20px 10px 6px 6px;">Save</a>
                     </div>	
                 </s:form>
 

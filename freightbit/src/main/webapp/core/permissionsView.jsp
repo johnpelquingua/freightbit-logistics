@@ -32,7 +32,7 @@
                                         <td class="tb-font-black"><s:property value="permissionName"/></td>
                                         <td class="tb-font-black" align="center"><s:property value="userGroups"/></td>
                                         <td class="tb-font-black">
-                                            <a href="<s:url value='editPermissions' />" class="icon-action-link"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                                            <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                                         </td>
                                     </tr>
                                 </s:iterator>
@@ -53,7 +53,7 @@
                     </ul>
 
                     <span class="pull-right">
-                        <a href="<s:url value='editPermissions' />" class="icon-action-link"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                        <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                     </span>
                 </div>		  	
             </div>

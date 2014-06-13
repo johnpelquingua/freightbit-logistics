@@ -75,5 +75,29 @@ public class PermissionServiceImpl implements PermissionService {
         List<PermissionUserGroup> permissionUserGroup = permissionDao.getPermissionUserGroupsByClientIdAndPermissionId(clientId, permissionId);
         return permissionUserGroup;
     }
-
+    
+    public Permission findPermissionById(Integer permissionId) {
+    	return permissionDao.findPermissionById(permissionId);
+    }
+    
+    @Override
+    @Transactional
+    public void addPermissionToUser(PermissionUserGroup permissionUserGroup){
+    	permissionDao.addPermissionUserGroup(permissionUserGroup);
+    }
+    
+    @Override
+    public PermissionUserGroup findPermissionUserGroup(Integer clientId, Integer groupId, Integer userId, Integer permissionId) {
+    	List <PermissionUserGroup> permUserGroupList = 	permissionDao.findPermissionUserGroup(clientId, groupId, userId, permissionId);
+    	if (permUserGroupList != null && permUserGroupList.size() > 0)
+    		return permUserGroupList.get(0);
+    	else
+    		return null;
+    }
+    
+    @Override
+    @Transactional
+    public void deletePermissionOfUser(PermissionUserGroup permissionUserGroup) {
+    	permissionDao.deletePermissionUserGroup(permissionUserGroup);
+    }
 }

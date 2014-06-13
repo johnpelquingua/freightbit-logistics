@@ -1,8 +1,12 @@
 package com.sr.apps.freightbit.core.action;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.struts2.components.ActionMessage;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -22,8 +26,8 @@ import com.sr.biz.freightbit.core.service.UserService;
  */
 public class PermissionAction extends ActionSupport {
 
-    private List<PermissionBean> permissions;
-    private List<PermissionBean> selectedPermissions;
+    private List<PermissionBean> permissions = new ArrayList<PermissionBean>();
+    private List<PermissionBean> selectedPermissions = new ArrayList<PermissionBean>();
     private PermissionService permissionService;
     private ClientService clientService;
     private ParameterService parameterService;
@@ -33,22 +37,53 @@ public class PermissionAction extends ActionSupport {
     private List<Group> groupList = new ArrayList<Group>(); //Group drop down values
     private Integer selectedGroupId;
     private Integer selectedUserId;
+    private String selectedIds;
+    private String removedIds;
+
+	Map sessionAttributes = ActionContext.getContext().getSession();
 
     public String viewPermissions() {
         List<Permission> permissionList = (List<Permission>) permissionService.getPermissions(getClientId());
-        setPermissions(new ArrayList<PermissionBean>());
+        permissions = new ArrayList<PermissionBean>();
         for (Permission permission : permissionList) {
-            getPermissions().add(transformToFormBean(permission));
+            permissions.add(transformToFormBean(permission));
         }
+        sessionAttributes.put("selectedPermissionIds", new ArrayList<String>());    
+        sessionAttributes.put("removedPermissionIds", new ArrayList<String>());  
+        
         return SUCCESS;
     }
 
-    public String editPermissions() {
-        List<Permission> permissionList = (List<Permission>) permissionService.getPermissions(getClientId());
-        setPermissions(new ArrayList<PermissionBean>());
+    public String loadEditPermissions() {
+    	//Get All Permissions List
+        List<Permission> permissionList = (List<Permission>) permissionService.getPermissions(getClientId());       
         for (Permission permission : permissionList) {
-            getPermissions().add(transformToFormBean(permission));
+            PermissionBean bean = transformToFormBean(permission);
+            permissions.add(transformToFormBean(permission));    
+            if (bean.getIsSelected()){
+                selectedPermissions.add(bean);
+            }
         }
+        removeSelectedPermissionFromPermissionsList(selectedPermissions, permissions);
+        
+        //Get checked permissions and remove them from All Permissions
+        if (selectedIds!= null && !"".equals(selectedIds)){
+            String [] selArr = selectedIds.split(",");
+            for (int i=0; i<selArr.length; i++) {
+            	Permission permissionEntity = permissionService.findPermissionById(Integer.parseInt(selArr[i]));
+            	selectedPermissions.add(transformToFormBean(permissionEntity));
+            }
+            List <String> selectedPermissionIds = (List <String>) sessionAttributes.get("selectedPermissionIds");
+            selectedPermissionIds.addAll(Arrays.asList(selArr));
+            sessionAttributes.put("selectedPermissionIds", selectedPermissionIds);           
+            removeSelectedIdFromPermissionsList(selectedPermissionIds, permissions);
+            
+            //Remove removed permissions from the removedPermissionIds in session
+            List <String> removedPermissionIds = (List <String>) sessionAttributes.get("removedPermissionIds");
+            removedPermissionIds = removeIdsFromList(removedPermissionIds, Arrays.asList(selArr));
+            sessionAttributes.put("removedPermissionIds", removedPermissionIds);     
+        }
+          
         populateGroupDropdown();
         if (getSelectedGroupId() == null) {
             setSelectedGroupId(2); // Default is Admin
@@ -56,8 +91,109 @@ public class PermissionAction extends ActionSupport {
             setSelectedUserId(getUserId());
         }
         setUserList(groupService.findAllUsersByGroupId(getSelectedGroupId()));
+        
         return SUCCESS;
     }
+    
+    public String removeSelectedPermissions() {
+       	//Get All Permissions List
+        List<Permission> permissionList = (List<Permission>) permissionService.getPermissions(getClientId());       
+        for (Permission permission : permissionList) {
+            PermissionBean bean = transformToFormBean(permission);
+            permissions.add(transformToFormBean(permission));    
+            if (bean.getIsSelected()){
+                selectedPermissions.add(bean);
+            }
+        }
+        removeSelectedPermissionFromPermissionsList(selectedPermissions, permissions);
+        
+        //Get checked permissions and remove them from All Permissions
+        if (removedIds!= null){
+            String [] selArr = removedIds.split(",");
+            List <PermissionBean> permissionBeanToRemove = new ArrayList<PermissionBean>();
+            for (int i=0; i<selArr.length; i++) {
+            	Permission permissionEntity = permissionService.findPermissionById(Integer.parseInt(selArr[i]));
+            	permissionBeanToRemove.add(transformToFormBean(permissionEntity));
+            }
+            permissions.addAll(permissionBeanToRemove);
+            removeSelectedPermissionFromPermissionsList(permissionBeanToRemove, selectedPermissions);
+            
+            //Remove selected permissions from the selectedPermissionIds in session
+            List <String> selectedPermissionIds = (List <String>) sessionAttributes.get("selectedPermissionIds");
+            selectedPermissionIds = removeIdsFromList(selectedPermissionIds, Arrays.asList(selArr));
+            sessionAttributes.put("selectedPermissionIds", selectedPermissionIds);         
+            
+            //Add removed permissions from the removedPermissionIds in session
+            List <String> removedPermissionIds = (List<String>) sessionAttributes.get("removedPermissionIds");
+            removedPermissionIds.addAll(Arrays.asList(selArr));
+            sessionAttributes.put("removedPermissionIds", removedPermissionIds);           
+        }
+          
+        populateGroupDropdown();
+        if (getSelectedGroupId() == null) {
+            setSelectedGroupId(2); // Default is Admin
+            populateUserDropdown();
+            setSelectedUserId(getUserId());
+        }
+        setUserList(groupService.findAllUsersByGroupId(getSelectedGroupId()));
+
+    	return SUCCESS;
+    }
+    
+    public String editPermission() {
+    	List <String> selectedPermissionIds = (List <String>) sessionAttributes.get("selectedPermissionIds");
+    	PermissionUserGroup permissionUserGroup;
+    	for(String selectedPermissionId : selectedPermissionIds) {
+    		permissionUserGroup = new PermissionUserGroup();
+    		permissionUserGroup.setClientId(getClientId());
+    		permissionUserGroup.setGroupId(selectedGroupId);
+    		permissionUserGroup.setUserId(selectedUserId);
+    		permissionUserGroup.setPermissionId(Integer.parseInt(selectedPermissionId));
+    		permissionService.addPermissionToUser(permissionUserGroup);
+    	}
+    	List <String> removedPermissionIds = (List <String>) sessionAttributes.get("removedPermissionIds");
+    	for (String removedPermissionId : removedPermissionIds) {
+    		permissionUserGroup = permissionService.findPermissionUserGroup(getClientId(), selectedGroupId, selectedUserId, Integer.parseInt(removedPermissionId));
+    		permissionService.deletePermissionOfUser(permissionUserGroup);
+    	}
+    	clearErrorsAndMessages();
+    	addActionMessage("Success! Permissions have been updated.");
+    	return SUCCESS;
+    }
+    
+    private List<String> removeIdsFromList(List<String> selectedPermissionIds, List<String> newlySelectedPermissionIds){
+		for (String newlySelectedPermissionId : newlySelectedPermissionIds) {
+			for (Iterator<String> iter = selectedPermissionIds.listIterator(); iter.hasNext(); ) {
+				String selectedPermissionId = iter.next();
+			    if (selectedPermissionId.equals(newlySelectedPermissionId)) {
+			        iter.remove();
+			    }
+			}
+		}
+    	return selectedPermissionIds; 
+    }
+    
+	private void removeSelectedIdFromPermissionsList(List <String> selectedPermissionIds, List <PermissionBean> allPermissions){
+		for (String selectedPermissionId : selectedPermissionIds) {
+			for (Iterator<PermissionBean> iter = allPermissions.listIterator(); iter.hasNext(); ) {
+				PermissionBean permission = iter.next();
+			    if (permission.getPermissionId().equals(selectedPermissionId)) {
+			        iter.remove();
+			    }
+			}
+		}
+	}
+	
+	private void removeSelectedPermissionFromPermissionsList(List <PermissionBean> selectedPermissions, List <PermissionBean> allPermissions){
+		for (PermissionBean selectedPermission : selectedPermissions) {
+			for (Iterator<PermissionBean> iter = allPermissions.listIterator(); iter.hasNext(); ) {
+				PermissionBean permission = iter.next();
+			    if (permission.getPermissionId().equals(selectedPermission.getPermissionId())) {
+			        iter.remove();
+			    }
+			}
+		}
+	}
 
     private PermissionBean transformToFormBean(Permission permission) {
         PermissionBean formBean = new PermissionBean();
@@ -72,9 +208,9 @@ public class PermissionAction extends ActionSupport {
             if (permissionUserGroup.getUserId() != null) {
                 user = userService.findUserById(permissionUserGroup.getUserId());
                 if (userGroups.length() == 0) {
-                    userGroups.append(user.getUsername());
+                    userGroups.append(user.getFirstName());
                 } else {
-                    userGroups.append(", ").append(user.getUsername());
+                    userGroups.append(", ").append(user.getFirstName());
                 }
             }
             if (permissionUserGroup.getGroupId() != null) {
@@ -99,13 +235,11 @@ public class PermissionAction extends ActionSupport {
     }
 
     private Integer getClientId() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
         Integer clientId = (Integer) sessionAttributes.get("clientId");
         return clientId;
     }
 
     private Integer getUserId() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
         Integer userId = (Integer) sessionAttributes.get("userId");
         return userId;
     }
@@ -164,11 +298,11 @@ public class PermissionAction extends ActionSupport {
     }
 
     public void populateUserDropdown() {
-        List<Permission> permissionList = (List<Permission>) permissionService.getPermissions(getClientId());
+/*        List<Permission> permissionList = (List<Permission>) permissionService.getPermissions(getClientId());
         setPermissions(new ArrayList<PermissionBean>());
         for (Permission permission : permissionList) {
             getPermissions().add(transformToFormBean(permission));
-        }
+        }*/
         populateGroupDropdown();
         if (getSelectedGroupId() != null) {
             setUserList(groupService.findAllUsersByGroupId(getSelectedGroupId()));
@@ -230,4 +364,41 @@ public class PermissionAction extends ActionSupport {
     public void setSelectedUserId(Integer selectedUserId) {
         this.selectedUserId = selectedUserId;
     }
+
+    /**
+     * @return the selectedPermissions
+     */
+    public List<PermissionBean> getSelectedPermissions() {
+        return selectedPermissions;
+    }
+
+    /**
+     * @param selectedPermissions the selectedPermissions to set
+     */
+    public void setSelectedPermissions(List<PermissionBean> selectedPermissions) {
+        this.selectedPermissions = selectedPermissions;
+    }
+
+    /**
+     * @return the selectedIds
+     */
+    public String getSelectedIds() {
+        return selectedIds;
+    }
+
+    /**
+     * @param selectedIds the selectedIds to set
+     */
+    public void setSelectedIds(String selectedIds) {
+        this.selectedIds = selectedIds;
+    }
+    
+    public String getRemovedIds() {
+		return removedIds;
+	}
+
+	public void setRemovedIds(String removedIds) {
+		this.removedIds = removedIds;
+	}
+
 }

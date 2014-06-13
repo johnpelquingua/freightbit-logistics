@@ -93,7 +93,19 @@
             <result name="success" type="tiles">core.permissionsView.tiles</result>
         </action>
         
-        <action name="editPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction" method="editPermissions">
+        <action name="loadEditPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction" method="loadEditPermissions">
+            <result name="success" type="tiles">core.permissionsEdit.tiles</result>
+        </action>
+        
+        <action name="addSelectedPermission" class="com.sr.apps.freightbit.core.action.PermissionAction" method="addSelectedPermission">
+            <result name="success" type="tiles">core.permissionsEdit.tiles</result>
+        </action>
+        
+        <action name="removeSelectedPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction" method="removeSelectedPermissions">
+            <result name="success" type="tiles">core.permissionsEdit.tiles</result>
+        </action>
+        
+        <action name="editPermission" class="com.sr.apps.freightbit.core.action.PermissionAction" method="editPermission">
             <result name="success" type="tiles">core.permissionsEdit.tiles</result>
         </action>
         

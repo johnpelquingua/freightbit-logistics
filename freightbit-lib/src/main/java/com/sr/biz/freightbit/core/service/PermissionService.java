@@ -32,4 +32,12 @@ public interface PermissionService {
     public Permission getPermissionByGroup(Client client, Group group);
     
     public List<PermissionUserGroup> getPermissionUserGroupsByClientIdAndPermissionId(Integer clientId, Integer permissionId);
+    
+    public Permission findPermissionById(Integer permissionId);
+    
+    public void addPermissionToUser(PermissionUserGroup permissionUserGroup);
+    
+    public PermissionUserGroup findPermissionUserGroup(Integer clientId, Integer groupId, Integer userId, Integer permissionId);
+
+	void deletePermissionOfUser(PermissionUserGroup permissionUserGroup);
 }

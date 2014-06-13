@@ -4,6 +4,8 @@ package com.sr.biz.freightbit.core.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,6 +22,7 @@ public class PermissionUserGroup implements java.io.Serializable {
     private Integer groupId;
     private Integer projectId;
     private Integer value;
+    private Integer id;
 
     public PermissionUserGroup() {
     }
@@ -40,7 +43,17 @@ public class PermissionUserGroup implements java.io.Serializable {
     }
 
     @Id
-    @Column(name = "permissionId", unique = true, nullable = false)
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name = "id", unique = true, nullable = false)
+    public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	@Column(name = "permissionId", unique = true, nullable = false)
     public Integer getPermissionId() {
         return this.permissionId;
     }

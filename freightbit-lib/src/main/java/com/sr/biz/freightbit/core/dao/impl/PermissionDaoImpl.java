@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +15,6 @@ import com.sr.biz.freightbit.core.entity.Group;
 import com.sr.biz.freightbit.core.entity.Permission;
 import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
 import com.sr.biz.freightbit.core.entity.User;
-import org.hibernate.Query;
 
 /**
  *
@@ -116,5 +117,66 @@ public class PermissionDaoImpl extends HibernateDaoSupport implements Permission
             throw re;
         }
     }
+    
+    public Permission findPermissionById(Integer permissionId) {
+        log.debug("getting Permission instance with id: " + permissionId);
+        try {
+            Permission instance = (Permission) getSessionFactory().getCurrentSession().get(
+                    Permission.class, permissionId);
+            if (instance == null) {
+                log.debug("get successful, no instance found");
+            } else {
+                log.debug("get successful, instance found");
+            }
+            return instance;
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
+            throw re;
+        }
+    }
 
+    @Override
+    public void addPermissionUserGroup(PermissionUserGroup permissionUserGroup) {
+        log.debug("Adding a new PermissionUserGroup");
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            session.save(permissionUserGroup);
+            log.debug("Add permissionUserGroup successful");
+        } catch (RuntimeException re) {
+            log.error("add failed", re);
+            throw re;
+        }
+    }
+    
+    @Override
+    public List<PermissionUserGroup> findPermissionUserGroup(Integer clientId, Integer groupId, Integer userId, Integer permissionId) {
+        log.debug("Finding PermissionUserGroup by criteria");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from PermissionUserGroup where clientId = :clientId"
+            		+ " and groupId = :groupId"
+            		+ " and userId = :userId"
+            		+ " and permissionId = :permissionId");
+            query.setParameter("clientId", clientId);
+            query.setParameter("groupId", groupId);
+            query.setParameter("userId", userId);
+            query.setParameter("permissionId", permissionId);
+            return query.list();
+        } catch (RuntimeException re) {
+            log.error("find all failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+    public void deletePermissionUserGroup(PermissionUserGroup permissionUserGroup) {
+        log.debug("Delete a permissionUserGroup");
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            session.delete(permissionUserGroup);
+            log.debug("Delete successful");
+        } catch (RuntimeException re) {
+            log.error("delete failed", re);
+            throw re;
+        }
+    }
 }

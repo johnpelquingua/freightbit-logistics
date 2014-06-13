@@ -32,4 +32,12 @@ public interface PermissionDao {
     public List<Permission> getPermissions(Integer clientId);
     
     public List<PermissionUserGroup> getPermissionUserGroupsByClientIdAndPermissionId(Integer clientId, Integer permissionId);
+    
+    public Permission findPermissionById(Integer permissionId);
+    
+    public void addPermissionUserGroup(PermissionUserGroup permissionUserGroup);
+    
+    public List <PermissionUserGroup> findPermissionUserGroup(Integer clientId, Integer groupId, Integer userId, Integer permissionId);
+
+	void deletePermissionUserGroup(PermissionUserGroup permissionUserGroup);
 }
