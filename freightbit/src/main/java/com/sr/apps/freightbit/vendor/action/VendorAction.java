@@ -53,6 +53,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private ContactBean contact = new ContactBean();
 
     private String vendorCodeParam;
+    private Integer vendorIdParam;
     private String truckCodeParam;
     private String driverCodeParam;
     private Integer contactCodeParam;
@@ -63,7 +64,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private ClientService clientService;
     private ParameterService parameterService;
     private UserService userService;
-    private TrucksService trucksService;
+    private VendorService trucksService;
     private VendorService driverService;
 
     public String viewVendorsByClientId() {
@@ -332,12 +333,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
     public String viewTrucks() {
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-//
-        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
-//
-        List<Trucks> truckEntityList = trucksService.findTrucksByVendorId(vendorId);
+        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorIdParam);
         for (Trucks truckElem : truckEntityList) {
             trucks.add(transformToFormBeanTrucks(truckElem));
         }
@@ -381,6 +377,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setTruckCode(entity.getTruckCode());
         formBean.setGrossWeight(entity.getGrossWeight());
         formBean.setPlateNumber(entity.getPlateNumber());
+        formBean.setVendorId(entity.getVendorId());
 
         return formBean;
     }
@@ -639,8 +636,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (StringUtils.isBlank(contactBean.getPhone())) {
             addFieldError("contact.phone", getText("err.phoneContact.required"));
         }
-
-
     }
 
     //utils
@@ -696,7 +691,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         this.parameterService = parameterService;
     }
 
-    public void setTrucksService(TrucksService trucksService) {
+    public void setTrucksService(VendorService trucksService) {
         this.trucksService = trucksService;
     }
 
@@ -836,52 +831,13 @@ public class VendorAction extends ActionSupport implements Preparable {
         this.contactCodeParam = contactCodeParam;
     }
 
-    /*public String getDriverCode() {
-        return driverCode;
+    public Integer getVendorIdParam() {
+        return vendorIdParam;
     }
 
-    public void setDriverCode(String driverCode) {
-        this.driverCode = driverCode;
+    public void setVendorIdParam(Integer vendorIdParam) {
+        this.vendorIdParam = vendorIdParam;
     }
 
-    public String getLicenseNumber() {
-        return licenseNumber;
-    }
-
-    public void setLicenseNumber(String licenseNumber) {
-        this.licenseNumber = licenseNumber;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-}*/
 
 }

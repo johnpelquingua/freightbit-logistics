@@ -10,14 +10,14 @@ public class TruckBean {
     private Integer modelYear;
     private String engineNumber;
     private Integer grossWeight;
+    private Integer vendorId;
 
     public TruckBean() {
     }
 
-    public TruckBean(Integer truckId, String truckCode,
-                     String truckType, String plateNumber,
-                     String modelNumber, Integer modelYear, String engineNumber,
-                     Integer grossWeight) {
+    public TruckBean(Integer truckId, String truckCode, String truckType,
+                     String plateNumber, String modelNumber, Integer modelYear,
+                     String engineNumber, Integer grossWeight, Integer vendorId) {
         this.truckId = truckId;
         this.truckCode = truckCode;
         this.truckType = truckType;
@@ -26,6 +26,7 @@ public class TruckBean {
         this.modelYear = modelYear;
         this.engineNumber = engineNumber;
         this.grossWeight = grossWeight;
+        this.vendorId = vendorId;
     }
 
     public Integer getTruckId() {
@@ -90,5 +91,13 @@ public class TruckBean {
 
     public void setGrossWeight(Integer grossWeight) {
         this.grossWeight = grossWeight;
+    }
+
+    public Integer getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
     }
 }

@@ -2,7 +2,7 @@
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <h1 class="page-header">Vendor Module</h1>
+    <h1 class="page-header">Trucks Module</h1>
 
     <div class="row">
         <div class="col-md-12">
@@ -14,7 +14,7 @@
                         class="panel-title">List of Trucks</span>
 
                 </div>
-                <s:hidden name="vendorId" value="%{vendorId}" />
+
                 <div class="panel-body">
                     <div class="table-responsive list-table">
                         <table class="table table-striped table-bordered text-center">
