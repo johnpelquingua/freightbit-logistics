@@ -40,4 +40,6 @@ public interface PermissionService {
     public PermissionUserGroup findPermissionUserGroup(Integer clientId, Integer groupId, Integer userId, Integer permissionId);
 
 	void deletePermissionOfUser(PermissionUserGroup permissionUserGroup);
+
+	List<Permission> findPermissionByGroupAndUser(Integer clientId, Integer groupId, Integer userId);
 }

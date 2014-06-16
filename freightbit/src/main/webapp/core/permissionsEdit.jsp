@@ -74,7 +74,7 @@
 
                 <div class="panel-body" style="padding:0px 15px 15px 15px;">
                     <div class="table-responsive list-table">
-                        <s:form id="permissionsList" cssClass="form-horizontal" action="Customer-List" theme="bootstrap">
+                        <s:form id="permissionsList" cssClass="form-horizontal" action="editPermission" theme="bootstrap">
 
                             <div class="panel booking panel-info" style="width:45%;float:left;margin:6px;">
                                 <div class="booking panel-heading">
@@ -120,7 +120,8 @@
                             <div class="form-group" style="float:right;width:48.5%;margin-bottom:5px;margin-right:-10px;">
                                 <label for="userSearch" class ="col-sm-2 control-label" id ="groups-add-label"> User:</label>
                                 <div class="col-sm-10">
-                                    <s:select id="userDivId" cssClass="form-control" list="userList" name="selectedUserId" listKey="userId" listValue="firstName" value="selectedUserId"/>
+                                    <s:select id="selectedUserId" cssClass="form-control" list="userList" name="selectedUserId" listKey="userId" listValue="firstName" value="selectedUserId"/>
+                                	
                                 </div>
                             </div>
 
@@ -171,8 +172,12 @@
 
                     <div>
                         <a href = "permissions-edit.html" class="btn btn-default pull-right" id = "groups-add-btn" style="margin:20px 0px 6px 6px;">Cancel</a>
-
-                        <a href ="<s:url value='editPermission' />" class="btn btn-default pull-right" id = "groups-add-btn" style="margin:20px 10px 6px 6px;">Save</a>
+					<!--	<s:submit cssClass="btn btn-default pull-right" name="submit" value="Save" cssStyle="margin:20px 10px 6px 6px;" />-->
+						<s:url var="editPermissionUrl" action="editPermission" escapeAmp="false">
+							<s:param name="selectedGroupId" value="selectedGroupId"/>
+							<s:param name="selectedUserId" value="selectedUserId"/>
+						</s:url>
+                         <a href ="<s:url value='%{editPermissionUrl}' />" class="btn btn-default pull-right" id = "groups-add-btn" style="margin:20px 10px 6px 6px;">Save</a> 
                     </div>	
                 </s:form>
 

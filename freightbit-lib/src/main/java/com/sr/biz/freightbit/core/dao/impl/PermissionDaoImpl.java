@@ -1,6 +1,9 @@
 package com.sr.biz.freightbit.core.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -178,5 +181,24 @@ public class PermissionDaoImpl extends HibernateDaoSupport implements Permission
             log.error("delete failed", re);
             throw re;
         }
+    }
+    
+    @Override
+    public List <PermissionUserGroup> findPermissionUserGroups(Map <String, Object> paramMap, String entity) {
+    	Query query = getSessionFactory().getCurrentSession().createQuery(buildSearchCriteria(paramMap, entity));
+    	return query.list();
+    }
+    
+    private String buildSearchCriteria(Map <String, Object> paramMap, String entity){
+    	StringBuilder queryString = new StringBuilder("from " + entity + " where");
+    	Set<String> mapKeys = paramMap.keySet();
+    	int i=0;
+    	for (String mapKey : mapKeys) {
+    		if (i > 0)
+    			queryString.append(" and ");
+    		queryString.append(mapKey + " = '"+ paramMap.get(mapKey) +  "'");
+    		i++;
+    	}
+    	return queryString.toString();
     }
 }

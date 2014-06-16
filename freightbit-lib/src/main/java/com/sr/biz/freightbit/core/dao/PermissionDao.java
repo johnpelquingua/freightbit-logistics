@@ -1,6 +1,7 @@
 package com.sr.biz.freightbit.core.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.entity.Group;
@@ -40,4 +41,6 @@ public interface PermissionDao {
     public List <PermissionUserGroup> findPermissionUserGroup(Integer clientId, Integer groupId, Integer userId, Integer permissionId);
 
 	void deletePermissionUserGroup(PermissionUserGroup permissionUserGroup);
+
+	List<PermissionUserGroup> findPermissionUserGroups(Map<String, Object> paramMap, String entity);
 }

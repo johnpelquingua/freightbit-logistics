@@ -1,6 +1,9 @@
 package com.sr.biz.freightbit.core.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -99,5 +102,19 @@ public class PermissionServiceImpl implements PermissionService {
     @Transactional
     public void deletePermissionOfUser(PermissionUserGroup permissionUserGroup) {
     	permissionDao.deletePermissionUserGroup(permissionUserGroup);
+    }
+    
+    @Override
+    public List <Permission> findPermissionByGroupAndUser(Integer clientId, Integer groupId, Integer userId) {
+    	List <Permission> permissions = new ArrayList<Permission>();
+    	Map <String, Object> paramMap = new HashMap<String, Object>();
+    	paramMap.put("clientId", clientId);
+    	paramMap.put("groupId", groupId);
+    	paramMap.put("userId", userId);
+    	List <PermissionUserGroup> permissionUserGroupList = permissionDao.findPermissionUserGroups(paramMap, "PermissionUserGroup");
+    	for (PermissionUserGroup permissionUserGroup : permissionUserGroupList) {
+    		permissions.add(permissionDao.getPermission(permissionUserGroup.getPermissionId()));
+    	}
+    	return permissions;
     }
 }
