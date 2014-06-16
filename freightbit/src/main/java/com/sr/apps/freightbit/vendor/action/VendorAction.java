@@ -9,7 +9,7 @@ import com.sr.apps.freightbit.vendor.formbean.VendorBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Contacts;
-import com.sr.biz.freightbit.common.service.ContactService;
+
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.vendor.entity.Driver;
@@ -185,6 +185,8 @@ public class VendorAction extends ActionSupport implements Preparable {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendor = transformToFormBean(vendorEntity);
 
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("vendorId", vendor.getVendorId());
 
         if ("TRUCKING".equals(vendor.getVendorType())) {
             return "TRUCKING";
@@ -296,6 +298,19 @@ public class VendorAction extends ActionSupport implements Preparable {
     public String deleteTrucks() {
         Trucks truckEntity = trucksService.findTrucksByTruckCode(truckCodeParam);
         trucksService.deleteTrucks(truckEntity);
+        return SUCCESS;
+    }
+
+    public String viewTrucks() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+//
+        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
+//
+        List<Trucks> truckEntityList = trucksService.findTrucksByVendorId(vendorId);
+        for (Trucks truckElem : truckEntityList) {
+            trucks.add(transformToFormBeanTrucks(truckElem));
+        }
         return SUCCESS;
     }
 

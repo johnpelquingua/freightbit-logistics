@@ -35,18 +35,23 @@ public class VendorServiceImpl implements VendorService {
     public void setTrucksDao(TrucksDao trucksDao) {
         this.trucksDao = trucksDao;
     }
+
     public void setDriverDao(DriverDao driverDao) {
         this.driverDao = driverDao;
     }
+
     public void setTrailersDao(TrailersDao trailersDao) {
         this.trailersDao = trailersDao;
     }
+
     public void setVesselDao(VesselDao vesselDao) {
         this.vesselDao = vesselDao;
     }
+
     public void setAddressDao(AddressDao addressDao) {
         this.addressDao = addressDao;
     }
+
     public void setVendorDao(VendorDao vendorDao) {
         this.vendorDao = vendorDao;
     }
@@ -96,7 +101,7 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateVendor(Vendor vendor){
+    public void updateVendor(Vendor vendor) {
         vendorDao.updateVendor(vendor);
     }
 
@@ -150,7 +155,7 @@ public class VendorServiceImpl implements VendorService {
 
 
     @Override
-    public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
+    public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
         return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
     }
 
@@ -229,12 +234,12 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void deleteDriver(Driver driver){
+    public void deleteDriver(Driver driver) {
         driverDao.deleteDriver(driver);
     }
 
     @Override
-    public List<Driver> findAllDriversByClientId(Integer clientId){
+    public List<Driver> findAllDriversByClientId(Integer clientId) {
         return driverDao.findAllDriversByClientId(clientId);
     }
 
@@ -245,12 +250,12 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public Driver findDriverById(Integer driverId ) {
+    public Driver findDriverById(Integer driverId) {
         return driverDao.findDriverById(driverId);
     }
 
     @Override
-    public Driver findDriverByLastName(String lastName){
+    public Driver findDriverByLastName(String lastName) {
         List<Driver> result = driverDao.findDriverByLastName(lastName);
         if (result != null && !result.isEmpty())
             return result.get(0);
@@ -258,13 +263,13 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public void updateDateHired(Driver driver){
+    public void updateDateHired(Driver driver) {
         driver.setDateHired(new Date());
         driverDao.updateDriver(driver);
     }
 
     @Override
-    public void updateDateTerminated(Driver driver){
+    public void updateDateTerminated(Driver driver) {
         driver.setDateTerminated(new Date());
         driverDao.updateDriver(driver);
     }
@@ -296,7 +301,7 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addTrailers(Trailers trailers) throws TrailersAlreadyExistsException {
-        if (trailersDao.findTrailersByTrailerCode(trailers.getTrailerCode())!=null)
+        if (trailersDao.findTrailersByTrailerCode(trailers.getTrailerCode()) != null)
             throw new TrailersAlreadyExistsException(trailers.getTrailerCode());
         else
             trailersDao.addTrailers(trailers);
@@ -320,7 +325,7 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public List<Trailers> findAllTrailersByClientId (Integer clientId) {
+    public List<Trailers> findAllTrailersByClientId(Integer clientId) {
         return trailersDao.findAllTrailersByClientId(clientId);
     }
 
@@ -346,7 +351,7 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addVessel(Vessel vessel) throws VesselAlreadyExistsException {
-        if(vesselDao.findVesselByName(vessel.getVesselName()) != null)
+        if (vesselDao.findVesselByName(vessel.getVesselName()) != null)
             throw new VesselAlreadyExistsException(vessel.getVesselName());
         else
             vesselDao.addVessel(vessel);
@@ -354,7 +359,7 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void deleteVessel(Vessel vessel){
+    public void deleteVessel(Vessel vessel) {
         vesselDao.deleteVessel(vessel);
     }
 
@@ -365,20 +370,24 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public List<Vessel> findAllVessel(){
+    public List<Vessel> findAllVessel() {
         List<Vessel> vessels = vesselDao.findAllVessel();
         return vessels;
     }
 
     @Override
-    public Vessel findVesselById(long vesselId){ return vesselDao.findVesselById(vesselId);}
+    public Vessel findVesselById(long vesselId) {
+        return vesselDao.findVesselById(vesselId);
+    }
 
     @Override
-    public List<Vessel> findVesselByClientId(long clientId){ return vesselDao.findVesselByClientId(clientId); }
+    public List<Vessel> findVesselByClientId(long clientId) {
+        return vesselDao.findVesselByClientId(clientId);
+    }
 
-    public Vessel findVesselByName(String vesselName){
+    public Vessel findVesselByName(String vesselName) {
         List<Vessel> result = vesselDao.findVesselByName(vesselName);
-        if(result != null && !result.isEmpty())
+        if (result != null && !result.isEmpty())
             return result.get(0);
         return null;
     }
@@ -422,13 +431,13 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId) {
+    public List<Contacts> findContactByRefIdAndType(String contactType, Integer customerId) {
         return contactsDao.findContactByRefTableAndIdAndType("CUSTOMERS", customerId, contactType);
     }
 
     @Override
-    public List <Contacts> findContactByReferenceId(Integer vendorId) {
-        List <Contacts> result = contactsDao.findContactByReferenceId(vendorId);
+    public List<Contacts> findContactByReferenceId(Integer vendorId) {
+        List<Contacts> result = contactsDao.findContactByReferenceId(vendorId);
         return result;
 
     }
