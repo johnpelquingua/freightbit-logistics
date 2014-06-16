@@ -3,17 +3,15 @@
 		<!-- MIDDLE -->
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         
-		<h1 class="page-header">Vendor Module</h1>
-		
-		
+		<h1 class="page-header" style="margin-left: -40px;">Vendor Module</h1>
 		<!-- EDIT HERE -->
-		<div class="row alert alert-success alert-dismissable">
+		<div class="row alert alert-success alert-dismissable" style="margin-left: -40px !important;  width: 101%;">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
   			<strong>Success!</strong> The data has been successfully saved.
 		</div>
 
 		<div class="row">			
-				<div class="col-md-12">
+				<div class="col-md-12" style="margin-left: -25px;">
 				  <div class="panel panel-info">
 
 					  <div class="panel-heading">
@@ -87,12 +85,3 @@
 			</div>
 		
 		</div>
-
-		<!-- SIDEBAR GOES HERE -->
-		
-		
-		<!-- END OF EDIT -->
-		
-        
-		
-		<!-- END OF THE MIDDLE -->

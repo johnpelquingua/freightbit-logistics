@@ -14,7 +14,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <img src="includes/images/account.png" class="box-icon">
-                <span class="panel-title">Personal Information</span>
+                <span class="panel-title">Trucking Information</span>
             </div>
             <div class="panel-body">
                 <div style="float:left; width:50%;">

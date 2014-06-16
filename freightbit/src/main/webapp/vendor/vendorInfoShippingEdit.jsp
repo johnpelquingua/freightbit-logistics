@@ -3,77 +3,77 @@
 <!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <h1 class="page-header">Vendor Profile</h1>
+    <h1 class="page-header" style="margin-left: -40px;">Vendor Profile</h1>
 
     <!-- EDIT HERE -->
 
     <%--<s:hidden name="vendor.vendorId" id="vendor.vendorId" value="%{vendor.vendorId}"/>--%>
 
-    <div class="main-box">
+    <div class="main-box" style="margin-left: -40px;">
 
         <div class="panel panel-info">
             <div class="panel-heading">
                 <img src="includes/images/account.png" class="box-icon">
-                <span class="panel-title">Personal Information</span>
+                <span class="panel-title">Edit - Shipping Information</span>
             </div>
             <div class="panel-body">
                 <s:form cssClass="form-horizontal" action="editVendorShipping" method="POST" theme="bootstrap">
                 <s:hidden name="vendor.vendorId" value="%{vendor.vendorId}" />
                 <div class="form-group">
-                    <label for="vendor.vendorName" class="col-sm-2 control-label">Name:</label>
+                    <label for="vendor.vendorName" class="col-sm-1 control-label">Name:</label>
 
                     <div class="col-sm-10">
                         <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Vendor Name"
-                                     name="vendor.vendorName"></s:textfield>
+                                     name="vendor.vendorName" style="width: 108%;"></s:textfield>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="vendor.vendorCode" class="col-sm-2 control-label">Code:</label>
+                    <label for="vendor.vendorCode" class="col-sm-1 control-label">Code:</label>
 
                     <div class="col-sm-10">
                         <s:textfield cssClass="form-control" id="vendor.vendorCode" placeholder="Vendor Code"
-                                     name="vendor.vendorCode"></s:textfield>
+                                     name="vendor.vendorCode" style="width: 108%;"></s:textfield>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="vendor.vendorType" class="col-sm-2 control-label">Type:</label>
+                    <label for="vendor.vendorType" class="col-sm-1 control-label">Type:</label>
 
                     <div class="col-sm-10">
                         <s:select cssClass="form-control" id="vendor.vendorType" list="vendorTypeList" listValue="value"
                                   listKey="key"
-                                  name="vendor.vendorType"/>
+                                  name="vendor.vendorType" style="width: 108%;"/>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="vendor.vendorClass" class="col-sm-2 control-label">Name:</label>
+                    <label for="vendor.vendorClass" class="col-sm-1 control-label">Name:</label>
 
                     <div class="col-sm-10">
                         <s:select cssClass="form-control" id="vendor.vendorClass" list="vendorClassList" listKey="key"
                                   listValue="value"
-                                  name="vendor.vendorClass"/>
+                                  name="vendor.vendorClass" style="width: 108%;"/>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="vendor.vendorStatus" class="col-sm-2 control-label">Status:</label>
+                    <label for="vendor.vendorStatus" class="col-sm-1 control-label">Status:</label>
 
                     <div class="col-sm-10">
                         <s:select cssClass="form-control" id="vendor.vendorStatus" list="statusList"
                                   listKey="key" listValue="value"
-                                  name="vendor.vendorStatus"/>
+                                  name="vendor.vendorStatus" style="width: 108%;"/>
                     </div>
                 </div>
 
             </div>
 
             <div class="panel-footer">
-                <div class="btn-group" style="float: right;">
-                    <s:submit cssClass="btn btn-default" value="Save" type="submit"/>
+                <div class="btn-group" style="float: right;margin-right: 15px !important;position: relative;">
                     <button class="btn btn-default" onclick="this.form.action='viewVendors'"/>
                     Cancel</button>
+                    <s:submit cssClass="btn btn-default" value="Save" type="submit"/>
                 </div>
 
                 </s:form>
@@ -90,20 +90,13 @@
             </div>
 
             <div class="panel-body">
-
                 <ul class="nav">
-                    <li><a href="vendor-addvendor" class="side-help"><img src="includes/images/1.png"
-                                                                          class="img-sidehelp">Personal Information</a>
+                    <li><a href="vendor-vessel" class="side-help" style="font-size:15px;"><img src="includes/images/1.png" class="img-sidehelp">Vessel Information</a>
                     </li>
-                    <li><a href="vendor-vessel" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Vessel</a>
-                    </li>
-                    <li><a href="vendor-contact-person2" class="side-help"><img src="includes/images/3.png"
+                    <li><a href="vendor-contact-person2" class="side-help" style="font-size:15px;"><img src="includes/images/2.png"
                                                                                 class="img-sidehelp">Contact Person</a>
                     </li>
-                    <li><a href="vendor-other-information2" class="side-help"><img src="includes/images/4.png"
-                                                                                   class="img-sidehelp">Other
-                        Information</a></li>
-                    <li><a href="vendor-address2" class="side-help"><img src="includes/images/5.png"
+                    <li><a href="vendor-address2" class="side-help" style="font-size:15px;"><img src="includes/images/3.png"
                                                                          class="img-sidehelp">Address</a></li>
                 </ul>
 
