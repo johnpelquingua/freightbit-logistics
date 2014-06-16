@@ -3,10 +3,10 @@
 <!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <h1 class="page-header">Vendor Module</h1>
+    <h1 class="page-header" style="margin-left: -40px;">Vendor Module</h1>
 
     <!-- EDIT HERE -->
-    <div class="main-box">
+    <div class="main-box" style="margin-left: -50px;">
         <div class="col-md-12">
             <div class="panel panel-info">
 
@@ -59,7 +59,7 @@
 
 
     <!-- SIDBAR GOES HERE -->
-    <div class="sidebar-box">
+   <%-- <div class="sidebar-box">
         <div class="panel panel-info">
             <div class="panel-heading">
                 <img src="includes/images/chat.png" class="box-icon">
@@ -72,7 +72,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
     <!-- END OF EDIT -->
 
 

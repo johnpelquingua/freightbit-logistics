@@ -3,13 +3,13 @@
 <!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <h1 class="page-header">Vendor Profile</h1>
+    <h1 class="page-header" style="margin-left:-40px;">Vendor Profile</h1>
 
     <!-- EDIT HERE -->
 
     <%--<s:hidden name="vendor.vendorId" id="vendor.vendorId" value="%{vendor.vendorId}"/>--%>
 
-    <div class="main-box">
+    <div class="main-box" style="margin-left:-40px;">
 
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -23,15 +23,13 @@
 
                 <h2><s:property value="vendor.vendorName"/></h2>
                 <br/>
-                Code: <s:property value="vendor.vendorName"/>
+                <b>Code:</b> <s:property value="vendor.vendorCode"/>
                 <br/>
-                Type: <s:property value="vendor.vendorType"/>
+                <b>Type:</b> <s:property value="vendor.vendorType"/>
                 <br/>
-                Class: <s:property value="vendor.vendorClass"/>
+                <b>Class:</b> <s:property value="vendor.vendorClass"/>
                 <br/>
-                Status: <s:property value="vendor.vendorStatus"/>
-
-
+                <b>Status:</b> <s:property value="vendor.vendorStatus"/>
             </div>
         </div>
     </div>
@@ -43,26 +41,22 @@
                 <span class="panel-title">Process</span>
             </div>
 
-            <div class="panel-body">
-
-                <ul class="nav">
-                    <li><a href="vendor-addvendor" class="side-help"><img src="includes/images/1.png"
-                                                                          class="img-sidehelp">Personal
-                        Information</a></li>
-                    <li><a href="vendor-trucks" class="side-help"><img src="includes/images/2.png"
+            <div class="panel-body" style="height: 195px;">
+                <ul class="nav" style="margin-top: -10px;">
+                    <li><a href="viewVendors" class="side-help" style="font-size: 15px;"><img src="includes/images/1.png"
                                                                        class="img-sidehelp">Trucks
                         Information</a></li>
-                    <li><a href="vendor-driver" class="side-help"><img src="includes/images/3.png"
+                    <li><a href="vendor-driver" class="side-help" style="font-size: 15px;"><img src="includes/images/2.png"
                                                                        class="img-sidehelp">Driver
                         Information</a></li>
-                    <li><a href="vendor-contact-person" class="side-help"><img src="includes/images/4.png"
+                    <li><a href="vendor-contact-person" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png"
                                                                                class="img-sidehelp">Contact
                         Person</a></li>
-                    <li><a href="vendor-other-information" class="side-help"><img
+                 <%--   <li><a href="vendor-other-information" class="side-help"><img
                             src="includes/images/5.png"
                             class="img-sidehelp">Other
-                        Information</a></li>
-                    <li><a href="vendor-address" class="side-help"><img src="includes/images/6.png"
+                        Information</a></li>--%>
+                    <li><a href="vendor-address" class="side-help" style="font-size: 15px;"><img src="includes/images/4.png"
                                                                         class="img-sidehelp">Address</a>
                     </li>
                 </ul>

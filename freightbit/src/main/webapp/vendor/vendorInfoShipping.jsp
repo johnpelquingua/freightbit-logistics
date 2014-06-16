@@ -23,7 +23,7 @@
 
                 <h2><s:property value="vendor.vendorName"/></h2>
                 <br/>
-                Code: <s:property value="vendor.vendorName"/>
+                Code: <s:property value="vendor.vendorCode"/>
                 <br/>
                 Type: <s:property value="vendor.vendorType"/>
                 <br/>
