@@ -44,14 +44,12 @@
             <div class="panel-body" style="height: 195px;">
                 <ul class="nav" style="margin-top: -10px;">
                     <li><a href="viewVendors" class="side-help" style="font-size: 15px;"><img src="includes/images/1.png"
-                                                                       class="img-sidehelp">Trucks
-                        Information</a></li>
-                    <li><a href="vendor-driver" class="side-help" style="font-size: 15px;"><img src="includes/images/2.png"
-                                                                       class="img-sidehelp">Driver
-                        Information</a></li>
+                                                                       class="img-sidehelp">Truck Listings</a></li>
+                    <li><a href="viewDrivers" class="side-help" style="font-size: 15px;"><img src="includes/images/2.png"
+                                                                       class="img-sidehelp">Driver Listings</a></li>
                     <li><a href="vendor-contact-person" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png"
                                                                                class="img-sidehelp">Contact
-                        Person</a></li>
+                        Persons</a></li>
                  <%--   <li><a href="vendor-other-information" class="side-help"><img
                             src="includes/images/5.png"
                             class="img-sidehelp">Other

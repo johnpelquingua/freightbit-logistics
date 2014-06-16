@@ -107,6 +107,11 @@
         <put-attribute name="body"   value="/vendor/vendorListView.jsp"/>
     </definition>
 
+    <definition name="vendor.driverListView.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Driver List"/>
+        <put-attribute name="body"   value="/vendor/driverListView.jsp"/>
+    </definition>
+
     <definition name="vendor.vendorAddDriver.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Add New Driver"/>
         <put-attribute name="body"   value="/vendor/vendorAddDriver.jsp"/>

@@ -157,6 +157,10 @@
             <result name="success" type="redirect">loadAddDriverPage</result>
         </action>
 
+        <action name="viewDrivers" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewDrivers">
+            <result name="success" type="tiles">vendor.driverListView.tiles</result>
+        </action>
+
         <!--contact -->
         <action name="loadAddContactPersonPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddContactPersonPage">
             <result name="success" type="tiles">vendor.vendorAddContact.tiles</result>

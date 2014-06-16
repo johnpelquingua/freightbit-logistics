@@ -91,6 +91,36 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    // TODO View Drivers initial code
+
+/*
+    public String viewDriversByClientId() {
+        List<Driver> driverEntityList = driverService.findAllDriverByClientId(getClientId());
+        for (Driver driverElem : driverEntityList) {
+            drivers.add(transformToFormBeanDriver(driverElem));
+        }
+        return SUCCESS;
+    }*/
+
+    public String viewDrivers() {
+        List<Driver> driverEntityList = new ArrayList<Driver>();
+
+        //SEARCH Method
+      /*  if (StringUtils.isNotBlank(column)) {
+            vendorEntityList = vendorService.findVendorsByCriteria(column, vendor.getVendorKeyword(), getClientId());
+        } else {
+            vendorEntityList = vendorService.findAllVendors();
+        }*/
+
+        driverEntityList = vendorService.findAllDrivers();
+
+        for (Driver driverElem : driverEntityList) {
+            drivers.add(transformToFormBeanDriver(driverElem));
+        }
+        return SUCCESS;
+    }
+
+
     public String getColumnFilter() {
         String column = "";
         if ("companyCode".equals(vendor.getVendorSearchCriteria())) {
@@ -805,4 +835,53 @@ public class VendorAction extends ActionSupport implements Preparable {
     public void setContactCodeParam(Integer contactCodeParam) {
         this.contactCodeParam = contactCodeParam;
     }
+
+    /*public String getDriverCode() {
+        return driverCode;
+    }
+
+    public void setDriverCode(String driverCode) {
+        this.driverCode = driverCode;
+    }
+
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+}*/
+
 }
