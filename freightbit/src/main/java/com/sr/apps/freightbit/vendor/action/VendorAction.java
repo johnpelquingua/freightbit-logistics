@@ -279,31 +279,12 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     //trucks
     public String loadAddTrucksPage() {
-        //load all trucks
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
-        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
-
-        List<Trucks> truckEntityList = trucksService.findTrucksByVendorId(vendorId);
-        for (Trucks truckElem : truckEntityList) {
-            trucks.add(transformToFormBeanTrucks(truckElem));
-        }
         return SUCCESS;
     }
 
     public String loadEditTrucksPage() {
-        //load all trucks
-
-        Integer vendorId = getSessionVendorId();
-
-        List<Trucks> truckEntityList = trucksService.findTrucksByVendorId(vendorId);
-        for (Trucks truckElem : truckEntityList) {
-            trucks.add(transformToFormBeanTrucks(truckElem));
-        }
-
         //load to form
-        Trucks truckEntity = trucksService.findTrucksByTruckCode(truckCodeParam);
+        Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
         truck = transformToFormBeanTrucks(truckEntity);
         return SUCCESS;
     }
@@ -313,7 +294,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        trucksService.addTrucks(transformToEntityBeanTrucks(truck));
+        vendorService.addTrucks(transformToEntityBeanTrucks(truck));
         return SUCCESS;
     }
 
@@ -322,13 +303,13 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        trucksService.updateTrucks(transformToEntityBeanTrucks(truck));
+        vendorService.updateTrucks(transformToEntityBeanTrucks(truck));
         return SUCCESS;
     }
 
     public String deleteTrucks() {
-        Trucks truckEntity = trucksService.findTrucksByTruckCode(truckCodeParam);
-        trucksService.deleteTrucks(truckEntity);
+        Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
+        vendorService.deleteTrucks(truckEntity);
         return SUCCESS;
     }
 
@@ -349,8 +330,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             entity.setTruckId(truckBean.getTruckId());
         }
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        entity.setVendorId((Integer) sessionAttributes.get("vendorId"));
+        entity.setVendorId(truckBean.getVendorId());
         entity.setTruckType(truckBean.getTruckType());
         entity.setPlateNumber(truckBean.getPlateNumber());
         entity.setModelNumber(truckBean.getModelNumber());
@@ -365,9 +345,6 @@ public class VendorAction extends ActionSupport implements Preparable {
     private TruckBean transformToFormBeanTrucks(Trucks entity) {
 
         TruckBean formBean = new TruckBean();
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
 
         formBean.setTruckId(entity.getTruckId());
         formBean.setTruckType(entity.getTruckType());

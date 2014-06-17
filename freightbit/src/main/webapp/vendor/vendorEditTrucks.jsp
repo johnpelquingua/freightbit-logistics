@@ -18,10 +18,10 @@
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <s:form cssClass="form-horizontal" action="editVendorTrucks" method="post" theme="bootstrap">
+                    <s:form cssClass="form-horizontal" action="editTrucks" method="post" theme="bootstrap">
 
                     <s:hidden name="truck.truckId" value="%{truck.truckId}"/>
-                    <s:hidden name="vendor.vendorId" value="%{vendor.vendorId}"/>
+                    <s:hidden name="truck.vendorId" value="%{vendor.vendorId}"/>
                     <div class="form-group">
 
                         <label class="col-sm-2 control-label" for="truck.truckType">Type:</label>

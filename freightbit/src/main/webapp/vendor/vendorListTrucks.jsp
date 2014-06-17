@@ -45,31 +45,23 @@
                                     <td class="tb-font-black"><s:property value="grossWeight"/></td>
                                     <td class="tb-font-black">
 
-                                        <s:url var="editVendorUrl" action="loadEditVendorPage">
-                                            <s:param name="vendorCodeParam" value="vendorCode"></s:param>
+                                        <s:url var="editTruckUrl" action="loadEditTrucksPage">
+                                            <s:param name="truckCodeParam" value="truckCode"></s:param>
+                                            <s:param name="vendorIdParam" value="vendorIdParam"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
+                                        <s:a class="icon-action-link" href="%{editTruckUrl}" rel="tooltip"
                                              title="Edit this vendor">
                                             <img src="includes/images/edit-user.png"
                                                  class="icon-action circ-icon"> </s:a>
 
-                                        <s:url var="deleteVendorUrl" action="deleteVendor">
-                                            <s:param name="vendorCodeParam" value="vendorCode"></s:param>
+                                        <s:url var="deleteTruckUrl" action="deleteTrucks">
+                                            <s:param name="truckCodeParam" value="truckCode"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
+                                        <s:a class="icon-action-link" href="%{deleteTruckUrl}" rel="tooltip"
                                              title="Delete this Vendor"
                                              onclick="return confirm('Do you really want to delete?');">
                                             <img src="includes/images/remove-user.png"
                                                  class="icon-action circ-icon"> </s:a>
-
-                                        <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
-                                            <s:param name="vendorCodeParam" value="vendorCode"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
-                                             title="View Vendor Info">
-                                            <img
-                                                    src="includes/images/info-b.png"
-                                                    class="icon-action circ-icon"> </s:a>
                                     </td>
                                 </tr>
                             </s:iterator>
@@ -79,10 +71,12 @@
                 </div>
 
                 <div class="panel-footer">
-                        <span class="pull-right"> <a href="loadAddVendorPage"
-                                                     class="icon-action-link" rel="tooltip" title="Add Vendor"><img
-                                src="includes/images/add-user.png" class="icon-action circ-icon">
-                        </a>
+                        <span class="pull-right">
+                            <s:url var="addTrucksUrl" action="loadAddTrucksPage">
+                                <s:param name="vendorIdParam" value="vendorIdParam"></s:param>
+                            </s:url>
+                        <s:a href="%{addTrucksUrl}" cssClass="side-help" style="font-size: 15px;"><img
+                                src="includes/images/add-user.png" class="icon-action circ-icon"></s:a>
                         </span>
 
                     <ul class="pagination">

@@ -137,14 +137,9 @@
         <put-attribute name="body"   value="/vendor/vendorInfoShipping.jsp"/>
     </definition>
 
-    <definition name="vendor.vendorInfoTruckingEdit.tiles" extends="baseLayout">
+    <definition name="vendor.vendorEdit.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Edit Vendor"/>
-        <put-attribute name="body"   value="/vendor/vendorInfoTruckingEdit.jsp"/>
-    </definition>
-
-    <definition name="vendor.vendorInfoShippingEdit.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Edit Vendor"/>
-        <put-attribute name="body"   value="/vendor/vendorInfoShippingEdit.jsp"/>
+        <put-attribute name="body"   value="/vendor/vendorEdit.jsp"/>
     </definition>
 
     <definition name="vendor.vendorListTrucks.tiles" extends="baseLayout">
