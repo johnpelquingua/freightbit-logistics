@@ -113,8 +113,22 @@
 					
 				  <div class="panel-body">
 						<ul class="nav">
-							<li><a href="vendor-trucks" class="side-help" style="font-size: 15px;"><img src="includes/images/1.png" class="img-sidehelp">List of Trucks</a></li>
-							<li><a href="vendor-driver" class="side-help" style="font-size: 15px;"><img src="includes/images/2.png" class="img-sidehelp">List of Drivers</a></li>
+                            <li>
+                                <s:url var="viewTrucksUrl" action="viewTrucks">
+                                    <s:param name="vendorIdParam" value="vendor.vendorId"></s:param>
+                                </s:url>
+                                <s:a href="%{viewTrucksUrl}" cssClass="side-help" style="font-size: 15px;">
+                                    <img src="includes/images/1.png" class="img-sidehelp">List of Trucks
+                                </s:a>
+                            </li>
+                            <li>
+                                <s:url var="viewDriversUrl" action="viewDrivers">
+                                    <s:param name="vendorDriverIdParam" value="driver.driverId"></s:param>
+                                </s:url>
+                                <s:a href="%{viewDriversUrl}" cssClass="side-help" style="font-size: 15px;">
+                                    <img src="includes/images/2.png" class="img-sidehelp">List of Drivers
+                                </s:a>
+                            </li>
 							<li><a href="vendor-other-information" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png" class="img-sidehelp">Contact Person</a></li>
 							<li><a href="vendor-address" class="side-help" style="font-size: 15px;"><img src="includes/images/4.png" class="img-sidehelp">Address</a></li>
 						</ul>
