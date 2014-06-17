@@ -152,6 +152,11 @@
         <put-attribute name="body"   value="/vendor/vendorSaveCompleteTrucks.jsp"/>
     </definition>
 
+    <definition name="vendor.vendorSaveCompleteDrivers.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Edit Vendor"/>
+        <put-attribute name="body"   value="/vendor/vendorSaveCompleteDrivers.jsp"/>
+    </definition>
+
 <!-- VENDOR module tiles END -->
 
 <!-- CUSTOMER module tiles END -->

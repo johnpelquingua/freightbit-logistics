@@ -93,26 +93,22 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     // TODO View Drivers initial code
 
-/*
-    public String viewDriversByClientId() {
-        List<Driver> driverEntityList = driverService.findAllDriverByClientId(getClientId());
+    public String loadSaveCompleteDrivers() {
+        List<Driver> driverEntityList = new ArrayList<Driver>();
+
+        Integer vendorId = getSessionVendorId();
+        driverEntityList = vendorService.findDriverByVendorId(vendorId);
+
         for (Driver driverElem : driverEntityList) {
             drivers.add(transformToFormBeanDriver(driverElem));
         }
         return SUCCESS;
-    }*/
-
+    }
     public String viewDrivers() {
         List<Driver> driverEntityList = new ArrayList<Driver>();
 
-        //SEARCH Method
-      /*  if (StringUtils.isNotBlank(column)) {
-            vendorEntityList = vendorService.findVendorsByCriteria(column, vendor.getVendorKeyword(), getClientId());
-        } else {
-            vendorEntityList = vendorService.findAllVendors();
-        }*/
-
-        driverEntityList = vendorService.findAllDrivers();
+        Integer vendorId = getSessionVendorId();
+        driverEntityList = vendorService.findDriverByVendorId(vendorId);
 
         for (Driver driverElem : driverEntityList) {
             drivers.add(transformToFormBeanDriver(driverElem));

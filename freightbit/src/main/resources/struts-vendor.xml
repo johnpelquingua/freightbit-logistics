@@ -147,16 +147,20 @@
         </action>
 
         <action name="editDriver" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editDriver">
-            <result name="success" type="redirect">loadAddDriverPage</result>
+            <result name="success" type="redirect">loadSaveCompleteDrivers</result>
             <result name="input" type="tiles">vendor.vendorAddDriver.tiles</result>
         </action>
 
         <action name="deleteDriver" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteDriver">
-            <result name="success" type="redirect">loadAddDriverPage</result>
+            <result name="success" type="redirect">viewdDrivers</result>
         </action>
 
         <action name="viewDrivers" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewDrivers">
             <result name="success" type="tiles">vendor.driverListView.tiles</result>
+        </action>
+
+        <action name="loadSaveCompleteDrivers" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteDrivers">
+            <result name="success" type="tiles">vendor.vendorSaveCompleteDrivers.tiles</result>
         </action>
 
         <!--contact -->

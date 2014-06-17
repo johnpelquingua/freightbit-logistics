@@ -4,6 +4,11 @@
 
     <h1 class="page-header" style="margin-left:-40px;">Driver Module</h1>
 
+    <div class="row alert alert-success alert-dismissable" style="margin-left: -40px !important;  width: 101%;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Success!</strong> The data has been successfully saved.
+    </div>
+
     <div class="row">
         <div class="col-md-12" style="margin-left:-25px;">
             <div class="panel panel-info">

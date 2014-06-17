@@ -6,7 +6,7 @@
     <h1 class="page-header">Trucks</h1>
 
     <!-- EDIT HERE -->
-    <div class="row">
+    <div class="main-box" style=" margin-left: -40px; ">
         <div class="panel panel-info">
 
             <div class="panel-heading">
@@ -111,6 +111,41 @@
             </s:form>
         </div>
 
+    </div>
+
+    <div class="sidebar-box">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <img src="includes/images/calendar.png" class="box-icon">
+                <span class="panel-title">Process</span>
+            </div>
+
+            <div class="panel-body" style="height: 195px;">
+                <ul class="nav" style="margin-top: -10px;">
+                    <li>
+                        <a href="viewTrucks" class="side-help" style="font-size: 15px;"><img
+                                src="includes/images/1.png"
+                                class="img-sidehelp">List of Trucks</a>
+                    </li>
+                    <li>
+                        <a href="viewDrivers" class="side-help" style="font-size: 15px;"><img
+                                src="includes/images/2.png"
+                                class="img-sidehelp">List of Drivers</a>
+                    </li>
+                    <li><a href="vendor-contact-person" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png"
+                                                                                                        class="img-sidehelp">Contact
+                        Person</a></li>
+                    <%--   <li><a href="vendor-other-information" class="side-help"><img
+                               src="includes/images/5.png"
+                               class="img-sidehelp">Other
+                           Information</a></li>--%>
+                    <li><a href="vendor-address" class="side-help" style="font-size: 15px;"><img
+                            src="includes/images/4.png"
+                            class="img-sidehelp">Address</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 
