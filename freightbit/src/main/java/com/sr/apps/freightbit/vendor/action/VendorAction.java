@@ -53,7 +53,6 @@ public class VendorAction extends ActionSupport implements Preparable {
     private ContactBean contact = new ContactBean();
 
     private String vendorCodeParam;
-    private Integer vendorIdParam;
     private String truckCodeParam;
     private String driverCodeParam;
     private Integer contactCodeParam;
@@ -161,12 +160,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     public String loadEditVendorPage() {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendor = transformToFormBean(vendorEntity);
-
-        if ("TRUCKING".equals(vendor.getVendorType())) {
-            return "TRUCKING";
-        } else {
-            return "SHIPPING";
-        }
+        return SUCCESS;
     }
 
     public String loadEditVendorTrucksPage() {
@@ -313,8 +307,22 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String loadSaveCompleteTrucks() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
+        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorId);
+//        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorIdParam);
+        for (Trucks truckElem : truckEntityList) {
+            trucks.add(transformToFormBeanTrucks(truckElem));
+        }
+        return SUCCESS;
+    }
+
     public String viewTrucks() {
-        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorIdParam);
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
+        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorId);
+//        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorIdParam);
         for (Trucks truckElem : truckEntityList) {
             trucks.add(transformToFormBeanTrucks(truckElem));
         }
@@ -329,8 +337,10 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (truckBean.getTruckId() != null) {
             entity.setTruckId(truckBean.getTruckId());
         }
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
 
-        entity.setVendorId(truckBean.getVendorId());
+        entity.setVendorId(vendorId);
         entity.setTruckType(truckBean.getTruckType());
         entity.setPlateNumber(truckBean.getPlateNumber());
         entity.setModelNumber(truckBean.getModelNumber());
@@ -807,14 +817,5 @@ public class VendorAction extends ActionSupport implements Preparable {
     public void setContactCodeParam(Integer contactCodeParam) {
         this.contactCodeParam = contactCodeParam;
     }
-
-    public Integer getVendorIdParam() {
-        return vendorIdParam;
-    }
-
-    public void setVendorIdParam(Integer vendorIdParam) {
-        this.vendorIdParam = vendorIdParam;
-    }
-
 
 }

@@ -147,6 +147,11 @@
         <put-attribute name="body"   value="/vendor/vendorListTrucks.jsp"/>
     </definition>
 
+    <definition name="vendor.vendorSaveCompleteTrucks.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Edit Vendor"/>
+        <put-attribute name="body"   value="/vendor/vendorSaveCompleteTrucks.jsp"/>
+    </definition>
+
 <!-- VENDOR module tiles END -->
 
 <!-- CUSTOMER module tiles END -->

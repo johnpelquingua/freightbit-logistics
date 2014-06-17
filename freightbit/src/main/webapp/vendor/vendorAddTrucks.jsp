@@ -19,7 +19,7 @@
                     <s:form cssClass="form-horizontal" action="editTrucks" method="post" theme="bootstrap">
 
                     <s:hidden name="truck.truckId" value="%{truck.truckId}"/>
-                    <s:hidden name="truck.vendorId" value="%{vendorIdParam}"/>
+
 
 
                     <div class="form-group">
@@ -103,18 +103,6 @@
             </div>
 
             <div class="panel-footer">
-                    <%--<button class="btn btn-default pull-left">Add</button>--%>
-                    <%--<s:submit cssClass="btn btn-default" value="Add" type="submit" />--%>
-                    <%--<s:if test="%{truck.truckId=='' || truck.truckId eq null}">--%>
-                    <%--<button cssClass="btn btn-default" name="submit" value="Cancel" onclick="this.form.action='loadAddTrucksPage'" />--%>
-                    <%--<s:submit cssClass="btn btn-default" name="submit" value="Save" />--%>
-
-                    <%--</s:if>--%>
-                    <%--<s:else>--%>
-
-
-                    <%--</s:else>--%>
-
                 <div class="btn-group pull-right">
                     <button class="btn btn-default">Cancel</button>
                     <s:submit cssClass="btn btn-default" name="submit" value="Save"/>

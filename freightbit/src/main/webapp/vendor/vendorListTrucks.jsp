@@ -47,7 +47,7 @@
 
                                         <s:url var="editTruckUrl" action="loadEditTrucksPage">
                                             <s:param name="truckCodeParam" value="truckCode"></s:param>
-                                            <s:param name="vendorIdParam" value="vendorIdParam"></s:param>
+
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editTruckUrl}" rel="tooltip"
                                              title="Edit this vendor">
