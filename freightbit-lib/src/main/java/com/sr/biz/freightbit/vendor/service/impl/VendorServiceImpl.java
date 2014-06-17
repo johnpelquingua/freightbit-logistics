@@ -245,8 +245,8 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public List<Driver> findAllDrivers() {
-        List<Driver> drivers = driverDao.findAllDrivers();
-        return drivers;
+        List<Driver> driver = driverDao.findAllDrivers();
+        return driver;
     }
 
     @Override

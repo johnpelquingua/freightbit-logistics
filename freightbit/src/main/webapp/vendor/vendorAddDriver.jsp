@@ -3,15 +3,15 @@
 		<!-- MIDDLE -->
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         
-		<h1 class="page-header">Drivers</h1>
+		<h1 class="page-header" style=" margin-left: -40px; ">Edit - Drivers</h1>
 		
 		<!-- EDIT HERE -->
-			<div class="main-box">
+			<div class="main-box" style=" margin-left: -40px; ">
 				<div class="panel panel-info">
 
 					<div class="panel-heading">
 						<img src="includes/images/add-user.png" class="box-icon">
-						<span class="panel-title">Driver Information</span>
+						<span class="panel-title">Edit - Driver Information</span>
 					</div>
 
 					<div class="panel-body">
@@ -112,21 +112,18 @@
 					</div>
 					
 				  <div class="panel-body">
-					
-						<ul class="nav">		  
-							<li><a href="vendor-addvendor" class="side-help"><img src="includes/images/1.png" class="img-sidehelp">Personal Information</a></li>
-							<li><a href="vendor-trucks" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Trucks Information</a></li>
-							<li><a href="vendor-driver" class="side-help"><img src="includes/images/3.png" class="img-sidehelp">Driver Information</a></li>
-							<li><a href="vendor-contact-person" class="side-help"><img src="includes/images/4.png" class="img-sidehelp">Contact Person</a></li>
-							<li><a href="vendor-other-information" class="side-help"><img src="includes/images/5.png" class="img-sidehelp">Other Information</a></li>
-							<li><a href="vendor-address" class="side-help"><img src="includes/images/6.png" class="img-sidehelp">Address</a></li>
+						<ul class="nav">
+							<li><a href="vendor-trucks" class="side-help" style="font-size: 15px;"><img src="includes/images/1.png" class="img-sidehelp">List of Trucks</a></li>
+							<li><a href="vendor-driver" class="side-help" style="font-size: 15px;"><img src="includes/images/2.png" class="img-sidehelp">List of Drivers</a></li>
+							<li><a href="vendor-other-information" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png" class="img-sidehelp">Contact Person</a></li>
+							<li><a href="vendor-address" class="side-help" style="font-size: 15px;"><img src="includes/images/4.png" class="img-sidehelp">Address</a></li>
 						</ul>
 					
 				  </div>
 			  </div>
 		    </div>
 
-			<div class="row col-md-12">
+			<%--<div class="row col-md-12">
 				  <div class="panel panel-info">
 
 					  <div class="panel-heading">
@@ -192,7 +189,7 @@
 					  </div>
 
 				  </div>
-			    </div>
+			    </div>--%>
 
 		<!-- SIDBAR GOES HERE -->
 		

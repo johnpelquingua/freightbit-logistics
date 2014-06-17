@@ -2,10 +2,10 @@
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <h1 class="page-header">Trucks Module</h1>
+    <h1 class="page-header" style="margin-left:-40px;">Trucks Module</h1>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" style="margin-left:-25px;">
             <div class="panel panel-info">
 
                 <div class="panel-heading">

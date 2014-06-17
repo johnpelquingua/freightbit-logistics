@@ -29,7 +29,7 @@
                 <br/>
                 <b>Class:</b> <s:property value="vendor.vendorClass"/>
                 <br/>
-                Status: <s:property value="vendor.vendorStatus"/>
+                <b>Status: </b><s:property value="vendor.vendorStatus"/>
 
                 <s:set name="vendorId" value="%{vendor.vendorId}" scope="session"/>
             </div>
@@ -45,15 +45,22 @@
 
             <div class="panel-body" style="height: 195px;">
                 <ul class="nav" style="margin-top: -10px;">
-                    <li><s:url var="viewTrucksUrl" action="viewTrucks">
+                    <li>
+                        <s:url var="viewTrucksUrl" action="viewTrucks">
                             <s:param name="vendorIdParam" value="vendor.vendorId"></s:param>
                         </s:url>
-                    <li><s:a href="%{viewTrucksUrl}" cssClass="side-help" style="font-size: 15px;"><img src="includes/images/1.png"
-                                                                                                     class="img-sidehelp">Trucks
-                        Information</s:a>
-                    <li><a href="vendor-driver" class="side-help" style="font-size: 15px;"><img src="includes/images/2.png"
-                                                                       class="img-sidehelp">Driver
-                        Information</a></li>
+                        <s:a href="%{viewTrucksUrl}" cssClass="side-help" style="font-size: 15px;">
+                            <img src="includes/images/1.png" class="img-sidehelp">List of Trucks
+                        </s:a>
+                    </li>
+                    <li>
+                        <s:url var="viewDriversUrl" action="viewDrivers">
+                            <s:param name="vendorDriverIdParam" value="driver.driverId"></s:param>
+                        </s:url>
+                        <s:a href="%{viewDriversUrl}" cssClass="side-help" style="font-size: 15px;">
+                            <img src="includes/images/2.png" class="img-sidehelp">List of Drivers
+                        </s:a>
+                    </li>
                     <li><a href="vendor-contact-person" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png"
                                                                                class="img-sidehelp">Contact
                         Person</a></li>

@@ -81,6 +81,7 @@
         <property name="trucksDao" ref="trucksDao" />
         <property name="trailersDao" ref="trailersDao" />
         <property name="vesselDao" ref="vesselDao" />
+        <property name="driverDao" ref="driverDao" />
     </bean>
     
 	<bean id="orderService" class="com.sr.biz.freightbit.order.service.impl.OrderServiceImpl">
@@ -91,6 +92,10 @@
         <property name="addressDao" ref="addressDao" />
         <property name="itemsDao" ref="itemsDao" />
     </bean>
+
+ <!--   <bean id="driverService" class="com.sr.biz.freightbit.vendor.service.impl.DriverServiceImpl">
+        <property name="driverDao" ref="driverDao" />
+    </bean>-->
 
     <!-- Services End -->
     <!-- DAOs -->

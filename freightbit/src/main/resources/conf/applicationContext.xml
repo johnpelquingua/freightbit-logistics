@@ -35,6 +35,7 @@
         <property name="vendorService" ref="vendorService"></property>
         <property name="parameterService" ref="parameterService"></property>
         <property name="clientService" ref="clientService"></property>
+        <!--<property name="driverService" ref="driverService"></property>-->
     </bean>
 
  </beans>

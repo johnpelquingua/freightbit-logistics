@@ -43,34 +43,34 @@
                                     <td class="tb-font-black"><s:property value="lastName"/></td>
                                     <td class="tb-font-black"><s:property value="middleName"/></td>
                                     <td class="tb-font-black"><s:property value="title"/></td>
-                                   <%-- <td class="tb-font-black">
+                                    <td class="tb-font-black">
 
-                                        <s:url var="editVendorUrl" action="loadEditVendorPage">
-                                            <s:param name="vendorCodeParam" value="vendorCode"></s:param>
+                                        <s:url var="editVendorDriverUrl" action="loadEditDriverPage">
+                                            <s:param name="driverCodeParam" value="driverCode"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
-                                             title="Edit this vendor">
+                                        <s:a class="icon-action-link" href="%{editVendorDriverUrl}" rel="tooltip"
+                                             title="Edit this Driver">
                                             <img src="includes/images/edit-user.png"
                                                  class="icon-action circ-icon"> </s:a>
 
-                                        <s:url var="deleteVendorUrl" action="deleteVendor">
-                                            <s:param name="vendorCodeParam" value="vendorCode"></s:param>
+                                        <s:url var="deleteVendorDriverUrl" action="deleteDriver">
+                                            <s:param name="driverCodeParam" value="driverCode"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
-                                             title="Delete this Vendor"
+                                        <s:a class="icon-action-link" href="%{deleteVendorDriverUrl}" rel="tooltip"
+                                             title="Delete this Driver"
                                              onclick="return confirm('Do you really want to delete?');">
                                             <img src="includes/images/remove-user.png"
                                                  class="icon-action circ-icon"> </s:a>
 
-                                        <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
-                                            <s:param name="vendorCodeParam" value="vendorCode"></s:param>
+                                        <s:url var="viewInfoVendorDriverUrl" action="viewInfoDriver">
+                                            <s:param name="driverCodeParam" value="driverCode"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
-                                             title="View Vendor Info">
+                                        <s:a class="icon-action-link" href="%{viewInfoVendorDriverUrl}" rel="tooltip"
+                                             title="View Driver Info">
                                             <img
                                                     src="includes/images/info-b.png"
                                                     class="icon-action circ-icon"> </s:a>
-                                    </td>--%>
+                                    </td>
                                 </tr>
                             </s:iterator>
                             </tbody>
