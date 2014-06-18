@@ -29,7 +29,7 @@
                 <br/>
                 <b>Class:</b> <s:property value="vendor.vendorClass"/>
                 <br/>
-                <b>Status: </b><s:property value="vendor.vendorStatus"/>
+                Status: <s:property value="vendor.vendorStatus"/>
 
                 <s:set name="vendorId" value="%{vendor.vendorId}" scope="session"/>
             </div>
@@ -45,27 +45,42 @@
 
             <div class="panel-body" style="height: 195px;">
                 <ul class="nav" style="margin-top: -10px;">
+
                     <li>
-                        <a href="viewTrucks" class="side-help" style="font-size: 15px;"><img
-                                src="includes/images/1.png"
-                                class="img-sidehelp">List of Trucks</a>
+                        <s:url var="viewTrucksUrl" action="viewTrucks">
+                            <s:param name="vendorIdParam" value="vendor.vendorId"></s:param>
+                        </s:url>
+                        <s:a href="%{viewTrucksUrl}" cssClass="side-help" style="font-size: 15px;">
+                            <img src="includes/images/1.png" class="img-sidehelp">Trucks Information
+                        </s:a>
                     </li>
+
+                    <li><a href="vendor-driver" class="side-help" style="font-size: 15px;">
+                        <img src="includes/images/2.png" class="img-sidehelp">Driver Information</a>
+                    </li>
+
+                    <%--<li>
+                        &lt;%&ndash;<a href="vendor-contact-person" class="side-help" style="font-size: 15px;">
+                        <img src="includes/images/3.png" class="img-sidehelp">Contact Person</a>&ndash;%&gt;
+                        <s:url var="viewContactsUrl" action="viewVendorContacts">
+                            <s:param name="vendorIdParam" value="vendor.vendorId"></s:param>
+                        </s:url>
+                        <s:a href="%{viewContactsUrl}" cssClass="side-help" style="font-size: 15px;">
+                            <img src="includes/images/3.png" class="img-sidehelp">Contacts Information
+                        </s:a>
+                    </li>--%>
+
                     <li>
-                        <a href="viewDrivers" class="side-help" style="font-size: 15px;"><img
-                                src="includes/images/2.png"
-                                class="img-sidehelp">List of Drivers</a>
+                        <a href="viewVendorContacts" class="side-help">
+                            <img src="includes/images/5.png" class="img-sidehelp">Contact Information
+                        </a>
                     </li>
-                    <li><a href="vendor-contact-person" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png"
-                                                                               class="img-sidehelp">Contact
-                        Person</a></li>
-                    <%--   <li><a href="vendor-other-information" class="side-help"><img
-                               src="includes/images/5.png"
-                               class="img-sidehelp">Other
-                           Information</a></li>--%>
-                    <li><a href="vendor-address" class="side-help" style="font-size: 15px;"><img
-                            src="includes/images/4.png"
-                            class="img-sidehelp">Address</a>
+
+                    <li>
+                        <a href="vendor-address" class="side-help" style="font-size: 15px;">
+                        <img src="includes/images/4.png" class="img-sidehelp">Address</a>
                     </li>
+
                 </ul>
             </div>
         </div>

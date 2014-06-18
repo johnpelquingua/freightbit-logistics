@@ -131,7 +131,7 @@
 
 
         <!--driver-->
-        <action name="loadAddDriverPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+            <action name="loadAddDriverPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadAddDriverPage">
             <result name="success" type="tiles">vendor.vendorAddDriver.tiles</result>
         </action>
@@ -169,22 +169,25 @@
         </action>
 
         <action name="loadEditContactPersonPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditContactPersonPage">
-            <result name="success" type="tiles">vendor.vendorAddContact.tiles</result>
+            <result name="success" type="tiles">vendor.vendorEditContact.tiles</result>
         </action>
 
         <action name="addVendorContactPerson" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addVendorContactPerson">
-            <result name="success" type="redirect">loadAddContactPersonPage</result>
+            <result name="success" type="redirect">viewVendorContacts</result>
             <result name="input" type="tiles">vendor.vendorAddContact.tiles</result>
         </action>
 
         <action name="editVendorContactPerson" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendorContactPerson">
-            <result name="success" type="redirect">loadAddContactPersonPage</result>
-            <result name="input" type="tiles">vendor.vendorAddContact.tiles</result>
+            <result name="success" type="redirect">viewVendorContacts</result>
+            <result name="input" type="tiles">vendor.vendorEditContact.tiles</result>
         </action>
 
-        <action name="deleteVendorContactPersonPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteVendorContactPerson">
-            <result name="success" type="redirect">loadAddContactPersonPage</result>
+        <action name="deleteVendorContactPerson" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteVendorContactPerson">
+            <result name="success" type="redirect">viewVendorContacts</result>
         </action>
 
+        <action name="viewVendorContacts" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewVendorContacts">
+            <result name="success" type="tiles">vendor.vendorContactListView.tiles</result>
+        </action>
     </package>
 </struts>

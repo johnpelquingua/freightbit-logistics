@@ -60,12 +60,12 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao{
     }
 
     @Override
-    public List<Contacts> findAllContacts(long clientId) {
+    public List<Contacts> findAllContacts() {
         log.debug("finding all contacts");
         try{
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Contacts where clientId = :clientId");
-            query.setParameter("clientId", clientId);
-            return query.list();
+            //Query query = getSessionFactory().getCurrentSession().createQuery("from Contacts");
+
+            return getSessionFactory().getCurrentSession().createQuery("from Contacts").list();
         } catch (RuntimeException re){
             log.error("find all failed", re);
             throw re;
@@ -73,7 +73,7 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao{
     }
 
     @Override
-    public Contacts findContactById(long id) {
+    public Contacts findContactById(Integer id) {
         log.debug("getting contact instance by id: " + id);
         try {
             Contacts instance = (Contacts) getSessionFactory().getCurrentSession().get(Contacts.class, id);

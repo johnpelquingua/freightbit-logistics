@@ -398,18 +398,16 @@ public class VendorServiceImpl implements VendorService {
     //Contacts
 
     @Override
-    public Contacts findContactById(long contactId) {
+    public Contacts findContactById(Integer contactId) {
         return contactsDao.findContactById(contactId);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addContact(Contacts contacts) throws ContactAlreadyExistsException {
-        if (contactsDao.findContactById(contacts.getContactId()) != null) {
-            throw new ContactAlreadyExistsException(contacts.getContactId());
-        } else {
+    public void addContact(Contacts contacts)  {
+
             contactsDao.addContact(contacts);
-        }
+
     }
 
     @Override
@@ -425,8 +423,8 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public List<Contacts> findAllContacts(long clientId) {
-        List<Contacts> contacts = contactsDao.findAllContacts(clientId);
+    public List<Contacts> findAllContacts() {
+        List<Contacts> contacts = contactsDao.findAllContacts();
         return contacts;
     }
 
@@ -441,6 +439,8 @@ public class VendorServiceImpl implements VendorService {
         return result;
 
     }
+
+
 
 //    @Override
 //    public List<Contacts> findAllContactsByClientId(long clientId){

@@ -59,6 +59,7 @@ public class Contacts implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="contactId", unique = true)
     public Integer getContactId() {
         return contactId;
     }

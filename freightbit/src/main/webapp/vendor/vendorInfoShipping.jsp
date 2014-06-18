@@ -25,11 +25,11 @@
                 <br/>
                 <b>Code: </b><s:property value="vendor.vendorCode"/>
                 <br/>
-                Type: <s:property value="vendor.vendorType"/>
+                <b>Type: </b><s:property value="vendor.vendorType"/>
                 <br/>
-                Class: <s:property value="vendor.vendorClass"/>
+                <b>Class: </b><s:property value="vendor.vendorClass"/>
                 <br/>
-                Status: <s:property value="vendor.vendorStatus"/>
+                <b>Status: </b><s:property value="vendor.vendorStatus"/>
 
 
             </div>
@@ -46,18 +46,12 @@
             <div class="panel-body">
 
                 <ul class="nav">
-                    <li><a href="vendor-addvendor" class="side-help"><img src="includes/images/1.png"
-                                                                          class="img-sidehelp">Personal Information</a>
+                    <li><a href="vendor-vessel" class="side-help" style="font-size:15px;"><img src="includes/images/1.png" class="img-sidehelp">Vessel Information</a>
                     </li>
-                    <li><a href="vendor-vessel" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Vessel</a>
-                    </li>
-                    <li><a href="vendor-contact-person2" class="side-help"><img src="includes/images/3.png"
+                    <li><a href="viewVendorContacts" class="side-help" style="font-size:15px;"><img src="includes/images/2.png"
                                                                                 class="img-sidehelp">Contact Person</a>
                     </li>
-                    <li><a href="vendor-other-information2" class="side-help"><img src="includes/images/4.png"
-                                                                                   class="img-sidehelp">Other
-                        Information</a></li>
-                    <li><a href="vendor-address2" class="side-help"><img src="includes/images/5.png"
+                    <li><a href="vendor-address2" class="side-help" style="font-size:15px;"><img src="includes/images/3.png"
                                                                          class="img-sidehelp">Address</a></li>
                 </ul>
 

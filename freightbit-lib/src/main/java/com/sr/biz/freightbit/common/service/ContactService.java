@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ContactService {
 //
-    public Contacts findContactById(long contactId);
+
 
     public void addContact(Contacts contacts);
 
@@ -17,7 +17,7 @@ public interface ContactService {
 
     public void updateContact(Contacts contacts);
 
-    public List<Contacts> findAllContacts(long clientId);
+    public List<Contacts> findAllContacts();
 
 //    public List<Contacts> findAllContactsByClientId(long clientId);
 }

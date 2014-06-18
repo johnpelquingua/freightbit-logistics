@@ -15,9 +15,9 @@ public interface ContactsDao {
 
     public void updateContact(Contacts contacts);
 
-    public List<Contacts> findAllContacts(long clientId);
+    public List<Contacts> findAllContacts();
 
-    public Contacts findContactById(long id);
+    public Contacts findContactById(Integer id);
 
 //    public List<Contacts> findAllContactsByClientId(long clientId);
 

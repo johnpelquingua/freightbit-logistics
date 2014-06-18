@@ -5,6 +5,7 @@ import com.sr.apps.freightbit.vendor.formbean.OtherInformationBean;
 import com.sr.apps.freightbit.vendor.formbean.TruckBean;
 import com.sr.apps.freightbit.vendor.formbean.VesselBean;
 
+import java.security.Timestamp;
 import java.util.List;
 
 public class ContactBean {
@@ -22,6 +23,10 @@ public class ContactBean {
     private String mobile;
     private String fax;
     private String email;
+    private Timestamp createdTimestamp;
+    private String createdBy;
+    private Timestamp modifiedTimestamp;
+    private String modifiedBy;
     /*private List <VesselBean> vesselBeanList;
     private List <TruckBean> truckBeanList;
     private List <DriverBean> driverBeanList;
@@ -33,7 +38,8 @@ public class ContactBean {
 
     }
 
-    public ContactBean(Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email) {
+    public ContactBean(String mobile, Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String fax, String email, Timestamp createdTimestamp, String createdBy, Timestamp modifiedTimestamp, String modifiedBy) {
+        this.mobile = mobile;
         this.sessionVendorId = sessionVendorId;
         this.contactId = contactId;
         this.clientId = clientId;
@@ -44,9 +50,12 @@ public class ContactBean {
         this.middleName = middleName;
         this.lastName = lastName;
         this.phone = phone;
-        this.mobile = mobile;
         this.fax = fax;
         this.email = email;
+        this.createdTimestamp = createdTimestamp;
+        this.createdBy = createdBy;
+        this.modifiedTimestamp = modifiedTimestamp;
+        this.modifiedBy = modifiedBy;
     }
 
     public String getLastName() {
@@ -151,5 +160,37 @@ public class ContactBean {
 
     public void setSessionVendorId(Integer sessionVendorId) {
         this.sessionVendorId = sessionVendorId;
+    }
+
+    public Timestamp getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(Timestamp createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Timestamp getModifiedTimestamp() {
+        return modifiedTimestamp;
+    }
+
+    public void setModifiedTimestamp(Timestamp modifiedTimestamp) {
+        this.modifiedTimestamp = modifiedTimestamp;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
     }
 }

@@ -20,10 +20,7 @@ public class ContactServiceImpl implements ContactService {
         this.contactsDao = contactsDao;
     }
 
-    @Override
-    public Contacts findContactById(long contactId) {
-        return contactsDao.findContactById(contactId);
-    }
+
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -48,10 +45,12 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contacts> findAllContacts(long clientId) {
-        List<Contacts> contacts =contactsDao.findAllContacts(clientId);
+    public List<Contacts> findAllContacts() {
+        List<Contacts> contacts = contactsDao.findAllContacts();
         return contacts;
     }
+
+
 
 //    @Override
 //    public List<Contacts> findAllContactsByClientId(long clientId){

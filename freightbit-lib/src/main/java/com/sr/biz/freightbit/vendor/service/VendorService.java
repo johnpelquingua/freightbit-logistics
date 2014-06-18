@@ -125,7 +125,7 @@ public interface VendorService {
 
 //   Contact Service
 
-    public Contacts findContactById(long contactId);
+    public Contacts findContactById(Integer contactId);
 
     public void addContact(Contacts contacts) throws ContactAlreadyExistsException;
 
@@ -133,7 +133,7 @@ public interface VendorService {
 
     public void updateContact(Contacts contacts);
 
-    public List<Contacts> findAllContacts(long clientId);
+    public List<Contacts> findAllContacts();
 
     public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
 
