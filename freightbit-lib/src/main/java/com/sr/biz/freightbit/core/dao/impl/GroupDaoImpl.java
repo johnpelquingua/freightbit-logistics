@@ -132,6 +132,21 @@ public class GroupDaoImpl extends HibernateDaoSupport implements GroupDao{
 		log.debug("Finding group by groupCode [" + groupCode + "]" );
 		Query query = getSessionFactory().getCurrentSession().createQuery(" from Group where code = :code");
 		query.setParameter("code", groupCode);
-		return (Group) query.list().get(0);
+		if (query.list() != null && query.list().size() > 0)
+			return (Group) query.list().get(0);
+		else
+			return null;
+	}
+	
+	@Override
+	public Group findGroupByGroupName(String groupName, Integer clientId) {
+		log.debug("Finding group by groupName [" + groupName + "]" );
+		Query query = getSessionFactory().getCurrentSession().createQuery(" from Group where name = :name and clientId = :clientId");
+		query.setParameter("name", groupName);
+		query.setParameter("clientId", clientId);
+		if (query.list() != null && query.list().size() > 0)
+			return (Group) query.list().get(0);
+		else
+			return null;
 	}
 }

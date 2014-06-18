@@ -105,8 +105,8 @@ public class GroupServiceImpl implements GroupService {
 	}
 
 	@Override
-	public Group findGroupByGroupName(String groupName) {
-		return null;
+	public Group findGroupByGroupName(String groupName, Integer clientId) {
+		return groupDao.findGroupByGroupName(groupName, clientId);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)

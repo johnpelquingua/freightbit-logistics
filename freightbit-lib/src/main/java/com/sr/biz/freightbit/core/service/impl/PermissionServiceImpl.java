@@ -113,7 +113,7 @@ public class PermissionServiceImpl implements PermissionService {
     	paramMap.put("userId", userId);
     	List <PermissionUserGroup> permissionUserGroupList = permissionDao.findPermissionUserGroups(paramMap, "PermissionUserGroup");
     	for (PermissionUserGroup permissionUserGroup : permissionUserGroupList) {
-    		permissions.add(permissionDao.getPermission(permissionUserGroup.getPermissionId()));
+    		permissions.add(permissionDao.getPermissionById(permissionUserGroup.getPermissionId()));
     	}
     	return permissions;
     }

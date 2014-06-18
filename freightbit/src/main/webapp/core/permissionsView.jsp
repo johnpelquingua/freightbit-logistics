@@ -45,10 +45,6 @@
                     <ul class="pagination">
                         <li><a href="#">&laquo;</a></li>
                         <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
                         <li><a href="#">&raquo;</a></li>
                     </ul>
 
@@ -63,7 +59,7 @@
     <!-- SIDBAR GOES HERE -->
     <div class="sidebar-box">
         <div class="panel panel-info">
-            <div class="panel-heading">
+           <!--  <div class="panel-heading">
                 <img src="includes/images/chat.png" class="box-icon">
                 <span class="panel-title">Online Chat</span>
 
@@ -72,8 +68,8 @@
                 <div class="table-responsive list-table">
 
                 </div>
-            </div>
-        </div>
+            </div> -->
+        </div> 
     </div>	
 </div>
 

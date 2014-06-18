@@ -24,7 +24,7 @@ public interface PermissionDao {
 
     public void deletePermissions(User user);
 
-    public Permission getPermission(long permissionId);
+    public Permission getPermissionById(Integer permissionId);
 
     public Permission getPermission(Client client, User user);
 

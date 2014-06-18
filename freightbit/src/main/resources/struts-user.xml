@@ -101,12 +101,16 @@
             <result name="success" type="tiles">core.permissionsEdit.tiles</result>
         </action>
         
+        <action name="addSelectedPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction" method="addSelectedPermissions">
+            <result name="success" type="tiles">core.permissionsEdit.tiles</result>
+        </action>
+        
         <action name="removeSelectedPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction" method="removeSelectedPermissions">
             <result name="success" type="tiles">core.permissionsEdit.tiles</result>
         </action>
         
         <action name="editPermission" class="com.sr.apps.freightbit.core.action.PermissionAction" method="editPermission">
-            <result name="success" type="redirect">loadEditPermissions</result>
+            <result name="success" type="redirectAction">loadEditPermissions</result>
         </action>
         
     </package>

@@ -24,7 +24,7 @@ public interface GroupService {
 	
 	public Group findGroupByGroupCode(String groupCode);
 	
-	public Group findGroupByGroupName(String groupName);
+	public Group findGroupByGroupName(String groupName, Integer clientId);
 	
     public void addUser(Group group, User user);
 

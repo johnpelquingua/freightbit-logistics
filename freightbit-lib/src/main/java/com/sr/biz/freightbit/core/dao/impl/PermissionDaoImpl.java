@@ -72,9 +72,21 @@ public class PermissionDaoImpl extends HibernateDaoSupport implements Permission
     }
 
     @Override
-    public Permission getPermission(long permissionId) {
-        // TODO Auto-generated method stub
-        return null;
+    public Permission getPermissionById(Integer permissionId) {
+        log.debug("Getting Permission instance with id: " + permissionId);
+        try {
+        	Permission instance = (Permission) getSessionFactory().getCurrentSession().get(
+                    Permission.class, permissionId);
+            if (instance == null) {
+                log.debug("get successful, no instance found");
+            } else {
+                log.debug("get successful, instance found");
+            }
+            return instance;
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
+            throw re;
+        }
     }
 
     @Override
@@ -190,7 +202,7 @@ public class PermissionDaoImpl extends HibernateDaoSupport implements Permission
     }
     
     private String buildSearchCriteria(Map <String, Object> paramMap, String entity){
-    	StringBuilder queryString = new StringBuilder("from " + entity + " where");
+    	StringBuilder queryString = new StringBuilder("from " + entity + " where ");
     	Set<String> mapKeys = paramMap.keySet();
     	int i=0;
     	for (String mapKey : mapKeys) {

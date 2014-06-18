@@ -20,12 +20,17 @@
             document.forms[0].action = "loadEditPermissions";
             document.forms[0].submit();
         });
+        $("#selectedUserId").change(function() {
+            document.forms[0].action = "loadEditPermissions";
+            document.forms[0].userChanged.value="true";
+            document.forms[0].submit();
+        });
         $("#moveToSelected").click(function () {
             var sel = $(".selectIt:checked ").map(function () {
                 return this.value;
             }).get();
             document.forms[0].selectedIds.value = sel;
-            document.forms[0].action = "loadEditPermissions";
+            document.forms[0].action = "addSelectedPermissions";
             document.forms[0].submit();
         });
         $("#checkAll2").click(function() {
@@ -121,7 +126,7 @@
                                 <label for="userSearch" class ="col-sm-2 control-label" id ="groups-add-label"> User:</label>
                                 <div class="col-sm-10">
                                     <s:select id="selectedUserId" cssClass="form-control" list="userList" name="selectedUserId" listKey="userId" listValue="firstName" value="selectedUserId"/>
-                                	
+                                	<input type="hidden" name="userChanged" id="userChanged"/>
                                 </div>
                             </div>
 
@@ -171,7 +176,7 @@
                     </div>
 
                     <div>
-                        <a href = "permissions-edit.html" class="btn btn-default pull-right" id = "groups-add-btn" style="margin:20px 0px 6px 6px;">Cancel</a>
+                        <a href = "viewPermissions" class="btn btn-default pull-right" id = "groups-add-btn" style="margin:20px 0px 6px 6px;">Cancel</a>
 					<!--	<s:submit cssClass="btn btn-default pull-right" name="submit" value="Save" cssStyle="margin:20px 10px 6px 6px;" />-->
 						<s:url var="editPermissionUrl" action="editPermission" escapeAmp="false">
 							<s:param name="selectedGroupId" value="selectedGroupId"/>

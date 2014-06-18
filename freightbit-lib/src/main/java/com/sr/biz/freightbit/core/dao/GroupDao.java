@@ -19,5 +19,7 @@ public interface GroupDao {
 	public List<Group> findAllGroups(Integer groupId);
 	
 	public Group findGroupByGroupCode(String groupCode);
+	
+	public Group findGroupByGroupName(String groupName, Integer clientId);
 
 }
