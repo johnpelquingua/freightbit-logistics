@@ -77,7 +77,7 @@ public class VesselDaoImpl extends HibernateDaoSupport implements VesselDao {
     }
 
     @Override
-    public Vessel findVesselById(long id){
+    public Vessel findVesselById(Integer id){
         Log.debug("finding vessel by id");
         try{
             Vessel instance = (Vessel) getSessionFactory().getCurrentSession().get(Vessel.class, id);
@@ -111,19 +111,36 @@ public class VesselDaoImpl extends HibernateDaoSupport implements VesselDao {
     }
 
     @Override
-    public List<Vessel> findVesselByName(String vessel){
+    public List<Vessel> findVesselByName(String vesselName){
         Log.debug("finding vessel by name");
         try{
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from v where v.vesselName = :vesselName");
-            query.setParameter("vesselName", vessel);
+                    "from Vessel v where v.vesselName = :vesselName");
+            query.setParameter("vesselName", vesselName);
             List<Vessel> results = (List<Vessel>) query.list();
+            Log.debug("Find by vesselName successful, result size: "
+                    + results.size());
             return results;
         }catch(RuntimeException re){
             Log.error("finding vessel by name failed", re);
             throw re;
         }
 
+    }
+
+    @Override
+    public List<Vessel> findVesselByVendorId(Integer vendorId) {
+        Log.debug("finding vessel by vendorId");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Vessel v where v.vendorId = :vendorId");
+            query.setParameter("vendorId", vendorId);
+            List<Vessel> results = (List<Vessel>) query.list();
+            return results;
+        } catch (RuntimeException re) {
+            Log.error("finding vessely by vendorId failed", re);
+            throw re;
+        }
     }
 
 }

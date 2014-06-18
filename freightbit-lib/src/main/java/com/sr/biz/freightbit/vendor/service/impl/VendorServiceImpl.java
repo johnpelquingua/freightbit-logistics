@@ -351,9 +351,9 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addVessel(Vessel vessel) throws VesselAlreadyExistsException {
-        if (vesselDao.findVesselByName(vessel.getVesselName()) != null)
-            throw new VesselAlreadyExistsException(vessel.getVesselName());
-        else
+//        if (vesselDao.findVesselByName(vessel.getVesselName()) != null)
+//            throw new VesselAlreadyExistsException(vessel.getVesselName());
+//        else
             vesselDao.addVessel(vessel);
     }
 
@@ -376,7 +376,7 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public Vessel findVesselById(long vesselId) {
+    public Vessel findVesselById(Integer vesselId) {
         return vesselDao.findVesselById(vesselId);
     }
 
@@ -392,6 +392,12 @@ public class VendorServiceImpl implements VendorService {
         return null;
     }
 
+    @Override
+    public List<Vessel> findVesselByVendorId(Integer vendorId){
+        List<Vessel> result = vesselDao.findVesselByVendorId(vendorId);
+
+        return result;
+    }
 
 //    END OF VESSEL
 

@@ -8,6 +8,7 @@ import com.sr.apps.freightbit.vendor.formbean.TruckBean;
 import com.sr.apps.freightbit.vendor.formbean.VendorBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
+import com.sr.apps.freightbit.vendor.formbean.VesselBean;
 import com.sr.biz.freightbit.common.entity.Contacts;
 
 import com.sr.biz.freightbit.core.entity.Client;
@@ -18,6 +19,7 @@ import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.service.UserService;
+import com.sr.biz.freightbit.vendor.entity.Vessel;
 import com.sr.biz.freightbit.vendor.service.DriverService;
 import com.sr.biz.freightbit.vendor.service.TrucksService;
 import com.sr.biz.freightbit.vendor.service.VendorService;
@@ -41,6 +43,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private List<TruckBean> trucks = new ArrayList<TruckBean>();
     private List<DriverBean> drivers = new ArrayList<DriverBean>();
     private List<ContactBean> contacts = new ArrayList<ContactBean>();
+    private List<VesselBean> vessels = new ArrayList<VesselBean>();
 
     private List<Parameters> vendorTypeList = new ArrayList<Parameters>();
     private List<Parameters> vendorSearchList = new ArrayList<Parameters>();
@@ -53,6 +56,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private TruckBean truck = new TruckBean();
     private DriverBean driver = new DriverBean();
     private ContactBean contact = new ContactBean();
+    private VesselBean vessel = new VesselBean();
 
     private String vendorCodeParam;
     private Integer vendorIdParam;
@@ -61,6 +65,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private Integer contactCodeParam;
     private String searchType;
     private String vendorKeyword;
+    private String vesselNameParam;
 
     private VendorService vendorService;
     private ClientService clientService;
@@ -68,14 +73,6 @@ public class VendorAction extends ActionSupport implements Preparable {
     private UserService userService;
     private VendorService trucksService;
     private DriverService driverService;
-
-    public String viewVendorsByClientId() {
-        List<Vendor> vendorEntityList = vendorService.findAllVendorByClientId(getClientId());
-        for (Vendor vendorElem : vendorEntityList) {
-            vendors.add(transformToFormBean(vendorElem));
-        }
-        return SUCCESS;
-    }
 
     public String viewVendors() {
         String column = getColumnFilter();
@@ -93,36 +90,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    // TODO View Drivers initial code
-
-/*
-    public String viewDriversByClientId() {
-        List<Driver> driverEntityList = driverService.findAllDriverByClientId(getClientId());
-        for (Driver driverElem : driverEntityList) {
-            drivers.add(transformToFormBeanDriver(driverElem));
-        }
-        return SUCCESS;
-    }*/
-
-    public String viewDrivers() {
-        List<Driver> driverEntityList = new ArrayList<Driver>();
-
-        //SEARCH Method
-      /*  if (StringUtils.isNotBlank(column)) {
-            vendorEntityList = vendorService.findVendorsByCriteria(column, vendor.getVendorKeyword(), getClientId());
-        } else {
-            vendorEntityList = vendorService.findAllVendors();
-        }*/
-
-        driverEntityList = vendorService.findAllDrivers();
-
-        for (Driver driverElem : driverEntityList) {
-            drivers.add(transformToFormBeanDriver(driverElem));
-        }
-        return SUCCESS;
-    }
-
-
     public String getColumnFilter() {
         String column = "";
         if ("companyCode".equals(vendor.getVendorSearchCriteria())) {
@@ -134,6 +101,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
         return column;
     }
+
 
     public String loadAddVendorPage() {
         return SUCCESS;
@@ -159,16 +127,10 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
     }
 
-
     public String loadEditVendorPage() {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendor = transformToFormBean(vendorEntity);
-
-        if ("TRUCKING".equals(vendor.getVendorType())){
-            return "TRUCKING";
-        } else {
-            return "SHIPPING";
-        }
+        return SUCCESS;
     }
 
     public String loadEditVendorTrucksPage() {
@@ -176,13 +138,13 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         Integer vendorId = getSessionVendorId();
 
-        List<Trucks> truckEntityList = trucksService.findTrucksByVendorId(vendorId);
+        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorId);
         for (Trucks truckElem : truckEntityList) {
             trucks.add(transformToFormBeanTrucks(truckElem));
         }
 
         //load to form
-        Trucks truckEntity = trucksService.findTrucksByTruckCode(truckCodeParam);
+        Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
         truck = transformToFormBeanTrucks(truckEntity);
         return SUCCESS;
     }
@@ -201,14 +163,14 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public String editVendor() {
         validateOnSubmitEdit(vendor);
-        if(hasFieldErrors()) {
+        if (hasFieldErrors()) {
             return INPUT;
         }
         vendorService.updateVendor(transformToEntityBean(vendor));
         return SUCCESS;
     }
 
-    public String deleteVendor(){
+    public String deleteVendor() {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendorService.deleteVendor(vendorEntity);
         return SUCCESS;
@@ -230,7 +192,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public void validateOnSubmit(VendorBean vendorBean) {
         clearErrorsAndMessages();
-        if (StringUtils.isBlank(vendorBean.getVendorName())){
+        if (StringUtils.isBlank(vendorBean.getVendorName())) {
             addFieldError("vendor.vendorName", getText("err.vendorName.required"));
         }
         if (StringUtils.isBlank(vendorBean.getVendorCode())) {
@@ -240,7 +202,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public void validateOnSubmitEdit(VendorBean vendorBean) {
         clearErrorsAndMessages();
-        if (StringUtils.isBlank(vendorBean.getVendorName())){
+        if (StringUtils.isBlank(vendorBean.getVendorName())) {
             addFieldError("vendor.vendorName", getText("err.vendorName.required"));
         }
         if (StringUtils.isBlank(vendorBean.getVendorCode())) {
@@ -281,61 +243,53 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     //trucks
     public String loadAddTrucksPage() {
-        //load all trucks
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
-        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
-
-        List<Trucks> truckEntityList = trucksService.findTrucksByVendorId(vendorId);
-        for (Trucks truckElem : truckEntityList) {
-            trucks.add(transformToFormBeanTrucks(truckElem));
-        }
         return SUCCESS;
     }
 
     public String loadEditTrucksPage() {
-        //load all trucks
-
-        Integer vendorId = getSessionVendorId();
-
-        List<Trucks> truckEntityList = trucksService.findTrucksByVendorId(vendorId);
-        for (Trucks truckElem : truckEntityList) {
-            trucks.add(transformToFormBeanTrucks(truckElem));
-        }
-
         //load to form
-        Trucks truckEntity = trucksService.findTrucksByTruckCode(truckCodeParam);
+        Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
         truck = transformToFormBeanTrucks(truckEntity);
         return SUCCESS;
     }
 
-    public String addTrucks() throws Exception{
+    public String addTrucks() throws Exception {
         validateOnSubmitTrucks(truck);
-        if(hasFieldErrors()) {
+        if (hasFieldErrors()) {
             return INPUT;
         }
-        trucksService.addTrucks(transformToEntityBeanTrucks(truck));
+        vendorService.addTrucks(transformToEntityBeanTrucks(truck));
         return SUCCESS;
     }
 
     public String editTrucks() {
         validateOnSubmitTrucks(truck);
-        if(hasFieldErrors()){
+        if (hasFieldErrors()) {
             return INPUT;
         }
-        trucksService.updateTrucks(transformToEntityBeanTrucks(truck));
+        vendorService.updateTrucks(transformToEntityBeanTrucks(truck));
         return SUCCESS;
     }
 
     public String deleteTrucks() {
-        Trucks truckEntity = trucksService.findTrucksByTruckCode(truckCodeParam);
-        trucksService.deleteTrucks(truckEntity);
+        Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
+        vendorService.deleteTrucks(truckEntity);
+        return SUCCESS;
+    }
+
+    public String loadSaveCompleteTrucks() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
+        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorId);
+        for (Trucks truckElem : truckEntityList) {
+            trucks.add(transformToFormBeanTrucks(truckElem));
+        }
         return SUCCESS;
     }
 
     public String viewTrucks() {
-        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorIdParam);
+        Integer vendorId = getSessionVendorId();
+        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorId);
         for (Trucks truckElem : truckEntityList) {
             trucks.add(transformToFormBeanTrucks(truckElem));
         }
@@ -351,8 +305,9 @@ public class VendorAction extends ActionSupport implements Preparable {
             entity.setTruckId(truckBean.getTruckId());
         }
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        entity.setVendorId((Integer) sessionAttributes.get("vendorId"));
+        Integer vendorId = getSessionVendorId();
+
+        entity.setVendorId(vendorId);
         entity.setTruckType(truckBean.getTruckType());
         entity.setPlateNumber(truckBean.getPlateNumber());
         entity.setModelNumber(truckBean.getModelNumber());
@@ -367,9 +322,6 @@ public class VendorAction extends ActionSupport implements Preparable {
     private TruckBean transformToFormBeanTrucks(Trucks entity) {
 
         TruckBean formBean = new TruckBean();
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
 
         formBean.setTruckId(entity.getTruckId());
         formBean.setTruckType(entity.getTruckType());
@@ -408,11 +360,34 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     //drivers
 
+    public String loadSaveCompleteDrivers() {
+        List<Driver> driverEntityList = new ArrayList<Driver>();
+
+        Integer vendorId = getSessionVendorId();
+        driverEntityList = vendorService.findDriverByVendorId(vendorId);
+
+        for (Driver driverElem : driverEntityList) {
+            drivers.add(transformToFormBeanDriver(driverElem));
+        }
+        return SUCCESS;
+    }
+    public String viewDrivers() {
+        List<Driver> driverEntityList = new ArrayList<Driver>();
+
+        Integer vendorId = getSessionVendorId();
+        driverEntityList = vendorService.findDriverByVendorId(vendorId);
+
+        for (Driver driverElem : driverEntityList) {
+            drivers.add(transformToFormBeanDriver(driverElem));
+        }
+        return SUCCESS;
+    }
+
     public String loadAddDriverPage() {
 
         Integer vendorId = getSessionVendorId();
 
-        List<Driver> driverEntityList = driverService.findDriverByVendorId(vendorId);
+        List<Driver> driverEntityList = vendorService.findDriverByVendorId(vendorId);
         for (Driver driverE1em : driverEntityList) {
             drivers.add(transformToFormBeanDriver(driverE1em));
         }
@@ -424,38 +399,38 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         Integer vendorId = getSessionVendorId();
 
-        List<Driver> driverEntityList = driverService.findDriverByVendorId(vendorId);
+        List<Driver> driverEntityList = vendorService.findDriverByVendorId(vendorId);
         for (Driver driverE1em : driverEntityList) {
             drivers.add(transformToFormBeanDriver(driverE1em));
         }
 
-        Driver driverEntity = driverService.findDriverByDriverCode(driverCodeParam);
+        Driver driverEntity = vendorService.findDriverByDriverCode(driverCodeParam);
         driver = transformToFormBeanDriver(driverEntity);
 
         return SUCCESS;
     }
 
-    public String addDriver() throws Exception{
+    public String addDriver() throws Exception {
         validateOnSubmitDriver(driver);
-        if(hasFieldErrors()) {
+        if (hasFieldErrors()) {
             return INPUT;
         }
-        driverService.addDriver(transformToEntityBeanDriver(driver));
+        vendorService.addDriver(transformToEntityBeanDriver(driver));
         return SUCCESS;
     }
 
     public String editDriver() {
         validateOnSubmitDriver(driver);
-        if(hasFieldErrors()) {
+        if (hasFieldErrors()) {
             return INPUT;
         }
-        driverService.updateDriver(transformToEntityBeanDriver(driver));
+        vendorService.updateDriver(transformToEntityBeanDriver(driver));
         return SUCCESS;
     }
 
     public String deleteDriver() {
-        Driver driverEntity = driverService.findDriverByDriverCode(driverCodeParam);
-        driverService.deleteDriver(driverEntity);
+        Driver driverEntity = vendorService.findDriverByDriverCode(driverCodeParam);
+        vendorService.deleteDriver(driverEntity);
         return SUCCESS;
     }
 
@@ -464,7 +439,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         Client client = clientService.findClientById(getClientId().toString());
         entity.setClient(client);
 
-        if(driverBean.getDriverId() != null) {
+        if (driverBean.getDriverId() != null) {
             entity.setDriverId(driverBean.getDriverId());
         }
 
@@ -519,6 +494,111 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (StringUtils.isBlank(driverBean.getTitle())) {
             addFieldError("driver.title", getText("err.title.required"));
         }
+    }
+
+    //vessels
+    public String loadAddVesselsPage() {
+        return SUCCESS;
+    }
+
+    public String loadEditVesselsPage() {
+        Vessel vesselEntity = vendorService.findVesselByName(vesselNameParam);
+        vessel = transformToFormBeanVessel(vesselEntity);
+        return SUCCESS;
+    }
+
+    public String addVessels() throws Exception {
+        validateOnSubmitVessels(vessel);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        vendorService.addVessel(transformToEntityBeanVessels(vessel));
+        return SUCCESS;
+    }
+
+    public String editVessels() {
+        validateOnSubmitVessels(vessel);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        vendorService.updateVessel(transformToEntityBeanVessels(vessel));
+        return SUCCESS;
+    }
+
+    public String deleteVessels() {
+        Vessel vesselEntity = vendorService.findVesselByName(vesselNameParam);
+        vendorService.deleteVessel(vesselEntity);
+        return SUCCESS;
+    }
+
+    public String viewVessels() {
+        Integer vendorId = getSessionVendorId();
+        List<Vessel> vesselEntityList = vendorService.findVesselByVendorId(vendorId);
+        for (Vessel vesselElem : vesselEntityList) {
+            vessels.add(transformToFormBeanVessel(vesselElem));
+        }
+        return SUCCESS;
+    }
+
+    public String loadSaveCompleteVessels() {
+        Integer vendorId = getSessionVendorId();
+        List<Vessel> vesselEntityList = vendorService.findVesselByVendorId(vendorId);
+        for (Vessel vesselElem : vesselEntityList) {
+            vessels.add(transformToFormBeanVessel(vesselElem));
+        }
+        return SUCCESS;
+    }
+
+    private Vessel transformToEntityBeanVessels(VesselBean vesselBean) {
+        Vessel entity = new Vessel();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClientId(client);
+
+        if (vesselBean.getVesselId() != null) {
+            entity.setVesselId(vesselBean.getVesselId());
+        }
+
+        Integer vendorId = getSessionVendorId();
+
+        entity.setVendorId(vendorId);
+        entity.setVesselNumber(vesselBean.getVesselNumber());
+        entity.setVesselName(vesselBean.getVesselName());
+        entity.setModelNumber(vesselBean.getModelNumber());
+        entity.setModelYear(vesselBean.getModelYear());
+        entity.setCreatedBy("admin");
+        entity.setModifiedBy("admin");
+
+        return entity;
+    }
+
+    private VesselBean transformToFormBeanVessel(Vessel entity) {
+        VesselBean formBean = new VesselBean();
+
+        formBean.setModelNumber(entity.getModelNumber());
+        formBean.setVesselName(entity.getVesselName());
+        formBean.setVesselNumber(entity.getVesselNumber());
+        formBean.setModelYear(entity.getModelYear());
+        formBean.setVendorId(entity.getVendorId());
+
+        return formBean;
+    }
+
+    public void validateOnSubmitVessels(VesselBean vesselBean) {
+        clearErrorsAndMessages();
+
+        if (StringUtils.isBlank(vesselBean.getVesselNumber())) {
+            addFieldError("vessel.vesselNumber", getText("err.vesselNumber.required"));
+        }
+        if (StringUtils.isBlank(vesselBean.getModelNumber())) {
+            addFieldError("vessel.modelNumber", getText("err.modelNumber.required"));
+        }
+        if (vesselBean.getModelYear() == null) {
+            addFieldError("vessel.modelYear", getText("err.modelYear.required"));
+        }
+        if (StringUtils.isBlank(vesselBean.getVesselName())) {
+            addFieldError("vessel.vesselName", getText("err.vesselName.required"));
+        }
+
     }
 
     //contacts
@@ -603,7 +683,6 @@ public class VendorAction extends ActionSupport implements Preparable {
             entity.setContactId((Integer) contactBean.getContactId());
         }
 
-        entity.setReferenceTable("vendors");
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer vendorId = (Integer) sessionAttributes.get("vendorId");
@@ -887,4 +966,27 @@ public class VendorAction extends ActionSupport implements Preparable {
 
 
 
+    public List<VesselBean> getVessels() {
+        return vessels;
+    }
+
+    public void setVessels(List<VesselBean> vessels) {
+        this.vessels = vessels;
+    }
+
+    public VesselBean getVessel() {
+        return vessel;
+    }
+
+    public void setVessel(VesselBean vessel) {
+        this.vessel = vessel;
+    }
+
+    public String getVesselNameParam() {
+        return vesselNameParam;
+    }
+
+    public void setVesselIdParam(String vesselNameParam) {
+        this.vesselNameParam = vesselNameParam;
+    }
 }

@@ -54,7 +54,7 @@ public class VesselServiceImpl implements VesselService {
     }
 
     @Override
-    public Vessel findVesselById(long vesselId){ return vesselDao.findVesselById(vesselId);}
+    public Vessel findVesselById(Integer vesselId){ return vesselDao.findVesselById(vesselId);}
 
     @Override
     public List<Vessel> findVesselByClientId(long clientId){ return vesselDao.findVesselByClientId(clientId); }
@@ -64,6 +64,13 @@ public class VesselServiceImpl implements VesselService {
         if(result != null && !result.isEmpty())
             return result.get(0);
         return null;
+    }
+
+    @Override
+    public List<Vessel> findVesselByVendorId(Integer vendorId){
+        List<Vessel> result = vesselDao.findVesselByVendorId(vendorId);
+
+        return result;
     }
 
 

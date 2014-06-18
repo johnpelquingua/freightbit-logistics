@@ -3,94 +3,87 @@
 <!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <h1 class="page-header">Trucks</h1>
+    <h1 class="page-header" style=" margin-left: -40px; ">Edit - Drivers</h1>
 
     <!-- EDIT HERE -->
     <div class="main-box" style=" margin-left: -40px; ">
         <div class="panel panel-info">
 
             <div class="panel-heading">
-                <img src="includes/images/truck.png" class="box-icon">
-                <span class="panel-title">Truck Information</span>
+                <img src="includes/images/add-user.png" class="box-icon">
+                <span class="panel-title">Edit - Driver Information</span>
             </div>
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <s:form cssClass="form-horizontal" action="addTrucks" method="post" theme="bootstrap">
-
+                    <s:form cssClass="form-horizontal" action="editDriver" theme="bootstrap">
+                    <s:hidden name="driver.driverId" value="%{driver.driverId}"/>
                     <div class="form-group">
 
-                        <label class="col-sm-2 control-label" for="truck.truckType">Type:</label>
+                        <label for="driver.driverCode" class="col-sm-2 control-label">Code:</label>
 
                         <div class="col-sm-10">
-                            <s:select list="truckTypeList" name="truck.truckType" listKey="key" listValue="value"
-                                      cssClass="form-control"/>
-
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="truck.plateNumber" class="col-sm-2 control-label">Plate:</label>
-
-                        <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Plate Number" name="truck.plateNumber"
-                                         id="truck.plateNumber"/>
+                            <s:textfield cssClass="form-control" placeholder="Driver Code" name="driver.driverCode" id="driver.driverCode"/>
                         </div>
 
                     </div>
 
                     <div class="form-group">
 
-                        <label for="truck.modelNumber" class="col-sm-2 control-label">Model:</label>
+                        <label for="driver.licenseNumber" class="col-sm-2 control-label">License:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Model Number" name="truck.modelNumber"
-                                         id="truck.modelNumber"/>
+                            <s:textfield cssClass="form-control" placeholder="License Number" name="driver.licenseNumber" id="driver.licenseNumber" />
                         </div>
 
                     </div>
 
                     <div class="form-group">
 
-                        <label for="truck.modelYear" class="col-sm-2 control-label">Year Model:</label>
+                        <label for="driver.lastName" class="col-sm-2 control-label">Last Name:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Year Model" name="truck.modelYear"
-                                         id="truck.modelYear"/>
+                            <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName" id="driver.lastName" />
                         </div>
 
                     </div>
 
                     <div class="form-group">
 
-                        <label for="truck.engineNumber" class="col-sm-2 control-label">Engine:</label>
+                        <label for="driver.firstName" class="col-sm-2 control-label">First Name:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Engine Number" name="truck.engineNumber"
-                                         id="truck.engineNumber"/>
+                            <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName" id="driver.firstName" />
                         </div>
 
                     </div>
 
                     <div class="form-group">
 
-                        <label for="truck.truckCode" class="col-sm-2 control-label">Code:</label>
+                        <label for="driver.middleName" class="col-sm-2 control-label">Middle Name:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Truck Code" name="truck.truckCode"
-                                         id="truck.truckCode"/>
+                            <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName" id="driver.middleName" />
                         </div>
 
                     </div>
 
                     <div class="form-group">
 
-                        <label for="truck.grossWeight" class="col-sm-2 control-label">Weight:</label>
+                        <label for="driver.title" class="col-sm-2 control-label">Title:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
-                                         id="truck.grossWeight"/>
+                            <s:textfield cssClass="form-control" placeholder="Title" name="driver.title" id="driver.title" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-sm-2 control-label" for="driver.status">Status:</label>
+
+                        <div class="col-sm-10">
+                            <s:select list="statusList" listKey="key" listValue="value" name="driver.status" cssClass="form-control" />
                         </div>
 
                     </div>
@@ -99,6 +92,7 @@
             </div>
 
             <div class="panel-footer">
+
                 <div class="btn-group pull-right">
                     <button class="btn btn-default">Cancel</button>
                     <s:submit cssClass="btn btn-default" name="submit" value="Save"/>
@@ -143,12 +137,6 @@
             </div>
         </div>
     </div>
-
-
-    <!-- SIDeBAR GOES HERE -->
-</div>
-<!-- END OF EDIT -->
-
 </div>
 
 <!-- END OF THE MIDDLE -->

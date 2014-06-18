@@ -20,6 +20,8 @@ public class VendorBean {
     private String vendorStatus;
     private String vendorSearchCriteria;
     private String vendorKeyword;
+    private String createdBy;
+
     private List<VesselBean> vesselBeanList;
     private List<TruckBean> truckBeanList;
     private List<DriverBean> driverBeanList;
@@ -31,9 +33,7 @@ public class VendorBean {
 
     }
 
-    public VendorBean(Integer vendorId, Integer clientId, String vendorCode, String vendorName,
-                      String vendorClass, String vendorType, String vendorStatus, String vendorSearchCriteria,
-                      String vendorKeyword) {
+    public VendorBean(Integer vendorId, Integer clientId, String vendorCode, String vendorName, String vendorClass, String vendorType, String vendorStatus, String vendorSearchCriteria, String vendorKeyword, String createdBy) {
         this.vendorId = vendorId;
         this.clientId = clientId;
         this.vendorCode = vendorCode;
@@ -43,6 +43,7 @@ public class VendorBean {
         this.vendorStatus = vendorStatus;
         this.vendorSearchCriteria = vendorSearchCriteria;
         this.vendorKeyword = vendorKeyword;
+        this.createdBy = createdBy;
     }
 
     public String getVendorSearchCriteria() {
@@ -117,6 +118,13 @@ public class VendorBean {
         this.vendorType = vendorType;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
     public List<VesselBean> getVesselBeanList() {
         return vesselBeanList;
@@ -165,5 +173,4 @@ public class VendorBean {
     public void setOtherInformationBean(OtherInformationBean otherInformationBean) {
         this.otherInformationBean = otherInformationBean;
     }
-
 }

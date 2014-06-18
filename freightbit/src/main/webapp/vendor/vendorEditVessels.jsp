@@ -16,15 +16,14 @@
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <s:form cssClass="form-horizontal" action="addVessels" theme="bootstrap">
-
+                    <s:form cssClass="form-horizontal" action="editVessels" theme="bootstrap">
+                    <s:hidden name="vessel.vesselId" value="%{vessel.vesselId}" />
                     <div class="form-group">
 
                         <label for="vessel.vesselNumber" class="col-sm-2 control-label">Vessel:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Vessel Number" name="vessel.vesselNumber"
-                                         id="vessel.vesselNumber"/>
+                            <s:textfield cssClass="form-control" placeholder="Vessel Number" name="vessel.vesselNumber" id="vessel.vesselNumber" />
                         </div>
 
                     </div>
@@ -34,8 +33,7 @@
                         <label for="vessel.vesselName" class="col-sm-2 control-label">Name:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Vessel Name" name="vessel.vesselName"
-                                         id="vessel.vesselName"/>
+                            <s:textfield cssClass="form-control" placeholder="Vessel Name" name="vessel.vesselName" id="vessel.vesselName" />
                         </div>
 
                     </div>
@@ -45,8 +43,7 @@
                         <label for="vessel.modelNumber" class="col-sm-2 control-label">Model:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Model Number" name="vessel.modelNumber"
-                                         id="vessel.modelNumber"/>
+                            <s:textfield cssClass="form-control" placeholder="Model Number" name="vessel.modelNumber" id="vessel.modelNumber" />
                         </div>
 
                     </div>
@@ -56,8 +53,7 @@
                         <label for="vessel.modelYear" class="col-sm-2 control-label">Year Model:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Year Model" name="vessel.modelYear"
-                                         id="vessel.modelYear"/>
+                            <s:textfield cssClass="form-control" placeholder="Year Model" name="vessel.modelYear" id="vessel.modelYear" />
                         </div>
 
                     </div>
@@ -65,9 +61,11 @@
             </div>
 
             <div class="panel-footer">
+
                 <div class="btn-group pull-right">
                     <button class="btn btn-default">Cancel</button>
                     <s:submit cssClass="btn btn-default" name="submit" value="Save"/>
+
                 </div>
             </div>
             </s:form>

@@ -7,17 +7,17 @@ public class VesselBean {
     private String vesselName;
     private String modelNumber;
     private Integer modelYear;
+    private Integer vesselId;
 
     public VesselBean(){}
 
-    public VesselBean(Integer vendorId, String vesselNumber, String vesselName,
-                      String modelNumber, Integer modelYear){
-
+    public VesselBean(Integer vendorId, String vesselNumber, String vesselName, String modelNumber, Integer modelYear, Integer vesselId) {
         this.vendorId = vendorId;
         this.vesselNumber = vesselNumber;
         this.vesselName = vesselName;
         this.modelNumber = modelNumber;
         this.modelYear = modelYear;
+        this.vesselId = vesselId;
     }
 
     public Integer getVendorId() {
@@ -58,5 +58,13 @@ public class VesselBean {
 
     public void setModelYear(Integer modelYear) {
         this.modelYear = modelYear;
+    }
+
+    public Integer getVesselId() {
+        return vesselId;
+    }
+
+    public void setVesselId(Integer vesselId) {
+        this.vesselId = vesselId;
     }
 }

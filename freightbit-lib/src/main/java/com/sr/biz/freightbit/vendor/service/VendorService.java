@@ -117,11 +117,13 @@ public interface VendorService {
 
     public List<Vessel> findAllVessel();
 
-    public Vessel findVesselById(long id);
+    public Vessel findVesselById(Integer id);
 
     public List<Vessel> findVesselByClientId(long clientId);
 
     public Vessel findVesselByName(String vesselName);
+
+    public List<Vessel> findVesselByVendorId(Integer vendorId);
 
 //   Contact Service
 

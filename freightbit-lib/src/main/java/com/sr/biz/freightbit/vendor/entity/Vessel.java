@@ -7,29 +7,21 @@ package com.sr.biz.freightbit.vendor.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.sr.biz.freightbit.core.entity.Client;
 
 @Entity
-@Table(name = "vessels", catalog ="freightbit")
-
+@Table(name = "vessels", catalog ="freightbit",uniqueConstraints = @UniqueConstraint(columnNames = "vesselId"))
 public class Vessel implements Serializable{
 
-    private long vesselId;
+    private Integer vesselId;
     private Client clientId;
-    private Vendor vendorId;
+    private Integer vendorId;
     private String vesselNumber;
     private String vesselName;
     private String modelNumber;
-    private String modelYear;
+    private Integer modelYear;
     private Date createdTimestamp;
     private String createdBy;
     private Date modifiedTimestamp;
@@ -39,8 +31,8 @@ public class Vessel implements Serializable{
 
     public Vessel(){    }
 
-    public Vessel(long vesselId, Client clientId, Vendor vendorId, String vesselNumber,
-                  String vesselName, String modelNumber, String modelYear, Date createdTimestamp,
+    public Vessel(Integer vesselId, Client clientId, Integer vendorId, String vesselNumber,
+                  String vesselName, String modelNumber, Integer modelYear, Date createdTimestamp,
                   String createdBy, Date modifiedTimestamp, String modifiedBy){
 
         this.vesselId = vesselId;
@@ -58,16 +50,16 @@ public class Vessel implements Serializable{
 
     @Id
     @GeneratedValue
-    @Column(name = "vesselId", unique = true , nullable = false)
-    public long getVesselId() {
+    @Column(name = "vesselId", unique = true)
+    public Integer getVesselId() {
         return vesselId;
     }
-    public void setVesselId(long vesselId) {
+    public void setVesselId(Integer vesselId) {
         this.vesselId = vesselId;
     }
 
     @ManyToOne(fetch  = FetchType.EAGER)
-    @JoinColumn(name = "clientId", nullable = false)
+    @JoinColumn(name = "clientId")
     public Client getClientId() {
         return clientId;
     }
@@ -75,15 +67,15 @@ public class Vessel implements Serializable{
         this.clientId = clientId;
     }
 
-    @Column(name = "vendorId", nullable = false)
-    public Vendor getVendorId() {
+    @Column(name = "vendorId")
+    public Integer getVendorId() {
         return vendorId;
     }
-    public void setVendorId(Vendor vendorId) {
+    public void setVendorId(Integer vendorId) {
         this.vendorId = vendorId;
     }
 
-    @Column(name ="vesselNumber", nullable = false)
+    @Column(name ="vesselNumber")
     public String getVesselNumber() {
         return vesselNumber;
     }
@@ -91,7 +83,7 @@ public class Vessel implements Serializable{
         this.vesselNumber = vesselNumber;
     }
 
-    @Column(name = "vesselName", nullable = false)
+    @Column(name = "vesselName")
     public String getVesselName() {
         return vesselName;
     }
@@ -99,7 +91,7 @@ public class Vessel implements Serializable{
         this.vesselName = vesselName;
     }
 
-    @Column(name = "modelNumber", nullable = false)
+    @Column(name = "modelNumber")
     public String getModelNumber() {
         return modelNumber;
     }
@@ -107,15 +99,15 @@ public class Vessel implements Serializable{
         this.modelNumber = modelNumber;
     }
 
-    @Column(name ="modelYear", nullable = false)
-    public String getModelYear() {
+    @Column(name ="modelYear")
+    public Integer getModelYear() {
         return modelYear;
     }
-    public void setModelYear(String modelYear) {
+    public void setModelYear(Integer modelYear) {
         this.modelYear = modelYear;
     }
 
-    @Column(name ="createdTimestamp", nullable = false)
+    @Column(name ="createdTimestamp")
     public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
@@ -123,7 +115,7 @@ public class Vessel implements Serializable{
         this.createdTimestamp = createdTimestamp;
     }
 
-    @Column(name ="createdBy", nullable = false)
+    @Column(name ="createdBy", nullable = true)
     public String getCreatedBy() {
         return createdBy;
     }
@@ -131,7 +123,7 @@ public class Vessel implements Serializable{
         this.createdBy = createdBy;
     }
 
-    @Column(name ="modifiedTimestamp", nullable = false)
+    @Column(name ="modifiedTimestamp")
     public Date getModifiedTimestamp() {
         return modifiedTimestamp;
     }
@@ -139,14 +131,11 @@ public class Vessel implements Serializable{
         this.modifiedTimestamp = modifiedTimestamp;
     }
 
-    @Column(name ="modifiedBy", nullable = false)
+    @Column(name ="modifiedBy")
     public String getModifiedBy() {
         return modifiedBy;
     }
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
-
-
-
 }

@@ -16,8 +16,7 @@
 
 					<div class="panel-body">
                         <div class="table-responsive list-table">
-                        <s:form cssClass="form-horizontal" action="editDriver" theme="bootstrap">
-                            <s:hidden name="driver.driverId" value="%{driver.driverId}"/>
+                        <s:form cssClass="form-horizontal" action="addDriver" theme="bootstrap">
                             <div class="form-group">
 
                                 <label for="driver.driverCode" class="col-sm-2 control-label">Code:</label>

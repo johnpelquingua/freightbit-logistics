@@ -1,14 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <h1 class="page-header">Edit Vendor</h1>
+    <h1 class="page-header">Trucks</h1>
 
     <!-- EDIT HERE -->
-
-
-    <div class="row" >
+    <div class="main-box" style=" margin-left: -40px; ">
         <div class="panel panel-info">
 
             <div class="panel-heading">
@@ -19,15 +17,15 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="editTrucks" method="post" theme="bootstrap">
-
                     <s:hidden name="truck.truckId" value="%{truck.truckId}"/>
-                    <s:hidden name="truck.vendorId" value="%{vendor.vendorId}"/>
+
                     <div class="form-group">
 
                         <label class="col-sm-2 control-label" for="truck.truckType">Type:</label>
 
                         <div class="col-sm-10">
-                            <s:select list="truckTypeList" name="truck.truckType" listKey="key" listValue="value" cssClass="form-control"/>
+                            <s:select list="truckTypeList" name="truck.truckType" listKey="key" listValue="value"
+                                      cssClass="form-control"/>
 
                         </div>
                     </div>
@@ -37,7 +35,8 @@
                         <label for="truck.plateNumber" class="col-sm-2 control-label">Plate:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Plate Number" name="truck.plateNumber" id="truck.plateNumber" />
+                            <s:textfield cssClass="form-control" placeholder="Plate Number" name="truck.plateNumber"
+                                         id="truck.plateNumber"/>
                         </div>
 
                     </div>
@@ -47,7 +46,8 @@
                         <label for="truck.modelNumber" class="col-sm-2 control-label">Model:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Model Number" name="truck.modelNumber" id="truck.modelNumber" />
+                            <s:textfield cssClass="form-control" placeholder="Model Number" name="truck.modelNumber"
+                                         id="truck.modelNumber"/>
                         </div>
 
                     </div>
@@ -57,7 +57,8 @@
                         <label for="truck.modelYear" class="col-sm-2 control-label">Year Model:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Year Model" name="truck.modelYear" id="truck.modelYear"/>
+                            <s:textfield cssClass="form-control" placeholder="Year Model" name="truck.modelYear"
+                                         id="truck.modelYear"/>
                         </div>
 
                     </div>
@@ -67,7 +68,8 @@
                         <label for="truck.engineNumber" class="col-sm-2 control-label">Engine:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Engine Number" name="truck.engineNumber" id="truck.engineNumber" />
+                            <s:textfield cssClass="form-control" placeholder="Engine Number" name="truck.engineNumber"
+                                         id="truck.engineNumber"/>
                         </div>
 
                     </div>
@@ -77,7 +79,8 @@
                         <label for="truck.truckCode" class="col-sm-2 control-label">Code:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Truck Code" name="truck.truckCode" id="truck.truckCode" />
+                            <s:textfield cssClass="form-control" placeholder="Truck Code" name="truck.truckCode"
+                                         id="truck.truckCode"/>
                         </div>
 
                     </div>
@@ -87,7 +90,8 @@
                         <label for="truck.grossWeight" class="col-sm-2 control-label">Weight:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight" id="truck.grossWeight" />
+                            <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
+                                         id="truck.grossWeight"/>
                         </div>
 
                     </div>
@@ -96,81 +100,56 @@
             </div>
 
             <div class="panel-footer">
-
-                <s:submit cssClass="btn btn-default" name="submit" value="Add" />
-
+                <div class="btn-group pull-right">
+                    <button class="btn btn-default">Cancel</button>
+                    <s:submit cssClass="btn btn-default" name="submit" value="Save"/>
+                </div>
             </div>
             </s:form>
         </div>
 
-        <div class="row">
-            <div class="panel panel-info">
+    </div>
 
-                <div class="panel-heading">
-                    <img src="includes/images/listofusers.png" class="box-icon"/>
-                    <span class="panel-title">List of Trucks</span>
+    <div class="sidebar-box">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <img src="includes/images/calendar.png" class="box-icon">
+                <span class="panel-title">Process</span>
+            </div>
 
-                </div>
-
-                <div class="panel-body">
-                    <div class="table-responsive list-table">
-                        <table class="table table-striped table-bordered text-center">
-                            <thead>
-                            <tr class="header_center">
-                                <th class="tb-font-black"><input type="checkbox" /></th>
-                                <th class="tb-font-black">Code</th>
-                                <th class="tb-font-black">Type</th>
-                                <th class="tb-font-black">Plate</th>
-                                <th class="tb-font-black">Model</th>
-                                <th class="tb-font-black">Year</th>
-                                <th class="tb-font-black">Engine</th>
-                                <th class="tb-font-black">Weight</th>
-                                <th class="tb-font-black">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <s:iterator value="trucks" var="truck">
-                                <tr>
-                                    <td class="tb-font-black"><s:checkbox name="a" theme="simple" /></td>
-                                    <td class="tb-font-black"><s:property value="truckCode" /></td>
-                                    <td class="tb-font-black"><s:property value="truckType" /></td>
-                                    <td class="tb-font-black"><s:property value="plateNumber" /></td>
-                                    <td class="tb-font-black"><s:property value="modelNumber" /></td>
-                                    <td class="tb-font-black"><s:property value="modelYear" /></td>
-                                    <td class="tb-font-black"><s:property value="engineNumber" /></td>
-                                    <td class="tb-font-black"><s:property value="grossWeight" /></td>
-                                    <td class="tb-font-black">
-                                        <s:url var="editTrucksUrl" action="loadEditTrucksPage">
-                                            <s:param name="truckCodeParam" value="truckCode"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{editTrucksUrl}" rel="tooltip" title="Edit this truck">
-                                            <img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
-                                        <s:url var="deleteTrucksUrl" action="deleteTrucks">
-                                            <s:param name="truckCodeParam" value="truckCode"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{deleteTrucksUrl}" rel="tooltip" title="Delete this Truck" onclick="return confirm('Do you really want to delete?');">
-                                            <img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
-                                    </td>
-                                </tr>
-
-                            </s:iterator>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="panel-footer">
-
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li class="disabled"><a href="#">&raquo;</a></li>
-                    </ul>
-
-                </div>
-
+            <div class="panel-body" style="height: 195px;">
+                <ul class="nav" style="margin-top: -10px;">
+                    <li>
+                        <a href="viewTrucks" class="side-help" style="font-size: 15px;"><img
+                                src="includes/images/1.png"
+                                class="img-sidehelp">List of Trucks</a>
+                    </li>
+                    <li>
+                        <a href="viewDrivers" class="side-help" style="font-size: 15px;"><img
+                                src="includes/images/2.png"
+                                class="img-sidehelp">List of Drivers</a>
+                    </li>
+                    <li><a href="vendor-contact-person" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png"
+                                                                                                        class="img-sidehelp">Contact
+                        Person</a></li>
+                    <%--   <li><a href="vendor-other-information" class="side-help"><img
+                               src="includes/images/5.png"
+                               class="img-sidehelp">Other
+                           Information</a></li>--%>
+                    <li><a href="vendor-address" class="side-help" style="font-size: 15px;"><img
+                            src="includes/images/4.png"
+                            class="img-sidehelp">Address</a>
+                    </li>
+                </ul>
             </div>
         </div>
-
     </div>
+
+
+    <!-- SIDeBAR GOES HERE -->
+</div>
+<!-- END OF EDIT -->
+
+</div>
+
+<!-- END OF THE MIDDLE -->

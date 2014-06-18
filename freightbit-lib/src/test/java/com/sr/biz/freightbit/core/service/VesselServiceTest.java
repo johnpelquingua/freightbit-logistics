@@ -83,12 +83,12 @@ public class VesselServiceTest {
     Vessel vessel = new Vessel();
 
     vessel.setClientId(client);
-    vessel.setVesselId(31L);
+    vessel.setVesselId(31);
    // vessel.setVendorId("afaf");
     vessel.setVesselNumber("1323");
     vessel.setVesselName("aaa");
     vessel.setVesselNumber("12345");
-    vessel.setModelYear("1901");
+    vessel.setModelYear(1901);
     vessel.setModelNumber("12341");
     vessel.setCreatedTimestamp(new Date());
     vessel.setCreatedBy("admin");

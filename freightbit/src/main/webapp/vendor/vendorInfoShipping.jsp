@@ -46,13 +46,14 @@
             <div class="panel-body">
 
                 <ul class="nav">
-                    <li><a href="vendor-vessel" class="side-help" style="font-size:15px;"><img src="includes/images/1.png" class="img-sidehelp">Vessel Information</a>
+                    <li><a href="viewVessels" class="side-help"><img src="includes/images/1.png"
+                                                                          class="img-sidehelp">List of Vessels</a>
                     </li>
-                    <li><a href="viewVendorContacts" class="side-help" style="font-size:15px;"><img src="includes/images/2.png"
-                                                                                class="img-sidehelp">Contact Person</a>
+                    <li><a href="vendor-vessel" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Contact Persons</a>
                     </li>
-                    <li><a href="vendor-address2" class="side-help" style="font-size:15px;"><img src="includes/images/3.png"
-                                                                         class="img-sidehelp">Address</a></li>
+                    <li><a href="vendor-contact-person2" class="side-help"><img src="includes/images/3.png"
+                                                                                class="img-sidehelp">Address</a>
+                    </li>
                 </ul>
 
             </div>

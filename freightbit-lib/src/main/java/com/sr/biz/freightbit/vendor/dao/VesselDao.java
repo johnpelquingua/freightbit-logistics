@@ -17,10 +17,11 @@ public interface VesselDao {
 
     public List<Vessel> findAllVessel();
 
-    public Vessel findVesselById(long id);
+    public Vessel findVesselById(Integer id);
 
     public List<Vessel> findVesselByClientId(long clientId);
 
-    public List<Vessel> findVesselByName(String vessel);
+    public List<Vessel> findVesselByName(String vesselName);
 
+    public List<Vessel> findVesselByVendorId(Integer vendorId);
 }

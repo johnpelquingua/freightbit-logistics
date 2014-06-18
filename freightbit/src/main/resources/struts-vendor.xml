@@ -79,16 +79,16 @@
 
         <action name="loadEditTrucksPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadEditTrucksPage">
-            <result name="success" type="tiles">vendor.vendorAddTrucks.tiles</result>
+            <result name="success" type="tiles">vendor.vendorEditTrucks.tiles</result>
         </action>
 
         <action name="addTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addTrucks">
-            <result name="success" type="redirect">loadAddTrucksPage</result>
+            <result name="success" type="redirect">loadSaveCompleteTrucks</result>
             <result name="input" type="tiles">vendor.vendorAddTrucks.tiles</result>
         </action>
 
         <action name="deleteTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteTrucks">
-            <result name="success" type="redirect">loadAddTrucksPage</result>
+            <result name="success" type="redirect">viewTrucks</result>
         </action>
 
         <action name="editTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editTrucks">
@@ -113,22 +113,30 @@
 
         <action name="loadEditVesselsPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadEditVesselsPage">
-            <result name="success" type="tiles">vendor.vendorAddVessels.tiles</result>
+            <result name="success" type="tiles">vendor.vendorEditVessels.tiles</result>
         </action>
 
-        <action name="addVessel" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addVessel">
-            <result name="success" type="redirect">loadAddVesselsPage</result>
+        <action name="addVessels" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addVessels">
+            <result name="success" type="redirect">loadSaveCompleteVessels</result>
             <result name="input" type="tiles">vendor.vendorAddVessels.tiles</result>
         </action>
 
-        <action name="deleteVessel" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteVessel">
-            <result name="success" type="redirect">loadAddVesselsPage</result>
+        <action name="editVessels" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVessels">
+            <result name="success" type="redirect">loadSaveCompleteVessels</result>
+            <result name="input" type="tiles">vendor.vendorEditVessels.tiles</result>
         </action>
 
-        <action name="updateVessel" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="updateVessel">
-            <result name="success" type="redirect">loadAddVesselsPage</result>
+        <action name="deleteVessels" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteVessels">
+            <result name="success" type="redirect">viewVessels</result>
         </action>
 
+        <action name="viewVessels" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewVessels">
+            <result name="success" type="tiles">vendor.vendorListVessels.tiles</result>
+        </action>
+
+        <action name="loadSaveCompleteVessels" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteVessels">
+            <result name="success" type="tiles">vendor.vendorSaveCompleteVessels.tiles</result>
+        </action>
 
         <!--driver-->
             <action name="loadAddDriverPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
@@ -138,21 +146,21 @@
 
         <action name="loadEditDriverPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadEditDriverPage">
-            <result name="success" type="tiles">vendor.vendorAddDriver.tiles</result>
+            <result name="success" type="tiles">vendor.vendorEditDriver.tiles</result>
         </action>
 
         <action name="addDriver" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addDriver">
-            <result name="success" type="redirect">loadAddDriverPage</result>
+            <result name="success" type="redirect">loadSaveCompleteDrivers</result>
             <result name="input" type="tiles">vendor.vendorAddDriver.tiles</result>
         </action>
 
         <action name="editDriver" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editDriver">
             <result name="success" type="redirect">loadSaveCompleteDrivers</result>
-            <result name="input" type="tiles">vendor.vendorAddDriver.tiles</result>
+            <result name="input" type="tiles">vendor.vendorEditDriver.tiles</result>
         </action>
 
         <action name="deleteDriver" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteDriver">
-            <result name="success" type="redirect">viewdDrivers</result>
+            <result name="success" type="redirect">viewDrivers</result>
         </action>
 
         <action name="viewDrivers" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewDrivers">
