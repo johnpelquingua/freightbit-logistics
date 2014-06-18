@@ -60,11 +60,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 	
 	public String loadAddOrderPage() {
 		//orderBean.setBookingDate(new Date());
-
-    /*customerList = customerService.findAllCustomer(getClientId());
-    for (Customer customerElem: customerList ) {
-        customerBean.add(transformToCustomerFormBean(customerElem));
-    }*/
     return SUCCESS;
 	}
 	

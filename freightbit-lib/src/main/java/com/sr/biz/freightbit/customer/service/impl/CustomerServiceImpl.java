@@ -78,7 +78,7 @@ public class CustomerServiceImpl implements CustomerService {
     //Contacts
 
     @Override
-    public Contacts findContactById(long contactId) {
+    public Contacts findContactById(Integer contactId) {
         return contactsDao.findContactById(contactId);
     }
 
@@ -105,8 +105,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Contacts> findAllContacts(long clientId) {
-        List<Contacts> contacts =contactsDao.findAllContacts(clientId);
+    public List<Contacts> findAllContacts() {
+        List<Contacts> contacts =contactsDao.findAllContacts();
         return contacts;
     }
     

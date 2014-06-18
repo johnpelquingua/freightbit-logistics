@@ -46,7 +46,7 @@ public interface OrderService {
 
     public List<Customer> findCustomersByCriteria(String column, String value, Integer clientId);
 
-    public Contacts findContactById(long contactId);
+    public Contacts findContactById(Integer contactId);
 
     public void addContact(Contacts contacts) throws ContactAlreadyExistsException;
 
@@ -54,7 +54,7 @@ public interface OrderService {
 
     public void updateContact(Contacts contacts);
 
-    public List<Contacts> findAllContacts(long clientId);
+    public List<Contacts> findAllContacts();
 
     public Address findAddressByRefId(Integer customerId);
 

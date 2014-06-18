@@ -30,7 +30,7 @@ public interface CustomerService {
 
     //Contacts Table
 
-    public Contacts findContactById(long contactId);
+    public Contacts findContactById(Integer contactId);
 
     public void addContact(Contacts contacts) throws ContactAlreadyExistsException;
 
@@ -38,7 +38,7 @@ public interface CustomerService {
 
     public void updateContact(Contacts contacts);
 
-    public List<Contacts> findAllContacts(long clientId);
+    public List<Contacts> findAllContacts();
     
     public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
 
