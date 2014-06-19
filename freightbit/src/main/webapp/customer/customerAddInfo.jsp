@@ -91,36 +91,6 @@
 			</div>
 		</div>
 
-
-
 		<!-- END OF MAIN BOX -->
-
-		<!-- SIDEBAR -->
-
-		<div class="sidebar-box">
-				  <div class="panel booking panel-info">
-						<div class="booking panel-heading">
-							<img src="includes/images/calendar.png" class="box-icon">
-							<span class="booking panel-title">Process</span>
-						</div>
-
-					  <div class="panel-body">
-
-							<ul class="nav">
-							<li><a href="customer-add.jsp" class="side-help"><img src="includes/images/1.png" class="img-sidehelp">Personal Information</a></li>
-							<li><a href="customer-add2.jsp" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Contact Person</a></li>
-							<li><a href="customer-add3.jsp" class="side-help"><img src="includes/images/3.png" class="img-sidehelp">Address</a></li>
-							<li><a href="customer-add4.jsp" class="side-help"><img src="includes/images/4.png" class="img-sidehelp">Items</a></li>
-							<li><a href="customer-add5.jsp" class="side-help"><img src="includes/images/5.png" class="img-sidehelp">Documents</a></li>
-							<li><a href="customer-add7.jsp" class="side-help"><img src="includes/images/6.png" class="img-sidehelp">Rates</a></li>
-							<li><a href="customer-add6.jsp" class="side-help"><img src="includes/images/7.png" class="img-sidehelp">Consignee Infomation</a></li>
-							</ul>
-
-					  </div>
-				  </div>
-			    </div>
-			</div>
-
-		<!-- END SIDEBAR -->
 
 		<!-- END OF THE MIDDLE -->

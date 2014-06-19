@@ -235,6 +235,11 @@
         <put-attribute name="body"   value="/customer/customer-list.jsp"/>
     </definition>
 
+    <definition name="customer.customerSaveComplete.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Save Complete"/>
+        <put-attribute name="body"   value="/customer/customerSaveComplete.jsp"/>
+    </definition>
+
     <definition name="customer.customerAddItems.tiles" extends="baseLayout">
         <put-attribute name="title" value="Customer Page" />
         <put-attribute name="body" value="/customer/customerAddItem.jsp" />

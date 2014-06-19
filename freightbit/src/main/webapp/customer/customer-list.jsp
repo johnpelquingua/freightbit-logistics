@@ -42,20 +42,20 @@
                                     <td class="tb-font-black"><s:property value="phone" /></td>
                                     <td>
 
- 								    <s:url var="loadEditCustomerUrl" action="customerEdit">
+ 								    <s:url var="editCustomerUrl" action="loadEditCustomerPage">
  								    	<s:param name="customerIdParam" value="customerId"></s:param>
  								    </s:url>
- 								    <s:a href="%{loadEditCustomerUrl}" class="icon-action-link" rel="tooltip" title="Edit this Customer"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
+ 								    <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip" title="Edit this Customer"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
 
-                                       <s:url var="deleteCustomerUrl" action="deleteCustomer">
-                                             <s:param name="customerIdParam" value="customerId"></s:param>
-                                        </s:url>
-                                       	<s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip" title="Delete this Customer" onclick="return confirm('Do you really want to delete?');"><img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                   <s:url var="deleteCustomerUrl" action="deleteCustomer">
+                                         <s:param name="customerIdParam" value="customerId"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip" title="Delete this Customer" onclick="return confirm('Do you really want to delete?');"><img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
 
-                                       <s:url var="customerInfoUrl" action="customerInfo">
-                                             <s:param name="customerIdParam" value="customerId"></s:param>
-                                        </s:url>
-                                       	<s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                   <s:url var="customerInfoUrl" action="customerInfo">
+                                         <s:param name="customerIdParam" value="customerId"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img src="includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
 
 
 

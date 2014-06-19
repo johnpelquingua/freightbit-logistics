@@ -113,6 +113,24 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     ////// START OF CUSTOMER ///////////////
 
+    public String loadAddCustomerPage() {
+        return SUCCESS;
+    }
+
+    public String loadEditCustomerPage() {
+        Customer customerEntity = customerService.findCustomerById(customerIdParam);
+        customer = transformToFormBean(customerEntity);
+        return SUCCESS;
+    }
+
+    public String loadSaveCompletePage() {
+        List<Customer> customerEntityList = customerService.findAllCustomer(getClientId());
+        for (Customer customerElem : customerEntityList) {
+            customers.add(transformToFormBean(customerElem));
+        }
+        return SUCCESS;
+    }
+
     public String customerSearchExecute() {
         if (searchType.equals("customerName")) {
             List<Customer> customerEntityList = customerService.findCustomerByName(keyword);
