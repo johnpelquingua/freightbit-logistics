@@ -54,7 +54,7 @@ public class VesselDaoImpl extends HibernateDaoSupport implements VesselDao {
         Log.debug("updating vessel");
         try{
             Session session = getSessionFactory().getCurrentSession();
-            session.update(vessel);
+            session.saveOrUpdate(vessel);
             Log.debug("updating success");
         }catch(RuntimeException re){
             Log.error("updating failed", re);

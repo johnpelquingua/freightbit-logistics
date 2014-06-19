@@ -579,6 +579,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setVesselNumber(entity.getVesselNumber());
         formBean.setModelYear(entity.getModelYear());
         formBean.setVendorId(entity.getVendorId());
+        formBean.setVesselId(entity.getVesselId());
 
         return formBean;
     }
@@ -986,7 +987,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         return vesselNameParam;
     }
 
-    public void setVesselIdParam(String vesselNameParam) {
+    public void setVesselNameParam(String vesselNameParam) {
         this.vesselNameParam = vesselNameParam;
     }
 }
