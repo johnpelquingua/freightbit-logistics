@@ -3,7 +3,7 @@
 		<!-- MIDDLE -->
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         
-		<h1 class="page-header" style=" margin-left: -40px; ">Edit - Drivers</h1>
+		<h1 class="page-header" style=" margin-left: -40px; ">Add - Drivers</h1>
 		
 		<!-- EDIT HERE -->
 			<div class="main-box" style=" margin-left: -40px; ">
@@ -11,7 +11,7 @@
 
 					<div class="panel-heading">
 						<img src="includes/images/add-user.png" class="box-icon">
-						<span class="panel-title">Edit - Driver Information</span>
+						<span class="panel-title">Add - Driver Information</span>
 					</div>
 
 					<div class="panel-body">
@@ -111,27 +111,31 @@
 
                     <div class="panel-body" style="height: 195px;">
                         <ul class="nav" style="margin-top: -10px;">
+
                             <li>
-                                <a href="viewTrucks" class="side-help" style="font-size: 15px;"><img
-                                        src="includes/images/1.png"
-                                        class="img-sidehelp">List of Trucks</a>
+                                <s:url var="viewTrucksUrl" action="viewTrucks">
+                                    <s:param name="vendorIdParam" value="vendor.vendorId"></s:param>
+                                </s:url>
+                                <s:a href="%{viewTrucksUrl}" cssClass="side-help" style="font-size: 15px;">
+                                    <img src="includes/images/1.png" class="img-sidehelp">Trucks Information
+                                </s:a>
                             </li>
+
+                            <li><a href="vendor-driver" class="side-help" style="font-size: 15px;">
+                                <img src="includes/images/2.png" class="img-sidehelp">Driver Information</a>
+                            </li>
+
                             <li>
-                                <a href="viewDrivers" class="side-help" style="font-size: 15px;"><img
-                                        src="includes/images/2.png"
-                                        class="img-sidehelp">List of Drivers</a>
+                                <a href="viewVendorContacts" class="side-help" style="font-size: 15px;">
+                                    <img src="includes/images/5.png" class="img-sidehelp">Contact Information
+                                </a>
                             </li>
-                            <li><a href="vendor-contact-person" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png"
-                                                                                                                class="img-sidehelp">Contact
-                                Person</a></li>
-                            <%--   <li><a href="vendor-other-information" class="side-help"><img
-                                       src="includes/images/5.png"
-                                       class="img-sidehelp">Other
-                                   Information</a></li>--%>
-                            <li><a href="vendor-address" class="side-help" style="font-size: 15px;"><img
-                                    src="includes/images/4.png"
-                                    class="img-sidehelp">Address</a>
+
+                            <li>
+                                <a href="vendor-address" class="side-help" style="font-size: 15px;">
+                                    <img src="includes/images/4.png" class="img-sidehelp">Address</a>
                             </li>
+
                         </ul>
                     </div>
                 </div>

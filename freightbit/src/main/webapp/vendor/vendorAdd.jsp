@@ -27,7 +27,7 @@
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
                                       listKey="key" listValue="value" cssClass="form-control"
-                                      onchange="EventChanged(this);"></s:select>
+                                      ></s:select>
                         </div>
                     </div>
 
@@ -81,27 +81,6 @@
         </div>
 
     </div>
-
-    <!-- SIDEBAR GOES HERE -->
-    <%--<div class="sidebar-box">
-        <div class="panel booking panel-info">
-
-            <div class="booking panel-heading">
-                <img src="includes/images/calendar.png" class="box-icon">
-                <span class="booking panel-title">Process</span>
-            </div>
-
-            <div class="panel-body">
-                <ul class="nav">
-                    <li><a href="vendor-addvendor" class="side-help"><img src="includes/images/1.png"
-                                                                          class="img-sidehelp">Personal Information</a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </div>--%>
-    <!-- END OF EDIT -->
 
 </div>
 <!-- END OF THE MIDDLE -->

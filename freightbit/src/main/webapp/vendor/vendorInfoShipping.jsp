@@ -49,9 +49,9 @@
                     <li><a href="viewVessels" class="side-help"><img src="includes/images/1.png"
                                                                           class="img-sidehelp">List of Vessels</a>
                     </li>
-                    <li><a href="vendor-vessel" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Contact Persons</a>
+                    <li><a href="viewVendorShippingContacts" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Contact Persons</a>
                     </li>
-                    <li><a href="vendor-contact-person2" class="side-help"><img src="includes/images/3.png"
+                    <li><a href="" class="side-help"><img src="includes/images/3.png"
                                                                                 class="img-sidehelp">Address</a>
                     </li>
                 </ul>

@@ -27,12 +27,6 @@ public class ContactBean {
     private String createdBy;
     private Timestamp modifiedTimestamp;
     private String modifiedBy;
-    /*private List <VesselBean> vesselBeanList;
-    private List <TruckBean> truckBeanList;
-    private List <DriverBean> driverBeanList;
-    private List <AddressBean> addressBeanList;
-    private List <ContactBean> contactBeanList;
-    private OtherInformationBean otherInformationBean;*/
 
     public ContactBean() {
 
