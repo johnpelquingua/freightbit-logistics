@@ -37,6 +37,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private Integer customerIdParam;
     private String keyword; //search keyword for customer
     private String searchType; // get the search type
+    private String customerKeyword;
 
     private CustomerBean customer = new CustomerBean();
     private ItemBean item = new ItemBean();
@@ -124,7 +125,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String loadSaveCompletePage() {
-        List<Customer> customerEntityList = customerService.findAllCustomer(getClientId());
+        List<Customer> customerEntityList = customerService.findAllCustomer();
         for (Customer customerElem : customerEntityList) {
             customers.add(transformToFormBean(customerElem));
         }
@@ -132,7 +133,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String customerSearchExecute() {
-        if (searchType.equals("customerName")) {
+        /*if (searchType.equals("customerName")) {
             List<Customer> customerEntityList = customerService.findCustomerByName(keyword);
             for (Customer customerElem : customerEntityList) {
                 customers.add(transformToFormBean(customerElem));
@@ -151,8 +152,37 @@ public class CustomerAction extends ActionSupport implements Preparable {
         } else if (searchType.equals("email")) {
             Customer customerEntityList = customerService.findCustomerByEmail(keyword);
             customers.add(transformToFormBean(customerEntityList));
+        }*/
+
+        String column = getColumnFilter();
+        List<Customer> customerEntityList = new ArrayList<Customer>();
+
+        if (StringUtils.isNotBlank(column)) {
+            customerEntityList = customerService.findCustomersByCriteria(column, customer.getCustomerKeyword(), getClientId());
+
+        } else {
+            customerEntityList = customerService.findAllCustomer();
         }
+
+        for (Customer customerElem : customerEntityList) {
+            customers.add(transformToFormBean(customerElem));
+        }
+
         return SUCCESS;
+    }
+
+    public String getColumnFilter() {
+        String column = "";
+        if ("customerName".equals(customer.getCustomerSearchCriteria())) {
+                column = "customerName";
+        } else if ("customerCode".equals(customer.getCustomerSearchCriteria())) {
+                column = "customerCode";
+        } else if ("customerType".equals(customer.getCustomerSearchCriteria())) {
+                column = "customerType";
+        } else if ("email".equals(customer.getCustomerSearchCriteria())) {
+                column = "email";
+        }
+        return column;
     }
 
     public String customerDeleteExecute() {
@@ -194,7 +224,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String customerList() {
-        List<Customer> customerEntityList = customerService.findAllCustomer(getClientId());
+        List<Customer> customerEntityList = customerService.findAllCustomer();
         for (Customer customerElem : customerEntityList) {
             customers.add(transformToFormBean(customerElem));
         }
@@ -403,5 +433,13 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void setItem(ItemBean item) {
         this.item = item;
+    }
+
+    public String getCustomerKeyword() {
+        return customerKeyword;
+    }
+
+    public void setCustomerKeyword(String customerKeyword) {
+        this.customerKeyword = customerKeyword;
     }
 }

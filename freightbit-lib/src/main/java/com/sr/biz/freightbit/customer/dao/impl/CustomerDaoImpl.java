@@ -68,12 +68,13 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao{
     }
 
     @Override
-    public List<Customer> findAllCustomer(Integer clientId){
+    public List<Customer> findAllCustomer(){
         log.debug("finding all Customer");
         try {
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Customer where clientId = :clientId");
+            /*Query query = getSessionFactory().getCurrentSession().createQuery("from Customer where clientId = :clientId");
             query.setParameter("clientId", clientId);
-            return query.list();
+            return query.list();*/
+            return getSessionFactory().getCurrentSession().createQuery("from Customer").list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;

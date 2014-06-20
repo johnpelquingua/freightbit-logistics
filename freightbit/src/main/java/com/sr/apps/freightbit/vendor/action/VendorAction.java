@@ -92,11 +92,11 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public String getColumnFilter() {
         String column = "";
-        if ("companyCode".equals(vendor.getVendorSearchCriteria())) {
+        if ("COMPANY CODE".equals(vendor.getVendorSearchCriteria())) {
             column = "vendorCode";
-        } else if ("companyName".equals(vendor.getVendorSearchCriteria())) {
+        } else if ("COMPANY NAME".equals(vendor.getVendorSearchCriteria())) {
             column = "vendorName";
-        } else if ("vendorType".equals(vendor.getVendorSearchCriteria())) {
+        } else if ("VENDOR TYPE".equals(vendor.getVendorSearchCriteria())) {
             column = "vendorType";
         }
         return column;

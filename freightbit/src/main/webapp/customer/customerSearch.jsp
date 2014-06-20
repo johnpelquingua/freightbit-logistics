@@ -25,7 +25,12 @@
 								    <label  class="col-sm-2 control-label">Search by:</label>
 
 								    <div class="col-sm-10">
-                                      	 <s:select name="searchType" id="searchType" listKey="key" listValue="value" list="customerSearchList" cssClass="form-control"/>
+                                      	 <%--<s:select name="searchType" id="searchType" listKey="key" listValue="value" list="customerSearchList" cssClass="form-control"/>--%>
+                                        <s:select emptyOption="true" id="customer.customerSearchCriteria"
+                                                  value="customer.customerSearchCriteria"
+                                                  name="customer.customerSearchCriteria"
+                                                  list="customerSearchList" listValue="value" listKey="key"
+                                                  cssClass="form-control"/>
 								    </div>
 							    </div>
 
@@ -34,7 +39,7 @@
 							    	<label  class="col-sm-2 control-label">Search:</label>
 
 								    <div class="col-sm-10">
-                                           <s:textfield name="keyword"  cssClass="form-control" id="keyword"/>
+                                           <s:textfield name="customer.customerKeyword"  cssClass="form-control" placeholder="Keyword"/>
 								    </div>
 
 							  	</div>

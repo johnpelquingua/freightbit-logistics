@@ -284,7 +284,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 	
 	@Override
 	public void prepare() throws Exception {
-		customerList = customerService.findAllCustomer(getClientId());
+		customerList = customerService.findAllCustomer();
 		serviceRequirementList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.SERVICE_REQUIREMENT);
 		freightTypeList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.FREIGHT_TYPE);
 		modeOfPaymentList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.MODE_OF_PAYMENT);

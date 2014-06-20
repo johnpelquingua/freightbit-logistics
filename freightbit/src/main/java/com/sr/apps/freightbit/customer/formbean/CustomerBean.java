@@ -26,16 +26,16 @@ public class CustomerBean {
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
+    private String customerKeyword;
+    private String customerSearchCriteria;
+
 
     public CustomerBean(){
 
     }
 
-    public CustomerBean(Integer customerId, String customerCode, String customerName,
-                        String customerType, String website, String phone, String mobile,
-                        String fax, String email, int dti, int mayorsPermit, int aaf,
-                        int signatureCard, Date createdTimestamp, String createdBy,
-                        Date modifiedTimestamp, String modifiedBy) {
+    public CustomerBean(String email, Integer customerId, String customerCode, String customerName, String customerType, String website, String phone, String mobile, String fax, int dti, int mayorsPermit, int aaf, int signatureCard, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String customerKeyword, String customerSearchCriteria) {
+        this.email = email;
         this.customerId = customerId;
         this.customerCode = customerCode;
         this.customerName = customerName;
@@ -44,7 +44,6 @@ public class CustomerBean {
         this.phone = phone;
         this.mobile = mobile;
         this.fax = fax;
-        this.email = email;
         this.dti = dti;
         this.mayorsPermit = mayorsPermit;
         this.aaf = aaf;
@@ -53,6 +52,8 @@ public class CustomerBean {
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
+        this.customerKeyword = customerKeyword;
+        this.customerSearchCriteria = customerSearchCriteria;
     }
 
     public Integer getCustomerId() {
@@ -189,5 +190,21 @@ public class CustomerBean {
 
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
+    }
+
+    public String getCustomerKeyword() {
+        return customerKeyword;
+    }
+
+    public void setCustomerKeyword(String customerKeyword) {
+        this.customerKeyword = customerKeyword;
+    }
+
+    public String getCustomerSearchCriteria() {
+        return customerSearchCriteria;
+    }
+
+    public void setCustomerSearchCriteria(String customerSearchCriteria) {
+        this.customerSearchCriteria = customerSearchCriteria;
     }
 }

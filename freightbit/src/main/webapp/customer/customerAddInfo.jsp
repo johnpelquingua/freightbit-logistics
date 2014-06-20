@@ -24,60 +24,86 @@
 				  <div class="form-group">
 
                  <div class="form-group">
-					<label for="ctype" class="col-sm-2 control-label" style="width:25%;">Customer Code</label>
+					<label class="col-sm-2 control-label" style="width:25%;">Company Name</label>
 					<div class="col-sm-10" style="width:70%;">
-					  <s:textfield  maxLength="3" cssStyle="text-transform:uppercase" required="true" name="customer.customerCode" cssClass="form-control" id="customer.customerCode" />
+					  <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName" />
 					</div>
 				  </div>
 
 				  <div class="form-group">
-					<label for="ctype" class="col-sm-2 control-label" style="width:25%;">Customer Name</label>
+					<label class="col-sm-2 control-label" style="width:25%;">Company Code</label>
 					<div class="col-sm-10" style="width:70%;">
-					  <s:textfield required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName" />
+					  <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" />
 					</div>
 				  </div>
 
 				  <div class="form-group">
-					<label for="ctype" class="col-sm-2 control-label" style="width:25%;">Customer Type</label>
+					<label class="col-sm-2 control-label" style="width:25%;">Customer Type</label>
 					<div class="col-sm-10" style="width:70%;">
 					 <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="form-control"/>
 					</div>
 				  </div>
 				  <div class="form-group">
-					<label for="cnum" class="col-sm-2 control-label" style="width:25%;">Phone No.</label>
+					<label class="col-sm-2 control-label" style="width:25%;">Phone No.</label>
 					<div class="col-sm-10" style="width:70%;">
 					  <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer.phone" maxLength="7"/>
 					</div>
 				  </div>
 
 				  <div class="form-group">
-					<label for="cnum" class="col-sm-2 control-label" style="width:25%;">Mobile No.</label>
+					<label class="col-sm-2 control-label" style="width:25%;">Mobile No.</label>
 					<div class="col-sm-10" style="width:70%;">
 					  <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer.mobile" maxLength="11"/>
 					</div>
 				  </div>
 
 				  <div class="form-group">
-					<label for="cnum" class="col-sm-2 control-label" style="width:25%;">Fax  No.</label>
+					<label class="col-sm-2 control-label" style="width:25%;">Fax  No.</label>
 					<div class="col-sm-10" style="width:70%;">
 					  <s:textfield  required="true" name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11"/>
 					</div>
 				  </div>
 
 				  <div class="form-group">
-					<label for="eadd" class="col-sm-2 control-label" style="width:25%;">Email Address</label>
+					<label class="col-sm-2 control-label" style="width:25%;">Email Address</label>
 					<div class="col-sm-10" style="width:70%;">
 					  <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email"/>
 					</div>
 				  </div>
 
 				  <div class="form-group">
-					<label for="eadd" class="col-sm-2 control-label" style="width:25%;">Website</label>
+					<label class="col-sm-2 control-label" style="width:25%;">Website</label>
 					<div class="col-sm-10" style="width:70%;">
 					  <s:textfield name="customer.website" cssClass="form-control" id="customer.website"/>
 					</div>
 				  </div>
             <hr>
+
+                      <h4>Documents</h4>
+                      <hr>
+                      <div style="padding:4px;">
+                          <div class="col-xs-6">
+                              <label>
+                                  <input type="checkbox"> DTI / SEC Certificate
+                              </label>
+                          </div>
+                          <div class="col-xs-6">
+                              <label>
+                                  <input type="checkbox"> Mayor's Permit
+                              </label>
+                          </div>
+                          <div class="col-xs-6">
+                              <label>
+                                  <input type="checkbox"> Account Application Form
+                              </label>
+                          </div>
+                          <div class="col-xs-6">
+                              <label>
+                                  <input type="checkbox"> Signature Specimen Card
+                              </label>
+                          </div>
+                      </div>
+                      <hr>
 
               <div class="col-sm-10 pull-right" style="width:70%;">
                     <a href="customerList" class="btn btn-default" id ="groups-btn">Cancel</a>

@@ -15,7 +15,7 @@ public interface CustomerDao {
 
     public void updateCustomer(Customer customer);
 
-    public List<Customer> findAllCustomer(Integer clientId);
+    public List<Customer> findAllCustomer();
 
     public Customer findCustomerById(Integer id);
 

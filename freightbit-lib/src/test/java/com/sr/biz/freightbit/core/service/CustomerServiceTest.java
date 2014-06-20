@@ -74,7 +74,7 @@ public class CustomerServiceTest {
 
         List<Customer> customers = new ArrayList<>();
         customers.add(initCustomer());
-        Mockito.when(customerDao.findAllCustomer(clientId)).thenReturn(customers);
+        Mockito.when(customerDao.findAllCustomer()).thenReturn(customers);
 
         List<Customer> results = customerService.findCustomerByClientId(clientId);
         Assert.assertEquals(customers.size(), 1);
