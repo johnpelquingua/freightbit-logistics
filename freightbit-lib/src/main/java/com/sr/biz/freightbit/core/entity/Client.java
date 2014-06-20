@@ -76,7 +76,7 @@ public class Client  implements java.io.Serializable {
        this.modifiedBy = modifiedBy;
     }*/
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+    @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="clientId", unique=true, nullable=false)
     public Integer getClientId() {
         return this.clientId;

@@ -37,15 +37,19 @@ public interface VendorService {
 
     public void deleteAddress(Address address);
 
+    public void updateAddress(Address address);
+
     public List<Address> findAllAddressByClientId(Integer clientId);
 
-    // public List<Address> findAllAddress(Integer addressId);
+    public List<Address> findAllAddress(Integer addressId);
 
     public Address findAddressById(Integer addressId);
 
     public Address findAddressByRefId(Integer customerId);
 
-    public void updateAddress(Address address);
+    public List<Address> findAllAddressByRefId(Integer referenceId);
+
+
 
     public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId);
 

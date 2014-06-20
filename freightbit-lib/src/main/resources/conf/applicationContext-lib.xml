@@ -61,7 +61,11 @@
 		<property name="groupUserDao" ref="groupUserDao"/>
 		<property name="userDao" ref="userDao"/>
 	</bean>
-	
+
+    <bean id="addressService" class="com.sr.biz.freightbit.vendor.service.impl.VendorServiceImpl">
+        <property name="addressDao" ref="addressDao"/>
+    </bean>
+
 	<bean id="permissionService" class="com.sr.biz.freightbit.core.service.impl.PermissionServiceImpl">
 		<property name="permissionDao" ref="permissionDao" />
 	</bean>

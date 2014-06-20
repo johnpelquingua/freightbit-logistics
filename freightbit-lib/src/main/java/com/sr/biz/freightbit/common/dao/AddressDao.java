@@ -13,13 +13,15 @@ public interface AddressDao {
 
     public void deleteAddress(Address address);
 
+    public void updateAddress(Address address);
+
     public List<Address> findAllAddress(Integer addressId);
 
     public List<Address> findAllAddressByClientId(Integer clientId);
 
-    public Address findAddressById(Integer addressId);
+    public List<Address> findAllAddressByRefId(Integer referenceId);
 
-    public void updateAddress(Address address);
+    public Address findAddressById(Integer addressId);
 
     public Address findContactByReferenceTableAndId(String referenceTable, Integer referenceId);
     

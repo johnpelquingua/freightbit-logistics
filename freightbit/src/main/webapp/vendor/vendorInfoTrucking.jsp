@@ -22,7 +22,10 @@
                 <b>Class:</b> <s:property value="vendor.vendorClass"/>
                 <br/>
                 <b>Status:</b> <s:property value="vendor.vendorStatus"/>
+<<<<<<< HEAD
                 <s:set name="vendorId" value="%{vendor.vendorId}" scope="session"/>
+=======
+>>>>>>> commited vendor address
             </div>
         </div>
     </div>
@@ -34,6 +37,7 @@
             </div>
             <div class="panel-body" style="height: 195px;">
                 <ul class="nav" style="margin-top: -10px;">
+<<<<<<< HEAD
                     <li>
                         <a href="viewTrucks" class="side-help" style="font-size: 15px;">
                             <img src="includes/images/1.png" class="img-sidehelp">List of Trucks
@@ -50,6 +54,23 @@
                     <li>
                         <a href="vendor-address" class="side-help" style="font-size: 15px;">
                             <img src="includes/images/4.png" class="img-sidehelp">Address</a>
+=======
+                    <li><a href="viewVendors" class="side-help" style="font-size: 15px;"><img src="includes/images/1.png"
+                                                                       class="img-sidehelp">Trucks
+                        Information</a></li>
+                    <li><a href="vendor-driver" class="side-help" style="font-size: 15px;"><img src="includes/images/2.png"
+                                                                       class="img-sidehelp">Driver
+                        Information</a></li>
+                    <li><a href="vendor-contact-person" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png"
+                                                                               class="img-sidehelp">Contact
+                        Person</a></li>
+                 <%--   <li><a href="vendor-other-information" class="side-help"><img
+                            src="includes/images/5.png"
+                            class="img-sidehelp">Other
+                        Information</a></li>--%>
+                    <li><a href="vendor-address" class="side-help" style="font-size: 15px;"><img src="includes/images/4.png"
+                                                                        class="img-sidehelp">Address</a>
+>>>>>>> commited vendor address
                     </li>
                 </ul>
             </div>

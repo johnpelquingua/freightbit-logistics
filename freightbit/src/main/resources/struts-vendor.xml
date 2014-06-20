@@ -225,5 +225,27 @@
             <result name="success" type="tiles">vendor.vendorListTruckingContact.tiles</result>
         </action>
 
+        <!--address-->
+        <action name="LoadVendorEditAddressPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadVendorEditAddressPage">
+            <result name="success" type="tiles"></result>
+        </action>
+
+        <action name="loadVendorAddAddressPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadVendorAddAddressPage" >
+            <result name="success" type="tiles">vendor-address.tiles</result>
+        </action>
+
+        <action name="loadVendorAddressListPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadVendorAddressListPage">
+            <result name="success" type="tiles">vendor.addressList.tiles</result>
+        </action>
+
+        <action name="vendorDeleteAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="vendorDeleteAddress">
+            <result name="success" type="redirect">loadVendorAddressListPage</result>
+        </action>
+
+        <action name="vendorAddAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="vendorAddAddress" >
+             <result name="success" type="redirect">loadVendorAddressListPage</result>
+        </action>
+
+
     </package>
 </struts>

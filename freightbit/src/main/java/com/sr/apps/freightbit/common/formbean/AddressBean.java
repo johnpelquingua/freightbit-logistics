@@ -15,7 +15,7 @@ public class AddressBean {
     private String addressLine2;
     private String city;
     private String state;
-    private Integer zip;
+    private String zip;
     private Date createdTimeStamp;
     private String createdBy;
     private Date modifiedTimeStamp;
@@ -27,7 +27,7 @@ public class AddressBean {
 
     public AddressBean(Integer addressId, Integer clientId, String referenceTable, Integer referenceId,
                        String addressType, String addressLine1, String addressLine2, String city,
-                       String state, Integer zip, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy){
+                       String state, String zip, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy){
 
             this.addressId = addressId;
             this.clientId = clientId;
@@ -46,6 +46,7 @@ public class AddressBean {
 
 
     }
+
 
     public String getAddress() {
         return address;
@@ -127,11 +128,11 @@ public class AddressBean {
         this.state = state;
     }
 
-    public Integer getZip() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZip(Integer zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 

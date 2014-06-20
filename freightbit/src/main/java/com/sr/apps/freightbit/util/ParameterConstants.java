@@ -36,4 +36,6 @@ public class ParameterConstants {
 
     public final static String CONTACT_TYPE = "CONTACT_TYPE";
 
+    public final static String ADDRESS_TYPE = "ADDRESS_TYPE";
+
 }

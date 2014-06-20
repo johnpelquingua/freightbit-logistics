@@ -3,12 +3,12 @@ package com.sr.apps.freightbit.vendor.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.vendor.formbean.DriverBean;
 import com.sr.apps.freightbit.vendor.formbean.TruckBean;
 import com.sr.apps.freightbit.vendor.formbean.VendorBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
-import com.sr.apps.freightbit.vendor.formbean.VesselBean;
 import com.sr.biz.freightbit.common.entity.Contacts;
 
 import com.sr.biz.freightbit.core.entity.Client;
@@ -43,7 +43,6 @@ public class VendorAction extends ActionSupport implements Preparable {
     private List<TruckBean> trucks = new ArrayList<TruckBean>();
     private List<DriverBean> drivers = new ArrayList<DriverBean>();
     private List<ContactBean> contacts = new ArrayList<ContactBean>();
-    private List<VesselBean> vessels = new ArrayList<VesselBean>();
 
     private List<Parameters> vendorTypeList = new ArrayList<Parameters>();
     private List<Parameters> vendorSearchList = new ArrayList<Parameters>();
@@ -56,7 +55,6 @@ public class VendorAction extends ActionSupport implements Preparable {
     private TruckBean truck = new TruckBean();
     private DriverBean driver = new DriverBean();
     private ContactBean contact = new ContactBean();
-    private VesselBean vessel = new VesselBean();
 
     private String vendorCodeParam;
     private Integer vendorIdParam;
@@ -65,14 +63,21 @@ public class VendorAction extends ActionSupport implements Preparable {
     private Integer contactCodeParam;
     private String searchType;
     private String vendorKeyword;
-    private String vesselNameParam;
 
     private VendorService vendorService;
     private ClientService clientService;
     private ParameterService parameterService;
     private UserService userService;
     private VendorService trucksService;
-    private DriverService driverService;
+    private VendorService driverService;
+
+    public String viewVendorsByClientId() {
+        List<Vendor> vendorEntityList = vendorService.findAllVendorByClientId(getClientId());
+        for (Vendor vendorElem : vendorEntityList) {
+            vendors.add(transformToFormBean(vendorElem));
+        }
+        return SUCCESS;
+    }
 
     public String viewVendors() {
         String column = getColumnFilter();
@@ -87,8 +92,39 @@ public class VendorAction extends ActionSupport implements Preparable {
         for (Vendor vendorElem : vendorEntityList) {
             vendors.add(transformToFormBean(vendorElem));
         }
+
         return SUCCESS;
     }
+
+    // TODO View Drivers initial code
+
+/*
+    public String viewDriversByClientId() {
+        List<Driver> driverEntityList = driverService.findAllDriverByClientId(getClientId());
+        for (Driver driverElem : driverEntityList) {
+            drivers.add(transformToFormBeanDriver(driverElem));
+        }
+        return SUCCESS;
+    }*/
+
+    public String viewDrivers() {
+        List<Driver> driverEntityList = new ArrayList<Driver>();
+
+        //SEARCH Method
+      /*  if (StringUtils.isNotBlank(column)) {
+            vendorEntityList = vendorService.findVendorsByCriteria(column, vendor.getVendorKeyword(), getClientId());
+        } else {
+            vendorEntityList = vendorService.findAllVendors();
+        }*/
+
+        driverEntityList = vendorService.findAllDrivers();
+
+        for (Driver driverElem : driverEntityList) {
+            drivers.add(transformToFormBeanDriver(driverElem));
+        }
+        return SUCCESS;
+    }
+
 
     public String getColumnFilter() {
         String column = "";
@@ -112,7 +148,6 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
 
-
     public String addVendor() throws Exception {
         validateOnSubmit(vendor);
         if (hasFieldErrors()) {
@@ -130,7 +165,12 @@ public class VendorAction extends ActionSupport implements Preparable {
     public String loadEditVendorPage() {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendor = transformToFormBean(vendorEntity);
-        return SUCCESS;
+
+        if ("TRUCKING".equals(vendor.getVendorType())) {
+            return "TRUCKING";
+        } else {
+            return "SHIPPING";
+        }
     }
 
     public String loadEditVendorTrucksPage() {
@@ -277,19 +317,8 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String loadSaveCompleteTrucks() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
-        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorId);
-        for (Trucks truckElem : truckEntityList) {
-            trucks.add(transformToFormBeanTrucks(truckElem));
-        }
-        return SUCCESS;
-    }
-
     public String viewTrucks() {
-        Integer vendorId = getSessionVendorId();
-        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorId);
+        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorIdParam);
         for (Trucks truckElem : truckEntityList) {
             trucks.add(transformToFormBeanTrucks(truckElem));
         }
@@ -305,9 +334,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             entity.setTruckId(truckBean.getTruckId());
         }
 
-        Integer vendorId = getSessionVendorId();
-
-        entity.setVendorId(vendorId);
+        entity.setVendorId(truckBean.getVendorId());
         entity.setTruckType(truckBean.getTruckType());
         entity.setPlateNumber(truckBean.getPlateNumber());
         entity.setModelNumber(truckBean.getModelNumber());
@@ -681,6 +708,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setCreatedBy("Admin");
         entity.setModifiedTimestamp(new Date());
         entity.setModifiedBy("Admin");
+
         return entity;
     }
 
@@ -698,6 +726,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setMobile(entity.getMobile());
         formBean.setFax(entity.getFax());
         formBean.setEmail(entity.getEmail());
+
         return formBean;
     }
 

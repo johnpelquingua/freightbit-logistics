@@ -10,10 +10,13 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Solutions Resource on 5/28/14.
  */
+
+@Transactional
 public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
 
     private static final Logger log = Logger.getLogger(AddressDaoImpl.class);
@@ -57,7 +60,7 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
     }
 
     @Override
-    public List<Address> findAllAddress(Integer addressId) {
+        public List<Address> findAllAddress(Integer addressId) {
         log.debug("finding all Address");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery("from Address where addressId = :addressId");
@@ -71,20 +74,21 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
 
     @Override
     public List<Address> findAllAddressByClientId(Integer clientId) {
-        log.debug("finding Address instance by client");
+        log.debug("Finding address instance by Client");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from Address u where u.clientId = :clientId");
+                    "from Address a where a.clientId = :clientId");
             query.setParameter("clientId", clientId);
             List<Address> results = (List<Address>) query.list();
-            log.debug("find by client id successful, result size: "
+            log.debug("find address by client id successful, result size: "
                     + results.size());
             return results;
         } catch (RuntimeException re) {
-            log.error("find by client id failed", re);
+            log.error("find address by client id failed", re);
             throw re;
         }
     }
+
 
     @Override
     public Address findAddressById(Integer addressId) {
@@ -129,4 +133,21 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
         return query.list();
     }  
 
+
+    @Override
+    public List<Address> findAllAddressByRefId(Integer referenceId) {
+        log.debug("finding customer by client");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Address a where a.referenceId = :referenceId");
+            query.setParameter("referenceId", referenceId);
+            List<Address> results = (List<Address>) query.list();
+            log.debug("find by client id successful, result size: "
+                    + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            log.error("finding customer failed", re);
+            throw re;
+        }
+    }
 }

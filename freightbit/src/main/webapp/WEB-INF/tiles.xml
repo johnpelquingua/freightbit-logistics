@@ -191,6 +191,7 @@
         <put-attribute name="body"   value="/vendor/vendorEditTruckingContact.jsp"/>
     </definition>
 
+<<<<<<< HEAD
     <definition name="vendor.vendorListTruckingContact.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Contact List"/>
         <put-attribute name="body"   value="/vendor/vendorListTruckingContact.jsp"/>
@@ -212,6 +213,13 @@
     </definition>
 
 
+=======
+    <definition name="vendor.addressList.tiles" extends="baseLayout" >
+        <put-attribute name="title" value="Vendor Address"/>
+        <put-attribute name="body" value="/vendor/vendorAddressList.jsp"/>
+    </definition>
+
+>>>>>>> commited vendor address
 <!-- VENDOR module tiles END -->
 
 <!-- CUSTOMER module tiles END -->
@@ -368,7 +376,7 @@
 
     <definition name="vendor-address.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Vendor Page"/>
-        <put-attribute name="body"   value="/vendor/vendor-address.jsp"/>
+        <put-attribute name="body"   value="/vendor/vendorAddAddress.jsp"/>
     </definition>
 
     <definition name="vendor-vessel.tiles" extends="baseLayout">

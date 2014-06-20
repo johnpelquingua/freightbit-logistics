@@ -137,15 +137,21 @@ public class VendorServiceImpl implements VendorService {
 
 
     @Override
+    public List<Address> findAllAddressByRefId(Integer referenceId){
+        List<Address> address = addressDao.findAllAddressByRefId(referenceId);
+        return address;
+    }
+
+    @Override
     public List<Address> findAllAddressByClientId(Integer clientId) {
         return addressDao.findAllAddressByClientId(clientId);
     }
 
-//    @Override
-//    public List<Address> findAllAddress(Integer addressId) {
-//        List<Address> address = addressDao.findAllAddress(addressId);
-//        return address;
-//    }
+    @Override
+    public List<Address> findAllAddress(Integer addressId) {
+        List<Address> address = addressDao.findAllAddress(addressId);
+        return address;
+    }
 
 
     @Override
