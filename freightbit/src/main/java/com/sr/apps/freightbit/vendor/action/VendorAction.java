@@ -9,6 +9,7 @@ import com.sr.apps.freightbit.vendor.formbean.TruckBean;
 import com.sr.apps.freightbit.vendor.formbean.VendorBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
+import com.sr.apps.freightbit.vendor.formbean.VesselBean;
 import com.sr.biz.freightbit.common.entity.Contacts;
 
 import com.sr.biz.freightbit.core.entity.Client;
@@ -43,6 +44,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private List<TruckBean> trucks = new ArrayList<TruckBean>();
     private List<DriverBean> drivers = new ArrayList<DriverBean>();
     private List<ContactBean> contacts = new ArrayList<ContactBean>();
+    private List<Vessel> vessels = new ArrayList<Vessel>();
 
     private List<Parameters> vendorTypeList = new ArrayList<Parameters>();
     private List<Parameters> vendorSearchList = new ArrayList<Parameters>();
@@ -55,6 +57,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private TruckBean truck = new TruckBean();
     private DriverBean driver = new DriverBean();
     private ContactBean contact = new ContactBean();
+    private VesselBean vessel = new VesselBean();
 
     private String vendorCodeParam;
     private Integer vendorIdParam;
@@ -715,7 +718,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private ContactBean transformToFormBeanContacts (Contacts entity) {
         ContactBean formBean = new ContactBean();
         Integer vendorId = getSessionVendorId();
-        formBean.setContactId (entity.getContactId());
+        formBean.setContactId(entity.getContactId());
         formBean.setReferenceTable("VENDOR");
         formBean.setReferenceId(vendorId);
         formBean.setContactType(entity.getContactType());
