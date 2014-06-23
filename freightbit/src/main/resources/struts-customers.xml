@@ -12,6 +12,10 @@
 
         <default-action-ref name="Customers" />
 
+        <action name="ViewItemList" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="viewItems">
+            <result name="success" type="tiles">customer.customerListViewItems.tiles</result>
+        </action>
+
         <action name="loadAddCustomerPage" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadAddCustomerPage">
             <result name="success" type="tiles">customer.customerAdd.tiles</result>
         </action>
@@ -29,7 +33,7 @@
         </action>
 
         <action name="deleteItem" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerDeleteItemExecute">
-            <result name="success" type="redirect">customerAddItem</result>
+            <result name="success" type="redirect">ViewItemList</result>
         </action>
 
         <action name="addItem" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerAddItemExecute">

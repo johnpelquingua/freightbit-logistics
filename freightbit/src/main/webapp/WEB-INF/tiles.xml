@@ -266,6 +266,12 @@
 <!-- VENDOR module tiles END -->
 
 <!-- CUSTOMER module tiles END -->
+
+    <definition name="customer.customerListViewItems.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerListViewItems.jsp"/>
+    </definition>
+
     <definition name="customer.customerSearch.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Customer Page"/>
         <put-attribute name="body"   value="/customer/customerSearch.jsp"/>

@@ -17,6 +17,7 @@ import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.customer.entity.Rates;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.customer.service.ItemService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -57,9 +58,13 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private RatesBean rate = new RatesBean();
 
     private CustomerService itemService;
+    private ItemService itemServices;
     private CustomerService customerService;
     private ClientService clientService;
     private ParameterService parameterService;
+
+
+
 
     @Override
     public void prepare() {
@@ -111,6 +116,15 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public String customerAddItemExecute() throws Exception {
         itemService.addItem(transformItemToEntityBean(item));
+        return SUCCESS;
+    }
+
+    public String viewItems() {
+        Integer customerId = getCustomerSessionId();
+        List<Items> itemEntityList = customerService.findItemByCustomerId(customerId);
+        for (Items itemsElem : itemEntityList) {
+            items.add(transformItemToFormBean(itemsElem));
+        }
         return SUCCESS;
     }
 
