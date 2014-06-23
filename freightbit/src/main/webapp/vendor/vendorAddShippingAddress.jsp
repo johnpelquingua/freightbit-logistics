@@ -20,12 +20,12 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
 
-                    <s:form  action="vendorAddAddress" cssClass="form-horizontal" theme="bootstrap">
+                    <s:form  action="addShippingAddress" cssClass="form-horizontal" theme="bootstrap">
                         <div class="form-group">
 
-                            <label for="addressType" class="col-sm-2 control-label" style="width:25%;">Address Type</label>
+                            <label for="address.addressType" class="col-sm-2 control-label" style="width:25%;">Address Type</label>
                             <div class="col-sm-10" style="width:70%;">
-                                <s:select name="address.addressType" list="addressTypeList" listValue="value" listKey="key" cssClass="form-control" id="address.addressType"/>
+                                <s:select name="address.addressType" list="addressTypeList" listValue="value" listKey="key" cssClass="form-control" id="address.addressType" emptyOption="true"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -60,18 +60,15 @@
                                 <s:textfield name="address.zip" id="address.zip" cssClass="form-control"/>
                             </div>
                         </div>
-                        <s:property value="%{vendorIdParam}" />
-                        <s:hidden name="vendorIdParam" id="vendorIdParam"   value="%{vendorIdParam}" />
-
-				  <span class="pull-right" style="margin-right:32px;">
-					<a href="customer-add2.jsp" class="btn btn-default" id ="groups-btn" style="width:70px;">Back</a>
-					<s:submit value="Save" name="submit" cssClass="btn btn-default" />
-
-				  </span>
-                    </s:form>
-
                 </div>
             </div>
+            <div class="panel-footer">
+                <div class="btn-group pull-right">
+                    <button class="btn btn-default">Cancel</button>
+                    <s:submit cssClass="btn btn-default" name="submit" value="Save"/>
+                </div>
+            </div>
+            </s:form>
         </div>
     </div>
 
@@ -86,18 +83,21 @@
             <div class="booking panel-heading">
                 <img src="includes/images/calendar.png" class="box-icon">
                 <span class="booking panel-title">Process</span>
-
             </div>
+
             <div class="panel-body">
+
                 <ul class="nav">
-                    <li><a href="customer-add.jsp" class="side-help"><img src="includes/images/1.png" class="img-sidehelp">Personal Information</a></li>
-                    <li><a href="customer-add2.jsp" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Contact Person</a></li>
-                    <li><a href="customer-add3.jsp" class="side-help"><img src="includes/images/3.png" class="img-sidehelp">Address</a></li>
-                    <li><a href="customer-add4.jsp" class="side-help"><img src="includes/images/4.png" class="img-sidehelp">Items</a></li>
-                    <li><a href="customer-add5.jsp" class="side-help"><img src="includes/images/5.png" class="img-sidehelp">Documents</a></li>
-                    <li><a href="customer-add7.jsp" class="side-help"><img src="includes/images/6.png" class="img-sidehelp">Rates</a></li>
-                    <li><a href="customer-add6.jsp" class="side-help"><img src="includes/images/7.png" class="img-sidehelp">Consignee Infomation</a></li>
+                    <li><a href="viewVessels" class="side-help" style="font-size: 15px;"><img src="includes/images/1.png"
+                                                                                              class="img-sidehelp" >List of Vessels</a>
+                    </li>
+                    <li><a href="viewVendorShippingContacts" class="side-help" style="font-size: 15px;"><img src="includes/images/2.png" class="img-sidehelp">Contact Persons</a>
+                    </li>
+                    <li><a href="viewShippingAddress" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png"
+                                                                                                      class="img-sidehelp">Address</a>
+                    </li>
                 </ul>
+
             </div>
         </div>
     </div>

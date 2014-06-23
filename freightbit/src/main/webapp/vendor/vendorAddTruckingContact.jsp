@@ -4,7 +4,7 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Contact Person</h1>
     <!-- EDIT HERE -->
-    <div class="row">
+    <div class="main-box">
         <div class="panel panel-info">
             <div class="panel-heading">
                 <img src="includes/images/add-user.png" class="box-icon">
@@ -18,8 +18,8 @@
 
                         <div class="col-sm-10">
                             <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
-                                      listKey="key" listValue="value" cssClass="form-control" emptyOption="true"
-                                      />
+                                      listKey="key" listValue="value" cssClass="form-control"
+                                      value="contact.contactType"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -77,11 +77,9 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <div class="btn-group" style="float: right;position: relative;margin-right: 30px;">
-                    <button class="btn btn-default" onclick="this.form.action='viewVendorContacts'">
-                        Back
-                    </button>
-                    <s:submit cssClass="btn btn-default" value="Save" type="submit"/>
+                <div class="btn-group pull-right">
+                    <button class="btn btn-default">Cancel</button>
+                    <s:submit cssClass="btn btn-default" name="submit" value="Save"/>
                 </div>
             </div>
             </s:form>
@@ -95,25 +93,29 @@
             </div>
             <div class="panel-body" style="height: 195px;">
                 <ul class="nav" style="margin-top: -10px;">
-                    <li><a href="viewTrucks" class="side-help" style="font-size: 15px;">
-                        <img src="includes/images/1.png" class="img-sidehelp">Contact Information
-                    </a>
+
+                    <li>
+                        <a href="viewTrucks" class="side-help" style="font-size: 15px;">
+                            <img src="includes/images/1.png" class="img-sidehelp">List of Trucks
+                        </a>
                     </li>
-                    <li><a href="vendor-driver" class="side-help" style="font-size: 15px;">
+                    <li><a href="viewDrivers" class="side-help" style="font-size: 15px;">
                         <img src="includes/images/2.png" class="img-sidehelp">Driver Information</a>
                     </li>
                     <li>
                         <a href="viewVendorTruckingContacts" class="side-help" style="font-size: 15px;">
-                            <img src="includes/images/5.png" class="img-sidehelp">Contact Information
+                            <img src="includes/images/3.png" class="img-sidehelp">Contact Information
                         </a>
                     </li>
-                    <li><a href="vendor-address" class="side-help" style="font-size: 15px;">
-                        <img src="includes/images/4.png" class="img-sidehelp">Address</a>
+                    <li>
+                        <a href="viewTruckingAddress" class="side-help" style="font-size: 15px;">
+                            <img src="includes/images/4.png" class="img-sidehelp">Address</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+
 
 </div>
 

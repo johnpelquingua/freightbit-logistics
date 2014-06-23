@@ -38,7 +38,7 @@
                             <label for="vendor.vendorKeyword" class="col-sm-2 control-label">Search:</label>
 
                             <div class="col-sm-10">
-                                <s:textfield cssClass="form-control" placeholder="Keyword" name="vendor.vendorKeyword"/>
+                                <s:textfield cssClass="form-control" placeholder="Keyword" name="vendor.vendorKeyword" id="vendor.vendorKeyword" />
                             </div>
 
                         </div>

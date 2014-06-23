@@ -46,6 +46,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private List<DriverBean> drivers = new ArrayList<DriverBean>();
     private List<ContactBean> contacts = new ArrayList<ContactBean>();
     private List<VesselBean> vessels = new ArrayList<VesselBean>();
+    private List<AddressBean> addresss = new ArrayList<AddressBean>();
 
     private List<Parameters> vendorTypeList = new ArrayList<Parameters>();
     private List<Parameters> vendorSearchList = new ArrayList<Parameters>();
@@ -53,12 +54,14 @@ public class VendorAction extends ActionSupport implements Preparable {
     private List<Parameters> truckTypeList = new ArrayList<Parameters>();
     private List<Parameters> vendorClassList = new ArrayList<Parameters>();
     private List<Parameters> contactTypeList = new ArrayList<Parameters>();
+    private List<Parameters> addressTypeList = new ArrayList<Parameters>();
 
     private VendorBean vendor = new VendorBean();
     private TruckBean truck = new TruckBean();
     private DriverBean driver = new DriverBean();
     private ContactBean contact = new ContactBean();
     private VesselBean vessel = new VesselBean();
+    private AddressBean address = new AddressBean();
 
     private String vendorCodeParam;
     private Integer vendorIdParam;
@@ -68,6 +71,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private String searchType;
     private String vendorKeyword;
     private String vesselNameParam;
+    private Integer addressIdParam;
 
     private VendorService vendorService;
     private ClientService clientService;
@@ -94,11 +98,11 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public String getColumnFilter() {
         String column = "";
-        if ("companyCode".equals(vendor.getVendorSearchCriteria())) {
+        if ("COMPANY CODE".equals(vendor.getVendorSearchCriteria())) {
             column = "vendorCode";
-        } else if ("companyName".equals(vendor.getVendorSearchCriteria())) {
+        } else if ("COMPANY NAME".equals(vendor.getVendorSearchCriteria())) {
             column = "vendorName";
-        } else if ("vendorType".equals(vendor.getVendorSearchCriteria())) {
+        } else if ("VENDOR TYPE".equals(vendor.getVendorSearchCriteria())) {
             column = "vendorType";
         }
         return column;
@@ -616,21 +620,21 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String loadAddTruckingContact() {
+    public String loadSaveCompleteContacts() {
+        Integer vendorId = getSessionVendorId();
+        List<Contacts> contactEntityList = new ArrayList<Contacts>();
+        contactEntityList = vendorService.findContactByReferenceId(vendorId);
+        for (Contacts contactElem : contactEntityList) {
+            contacts.add(transformToFormBeanContacts(contactElem));
+        }
         return SUCCESS;
     }
 
-    public String loadEditTruckingContact() {
-        Contacts contactEntity = vendorService.findContactById(contactCodeParam);
-        contact = transformToFormBeanContacts(contactEntity);
+    public String loadAddContact() {
         return SUCCESS;
     }
 
-    public String loadAddShippingContact(){
-        return SUCCESS;
-    }
-
-    public String loadEditShippingContact(){
+    public String loadEditContact() {
         Contacts contactEntity = vendorService.findContactById(contactCodeParam);
         contact = transformToFormBeanContacts(contactEntity);
         return SUCCESS;
@@ -680,18 +684,18 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setFax(contactBean.getFax());
         entity.setEmail(contactBean.getEmail());
         entity.setCreatedTimestamp(new Date());
-        entity.setCreatedBy("Admin");
+        entity.setCreatedBy("admin");
         entity.setModifiedTimestamp(new Date());
-        entity.setModifiedBy("Admin");
+        entity.setModifiedBy("admin");
         return entity;
     }
 
     private ContactBean transformToFormBeanContacts (Contacts entity) {
         ContactBean formBean = new ContactBean();
-        Integer vendorId = getSessionVendorId();
+
         formBean.setContactId (entity.getContactId());
-        formBean.setReferenceTable("VENDOR");
-        formBean.setReferenceId(vendorId);
+        formBean.setReferenceTable(entity.getReferenceTable());
+        formBean.setReferenceId(entity.getReferenceId());
         formBean.setContactType(entity.getContactType());
         formBean.setFirstName(entity.getFirstName());
         formBean.setMiddleName(entity.getMiddleName());
@@ -723,45 +727,116 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     //address
 
-    public String addAddress() {
+    public String addAddress() throws Exception{
+        validateOnSubmitAdress(address);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        vendorService.addAddress(transformToEntityBeanAddress(address));
         return SUCCESS;
     }
 
     public String editAddress() {
+        validateOnSubmitAdress(address);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        vendorService.updateAddress(transformToEntityBeanAddress(address));
         return SUCCESS;
     }
 
-    public String deleteAddres() {
+    public String deleteAddress() {
+        Address addressEntity = vendorService.findAddressById(addressIdParam);
+        vendorService.deleteAddress(addressEntity);
         return SUCCESS;
     }
 
-    public String loadAddTruckingAddressPage(){
+    public String loadAddAddress(){
         return SUCCESS;
     }
 
-    public String loadAddShippingAddressPage() {
+    public String loadEditAddress() {
+        Address addressEntity = vendorService.findAddressById(addressIdParam);
+        address = transformToFormBeanAddress(addressEntity);
         return SUCCESS;
     }
 
-    public String loadEditTruckingAddressPage() {
+    public String viewAddress() {
+        Integer vendorId = getSessionVendorId();
+        List<Address> addressEntityList = new ArrayList<Address>();
+        addressEntityList = vendorService.findAllAddressByRefId(vendorId);
+        for (Address addressElem : addressEntityList) {
+            addresss.add(transformToFormBeanAddress(addressElem));
+        }
         return SUCCESS;
     }
 
-    public String loadEditShippingAddressPage(){
+    public String loadSaveCompleteAddress() {
+        Integer vendorId = getSessionVendorId();
+        List<Address> addressEntityList = new ArrayList<Address>();
+        addressEntityList = vendorService.findAllAddressByRefId(vendorId);
+        for (Address addressElem : addressEntityList) {
+            addresss.add(transformToFormBeanAddress(addressElem));
+        }
         return SUCCESS;
     }
 
-    public void validateOnSubmitAdress(){
+    public void validateOnSubmitAdress(AddressBean addressBean){
         clearErrorsAndMessages();
+        if (StringUtils.isBlank(addressBean.getAddressLine1())) {
+            addFieldError("address.addressLine1", getText("err.addressLine1.required"));
+        }
+        if (StringUtils.isBlank(addressBean.getCity())) {
+            addFieldError("address.city", getText("err.city.required"));
+        }
+        if (StringUtils.isBlank(addressBean.getState())) {
+            addFieldError("address.state", getText("err.state.required"));
+        }
+        if (StringUtils.isBlank(addressBean.getZip())) {
+            addFieldError("address.zip", getText("err.zip.required"));
+        }
+
     }
 
     private Address transformToEntityBeanAddress(AddressBean addressBean) {
         Address entity = new Address();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClientId(client);
+
+        if (addressBean.getAddressId() != null) {
+            entity.setAddressId(addressBean.getAddressId());
+        }
+
+        Integer vendorId = getSessionVendorId();
+
+        entity.setReferenceTable("VENDOR");
+        entity.setReferenceId(vendorId);
+        entity.setAddressLine1(addressBean.getAddressLine1());
+        entity.setAddressLine2(addressBean.getAddressLine2());
+        entity.setAddressType(addressBean.getAddressType());
+        entity.setCity(addressBean.getCity());
+        entity.setState(addressBean.getState());
+        entity.setZip(addressBean.getZip());
+        entity.setCreatedTimestamp(new Date());
+        entity.setCreatedBy("admin");
+        entity.setModifiedTimestamp(new Date());
+        entity.setModifiedBy("admin");
+
         return entity;
     }
 
-    private AddressBean transformToFormBeanAddress(Address address) {
+    private AddressBean transformToFormBeanAddress(Address entity) {
         AddressBean formBean = new AddressBean();
+
+        formBean.setAddressId(entity.getAddressId());
+        formBean.setReferenceId(entity.getReferenceId());
+        formBean.setReferenceTable(entity.getReferenceTable());
+        formBean.setAddressLine1(entity.getAddressLine1());
+        formBean.setAddressLine2(entity.getAddressLine2());
+        formBean.setAddressType(entity.getAddressType());
+        formBean.setCity(entity.getCity());
+        formBean.setState(entity.getState());
+        formBean.setZip(entity.getZip());
         return formBean;
     }
 
@@ -788,6 +863,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
         vendorClassList = parameterService.getParameterMap(ParameterConstants.VENDOR_CLASS);
         contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
+        addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
     }
 
     public String getVendorKeyword() {
@@ -1006,5 +1082,37 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public void setVesselNameParam(String vesselNameParam) {
         this.vesselNameParam = vesselNameParam;
+    }
+
+    public List<AddressBean> getAddresss() {
+        return addresss;
+    }
+
+    public void setAddresss(List<AddressBean> addresss) {
+        this.addresss = addresss;
+    }
+
+    public AddressBean getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressBean address) {
+        this.address = address;
+    }
+
+    public Integer getAddressIdParam() {
+        return addressIdParam;
+    }
+
+    public void setAddressIdParam(Integer addressIdParam) {
+        this.addressIdParam = addressIdParam;
+    }
+
+    public List<Parameters> getAddressTypeList() {
+        return addressTypeList;
+    }
+
+    public void setAddressTypeList(List<Parameters> addressTypeList) {
+        this.addressTypeList = addressTypeList;
     }
 }

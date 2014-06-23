@@ -48,7 +48,7 @@
                                 <td class="tb-font-black"><s:property value="email" /></td>
                                 <td class="tb-font-black">
 
-                                    <s:url var="editContactsUrl" action="loadEditContactPersonPage">
+                                    <s:url var="editContactsUrl" action="loadEditShippingContact">
                                         <s:param name="contactCodeParam" value="contactId"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editContactsUrl}" rel="tooltip" title="Edit this contact person">

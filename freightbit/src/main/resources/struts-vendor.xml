@@ -172,21 +172,21 @@
         </action>
 
         <!--contact -->
-        <action name="loadAddTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddTruckingContact">
+        <action name="loadAddTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddContact">
             <result name="success" type="tiles">vendor.vendorAddTruckingContact.tiles</result>
         </action>
 
-        <action name="loadEditTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditTruckingContact">
+        <action name="loadEditTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditContact">
             <result name="success" type="tiles">vendor.vendorEditTruckingContact.tiles</result>
         </action>
 
         <action name="addTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addContacts">
-            <result name="success" type="redirect">viewVendorTruckingContacts</result>
+            <result name="success" type="redirect">loadSaveCompleteTruckingContact</result>
             <result name="input" type="tiles">vendor.vendorAddTruckingContact.tiles</result>
         </action>
 
         <action name="editTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editContacts">
-            <result name="success" type="redirect">viewVendorTruckingContacts</result>
+            <result name="success" type="redirect">loadSaveCompleteTruckingContact</result>
             <result name="input" type="tiles">vendor.vendorEditTruckingContact.tiles</result>
         </action>
 
@@ -199,53 +199,103 @@
         </action>
 
 
-        <action name="loadAddShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddShippingContact">
-            <result name="success" type="tiles">vendor.vendorAddTruckingContact.tiles</result>
+        <action name="loadAddShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddContact">
+            <result name="success" type="tiles">vendor.vendorAddShippingContact.tiles</result>
         </action>
 
-        <action name="loadEditShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditShippingContact">
+        <action name="loadEditShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditContact">
             <result name="success" type="tiles">vendor.vendorEditShippingContact.tiles</result>
         </action>
 
         <action name="addShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addContacts">
-            <result name="success" type="redirect">viewVendorTruckingContacts</result>
+            <result name="success" type="redirect">loadSaveCompleteShippingContact</result>
             <result name="input" type="tiles">vendor.vendorAddTruckingContact.tiles</result>
         </action>
 
         <action name="editShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editContacts">
-            <result name="success" type="redirect">viewVendorTruckingContacts</result>
+            <result name="success" type="redirect">loadSaveCompleteShippingContact</result>
             <result name="input" type="tiles">vendor.vendorEditTruckingContact.tiles</result>
         </action>
 
         <action name="deleteShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteContacts">
-            <result name="success" type="redirect">viewVendorTruckingContacts</result>
+            <result name="success" type="redirect">viewVendorShippingContacts</result>
         </action>
 
         <action name="viewVendorShippingContacts" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewContacts">
-            <result name="success" type="tiles">vendor.vendorListTruckingContact.tiles</result>
+            <result name="success" type="tiles">vendor.vendorListShippingContact.tiles</result>
+        </action>
+
+        <action name="loadSaveCompleteTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteContacts">
+            <result name="success" type="tiles">vendor.vendorSaveCompleteTruckingContacts.tiles</result>
+        </action>
+
+        <action name="loadSaveCompleteShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteContacts">
+            <result name="success" type="tiles">vendor.vendorSaveCompleteShippingContacts.tiles</result>
         </action>
 
         <!--address-->
-        <action name="LoadVendorEditAddressPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadVendorEditAddressPage">
-            <result name="success" type="tiles"></result>
+        <action name="addTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addAddress">
+            <result name="success" type="redirect">loadSaveCompleteTruckingAddress</result>
+            <result name="input" type="tiles">vendor.vendorAddTruckingAddress.tiles</result>
         </action>
 
-        <action name="loadVendorAddAddressPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadVendorAddAddressPage" >
-            <result name="success" type="tiles">vendor-address.tiles</result>
+        <action name="addShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addAddress">
+            <result name="success" type="redirect">loadSaveCompleteShippingAddress</result>
+            <result name="input" type="tiles">vendor.vendorAddShippingAddress.tiles</result>
         </action>
 
-        <action name="loadVendorAddressListPage" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadVendorAddressListPage">
-            <result name="success" type="tiles">vendor.addressList.tiles</result>
+        <action name="editTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editAddress">
+            <result name="success" type="redirect">loadSaveCompleteTruckingAddress</result>
+            <result name="input" type="tiles">vendor.vendorEditTruckingAddress.tiles</result>
         </action>
 
-        <action name="vendorDeleteAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="vendorDeleteAddress">
-            <result name="success" type="redirect">loadVendorAddressListPage</result>
+        <action name="editShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editAddress">
+            <result name="success" type="redirect">loadSaveCompleteShippingAddress</result>
+            <result name="input" type="tiles">vendor.vendorEditShippingAddress.tiles</result>
         </action>
 
-        <action name="vendorAddAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="vendorAddAddress" >
-             <result name="success" type="redirect">loadVendorAddressListPage</result>
+        <action name="deleteTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteAddress">
+            <result name="success" type="redirect">viewTruckingAddress</result>
         </action>
 
+        <action name="deleteShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteAddress">
+            <result name="success" type="redirect">viewShippingAddress</result>
+        </action>
+
+        <action name="loadAddShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddAddress">
+            <result name="success" type="tiles">vendor.vendorAddShippingAddress.tiles</result>
+
+        </action>
+
+        <action name="loadAddTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadAddAddress">
+            <result name="success" type="tiles">vendor.vendorAddTruckingAddress.tiles</result>
+
+        </action>
+
+        <action name="loadEditTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditAddress">
+            <result name="success" type="tiles">vendor.vendorEditTruckingAddress.tiles</result>
+
+        </action>
+
+        <action name="loadEditShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadEditAddress">
+            <result name="success" type="tiles">vendor.vendorEditShippingAddress.tiles</result>
+        </action>
+
+        <action name="viewTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewAddress">
+            <result name="success" type="tiles">vendor.vendorListTruckingAddress.tiles</result>
+        </action>
+
+        <action name="viewShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewAddress">
+            <result name="success" type="tiles">vendor.vendorListShippingAddress.tiles</result>
+        </action>
+
+        <action name="loadSaveCompleteTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteAddress">
+            <result name="success" type="tiles">vendor.vendorSaveCompleteTruckingAddress.tiles</result>
+        </action>
+
+        <action name="loadSaveCompleteShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteAddress">
+            <result name="success" type="tiles">vendor.vendorSaveCompleteShippingAddress.tiles</result>
+        </action>
 
     </package>
 </struts>

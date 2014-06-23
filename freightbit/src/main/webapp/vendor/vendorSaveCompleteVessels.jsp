@@ -2,7 +2,7 @@
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <h1 class="page-header" style="margin-left:-40px;">Trucks Module</h1>
+    <h1 class="page-header" style="margin-left:-40px;">Vessel Module</h1>
 
     <div class="row alert alert-success alert-dismissable" style="margin-left: -40px !important;  width: 101%;">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -16,7 +16,7 @@
                 <div class="panel-heading">
 
                     <img src="includes/images/listofusers.png" class="box-icon"/> <span
-                        class="panel-title">List of Trucks</span>
+                        class="panel-title">List of Vessels</span>
 
                 </div>
 
@@ -73,10 +73,10 @@
 
                 <div class="panel-footer">
                         <span class="pull-right">
-                            <s:url var="addTrucksUrl" action="loadAddTrucksPage">
+                            <s:url var="addVesselsUrl" action="loadAddVesselsPage">
                                 <s:param name="vendorIdParam" value="vendorIdParam"></s:param>
                             </s:url>
-                        <s:a href="%{addTrucksUrl}" cssClass="side-help" style="font-size: 15px;"><img
+                        <s:a href="%{addVesselsUrl}" cssClass="side-help" style="font-size: 15px;"><img
                                 src="includes/images/add-user.png" class="icon-action circ-icon"></s:a>
                         </span>
 

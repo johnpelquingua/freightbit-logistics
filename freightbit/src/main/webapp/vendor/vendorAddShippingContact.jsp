@@ -6,7 +6,7 @@
     <h1 class="page-header">Contact Person</h1>
 
     <!-- EDIT HERE -->
-    <div class="row">
+    <div class="main-box">
 
         <div class="panel panel-info">
 
@@ -17,7 +17,7 @@
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <s:form action="addVendorContactPerson" cssClass="form-horizontal" theme="bootstrap">
+                    <s:form action="addShippingContact" cssClass="form-horizontal" theme="bootstrap">
                     <s:hidden name="contact.referenceId" value="%{vendorIdParam}"/>
 
                     <s:property value="%{vendorIdParam}"></s:property>
@@ -110,13 +110,10 @@
             </div>
 
             <div class="panel-footer">
-                <div class="btn-group" style="float: right;position: relative;margin-right: 30px;">
-                    <button class="btn btn-default" onclick="this.form.action='viewVendorContacts'">
-                        Back
-                    </button>
-                    <s:submit cssClass="btn btn-default" value="Save" type="submit"/>
+                <div class="btn-group pull-right">
+                    <button class="btn btn-default">Cancel</button>
+                    <s:submit cssClass="btn btn-default" name="submit" value="Save"/>
                 </div>
-
             </div>
             </s:form>
         </div>
@@ -133,13 +130,13 @@
             <div class="panel-body">
 
                 <ul class="nav">
-                    <li><a href="viewVessels" class="side-help"><img src="includes/images/1.png"
-                                                                     class="img-sidehelp">List of Vessels</a>
+                    <li><a href="viewVessels" class="side-help" style="font-size: 15px;"><img src="includes/images/1.png"
+                                                                                              class="img-sidehelp" >List of Vessels</a>
                     </li>
-                    <li><a href="vendor-vessel" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Contact Persons</a>
+                    <li><a href="viewVendorShippingContacts" class="side-help" style="font-size: 15px;"><img src="includes/images/2.png" class="img-sidehelp">Contact Persons</a>
                     </li>
-                    <li><a href="vendor-contact-person2" class="side-help"><img src="includes/images/3.png"
-                                                                                class="img-sidehelp">Address</a>
+                    <li><a href="viewShippingAddress" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png"
+                                                                                                      class="img-sidehelp">Address</a>
                     </li>
                 </ul>
 
