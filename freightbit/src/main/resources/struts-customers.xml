@@ -111,5 +111,36 @@
             <result name="success" type="tiles">customer.customerSaveCompleteAddress.tiles</result>
         </action>
 
+        <!--rates-->
+        <action name="loadAddRates" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadAddRates">
+            <result name="success" type="tiles">customer.customerAddRates.tiles</result>
+        </action>
+
+        <action name="loadEditRates" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadEditRates">
+            <result name="success" type="tiles">customer.customerEditRates.tiles</result>
+        </action>
+
+        <action name="loadSaveCompleteRates" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSaveCompleteRates">
+            <result name="success" type="tiles">customer.customerSaveCompleteRates.tiles</result>
+        </action>
+
+        <action name="viewRates" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="viewRates">
+            <result name="success" type="tiles">customer.customerListRates.tiles</result>
+        </action>
+
+        <action name="addRates" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="addRates">
+            <result name="success" type="redirect">loadSaveCompleteRates</result>
+            <result name="input" type="tiles">customer.customerAddRates.tiles</result>
+        </action>
+
+        <action name="editRates" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="editRates">
+            <result name="success" type="redirect">loadSaveCompleteRates</result>
+            <result name="input" type="tiles">customer.customerEditRates.tiles</result>
+        </action>
+
+        <action name="deleteRates" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="deleteRates">
+            <result name="success" type="redirect">viewRates</result>
+        </action>
+
     </package>
 </struts>

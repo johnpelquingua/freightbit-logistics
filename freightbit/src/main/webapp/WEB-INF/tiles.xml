@@ -327,6 +327,27 @@
     </definition>
 
 
+    <definition name="customer.customerAddRates.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Address Module" />
+        <put-attribute name="body" value="/customer/customerAddRates.jsp" />
+    </definition>
+
+    <definition name="customer.customerEditRates.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Address Module" />
+        <put-attribute name="body" value="/customer/customerEditRates.jsp" />
+    </definition>
+
+    <definition name="customer.customerListRates.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Address Module" />
+        <put-attribute name="body" value="/customer/customerListRates.jsp" />
+    </definition>
+
+    <definition name="customer.customerSaveCompleteRates.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Address Module" />
+        <put-attribute name="body" value="/customer/customerSaveCompleteRates.jsp" />
+    </definition>
+
+
     <!-- CUSTOMER module tiles END -->
 
     <!-- ORDER module tiles Begin-->

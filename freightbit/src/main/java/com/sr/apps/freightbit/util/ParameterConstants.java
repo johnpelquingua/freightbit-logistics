@@ -38,4 +38,6 @@ public class ParameterConstants {
 
     public final static String ADDRESS_TYPE = "ADDRESS_TYPE";
 
+    public final static String RATES_TYPE = "RATES_TYPE";
+
 }

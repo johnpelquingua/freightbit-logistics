@@ -80,7 +80,7 @@
 							<li><a href="customer-add2.html" class="side-help"><img src="images/2.png" class="img-sidehelp">Contact Person</a></li>
 							<li><a href="viewAddress" class="side-help"><img src="images/3.png" class="img-sidehelp">Address</a></li>
 							<li><a href="customer-add4.html" class="side-help"><img src="images/4.png" class="img-sidehelp">Items</a></li>
-							<li><a href="customer-add5.html" class="side-help"><img src="images/5.png" class="img-sidehelp">Rates</a></li>
+							<li><a href="viewRates" class="side-help"><img src="images/5.png" class="img-sidehelp">Rates</a></li>
 							<li><a href="customer-add7.html" class="side-help"><img src="images/6.png" class="img-sidehelp">Consignee Infomation</a></li>
 							</ul>
 						

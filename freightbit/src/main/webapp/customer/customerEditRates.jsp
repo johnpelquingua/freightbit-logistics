@@ -19,7 +19,8 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
 
-                    <s:form cssClass="form-horizontal" action="addRates" theme="bootstrap">
+                    <s:form cssClass="form-horizontal" theme="bootstrap" action="editRates">
+                    <s:hidden name="rates.customerRateId" value="%{customerRateId}" />
                     <div class="form-group">
                         <label for="rates.origin" class="col-sm-2 control-label" style="width:25%;">Origin:</label>
 
@@ -47,7 +48,7 @@
 
                     <div class="form-group">
 
-                        <label for="rates.rateType" class="col-sm-2 control-label" style="width:25%;">Rates
+                        <label for="rates.rateType" class="col-sm-2 control-label" style="width:25%;">Address
                             Type</label>
 
                         <div class="col-sm-10" style="width:70%;">
@@ -67,16 +68,6 @@
             </s:form>
         </div>
     </div>
-
-
 </div>
-<!-- END OF MAIN BOX -->
-
-<!-- SIDEBAR -->
-
-
-<!-- END SIDEBAR -->
-
-<!-- END OF THE MIDDLE -->
 
 

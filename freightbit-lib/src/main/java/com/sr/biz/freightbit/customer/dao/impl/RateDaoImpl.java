@@ -9,9 +9,12 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.sr.biz.freightbit.customer.dao.RatesDao;
 import com.sr.biz.freightbit.customer.entity.Rates;
 
+import org.springframework.transaction.annotation.Transactional;
+
 /**
  * Created by Solutions Resource on 5/27/14.
  */
+@Transactional
 public class RateDaoImpl extends HibernateDaoSupport implements RatesDao {
 
     private static final Logger log = Logger.getLogger(RateDaoImpl.class);
@@ -85,6 +88,23 @@ public class RateDaoImpl extends HibernateDaoSupport implements RatesDao {
             return results;
         } catch (RuntimeException re) {
             log.error("find by client id failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+    public List<Rates> findAllRatesByCustomerId(Integer customerId) {
+        log.debug("finding customer by client");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Rates a where a.customerId = :customerId");
+            query.setParameter("customerId", customerId);
+            List<Rates> results = (List<Rates>) query.list();
+            log.debug("find by client id successful, result size: "
+                    + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            log.error("finding customer failed", re);
             throw re;
         }
     }

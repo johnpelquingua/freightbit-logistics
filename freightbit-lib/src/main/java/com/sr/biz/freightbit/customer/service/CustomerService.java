@@ -121,4 +121,6 @@ public interface CustomerService {
 
     public List<Rates> findAllRatesByClientId(Integer clientId);
 
+    public List<Rates> findAllRatesByCustomerId(Integer customerId);
+
 }

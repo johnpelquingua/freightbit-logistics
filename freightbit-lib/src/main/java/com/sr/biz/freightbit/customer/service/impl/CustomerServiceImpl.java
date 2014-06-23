@@ -201,6 +201,10 @@ public class CustomerServiceImpl implements CustomerService {
         return ratesDao.findAllRatesByRatesId(customerRateId);
     }
 
+    @Override
+    public List<Rates> findAllRatesByCustomerId(Integer customerId)  {
+        return ratesDao.findAllRatesByCustomerId(customerId);
+    }
 
     @Override
     public List<Rates> findAllRates(Integer customerRateId) {

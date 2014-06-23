@@ -6,6 +6,7 @@ import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.customer.formbean.ItemBean;
+import com.sr.apps.freightbit.customer.formbean.RatesBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.core.entity.Client;
@@ -13,6 +14,7 @@ import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.core.service.ClientService;
+import com.sr.biz.freightbit.customer.entity.Rates;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import org.apache.commons.lang3.StringUtils;
@@ -34,10 +36,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private List<CustomerBean> customers = new ArrayList<CustomerBean>();
     private List<AddressBean> addresss = new ArrayList<AddressBean>();
     private List<ItemBean> items = new ArrayList<ItemBean>();
+    private List<RatesBean> rates = new ArrayList<RatesBean>();
 
     private List<Parameters> customerTypeList = new ArrayList<Parameters>();
     private List<Parameters> customerSearchList = new ArrayList<Parameters>();
     private List<Parameters> addressTypeList = new ArrayList<Parameters>();
+    private List<Parameters> rateTypeList = new ArrayList<Parameters>();
 
     private Integer customersItemIdParam;
     private String customerCodeParam;
@@ -45,10 +49,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private String keyword; //search keyword for customer
     private String searchType; // get the search type
     private String customerKeyword;
+    private Integer ratesIdParam;
 
     private CustomerBean customer = new CustomerBean();
     private ItemBean item = new ItemBean();
     private AddressBean address = new AddressBean();
+    private RatesBean rate = new RatesBean();
 
     private CustomerService itemService;
     private CustomerService customerService;
@@ -60,6 +66,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
         customerTypeList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_TYPE);
         customerSearchList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_SEARCH);
+        rateTypeList = parameterService.getParameterMap(ParameterConstants.RATES_TYPE);
     }
 
     public Integer getCustomerSessionId() {
@@ -339,13 +346,110 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return entity;
     }
 
+    //rates
 
-    //utils
-    public Integer getSessionCustomerId() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        Integer customerId = (Integer) sessionAttributes.get("customerId");
+    public String addRates() throws Exception {
+        validateOnSubmitRates(rate);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        customerService.addRate(transformToEntityBeanRates(rate));
+        return SUCCESS;
+    }
 
-        return customerId;
+    public String editRates() {
+        validateOnSubmitRates(rate);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        customerService.updateRate(transformToEntityBeanRates(rate));
+        return SUCCESS;
+    }
+
+    public String deleteRates() {
+        Rates rateEntity = customerService.findRateById(ratesIdParam);
+        customerService.deleteRate(rateEntity);
+        return SUCCESS;
+    }
+
+    public String viewRates() {
+        Integer customerId = getCustomerSessionId();
+        List<Rates> ratesEntityList = new ArrayList<Rates>();
+        ratesEntityList = customerService.findAllRatesByCustomerId(customerId);
+        for (Rates ratesElem : ratesEntityList) {
+            rates.add(transformToFormBeanRates(ratesElem));
+        }
+        return  SUCCESS;
+    }
+
+    public String loadAddRates() {
+        return SUCCESS;
+    }
+
+    public String loadEditRates() {
+        Rates ratesEntity = customerService.findRateById(ratesIdParam);
+        rate = transformToFormBeanRates(ratesEntity);
+        return SUCCESS;
+    }
+
+    public String loadSaveCompleteRates() {
+        Integer customerId = getCustomerSessionId();
+        List<Rates> ratesEntityList = new ArrayList<Rates>();
+        ratesEntityList = customerService.findAllRatesByCustomerId(customerId);
+        for (Rates ratesElem : ratesEntityList) {
+            rates.add(transformToFormBeanRates(ratesElem));
+        }
+        return  SUCCESS;
+    }
+
+    public void validateOnSubmitRates(RatesBean ratesBean) {
+        clearErrorsAndMessages();
+        if (StringUtils.isBlank(ratesBean.getOrigin())) {
+            addFieldError("rates.origin", getText("err.origin.required"));
+        }
+        if (StringUtils.isBlank(ratesBean.getDestination())) {
+            addFieldError("rates.destination", getText("err.destination.required"));
+        }
+        if (ratesBean.getRate() == null) {
+            addFieldError("rates.rate", getText("err.rate.required"));
+        }
+    }
+
+    public RatesBean transformToFormBeanRates(Rates entity) {
+        RatesBean formBean = new RatesBean();
+
+        formBean.setCustomerId(entity.getCustomerId());
+        formBean.setCustomerRateId(entity.getCustomerRateId());
+        formBean.setOrigin(entity.getOrigin());
+        formBean.setDestination(entity.getDestination());
+        formBean.setRate(entity.getRate());
+        formBean.setRateType(entity.getRateType());
+
+        return formBean;
+    }
+
+    public Rates transformToEntityBeanRates(RatesBean formBean) {
+        Rates entity = new Rates();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClientId(client);
+
+        if (formBean.getCustomerRateId() != null) {
+            entity.setCustomerRateId(formBean.getCustomerRateId());
+        }
+
+        Integer customerId = getCustomerSessionId();
+
+        entity.setCustomerId(customerId);
+        entity.setOrigin(formBean.getOrigin());
+        entity.setDestination(formBean.getDestination());
+        entity.setRate(formBean.getRate());
+        entity.setRateType(formBean.getRateType());
+        entity.setCreatedBy("admin");
+        entity.setCreatedTimestamp(new Date());
+        entity.setModifiedBy("admin");
+        entity.setModifiedTimestamp(new Date());
+
+        return entity;
     }
 
     //items
@@ -591,5 +695,37 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void setAddressTypeList(List<Parameters> addressTypeList) {
         this.addressTypeList = addressTypeList;
+    }
+
+    public List<Parameters> getRateTypeList() {
+        return rateTypeList;
+    }
+
+    public void setRateTypeList(List<Parameters> rateTypeList) {
+        this.rateTypeList = rateTypeList;
+    }
+
+    public List<RatesBean> getRates() {
+        return rates;
+    }
+
+    public void setRates(List<RatesBean> rates) {
+        this.rates = rates;
+    }
+
+    public Integer getRatesIdParam() {
+        return ratesIdParam;
+    }
+
+    public void setRatesIdParam(Integer ratesIdParam) {
+        this.ratesIdParam = ratesIdParam;
+    }
+
+    public RatesBean getRate() {
+        return rate;
+    }
+
+    public void setRate(RatesBean rate) {
+        this.rate = rate;
     }
 }

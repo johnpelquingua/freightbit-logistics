@@ -23,4 +23,6 @@ public interface RatesDao {
 
     public List<Rates> findAllRatesByClientId(Integer clientId);
 
+    public List<Rates> findAllRatesByCustomerId(Integer customerId);
+
 }

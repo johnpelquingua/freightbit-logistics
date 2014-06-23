@@ -25,10 +25,10 @@ public class Rates implements java.io.Serializable {
 
     private Integer customerRateId;
     private Client clientId;
-    private Customer customerId;
+    private Integer customerId;
     private String origin;
     private String destination;
-    private Double rate;
+    private Float rate;
     private String rateType;
     private Date createdTimestamp;
     private String createdBy;
@@ -39,8 +39,8 @@ public class Rates implements java.io.Serializable {
 
     }
 
-    public Rates(Integer customerRateId, Client clientId, Customer customerId, String origin,
-                 String destination, Double rate, String rateType, Date createdTimestamp,
+    public Rates(Integer customerRateId, Client clientId, Integer customerId, String origin,
+                 String destination, Float rate, String rateType, Date createdTimestamp,
                  String createdBy, Date modifiedTimestamp, String modifiedBy) {
         this.customerRateId = customerRateId;
         this.clientId = clientId;
@@ -66,10 +66,9 @@ public class Rates implements java.io.Serializable {
     public Client getClientId() { return clientId; }
     public void setClientId(Client clientId) { this.clientId = clientId; }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customerId", nullable = false)
-    public Customer getCustomerId() { return customerId; }
-    public void setCustomerId(Customer customerId) { this.customerId = customerId; }
+    @Column(name = "customerId", nullable = false)
+    public Integer getCustomerId() { return customerId; }
+    public void setCustomerId(Integer customerId) { this.customerId = customerId; }
 
     @Column(name = "origin")
     public String getOrigin() { return origin; }
@@ -80,8 +79,8 @@ public class Rates implements java.io.Serializable {
     public void setDestination(String destination) { this.destination = destination; }
 
     @Column(name = "rate", nullable = false)
-    public Double getRate() { return rate; }
-    public void setRate(Double rate) { this.rate = rate; }
+    public Float getRate() { return rate; }
+    public void setRate(Float rate) { this.rate = rate; }
 
     @Column(name = "rateType", nullable = false)
     public String getRateType() { return rateType; }
