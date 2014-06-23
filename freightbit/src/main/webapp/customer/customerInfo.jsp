@@ -9,262 +9,87 @@
 		
 			<div class="row">			
 				<div class="col-md-12">
-					
-					
-					  <div>
-						<div class="panel booking panel-info"  style="float:left; width:50%;">
-							<div class="booking panel-heading">
-								<img src="includes/images/account.png" class="box-icon">
-								<span class="booking panel-title">Personal Information</span>
+					<div class="main-box">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Sheena Kristin A.Eschor</h3>
 							</div>
 							<div class="panel-body">
-
-                                   Customer ID : <s:property value="customer.customerId" />  Customer Code: <s:property value="customer.customerCode" />  Customer Type : <s:property value="customer.customerType" />
-                                   <hr>
-                                   Customer Name : <s:property value="customer.customerName" />
-                                   <hr>
-                                    Tel No. : <s:property value="customer.phone" /> Mobile No : <s:property value="customer.mobile" />
-                                   <hr>
-                                    Email : <s:property value="customer.email" /> Website : <a href="%{customer.website}"><s:property value="customer.website" /></a>
-                                   <hr>
-
+								<div class="row">
+									<div class="col-md-3 col-lg-3 " align="center">
+										<img alt="User Pic" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle">
+									</div>
+									<div class=" col-md-9 col-lg-9 "> 
+										<table class="table table-user-information">
+											<tbody>
+												<tr>
+													<td>Name:</td>
+													<td>Programming</td>
+												</tr>
+												<tr>
+													<td>Customer Code:</td>
+													<td>06/23/2013</td>
+												</tr>
+												<tr>
+                                                	<td>Customer Type:</td>
+                                                	<td>06/23/2013</td>
+                                                </tr>
+												<tr>
+													<td>Email</td>
+													<td><a href="mailto:info@support.com">info@support.com</a></td>
+												</tr>
+												<tr>
+													<td>Contact Number</td>
+													<td>
+													    123-4567-890(Landline)<br><br>555-4567-890(Mobile)<br><br>555-4567-890(Fax)
+													</td>
+												</tr>
+												<tr>
+                                                	<td>Documents</td>
+                                                	<td>
+                                                		Signiture Card(Done)<br><br>DTI(Done)<br><br>Mayor's Permit(Done)
+                                                	</td>
+                                                </tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+								<span class="pull-right">
+								<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+								<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+								</span>
 							</div>
 						</div>
-						<div style="float:left; margin:0px 20px;width:45%;">
-							
-							<div class="panel booking panel-info">
-						  <div class="booking panel-heading"> 
-							<img src="includes/images/listofusers.png" class="box-icon">
-							<span class="booking panel-title">List of Items</span>
-							
-						  </div>
-						<div class="panel-body">
-						<div class="table-responsive list-table">
-							<table class="table table-striped table-bordered text-center" id="customer-list">
-							  <thead>
-
-								<tr class="header_center">
-								  <th class="tb-font-black">Item Code</th>
-								  <th class="tb-font-black">Items</th>
-								</tr>
-
-							  </thead>
-							  <tbody>
-							    <s:iterator value="items" var="item">
-							    <tr>
-							        <td><s:property value="item.itemName" /></td>
-							        <td><s:property value="item.itemCode" /></td>
-							    </tr>
-							      </s:iterator>
-							  </tbody>
-							</table>
-							<span class="pull-right">
-								<a href="customer-edit3.jsp" class="icon-action-link">
-									<img src="includes/images/edit-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-								<a href="#" class="icon-action-link">
-									<img src="includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-
-								<a href="customerAddItem"><img src="includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;"> </a>
- 	  						</span>
-						</div>
-						</div>
 					</div>
+					<!-- SIDEBAR -->
+		
+		<div class="sidebar-box">
+				  <div class="panel booking panel-info">
+						<div class="booking panel-heading">
+							<img src="images/calendar.png" class="box-icon">
+							<span class="booking panel-title">Process</span>
 						</div>
+						
+					  <div class="panel-body">
+						
+							<ul class="nav">		  
+							<li><a href="customer-add.html" class="side-help"><img src="images/1.png" class="img-sidehelp">Personal Information</a></li>
+							<li><a href="customer-add2.html" class="side-help"><img src="images/2.png" class="img-sidehelp">Contact Person</a></li>
+							<li><a href="customer-add3.html" class="side-help"><img src="images/3.png" class="img-sidehelp">Address</a></li>
+							<li><a href="customer-add4.html" class="side-help"><img src="images/4.png" class="img-sidehelp">Items</a></li>
+							<li><a href="customer-add5.html" class="side-help"><img src="images/5.png" class="img-sidehelp">Rates</a></li>
+							<li><a href="customer-add7.html" class="side-help"><img src="images/6.png" class="img-sidehelp">Consignee Infomation</a></li>
+							</ul>
+						
 					  </div>
-					  <div style="clear:both;"></div>
-					<div class="panel booking panel-info" style="width:23.5%;float:left;margin:6px;">
-						  <div class="booking panel-heading">
-							<img src="includes/images/listofusers.png" class="box-icon">
-							<span class="booking panel-title">List of Consignee</span>
-							
-						  </div>
-						<div class="panel-body">
-						<div class="table-responsive list-table">
-							<table class="table table-striped table-bordered text-center" id="customer-list">
-							  <thead>
-								<tr class="header_center">
-								  <th class="tb-font-black"><input type="checkbox" /></th>
-								  <th class="tb-font-black">Company Name</th>
-								</tr>
-							  </thead>
-							  <tbody>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">RUSE</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">PUREGOLD-CDO</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">SAVEMORE-MNL</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">PUREGOLD-MNL</td>
-								</tr>
-							  </tbody>
-							</table>
-							<span class="pull-right">
-								<a href="customer-edit6.jsp" class="icon-action-link">
-									<img src="includes/images/edit-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-								<a href="#" class="icon-action-link">
-									<img src="includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-								<a href="#" class="icon-action-link">
-									<img src="includes/images/plus-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-							</span>
-						</div>
-						</div>
-					</div>
-					
-					<div class="panel booking panel-info" style="width:23.5%;float:left;margin:6px;">
-						  <div class="booking panel-heading">
-							<img src="includes/images/listofusers.png" class="box-icon">
-							<span class="booking panel-title">List of Contact Person</span>
-							
-						  </div>
-						<div class="panel-body">
-						<div class="table-responsive list-table">
-							<table class="table table-striped table-bordered text-center" id="customer-list">
-							  <thead>
-								<tr class="header_center">
-								  <th class="tb-font-black"><input type="checkbox" /></th>
-								  <th class="tb-font-black">Contact Person</th>
-								</tr>
-							  </thead>
-							  <tbody>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">Ariel Torres</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">Tim Hintay</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">Jojo Go</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">Greg Hermo</td>
-								</tr>
-							  </tbody>
-							</table>
-							<span class="pull-right">
-								<a href="customer-edit5.jsp" class="icon-action-link">
-									<img src="includes/images/edit-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-								<a href="#" class="icon-action-link">
-									<img src="includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-								<a href="#" class="icon-action-link">
-									<img src="includes/images/plus-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-							</span>
-						</div>
-						</div>
-					</div>
-					
-					<div class="panel booking panel-info" style="width:23.5%;float:left;margin:6px;">
-						  <div class="booking panel-heading">
-							<img src="includes/images/listofusers.png" class="box-icon">
-							<span class="booking panel-title">List of Documents</span>
-							
-						  </div>
-						<div class="panel-body">
-						<div class="table-responsive list-table">
-							<table class="table table-striped table-bordered text-center" id="customer-list">
-							  <thead>
-								<tr class="header_center">
-								  <th class="tb-font-black">Status</th>
-								  <th class="tb-font-black">Documents</th>
-								</tr>
-							  </thead>
-							  <tbody>
-								<tr>
-								  <td class="tb-font-black"><img src="includes/images/check-16.png"></td>
-								  <td class="tb-font-black">DTI / SEC</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><img src="includes/images/check-16.png"></td>
-								  <td class="tb-font-black">Mayor's Permit</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><img src="includes/images/x-16.png"></td>
-								  <td class="tb-font-black">AAF</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><img src="includes/images/check-16.png"></td>
-								  <td class="tb-font-black">Signiture Card</td>
-								</tr>
-							  </tbody>
-							</table>
-							<span class="pull-right">
-								<a href="customer-edit5.jsp" class="icon-action-link">
-									<img src="includes/images/edit-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-							</span>
-						</div>
-						</div>
-					</div>
-					
-					<div class="panel booking panel-info" style="width:23.5%;float:left;margin:6px;">
-						  <div class="booking panel-heading">
-							<img src="includes/images/listofusers.png" class="box-icon">
-							<span class="booking panel-title">List of Items</span>
-							
-						  </div>
-						<div class="panel-body">
-						<div class="table-responsive list-table">
-							<table class="table table-striped table-bordered text-center" id="customer-list">
-							  <thead>
-								<tr class="header_center">
-								  <th class="tb-font-black"><input type="checkbox" /></th>
-								  <th class="tb-font-black">Items</th>
-								</tr>
-							  </thead>
-							  <tbody>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">Rock</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">Paper</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">Scissors</td>
-								</tr>
-								<tr>
-								  <td class="tb-font-black"><input type="checkbox" /></td>
-								  <td class="tb-font-black">Gun</td>
-								</tr>
-							  </tbody>
-							</table>
-							<span class="pull-right">
-								<a href="customer-edit4.jsp" class="icon-action-link">
-									<img src="includes/images/edit-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-								<a href="#" class="icon-action-link">
-									<img src="includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-								<a href="#" class="icon-action-link">
-									<img src="includes/images/plus-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
-								</a>
-							</span>
-						</div>
-						</div>
-					</div>
-					
-					
+				  </div>
+		</div>	
+			
+		
+		<!-- END SIDEBAR -->
 					
 				</div>
 			</div>	
