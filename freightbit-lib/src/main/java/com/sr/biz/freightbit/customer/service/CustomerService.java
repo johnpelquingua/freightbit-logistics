@@ -57,7 +57,7 @@ public interface CustomerService {
 
     public Address findAddressById(Integer addressId);
 
-    public Address findAddressByRefId(Integer customerId);
+    public List<Address> findAllAddressByRefId(Integer customerId);
 
     public void updateAddress(Address address);
     
@@ -84,6 +84,8 @@ public interface CustomerService {
     public Customer findCustomerByEmail(String customer);
 
     public List <Customer> findCustomersByCriteria(String column, String value, Integer clientId);
+
+    public Customer findCustomerByCustomerCode(String customerCode);
 
     //Items
 

@@ -127,8 +127,8 @@ public class CustomerServiceImpl implements CustomerService {
     //Address
 
     @Override
-    public Address findAddressByRefId(Integer customerId) {
-        return addressDao.findContactByReferenceTableAndId("CUSTOMERS", customerId);
+    public List<Address> findAllAddressByRefId(Integer customerId) {
+        return addressDao.findAllAddressByRefId(customerId);
     }
 
     @Override
@@ -341,6 +341,13 @@ public class CustomerServiceImpl implements CustomerService {
     	return customerDao.findCustomersByCriteria(column, value, clientId);
     }
 
+    @Override
+    public Customer findCustomerByCustomerCode(String customerCode) {
+        List<Customer> result = customerDao.findCustomerByCustomerCode(customerCode);
+        if (result != null && !result.isEmpty())
+            return result.get(0);
+        return null;
+    }
     //End Of Customer
 
 }

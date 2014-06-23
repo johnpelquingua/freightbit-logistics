@@ -306,8 +306,28 @@
         <put-attribute name="body" value="/customer/customerInfo.jsp" />
     </definition>
 
+    <definition name="customer.customerAddAddress.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Address Module" />
+        <put-attribute name="body" value="/customer/customerAddAddress.jsp" />
+    </definition>
 
-<!-- CUSTOMER module tiles END -->
+    <definition name="customer.customerEditAddress.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Address Module" />
+        <put-attribute name="body" value="/customer/customerEditAddress.jsp" />
+    </definition>
+
+    <definition name="customer.customerSaveCompleteAddress.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Address Module" />
+        <put-attribute name="body" value="/customer/customerSaveCompleteAddress.jsp" />
+    </definition>
+
+    <definition name="customer.customerListAddress.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Address Module" />
+        <put-attribute name="body" value="/customer/customerListAddress.jsp" />
+    </definition>
+
+
+    <!-- CUSTOMER module tiles END -->
 
     <!-- ORDER module tiles Begin-->
 

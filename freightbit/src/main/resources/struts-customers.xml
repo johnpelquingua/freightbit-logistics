@@ -79,8 +79,37 @@
             <result name="success" type="redirect">loadSaveCompletePage</result>
         </action>
 
+        <!--address-->
 
+        <action name="addAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="addAddress">
+            <result name="success" type="redirect">loadSaveCompleteAddress</result>
+            <result name="input" type="tiles">customer.customerAddAddress.tiles</result>
+        </action>
 
+        <action name="editAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="editAddress">
+            <result name="success" type="redirect">loadSaveCompleteAddress</result>
+            <result name="input" type="tiles">customer.customerEdit.tiles</result>
+        </action>
+
+        <action name="deleteAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="deleteAddress">
+            <result name="success" type="redirect">viewAddress</result>
+        </action>
+
+        <action name="loadAddAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadAddAddress">
+            <result name="success" type="tiles">customer.customerAddAddress.tiles</result>
+        </action>
+
+        <action name="loadEditAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadEditAddress">
+            <result name="success" type="tiles">customer.customerEditAddress.tiles</result>
+        </action>
+
+        <action name="viewAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="viewAddress">
+            <result name="success" type="tiles">customer.customerListAddress.tiles</result>
+        </action>
+
+        <action name="loadSaveCompleteAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSaveCompleteAddress">
+            <result name="success" type="tiles">customer.customerSaveCompleteAddress.tiles</result>
+        </action>
 
     </package>
 </struts>

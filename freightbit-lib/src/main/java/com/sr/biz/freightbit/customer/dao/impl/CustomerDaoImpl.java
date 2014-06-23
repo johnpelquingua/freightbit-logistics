@@ -83,6 +83,23 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao{
     }
 
     @Override
+    public List<Customer> findCustomerByCustomerCode(String customerCode) {
+        log.debug("Finding customer instance by code");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Customer v where v.customerCode= :customerCode");
+            query.setParameter("customerCode", customerCode);
+            List<Customer> results = (List<Customer>) query.list();
+            log.debug("Find Customer by customerCode successful, result size: "
+                    + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            log.error("Find Customer by customerCode failed", re);
+            throw re;
+        }
+    }
+
+    @Override
     public Customer findCustomerById(Integer id){
        log.debug("finding customer by id");
         try{

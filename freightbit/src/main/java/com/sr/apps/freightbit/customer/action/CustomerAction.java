@@ -3,9 +3,11 @@ package com.sr.apps.freightbit.customer.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.customer.formbean.ItemBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
+import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
@@ -17,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -29,18 +32,23 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private static final Logger log = Logger.getLogger(CustomerAction.class);
 
     private List<CustomerBean> customers = new ArrayList<CustomerBean>();
+    private List<AddressBean> addresss = new ArrayList<AddressBean>();
     private List<ItemBean> items = new ArrayList<ItemBean>();
+
     private List<Parameters> customerTypeList = new ArrayList<Parameters>();
     private List<Parameters> customerSearchList = new ArrayList<Parameters>();
+    private List<Parameters> addressTypeList = new ArrayList<Parameters>();
 
     private Integer customersItemIdParam;
-    private Integer customerIdParam;
+    private String customerCodeParam;
+    private Integer addressIdParam;
     private String keyword; //search keyword for customer
     private String searchType; // get the search type
     private String customerKeyword;
 
     private CustomerBean customer = new CustomerBean();
     private ItemBean item = new ItemBean();
+    private AddressBean address = new AddressBean();
 
     private CustomerService itemService;
     private CustomerService customerService;
@@ -49,7 +57,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     @Override
     public void prepare() {
-
+        addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
         customerTypeList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_TYPE);
         customerSearchList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_SEARCH);
     }
@@ -107,6 +115,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String customerInfo() {
+        Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
+        customer = transformToFormBean(customerEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("customerId", customer.getCustomerId());
+
         return SUCCESS;
 
     }
@@ -119,7 +133,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String loadEditCustomerPage() {
-        Customer customerEntity = customerService.findCustomerById(customerIdParam);
+        Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
         customer = transformToFormBean(customerEntity);
         return SUCCESS;
     }
@@ -133,27 +147,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String customerSearchExecute() {
-        /*if (searchType.equals("customerName")) {
-            List<Customer> customerEntityList = customerService.findCustomerByName(keyword);
-            for (Customer customerElem : customerEntityList) {
-                customers.add(transformToFormBean(customerElem));
-            }
-        } else if (searchType.equals("customerId")) {
-
-            Customer customerEntity = customerService.findCustomerById(Integer.parseInt(keyword));
-            customers.add(transformToFormBean(customerEntity));
-
-        } else if (searchType.equals("customerType")) {
-            List<Customer> customerEntityList = customerService.findCustomerByType(keyword);
-            for (Customer customerElem : customerEntityList) {
-                customers.add(transformToFormBean(customerElem));
-            }
-
-        } else if (searchType.equals("email")) {
-            Customer customerEntityList = customerService.findCustomerByEmail(keyword);
-            customers.add(transformToFormBean(customerEntityList));
-        }*/
-
         String column = getColumnFilter();
         List<Customer> customerEntityList = new ArrayList<Customer>();
 
@@ -187,14 +180,14 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public String customerDeleteExecute() {
 
-        Customer customeEntity = customerService.findCustomerById(customerIdParam);
-        customerService.deleteCustomer(customeEntity);
+        Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
+        customerService.deleteCustomer(customerEntity);
         return SUCCESS;
     }
 
     public String customerEdit() {
 
-        Customer customerEntity = customerService.findCustomerById(customerIdParam);
+        Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
         customer = transformToFormBean(customerEntity);
         return SUCCESS;
     }
@@ -232,6 +225,131 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     ////// END OF ITEMS ///////////////
+
+    //address
+    public String addAddress() throws Exception{
+        validateOnSubmitAddress(address);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        customerService.addAddress(transformToEntityBeanAddress(address));
+        return SUCCESS;
+    }
+
+    public String editAddress() {
+        validateOnSubmitAddress(address);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        customerService.updateAddress(transformToEntityBeanAddress(address));
+        return SUCCESS;
+    }
+
+    public String deleteAddress() {
+        Address addressEntity = customerService.findAddressById(addressIdParam);
+        customerService.deleteAddress(addressEntity);
+        return SUCCESS;
+    }
+
+    public String loadAddAddress() {
+        return SUCCESS;
+    }
+
+    public String loadSaveCompleteAddress() {
+        Integer customerId = getCustomerSessionId();
+        List<Address> addressEntityList = new ArrayList<Address>();
+        addressEntityList = customerService.findAllAddressByRefId(customerId);
+        for (Address addressElem : addressEntityList) {
+            addresss.add(transformToFormBeanAddress(addressElem));
+        }
+        return SUCCESS;
+    }
+
+    public String loadEditAddress() {
+        Address addressEntity = customerService.findAddressById(addressIdParam);
+        address = transformToFormBeanAddress(addressEntity);
+        return SUCCESS;
+    }
+
+    public String viewAddress() {
+        Integer customerId = getCustomerSessionId();
+        List<Address> addressEntityList = new ArrayList<Address>();
+        addressEntityList = customerService.findAllAddressByRefId(customerId);
+        for (Address addressElem : addressEntityList) {
+            addresss.add(transformToFormBeanAddress(addressElem));
+        }
+        return SUCCESS;
+    }
+
+    public void validateOnSubmitAddress(AddressBean addressBean) {
+        clearErrorsAndMessages();
+        if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getAddressLine1())) {
+            addFieldError("address.addressLine1", getText("err.addressLine1.required"));
+        }
+        if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getCity())) {
+            addFieldError("address.city", getText("err.city.required"));
+        }
+        if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getState())) {
+            addFieldError("address.state", getText("err.state.required"));
+        }
+        if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getZip())) {
+            addFieldError("address.zip", getText("err.zip.required"));
+        }
+    }
+
+    public AddressBean transformToFormBeanAddress(Address entity) {
+        AddressBean formBean = new AddressBean();
+
+        formBean.setAddressId(entity.getAddressId());
+        formBean.setReferenceId(entity.getReferenceId());
+        formBean.setReferenceTable(entity.getReferenceTable());
+        formBean.setAddressLine1(entity.getAddressLine1());
+        formBean.setAddressLine2(entity.getAddressLine2());
+        formBean.setAddressType(entity.getAddressType());
+        formBean.setCity(entity.getCity());
+        formBean.setState(entity.getState());
+        formBean.setZip(entity.getZip());
+        return formBean;
+    }
+
+    public Address transformToEntityBeanAddress(AddressBean formBean) {
+        Address entity = new Address();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClientId(client);
+
+        if (formBean.getAddressId() != null) {
+            entity.setAddressId(formBean.getAddressId());
+        }
+
+        Integer customerId = getCustomerSessionId();
+
+        entity.setReferenceTable("CUSTOMER");
+        entity.setReferenceId(customerId);
+        entity.setAddressLine1(formBean.getAddressLine1());
+        entity.setAddressLine2(formBean.getAddressLine2());
+        entity.setAddressType(formBean.getAddressType());
+        entity.setCity(formBean.getCity());
+        entity.setState(formBean.getState());
+        entity.setZip(formBean.getZip());
+        entity.setCreatedTimestamp(new Date());
+        entity.setCreatedBy("admin");
+        entity.setModifiedTimestamp(new Date());
+        entity.setModifiedBy("admin");
+
+        return entity;
+    }
+
+
+    //utils
+    public Integer getSessionCustomerId() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer customerId = (Integer) sessionAttributes.get("customerId");
+
+        return customerId;
+    }
+
+    //items
+
 
     public ItemBean transformItemToFormBean(Items entity) {
 
@@ -395,12 +513,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
         this.customerSearchList = customerSearchList;
     }
 
-    public Integer getCustomerIdParam() {
-        return customerIdParam;
+    public String getCustomerCodeParam() {
+        return customerCodeParam;
     }
 
-    public void setCustomerIdParam(Integer customerIdParam) {
-        this.customerIdParam = customerIdParam;
+    public void setCustomerCodeParam(String customerCodeParam) {
+        this.customerCodeParam = customerCodeParam;
     }
 
     public String getKeyword() {
@@ -441,5 +559,37 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void setCustomerKeyword(String customerKeyword) {
         this.customerKeyword = customerKeyword;
+    }
+
+    public AddressBean getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressBean address) {
+        this.address = address;
+    }
+
+    public List<AddressBean> getAddresss() {
+        return addresss;
+    }
+
+    public void setAddresss(List<AddressBean> addresss) {
+        this.addresss = addresss;
+    }
+
+    public Integer getAddressIdParam() {
+        return addressIdParam;
+    }
+
+    public void setAddressIdParam(Integer addressIdParam) {
+        this.addressIdParam = addressIdParam;
+    }
+
+    public List<Parameters> getAddressTypeList() {
+        return addressTypeList;
+    }
+
+    public void setAddressTypeList(List<Parameters> addressTypeList) {
+        this.addressTypeList = addressTypeList;
     }
 }
