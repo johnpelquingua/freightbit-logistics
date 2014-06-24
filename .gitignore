@@ -1,0 +1,15 @@
+# Java class files
+*.class
+
+# generated files
+target/
+
+# Eclipse Ignores
+.classpath
+.project
+*.eclipse.jdt.core.prefs
+
+# IntelliJ IDEA Ignores
+.idea
+*.iml
+freightbit-lib/.idea
