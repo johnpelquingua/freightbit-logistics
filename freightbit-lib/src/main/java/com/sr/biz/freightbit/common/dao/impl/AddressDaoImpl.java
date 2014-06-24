@@ -9,7 +9,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.entity.Address;
-import com.sr.biz.freightbit.common.entity.Contacts;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
