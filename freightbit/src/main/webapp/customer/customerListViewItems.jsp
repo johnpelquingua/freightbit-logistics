@@ -21,10 +21,8 @@
   							<table class="table table-striped table-bordered text-center">
   							  <thead>
   								<tr class="header_center">
-  								  <th class="tb-font-black">Item ID</th>
-                                  <th class="tb-font-black">Customer ID</th>
+  								   <th class="tb-font-black">Item Code</th>
   								  <th class="tb-font-black">Item Name</th>
-  								  <th class="tb-font-black">Item Code</th>
   								  <th class="tb-font-black">Length</th>
   								  <th class="tb-font-black">Width</th>
                                   <th class="tb-font-black">Height</th>
@@ -39,10 +37,8 @@
   							  <tbody>
                               <s:iterator value="items" var="item">
                               <tr>
-                                <td class="tb-font-black"><s:property value="customerItemsId" /></td>
-                                <td class="tb-font-black"><s:property value="customerId" /></td>
-                                <td class="tb-font-black"><s:property value="itemName" /></td>
                                 <td class="tb-font-black"><s:property value="itemCode" /></td>
+                                <td class="tb-font-black"><s:property value="itemName" /></td>
                                 <td class="tb-font-black"><s:property value="length" /></td>
                                 <td class="tb-font-black"><s:property value="width" /></td>
                                 <td class="tb-font-black"><s:property value="height" /></td>
