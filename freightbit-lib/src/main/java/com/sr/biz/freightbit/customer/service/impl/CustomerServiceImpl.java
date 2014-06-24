@@ -172,12 +172,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Address findAddressByParameterMap(Integer referenceId, String contactType, Integer clientId) {
+    public Address findAddressByParameterMap(Integer referenceId, String addressType, Integer clientId) {
     	List <Address> addresses = new ArrayList<Address>();
     	Map <String, Object> paramMap = new HashMap<String, Object>();
     	paramMap.put("referenceTable", "CUSTOMERS");
     	paramMap.put("referenceId", referenceId);
-    	paramMap.put("contactType", contactType);
+    	paramMap.put("addressType", addressType);
     	paramMap.put("clientId", clientId);
     	addresses = addressDao.findAddressesByParameterMap(paramMap, "Address");
         if (addresses != null && addresses.size() > 0)
