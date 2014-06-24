@@ -163,9 +163,6 @@
             <result name="success" type="tiles">customer.customerListContact.tiles</result>
         </action>
 
-        <action name="loadAddContact" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadAddContact">
-            <result name="success" type="tiles">customer.customerAddContact.tiles</result>
-        </action>
 
     </package>
 </struts>

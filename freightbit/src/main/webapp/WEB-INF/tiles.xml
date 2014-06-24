@@ -358,6 +358,11 @@
         <put-attribute name="body"   value="/customer/customerSaveCompleteItems.jsp"/>
     </definition>
 
+    <definition name="customer.customerListContact.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerListContact.jsp"/>
+    </definition>
+
     <!-- CUSTOMER module tiles END -->
 
     <!-- ORDER module tiles Begin-->
@@ -392,7 +397,7 @@
 
     <definition name="customer-add6.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Customer Page"/>
-        <put-attribute name="body"   value="/customer/customer-add6.jsp"/>
+        <put-attribute name="body"   value="/customer/customerAddConsignee.jsp"/>
     </definition>
 
     <definition name="customer-edit2.tiles" extends="baseLayout">

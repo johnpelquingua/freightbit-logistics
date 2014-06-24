@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.common.formbean.AddressBean;
+import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.customer.formbean.ItemBean;
 import com.sr.apps.freightbit.customer.formbean.RatesBean;
@@ -39,6 +40,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private List<AddressBean> addresss = new ArrayList<AddressBean>();
     private List<ItemBean> items = new ArrayList<ItemBean>();
     private List<RatesBean> rates = new ArrayList<RatesBean>();
+    private List<ContactBean> contacts = new ArrayList<ContactBean>();
 
     private List<Parameters> customerTypeList = new ArrayList<Parameters>();
     private List<Parameters> customerSearchList = new ArrayList<Parameters>();
@@ -57,6 +59,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private ItemBean item = new ItemBean();
     private AddressBean address = new AddressBean();
     private RatesBean rate = new RatesBean();
+    private ContactBean contact = new ContactBean();
 
     private CustomerService itemService;
     private ItemService itemServices;
@@ -581,14 +584,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return entity;
     }
 
-    //items
-
-
-
-
-
-
-
     ////// BEGIN OF CONTACTS ///////////////
 
     public String loadAddContact() {
@@ -596,9 +591,80 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
 
+    public String viewContacts() {
+        Integer customerId = getCustomerSessionId();
+        List<Contacts> contactEntityList = new ArrayList<Contacts>();
+        contactEntityList = customerService.findContactByReferenceId(customerId);
+        for (Contacts contactElem : contactEntityList) {
+            contacts.add(transformToFormBeanContacts(contactElem));
+        }
+        return SUCCESS;
+    }
+
+
+    private ContactBean transformToFormBeanContacts (Contacts entity) {
+        ContactBean formBean = new ContactBean();
+
+        formBean.setContactId (entity.getContactId());
+        formBean.setReferenceTable(entity.getReferenceTable());
+        formBean.setReferenceId(entity.getReferenceId());
+        formBean.setContactType(entity.getContactType());
+        formBean.setFirstName(entity.getFirstName());
+        formBean.setMiddleName(entity.getMiddleName());
+        formBean.setLastName(entity.getLastName());
+        formBean.setPhone(entity.getPhone());
+        formBean.setMobile(entity.getMobile());
+        formBean.setFax(entity.getFax());
+        formBean.setEmail(entity.getEmail());
+        return formBean;
+    }
+
+
+
 
     ////// END OF CONTACTS ///////////////
 
+
+    //consignee
+
+    public String addConsignee(){
+
+        return SUCCESS;
+    }
+
+    public String editConsignee() {
+
+
+        return SUCCESS;
+    }
+
+    public String deleteConsignee() {
+
+        return SUCCESS;
+    }
+
+    public String loadAddConsignee() {
+        return SUCCESS;
+    }
+
+    public String loadEditConsignee() {
+
+        return SUCCESS;
+    }
+
+    public String viewConsignees() {
+        Integer customerId = getCustomerSessionId();
+        
+        return SUCCESS;
+    }
+
+    public void validateOnSubmitConsignee(AddressBean addressBean, ContactBean contactBean) {
+        clearErrorsAndMessages();
+    }
+
+
+
+    //utils
     private Integer getClientId() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer clientId = (Integer) sessionAttributes.get("clientId");
@@ -788,5 +854,21 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void setRate(RatesBean rate) {
         this.rate = rate;
+    }
+
+    public List<ContactBean> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<ContactBean> contacts) {
+        this.contacts = contacts;
+    }
+
+    public ContactBean getContact() {
+        return contact;
+    }
+
+    public void setContact(ContactBean contact) {
+        this.contact = contact;
     }
 }

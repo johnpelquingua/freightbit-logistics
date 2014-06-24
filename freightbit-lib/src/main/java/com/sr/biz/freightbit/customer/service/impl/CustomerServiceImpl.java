@@ -76,8 +76,6 @@ public class CustomerServiceImpl implements CustomerService {
         addressDao.updateAddress(address);
     }
 
-
-    
     //end of Consignee
 
 
@@ -134,6 +132,13 @@ public class CustomerServiceImpl implements CustomerService {
             return contacts.get(0);
         else
             return null;
+    }
+
+    @Override
+    public List<Contacts> findContactByReferenceId(Integer customerId) {
+        List<Contacts> result = contactsDao.findContactByReferenceId(customerId);
+        return result;
+
     }
 
     //end of Contacts
