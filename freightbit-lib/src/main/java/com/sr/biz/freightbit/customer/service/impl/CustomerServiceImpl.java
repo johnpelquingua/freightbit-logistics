@@ -132,7 +132,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public Contacts findContactByParameterMap(Integer referenceId, String contactType, Integer clientId) {
+    public List <Contacts> findContactByParameterMap(Integer referenceId, String contactType, Integer clientId) {
     	List <Contacts> contacts = new ArrayList<Contacts>();
     	Map <String, Object> paramMap = new HashMap<String, Object>();
     	paramMap.put("referenceTable", "CUSTOMERS");
@@ -140,10 +140,7 @@ public class CustomerServiceImpl implements CustomerService {
     	paramMap.put("contactType", contactType);
     	paramMap.put("clientId", clientId);
     	contacts = contactsDao.findContactsByParameterMap(paramMap, "Contacts");
-        if (contacts != null && contacts.size() > 0)
-            return contacts.get(0);
-        else
-            return null;
+        return contacts;
     }
 
     @Override
@@ -189,7 +186,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Address findAddressByParameterMap(Integer referenceId, String addressType, Integer clientId) {
+    public List<Address> findAddressByParameterMap(Integer referenceId, String addressType, Integer clientId) {
     	List <Address> addresses = new ArrayList<Address>();
     	Map <String, Object> paramMap = new HashMap<String, Object>();
     	paramMap.put("referenceTable", "CUSTOMERS");
@@ -197,10 +194,7 @@ public class CustomerServiceImpl implements CustomerService {
     	paramMap.put("addressType", addressType);
     	paramMap.put("clientId", clientId);
     	addresses = addressDao.findAddressesByParameterMap(paramMap, "Address");
-        if (addresses != null && addresses.size() > 0)
-            return addresses.get(0);
-        else
-            return null;
+        return addresses;
     }
 
 
