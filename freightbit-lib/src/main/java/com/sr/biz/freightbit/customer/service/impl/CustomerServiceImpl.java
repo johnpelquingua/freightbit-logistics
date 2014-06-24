@@ -4,6 +4,8 @@ import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.core.entity.Permission;
+import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
@@ -19,7 +21,10 @@ import com.sr.biz.freightbit.customer.entity.Rates;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ADMIN on 5/13/14.
@@ -72,6 +77,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
 
+    
     //end of Consignee
 
 
@@ -115,10 +121,20 @@ public class CustomerServiceImpl implements CustomerService {
     	return contactsDao.findContactByRefTableAndIdAndType("CUSTOMERS", customerId, contactType);
     }
 
-//    @Override
-//    public List<Contacts> findAllContactsByClientId(long clientId){
-//        return contactsDao.findAllContactsByClientId(clientId);
-//    }
+    @Override
+    public Contacts findContactByParameterMap(String referenceTable, Integer referenceId, String contactType, Integer clientId) {
+    	List <Contacts> contacts = new ArrayList<Contacts>();
+    	Map <String, Object> paramMap = new HashMap<String, Object>();
+    	paramMap.put("referenceTable", referenceTable);
+    	paramMap.put("referenceId", referenceId);
+    	paramMap.put("contactType", contactType);
+    	paramMap.put("clientId", clientId);
+    	contacts = contactsDao.findContactsByParameterMap(paramMap, "Contacts");
+        if (contacts != null && contacts.size() > 0)
+            return contacts.get(0);
+        else
+            return null;
+    }
 
     //end of Contacts
 
@@ -155,11 +171,20 @@ public class CustomerServiceImpl implements CustomerService {
         return addressDao.findAllAddressByClientId(clientId);
     }
 
-//    @Override
-//    public List<Address> findAllAddress(Integer addressId) {
-//        List<Address> address = addressDao.findAllAddress(addressId);
-//        return address;
-//    }
+    @Override
+    public Address findAddressByParameterMap(String referenceTable, Integer referenceId, String contactType, Integer clientId) {
+    	List <Address> addresses = new ArrayList<Address>();
+    	Map <String, Object> paramMap = new HashMap<String, Object>();
+    	paramMap.put("referenceTable", referenceTable);
+    	paramMap.put("referenceId", referenceId);
+    	paramMap.put("contactType", contactType);
+    	paramMap.put("clientId", clientId);
+    	addresses = addressDao.findAddressesByParameterMap(paramMap, "Address");
+        if (addresses != null && addresses.size() > 0)
+            return addresses.get(0);
+        else
+            return null;
+    }
 
 
     @Override
@@ -170,6 +195,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
+    	return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
+    }
+    
+    @Override
+    public List <Address> findAddressByCriteria(String addressType, Integer customerId) {
     	return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
     }
 

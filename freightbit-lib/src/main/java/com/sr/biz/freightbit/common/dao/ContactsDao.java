@@ -3,6 +3,7 @@ package com.sr.biz.freightbit.common.dao;
 import com.sr.biz.freightbit.common.entity.Contacts;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Clarence C. Victoria on 5/26/14.
@@ -28,4 +29,7 @@ public interface ContactsDao {
     public List<Contacts> findContactByReferenceId(Integer referenceId);
 
     public List<Contacts> findContactByLastName (String lastName);
+
+	List<Contacts> findContactsByParameterMap(Map<String, Object> paramMap,
+			String entity);
 }

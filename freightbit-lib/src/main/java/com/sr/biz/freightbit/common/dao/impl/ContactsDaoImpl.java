@@ -4,12 +4,17 @@ package com.sr.biz.freightbit.common.dao.impl;
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.dao.impl.UserDaoImpl;
+import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Clarence C. Victoria on 5/26/14.
@@ -157,6 +162,25 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao{
             throw re;
 
         }
+    }
+    
+    @Override
+    public List <Contacts> findContactsByParameterMap(Map <String, Object> paramMap, String entity) {
+    	Query query = getSessionFactory().getCurrentSession().createQuery(buildSearchCriteria(paramMap, entity));
+    	return query.list();
+    }
+    
+    private String buildSearchCriteria(Map <String, Object> paramMap, String entity){
+    	StringBuilder queryString = new StringBuilder("from " + entity + " where ");
+    	Set<String> mapKeys = paramMap.keySet();
+    	int i=0;
+    	for (String mapKey : mapKeys) {
+    		if (i > 0)
+    			queryString.append(" and ");
+    		queryString.append(mapKey + " = '"+ paramMap.get(mapKey) +  "'");
+    		i++;
+    	}
+    	return queryString.toString();
     }
 
 }

@@ -3,6 +3,7 @@ package com.sr.biz.freightbit.common.dao;
 import com.sr.biz.freightbit.common.entity.Address;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Solutions Resource on 5/28/14.
@@ -26,5 +27,8 @@ public interface AddressDao {
     public Address findContactByReferenceTableAndId(String referenceTable, Integer referenceId);
     
     public List <Address> findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType);
+
+	List<Address> findAddressesByParameterMap(Map<String, Object> paramMap,
+			String entity);
 
 }

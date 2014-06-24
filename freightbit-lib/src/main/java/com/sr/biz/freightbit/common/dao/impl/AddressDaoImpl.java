@@ -1,6 +1,8 @@
 package com.sr.biz.freightbit.common.dao.impl;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -9,6 +11,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.entity.Address;
+import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
+
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -148,5 +152,24 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
             log.error("finding customer failed", re);
             throw re;
         }
+    }
+    
+    @Override
+    public List <Address> findAddressesByParameterMap(Map <String, Object> paramMap, String entity) {
+    	Query query = getSessionFactory().getCurrentSession().createQuery(buildSearchCriteria(paramMap, entity));
+    	return query.list();
+    }
+    
+    private String buildSearchCriteria(Map <String, Object> paramMap, String entity){
+    	StringBuilder queryString = new StringBuilder("from " + entity + " where ");
+    	Set<String> mapKeys = paramMap.keySet();
+    	int i=0;
+    	for (String mapKey : mapKeys) {
+    		if (i > 0)
+    			queryString.append(" and ");
+    		queryString.append(mapKey + " = '"+ paramMap.get(mapKey) +  "'");
+    		i++;
+    	}
+    	return queryString.toString();
     }
 }
