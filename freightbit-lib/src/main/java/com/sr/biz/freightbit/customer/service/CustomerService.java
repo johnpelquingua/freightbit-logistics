@@ -42,7 +42,7 @@ public interface CustomerService {
     
     public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
 
-    public 	Contacts findContactByParameterMap(String referenceTable,Integer referenceId, String contactType, Integer clientId);
+    public 	Contacts findContactByParameterMap(Integer referenceId, String contactType, Integer clientId);
 
 
     //Address
@@ -61,8 +61,7 @@ public interface CustomerService {
     
     public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId);
     
-	public Address findAddressByParameterMap(String referenceTable,
-			Integer referenceId, String contactType, Integer clientId);
+	public Address findAddressByParameterMap(Integer referenceId, String contactType, Integer clientId);
 	
 	public 	List<Address> findAddressByCriteria(String addressType, Integer customerId);
 

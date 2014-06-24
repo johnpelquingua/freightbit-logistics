@@ -28,7 +28,7 @@ public interface AddressDao {
     
     public List <Address> findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType);
 
-	List<Address> findAddressesByParameterMap(Map<String, Object> paramMap,
+	public List<Address> findAddressesByParameterMap(Map<String, Object> paramMap,
 			String entity);
 
 }

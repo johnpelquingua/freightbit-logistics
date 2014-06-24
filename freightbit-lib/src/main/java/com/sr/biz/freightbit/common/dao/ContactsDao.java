@@ -30,6 +30,6 @@ public interface ContactsDao {
 
     public List<Contacts> findContactByLastName (String lastName);
 
-	List<Contacts> findContactsByParameterMap(Map<String, Object> paramMap,
+	public List<Contacts> findContactsByParameterMap(Map<String, Object> paramMap,
 			String entity);
 }

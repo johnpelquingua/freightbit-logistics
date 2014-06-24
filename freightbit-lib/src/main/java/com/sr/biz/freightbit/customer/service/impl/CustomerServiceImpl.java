@@ -122,10 +122,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Contacts findContactByParameterMap(String referenceTable, Integer referenceId, String contactType, Integer clientId) {
+    public Contacts findContactByParameterMap(Integer referenceId, String contactType, Integer clientId) {
     	List <Contacts> contacts = new ArrayList<Contacts>();
     	Map <String, Object> paramMap = new HashMap<String, Object>();
-    	paramMap.put("referenceTable", referenceTable);
+    	paramMap.put("referenceTable", "CUSTOMERS");
     	paramMap.put("referenceId", referenceId);
     	paramMap.put("contactType", contactType);
     	paramMap.put("clientId", clientId);
@@ -172,10 +172,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Address findAddressByParameterMap(String referenceTable, Integer referenceId, String contactType, Integer clientId) {
+    public Address findAddressByParameterMap(Integer referenceId, String contactType, Integer clientId) {
     	List <Address> addresses = new ArrayList<Address>();
     	Map <String, Object> paramMap = new HashMap<String, Object>();
-    	paramMap.put("referenceTable", referenceTable);
+    	paramMap.put("referenceTable", "CUSTOMERS");
     	paramMap.put("referenceId", referenceId);
     	paramMap.put("contactType", contactType);
     	paramMap.put("clientId", clientId);
