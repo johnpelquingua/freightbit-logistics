@@ -56,7 +56,7 @@
             <result name="success" type="tiles">customer.customerList.tiles</result>
         </action>
 
-        <action name="customerSearch" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerSearch">
+        <action name="loadSearchCustomerPage" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSearchCustomerPage">
             <result name="success" type="tiles">customer.customerSearch.tiles</result>
         </action>
 
@@ -65,7 +65,7 @@
             <result name="success" type="tiles">customer.customerList.tiles</result>
         </action>
 
-        <action name="customerAdd" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerAdd">
+        <action name="loadAddCustomerPage" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadAddCustomerPage">
             <result name="success" type="tiles">customer.customerAdd.tiles</result>
         </action>
 
@@ -75,7 +75,7 @@
 
         <action name="addCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerAddExecute">
             <result name="input" type="tiles">customer.customerAdd.tiles</result>
-            <result name="success" type="redirect">customerInfo</result>
+            <result name="success" type="tiles">customer.customerInfo.tiles</result>
         </action>
 
         <action name="editCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerEditExecute">
@@ -144,6 +144,20 @@
 
         <action name="deleteRates" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="deleteRates">
             <result name="success" type="redirect">viewRates</result>
+        </action>
+
+        <!-- CONTACTS -->
+
+        <action name="loadAddContact" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadAddContact">
+            <result name="success" type="tiles">customer.customerAddContact.tiles</result>
+        </action>
+
+        <action name="viewCustomerContacts" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="viewContacts">
+            <result name="success" type="tiles">customer.customerListContact.tiles</result>
+        </action>
+
+        <action name="loadAddContact" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadAddContact">
+            <result name="success" type="tiles">customer.customerAddContact.tiles</result>
         </action>
 
     </package>

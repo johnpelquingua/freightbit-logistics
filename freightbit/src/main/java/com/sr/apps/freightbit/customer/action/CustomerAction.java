@@ -9,6 +9,7 @@ import com.sr.apps.freightbit.customer.formbean.ItemBean;
 import com.sr.apps.freightbit.customer.formbean.RatesBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
+import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
@@ -131,7 +132,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     //////////// END OF ITEMS //////////////
 
 
-    public String customerSearch() {
+    public String loadSearchCustomerPage() {
         return SUCCESS;
     }
 
@@ -220,10 +221,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         customerService.updateCustomer(transformToEntityBean(customer));
         return SUCCESS;
 
-    }
-
-    public String customerAdd() {
-        return SUCCESS;
     }
 
     public String customerAddExecute() throws Exception {
@@ -551,6 +548,26 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         return entity;
     }
+
+    ////// BEGIN OF CONTACTS ///////////////
+
+    public String loadAddContact() {
+        return SUCCESS;
+    }
+
+    /*public String viewContacts() {
+        Integer customerId = getCustomerSessionId();
+        List<Contacts> contactEntityList = new ArrayList<Contacts>();
+        contactEntityList = customerService.findContactById(customerId);
+        for (Contacts contactElem : contactEntityList) {
+            contacts.add(transformToFormBeanContacts(contactElem));
+        }
+        return SUCCESS;
+    }*/
+
+
+
+    ////// END OF CONTACTS ///////////////
 
     private Integer getClientId() {
         Map sessionAttributes = ActionContext.getContext().getSession();
