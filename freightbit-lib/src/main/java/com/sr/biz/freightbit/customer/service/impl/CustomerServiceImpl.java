@@ -110,14 +110,22 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Contacts> findAllContacts() {
-        List<Contacts> contacts =contactsDao.findAllContacts();
+        List<Contacts> contacts = contactsDao.findAllContacts();
         return contacts;
     }
-    
+
+    /*@Override
+    public List<Contacts> findContactsByCustomerId(Integer customerId) {
+        List<Contacts> contacts = contactsDao.findContactsByCustomerId(customerId);
+        return contacts;
+    }*/
+
     @Override
     public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId) {
     	return contactsDao.findContactByRefTableAndIdAndType("CUSTOMERS", customerId, contactType);
     }
+
+
 
     @Override
     public Contacts findContactByParameterMap(Integer referenceId, String contactType, Integer clientId) {

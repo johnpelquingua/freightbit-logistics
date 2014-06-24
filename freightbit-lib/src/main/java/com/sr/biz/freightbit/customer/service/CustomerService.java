@@ -39,12 +39,16 @@ public interface CustomerService {
     public void updateContact(Contacts contacts);
 
     public List<Contacts> findAllContacts();
+
+    /*public List<Contacts> findContactsByCustomerId(Integer customerId);*/
     
     public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
 
+    public List<Contacts> findContactByReferenceId(Integer customerId);
+
     public 	Contacts findContactByParameterMap(Integer referenceId, String contactType, Integer clientId);
 
-    public List<Contacts> findContactByReferenceId(Integer customerId);
+
     //Address
 
     public void addAddress(Address address);

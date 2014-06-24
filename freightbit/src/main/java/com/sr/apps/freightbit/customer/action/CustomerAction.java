@@ -37,15 +37,17 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private static final Logger log = Logger.getLogger(CustomerAction.class);
 
     private List<CustomerBean> customers = new ArrayList<CustomerBean>();
+    private List<ContactBean> contacts = new ArrayList<ContactBean>();
     private List<AddressBean> addresss = new ArrayList<AddressBean>();
     private List<ItemBean> items = new ArrayList<ItemBean>();
     private List<RatesBean> rates = new ArrayList<RatesBean>();
-    private List<ContactBean> contacts = new ArrayList<ContactBean>();
+    
 
     private List<Parameters> customerTypeList = new ArrayList<Parameters>();
     private List<Parameters> customerSearchList = new ArrayList<Parameters>();
     private List<Parameters> addressTypeList = new ArrayList<Parameters>();
     private List<Parameters> rateTypeList = new ArrayList<Parameters>();
+    private List<Parameters> contactTypeList = new ArrayList<Parameters>();
 
     private Integer customersItemIdParam;
     private String customerCodeParam;
@@ -54,6 +56,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private String searchType; // get the search type
     private String customerKeyword;
     private Integer ratesIdParam;
+    private Integer contactCodeParam;
 
     private CustomerBean customer = new CustomerBean();
     private ItemBean item = new ItemBean();
@@ -76,6 +79,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         customerTypeList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_TYPE);
         customerSearchList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_SEARCH);
         rateTypeList = parameterService.getParameterMap(ParameterConstants.RATES_TYPE);
+        contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
     }
 
     public Integer getCustomerSessionId() {
@@ -313,8 +317,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors())
             return INPUT;
         Integer customerId = customerService.addCustomer(transformToEntityBean(customer));
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        sessionAttributes.put("customerId", customerId);
+        /*Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("customerId", customerId);*/
 
         return SUCCESS;
     }
@@ -590,6 +594,18 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String addContacts() throws Exception {
+
+        validateOnSubmitContact(contact);
+
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+
+        customerService.addContact(transformToEntityBeanContacts(contact));
+        return SUCCESS;
+    }
+
 
     public String viewContacts() {
         Integer customerId = getCustomerSessionId();
@@ -599,6 +615,44 @@ public class CustomerAction extends ActionSupport implements Preparable {
             contacts.add(transformToFormBeanContacts(contactElem));
         }
         return SUCCESS;
+    }
+
+    public String loadSaveCompleteContacts() {
+        Integer customerId = getCustomerSessionId();
+        List<Contacts> contactEntityList = new ArrayList<Contacts>();
+        contactEntityList = customerService.findContactByReferenceId(customerId);
+        for (Contacts contactElem: contactEntityList) {
+            contacts.add(transformToFormBeanContacts(contactElem));
+        }
+        return SUCCESS;
+    }
+
+    private Contacts transformToEntityBeanContacts (ContactBean contactBean) {
+        Contacts entity = new Contacts();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
+        if (contactBean.getContactId() != null) {
+            entity.setContactId(contactBean.getContactId());
+        }
+        Integer customerId = getCustomerSessionId();
+        System.out.println("CLIENT FROM SESSION --> " + client);
+        System.out.println("CONTACT ID FROM SESSION --> " + contactBean.getContactId());
+        System.out.println("CUSTOMER ID FROM SESSION --> " + customerId);
+        entity.setReferenceId(customerId);
+        entity.setReferenceTable("CUSTOMER");
+        entity.setContactType(contactBean.getContactType());
+        entity.setFirstName(contactBean.getFirstName());
+        entity.setMiddleName(contactBean.getMiddleName());
+        entity.setLastName(contactBean.getLastName());
+        entity.setPhone(contactBean.getPhone());
+        entity.setMobile(contactBean.getMobile());
+        entity.setFax(contactBean.getFax());
+        entity.setEmail(contactBean.getEmail());
+        entity.setCreatedTimestamp(new Date());
+        entity.setCreatedBy("admin");
+        entity.setModifiedTimestamp(new Date());
+        entity.setModifiedBy("admin");
+        return entity;
     }
 
 
@@ -619,49 +673,33 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return formBean;
     }
 
+    public Items transformItemToEntityBean(ItemBean formBean) {
 
+        Items entity = new Items();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
 
-
-    ////// END OF CONTACTS ///////////////
-
-
-    //consignee
-
-    public String addConsignee(){
-
-        return SUCCESS;
+        if (formBean.getCustomerItemsId() != null)
+            entity.setCustomerItemsId(new Integer(formBean.getCustomerItemsId()));
+        return entity;
     }
 
-    public String editConsignee() {
-
-
-        return SUCCESS;
-    }
-
-    public String deleteConsignee() {
-
-        return SUCCESS;
-    }
-
-    public String loadAddConsignee() {
-        return SUCCESS;
-    }
-
-    public String loadEditConsignee() {
-
-        return SUCCESS;
-    }
-
-    public String viewConsignees() {
-        Integer customerId = getCustomerSessionId();
-        
-        return SUCCESS;
-    }
-
-    public void validateOnSubmitConsignee(AddressBean addressBean, ContactBean contactBean) {
+    public void validateOnSubmitContact (ContactBean contactBean) {
         clearErrorsAndMessages();
-    }
 
+        if (org.apache.commons.lang.StringUtils.isBlank(contactBean.getLastName())) {
+            addFieldError("contact.lastName", getText("err.lastNameContact.required"));
+        }
+        if (org.apache.commons.lang.StringUtils.isBlank(contactBean.getFirstName())) {
+            addFieldError("contact.firstName", getText("err.firstNameContact.required"));
+        }
+        if (org.apache.commons.lang.StringUtils.isBlank(contactBean.getMiddleName())) {
+            addFieldError("contact.middleName", getText("err.middleNameContact.required"));
+        }
+        if (org.apache.commons.lang.StringUtils.isBlank(contactBean.getPhone())) {
+            addFieldError("contact.phone", getText("err.phoneContact.required"));
+        }
+    }
 
 
     //utils
@@ -870,5 +908,21 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void setContact(ContactBean contact) {
         this.contact = contact;
+    }
+
+    public Integer getContactCodeParam() {
+        return contactCodeParam;
+    }
+
+    public void setContactCodeParam(Integer contactCodeParam) {
+        this.contactCodeParam = contactCodeParam;
+    }
+
+    public List<Parameters> getContactTypeList() {
+        return contactTypeList;
+    }
+
+    public void setContactTypeList(List<Parameters> contactTypeList) {
+        this.contactTypeList = contactTypeList;
     }
 }

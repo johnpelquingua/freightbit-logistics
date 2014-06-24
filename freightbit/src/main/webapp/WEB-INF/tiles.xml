@@ -266,6 +266,12 @@
 <!-- VENDOR module tiles END -->
 
 <!-- CUSTOMER module tiles END -->
+
+    <definition name="customer.customerListViewItems.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerListViewItems.jsp"/>
+    </definition>
+
     <definition name="customer.customerSearch.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Customer Page"/>
         <put-attribute name="body"   value="/customer/customerSearch.jsp"/>
@@ -337,6 +343,15 @@
         <put-attribute name="body" value="/customer/customerSaveCompleteRates.jsp" />
     </definition>
 
+    <definition name="customer.customerAddContact.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Contacts Page"/>
+        <put-attribute name="body"   value="/customer/customerAddContact.jsp"/>
+    </definition>
+
+    <definition name="customer.customerSaveCompleteContacts.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Contacts Page"/>
+        <put-attribute name="body"   value="/customer/customerSaveCompleteContacts.jsp"/>
+    </definition>
 
     <definition name="customer.customerAddItems.tiles" extends="baseLayout">
         <put-attribute name="title" value="Customer Page" />
@@ -362,6 +377,8 @@
         <put-attribute name="title"  value="Customer Page"/>
         <put-attribute name="body"   value="/customer/customerListContact.jsp"/>
     </definition>
+
+
 
     <!-- CUSTOMER module tiles END -->
 
@@ -397,7 +414,7 @@
 
     <definition name="customer-add6.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Customer Page"/>
-        <put-attribute name="body"   value="/customer/customerAddConsignee.jsp"/>
+        <put-attribute name="body"   value="/customer/customer-add6.jsp"/>
     </definition>
 
     <definition name="customer-edit2.tiles" extends="baseLayout">

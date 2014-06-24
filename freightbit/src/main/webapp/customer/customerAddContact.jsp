@@ -20,37 +20,79 @@
 				<div class="panel-body">
 				<div class="table-responsive list-table">
 
-				<s:form cssClass="form-horizontal" theme="bootstrap">
-				  <div class="form-group">
-					<label for="fname" class="col-sm-2 control-label" style="width:25%;">First Name</label>
-					<div class="col-sm-10" style="width:70%;">
-						<s:textfield name="fname" cssClass="form-control" id="fname" placeholder="First Name"/>
-					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="lname" class="col-sm-2 control-label" style="width:25%;">Last Name</label>
-					<div class="col-sm-10" style="width:70%;">
-					  <s:textfield name="lname" cssClass="form-control" id="lname" placeholder="Last Name"/>
-					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="cnumber" class="col-sm-2 control-label" style="width:25%;">Contact Number</label>
-					<div class="col-sm-10" style="width:70%;">
-					  <s:textfield name="cnumber" cssClass="form-control" id="cnumber" placeholder="Contact Number"/>
-					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="eaddress" class="col-sm-2 control-label" style="width:25%;">Email Address</label>
-					<div class="col-sm-10" style="width:70%;">
-					  <s:textfield name="eaddress" cssClass="form-control" id="eaddress" placeholder="Email Address"/>
-					</div>
-				  </div>
-				  <span class="pull-right" style="margin-right:32px;">
-					<a href="customer-add.jsp" class="btn btn-default" id ="groups-btn" style="width:70px;">Back</a>
-					<button href="#" class="btn btn-default" id="groups-btn" style="width:70px;">Save</button>
-					<a href="customer-add3.jsp" class="btn btn-default" id="groups-btn" style="width:70px;">Next</a>
-				  </span>
-				</s:form>
+                    <s:form action="addCustomerContact" cssClass="form-horizontal" theme="bootstrap">
+
+
+                    <div class="form-group">
+                        <label for="contact.contactType" class="col-sm-2 control-label"> Contact Type:</label>
+
+                        <div class="col-sm-10">
+                            <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
+                                      listKey="key" listValue="value" cssClass="form-control"
+                                      value="contact.contactType"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact.lastName" class="col-sm-2 control-label">Last Name:</label>
+
+                        <div class="col-sm-10">
+                            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
+                                         id="contact.lastName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact.firstName" class="col-sm-2 control-label">First Name:</label>
+
+                        <div class="col-sm-10">
+                            <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
+                                         id="contact.firstName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact.middleName" class="col-sm-2 control-label">Middle Name:</label>
+
+                        <div class="col-sm-10">
+                            <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
+                                         id="contact.middleName"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact.phone" class="col-sm-2 control-label">Phone:</label>
+
+                        <div class="col-sm-10">
+                            <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact.mobile" class="col-sm-2 control-label">Mobile:</label>
+
+                        <div class="col-sm-10">
+                            <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact.fax" class="col-sm-2 control-label">Fax:</label>
+
+                        <div class="col-sm-10">
+                            <s:textfield cssClass="form-control" placeholder="contact.fax" name="contact.fax"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact.email" class="col-sm-2 control-label">E-mail:</label>
+
+                        <div class="col-sm-10">
+                            <s:textfield cssClass="form-control" placeholder="contact.email" name="contact.email"/>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-default">Cancel</button>
+                        <s:submit cssClass="btn btn-default" name="submit" value="Save"/>
+                    </div>
+                </div>
+                </s:form>
 				
 				</div>
 				</div>
