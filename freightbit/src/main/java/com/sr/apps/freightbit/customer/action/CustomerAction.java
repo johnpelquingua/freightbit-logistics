@@ -84,39 +84,74 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     ////// START OF ITEMS ///////////////
 
-    public String customerEditItem(){
-
-        Items itemEntity = itemService.findItemByCustomerItemsId(customersItemIdParam);
-        item = transformItemToFormBean(itemEntity);
-
-        return  SUCCESS;
-    }
-    public String customerAddItems() {
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        Integer customerId = (Integer) sessionAttributes.get("customerId");
-
-        List<Items> itemEntityList = itemService.findItemByCustomerId(customerId);
-        for (Items itemElem : itemEntityList) {
-            items.add(transformItemToFormBean(itemElem));
+    public String addItem() throws  Exception {
+        validateOnSubmitItem(item);
+        if (hasFieldErrors()) {
+            return INPUT;
         }
-
+        customerService.addItem(transformToEntityBeanItem(item));
         return SUCCESS;
     }
 
-    public String customerEditItemExecute(){
-        itemService.updateItems(transformItemToEntityBean(item));
-        return SUCCESS;
-    }
-    public String customerDeleteItemExecute() {
-
-        Items itemEntity = itemService.findItemByCustomerItemsId(customersItemIdParam);
-        itemService.deleteItem(itemEntity);
+    public String editItem() {
+        validateOnSubmitItem(item);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        customerService.updateItems(transformToEntityBeanItem(item));
         return SUCCESS;
     }
 
-    public String customerAddItemExecute() throws Exception {
-        itemService.addItem(transformItemToEntityBean(item));
+    public String loadAddItem() {
+        return SUCCESS;
+    }
+
+    public String loadEditItem() {
+        Items itemEntity = customerService.findItemByCustomerItemsId(customersItemIdParam);
+        item = transformToFormBeanItem(itemEntity);
+        return SUCCESS;
+    }
+
+    public String loadSaveCompleteItem() {
+        Integer customerId = getCustomerSessionId();
+        List<Items> itemEntityList = customerService.findItemByCustomerId(customerId);
+        for (Items itemsElem : itemEntityList) {
+            items.add(transformToFormBeanItem(itemsElem));
+        }
+        return SUCCESS;
+    }
+
+    public void validateOnSubmitItem(ItemBean itemBean) {
+        clearErrorsAndMessages();
+        if (StringUtils.isBlank(itemBean.getItemName())) {
+            addFieldError("item.itemName", getText("err.itemName.required"));
+        }
+        if (StringUtils.isBlank(itemBean.getItemCode())) {
+            addFieldError("item.itemCode", getText("err.itemCode.required"));
+        }
+        if (itemBean.getSrp() == null) {
+            addFieldError("item.srp", getText("err.srp.required"));
+        }
+        if (itemBean.getLength() == null) {
+            addFieldError("item.length", getText("err.length.required"));
+        }
+        if (itemBean.getWidth() == null) {
+            addFieldError("item.width", getText("err.width.required"));
+        }
+        if (itemBean.getCriticalQuality() == null) {
+            addFieldError("item.criticalQuality", getText("err.criticalQuality.required"));
+        }
+        if (itemBean.getBasePrice() == null) {
+            addFieldError("item.basePrice", getText("err.basePrice.required"));
+        }
+        if (StringUtils.isBlank(itemBean.getDescription())) {
+            addFieldError("item.description", getText("err.description.required"));
+        }
+    }
+
+    public String deleteItem() {
+        Items itemEntity = customerService.findItemByCustomerItemsId(customersItemIdParam);
+        customerService.deleteItem(itemEntity);
         return SUCCESS;
     }
 
@@ -124,10 +159,57 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Integer customerId = getCustomerSessionId();
         List<Items> itemEntityList = customerService.findItemByCustomerId(customerId);
         for (Items itemsElem : itemEntityList) {
-            items.add(transformItemToFormBean(itemsElem));
+            items.add(transformToFormBeanItem(itemsElem));
         }
         return SUCCESS;
     }
+
+    public ItemBean transformToFormBeanItem(Items entity) {
+
+        ItemBean formBean = new ItemBean();
+        formBean.setCustomerId(entity.getCustomerId());
+        formBean.setCustomerItemsId(entity.getCustomerItemsId());
+        formBean.setCriticalQuality(entity.getCriticalQuality());
+        formBean.setItemCode(entity.getItemCode());
+        formBean.setItemName(entity.getItemName());
+        formBean.setSrp(entity.getSrp());
+        formBean.setLength(entity.getLength());
+        formBean.setWidth(entity.getWidth());
+        formBean.setHeight(entity.getHeight());
+        formBean.setBasePrice(entity.getBasePrice());
+        formBean.setNote(entity.getNote());
+        formBean.setDescription(entity.getDescription());
+
+        return formBean;
+
+    }
+
+    public Items transformToEntityBeanItem(ItemBean formBean) {
+
+        Items entity = new Items();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
+
+        if (formBean.getCustomerItemsId() != null)
+            entity.setCustomerItemsId(new Integer(formBean.getCustomerItemsId()));
+
+        entity.setItemName(formBean.getItemName());
+        entity.setItemCode(formBean.getItemCode());
+        entity.setCustomerId(getCustomerSessionId());
+        entity.setSrp(formBean.getSrp());
+        entity.setLength(formBean.getLength());
+        entity.setWidth(formBean.getWidth());
+        entity.setHeight(formBean.getHeight());
+        entity.setCriticalQuality(formBean.getCriticalQuality());
+        entity.setBasePrice(formBean.getBasePrice());
+        entity.setNote(formBean.getNote());
+        entity.setDescription(formBean.getDescription());
+        entity.setCreatedBy(getClientId().toString());
+        entity.setModifiedBy(getClientId().toString());
+
+        return entity;
+    }
+
 
     //////////// END OF ITEMS //////////////
 
@@ -240,6 +322,42 @@ public class CustomerAction extends ActionSupport implements Preparable {
             customers.add(transformToFormBean(customerElem));
         }
         return SUCCESS;
+    }
+
+    private CustomerBean transformToFormBean(Customer entity) {
+
+        CustomerBean formBean = new CustomerBean();
+        formBean.setCustomerId(entity.getCustomerId());
+        formBean.setCustomerCode(entity.getCustomerCode());
+        formBean.setCustomerName(entity.getCustomerName());
+        formBean.setCustomerType(entity.getCustomerType());
+        formBean.setPhone(entity.getPhone());
+        formBean.setEmail(entity.getEmail());
+        formBean.setWebsite(entity.getWebsite());
+        formBean.setFax(entity.getFax());
+        formBean.setMobile(entity.getMobile());
+
+        return formBean;
+    }
+
+    private Customer transformToEntityBean(CustomerBean formBean) {
+        Customer entity = new Customer();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
+        if (formBean.getCustomerId() != null)
+            entity.setCustomerId(new Integer(formBean.getCustomerId()));
+        entity.setCustomerName(formBean.getCustomerName());
+        entity.setCustomerCode(formBean.getCustomerCode());
+        entity.setCustomerType(formBean.getCustomerType());
+        entity.setWebsite(formBean.getWebsite());
+        entity.setPhone(formBean.getPhone());
+        entity.setMobile(formBean.getMobile());
+        entity.setFax(formBean.getFax());
+        entity.setEmail(formBean.getEmail());
+        entity.setCreatedBy(getClientId().toString());
+        entity.setModifiedBy(getClientId().toString());
+
+        return entity;
     }
 
     ////// END OF ITEMS ///////////////
@@ -466,104 +584,16 @@ public class CustomerAction extends ActionSupport implements Preparable {
     //items
 
 
-    public ItemBean transformItemToFormBean(Items entity) {
-
-        ItemBean formBean = new ItemBean();
-        formBean.setCustomerId(entity.getCustomerId());
-        formBean.setCustomerItemsId(entity.getCustomerItemsId());
-        formBean.setCriticalQuality(entity.getCriticalQuality());
-        formBean.setItemCode(entity.getItemCode());
-        formBean.setItemName(entity.getItemName());
-        formBean.setSrp(entity.getSrp());
-        formBean.setLength(entity.getLength());
-        formBean.setWidth(entity.getWidth());
-        formBean.setHeight(entity.getHeight());
-        formBean.setBasePrice(entity.getBasePrice());
-        formBean.setNote(entity.getNote());
-        formBean.setDescription(entity.getDescription());
-
-        return formBean;
-
-    }
-
-    public Items transformItemToEntityBean(ItemBean formBean) {
-
-        Items entity = new Items();
-        Client client = clientService.findClientById(getClientId().toString());
-        entity.setClient(client);
-
-        if (formBean.getCustomerItemsId() != null)
-            entity.setCustomerItemsId(new Integer(formBean.getCustomerItemsId()));
-
-        entity.setItemName(formBean.getItemName());
-        entity.setItemCode(formBean.getItemCode());
-        entity.setCustomerId(getCustomerSessionId());
-        entity.setSrp(formBean.getSrp());
-        entity.setLength(formBean.getLength());
-        entity.setWidth(formBean.getWidth());
-        entity.setHeight(formBean.getHeight());
-        entity.setCriticalQuality(formBean.getCriticalQuality());
-        entity.setBasePrice(formBean.getBasePrice());
-        entity.setNote(formBean.getNote());
-        entity.setDescription(formBean.getDescription());
-        entity.setCreatedBy(getClientId().toString());
-        entity.setModifiedBy(getClientId().toString());
-
-        return entity;
-    }
 
 
-    private CustomerBean transformToFormBean(Customer entity) {
 
-        CustomerBean formBean = new CustomerBean();
-        formBean.setCustomerId(entity.getCustomerId());
-        formBean.setCustomerCode(entity.getCustomerCode());
-        formBean.setCustomerName(entity.getCustomerName());
-        formBean.setCustomerType(entity.getCustomerType());
-        formBean.setPhone(entity.getPhone());
-        formBean.setEmail(entity.getEmail());
-        formBean.setWebsite(entity.getWebsite());
-        formBean.setFax(entity.getFax());
-        formBean.setMobile(entity.getMobile());
 
-        return formBean;
-    }
-
-    private Customer transformToEntityBean(CustomerBean formBean) {
-        Customer entity = new Customer();
-        Client client = clientService.findClientById(getClientId().toString());
-        entity.setClient(client);
-        if (formBean.getCustomerId() != null)
-            entity.setCustomerId(new Integer(formBean.getCustomerId()));
-        entity.setCustomerName(formBean.getCustomerName());
-        entity.setCustomerCode(formBean.getCustomerCode());
-        entity.setCustomerType(formBean.getCustomerType());
-        entity.setWebsite(formBean.getWebsite());
-        entity.setPhone(formBean.getPhone());
-        entity.setMobile(formBean.getMobile());
-        entity.setFax(formBean.getFax());
-        entity.setEmail(formBean.getEmail());
-        entity.setCreatedBy(getClientId().toString());
-        entity.setModifiedBy(getClientId().toString());
-
-        return entity;
-    }
 
     ////// BEGIN OF CONTACTS ///////////////
 
     public String loadAddContact() {
         return SUCCESS;
     }
-
-    /*public String viewContacts() {
-        Integer customerId = getCustomerSessionId();
-        List<Contacts> contactEntityList = new ArrayList<Contacts>();
-        contactEntityList = customerService.findContactById(customerId);
-        for (Contacts contactElem : contactEntityList) {
-            contacts.add(transformToFormBeanContacts(contactElem));
-        }
-        return SUCCESS;
-    }*/
 
 
 

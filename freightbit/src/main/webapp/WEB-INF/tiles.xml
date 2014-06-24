@@ -266,12 +266,6 @@
 <!-- VENDOR module tiles END -->
 
 <!-- CUSTOMER module tiles END -->
-
-    <definition name="customer.customerListViewItems.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Customer Page"/>
-        <put-attribute name="body"   value="/customer/customerListViewItems.jsp"/>
-    </definition>
-
     <definition name="customer.customerSearch.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Customer Page"/>
         <put-attribute name="body"   value="/customer/customerSearch.jsp"/>
@@ -295,16 +289,6 @@
     <definition name="customer.customerSaveComplete.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Save Complete"/>
         <put-attribute name="body"   value="/customer/customerSaveComplete.jsp"/>
-    </definition>
-
-    <definition name="customer.customerAddItems.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Customer Page" />
-        <put-attribute name="body" value="/customer/customerAddItem.jsp" />
-    </definition>
-
-    <definition name="customer.customerEditItem.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Customer Page" />
-        <put-attribute name="body" value="/customer/customerItemEdit.jsp" />
     </definition>
 
     <definition name="customer.customerInfo.tiles" extends="baseLayout">
@@ -353,6 +337,26 @@
         <put-attribute name="body" value="/customer/customerSaveCompleteRates.jsp" />
     </definition>
 
+
+    <definition name="customer.customerAddItems.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Customer Page" />
+        <put-attribute name="body" value="/customer/customerAddItem.jsp" />
+    </definition>
+
+    <definition name="customer.customerEditItem.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Customer Page" />
+        <put-attribute name="body" value="/customer/customerEditItem.jsp" />
+    </definition>
+
+    <definition name="customer.customerViewItems.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerListItems.jsp"/>
+    </definition>
+
+    <definition name="customer.customerSaveCompleteItems.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerSaveCompleteItems.jsp"/>
+    </definition>
 
     <!-- CUSTOMER module tiles END -->
 

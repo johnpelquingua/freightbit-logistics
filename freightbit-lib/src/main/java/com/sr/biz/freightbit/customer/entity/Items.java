@@ -23,9 +23,9 @@ public class Items implements java.io.Serializable {
     private Integer length;
     private Integer width;
     private Integer height;
-    private Double srp;
+    private Float srp;
     private Integer criticalQuality;
-    private Double basePrice;
+    private Float basePrice;
     private String note;
     private String description;
     private Date createdTimestamp;
@@ -39,7 +39,7 @@ public class Items implements java.io.Serializable {
 
     public Items(Integer customerItemsId, Client client, Integer customerId,
                  String itemName, String itemCode, Integer length, Integer width,
-                 Integer height, Double srp, Integer criticalQuality, Double basePrice,
+                 Integer height, Float srp, Integer criticalQuality, Float basePrice,
                  String note, String description, Date createdTimestamp, String createdBy,
                  Date modifiedTimestamp, String modifiedBy) {
         this.customerItemsId = customerItemsId;
@@ -99,16 +99,16 @@ public class Items implements java.io.Serializable {
     public void setHeight(Integer height) { this.height = height; }
 
     @Column(name = "srp")
-    public Double getSrp() { return srp; }
-    public void setSrp(Double srp) { this.srp = srp; }
+    public Float getSrp() { return srp; }
+    public void setSrp(Float srp) { this.srp = srp; }
 
     @Column(name = "criticalQuality")
     public Integer getCriticalQuality() { return criticalQuality; }
     public void setCriticalQuality(Integer criticalQuality) { this.criticalQuality = criticalQuality; }
 
     @Column(name = "basePrice")
-    public Double getBasePrice() { return basePrice; }
-    public void setBasePrice(Double basePrice) { this.basePrice = basePrice; }
+    public Float getBasePrice() { return basePrice; }
+    public void setBasePrice(Float basePrice) { this.basePrice = basePrice; }
 
     @Column(name = "note")
     public String getNote() { return note; }

@@ -4,8 +4,6 @@ package com.sr.apps.freightbit.customer.formbean;
  * Created by ADMIN on 6/5/2014.
  */
 
-import com.sr.biz.freightbit.customer.entity.Customer;
-
 import java.util.Date;
 
 public class ItemBean {
@@ -17,9 +15,9 @@ public class ItemBean {
     private Integer length;
     private Integer width;
     private Integer height;
-    private Double srp;
+    private Float srp;
     private Integer criticalQuality;
-    private Double basePrice;
+    private Float basePrice;
     private String note;
     private String description;
     private Date createdTimeStamp;
@@ -34,8 +32,8 @@ public class ItemBean {
 
 
     public ItemBean(Integer customerItemsId, Integer customerId, String itemName,
-                    String itemCode, Integer length, Integer width,Integer height, Double srp, Integer criticalQuality,
-                    Double basePrice, String note, String description, Date createdTimeStamp, String createdBy,
+                    String itemCode, Integer length, Integer width,Integer height, Float srp, Integer criticalQuality,
+                    Float basePrice, String note, String description, Date createdTimeStamp, String createdBy,
                     Date modifiedTimeStamp, String modifiedBy) {
 
 
@@ -114,11 +112,11 @@ public class ItemBean {
         this.height = height;
     }
 
-    public Double getSrp() {
+    public Float getSrp() {
         return srp;
     }
 
-    public void setSrp(Double srp) {
+    public void setSrp(Float srp) {
         this.srp = srp;
     }
 
@@ -130,11 +128,11 @@ public class ItemBean {
         this.criticalQuality = criticalQuality;
     }
 
-    public Double getBasePrice() {
+    public Float getBasePrice() {
         return basePrice;
     }
 
-    public void setBasePrice(Double basePrice) {
+    public void setBasePrice(Float basePrice) {
         this.basePrice = basePrice;
     }
 

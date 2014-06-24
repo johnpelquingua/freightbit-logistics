@@ -16,55 +16,55 @@
           <s:form cssClass="form-horizontal" theme="bootstrap" action="addItem">
           <div class="form-group">
             <div class="form-group">
-              <label for="ctype" class="col-sm-2 control-label" style="width:25%;">Item Name :</label>
+              <label for="item.itemName" class="col-sm-2 control-label" style="width:25%;">Item Name :</label>
               <div class="col-sm-10" style="width:70%;">
                 <s:textfield name="item.itemName" id="item.itemName" required="true" cssClass="form-control"/>
               </div>
             </div>
             <div class="form-group">
-              <label for="icode" class="col-sm-2 control-label" style="width:25%;">Item Code :</label>
+              <label for="item.itemCode" class="col-sm-2 control-label" style="width:25%;">Item Code :</label>
               <div class="col-sm-10" style="width: 31%;">
                 <s:textfield name="item.itemCode" id="item.itemCode" required="true" cssClass="form-control" style="150px" />
               </div>
-              <label for="srp" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">SRP :</label>
+              <label for="item.srp" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">SRP :</label>
               <div class="col-sm-10" style="width: 34.5%;">
                 <s:textfield  name="item.srp" id="item.srp" required="true" cssClass="form-control" style="150px" />
               </div>
             </div>
             <div class="form-group">
-              <label for="length" class="col-sm-2 control-label" style="width:25%;">Length :</label>
+              <label for="item.length" class="col-sm-2 control-label" style="width:25%;">Length :</label>
               <div class="col-sm-10" style="width: 31%;">
                 <s:textfield name="item.length" id="item.length" required="true" cssClass="form-control" style="150px" />
               </div>
-              <label for="width" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">Width :</label>
+              <label for="item.width" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">Width :</label>
               <div class="col-sm-10" style="width: 32.8%;">
                 <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control" style="150px" />
               </div>
             </div>
             <div class="form-group">
-              <label for="cquality" class="col-sm-2 control-label" style="width:25%;">Critical Quality :</label>
+              <label for="item.criticalQuality" class="col-sm-2 control-label" style="width:25%;">Critical Quality :</label>
               <div class="col-sm-10" style="width: 31%;">
                 <s:textfield name="item.criticalQuality" id="item.criticalQuality" required="true" cssClass="form-control" style="150px" />
               </div>
-              <label for="height" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">Height :</label>
+              <label for="item.height" style="float:left;margin-top: 0;margin-bottom: 0;padding-top: 7px;">Height :</label>
               <div class="col-sm-10" style="width: 31.8%;">
                 <s:textfield name="item.height" id="item.height" required="true" cssClass="form-control" style="150px" />
               </div>
             </div>
             <div class="form-group">
-              <label for="bprice" class="col-sm-2 control-label" style="width:25%;">Base Price :</label>
+              <label for="item.basePrice" class="col-sm-2 control-label" style="width:25%;">Base Price :</label>
               <div class="col-sm-10" style="width:70%;">
                 <s:textfield name="item.basePrice" id="item.basePrice" required="true" cssClass="form-control"  />
               </div>
             </div>
             <div class="form-group">
-              <label for="note" class="col-sm-2 control-label" style="width:25%;">Note</label>
+              <label for="item.note" class="col-sm-2 control-label" style="width:25%;">Note</label>
               <div class="col-sm-10" style="width:70%;">
                 <s:textfield name="item.note" id="item.note" required="true" cssClass="form-control"  />
               </div>
             </div>
             <div class="form-group">
-              <label for="desc" class="col-sm-2 control-label" style="width:25%;">Description</label>
+              <label for="item.description" class="col-sm-2 control-label" style="width:25%;">Description</label>
               <div class="col-sm-10" style="width:70%;">
                 <s:textfield name="item.description" id="item.description" required="true" cssClass="form-control"  />
               </div>
