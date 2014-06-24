@@ -348,6 +348,11 @@
         <put-attribute name="body"   value="/customer/customerAddContact.jsp"/>
     </definition>
 
+    <definition name="customer.customerEditContact.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Contacts Page"/>
+        <put-attribute name="body"   value="/customer/customerEditContact.jsp"/>
+    </definition>
+
     <definition name="customer.customerSaveCompleteContacts.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Contacts Page"/>
         <put-attribute name="body"   value="/customer/customerSaveCompleteContacts.jsp"/>

@@ -594,7 +594,13 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String addContacts() throws Exception {
+    public String loadEditContact() {
+        Contacts contactEntity = customerService.findContactById(contactCodeParam);
+        contact = transformToFormBeanContacts(contactEntity);
+        return SUCCESS;
+    }
+
+    public String addContact() throws Exception {
 
         validateOnSubmitContact(contact);
 
@@ -603,6 +609,22 @@ public class CustomerAction extends ActionSupport implements Preparable {
         }
 
         customerService.addContact(transformToEntityBeanContacts(contact));
+        return SUCCESS;
+    }
+
+    public String editContact() {
+        validateOnSubmitContact(contact);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        customerService.updateContact(transformToEntityBeanContacts(contact));
+        return SUCCESS;
+    }
+
+    public String deleteContact() {
+
+        Contacts contactEntity = customerService.findContactById(contactCodeParam);
+        customerService.deleteContact(contactEntity);
         return SUCCESS;
     }
 

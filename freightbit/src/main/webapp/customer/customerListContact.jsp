@@ -42,7 +42,7 @@
                                 <td class="tb-font-black"><s:property value="email"/></td>
                                 <td class="tb-font-black">
 
-                                    <s:url var="editContactsUrl" action="loadEditContact">
+                                    <s:url var="editContactsUrl" action="loadEditCustomerContact">
                                         <s:param name="contactCodeParam" value="contactId"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editContactsUrl}" rel="tooltip"
@@ -50,7 +50,7 @@
                                         <img src="includes/images/edit-user.png" class="icon-action circ-icon">
                                     </s:a>
 
-                                    <s:url var="deleteContactsUrl" action="deleteContact">
+                                    <s:url var="deleteContactsUrl" action="deleteCustomerContact">
                                         <s:param name="contactCodeParam" value="contactId"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{deleteContactsUrl}" rel="tooltip"

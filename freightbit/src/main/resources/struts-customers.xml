@@ -183,12 +183,21 @@
             <result name="success" type="tiles">customer.customerAddContact.tiles</result>
         </action>
 
-        <action name="addCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="addContacts">
+        <action name="loadEditCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadEditContact">
+            <result name="success" type="tiles">customer.customerEditContact.tiles</result>
+        </action>
+
+        <action name="addCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="addContact">
             <result name="success" type="redirect">loadSaveCompleteContact</result>
             <result name="input" type="tiles">customer.customerAddContact.tiles</result>
         </action>
 
-        <action name="deleteContact" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="deleteContact">
+        <action name="editCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="editContact">
+            <result name="success" type="redirect">loadSaveCompleteContact</result>
+            <result name="input" type="tiles">customer.customerAddContact.tiles</result>
+        </action>
+
+        <action name="deleteCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="deleteContact">
             <result name="success" type="redirect">viewCustomerContacts</result>
         </action>
 
