@@ -267,9 +267,9 @@
 
 <!-- CUSTOMER module tiles END -->
 
-    <definition name="customer.customerListViewItems.tiles" extends="baseLayout">
+    <definition name="customer.customerListItems.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Customer Page"/>
-        <put-attribute name="body"   value="/customer/customerListViewItems.jsp"/>
+        <put-attribute name="body"   value="/customer/customerListItems.jsp"/>
     </definition>
 
     <definition name="customer.customerSearch.tiles" extends="baseLayout">
@@ -384,7 +384,30 @@
     </definition>
 
 
+    <definition name="customer.customerAddConsignee.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerAddConsignee.jsp"/>
+    </definition>
 
+    <definition name="customer.customerListConsignee.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerListConsignee.jsp"/>
+    </definition>
+
+    <definition name="customer.customerSaveCompleteConsignee.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerSaveCompleteConsignee.jsp"/>
+    </definition>
+
+    <definition name="customer.customerEditConsignee.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerEditConsignee.jsp"/>
+    </definition>
+
+    <definition name="customer.customerInfoConsignee.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="body"   value="/customer/customerInfoConsignee.jsp"/>
+    </definition>
     <!-- CUSTOMER module tiles END -->
 
     <!-- ORDER module tiles Begin-->
@@ -416,36 +439,6 @@
 <!-- ORDER module tiles End-->
     
     <!-- Please rename your tiles def accordingly (Please refer to above) where name=folderName.jspName.tiles -->
-
-    <definition name="customer-add6.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Customer Page"/>
-        <put-attribute name="body"   value="/customer/customer-add6.jsp"/>
-    </definition>
-
-    <definition name="customer-edit2.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Customer Page"/>
-        <put-attribute name="body"   value="/customer/customer-edit2.jsp"/>
-    </definition>
-
-    <definition name="customer-edit3.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Customer Page"/>
-        <put-attribute name="body"   value="/customer/customer-edit3.jsp"/>
-    </definition>
-
-    <definition name="customer-edit4.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Customer Page"/>
-        <put-attribute name="body"   value="/customer/customer-edit4.jsp"/>
-    </definition>
-
-    <definition name="customer-edit5.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Customer Page"/>
-        <put-attribute name="body"   value="/customer/customer-edit5.jsp"/>
-    </definition>
-
-    <definition name="customer-edit6.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Customer Page"/>
-        <put-attribute name="body"   value="/customer/customer-edit6.jsp"/>
-    </definition>
 
     <definition name="permission.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Permission Page"/>

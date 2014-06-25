@@ -88,14 +88,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    /*public void addContact(Contacts contacts) throws ContactAlreadyExistsException {
-        if (contactsDao.findContactById(contacts.getContactId()) != null) {
-            throw new ContactAlreadyExistsException(contacts.getContactId());
-        } else {
-            contactsDao.addContact(contacts);
-        }
-    }*/
-
     public void addContact(Contacts contacts) {
         contactsDao.addContact(contacts);
     }

@@ -213,5 +213,39 @@
             <result name="success" type="tiles">customer.customerSaveCompleteContacts.tiles</result>
         </action>
 
+        <!--consignee-->
+        <action name="loadAddConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadAddConsignee">
+            <result name="success" type="tiles">customer.customerAddConsignee.tiles</result>
+        </action>
+
+        <action name="loadEditConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadEditConsignee">
+            <result name="success" type="tiles">customer.customerEditConsignee.tiles</result>
+        </action>
+
+        <action name="addConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="addConsignee">
+            <result name="success" type="redirect">loadSaveCompleteConsignee</result>
+            <result name="input" type="tiles">customer.customerAddConsignee.tiles</result>
+        </action>
+
+        <action name="editConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="editConsignee">
+            <result name="success" type="redirect">loadSaveCompleteConsignee</result>
+            <result name="input" type="tiles">customer.customerEditConsignee.tiles</result>
+        </action>
+
+        <action name="viewConsignees" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="viewConsignees">
+            <result name="success" type="tiles">customer.customerListConsignee.tiles</result>
+        </action>
+
+        <action name="deleteConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="deleteConsignee">
+            <result name="success" type="tiles">viewConsignees</result>
+        </action>
+
+        <action name="loadSaveCompleteConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSaveCompleteConsignee">
+            <result name="success" type="tiles">customer.customerSaveCompleteConsignee.tiles</result>
+        </action>
+
+        <action name="consigneeInfo" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="consigneeInfo">
+            <result name="success" type="tiles">customer.customerInfoConsignee.tiles</result>
+        </action>
     </package>
 </struts>

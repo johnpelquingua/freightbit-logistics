@@ -1,12 +1,6 @@
 package com.sr.apps.freightbit.common.formbean;
 
-import com.sr.apps.freightbit.vendor.formbean.DriverBean;
-import com.sr.apps.freightbit.vendor.formbean.OtherInformationBean;
-import com.sr.apps.freightbit.vendor.formbean.TruckBean;
-import com.sr.apps.freightbit.vendor.formbean.VesselBean;
-
 import java.security.Timestamp;
-import java.util.List;
 
 public class ContactBean {
 
