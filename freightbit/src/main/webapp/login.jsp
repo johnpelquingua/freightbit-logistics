@@ -2,37 +2,28 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<title>Ernest Login-In Page</title>
-<link rel='stylesheet' href='includes/css/bootstrap.css'>
-<link rel='stylesheet" href="includes/css/main.css'>
-<s:head />
-
+    <title>Ernest Login Page</title>
+    <link rel='stylesheet' href='includes/css/bootstrap.css'>
+    <link rel='stylesheet" href="includes/css/main.css'>
+    <s:head />
 </head>
 <body style="background:url('includes/images/ernest1.jpg') no-repeat center center fixed; background-size:cover;">
-
-<%--<div class="container" style="position: relative; top: 85px; padding-left: 150px; padding-right: 150px;">
-    <div class="form-signin" style="max-width: 380px; padding: 10px 35px 30px; margin: 0 auto; background-color: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px;">
-
-        <s:actionerror />
-        <s:form action="login" method="post" theme="bootstrap">
-            <h2 class="form-signin-heading" style="margin-bottom: 30px;" >Please Sign In</h2>
-                <s:textfield name="username" cssClass="form-control" placeholder="Username" size="20" />
-                <s:password name="password" cssClass="form-control" placeholder="Password" size="20" />
-                <label class="checkbox">
-                      <input type="checkbox" value="remember-me" style="font-weight: normal;" > Remember me
-                </label>
-                <s:submit method="execute" value="Sign-In" cssClass="btn btn-lg btn-primary btn-block"/>
-        </s:form>
-
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner" style="height: 80px; background: url('includes/images/background.jpg'); filter: none;">
+        <div class="container">
+            <brand>
+                <img src="includes/images/reallogo.png" style="margin-top: 20px; ">
+            </brand>
+        </div>
     </div>
-</div>--%>
-
+</div>
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-7" style="margin-top: 100px;">
-            <div class="panel panel-default" style="opacity: 0.9;   ">
-                <div class="panel-heading">
-                     Login</div>
+        <div class="col-md-4 col-md-offset-4" style="margin-top: 250px;">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font-size: 24px;">
+                    Sign-In
+                </div>
                 <s:actionerror />
                 <div class="panel-body">
                     <s:form class="form-horizontal" role="form" action="login" method="post" theme="bootstrap">
@@ -61,20 +52,18 @@
                             </div>
                         </div>
                         <div class="form-group last">
-                            <div class="col-sm-offset-3 col-sm-9 ">
-                                <s:submit cssClass="btn btn-info btn-sm" method="execute" value="Sign-In" />
-
+                            <div class="col-sm-offset-9 ">
+                                <s:submit cssClass="btn btn-info btn-sm" method="execute" value="Login" />
                             </div>
                         </div>
                     </s:form>
                 </div>
-                <div class="panel-footer">
-                    <%--Not Registred? <a href="http://www.jquery2dotnet.com">Register here</a>--%></div>
+                <div class="white navbar-fixed-bottom" style="padding-top: 20px; height: 80px; background: url('includes/images/background.jpg');">
+                    <%--Not Registred? <a href="http://www.jquery2dotnet.com">Register here</a>--%>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
 </body>
 </html>
