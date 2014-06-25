@@ -16,6 +16,7 @@ import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.dao.*;
 import com.sr.biz.freightbit.vendor.entity.*;
 import com.sr.biz.freightbit.vendor.exceptions.*;
+
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -102,7 +103,10 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateVendor(Vendor vendor) {
-        vendorDao.updateVendor(vendor);
+        if (vendorDao.findDuplicateVendorByVendorCode(vendor.getVendorCode(), vendor.getVendorId()).size() > 0)
+            throw new VendorAlreadyExistsException(vendor.getVendorCode());
+        else
+        	vendorDao.updateVendor(vendor);     
     }
 
     @Override

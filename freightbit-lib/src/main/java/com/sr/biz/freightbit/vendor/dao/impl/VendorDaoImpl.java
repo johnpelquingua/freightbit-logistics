@@ -65,7 +65,7 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
         log.debug("Finding Vendor instance by Client");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from Vendor v where v.clientId = :clientId");
+                    "from Vendor where clientId = :clientId");
             query.setParameter("clientId", clientId);
             List<Vendor> results = (List<Vendor>) query.list();
             log.debug("find vendor by client id successful, result size: "
@@ -113,6 +113,24 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
             Query query = getSessionFactory().getCurrentSession().createQuery(
                     "from Vendor v where v.vendorCode= :vendorCode");
             query.setParameter("vendorCode", vendorCode);
+            List<Vendor> results = (List<Vendor>) query.list();
+            log.debug("Find Vendor by vendorName successful, result size: "
+                    + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            log.error("Find Vendor by vendorName failed", re);
+            throw re;
+        }
+    }
+    
+    @Override
+    public List<Vendor> findDuplicateVendorByVendorCode(String vendorCode, Integer vendorId) {
+        log.debug("Finding duplicate vendor by vendor Code");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Vendor v where v.vendorCode= :vendorCode and v.vendorId != :vendorId");
+            query.setParameter("vendorCode", vendorCode);
+            query.setParameter("vendorId", vendorId);
             List<Vendor> results = (List<Vendor>) query.list();
             log.debug("Find Vendor by vendorName successful, result size: "
                     + results.size());

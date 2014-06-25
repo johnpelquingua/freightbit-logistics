@@ -13,13 +13,15 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
+    <bean id="commonUtils" class="com.sr.apps.freightbit.util.CommonUtils"/>
+    
 	<bean id="userAction" class="com.sr.apps.freightbit.core.action.UserAction">
 		<property name="userService" ref="userService"></property>
 		<property name="clientService" ref="clientService"></property>
 		<property name="parameterService" ref="parameterService"></property>
 	</bean>
+	
     <bean id="customerAction" class="com.sr.apps.freightbit.customer.action.CustomerAction">
-
         <property name="customerService" ref="customerService"></property>
         <property name="clientService" ref="clientService"></property>
         <property name="parameterService" ref="parameterService"></property>
@@ -35,6 +37,7 @@
         <property name="vendorService" ref="vendorService"></property>
         <property name="parameterService" ref="parameterService"></property>
         <property name="clientService" ref="clientService"></property>
+        <property name="commonUtils" ref="commonUtils"></property>
         <!--<property name="driverService" ref="driverService"></property>-->
     </bean>
 
