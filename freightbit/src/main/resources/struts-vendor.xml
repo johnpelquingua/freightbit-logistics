@@ -33,7 +33,7 @@
             <result name="success" type="tiles">vendor.vendorEditTrucks.tiles</result>
         </action>
 
-        <action name="loadSaveCompletePage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+        <action name="loadVendorSaveCompletePage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadSaveCompletePage">
             <result name="success" type="tiles">vendor.vendorSaveComplete.tiles</result>
         </action>
@@ -63,7 +63,7 @@
         </action>
 
         <action name="editVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">
-            <result name="success" type="redirect">loadSaveCompletePage</result>
+            <result name="success" type="redirect">loadVendorSaveCompletePage</result>
             <result name="input" type="tiles">vendor.vendorEdit.tiles</result>
         </action>
 
