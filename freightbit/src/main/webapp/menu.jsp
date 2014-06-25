@@ -1,3 +1,4 @@
+<%--
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <div class="col-sm-3 col-md-2 sidebar">
@@ -51,4 +52,61 @@
 
   </ul>
 
-</div>
+</div>--%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<ul class="nav navbar-nav side-nav">
+    <li class=""><a href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="<s:url action='viewOrders' />"><i class="fa fa-book"></i> Booking</a></li>
+    <li><a href="tables.html"><i class="fa fa-truck"></i> Operations</a></li>
+    <li><a href="forms.html"><i class="fa fa-edit"></i> Documentations</a></li>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> Vendor <b class="caret"></b></a>
+
+        <ul class="dropdown-menu">
+            <li><a href="<s:url action='loadSearchVendorPage' />">Search Vendor</a></li>
+            <li><a href="<s:url action='loadAddVendorPage' />">Add Vendor</a></li>
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> Customer <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="<s:url action='loadSearchCustomerPage' />">Search Customer</a></li>
+            <li><a href="<s:url action='loadAddCustomerPage' />">Add Customer</a></li>
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Accounts <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="<s:url action='loadSearchUserPage' />">User</a></li>
+            <li><a href="<s:url action='viewGroups' />">Group</a></li>
+            <li><a href="<s:url action='viewPermissions' />">Permission</a></li>
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-text-o"></i> Reports <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Trucks</a></li>
+            <li><a href="#">Container</a></li>
+            <li><a href="#">Cargo</a></li>
+            <li><a href="#">Customer Relation</a></li>
+            <li><a href="#">Sales</a></li>
+        </ul>
+    </li>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-money"></i> Finance <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="searchFinance">Search Finance</a></li>
+            <li><a href="addFinance">Add Finance</a></li>
+        </ul>
+    </li>
+
+    <li class=""><a href="Help"><i class="fa fa-question"></i> Help</a></li>
+
+</ul>
