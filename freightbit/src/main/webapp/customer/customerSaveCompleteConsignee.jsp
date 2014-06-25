@@ -68,6 +68,12 @@
                                          title="Delete this Consignee"
                                          onclick="return confirm('Do you really want to delete?');"><img
                                             src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                    <s:url var="consigneeInfoUrl" action="consigneeInfo">
+                                        <s:param name="contactCodeParam" value="%{contactId}"></s:param>
+                                        <s:param name="addressIdParam" value="%{addressId}"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{consigneeInfoUrl}" rel="tooltip"><img
+                                            src="includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
                                 </td>
                             </tr>
                         </s:iterator>
