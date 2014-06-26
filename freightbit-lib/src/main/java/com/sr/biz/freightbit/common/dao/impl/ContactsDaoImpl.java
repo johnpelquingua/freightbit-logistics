@@ -5,6 +5,7 @@ import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.dao.impl.UserDaoImpl;
 import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
+import com.sr.biz.freightbit.vendor.entity.Vendor;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -24,14 +25,15 @@ import java.util.Set;
 public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao{
 //
     private static final Logger log = Logger.getLogger(UserDaoImpl.class);
-
+    
     @Override
-    public void addContact(Contacts contacts) {
+    public Integer addContact(Contacts contacts) {
         log.debug("adding a new contact");
         try{
             Session session = getSessionFactory().getCurrentSession();
-            session.save(contacts);
+            Integer contactId = (Integer)session.save(contacts);
             log.debug("add successful");
+            return contactId;
         } catch (RuntimeException re){
             log.error("add failed", re);
             throw re;

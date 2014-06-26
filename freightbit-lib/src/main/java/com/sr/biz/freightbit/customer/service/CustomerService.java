@@ -129,4 +129,7 @@ public interface CustomerService {
 
     public List<Rates> findAllRatesByCustomerId(Integer customerId);
 
+	public Address findAddressByParameterMap(Integer referenceId, String addressType,
+			Integer clientId, Integer contactId);
+
 }

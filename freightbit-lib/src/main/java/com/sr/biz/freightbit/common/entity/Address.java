@@ -39,8 +39,17 @@ public class Address implements java.io.Serializable {
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
+    private Integer contactReferenceId;
 
-    public Address(){
+    public Integer getContactReferenceId() {
+		return contactReferenceId;
+	}
+
+	public void setContactReferenceId(Integer contactReferenceId) {
+		this.contactReferenceId = contactReferenceId;
+	}
+
+	public Address(){
 
     }
 

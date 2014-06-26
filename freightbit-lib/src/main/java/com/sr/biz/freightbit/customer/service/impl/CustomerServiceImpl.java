@@ -56,9 +56,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addConsignee(Contacts contact, Address address) {
+        	Integer contactId = contactsDao.addContact(contact);
+        	address.setContactReferenceId(contactId);
             addressDao.addAddress(address);
-            contactsDao.addContact(contact);
-
     }
 
     @Override
@@ -187,6 +187,22 @@ public class CustomerServiceImpl implements CustomerService {
     	paramMap.put("clientId", clientId);
     	addresses = addressDao.findAddressesByParameterMap(paramMap, "Address");
         return addresses;
+    }
+    
+    @Override
+    public Address findAddressByParameterMap(Integer referenceId, String addressType, Integer clientId, Integer contactId) {
+    	List <Address> addresses = new ArrayList<Address>();
+    	Map <String, Object> paramMap = new HashMap<String, Object>();
+    	paramMap.put("referenceTable", "CUSTOMERS");
+    	paramMap.put("referenceId", referenceId);
+    	paramMap.put("addressType", addressType);
+    	paramMap.put("clientId", clientId);
+    	paramMap.put("contactReferenceId", contactId);
+    	addresses = addressDao.findAddressesByParameterMap(paramMap, "Address");
+    	if (addresses != null && addresses.size() > 0)
+    		return addresses.get(0);
+    	else
+    		return null;
     }
 
 

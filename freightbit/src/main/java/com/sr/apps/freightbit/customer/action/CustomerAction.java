@@ -723,6 +723,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
+
         customerService.addConsignee(transformContactToEntityBean(consignee), transformAddressToEntityBean(consignee));
         return SUCCESS;
     }
@@ -770,13 +771,13 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public String viewConsignees() {
         Integer customerId = getCustomerSessionId();
-        List<Address> addressList = new ArrayList<Address>();
         List<Contacts> contactsList = new ArrayList<Contacts>();
-        addressList = customerService.findAddressByParameterMap(customerId, "CONSIGNEE", getClientId());
         contactsList = customerService.findContactByParameterMap(customerId, "CONSIGNEE", getClientId());
-        if (contactsList != null && addressList != null) {
-            for (Integer i=0; i<addressList.size() && i<contactsList.size(); i++) {
-                consignees.add(transformToFormBeanConsignee(addressList.get(i), contactsList.get(i)));
+        if (contactsList != null) {
+            for (int i=0; i<contactsList.size(); i++) {
+            	Contacts contactConsignee = contactsList.get(i);
+            	Address addressConsignee = customerService.findAddressByParameterMap(customerId, "CONSIGNEE", getClientId(), contactConsignee.getContactId());
+                consignees.add(transformToFormBeanConsignee(addressConsignee, contactConsignee));
             }
         }
         return SUCCESS;

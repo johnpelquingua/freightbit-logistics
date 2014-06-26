@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public interface ContactsDao {
 
-    public void addContact(Contacts contacts);
+    public Integer addContact(Contacts contacts);
 
     public void deleteContact(Contacts contacts);
 
