@@ -33,6 +33,10 @@
 			<result name="success" type="tiles">index.tiles</result>
 			<result name="input">login.jsp</result>
 		</action>
+
+        <action name="home" method="home" class="com.sr.apps.freightbit.core.action.DashboardAction" >
+            <result name="success" type="tiles">index.tiles</result>
+        </action>
 		
 		
 

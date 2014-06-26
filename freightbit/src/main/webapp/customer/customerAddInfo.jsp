@@ -20,7 +20,7 @@
 				<div class="panel-body">
 				<div class="table-responsive list-table">
 
-				 <s:form cssClass="form-horizontal" theme="bootstrap" action="customerAdd">
+				 <s:form cssClass="form-horizontal" theme="bootstrap" action="addCustomer">
 				  <div class="form-group">
 
                  <div class="form-group">
@@ -84,26 +84,26 @@
                       <div style="padding:4px;">
                           <div class="col-xs-6">
                               <label>
-                                  <input type="hidden" name="customer.dti" id="customer.dti" value="1">
-                                  <input type="checkbox" name="customer.dti" id="customer.dti" value="0">DTI / SEC Certificate
+                                 <%-- <input type="hidden" name="customer.dti" id="customer.dti" value="1">
+                                  <input type="checkbox" name="customer.dti" id="customer.dti" value="0">--%>DTI / SEC Certificate
                               </label>
                           </div>
                           <div class="col-xs-6">
                               <label>
-                                  <input type="hidden" name="customer.mayorsPermit" id="customer.mayorsPermit" value="yes">
-                                  <input type="checkbox" name="customer.mayorsPermit" id="customer.mayorsPermit" value="no">Mayor's Permit
+                                  <%--<input type="hidden" name="customer.mayorsPermit" id="customer.mayorsPermit" value="yes">
+                                  <input type="checkbox" name="customer.mayorsPermit" id="customer.mayorsPermit" value="no">--%>Mayor's Permit
                               </label>
                           </div>
                           <div class="col-xs-6">
                               <label>
-                                  <input type="hidden" name="aaf" value="yes">
-                                  <input type="checkbox" name="aaf" value="no">Account Application Form
+                                 <%-- <input type="hidden" name="aaf" value="yes">
+                                  <input type="checkbox" name="aaf" value="no">--%>Account Application Form
                               </label>
                           </div>
                           <div class="col-xs-6">
                               <label>
-                                  <input type="hidden" name="signatureCard" value="yes">
-                                  <input type="checkbox" name="signatureCard" value="no">Signature Specimen Card
+                                 <%-- <input type="hidden" name="signatureCard" value="yes">
+                                  <input type="checkbox" name="signatureCard" value="no">--%>Signature Specimen Card
                               </label>
                           </div>
                       </div>

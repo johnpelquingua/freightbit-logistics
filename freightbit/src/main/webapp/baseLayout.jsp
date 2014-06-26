@@ -68,6 +68,8 @@
 
 <div id="wrapper">
 
+    <div id="page-wrapper">
+
     <!-- Sidebar -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -93,6 +95,8 @@
     </nav>
 
     <tiles:insertAttribute name="body" />
+
+    </div><!-- /#page-wrapper -->
 
 </div><!-- /#wrapper -->
 

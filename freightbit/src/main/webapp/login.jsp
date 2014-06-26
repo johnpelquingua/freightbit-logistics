@@ -59,7 +59,7 @@
                     </s:form>
                 </div>
                 <div class="white navbar-fixed-bottom" style="padding-top: 20px; height: 80px; background: url('includes/images/background.jpg');">
-                    <%--Not Registred? <a href="http://www.jquery2dotnet.com">Register here</a>--%>
+
                 </div>
             </div>
         </div>

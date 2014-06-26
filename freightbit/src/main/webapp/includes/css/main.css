@@ -6,9 +6,7 @@
 
 
 body {
-  padding-top: 50px;
-  /* background-color: #202020; */
-  background: #dfe0e1;
+background: #dfe0e1;
 }
 .drop-span:hover{
 color:black !important;
