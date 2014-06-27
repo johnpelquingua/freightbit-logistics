@@ -102,7 +102,7 @@ public class UserAction extends ActionSupport implements Preparable {
     	userService.deleteUser(userEntity);
     	return SUCCESS;
     }
-/*
+
     public String viewUserInfo() {
     	User userEntity = userService.findUserByUserName(userNameParam);
     	user = transformToFormBean(userEntity); //specific user to view
@@ -114,7 +114,7 @@ public class UserAction extends ActionSupport implements Preparable {
 
     	return SUCCESS;
     }
-*/
+
     @Override
     public void prepare(){
     	userSearchList = parameterService.getParameterMap(ParameterConstants.USER, ParameterConstants.SEARCH_CRITERIA);
