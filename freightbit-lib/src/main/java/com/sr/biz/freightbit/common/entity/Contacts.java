@@ -168,7 +168,7 @@ public class Contacts implements Serializable {
         this.email = email;
     }
 
-    @Column(name = "createdTimestamp", nullable = false)
+    @Column(name = "createdTimestamp")
     public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
@@ -177,7 +177,7 @@ public class Contacts implements Serializable {
         this.createdTimestamp = createdTimestamp;
     }
 
-    @Column(name = "createdBy", nullable = false)
+    @Column(name = "createdBy")
     public String getCreatedBy() {
         return createdBy;
     }
@@ -186,7 +186,7 @@ public class Contacts implements Serializable {
         this.createdBy = createdBy;
     }
 
-    @Column(name = "modifiedTimestamp", nullable = false)
+    @Column(name = "modifiedTimestamp")
     public Date getModifiedTimestamp() {
         return modifiedTimestamp;
     }
@@ -195,7 +195,7 @@ public class Contacts implements Serializable {
         this.modifiedTimestamp = modifiedTimestamp;
     }
 
-    @Column(name = "modifiedBy", nullable = false)
+    @Column(name = "modifiedBy")
     public String getModifiedBy() {
         return modifiedBy;
     }
