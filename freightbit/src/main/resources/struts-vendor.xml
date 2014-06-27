@@ -63,7 +63,9 @@
         </action>
 
         <action name="editVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editVendor">
-            <result name="success" type="redirect">loadVendorSaveCompletePage</result>
+            <!--<result name="success" type="redirect">loadVendorSaveCompletePage</result>-->
+            <result name="TRUCKING" type="tiles">vendor.vendorInfoTrucking.tiles</result>
+            <result name="SHIPPING" type="tiles">vendor.vendorInfoShipping.tiles</result>
             <result name="input" type="tiles">vendor.vendorEdit.tiles</result>
         </action>
 
@@ -181,6 +183,7 @@
         </action>
 
         <action name="addTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addContacts">
+            <!--<result name="success" type="redirect">loadSaveCompleteTruckingContact</result>-->
             <result name="success" type="redirect">loadSaveCompleteTruckingContact</result>
             <result name="input" type="tiles">vendor.vendorAddTruckingContact.tiles</result>
         </action>
@@ -191,7 +194,8 @@
         </action>
 
         <action name="deleteTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteContacts">
-            <result name="success" type="redirect">viewVendorTruckingContacts</result>
+            <!--<result name="success" type="redirect">viewVendorTruckingContacts</result>-->
+            <result name="success" type="redirect">loadSaveCompleteTruckingContact</result>
         </action>
 
         <action name="viewVendorTruckingContacts" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewContacts">
@@ -226,7 +230,9 @@
         </action>
 
         <action name="loadSaveCompleteTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteContacts">
-            <result name="success" type="tiles">vendor.vendorSaveCompleteTruckingContacts.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteTruckingContacts.tiles</result>-->
+
+            <result name="success" type="tiles">vendor.vendorListTruckingContact.tiles</result>
         </action>
 
         <action name="loadSaveCompleteShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteContacts">

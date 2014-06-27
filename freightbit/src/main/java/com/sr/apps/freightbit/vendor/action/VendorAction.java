@@ -151,7 +151,13 @@ public class VendorAction extends ActionSupport implements Preparable {
            	return INPUT;
         }
         	
-        return SUCCESS;
+        /*return SUCCESS;*/
+
+        if ("TRUCKING".equals(vendor.getVendorType())) {
+            return "TRUCKING";
+        } else {
+            return "SHIPPING";
+        }
     }
    
     
@@ -161,7 +167,23 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     
     public String viewInfoVendor() {
-        Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
+        /*Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
+        vendor = transformToFormBean(vendorEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("vendorId", vendor.getVendorId());
+
+        if ("TRUCKING".equals(vendor.getVendorType())) {
+            return "TRUCKING";
+        } else {
+            return "SHIPPING";
+        }*/
+
+        Vendor vendorEntity = new Vendor();
+        if (!StringUtils.isBlank(vendorCodeParam))
+            vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
+        else
+            vendorEntity = vendorService.findVendorById(getSessionVendorId());
         vendor = transformToFormBean(vendorEntity);
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -172,6 +194,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         } else {
             return "SHIPPING";
         }
+
     }
     
     public String deleteVendor() {
@@ -633,9 +656,12 @@ public class VendorAction extends ActionSupport implements Preparable {
         Integer vendorId = getSessionVendorId();
         List<Contacts> contactEntityList = new ArrayList<Contacts>();
         contactEntityList = vendorService.findContactByReferenceId(vendorId);
+
+
         for (Contacts contactElem : contactEntityList) {
             contacts.add(transformToFormBeanContacts(contactElem));
         }
+
         return SUCCESS;
     }
 
@@ -646,6 +672,10 @@ public class VendorAction extends ActionSupport implements Preparable {
         for (Contacts contactElem : contactEntityList) {
             contacts.add(transformToFormBeanContacts(contactElem));
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Contact Persons has been updated.");
+
         return SUCCESS;
     }
 
@@ -665,6 +695,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             return INPUT;
         }
         vendorService.addContact(transformToEntityBeanContacts(contact));
+
         return SUCCESS;
     }
 
@@ -674,6 +705,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             return INPUT;
         }
         vendorService.updateContact(transformToEntityBeanContacts(contact));
+
         return SUCCESS;
     }
 
@@ -681,6 +713,10 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         Contacts contactEntity = vendorService.findContactById(contactCodeParam);
         vendorService.deleteContact(contactEntity);
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Contact Persons has been updated.");
+
         return SUCCESS;
     }
 
@@ -736,11 +772,12 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (StringUtils.isBlank(contactBean.getFirstName())) {
             addFieldError("contact.firstName", getText("err.firstNameContact.required"));
         }
-        if (StringUtils.isBlank(contactBean.getMiddleName())) {
-            addFieldError("contact.middleName", getText("err.middleNameContact.required"));
-        }
+
         if (StringUtils.isBlank(contactBean.getPhone())) {
             addFieldError("contact.phone", getText("err.phoneContact.required"));
+        }
+        if (StringUtils.isBlank(contactBean.getEmail())) {
+            addFieldError("contact.email", getText("err.email.required"));
         }
     }
 
