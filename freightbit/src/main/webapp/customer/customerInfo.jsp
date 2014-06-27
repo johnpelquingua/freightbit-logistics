@@ -23,9 +23,8 @@
                                 <table class="table table-user-information">
                                     <tbody>
                                     <tr>
-                                        <s:property value="customer.customerId" />
                                         <td>Name:</td>
-                                        <td><s:property value="customer.customerId" /></td>
+                                        <td><s:property value="customer.customerName" /></td>
                                     </tr>
                                     <tr>
                                         <td>Customer Code:</td>

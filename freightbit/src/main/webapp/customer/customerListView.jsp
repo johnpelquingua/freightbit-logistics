@@ -20,8 +20,6 @@
 							<table class="table table-striped table-bordered text-center" id="customer-list">
 							  <thead>
 								<tr class="header_center">
-
-								  <th class="tb-font-black">Customer ID</th>
 								  <th class="tb-font-black">Customer Name</th>
 								  <th class="tb-font-black">Customer Type</th>
 								  <th class="tb-font-black">Email Address</th>
@@ -33,8 +31,6 @@
 							  <tbody>
                               <s:iterator value="customers" var="customer">
 								<tr>
-
-                                    <td class="tb-font-black"><s:property value="customerId" /></td>
                                     <td class="tb-font-black"><s:property value="customerName" /></td>
                                     <td class="tb-font-black"><s:property value="customerType" /></td>
                                     <td class="tb-font-black"><s:property value="email" /></td>

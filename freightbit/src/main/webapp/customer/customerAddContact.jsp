@@ -38,7 +38,7 @@
                         <div class="col-sm-10">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                          id="contact.lastName" required="true" maxLength="30" autofocus="true"
-                                         pattern="[a-zA-Z]+"
+                                         pattern="[a-zA-Z\s]+"
                                          title="Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
 
                         <div class="col-sm-10">
                             <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                         id="contact.firstName" maxLength="30" pattern="[a-zA-Z]+"
+                                         id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s]+"
                                          title="Name should not contain special characters and/or numbers."
                                          required="true"/>
                         </div>
@@ -57,7 +57,7 @@
 
                         <div class="col-sm-10">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                                         id="contact.middleName" maxLength="30" pattern="[a-zA-Z]+"
+                                         id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s]+"
                                          title="Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
