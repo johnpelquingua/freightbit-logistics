@@ -121,6 +121,9 @@ public class VendorAction extends ActionSupport implements Preparable {
         	addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
         	return INPUT;
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! New Vendor has been added.");
         	
         if ("TRUCKING".equals(vendor.getVendorType())) {
             return "TRUCKING";
@@ -152,6 +155,9 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
         	
         /*return SUCCESS;*/
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Vendor has been updated.");
 
         if ("TRUCKING".equals(vendor.getVendorType())) {
             return "TRUCKING";
@@ -200,6 +206,10 @@ public class VendorAction extends ActionSupport implements Preparable {
     public String deleteVendor() {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendorService.deleteVendor(vendorEntity);
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Vendor has been deleted.");
+
         return SUCCESS;
     }
     
@@ -663,6 +673,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
 
         return SUCCESS;
+
     }
 
     public String loadSaveCompleteContacts() {

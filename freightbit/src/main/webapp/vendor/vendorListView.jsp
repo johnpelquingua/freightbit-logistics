@@ -104,6 +104,22 @@
     </div>
 </div>
 <!-- /.row -->
+
+<%--<s:if test="hasActionMessages()">
+    &lt;%&ndash;<div class="row alert alert-success alert-dismissable">
+        <s:actionmessage/>
+    </div>&ndash;%&gt;
+    <div class="col-lg-10">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×</button>
+            <span class="fa fa-check"></span> <strong>Success Message</strong>
+            <hr class="message-inner-separator">
+            <s:actionmessage/>
+        </div>
+    </div>
+</s:if>--%>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">

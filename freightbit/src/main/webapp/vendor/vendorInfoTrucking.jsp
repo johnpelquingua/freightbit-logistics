@@ -78,6 +78,21 @@
     </div>
 </div><!-- /.row -->
 
+<s:if test="hasActionMessages()">
+    <%--<div class="row alert alert-success alert-dismissable">
+        <s:actionmessage/>
+    </div>--%>
+    <div class="col-lg-10">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×</button>
+            <span class="fa fa-check"></span> <strong>Success Message</strong>
+            <hr class="message-inner-separator">
+            <s:actionmessage/>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
 
     <div class="col-lg-6 col-lg-offset-2">
