@@ -310,6 +310,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasActionErrors())
             return INPUT;
         customerService.updateCustomer(transformToEntityBean(customer));
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Customer has been updated.");
+
         return SUCCESS;
 
     }
@@ -318,9 +322,11 @@ public class CustomerAction extends ActionSupport implements Preparable {
         validateOnSubmit(customer);
         if (hasFieldErrors())
             return INPUT;
-        Integer customerId = customerService.addCustomer(transformToEntityBean(customer));
-        /*Map sessionAttributes = ActionContext.getContext().getSession();
-        sessionAttributes.put("customerId", customerId);*/
+
+        customerService.addCustomer(transformToEntityBean(customer));
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! New Customer has been added.");
 
         return SUCCESS;
     }

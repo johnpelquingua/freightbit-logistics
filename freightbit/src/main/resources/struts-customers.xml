@@ -80,7 +80,8 @@
 
         <action name="editCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerEditExecute">
             <result name="input" type="tiles">customer.customerEdit.tiles</result>
-            <result name="success" type="redirect">loadSaveCompletePage</result>
+            <!--<result name="success" type="redirect">loadSaveCompletePage</result>-->
+            <result name="success" type="tiles">customer.customerInfo.tiles</result>
         </action>
 
         <!--items-->

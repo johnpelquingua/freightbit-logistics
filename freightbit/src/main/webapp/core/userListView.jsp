@@ -26,7 +26,7 @@
 							  <tbody>
 							  	<table>
 									<tr>
-									<display:table id="user" name="users" requestURI="/viewUsers.action" pagesize="2" class="table table-striped table-bordered text-center">	
+									<display:table id="user" name="users" requestURI="/viewUsers.action" pagesize="2" class="table table-striped table-bordered text-center">
 										<td><display:column property="title" title="Title" class="tb-font-black"/></td>	   
 									  	<td><display:column property="firstName" title="First Name"  sortable="true" class="tb-font-black"/></td>
 										<td><display:column property="lastName" title="Last Name"  sortable="true" class="tb-font-black"/></td>

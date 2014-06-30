@@ -611,6 +611,10 @@ public class VendorAction extends ActionSupport implements Preparable {
         for (Vessel vesselElem : vesselEntityList) {
             vessels.add(transformToFormBeanVessel(vesselElem));
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Vessels has been updated.");
+
         return SUCCESS;
     }
 

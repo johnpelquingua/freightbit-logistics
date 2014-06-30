@@ -138,7 +138,8 @@
         </action>
 
         <action name="loadSaveCompleteVessels" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteVessels">
-            <result name="success" type="tiles">vendor.vendorSaveCompleteVessels.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteVessels.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListVessels.tiles</result>
         </action>
 
         <!--driver-->

@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <!-- MIDDLE -->
+<%--
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header">Vessels</h1>
@@ -97,3 +98,105 @@
         </div>
     </div>
 </div>
+--%>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1>Vendor Module </h1>
+        <ol class="breadcrumb">
+            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><i class="fa fa-male"></i> Vendor</li>
+            <li class="active"><a href="<s:url action='viewVendors' />"> <i class="fa fa-list"></i> Vendor List</a></li>
+            <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor Profile</a></li>
+            <li class="active"><a href="<s:url action='viewVessels' />"> <i class="fa fa-anchor"></i> Vessels</a></li>
+            <li class="active"><i class="fa fa-pencil"></i> Edit Vessel</li>
+        </ol>
+
+    </div>
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-2">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit Vessel</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-responsive list-table">
+                    <s:form cssClass="form-horizontal" action="editVessels" theme="bootstrap">
+                        <div class="form-group">
+
+                            <label for="vessel.vesselNumber" class="col-sm-2 control-label">Vessel:</label>
+
+                            <div class="col-sm-10">
+                                <s:textfield cssClass="form-control" placeholder="Vessel Number" name="vessel.vesselNumber"
+                                             id="vessel.vesselNumber"/>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="vessel.vesselName" class="col-sm-2 control-label">Name:</label>
+
+                            <div class="col-sm-10">
+                                <s:textfield cssClass="form-control" placeholder="Vessel Name" name="vessel.vesselName"
+                                             id="vessel.vesselName"/>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="vessel.modelNumber" class="col-sm-2 control-label">Model:</label>
+
+                            <div class="col-sm-10">
+                                <s:textfield cssClass="form-control" placeholder="Model Number" name="vessel.modelNumber"
+                                             id="vessel.modelNumber"/>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="vessel.modelYear" class="col-sm-2 control-label">Year Model:</label>
+
+                            <div class="col-sm-10">
+                                <s:textfield cssClass="form-control" placeholder="Year Model" name="vessel.modelYear"
+                                             id="vessel.modelYear"/>
+                            </div>
+
+                        </div>
+
+                        <div class="pull-right">
+
+                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
+                        </div>
+
+                    </s:form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-2 col-lg-offset-2">
+        <div class="panel panel-primary">
+
+            <%--<div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list-ol"></i> Vendor Details</h3>
+            </div>--%>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
+                <li><a href="viewShippingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
+                <li><a href="#"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
+                <li class="active"><a href="viewVessels"><i class="fa fa-anchor fa-fw"></i> Vessels</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+</div><!-- /.row -->

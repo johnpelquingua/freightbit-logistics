@@ -141,7 +141,7 @@
                 <a href="loadAddShippingContact" class="icon-action-link" rel="tooltip" title="Add Vendor">
                     <img src="includes/images/add-user.png" class="icon-action circ-icon" style="position: relative; bottom: 15px;">
                 </a>
-            </span>
+                </span>
             </div>
 
             <div class="panel-body">
