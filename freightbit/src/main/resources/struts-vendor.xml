@@ -99,7 +99,8 @@
         </action>
 
         <action name="loadSaveCompleteTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteTrucks">
-            <result name="success" type="tiles">vendor.vendorSaveCompleteTrucks.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteTrucks.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListTrucks.tiles</result>
         </action>
 
         <action name="viewTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewTrucks">
@@ -170,7 +171,8 @@
         </action>
 
         <action name="loadSaveCompleteDrivers" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteDrivers">
-            <result name="success" type="tiles">vendor.vendorSaveCompleteDrivers.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteDrivers.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListDrivers.tiles</result>
         </action>
 
         <!--contact -->

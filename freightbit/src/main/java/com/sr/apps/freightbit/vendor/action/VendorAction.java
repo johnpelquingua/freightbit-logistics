@@ -342,6 +342,8 @@ public class VendorAction extends ActionSupport implements Preparable {
         for (Trucks truckElem : truckEntityList) {
             trucks.add(transformToFormBeanTrucks(truckElem));
         }
+        clearErrorsAndMessages();
+        addActionMessage("Success! Trucks has been updated.");
         return SUCCESS;
     }
 
@@ -427,8 +429,13 @@ public class VendorAction extends ActionSupport implements Preparable {
         for (Driver driverElem : driverEntityList) {
             drivers.add(transformToFormBeanDriver(driverElem));
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Drivers has been updated.");
+
         return SUCCESS;
     }
+
     public String viewDrivers() {
         List<Driver> driverEntityList = new ArrayList<Driver>();
 
