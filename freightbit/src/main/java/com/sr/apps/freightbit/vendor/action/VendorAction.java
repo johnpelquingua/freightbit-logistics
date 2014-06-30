@@ -725,9 +725,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         Contacts contactEntity = vendorService.findContactById(contactCodeParam);
         vendorService.deleteContact(contactEntity);
 
-        clearErrorsAndMessages();
-        addActionMessage("Success! Contact Persons has been updated.");
-
         return SUCCESS;
     }
 

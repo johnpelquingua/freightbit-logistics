@@ -194,8 +194,8 @@
         </action>
 
         <action name="deleteTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteContacts">
-            <!--<result name="success" type="redirect">viewVendorTruckingContacts</result>-->
-            <result name="success" type="redirect">loadSaveCompleteTruckingContact</result>
+            <result name="success" type="redirect">viewVendorTruckingContacts</result>
+
         </action>
 
         <action name="viewVendorTruckingContacts" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewContacts">
@@ -236,7 +236,8 @@
         </action>
 
         <action name="loadSaveCompleteShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteContacts">
-            <result name="success" type="tiles">vendor.vendorSaveCompleteShippingContacts.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteShippingContacts.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListShippingContact.tiles</result>
         </action>
 
         <!--address-->
