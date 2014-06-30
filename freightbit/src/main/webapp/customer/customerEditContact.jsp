@@ -66,7 +66,7 @@
 
                         <div class="col-sm-10">
                             <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
-                                         maxLength="7" required="true" pattern="[0-9]+"
+                                         maxLength="11" required="true" pattern="\d{11}"
                                          title="Phone should not contain special characters and/or letters."/>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                         <div class="col-sm-10">
                             <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
                                          maxLength="11" required="true"
-                                         pattern="[0-9]+"
+                                         pattern="\d{11}"
                                          title="Mobile should not contain special characters and/or letters."/>
                         </div>
                     </div>
