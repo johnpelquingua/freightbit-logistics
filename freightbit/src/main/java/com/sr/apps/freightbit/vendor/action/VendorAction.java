@@ -842,6 +842,10 @@ public class VendorAction extends ActionSupport implements Preparable {
         for (Address addressElem : addressEntityList) {
             addresss.add(transformToFormBeanAddress(addressElem));
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Address has been updated.");
+
         return SUCCESS;
     }
 

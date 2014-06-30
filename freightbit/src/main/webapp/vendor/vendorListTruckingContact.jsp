@@ -132,7 +132,7 @@
             <div class="panel-body">
 
                 <div class="table-responsive list-table">
-                    <table class="table table-striped table-bordered text-center">
+                    <table class="table table-striped table-bordered table-hover text-center">
                         <thead>
                         <tr class="header_center">
                             <%--<th class="tb-font-black">Contact Type</th>--%>

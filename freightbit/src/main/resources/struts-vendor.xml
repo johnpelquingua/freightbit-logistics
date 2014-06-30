@@ -183,7 +183,6 @@
         </action>
 
         <action name="addTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addContacts">
-            <!--<result name="success" type="redirect">loadSaveCompleteTruckingContact</result>-->
             <result name="success" type="redirect">loadSaveCompleteTruckingContact</result>
             <result name="input" type="tiles">vendor.vendorAddTruckingContact.tiles</result>
         </action>
@@ -297,11 +296,13 @@
         </action>
 
         <action name="loadSaveCompleteTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteAddress">
-            <result name="success" type="tiles">vendor.vendorSaveCompleteTruckingAddress.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteTruckingAddress.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListTruckingAddress.tiles</result>
         </action>
 
         <action name="loadSaveCompleteShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSaveCompleteAddress">
-            <result name="success" type="tiles">vendor.vendorSaveCompleteShippingAddress.tiles</result>
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteShippingAddress.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListShippingAddress.tiles</result>
         </action>
 
     </package>
