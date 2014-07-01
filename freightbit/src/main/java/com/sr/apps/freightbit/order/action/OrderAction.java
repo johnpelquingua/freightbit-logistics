@@ -62,6 +62,10 @@ public class OrderAction extends ActionSupport implements Preparable {
 		//orderBean.setBookingDate(new Date());
     return SUCCESS;
 	}
+
+    public String bookingSearch() {
+        return SUCCESS;
+    }
 	
 	public String addOrder() {
     	//validateOnSubmit(orderBean);
