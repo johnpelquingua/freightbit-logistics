@@ -22,19 +22,19 @@ import java.util.Set;
  */
 
 @Transactional
-public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao{
-//
+public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao {
+    //
     private static final Logger log = Logger.getLogger(UserDaoImpl.class);
     
     @Override
     public Integer addContact(Contacts contacts) {
         log.debug("adding a new contact");
-        try{
+        try {
             Session session = getSessionFactory().getCurrentSession();
             Integer contactId = (Integer)session.save(contacts);
             log.debug("add successful");
             return contactId;
-        } catch (RuntimeException re){
+        } catch (RuntimeException re) {
             log.error("add failed", re);
             throw re;
         }
@@ -54,7 +54,25 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao{
     }
 
     @Override
-   public void updateContact(Contacts contacts) {
+    public List<Contacts> findDuplicateContactByLastName(String lastName, Integer contactId) {
+        log.debug("Finding duplicate contact by contact lastName");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Contacts c where c.lastName= :lastName and c.contactId != :contactId");
+            query.setParameter("contactId", contactId);
+            query.setParameter("lastName", lastName);
+            List<Contacts> results = (List<Contacts>) query.list();
+            log.debug("Find Contact by lastName successful, result size: "
+                    + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            log.error("Find contact by lastName failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+    public void updateContact(Contacts contacts) {
         log.debug("updating a contact");
         try {
             Session session = getSessionFactory().getCurrentSession();
@@ -69,21 +87,21 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao{
     @Override
     public List<Contacts> findAllContacts() {
         log.debug("finding all contacts");
-        try{
+        try {
             //Query query = getSessionFactory().getCurrentSession().createQuery("from Contacts");
 
             return getSessionFactory().getCurrentSession().createQuery("from Contacts").list();
-        } catch (RuntimeException re){
+        } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;
         }
     }
 
     @Override
-    public Contacts findContactById(Integer id) {
-        log.debug("getting contact instance by id: " + id);
+    public Contacts findContactById(Integer contactId) {
+        log.debug("getting contact instance by id: " + contactId);
         try {
-            Contacts instance = (Contacts) getSessionFactory().getCurrentSession().get(Contacts.class, id);
+            Contacts instance = (Contacts) getSessionFactory().getCurrentSession().get(Contacts.class, contactId);
             if (instance == null) {
                 log.debug("get successful, no instance found");
             } else {
@@ -113,19 +131,19 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao{
 //    }
 
     @Override
-    public Contacts findContactByReferenceTableAndId(String referenceTable, Integer referenceId){
+    public Contacts findContactByReferenceTableAndId(String referenceTable, Integer referenceId) {
         Query query = getSessionFactory().getCurrentSession().createQuery(" from Contacts where referenceTable = :referenceTable and referenceId = :referenceId");
         query.setParameter("referenceTable", referenceTable);
         query.setParameter("referenceId", referenceId);
-        List <Contacts> contactsList = query.list();
+        List<Contacts> contactsList = query.list();
         if (contactsList != null && contactsList.size() > 0)
             return contactsList.get(0);
         else
             return null;
     }
-    
+
     @Override
-    public List <Contacts> findContactByRefTableAndIdAndType(String referenceTable, Integer referenceId, String contactType){
+    public List<Contacts> findContactByRefTableAndIdAndType(String referenceTable, Integer referenceId, String contactType) {
         Query query = getSessionFactory().getCurrentSession().createQuery(" from Contacts where referenceTable = :referenceTable and referenceId = :referenceId and contactType = :contactType");
         query.setParameter("referenceTable", referenceTable);
         query.setParameter("referenceId", referenceId);
@@ -137,52 +155,52 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao{
     public List<Contacts> findContactByReferenceId(Integer referenceId) {
         log.debug("Getting Contact instance by vendor id: " + referenceId);
 
-        try{
+        try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
                     "from Contacts c where c.referenceId = :referenceId ");
             query.setParameter("referenceId", referenceId);
             List<Contacts> results = (List<Contacts>) query.list();
             log.debug("Find by vendorId successful, result size: " + results.size());
             return results;
-        }catch(RuntimeException re){
+        } catch (RuntimeException re) {
             log.error("Get failed", re);
             throw re;
         }
     }
 
     @Override
-    public List<Contacts> findContactByLastName (String lastName){
+    public List<Contacts> findContactByLastName(String lastName) {
         log.debug("finding Contact instance by Last Name");
-        try{
+        try {
             Query query = getSessionFactory().getCurrentSession().createQuery("from Contact c where c.lastName = :lastName");
             query.setParameter("lastName", lastName);
             List<Contacts> results = (List<Contacts>) query.list();
             log.debug("find by lastname successful, result size: " + results.size());
             return results;
-        }catch(RuntimeException re) {
+        } catch (RuntimeException re) {
             log.error("find by lastname failed", re);
             throw re;
 
         }
     }
-    
+
     @Override
-    public List <Contacts> findContactsByParameterMap(Map <String, Object> paramMap, String entity) {
-    	Query query = getSessionFactory().getCurrentSession().createQuery(buildSearchCriteria(paramMap, entity));
-    	return query.list();
+    public List<Contacts> findContactsByParameterMap(Map<String, Object> paramMap, String entity) {
+        Query query = getSessionFactory().getCurrentSession().createQuery(buildSearchCriteria(paramMap, entity));
+        return query.list();
     }
-    
-    private String buildSearchCriteria(Map <String, Object> paramMap, String entity){
-    	StringBuilder queryString = new StringBuilder("from " + entity + " where ");
-    	Set<String> mapKeys = paramMap.keySet();
-    	int i=0;
-    	for (String mapKey : mapKeys) {
-    		if (i > 0)
-    			queryString.append(" and ");
-    		queryString.append(mapKey + " = '"+ paramMap.get(mapKey) +  "'");
-    		i++;
-    	}
-    	return queryString.toString();
+
+    private String buildSearchCriteria(Map<String, Object> paramMap, String entity) {
+        StringBuilder queryString = new StringBuilder("from " + entity + " where ");
+        Set<String> mapKeys = paramMap.keySet();
+        int i = 0;
+        for (String mapKey : mapKeys) {
+            if (i > 0)
+                queryString.append(" and ");
+            queryString.append(mapKey + " = '" + paramMap.get(mapKey) + "'");
+            i++;
+        }
+        return queryString.toString();
     }
 
 }
