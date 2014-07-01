@@ -144,7 +144,8 @@
         </action>
 
         <action name="loadSaveCompleteAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSaveCompleteAddress">
-            <result name="success" type="tiles">customer.customerSaveCompleteAddress.tiles</result>
+            <!--<result name="success" type="tiles">customer.customerSaveCompleteAddress.tiles</result>-->
+            <result name="success" type="tiles">customer.customerListAddress.tiles</result>
         </action>
 
         <!--rates-->
@@ -211,7 +212,9 @@
         </action>
 
         <action name="loadSaveCompleteContact" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSaveCompleteContacts">
-            <result name="success" type="tiles">customer.customerSaveCompleteContacts.tiles</result>
+            <!--<result name="success" type="tiles">customer.customerSaveCompleteContacts.tiles</result>-->
+            <result name="success" type="tiles">customer.customerListContact.tiles</result>
+
         </action>
 
         <!--consignee-->

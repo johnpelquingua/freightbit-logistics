@@ -15,7 +15,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "customers", catalog = "freightbit")
+@Table(name = "customers", catalog = "freightbit" , uniqueConstraints = @UniqueConstraint(columnNames = "customerId"))
 
 public class Customer implements java.io.Serializable {
 

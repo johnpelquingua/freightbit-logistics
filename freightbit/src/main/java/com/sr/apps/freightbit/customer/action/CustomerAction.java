@@ -20,6 +20,7 @@ import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.customer.entity.Rates;
+import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.customer.service.ItemService;
@@ -228,8 +229,16 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String customerInfo() {
-        Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
+
+        Customer customerEntity = new Customer();
+        if (!StringUtils.isBlank(customerCodeParam))
+            customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
+        else
+            customerEntity = customerService.findCustomerById(getCustomerSessionId());
         customer = transformToFormBean(customerEntity);
+
+        /*Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
+        customer = transformToFormBean(customerEntity);*/
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("customerId", customer.getCustomerId());
@@ -307,9 +316,21 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public String customerEditExecute() {
         validateOnSubmit(customer);
-        if (hasActionErrors())
+        if (hasActionErrors()) {
             return INPUT;
-        customerService.updateCustomer(transformToEntityBean(customer));
+        }
+
+        /*customerService.updateCustomer(transformToEntityBean(customer));*/
+
+        try {
+            Customer customerEntity = transformToEntityBean(customer);
+            customerEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            customerService.updateCustomer(customerEntity);
+
+        }catch (CustomerAlreadyExistsException e) {
+            addFieldError("customer.customerCode", getText("err.customerCode.already.exist") );
+            return INPUT;
+        }
 
         clearErrorsAndMessages();
         addActionMessage("Success! Customer has been updated.");
@@ -413,6 +434,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
         for (Address addressElem : addressEntityList) {
             addresss.add(transformToFormBeanAddress(addressElem));
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Address has been updated.");
+
         return SUCCESS;
     }
 
@@ -663,6 +688,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
         for (Contacts contactElem : contactEntityList) {
             contacts.add(transformToFormBeanContacts(contactElem));
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Contact Persons has been updated.");
+
         return SUCCESS;
     }
 
@@ -687,7 +716,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setEmail(contactBean.getEmail());
         entity.setCreatedTimestamp(new Date());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
-
+        entity.setModifiedTimestamp(new Date());
+        entity.setModifiedBy(commonUtils.getUserNameFromSession());
         return entity;
     }
 

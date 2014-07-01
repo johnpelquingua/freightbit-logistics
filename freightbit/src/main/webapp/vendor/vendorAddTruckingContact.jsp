@@ -159,50 +159,50 @@
 
                 </div>
 
-                    <div class="form-group">
-                        <label for="contact.lastName">Last Name</label>
-                        <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
-                                     id="contact.lastName"/>
+                <div class="form-group">
+                    <label for="contact.lastName">Last Name</label>
+                    <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
+                                 id="contact.lastName"/>
 
-                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="contact.firstName">Last Name</label>
-                        <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                     id="contact.firstName"/>
+                <div class="form-group">
+                    <label for="contact.firstName">Last Name</label>
+                    <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
+                                 id="contact.firstName"/>
 
-                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="contact.firstName">Middle Name</label>
-                        <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                                     id="contact.middleName"/>
+                <div class="form-group">
+                    <label for="contact.firstName">Middle Name</label>
+                    <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
+                                 id="contact.middleName"/>
 
-                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="contact.firstName">Phone</label>
-                        <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone"/>
+                <div class="form-group">
+                    <label for="contact.firstName">Phone</label>
+                    <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone"/>
 
-                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="contact.firstName">Mobile</label>
-                        <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile"/>
+                <div class="form-group">
+                    <label for="contact.firstName">Mobile</label>
+                    <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile"/>
 
-                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="contact.firstName">Fax</label>
-                        <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax"/>
+                <div class="form-group">
+                    <label for="contact.firstName">Fax</label>
+                    <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax"/>
 
-                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="contact.firstName">E-Mail</label>
-                        <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email"/>
+                <div class="form-group">
+                    <label for="contact.firstName">E-Mail</label>
+                    <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email"/>
 
-                    </div>
+                </div>
 
 
                         <%--<button class="btn btn-default">Cancel</button>--%>

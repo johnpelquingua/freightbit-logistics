@@ -118,7 +118,7 @@
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
             <li class="active"><a href="<s:url action='viewVendors' />"> <i class="fa fa-list"></i> Vendor List</a></li>
             <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor Profile</a></li>
-            <li class="active"><i class="fa fa-home"></i> Address</li>
+            <li class="active"><a href="<s:url action='viewTruckingAddress' />"> <i class="fa fa-home"></i> Address</a></li>
             <li class="active"><i class="fa fa-pencil"></i> Edit Address</li>
         </ol>
 

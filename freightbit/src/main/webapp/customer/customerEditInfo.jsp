@@ -134,6 +134,7 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="editCustomer">
+                    <s:hidden name="customer.customerId" value="%{customer.customerId}"/>
                     <div class="form-group">
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Company Name:</label>
