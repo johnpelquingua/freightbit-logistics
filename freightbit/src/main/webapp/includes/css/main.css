@@ -523,7 +523,7 @@ border-radius: 4px;
 box-shadow: 0 2px 3px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.07);
 }
 
-.panel-info>.panel-heading {
+.panel-primary > .panel-heading {
 color: white;
 text-shadow: 0 1px 1px #000;
 border-color: #eee;
@@ -546,6 +546,7 @@ background: -ms-linear-gradient(top, #5d6167 0%, #393939 100%);
 
 .panel {
   border-radius: 5px !important;
+  border-color: #eee;
 }
 
 .side-help{

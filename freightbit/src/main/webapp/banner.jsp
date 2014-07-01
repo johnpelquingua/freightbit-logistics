@@ -26,6 +26,24 @@
 
 <ul class="nav navbar-nav navbar-right navbar-user">
 
+    <li class="dropdown messages-dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Notifications <span class="badge">3</span> <b class="caret"></b></a>
+        <ul class="dropdown-menu" style="min-width: 220px;">
+
+            <li class="message-preview">
+                <a href="#">
+                    <span class="avatar"><img src="http://placehold.it/50x50"></span>
+                    <span class="name">John Smith:</span>
+                    <span class="message">3 New Bookings</span>
+                    <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
+                </a>
+            </li>
+
+
+
+        </ul>
+    </li>
+
     <li class="dropdown user-dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Super User <b class="caret"></b></a>
         <ul class="dropdown-menu">
@@ -36,5 +54,6 @@
             <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
         </ul>
     </li>
+
 
 </ul>

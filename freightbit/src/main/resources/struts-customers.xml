@@ -113,7 +113,8 @@
         </action>
 
         <action name="loadSaveCompleteItem" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSaveCompleteItem">
-            <result name="success" type="tiles">customer.customerSaveCompleteItems.tiles</result>
+            <!--<result name="success" type="tiles">customer.customerSaveCompleteItems.tiles</result>-->
+            <result name="success" type="tiles">customer.customerViewItems.tiles</result>
         </action>
         <!--address-->
 
@@ -158,7 +159,8 @@
         </action>
 
         <action name="loadSaveCompleteRates" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSaveCompleteRates">
-            <result name="success" type="tiles">customer.customerSaveCompleteRates.tiles</result>
+            <!--<result name="success" type="tiles">customer.customerSaveCompleteRates.tiles</result>-->
+            <result name="success" type="tiles">customer.customerListRates.tiles</result>
         </action>
 
         <action name="viewRates" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="viewRates">
@@ -245,7 +247,8 @@
         </action>
 
         <action name="loadSaveCompleteConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSaveCompleteConsignee">
-            <result name="success" type="tiles">customer.customerSaveCompleteConsignee.tiles</result>
+            <!--<result name="success" type="tiles">customer.customerSaveCompleteConsignee.tiles</result>-->
+            <result name="success" type="tiles">customer.customerListConsignee.tiles</result>
         </action>
 
         <action name="consigneeInfo" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="consigneeInfo">

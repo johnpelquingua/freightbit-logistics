@@ -22,10 +22,10 @@
         <div class="col-md-4 col-md-offset-4" style="margin-top: 250px;">
             <div class="panel panel-default">
                 <div class="panel-heading" style="font-size: 24px;">
-                    Sign-In
+                    <img src="includes/images/login.png" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
                 </div>
                 <s:actionerror />
-                <div class="panel-body">
+                <div class="panel-body" style="padding-bottom: 0px;">
                     <s:form class="form-horizontal" role="form" action="login" method="post" theme="bootstrap">
                         <div class="form-group">
                             <label class="col-sm-3 control-label" style="padding-top: 6px;">

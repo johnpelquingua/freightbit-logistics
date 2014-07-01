@@ -58,7 +58,7 @@
 
     <!-- Add custom CSS here -->
 
-    <link rel='stylesheet' href='includes/css/main.css'>
+    <link rel="stylesheet" href="includes/css/main.css">
     <link href="includes/css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="includes/font-awesome/css/font-awesome.min.css">
 
@@ -107,11 +107,13 @@
 
 <!-- Page Specific Plugins -->
 
-<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
-<!-- <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script> -->
-<!-- <script src="js/morris/chart-data-morris.js"></script> -->
+<%--<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>--%>
+
+<script src="includes/js/chart-data-morris.js"></script>
 <script src="includes/js/jquery.tablesorter.js"></script>
 <script src="includes/js/tables.js"></script>
+
 
 </body>
 </html>

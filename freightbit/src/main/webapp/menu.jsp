@@ -57,10 +57,10 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <ul class="nav navbar-nav side-nav">
-    <li class=""><a href="<s:url action='home' />"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="<s:url action='home' />"><i class="fa fa-dashboard"></i> Dashboard</a></li>
     <li><a href="<s:url action='viewOrders' />"><i class="fa fa-book"></i> Booking</a></li>
-    <li><a href="tables.html"><i class="fa fa-truck"></i> Operations</a></li>
-    <li><a href="forms.html"><i class="fa fa-edit"></i> Documentations</a></li>
+    <li><a href="#"><i class="fa fa-truck"></i> Operations</a></li>
+    <li><a href="#"><i class="fa fa-file-text"></i> Documentations</a></li>
 
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> Vendor <b class="caret"></b></a>

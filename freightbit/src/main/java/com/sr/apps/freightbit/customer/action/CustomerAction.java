@@ -128,6 +128,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
         for (Items itemsElem : itemEntityList) {
             items.add(transformToFormBeanItem(itemsElem));
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Items has been updated.");
+
         return SUCCESS;
     }
 
@@ -568,6 +572,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
         for (Rates ratesElem : ratesEntityList) {
             rates.add(transformToFormBeanRates(ratesElem));
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Rates has been updated.");
+
         return SUCCESS;
     }
 
@@ -808,6 +816,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
                 consignees.add(transformToFormBeanConsignee(addressList.get(i), contactsList.get(i)));
             }
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Consignee List has been updated.");
+
         return SUCCESS;
     }
 
