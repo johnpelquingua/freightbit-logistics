@@ -67,7 +67,8 @@
         <h1>Vendor Module </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><i class="fa fa-search"></i> Search</li>
+            <li class="active"><i class="fa fa-male"></i> Vendor</li>
+            <li class="active"><i class="fa fa-search"></i> Search Vendor</li>
         </ol>
 
     </div>
@@ -77,7 +78,7 @@
     <div class="col-lg-6 col-lg-offset-3">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-search"></i> Search</h3>
+                <h3 class="panel-title"><i class="fa fa-search"></i> Search Vendor</h3>
             </div>
             <div class="panel-body">
                 <s:form cssClass="form-horizontal" action="viewVendors" theme="bootstrap">
@@ -109,7 +110,7 @@
             </div>
 
             <div class="panel-footer">
-                <s:submit cssClass="btn btn-default pull-right" name="submit" value="Search"/>
+                <s:submit cssClass="btn btn-default btn-info pull-right" name="submit" value="Search"/>
             </div>
 
         </div>

@@ -18,9 +18,11 @@ public interface ContactsDao {
 
     public List<Contacts> findAllContacts();
 
-    public Contacts findContactById(Integer id);
+    public Contacts findContactById(Integer contactId);
 
 //    public List<Contacts> findAllContactsByClientId(long clientId);
+
+    public List<Contacts> findDuplicateContactByLastName(String lastName, Integer contactId);
 
     public Contacts findContactByReferenceTableAndId(String referenceTable, Integer referenceID);
     

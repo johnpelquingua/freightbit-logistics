@@ -27,7 +27,6 @@ public class VendorBean {
     private List<DriverBean> driverBeanList;
     private List<AddressBean> addressBeanList;
     private List<ContactBean> contactBeanList;
-    private OtherInformationBean otherInformationBean;
 
     public VendorBean() {
 
@@ -164,13 +163,5 @@ public class VendorBean {
 
     public void setContactBeanList(List<ContactBean> contactBeanList) {
         this.contactBeanList = contactBeanList;
-    }
-
-    public OtherInformationBean getOtherInformationBean() {
-        return otherInformationBean;
-    }
-
-    public void setOtherInformationBean(OtherInformationBean otherInformationBean) {
-        this.otherInformationBean = otherInformationBean;
     }
 }

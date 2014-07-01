@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+         pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
@@ -29,7 +29,7 @@
                         <div class="col-sm-10">
                             <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
                                       listKey="key" listValue="value" cssClass="form-control"
-                                      value="contact.contactType"/>
+                                      value="contact.contactType" emptyOption="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -37,7 +37,9 @@
 
                         <div class="col-sm-10">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
-                                         id="contact.lastName"/>
+                                         id="contact.lastName" required="true" maxLength="30" autofocus="true"
+                                         pattern="[a-zA-Z\s]+"
+                                         title="Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -45,7 +47,9 @@
 
                         <div class="col-sm-10">
                             <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                         id="contact.firstName"/>
+                                         id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s]+"
+                                         title="Name should not contain special characters and/or numbers."
+                                         required="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -53,35 +57,44 @@
 
                         <div class="col-sm-10">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                                         id="contact.middleName"/>
+                                         id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s]+"
+                                         title="Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="contact.phone" class="col-sm-2 control-label">Phone:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"/>
+                            <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
+                                         maxLength="11" required="true" pattern="\d{11}"
+                                         title="Phone should not contain special characters and/or letters."/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="contact.mobile" class="col-sm-2 control-label">Mobile:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"/>
+                            <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
+                                         maxLength="11" required="true"
+                                         pattern="\d{11}"
+                                         title="Mobile should not contain special characters and/or letters."/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="contact.fax" class="col-sm-2 control-label">Fax:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="contact.fax" name="contact.fax"/>
+                            <s:textfield cssClass="form-control" placeholder="contact.fax" name="contact.fax"
+                                         maxLength="11" pattern="[0-9]+"
+                                         title="Fax should not contain special characters and/or letters."/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="contact.email" class="col-sm-2 control-label">E-mail:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="contact.email" name="contact.email"/>
+                            <s:textfield cssClass="form-control" placeholder="contact.email" name="contact.email"
+                                         type="email" required="true"/>
                         </div>
                     </div>
                 </div>
@@ -100,7 +113,6 @@
 </div>
 
 
-
 <!-- END OF MAIN BOX -->
 
 <!-- SIDEBAR -->
@@ -114,13 +126,20 @@
         </div>
         <div class="panel-body">
             <ul class="nav">
-                <li><a href="customer-add.jsp" class="side-help"><img src="includes/images/1.png" class="img-sidehelp">Personal Information</a></li>
-                <li><a href="customer-add2.jsp" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Contact Person</a></li>
-                <li><a href="customer-add3.jsp" class="side-help"><img src="includes/images/3.png" class="img-sidehelp">Address</a></li>
-                <li><a href="customer-add4.jsp" class="side-help"><img src="includes/images/4.png" class="img-sidehelp">Items</a></li>
-                <li><a href="customer-add5.jsp" class="side-help"><img src="includes/images/5.png" class="img-sidehelp">Documents</a></li>
-                <li><a href="customer-add7.jsp" class="side-help"><img src="includes/images/6.png" class="img-sidehelp">Rates</a></li>
-                <li><a href="customer-add6.jsp" class="side-help"><img src="includes/images/7.png" class="img-sidehelp">Consignee Infomation</a></li>
+                <li><a href="customer-add.jsp" class="side-help"><img src="includes/images/1.png" class="img-sidehelp">Personal
+                    Information</a></li>
+                <li><a href="customer-add2.jsp" class="side-help"><img src="includes/images/2.png" class="img-sidehelp">Contact
+                    Person</a></li>
+                <li><a href="customer-add3.jsp" class="side-help"><img src="includes/images/3.png" class="img-sidehelp">Address</a>
+                </li>
+                <li><a href="customer-add4.jsp" class="side-help"><img src="includes/images/4.png" class="img-sidehelp">Items</a>
+                </li>
+                <li><a href="customer-add5.jsp" class="side-help"><img src="includes/images/5.png" class="img-sidehelp">Documents</a>
+                </li>
+                <li><a href="customer-add7.jsp" class="side-help"><img src="includes/images/6.png" class="img-sidehelp">Rates</a>
+                </li>
+                <li><a href="customer-add6.jsp" class="side-help"><img src="includes/images/7.png" class="img-sidehelp">Consignee
+                    Infomation</a></li>
             </ul>
         </div>
     </div>

@@ -66,44 +66,44 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> Vendor <b class="caret"></b></a>
 
         <ul class="dropdown-menu">
-            <li><a href="<s:url action='loadSearchVendorPage' />">Search Vendor</a></li>
-            <li><a href="<s:url action='loadAddVendorPage' />">Add Vendor</a></li>
+            <li><a href="<s:url action='loadSearchVendorPage' />"> <i class="fa fa-caret-right fa-fw"></i> Search Vendor</a></li>
+            <li><a href="<s:url action='loadAddVendorPage' />"> <i class="fa fa-caret-right fa-fw"></i> Add Vendor</a></li>
         </ul>
     </li>
 
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> Customer <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="<s:url action='loadSearchCustomerPage' />">Search Customer</a></li>
-            <li><a href="<s:url action='loadAddCustomerPage' />">Add Customer</a></li>
+            <li><a href="<s:url action='loadSearchCustomerPage' />"> <i class="fa fa-caret-right fa-fw"></i> Search Customer</a></li>
+            <li><a href="<s:url action='loadAddCustomerPage' />"> <i class="fa fa-caret-right fa-fw"></i> Add Customer</a></li>
         </ul>
     </li>
 
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Accounts <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="<s:url action='loadSearchUserPage' />">User</a></li>
-            <li><a href="<s:url action='viewGroups' />">Group</a></li>
-            <li><a href="<s:url action='viewPermissions' />">Permission</a></li>
+            <li><a href="<s:url action='loadSearchUserPage' />"> <i class="fa fa-caret-right fa-fw"></i> User</a></li>
+            <li><a href="<s:url action='viewGroups' />"> <i class="fa fa-caret-right fa-fw"></i> Group</a></li>
+            <li><a href="<s:url action='viewPermissions' />"> <i class="fa fa-caret-right fa-fw"></i> Permission</a></li>
         </ul>
     </li>
 
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-text-o"></i> Reports <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="#">Trucks</a></li>
-            <li><a href="#">Container</a></li>
-            <li><a href="#">Cargo</a></li>
-            <li><a href="#">Customer Relation</a></li>
-            <li><a href="#">Sales</a></li>
+            <li><a href="#"> <i class="fa fa-caret-right fa-fw"></i> Trucks</a></li>
+            <li><a href="#"> <i class="fa fa-caret-right fa-fw"></i> Container</a></li>
+            <li><a href="#"> <i class="fa fa-caret-right fa-fw"></i> Cargo</a></li>
+            <li><a href="#"> <i class="fa fa-caret-right fa-fw"></i> Customer Relation</a></li>
+            <li><a href="#"> <i class="fa fa-caret-right fa-fw"></i> Sales</a></li>
         </ul>
     </li>
 
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-money"></i> Finance <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="searchFinance">Search Finance</a></li>
-            <li><a href="addFinance">Add Finance</a></li>
+            <li><a href="searchFinance"> <i class="fa fa-caret-right fa-fw"></i> Search Finance</a></li>
+            <li><a href="addFinance"> <i class="fa fa-caret-right fa-fw"></i> Add Finance</a></li>
         </ul>
     </li>
 

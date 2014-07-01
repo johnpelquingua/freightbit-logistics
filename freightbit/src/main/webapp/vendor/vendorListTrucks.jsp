@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header" style="margin-left:-40px;">Trucks Module</h1>
 
@@ -35,7 +35,7 @@
                             <s:iterator value="trucks" var="truck">
 
                                 <tr>
-                                        <%--<input type="checkbox" />--%>
+                                        &lt;%&ndash;<input type="checkbox" />&ndash;%&gt;
                                     <td class="tb-font-black"><s:checkbox name="a" theme="simple"/></td>
                                     <td class="tb-font-black"><s:property value="truckCode"/></td>
                                     <td class="tb-font-black"><s:property value="plateNumber"/></td>
@@ -91,4 +91,125 @@
         </div>
     </div>
 
-</div>
+</div>--%>
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1>Vendor Module </h1>
+        <ol class="breadcrumb">
+            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><i class="fa fa-male"></i> Vendor</li>
+            <li class="active"><a href="<s:url action='viewVendors' />"> <i class="fa fa-list"></i> Vendor List</a></li>
+            <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor Profile</a></li>
+            <li class="active"><i class="fa fa-truck"></i> Trucks</li>
+        </ol>
+
+    </div>
+</div><!-- /.row -->
+
+<s:if test="hasActionMessages()">
+    <%--<div class="row alert alert-success alert-dismissable">
+        <s:actionmessage/>
+    </div>--%>
+    <div class="col-lg-10">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                ×</button>
+            <span class="fa fa-check"></span> <strong>Success Message</strong>
+            <hr class="message-inner-separator">
+            <s:actionmessage/>
+        </div>
+    </div>
+</s:if>
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading" style="padding-bottom: 0px;">
+                <h3 class="panel-title" style="position: relative; top: 10px;"><i class="fa fa-truck"></i> Trucks</h3>
+                <span class="pull-right">
+                <a href="loadAddTrucksPage" class="icon-action-link" rel="tooltip" title="Add Vendor">
+                    <img src="includes/images/add-user.png" class="icon-action circ-icon" style="position: relative; bottom: 15px;">
+                </a>
+                </span>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="table-responsive list-table">
+                    <table class="table table-striped table-bordered text-center table-hover">
+                        <thead>
+                        <tr class="header_center">
+
+                            <th class="tb-font-black" style="text-align: center;">Truck Code <i class="fa fa-sort"></i></th>
+                            <th class="tb-font-black" style="text-align: center;">Plate Number <i class="fa fa-sort"></i></th>
+                            <th class="tb-font-black" style="text-align: center;">Type <i class="fa fa-sort"></i></th>
+                            <th class="tb-font-black" style="text-align: center;">Model Number <i class="fa fa-sort"></i></th>
+                            <th class="tb-font-black" style="text-align: center;">Engine Number <i class="fa fa-sort"></i></th>
+                            <th class="tb-font-black" style="text-align: center;">Gross Weight <i class="fa fa-sort"></i></th>
+                            <th class="tb-font-black" style="text-align: center;">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <s:iterator value="trucks" var="truck">
+
+                            <tr>
+
+                                <td class="tb-font-black"><s:property value="truckCode"/></td>
+                                <td class="tb-font-black"><s:property value="plateNumber"/></td>
+                                <td class="tb-font-black"><s:property value="truckType"/></td>
+                                <td class="tb-font-black"><s:property value="modelNumber"/></td>
+                                <td class="tb-font-black"><s:property value="engineNumber"/></td>
+                                <td class="tb-font-black"><s:property value="grossWeight"/></td>
+                                <td class="tb-font-black">
+
+                                    <s:url var="editTruckUrl" action="loadEditTrucksPage">
+                                        <s:param name="truckCodeParam" value="truckCode"></s:param>
+
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{editTruckUrl}" rel="tooltip"
+                                         title="Edit this vendor">
+                                        <img src="includes/images/edit-user.png"
+                                             class="icon-action circ-icon"> </s:a>
+
+                                    <s:url var="deleteTruckUrl" action="deleteTrucks">
+                                        <s:param name="truckCodeParam" value="truckCode"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{deleteTruckUrl}" rel="tooltip"
+                                         title="Delete this Vendor"
+                                         onclick="return confirm('Do you really want to delete?');">
+                                        <img src="includes/images/remove-user.png"
+                                             class="icon-action circ-icon"> </s:a>
+                                </td>
+                            </tr>
+                        </s:iterator>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-footer">
+            <span class="pull-right"> <a href="loadAddTrucksPage"                                          class="icon-action-link" rel="tooltip" title="Add Vendor"><img
+                    src="includes/images/add-user.png" class="icon-action circ-icon">
+            </a>
+            </span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <div class="panel panel-primary">
+            <ul class="nav nav-pills nav-stacked">
+                <li ><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
+                <li><a href="viewTruckingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
+                <li><a href="viewVendorTruckingContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
+                <li><a href="viewDrivers"><i class="fa fa-group fa-fw"></i> Drivers</a></li>
+                <li class="active"><a href="viewTrucks"><i class="fa fa-truck fa-fw"></i> Trucks</a></li>
+            </ul>
+        </div>
+    </div>
+</div><!-- /.row -->
