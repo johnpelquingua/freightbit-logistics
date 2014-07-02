@@ -68,14 +68,16 @@
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
             <li class="active"><i class="fa fa-search"></i> Search Vendor</li>
         </ol>
+
     </div>
 </div><!-- /.row -->
+<br />
 
 <div class="row">
     <div class="col-lg-7 col-lg-offset-2" style="margin-left: 21% !important;">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-search"></i>Search</h3>
+                <h3 class="panel-title"><i class="fa fa-search"></i> Search</h3>
             </div>
             <div class="panel-body">
                 <s:form cssClass="form-horizontal" action="viewVendors" theme="bootstrap">

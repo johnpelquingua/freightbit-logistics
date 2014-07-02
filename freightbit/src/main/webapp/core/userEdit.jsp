@@ -122,12 +122,13 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>User Module </h1>
+        <h1>Accounts Module </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><i class="fa fa-user"></i> Accounts</li>
             <li class="active"><i class="fa fa-user"></i> User</li>
             <li class="active"><a href="<s:url action='viewUsers' />"> <i class="fa fa-list"></i> User List</a></li>
-            <li class="active"><i class="fa fa-plus"></i> Add New User</li>
+            <li class="active"><i class="fa fa-pencil"></i> Edit User</li>
         </ol>
 
     </div>
@@ -138,7 +139,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New User</h3>
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit User</h3>
             </div>
 
             <div class="panel-body">

@@ -32,10 +32,10 @@
 
             <li class="message-preview">
                 <a href="#">
-                    <span class="avatar"><img src="http://placehold.it/50x50"></span>
-                    <span class="name">John Smith:</span>
+                    <span class="avatar"><img alt="User Pic" src="includes/images/photo.png" class="img-circle" style="width:40px; "></span>
+                    <span class="name">Jan Ernest:</span>
                     <span class="message">3 New Bookings</span>
-                    <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
+
                 </a>
             </li>
 

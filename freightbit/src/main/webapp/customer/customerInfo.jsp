@@ -121,16 +121,10 @@
 </div><!-- /.row -->
 
 <s:if test="hasActionMessages()">
-    <%--<div class="row alert alert-success alert-dismissable">
-        <s:actionmessage/>
-    </div>--%>
-    <div class="col-lg-10">
+    <div class="col-lg-7">
         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                ×</button>
-            <span class="fa fa-check"></span> <strong>Success Message</strong>
-            <hr class="message-inner-separator">
-            <s:actionmessage/>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
 </s:if>
@@ -153,23 +147,23 @@
                         <table class="table table-user-information">
                             <tbody>
                             <tr>
-                                <td>Name:</td>
+                                <td style="font-weight: bold;">Name:</td>
                                 <td><s:property value="customer.customerName" /></td>
                             </tr>
                             <tr>
-                                <td>Customer Code:</td>
+                                <td style="font-weight: bold;">Customer Code:</td>
                                 <td><s:property value="customer.customerCode" /></td>
                             </tr>
                             <tr>
-                                <td>Customer Type:</td>
+                                <td style="font-weight: bold;">Customer Type:</td>
                                 <td><s:property value="customer.customerType" /></td>
                             </tr>
                             <tr>
-                                <td>Email:</td>
+                                <td style="font-weight: bold;">Email:</td>
                                 <td><s:property value="customer.email" /></td>
                             </tr>
                             <tr>
-                                <td>Contact Numbers:</td>
+                                <td style="font-weight: bold;">Contact Numbers:</td>
                                 <td>
                                     <s:property value="customer.phone" /> (Landline)<br><br><s:property value="customer.mobile" /> (Mobile)<br><br><s:property value="customer.fax" /> (Fax)
                                 </td>

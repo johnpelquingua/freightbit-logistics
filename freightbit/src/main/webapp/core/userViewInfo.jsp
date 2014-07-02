@@ -50,9 +50,10 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>User Module </h1>
+        <h1>Accounts Module </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><i class="fa fa-user"></i> Accounts</li>
             <li class="active"><i class="fa fa-user"></i> User</li>
             <li class="active"><a href="<s:url action='viewUsers' />"> <i class="fa fa-list"></i> User List</a></li>
             <li class="active"><i class="fa fa-info-circle"></i> User Profile</li>
@@ -62,16 +63,10 @@
 </div><!-- /.row -->
 
 <s:if test="hasActionMessages()">
-    <%--<div class="row alert alert-success alert-dismissable">
-        <s:actionmessage/>
-    </div>--%>
-    <div class="col-lg-10">
+    <div class="col-lg-7">
         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                ×</button>
-            <span class="fa fa-check"></span> <strong>Success Message</strong>
-            <hr class="message-inner-separator">
-            <s:actionmessage/>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">Ã—</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
 </s:if>
@@ -93,45 +88,45 @@
                         <table class="table table-user-information">
                             <tbody>
                             <tr>
-                                <td>User Type:</td>
+                                <td style="font-weight: bold;">User Type:</td>
                                 <td><s:property value="user.userType"/></td>
                             </tr>
                             <tr>
-                                <td>Last Name:</td>
+                                <td style="font-weight: bold;">Last Name:</td>
                                 <td><s:property value="user.lastName"/></td>
                             </tr>
                             <tr>
-                                <td>First Name:</td>
+                                <td style="font-weight: bold;">First Name:</td>
                                 <td><s:property value="user.firstName"/></td>
                             </tr>
 
                             <tr>
                             <tr>
-                                <td>Company:</td>
+                                <td style="font-weight: bold;">Company:</td>
                                 <td><s:property value="user.companyName"/></td>
                             </tr>
                             <tr>
-                                <td>Username:</td>
+                                <td style="font-weight: bold;">Username:</td>
                                 <td><s:property value="user.userName"/></td>
                             </tr>
                             <tr>
-                                <td>Password:</td>
-                                <td><s:property value="user.password"/></td>
+                                <td style="font-weight: bold;">Password:</td>
+                                <td ><s:property value="user.password"/></td>
                             </tr>
                             <tr>
-                                <td>Title:</td>
+                                <td style="font-weight: bold;">Title:</td>
                                 <td><s:property value="user.title"/></td>
                             </tr>
                             <tr>
-                                <td>E-mail:</td>
+                                <td style="font-weight: bold;">E-mail:</td>
                                 <td><s:property value="user.emailAddress"/></td>
                             </tr>
                             <tr>
-                                <td>Contact Number:</td>
+                                <td style="font-weight: bold;">Contact Number:</td>
                                 <td><s:property value="user.contactNumber"/></td>
                             </tr>
                             <tr>
-                                <td>Status:</td>
+                                <td style="font-weight: bold;">Status:</td>
                                 <td><s:property value="user.status"/></td>
                             </tr>
 

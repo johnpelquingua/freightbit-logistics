@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Rates Module</h1>
@@ -94,16 +95,10 @@
 
 
 <s:if test="hasActionMessages()">
-    <%--<div class="row alert alert-success alert-dismissable">
-        <s:actionmessage/>
-    </div>--%>
-    <div class="col-lg-10">
+    <div class="col-lg-7">
         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                ×</button>
-            <span class="fa fa-check"></span> <strong>Success Message</strong>
-            <hr class="message-inner-separator">
-            <s:actionmessage/>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
 </s:if>
@@ -119,7 +114,7 @@
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <table class="table table-striped table-bordered text-center table-hover" id="customer-list">
+                    <%--<table class="table table-striped table-bordered text-center table-hover" id="customer-list">
                         <thead>
                         <tr class="header_center">
                             <th class="tb-font-black" style="text-align: center;">Origin <i class="fa fa-sort"></i></th>
@@ -156,7 +151,39 @@
                             </tr>
                         </s:iterator>
                         </tbody>
-                    </table>
+                    </table>--%>
+
+                        <tbody>
+                            <table>
+                                <tr>
+                                    <display:table id="rate" name="rates" requestURI="/viewRates.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter" style="margin-top: 15px;">
+                                        <td><display:column property="origin" title="Origin" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="destination" title="Destination" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="rate" title="Rate" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="rateType" title="Rate Type" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td class="tb-font-black" style="text-align: center;">
+                                            <display:column title="Actions">
+                                                <s:url var="loadEditRatesUrl" action="loadEditRates">
+                                                    <s:param name="ratesIdParam" value="%{#attr.rate.customerRateId}"></s:param>
+                                                </s:url>
+                                                <s:a href="%{loadEditRatesUrl}" class="icon-action-link" rel="tooltip"
+                                                     title="Edit this Vendor Address"><img src="includes/images/edit-user.png"
+                                                                                           class="icon-action circ-icon"> </s:a>
+
+                                                <s:url var="deleteRatesUrl" action="deleteRates">
+                                                    <s:param name="ratesIdParam" value="%{#attr.rate.customerRateId}"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{deleteRatesUrl}" rel="tooltip"
+                                                     title="Delete this Vendor Address"
+                                                     onclick="return confirm('Do you really want to delete?');"><img
+                                                        src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                            </display:column>
+                                        </td>
+                                    </display:table>
+                                </tr>
+                            </table>
+                        </tbody>
+
                 </div>
             </div>
 
@@ -182,7 +209,7 @@
             </div>--%>
 
             <ul class="nav nav-pills nav-stacked">
-                <li><a href="#"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
+                <li><a href="customerInfo"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
                 <li><a href="viewAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
                 <li><a href="viewCustomerContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
                 <li><a href="viewItem"><i class="fa fa-list-ol fa-fw"></i> Items</a></li>

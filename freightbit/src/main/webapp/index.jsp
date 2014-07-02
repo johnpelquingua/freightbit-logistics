@@ -276,7 +276,7 @@
                            <span class="badge">1 hour ago</span>
                            <i class="fa fa-user"></i> A new user has been added
                        </a>
-                       <a href="#" class="list-group-item" style="border-radius:0px; ">>
+                       <a href="#" class="list-group-item" style="border-radius:0px; ">
                            <span class="badge">2 hours ago</span>
                            <i class="fa fa-book"></i> 6 New Bookings
                        </a>

@@ -103,17 +103,11 @@
 </div><!-- /.row -->
 
 <s:if test="hasActionMessages()">
-    <%--<div class="row alert alert-success alert-dismissable">
-        <s:actionmessage/>
-    </div>--%>
-    <div class="col-lg-10">
-    <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-            ×</button>
-        <span class="fa fa-check"></span> <strong>Success Message</strong>
-        <hr class="message-inner-separator">
-        <s:actionmessage/>
-    </div>
+    <div class="col-lg-7">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
     </div>
 </s:if>
 

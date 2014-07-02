@@ -182,6 +182,10 @@ public class GroupAction extends ActionSupport  {
     	Integer clientId = (Integer) sessionAttributes.get("clientId");
     	users = userService.findAllUsers(clientId);
     	removeMembersFromAllUsersList(groupMembers);
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Group has been updated.");
+
     	return SUCCESS;
     }
     

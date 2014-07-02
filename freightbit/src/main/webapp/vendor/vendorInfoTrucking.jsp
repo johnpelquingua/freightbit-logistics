@@ -79,16 +79,10 @@
 </div><!-- /.row -->
 
 <s:if test="hasActionMessages()">
-    <%--<div class="row alert alert-success alert-dismissable">
-        <s:actionmessage/>
-    </div>--%>
-    <div class="col-lg-10">
+    <div class="col-lg-7">
         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                ×</button>
-            <span class="fa fa-check"></span> <strong>Success Message</strong>
-            <hr class="message-inner-separator">
-            <s:actionmessage/>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
 </s:if>
@@ -113,25 +107,25 @@
                         <table class="table table-user-information">
                             <tbody>
                             <tr>
-                                <td>Company Name</td>
+                                <td style="font-weight: bold;">Company Name</td>
                                 <td><s:property value="vendor.vendorName"/></td>
                             </tr>
                             <tr>
-                                <td>Company Code</td>
+                                <td style="font-weight: bold;">Company Code</td>
                                 <td><s:property value="vendor.vendorCode"/></td>
                             </tr>
                             <tr>
-                                <td>Type</td>
+                                <td style="font-weight: bold;">Type</td>
                                 <td><s:property value="vendor.vendorType"/></td>
                             </tr>
 
                             <tr>
                             <tr>
-                                <td>Classification</td>
+                                <td style="font-weight: bold;">Classification</td>
                                 <td><s:property value="vendor.vendorClass"/></td>
                             </tr>
                             <tr>
-                                <td>Status</td>
+                                <td style="font-weight: bold;">Status</td>
                                 <td><s:property value="vendor.vendorStatus"/></td>
                             </tr>
 
@@ -165,7 +159,4 @@
     </div>
 
 </div>
-
-
-
 

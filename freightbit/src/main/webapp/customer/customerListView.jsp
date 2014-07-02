@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
     <%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         
 		<h1 class="page-header">Customer Profile</h1>
@@ -102,7 +103,7 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <table class="table table-striped table-bordered text-center table-hover" id="customer-list">
+                    <%--<table class="table table-striped table-bordered text-center table-hover" id="customer-list">
                         <thead>
                         <tr class="header_center">
                             <th class="tb-font-black" style="text-align: center;">Customer Name <i class="fa fa-sort"></i></th>
@@ -148,7 +149,38 @@
                             </tr>
                         </s:iterator>
                         </tbody>
-                    </table>
+                    </table>--%>
+
+                        <tbody>
+                            <table>
+                                <tr>
+                                    <display:table id="customer" name="customers" requestURI="/customerList.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter" style="margin-top: 15px;">
+                                        <td><display:column property="customerName" title="Customer Name" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="customerType" title="Customer Type" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="email" title="E-mail Address" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="website" title="Website" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="phone" title="Contact Number" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td class="tb-font-black" style="text-align: center;">
+                                            <display:column title="Actions">
+                                                <s:url var="editCustomerUrl" action="loadEditCustomerPage">
+                                                    <s:param name="customerCodeParam" value="#attr.customer.customerCode"></s:param>
+                                                </s:url>
+                                                <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip" title="Edit this Customer"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
+                                                <s:url var="deleteCustomerUrl" action="deleteCustomer">
+                                                    <s:param name="customerCodeParam" value="#attr.customer.customerCode"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip" title="Delete this Customer" onclick="return confirm('Do you really want to delete?');"><img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                                <s:url var="customerInfoUrl" action="customerInfo">
+                                                    <s:param name="customerCodeParam" value="#attr.customer.customerCode"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img src="includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
+                                            </display:column>
+                                        </td>
+                                    </display:table>
+                                </tr>
+                            </table>
+                        </tbody>
+
                 </div>
             </div>
             <div class="panel-footer">
