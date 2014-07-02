@@ -56,7 +56,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<ul class="nav navbar-nav side-nav">
+<ul class="nav navbar-nav side-nav" style=" width: 200px; ">
     <li><a href="<s:url action='home' />"><i class="fa fa-dashboard"></i> Dashboard</a></li>
     <li><a href="<s:url action='viewOrders' />"><i class="fa fa-book"></i> Booking</a></li>
     <li><a href="#"><i class="fa fa-truck"></i> Operations</a></li>

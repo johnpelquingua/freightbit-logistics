@@ -68,7 +68,7 @@
 
 <div id="wrapper">
 
-    <div id="page-wrapper">
+    <div id="page-wrapper" style=" margin-left: -15px; ">
 
     <!-- Sidebar -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

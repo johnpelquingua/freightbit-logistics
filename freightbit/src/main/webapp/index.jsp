@@ -183,7 +183,7 @@
 
 
 
-   <div class="row">
+   <div class="row" style=" margin-top: -15px; ">
        <div class="col-lg-12">
            <h1>Dashboard </h1>
            <ol class="breadcrumb">
@@ -195,7 +195,7 @@
    </div><!-- /.row -->
 
    <div class="row">
-       <div class="col-lg-4">
+       <div class="col-lg-6">
            <div class="panel panel-primary">
                <div class="panel-heading">
                    <h3 class="panel-title"><i class="fa fa-book"></i> New Booking</h3>
@@ -252,14 +252,14 @@
                </div>
            </div>
        </div>
-       <div class="col-lg-4">
+       <div class="col-lg-6">
            <div class="panel panel-primary">
                <div class="panel-heading">
                    <h3 class="panel-title"><i class="fa fa-clock-o"></i> Recent Activity</h3>
                </div>
-               <div class="panel-body">
+               <div class="panel-body" style=" margin-bottom: 18px; ">
                    <div class="list-group">
-                       <a href="#" class="list-group-item">
+                       <a href="#" class="list-group-item" style="border-radius:0px; ">
                            <span class="badge">just now</span>
                            <i class="fa fa-calendar"></i> Vessel Schedule updated
                        </a>
@@ -276,14 +276,14 @@
                            <span class="badge">1 hour ago</span>
                            <i class="fa fa-user"></i> A new user has been added
                        </a>
-                       <a href="#" class="list-group-item">
+                       <a href="#" class="list-group-item" style="border-radius:0px; ">>
                            <span class="badge">2 hours ago</span>
                            <i class="fa fa-book"></i> 6 New Bookings
                        </a>
-                       <a href="#" class="list-group-item">
+                     <%--  <a href="#" class="list-group-item">
                            <span class="badge">2 hours ago</span>
                            <i class="fa fa-file-text"></i> 3 Pending Documents
-                       </a>
+                       </a>--%>
 
                    </div>
                    <div class="text-right">
@@ -292,7 +292,11 @@
                </div>
            </div>
        </div>
-       <div class="col-lg-4">
+
+       <div clear="both"></div>
+
+
+       <div class="col-lg-12">
            <div class="panel panel-primary">
                <div class="panel-heading">
                    <h3 class="panel-title"><i class="fa fa-spin fa-spinner"></i> On-Going Transactions</h3>
