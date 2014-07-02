@@ -7,7 +7,7 @@
     <link rel='stylesheet" href="includes/css/mains.css'>
     <s:head />
 </head>
-<body style="background:url('includes/images/ernest1.jpg') no-repeat center center fixed; background-size:cover;">
+<body style="background:url('includes/images/ernestlogo.jpg') no-repeat center center fixed; background-size:cover;">
 <%--<div class="navbar navbar-fixed-top">
     <div class="navbar-inner" style="height: 80px; background: url('includes/images/background.jpg'); filter: none;">
         <div class="container">
