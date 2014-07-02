@@ -177,7 +177,7 @@
 
         </div>--%>
 
-		<!-- END OF THE MIDDLE -->
+		<!-- END OF THE MIDDvLE -->
 
 
 

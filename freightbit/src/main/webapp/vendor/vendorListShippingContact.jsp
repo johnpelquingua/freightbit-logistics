@@ -103,9 +103,9 @@
 </div>--%>
 
 <!-- END OF THE MIDDLE -->
-<div class="row">
+<div class="row" style="margin-top:-15px;">
     <div class="col-lg-12">
-        <h1>Vendor Module </h1>
+        <h1>Vendor Shipping Contacts </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
@@ -133,16 +133,12 @@
 </s:if>
 
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-7 col-lg-offset-2" style="margin-left: 0% !important;">
         <div class="panel panel-primary">
-
             <div class="panel-heading" >
                 <h3 class="panel-title" ><i class="fa fa-group"></i> Contact Persons</h3>
-
             </div>
-
             <div class="panel-body">
-
                 <div class="table-responsive list-table">
                     <%--<table class="table table-striped table-bordered text-center table-hover">
                         <thead>
@@ -251,7 +247,7 @@
         </div>
     </div>
 
-    <div class="col-lg-2">
+    <div class="col-lg-3 col-lg-offset-2">
         <div class="panel panel-primary">
 
             <%--<div class="panel-heading">

@@ -81,7 +81,7 @@
 <!-- CORE module tiles End-->
 
 <!-- VENDOR module tiles Begin -->
-    
+
     <definition name="vendor.vendorSearch.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Search Vendor"/>
         <put-attribute name="body"   value="/vendor/vendorSearch.jsp"/>
@@ -92,13 +92,58 @@
         <put-attribute name="body"   value="/vendor/vendorAdd.jsp"/>
     </definition>
 
+    <definition name="vendor.vendorAddTrucks.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Add New Trucks"/>
+        <put-attribute name="body"   value="/vendor/vendorAddTrucks.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorAddDriver.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Add New Driver"/>
+        <put-attribute name="body"   value="/vendor/vendorAddDriver.jsp"/>
+    </definition>
+
     <definition name="vendor.vendorListView.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Vendor List"/>
+        <put-attribute name="title"  value="View Vendor List"/>
         <put-attribute name="body"   value="/vendor/vendorListView.jsp"/>
     </definition>
 
+    <definition name="vendor.vendorListTruckingContact.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Contact List"/>
+        <put-attribute name="body"   value="/vendor/vendorListTruckingContact.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorListShippingAddress.tiles" extends="baseLayout" >
+        <put-attribute name="title" value="Vendor List Shipping Address"/>
+        <put-attribute name="body" value="/vendor/vendorListShippingAddress.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorListVessels.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor List Vessels"/>
+        <put-attribute name="body"   value="/vendor/vendorListVessels.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorListDrivers.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor List Drivers"/>
+        <put-attribute name="body"   value="/vendor/vendorListDrivers.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorListTruckingAddress.tiles" extends="baseLayout" >
+        <put-attribute name="title" value="Vendor List Trucking Address"/>
+        <put-attribute name="body" value="/vendor/vendorListTruckingAddress.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorListShippingContact.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Contact List"/>
+        <put-attribute name="body"   value="/vendor/vendorListShippingContact.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorListTrucks.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor List Trucks"/>
+        <put-attribute name="body"   value="/vendor/vendorListTrucks.jsp"/>
+    </definition>
+
     <definition name="vendor.vendorSaveComplete.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Save Complete!"/>
+        <put-attribute name="title"  value="Vendor Save Complete!"/>
         <put-attribute name="body"   value="/vendor/vendorSaveComplete.jsp"/>
     </definition>
 
@@ -107,46 +152,9 @@
         <put-attribute name="body"   value="/vendor/vendorEdit.jsp"/>
     </definition>
 
-    <definition name="vendor.vendorInfoTrucking.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Vendor Information"/>
-        <put-attribute name="body"   value="/vendor/vendorInfoTrucking.jsp"/>
-    </definition>
-
-    <definition name="vendor.vendorInfoShipping.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Vendor Information"/>
-        <put-attribute name="body"   value="/vendor/vendorInfoShipping.jsp"/>
-    </definition>
-
-
-    <definition name="vendor.vendorAddTrucks.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Add New Trucks"/>
-        <put-attribute name="body"   value="/vendor/vendorAddTrucks.jsp"/>
-    </definition>
-
     <definition name="vendor.vendorEditTrucks.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Edit Trucks"/>
         <put-attribute name="body"   value="/vendor/vendorEditTrucks.jsp"/>
-    </definition>
-
-    <definition name="vendor.vendorListTrucks.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Edit Vendor"/>
-        <put-attribute name="body"   value="/vendor/vendorListTrucks.jsp"/>
-    </definition>
-
-    <definition name="vendor.vendorSaveCompleteTrucks.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Edit Vendor"/>
-        <put-attribute name="body"   value="/vendor/vendorSaveCompleteTrucks.jsp"/>
-    </definition>
-
-
-    <definition name="vendor.vendorListDrivers.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Driver List"/>
-        <put-attribute name="body"   value="/vendor/vendorListDrivers.jsp"/>
-    </definition>
-
-    <definition name="vendor.vendorAddDriver.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Add New Driver"/>
-        <put-attribute name="body"   value="/vendor/vendorAddDriver.jsp"/>
     </definition>
 
     <definition name="vendor.vendorEditDriver.tiles" extends="baseLayout">
@@ -154,25 +162,39 @@
         <put-attribute name="body"   value="/vendor/vendorEditDriver.jsp"/>
     </definition>
 
-    <definition name="vendor.vendorSaveCompleteDrivers.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Edit Vendor"/>
-        <put-attribute name="body"   value="/vendor/vendorSaveCompleteDrivers.jsp"/>
-    </definition>
-
-
     <definition name="vendor.vendorEditVessels.tiles" extends="baseLayout">
         <put-attribute name="title"  value="Edit Vessels"/>
         <put-attribute name="body"   value="/vendor/vendorEditVessels.jsp"/>
     </definition>
 
-    <definition name="vendor.vendorListVessels.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Edit Vendor"/>
-        <put-attribute name="body"   value="/vendor/vendorListVessels.jsp"/>
+    <definition name="vendor.vendorInfoTrucking.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Info Trucking"/>
+        <put-attribute name="body"   value="/vendor/vendorInfoTrucking.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorInfoShipping.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Vendor Info Shipping"/>
+        <put-attribute name="body"   value="/vendor/vendorInfoShipping.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorSaveCompleteTrucks.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Trucks Successfully Saved!"/>
+        <put-attribute name="body"   value="/vendor/vendorSaveCompleteTrucks.jsp"/>
     </definition>
 
     <definition name="vendor.vendorSaveCompleteVessels.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Edit Vendor"/>
+        <put-attribute name="title"  value="Vessels Successfully Saved!"/>
         <put-attribute name="body"   value="/vendor/vendorSaveCompleteVessels.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorSaveCompleteDrivers.tiles" extends="baseLayout">
+        <put-attribute name="title"  value="Drivers Successfully Saved!"/>
+        <put-attribute name="body"   value="/vendor/vendorSaveCompleteDrivers.jsp"/>
+    </definition>
+
+    <definition name="vendor.vendorSaveCompleteShippingAddress.tiles" extends="baseLayout" >
+        <put-attribute name="title" value="Shipping Address Successfully Saved!"/>
+        <put-attribute name="body" value="/vendor/vendorSaveCompleteShippingAddress.jsp"/>
     </definition>
 
     <definition name="vendor.vendorAddVessels.tiles" extends="baseLayout">
@@ -180,87 +202,59 @@
         <put-attribute name="body"   value="/vendor/vendorAddVessels.jsp"/>
     </definition>
 
-
     <definition name="vendor.vendorAddTruckingContact.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Add Contact Person"/>
+        <put-attribute name="title"  value="Add Trucking Contact"/>
         <put-attribute name="body"   value="/vendor/vendorAddTruckingContact.jsp"/>
     </definition>
 
     <definition name="vendor.vendorEditTruckingContact.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Edit Contact Person"/>
+        <put-attribute name="title"  value="Edit Trucking Contact"/>
         <put-attribute name="body"   value="/vendor/vendorEditTruckingContact.jsp"/>
     </definition>
 
-    <definition name="vendor.vendorListTruckingContact.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Contact List"/>
-        <put-attribute name="body"   value="/vendor/vendorListTruckingContact.jsp"/>
-    </definition>
-
     <definition name="vendor.vendorAddShippingContact.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Add Contact Person"/>
+        <put-attribute name="title"  value="Add Shipping Contact"/>
         <put-attribute name="body"   value="/vendor/vendorAddShippingContact.jsp"/>
     </definition>
 
     <definition name="vendor.vendorEditShippingContact.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Edit Contact Person"/>
+        <put-attribute name="title"  value="Edit Shipping Contact"/>
         <put-attribute name="body"   value="/vendor/vendorEditShippingContact.jsp"/>
     </definition>
 
-    <definition name="vendor.vendorListShippingContact.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Contact List"/>
-        <put-attribute name="body"   value="/vendor/vendorListShippingContact.jsp"/>
-    </definition>
-
     <definition name="vendor.vendorSaveCompleteTruckingContacts.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Contact List"/>
+        <put-attribute name="title"  value="Trucking Contact Successfully Saved!"/>
         <put-attribute name="body"   value="/vendor/vendorSaveCompleteTruckingContacts.jsp"/>
     </definition>
 
     <definition name="vendor.vendorSaveCompleteShippingContacts.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Contact List"/>
+        <put-attribute name="title"  value="Shipping Contact Successfully Saved!"/>
         <put-attribute name="body"   value="/vendor/vendorSaveCompleteShippingContacts.jsp"/>
     </definition>
 
-
-    <definition name="vendor.vendorListTruckingAddress.tiles" extends="baseLayout" >
-        <put-attribute name="title" value="Vendor Address"/>
-        <put-attribute name="body" value="/vendor/vendorListTruckingAddress.jsp"/>
-    </definition>
-
     <definition name="vendor.vendorAddTruckingAddress.tiles" extends="baseLayout" >
-        <put-attribute name="title" value="Vendor Address"/>
+        <put-attribute name="title" value="Add Trucking Address"/>
         <put-attribute name="body" value="/vendor/vendorAddTruckingAddress.jsp"/>
     </definition>
 
     <definition name="vendor.vendorEditTruckingAddress.tiles" extends="baseLayout" >
-        <put-attribute name="title" value="Vendor Address"/>
+        <put-attribute name="title" value="Edit Trucking Address"/>
         <put-attribute name="body" value="/vendor/vendorEditTruckingAddress.jsp"/>
     </definition>
 
     <definition name="vendor.vendorSaveCompleteTruckingAddress.tiles" extends="baseLayout" >
-        <put-attribute name="title" value="Vendor Address"/>
+        <put-attribute name="title" value="Trucking Address Successfully Saved!"/>
         <put-attribute name="body" value="/vendor/vendorSaveCompleteTruckingAddress.jsp"/>
     </definition>
 
-
-    <definition name="vendor.vendorListShippingAddress.tiles" extends="baseLayout" >
-        <put-attribute name="title" value="Vendor Address"/>
-        <put-attribute name="body" value="/vendor/vendorListShippingAddress.jsp"/>
-    </definition>
-
     <definition name="vendor.vendorAddShippingAddress.tiles" extends="baseLayout" >
-        <put-attribute name="title" value="Vendor Address"/>
+        <put-attribute name="title" value="Add Shipping Address"/>
         <put-attribute name="body" value="/vendor/vendorAddShippingAddress.jsp"/>
     </definition>
 
     <definition name="vendor.vendorEditShippingAddress.tiles" extends="baseLayout" >
-        <put-attribute name="title" value="Vendor Address"/>
+        <put-attribute name="title" value="Edit Shipping Address"/>
         <put-attribute name="body" value="/vendor/vendorEditShippingAddress.jsp"/>
-    </definition>
-
-    <definition name="vendor.vendorSaveCompleteShippingAddress.tiles" extends="baseLayout" >
-        <put-attribute name="title" value="Vendor Address"/>
-        <put-attribute name="body" value="/vendor/vendorSaveCompleteShippingAddress.jsp"/>
     </definition>
 
 <!-- VENDOR module tiles END -->

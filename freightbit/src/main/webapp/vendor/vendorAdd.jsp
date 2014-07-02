@@ -85,9 +85,9 @@
 </div>--%>
 <!-- END OF THE MIDDLE -->
 
-<div class="row">
+<div class="row" style="margin-top:-15px;">
     <div class="col-lg-12">
-        <h1>Vendor Module </h1>
+        <h1>Add New Vendor </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
@@ -98,12 +98,12 @@
     </div>
 </div><!-- /.row -->
 
-<div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
+<div class="row" >
+    <div class="col-lg-7 col-lg-offset-2" style="margin-left: 21% !important;">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New Vendor</h3>
+                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New</h3>
             </div>
 
             <div class="panel-body">
@@ -111,7 +111,7 @@
 
                     <s:form cssClass="form-horizontal" action="addVendor" method="POST" theme="bootstrap">
                     <div class="form-group">
-                        <label class="col-sm-1 control-label" for="vendor.vendorType">Type:</label>
+                        <label class="col-sm-1 control-label" for="vendor.vendorType">Type</label>
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
                                       listKey="key" listValue="value" cssClass="form-control"
@@ -119,28 +119,28 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="vendor.vendorName" class="col-sm-1 control-label">Company:</label>
+                        <label for="vendor.vendorName" class="col-sm-1 control-label">Company</label>
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
                                          id="vendor.vendorName"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="vendor.vendorCode" class="col-sm-1 control-label">Code:</label>
+                        <label for="vendor.vendorCode" class="col-sm-1 control-label">Code</label>
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:textfield cssClass="form-control" name="vendor.vendorCode" id="vendor.vendorCode"
                                          placeholder="Code"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="vendor.vendorClass" class="col-sm-1 control-label">Class:</label>
+                        <label for="vendor.vendorClass" class="col-sm-1 control-label">Class</label>
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:select list="vendorClassList" listKey="key" listValue="value" cssClass="form-control"
                                       id="vendor.vendorClass" name="vendor.vendorClass"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="vendor.vendorStatus" class="col-sm-1 control-label">Status:</label>
+                        <label for="vendor.vendorStatus" class="col-sm-1 control-label">Status</label>
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:select list="statusList" listKey="key" listValue="value" cssClass="form-control"
                                       id="vendor.vendorStatus" name="vendor.vendorStatus"/>

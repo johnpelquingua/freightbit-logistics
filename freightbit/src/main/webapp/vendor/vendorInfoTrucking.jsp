@@ -65,9 +65,9 @@
 
 
 
-<div class="row">
+<div class="row" style="margin-top:-15px;">
     <div class="col-lg-12">
-        <h1>Vendor Module </h1>
+        <h1>Vendor Info Trucking</h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
@@ -95,14 +95,14 @@
 
 <div class="row">
 
-    <div class="col-lg-6 col-lg-offset-2">
+    <div class="col-lg-7 col-lg-offset-2" style="margin-left: 0% !important;">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-info-circle"></i> Vendor Profile</h3>
+                <h3 class="panel-title"><i class="fa fa-info-circle"></i> Vendor Trucking Profile</h3>
             </div>
 
-            <div class="panel-body">
+            <div class="panel-body" style=" margin-bottom: -20px; ">
 
                 <s:set name="vendorId" value="%{vendor.vendorId}" scope="session"/>
 
@@ -113,25 +113,25 @@
                         <table class="table table-user-information">
                             <tbody>
                             <tr>
-                                <td>Company Name:</td>
+                                <td>Company Name</td>
                                 <td><s:property value="vendor.vendorName"/></td>
                             </tr>
                             <tr>
-                                <td>Company Code:</td>
+                                <td>Company Code</td>
                                 <td><s:property value="vendor.vendorCode"/></td>
                             </tr>
                             <tr>
-                                <td>Type:</td>
+                                <td>Type</td>
                                 <td><s:property value="vendor.vendorType"/></td>
                             </tr>
 
                             <tr>
                             <tr>
-                                <td>Classification:</td>
+                                <td>Classification</td>
                                 <td><s:property value="vendor.vendorClass"/></td>
                             </tr>
                             <tr>
-                                <td>Status:</td>
+                                <td>Status</td>
                                 <td><s:property value="vendor.vendorStatus"/></td>
                             </tr>
 
@@ -145,7 +145,7 @@
         </div>
     </div>
 
-    <div class="col-lg-2 col-lg-offset-2">
+    <div class="col-lg-3 col-lg-offset-2">
         <div class="panel panel-primary">
 
         <%--<div class="panel-heading">
