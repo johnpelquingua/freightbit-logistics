@@ -83,9 +83,9 @@
 
 
 
-<div class="row">
+<div class="row" style="margin-top:-15px;">
     <div class="col-lg-12">
-        <h1>Customer Module </h1>
+        <h1>Customer List </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
@@ -97,13 +97,8 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
-            <div class="panel-heading" style="padding-bottom: 0px; padding-top: 0px">
-                <h3 class="panel-title" style="position: relative; top: 15px;"><i class="fa fa-list"></i> Customer List</h3>
-            <span class="pull-right">
-            <a href="loadAddCustomerPage" class="icon-action-link" rel="tooltip" title="Add Customer">
-                <img src="includes/images/add-user.png" class="icon-action circ-icon" style="position: relative; bottom: 10px;">
-            </a>
-            </span>
+            <div class="panel-heading">
+                <h3 class="panel-title" style="position: relative; top: 2px;"><i class="fa fa-list"></i> Customer List</h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">

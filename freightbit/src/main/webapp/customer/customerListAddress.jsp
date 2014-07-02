@@ -87,9 +87,9 @@
 
 
 
-<div class="row">
+<div class="row" style="margin-top: -15px;">
     <div class="col-lg-12">
-        <h1>Customer Module </h1>
+        <h1>Customer List Address </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
@@ -120,13 +120,9 @@
     <div class="col-lg-10">
         <div class="panel panel-primary">
 
-            <div class="panel-heading" style="padding-bottom: 0px;">
-                <h3 class="panel-title" style="position: relative; top: 10px;"><i class="fa fa-home"></i> Address</h3>
-                <span class="pull-right">
-                <a href="loadAddAddress" class="icon-action-link" rel="tooltip" title="Add Vendor">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon" style="position: relative; bottom: 15px;">
-                </a>
-                </span>
+            <div class="panel-heading">
+                <h3 class="panel-title" style="position: relative; top: 2px;"><i class="fa fa-home"></i> Address</h3>
+
             </div>
 
             <div class="panel-body">
@@ -205,7 +201,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="#"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
                 <li class="active"><a href="viewAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li><a href="viewCustomerContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
+                <li><a href="viewCustomerContacts"><i class="fa fa-group fa-fw"></i> Contacts</a></li>
                 <li><a href="viewItem"><i class="fa fa-list-ol fa-fw"></i> Items</a></li>
                 <li><a href="viewRates"><i class="fa fa-money fa-fw"></i> Rates</a></li>
                 <li><a href="viewConsignees"><i class="fa fa-list fa-fw"></i> Consignee List</a></li>

@@ -93,10 +93,9 @@
 
 </div>--%>
 
-
-<div class="row">
+<div class="row" style="margin-top: -15px;">
     <div class="col-lg-12">
-        <h1>Customer Module </h1>
+        <h1>Customer List Items </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
@@ -115,7 +114,7 @@
     <div class="col-lg-10">
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                ×</button>
+                ï¿½</button>
             <span class="fa fa-check"></span> <strong>Success Message</strong>
             <hr class="message-inner-separator">
             <s:actionmessage/>
@@ -128,13 +127,9 @@
     <div class="col-lg-10">
         <div class="panel panel-primary">
 
-            <div class="panel-heading" style="padding-bottom: 0px;">
-                <h3 class="panel-title" style="position: relative; top: 10px;"><i class="fa fa-list-ol"></i> Items</h3>
-                <span class="pull-right">
-                <a href="loadAddItem" class="icon-action-link" rel="tooltip" title="Add Vendor">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon" style="position: relative; bottom: 15px;">
-                </a>
-                </span>
+            <div class="panel-heading"  >
+                <h3 class="panel-title" style="position: relative; top: 2px;"><i class="fa fa-list-ol"></i> Items</h3>
+
             </div>
 
             <div class="panel-body">

@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" style="width:25%;">Address Line 1</label>
+                        <label class="col-sm-2 control-label" style="width:25%;">Address Line 1*</label>
 
                         <div class="col-sm-10" style="width:70%;">
                             <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control"/>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" style="width:25%;">City</label>
+                        <label class="col-sm-2 control-label" style="width:25%;">City*</label>
 
                         <div class="col-sm-10" style="width:70%;">
                             <s:textfield name="address.city" id="address.city" cssClass="form-control"/>
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" style="width:25%;">State</label>
+                        <label class="col-sm-2 control-label" style="width:25%;">State*</label>
 
                         <div class="col-sm-10" style="width:70%;">
                             <s:textfield name="address.state" id="address.state" cssClass="form-control"/>
@@ -63,10 +63,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" style="width:25%;">Zip Code</label>
+                        <label class="col-sm-2 control-label" style="width:25%;">Zip Code*</label>
 
                         <div class="col-sm-10" style="width:70%;">
-                            <s:textfield name="address.zip" id="address.zip" cssClass="form-control"/>
+                            <s:textfield name="addressZip" id="address.zip" cssClass="form-control"/>
                         </div>
                     </div>
                 </div>
