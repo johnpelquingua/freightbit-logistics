@@ -3,12 +3,12 @@
 <html>
 <head>
     <title>Ernest Login Page</title>
-    <link rel='stylesheet' href='includes/css/bootstrap.css'>
-    <link rel='stylesheet" href="includes/css/main.css'>
+    <link rel='stylesheet' href='includes/css/bootstraps.css'>
+    <link rel='stylesheet" href="includes/css/mains.css'>
     <s:head />
 </head>
 <body style="background:url('includes/images/ernest1.jpg') no-repeat center center fixed; background-size:cover;">
-<div class="navbar navbar-fixed-top">
+<%--<div class="navbar navbar-fixed-top">
     <div class="navbar-inner" style="height: 80px; background: url('includes/images/background.jpg'); filter: none;">
         <div class="container">
             <brand>
@@ -16,16 +16,16 @@
             </brand>
         </div>
     </div>
-</div>
+</div>--%>
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4" style="margin-top: 250px;">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="font-size: 24px;">
-                    <img src="includes/images/login.png" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+        <div class="col-md-4 col-md-offset-4" style="margin-top: 165px;">
+            <div class="panel panel-default" style="border-color:#000 !important;">
+                <div class="panel-heading" style="font-size: 24px;background-color: #000;">
+                    <img src="includes/images/ernest-logo_2.png" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
                 </div>
                 <s:actionerror />
-                <div class="panel-body" style="padding-bottom: 0px;">
+                <div class="panel-body" style="margin-bottom: -30px;">
                     <s:form class="form-horizontal" role="form" action="login" method="post" theme="bootstrap">
                         <div class="form-group">
                             <label class="col-sm-3 control-label" style="padding-top: 6px;">
@@ -53,14 +53,14 @@
                         </div>
                         <div class="form-group last">
                             <div class="col-sm-offset-9 ">
-                                <s:submit cssClass="btn btn-info btn-sm" method="execute" value="Login" />
+                                <s:submit cssClass="btn btn-info btn-sm" method="execute" value="Login" style=" color: #eac117; background-color: #000; border-color: #ddd; margin-left: 5px; padding: 5px 15px 5px 15px;" />
                             </div>
                         </div>
                     </s:form>
                 </div>
-                <div class="white navbar-fixed-bottom" style="padding-top: 20px; height: 80px; background: url('includes/images/background.jpg');">
+                <%--<div class="white navbar-fixed-bottom" style="padding-top: 20px; height: 80px; background: url('includes/images/background.jpg');">
 
-                </div>
+                </div>--%>
             </div>
         </div>
     </div>

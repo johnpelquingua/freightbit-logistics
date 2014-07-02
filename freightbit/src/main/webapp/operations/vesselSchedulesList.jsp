@@ -9,9 +9,9 @@
     <title>Vessel Schedules</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstraps-min.css" rel="stylesheet">
 
-	<link href="css/main.css" rel="stylesheet">
+	<link href="css/mains.css" rel="stylesheet">
 	
 	<link href="css/jojo.css" rel="stylesheet">
 

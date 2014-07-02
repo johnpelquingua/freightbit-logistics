@@ -9,10 +9,10 @@
     <title>Vessel Schedules</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstraps-min.css" rel="stylesheet">
 
 
-    <link href="css/main.css" rel="stylesheet">
+    <link href="css/mains.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->

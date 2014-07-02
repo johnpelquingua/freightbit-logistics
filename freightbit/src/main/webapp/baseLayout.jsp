@@ -54,11 +54,11 @@
 
     <!-- Bootstrap core CSS -->
 
-    <link href="includes/css/bootstrap.css" rel="stylesheet">
+    <link href="includes/css/bootstraps.css" rel="stylesheet">
 
     <!-- Add custom CSS here -->
 
-    <link rel="stylesheet" href="includes/css/main.css">
+    <link rel="stylesheet" href="includes/css/mains.css">
     <link href="includes/css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="includes/font-awesome/css/font-awesome.min.css">
 
