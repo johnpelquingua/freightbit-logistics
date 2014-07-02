@@ -26,7 +26,8 @@
         
         <action name="addUser" class="com.sr.apps.freightbit.core.action.UserAction" method="addUser">
             <result name="input" type="tiles">core.userAdd.tiles</result>
-            <result name="success" type="tiles">core.userSaveComplete.tiles</result>
+            <!--<result name="success" type="tiles">core.userSaveComplete.tiles</result>-->
+            <result name="success" type="tiles">core.userViewInfo.tiles</result>
         </action>
 
         <action name="loadEditUserPage" class="com.sr.apps.freightbit.core.action.UserAction" method="loadEditUserPage">
@@ -35,7 +36,8 @@
         
          <action name="editUser" class="com.sr.apps.freightbit.core.action.UserAction" method="editUser">
             <result name="input" type="tiles">core.userEdit.tiles</result>
-            <result name="success" type="tiles">core.userSaveComplete.tiles</result>
+            <!--<result name="success" type="tiles">core.userSaveComplete.tiles</result>-->
+             <result name="success" type="tiles">core.userViewInfo.tiles</result>
         </action>
 
         <action name="viewUserInfo" class="com.sr.apps.freightbit.core.action.UserAction" method="viewUserInfo">

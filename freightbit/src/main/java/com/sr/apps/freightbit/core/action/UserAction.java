@@ -80,6 +80,10 @@ public class UserAction extends ActionSupport implements Preparable {
     	if (hasFieldErrors())
     		return INPUT;
     	userService.addUser(transformToEntityBean(user));
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! A New User has been added.");
+
     	return SUCCESS;
     }
     
@@ -94,6 +98,10 @@ public class UserAction extends ActionSupport implements Preparable {
     	if (hasFieldErrors())
     		return INPUT;
     	userService.updateUser(transformToEntityBean(user));
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! User has been updated.");
+
     	return SUCCESS;
     }
     

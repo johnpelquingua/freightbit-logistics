@@ -104,6 +104,7 @@
 
 <script type='text/javascript' src='includes/js/jquery-1.11.1.js'></script>
 <script type='text/javascript' src='includes/js/bootstrap.js'></script>
+<script type='text/javascript' src='includes/js/validate.min.js'></script>
 
 <!-- Page Specific Plugins -->
 
