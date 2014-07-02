@@ -124,9 +124,9 @@
 <!-- END OF THE MIDDLE -->--%>
 
 
-<div class="row">
+<div class="row" style="margin-top: -15px;">
     <div class="col-lg-12">
-        <h1>Customer Module </h1>
+        <h1>Add New Customer </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
@@ -137,59 +137,59 @@
 </div>
 <!-- /.row -->
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
+    <div class="col-lg-7 col-lg-offset-2" style="margin-left: 21% !important;">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New Customer</h3>
+                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New</h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addCustomer">
                     <div class="form-group">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Company Name:</label>
+                            <label class="col-sm-2 control-label" style="width:25%;">Company Name</label>
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Company Code:</label>
+                            <label class="col-sm-2 control-label" style="width:25%;">Company Code</label>
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Customer Type:</label>
+                            <label class="col-sm-2 control-label" style="width:25%;">Customer Type</label>
                             <div class="col-sm-10" style="width:70%;">
                                 <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Phone No.:</label>
+                            <label class="col-sm-2 control-label" style="width:25%;">Phone No.</label>
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer.phone" maxLength="7"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Mobile No.:</label>
+                            <label class="col-sm-2 control-label" style="width:25%;">Mobile No.</label>
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer.mobile" maxLength="11"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Fax  No.:</label>
+                            <label class="col-sm-2 control-label" style="width:25%;">Fax  No.</label>
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield  required="true" name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Email Address:</label>
+                            <label class="col-sm-2 control-label" style="width:25%;">Email Address</label>
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Website:</label>
+                            <label class="col-sm-2 control-label" style="width:25%;">Website</label>
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield name="customer.website" cssClass="form-control" id="customer.website"/>
                             </div>

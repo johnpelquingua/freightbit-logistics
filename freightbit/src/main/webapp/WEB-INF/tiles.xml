@@ -223,7 +223,7 @@
         <put-attribute name="body"   value="/customer/customerSearch.jsp"/>
     </definition>
     <definition name="customer.customerAdd.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Customer Page"/>
+        <put-attribute name="title"  value="Add New Customer"/>
         <put-attribute name="body"   value="/customer/customerAddInfo.jsp"/>
     </definition>
     <definition name="customer.customerEdit.tiles" extends="baseLayout">
