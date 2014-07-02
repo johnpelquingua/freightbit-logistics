@@ -183,14 +183,14 @@
                                             <display:column title="Actions">
 
                                                 <s:url var="loadEditTruckingAddressUrl" action="loadEditTruckingAddress">
-                                                    <s:param name="addressIdParam" value="%{addressId}"></s:param>
+                                                    <s:param name="addressIdParam" value="%{#attr.address.addressId}"></s:param>
                                                 </s:url>
                                                 <s:a href="%{loadEditTruckingAddressUrl}" class="icon-action-link" rel="tooltip"
                                                      title="Edit this Vendor Address"><img src="includes/images/edit-user.png" class="icon-action circ-icon">
                                                 </s:a>
 
                                                 <s:url var="deleteAddressUrl" action="deleteTruckingAddress">
-                                                    <s:param name="addressIdParam" value="%{addressId}"></s:param>
+                                                    <s:param name="addressIdParam" value="%{#attr.address.addressId}"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{deleteAddressUrl}" rel="tooltip"
                                                      title="Delete this Vendor Address"

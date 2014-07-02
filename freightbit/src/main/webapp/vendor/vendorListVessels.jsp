@@ -184,7 +184,7 @@
                                         <td class="tb-font-black" style="text-align: center;">
                                                 <display:column title="Actions">
                                                     <s:url var="editVesselUrl" action="loadEditVesselsPage">
-                                                        <s:param name="vesselNameParam" value="vesselName"></s:param>
+                                                        <s:param name="vesselNameParam" value="#attr.vessel.vesselName"></s:param>
                                                     </s:url>
                                                     <s:a class="icon-action-link" href="%{editVesselUrl}" rel="tooltip"
                                                          title="Edit this vessel">
@@ -192,7 +192,7 @@
                                                     </s:a>
 
                                                     <s:url var="deleteVesselUrl" action="deleteVessels">
-                                                        <s:param name="vesselNameParam" value="vesselName"></s:param>
+                                                        <s:param name="vesselNameParam" value="#attr.vessel.vesselName"></s:param>
                                                     </s:url>
                                                     <s:a class="icon-action-link" href="%{deleteVesselUrl}" rel="tooltip"
                                                          title="Delete this Vendor"

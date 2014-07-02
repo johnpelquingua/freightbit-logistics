@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header" style="margin-left:-40px;">Trucks Module</h1>
@@ -128,13 +128,9 @@
     <div class="col-lg-10">
         <div class="panel panel-primary">
 
-            <div class="panel-heading" style="padding-bottom: 0px;">
-                <h3 class="panel-title" style="position: relative; top: 10px;"><i class="fa fa-truck"></i> Trucks</h3>
-                <span class="pull-right">
-                <a href="loadAddTrucksPage" class="icon-action-link" rel="tooltip" title="Add Vendor">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon" style="position: relative; bottom: 15px;">
-                </a>
-                </span>
+            <div class="panel-heading" >
+                <h3 class="panel-title" ><i class="fa fa-truck"></i> Trucks</h3>
+
             </div>
 
             <div class="panel-body">

@@ -198,21 +198,21 @@
                                         <display:column title="Actions">
 
                                             <s:url var="editVendorUrl" action="loadEditVendorPage">
-                                                <s:param name="vendorCodeParam" value="#attr.user.vendorCode"></s:param>
+                                                <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
                                             </s:url>
                                             <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip" title="Edit this vendor">
                                                 <img src="includes/images/edit-user.png" class="icon-action circ-icon">
                                             </s:a>
 
                                             <s:url var="deleteVendorUrl" action="deleteVendor">
-                                                <s:param name="vendorCodeParam" value="#attr.user.vendorCode"></s:param>
+                                                <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
                                             </s:url>
                                             <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip" title="Delete this Vendor" onclick="return confirm('Do you really want to delete?');">
                                                 <img src="includes/images/remove-user.png" class="icon-action circ-icon">
                                             </s:a>
 
                                             <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
-                                                <s:param name="vendorCodeParam" value="#attr.user.vendorCode"></s:param>
+                                                <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
                                             </s:url>
                                             <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip" title="View Vendor Info">
                                                 <img src="includes/images/info-b.png" class="icon-action circ-icon">

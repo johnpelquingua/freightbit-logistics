@@ -119,8 +119,8 @@
     <div class="col-lg-10">
         <div class="panel panel-primary">
 
-            <div class="panel-heading" style="padding-bottom: 0px;">
-                <h3 class="panel-title" style="position: relative; top: 10px;"><i class="fa fa-home"></i> Address</h3>
+            <div class="panel-heading" >
+                <h3 class="panel-title" ><i class="fa fa-home"></i> Address</h3>
                 
             </div>
 

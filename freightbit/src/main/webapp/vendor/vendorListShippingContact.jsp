@@ -136,13 +136,9 @@
     <div class="col-lg-10">
         <div class="panel panel-primary">
 
-            <div class="panel-heading" style="padding-bottom: 0px;">
-                <h3 class="panel-title" style="position: relative; top: 10px;"><i class="fa fa-group"></i> Contact Persons</h3>
-                <span class="pull-right">
-                <a href="loadAddShippingContact" class="icon-action-link" rel="tooltip" title="Add Vendor">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon" style="position: relative; bottom: 15px;">
-                </a>
-                </span>
+            <div class="panel-heading" >
+                <h3 class="panel-title" ><i class="fa fa-group"></i> Contact Persons</h3>
+
             </div>
 
             <div class="panel-body">
