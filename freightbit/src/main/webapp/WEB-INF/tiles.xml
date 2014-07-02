@@ -11,7 +11,7 @@
         <put-attribute name="menu"   value="/menu.jsp"/>
     </definition>
     <definition name="index.tiles" extends="baseLayout">
-        <put-attribute name="title"  value="Home Page"/>
+        <put-attribute name="title"  value="Main Dashboard"/>
         <put-attribute name="body"   value="/index.jsp"/>
     </definition>
 

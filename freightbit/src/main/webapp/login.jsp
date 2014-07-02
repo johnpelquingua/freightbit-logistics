@@ -2,9 +2,11 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-    <title>Ernest Login Page</title>
+    <title>ERNEST Logistics Corporation</title>
     <link rel='stylesheet' href='includes/css/bootstraps.css'>
     <link rel='stylesheet" href="includes/css/mains.css'>
+    <link rel="shortcut icon" href="http://www.ernest.com.ph/sites/default/files/favicon.ico"/>
+
     <s:head />
 </head>
 <body style="background:url('includes/images/ernestlogo.jpg') no-repeat center center fixed; background-size:cover;">
