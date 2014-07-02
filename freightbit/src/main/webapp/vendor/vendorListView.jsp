@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%--
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -124,20 +125,16 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title" style="position: relative; top: 10px;"><i class="fa fa-list"></i> Vendor List
-               <span class="pull-right">
-               <a href="loadAddVendorPage" class="icon-action-link" rel="tooltip" title="Add Vendor">
-                   <img src="includes/images/add-user.png" class="icon-action circ-icon" style="position: relative; bottom: 10px;">
-               </a>
-               </span>
+                <h3 class="panel-title"><i class="fa fa-list"></i> Vendor List
+
                 </h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <table class="table table-striped table-hover table-bordered text-center tablesorter">
+                    <%--<table class="table table-striped table-hover table-bordered text-center tablesorter">
                         <thead>
                         <tr class="header_center">
-                            <%--<th class="tb-font-black"><input type="checkbox"/></th>--%>
+                            &lt;%&ndash;<th class="tb-font-black"><input type="checkbox"/></th>&ndash;%&gt;
                             <th class="tb-font-black" style="text-align: center;" >Vendor Code <i class="fa fa-sort"></i></th>
                             <th class="tb-font-black" style="text-align: center;" >Company Name <i class="fa fa-sort"></i></th>
                             <th class="tb-font-black" style="text-align: center;" >Type <i class="fa fa-sort"></i></th>
@@ -147,9 +144,10 @@
                         </thead>
                         <tbody>
                         <s:iterator value="vendors" var="vendor">
+                        &lt;%&ndash;<display:table id="vendor" name="vendors" requestURI="/viewVendors.action" pagesize="5">&ndash;%&gt;
                             <tr>
-                                    <%--<input type="checkbox" />--%>
-                                    <%--<td class="tb-font-black"><s:checkbox name="a" theme="simple"/></td>--%>
+                                    &lt;%&ndash;<input type="checkbox" />&ndash;%&gt;
+                                    &lt;%&ndash;<td class="tb-font-black"><s:checkbox name="a" theme="simple"/></td>&ndash;%&gt;
                                 <td class="tb-font-black">
                                     <s:property value="vendorCode"/>
                                 </td>
@@ -183,9 +181,49 @@
                                     </s:a>
                                 </td>
                             </tr>
+                        &lt;%&ndash;</display:table>&ndash;%&gt;
                         </s:iterator>
                         </tbody>
-                    </table>
+                    </table>--%>
+
+                    <tbody>
+                        <table>
+                            <tr>
+                                <display:table id="vendor" name="vendors" requestURI="/viewVendors.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter" style="margin-top: 15px;">
+                                    <td><display:column property="vendorCode" title="Vendor Code" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                    <td><display:column property="vendorName" title="Company Name" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                    <td><display:column property="vendorType" title="Type" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                    <td><display:column property="vendorClass" title="Class" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                    <td class="tb-font-black" style="text-align: center;">
+                                        <display:column title="Actions">
+
+                                            <s:url var="editVendorUrl" action="loadEditVendorPage">
+                                                <s:param name="vendorCodeParam" value="#attr.user.vendorCode"></s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip" title="Edit this vendor">
+                                                <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                            </s:a>
+
+                                            <s:url var="deleteVendorUrl" action="deleteVendor">
+                                                <s:param name="vendorCodeParam" value="#attr.user.vendorCode"></s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip" title="Delete this Vendor" onclick="return confirm('Do you really want to delete?');">
+                                                <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                            </s:a>
+
+                                            <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
+                                                <s:param name="vendorCodeParam" value="#attr.user.vendorCode"></s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip" title="View Vendor Info">
+                                                <img src="includes/images/info-b.png" class="icon-action circ-icon">
+                                            </s:a>
+                                        </display:column>
+                                    </td>
+                                </display:table>
+                            </tr>
+                        </table>
+                    </tbody>
+
                 </div>
             </div>
             <div class="panel-footer">

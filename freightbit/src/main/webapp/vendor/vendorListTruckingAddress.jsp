@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Address Module</h1>
 
@@ -116,18 +117,14 @@
     <div class="col-lg-10">
         <div class="panel panel-primary">
 
-            <div class="panel-heading" style="padding-bottom: 0px;">
-                <h3 class="panel-title" style="position: relative; top: 10px;"><i class="fa fa-home"></i> Address</h3>
-                <span class="pull-right">
-                <a href="loadAddTruckingAddress" class="icon-action-link" rel="tooltip" title="Add Vendor">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon" style="position: relative; bottom: 15px;">
-                </a>
-                </span>
+            <div class="panel-heading" >
+                <h3 class="panel-title" ><i class="fa fa-home"></i> Address</h3>
+
             </div>
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <table class="table table-striped table-hover table-bordered text-center tablesorter" id="customer-list">
+                    <%--<table class="table table-striped table-hover table-bordered text-center tablesorter" id="customer-list">
                         <thead>
                         <tr class="header_center">
                             <th class="tb-font-black" style="text-align: center;">Address Type <i class="fa fa-sort"></i></th>
@@ -169,7 +166,45 @@
                             </tr>
                         </s:iterator>
                         </tbody>
-                    </table>
+                    </table>--%>
+
+                        <tbody>
+                            <table>
+                                <tr>
+
+                                    <display:table id="address" name="addresss" requestURI="/viewTruckingAddress.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter" style="margin-top: 15px;">
+                                        <td><display:column property="addressType" title="Address Type" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="addressLine1" title="Address 1" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="addressLine2" title="Address 2" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="city" title="City" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="state" title="State" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="zip" title="Zip" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td class="tb-font-black" style="text-align: center;">
+                                            <display:column title="Actions">
+
+                                                <s:url var="loadEditTruckingAddressUrl" action="loadEditTruckingAddress">
+                                                    <s:param name="addressIdParam" value="%{addressId}"></s:param>
+                                                </s:url>
+                                                <s:a href="%{loadEditTruckingAddressUrl}" class="icon-action-link" rel="tooltip"
+                                                     title="Edit this Vendor Address"><img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                                </s:a>
+
+                                                <s:url var="deleteAddressUrl" action="deleteTruckingAddress">
+                                                    <s:param name="addressIdParam" value="%{addressId}"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{deleteAddressUrl}" rel="tooltip"
+                                                     title="Delete this Vendor Address"
+                                                     onclick="return confirm('Do you really want to delete?');"><img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                                </s:a>
+
+                                            </display:column>
+                                        </td>
+                                    </display:table>
+
+                                </tr>
+                            </table>
+                        </tbody>
+
                 </div>
 
             </div>

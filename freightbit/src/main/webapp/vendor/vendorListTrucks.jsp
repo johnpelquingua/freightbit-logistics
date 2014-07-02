@@ -140,7 +140,7 @@
             <div class="panel-body">
 
                 <div class="table-responsive list-table">
-                    <table class="table table-striped table-bordered text-center table-hover">
+                    <%--<table class="table table-striped table-bordered text-center table-hover">
                         <thead>
                         <tr class="header_center">
 
@@ -188,7 +188,43 @@
                             </tr>
                         </s:iterator>
                         </tbody>
-                    </table>
+                    </table>--%>
+
+                        <tbody>
+                            <table>
+                                <tr>
+                                    <display:table id="truck" name="trucks" requestURI="/viewTrucks.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter" style="margin-top: 15px;">
+                                        <td><display:column property="truckCode" title="Truck Code" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="plateNumber" title="Plate Number" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="truckType" title="Truck Type" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="modelNumber" title="Model Number" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="engineNumber" title="Engine Number" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td><display:column property="grossWeight" title="Gross Weight" class="tb-font-black" style="text-align: center;" >  </display:column></td>
+                                        <td class="tb-font-black" style="text-align: center;">
+                                            <display:column title="Actions">
+                                                <s:url var="editTruckUrl" action="loadEditTrucksPage">
+                                                    <s:param name="truckCodeParam" value="#attr.truck.truckCode"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{editTruckUrl}" rel="tooltip"
+                                                     title="Edit this vendor">
+                                                    <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                                </s:a>
+
+                                                <s:url var="deleteTruckUrl" action="deleteTrucks">
+                                                    <s:param name="truckCodeParam" value="#attr.truck.truckCode"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{deleteTruckUrl}" rel="tooltip"
+                                                     title="Delete this Vendor"
+                                                     onclick="return confirm('Do you really want to delete?');">
+                                                    <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                                </s:a>
+                                            </display:column>
+                                        </td>
+                                    </display:table>
+                                </tr>
+                            </table>
+                        </tbody>
+
                 </div>
             </div>
             <div class="panel-footer">
