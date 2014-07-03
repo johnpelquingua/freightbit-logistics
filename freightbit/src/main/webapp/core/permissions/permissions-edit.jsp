@@ -135,7 +135,7 @@
 					  <div>
 					  <a href = "permissions-edit.html" class="btn btn-default pull-right" id = "groups-add-btn" style="margin:20px 0px 6px 6px;">Cancel</a>
 					  
-								<a href ="<s:url value='permissions' />" class="btn btn-default pull-right" id = "groups-add-btn" style="margin:20px 10px 6px 6px;">Save</a>
+								<a href ="<s:url value='' />" class="btn btn-default pull-right" id = "groups-add-btn" style="margin:20px 10px 6px 6px;">Save</a>
 							</div>	
 							</s:form>
 							
