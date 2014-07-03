@@ -4,16 +4,15 @@ package com.sr.biz.freightbit.vendor.entity;
  * Created by ADMIN on 5/16/2014.
  */
 
+import com.sr.biz.freightbit.core.entity.Client;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
-
-import com.sr.biz.freightbit.core.entity.Client;
-
 @Entity
-@Table(name = "vessels", catalog ="freightbit",uniqueConstraints = @UniqueConstraint(columnNames = "vesselId"))
-public class Vessel implements Serializable{
+@Table(name = "vessels", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "vesselId"))
+public class Vessel implements Serializable {
 
     private Integer vesselId;
     private Client clientId;
@@ -28,12 +27,12 @@ public class Vessel implements Serializable{
     private String modifiedBy;
 
 
-
-    public Vessel(){    }
+    public Vessel() {
+    }
 
     public Vessel(Integer vesselId, Client clientId, Integer vendorId, String vesselNumber,
                   String vesselName, String modelNumber, Integer modelYear, Date createdTimestamp,
-                  String createdBy, Date modifiedTimestamp, String modifiedBy){
+                  String createdBy, Date modifiedTimestamp, String modifiedBy) {
 
         this.vesselId = vesselId;
         this.clientId = clientId;
@@ -54,15 +53,17 @@ public class Vessel implements Serializable{
     public Integer getVesselId() {
         return vesselId;
     }
+
     public void setVesselId(Integer vesselId) {
         this.vesselId = vesselId;
     }
 
-    @ManyToOne(fetch  = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "clientId")
     public Client getClientId() {
         return clientId;
     }
+
     public void setClientId(Client clientId) {
         this.clientId = clientId;
     }
@@ -71,14 +72,16 @@ public class Vessel implements Serializable{
     public Integer getVendorId() {
         return vendorId;
     }
+
     public void setVendorId(Integer vendorId) {
         this.vendorId = vendorId;
     }
 
-    @Column(name ="vesselNumber")
+    @Column(name = "vesselNumber")
     public String getVesselNumber() {
         return vesselNumber;
     }
+
     public void setVesselNumber(String vesselNumber) {
         this.vesselNumber = vesselNumber;
     }
@@ -87,6 +90,7 @@ public class Vessel implements Serializable{
     public String getVesselName() {
         return vesselName;
     }
+
     public void setVesselName(String vesselName) {
         this.vesselName = vesselName;
     }
@@ -95,46 +99,52 @@ public class Vessel implements Serializable{
     public String getModelNumber() {
         return modelNumber;
     }
+
     public void setModelNumber(String modelNumber) {
         this.modelNumber = modelNumber;
     }
 
-    @Column(name ="modelYear")
+    @Column(name = "modelYear")
     public Integer getModelYear() {
         return modelYear;
     }
+
     public void setModelYear(Integer modelYear) {
         this.modelYear = modelYear;
     }
 
-    @Column(name ="createdTimestamp")
+    @Column(name = "createdTimestamp")
     public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
+
     public void setCreatedTimestamp(Date createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 
-    @Column(name ="createdBy", nullable = true)
+    @Column(name = "createdBy", nullable = true)
     public String getCreatedBy() {
         return createdBy;
     }
+
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
-    @Column(name ="modifiedTimestamp")
+    @Column(name = "modifiedTimestamp")
     public Date getModifiedTimestamp() {
         return modifiedTimestamp;
     }
+
     public void setModifiedTimestamp(Date modifiedTimestamp) {
         this.modifiedTimestamp = modifiedTimestamp;
     }
 
-    @Column(name ="modifiedBy")
+    @Column(name = "modifiedBy")
     public String getModifiedBy() {
         return modifiedBy;
     }
+
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
     }

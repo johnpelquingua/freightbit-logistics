@@ -3,10 +3,12 @@ package com.sr.biz.freightbit.vendor.service;
 /**
  * Created by ADMIN on 5/16/2014.
  */
+
+import com.sr.biz.freightbit.vendor.entity.Vessel;
+import com.sr.biz.freightbit.vendor.exceptions.VesselAlreadyExistsException;
+
 import java.util.List;
 
-import com.sr.biz.freightbit.vendor.exceptions.VesselAlreadyExistsException;
-import com.sr.biz.freightbit.vendor.entity.Vessel;
 public interface VesselService {
 
     public void addVessel(Vessel vessel) throws VesselAlreadyExistsException;

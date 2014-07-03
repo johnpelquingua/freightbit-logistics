@@ -1,19 +1,16 @@
 package com.sr.biz.freightbit.common.dao.impl;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import com.sr.biz.freightbit.common.dao.AddressDao;
+import com.sr.biz.freightbit.common.entity.Address;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import com.sr.biz.freightbit.common.dao.AddressDao;
-import com.sr.biz.freightbit.common.entity.Address;
-import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
-
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Solutions Resource on 5/28/14.
@@ -25,11 +22,11 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
     private static final Logger log = Logger.getLogger(AddressDaoImpl.class);
 
     @Override
-    public Address findContactByReferenceTableAndId(String referenceTable, Integer referenceId){
+    public Address findContactByReferenceTableAndId(String referenceTable, Integer referenceId) {
         Query query = getSessionFactory().getCurrentSession().createQuery(" from Address where referenceTable = :referenceTable and referenceId = :referenceId");
         query.setParameter("referenceTable", referenceTable);
         query.setParameter("referenceId", referenceId);
-        List <Address> addressList = query.list();
+        List<Address> addressList = query.list();
         if (addressList != null && addressList.size() > 0)
             return addressList.get(0);
         else
@@ -63,7 +60,7 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
     }
 
     @Override
-        public List<Address> findAllAddress(Integer addressId) {
+    public List<Address> findAllAddress(Integer addressId) {
         log.debug("finding all Address");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery("from Address where addressId = :addressId");
@@ -123,18 +120,18 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
             throw re;
         }
     }
-    
+
     /**
      * @param addressType: SHIPPER, CONSIGNEE, BILLER TO
      */
     @Override
-    public List <Address> findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType){
+    public List<Address> findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType) {
         Query query = getSessionFactory().getCurrentSession().createQuery(" from Address where referenceTable = :referenceTable and referenceId = :referenceId and addressType = :addressType");
         query.setParameter("referenceTable", referenceTable);
         query.setParameter("referenceId", referenceId);
         query.setParameter("addressType", addressType);
         return query.list();
-    }  
+    }
 
 
     @Override
@@ -153,23 +150,23 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
             throw re;
         }
     }
-    
+
     @Override
-    public List <Address> findAddressesByParameterMap(Map <String, Object> paramMap, String entity) {
-    	Query query = getSessionFactory().getCurrentSession().createQuery(buildSearchCriteria(paramMap, entity));
-    	return query.list();
+    public List<Address> findAddressesByParameterMap(Map<String, Object> paramMap, String entity) {
+        Query query = getSessionFactory().getCurrentSession().createQuery(buildSearchCriteria(paramMap, entity));
+        return query.list();
     }
-    
-    private String buildSearchCriteria(Map <String, Object> paramMap, String entity){
-    	StringBuilder queryString = new StringBuilder("from " + entity + " where ");
-    	Set<String> mapKeys = paramMap.keySet();
-    	int i=0;
-    	for (String mapKey : mapKeys) {
-    		if (i > 0)
-    			queryString.append(" and ");
-    		queryString.append(mapKey + " = '"+ paramMap.get(mapKey) +  "'");
-    		i++;
-    	}
-    	return queryString.toString();
+
+    private String buildSearchCriteria(Map<String, Object> paramMap, String entity) {
+        StringBuilder queryString = new StringBuilder("from " + entity + " where ");
+        Set<String> mapKeys = paramMap.keySet();
+        int i = 0;
+        for (String mapKey : mapKeys) {
+            if (i > 0)
+                queryString.append(" and ");
+            queryString.append(mapKey + " = '" + paramMap.get(mapKey) + "'");
+            i++;
+        }
+        return queryString.toString();
     }
 }

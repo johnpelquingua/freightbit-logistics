@@ -25,13 +25,13 @@ public interface ContactsDao {
     public List<Contacts> findDuplicateContactByLastName(String lastName, Integer contactId);
 
     public Contacts findContactByReferenceTableAndId(String referenceTable, Integer referenceID);
-    
-    public List <Contacts>  findContactByRefTableAndIdAndType(String referenceTable, Integer referenceId, String contactType);
+
+    public List<Contacts> findContactByRefTableAndIdAndType(String referenceTable, Integer referenceId, String contactType);
 
     public List<Contacts> findContactByReferenceId(Integer referenceId);
 
-    public List<Contacts> findContactByLastName (String lastName);
+    public List<Contacts> findContactByLastName(String lastName);
 
-	public List<Contacts> findContactsByParameterMap(Map<String, Object> paramMap,
-			String entity);
+    public List<Contacts> findContactsByParameterMap(Map<String, Object> paramMap,
+                                                     String entity);
 }

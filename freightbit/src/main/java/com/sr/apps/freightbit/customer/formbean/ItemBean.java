@@ -32,7 +32,7 @@ public class ItemBean {
 
 
     public ItemBean(Integer customerItemsId, Integer customerId, String itemName,
-                    String itemCode, Integer length, Integer width,Integer height, Float srp, Integer criticalQuality,
+                    String itemCode, Integer length, Integer width, Integer height, Float srp, Integer criticalQuality,
                     Float basePrice, String note, String description, Date createdTimeStamp, String createdBy,
                     Date modifiedTimeStamp, String modifiedBy) {
 

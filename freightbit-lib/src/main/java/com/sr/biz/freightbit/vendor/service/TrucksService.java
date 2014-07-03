@@ -5,10 +5,10 @@ package com.sr.biz.freightbit.vendor.service;
  * User: johnpelquingua.com
  */
 
-import java.util.List;
-
-import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
+import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
+
+import java.util.List;
 
 public interface TrucksService {
 

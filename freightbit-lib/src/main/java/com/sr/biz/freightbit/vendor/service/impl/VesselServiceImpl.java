@@ -4,15 +4,14 @@ package com.sr.biz.freightbit.vendor.service.impl;
  * Created by ADMIN on 5/16/2014.
  */
 
-import java.util.List;
-
+import com.sr.biz.freightbit.vendor.dao.VesselDao;
+import com.sr.biz.freightbit.vendor.entity.Vessel;
+import com.sr.biz.freightbit.vendor.exceptions.VesselAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.service.VesselService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.vendor.dao.VesselDao;
-import com.sr.biz.freightbit.vendor.exceptions.VesselAlreadyExistsException;
-import com.sr.biz.freightbit.vendor.service.VesselService;
-import com.sr.biz.freightbit.vendor.entity.Vessel;
+import java.util.List;
 
 public class VesselServiceImpl implements VesselService {
 
@@ -21,6 +20,7 @@ public class VesselServiceImpl implements VesselService {
     public VesselDao getVesselDao() {
         return vesselDao;
     }
+
     public void setVesselDao(VesselDao vesselDao) {
         this.vesselDao = vesselDao;
     }
@@ -28,8 +28,8 @@ public class VesselServiceImpl implements VesselService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addVessel(Vessel vessel) throws VesselAlreadyExistsException{
-        if(vesselDao.findVesselByName(vessel.getVesselName()) != null)
+    public void addVessel(Vessel vessel) throws VesselAlreadyExistsException {
+        if (vesselDao.findVesselByName(vessel.getVesselName()) != null)
             throw new VesselAlreadyExistsException(vessel.getVesselName());
         else
             vesselDao.addVessel(vessel);
@@ -37,7 +37,7 @@ public class VesselServiceImpl implements VesselService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void deleteVessel(Vessel vessel){
+    public void deleteVessel(Vessel vessel) {
         vesselDao.deleteVessel(vessel);
     }
 
@@ -48,26 +48,30 @@ public class VesselServiceImpl implements VesselService {
     }
 
     @Override
-    public List<Vessel> findAllVessel(){
+    public List<Vessel> findAllVessel() {
         List<Vessel> vessels = vesselDao.findAllVessel();
         return vessels;
     }
 
     @Override
-    public Vessel findVesselById(Integer vesselId){ return vesselDao.findVesselById(vesselId);}
+    public Vessel findVesselById(Integer vesselId) {
+        return vesselDao.findVesselById(vesselId);
+    }
 
     @Override
-    public List<Vessel> findVesselByClientId(long clientId){ return vesselDao.findVesselByClientId(clientId); }
+    public List<Vessel> findVesselByClientId(long clientId) {
+        return vesselDao.findVesselByClientId(clientId);
+    }
 
-    public Vessel findVesselByName(String vesselName){
-          List<Vessel> result = vesselDao.findVesselByName(vesselName);
-        if(result != null && !result.isEmpty())
+    public Vessel findVesselByName(String vesselName) {
+        List<Vessel> result = vesselDao.findVesselByName(vesselName);
+        if (result != null && !result.isEmpty())
             return result.get(0);
         return null;
     }
 
     @Override
-    public List<Vessel> findVesselByVendorId(Integer vendorId){
+    public List<Vessel> findVesselByVendorId(Integer vendorId) {
         List<Vessel> result = vesselDao.findVesselByVendorId(vendorId);
 
         return result;

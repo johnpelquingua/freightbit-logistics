@@ -110,22 +110,22 @@
 --%>
 
 
-
-
 <div class="row">
     <div class="col-lg-12">
         <h1>Vendor Module </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
             <li class="active"><a href="<s:url action='viewVendors' />"> <i class="fa fa-list"></i> Vendor List</a></li>
-            <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor Profile</a></li>
+            <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor
+                Profile</a></li>
             <li class="active"><a href="<s:url action='viewVessels' />"> <i class="fa fa-anchor"></i> Vessels</a></li>
             <li class="active"><i class="fa fa-plus"></i> Add New Vessel</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-6 col-lg-offset-2">
@@ -143,7 +143,8 @@
                             <label for="vessel.vesselNumber" class="col-sm-2 control-label">Vessel:</label>
 
                             <div class="col-sm-10">
-                                <s:textfield cssClass="form-control" placeholder="Vessel Number" name="vessel.vesselNumber"
+                                <s:textfield cssClass="form-control" placeholder="Vessel Number"
+                                             name="vessel.vesselNumber"
                                              id="vessel.vesselNumber"/>
                             </div>
 
@@ -165,7 +166,8 @@
                             <label for="vessel.modelNumber" class="col-sm-2 control-label">Model:</label>
 
                             <div class="col-sm-10">
-                                <s:textfield cssClass="form-control" placeholder="Model Number" name="vessel.modelNumber"
+                                <s:textfield cssClass="form-control" placeholder="Model Number"
+                                             name="vessel.modelNumber"
                                              id="vessel.modelNumber"/>
                             </div>
 
@@ -210,4 +212,5 @@
             </ul>
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->

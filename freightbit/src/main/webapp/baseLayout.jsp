@@ -1,4 +1,4 @@
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sx" uri="/struts-dojo-tags" %>
 
@@ -33,12 +33,6 @@
 </html>--%>
 
 
-
-
-
-
-
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -49,7 +43,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><tiles:insertAttribute name="title" ignore="true" />
+    <title><tiles:insertAttribute name="title" ignore="true"/>
     </title>
 
     <!-- Bootstrap core CSS -->
@@ -70,35 +64,38 @@
 
     <div id="page-wrapper" style=" margin-left: -15px; ">
 
-    <!-- Sidebar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand"><img src="includes/images/reallogo.png" width="300px"></a>
-        </div>
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"><img src="includes/images/reallogo.png" width="300px"></a>
+            </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
 
-            <tiles:insertAttribute name="menu" />
+                <tiles:insertAttribute name="menu"/>
 
-            <tiles:insertAttribute name="banner" />
+                <tiles:insertAttribute name="banner"/>
 
 
-        </div><!-- /.navbar-collapse -->
-    </nav>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
 
-    <tiles:insertAttribute name="body" />
+        <tiles:insertAttribute name="body"/>
 
-    </div><!-- /#page-wrapper -->
+    </div>
+    <!-- /#page-wrapper -->
 
-</div><!-- /#wrapper -->
+</div>
+<!-- /#wrapper -->
 
 <!-- JavaScript -->
 

@@ -155,16 +155,19 @@
     <div class="col-lg-12">
         <h1>Vendor Module </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
             <li class="active"><a href="<s:url action='viewVendors' />"> <i class="fa fa-list"></i> Vendor List</a></li>
-            <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor Profile</a></li>
-            <li class="active"><a href="<s:url action='viewVendorTruckingContacts' />"><i class="fa fa-group"></i> Contact Persons</a></li>
+            <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor
+                Profile</a></li>
+            <li class="active"><a href="<s:url action='viewVendorTruckingContacts' />"><i class="fa fa-group"></i>
+                Contact Persons</a></li>
             <li class="active"><i class="fa fa-user"></i> Edit Contact Person</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-6 col-lg-offset-2">
@@ -240,7 +243,6 @@
                     <button type="reset" class="btn btn-default">OK</button>--%>
 
 
-
                 </s:form>
 
             </div>
@@ -265,4 +267,5 @@
             </ul>
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->

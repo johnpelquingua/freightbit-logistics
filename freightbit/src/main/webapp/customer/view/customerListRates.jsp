@@ -83,15 +83,18 @@
     <div class="col-lg-12">
         <h1>Customer List Rates </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
-            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a></li>
-            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer Profile</a></li>
+            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a>
+            </li>
+            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer
+                Profile</a></li>
             <li class="active"><i class="fa fa-money"></i> Rates</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 
 <s:if test="hasActionMessages()">
@@ -107,7 +110,7 @@
     <div class="col-lg-10">
         <div class="panel panel-primary">
 
-            <div class="panel-heading" >
+            <div class="panel-heading">
                 <h3 class="panel-title" style="position: relative; top: 2px;"><i class="fa fa-money"></i> Rates</h3>
 
             </div>
@@ -153,36 +156,43 @@
                         </tbody>
                     </table>--%>
 
-                        <tbody>
-                            <table>
-                                <tr>
-                                    <display:table id="rate" name="rates" requestURI="/viewRates.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter" style="margin-top: 15px;">
-                                        <td><display:column property="origin" title="Origin" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="destination" title="Destination" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="rate" title="Rate" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="rateType" title="Rate Type" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td class="tb-font-black" style="text-align: center;">
-                                            <display:column title="Actions">
-                                                <s:url var="loadEditRatesUrl" action="loadEditRates">
-                                                    <s:param name="ratesIdParam" value="%{#attr.rate.customerRateId}"></s:param>
-                                                </s:url>
-                                                <s:a href="%{loadEditRatesUrl}" class="icon-action-link" rel="tooltip"
-                                                     title="Edit this Vendor Address"><img src="includes/images/edit-user.png"
-                                                                                           class="icon-action circ-icon"> </s:a>
+                    <tbody>
+                    <table>
+                        <tr>
+                            <display:table id="rate" name="rates" requestURI="/viewRates.action" pagesize="10"
+                                           class="table table-striped table-hover table-bordered text-center tablesorter"
+                                           style="margin-top: 15px;">
+                                <td><display:column property="origin" title="Origin" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="destination" title="Destination" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="rate" title="Rate" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="rateType" title="Rate Type" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td class="tb-font-black" style="text-align: center;">
+                                    <display:column title="Actions">
+                                        <s:url var="loadEditRatesUrl" action="loadEditRates">
+                                            <s:param name="ratesIdParam" value="%{#attr.rate.customerRateId}"></s:param>
+                                        </s:url>
+                                        <s:a href="%{loadEditRatesUrl}" class="icon-action-link" rel="tooltip"
+                                             title="Edit this Vendor Address"><img src="includes/images/edit-user.png"
+                                                                                   class="icon-action circ-icon"> </s:a>
 
-                                                <s:url var="deleteRatesUrl" action="deleteRates">
-                                                    <s:param name="ratesIdParam" value="%{#attr.rate.customerRateId}"></s:param>
-                                                </s:url>
-                                                <s:a class="icon-action-link" href="%{deleteRatesUrl}" rel="tooltip"
-                                                     title="Delete this Vendor Address"
-                                                     onclick="return confirm('Do you really want to delete?');"><img
-                                                        src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
-                                            </display:column>
-                                        </td>
-                                    </display:table>
-                                </tr>
-                            </table>
-                        </tbody>
+                                        <s:url var="deleteRatesUrl" action="deleteRates">
+                                            <s:param name="ratesIdParam" value="%{#attr.rate.customerRateId}"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{deleteRatesUrl}" rel="tooltip"
+                                             title="Delete this Vendor Address"
+                                             onclick="return confirm('Do you really want to delete?');"><img
+                                                src="includes/images/remove-user.png"
+                                                class="icon-action circ-icon"> </s:a>
+                                    </display:column>
+                                </td>
+                            </display:table>
+                        </tr>
+                    </table>
+                    </tbody>
 
                 </div>
             </div>
@@ -213,11 +223,12 @@
                 <li><a href="viewAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
                 <li><a href="viewCustomerContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
                 <li><a href="viewItem"><i class="fa fa-list-ol fa-fw"></i> Items</a></li>
-                <li  class="active"><a href="viewRates"><i class="fa fa-money fa-fw"></i> Rates</a></li>
+                <li class="active"><a href="viewRates"><i class="fa fa-money fa-fw"></i> Rates</a></li>
                 <li><a href="viewConsignees"><i class="fa fa-list fa-fw"></i> Consignee List</a></li>
 
             </ul>
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 

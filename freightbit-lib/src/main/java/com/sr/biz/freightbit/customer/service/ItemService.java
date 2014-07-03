@@ -1,9 +1,9 @@
 package com.sr.biz.freightbit.customer.service;
 
-import java.util.List;
-
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
+
+import java.util.List;
 
 /**
  * Created by Solutions Resource on 5/26/14.

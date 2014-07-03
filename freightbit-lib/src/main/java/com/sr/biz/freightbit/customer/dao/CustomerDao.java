@@ -4,8 +4,9 @@ package com.sr.biz.freightbit.customer.dao;
  * Created by Jimmy on 5/13/14.
  */
 
-import java.util.List;
 import com.sr.biz.freightbit.customer.entity.Customer;
+
+import java.util.List;
 
 public interface CustomerDao {
 
@@ -27,7 +28,7 @@ public interface CustomerDao {
 
     public Customer findCustomerByEmail(String customer);
 
-    public List <Customer> findCustomersByCriteria(String column, String value, Integer clientId);
+    public List<Customer> findCustomersByCriteria(String column, String value, Integer clientId);
 
     public List<Customer> findCustomerByCustomerCode(String customerCode);
 }

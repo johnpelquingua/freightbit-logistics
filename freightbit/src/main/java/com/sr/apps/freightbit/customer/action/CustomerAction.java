@@ -13,16 +13,16 @@ import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
+import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
-import com.sr.biz.freightbit.common.entity.Parameters;
-import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.customer.entity.Rates;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.service.CustomerService;
-import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.customer.service.ItemService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -148,7 +148,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         Matcher matcher = pattern1.matcher(itemBean.getItemCode());
         //Matcher matcher1 = pattern2.matcher(itemBean.getSrp());
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             addFieldError("item.itemCode", getText("err.regex.validation.itemcode"));
         }
 
@@ -180,7 +180,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (itemBean.getBasePrice() == null) {
             addFieldError("item.basePrice", getText("err.basePrice.required"));
         }
-
 
 
         if (StringUtils.isBlank(itemBean.getDescription())) {
@@ -356,8 +355,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
             customerEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             customerService.updateCustomer(customerEntity);
 
-        }catch (CustomerAlreadyExistsException e) {
-            addFieldError("customer.customerCode", getText("err.customerCode.already.exist") );
+        } catch (CustomerAlreadyExistsException e) {
+            addFieldError("customer.customerCode", getText("err.customerCode.already.exist"));
             return INPUT;
         }
 
@@ -494,7 +493,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Pattern pattern = Pattern.compile(PATTERN);
         Matcher matcher1 = pattern.matcher(addressBean.getZip());
 
-        if(!matcher1.matches()){
+        if (!matcher1.matches()) {
             addFieldError("address.zip", getText("err.regex.validtion.zip"));
         }
 
@@ -628,10 +627,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Matcher matcher2 = pattern.matcher(ratesBean.getDestination());
         //Matcher matcher3 = pattern2.matcher(ratesBean.getRate());
 
-        if(!matcher1.matches()){
+        if (!matcher1.matches()) {
             addFieldError("rates.origin", getText("err.regex.validation.rates"));
         }
-        if(!matcher2.matches()){
+        if (!matcher2.matches()) {
             addFieldError("rates.destination", getText("err.regex.validation.rates"));
         }
 

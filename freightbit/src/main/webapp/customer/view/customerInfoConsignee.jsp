@@ -103,7 +103,6 @@
 <!-- END OF MAIN BOX -->
 
 
-
 <!-- END OF THE MIDDLE -->
 
 
@@ -111,16 +110,20 @@
     <div class="col-lg-12">
         <h1>Customer Module </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
-            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a></li>
-            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer Profile</a></li>
-            <li class="active"><a href="<s:url action='viewConsignees' />"><i class="fa fa-list"></i> Consignee List</a></li>
-            <li class="active"> <i class="fa fa-info-circle"></i> Consignee Profile</li>
+            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a>
+            </li>
+            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer
+                Profile</a></li>
+            <li class="active"><a href="<s:url action='viewConsignees' />"><i class="fa fa-list"></i> Consignee List</a>
+            </li>
+            <li class="active"><i class="fa fa-info-circle"></i> Consignee Profile</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-7 col-lg-offset-2" style="margin-left: 0% !important;">
@@ -141,51 +144,51 @@
                             <tbody>
                             <tr>
                                 <td style="font-weight: bold;">First Name:</td>
-                                <td><s:property value="consignee.firstName" /></td>
+                                <td><s:property value="consignee.firstName"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Middle Name:</td>
-                                <td><s:property value="consignee.middleName" /></td>
+                                <td><s:property value="consignee.middleName"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Last Name:</td>
-                                <td><s:property value="consignee.lastName" /></td>
+                                <td><s:property value="consignee.lastName"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Phone:</td>
-                                <td><s:property value="consignee.phone" /></td>
+                                <td><s:property value="consignee.phone"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Mobile:</td>
-                                <td><s:property value="consignee.mobile" /></td>
+                                <td><s:property value="consignee.mobile"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Email:</td>
-                                <td><s:property value="consignee.email" /></td>
+                                <td><s:property value="consignee.email"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Fax:</td>
-                                <td><s:property value="consignee.fax" /></td>
+                                <td><s:property value="consignee.fax"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Address 1:</td>
-                                <td><s:property value="consignee.addressLine1" /></td>
+                                <td><s:property value="consignee.addressLine1"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Address 2:</td>
-                                <td><s:property value="consignee.addressLine2" /></td>
+                                <td><s:property value="consignee.addressLine2"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">City:</td>
-                                <td><s:property value="consignee.city" /></td>
+                                <td><s:property value="consignee.city"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">State:</td>
-                                <td><s:property value="consignee.state" /></td>
+                                <td><s:property value="consignee.state"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">ZIP:</td>
-                                <td><s:property value="consignee.zip" /></td>
+                                <td><s:property value="consignee.zip"/></td>
                             </tr>
 
                             </tbody>
@@ -218,7 +221,8 @@
             </ul>
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 
 

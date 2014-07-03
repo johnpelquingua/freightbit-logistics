@@ -5,8 +5,8 @@ package com.sr.biz.freightbit.vendor.dao.impl;
  * User: johnpel
  */
 
-import java.util.List;
-
+import com.sr.biz.freightbit.vendor.dao.VendorDao;
+import com.sr.biz.freightbit.vendor.entity.Vendor;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,8 +14,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.vendor.dao.VendorDao;
-import com.sr.biz.freightbit.vendor.entity.Vendor;
+import java.util.List;
 
 @Transactional
 public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
@@ -23,7 +22,7 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
     private static final Logger log = Logger.getLogger(VendorDaoImpl.class);
 
     @Override
-    public Integer addVendor(Vendor vendor){
+    public Integer addVendor(Vendor vendor) {
         log.debug("Adding new Vendor");
         try {
             Session session = getSessionFactory().getCurrentSession();
@@ -60,6 +59,7 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
             throw re;
         }
     }
+
     @Override
     public List<Vendor> findAllVendorByClientId(Integer clientId) {
         log.debug("Finding Vendor instance by Client");
@@ -122,7 +122,7 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
             throw re;
         }
     }
-    
+
     @Override
     public List<Vendor> findDuplicateVendorByVendorCode(String vendorCode, Integer vendorId) {
         log.debug("Finding duplicate vendor by vendor Code");

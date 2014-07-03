@@ -5,15 +5,14 @@ package com.sr.biz.freightbit.vendor.service.impl;
  * User: johnpel
  */
 
-import java.util.List;
-
+import com.sr.biz.freightbit.vendor.dao.TrucksDao;
+import com.sr.biz.freightbit.vendor.entity.Trucks;
+import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.service.TrucksService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.vendor.dao.TrucksDao;
-import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
-import com.sr.biz.freightbit.vendor.service.TrucksService;
-import com.sr.biz.freightbit.vendor.entity.Trucks;
+import java.util.List;
 
 public class TrucksServiceImpl implements TrucksService {
 

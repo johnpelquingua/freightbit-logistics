@@ -15,6 +15,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Consignee Module</h1>
+
     <div class="row alert alert-success alert-dismissable" style="margin-left: -40px !important;  width: 101%;">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <strong>Success!</strong> The data has been successfully saved.

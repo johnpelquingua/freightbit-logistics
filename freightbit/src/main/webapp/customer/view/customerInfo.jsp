@@ -103,7 +103,6 @@
 <!-- END OF MAIN BOX -->
 
 
-
 <!-- END OF THE MIDDLE -->
 
 
@@ -111,14 +110,16 @@
     <div class="col-lg-12">
         <h1>Customer Information </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
-            <li class="active"><a href="<s:url action='customerList' />"><i class="fa fa-list"></i> Customer List </a></li>
+            <li class="active"><a href="<s:url action='customerList' />"><i class="fa fa-list"></i> Customer List </a>
+            </li>
             <li class="active"><i class="fa fa-info-circle"></i> Customer Profile</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-7">
@@ -148,24 +149,26 @@
                             <tbody>
                             <tr>
                                 <td style="font-weight: bold;">Name:</td>
-                                <td><s:property value="customer.customerName" /></td>
+                                <td><s:property value="customer.customerName"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Customer Code:</td>
-                                <td><s:property value="customer.customerCode" /></td>
+                                <td><s:property value="customer.customerCode"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Customer Type:</td>
-                                <td><s:property value="customer.customerType" /></td>
+                                <td><s:property value="customer.customerType"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Email:</td>
-                                <td><s:property value="customer.email" /></td>
+                                <td><s:property value="customer.email"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Contact Numbers:</td>
                                 <td>
-                                    <s:property value="customer.phone" /> (Landline)<br><br><s:property value="customer.mobile" /> (Mobile)<br><br><s:property value="customer.fax" /> (Fax)
+                                    <s:property value="customer.phone"/> (Landline)<br><br><s:property
+                                        value="customer.mobile"/> (Mobile)<br><br><s:property value="customer.fax"/>
+                                    (Fax)
                                 </td>
                             </tr>
                             <%--<tr>
@@ -205,5 +208,6 @@
         </div>
     </div>
 
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 

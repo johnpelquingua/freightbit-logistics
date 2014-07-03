@@ -7,15 +7,14 @@ package com.sr.biz.freightbit.core.service;
 */
 
 
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.service.impl.ContactServiceImpl;
-
+import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.vendor.dao.VendorDao;
+import com.sr.biz.freightbit.vendor.entity.Vendor;
+import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.service.impl.VendorServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,11 +26,9 @@ import org.mockito.MockitoAnnotations.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sr.biz.freightbit.vendor.dao.VendorDao;
-import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.vendor.entity.Vendor;
-import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
-import com.sr.biz.freightbit.vendor.service.impl.VendorServiceImpl;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @ContextConfiguration(locations = {"classpath:/conf/applicationContext-lib.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -78,7 +75,7 @@ public class VendorServiceTest {
         return contacts;
     }
 
-    @Test(expected=VendorAlreadyExistsException.class)
+    @Test(expected = VendorAlreadyExistsException.class)
     public void testAddExistingVendor() {
         Vendor vendor = initVendor();
         List<Vendor> existingVendorList = new ArrayList<>();
@@ -88,10 +85,10 @@ public class VendorServiceTest {
         vendorService.addVendor(vendor);
     }
 
-  @Test
+    @Test
     public void testFindAllVendorByClientId() {
         Integer vendorId = 1;
-        List <Vendor> vendor= new ArrayList();
+        List<Vendor> vendor = new ArrayList();
         vendor.add(initVendor());
         Mockito.when(vendorDao.findAllVendors()).thenReturn(vendor);
         List<Vendor> results = vendorService.findAllVendorByClientId(vendorId);
@@ -109,9 +106,9 @@ public class VendorServiceTest {
 //    }
 
     @Test
-    public void testFindAllVendors(){
+    public void testFindAllVendors() {
         Integer vendorId = 1;
-        List <Vendor> vendor = new ArrayList();
+        List<Vendor> vendor = new ArrayList();
         vendor.add(initVendor());
 
         Mockito.when(vendorDao.findAllVendorByClientId(vendorId)).thenReturn(vendor);
@@ -131,7 +128,7 @@ public class VendorServiceTest {
 
     }
 
-    private Vendor initVendor(){
+    private Vendor initVendor() {
         Client client = new Client("Ernest", new Date(), "Juno", new Date(), "Juno");
 
         Vendor vendor = new Vendor();

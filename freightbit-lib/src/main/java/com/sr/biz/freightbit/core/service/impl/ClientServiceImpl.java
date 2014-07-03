@@ -1,8 +1,8 @@
 package com.sr.biz.freightbit.core.service.impl;
 
 import com.sr.biz.freightbit.core.dao.ClientDao;
-import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.service.ClientService;
 
 public class ClientServiceImpl implements ClientService {
 

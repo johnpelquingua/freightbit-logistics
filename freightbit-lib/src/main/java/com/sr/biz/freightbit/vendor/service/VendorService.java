@@ -5,13 +5,13 @@ package com.sr.biz.freightbit.vendor.service;
  * User: johnpel
  */
 
-import java.util.List;
-
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.entity.*;
 import com.sr.biz.freightbit.vendor.exceptions.*;
+
+import java.util.List;
 
 public interface VendorService {
 
@@ -50,8 +50,7 @@ public interface VendorService {
     public List<Address> findAllAddressByRefId(Integer referenceId);
 
 
-
-    public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId);
+    public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId);
 
 
 //    Trucks Service
@@ -141,8 +140,8 @@ public interface VendorService {
 
     public List<Contacts> findAllContacts();
 
-    public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
+    public List<Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
 
-    public List <Contacts> findContactByReferenceId(Integer vendorId);
+    public List<Contacts> findContactByReferenceId(Integer vendorId);
 
 }

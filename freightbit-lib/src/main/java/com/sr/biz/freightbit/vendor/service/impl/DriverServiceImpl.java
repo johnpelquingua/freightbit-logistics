@@ -1,22 +1,22 @@
 package com.sr.biz.freightbit.vendor.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
 import com.sr.biz.freightbit.vendor.dao.DriverDao;
-import com.sr.biz.freightbit.vendor.entity.Trucks;
+import com.sr.biz.freightbit.vendor.entity.Driver;
 import com.sr.biz.freightbit.vendor.exceptions.DriverAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.DriverService;
-import com.sr.biz.freightbit.vendor.entity.Driver;
-
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-public class DriverServiceImpl implements DriverService{
+import java.util.Date;
+import java.util.List;
+
+public class DriverServiceImpl implements DriverService {
 
     private DriverDao driverDao;
 
-    public void setDriverDao(DriverDao driverDao) { this.driverDao = driverDao;}
+    public void setDriverDao(DriverDao driverDao) {
+        this.driverDao = driverDao;
+    }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -30,12 +30,12 @@ public class DriverServiceImpl implements DriverService{
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void deleteDriver(Driver driver){
+    public void deleteDriver(Driver driver) {
         driverDao.deleteDriver(driver);
     }
 
     @Override
-    public List<Driver> findAllDriversByClientId(Integer clientId){
+    public List<Driver> findAllDriversByClientId(Integer clientId) {
         return driverDao.findAllDriversByClientId(clientId);
     }
 
@@ -46,12 +46,12 @@ public class DriverServiceImpl implements DriverService{
     }
 
     @Override
-    public Driver findDriverById(Integer driverId ) {
+    public Driver findDriverById(Integer driverId) {
         return driverDao.findDriverById(driverId);
     }
 
     @Override
-    public Driver findDriverByLastName(String lastName){
+    public Driver findDriverByLastName(String lastName) {
         List<Driver> result = driverDao.findDriverByLastName(lastName);
         if (result != null && !result.isEmpty())
             return result.get(0);
@@ -59,13 +59,13 @@ public class DriverServiceImpl implements DriverService{
     }
 
     @Override
-    public void updateDateHired(Driver driver){
+    public void updateDateHired(Driver driver) {
         driver.setDateHired(new Date());
         driverDao.updateDriver(driver);
     }
 
     @Override
-    public void updateDateTerminated(Driver driver){
+    public void updateDateTerminated(Driver driver) {
         driver.setDateTerminated(new Date());
         driverDao.updateDriver(driver);
     }

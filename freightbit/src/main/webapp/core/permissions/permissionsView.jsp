@@ -93,12 +93,11 @@
 --%>
 
 
-
 <div class="row">
     <div class="col-lg-12">
         <h1>Accounts Module </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-user"></i> Accounts</li>
             <li class="active"><i class="fa fa-group"></i> Group</li>
 
@@ -106,7 +105,8 @@
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
@@ -120,19 +120,25 @@
                 <div class="table-responsive list-table">
 
                     <tbody>
-                        <table>
-                            <tr>
-                                <display:table id="permission" name="permissions" requestURI="/viewUsers.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter" style="margin-top: 15px;">
-                                    <td><display:column property="permissionName" title="Permissions" class="tb-font-black"/></td>
-                                    <td><display:column property="userGroups" title="Users/Groups" class="tb-font-black"/></td>
-                                    <td class="tb-font-black">
-                                        <display:column title="Actions">
-                                            <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
-                                        </display:column>
-                                    </td>
-                                </display:table>
-                            </tr>
-                        </table>
+                    <table>
+                        <tr>
+                            <display:table id="permission" name="permissions" requestURI="/viewUsers.action"
+                                           pagesize="10"
+                                           class="table table-striped table-hover table-bordered text-center tablesorter"
+                                           style="margin-top: 15px;">
+                                <td><display:column property="permissionName" title="Permissions"
+                                                    class="tb-font-black"/></td>
+                                <td><display:column property="userGroups" title="Users/Groups"
+                                                    class="tb-font-black"/></td>
+                                <td class="tb-font-black">
+                                    <display:column title="Actions">
+                                        <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img
+                                                src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                                    </display:column>
+                                </td>
+                            </display:table>
+                        </tr>
+                    </table>
                     </tbody>
 
                 </div>
@@ -141,12 +147,14 @@
             <div class="panel-footer">
 
                 <span class="pull-right">
-                    <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                    <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img
+                            src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                 </span>
 
             </div>
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 

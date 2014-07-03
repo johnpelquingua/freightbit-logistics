@@ -8,21 +8,11 @@ package com.sr.biz.freightbit.vendor.entity;
  * To change this template use File | Settings | File Templates.
  */
 
+import com.sr.biz.freightbit.core.entity.Client;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-import com.sr.biz.freightbit.core.entity.Client;
 
 @Entity
 @Table(name = "trucks", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "truckId"))
@@ -44,7 +34,8 @@ public class Trucks implements Serializable {
     private Date modifiedTimestamp;
     private String modifiedBy;
 
-    public Trucks(){}
+    public Trucks() {
+    }
 
     public Trucks(Integer truckId, Client client, Integer vendorId,
                   String truckCode, String truckType, String plateNumber,

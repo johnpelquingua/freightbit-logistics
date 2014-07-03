@@ -4,20 +4,20 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 
-
 body {
     background: #dfe0e1;
 }
-.drop-span:hover{
-    color:black !important;
+
+.drop-span:hover {
+    color: black !important;
 }
 
-.sub-ho{
-    color:white;
+.sub-ho {
+    color: white;
 }
 
-.sub-ho:hover{
-    color:black !important;
+.sub-ho:hover {
+    color: black !important;
 }
 
 .wwFormTable {
@@ -34,9 +34,8 @@ body {
 }
 
 .ui-datepicker-month, .ui-datepicker-year {
-    color:#555 !important;
+    color: #555 !important;
 }
-
 
 /*
  * Sidebar
@@ -51,6 +50,7 @@ body {
 .sidebar {
     display: none;
 }
+
 @media (min-width: 768px) {
     .sidebar {
         position: fixed;
@@ -71,198 +71,217 @@ body {
     margin-bottom: 20px;
     margin-left: -20px;
 }
+
 .nav-sidebar > li > a {
     padding-right: 20px;
     padding-left: 20px;
-    color:white;
-    font-weight:bold;
+    color: white;
+    font-weight: bold;
 }
+
 .activehome > a {
     color: #000 !important;
-    background-color:#F1EB49;
-    background-image:url(../includes/images/home-b.png);
+    background-color: #F1EB49;
+    background-image: url(../includes/images/home-b.png);
     background-position-x: 25px;
 }
-.activecustomer > a{
+
+.activecustomer > a {
     color: #000 !important;
-    background-color:#F1EB49;
-    background-image:url(../includes/images/customer-b.png);
+    background-color: #F1EB49;
+    background-image: url(../includes/images/customer-b.png);
     background-position-x: 25px;
 }
+
 .activebooking > a {
     color: #000 !important;
-    background-color:#F1EB49;
-    background-image:url(../includes/images/booking-b.png);
+    background-color: #F1EB49;
+    background-image: url(../includes/images/booking-b.png);
     background-position-x: 25px;
 }
+
 .activevendor > a {
     color: #000 !important;
-    background-color:#F1EB49;
-    background-image:url(../includes/images/truck-b.png);
+    background-color: #F1EB49;
+    background-image: url(../includes/images/truck-b.png);
     background-position-x: 25px;
 }
+
 .activeaccounts > a {
     color: #000 !important;
-    background-color:#F1EB49;
-    background-image:url(../includes/images/account-b.png);
+    background-color: #F1EB49;
+    background-image: url(../includes/images/account-b.png);
     background-position-x: 25px;
 }
 
-
-.icon-home{
-    background:transparent url(../includes/images/home.png) no-repeat left;
+.icon-home {
+    background: transparent url(../includes/images/home.png) no-repeat left;
     background-position-x: 25px;
     color: #fff;
 }
-.icon-home:hover{
-    background:transparent url(../includes/images/home-b.png) no-repeat left !important;
+
+.icon-home:hover {
+    background: transparent url(../includes/images/home-b.png) no-repeat left !important;
     background-position-x: 25px !important;
     color: #000 !important;
-    background-color:#F1EB49 !important;
-}
-.icon-booking{
-    background:transparent url(../includes/images/booking.png) no-repeat left;
-    background-position-x: 25px;
-    color:#fff;
-}
-.icon-booking:hover{
-    background:transparent url(../includes/images/booking-b.png) no-repeat left !important;
-    background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
-}
-.icon-operation{
-    background:transparent url(../includes/images/operation.png) no-repeat left;
-    background-position-x: 25px;
-    color:#fff;
-}
-.icon-operation:hover{
-    background:transparent url(../includes/images/operation-b.png) no-repeat left !important;
-    background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
+    background-color: #F1EB49 !important;
 }
 
-.icon-document{
-    background:transparent url(../includes/images/document.png) no-repeat left;
+.icon-booking {
+    background: transparent url(../includes/images/booking.png) no-repeat left;
     background-position-x: 25px;
-    color:#fff;
-}
-.icon-document:hover{
-    background:transparent url(../includes/images/document-b.png) no-repeat left !important;
-    background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
+    color: #fff;
 }
 
-.icon-vendor{
-    background:transparent url(../includes/images/truck.png) no-repeat left;
-    background-position-x: 25px;
-    color:#fff;
-}
-.icon-vendor:hover{
-    background:transparent url(../includes/images/truck-b.png) no-repeat left !important;
+.icon-booking:hover {
+    background: transparent url(../includes/images/booking-b.png) no-repeat left !important;
     background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
 }
 
-.icon-customer{
-    background:transparent url(../includes/images/customer.png) no-repeat left;
+.icon-operation {
+    background: transparent url(../includes/images/operation.png) no-repeat left;
     background-position-x: 25px;
-    color:#fff;
-}
-.icon-customer:hover{
-    background:transparent url(../includes/images/customer-b.png) no-repeat left !important;
-    background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
+    color: #fff;
 }
 
-.icon-report{
-    background:transparent url(../includes/images/report.png) no-repeat left;
-    background-position-x: 25px;
-    color:#fff;
-}
-.icon-report:hover{
-    background:transparent url(../includes/images/report-b.png) no-repeat left !important;
+.icon-operation:hover {
+    background: transparent url(../includes/images/operation-b.png) no-repeat left !important;
     background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
 }
 
-.icon-finance{
-    background:transparent url(../includes/images/finance.png) no-repeat left;
+.icon-document {
+    background: transparent url(../includes/images/document.png) no-repeat left;
     background-position-x: 25px;
-    color:#fff;
-}
-.icon-finance:hover{
-    background:transparent url(../includes/images/finance-b.png) no-repeat left !important;
-    background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
+    color: #fff;
 }
 
-.icon-help{
-    background:transparent url(../includes/images/help.png) no-repeat left;
-    background-position-x: 25px;
-    color:#fff;
-}
-.icon-help:hover{
-    background:transparent url(../includes/images/help-b.png) no-repeat left !important;
+.icon-document:hover {
+    background: transparent url(../includes/images/document-b.png) no-repeat left !important;
     background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
 }
 
-.icon-account{
-    background:transparent url(../includes/images/account.png) no-repeat left;
+.icon-vendor {
+    background: transparent url(../includes/images/truck.png) no-repeat left;
     background-position-x: 25px;
-    color:#fff !important;
-}
-.icon-account:hover{
-    background:transparent url(../includes/images/account-b.png) no-repeat left !important;
-    background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
+    color: #fff;
 }
 
-.icon-user{
-    background:transparent url(../includes/images/listofusers.png) no-repeat left;
-    background-position-x: 25px;
-    color:#fff;
-}
-.icon-user:hover{
-    background:transparent url(../includes/images/listofusers-b.png) no-repeat left !important;
+.icon-vendor:hover {
+    background: transparent url(../includes/images/truck-b.png) no-repeat left !important;
     background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
 }
 
-.icon-group{
-    background:transparent url(../includes/images/groups.png) no-repeat left;
+.icon-customer {
+    background: transparent url(../includes/images/customer.png) no-repeat left;
     background-position-x: 25px;
-    color:#fff;
-}
-.icon-group:hover{
-    background:transparent url(../includes/images/groups-b.png) no-repeat left !important;
-    background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
+    color: #fff;
 }
 
-.icon-permission{
-    background:transparent url(../includes/images/permission.png) no-repeat left;
-    background-position-x: 25px;
-    color:#fff;
-}
-.icon-permission:hover{
-    background:transparent url(../includes/images/permission-b.png) no-repeat left !important;
+.icon-customer:hover {
+    background: transparent url(../includes/images/customer-b.png) no-repeat left !important;
     background-position-x: 25px !important;
-    color:#000 !important;
-    background-color:#F1EB49 !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
 }
 
+.icon-report {
+    background: transparent url(../includes/images/report.png) no-repeat left;
+    background-position-x: 25px;
+    color: #fff;
+}
+
+.icon-report:hover {
+    background: transparent url(../includes/images/report-b.png) no-repeat left !important;
+    background-position-x: 25px !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
+}
+
+.icon-finance {
+    background: transparent url(../includes/images/finance.png) no-repeat left;
+    background-position-x: 25px;
+    color: #fff;
+}
+
+.icon-finance:hover {
+    background: transparent url(../includes/images/finance-b.png) no-repeat left !important;
+    background-position-x: 25px !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
+}
+
+.icon-help {
+    background: transparent url(../includes/images/help.png) no-repeat left;
+    background-position-x: 25px;
+    color: #fff;
+}
+
+.icon-help:hover {
+    background: transparent url(../includes/images/help-b.png) no-repeat left !important;
+    background-position-x: 25px !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
+}
+
+.icon-account {
+    background: transparent url(../includes/images/account.png) no-repeat left;
+    background-position-x: 25px;
+    color: #fff !important;
+}
+
+.icon-account:hover {
+    background: transparent url(../includes/images/account-b.png) no-repeat left !important;
+    background-position-x: 25px !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
+}
+
+.icon-user {
+    background: transparent url(../includes/images/listofusers.png) no-repeat left;
+    background-position-x: 25px;
+    color: #fff;
+}
+
+.icon-user:hover {
+    background: transparent url(../includes/images/listofusers-b.png) no-repeat left !important;
+    background-position-x: 25px !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
+}
+
+.icon-group {
+    background: transparent url(../includes/images/groups.png) no-repeat left;
+    background-position-x: 25px;
+    color: #fff;
+}
+
+.icon-group:hover {
+    background: transparent url(../includes/images/groups-b.png) no-repeat left !important;
+    background-position-x: 25px !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
+}
+
+.icon-permission {
+    background: transparent url(../includes/images/permission.png) no-repeat left;
+    background-position-x: 25px;
+    color: #fff;
+}
+
+.icon-permission:hover {
+    background: transparent url(../includes/images/permission-b.png) no-repeat left !important;
+    background-position-x: 25px !important;
+    color: #000 !important;
+    background-color: #F1EB49 !important;
+}
 
 /*
  * Main content
@@ -271,16 +290,17 @@ body {
 .main {
     padding: 20px;
 }
+
 @media (min-width: 768px) {
     .main {
         padding-right: 40px;
         padding-left: 40px;
     }
 }
+
 .main .page-header {
     margin-top: 0;
 }
-
 
 /*
  * Placeholder dashboard ideas
@@ -290,18 +310,22 @@ body {
     margin-bottom: 30px;
     text-align: center;
 }
+
 .placeholders h4 {
     margin-bottom: 0;
 }
+
 .placeholder {
     margin-bottom: 20px;
 }
+
 .placeholder img {
     display: inline-block;
     border-radius: 50%;
 }
+
 /* CUSTOM CSS */
-.icon-menu{
+.icon-menu {
     color: white;
     font-weight: bold;
     font-size: 14px;
@@ -309,102 +333,103 @@ body {
     top: 4px;
 }
 
-input#datepicker1, input#datepicker2, input#datepicker3, input#datepicker4  {
+input#datepicker1, input#datepicker2, input#datepicker3, input#datepicker4 {
     width: 100%;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    color:#555;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    color: #555;
 }
 
-.dropside-sub{
+.dropside-sub {
     position: relative;
     display: block;
     padding: 10px 15px;
     padding-right: 20px;
     padding-left: 40px;
-    color: rgb(100,100,100);
+    color: rgb(100, 100, 100);
     font-weight: bold;
-    cursor:pointer;
+    cursor: pointer;
 }
-.dropside-sub:hover{
+
+.dropside-sub:hover {
     text-decoration: none;
     background-color: #eee;
 }
 
-.dropside{
-    cursor:pointer;
+.dropside {
+    cursor: pointer;
 }
 
-.dropside:hover{
+.dropside:hover {
     text-decoration: none;
     background-color: #eee;
 }
 
-.title-insidebox{
-    color:white;
-    position:relative;
-    font-size:20px;
-    top:2px;
+.title-insidebox {
+    color: white;
+    position: relative;
+    font-size: 20px;
+    top: 2px;
 }
 
-.box-dash{
-    background-color:gray;
-    width:400px;
-    height:300px;
+.box-dash {
+    background-color: gray;
+    width: 400px;
+    height: 300px;
     padding: 20px 0 6px 0;
-    border-radius:6px;
+    border-radius: 6px;
 }
 
-.icon-font{
+.icon-font {
     position: relative;
     top: 2px;
-    left:40px;
-    font-size:13px;
+    left: 40px;
+    font-size: 13px;
 }
 
-.box-icon{
-    margin-right:6px;
+.box-icon {
+    margin-right: 6px;
 }
 
-.header-box{
-    padding:10px;
+.header-box {
+    padding: 10px;
 }
 
-.content-box{
-    padding:10px;
+.content-box {
+    padding: 10px;
 }
 
-.main-box{
-    width:68%;
-    float:left;
-    margin-right:16px;
+.main-box {
+    width: 68%;
+    float: left;
+    margin-right: 16px;
 }
 
-.sidebar-box{
-    width:28%;
-    float:left;
-    text-align:center;
+.sidebar-box {
+    width: 28%;
+    float: left;
+    text-align: center;
 }
 
-.submenu-link{
-    text-decoration:none;
+.submenu-link {
+    text-decoration: none;
 }
 
-.submenu-link:hover{
-    text-decoration:none;
+.submenu-link:hover {
+    text-decoration: none;
     color: white !important;
 }
 
-.title-inside{
-    color:white;
+.title-inside {
+    color: white;
 }
 
-.tb-font-black{
+.tb-font-black {
     vertical-align: middle !important;
-    color:#545145 !important;
+    color: #545145 !important;
     padding-left: 10px !important;
 
 }
@@ -413,7 +438,7 @@ button.ui-datepicker-trigger {
     padding: 8px 11px 5px 1px;
 }
 
-button.ui-datepicker-trigger img{
+button.ui-datepicker-trigger img {
     position: relative;
     left: 5px;
 }
@@ -429,71 +454,69 @@ button.ui-datepicker-trigger img{
 }
 
 #Booking-Validate_submit:hover {
-    color:#fff;
-    background-color:#3276b1;
-    border-color:#285e8e
+    color: #fff;
+    background-color: #3276b1;
+    border-color: #285e8e
 }
 
-.full-box{
-    border:1px
-    background-color:gray;
-    padding:10px;
-    border-radius:6px;
-    float:left;
-    margin-right:16px;
-    width:100%;
-    text-align:center;
+.full-box {
+    border: 1px background-color : gray;
+    padding: 10px;
+    border-radius: 6px;
+    float: left;
+    margin-right: 16px;
+    width: 100%;
+    text-align: center;
 }
 
-.circ-icon{
-    background-color:gray;
-    padding:6px;
-    margin-right:6px;
-    border-radius:50%;
+.circ-icon {
+    background-color: gray;
+    padding: 6px;
+    margin-right: 6px;
+    border-radius: 50%;
 }
 
-.icon-action-link{
-    text-decoration:none !important;
+.icon-action-link {
+    text-decoration: none !important;
 }
 
-.icon-action:hover{
-    background-color:rgb(83, 82, 82);
+.icon-action:hover {
+    background-color: rgb(83, 82, 82);
 }
 
-.paginate-icon{
-    margin-right:2px;
-    width:70px;
-    border-radius:6px;
+.paginate-icon {
+    margin-right: 2px;
+    width: 70px;
+    border-radius: 6px;
 }
 
 /*-------------*/
-#customer-list.table > thead:nth-child(1)
-{
-    background-color:#f5f5f5;
+#customer-list.table > thead:nth-child(1) {
+    background-color: #f5f5f5;
 }
 
-.panel-heading{
-    overflow:hidden;
+.panel-heading {
+    overflow: hidden;
 }
 
-.panel-footer{
-    overflow:hidden;
+.panel-footer {
+    overflow: hidden;
 }
 
-.pagination{
-    margin:0px !important;
+.pagination {
+    margin: 0px !important;
 }
 
-.panel-title{
-    position:relative;
-    top:2px;
+.panel-title {
+    position: relative;
+    top: 2px;
 }
 
-.full-table{
-    width:100%;
+.full-table {
+    width: 100%;
 }
 
-.drop-span{
+.drop-span {
     padding: 10px 15px;
     display: block;
     left: 45px;
@@ -502,12 +525,12 @@ button.ui-datepicker-trigger img{
     text-decoration: none !important;
 }
 
-.row{
+.row {
     /* background: #dfe0e1; */
 
 }
 
-.page-header{
+.page-header {
     color: #888a8c;
     font-weight: normal;
     text-shadow: 0 1px 0 #fff;
@@ -549,21 +572,23 @@ button.ui-datepicker-trigger img{
     border-color: #eee;
 }
 
-.side-help{
-    font-size:12px;
+.side-help {
+    font-size: 12px;
     text-align: left;
     color: #000;
-    padding:10px 0 !important;
+    padding: 10px 0 !important;
 }
 
-.img-sidehelp{
+.img-sidehelp {
     margin-bottom: 1px;
-    margin-right:6px;
+    margin-right: 6px;
 }
 
-ul#css3menu1 ul{
-    background-color:#424542;}
-ul#css3menu1 ul{
+ul#css3menu1 ul {
+    background-color: #424542;
+}
+
+ul#css3menu1 ul {
 
     display: none;
     position: absolute;
@@ -572,33 +597,77 @@ ul#css3menu1 ul{
     padding: 0px 0px 5px 5px;
     width: 100%;
 }
-ul#css3menu1 li:hover>*{
-    display:block;}
-ul#css3menu1 li{
-    position:relative;right: 3px;display:block;white-space:nowrap;font-size:0;}
-ul#css3menu1 li:hover{
-    z-index:1;}
 
-ul#css3menu1 a:active, ul#css3menu1 a:focus{
-    outline-style:none;}
+ul#css3menu1 li:hover>* {
+    display: block;
+}
 
-ul#css3menu1 a{
-    display:block;vertical-align:middle;text-align:left;text-decoration:none;font-weight:bold;color:#FFF;cursor:pointer;padding:20px 15px;}
-ul#css3menu1 ul li{
-    float:none;margin:3px 0 0;}
-ul#css3menu1 ul a{
-    text-align:left;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;color:#FFF;text-decoration:none;}
-ul#css3menu1 li:hover,ul#css3menu1 li a.pressed{
+ul#css3menu1 li {
+    position: relative;
+    right: 3px;
+    display: block;
+    white-space: nowrap;
+    font-size: 0;
+}
+
+ul#css3menu1 li:hover {
+    z-index: 1;
+}
+
+ul#css3menu1 a:active, ul#css3menu1 a:focus {
+    outline-style: none;
+}
+
+ul#css3menu1 a {
+    display: block;
+    vertical-align: middle;
+    text-align: left;
+    text-decoration: none;
+    font-weight: bold;
+    color: #FFF;
+    cursor: pointer;
+    padding: 20px 15px;
+}
+
+ul#css3menu1 ul li {
+    float: none;
+    margin: 3px 0 0;
+}
+
+ul#css3menu1 ul a {
+    text-align: left;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: #FFF;
+    text-decoration: none;
+}
+
+ul#css3menu1 li:hover, ul#css3menu1 li a.pressed {
     background-color: #F1EB49;
 }
-ul#css3menu1 span{
-    display:block;overflow:visible;background-image:url("arrowsub.png");background-position:right center;background-repeat:no-repeat;padding-right:14px;}
-ul#css3menu1 ul li:hover>a,ul#css3menu1 ul li a.pressed{
-    color:#FFF;text-decoration:none;}
-ul#css3menu1 li.topfirst>a{
-    border-width:0;}
-ul#css3menu1 li.subfirst>a{
-    border-width:0;}
+
+ul#css3menu1 span {
+    display: block;
+    overflow: visible;
+    background-image: url("arrowsub.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding-right: 14px;
+}
+
+ul#css3menu1 ul li:hover>a, ul#css3menu1 ul li a.pressed {
+    color: #FFF;
+    text-decoration: none;
+}
+
+ul#css3menu1 li.topfirst>a {
+    border-width: 0;
+}
+
+ul#css3menu1 li.subfirst>a {
+    border-width: 0;
+}
 
 ul#css3menu1 li {
     border-top: 1px solid #4b4c4d;

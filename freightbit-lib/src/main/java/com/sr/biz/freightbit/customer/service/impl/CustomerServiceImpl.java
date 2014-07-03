@@ -4,20 +4,16 @@ import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
-import com.sr.biz.freightbit.core.entity.Permission;
-import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
-import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
-import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
-import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
-import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.customer.dao.CustomerDao;
 import com.sr.biz.freightbit.customer.dao.ItemsDao;
 import com.sr.biz.freightbit.customer.dao.RatesDao;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.entity.Rates;
-
+import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
+import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
+import com.sr.biz.freightbit.customer.service.CustomerService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,11 +37,19 @@ public class CustomerServiceImpl implements CustomerService {
     public void setCustomerDao(CustomerDao customerDao) {
         this.customerDao = customerDao;
     }
-    public void setItemsDao(ItemsDao itemsDao) { this.itemsDao = itemsDao; }
-    public void setAddressDao(AddressDao addressDao) { this.addressDao = addressDao; }
+
+    public void setItemsDao(ItemsDao itemsDao) {
+        this.itemsDao = itemsDao;
+    }
+
+    public void setAddressDao(AddressDao addressDao) {
+        this.addressDao = addressDao;
+    }
+
     public void setRatesDao(RatesDao ratesDao) {
         this.ratesDao = ratesDao;
     }
+
     public void setContactsDao(ContactsDao contactsDao) {
         this.contactsDao = contactsDao;
     }
@@ -56,9 +60,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addConsignee(Contacts contact, Address address) {
-        	Integer contactId = contactsDao.addContact(contact);
-        	address.setContactReferenceId(contactId);
-            addressDao.addAddress(address);
+        Integer contactId = contactsDao.addContact(contact);
+        address.setContactReferenceId(contactId);
+        addressDao.addAddress(address);
     }
 
     @Override
@@ -88,9 +92,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addContact(Contacts contacts) throws ContactAlreadyExistsException{
-        List <Contacts> contactList = new ArrayList<Contacts>();
-        Map <String, Object> paramMap = new HashMap<String, Object>();
+    public void addContact(Contacts contacts) throws ContactAlreadyExistsException {
+        List<Contacts> contactList = new ArrayList<Contacts>();
+        Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("firstName", contacts.getFirstName());
         paramMap.put("lastName", contacts.getLastName());
         paramMap.put("referenceId", contacts.getReferenceId());
@@ -113,7 +117,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateContact(Contacts contacts) {
 
-        if (contactsDao.findDuplicateContactByLastName(contacts.getLastName(), contacts.getContactId()).size() > 0){
+        if (contactsDao.findDuplicateContactByLastName(contacts.getLastName(), contacts.getContactId()).size() > 0) {
             System.out.print(contacts.getLastName() + ", " + contacts.getContactId());
             throw new ContactAlreadyExistsException(contacts.getLastName());
         } else {
@@ -134,21 +138,20 @@ public class CustomerServiceImpl implements CustomerService {
     }*/
 
     @Override
-    public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId) {
-    	return contactsDao.findContactByRefTableAndIdAndType("CUSTOMERS", customerId, contactType);
+    public List<Contacts> findContactByRefIdAndType(String contactType, Integer customerId) {
+        return contactsDao.findContactByRefTableAndIdAndType("CUSTOMERS", customerId, contactType);
     }
 
 
-
     @Override
-    public List <Contacts> findContactByParameterMap(Integer referenceId, String contactType, Integer clientId) {
-    	List <Contacts> contacts = new ArrayList<Contacts>();
-    	Map <String, Object> paramMap = new HashMap<String, Object>();
-    	paramMap.put("referenceTable", "CUSTOMERS");
-    	paramMap.put("referenceId", referenceId);
-    	paramMap.put("contactType", contactType);
-    	paramMap.put("clientId", clientId);
-    	contacts = contactsDao.findContactsByParameterMap(paramMap, "Contacts");
+    public List<Contacts> findContactByParameterMap(Integer referenceId, String contactType, Integer clientId) {
+        List<Contacts> contacts = new ArrayList<Contacts>();
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("referenceTable", "CUSTOMERS");
+        paramMap.put("referenceId", referenceId);
+        paramMap.put("contactType", contactType);
+        paramMap.put("clientId", clientId);
+        contacts = contactsDao.findContactsByParameterMap(paramMap, "Contacts");
         return contacts;
     }
 
@@ -160,7 +163,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     //end of Contacts
-
 
 
     //Address
@@ -196,30 +198,30 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Address> findAddressByParameterMap(Integer referenceId, String addressType, Integer clientId) {
-    	List <Address> addresses = new ArrayList<Address>();
-    	Map <String, Object> paramMap = new HashMap<String, Object>();
-    	paramMap.put("referenceTable", "CUSTOMERS");
-    	paramMap.put("referenceId", referenceId);
-    	paramMap.put("addressType", addressType);
-    	paramMap.put("clientId", clientId);
-    	addresses = addressDao.findAddressesByParameterMap(paramMap, "Address");
+        List<Address> addresses = new ArrayList<Address>();
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("referenceTable", "CUSTOMERS");
+        paramMap.put("referenceId", referenceId);
+        paramMap.put("addressType", addressType);
+        paramMap.put("clientId", clientId);
+        addresses = addressDao.findAddressesByParameterMap(paramMap, "Address");
         return addresses;
     }
-    
+
     @Override
     public Address findAddressByParameterMap(Integer referenceId, String addressType, Integer clientId, Integer contactId) {
-    	List <Address> addresses = new ArrayList<Address>();
-    	Map <String, Object> paramMap = new HashMap<String, Object>();
-    	paramMap.put("referenceTable", "CUSTOMERS");
-    	paramMap.put("referenceId", referenceId);
-    	paramMap.put("addressType", addressType);
-    	paramMap.put("clientId", clientId);
-    	paramMap.put("contactReferenceId", contactId);
-    	addresses = addressDao.findAddressesByParameterMap(paramMap, "Address");
-    	if (addresses != null && addresses.size() > 0)
-    		return addresses.get(0);
-    	else
-    		return null;
+        List<Address> addresses = new ArrayList<Address>();
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("referenceTable", "CUSTOMERS");
+        paramMap.put("referenceId", referenceId);
+        paramMap.put("addressType", addressType);
+        paramMap.put("clientId", clientId);
+        paramMap.put("contactReferenceId", contactId);
+        addresses = addressDao.findAddressesByParameterMap(paramMap, "Address");
+        if (addresses != null && addresses.size() > 0)
+            return addresses.get(0);
+        else
+            return null;
     }
 
 
@@ -230,17 +232,16 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
-    	return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
+    public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
+        return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
     }
-    
+
     @Override
-    public List <Address> findAddressByCriteria(String addressType, Integer customerId) {
-    	return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
+    public List<Address> findAddressByCriteria(String addressType, Integer customerId) {
+        return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
     }
 
     //End of Address
-
 
 
     //Rates
@@ -248,7 +249,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addRate(Rates rate) {
-            ratesDao.addRate(rate);
+        ratesDao.addRate(rate);
     }
 
     @Override
@@ -268,7 +269,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Rates> findAllRatesByCustomerId(Integer customerId)  {
+    public List<Rates> findAllRatesByCustomerId(Integer customerId) {
         return ratesDao.findAllRatesByCustomerId(customerId);
     }
 
@@ -297,7 +298,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addItem(Items items) throws ItemAlreadyExistsException {
-        if(itemsDao.findUserByItemName(items.getItemName()).size() > 0)
+        if (itemsDao.findUserByItemName(items.getItemName()).size() > 0)
             throw new ItemAlreadyExistsException(items.getItemName());
         else
             itemsDao.addItems(items);
@@ -315,7 +316,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Items> findAllItemsByClientId(Integer clientId){
+    public List<Items> findAllItemsByClientId(Integer clientId) {
         return itemsDao.findAllItemsByClientId(clientId);
 
     }
@@ -333,10 +334,11 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public List<Items> findItemByCustomerId(Integer customerId){
+    public List<Items> findItemByCustomerId(Integer customerId) {
         List<Items> result = itemsDao.findItemByCustomerId(customerId);
         return result;
     }
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateItems(Items items) {
@@ -346,69 +348,68 @@ public class CustomerServiceImpl implements CustomerService {
     //End of Items
 
 
-
     //Customer
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Integer addCustomer(Customer customer) throws CustomerAlreadyExistsException{
+    public Integer addCustomer(Customer customer) throws CustomerAlreadyExistsException {
 
         if (customerDao.findCustomerByName(customer.getCustomerName()).size() > 0)
             throw new CustomerAlreadyExistsException(customer.getCustomerName());
         else
-           return customerDao.addCustomer(customer);
+            return customerDao.addCustomer(customer);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void deleteCustomer(Customer customer){
+    public void deleteCustomer(Customer customer) {
         customerDao.deleteCustomer(customer);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateCustomer(Customer customer){
+    public void updateCustomer(Customer customer) {
         customerDao.updateCustomer(customer);
     }
 
     @Override
-    public List<Customer> findAllCustomer(){
+    public List<Customer> findAllCustomer() {
         List<Customer> customers = customerDao.findAllCustomer();
         return customers;
     }
 
     @Override
-    public Customer findCustomerById(Integer id){
+    public Customer findCustomerById(Integer id) {
         return customerDao.findCustomerById(id);
     }
 
     @Override
-    public List<Customer> findCustomerByClientId(Integer clientId){
+    public List<Customer> findCustomerByClientId(Integer clientId) {
         return customerDao.findCustomerByClientId(clientId);
     }
 
-    public List<Customer> findCustomerByName(String customer){
+    public List<Customer> findCustomerByName(String customer) {
         List<Customer> result = customerDao.findCustomerByName(customer);
-        if(result != null && !result.isEmpty())
+        if (result != null && !result.isEmpty())
             return result;
         return null;
     }
 
-    public List<Customer> findCustomerByType(String customer){
+    public List<Customer> findCustomerByType(String customer) {
         List<Customer> result = customerDao.findCustomerByType(customer);
-        if(result != null && !result.isEmpty())
+        if (result != null && !result.isEmpty())
             return result;
         return null;
     }
 
 
-    public Customer findCustomerByEmail(String customer){
+    public Customer findCustomerByEmail(String customer) {
         return customerDao.findCustomerByEmail(customer);
     }
 
     @Override
     public List<Customer> findCustomersByCriteria(String column, String value, Integer clientId) {
-    	return customerDao.findCustomersByCriteria(column, value, clientId);
+        return customerDao.findCustomersByCriteria(column, value, clientId);
     }
 
     @Override

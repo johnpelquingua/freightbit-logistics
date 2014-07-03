@@ -4,9 +4,9 @@ package com.sr.biz.freightbit.customer.dao;
  * Created by Solutions Resource on 5/26/14.
  */
 
-import java.util.List;
-
 import com.sr.biz.freightbit.customer.entity.Items;
+
+import java.util.List;
 
 public interface ItemsDao {
 

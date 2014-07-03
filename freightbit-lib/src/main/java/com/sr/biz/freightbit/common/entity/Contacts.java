@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name = "contacts", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "contactId"))
 public class Contacts implements Serializable {
-//
+    //
     private Integer contactId;
     private Client client;
     private String referenceTable;
@@ -59,7 +59,7 @@ public class Contacts implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="contactId", unique = true)
+    @Column(name = "contactId", unique = true)
     public Integer getContactId() {
         return contactId;
     }

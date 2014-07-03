@@ -95,15 +95,18 @@
     <div class="col-lg-12">
         <h1>Customer List Contacts </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
-            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a></li>
-            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer Profile</a></li>
+            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a>
+            </li>
+            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer
+                Profile</a></li>
             <li class="active"><i class="fa fa-group"></i> Contact Persons</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-7">
@@ -119,8 +122,9 @@
     <div class="col-lg-10">
         <div class="panel panel-primary">
 
-            <div class="panel-heading"  >
-                <h3 class="panel-title" style="position: relative; top: 2px;"><i class="fa fa-group"></i> Contact Persons</h3>
+            <div class="panel-heading">
+                <h3 class="panel-title" style="position: relative; top: 2px;"><i class="fa fa-group"></i> Contact
+                    Persons</h3>
 
             </div>
 
@@ -179,41 +183,51 @@
                         </tbody>
                     </table>--%>
 
-                        <tbody>
-                            <table>
-                                <tr>
-                                    <display:table id="contact" name="contacts" requestURI="/viewCustomerContacts.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter" style="margin-top: 15px;">
-                                        <td><display:column property="lastName" title="Last Name" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="firstName" title="First Name" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="middleName" title="Middle Name" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="phone" title="Phone" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="mobile" title="Mobile" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="fax" title="Fax" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="email" title="E-Mail" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td class="tb-font-black" style="text-align: center;">
-                                            <display:column title="Actions">
-                                                <s:url var="editContactsUrl" action="loadEditCustomerContact">
-                                                    <s:param name="contactCodeParam" value="#attr.contact.contactId"></s:param>
-                                                </s:url>
-                                                <s:a class="icon-action-link" href="%{editContactsUrl}" rel="tooltip"
-                                                     title="Edit this contact person">
-                                                    <img src="includes/images/edit-user.png" class="icon-action circ-icon">
-                                                </s:a>
+                    <tbody>
+                    <table>
+                        <tr>
+                            <display:table id="contact" name="contacts" requestURI="/viewCustomerContacts.action"
+                                           pagesize="10"
+                                           class="table table-striped table-hover table-bordered text-center tablesorter"
+                                           style="margin-top: 15px;">
+                                <td><display:column property="lastName" title="Last Name" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="firstName" title="First Name" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="middleName" title="Middle Name" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="phone" title="Phone" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="mobile" title="Mobile" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="fax" title="Fax" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="email" title="E-Mail" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td class="tb-font-black" style="text-align: center;">
+                                    <display:column title="Actions">
+                                        <s:url var="editContactsUrl" action="loadEditCustomerContact">
+                                            <s:param name="contactCodeParam" value="#attr.contact.contactId"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{editContactsUrl}" rel="tooltip"
+                                             title="Edit this contact person">
+                                            <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                        </s:a>
 
-                                                <s:url var="deleteContactsUrl" action="deleteCustomerContact">
-                                                    <s:param name="contactCodeParam" value="#attr.contact.contactId"></s:param>
-                                                </s:url>
-                                                <s:a class="icon-action-link" href="%{deleteContactsUrl}" rel="tooltip"
-                                                     title="Delete this Contact Person"
-                                                     onclick="return confirm('Do you really want to delete?');">
-                                                    <img src="includes/images/remove-user.png" class="icon-action circ-icon">
-                                                </s:a>
-                                            </display:column>
-                                        </td>
-                                    </display:table>
-                                </tr>
-                            </table>
-                        </tbody>
+                                        <s:url var="deleteContactsUrl" action="deleteCustomerContact">
+                                            <s:param name="contactCodeParam" value="#attr.contact.contactId"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{deleteContactsUrl}" rel="tooltip"
+                                             title="Delete this Contact Person"
+                                             onclick="return confirm('Do you really want to delete?');">
+                                            <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                        </s:a>
+                                    </display:column>
+                                </td>
+                            </display:table>
+                        </tr>
+                    </table>
+                    </tbody>
 
                 </div>
 
@@ -254,4 +268,5 @@
         </div>
     </div>
 
-</div><!-- /.row -->
+</div>
+<!-- /.row -->

@@ -10,7 +10,7 @@
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
         </result-types>
 
-        <default-action-ref name="Reports" />
+        <default-action-ref name="Reports"/>
 
     </package>
 </struts>

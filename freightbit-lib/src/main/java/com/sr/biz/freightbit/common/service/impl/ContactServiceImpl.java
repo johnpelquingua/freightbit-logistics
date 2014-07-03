@@ -2,8 +2,8 @@ package com.sr.biz.freightbit.common.service.impl;
 
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Contacts;
-import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.common.service.ContactService;
+import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +19,6 @@ public class ContactServiceImpl implements ContactService {
     public void setContactsDao(ContactsDao contactsDao) {
         this.contactsDao = contactsDao;
     }
-
 
 
     @Override
@@ -49,7 +48,6 @@ public class ContactServiceImpl implements ContactService {
         List<Contacts> contacts = contactsDao.findAllContacts();
         return contacts;
     }
-
 
 
 //    @Override

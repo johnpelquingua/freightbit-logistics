@@ -1,10 +1,9 @@
 package com.sr.apps.freightbit.vendor.formbean;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
+
+import java.util.List;
 
 /**
  * Created by ADMIN on 5/28/2014.

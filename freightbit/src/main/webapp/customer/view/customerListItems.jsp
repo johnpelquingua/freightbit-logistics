@@ -98,15 +98,18 @@
     <div class="col-lg-12">
         <h1>Customer List Items </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
-            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a></li>
-            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer Profile</a></li>
+            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a>
+            </li>
+            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer
+                Profile</a></li>
             <li class="active"><i class="fa fa-list-ol"></i> Items</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-7">
@@ -122,7 +125,7 @@
     <div class="col-lg-10">
         <div class="panel panel-primary">
 
-            <div class="panel-heading"  >
+            <div class="panel-heading">
                 <h3 class="panel-title" style="position: relative; top: 2px;"><i class="fa fa-list-ol"></i> Items</h3>
 
             </div>
@@ -181,42 +184,59 @@
                         </tbody>
                     </table>--%>
 
-                        <tbody>
-                            <table>
-                                <tr>
-                                    <display:table id="item" name="items" requestURI="/viewItem.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter" style="margin-top: 15px;">
-                                        <td><display:column property="itemName" title="Item Name" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="itemCode" title="Item Code" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="length" title="Length" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="width" title="Width" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="height" title="Height" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="srp" title="SRP" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="criticalQuality" title="Critical Quality" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="basePrice" title="Base Price" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="note" title="Note" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="description" title="Description" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td class="tb-font-black" style="text-align: center;">
-                                            <display:column title="Actions">
-                                                <s:url var="editItemUrl" action="loadEditItem">
-                                                    <s:param name="customersItemIdParam" value="%{#attr.item.customerItemsId}"></s:param>
-                                                </s:url>
-                                                <s:a class="icon-action-link" href="%{editItemUrl}" rel="tooltip"
-                                                     title="Edit this driver">
-                                                    <img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
+                    <tbody>
+                    <table>
+                        <tr>
+                            <display:table id="item" name="items" requestURI="/viewItem.action" pagesize="10"
+                                           class="table table-striped table-hover table-bordered text-center tablesorter"
+                                           style="margin-top: 15px;">
+                                <td><display:column property="itemName" title="Item Name" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="itemCode" title="Item Code" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="length" title="Length" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="width" title="Width" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="height" title="Height" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="srp" title="SRP" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="criticalQuality" title="Critical Quality"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="basePrice" title="Base Price" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="note" title="Note" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="description" title="Description" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td class="tb-font-black" style="text-align: center;">
+                                    <display:column title="Actions">
+                                        <s:url var="editItemUrl" action="loadEditItem">
+                                            <s:param name="customersItemIdParam"
+                                                     value="%{#attr.item.customerItemsId}"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{editItemUrl}" rel="tooltip"
+                                             title="Edit this driver">
+                                            <img src="includes/images/edit-user.png"
+                                                 class="icon-action circ-icon"> </s:a>
 
-                                                <s:url var="deleteItemUrl" action="deleteItem">
-                                                    <s:param name="customersItemIdParam" value="%{#attr.item.customerItemsId}"></s:param>
-                                                </s:url>
-                                                <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
-                                                     title="Delete this Item?"
-                                                     onclick="return confirm('Do you really want to delete?');">
-                                                    <img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
-                                            </display:column>
-                                        </td>
-                                    </display:table>
-                                </tr>
-                            </table>
-                        </tbody>
+                                        <s:url var="deleteItemUrl" action="deleteItem">
+                                            <s:param name="customersItemIdParam"
+                                                     value="%{#attr.item.customerItemsId}"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
+                                             title="Delete this Item?"
+                                             onclick="return confirm('Do you really want to delete?');">
+                                            <img src="includes/images/remove-user.png"
+                                                 class="icon-action circ-icon"> </s:a>
+                                    </display:column>
+                                </td>
+                            </display:table>
+                        </tr>
+                    </table>
+                    </tbody>
 
 
                 </div>
@@ -255,7 +275,8 @@
             </ul>
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 
 

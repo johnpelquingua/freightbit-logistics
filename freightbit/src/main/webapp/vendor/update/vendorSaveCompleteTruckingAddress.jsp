@@ -55,7 +55,8 @@
                                         <s:a class="icon-action-link" href="%{deleteAddressUrl}" rel="tooltip"
                                              title="Delete this Vendor Address"
                                              onclick="return confirm('Do you really want to delete?');"><img
-                                                src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                                src="includes/images/remove-user.png"
+                                                class="icon-action circ-icon"> </s:a>
                                     </td>
                                 </tr>
                             </s:iterator>

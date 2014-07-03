@@ -1,31 +1,21 @@
 package com.sr.biz.freightbit.vendor.entity;
 
+import com.sr.biz.freightbit.core.entity.Client;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-import com.sr.biz.freightbit.core.entity.Client;
 
 /**
  * Created by JMXPSX on 5/16/14.
  */
 
 @Entity
-@Table(name = "drivers", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "driverId") )
-public class Driver implements Serializable{
+@Table(name = "drivers", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "driverId"))
+public class Driver implements Serializable {
 
     private Integer driverId;
-//    private Vendor vendor;
+    //    private Vendor vendor;
     private Integer vendorId;
     private Client client;
     private String driverCode;
@@ -97,7 +87,7 @@ public class Driver implements Serializable{
     public void setVendorId(Integer vendorId) {
         this.vendorId = vendorId;
     }
-    
+
     @Column(name = "driverCode", unique = true, nullable = false)
     public String getDriverCode() {
         return driverCode;

@@ -3,9 +3,9 @@
     <application>freightbit-test</application>
     <version>1</version>
     <threadsafe>true</threadsafe>
-	<sessions-enabled>true</sessions-enabled>
-	<use-google-connector-j>true</use-google-connector-j>
-	<system-properties>
-	    <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
-  </system-properties>
+    <sessions-enabled>true</sessions-enabled>
+    <use-google-connector-j>true</use-google-connector-j>
+    <system-properties>
+        <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+    </system-properties>
 </appengine-web-app>

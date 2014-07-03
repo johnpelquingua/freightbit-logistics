@@ -1,17 +1,14 @@
 package com.sr.biz.freightbit.core.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.sr.biz.freightbit.core.dao.UserDao;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.exceptions.UserAlreadyExistsException;
 import com.sr.biz.freightbit.core.service.UserService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
 
 
 public class UserServiceImpl implements UserService {
@@ -74,9 +71,9 @@ public class UserServiceImpl implements UserService {
     public void updateUser(User user) {
         userDao.updateUser(user);
     }
-    
+
     @Override
     public List<User> findUsersByCriteria(String column, String value, Integer clientId) {
-    	return userDao.findUsersByCriteria(column, value, clientId);
+        return userDao.findUsersByCriteria(column, value, clientId);
     }
 }

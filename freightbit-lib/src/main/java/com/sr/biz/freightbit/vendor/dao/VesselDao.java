@@ -3,15 +3,16 @@ package com.sr.biz.freightbit.vendor.dao;
 /**
  * Created by ADMIN on 5/16/2014.
  */
-import java.util.List;
 
 import com.sr.biz.freightbit.vendor.entity.Vessel;
+
+import java.util.List;
 
 public interface VesselDao {
 
     public void addVessel(Vessel vessel);
 
-    public  void deleteVessel(Vessel vessel);
+    public void deleteVessel(Vessel vessel);
 
     public void updateVessel(Vessel vessel);
 

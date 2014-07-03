@@ -5,18 +5,16 @@ package com.sr.biz.freightbit.vendor.dao.impl;
  * User: johnpelquingua.com
  */
 
-import java.util.List;
-
 import com.sr.biz.freightbit.core.entity.User;
-
+import com.sr.biz.freightbit.vendor.dao.TrucksDao;
+import com.sr.biz.freightbit.vendor.entity.Trucks;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.vendor.dao.TrucksDao;
-import com.sr.biz.freightbit.vendor.entity.Trucks;
+import java.util.List;
 
 @Transactional
 public class TrucksDaoImpl extends HibernateDaoSupport implements TrucksDao {
@@ -101,7 +99,7 @@ public class TrucksDaoImpl extends HibernateDaoSupport implements TrucksDao {
         log.debug("Getting Trucks instance by vendor id: " + vendorId);
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                "from Trucks t where t.vendorId = :vendorId");
+                    "from Trucks t where t.vendorId = :vendorId");
             query.setParameter("vendorId", vendorId);
             List<Trucks> results = (List<Trucks>) query.list();
             log.debug("Find by vendorId successful, result size: " + results.size());

@@ -88,14 +88,15 @@
     <div class="col-lg-12">
         <h1>Vendor Info Shipping</h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
             <li class="active"><a href="<s:url action='viewVendors' />"> <i class="fa fa-list"></i> Vendor List</a></li>
             <li class="active"><i class="fa fa-info-circle"></i> Vendor Shipping Profile</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-7">
@@ -120,7 +121,8 @@
                 <s:set name="vendorId" value="%{vendor.vendorId}" scope="session"/>
 
                 <div class="row">
-                    <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="includes/images/photo.png" class="img-circle"> </div>
+                    <div class="col-md-3 col-lg-3 " align="center"><img alt="User Pic" src="includes/images/photo.png"
+                                                                        class="img-circle"></div>
 
                     <div class=" col-md-9 col-lg-9 ">
                         <table class="table table-user-information">

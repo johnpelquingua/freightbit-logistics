@@ -1,17 +1,17 @@
 package com.sr.biz.freightbit.customer.service.impl;
 
-import java.util.List;
-
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import com.sr.biz.freightbit.customer.dao.RatesDao;
 import com.sr.biz.freightbit.customer.entity.Rates;
 import com.sr.biz.freightbit.customer.service.RateService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by Solutions Resource on 5/27/14.
  */
-public class RateServiceImpl  implements RateService  {
+public class RateServiceImpl implements RateService {
 
 
     private RatesDao ratesDao;
@@ -24,7 +24,7 @@ public class RateServiceImpl  implements RateService  {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addRate(Rates rate) {
 
-            ratesDao.addRate(rate);
+        ratesDao.addRate(rate);
     }
 
     @Override
@@ -32,7 +32,6 @@ public class RateServiceImpl  implements RateService  {
     public void deleteRate(Rates rate) {
         ratesDao.deleteRate(rate);
     }
-
 
 
     @Override

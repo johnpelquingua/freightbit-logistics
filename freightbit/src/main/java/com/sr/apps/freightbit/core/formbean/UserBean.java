@@ -21,7 +21,7 @@ public class UserBean {
     private String userSearchCriteria;
     private String userKeyword;
 
-	public UserBean(){
+    public UserBean() {
 
     }
 
@@ -146,21 +146,21 @@ public class UserBean {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
 
     public String getUserSearchCriteria() {
-		return userSearchCriteria;
-	}
+        return userSearchCriteria;
+    }
 
-	public void setUserSearchCriteria(String userSearchCriteria) {
-		this.userSearchCriteria = userSearchCriteria;
-	}
+    public void setUserSearchCriteria(String userSearchCriteria) {
+        this.userSearchCriteria = userSearchCriteria;
+    }
 
-	public String getUserKeyword() {
-		return userKeyword;
-	}
+    public String getUserKeyword() {
+        return userKeyword;
+    }
 
-	public void setUserKeyword(String userKeyword) {
-		this.userKeyword = userKeyword;
-	}
+    public void setUserKeyword(String userKeyword) {
+        this.userKeyword = userKeyword;
+    }
 }

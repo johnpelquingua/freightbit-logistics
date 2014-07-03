@@ -5,20 +5,15 @@ package com.sr.biz.freightbit.vendor.dao.impl;
  * User: johnpelquingua.com
  */
 
-import java.util.List;
-import java.lang.*;
-
+import com.sr.biz.freightbit.vendor.dao.TrailersDao;
+import com.sr.biz.freightbit.vendor.entity.Trailers;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-
-
-import com.sr.biz.freightbit.vendor.dao.TrailersDao;
-import com.sr.biz.freightbit.vendor.entity.Trailers;
-
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Transactional
 public class TrailersDaoImpl extends HibernateDaoSupport implements TrailersDao {
@@ -82,21 +77,20 @@ public class TrailersDaoImpl extends HibernateDaoSupport implements TrailersDao 
     }
 
     @Override
-    public List<Trailers> findAllTrailersByClientId (Integer clientId) {
+    public List<Trailers> findAllTrailersByClientId(Integer clientId) {
 
         log.debug("finding Orders by client");
-        try{
+        try {
             Query query = getSessionFactory().getCurrentSession().createQuery("from Trailers t where t.clientId = :clientId");
             query.setParameter("clientId", clientId);
             List<Trailers> results = (List<Trailers>) query.list();
             log.debug("find by client id successful, result size:" + results.size());
             return results;
-        }catch(RuntimeException re){
+        } catch (RuntimeException re) {
             log.error("find by client id failed", re);
             throw re;
         }
     }
-
 
 
     @Override

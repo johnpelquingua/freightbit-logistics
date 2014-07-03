@@ -114,21 +114,22 @@
 --%>
 
 
-
 <div class="row">
     <div class="col-lg-12">
         <h1>Vendor Module </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
             <li class="active"><a href="<s:url action='viewVendors' />"> <i class="fa fa-list"></i> Vendor List</a></li>
-            <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor Profile</a></li>
+            <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor
+                Profile</a></li>
             <li class="active"><i class="fa fa-home"></i> Address</li>
             <li class="active"><i class="fa fa-pencil"></i> Edit Address</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-6 col-lg-offset-2">
@@ -140,28 +141,37 @@
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <s:form  action="editShippingAddress" cssClass="form-horizontal" theme="bootstrap">
+                    <s:form action="editShippingAddress" cssClass="form-horizontal" theme="bootstrap">
                         <div class="form-group">
 
-                            <label for="address.addressType" class="col-sm-2 control-label" style="width:25%;">Address Type</label>
+                            <label for="address.addressType" class="col-sm-2 control-label" style="width:25%;">Address
+                                Type</label>
+
                             <div class="col-sm-10" style="width:70%;">
-                                <s:select name="address.addressType" list="addressTypeList" listValue="value" listKey="key" cssClass="form-control" id="address.addressType" emptyOption="true" />
+                                <s:select name="address.addressType" list="addressTypeList" listValue="value"
+                                          listKey="key" cssClass="form-control" id="address.addressType"
+                                          emptyOption="true"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Address Line 1</label>
+
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control"/>
+                                <s:textfield name="address.addressLine1" id="address.addressLine1"
+                                             cssClass="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Address Line 2</label>
+
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield name="address.addressLine2" id="address.addressLine2" cssClass="form-control"/>
+                                <s:textfield name="address.addressLine2" id="address.addressLine2"
+                                             cssClass="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">City</label>
+
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield name="address.city" id="address.city" cssClass="form-control"/>
                             </div>
@@ -169,18 +179,20 @@
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">State</label>
+
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield name="address.state" id="address.state" cssClass="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label  class="col-sm-2 control-label" style="width:25%;">Zip Code</label>
+                            <label class="col-sm-2 control-label" style="width:25%;">Zip Code</label>
+
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield name="address.zip" id="address.zip" cssClass="form-control"/>
                             </div>
                         </div>
-                        <s:property value="%{vendorIdParam}" />
-                        <s:hidden name="vendorIdParam" id="vendorIdParam"   value="%{vendorIdParam}" />
+                        <s:property value="%{vendorIdParam}"/>
+                        <s:hidden name="vendorIdParam" id="vendorIdParam" value="%{vendorIdParam}"/>
                         <div class=" pull-right">
                             <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
                         </div>
@@ -199,7 +211,7 @@
             </div>--%>
 
             <ul class="nav nav-pills nav-stacked">
-                <li ><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
+                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
                 <li class="active"><a href="viewTruckingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
                 <li><a href="viewVendorTruckingContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
                 <li><a href="viewDrivers"><i class="fa fa-group fa-fw"></i> Drivers</a></li>
@@ -209,5 +221,6 @@
             </ul>
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 

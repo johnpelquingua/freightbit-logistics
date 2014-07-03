@@ -1,13 +1,9 @@
 package com.sr.biz.freightbit.core.dao;
 
+import com.sr.biz.freightbit.core.entity.*;
+
 import java.util.List;
 import java.util.Map;
-
-import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.entity.Group;
-import com.sr.biz.freightbit.core.entity.Permission;
-import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
-import com.sr.biz.freightbit.core.entity.User;
 
 public interface PermissionDao {
     public Permission createPermission(User user, Client client, long value);
@@ -31,16 +27,16 @@ public interface PermissionDao {
     public Permission getPermission(Client client, Group group);
 
     public List<Permission> getPermissions(Integer clientId);
-    
+
     public List<PermissionUserGroup> getPermissionUserGroupsByClientIdAndPermissionId(Integer clientId, Integer permissionId);
-    
+
     public Permission findPermissionById(Integer permissionId);
-    
+
     public void addPermissionUserGroup(PermissionUserGroup permissionUserGroup);
-    
-    public List <PermissionUserGroup> findPermissionUserGroup(Integer clientId, Integer groupId, Integer userId, Integer permissionId);
 
-	void deletePermissionUserGroup(PermissionUserGroup permissionUserGroup);
+    public List<PermissionUserGroup> findPermissionUserGroup(Integer clientId, Integer groupId, Integer userId, Integer permissionId);
 
-	List<PermissionUserGroup> findPermissionUserGroups(Map<String, Object> paramMap, String entity);
+    void deletePermissionUserGroup(PermissionUserGroup permissionUserGroup);
+
+    List<PermissionUserGroup> findPermissionUserGroups(Map<String, Object> paramMap, String entity);
 }

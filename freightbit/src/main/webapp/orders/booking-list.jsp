@@ -4,7 +4,6 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
 
-
 <%--
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
@@ -83,12 +82,13 @@
     <div class="col-lg-12">
         <h1>Booking Module </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-list"></i> Booking List</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-12">
@@ -117,8 +117,8 @@
                         <tbody>
 
                         <tr class="warning">
-                            <td class="tb-font-black">10/21/2013 </td>
-                            <td class="tb-font-black">MTY-123 </td>
+                            <td class="tb-font-black">10/21/2013</td>
+                            <td class="tb-font-black">MTY-123</td>
                             <td class="tb-font-black">Mighty Corp.</td>
                             <td class="tb-font-black">Palawan Co.</td>
                             <td class="tb-font-black">Full Cargo Load</td>
@@ -139,8 +139,8 @@
                         </tr>
 
                         <tr class="success">
-                            <td class="tb-font-black">10/21/2013 </td>
-                            <td class="tb-font-black">MTY-123 </td>
+                            <td class="tb-font-black">10/21/2013</td>
+                            <td class="tb-font-black">MTY-123</td>
                             <td class="tb-font-black">Mighty Corp.</td>
                             <td class="tb-font-black">Palawan Co.</td>
                             <td class="tb-font-black">Full Cargo Load</td>
@@ -173,12 +173,14 @@
                         <button type="button" class="btn btn-info new-booking" onclick="location.href='bookingSearch'">
                             <i class="fa fa-search"></i> Search Booking
                         </button>
-                        <button type="button" class="btn btn-info new-booking" onclick="location.href='loadAddOrderPage'">
+                        <button type="button" class="btn btn-info new-booking"
+                                onclick="location.href='loadAddOrderPage'">
                             <i class="fa fa-book"></i> New Booking
                         </button>
                     </span>
             </div>
+        </div>
     </div>
-</div><!-- /.row -->
+    <!-- /.row -->
 
 

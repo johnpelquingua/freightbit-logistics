@@ -1,9 +1,9 @@
 package com.sr.biz.freightbit.core.service;
 
 import com.sr.biz.freightbit.common.dao.ContactsDao;
-import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.service.impl.ContactServiceImpl;
+import com.sr.biz.freightbit.core.entity.Client;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

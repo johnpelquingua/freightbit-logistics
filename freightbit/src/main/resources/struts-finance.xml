@@ -10,7 +10,7 @@
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
         </result-types>
 
-        <default-action-ref name="Finance" />
+        <default-action-ref name="Finance"/>
 
         <action name="searchFinance" class="com.sr.apps.freightbit.core.action.FinanceAction" method="searchFinance">
             <result name="success" type="tiles">finance.tiles</result>

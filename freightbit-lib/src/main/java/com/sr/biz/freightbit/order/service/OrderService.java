@@ -1,16 +1,16 @@
 package com.sr.biz.freightbit.order.service;
 
-import java.util.List;
-
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
-import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
 import com.sr.biz.freightbit.order.entity.Orders;
+
+import java.util.List;
+
 /**
  * Created by JMXPSX on 5/27/14.
  */
@@ -22,13 +22,13 @@ public interface OrderService {
 
     public void updateOrder(Orders orders);
 
-    public List<Orders> findAllOrders ();
+    public List<Orders> findAllOrders();
 
-    public List<Orders> findAllOrdersByClientId (Integer clientId);
+    public List<Orders> findAllOrdersByClientId(Integer clientId);
 
     public Orders findOrdersById(Integer orderId);
 
-    public  Orders findOrdersByOrderNumber (Integer orderNumber);
+    public Orders findOrdersByOrderNumber(Integer orderNumber);
 
     public void updateOrderDate(Orders orders);
 
@@ -68,7 +68,7 @@ public interface OrderService {
 
     public Address findAddressById(Integer addressId);
 
-    public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId);
+    public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId);
 
     public void addItem(Items items) throws ItemAlreadyExistsException;
 

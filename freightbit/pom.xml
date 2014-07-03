@@ -14,19 +14,19 @@
     </properties>
 
     <dependencies>
-    	<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>4.0.0.RELEASE</version>
-		</dependency>
-		
         <dependency>
             <groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>3.2.6.RELEASE</version>
-		</dependency>
+            <artifactId>spring-core</artifactId>
+            <version>4.0.0.RELEASE</version>
+        </dependency>
 
-         <dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>3.2.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-spring-plugin</artifactId>
             <version>2.3.16</version>
@@ -107,7 +107,7 @@
             <groupId>com.jgeppert.struts2.bootstrap</groupId>
             <artifactId>struts2-bootstrap-plugin</artifactId>
             <version>1.7.0</version>
-        </dependency> 
+        </dependency>
 
         <dependency>
             <groupId>com.jgeppert.struts2.jquery</groupId>
@@ -120,7 +120,7 @@
             <artifactId>bootstrap-datepicker</artifactId>
             <version>1.0.1</version>
         </dependency>
- 
+
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-dojo-plugin</artifactId>
@@ -133,40 +133,40 @@
             <version>2.1.0-2</version>
         </dependency>
 
-		<dependency>
-			<groupId>com.sr.biz</groupId>
-			<artifactId>freightbit-lib</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
         <dependency>
-            <groupId>org.apache.struts.xwork</groupId>
-            <artifactId>xwork-core</artifactId>
-            <version>2.3.16</version>
+            <groupId>com.sr.biz</groupId>
+            <artifactId>freightbit-lib</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.struts.xwork</groupId>
             <artifactId>xwork-core</artifactId>
             <version>2.3.16</version>
         </dependency>
-        
         <dependency>
-			<groupId>displaytag</groupId>
-			<artifactId>displaytag</artifactId>
-			<version>1.2</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>displaytag</groupId>
-			<artifactId>displaytag-export-poi</artifactId>
-			<version>1.2</version>
-		</dependency>
-		
+            <groupId>org.apache.struts.xwork</groupId>
+            <artifactId>xwork-core</artifactId>
+            <version>2.3.16</version>
+        </dependency>
+
         <dependency>
-			<groupId>displaytag</groupId>
-			<artifactId>displaytag-portlet</artifactId>
-			<version>1.2</version>
-		</dependency>
-        
+            <groupId>displaytag</groupId>
+            <artifactId>displaytag</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>displaytag</groupId>
+            <artifactId>displaytag-export-poi</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>displaytag</groupId>
+            <artifactId>displaytag-portlet</artifactId>
+            <version>1.2</version>
+        </dependency>
+
 
     </dependencies>
 

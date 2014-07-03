@@ -2,8 +2,8 @@ package com.sr.biz.freightbit.core.dao.impl;
 
 // Generated Feb 11, 2014 3:09:30 PM by Hibernate Tools 3.4.0.CR1
 
-import java.util.List;
-
+import com.sr.biz.freightbit.core.dao.UserDao;
+import com.sr.biz.freightbit.core.entity.User;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -11,13 +11,11 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.core.dao.UserDao;
-import com.sr.biz.freightbit.core.entity.User;
+import java.util.List;
 
 /**
- *
- * @see com.sr.biz.freightbit.core.entity.User
  * @author Hibernate Tools
+ * @see com.sr.biz.freightbit.core.entity.User
  */
 @Transactional
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
@@ -140,16 +138,16 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
             throw re;
         }
     }
-    
+
     @Override
-	public List<User> findUsersByCriteria(String column, String value, Integer clientId) {
+    public List<User> findUsersByCriteria(String column, String value, Integer clientId) {
         log.debug("Find users by criteria ");
         Session session = getSessionFactory().getCurrentSession();
         List<User> users = session.createCriteria(User.class)
-            .add(Restrictions.like(column, value))
-            .add(Restrictions.eq("client.clientId", clientId))
-            .list();
-        return users;	
-	}
+                .add(Restrictions.like(column, value))
+                .add(Restrictions.eq("client.clientId", clientId))
+                .list();
+        return users;
+    }
 
 }

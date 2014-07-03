@@ -5,6 +5,10 @@ package com.sr.biz.freightbit.core.service;
  * User: johnpel
  */
 
+import com.sr.biz.freightbit.vendor.dao.TrailersDao;
+import com.sr.biz.freightbit.vendor.entity.Trailers;
+import com.sr.biz.freightbit.vendor.exceptions.TrailersAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.service.impl.TrailersServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,11 +21,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sr.biz.freightbit.vendor.dao.TrailersDao;
-import com.sr.biz.freightbit.vendor.service.impl.TrailersServiceImpl;
-import com.sr.biz.freightbit.vendor.exceptions.TrailersAlreadyExistsException;
-import com.sr.biz.freightbit.vendor.entity.Trailers;
 
 @ContextConfiguration(locations = {"classpath:/conf/applicationContext-lib.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,12 +38,12 @@ public class TrailersServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test(expected=TrailersAlreadyExistsException.class)
+    @Test(expected = TrailersAlreadyExistsException.class)
     public void testAddExistingTrailers() {
 
         Trailers trailers = initTrailers();
 
-        List <Trailers> existingTrailerList = new ArrayList();
+        List<Trailers> existingTrailerList = new ArrayList();
         existingTrailerList.add(trailers);
 
         Mockito.when(trailersDao.findTrailersByTrailerCode("TRAILERTEST")).thenReturn(existingTrailerList);
@@ -65,10 +64,10 @@ public class TrailersServiceTest {
 
     }*/
 
-     //TODO VENDOR DOMAIN
+    //TODO VENDOR DOMAIN
 
     @Test
-    public void testFindAllTrailers(){
+    public void testFindAllTrailers() {
         Integer vendorId = 1;
         List<Trailers> trailers = new ArrayList();
         trailers.add(initTrailers());
@@ -76,7 +75,7 @@ public class TrailersServiceTest {
 
     }
 
-    private Trailers initTrailers(){
+    private Trailers initTrailers() {
 
         Trailers trailers = new Trailers();
 

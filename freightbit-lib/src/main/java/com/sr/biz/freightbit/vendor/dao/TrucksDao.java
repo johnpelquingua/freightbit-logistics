@@ -5,10 +5,10 @@ package com.sr.biz.freightbit.vendor.dao;
  * User: johnpelquingua.com
  */
 
-import java.util.List;
-
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
+
+import java.util.List;
 
 
 public interface TrucksDao {

@@ -1,15 +1,11 @@
 package com.sr.biz.freightbit.core.service;
 
 /**
-* Created by ADMIN on 5/13/14.
-*/
+ * Created by ADMIN on 5/13/14.
+ */
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import com.sr.biz.freightbit.customer.dao.CustomerDao;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.customer.dao.CustomerDao;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.service.impl.CustomerServiceImpl;
@@ -18,12 +14,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.MockitoAnnotations.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @ContextConfiguration(locations = {"classpath:/conf/applicationContext-lib.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -36,12 +35,12 @@ public class CustomerServiceTest {
     private CustomerServiceImpl customerService;
 
     @Before
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test(expected=CustomerAlreadyExistsException.class)
-    public void testAddExistingCustomer(){
+    @Test(expected = CustomerAlreadyExistsException.class)
+    public void testAddExistingCustomer() {
 
         Customer customer = initCustomer();
         List<Customer> existingCustomerList = new ArrayList<Customer>();
@@ -51,15 +50,17 @@ public class CustomerServiceTest {
         customerService.addCustomer(customer);
 
     }
-    public void addCustomer(){
+
+    public void addCustomer() {
         Customer customer = initCustomer();
 
         customerDao.addCustomer(customer);
     }
+
     @Test
-    public void testFindAllCustomers(){
+    public void testFindAllCustomers() {
         Integer clientId = 1;
-        List <Customer> customers = new ArrayList<>();
+        List<Customer> customers = new ArrayList<>();
         customers.add(initCustomer());
 
         Mockito.when(customerDao.findCustomerByClientId(clientId)).thenReturn(customers);
@@ -69,7 +70,7 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void testFindAllCustomerByClientId(){
+    public void testFindAllCustomerByClientId() {
         Integer clientId = 1;
 
         List<Customer> customers = new ArrayList<>();
@@ -81,7 +82,7 @@ public class CustomerServiceTest {
 
     }
 
-    private Customer initCustomer(){
+    private Customer initCustomer() {
 
         Client client = new Client("Ernest", new Date(), "Juno", new Date(), "Juno");
         Customer customer = new Customer();

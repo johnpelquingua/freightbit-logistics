@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-		<!-- MIDDLE -->
+<!-- MIDDLE -->
 <%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 		<h1 class="page-header">User Module</h1>
@@ -78,14 +78,14 @@
 
 
 </div>--%>
-		<!-- END OF THE MIDDLE -->
+<!-- END OF THE MIDDLE -->
 
 
 <div class="row" style=" margin-top: -15px; ">
     <div class="col-lg-12">
         <h1>Search Customer </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
             <li class="active"><i class="fa fa-search"></i> Search Customer</li>
         </ol>
@@ -102,7 +102,8 @@
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="customerSearchExecute" theme="bootstrap">
                     <div class="form-group">
-                        <label  class="col-sm-2 control-label">Search By</label>
+                        <label class="col-sm-2 control-label">Search By</label>
+
                         <div class="col-sm-10">
                             <s:select emptyOption="true" id="customer.customerSearchCriteria"
                                       value="customer.customerSearchCriteria"
@@ -112,15 +113,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label  class="col-sm-2 control-label">Search</label>
+                        <label class="col-sm-2 control-label">Search</label>
+
                         <div class="col-sm-10">
-                            <s:textfield name="customer.customerKeyword"  cssClass="form-control" placeholder="Keyword"/>
+                            <s:textfield name="customer.customerKeyword" cssClass="form-control" placeholder="Keyword"/>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="panel-footer">
-                <s:submit name="submit" cssClass="btn btn-info pull-right" value="Search" />
+                <s:submit name="submit" cssClass="btn btn-info pull-right" value="Search"/>
             </div>
             </s:form>
         </div>

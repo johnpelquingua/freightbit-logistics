@@ -1,23 +1,21 @@
 package com.sr.biz.freightbit.vendor.dao.impl;
 
-import java.util.List;
-
+import com.sr.biz.freightbit.vendor.dao.DriverDao;
+import com.sr.biz.freightbit.vendor.entity.Driver;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import com.sr.biz.freightbit.vendor.dao.DriverDao;
-import com.sr.biz.freightbit.vendor.entity.Driver;
-
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by JMXPSX on 5/16/14.
  */
 
 @Transactional
-public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
+public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao {
 
     private static final Logger Log = Logger.getLogger(DriverDaoImpl.class);
 
@@ -29,7 +27,7 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
             Session session = getSessionFactory().getCurrentSession();
             session.save(driver);
             Log.debug("Driver added successfully");
-        } catch (RuntimeException re){
+        } catch (RuntimeException re) {
             Log.error("add failed", re);
             throw re;
         }
@@ -37,13 +35,13 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
 
 
     @Override
-    public void deleteDriver(Driver driver){
+    public void deleteDriver(Driver driver) {
         Log.debug("Deleting a Driver");
         try {
             Session session = getSessionFactory().getCurrentSession();
             session.delete(driver);
             Log.debug("delete successful");
-        } catch (RuntimeException re){
+        } catch (RuntimeException re) {
             Log.error("delete failed", re);
             throw re;
         }
@@ -57,7 +55,7 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
             Session session = getSessionFactory().getCurrentSession();
             session.saveOrUpdate(driver);
             Log.debug("update successful");
-        }catch (RuntimeException re) {
+        } catch (RuntimeException re) {
             Log.error("update failed", re);
             throw re;
         }
@@ -67,10 +65,10 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
     @Override
     public List<Driver> findAllDrivers() {
         Log.debug("finding all drivers");
-        try{
+        try {
             return getSessionFactory().getCurrentSession().createQuery("from Driver").list();
 
-        }catch (RuntimeException re){
+        } catch (RuntimeException re) {
             Log.error("find all failed", re);
             throw re;
         }
@@ -78,16 +76,16 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
 
 
     @Override
-    public List<Driver> findAllDriversByClientId (Integer clientId){
+    public List<Driver> findAllDriversByClientId(Integer clientId) {
         Log.debug("finding Driver instance by client");
-        try{
+        try {
             Query query = getSessionFactory().getCurrentSession().createQuery("from Driver d where d.clientId = :clientId");
             query.setParameter("clientId", clientId);
             List<Driver> results = (List<Driver>) query.list();
             Log.debug("find by client id successful, result size:" + results.size());
             return results;
-        }catch(RuntimeException re){
-            Log.error("find by client id failed",re);
+        } catch (RuntimeException re) {
+            Log.error("find by client id failed", re);
             throw re;
         }
     }
@@ -95,16 +93,16 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
 
     @Override
     public Driver findDriverById(Integer driverId) {
-        Log.debug("getting Driver instance with id:"  + driverId);
-        try{
+        Log.debug("getting Driver instance with id:" + driverId);
+        try {
             Driver instance = (Driver) getSessionFactory().getCurrentSession().get(Driver.class, driverId);
             if (instance == null) {
                 Log.debug("get successful, no instance found");
-            }else {
+            } else {
                 Log.debug("get successful, instance found");
             }
             return instance;
-        }catch (RuntimeException re){
+        } catch (RuntimeException re) {
             Log.error("get failed", re);
             throw re;
         }
@@ -112,15 +110,15 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
 
 
     @Override
-    public List<Driver> findDriverByLastName (String lastName){
+    public List<Driver> findDriverByLastName(String lastName) {
         Log.debug("finding Driver instance by Last Name");
-        try{
+        try {
             Query query = getSessionFactory().getCurrentSession().createQuery("from Driver d where d.lastName = :lastName");
             query.setParameter("lastName", lastName);
             List<Driver> results = (List<Driver>) query.list();
             Log.debug("find by lastname successful, result size: " + results.size());
             return results;
-        }catch(RuntimeException re) {
+        } catch (RuntimeException re) {
             Log.error("find by lastname failed", re);
             throw re;
 
@@ -130,7 +128,7 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao{
     @Override
     public List<Driver> findDriverByVendorId(Integer vendorId) {
         Log.debug("Getting Driver instance by vendor id: " + vendorId);
-        try{
+        try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
                     "from Driver d where d.vendorId = :vendorId ");
             query.setParameter("vendorId", vendorId);

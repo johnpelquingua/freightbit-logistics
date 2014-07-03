@@ -1,8 +1,9 @@
 package com.sr.biz.freightbit.core.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.sr.biz.freightbit.vendor.dao.TrucksDao;
+import com.sr.biz.freightbit.vendor.entity.Trucks;
+import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.service.impl.TrucksServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,10 +14,8 @@ import org.mockito.MockitoAnnotations.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sr.biz.freightbit.vendor.dao.TrucksDao;
-import com.sr.biz.freightbit.vendor.service.impl.TrucksServiceImpl;
-import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
-import com.sr.biz.freightbit.vendor.entity.Trucks;
+import java.util.ArrayList;
+import java.util.List;
 
 @ContextConfiguration(locations = {"classpath:/conf/applicationContext-lib.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,7 +32,7 @@ public class TrucksServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test(expected=TrucksAlreadyExistsException.class)
+    @Test(expected = TrucksAlreadyExistsException.class)
     public void testAddExistingTrucks() {
 
         Trucks trucks = initTrucks();
@@ -48,20 +47,19 @@ public class TrucksServiceTest {
     public void testFindAllTrucksByVendorId() {
 
 
-
     }
 
     // TODO VENDOR DOMAIN
     @Test
-    public void testFindAllTrucks(){
+    public void testFindAllTrucks() {
         Integer vendorId = 1;
-        List <Trucks> trucks = new ArrayList<>();
+        List<Trucks> trucks = new ArrayList<>();
         trucks.add(initTrucks());
 
 
     }
 
-    private Trucks initTrucks(){
+    private Trucks initTrucks() {
 
         Trucks trucks = new Trucks();
 

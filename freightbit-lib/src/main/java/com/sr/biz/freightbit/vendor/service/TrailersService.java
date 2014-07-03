@@ -5,10 +5,10 @@ package com.sr.biz.freightbit.vendor.service;
  * User: johnpel
  */
 
-import java.util.List;
-
-import com.sr.biz.freightbit.vendor.exceptions.TrailersAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.entity.Trailers;
+import com.sr.biz.freightbit.vendor.exceptions.TrailersAlreadyExistsException;
+
+import java.util.List;
 
 public interface TrailersService {
 

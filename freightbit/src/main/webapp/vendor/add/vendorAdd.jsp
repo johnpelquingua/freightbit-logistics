@@ -89,16 +89,17 @@
     <div class="col-lg-12">
         <h1>Add New Vendor </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
             <li class="active"><a href="<s:url action='viewVendors' />"> <i class="fa fa-list"></i> Vendor List</a></li>
             <li class="active"><i class="fa fa-plus"></i> Add New Vendor</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
-<div class="row" >
+<div class="row">
     <div class="col-lg-7 col-lg-offset-2" style="margin-left: 21% !important;">
         <div class="panel panel-primary">
 
@@ -112,6 +113,7 @@
                     <s:form cssClass="form-horizontal" action="addVendor" method="POST" theme="bootstrap">
                     <div class="form-group">
                         <label class="col-sm-1 control-label" for="vendor.vendorType">Type</label>
+
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
                                       listKey="key" listValue="value" cssClass="form-control"
@@ -120,6 +122,7 @@
                     </div>
                     <div class="form-group">
                         <label for="vendor.vendorName" class="col-sm-1 control-label">Company</label>
+
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
                                          id="vendor.vendorName"/>
@@ -127,6 +130,7 @@
                     </div>
                     <div class="form-group">
                         <label for="vendor.vendorCode" class="col-sm-1 control-label">Code</label>
+
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:textfield cssClass="form-control" name="vendor.vendorCode" id="vendor.vendorCode"
                                          placeholder="Code"/>
@@ -134,6 +138,7 @@
                     </div>
                     <div class="form-group">
                         <label for="vendor.vendorClass" class="col-sm-1 control-label">Class</label>
+
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:select list="vendorClassList" listKey="key" listValue="value" cssClass="form-control"
                                       id="vendor.vendorClass" name="vendor.vendorClass"/>
@@ -141,6 +146,7 @@
                     </div>
                     <div class="form-group">
                         <label for="vendor.vendorStatus" class="col-sm-1 control-label">Status</label>
+
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:select list="statusList" listKey="key" listValue="value" cssClass="form-control"
                                       id="vendor.vendorStatus" name="vendor.vendorStatus"/>
@@ -149,16 +155,17 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <div class="pull-right" >
+                <div class="pull-right">
                     <button class="btn btn-default" onclick="this.form.action='viewVendors'">
-                        Cancel</button>
+                        Cancel
+                    </button>
                     <s:submit cssClass="btn btn-info" value="Save" type="submit"/>
                 </div>
             </div>
             </s:form>
-                </div>
-
-            </div>
         </div>
+
     </div>
+</div>
+</div>
 </div><!-- /.row -->

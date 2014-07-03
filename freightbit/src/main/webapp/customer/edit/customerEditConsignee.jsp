@@ -213,16 +213,20 @@
     <div class="col-lg-12">
         <h1>Customer Module </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
-            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a></li>
-            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer Profile</a></li>
-            <li class="active"><a href="<s:url action='viewConsignees' />"><i class="fa fa-list"></i> Consignee List</a></li>
+            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a>
+            </li>
+            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer
+                Profile</a></li>
+            <li class="active"><a href="<s:url action='viewConsignees' />"><i class="fa fa-list"></i> Consignee List</a>
+            </li>
             <li class="active"><i class="fa fa-plus"></i>Add New Consignee</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-6 col-lg-offset-2">
@@ -235,8 +239,8 @@
             <div class="panel-body">
 
                 <s:form cssClass="form-horizontal" action="editConsignee" theme="bootstrap">
-                <s:hidden name="consignee.addressId" value="%{addressIdParam}" />
-                <s:hidden name="consignee.contactId" value="%{contactCodeParam}" />
+                    <s:hidden name="consignee.addressId" value="%{addressIdParam}"/>
+                    <s:hidden name="consignee.contactId" value="%{contactCodeParam}"/>
                     <div class="form-group">
                         <label for="consignee.firstName" class="col-sm-2 control-label" style="width:25%;">First
                             Name:
@@ -400,4 +404,5 @@
             </ul>
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->

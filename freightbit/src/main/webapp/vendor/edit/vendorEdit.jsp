@@ -93,7 +93,7 @@
     <div class="col-lg-12">
         <h1>Edit Vendor</h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><a href="<s:url action='viewVendors' />"> <i class="fa fa-list"></i> Vendor List</a></li>
             <li class="active"><i class="fa fa-edit"></i> Edit Vendor</li>
         </ol>
@@ -108,9 +108,10 @@
             </div>
             <div class="panel-body">
                 <s:form cssClass="form-horizontal" action="editVendor" method="POST" theme="bootstrap">
-                <s:hidden name="vendor.vendorId" value="%{vendor.vendorId}" />
+                <s:hidden name="vendor.vendorId" value="%{vendor.vendorId}"/>
                 <div class="form-group">
                     <label for="vendor.vendorName" class="col-sm-2 control-label">Name</label>
+
                     <div class="col-sm-10">
                         <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Vendor Name"
                                      name="vendor.vendorName"></s:textfield>
@@ -118,6 +119,7 @@
                 </div>
                 <div class="form-group">
                     <label for="vendor.vendorCode" class="col-sm-2 control-label">Code</label>
+
                     <div class="col-sm-10">
                         <s:textfield cssClass="form-control" id="vendor.vendorCode" placeholder="Vendor Code"
                                      name="vendor.vendorCode"></s:textfield>
@@ -125,6 +127,7 @@
                 </div>
                 <div class="form-group">
                     <label for="vendor.vendorType" class="col-sm-2 control-label">Type</label>
+
                     <div class="col-sm-10">
                         <s:select cssClass="form-control" id="vendor.vendorType" list="vendorTypeList" listValue="value"
                                   listKey="key"
@@ -133,6 +136,7 @@
                 </div>
                 <div class="form-group">
                     <label for="vendor.vendorClass" class="col-sm-2 control-label">Class Name</label>
+
                     <div class="col-sm-10">
                         <s:select cssClass="form-control" id="vendor.vendorClass" list="vendorClassList" listKey="key"
                                   listValue="value"
@@ -141,6 +145,7 @@
                 </div>
                 <div class="form-group">
                     <label for="vendor.vendorStatus" class="col-sm-2 control-label">Status</label>
+
                     <div class="col-sm-10">
                         <s:select cssClass="form-control" id="vendor.vendorStatus" list="statusList"
                                   listKey="key" listValue="value"

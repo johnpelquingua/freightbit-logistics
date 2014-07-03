@@ -64,14 +64,15 @@
     <div class="col-lg-12">
         <h1>Search Vendor</h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
             <li class="active"><i class="fa fa-search"></i> Search Vendor</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
-<br />
+</div>
+<!-- /.row -->
+<br/>
 
 <div class="row">
     <div class="col-lg-7 col-lg-offset-2" style="margin-left: 21% !important;">
@@ -83,6 +84,7 @@
                 <s:form cssClass="form-horizontal" action="viewVendors" theme="bootstrap">
                 <div class="form-group">
                     <label for="vendor.vendorSearchCriteria" class="col-sm-2 control-label">Search By</label>
+
                     <div class="col-sm-10">
                         <s:select emptyOption="true" id="vendor.vendorSearchCriteria"
                                   value="vendor.vendorSearchCriteria"
@@ -93,8 +95,10 @@
                 </div>
                 <div class="form-group">
                     <label for="vendor.vendorKeyword" class="col-sm-2 control-label">Search</label>
+
                     <div class="col-sm-10">
-                        <s:textfield cssClass="form-control" placeholder="Keyword" name="vendor.vendorKeyword" id="vendor.vendorKeyword" />
+                        <s:textfield cssClass="form-control" placeholder="Keyword" name="vendor.vendorKeyword"
+                                     id="vendor.vendorKeyword"/>
                     </div>
                 </div>
             </div>
@@ -104,8 +108,8 @@
             </div>
         </div>
         </s:form>
-                <div id="morris-chart-area"></div>
-            </div>
-        </div>
+        <div id="morris-chart-area"></div>
     </div>
+</div>
+</div>
 </div><!-- /.row -->

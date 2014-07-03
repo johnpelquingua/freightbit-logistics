@@ -1,11 +1,9 @@
-(function($,W,D)
-{
+(function ($, W, D) {
     var JQUERY4U = {};
 
     JQUERY4U.UTIL =
     {
-        setupFormValidation: function()
-        {
+        setupFormValidation: function () {
             //form validation rules
             $("#register-form").validate({
                 rules: {
@@ -14,7 +12,7 @@
                 messages: {
                     firstName: "First name is required",
                 },
-                submitHandler: function(form) {
+                submitHandler: function (form) {
                     form.submit();
                 }
             });
@@ -22,7 +20,7 @@
     }
 
     //when the dom has loaded setup form validation rules
-    $(D).ready(function($) {
+    $(D).ready(function ($) {
         JQUERY4U.UTIL.setupFormValidation();
     });
 

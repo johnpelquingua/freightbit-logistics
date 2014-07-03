@@ -1,7 +1,5 @@
 package com.sr.biz.freightbit.customer.dao.impl;
 
-import java.util.List;
-
 import com.sr.biz.freightbit.customer.dao.ItemsDao;
 import com.sr.biz.freightbit.customer.entity.Items;
 import org.apache.log4j.Logger;
@@ -9,6 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by Solutions Resource on 5/26/14.

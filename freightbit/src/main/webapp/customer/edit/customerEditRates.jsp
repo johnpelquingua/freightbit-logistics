@@ -75,16 +75,19 @@
     <div class="col-lg-12">
         <h1>Customer Module </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
-            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a></li>
-            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer Profile</a></li>
+            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a>
+            </li>
+            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer
+                Profile</a></li>
             <li class="active"><a href="<s:url action='viewRates' />"> <i class="fa fa-money"></i> Rates </a></li>
             <li class="active"><i class="fa fa-pencil"></i> Edit Rate</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-6 col-lg-offset-2">
@@ -97,7 +100,7 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="editRates" theme="bootstrap">
-                    <s:hidden name="rates.customerRateId" value="%{customerRateId}" />
+                        <s:hidden name="rates.customerRateId" value="%{customerRateId}"/>
                         <div class="form-group">
                             <label for="rates.origin" class="col-sm-2 control-label" style="width:25%;">Origin:</label>
 
@@ -119,7 +122,8 @@
                             <label for="rates.rate" class="col-sm-2 control-label" style="width:25%;">Rate:</label>
 
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield name="rate.rate" cssClass="form-control" id="rates.rate" placeholder="Rate"/>
+                                <s:textfield name="rate.rate" cssClass="form-control" id="rates.rate"
+                                             placeholder="Rate"/>
                             </div>
                         </div>
 
@@ -143,7 +147,6 @@
             </div>
 
 
-
         </div>
 
     </div>
@@ -165,6 +168,7 @@
             </ul>
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 

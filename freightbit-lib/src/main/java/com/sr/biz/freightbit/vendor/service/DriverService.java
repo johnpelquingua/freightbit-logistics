@@ -1,9 +1,9 @@
 package com.sr.biz.freightbit.vendor.service;
 
-import java.util.List;
-
-import com.sr.biz.freightbit.vendor.exceptions.DriverAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.entity.Driver;
+import com.sr.biz.freightbit.vendor.exceptions.DriverAlreadyExistsException;
+
+import java.util.List;
 
 
 public interface DriverService {

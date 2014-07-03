@@ -3,10 +3,12 @@ package com.sr.biz.freightbit.core.service;
 /**
  * Created by JMXPSX on 5/27/14.
  */
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
+import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
+import com.sr.biz.freightbit.order.dao.OrderDao;
+import com.sr.biz.freightbit.order.entity.Orders;
+import com.sr.biz.freightbit.order.service.impl.OrderServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,11 +20,9 @@ import org.mockito.MockitoAnnotations.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
-import com.sr.biz.freightbit.order.dao.OrderDao;
-import com.sr.biz.freightbit.order.entity.Orders;
-import com.sr.biz.freightbit.order.service.impl.OrderServiceImpl;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 @ContextConfiguration(locations = {"classpath:/conf/applicationContext-lib.xml"})
@@ -40,7 +40,7 @@ public class OrderServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test(expected=OrderAlreadyExistsException.class)
+    @Test(expected = OrderAlreadyExistsException.class)
     public void testAddExistingOrder() {
         Orders orders = initOrder();
         List<Orders> existingOrderList = new ArrayList<>();
@@ -53,7 +53,7 @@ public class OrderServiceTest {
     @Test
     public void testFindAllOrdersByClientId() {
         Integer clientId = 1;
-        List <Orders> orders = new ArrayList();
+        List<Orders> orders = new ArrayList();
         orders.add(initOrder());
 
         Mockito.when(orderDao.findAllOrdersByClientId(clientId)).thenReturn(orders);
@@ -65,7 +65,7 @@ public class OrderServiceTest {
     @Test
     public void testFindAllOrders() {
         Integer clientId = 1;
-        List <Orders> orders = new ArrayList();
+        List<Orders> orders = new ArrayList();
         orders.add(initOrder());
 
     }

@@ -314,17 +314,24 @@
                             <thead>
                             <tr class="header_center">
                                 <%--<th class="tb-font-black"><input type="checkbox"/></th>--%>
-                                <th class="tb-font-black" style="text-align: center;">Quantity <i class="fa fa-sort"></i>
+                                <th class="tb-font-black" style="text-align: center;">Quantity <i
+                                        class="fa fa-sort"></i>
                                 </th>
-                                <th class="tb-font-black" style="text-align: center;">Size <i class="fa fa-sort"></i></th>
-                                <th class="tb-font-black" style="text-align: center;">Class <i class="fa fa-sort"></i></th>
-                                <th class="tb-font-black" style="text-align: center;">Weight <i class="fa fa-sort"></i></th>
-                                <th class="tb-font-black" style="text-align: center;">Value <i class="fa fa-sort"></i></th>
-                                <th class="tb-font-black" style="text-align: center;">Description <i class="fa fa-sort"></i>
+                                <th class="tb-font-black" style="text-align: center;">Size <i class="fa fa-sort"></i>
+                                </th>
+                                <th class="tb-font-black" style="text-align: center;">Class <i class="fa fa-sort"></i>
+                                </th>
+                                <th class="tb-font-black" style="text-align: center;">Weight <i class="fa fa-sort"></i>
+                                </th>
+                                <th class="tb-font-black" style="text-align: center;">Value <i class="fa fa-sort"></i>
+                                </th>
+                                <th class="tb-font-black" style="text-align: center;">Description <i
+                                        class="fa fa-sort"></i>
                                 </th>
                                 <th class="tb-font-black" style="text-align: center;">Remarks <i class="fa fa-sort"></i>
                                 </th>
-                                <th class="tb-font-black" style="text-align: center;">Rate <i class="fa fa-sort"></i></th>
+                                <th class="tb-font-black" style="text-align: center;">Rate <i class="fa fa-sort"></i>
+                                </th>
                                 <th class="tb-font-black" style="text-align: center;">Action</th>
                             </tr>
                             </thead>
@@ -373,8 +380,8 @@
 </div>
 <div class="panel-footer">
     <div class="btn-group pull-right">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-    <button type="button" class="btn btn-info">Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-info">Save</button>
     </div>
 </div>
 </div>

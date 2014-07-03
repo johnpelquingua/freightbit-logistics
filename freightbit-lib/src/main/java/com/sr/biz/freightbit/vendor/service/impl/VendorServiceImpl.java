@@ -5,22 +5,19 @@ package com.sr.biz.freightbit.vendor.service.impl;
  * User: johnpel
  */
 
-import java.util.Date;
-import java.util.List;
-
 import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
-import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.dao.*;
 import com.sr.biz.freightbit.vendor.entity.*;
 import com.sr.biz.freightbit.vendor.exceptions.*;
-
+import com.sr.biz.freightbit.vendor.service.VendorService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.vendor.service.VendorService;
+import java.util.Date;
+import java.util.List;
 
 public class VendorServiceImpl implements VendorService {
 
@@ -106,7 +103,7 @@ public class VendorServiceImpl implements VendorService {
         if (vendorDao.findDuplicateVendorByVendorCode(vendor.getVendorCode(), vendor.getVendorId()).size() > 0)
             throw new VendorAlreadyExistsException(vendor.getVendorCode());
         else
-        	vendorDao.updateVendor(vendor);     
+            vendorDao.updateVendor(vendor);
     }
 
     @Override
@@ -141,7 +138,7 @@ public class VendorServiceImpl implements VendorService {
 
 
     @Override
-    public List<Address> findAllAddressByRefId(Integer referenceId){
+    public List<Address> findAllAddressByRefId(Integer referenceId) {
         List<Address> address = addressDao.findAllAddressByRefId(referenceId);
         return address;
     }
@@ -364,7 +361,7 @@ public class VendorServiceImpl implements VendorService {
 //        if (vesselDao.findVesselByName(vessel.getVesselName()) != null)
 //            throw new VesselAlreadyExistsException(vessel.getVesselName());
 //        else
-            vesselDao.addVessel(vessel);
+        vesselDao.addVessel(vessel);
     }
 
     @Override
@@ -403,7 +400,7 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public List<Vessel> findVesselByVendorId(Integer vendorId){
+    public List<Vessel> findVesselByVendorId(Integer vendorId) {
         List<Vessel> result = vesselDao.findVesselByVendorId(vendorId);
 
         return result;
@@ -420,9 +417,9 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addContact(Contacts contacts)  {
+    public void addContact(Contacts contacts) {
 
-            contactsDao.addContact(contacts);
+        contactsDao.addContact(contacts);
 
     }
 
@@ -455,7 +452,6 @@ public class VendorServiceImpl implements VendorService {
         return result;
 
     }
-
 
 
 //    @Override

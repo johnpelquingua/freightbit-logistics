@@ -9,7 +9,8 @@ public class VesselBean {
     private Integer modelYear;
     private Integer vesselId;
 
-    public VesselBean(){}
+    public VesselBean() {
+    }
 
     public VesselBean(Integer vendorId, String vesselNumber, String vesselName, String modelNumber, Integer modelYear, Integer vesselId) {
         this.vendorId = vendorId;

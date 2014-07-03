@@ -86,21 +86,23 @@
 </div>--%>
 
 
-
 <div class="row">
     <div class="col-lg-12">
         <h1>Customer Module </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
-            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a></li>
-            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer Profile</a></li>
+            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a>
+            </li>
+            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer
+                Profile</a></li>
             <li class="active"><a href="<s:url action='viewAddress' />"> <i class="fa fa-home"></i> Address </a></li>
             <li class="active"><i class="fa fa-plus"></i> Add New Address</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-6 col-lg-offset-2">
@@ -119,7 +121,8 @@
                                 Type</label>
 
                             <div class="col-sm-10" style="width:70%;">
-                                <s:select name="address.addressType" list="addressTypeList" listValue="value" listKey="key"
+                                <s:select name="address.addressType" list="addressTypeList" listValue="value"
+                                          listKey="key"
                                           cssClass="form-control" id="address.addressType" emptyOption="true"/>
                             </div>
                         </div>
@@ -127,14 +130,16 @@
                             <label class="col-sm-2 control-label" style="width:25%;">Address Line 1</label>
 
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control"/>
+                                <s:textfield name="address.addressLine1" id="address.addressLine1"
+                                             cssClass="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Address Line 2</label>
 
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield name="address.addressLine2" id="address.addressLine2" cssClass="form-control"/>
+                                <s:textfield name="address.addressLine2" id="address.addressLine2"
+                                             cssClass="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -187,5 +192,6 @@
             </ul>
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 

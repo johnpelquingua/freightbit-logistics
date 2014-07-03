@@ -1,5 +1,10 @@
 package com.sr.biz.freightbit.core.service;
 
+import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.vendor.dao.DriverDao;
+import com.sr.biz.freightbit.vendor.entity.Driver;
+import com.sr.biz.freightbit.vendor.exceptions.DriverAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.service.impl.DriverServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,12 +19,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.sr.biz.freightbit.vendor.dao.DriverDao;
-import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.vendor.exceptions.DriverAlreadyExistsException;
-import com.sr.biz.freightbit.vendor.service.impl.DriverServiceImpl;
-import com.sr.biz.freightbit.vendor.entity.Driver;
 
 @ContextConfiguration(locations = {"classpath:/conf/applicationContext-lib.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -36,7 +35,7 @@ public class DriverServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test(expected=DriverAlreadyExistsException.class)
+    @Test(expected = DriverAlreadyExistsException.class)
     public void testAddExistingDriver() {
         Driver driver = initDriver();
         List<Driver> existingDriverList = new ArrayList<>();
@@ -49,7 +48,7 @@ public class DriverServiceTest {
     @Test
     public void testFindAllDriversByClientId() {
         Integer clientId = 1;
-        List <Driver> drivers = new ArrayList();
+        List<Driver> drivers = new ArrayList();
         drivers.add(initDriver());
 
         Mockito.when(driverDao.findAllDrivers()).thenReturn(drivers);
@@ -60,7 +59,7 @@ public class DriverServiceTest {
     @Test
     public void testFindAllDrivers() {
         Integer clientId = 1;
-        List <Driver> drivers = new ArrayList();
+        List<Driver> drivers = new ArrayList();
         drivers.add(initDriver());
 
 

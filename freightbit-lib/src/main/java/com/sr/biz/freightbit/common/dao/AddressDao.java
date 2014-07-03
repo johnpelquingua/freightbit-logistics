@@ -25,10 +25,10 @@ public interface AddressDao {
     public Address findAddressById(Integer addressId);
 
     public Address findContactByReferenceTableAndId(String referenceTable, Integer referenceId);
-    
-    public List <Address> findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType);
 
-	public List<Address> findAddressesByParameterMap(Map<String, Object> paramMap,
-			String entity);
+    public List<Address> findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType);
+
+    public List<Address> findAddressesByParameterMap(Map<String, Object> paramMap,
+                                                     String entity);
 
 }

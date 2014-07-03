@@ -10,7 +10,7 @@
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
         </result-types>
 
-        <default-action-ref name="Help" />
+        <default-action-ref name="Help"/>
 
         <action name="Help" class="com.sr.apps.freightbit.core.action.HelpAction" method="execute">
             <result name="success" type="tiles">help.tiles</result>

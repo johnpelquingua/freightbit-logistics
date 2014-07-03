@@ -1,10 +1,7 @@
 package com.sr.biz.freightbit.core.dao.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import com.sr.biz.freightbit.core.dao.PermissionDao;
+import com.sr.biz.freightbit.core.entity.*;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
@@ -12,17 +9,12 @@ import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.core.dao.PermissionDao;
-import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.entity.Group;
-import com.sr.biz.freightbit.core.entity.Permission;
-import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
-import com.sr.biz.freightbit.core.entity.User;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
- *
  * @author junoroxas
- *
  */
 @Transactional
 public class PermissionDaoImpl extends HibernateDaoSupport implements PermissionDao {
@@ -75,7 +67,7 @@ public class PermissionDaoImpl extends HibernateDaoSupport implements Permission
     public Permission getPermissionById(Integer permissionId) {
         log.debug("Getting Permission instance with id: " + permissionId);
         try {
-        	Permission instance = (Permission) getSessionFactory().getCurrentSession().get(
+            Permission instance = (Permission) getSessionFactory().getCurrentSession().get(
                     Permission.class, permissionId);
             if (instance == null) {
                 log.debug("get successful, no instance found");
@@ -104,22 +96,22 @@ public class PermissionDaoImpl extends HibernateDaoSupport implements Permission
     @Override
     public List<Permission> getPermissions(Integer clientId) {
         log.debug("finding permissions by clientId");
-        try{
+        try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
                     "from Permission p where p.clientId = :clientId");
             query.setParameter("clientId", clientId);
             List<Permission> results = (List<Permission>) query.list();
             log.debug("finding permissions by clientId successful, result size: " + results.size());
             return results;
-        }catch(RuntimeException re){
+        } catch (RuntimeException re) {
             log.error("finding permissions failed", re);
             throw re;
         }
     }
-    
-    public List<PermissionUserGroup> getPermissionUserGroupsByClientIdAndPermissionId(Integer clientId, Integer permissionId){
+
+    public List<PermissionUserGroup> getPermissionUserGroupsByClientIdAndPermissionId(Integer clientId, Integer permissionId) {
         log.debug("finding permissionUserGroups by clientId and permissionId");
-        try{
+        try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
                     "from PermissionUserGroup p where p.permissionId = :permissionId and p.clientId = :clientId");
             query.setParameter("permissionId", permissionId);
@@ -127,12 +119,12 @@ public class PermissionDaoImpl extends HibernateDaoSupport implements Permission
             List<PermissionUserGroup> results = (List<PermissionUserGroup>) query.list();
             log.debug("finding permissionUserGroups by clientId and permissionId successful, result size: " + results.size());
             return results;
-        }catch(RuntimeException re){
+        } catch (RuntimeException re) {
             log.error("finding permissionUserGroups failed", re);
             throw re;
         }
     }
-    
+
     public Permission findPermissionById(Integer permissionId) {
         log.debug("getting Permission instance with id: " + permissionId);
         try {
@@ -162,15 +154,15 @@ public class PermissionDaoImpl extends HibernateDaoSupport implements Permission
             throw re;
         }
     }
-    
+
     @Override
     public List<PermissionUserGroup> findPermissionUserGroup(Integer clientId, Integer groupId, Integer userId, Integer permissionId) {
         log.debug("Finding PermissionUserGroup by criteria");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery("from PermissionUserGroup where clientId = :clientId"
-            		+ " and groupId = :groupId"
-            		+ " and userId = :userId"
-            		+ " and permissionId = :permissionId");
+                    + " and groupId = :groupId"
+                    + " and userId = :userId"
+                    + " and permissionId = :permissionId");
             query.setParameter("clientId", clientId);
             query.setParameter("groupId", groupId);
             query.setParameter("userId", userId);
@@ -194,23 +186,23 @@ public class PermissionDaoImpl extends HibernateDaoSupport implements Permission
             throw re;
         }
     }
-    
+
     @Override
-    public List <PermissionUserGroup> findPermissionUserGroups(Map <String, Object> paramMap, String entity) {
-    	Query query = getSessionFactory().getCurrentSession().createQuery(buildSearchCriteria(paramMap, entity));
-    	return query.list();
+    public List<PermissionUserGroup> findPermissionUserGroups(Map<String, Object> paramMap, String entity) {
+        Query query = getSessionFactory().getCurrentSession().createQuery(buildSearchCriteria(paramMap, entity));
+        return query.list();
     }
-    
-    private String buildSearchCriteria(Map <String, Object> paramMap, String entity){
-    	StringBuilder queryString = new StringBuilder("from " + entity + " where ");
-    	Set<String> mapKeys = paramMap.keySet();
-    	int i=0;
-    	for (String mapKey : mapKeys) {
-    		if (i > 0)
-    			queryString.append(" and ");
-    		queryString.append(mapKey + " = '"+ paramMap.get(mapKey) +  "'");
-    		i++;
-    	}
-    	return queryString.toString();
+
+    private String buildSearchCriteria(Map<String, Object> paramMap, String entity) {
+        StringBuilder queryString = new StringBuilder("from " + entity + " where ");
+        Set<String> mapKeys = paramMap.keySet();
+        int i = 0;
+        for (String mapKey : mapKeys) {
+            if (i > 0)
+                queryString.append(" and ");
+            queryString.append(mapKey + " = '" + paramMap.get(mapKey) + "'");
+            i++;
+        }
+        return queryString.toString();
     }
 }

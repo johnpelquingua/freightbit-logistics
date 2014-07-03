@@ -1,7 +1,5 @@
 package com.sr.apps.freightbit.customer.formbean;
 
-import com.sr.biz.freightbit.core.entity.Client;
-
 import java.util.Date;
 
 /**
@@ -30,7 +28,7 @@ public class CustomerBean {
     private String customerSearchCriteria;
 
 
-    public CustomerBean(){
+    public CustomerBean() {
 
     }
 

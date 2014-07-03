@@ -5,9 +5,9 @@ package com.sr.biz.freightbit.vendor.dao;
  * User: johnpelquingua.com
  */
 
-import java.util.List;
-
 import com.sr.biz.freightbit.vendor.entity.Trailers;
+
+import java.util.List;
 
 public interface TrailersDao {
 
@@ -19,7 +19,7 @@ public interface TrailersDao {
 
     public Trailers findTrailersById(Integer trailerId);
 
-    public List<Trailers> findAllTrailersByClientId (Integer clientId);
+    public List<Trailers> findAllTrailersByClientId(Integer clientId);
 
     public List<Trailers> findTrailersByTrailerCode(String trailerCode);
 

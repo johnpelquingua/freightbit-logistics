@@ -107,15 +107,17 @@
     <div class="col-lg-12">
         <h1>Vendor Shipping Contacts </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
             <li class="active"><a href="<s:url action='viewVendors' />"> <i class="fa fa-list"></i> Vendor List</a></li>
-            <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor Profile</a></li>
+            <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor
+                Profile</a></li>
             <li class="active"><i class="fa fa-group"></i> Contact Persons</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-7">
@@ -129,8 +131,8 @@
 <div class="row">
     <div class="col-lg-7 col-lg-offset-2" style="margin-left: 0% !important;">
         <div class="panel panel-primary">
-            <div class="panel-heading" >
-                <h3 class="panel-title" ><i class="fa fa-group"></i> Contact Persons</h3>
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-group"></i> Contact Persons</h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
@@ -185,41 +187,51 @@
                         </tbody>
                     </table>--%>
 
-                        <tbody>
-                            <table>
-                                <tr>
-                                    <display:table id="contact" name="contacts" requestURI="/viewVendorShippingContacts.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter" style="margin-top: 15px;">
-                                        <td><display:column property="lastName" title="Last Name" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="firstName" title="First Name" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="middleName" title="Middle Name" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="phone" title="Phone" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="mobile" title="Mobile" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="fax" title="Fax" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td><display:column property="email" title="E-mail" class="tb-font-black" style="text-align: center;" >  </display:column></td>
-                                        <td class="tb-font-black" style="text-align: center;">
-                                                <display:column title="Actions">
-                                                    <s:url var="editContactsUrl" action="loadEditShippingContact">
-                                                        <s:param name="contactCodeParam" value="#attr.contact.contactId"></s:param>
-                                                    </s:url>
-                                                    <s:a class="icon-action-link" href="%{editContactsUrl}" rel="tooltip"
-                                                         title="Edit this contact person">
-                                                        <img src="includes/images/edit-user.png" class="icon-action circ-icon">
-                                                    </s:a>
+                    <tbody>
+                    <table>
+                        <tr>
+                            <display:table id="contact" name="contacts" requestURI="/viewVendorShippingContacts.action"
+                                           pagesize="10"
+                                           class="table table-striped table-hover table-bordered text-center tablesorter"
+                                           style="margin-top: 15px;">
+                                <td><display:column property="lastName" title="Last Name" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="firstName" title="First Name" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="middleName" title="Middle Name" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="phone" title="Phone" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="mobile" title="Mobile" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="fax" title="Fax" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="email" title="E-mail" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td class="tb-font-black" style="text-align: center;">
+                                    <display:column title="Actions">
+                                        <s:url var="editContactsUrl" action="loadEditShippingContact">
+                                            <s:param name="contactCodeParam" value="#attr.contact.contactId"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{editContactsUrl}" rel="tooltip"
+                                             title="Edit this contact person">
+                                            <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                        </s:a>
 
-                                                    <s:url var="deleteContactsUrl" action="deleteShippingContact">
-                                                        <s:param name="contactCodeParam" value="#attr.contact.contactId"></s:param>
-                                                    </s:url>
-                                                    <s:a class="icon-action-link" href="%{deleteContactsUrl}" rel="tooltip"
-                                                         title="Delete this Contact Person"
-                                                         onclick="return confirm('Do you really want to delete?');">
-                                                        <img src="includes/images/remove-user.png" class="icon-action circ-icon">
-                                                    </s:a>
-                                                </display:column>
-                                        </td>
-                                    </display:table>
-                                </tr>
-                            </table>
-                        </tbody>
+                                        <s:url var="deleteContactsUrl" action="deleteShippingContact">
+                                            <s:param name="contactCodeParam" value="#attr.contact.contactId"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{deleteContactsUrl}" rel="tooltip"
+                                             title="Delete this Contact Person"
+                                             onclick="return confirm('Do you really want to delete?');">
+                                            <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                        </s:a>
+                                    </display:column>
+                                </td>
+                            </display:table>
+                        </tr>
+                    </table>
+                    </tbody>
                 </div>
 
             </div>
@@ -248,14 +260,15 @@
                 <h3 class="panel-title"><i class="fa fa-list-ol"></i> Vendor Details</h3>
             </div>--%>
 
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
-                    <li><a href="viewShippingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                    <li class="active"><a href="#"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
-                    <li><a href="viewVessels"><i class="fa fa-anchor fa-fw"></i> Vessels</a></li>
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
+                <li><a href="viewShippingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
+                <li class="active"><a href="#"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
+                <li><a href="viewVessels"><i class="fa fa-anchor fa-fw"></i> Vessels</a></li>
 
 
-                </ul>
+            </ul>
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->

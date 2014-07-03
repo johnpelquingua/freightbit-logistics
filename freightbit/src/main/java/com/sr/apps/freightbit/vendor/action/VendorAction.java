@@ -1,14 +1,5 @@
 package com.sr.apps.freightbit.vendor.action;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.*;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
@@ -34,6 +25,13 @@ import com.sr.biz.freightbit.vendor.entity.Vessel;
 import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.DriverService;
 import com.sr.biz.freightbit.vendor.service.VendorService;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ADMIN on 5/28/2014.
@@ -82,12 +80,12 @@ public class VendorAction extends ActionSupport implements Preparable {
     private VendorService trucksService;
     private DriverService driverService;
     private CommonUtils commonUtils;
-    
 
-	public String loadSearchVendorPage() {
+
+    public String loadSearchVendorPage() {
         return SUCCESS;
     }
-    
+
 
     public String viewVendors() {
         String column = getColumnFilter();
@@ -105,56 +103,56 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    
+
     public String loadAddVendorPage() {
         return SUCCESS;
     }
 
-    
+
     public String addVendor() throws Exception {
         validateOnSubmit(vendor);
         if (hasFieldErrors())
             return INPUT;
-        
+
         try {
-        	vendorService.addVendor(transformToEntityBean(vendor));
+            vendorService.addVendor(transformToEntityBean(vendor));
         } catch (VendorAlreadyExistsException e) {
-        	addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
-        	return INPUT;
+            addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
+            return INPUT;
         }
 
         clearErrorsAndMessages();
         addActionMessage("Success! New Vendor has been added.");
-        	
+
         if ("TRUCKING".equals(vendor.getVendorType())) {
             return "TRUCKING";
         } else {
             return "SHIPPING";
         }
     }
-    
-    
+
+
     public String loadEditVendorPage() {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendor = transformToFormBean(vendorEntity);
         return SUCCESS;
     }
-    
+
     public String editVendor() {
         validateOnSubmitEdit(vendor);
         if (hasFieldErrors()) {
             return INPUT;
         }
-        
+
         try {
-        	Vendor vendorEntity = transformToEntityBean(vendor);
-        	vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
-        	vendorService.updateVendor(vendorEntity);
+            Vendor vendorEntity = transformToEntityBean(vendor);
+            vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
+            vendorService.updateVendor(vendorEntity);
         } catch (VendorAlreadyExistsException e) {
-           	addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
-           	return INPUT;
+            addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
+            return INPUT;
         }
-        	
+
         /*return SUCCESS;*/
 
         clearErrorsAndMessages();
@@ -166,13 +164,13 @@ public class VendorAction extends ActionSupport implements Preparable {
             return "SHIPPING";
         }
     }
-   
-    
+
+
     public String loadVendorInfo() {
         return SUCCESS;
     }
 
-    
+
     public String viewInfoVendor() {
         /*Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendor = transformToFormBean(vendorEntity);
@@ -203,7 +201,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
 
     }
-    
+
     public String deleteVendor() {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendorService.deleteVendor(vendorEntity);
@@ -213,7 +211,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
-    
+
     public String loadSaveCompletePage() {
         List<Vendor> vendorEntityList = vendorService.findAllVendors();
         for (Vendor vendorElem : vendorEntityList) {
@@ -221,7 +219,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
         return SUCCESS;
     }
-    
+
     public String loadEditVendorTrucksPage() {
         Integer vendorId = getSessionVendorId();
         List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorId);
@@ -234,8 +232,8 @@ public class VendorAction extends ActionSupport implements Preparable {
         truck = transformToFormBeanTrucks(truckEntity);
         return SUCCESS;
     }
-    
-    
+
+
     public String getColumnFilter() {
         String column = "";
         if ("COMPANY CODE".equals(vendor.getVendorSearchCriteria())) {
@@ -259,7 +257,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             addFieldError("vendor.vendorName", getText("err.regex.vendorName.validation"));
         }*/
 
-        if (StringUtils.isBlank(vendorBean.getVendorName())   ) {
+        if (StringUtils.isBlank(vendorBean.getVendorName())) {
             addFieldError("vendor.vendorName", getText("err.vendorName.required"));
         }
         if (StringUtils.isBlank(vendorBean.getVendorCode())) {
@@ -292,7 +290,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setVendorStatus(vendorBean.getVendorStatus());
         entity.setVendorType(vendorBean.getVendorType());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
-        
+
         return entity;
     }
 
@@ -721,7 +719,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String addContacts()  throws Exception{
+    public String addContacts() throws Exception {
         validateOnSubmitContact(contact);
         if (hasFieldErrors()) {
             return INPUT;
@@ -749,7 +747,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    private Contacts transformToEntityBeanContacts (ContactBean contactBean) {
+    private Contacts transformToEntityBeanContacts(ContactBean contactBean) {
         Contacts entity = new Contacts();
         Client client = clientService.findClientById(getClientId().toString());
         entity.setClient(client);
@@ -774,10 +772,10 @@ public class VendorAction extends ActionSupport implements Preparable {
         return entity;
     }
 
-    private ContactBean transformToFormBeanContacts (Contacts entity) {
+    private ContactBean transformToFormBeanContacts(Contacts entity) {
         ContactBean formBean = new ContactBean();
 
-        formBean.setContactId (entity.getContactId());
+        formBean.setContactId(entity.getContactId());
         formBean.setReferenceTable(entity.getReferenceTable());
         formBean.setReferenceId(entity.getReferenceId());
         formBean.setContactType(entity.getContactType());
@@ -792,7 +790,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
 
-    public void validateOnSubmitContact (ContactBean contactBean) {
+    public void validateOnSubmitContact(ContactBean contactBean) {
         clearErrorsAndMessages();
 
         if (StringUtils.isBlank(contactBean.getLastName())) {
@@ -812,7 +810,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     //address
 
-    public String addAddress() throws Exception{
+    public String addAddress() throws Exception {
         validateOnSubmitAdress(address);
         if (hasFieldErrors()) {
             return INPUT;
@@ -836,7 +834,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String loadAddAddress(){
+    public String loadAddAddress() {
         return SUCCESS;
     }
 
@@ -870,7 +868,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public void validateOnSubmitAdress(AddressBean addressBean){
+    public void validateOnSubmitAdress(AddressBean addressBean) {
         clearErrorsAndMessages();
         if (StringUtils.isBlank(addressBean.getAddressLine1())) {
             addFieldError("address.addressLine1", getText("err.addressLine1.required"));
@@ -945,7 +943,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
     @Override
-    public void prepare(){
+    public void prepare() {
         vendorTypeList = parameterService.getParameterMap(ParameterConstants.VENDOR_TYPE);
         vendorSearchList = parameterService.getParameterMap(ParameterConstants.VENDOR_SEARCH);
         statusList = parameterService.getParameterMap(ParameterConstants.STATUS);
@@ -1148,7 +1146,6 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
 
-
     public List<VesselBean> getVessels() {
         return vessels;
     }
@@ -1204,8 +1201,8 @@ public class VendorAction extends ActionSupport implements Preparable {
     public void setAddressTypeList(List<Parameters> addressTypeList) {
         this.addressTypeList = addressTypeList;
     }
-    
+
     public void setCommonUtils(CommonUtils commonUtils) {
-		this.commonUtils = commonUtils;
-	}
+        this.commonUtils = commonUtils;
+    }
 }

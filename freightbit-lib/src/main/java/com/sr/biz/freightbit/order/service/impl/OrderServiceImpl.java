@@ -1,8 +1,5 @@
 package com.sr.biz.freightbit.order.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
 import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Address;
@@ -14,18 +11,21 @@ import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.dao.OrderItemsDao;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by JMXPSX on 5/27/14.
  */
 
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
 
     private OrderDao orderDao;
     private OrderItemsDao orderItemsDao;
@@ -34,11 +34,13 @@ public class OrderServiceImpl implements OrderService{
     private AddressDao addressDao;
     private ItemsDao itemsDao;
 
-	public void setOrderItemsDao(OrderItemsDao orderItemsDao) {
-		this.orderItemsDao = orderItemsDao;
-	}
+    public void setOrderItemsDao(OrderItemsDao orderItemsDao) {
+        this.orderItemsDao = orderItemsDao;
+    }
 
-	public void setOrderDao(OrderDao orderDao) {this.orderDao = orderDao;}
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
 
     public void setCustomerDao(CustomerDao customerDao) {
         this.customerDao = customerDao;
@@ -64,15 +66,14 @@ public class OrderServiceImpl implements OrderService{
 /*        if (orderDao.findOrdersByOrderNumber(orders.getOrderNumber())!=null)
             throw new OrderAlreadyExistsException(orders.getOrderNumber());
         else*/
-            orderDao.addOrder(orders);
+        orderDao.addOrder(orders);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void deleteOrder(Orders orders){
+    public void deleteOrder(Orders orders) {
         orderDao.deleteOrder(orders);
     }
-
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
@@ -81,34 +82,31 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<Orders> findAllOrders () {
-        List <Orders> orders = orderDao.findAllOrders();
+    public List<Orders> findAllOrders() {
+        List<Orders> orders = orderDao.findAllOrders();
         return orders;
     }
 
     @Override
-    public List<Orders> findAllOrdersByClientId (Integer clientId) {
+    public List<Orders> findAllOrdersByClientId(Integer clientId) {
         return orderDao.findAllOrdersByClientId(clientId);
     }
-
 
     @Override
     public Orders findOrdersById(Integer orderId) {
         return orderDao.findOrdersById(orderId);
     }
 
-
     @Override
-    public  Orders findOrdersByOrderNumber (Integer orderNumber) {
+    public Orders findOrdersByOrderNumber(Integer orderNumber) {
         List<Orders> result = orderDao.findOrdersByOrderNumber(orderNumber);
         if (result != null && !result.isEmpty())
             return result.get(0);
         return null;
     }
 
-
     @Override
-    public void updateOrderDate(Orders orders){
+    public void updateOrderDate(Orders orders) {
         orders.setOrderDate(new Date());
         orderDao.updateOrder(orders);
     }
@@ -129,48 +127,47 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void deleteCustomer(Customer customer){
+    public void deleteCustomer(Customer customer) {
         customerDao.deleteCustomer(customer);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateCustomer(Customer customer){
+    public void updateCustomer(Customer customer) {
         customerDao.updateCustomer(customer);
     }
 
     @Override
-    public List<Customer> findAllCustomer(){
+    public List<Customer> findAllCustomer() {
         List<Customer> customers = customerDao.findAllCustomer();
         return customers;
     }
 
     @Override
-    public Customer findCustomerById(Integer id){
+    public Customer findCustomerById(Integer id) {
         return customerDao.findCustomerById(id);
     }
 
     @Override
-    public List<Customer> findCustomerByClientId(Integer clientId){
+    public List<Customer> findCustomerByClientId(Integer clientId) {
         return customerDao.findCustomerByClientId(clientId);
     }
 
-    public List<Customer> findCustomerByName(String customer){
+    public List<Customer> findCustomerByName(String customer) {
         List<Customer> result = customerDao.findCustomerByName(customer);
-        if(result != null && !result.isEmpty())
+        if (result != null && !result.isEmpty())
             return result;
         return null;
     }
 
-    public List<Customer> findCustomerByType(String customer){
+    public List<Customer> findCustomerByType(String customer) {
         List<Customer> result = customerDao.findCustomerByType(customer);
-        if(result != null && !result.isEmpty())
+        if (result != null && !result.isEmpty())
             return result;
         return null;
     }
 
-
-    public Customer findCustomerByEmail(String customer){
+    public Customer findCustomerByEmail(String customer) {
         return customerDao.findCustomerByEmail(customer);
     }
 
@@ -213,7 +210,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public List<Contacts> findAllContacts() {
-        List<Contacts> contacts =contactsDao.findAllContacts();
+        List<Contacts> contacts = contactsDao.findAllContacts();
         return contacts;
     }
 
@@ -246,7 +243,6 @@ public class OrderServiceImpl implements OrderService{
         addressDao.updateAddress(address);
     }
 
-
     @Override
     public List<Address> findAllAddressByClientId(Integer clientId) {
         return addressDao.findAllAddressByClientId(clientId);
@@ -258,15 +254,13 @@ public class OrderServiceImpl implements OrderService{
 //        return address;
 //    }
 
-
     @Override
     public Address findAddressById(Integer addressId) {
         return addressDao.findAddressById(addressId);
     }
 
-
     @Override
-    public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
+    public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
         return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
     }
 
@@ -279,7 +273,7 @@ public class OrderServiceImpl implements OrderService{
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addItem(Items items) throws ItemAlreadyExistsException {
-        if(itemsDao.findUserByItemName(items.getItemName()).size() > 0)
+        if (itemsDao.findUserByItemName(items.getItemName()).size() > 0)
             throw new ItemAlreadyExistsException(items.getItemName());
         else
             itemsDao.addItems(items);
@@ -297,7 +291,7 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<Items> findAllItemsByClientId(Integer clientId){
+    public List<Items> findAllItemsByClientId(Integer clientId) {
         return itemsDao.findAllItemsByClientId(clientId);
 
     }
@@ -313,12 +307,12 @@ public class OrderServiceImpl implements OrderService{
         return itemsDao.findItemByCustomerItemsId(customerItemsId);
     }
 
-
     @Override
-    public List<Items> findItemByCustomerId(Integer customerId){
+    public List<Items> findItemByCustomerId(Integer customerId) {
         List<Items> result = itemsDao.findItemByCustomerId(customerId);
         return result;
     }
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateItems(Items items) {

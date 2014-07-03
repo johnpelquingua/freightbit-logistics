@@ -6,7 +6,7 @@ public class AddressBean {
 
 
     private String address;
-	private Integer addressId;
+    private Integer addressId;
     private Integer clientId;
     private String referenceTable;
     private Integer referenceId;
@@ -22,27 +22,28 @@ public class AddressBean {
     private String modifiedBy;
 
 
-    public AddressBean(){}
+    public AddressBean() {
+    }
 
 
     public AddressBean(Integer addressId, Integer clientId, String referenceTable, Integer referenceId,
                        String addressType, String addressLine1, String addressLine2, String city,
-                       String state, String zip, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy){
+                       String state, String zip, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
 
-            this.addressId = addressId;
-            this.clientId = clientId;
-            this.referenceTable = referenceTable;
-            this.referenceId = referenceId;
-            this.addressType = addressType;
-            this.addressLine1 = addressLine1;
-            this.addressLine2 = addressLine2;
-            this.city = city;
-            this.state = state;
-            this.zip = zip;
-            this.createdTimeStamp = createdTimeStamp;
-            this.createdBy = createdBy;
-            this.modifiedTimeStamp = modifiedTimeStamp;
-            this.modifiedBy = modifiedBy;
+        this.addressId = addressId;
+        this.clientId = clientId;
+        this.referenceTable = referenceTable;
+        this.referenceId = referenceId;
+        this.addressType = addressType;
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.createdTimeStamp = createdTimeStamp;
+        this.createdBy = createdBy;
+        this.modifiedTimeStamp = modifiedTimeStamp;
+        this.modifiedBy = modifiedBy;
 
 
     }

@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-		<!-- MIDDLE -->
+<!-- MIDDLE -->
 <%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         
 		<h1 class="page-header">User Module</h1>
@@ -97,20 +97,21 @@
 		
 
 </div>--%>
-		<!-- END OF THE MIDDLE -->
+<!-- END OF THE MIDDLE -->
 
 
 <div class="row">
     <div class="col-lg-12">
         <h1>Accounts Module </h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-user"></i> User</li>
             <li class="active"><i class="fa fa-search"></i> Search User</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-6 col-lg-offset-3">
@@ -130,7 +131,9 @@
                     <label for="user.userSearchCriteria" class="col-sm-2 control-label">Search By:</label>
 
                     <div class="col-sm-10">
-                        <s:select emptyOption="true" list="userSearchList" listValue="value" listKey="key" cssClass="form-control" name="user.userSearchCriteria" value="user.userSearchCriteria"/>
+                        <s:select emptyOption="true" list="userSearchList" listValue="value" listKey="key"
+                                  cssClass="form-control" name="user.userSearchCriteria"
+                                  value="user.userSearchCriteria"/>
                     </div>
                 </div>
 
@@ -146,13 +149,13 @@
 
             </div>
             <div class="panel-footer">
-            <button class="btn btn-info pull-right">Search</button>
+                <button class="btn btn-info pull-right">Search</button>
             </div>
             </s:form>
 
-            </div>
         </div>
     </div>
+</div>
 </div><!-- /.row -->
 
 

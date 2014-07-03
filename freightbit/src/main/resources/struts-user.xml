@@ -10,9 +10,10 @@
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
         </result-types>
 
-        <default-action-ref name="User" />
-        
-        <action name="loadSearchUserPage" class="com.sr.apps.freightbit.core.action.UserAction" method="loadSearchUserPage">
+        <default-action-ref name="User"/>
+
+        <action name="loadSearchUserPage" class="com.sr.apps.freightbit.core.action.UserAction"
+                method="loadSearchUserPage">
             <result name="success" type="tiles">core.userSearch.tiles</result>
         </action>
 
@@ -23,7 +24,7 @@
         <action name="loadAddUserPage" class="com.sr.apps.freightbit.core.action.UserAction" method="loadAddUserPage">
             <result name="success" type="tiles">core.userAdd.tiles</result>
         </action>
-        
+
         <action name="addUser" class="com.sr.apps.freightbit.core.action.UserAction" method="addUser">
             <result name="input" type="tiles">core.userAdd.tiles</result>
             <!--<result name="success" type="tiles">core.userSaveComplete.tiles</result>-->
@@ -33,11 +34,11 @@
         <action name="loadEditUserPage" class="com.sr.apps.freightbit.core.action.UserAction" method="loadEditUserPage">
             <result name="success" type="tiles">core.userEdit.tiles</result>
         </action>
-        
-         <action name="editUser" class="com.sr.apps.freightbit.core.action.UserAction" method="editUser">
+
+        <action name="editUser" class="com.sr.apps.freightbit.core.action.UserAction" method="editUser">
             <result name="input" type="tiles">core.userEdit.tiles</result>
             <!--<result name="success" type="tiles">core.userSaveComplete.tiles</result>-->
-             <result name="success" type="tiles">core.userViewInfo.tiles</result>
+            <result name="success" type="tiles">core.userViewInfo.tiles</result>
         </action>
 
         <action name="viewUserInfo" class="com.sr.apps.freightbit.core.action.UserAction" method="viewUserInfo">
@@ -47,73 +48,85 @@
         <action name="deleteUser" class="com.sr.apps.freightbit.core.action.UserAction" method="deleteUser">
             <result name="success" type="redirect">viewUsers</result>
         </action>
-        
+
         <action name="viewGroups" class="com.sr.apps.freightbit.core.action.GroupAction" method="viewGroups">
             <result name="success" type="tiles">core.groupListView.tiles</result>
         </action>
-        
-        <action name="loadAddGroupPage" class="com.sr.apps.freightbit.core.action.GroupAction" method="loadAddGroupPage">
+
+        <action name="loadAddGroupPage" class="com.sr.apps.freightbit.core.action.GroupAction"
+                method="loadAddGroupPage">
             <result name="success" type="tiles">core.groupAdd.tiles</result>
         </action>
-        
+
         <action name="addGroup" class="com.sr.apps.freightbit.core.action.GroupAction" method="addGroup">
-         	<result name="input" type="tiles">core.groupAdd.tiles</result>
+            <result name="input" type="tiles">core.groupAdd.tiles</result>
             <result name="success" type="tiles">core.groupSaveComplete.tiles</result>
         </action>
 
-        <action name="loadEditGroupPage" class="com.sr.apps.freightbit.core.action.GroupAction" method="loadEditGroupPage">
+        <action name="loadEditGroupPage" class="com.sr.apps.freightbit.core.action.GroupAction"
+                method="loadEditGroupPage">
             <result name="success" type="tiles">core.groupEdit.tiles</result>
         </action>
-        
+
         <action name="editGroup" class="com.sr.apps.freightbit.core.action.GroupAction" method="editGroup">
             <result name="input" type="tiles">core.groupEdit.tiles</result>
             <result name="success" type="tiles">core.groupSaveComplete.tiles</result>
         </action>
-        
-        <action name="addUserToGroupForEdit" class="com.sr.apps.freightbit.core.action.GroupAction" method="addUserToGroupForEdit">
+
+        <action name="addUserToGroupForEdit" class="com.sr.apps.freightbit.core.action.GroupAction"
+                method="addUserToGroupForEdit">
             <result name="success" type="tiles">core.groupEdit.tiles</result>
         </action>
-        
-        <action name="removeUserFromGroupForEdit" class="com.sr.apps.freightbit.core.action.GroupAction" method="removeUserFromGroupForEdit">
+
+        <action name="removeUserFromGroupForEdit" class="com.sr.apps.freightbit.core.action.GroupAction"
+                method="removeUserFromGroupForEdit">
             <result name="success" type="tiles">core.groupEdit.tiles</result>
         </action>
-        
-         <action name="addUserToGroupForAdd" class="com.sr.apps.freightbit.core.action.GroupAction" method="addUserToGroupForAdd">
+
+        <action name="addUserToGroupForAdd" class="com.sr.apps.freightbit.core.action.GroupAction"
+                method="addUserToGroupForAdd">
             <result name="success" type="tiles">core.groupAdd.tiles</result>
         </action>
-        
-        <action name="removeUserFromGroupForAdd" class="com.sr.apps.freightbit.core.action.GroupAction" method="removeUserFromGroupForAdd">
+
+        <action name="removeUserFromGroupForAdd" class="com.sr.apps.freightbit.core.action.GroupAction"
+                method="removeUserFromGroupForAdd">
             <result name="success" type="tiles">core.groupAdd.tiles</result>
         </action>
-        
+
         <action name="deleteGroup" class="com.sr.apps.freightbit.core.action.GroupAction" method="deleteGroup">
             <result name="success" type="redirect">viewGroups</result>
         </action>
-        
-        
-        <action name="viewPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction" method="viewPermissions">
+
+
+        <action name="viewPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction"
+                method="viewPermissions">
             <result name="success" type="tiles">core.permissionsView.tiles</result>
         </action>
-        
-        <action name="loadEditPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction" method="loadEditPermissions">
+
+        <action name="loadEditPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction"
+                method="loadEditPermissions">
             <result name="success" type="tiles">core.permissionsEdit.tiles</result>
         </action>
-        
-        <action name="addSelectedPermission" class="com.sr.apps.freightbit.core.action.PermissionAction" method="addSelectedPermission">
+
+        <action name="addSelectedPermission" class="com.sr.apps.freightbit.core.action.PermissionAction"
+                method="addSelectedPermission">
             <result name="success" type="tiles">core.permissionsEdit.tiles</result>
         </action>
-        
-        <action name="addSelectedPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction" method="addSelectedPermissions">
+
+        <action name="addSelectedPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction"
+                method="addSelectedPermissions">
             <result name="success" type="tiles">core.permissionsEdit.tiles</result>
         </action>
-        
-        <action name="removeSelectedPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction" method="removeSelectedPermissions">
+
+        <action name="removeSelectedPermissions" class="com.sr.apps.freightbit.core.action.PermissionAction"
+                method="removeSelectedPermissions">
             <result name="success" type="tiles">core.permissionsEdit.tiles</result>
         </action>
-        
-        <action name="editPermission" class="com.sr.apps.freightbit.core.action.PermissionAction" method="editPermission">
+
+        <action name="editPermission" class="com.sr.apps.freightbit.core.action.PermissionAction"
+                method="editPermission">
             <result name="success" type="redirectAction">loadEditPermissions</result>
         </action>
-        
+
     </package>
 </struts>

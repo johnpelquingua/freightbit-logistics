@@ -2,17 +2,8 @@ package com.sr.biz.freightbit.customer.entity;
 
 import com.sr.biz.freightbit.core.entity.Client;
 
+import javax.persistence.*;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 
 /**
@@ -35,7 +26,7 @@ public class Rates implements java.io.Serializable {
     private Date modifiedTimestamp;
     private String modifiedBy;
 
-    public Rates (){
+    public Rates() {
 
     }
 
@@ -56,50 +47,105 @@ public class Rates implements java.io.Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "customerRateId", unique = true, nullable = false)
-    public Integer getCustomerRateId() { return customerRateId; }
-    public void setCustomerRateId(Integer customerRateId) { this.customerRateId = customerRateId; }
+    public Integer getCustomerRateId() {
+        return customerRateId;
+    }
+
+    public void setCustomerRateId(Integer customerRateId) {
+        this.customerRateId = customerRateId;
+    }
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "clientId", nullable = false)
-    public Client getClientId() { return clientId; }
-    public void setClientId(Client clientId) { this.clientId = clientId; }
+    public Client getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Client clientId) {
+        this.clientId = clientId;
+    }
 
     @Column(name = "customerId", nullable = false)
-    public Integer getCustomerId() { return customerId; }
-    public void setCustomerId(Integer customerId) { this.customerId = customerId; }
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
 
     @Column(name = "origin")
-    public String getOrigin() { return origin; }
-    public void setOrigin(String origin) { this.origin = origin; }
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
 
     @Column(name = "destination", nullable = false)
-    public String getDestination() { return destination; }
-    public void setDestination(String destination) { this.destination = destination; }
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
 
     @Column(name = "rate", nullable = false)
-    public Float getRate() { return rate; }
-    public void setRate(Float rate) { this.rate = rate; }
+    public Float getRate() {
+        return rate;
+    }
+
+    public void setRate(Float rate) {
+        this.rate = rate;
+    }
 
     @Column(name = "rateType", nullable = false)
-    public String getRateType() { return rateType; }
-    public void setRateType(String rateType) { this.rateType = rateType; }
+    public String getRateType() {
+        return rateType;
+    }
+
+    public void setRateType(String rateType) {
+        this.rateType = rateType;
+    }
 
     @Column(name = "createdTimestamp")
-    public Date getCreatedTimestamp() { return createdTimestamp; }
-    public void setCreatedTimestamp(Date createdTimestamp) { this.createdTimestamp = createdTimestamp; }
+    public Date getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(Date createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
 
     @Column(name = "createdBy")
-    public String getCreatedBy() { return createdBy; }
-    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
     @Column(name = "modifiedTimestamp")
-    public Date getModifiedTimestamp() { return modifiedTimestamp; }
-    public void setModifiedTimestamp(Date modifiedTimestamp) { this.modifiedTimestamp = modifiedTimestamp; }
+    public Date getModifiedTimestamp() {
+        return modifiedTimestamp;
+    }
+
+    public void setModifiedTimestamp(Date modifiedTimestamp) {
+        this.modifiedTimestamp = modifiedTimestamp;
+    }
 
     @Column(name = "modifiedBy")
-    public String getModifiedBy() { return modifiedBy; }
-    public void setModifiedBy(String modifiedBy) { this.modifiedBy = modifiedBy; }
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
 
 }

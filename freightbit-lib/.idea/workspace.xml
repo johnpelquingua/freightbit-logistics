@@ -1,30 +1,338 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be837dfb-b904-4bf7-a0ca-8461f2881958" name="Default" comment="added CRUD customer items">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddAddress.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddressList.jsp" />
-      <change type="DELETED" beforePath="C:\Users\ADMIN\Desktop\bitbucket\freightbit-logistics\freightbit\src\main\webapp\vendor\vendor-address.jsp" afterPath="" />
+    <list default="true" id="be837dfb-b904-4bf7-a0ca-8461f2881958" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__asm_asm_3_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__asm_asm_commons_3_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__asm_asm_tree_3_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__com_google_code_findbugs_jsr305_1_3_9.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__com_google_guava_guava_11_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__com_jgeppert_struts2_bootstrap_struts2_bootstrap_plugin_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__com_jgeppert_struts2_jquery_struts2_jquery_plugin_3_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__commons_beanutils_commons_beanutils_1_7_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__commons_collections_commons_collections_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__commons_digester_commons_digester_1_8.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__commons_fileupload_commons_fileupload_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__commons_io_commons_io_2_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__commons_lang_commons_lang_2_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__commons_logging_commons_logging_1_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__commons_logging_commons_logging_api_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__javassist_javassist_3_11_0_GA.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__javax_servlet_jsp_api_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__javax_servlet_servlet_api_2_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__junit_junit_4_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__log4j_log4j_1_2_17.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__ognl_ognl_3_0_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_commons_commons_lang3_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_struts_struts2_config_browser_plugin_2_3_16.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_struts_struts2_core_2_3_16.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_struts_struts2_dojo_plugin_2_3_16.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_struts_struts2_junit_plugin_2_3_16.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_struts_struts2_spring_plugin_2_3_16.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_struts_struts2_tiles_plugin_2_3_16.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_struts_xwork_xwork_core_2_3_16.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_tiles_tiles_api_2_0_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_tiles_tiles_core_2_0_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_tiles_tiles_jsp_2_0_6.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_apache_velocity_velocity_1_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_freemarker_freemarker_2_3_19.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_reflections_reflections_0_9_8.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_springframework_spring_test_3_0_5_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_springframework_spring_web_3_2_6_RELEASE.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_webjars_bootstrap_3_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_webjars_bootstrap_datepicker_1_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_webjars_jquery_2_1_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__org_webjars_webjars_locator_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit-lib\.idea\libraries\Maven__oro_oro_2_0_8.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit\src\main\webapp\includes\css\bootstrap.min.css" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/entity/Address.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/entity/Address.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/common/formbean/AddressBean.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/common/formbean/AddressBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/AddressDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/AddressDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/impl/AddressDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/impl/AddressDaoImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/Client.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/Client.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/impl/ClientDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/impl/ClientDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/impl/ClientServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/impl/ClientServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/util/CommonUtils.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/util/CommonUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/exceptions/ContactAlreadyExistsException.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/exceptions/ContactAlreadyExistsException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/service/impl/ContactServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/service/impl/ContactServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/ContactServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/ContactServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/entity/Contacts.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/entity/Contacts.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/ContactsDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/ContactsDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/impl/ContactsDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/impl/ContactsDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/entity/Customer.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/entity/Customer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/exceptions/CustomerAlreadyExistsException.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/exceptions/CustomerAlreadyExistsException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/formbean/CustomerBean.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/formbean/CustomerBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/CustomerDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/CustomerDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/CustomerDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/CustomerDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/CustomerService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/CustomerService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/impl/CustomerServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/impl/CustomerServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/CustomerServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/CustomerServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/DashboardAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/DashboardAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Driver.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Driver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/DriverDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/DriverDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/DriverDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/DriverDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/DriverService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/DriverService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/DriverServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/DriverServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/DriverServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/DriverServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/FinanceAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/FinanceAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/Group.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/Group.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/GroupAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/GroupAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/formbean/GroupBean.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/formbean/GroupBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/GroupDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/GroupDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/impl/GroupDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/impl/GroupDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/GroupService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/GroupService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/impl/GroupServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/impl/GroupServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/GroupUser.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/GroupUser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/GroupUserDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/GroupUserDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/impl/GroupUserDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/impl/GroupUserDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/HelpAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/HelpAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/exceptions/ItemAlreadyExistsException.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/exceptions/ItemAlreadyExistsException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/formbean/ItemBean.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/formbean/ItemBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/ItemService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/ItemService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/impl/ItemServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/impl/ItemServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/ItemServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/ItemServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/entity/Items.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/entity/Items.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/ItemsDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/ItemsDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/ItemsDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/ItemsDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/LoginAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/LoginAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/action/OrderAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/action/OrderAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/exceptions/OrderAlreadyExistsException.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/exceptions/OrderAlreadyExistsException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/formbean/OrderBean.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/formbean/OrderBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/dao/OrderDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/dao/OrderDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/dao/impl/OrderDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/dao/impl/OrderDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/entity/OrderItems.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/entity/OrderItems.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/formbean/OrderItemsBean.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/formbean/OrderItemsBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/dao/impl/OrderItemsDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/dao/impl/OrderItemsDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/service/OrderService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/service/OrderService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/service/impl/OrderServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/service/impl/OrderServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/OrderServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/OrderServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/entity/Orders.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/entity/Orders.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/util/ParameterConstants.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/util/ParameterConstants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/ParameterDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/ParameterDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/impl/ParameterDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/impl/ParameterDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/service/ParameterService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/service/ParameterService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/service/impl/ParameterServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/service/impl/ParameterServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/entity/Parameters.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/entity/Parameters.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/Permission.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/Permission.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/PermissionAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/PermissionAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/formbean/PermissionBean.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/formbean/PermissionBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/PermissionDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/PermissionDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/impl/PermissionDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/impl/PermissionDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/PermissionService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/PermissionService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/impl/PermissionServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/impl/PermissionServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/PermissionUserGroup.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/PermissionUserGroup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/exceptions/RateAlreadyExistsException.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/exceptions/RateAlreadyExistsException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/RateDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/RateDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/RateService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/RateService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/impl/RateServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/impl/RateServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/entity/Rates.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/entity/Rates.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/RatesDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/RatesDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/listeners/Struts2ListenerOnGAE.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/listeners/Struts2ListenerOnGAE.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Trailers.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Trailers.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/TrailersDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/TrailersDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/TrailersDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/TrailersDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/TrailersService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/TrailersService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/TrailersServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/TrailersServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/TrailersServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/TrailersServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Trucks.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Trucks.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/TrucksDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/TrucksDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/TrucksDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/TrucksDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/TrucksService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/TrucksService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/TrucksServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/TrucksServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/TrucksServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/TrucksServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/UserAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/UserAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/formbean/UserBean.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/formbean/UserBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/UserDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/UserDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/impl/UserDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/dao/impl/UserDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/UserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/service/impl/UserServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/UserServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/UserServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Vendor.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Vendor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/formbean/VendorBean.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/formbean/VendorBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/VendorDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/VendorDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/VendorDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/VendorDaoImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/VendorService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/VendorService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/VendorServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/VendorServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/VendorServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/VendorServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Vessel.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Vessel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/formbean/VesselBean.java" afterPath="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/formbean/VesselBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/VesselDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/VesselDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/VesselDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/VesselDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/VesselService.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/VesselService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/VesselServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/VesselServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/VesselServiceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/VesselServiceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_bordered-pulled.scss" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_bordered-pulled.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_icons.scss" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_icons.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_larger.scss" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_larger.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_list.scss" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_list.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_mixins.scss" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_mixins.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_path.scss" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_path.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_rotated-flipped.scss" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_rotated-flipped.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_spinning.scss" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_spinning.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_stacked.scss" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_stacked.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_variables.scss" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_variables.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/finance/add_finance.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/finance/add_finance.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/appengine-web.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/appengine-web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/conf/applicationContext-lib.xml" afterPath="$PROJECT_DIR$/src/main/resources/conf/applicationContext-lib.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/freightbit-lib.iml" afterPath="$PROJECT_DIR$/freightbit-lib.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/conf/applicationContext.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/conf/applicationContext.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/banner.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/banner.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/baseLayout.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/baseLayout.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/orders/booking-info.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/orders/booking-info.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/orders/booking-list.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/orders/booking-list.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/orders/booking-new.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/orders/booking-new.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/orders/booking-save.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/orders/booking-save.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/orders/booking-search.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/orders/booking-search.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/bootstrap.css" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/bootstrap.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/bootstrap.js" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/bootstrap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/bootstrap.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/bootstraps-min.css" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/bootstraps-min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/bootstraps.css" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/bootstraps.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/bordered-pulled.less" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/bordered-pulled.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/cargo.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/cargo.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/chart-data-morris.js" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/chart-data-morris.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/container_load.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/container_load.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddAddress.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddAddress.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddConsignee.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddConsignee.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddContact.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddContact.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddDocuments.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddDocuments.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddInfo.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddInfo.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddItem.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddItem.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddRates.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddRates.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditAddress.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditAddress.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditConsignee.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditConsignee.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditContact.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditContact.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditInfo.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditInfo.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditItem.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditItem.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditRates.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/edit/customerEditRates.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerInfo.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerInfo.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerInfoConsignee.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerInfoConsignee.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListAddress.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListAddress.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListConsignee.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListConsignee.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListContact.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListContact.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListItems.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListItems.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListRates.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListRates.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListView.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerListView.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/update/customerSaveComplete.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/update/customerSaveComplete.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/update/customerSaveCompleteConsignee.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/update/customerSaveCompleteConsignee.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/update/customerSaveCompleteItems.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/update/customerSaveCompleteItems.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerSearch.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerSearch.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/customer_relation.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/customer_relation.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/finance/edit_finance.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/finance/edit_finance.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/finance/finance.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/finance/finance.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/finance/finance_edit_success.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/finance/finance_edit_success.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/finance/finance_search_result.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/finance/finance_search_result.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/css/font-awesome.css" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/css/font-awesome.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/css/font-awesome.min.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/freightbit.iml" afterPath="$PROJECT_DIR$/../freightbit/freightbit.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/freightbit_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/freightbit_war_exploded.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/full_truck_load.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/full_truck_load.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/group/groupAdd.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/group/groupAdd.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/group/groupEdit.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/group/groupEdit.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/group/groupListView.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/group/groupListView.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/group/groupSaveComplete.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/group/groupSaveComplete.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/help/help.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/help/help.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/conf/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/src/main/resources/conf/hibernate.cfg.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/icons.less" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/icons.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/index.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/jQueryValidation.js" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/jQueryValidation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/jquery-1.11.1.js" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/jquery-1.11.1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/jquery.tablesorter.js" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/jquery.tablesorter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/larger.less" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/larger.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/list.less" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/list.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/conf/log4j.xml" afterPath="$PROJECT_DIR$/src/main/resources/conf/log4j.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/conf/log4j.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/conf/log4j.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/login.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/login.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/main.css" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/mains.css" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/mains.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/menu.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/menu.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/mixins.less" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/mixins.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/.settings/org.eclipse.wst.common.project.facet.core.xml" afterPath="$PROJECT_DIR$/../freightbit/.settings/org.eclipse.wst.common.project.facet.core.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/path.less" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/path.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/permissions/permissions-edit.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/permissions/permissions-edit.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/permissions/permissions.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/permissions/permissions.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/permissions/permissionsEdit.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/permissions/permissionsEdit.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/permissions/permissionsView.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/permissions/permissionsView.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/pom.xml" afterPath="$PROJECT_DIR$/../freightbit/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/rotated-flipped.less" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/rotated-flipped.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/sales.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/sales.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/sb-admin.css" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/css/sb-admin.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/searchVendor.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/searchVendor.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/search_result.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/reports/search_result.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/spinning.less" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/spinning.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/stacked.less" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/stacked.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-customers.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-customers.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-finance.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-finance.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-group.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-group.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-help.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-help.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-orders.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-orders.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-permission.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-permission.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-reports.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-reports.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-user.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-user.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/resources/struts.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/resources/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/tables.js" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/tables.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/tiles.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/tiles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorInfoTrucking.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorInfoTrucking.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userAdd.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userAdd.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userEdit.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userEdit.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userListEdit.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userListEdit.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userListInfo.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userListInfo.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userListView.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userListView.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userRemove.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userRemove.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userSaveComplete.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userSaveComplete.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userSearch.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userSearch.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userViewInfo.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user/userViewInfo.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/validate.min.js" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/js/validate.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/variables.less" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/less/variables.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAdd.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAdd.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddDriver.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddDriver.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddShippingAddress.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddShippingAddress.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddShippingContact.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddShippingContact.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddTruckingAddress.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddTruckingAddress.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddTruckingContact.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddTruckingContact.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddTrucks.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddTrucks.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddVessels.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAddVessels.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEdit.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEdit.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditDriver.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditDriver.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditShippingAddress.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditShippingAddress.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditShippingContact.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditShippingContact.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditTruckingAddress.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditTruckingAddress.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditTruckingContact.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditTruckingContact.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditTrucks.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditTrucks.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditVessels.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/edit/vendorEditVessels.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorInfoShipping.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorInfoShipping.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorInfoTrucking.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorInfoTrucking.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListDrivers.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListDrivers.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListShippingAddress.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListShippingAddress.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListShippingContact.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListShippingContact.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListTruckingAddress.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListTruckingAddress.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListTruckingContact.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListTruckingContact.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListTrucks.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListTrucks.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListVessels.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListVessels.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListView.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/view/vendorListView.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/update/vendorSaveCompleteShippingContacts.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/update/vendorSaveCompleteShippingContacts.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/update/vendorSaveCompleteTruckingAddress.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/update/vendorSaveCompleteTruckingAddress.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/update/vendorSaveCompleteTruckingContacts.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/update/vendorSaveCompleteTruckingContacts.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSearch.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSearch.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/operations/vesselScheduleAdd.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/operations/vesselScheduleAdd.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/operations/vesselScheduleEdit.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/operations/vesselScheduleEdit.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/operations/vesselScheduleSearch.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/operations/vesselScheduleSearch.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/operations/vesselSchedulesList.jsp" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/operations/vesselSchedulesList.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/web.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="freightbit-lib.iws" />
     <ignored path=".idea/workspace.xml" />
+    <file path="/Dummy.txt" changelist="be837dfb-b904-4bf7-a0ca-8461f2881958" time="1404371808571" ignored="false" />
+    <file path="/a.dummy" changelist="be837dfb-b904-4bf7-a0ca-8461f2881958" time="1404368938568" ignored="false" />
+    <file path="/CustomerAction.java" changelist="be837dfb-b904-4bf7-a0ca-8461f2881958" time="1404365174597" ignored="false" />
+    <file path="/VendorAction.java" changelist="be837dfb-b904-4bf7-a0ca-8461f2881958" time="1404355249723" ignored="false" />
+    <file path="/a.java" changelist="be837dfb-b904-4bf7-a0ca-8461f2881958" time="1404371468245" ignored="false" />
+    <file path="/sample.java" changelist="be837dfb-b904-4bf7-a0ca-8461f2881958" time="1404371491105" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +347,8 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <breakpoint_any converted="true">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
         <option name="NOTIFY_UNCAUGHT" value="true" />
@@ -75,172 +384,80 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties converted="true" />
-    <breakpoint_rules converted="true" />
+    <breakpoint_rules />
+    <ui_properties />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="freightbit-lib" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="struts-vendor.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3247" max-vertical-offset="3587">
-              <caret line="191" column="81" selection-start-line="191" selection-start-column="81" selection-end-line="191" selection-end-column="81" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VendorServiceImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/VendorServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2550" max-vertical-offset="6630">
-              <caret line="158" column="50" selection-start-line="158" selection-start-column="27" selection-end-line="158" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customer-list.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customer-list.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1003" max-vertical-offset="1530">
-              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VendorAction.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="15.3" vertical-offset="1785" max-vertical-offset="13566">
-              <caret line="116" column="73" selection-start-line="116" selection-start-column="73" selection-end-line="116" selection-end-column="73" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vendorInfoTrucking.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorInfoTrucking.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1088" max-vertical-offset="1343">
-              <caret line="64" column="10" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Address.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/entity/Address.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1207" max-vertical-offset="2261">
-              <caret line="71" column="39" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vendorAddAddress.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddAddress.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1887">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vendorAddressList.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddressList.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1088" max-vertical-offset="1207">
-              <caret line="64" column="10" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Push.Settings">
+    <option name="myUpdateMethod" value="REBASE" />
+  </component>
   <component name="Git.Settings">
     <option name="UPDATE_CHANGES_POLICY" value="SHELVE" />
     <option name="UPDATE_TYPE" value="REBASE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/exceptions/TrucksAlreadyExistsException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/TrucksService.java" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerEditInfo.jsp" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerListAddress.jsp" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerListContact.jsp" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerListConsignee.jsp" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerListItems.jsp" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerListRates.jsp" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerSearch.jsp" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerAddInfo.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customer-list.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/formbean/ItemBean.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/ItemServiceTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/impl/ItemServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/ItemsDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/ItemService.java" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/ItemAction.java" />
-        <option value="$PROJECT_DIR$/src/main/sql/freightbit v1.0.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/entity/Items.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/impl/CustomerServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/CustomerService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/CustomerDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/CustomerDao.java" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorListView.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/menu.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddDriver.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerInfo.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/ItemsDaoImpl.java" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/resources/struts-customers.xml" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerItemEdit.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerAddItem.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSearch.jsp" />
-        <option value="$PROJECT_DIR$/src/main/resources/conf/hibernate.cfg.xml" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendor-address.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/util/ParameterConstants.java" />
-        <option value="db-console:/c8a8b063/4d0aff29-eed1-487e-bf1a-ff24b18eaae0/" />
-        <option value="db-console:/c8a8b063/f53f4c8f-70f1-4fec-b2f2-47dfedf5fa45/" />
-        <option value="$PROJECT_DIR$/src/main/resources/conf/applicationContext-lib.xml" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/tiles.xml" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/resources/conf/applicationContext.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/VendorServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/AddressDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/impl/AddressDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/VendorService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/Client.java" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/common/formbean/AddressBean.java" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddressList.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddAddress.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorInfoTrucking.jsp" />
-        <option value="$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/login.jsp" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerAddRates.jsp" />
         <option value="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/resources/ApplicationResources.properties" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/index.jsp" />
+        <option value="$PROJECT_DIR$/../freightbit/src/main/webapp/banner.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/service/impl/OrderServiceImpl.java" />
       </list>
     </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
+        <option name="downloadDocsAutomatically" value="true" />
+        <option name="downloadSourcesAutomatically" value="true" />
         <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="1358" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="754" />
+    <option name="width" value="1296" />
+    <option name="height" value="816" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -258,7 +475,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -269,27 +486,45 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="freightbit-lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="GoToClass.includeLibraries" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../freightbit-logistics/freightbit/pom.xml" />
-    <property name="FullScreen" value="false" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="options.lastSelected" value="preferences.sourceCode.General" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../freightbit/src/main/webapp/core/user" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="Console.TableResult.DefaultCopyAction" value="Comma-separated Values (CSV)" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit\src\main\webapp\core\user" />
+      <recent name="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit\src\main\webapp\core\permissions" />
+      <recent name="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit\src\main\webapp\core\group" />
+      <recent name="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit\src\main\webapp\customer\view" />
+      <recent name="C:\Users\johnpel\ernest2\freightbit-logistics\freightbit\src\main\webapp\customer\update" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -306,7 +541,6 @@
       <option name="CLASS_NAME" value="" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
@@ -315,8 +549,6 @@
       <option name="NETWORK_SPEED" value="full" />
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -325,19 +557,6 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -366,6 +585,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -409,9 +641,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
@@ -420,8 +650,6 @@
       <option name="NETWORK_SPEED" value="full" />
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <list size="0" />
@@ -431,13 +659,28 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
-    <recycled_changelist date="1402367177047">
-      <option name="PATH" value="C:\Users\ADMIN\.IdeaIC13\config\shelf\Uncommitted_changes_before_update_operation_at_6_10_2014_10_25_AM_[Default].patch" />
-      <option name="DESCRIPTION" value="Uncommitted changes before update operation at 6/10/2014 10:25 AM [Default]" />
+    <recycled_changelist date="1404266083207">
+      <option name="PATH" value="C:\Users\johnpel\.IntelliJIdea12\config\shelf\Uncommitted_changes_before_update_operation_at_7_2_14_9_54_AM_[Default].patch" />
+      <option name="DESCRIPTION" value="Uncommitted changes before update operation at 7/2/14 9:54 AM [Default]" />
     </recycled_changelist>
   </component>
-  <component name="SvnConfiguration" myUseAcceleration="nothing">
-    <configuration />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <configuration useDefault="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -463,84 +706,105 @@
       <created>1402369142881</created>
       <updated>1402369142881</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixed Login UI accordingly to design standards">
+      <created>1404273244754</created>
+      <updated>1404273244754</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixed Login UI forgot to add the resources">
+      <created>1404273553831</created>
+      <updated>1404273553831</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fixed Login UI accordingly to design standards">
+      <created>1404273702357</created>
+      <updated>1404273702357</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixed Login UI">
+      <created>1404273730176</created>
+      <updated>1404273730176</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fixed Main Dashboard UI">
+      <created>1404280843621</created>
+      <updated>1404280843621</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fixed Vendor UI">
+      <created>1404287740692</created>
+      <updated>1404287740692</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fixed Customer UI">
+      <created>1404291249089</created>
+      <updated>1404291249089</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fixed Customer UI - minor">
+      <created>1404291580561</created>
+      <updated>1404291580561</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fixed minor">
+      <created>1404293343758</created>
+      <updated>1404293343758</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Deleted dashboard breadcrumb on main dashboard. Doesn't serve a purpose for UX.">
+      <created>1404367029475</created>
+      <updated>1404367029475</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Refactored core, customer and vendor directories">
+      <created>1404367968088</created>
+      <updated>1404367968088</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added temporary logout function">
+      <created>1404370508448</created>
+      <updated>1404370508448</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="9143000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="1358" y="-8" width="1296" height="816" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.9880419" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.9876543" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32779455" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32735425" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24886535" sideWeight="0.67058825" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.7470588" sideWeight="0.3573744" order="18" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32779455" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8235294" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4514563" sideWeight="0.7301459" order="19" side_tool="false" content_ui="tabs" />
+      <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.47280967" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3363047" sideWeight="0.2529412" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3271605" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32941177" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20735294" sideWeight="0.64262563" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Chat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46470588" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.67058825" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4228395" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.67313915" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="20" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="21" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.47280967" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.9876543" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967638" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+    </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -554,24 +818,76 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="myTodoPanelSettings">
-      <TodoPanelSettings />
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
     </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned freighbit and freightbit-lib" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="migrated customer module from bitbucket" />
     <MESSAGE value="added sesion save in add customer" />
     <MESSAGE value="added CRUD customer items" />
-    <option name="LAST_COMMIT_MESSAGE" value="added CRUD customer items" />
+    <MESSAGE value="Fixed Login UI forgot to add the resources" />
+    <MESSAGE value="Fixed Login UI accordingly to design standards" />
+    <MESSAGE value="Fixed Login UI" />
+    <MESSAGE value="Fixed Main Dashboard UI" />
+    <MESSAGE value="Fixed Vendor UI" />
+    <MESSAGE value="Fixed Customer UI" />
+    <MESSAGE value="Fixed Customer UI - minor" />
+    <MESSAGE value="Fixed minor" />
+    <MESSAGE value="Deleted dashboard breadcrumb on main dashboard. Doesn't serve a purpose for UX." />
+    <MESSAGE value="Refactored core, customer and vendor directories" />
+    <MESSAGE value="Added temporary logout function" />
+    <MESSAGE value="Cleaned freighbit and freightbit-lib" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/VendorServiceImpl.java</url>
-          <line>285</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="2" />
     </breakpoint-manager>
   </component>
@@ -580,368 +896,114 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Vendor.java">
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/add/vendorAdd.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1870">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/entity/Items.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="958" max-vertical-offset="2431">
-          <caret line="57" column="30" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/CustomerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="719" max-vertical-offset="1938">
-          <caret line="63" column="17" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/CustomerDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41129032" vertical-offset="0" max-vertical-offset="620">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/entity/Trucks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6841216" vertical-offset="1703" max-vertical-offset="2295">
-          <caret line="190" column="30" selection-start-line="190" selection-start-column="30" selection-end-line="190" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/menu.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5483871" vertical-offset="34" max-vertical-offset="1003">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddDriver.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2963" max-vertical-offset="3859">
-          <caret line="128" column="39" selection-start-line="128" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/impl/CustomerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2776" max-vertical-offset="4794">
-          <caret line="225" column="70" selection-start-line="225" selection-start-column="6" selection-end-line="225" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/core/groupAdd.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33183858" vertical-offset="2759" max-vertical-offset="3604">
-          <caret line="171" column="66" selection-start-line="171" selection-start-column="27" selection-end-line="171" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerInfo.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7142857" vertical-offset="649" max-vertical-offset="4845">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/TrucksService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31627908" vertical-offset="0" max-vertical-offset="645">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/service/impl/ItemServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6716196" vertical-offset="347" max-vertical-offset="1020">
-          <caret line="63" column="23" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/TrucksDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334" vertical-offset="1281" max-vertical-offset="2363">
-          <caret line="99" column="39" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddTrucks.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.14934114" vertical-offset="2601" max-vertical-offset="4437">
-          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/TrucksServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6182635" vertical-offset="556" max-vertical-offset="1224">
-          <caret line="71" column="22" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/ItemsDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1639" max-vertical-offset="2312">
-          <caret line="133" column="21" selection-start-line="133" selection-start-column="21" selection-end-line="133" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/formbean/ItemBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="2210">
-          <caret line="12" column="35" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerEditInfo.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28333333" vertical-offset="204" max-vertical-offset="2057">
-          <caret line="23" column="83" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/core/searchVendor.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1972">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/order/action/OrderAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7841845" vertical-offset="1530" max-vertical-offset="3859">
-          <caret line="144" column="8" selection-start-line="144" selection-start-column="8" selection-end-line="144" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerSearch.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="142" max-vertical-offset="1394">
-          <caret line="42" column="84" selection-start-line="42" selection-start-column="84" selection-end-line="42" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/core/action/CustomerAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="620">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorSearch.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="432" max-vertical-offset="1376">
-          <caret line="27" column="93" selection-start-line="27" selection-start-column="93" selection-end-line="27" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05237316" vertical-offset="0" max-vertical-offset="611">
-          <caret line="2" column="61" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerAddAddress.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44677138" vertical-offset="0" max-vertical-offset="1552">
-          <caret line="16" column="76" selection-start-line="0" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_45/src.zip!/com/sun/jmx/snmp/InetAddressAcl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2128">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/util/ParameterConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="254" max-vertical-offset="752">
-          <caret line="38" column="61" selection-start-line="38" selection-start-column="61" selection-end-line="38" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerAddInfo.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="2227">
-          <caret line="48" column="96" selection-start-line="48" selection-start-column="73" selection-end-line="48" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorListView.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42071196" vertical-offset="403" max-vertical-offset="1717">
-          <caret line="39" column="91" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customerAddItem.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8413223" vertical-offset="2398" max-vertical-offset="3094">
-          <caret line="171" column="22" selection-start-line="97" selection-start-column="12" selection-end-line="171" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/resources/conf/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72259134" vertical-offset="143" max-vertical-offset="765">
-          <caret line="34" column="70" selection-start-line="34" selection-start-column="70" selection-end-line="34" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/dao/impl/VendorDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7160686" vertical-offset="663" max-vertical-offset="2278">
-          <caret line="76" column="9" selection-start-line="64" selection-start-column="5" selection-end-line="76" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/customer/dao/impl/CustomerDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="2890">
-          <caret line="112" column="9" selection-start-line="100" selection-start-column="7" selection-end-line="112" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/AddressDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
-          <caret line="21" column="46" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/WEB-INF/tiles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5591216" vertical-offset="2151" max-vertical-offset="8296">
-          <caret line="146" column="70" selection-start-line="146" selection-start-column="53" selection-end-line="146" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/core/entity/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26115704" vertical-offset="913" max-vertical-offset="2873">
-          <caret line="78" column="4" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/dao/impl/AddressDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72892565" vertical-offset="1922" max-vertical-offset="2703">
-          <caret line="139" column="13" selection-start-line="139" selection-start-column="13" selection-end-line="139" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/VendorService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="474" max-vertical-offset="2465">
-          <caret line="49" column="46" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddressList.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="562" max-vertical-offset="1190">
-          <caret line="64" column="10" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/conf/applicationContext-lib.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-86.96154" vertical-offset="714" max-vertical-offset="3213">
-          <caret line="175" column="14" selection-start-line="175" selection-start-column="14" selection-end-line="175" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/common/formbean/AddressBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7621359" vertical-offset="362" max-vertical-offset="1972">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/resources/struts-customers.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36486486" vertical-offset="345" max-vertical-offset="1394">
-          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33278957" vertical-offset="1275" max-vertical-offset="5576">
-          <caret line="107" column="27" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/customer-list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1530">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorAddAddress.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1887">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/vendor/vendorInfoTrucking.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1088" max-vertical-offset="1343">
-          <caret line="64" column="10" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/common/entity/Address.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="2057">
-          <caret line="71" column="39" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/resources/struts-vendor.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3247" max-vertical-offset="3587">
-          <caret line="191" column="81" selection-start-line="191" selection-start-column="81" selection-end-line="191" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/conf/hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14886165" vertical-offset="0" max-vertical-offset="571">
-          <caret line="5" column="74" selection-start-line="5" selection-start-column="74" selection-end-line="5" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/vendor/service/impl/VendorServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2550" max-vertical-offset="6630">
-          <caret line="158" column="50" selection-start-line="158" selection-start-column="27" selection-end-line="158" selection-end-column="50" />
+        <state line="143" column="69" selection-start="6973" selection-end="6973" vertical-scroll-proportion="0.2984127">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/vendor/action/VendorAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="15.3" vertical-offset="1785" max-vertical-offset="13566">
-          <caret line="116" column="73" selection-start-line="116" selection-start-column="73" selection-end-line="116" selection-end-column="73" />
+        <state line="253" column="10" selection-start="8926" selection-end="9267" vertical-scroll-proportion="0.025914634">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_21/src.zip!/java/util/regex/Matcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="557" column="19" selection-start="20023" selection-end="20023" vertical-scroll-proportion="0.33277026" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/formbean/RatesBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="17" selection-start="1387" selection-end="1387" vertical-scroll-proportion="0.42987806">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/resources/ApplicationResources.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="0" selection-start="1726" selection-end="1749" vertical-scroll-proportion="0.35213414">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/java/com/sr/apps/freightbit/customer/action/CustomerAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="503" column="46" selection-start="18348" selection-end="18348" vertical-scroll-proportion="0.33689025">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddRates.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="36" selection-start="6113" selection-end="6113" vertical-scroll-proportion="0.026984127">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddInfo.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="26" selection-start="7627" selection-end="7627" vertical-scroll-proportion="-0.57050246">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/view/customerInfo.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-3.554295">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="191" column="23" selection-start="5992" selection-end="6164" vertical-scroll-proportion="0.4015748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/customer/add/customerAddDocuments.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/banner.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="34" selection-start="2112" selection-end="2112" vertical-scroll-proportion="3.2317882">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sr/biz/freightbit/order/service/impl/OrderServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="322" column="37" selection-start="9705" selection-end="9705" vertical-scroll-proportion="12.730232">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/includes/font-awesome/scss/_path.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.02255639">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../freightbit/src/main/webapp/baseLayout.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="81" selection-start="2939" selection-end="2939" vertical-scroll-proportion="0.2813008">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/sr/biz/freightbit/core/service/VendorServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="66" selection-start="100" selection-end="100" vertical-scroll-proportion="0.20795107">
           <folding />
         </state>
       </provider>
@@ -1035,6 +1097,56 @@
         </settings>
       </state>
     </states>
+  </component>
+  <component name="simpleUML.UMLToolWindowPlugin">
+    <General>
+      <option name="birdViewUpdateDelay" value="2000" />
+      <option name="defaultFileLocation" value="file://$PROJECT_DIR$/.." />
+    </General>
+    <Classdiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="defaultFieldsExpanded" value="false" />
+      <option name="defaultContructorsExpanded" value="false" />
+      <option name="defaultMethodsExpanded" value="false" />
+      <option name="showParameters" value="true" />
+      <option name="showTooltip" value="true" />
+      <option name="showReturnValues" value="true" />
+      <option name="longModifier" value="true" />
+      <option name="implementsBehaviour" value="1" />
+      <option name="extendsBehaviour" value="1" />
+      <option name="compartmentBehaviour" value="1" />
+      <option name="interfaceBackgroundColor" value="-6494306" />
+      <option name="abstractClassBackgroundColor" value="-1580132" />
+      <option name="classBackgroundColor" value="-6508057" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="quickSourceLinkColor" value="-16776961" />
+      <option name="quickDiagramLinkColor" value="-8454144" />
+      <option name="drawDecorations" value="false" />
+      <option name="hideFieldList" value="" />
+      <option name="showFieldList" value="" />
+      <option name="hideConstructorList" value="" />
+      <option name="showConstructorList" value="" />
+      <option name="hideMethodList" value="" />
+      <option name="showMethodList" value="" />
+      <option name="minimumFigureSize" value="0,0" />
+    </Classdiagram>
+    <Dependencydiagram>
+      <option name="diagramTitleFont" value="SansSerif,1,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="0" />
+    </Dependencydiagram>
+    <Packagediagram>
+      <option name="diagramTitleFont" value="SansSerif,0,12" />
+      <option name="diagramFont" value="SansSerif,0,10" />
+      <option name="packageBackgroundColor" value="-4144960" />
+      <option name="diagramBackgroundColor" value="-1" />
+      <option name="useAntialiasedConnectors" value="true" />
+      <option name="packageNameCompressionLevel" value="2" />
+    </Packagediagram>
   </component>
 </project>
 

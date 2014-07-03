@@ -25,7 +25,7 @@ public interface VendorDao {
 
     public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId);
 
-	List<Vendor> findDuplicateVendorByVendorCode(String vendorCode,
-			Integer vendorId);
+    List<Vendor> findDuplicateVendorByVendorCode(String vendorCode,
+                                                 Integer vendorId);
 
 }

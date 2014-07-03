@@ -1,8 +1,8 @@
 package com.sr.biz.freightbit.customer.dao;
 
-import java.util.List;
-
 import com.sr.biz.freightbit.customer.entity.Rates;
+
+import java.util.List;
 
 /**
  * Created by Solutions Resource on 5/27/14.

@@ -7,11 +7,10 @@
 package com.sr.apps.freightbit.core.formbean;
 
 /**
- *
  * @author asus
  */
 public class PermissionBean {
-    
+
     private String permissionId;
     private String clientId;
     private String permissionName;
@@ -132,5 +131,5 @@ public class PermissionBean {
     public void setRowIndex(Integer rowIndex) {
         this.rowIndex = rowIndex;
     }
-    
+
 }

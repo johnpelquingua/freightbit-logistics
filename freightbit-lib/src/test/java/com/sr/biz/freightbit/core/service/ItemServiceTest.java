@@ -1,10 +1,10 @@
 package com.sr.biz.freightbit.core.service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
+import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.customer.dao.ItemsDao;
 import com.sr.biz.freightbit.customer.entity.Items;
+import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
+import com.sr.biz.freightbit.customer.service.impl.ItemServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,11 +15,9 @@ import org.mockito.MockitoAnnotations.Mock;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sr.biz.freightbit.customer.dao.ItemsDao;
-import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.customer.entity.Customer;
-import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
-import com.sr.biz.freightbit.customer.service.impl.ItemServiceImpl;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Solutions Resource on 5/26/14.
@@ -40,7 +38,7 @@ public class ItemServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    private Items initItem(){
+    private Items initItem() {
         Client client = new Client("Ernest", new Date(), "Juno", new Date(), "Juno");
 
         Items item = new Items();
@@ -60,7 +58,7 @@ public class ItemServiceTest {
         return item;
     }
 
-    @Test(expected=ItemAlreadyExistsException.class)
+    @Test(expected = ItemAlreadyExistsException.class)
     public void testAddExistingItem() {
         Items item = initItem();
         List<Items> existingItemList = new ArrayList<Items>();

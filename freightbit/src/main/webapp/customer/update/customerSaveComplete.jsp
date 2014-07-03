@@ -39,29 +39,35 @@
                             <s:iterator value="customers" var="customer">
                                 <tr>
 
-                                    <td class="tb-font-black"><s:property value="customerId" /></td>
-                                    <td class="tb-font-black"><s:property value="customerName" /></td>
-                                    <td class="tb-font-black"><s:property value="customerType" /></td>
-                                    <td class="tb-font-black"><s:property value="email" /></td>
-                                    <td class="tb-font-black"><s:property value="website" /></td>
-                                    <td class="tb-font-black"><s:property value="phone" /></td>
+                                    <td class="tb-font-black"><s:property value="customerId"/></td>
+                                    <td class="tb-font-black"><s:property value="customerName"/></td>
+                                    <td class="tb-font-black"><s:property value="customerType"/></td>
+                                    <td class="tb-font-black"><s:property value="email"/></td>
+                                    <td class="tb-font-black"><s:property value="website"/></td>
+                                    <td class="tb-font-black"><s:property value="phone"/></td>
                                     <td>
 
                                         <s:url var="editCustomerUrl" action="loadEditCustomerPage">
                                             <s:param name="customerCodeParam" value="customerCode"></s:param>
                                         </s:url>
-                                        <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip" title="Edit this Customer"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
+                                        <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip"
+                                             title="Edit this Customer"><img src="includes/images/edit-user.png"
+                                                                             class="icon-action circ-icon"> </s:a>
 
                                         <s:url var="deleteCustomerUrl" action="deleteCustomer">
                                             <s:param name="customerCodeParam" value="customerCode"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip" title="Delete this Customer" onclick="return confirm('Do you really want to delete?');"><img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                        <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip"
+                                             title="Delete this Customer"
+                                             onclick="return confirm('Do you really want to delete?');"><img
+                                                src="includes/images/remove-user.png"
+                                                class="icon-action circ-icon"> </s:a>
 
                                         <s:url var="customerInfoUrl" action="customerInfo">
                                             <s:param name="customerCodeParam" value="customerCode"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img src="includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
-
+                                        <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img
+                                                src="includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
 
 
                                     </td>
@@ -79,7 +85,8 @@
                     </ul>
 
 							<span class="pull-right">
-							<a href="customerAdd" class="icon-action-link"><img src="includes/images/add-user.png" class="icon-action circ-icon"> </a>
+							<a href="customerAdd" class="icon-action-link"><img src="includes/images/add-user.png"
+                                                                                class="icon-action circ-icon"> </a>
 							</span>
 
                 </div>

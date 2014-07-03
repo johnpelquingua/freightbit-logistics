@@ -6,24 +6,15 @@ package com.sr.biz.freightbit.vendor.entity;
  * Date: 5/13/14
  */
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
 import com.sr.biz.freightbit.core.entity.Client;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "trailers", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "trailerId"))
 
-public class Trailers implements java.io.Serializable{
+public class Trailers implements java.io.Serializable {
 
     private Integer trailerId;
     private Client client;
@@ -45,7 +36,7 @@ public class Trailers implements java.io.Serializable{
     public Trailers(Integer trailerId, Client client, Vendor vendor, String trailerCode, String trailerType,
                     int trailerLength, float grossWeight, String modelName, int modelYear, int axle, String vin,
                     String plateNumber, Date createdTimestamp, String createdBy, Date modifiedTimestamp,
-                    String modifiedBy){
+                    String modifiedBy) {
 
         this.trailerId = trailerId;
         this.client = client;
@@ -65,7 +56,8 @@ public class Trailers implements java.io.Serializable{
         this.modifiedBy = modifiedBy;
     }
 
-    public Trailers(){}
+    public Trailers() {
+    }
 
     @Id
     @GeneratedValue

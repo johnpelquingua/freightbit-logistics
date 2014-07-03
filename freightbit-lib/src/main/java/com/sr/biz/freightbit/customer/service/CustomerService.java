@@ -4,16 +4,16 @@ package com.sr.biz.freightbit.customer.service;
  * Created by ADMIN on 5/13/14.
  */
 
-import java.util.List;
-
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
-import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
-import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.entity.Rates;
+import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
+import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
+
+import java.util.List;
 
 public interface CustomerService {
 
@@ -24,8 +24,6 @@ public interface CustomerService {
     public void deleteConsignee(Contacts contact, Address address);
 
     public void updateConsignee(Contacts contact, Address address);
-
-
 
 
     //Contacts Table
@@ -41,12 +39,12 @@ public interface CustomerService {
     public List<Contacts> findAllContacts();
 
     /*public List<Contacts> findContactsByCustomerId(Integer customerId);*/
-    
-    public List <Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
+
+    public List<Contacts> findContactByRefIdAndType(String contactType, Integer customerId);
 
     public List<Contacts> findContactByReferenceId(Integer customerId);
 
-    public 	List <Contacts> findContactByParameterMap(Integer referenceId, String contactType, Integer clientId);
+    public List<Contacts> findContactByParameterMap(Integer referenceId, String contactType, Integer clientId);
 
 
     //Address
@@ -62,12 +60,12 @@ public interface CustomerService {
     public List<Address> findAllAddressByRefId(Integer customerId);
 
     public void updateAddress(Address address);
-    
-    public List <Address> findAddressByRefIdAndType(String addressType, Integer customerId);
-    
-	public List<Address> findAddressByParameterMap(Integer referenceId, String addressType, Integer clientId);
-	
-	public 	List<Address> findAddressByCriteria(String addressType, Integer customerId);
+
+    public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId);
+
+    public List<Address> findAddressByParameterMap(Integer referenceId, String addressType, Integer clientId);
+
+    public List<Address> findAddressByCriteria(String addressType, Integer customerId);
 
     //Customer
 
@@ -89,7 +87,7 @@ public interface CustomerService {
 
     public Customer findCustomerByEmail(String customer);
 
-    public List <Customer> findCustomersByCriteria(String column, String value, Integer clientId);
+    public List<Customer> findCustomersByCriteria(String column, String value, Integer clientId);
 
     public Customer findCustomerByCustomerCode(String customerCode);
 
@@ -129,7 +127,7 @@ public interface CustomerService {
 
     public List<Rates> findAllRatesByCustomerId(Integer customerId);
 
-	public Address findAddressByParameterMap(Integer referenceId, String addressType,
-			Integer clientId, Integer contactId);
+    public Address findAddressByParameterMap(Integer referenceId, String addressType,
+                                             Integer clientId, Integer contactId);
 
 }

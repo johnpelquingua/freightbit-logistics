@@ -7,7 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class HelpAction extends ActionSupport {
 
-    public String execute(){
+    public String execute() {
         return SUCCESS;
     }
 }

@@ -1,13 +1,12 @@
 package com.sr.biz.freightbit.common.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.transaction.annotation.Transactional;
-
 import com.sr.biz.freightbit.common.dao.ParameterDao;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Map;
 
 @Transactional
 public class ParameterServiceImpl implements ParameterService {
@@ -23,14 +22,14 @@ public class ParameterServiceImpl implements ParameterService {
         List<Parameters> parameterMap = parameterDao.findParameterMapByRefColumn(referenceColumn);
         return parameterMap;
     }
-    
+
     public List<Parameters> getParameterMap(String referenceTable, String referenceColumn) {
         List<Parameters> parameterMap = parameterDao.findParameterMapByRefColumn(referenceTable, referenceColumn);
         return parameterMap;
     }
 
-    public List<Parameters> findParametersByProperty(Map<String, Object> params){
+    public List<Parameters> findParametersByProperty(Map<String, Object> params) {
         return parameterDao.findParametersByProperty(params);
     }
-   
+
 }

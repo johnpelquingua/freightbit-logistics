@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+         pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
@@ -34,35 +34,38 @@
                         <th class="tb-font-black">Critical Quality</th>
                         <th class="tb-font-black">Base Price</th>
                         <th class="tb-font-black">Note</th>
-                        <th class="tb-font-black">Description </th>
+                        <th class="tb-font-black">Description</th>
                         <th class="tb-font-black">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <s:iterator value="items" var="item">
                         <tr>
-                            <td class="tb-font-black"><s:property value="itemName" /></td>
-                            <td class="tb-font-black"><s:property value="itemCode" /></td>
-                            <td class="tb-font-black"><s:property value="length" /></td>
-                            <td class="tb-font-black"><s:property value="width" /></td>
-                            <td class="tb-font-black"><s:property value="height" /></td>
-                            <td class="tb-font-black"><s:property value="srp" /></td>
-                            <td class="tb-font-black"><s:property value="criticalQuality" /></td>
-                            <td class="tb-font-black"><s:property value="basePrice" /></td>
-                            <td class="tb-font-black"><s:property value="Note" /></td>
-                            <td class="tb-font-black"><s:property value="Description" /></td>
+                            <td class="tb-font-black"><s:property value="itemName"/></td>
+                            <td class="tb-font-black"><s:property value="itemCode"/></td>
+                            <td class="tb-font-black"><s:property value="length"/></td>
+                            <td class="tb-font-black"><s:property value="width"/></td>
+                            <td class="tb-font-black"><s:property value="height"/></td>
+                            <td class="tb-font-black"><s:property value="srp"/></td>
+                            <td class="tb-font-black"><s:property value="criticalQuality"/></td>
+                            <td class="tb-font-black"><s:property value="basePrice"/></td>
+                            <td class="tb-font-black"><s:property value="Note"/></td>
+                            <td class="tb-font-black"><s:property value="Description"/></td>
                             <td class="tb-font-black">
 
                                 <s:url var="editItemUrl" action="loadEditItem">
                                     <s:param name="customersItemIdParam" value="%{customerItemsId}"></s:param>
                                 </s:url>
-                                <s:a class="icon-action-link" href="%{editItemUrl}" rel="tooltip" title="Edit this driver">
+                                <s:a class="icon-action-link" href="%{editItemUrl}" rel="tooltip"
+                                     title="Edit this driver">
                                     <img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
 
                                 <s:url var="deleteItemUrl" action="deleteItem">
                                     <s:param name="customersItemIdParam" value="%{customerItemsId}"></s:param>
                                 </s:url>
-                                <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip" title="Delete this Item?" onclick="return confirm('Do you really want to delete?');">
+                                <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
+                                     title="Delete this Item?"
+                                     onclick="return confirm('Do you really want to delete?');">
                                     <img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
                             </td>
                         </tr>

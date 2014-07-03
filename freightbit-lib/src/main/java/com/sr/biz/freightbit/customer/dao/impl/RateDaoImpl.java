@@ -1,15 +1,14 @@
 package com.sr.biz.freightbit.customer.dao.impl;
 
-import java.util.List;
-
+import com.sr.biz.freightbit.customer.dao.RatesDao;
+import com.sr.biz.freightbit.customer.entity.Rates;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import com.sr.biz.freightbit.customer.dao.RatesDao;
-import com.sr.biz.freightbit.customer.entity.Rates;
-
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by Solutions Resource on 5/27/14.
@@ -139,7 +138,6 @@ public class RateDaoImpl extends HibernateDaoSupport implements RatesDao {
             throw re;
         }
     }
-
 
 
 }

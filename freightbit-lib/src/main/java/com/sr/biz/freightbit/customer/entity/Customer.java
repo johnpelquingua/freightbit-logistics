@@ -6,16 +6,12 @@ package com.sr.biz.freightbit.customer.entity;
 
 import com.sr.biz.freightbit.core.entity.Client;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
-@Table(name = "customers", catalog = "freightbit" , uniqueConstraints = @UniqueConstraint(columnNames = "customerId"))
+@Table(name = "customers", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "customerId"))
 
 public class Customer implements java.io.Serializable {
 
@@ -68,7 +64,7 @@ public class Customer implements java.io.Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "customerId", unique = true)
     public Integer getCustomerId() {
         return customerId;

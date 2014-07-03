@@ -1,8 +1,8 @@
 package com.sr.biz.freightbit.vendor.dao;
 
-import java.util.List;
-
 import com.sr.biz.freightbit.vendor.entity.Driver;
+
+import java.util.List;
 
 /**
  * Created by JMXPSX on 5/16/14.
