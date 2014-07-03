@@ -186,10 +186,10 @@
    <div class="row" style=" margin-top: -15px; ">
        <div class="col-lg-12">
            <h1>Dashboard </h1>
-           <ol class="breadcrumb">
+          <%-- <ol class="breadcrumb">
                <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
 
-           </ol>
+           </ol>--%>
 
        </div>
    </div><!-- /.row -->
