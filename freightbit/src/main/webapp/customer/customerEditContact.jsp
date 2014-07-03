@@ -1,15 +1,14 @@
 <%--<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>--%>
-
 <%@ taglib prefix="s" uri="/struts-tags" %>
+
 
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
 <!-- MIDDLE -->
-<%--
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <h1 class="page-header">Customer Profile</h1>
+    <h1 class="page-header">Contact Profile</h1>
 
     <!-- MAIN BOX -->
 
@@ -17,13 +16,13 @@
         <div class="panel booking panel-info">
             <div class="booking panel-heading">
                 <img src="includes/images/add-user.png" class="box-icon">
-                <span class="booking panel-title">Edit Customer - Contact Person</span>
+                <span class="booking panel-title">Add Contact Person</span>
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
 
-                    <s:form action="editCustomerContact" cssClass="form-horizontal" theme="bootstrap">
-                    <s:hidden name="contact.contactId" value="%{contact.contactId}"/>
+                    <s:form action="addCustomerContact" cssClass="form-horizontal" theme="bootstrap">
+
 
                     <div class="form-group">
                         <label for="contact.contactType" class="col-sm-2 control-label"> Contact Type:</label>
@@ -69,7 +68,7 @@
                         <div class="col-sm-10">
                             <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
                                          maxLength="11" required="true" pattern="\d{11}"
-                                         title="Phone should not contain special characters and/or letters."/>
+                                         title="Phone should not contain special characters and/or letters. Must be 11 digits."/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -140,19 +139,18 @@
                 </li>
                 <li><a href="customer-add7.jsp" class="side-help"><img src="includes/images/6.png" class="img-sidehelp">Rates</a>
                 </li>
-                <li><a href="customer-add6.jsp" class="side-help"><img src="includes/images/7.png" class="img-sidehelp">Consignee
-                    Infomation</a></li>
+                <li><a href="customerAddConsignee.jsp" class="side-help"><img src="includes/images/7.png"
+                                                                              class="img-sidehelp">Consignee Infomation</a>
+                </li>
             </ul>
         </div>
     </div>
 </div>
 </div>
---%>
 
-<!-- END SIDEBAR -->
+<!-- END SIDEBAR -->--%>
 
 <!-- END OF THE MIDDLE -->
-
 
 
 <div class="row">
@@ -164,7 +162,7 @@
             <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a></li>
             <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer Profile</a></li>
             <li class="active"><a href="<s:url action='viewCustomerContacts' />"><i class="fa fa-group"></i> Contact Persons</a></li>
-            <li class="active"><i class="fa fa-pencil"></i> Edit Contact Person</li>
+            <li class="active"><i class="fa fa-plus"></i> Add New Contact Person</li>
         </ol>
 
     </div>
@@ -175,64 +173,76 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit Contact Person</h3>
+                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New Contact Person</h3>
             </div>
 
             <div class="panel-body">
 
                 <s:form action="editCustomerContact" cssClass="form" theme="bootstrap">
-                <s:hidden name="contact.contactId" value="%{contact.contactId}"/>
-
+                <s:hidden name="contact.contactId" value="%{contact.contactId}" />
                     <div class="form-group">
                         <label for="contact.contactType">Contact Type</label>
                         <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
                                   listKey="key" listValue="value" cssClass="form-control"
-                                  value="contact.contactType"/>
+                                  value="contact.contactType" emptyOption="true"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.lastName">Last Name</label>
                         <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
-                                     id="contact.lastName"/>
+                                     id="contact.lastName" required="true" maxLength="30" autofocus="true"
+                                     pattern="[a-zA-Z\s]+"
+                                     title="Name should not contain special characters and/or numbers."/>
 
                     </div>
 
                     <div class="form-group">
-                        <label for="contact.firstName">Last Name</label>
+                        <label for="contact.firstName">First Name</label>
                         <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                     id="contact.firstName"/>
+                                     id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s]+"
+                                     title="Name should not contain special characters and/or numbers."
+                                     required="true"/>
 
                     </div>
 
                     <div class="form-group">
-                        <label for="contact.firstName">Middle Name</label>
+                        <label for="contact.middleName">Middle Name</label>
                         <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                                     id="contact.middleName"/>
+                                     id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s]+"
+                                     title="Name should not contain special characters and/or numbers."/>
 
                     </div>
 
                     <div class="form-group">
-                        <label for="contact.firstName">Phone</label>
-                        <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone"/>
+                        <label for="contact.phone">Phone</label>
+                        <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
+                                     maxLength="7" required="true" pattern="\d{7}"
+                                     title="Phone should not contain special characters and/or letters. Must be 7 digits."/>
 
                     </div>
 
                     <div class="form-group">
-                        <label for="contact.firstName">Mobile</label>
-                        <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile"/>
+                        <label for="contact.mobile">Mobile</label>
+                        <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
+                                     maxLength="11" required="true"
+                                     pattern="\d{11}"
+                                     title="Mobile should not contain special characters and/or letters."/>
 
                     </div>
 
                     <div class="form-group">
-                        <label for="contact.firstName">Fax</label>
-                        <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax"/>
+                        <label for="contact.fax">Fax</label>
+                        <s:textfield cssClass="form-control" placeholder="contact.fax" name="contact.fax"
+                                     maxLength="11" pattern="[0-9]+"
+                                     title="Fax should not contain special characters and/or letters."/>
 
                     </div>
 
                     <div class="form-group">
-                        <label for="contact.firstName">E-Mail</label>
-                        <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email"/>
+                        <label for="contact.email">E-Mail</label>
+                        <s:textfield cssClass="form-control" placeholder="contact.email" name="contact.email"
+                                     type="email" required="true"/>
 
                     </div>
 
