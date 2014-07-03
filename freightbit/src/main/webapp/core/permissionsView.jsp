@@ -1,6 +1,8 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <!-- MIDDLE -->
+<%--
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header">Permissions</h1>
@@ -88,8 +90,63 @@
 </div>
 </div>
 </div>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="includes/js/bootstrap.min.js"></script>
+--%>
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1>Accounts Module </h1>
+        <ol class="breadcrumb">
+            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><i class="fa fa-user"></i> Accounts</li>
+            <li class="active"><i class="fa fa-group"></i> Group</li>
+
+            <li class="active"><i class="fa fa-list"></i> Permissions</li>
+        </ol>
+
+    </div>
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i> Permissions</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-responsive list-table">
+
+                    <tbody>
+                        <table>
+                            <tr>
+                                <display:table id="permission" name="permissions" requestURI="/viewUsers.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter" style="margin-top: 15px;">
+                                    <td><display:column property="permissionName" title="Permissions" class="tb-font-black"/></td>
+                                    <td><display:column property="userGroups" title="Users/Groups" class="tb-font-black"/></td>
+                                    <td class="tb-font-black">
+                                        <display:column title="Actions">
+                                            <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                                        </display:column>
+                                    </td>
+                                </display:table>
+                            </tr>
+                        </table>
+                    </tbody>
+
+                </div>
+            </div>
+
+            <div class="panel-footer">
+
+                <span class="pull-right">
+                    <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                </span>
+
+            </div>
+        </div>
+    </div>
+</div><!-- /.row -->
+
+
