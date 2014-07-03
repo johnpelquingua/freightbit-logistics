@@ -128,10 +128,9 @@
     <div class="col-lg-12">
         <h1>Add New Customer </h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Customer</li>
-            <li class="active"><a href="<s:url action='customerList' />"><i class="fa fa-list"></i> Customer List </a>
-            </li>
+            <li class="active"><a href="<s:url action='customerList' />"><i class="fa fa-list"></i> Customer List </a></li>
             <li class="active"><i class="fa fa-plus"></i> Add New Customer</li>
         </ol>
     </div>
@@ -145,72 +144,90 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
+
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addCustomer">
-                    <div class="form-group">
+
+
+
+
+
+
+
+
+                        <div class="form-group">
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Company Name</label>
-
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield required="true" name="customer.customerName" cssClass="form-control"
-                                             id="customer.customerName"/>
+                                <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Company Code</label>
-
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield required="true" maxLength="3" name="customer.customerCode"
-                                             cssStyle="text-transform:uppercase" cssClass="form-control"
-                                             id="customer.customerCode"/>
+                                <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" />
                             </div>
                         </div>
+
+
+
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Customer Type</label>
-
                             <div class="col-sm-10" style="width:70%;">
-                                <s:select name="customer.customerType" id="customer.customerType" listKey="key"
-                                          listValue="value" list="customerTypeList" cssClass="form-control"/>
+                                <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Phone No.</label>
-
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield required="true" name="customer.phone" cssClass="form-control"
-                                             id="customer.phone" maxLength="7"/>
+                                <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer.phone" maxLength="7"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Mobile No.</label>
-
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield required="true" name="customer.mobile" cssClass="form-control"
-                                             id="customer.mobile" maxLength="11"/>
+                                <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer.mobile" maxLength="11"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Fax No.</label>
-
+                            <label class="col-sm-2 control-label" style="width:25%;">Fax  No.</label>
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield required="true" name="customer.fax" cssClass="form-control"
-                                             id="customer.fax" maxLength="11"/>
+                                <s:textfield  required="true" name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Email Address</label>
-
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield required="true" name="customer.email" cssClass="form-control"
-                                             id="customer.email" type="email"/>
+                                <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Website</label>
-
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield name="customer.website" cssClass="form-control" id="customer.website"/>
                             </div>
                         </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" style="width:25%; padding-top: 25px;">Documents</label>
+                                <div class="col-sm-4" style="padding-left: 40px;">
+                                    <s:checkbox name="customer_dti" fieldValue="true" label="DTI"  />
+                                </div>
+                                <div class="col-sm-4" style="padding-left: 40px;" >
+                                    <s:checkbox name="customer_mayorsPermit" fieldValue="true" label="Mayor's Permit"  />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" style="width:25%;"></label>
+                                <div class="col-sm-4" style="padding-left: 40px;">
+                                    <s:checkbox name="customer_aaf" fieldValue="true" label="Account Application Form"  />
+                                </div>
+                                <div class="col-sm-4" style="padding-left: 40px;">
+                                    <s:checkbox name="customer_signatureCard" fieldValue="true" label="Signature Card"  />
+                                </div>
+
+                            </div>
 
                     </div>
                 </div>
@@ -218,8 +235,9 @@
 
             <div class="panel-footer">
                 <div class="pull-right">
-                    <a href="customerList" class="btn btn-default" id="groups-btn">Cancel</a>
-                    <s:submit name="submit" cssClass="btn btn-info" value="Save"/>
+                    <a href="customerList" class="btn btn-default" id ="groups-btn">Cancel</a>
+
+                    <s:submit name="submit" cssClass="btn btn-info" value="Save" />
                 </div>
             </div>
             </s:form>

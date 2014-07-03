@@ -171,12 +171,46 @@
                                     (Fax)
                                 </td>
                             </tr>
-                            <%--<tr>
+                            <tr>
                                 <td>Documents</td>
                                 <td>
-                                    Signature Card(Done)<br><br>DTI(Done)<br><br>Mayor's Permit(Done)
+                                    <s:property value="customer.dti" />
+                                    <s:property value="customer.mayorsPermit" />
+                                    <s:property value="customer.aaf" />
+                                    <s:property value="customer.signatureCard" />
+                                    <%--<s:checkbox name="customer_dti" fieldValue="true" label="DTI 1.5" checked="checked" disabled="true"/>--%>
+                                    <s:if test="%{customer.dti == 1}">
+                                        <s:checkbox name="customer_dti" fieldValue="true" label="DTI 1.5" checked="checked" disabled="true"/>
+                                    </s:if>
+                                    <s:else >
+                                        <s:checkbox name="customer_dti" fieldValue="true" label="DTI 2"  disabled="true"/>
+                                    </s:else>
+                                    <br />
+                                    <br />
+                                    <s:if test="%{customer.mayorsPermit == 1}">
+                                        <s:checkbox  name="customer_mayorsPermit" fieldValue="true" label="Permit 1" checked="checked" disabled="true"/>
+                                    </s:if>
+                                    <s:else >
+                                        <s:checkbox name="customer_mayorsPermit" fieldValue="true" label="Permit 2"  disabled="true"/>
+                                    </s:else>
+                                    <br />
+                                    <br />
+                                    <s:if test="%{customer.aaf == 1}">
+                                        <s:checkbox  name="customer_aaf" fieldValue="true" label="AAF 1" checked="checked" disabled="true"/>
+                                    </s:if>
+                                    <s:else >
+                                        <s:checkbox name="customer_aaf" fieldValue="true" label="AAF 2"  disabled="true"/>
+                                    </s:else>
+                                    <br />
+                                    <br />
+                                    <s:if test="%{customer.signatureCard == 1}">
+                                        <s:checkbox  name="customer_signatureCard" fieldValue="true" label="Card 1" checked="checked" disabled="true"/>
+                                    </s:if>
+                                    <s:else >
+                                        <s:checkbox name="customer_signatureCard" fieldValue="true" label="Card 2"  disabled="true"/>
+                                    </s:else>
                                 </td>
-                            </tr>--%>
+                            </tr>
                             </tbody>
                             <s:set name="customerId" value="%{customer.customerId}" scope="session"/>
 

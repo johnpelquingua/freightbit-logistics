@@ -53,52 +53,43 @@
   </ul>
 
 </div>--%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <ul class="nav navbar-nav side-nav" style=" width: 200px; ">
-    <li><a href="<s:url action='home' />"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li><a href="<s:url action='viewOrders' />"><i class="fa fa-book"></i> Booking</a></li>
-    <li><a href="#"><i class="fa fa-truck"></i> Operations</a></li>
-    <li><a href="#"><i class="fa fa-file-text"></i> Documentations</a></li>
+    <li><a href="<s:url action='home' />" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="<s:url action='viewOrders' />" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-book"></i> Booking</a></li>
+    <li><a href="#" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-truck"></i> Operations</a></li>
+    <li><a href="#" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-file-text"></i> Documentations</a></li>
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> Vendor <b
-                class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-male"></i> Vendor <b class="caret"></b></a>
 
         <ul class="dropdown-menu">
-            <li><a href="<s:url action='loadSearchVendorPage' />"> <i class="fa fa-caret-right fa-fw"></i> Search Vendor</a>
-            </li>
-            <li><a href="<s:url action='loadAddVendorPage' />"> <i class="fa fa-caret-right fa-fw"></i> Add Vendor</a>
-            </li>
+            <li><a href="<s:url action='loadSearchVendorPage' />"> <i class="fa fa-caret-right fa-fw"></i> Search Vendor</a></li>
+            <li><a href="<s:url action='loadAddVendorPage' />"> <i class="fa fa-caret-right fa-fw"></i> Add Vendor</a></li>
         </ul>
     </li>
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> Customer <b
-                class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-male"></i> Customer <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="<s:url action='loadSearchCustomerPage' />"> <i class="fa fa-caret-right fa-fw"></i> Search
-                Customer</a></li>
-            <li><a href="<s:url action='loadAddCustomerPage' />"> <i class="fa fa-caret-right fa-fw"></i> Add
-                Customer</a></li>
+            <li><a href="<s:url action='loadSearchCustomerPage' />"> <i class="fa fa-caret-right fa-fw"></i> Search Customer</a></li>
+            <li><a href="<s:url action='loadAddCustomerPage' />"> <i class="fa fa-caret-right fa-fw"></i> Add Customer</a></li>
         </ul>
     </li>
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Accounts <b
-                class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-user"></i> Accounts <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="<s:url action='loadSearchUserPage' />"> <i class="fa fa-caret-right fa-fw"></i> User</a></li>
             <li><a href="<s:url action='viewGroups' />"> <i class="fa fa-caret-right fa-fw"></i> Group</a></li>
-            <li><a href="<s:url action='viewPermissions' />"> <i class="fa fa-caret-right fa-fw"></i> Permission</a>
-            </li>
+            <li><a href="<s:url action='viewPermissions' />"> <i class="fa fa-caret-right fa-fw"></i> Permission</a></li>
         </ul>
     </li>
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-text-o"></i> Reports <b
-                class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-file-text-o"></i> Reports <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="#"> <i class="fa fa-caret-right fa-fw"></i> Trucks</a></li>
             <li><a href="#"> <i class="fa fa-caret-right fa-fw"></i> Container</a></li>
@@ -109,14 +100,13 @@
     </li>
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-money"></i> Finance <b
-                class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-money"></i> Finance <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="searchFinance"> <i class="fa fa-caret-right fa-fw"></i> Search Finance</a></li>
             <li><a href="addFinance"> <i class="fa fa-caret-right fa-fw"></i> Add Finance</a></li>
         </ul>
     </li>
 
-    <li class=""><a href="Help"><i class="fa fa-question"></i> Help</a></li>
+    <li class=""><a href="Help" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-question"></i> Help</a></li>
 
 </ul>

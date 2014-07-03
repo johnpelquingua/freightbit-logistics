@@ -33,11 +33,8 @@ public class Contacts implements Serializable {
     public Contacts() {
     }
 
-    public Contacts(Integer contactId, Client client, String referenceTable,
-                    Integer referenceId, String contactType, String firstName,
-                    String middleName, String lastName, String phone, String mobile,
-                    String fax, String email, Date createdTimestamp,
-                    String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public Contacts(Integer contactId, Client client, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+
         this.contactId = contactId;
         this.client = client;
         this.referenceTable = referenceTable;
@@ -55,7 +52,6 @@ public class Contacts implements Serializable {
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
     }
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

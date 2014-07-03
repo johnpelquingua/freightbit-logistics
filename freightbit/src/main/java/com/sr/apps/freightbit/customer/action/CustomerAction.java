@@ -22,6 +22,7 @@ import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.entity.Rates;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
+import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.customer.service.ItemService;
 import org.apache.commons.lang3.StringUtils;
@@ -78,6 +79,11 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private ParameterService parameterService;
     private CommonUtils commonUtils;
 
+    private boolean customer_dti;
+    private boolean customer_mayorsPermit;
+    private boolean customer_aaf;
+    private boolean customer_signatureCard;
+
     @Override
     public void prepare() {
         addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
@@ -101,7 +107,13 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        customerService.addItem(transformToEntityBeanItem(item));
+
+        Items itemEntity = transformToEntityBeanItem(item);
+        itemEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+        itemEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+        itemEntity.setCreatedTimeStamp(new Date());
+        customerService.addItem(itemEntity);
+
         return SUCCESS;
     }
 
@@ -110,7 +122,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        customerService.updateItems(transformToEntityBeanItem(item));
+
+        Items itemEntity = transformToEntityBeanItem(item);
+        itemEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+        itemEntity.setModifiedTimeStamp(new Date());
+        customerService.updateItems(itemEntity);
+
         return SUCCESS;
     }
 
@@ -217,6 +234,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setBasePrice(entity.getBasePrice());
         formBean.setNote(entity.getNote());
         formBean.setDescription(entity.getDescription());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setCreatedTimeStamp(entity.getCreatedTimeStamp());
 
         return formBean;
 
@@ -242,21 +261,25 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setBasePrice(formBean.getBasePrice());
         entity.setNote(formBean.getNote());
         entity.setDescription(formBean.getDescription());
-        entity.setCreatedBy(getClientId().toString());
-        entity.setModifiedBy(getClientId().toString());
+        System.out.println("----------------------" + formBean.getCreatedBy() + "-----------------------------");
+        entity.setCreatedBy(formBean.getCreatedBy());
+        System.out.println("----------------------" + formBean.getCreatedTimeStamp() + "-----------------------------");
+        entity.setCreatedTimeStamp(formBean.getCreatedTimeStamp());
 
         return entity;
     }
 
 
     //////////// END OF ITEMS //////////////
-
+    // DONE WITH MODIFY and CREATE BY
 
     public String loadSearchCustomerPage() {
         return SUCCESS;
     }
 
     public String customerInfo() {
+
+        System.out.println("----------------------------------add customer " + customerCodeParam + "-------------------------------------------");
 
         Customer customerEntity = new Customer();
         if (!StringUtils.isBlank(customerCodeParam))
@@ -277,7 +300,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
 
     ////// START OF CUSTOMER ///////////////
-
+    // DONE WITH MODIFY and CREATE BY
     public String loadAddCustomerPage() {
         return SUCCESS;
     }
@@ -289,10 +312,24 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String loadSaveCompletePage() {
-        List<Customer> customerEntityList = customerService.findAllCustomer();
+        /*List<Customer> customerEntityList = customerService.findAllCustomer();
         for (Customer customerElem : customerEntityList) {
             customers.add(transformToFormBean(customerElem));
-        }
+        }*/
+
+        Customer customerEntity = new Customer();
+        if (!StringUtils.isBlank(customerCodeParam))
+            customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
+        else
+            customerEntity = customerService.findCustomerById(getCustomerSessionId());
+        customer = transformToFormBean(customerEntity);
+
+        /*Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
+        customer = transformToFormBean(customerEntity);*/
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("customerId", customer.getCustomerId());
+
         return SUCCESS;
     }
 
@@ -351,8 +388,18 @@ public class CustomerAction extends ActionSupport implements Preparable {
         /*customerService.updateCustomer(transformToEntityBean(customer));*/
 
         try {
+
+            System.out.println("----------------------------------dti - edit " + customer_dti + "-------------------------------------------");
+
+            System.out.println("----------------------------------permit - edit " + customer_mayorsPermit +  "-------------------------------------------");
+
+            System.out.println("----------------------------------aaf - edit " + customer_aaf +  "-------------------------------------------");
+
+            System.out.println("----------------------------------card - edit " + customer_signatureCard   +"-------------------------------------------");
+
             Customer customerEntity = transformToEntityBean(customer);
             customerEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            customerEntity.setModifiedTimestamp(new Date());
             customerService.updateCustomer(customerEntity);
 
         } catch (CustomerAlreadyExistsException e) {
@@ -372,7 +419,28 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors())
             return INPUT;
 
-        customerService.addCustomer(transformToEntityBean(customer));
+        /*customerService.addCustomer(transformToEntityBean(customer));*/
+
+        try {
+
+
+            System.out.println("----------------------------------dti - add " + customer_dti + "-------------------------------------------");
+
+            System.out.println("----------------------------------permit - add " + customer_mayorsPermit +  "-------------------------------------------");
+
+            System.out.println("----------------------------------aaf - add " + customer_aaf +  "-------------------------------------------");
+
+            System.out.println("----------------------------------card - add " + customer_signatureCard   +"-------------------------------------------");
+
+            Customer customerEntity = transformToEntityBean(customer);
+            customerEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            customerEntity.setCreatedTimestamp(new Date());
+            customerEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            customerService.addCustomer(customerEntity);
+        }catch(CustomerAlreadyExistsException e) {
+            addFieldError("customer.customerCode", getText("err.customer.already.exist"));
+            return INPUT;
+        }
 
         clearErrorsAndMessages();
         addActionMessage("Success! New Customer has been added.");
@@ -401,7 +469,70 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setFax(entity.getFax());
         formBean.setMobile(entity.getMobile());
 
+        /*Dti Checkbox*/
+        if (entity.getDti() == 1 ){
+            formBean.setDti(1);
+        }else {
+            formBean.setDti(0);
+        }
+
+        /*Mayor's Permit Checkbox*/
+        if (entity.getMayorsPermit() == 1 ){
+            formBean.setMayorsPermit(1);
+        }else {
+            formBean.setMayorsPermit(0);
+        }
+
+        /*Account Application Form Checkbox*/
+        if (entity.getAaf() == 1 ){
+            formBean.setAaf(1);
+        }else {
+            formBean.setAaf(0);
+        }
+
+        /*Signature Card Checkbox*/
+        if (entity.getSignatureCard() == 1 ){
+            formBean.setSignatureCard(1);
+        }else {
+            formBean.setSignatureCard(0);
+        }
+
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+
         return formBean;
+    }
+
+    /*Dti Checkbox*/
+    public boolean isCheckDti() {
+
+
+
+        return customer_dti;
+    }
+
+    /*Mayor's Permit Checkbox*/
+    public boolean isCheckMayorsPermit() {
+
+
+
+        return customer_mayorsPermit;
+    }
+
+    /*Account Application Form Checkbox*/
+    public boolean isCheckAaf() {
+
+
+
+        return customer_aaf;
+    }
+
+    /*Signature Card Checkbox*/
+    public boolean isCheckSignatureCard() {
+
+
+
+        return customer_signatureCard;
     }
 
     private Customer transformToEntityBean(CustomerBean formBean) {
@@ -418,8 +549,44 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setMobile(formBean.getMobile());
         entity.setFax(formBean.getFax());
         entity.setEmail(formBean.getEmail());
-        entity.setCreatedBy(getClientId().toString());
-        entity.setModifiedBy(getClientId().toString());
+        /*Dti Checkbox*/
+        System.out.println("----------------------------------dti " + customer_dti + "" + formBean.getDti() + "-------------------------------------------");
+
+        if (customer_dti ){
+            entity.setDti(1);
+        }else {
+            entity.setDti(0);
+        }
+
+        System.out.println("----------------------------------permit " + customer_mayorsPermit + "" + formBean.getMayorsPermit() + "-------------------------------------------");
+
+        /*Mayor's Permit Checkbox*/
+        if (customer_mayorsPermit ){
+            entity.setMayorsPermit(1);
+        }else {
+            entity.setMayorsPermit(0);
+        }
+
+        System.out.println("----------------------------------aaf " + customer_aaf + "" + formBean.getAaf() +"-------------------------------------------");
+
+        /*Account Application Form Checkbox*/
+        if (customer_aaf ){
+            entity.setAaf(1);
+        }else {
+            entity.setAaf(0);
+        }
+
+        System.out.println("----------------------------------card " + customer_signatureCard + "" + formBean.getSignatureCard() +"-------------------------------------------");
+
+        /*Signature Card Checkbox*/
+        if (customer_signatureCard){
+            entity.setSignatureCard(1);
+        }else {
+            entity.setSignatureCard(0);
+        }
+
+        entity.setCreatedBy(formBean.getCreatedBy());
+        entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
 
         return entity;
     }
@@ -546,9 +713,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setState(formBean.getState());
         entity.setZip(formBean.getZip());
         entity.setCreatedTimestamp(new Date());
-        entity.setCreatedBy("admin");
+        entity.setCreatedBy(getClientId().toString());
         entity.setModifiedTimestamp(new Date());
-        entity.setModifiedBy("admin");
+        entity.setModifiedBy(getClientId().toString());
 
         return entity;
     }
@@ -682,15 +849,16 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setDestination(formBean.getDestination());
         entity.setRate(formBean.getRate());
         entity.setRateType(formBean.getRateType());
-        entity.setCreatedBy("admin");
+        entity.setCreatedBy(getClientId().toString());
         entity.setCreatedTimestamp(new Date());
-        entity.setModifiedBy("admin");
+        entity.setModifiedBy(getClientId().toString());
         entity.setModifiedTimestamp(new Date());
 
         return entity;
     }
 
     ////// BEGIN OF CONTACTS ///////////////
+    // DONE WITH MODIFY and CREATE BY
 
     public String loadAddContact() {
         return SUCCESS;
@@ -708,7 +876,11 @@ public class CustomerAction extends ActionSupport implements Preparable {
             return INPUT;
         }
         try {
-            customerService.addContact(transformToEntityBeanContacts(contact));
+            Contacts contactEntity = transformToEntityBeanContacts(contact);
+            contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            contactEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            contactEntity.setCreatedTimestamp(new Date());
+            customerService.addContact(contactEntity);
         } catch (ContactAlreadyExistsException e) {
             addFieldError("contact.lastName", getText("err.contact.already.exists"));
             return INPUT;
@@ -723,6 +895,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         }
         try {
             Contacts contactEntity = transformToEntityBeanContacts(contact);
+            contactEntity.setModifiedTimestamp(new Date());
             contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             customerService.updateContact(contactEntity);
         } catch (ContactAlreadyExistsException e) {
@@ -783,10 +956,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setMobile(contactBean.getMobile());
         entity.setFax(contactBean.getFax());
         entity.setEmail(contactBean.getEmail());
-        entity.setCreatedTimestamp(new Date());
-        entity.setCreatedBy(commonUtils.getUserNameFromSession());
-        entity.setModifiedTimestamp(new Date());
-        entity.setModifiedBy(commonUtils.getUserNameFromSession());
+        entity.setCreatedBy(contactBean.getCreatedBy());
+        entity.setCreatedTimestamp(contactBean.getCreatedTimestamp());
+
         return entity;
     }
 
@@ -805,6 +977,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setMobile(entity.getMobile());
         formBean.setFax(entity.getFax());
         formBean.setEmail(entity.getEmail());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+
         return formBean;
     }
 
@@ -946,7 +1121,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setCreatedTimestamp(new Date());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setModifiedTimestamp(new Date());
-        entity.setModifiedBy("admin");
+        entity.setModifiedBy(commonUtils.getUserNameFromSession());
 
         return entity;
     }
@@ -1249,5 +1424,21 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void setCommonUtils(CommonUtils commonUtils) {
         this.commonUtils = commonUtils;
+    }
+
+    public void setCustomer_dti(boolean customer_dti) {
+        this.customer_dti = customer_dti;
+    }
+
+    public void setCustomer_mayorsPermit(boolean customer_mayorsPermit) {
+        this.customer_mayorsPermit = customer_mayorsPermit;
+    }
+
+    public void setCustomer_aaf(boolean customer_aaf) {
+        this.customer_aaf = customer_aaf;
+    }
+
+    public void setCustomer_signatureCard(boolean customer_signatureCard) {
+        this.customer_signatureCard = customer_signatureCard;
     }
 }

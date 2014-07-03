@@ -1,6 +1,8 @@
 package com.sr.apps.freightbit.common.formbean;
 
 import java.security.Timestamp;
+import java.util.Date;
+
 
 public class ContactBean {
 
@@ -17,17 +19,16 @@ public class ContactBean {
     private String mobile;
     private String fax;
     private String email;
-    private Timestamp createdTimestamp;
+    private Date createdTimestamp;
     private String createdBy;
-    private Timestamp modifiedTimestamp;
+    private Date modifiedTimestamp;
     private String modifiedBy;
 
     public ContactBean() {
 
     }
 
-    public ContactBean(String mobile, Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String fax, String email, Timestamp createdTimestamp, String createdBy, Timestamp modifiedTimestamp, String modifiedBy) {
-        this.mobile = mobile;
+    public ContactBean(Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
         this.sessionVendorId = sessionVendorId;
         this.contactId = contactId;
         this.clientId = clientId;
@@ -38,6 +39,7 @@ public class ContactBean {
         this.middleName = middleName;
         this.lastName = lastName;
         this.phone = phone;
+        this.mobile = mobile;
         this.fax = fax;
         this.email = email;
         this.createdTimestamp = createdTimestamp;
@@ -150,12 +152,20 @@ public class ContactBean {
         this.sessionVendorId = sessionVendorId;
     }
 
-    public Timestamp getCreatedTimestamp() {
-        return createdTimestamp;
+    public String getModifiedBy() {
+        return modifiedBy;
     }
 
-    public void setCreatedTimestamp(Timestamp createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public Date getModifiedTimestamp() {
+        return modifiedTimestamp;
+    }
+
+    public void setModifiedTimestamp(Date modifiedTimestamp) {
+        this.modifiedTimestamp = modifiedTimestamp;
     }
 
     public String getCreatedBy() {
@@ -166,19 +176,11 @@ public class ContactBean {
         this.createdBy = createdBy;
     }
 
-    public Timestamp getModifiedTimestamp() {
-        return modifiedTimestamp;
+    public Date getCreatedTimestamp() {
+        return createdTimestamp;
     }
 
-    public void setModifiedTimestamp(Timestamp modifiedTimestamp) {
-        this.modifiedTimestamp = modifiedTimestamp;
-    }
-
-    public String getModifiedBy() {
-        return modifiedBy;
-    }
-
-    public void setModifiedBy(String modifiedBy) {
-        this.modifiedBy = modifiedBy;
+    public void setCreatedTimestamp(Date createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 }

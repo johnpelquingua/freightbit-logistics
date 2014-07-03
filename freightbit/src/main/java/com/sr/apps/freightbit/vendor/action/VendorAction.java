@@ -142,6 +142,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         validateOnSubmitEdit(vendor);
         if (hasFieldErrors()) {
             return INPUT;
+
         }
 
         try {
