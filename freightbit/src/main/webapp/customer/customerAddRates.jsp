@@ -107,7 +107,7 @@
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="addRates" theme="bootstrap">
                         <div class="form-group">
-                            <label for="rates.origin" class="col-sm-2 control-label" style="width:25%;">Origin:</label>
+                            <label for="rates.origin" class="col-sm-2 control-label" style="width:25%;">Origin</label>
 
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield name="rate.origin" cssClass="form-control" id="rates.origin"
@@ -116,7 +116,7 @@
                         </div>
                         <div class="form-group">
                             <label for="rates.destination" class="col-sm-2 control-label"
-                                   style="width:25%;">Destination:</label>
+                                   style="width:25%;">Destination</label>
 
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield name="rate.destination" cssClass="form-control" id="rates.destination"
@@ -124,7 +124,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="rates.rate" class="col-sm-2 control-label" style="width:25%;">Rate:</label>
+                            <label for="rates.rate" class="col-sm-2 control-label" style="width:25%;">Rate</label>
 
                             <div class="col-sm-10" style="width:70%;">
                                 <s:textfield name="rate.rate" cssClass="form-control" id="rates.rate" placeholder="Rate"/>
@@ -134,7 +134,7 @@
                         <div class="form-group">
 
                             <label for="rates.rateType" class="col-sm-2 control-label" style="width:25%;">Rates
-                                Type:</label>
+                                Type</label>
 
                             <div class="col-sm-10" style="width:70%;">
                                 <s:select name="rate.rateType" list="rateTypeList" listValue="value" listKey="key"

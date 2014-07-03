@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.*;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -249,7 +250,16 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public void validateOnSubmit(VendorBean vendorBean) {
         clearErrorsAndMessages();
-        if (StringUtils.isBlank(vendorBean.getVendorName())) {
+
+        /*String PATTERN = "[0-9A-Za-z]";
+        *//*String PATTERN = "[0-9A-Za-z]+";*//*
+        Pattern pattern = Pattern.compile(PATTERN);
+        Matcher matcher = pattern.matcher(vendorBean.getVendorName());
+        if(!matcher.matches()){
+            addFieldError("vendor.vendorName", getText("err.regex.vendorName.validation"));
+        }*/
+
+        if (StringUtils.isBlank(vendorBean.getVendorName())   ) {
             addFieldError("vendor.vendorName", getText("err.vendorName.required"));
         }
         if (StringUtils.isBlank(vendorBean.getVendorCode())) {

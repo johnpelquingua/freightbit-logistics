@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by ADMIN on 5/28/2014.
@@ -137,15 +139,35 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void validateOnSubmitItem(ItemBean itemBean) {
         clearErrorsAndMessages();
+
+        String PATTERN = "[A-Za-z]";
+        String PATTERN2 = "[0-9]";
+        /*String PATTERN = "[0-9A-Za-z]+";*/
+        Pattern pattern1 = Pattern.compile(PATTERN);
+        Pattern pattern2 = Pattern.compile(PATTERN2);
+
+        Matcher matcher = pattern1.matcher(itemBean.getItemCode());
+        //Matcher matcher1 = pattern2.matcher(itemBean.getSrp());
+        if(!matcher.matches()){
+            addFieldError("item.itemCode", getText("err.regex.validation.itemcode"));
+        }
+
+        /*if(!matcher1.matches()){
+            addFieldError("item.srp", getText("err.regex.validation.itemcode"));
+        }*/
+
+        /*if (StringUtils.isBlank(itemBean.getItemCode())) {
+            addFieldError("item.itemCode", getText("err.itemCode.required"));
+        }
+
         if (StringUtils.isBlank(itemBean.getItemName())) {
             addFieldError("item.itemName", getText("err.itemName.required"));
         }
-        if (StringUtils.isBlank(itemBean.getItemCode())) {
-            addFieldError("item.itemCode", getText("err.itemCode.required"));
-        }
+
         if (itemBean.getSrp() == null) {
             addFieldError("item.srp", getText("err.srp.required"));
-        }
+        }*/
+
         if (itemBean.getLength() == null) {
             addFieldError("item.length", getText("err.length.required"));
         }
@@ -158,6 +180,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (itemBean.getBasePrice() == null) {
             addFieldError("item.basePrice", getText("err.basePrice.required"));
         }
+
+
+
         if (StringUtils.isBlank(itemBean.getDescription())) {
             addFieldError("item.description", getText("err.description.required"));
         }
@@ -463,6 +488,16 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void validateOnSubmitAddress(AddressBean addressBean) {
         clearErrorsAndMessages();
+
+        String PATTERN = "[0-9]{4}";
+
+        Pattern pattern = Pattern.compile(PATTERN);
+        Matcher matcher1 = pattern.matcher(addressBean.getZip());
+
+        if(!matcher1.matches()){
+            addFieldError("address.zip", getText("err.regex.validtion.zip"));
+        }
+
         if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getAddressLine1())) {
             addFieldError("address.addressLine1", getText("err.addressLine1.required"));
         }
@@ -472,9 +507,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getState())) {
             addFieldError("address.state", getText("err.state.required"));
         }
-        if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getZip())) {
+      /*  if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getZip())) {
             addFieldError("address.zip", getText("err.zip.required"));
-        }
+        }*/
     }
 
     public AddressBean transformToFormBeanAddress(Address entity) {
@@ -581,7 +616,34 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void validateOnSubmitRates(RatesBean ratesBean) {
         clearErrorsAndMessages();
-        if (StringUtils.isBlank(ratesBean.getOrigin())) {
+
+        String PATTERN = "[0-9A-Za-z]";
+       /* String PATTERN2 = "[-+]?[0-9]*\.?[0-9]*";*/
+        /*String PATTERN = "[0-9A-Za-z]+";*/
+
+        Pattern pattern = Pattern.compile(PATTERN);
+       /* Pattern pattern2 = Pattern.compile(PATTERN2);*/
+
+        Matcher matcher1 = pattern.matcher(ratesBean.getOrigin());
+        Matcher matcher2 = pattern.matcher(ratesBean.getDestination());
+        //Matcher matcher3 = pattern2.matcher(ratesBean.getRate());
+
+        if(!matcher1.matches()){
+            addFieldError("rates.origin", getText("err.regex.validation.rates"));
+        }
+        if(!matcher2.matches()){
+            addFieldError("rates.destination", getText("err.regex.validation.rates"));
+        }
+
+        if (ratesBean.getRate() == null) {
+            addFieldError("rates.rate", getText("err.rate.required"));
+        }
+
+        /*if(!matcher3.matches()){
+            addFieldError("rates.rate", getText("err.regex.validation.rates.float"));
+        }
+*/
+       /* if (StringUtils.isBlank(ratesBean.getOrigin())) {
             addFieldError("rates.origin", getText("err.origin.required"));
         }
         if (StringUtils.isBlank(ratesBean.getDestination())) {
@@ -589,7 +651,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         }
         if (ratesBean.getRate() == null) {
             addFieldError("rates.rate", getText("err.rate.required"));
-        }
+        }*/
     }
 
     public RatesBean transformToFormBeanRates(Rates entity) {
