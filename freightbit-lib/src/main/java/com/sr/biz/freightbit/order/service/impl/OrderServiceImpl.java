@@ -176,6 +176,11 @@ public class OrderServiceImpl implements OrderService {
         return customerDao.findCustomersByCriteria(column, value, clientId);
     }
 
+    @Override
+    public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId){
+        return orderDao.findOrdersByCriteria(column, value, clientId);
+    }
+
 
 // End Customers
 

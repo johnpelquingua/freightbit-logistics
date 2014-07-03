@@ -236,7 +236,7 @@
 
         <div class="col-sm-9" style="margin-left:4%">
             <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
-                      name="orderBean.deliveryAddress" list="customerList" listKey="customerId"
+                      name="orderBean.quantity" list="customerList" listKey="customerId"
                       listValue="customerName" emptyOption="true"/>
         </div>
     </div>
@@ -245,41 +245,41 @@
 
         <div class="col-sm-9" style="margin-left:4%">
             <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
-                         name="orderBean.orderNumber"/>
+                         name="orderBean.size"/>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="orderBean.deliveryAddress">Estimated Weight:</label>
+        <label class="col-sm-2 control-label" for="orderBean.estimatedWeight">Estimated Weight:</label>
 
         <div class="col-sm-9" style="margin-left:4%">
             <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
-                         name="orderBean.orderNumber"/>
+                         name="orderBean.estimatedWeight"/>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="orderBean.deliveryAddress">Declared Value:</label>
+        <label class="col-sm-2 control-label" for="orderBean.declaredValue">Declared Value:</label>
 
         <div class="col-sm-9" style="margin-left:4%">
             <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
-                         name="orderBean.orderNumber"/>
+                         name="orderBean.declaredValue"/>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="orderBean.quantity">Classification:</label>
+        <label class="col-sm-2 control-label" for="orderBean.classification">Classification:</label>
 
         <div class="col-sm-9" style="margin-left:4%">
             <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
-                      name="orderBean.deliveryAddress" list="customerList" listKey="customerId"
+                      name="orderBean.classification" list="customerList" listKey="customerId"
                       listValue="customerName" emptyOption="true"/>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="orderBean.deliveryAddress">Rate:</label>
+        <label class="col-sm-2 control-label" for="orderBean.rate">Rate:</label>
 
         <div class="col-sm-9" style="margin-left:4%">
             <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
-                         name="orderBean.orderNumber"/>
+                         name="orderBean.rate"/>
         </div>
     </div>
 

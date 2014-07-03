@@ -817,9 +817,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (org.apache.commons.lang.StringUtils.isBlank(contactBean.getFirstName())) {
             addFieldError("contact.firstName", getText("err.firstNameContact.required"));
         }
-        if (org.apache.commons.lang.StringUtils.isBlank(contactBean.getMiddleName())) {
-            addFieldError("contact.middleName", getText("err.middleNameContact.required"));
-        }
         if (org.apache.commons.lang.StringUtils.isBlank(contactBean.getPhone())) {
             addFieldError("contact.phone", getText("err.phoneContact.required"));
         }

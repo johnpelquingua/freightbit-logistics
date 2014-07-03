@@ -30,6 +30,8 @@ public interface OrderService {
 
     public Orders findOrdersByOrderNumber(Integer orderNumber);
 
+    public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId);
+
     public void updateOrderDate(Orders orders);
 
     public Integer addCustomer(Customer customer) throws CustomerAlreadyExistsException;
