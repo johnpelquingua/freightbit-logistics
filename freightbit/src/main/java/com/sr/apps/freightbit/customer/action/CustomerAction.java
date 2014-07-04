@@ -157,7 +157,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public void validateOnSubmitItem(ItemBean itemBean) {
         clearErrorsAndMessages();
 
-        String PATTERN = "[A-Za-z]";
+        String PATTERN = "[A-Za-z]+";
         String PATTERN2 = "[0-9]";
         /*String PATTERN = "[0-9A-Za-z]+";*/
         Pattern pattern1 = Pattern.compile(PATTERN);
@@ -783,7 +783,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public void validateOnSubmitRates(RatesBean ratesBean) {
         clearErrorsAndMessages();
 
-        String PATTERN = "[0-9A-Za-z]";
+        String PATTERN = "[0-9A-Za-z]+";
        /* String PATTERN2 = "[-+]?[0-9]*\.?[0-9]*";*/
         /*String PATTERN = "[0-9A-Za-z]+";*/
 

@@ -148,7 +148,7 @@
                         </div>
                         <div class="pull-right">
 
-                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
+                            <s:submit type="submit" value="Save" cssClass="btn btn-info"/>
                         </div>
                     </s:form>
                 </div>
