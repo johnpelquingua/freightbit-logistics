@@ -159,8 +159,8 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String viewInfoOrder() {
-        Orders orderEntity = new Orders();
-
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        orderBean = transformToOrderFormBean(orderEntity);
         return SUCCESS;
     }
 
