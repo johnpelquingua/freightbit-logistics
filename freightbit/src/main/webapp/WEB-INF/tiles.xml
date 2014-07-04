@@ -267,7 +267,7 @@
         <put-attribute name="body" value="/customer/edit/customerEditRates.jsp"/>
     </definition>
     <definition name="customer.customerListRates.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Customer List Address"/>
+        <put-attribute name="title" value="Customer List Rates"/>
         <put-attribute name="body" value="/customer/view/customerListRates.jsp"/>
     </definition>
     <definition name="customer.customerSaveCompleteRates.tiles" extends="baseLayout">

@@ -122,7 +122,7 @@
 
                     <div class="col-sm-10">
                         <s:textfield cssClass="form-control" id="vendor.vendorCode" placeholder="Vendor Code"
-                                     name="vendor.vendorCode"></s:textfield>
+                                     name="vendor.vendorCode" maxLength="3" pattern="[A-Z]+" title="Must be letters only and CAPS."></s:textfield>
                     </div>
                 </div>
                 <div class="form-group">

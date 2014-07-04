@@ -168,6 +168,8 @@ public class VendorAction extends ActionSupport implements Preparable {
 
 
     public String loadVendorInfo() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("vendorId", vendor.getVendorId());
         return SUCCESS;
     }
 
@@ -561,9 +563,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
         if (StringUtils.isBlank(driverBean.getFirstName())) {
             addFieldError("driver.firstName", getText("err.firstName.required"));
-        }
-        if (StringUtils.isBlank(driverBean.getMiddleName())) {
-            addFieldError("driver.middleName", getText("err.middleName.required"));
         }
         if (StringUtils.isBlank(driverBean.getTitle())) {
             addFieldError("driver.title", getText("err.title.required"));

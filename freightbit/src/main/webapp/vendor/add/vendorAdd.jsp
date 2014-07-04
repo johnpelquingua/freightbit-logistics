@@ -133,7 +133,7 @@
 
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:textfield cssClass="form-control" name="vendor.vendorCode" id="vendor.vendorCode"
-                                         placeholder="Code"/>
+                                         placeholder="Code" maxLength="3" pattern="[A-Z]+" title="Must be letters only"/>
                         </div>
                     </div>
                     <div class="form-group">
