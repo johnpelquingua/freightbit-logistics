@@ -241,6 +241,19 @@
                 <s:form cssClass="form-horizontal" action="editConsignee" theme="bootstrap">
                     <s:hidden name="consignee.addressId" value="%{addressIdParam}"/>
                     <s:hidden name="consignee.contactId" value="%{contactCodeParam}"/>
+                    <s:hidden name="consignee.createdTimeStamp1" value="%{consignee.createdTimeStamp1}" />
+                    <s:hidden name="consignee.createdBy1" value="%{consignee.createdBy1}" />
+                    <s:hidden name="consignee.createdTimeStamp2" value="%{consignee.createdTimeStamp2}" />
+                    <s:hidden name="consignee.createdBy2" value="%{consignee.createdBy2}" />
+                    <s:hidden name="consignee.referenceId1" value="%{consignee.referenceId1}" />
+                    <s:hidden name="consignee.referenceId2" value="%{consignee.referenceId2}" />
+                    <s:property value="%{consignee.createdTimeStamp1}" />
+                    <s:property value="%{consignee.createdBy1}" />
+                    <s:property value="%{consignee.createdTimeStamp2}" />
+                    <s:property value="%{consignee.createdBy2}" />
+                    <s:property value="%{consignee.referenceId1}" />
+                    <s:property value="%{consignee.referenceId2}" />
+
                     <div class="form-group">
                         <label for="consignee.firstName" class="col-sm-2 control-label" style="width:25%;">First
                             Name:

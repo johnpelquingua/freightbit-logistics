@@ -108,6 +108,8 @@
                 <div class="table-responsive list-table">
                     <s:form action="editAddress" cssClass="form-horizontal" theme="bootstrap">
                         <s:hidden name="address.addressId" value="%{addressIdParam}"/>
+                        <s:hidden name="address.createdTimeStamp" value="%{address.createdTimeStamp}" />
+                        <s:hidden name="address.createdBy" value="%{address.createdBy}" />
                         <div class="form-group">
 
                             <label for="address.addressType" class="col-sm-2 control-label" style="width:25%;">Address

@@ -100,7 +100,12 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="editRates" theme="bootstrap">
-                        <s:hidden name="rates.customerRateId" value="%{customerRateId}"/>
+                        <s:hidden name="rate.customerRateId" value="%{customerRateId}"/>
+                        <s:hidden name="rate.createdTimeStamp" value="%{rate.createdTimeStamp}" />
+                        <s:property value="rate.createdTimeStamp" />
+                        <s:hidden name="rate.createdBy" value="%{rate.createdBy}" />
+                        <s:property value="%{rate.createdBy}" />
+
                         <div class="form-group">
                             <label for="rates.origin" class="col-sm-2 control-label" style="width:25%;">Origin:</label>
 

@@ -613,7 +613,11 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        customerService.addAddress(transformToEntityBeanAddress(address));
+        Address addressEntity = transformToEntityBeanAddress(address);
+        addressEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+        addressEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+        addressEntity.setCreatedTimestamp(new Date());
+        customerService.addAddress(addressEntity);
         return SUCCESS;
     }
 
@@ -622,7 +626,11 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        customerService.updateAddress(transformToEntityBeanAddress(address));
+
+        Address addressEntity = transformToEntityBeanAddress(address);
+        addressEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+        addressEntity.setModifiedTimestamp(new Date());
+        customerService.updateAddress(addressEntity);
         return SUCCESS;
     }
 
@@ -704,6 +712,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setCity(entity.getCity());
         formBean.setState(entity.getState());
         formBean.setZip(entity.getZip());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
         return formBean;
     }
 
@@ -726,10 +736,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setCity(formBean.getCity());
         entity.setState(formBean.getState());
         entity.setZip(formBean.getZip());
-        entity.setCreatedTimestamp(new Date());
-        entity.setCreatedBy(getClientId().toString());
-        entity.setModifiedTimestamp(new Date());
-        entity.setModifiedBy(getClientId().toString());
+        entity.setCreatedTimestamp(formBean.getCreatedTimeStamp());
+        entity.setCreatedBy(formBean.getCreatedBy());
+        /*entity.setModifiedTimestamp(new Date());
+        entity.setModifiedBy(getClientId().toString());*/
 
         return entity;
     }
@@ -741,7 +751,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        customerService.addRate(transformToEntityBeanRates(rate));
+
+        Rates rateEntity = transformToEntityBeanRates(rate);
+        rateEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+        rateEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+        rateEntity.setCreatedTimestamp(new Date());
+        customerService.addRate(rateEntity);
         return SUCCESS;
     }
 
@@ -750,7 +765,11 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        customerService.updateRate(transformToEntityBeanRates(rate));
+
+        Rates rateEntity = transformToEntityBeanRates(rate);
+        rateEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+        rateEntity.setModifiedTimestamp(new Date());
+        customerService.updateRate(rateEntity);
         return SUCCESS;
     }
 
@@ -843,6 +862,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setDestination(entity.getDestination());
         formBean.setRate(entity.getRate());
         formBean.setRateType(entity.getRateType());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
 
         return formBean;
     }
@@ -863,10 +884,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setDestination(formBean.getDestination());
         entity.setRate(formBean.getRate());
         entity.setRateType(formBean.getRateType());
-        entity.setCreatedBy(getClientId().toString());
-        entity.setCreatedTimestamp(new Date());
-        entity.setModifiedBy(getClientId().toString());
-        entity.setModifiedTimestamp(new Date());
+        entity.setCreatedBy(formBean.getCreatedBy());
+        entity.setCreatedTimestamp(formBean.getCreatedTimeStamp());
+
 
         return entity;
     }
@@ -1021,7 +1041,19 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        customerService.addConsignee(transformContactToEntityBean(consignee), transformAddressToEntityBean(consignee));
+
+        Contacts consigneeEntity1 = transformContactToEntityBean(consignee);
+        consigneeEntity1.setModifiedBy(commonUtils.getUserNameFromSession());
+        consigneeEntity1.setCreatedBy(commonUtils.getUserNameFromSession());
+        consigneeEntity1.setCreatedTimestamp(new Date());
+
+        Address consigneeEntity2 = transformAddressToEntityBean(consignee);
+        consigneeEntity2.setModifiedBy(commonUtils.getUserNameFromSession());
+        consigneeEntity2.setCreatedBy(commonUtils.getUserNameFromSession());
+        consigneeEntity2.setCreatedTimestamp(new Date());
+
+        customerService.addConsignee(consigneeEntity1, consigneeEntity2);
+
         return SUCCESS;
     }
 
@@ -1030,7 +1062,21 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }
-        customerService.updateConsignee(transformContactToEntityBean(consignee), transformAddressToEntityBean(consignee));
+
+        Contacts consigneeEntity1 = transformContactToEntityBean(consignee);
+        consigneeEntity1.setModifiedBy(commonUtils.getUserNameFromSession());
+
+        consigneeEntity1.setModifiedTimestamp(new Date());
+
+
+
+        Address consigneeEntity2 = transformAddressToEntityBean(consignee);
+        consigneeEntity2.setModifiedBy(commonUtils.getUserNameFromSession());
+
+        consigneeEntity2.setModifiedTimestamp(new Date());
+
+        customerService.updateConsignee(consigneeEntity1, consigneeEntity2);
+
         return SUCCESS;
     }
 
@@ -1132,10 +1178,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setCity(formBean.getCity());
         entity.setState(formBean.getState());
         entity.setZip(formBean.getZip());
-        entity.setCreatedTimestamp(new Date());
-        entity.setCreatedBy(commonUtils.getUserNameFromSession());
-        entity.setModifiedTimestamp(new Date());
-        entity.setModifiedBy(commonUtils.getUserNameFromSession());
+        entity.setCreatedTimestamp(formBean.getCreatedTimeStamp2());
+        entity.setCreatedBy(formBean.getCreatedBy2());
+        /*entity.setModifiedTimestamp(new Date());
+        entity.setModifiedBy(commonUtils.getUserNameFromSession());*/
 
         return entity;
     }
@@ -1161,10 +1207,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setMobile(formBean.getMobile());
         entity.setEmail(formBean.getEmail());
         entity.setFax(formBean.getFax());
-        entity.setCreatedTimestamp(new Date());
-        entity.setCreatedBy(commonUtils.getUserNameFromSession());
-        entity.setModifiedTimestamp(new Date());
-        entity.setModifiedBy("admin");
+        entity.setCreatedTimestamp(formBean.getCreatedTimeStamp1());
+        entity.setCreatedBy(formBean.getCreatedBy1());
+        /*entity.setModifiedTimestamp(new Date());
+        entity.setModifiedBy("admin");*/
 
         return entity;
     }
@@ -1181,6 +1227,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setContactId(contact.getContactId());
         formBean.setFax(contact.getFax());
 
+        formBean.setCreatedBy1(contact.getCreatedBy());
+        formBean.setCreatedTimeStamp1(contact.getCreatedTimestamp());
+        formBean.setReferenceId1(contact.getReferenceId());
+
         formBean.setAddressLine1(address.getAddressLine1());
         formBean.setAddressLine2(address.getAddressLine2());
         formBean.setCity(address.getCity());
@@ -1188,6 +1238,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setZip(address.getZip());
         formBean.setAddressId(address.getAddressId());
 
+        formBean.setCreatedBy2(address.getCreatedBy());
+        formBean.setCreatedTimeStamp2(address.getCreatedTimestamp());
+        formBean.setReferenceId2(address.getReferenceId());
 
         return formBean;
     }

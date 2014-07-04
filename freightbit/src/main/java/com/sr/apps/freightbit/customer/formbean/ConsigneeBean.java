@@ -1,5 +1,7 @@
 package com.sr.apps.freightbit.customer.formbean;
 
+import java.util.Date;
+
 /**
  * Created by Clarence C. Victoria on 6/24/14.
  */
@@ -20,14 +22,18 @@ public class ConsigneeBean {
     private String city;
     private String state;
     private String zip;
+    private Integer referenceId1;
+    private Integer referenceId2;
+    private Date createdTimeStamp1;
+    private String createdBy1;
+    private Date createdTimeStamp2;
+    private String createdBy2;
 
     public ConsigneeBean() {
     }
 
-    public ConsigneeBean(Integer addressId, Integer contactId, String firstName,
-                         String middleName, String lastName, String phone, String mobile,
-                         String email, String fax, String addressType, String addressLine1,
-                         String addressLine2, String city, String state, String zip) {
+    public ConsigneeBean(String addressLine1, Integer addressId, Integer contactId, String firstName, String middleName, String lastName, String phone, String mobile, String email, String fax, String addressType, String addressLine2, String city, String state, String zip, Integer referenceId1, Integer referenceId2, Date createdTimeStamp1, String createdBy1, Date createdTimeStamp2, String createdBy2) {
+        this.addressLine1 = addressLine1;
         this.addressId = addressId;
         this.contactId = contactId;
         this.firstName = firstName;
@@ -38,11 +44,16 @@ public class ConsigneeBean {
         this.email = email;
         this.fax = fax;
         this.addressType = addressType;
-        this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.city = city;
         this.state = state;
         this.zip = zip;
+        this.referenceId1 = referenceId1;
+        this.referenceId2 = referenceId2;
+        this.createdTimeStamp1 = createdTimeStamp1;
+        this.createdBy1 = createdBy1;
+        this.createdTimeStamp2 = createdTimeStamp2;
+        this.createdBy2 = createdBy2;
     }
 
     public String getFirstName() {
@@ -163,5 +174,53 @@ public class ConsigneeBean {
 
     public void setFax(String fax) {
         this.fax = fax;
+    }
+
+    public Date getCreatedTimeStamp1() {
+        return createdTimeStamp1;
+    }
+
+    public void setCreatedTimeStamp1(Date createdTimeStamp1) {
+        this.createdTimeStamp1 = createdTimeStamp1;
+    }
+
+    public String getCreatedBy1() {
+        return createdBy1;
+    }
+
+    public void setCreatedBy1(String createdBy1) {
+        this.createdBy1 = createdBy1;
+    }
+
+    public Date getCreatedTimeStamp2() {
+        return createdTimeStamp2;
+    }
+
+    public void setCreatedTimeStamp2(Date createdTimeStamp2) {
+        this.createdTimeStamp2 = createdTimeStamp2;
+    }
+
+    public String getCreatedBy2() {
+        return createdBy2;
+    }
+
+    public void setCreatedBy2(String createdBy2) {
+        this.createdBy2 = createdBy2;
+    }
+
+    public Integer getReferenceId1() {
+        return referenceId1;
+    }
+
+    public void setReferenceId1(Integer referenceId1) {
+        this.referenceId1 = referenceId1;
+    }
+
+    public Integer getReferenceId2() {
+        return referenceId2;
+    }
+
+    public void setReferenceId2(Integer referenceId2) {
+        this.referenceId2 = referenceId2;
     }
 }
