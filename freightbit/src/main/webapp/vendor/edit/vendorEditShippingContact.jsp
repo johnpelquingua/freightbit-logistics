@@ -199,7 +199,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="contact.firstName">Last Name</label>
+                        <label for="contact.firstName">First Name</label>
                         <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
                                      id="contact.firstName"/>
 
