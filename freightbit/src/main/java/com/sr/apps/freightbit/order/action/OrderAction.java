@@ -55,18 +55,33 @@ public class OrderAction extends ActionSupport implements Preparable {
 	private ParameterService parameterService;
 	
 	public String viewOrders() {
-		List<Orders> orderEntityList = orderService.findAllOrdersByClientId(getClientId());
-		for (Orders orderElem : orderEntityList) {
-			orderBeanList.add(transformToOrderFormBean(orderElem));
-		}
-		return SUCCESS;
+//		List<Orders> orderEntityList = orderService.findAllOrdersByClientId(getClientId());
+//		for (Orders orderElem : orderEntityList) {
+//			orderBeanList.add(transformToOrderFormBean(orderElem));
+//		}
+//		return SUCCESS;
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+
+            String column = getColumnFilter();
+
+            if (StringUtils.isBlank(column)) {
+                orderEntityList = orderService.findAllOrders();
+            } else {
+                orderEntityList = orderService.findOrdersByCriteria(column, orderBean.getOrderKeyword(), getClientId());
+            }
+
+            for (Orders orderElem : orderEntityList) {
+                orderBeanList.add(transformToOrderFormBean(orderElem));
+            }
+
+        return SUCCESS;
 	}
 
     public String viewOrdersViaSearch() {
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
 
-        if (StringUtils.isBlank(column)) {
+        if (StringUtils.isNotBlank(column)) {
             orderEntityList = orderService.findOrdersByCriteria(column, orderBean.getOrderKeyword(), getClientId());
         } else {
             orderEntityList = orderService.findAllOrders();
@@ -81,20 +96,25 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String getColumnFilter() {
         String column = "";
-        if ("BOOKING NUMBER".equals(orderBean.getOrderSearchCriteria())) {
-            column = "orderNumber";
-        } else if ("SHIPPER NAME".equals(orderBean.getOrderSearchCriteria())) {
-            column = "vendorName";
-        } else if ("CONSIGNEE NAME".equals(orderBean.getOrderSearchCriteria())) {
-            column = "consigneeCode";
-        } else if ("SERVICE MODE".equals(orderBean.getOrderSearchCriteria())) {
-            column = "serviceMode";
-        } else if ("SERVICE TYPE".equals(orderBean.getOrderSearchCriteria())) {
-            column = "serviceType";
-        } else if ("STATUS".equals(orderBean.getOrderSearchCriteria())) {
-            column = "status";
+        if (orderBean == null) {
+            return column;
+        } else {
+            if ("BOOKING NUMBER".equals(orderBean.getOrderSearchCriteria())) {
+                column = "orderNumber";
+            } else if ("SHIPPER NAME".equals(orderBean.getOrderSearchCriteria())) {
+                column = "vendorName";
+            } else if ("CONSIGNEE NAME".equals(orderBean.getOrderSearchCriteria())) {
+                column = "consigneeCode";
+            } else if ("SERVICE MODE".equals(orderBean.getOrderSearchCriteria())) {
+                column = "serviceMode";
+            } else if ("SERVICE TYPE".equals(orderBean.getOrderSearchCriteria())) {
+                column = "serviceType";
+            } else if ("STATUS".equals(orderBean.getOrderSearchCriteria())) {
+                column = "status";
+            }
+            return column;
         }
-        return column;
+
     }
 	
 	public String loadAddOrderPage() {
@@ -115,6 +135,12 @@ public class OrderAction extends ActionSupport implements Preparable {
 		return SUCCESS;
 	}
 
+    public String loadEditOrder() {
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        orderBean = transformToOrderFormBean(orderEntity);
+        return SUCCESS;
+    }
+
     public String editOrder(){
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
 
@@ -127,6 +153,14 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String deleteOrder(){
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        orderService.deleteOrder(orderEntity);
+        return SUCCESS;
+    }
+
+    public String viewInfoOrder() {
+        Orders orderEntity = new Orders();
+
         return SUCCESS;
     }
 

@@ -1,8 +1,6 @@
-<%--<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>--%>
-
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
-
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%--
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -101,66 +99,53 @@
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered text-center">
-                        <thead>
-                        <tr class="header_center active">
-                            <th class="tb-font-black" style="text-align: center">Booking Date</th>
-                            <th class="tb-font-black" style="text-align: center">Booking Number</th>
-                            <th class="tb-font-black" style="text-align: center">Shipper</th>
-                            <th class="tb-font-black" style="text-align: center">Consignee</th>
-                            <th class="tb-font-black" style="text-align: center">Service Requirement</th>
-                            <th class="tb-font-black" style="text-align: center">Service Mode</th>
-                            <th class="tb-font-black" style="text-align: center">Status</th>
-                            <th class="tb-font-black" style="text-align: center">Processed By</th>
-                            <th class="tb-font-black" style="text-align: center">Action</th>
+                        <tr>
+                            <display:table id="order" name="orders" requestURI="/viewOrders.action" pagesize="10"
+                                           class="table table-striped table-hover table-bordered text-center tablesorter"
+                                           style="margin-top: 15px;">
+                                <td><display:column property="orderNumber" title="Order #" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="shipperCode" title="Shipper" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="consigneeCode" title="Consignee" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="serviceType" title="Type" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="serviceMode" title="Mode" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="orderDate" title="Order Date" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td class="tb-font-black" style="text-align: center;">
+                                    <display:column title="Actions">
+
+                                        <s:url var="editVendorUrl" action="loadEditVendorPage">
+                                            <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
+                                             title="Edit this vendor">
+                                            <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                        </s:a>
+
+                                        <s:url var="deleteVendorUrl" action="deleteVendor">
+                                            <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
+                                             title="Delete this Vendor"
+                                             onclick="return confirm('Do you really want to delete?');">
+                                            <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                        </s:a>
+
+                                        <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
+                                            <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
+                                             title="View Vendor Info">
+                                            <img src="includes/images/info-b.png" class="icon-action circ-icon">
+                                        </s:a>
+                                    </display:column>
+                                </td>
+                            </display:table>
                         </tr>
-                        </thead>
-                        <tbody>
-
-                        <tr class="warning">
-                            <td class="tb-font-black">10/21/2013</td>
-                            <td class="tb-font-black">MTY-123</td>
-                            <td class="tb-font-black">Mighty Corp.</td>
-                            <td class="tb-font-black">Palawan Co.</td>
-                            <td class="tb-font-black">Full Cargo Load</td>
-                            <td class="tb-font-black">Door to Door</td>
-                            <td class="tb-font-black">Pending</td>
-                            <td class="tb-font-black">Merlin</td>
-
-                            <td class="tb-font-black">
-                                <%--<a href="#"><img src="includes/images/edit-booking.png" title="Edit Booking"> </a>
-                                <a href="#"><img src="includes/images/delete-booking.png" title="Delete Booking"> </a>
-                                <a href="#"><img src="includes/images/info-booking.png" title="Booking Info"> </a>--%>
-                                <a href="#"><i class="fa fa-edit"></i></a>
-                                <a href="#"><i class="fa fa-minus-circle"></i></a>
-                                <a href="#"><i class="fa fa-times-circle"></i></a>
-                                <a href="#"><i class="fa fa-info-circle"></i></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="success">
-                            <td class="tb-font-black">10/21/2013</td>
-                            <td class="tb-font-black">MTY-123</td>
-                            <td class="tb-font-black">Mighty Corp.</td>
-                            <td class="tb-font-black">Palawan Co.</td>
-                            <td class="tb-font-black">Full Cargo Load</td>
-                            <td class="tb-font-black">Door to Door</td>
-                            <td class="tb-font-black">Approved</td>
-                            <td class="tb-font-black">Michelle</td>
-
-                            <td class="tb-font-black">
-                                <%--<a href="#"><img src="includes/images/edit-booking.png" title="Edit Booking"> </a>
-                                <a href="#"><img src="includes/images/delete-booking.png" title="Delete Booking"> </a>
-                                <a href="#"><img src="includes/images/info-booking.png" title="Booking Info"> </a>--%>
-                                <a href="#"><i class="fa fa-edit"></i></a>
-                                <a href="#"><i class="fa fa-minus-circle"></i></a>
-                                <a href="#"><i class="fa fa-times-circle"></i></a>
-                                <a href="#"><i class="fa fa-info-circle"></i></a>
-                            </td>
-
-                        </tr>
-
-                        </tbody>
                     </table>
 
 

@@ -154,7 +154,7 @@
                 <h3 class="panel-title"><i class="fa fa-search"></i> Search Booking</h3>
             </div>
             <div class="panel-body">
-                <s:form action="BookingSearchValidate" theme="bootstrap" cssClass="form-horizontal" >
+                <s:form action="viewOrders" theme="bootstrap" cssClass="form-horizontal" >
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Search by:</label>
                     <div class="col-sm-10">
@@ -168,31 +168,7 @@
                 <div class="form-group">
                     <label for="keyword" class="col-sm-2 control-label">Search:</label>
                     <div class="col-sm-10">
-                        <s:textfield cssClass="form-control" id="keyword" name="keyword" placeholder="Keyword"></s:textfield>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label ">Date From:</label>
-                    <div class="col-sm-4">
-                        <sj:datepicker id="datepicker1"
-                                       displayFormat="mm-dd-yy"
-                                       imageUrl="includes/images/datepicker.gif"
-                                       imageTooltip="Select Your Birthdate"
-                                       showButton="true"
-                                       changeYear="true"
-                                       changeMonth="true"
-                                />
-                    </div>
-                    <label class="col-sm-2 control-label">Date To:</label>
-                    <div class="col-sm-4">
-                        <sj:datepicker id="datepicker2"
-                                       displayFormat="mm-dd-yy"
-                                       imageUrl="includes/images/datepicker.gif"
-                                       imageTooltip="Select Your Birthdate"
-                                       showButton="true"
-                                       changeYear="true"
-                                       changeMonth="true"
-                                />
+                        <s:textfield cssClass="form-control" id="keyword" name="order.orderKeyword" placeholder="Keyword"></s:textfield>
                     </div>
                 </div>
             </div>
