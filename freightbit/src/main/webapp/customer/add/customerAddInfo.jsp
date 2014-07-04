@@ -211,6 +211,14 @@
                                 <label class="col-sm-2 control-label" style="width:25%; padding-top: 25px;">Documents</label>
                                 <div class="col-sm-4" style="padding-left: 40px;">
                                     <s:checkbox name="customer_dti" fieldValue="true" label="DTI"  />
+
+                                    <s:if test = "customer_dti == true">
+                                        <s:hidden name="customer.dti" value="1" />
+                                    </s:if>
+                                    <s:else>
+                                        <s:hidden name="customer.dti" value="0" />
+                                    </s:else>
+
                                 </div>
                                 <div class="col-sm-4" style="padding-left: 40px;" >
                                     <s:checkbox name="customer_mayorsPermit" fieldValue="true" label="Mayor's Permit"  />

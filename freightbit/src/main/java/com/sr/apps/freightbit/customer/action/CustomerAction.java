@@ -79,6 +79,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private ParameterService parameterService;
     private CommonUtils commonUtils;
 
+    // customer module checkboxes values
     private boolean customer_dti;
     private boolean customer_mayorsPermit;
     private boolean customer_aaf;
@@ -432,11 +433,15 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
             System.out.println("----------------------------------card - add " + customer_signatureCard   +"-------------------------------------------");
 
+
+
             Customer customerEntity = transformToEntityBean(customer);
             customerEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             customerEntity.setCreatedTimestamp(new Date());
             customerEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             customerService.addCustomer(customerEntity);
+
+
         }catch(CustomerAlreadyExistsException e) {
             addFieldError("customer.customerCode", getText("err.customer.already.exist"));
             return INPUT;
@@ -552,9 +557,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
         /*Dti Checkbox*/
         System.out.println("----------------------------------dti " + customer_dti + "" + formBean.getDti() + "-------------------------------------------");
 
-        if (customer_dti ){
+        if (customer_dti){
+
+            formBean.setDti(1);
             entity.setDti(1);
         }else {
+            formBean.setDti(0);
             entity.setDti(0);
         }
 
@@ -562,8 +570,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         /*Mayor's Permit Checkbox*/
         if (customer_mayorsPermit ){
+            formBean.setMayorsPermit(1);
             entity.setMayorsPermit(1);
         }else {
+            formBean.setMayorsPermit(0);
             entity.setMayorsPermit(0);
         }
 
@@ -571,8 +581,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         /*Account Application Form Checkbox*/
         if (customer_aaf ){
+            formBean.setAaf(1);
             entity.setAaf(1);
         }else {
+            formBean.setAaf(0);
             entity.setAaf(0);
         }
 
@@ -580,8 +592,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         /*Signature Card Checkbox*/
         if (customer_signatureCard){
+            formBean.setSignatureCard(1);
             entity.setSignatureCard(1);
         }else {
+            formBean.setSignatureCard(0);
             entity.setSignatureCard(0);
         }
 

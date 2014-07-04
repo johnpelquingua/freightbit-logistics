@@ -87,8 +87,8 @@
         <action name="addCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="customerAddExecute">
             <result name="input" type="tiles">customer.customerAdd.tiles</result>
-            <!--<result name="success" type="tiles">customer.customerInfo.tiles</result>-->
-            <result name="success" type="redirect">customerInfo</result>
+            <result name="success" type="tiles">customer.customerInfo.tiles</result>
+            <!--<result name="success" type="redirect">customerInfo</result>-->
         </action>
 
         <action name="editCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction"

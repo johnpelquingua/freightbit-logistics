@@ -148,23 +148,23 @@
                         <table class="table table-user-information">
                             <tbody>
                             <tr>
-                                <td style="font-weight: bold;">Name:</td>
+                                <td style="font-weight: bold;">Name</td>
                                 <td><s:property value="customer.customerName"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: bold;">Customer Code:</td>
+                                <td style="font-weight: bold;">Customer Code</td>
                                 <td><s:property value="customer.customerCode"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: bold;">Customer Type:</td>
+                                <td style="font-weight: bold;">Customer Type</td>
                                 <td><s:property value="customer.customerType"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: bold;">Email:</td>
+                                <td style="font-weight: bold;">Email</td>
                                 <td><s:property value="customer.email"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: bold;">Contact Numbers:</td>
+                                <td style="font-weight: bold;">Contact Numbers</td>
                                 <td>
                                     <s:property value="customer.phone"/> (Landline)<br><br><s:property
                                         value="customer.mobile"/> (Mobile)<br><br><s:property value="customer.fax"/>
@@ -172,42 +172,50 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Documents</td>
+                                <td style="font-weight: bold;">Documents</td>
                                 <td>
-                                    <s:property value="customer.dti" />
-                                    <s:property value="customer.mayorsPermit" />
-                                    <s:property value="customer.aaf" />
-                                    <s:property value="customer.signatureCard" />
+                                    <s:hidden value="customer.dti" />
+                                    <s:hidden value="customer.mayorsPermit" />
+                                    <s:hidden value="customer.aaf" />
+                                    <s:hidden value="customer.signatureCard" />
                                     <%--<s:checkbox name="customer_dti" fieldValue="true" label="DTI 1.5" checked="checked" disabled="true"/>--%>
                                     <s:if test="%{customer.dti == 1}">
-                                        <s:checkbox name="customer_dti" fieldValue="true" label="DTI 1.5" checked="checked" disabled="true"/>
+                                        <%--<s:checkbox name="customer_dti" fieldValue="true" label="DTI 1.5" checked="checked" disabled="true"/>--%>
+                                        <i class="fa fa-check"></i> DTI
                                     </s:if>
                                     <s:else >
-                                        <s:checkbox name="customer_dti" fieldValue="true" label="DTI 2"  disabled="true"/>
+                                        <%--<s:checkbox name="customer_dti" fieldValue="true" label="DTI 2"  disabled="true"/>--%>
+                                        <i class="fa fa-times"></i> DTI
                                     </s:else>
                                     <br />
                                     <br />
                                     <s:if test="%{customer.mayorsPermit == 1}">
-                                        <s:checkbox  name="customer_mayorsPermit" fieldValue="true" label="Permit 1" checked="checked" disabled="true"/>
+                                        <%--<s:checkbox  name="customer_mayorsPermit" fieldValue="true" label="Permit 1" checked="checked" disabled="true"/>--%>
+                                        <i class="fa fa-check"></i> Mayor's Permit
                                     </s:if>
                                     <s:else >
-                                        <s:checkbox name="customer_mayorsPermit" fieldValue="true" label="Permit 2"  disabled="true"/>
+                                        <%--<s:checkbox name="customer_mayorsPermit" fieldValue="true" label="Permit 2"  disabled="true"/>--%>
+                                        <i class="fa fa-times"></i> Mayor's Permit
                                     </s:else>
                                     <br />
                                     <br />
                                     <s:if test="%{customer.aaf == 1}">
-                                        <s:checkbox  name="customer_aaf" fieldValue="true" label="AAF 1" checked="checked" disabled="true"/>
+                                        <%--<s:checkbox  name="customer_aaf" fieldValue="true" label="AAF 1" checked="checked" disabled="true"/>--%>
+                                        <i class="fa fa-check"></i> Account Application Form
                                     </s:if>
                                     <s:else >
-                                        <s:checkbox name="customer_aaf" fieldValue="true" label="AAF 2"  disabled="true"/>
+                                        <%--<s:checkbox name="customer_aaf" fieldValue="true" label="AAF 2"  disabled="true"/>--%>
+                                        <i class="fa fa-times"></i> Account Application Form
                                     </s:else>
                                     <br />
                                     <br />
                                     <s:if test="%{customer.signatureCard == 1}">
-                                        <s:checkbox  name="customer_signatureCard" fieldValue="true" label="Card 1" checked="checked" disabled="true"/>
+                                        <%--<s:checkbox  name="customer_signatureCard" fieldValue="true" label="Card 1" checked="checked" disabled="true"/>--%>
+                                        <i class="fa fa-check"></i> Signature Card
                                     </s:if>
                                     <s:else >
-                                        <s:checkbox name="customer_signatureCard" fieldValue="true" label="Card 2"  disabled="true"/>
+                                        <%--<s:checkbox name="customer_signatureCard" fieldValue="true" label="Card 2"  disabled="true"/>--%>
+                                        <i class="fa fa-times"></i> Signature Card
                                     </s:else>
                                 </td>
                             </tr>
