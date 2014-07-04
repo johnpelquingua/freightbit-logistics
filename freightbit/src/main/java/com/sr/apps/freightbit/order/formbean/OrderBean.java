@@ -238,4 +238,20 @@ public class OrderBean {
 	public void setRates(Double rates) {
 		this.rates = rates;
 	}
+
+    public String getOrderSearchCriteria() {
+        return orderSearchCriteria;
+    }
+
+    public void setOrderSearchCriteria(String orderSearchCriteria) {
+        this.orderSearchCriteria = orderSearchCriteria;
+    }
+
+    public String getOrderKeyword() {
+        return orderKeyword;
+    }
+
+    public void setOrderKeyword(String orderKeyword) {
+        this.orderKeyword = orderKeyword;
+    }
 }
