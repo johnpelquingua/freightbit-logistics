@@ -181,6 +181,9 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="editTrucks" method="post" theme="bootstrap">
+                        <s:hidden name="truck.truckId" value="%{truck.truckId}"/>
+                        <s:hidden name="truck.createdTimeStamp" value="%{truck.createdTimeStamp}" />
+                        <s:hidden name="truck.createdBy" value="%{truck.createdBy}" />
                         <div class="form-group">
 
                             <label class="col-sm-2 control-label" for="truck.truckType">Type:</label>

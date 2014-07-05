@@ -109,6 +109,8 @@
             <div class="panel-body">
                 <s:form cssClass="form-horizontal" action="editVendor" method="POST" theme="bootstrap">
                 <s:hidden name="vendor.vendorId" value="%{vendor.vendorId}"/>
+                <s:hidden name="vendor.createdTimeStamp" value="%{vendor.createdTimeStamp}" />
+                <s:hidden name="vendor.createdBy" value="%{vendor.createdBy}" />
                 <div class="form-group">
                     <label for="vendor.vendorName" class="col-sm-2 control-label">Name</label>
 

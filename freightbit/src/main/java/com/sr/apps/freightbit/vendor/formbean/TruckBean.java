@@ -1,5 +1,7 @@
 package com.sr.apps.freightbit.vendor.formbean;
 
+import java.util.Date;
+
 public class TruckBean {
 
     private Integer truckId;
@@ -11,13 +13,15 @@ public class TruckBean {
     private String engineNumber;
     private Integer grossWeight;
     private Integer vendorId;
+    private Date createdTimeStamp;
+    private String createdBy;
+    private Date modifiedTimeStamp;
+    private String modifiedBy;
 
     public TruckBean() {
     }
 
-    public TruckBean(Integer truckId, String truckCode, String truckType,
-                     String plateNumber, String modelNumber, Integer modelYear,
-                     String engineNumber, Integer grossWeight, Integer vendorId) {
+    public TruckBean(Integer truckId, String truckCode, String truckType, String plateNumber, String modelNumber, Integer modelYear, String engineNumber, Integer grossWeight, Integer vendorId, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
         this.truckId = truckId;
         this.truckCode = truckCode;
         this.truckType = truckType;
@@ -27,6 +31,10 @@ public class TruckBean {
         this.engineNumber = engineNumber;
         this.grossWeight = grossWeight;
         this.vendorId = vendorId;
+        this.createdTimeStamp = createdTimeStamp;
+        this.createdBy = createdBy;
+        this.modifiedTimeStamp = modifiedTimeStamp;
+        this.modifiedBy = modifiedBy;
     }
 
     public Integer getTruckId() {
@@ -99,5 +107,37 @@ public class TruckBean {
 
     public void setVendorId(Integer vendorId) {
         this.vendorId = vendorId;
+    }
+
+    public Date getCreatedTimeStamp() {
+        return createdTimeStamp;
+    }
+
+    public void setCreatedTimeStamp(Date createdTimeStamp) {
+        this.createdTimeStamp = createdTimeStamp;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getModifiedTimeStamp() {
+        return modifiedTimeStamp;
+    }
+
+    public void setModifiedTimeStamp(Date modifiedTimeStamp) {
+        this.modifiedTimeStamp = modifiedTimeStamp;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
     }
 }

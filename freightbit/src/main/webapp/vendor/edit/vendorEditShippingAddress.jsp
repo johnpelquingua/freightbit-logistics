@@ -193,6 +193,8 @@
                         </div>
                         <s:property value="%{vendorIdParam}"/>
                         <s:hidden name="vendorIdParam" id="vendorIdParam" value="%{vendorIdParam}"/>
+                        <s:hidden name="address.createdTimeStamp" value="%{address.createdTimeStamp}" />
+                        <s:hidden name="address.createdBy" value="%{address.createdBy}" />
                         <div class=" pull-right">
                             <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
                         </div>

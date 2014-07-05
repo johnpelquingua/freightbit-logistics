@@ -129,6 +129,9 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="editVessels" theme="bootstrap">
+                        <s:hidden name="vessel.vesselId" value="%{vessel.vesselId}" />
+                        <s:hidden name="vessel.createdTimeStamp" value="%{vessel.createdTimeStamp}" />
+                        <s:hidden name="vessel.createdBy" value="%{vessel.createdBy}" />
                         <div class="form-group">
 
                             <label for="vessel.vesselNumber" class="col-sm-2 control-label">Vessel:</label>

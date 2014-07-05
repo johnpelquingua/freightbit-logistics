@@ -181,6 +181,8 @@
 
                 <s:form role="form" action="editShippingContact" theme="bootstrap">
                     <s:hidden name="contact.contactId" value="%{contact.contactId}"/>
+                    <s:hidden name="contact.createdTimestamp" value="%{contact.createdTimestamp}" />
+                    <s:hidden name="contact.createdBy" value="%{contact.createdBy}" />
                     <div class="form-group">
                         <label for="contact.contactType">Contact Type</label>
                         <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
