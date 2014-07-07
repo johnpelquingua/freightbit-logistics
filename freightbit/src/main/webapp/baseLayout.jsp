@@ -56,6 +56,12 @@
     <link href="includes/css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="includes/font-awesome/css/font-awesome.min.css">
 
+    <script type='text/javascript' src='includes/js/jquery-1.11.1.js'></script>
+    <script type='text/javascript' src='includes/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>
+
+    <sb:head/>
+    <sx:head />
 </head>
 
 <body>

@@ -28,7 +28,6 @@
 </div>
 <div class="panel-body">
 <div class="table-responsive">
-<s:form cssClass="form-horizontal" action="addVendor" method="POST" theme="bootstrap">
 <div class="form-group">
     <label class="col-sm-2 control-label"
            for="orderBean.orderNumber">Booking Number:</label>
@@ -158,6 +157,7 @@
                for="orderBean.pickupDate">Pickup Date:</label>
 
         <div class="col-sm-9" style="margin-left:4%">
+            <s:form id="form" theme="xhtml">
             <sj:datepicker id="datepicker1"
                            displayFormat="mm-dd-yy"
                            imageUrl="includes/images/datepicker.gif"
@@ -167,8 +167,15 @@
                            changeMonth="true"
                            style="width: 100% !important; margin-bottom: 15px !important; display: initial!important; border: 1px solid #ccc; border-radius: 4px; height: 34px;"
                            name="orderBean.pickupDate"
-                           value="%{orderBean.bookingDate}"
+                           value="%{new java.util.Date()}"
+                           timepicker="true"
+                           timepickerStepHour="5pm"
                     />
+            </s:form>
+             <%--   <s:form id="form" theme="xhtml">
+                    <sj:datepicker id="time0" label="Select a Date/Time" value="%{new java.util.Date()}" timepicker="true" />
+
+                    </s:form>--%>
         </div>
     </div>
     <div class="form-group">
