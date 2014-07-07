@@ -116,22 +116,24 @@
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="orderDate" title="Order Date" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
+                            <td><display:column property="orderStatus" title="Status" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
 
                             <td class="tb-font-black" style="text-align: center;">
-
-                                <s:url var="editVendorUrl" action="loadEditVendorPage">
-                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                <display:column title="Actions">
+                                <s:url var="editOrderUrl" action="loadEditOrder">
+                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                 </s:url>
-                                <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
+                                <s:a class="icon-action-link" href="%{editOrderUrl}" rel="tooltip"
                                      title="Edit this vendor">
                                     <img src="includes/images/edit-user.png" class="icon-action circ-icon">
                                 </s:a>
 
-                                <s:url var="deleteVendorUrl" action="deleteVendor">
-                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                <s:url var="deleteOrderUrl" action="deleteOrder">
+                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                 </s:url>
-                                <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
-                                     title="Delete this Vendor"
+                                <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip"
+                                     title="Delete this order"
                                      onclick="return confirm('Do you really want to delete?');">
                                     <img src="includes/images/remove-user.png" class="icon-action circ-icon">
                                 </s:a>
@@ -143,6 +145,7 @@
                                      title="View Vendor Info">
                                     <img src="includes/images/info-b.png" class="icon-action circ-icon">
                                 </s:a>
+                                </display:column>
                             </td>
                         </display:table>
                         </tr>
