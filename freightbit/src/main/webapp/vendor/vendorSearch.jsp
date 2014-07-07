@@ -104,7 +104,12 @@
             </div>
 
             <div class="panel-footer">
-                <s:submit cssClass="btn btn-default btn-info pull-right" name="submit" value="Search"/>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn" onclick="location.href='viewVendors'">
+                        Cancel
+                    </button>
+                    <s:submit cssClass="btn btn-default btn-info pull-right" name="submit" value="Search"/>
+                </div>
             </div>
         </div>
         </s:form>

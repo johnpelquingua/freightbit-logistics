@@ -116,9 +116,9 @@
                     <s:form theme="bootstrap" cssClass="form-horizontal" action="editItem">
                     <s:hidden name="item.customerItemsId" value="%{customersItemIdParam}" />
                     <s:hidden name="item.createdTimeStamp" value="%{item.createdTimeStamp}" />
-                        <s:property value="%{item.createdTimeStamp}" />
+                       <%-- <s:property value="%{item.createdTimeStamp}" />--%>
                     <s:hidden name="item.createdBy" value="%{item.createdBy}" />
-                        <s:property value="%{item.createdBy}" />
+                     <%--   <s:property value="%{item.createdBy}" />--%>
                         <!-- Text input-->
                         <div class="form-group" >
                             <label class="col-sm-2 control-label" for="textinput">Item Name:</label>

@@ -149,7 +149,12 @@
 
             </div>
             <div class="panel-footer">
-                <button class="btn btn-info pull-right">Search</button>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn" onclick="location.href='viewUsers'">
+                        Cancel
+                    </button>
+                    <button class="btn btn-info pull-right">Search</button>
+                </div>
             </div>
             </s:form>
 

@@ -221,7 +221,7 @@
                 Profile</a></li>
             <li class="active"><a href="<s:url action='viewConsignees' />"><i class="fa fa-list"></i> Consignee List</a>
             </li>
-            <li class="active"><i class="fa fa-plus"></i>Add New Consignee</li>
+            <li class="active"><i class="fa fa-pencil"></i> Edit Consignee</li>
         </ol>
 
     </div>
@@ -233,7 +233,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New Consignee</h3>
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit Consignee</h3>
             </div>
 
             <div class="panel-body">
@@ -247,12 +247,12 @@
                     <s:hidden name="consignee.createdBy2" value="%{consignee.createdBy2}" />
                     <s:hidden name="consignee.referenceId1" value="%{consignee.referenceId1}" />
                     <s:hidden name="consignee.referenceId2" value="%{consignee.referenceId2}" />
-                    <s:property value="%{consignee.createdTimeStamp1}" />
+                    <%--<s:property value="%{consignee.createdTimeStamp1}" />
                     <s:property value="%{consignee.createdBy1}" />
                     <s:property value="%{consignee.createdTimeStamp2}" />
                     <s:property value="%{consignee.createdBy2}" />
                     <s:property value="%{consignee.referenceId1}" />
-                    <s:property value="%{consignee.referenceId2}" />
+                    <s:property value="%{consignee.referenceId2}" />--%>
 
                     <div class="form-group">
                         <label for="consignee.firstName" class="col-sm-2 control-label" style="width:25%;">First

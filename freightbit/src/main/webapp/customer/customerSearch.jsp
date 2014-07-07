@@ -122,7 +122,12 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <s:submit name="submit" cssClass="btn btn-info pull-right" value="Search"/>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn" onclick="location.href='customerList'">
+                        Cancel
+                    </button>
+                    <s:submit name="submit" cssClass="btn btn-info pull-right" value="Search"/>
+                </div>
             </div>
             </s:form>
         </div>
