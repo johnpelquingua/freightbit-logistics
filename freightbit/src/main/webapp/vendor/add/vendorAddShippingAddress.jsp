@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <label  class="col-sm-2 control-label" style="width:25%;">Zip Code</label>
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield name="address.zip" id="address.zip" cssClass="form-control"/>
+                                <s:textfield name="address.zip" id="address.zip" cssClass="form-control" type="number" pattern="[0-9]*" maxlength="5" min="0"/>
                             </div>
                         </div>
                 </div>

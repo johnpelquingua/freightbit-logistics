@@ -98,14 +98,12 @@
 
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered text-center">
 
-                        <tr>
                         <display:table id="order" name="orders" requestURI="/viewOrders.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
 
                             <td><display:column property="orderNumber" title="Order #" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
+                                                style="text-align: center;" > </display:column></td>
                             <td><display:column property="shipperCode" title="Shipper" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="consigneeCode" title="Consignee" class="tb-font-black"
@@ -116,7 +114,7 @@
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="orderDate" title="Order Date" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="orderStatus" title="Status" class="tb-font-black"
+                            <td><display:column property="orderStatus" title="Status" class="tb-font-black status-color"
                                                 style="text-align: center;"> </display:column></td>
 
                             <td class="tb-font-black" style="text-align: center;">
@@ -147,11 +145,8 @@
                                 </s:a>
                                 </display:column>
                             </td>
+
                         </display:table>
-                        </tr>
-
-                    </table>
-
 
                 </div>
             </div>
@@ -172,4 +167,42 @@
     </div>
     <!-- /.row -->
 
+
+</div>
+
+
+<script language="JavaScript">
+
+    var tbl = document.getElementById("order");
+    if (tbl != null) {
+        for (var i = 0; i < tbl.rows.length; i++){
+
+            if (tbl.rows[i].cells[6].innerHTML == "PENDING") {
+                /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+                for (var j = 0; j < tbl.rows[i].cells.length; j++){
+                    tbl.rows[i].cells[j].style.backgroundColor="#fcf8e3";
+                }
+            }
+
+            if (tbl.rows[i].cells[6].innerHTML == "DISAPPROVED" || tbl.rows[i].cells[6].innerHTML == "CANCELLED") {
+                /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+                for (var j = 0; j < tbl.rows[i].cells.length; j++){
+                    tbl.rows[i].cells[j].style.backgroundColor="#f2dede";
+                }
+            }
+
+            if (tbl.rows[i].cells[6].innerHTML == "APPROVED" || tbl.rows[i].cells[6].innerHTML == "SERVICE ACCOMPLISHED") {
+                /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+                for (var j = 0; j < tbl.rows[i].cells.length; j++){
+                    tbl.rows[i].cells[j].style.backgroundColor="#dff0d8";
+                }
+            }
+
+        }
+
+    }
+
+
+
+</script>
 

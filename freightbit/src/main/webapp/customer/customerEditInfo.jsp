@@ -159,19 +159,19 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Phone No.:</label>
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer.phone" maxLength="7"/>
+                                <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer.phone" maxLength="7" pattern="\d{7}"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Mobile No.:</label>
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer.mobile" maxLength="11"/>
+                                <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer.mobile" maxLength="11" pattern="\d{11}"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Fax  No.:</label>
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield  required="true" name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11"/>
+                                <s:textfield  required="true" name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11" pattern="[0-9]+"/>
                             </div>
                         </div>
                         <div class="form-group">

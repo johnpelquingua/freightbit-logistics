@@ -188,7 +188,7 @@
                             <label class="col-sm-2 control-label" style="width:25%;">Zip Code</label>
 
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield name="address.zip" id="address.zip" cssClass="form-control" pattern="[0-9]+"/>
+                                <s:textfield name="address.zip" id="address.zip" cssClass="form-control"/>
                             </div>
                         </div>
                         <s:property value="%{vendorIdParam}"/>

@@ -214,25 +214,25 @@
 
                     <div class="form-group">
                         <label for="contact.firstName">Phone</label>
-                        <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone"/>
+                        <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone" maxLength="7" pattern="\d{7}"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.firstName">Mobile</label>
-                        <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile"/>
+                        <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile" maxLength="11" pattern="\d{11}"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.firstName">Fax</label>
-                        <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax"/>
+                        <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax" maxLength="11" pattern="[0-9]+"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.firstName">E-Mail</label>
-                        <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email"/>
+                        <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email"/>
 
                     </div>
 

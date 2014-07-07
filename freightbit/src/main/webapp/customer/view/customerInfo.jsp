@@ -153,7 +153,7 @@
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Customer Code</td>
-                                <td><s:property value="customer.customerCode"/></td>
+                                <td style="text-transform:uppercase"><s:property value="customer.customerCode" /></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold;">Customer Type</td>
