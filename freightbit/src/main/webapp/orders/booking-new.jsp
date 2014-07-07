@@ -28,6 +28,7 @@
 </div>
 <div class="panel-body">
 <div class="table-responsive">
+<s:form cssClass="form-horizontal" action="addVendor" method="POST" theme="bootstrap">
 <div class="form-group">
     <label class="col-sm-2 control-label"
            for="orderBean.orderNumber">Booking Number:</label>
@@ -391,6 +392,7 @@
 
 <%--sir jo--%>
 
+<%--
 <div class="row">
     <div class="col-lg-12">
         <h1>Booking Module </h1>
@@ -724,7 +726,7 @@
                     <table class="table table-striped table-hover table-bordered text-center tablesorter">
                         <thead>
                         <tr class="header_center">
-                            <%--<th class="tb-font-black"><input type="checkbox"/></th>--%>
+                            &lt;%&ndash;<th class="tb-font-black"><input type="checkbox"/></th>&ndash;%&gt;
                             <th class="tb-font-black" style="text-align: center;">Quantity <i class="fa fa-sort"></i>
                             </th>
                             <th class="tb-font-black" style="text-align: center;">Size <i class="fa fa-sort"></i></th>
@@ -751,9 +753,9 @@
                             <td class="tb-font-black">5,000</td>
 
                             <td class="tb-font-black">
-                                <%--<a href="#"><img src="includes/images/edit-booking.png" title="Edit Booking"> </a>
+                                &lt;%&ndash;<a href="#"><img src="includes/images/edit-booking.png" title="Edit Booking"> </a>
                                 <a href="#"><img src="includes/images/delete-booking.png" title="Delete Booking"> </a>
-                                <a href="#"><img src="includes/images/info-booking.png" title="Booking Info"> </a>--%>
+                                <a href="#"><img src="includes/images/info-booking.png" title="Booking Info"> </a>&ndash;%&gt;
 
                                 <a href="#"><i class="fa fa-times-circle"></i></a>
 
@@ -765,11 +767,11 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <%--<span class="pull-right">
+                &lt;%&ndash;<span class="pull-right">
                 <a href="viewOrders" class="icon-action-link" rel="tooltip" >
                     <img src="includes/images/add-user.png" class="icon-action circ-icon">
                 </a>
-                </span>--%>
+                </span>&ndash;%&gt;
                                 <span class="col-lg-offset-9">
 										<b>Total Rate :</b>
                                 </span>
@@ -785,4 +787,4 @@
 </div>
 </div>
 </div>
-</div>
+</div>--%>
