@@ -18,7 +18,6 @@ import java.util.List;
 )
 public class Orders implements java.io.Serializable {
 
-
     private Integer orderId;
     private Integer clientId;
     private String orderNumber;

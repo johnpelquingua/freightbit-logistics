@@ -36,6 +36,23 @@ public class OrderBean {
     private Double rates;
     private String orderSearchCriteria;
     private String orderKeyword;
+    private String orderNumber;
+    private String serviceType;
+    private Date orderDate;
+    private String comments;
+    private String truckCode;
+    private String trailerCode;
+    private String driverCode;
+    private String vesselNumber;
+    private Integer shipperAddressId;
+    private Integer shipperContactId;
+    private Integer consigneeContactId;
+    private Integer consigneeAddressId;
+    private String accountRep;
+    private Date createdTimestamp;
+    private String createdBy;
+    private Date modifiedTimestamp;
+    private String modifiedBy;
 
 	private AddressBean shipperInfoAddress;
 	private ContactBean shipperInfoContact;
@@ -43,15 +60,71 @@ public class OrderBean {
 	private ContactBean consigneeInfoContact;
 	private List <OrderItemsBean> orderItemsBean;
     private List <CustomerBean> customerBean;
-	
-	public Integer getOrderId() {
+
+    public OrderBean(Integer orderId, String customerName, Integer customerId, String orderNo, Date bookingDate, String freightType, String modeOfService, String modeOfPayment, String serviceRequirement, String notifyBy, String referenceNo, String originalRefNo, String containerNo, String sealNo, String bookedBy, String orderStatus, String shipperCode, String consigneeCode, Date pickupDate, Date pickupTime, String originationPort, Date deliveryDate, Date deliveryTime, String destinationPort, Double rates, String orderSearchCriteria, String orderKeyword, String orderNumber, String serviceType, Date orderDate, String comments, String truckCode, String trailerCode, String driverCode, String vesselNumber, Integer shipperAddressId, Integer shipperContactId, Integer consigneeContactId, Integer consigneeAddressId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, AddressBean shipperInfoAddress, ContactBean shipperInfoContact, AddressBean consigneeInfoAddress, ContactBean consigneeInfoContact, List<OrderItemsBean> orderItemsBean, List<CustomerBean> customerBean) {
+        this.orderId = orderId;
+        this.customerName = customerName;
+        this.customerId = customerId;
+        this.orderNo = orderNo;
+        this.bookingDate = bookingDate;
+        this.freightType = freightType;
+        this.modeOfService = modeOfService;
+        this.modeOfPayment = modeOfPayment;
+        this.serviceRequirement = serviceRequirement;
+        this.notifyBy = notifyBy;
+        this.referenceNo = referenceNo;
+        this.originalRefNo = originalRefNo;
+        this.containerNo = containerNo;
+        this.sealNo = sealNo;
+        this.bookedBy = bookedBy;
+        this.orderStatus = orderStatus;
+        this.shipperCode = shipperCode;
+        this.consigneeCode = consigneeCode;
+        this.pickupDate = pickupDate;
+        this.pickupTime = pickupTime;
+        this.originationPort = originationPort;
+        this.deliveryDate = deliveryDate;
+        this.deliveryTime = deliveryTime;
+        this.destinationPort = destinationPort;
+        this.rates = rates;
+        this.orderSearchCriteria = orderSearchCriteria;
+        this.orderKeyword = orderKeyword;
+        this.orderNumber = orderNumber;
+        this.serviceType = serviceType;
+        this.orderDate = orderDate;
+        this.comments = comments;
+        this.truckCode = truckCode;
+        this.trailerCode = trailerCode;
+        this.driverCode = driverCode;
+        this.vesselNumber = vesselNumber;
+        this.shipperAddressId = shipperAddressId;
+        this.shipperContactId = shipperContactId;
+        this.consigneeContactId = consigneeContactId;
+        this.consigneeAddressId = consigneeAddressId;
+        this.accountRep = accountRep;
+        this.createdTimestamp = createdTimestamp;
+        this.createdBy = createdBy;
+        this.modifiedTimestamp = modifiedTimestamp;
+        this.modifiedBy = modifiedBy;
+        this.shipperInfoAddress = shipperInfoAddress;
+        this.shipperInfoContact = shipperInfoContact;
+        this.consigneeInfoAddress = consigneeInfoAddress;
+        this.consigneeInfoContact = consigneeInfoContact;
+        this.orderItemsBean = orderItemsBean;
+        this.customerBean = customerBean;
+    }
+
+    public OrderBean() {
+    }
+
+    public Integer getOrderId() {
 		return orderId;
 	}
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}
-	
-	public String getCustomerName() {
+
+    public String getCustomerName() {
 		return customerName;
 	}
 	public void setCustomerName(String customerName) {
@@ -253,5 +326,141 @@ public class OrderBean {
 
     public void setOrderKeyword(String orderKeyword) {
         this.orderKeyword = orderKeyword;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getTruckCode() {
+        return truckCode;
+    }
+
+    public void setTruckCode(String truckCode) {
+        this.truckCode = truckCode;
+    }
+
+    public String getTrailerCode() {
+        return trailerCode;
+    }
+
+    public void setTrailerCode(String trailerCode) {
+        this.trailerCode = trailerCode;
+    }
+
+    public String getDriverCode() {
+        return driverCode;
+    }
+
+    public void setDriverCode(String driverCode) {
+        this.driverCode = driverCode;
+    }
+
+    public String getVesselNumber() {
+        return vesselNumber;
+    }
+
+    public void setVesselNumber(String vesselNumber) {
+        this.vesselNumber = vesselNumber;
+    }
+
+    public Integer getShipperAddressId() {
+        return shipperAddressId;
+    }
+
+    public void setShipperAddressId(Integer shipperAddressId) {
+        this.shipperAddressId = shipperAddressId;
+    }
+
+    public Integer getConsigneeContactId() {
+        return consigneeContactId;
+    }
+
+    public void setConsigneeContactId(Integer consigneeContactId) {
+        this.consigneeContactId = consigneeContactId;
+    }
+
+    public String getAccountRep() {
+        return accountRep;
+    }
+
+    public void setAccountRep(String accountRep) {
+        this.accountRep = accountRep;
+    }
+
+    public Date getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(Date createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getModifiedTimestamp() {
+        return modifiedTimestamp;
+    }
+
+    public void setModifiedTimestamp(Date modifiedTimestamp) {
+        this.modifiedTimestamp = modifiedTimestamp;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public Integer getShipperContactId() {
+        return shipperContactId;
+    }
+
+    public void setShipperContactId(Integer shipperContactId) {
+        this.shipperContactId = shipperContactId;
+    }
+
+    public Integer getConsigneeAddressId() {
+        return consigneeAddressId;
+    }
+
+    public void setConsigneeAddressId(Integer consigneeAddressId) {
+        this.consigneeAddressId = consigneeAddressId;
     }
 }

@@ -99,53 +99,54 @@
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered text-center">
+
                         <tr>
-                            <display:table id="order" name="orders" requestURI="/viewOrders.action" pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter"
-                                           style="margin-top: 15px;">
-                                <td><display:column property="orderNumber" title="Order #" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="shipperCode" title="Shipper" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="consigneeCode" title="Consignee" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="serviceType" title="Type" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="serviceMode" title="Mode" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="orderDate" title="Order Date" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td class="tb-font-black" style="text-align: center;">
-                                    <display:column title="Actions">
+                        <display:table id="order" name="orders" requestURI="/viewOrders.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
+                                       style="margin-top: 15px;">
 
-                                        <s:url var="editVendorUrl" action="loadEditVendorPage">
-                                            <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
-                                             title="Edit this vendor">
-                                            <img src="includes/images/edit-user.png" class="icon-action circ-icon">
-                                        </s:a>
+                            <td><display:column property="orderNumber" title="Order #" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="shipperCode" title="Shipper" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="consigneeCode" title="Consignee" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="serviceType" title="Type" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="modeOfService" title="Mode" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="orderDate" title="Order Date" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
 
-                                        <s:url var="deleteVendorUrl" action="deleteVendor">
-                                            <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
-                                             title="Delete this Vendor"
-                                             onclick="return confirm('Do you really want to delete?');">
-                                            <img src="includes/images/remove-user.png" class="icon-action circ-icon">
-                                        </s:a>
+                            <td class="tb-font-black" style="text-align: center;">
 
-                                        <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
-                                            <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
-                                             title="View Vendor Info">
-                                            <img src="includes/images/info-b.png" class="icon-action circ-icon">
-                                        </s:a>
-                                    </display:column>
-                                </td>
-                            </display:table>
+                                <s:url var="editVendorUrl" action="loadEditVendorPage">
+                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
+                                     title="Edit this vendor">
+                                    <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                </s:a>
+
+                                <s:url var="deleteVendorUrl" action="deleteVendor">
+                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
+                                     title="Delete this Vendor"
+                                     onclick="return confirm('Do you really want to delete?');">
+                                    <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                </s:a>
+
+                                <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
+                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
+                                     title="View Vendor Info">
+                                    <img src="includes/images/info-b.png" class="icon-action circ-icon">
+                                </s:a>
+                            </td>
+                        </display:table>
                         </tr>
+
                     </table>
 
 

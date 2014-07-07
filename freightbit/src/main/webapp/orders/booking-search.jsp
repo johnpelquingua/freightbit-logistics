@@ -158,17 +158,17 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Search by:</label>
                     <div class="col-sm-10">
-                        <s:select emptyOption="true" id="orderBean.orderSearchCriteria"
-                                  value="orderBean.orderSearchCriteria"
-                                  name="orderBean.orderSearchCriteria"
+                        <s:select emptyOption="true" id="order.orderSearchCriteria"
+                                  value="order.orderSearchCriteria"
+                                  name="order.orderSearchCriteria"
                                   list="orderSearchList" listValue="value" listKey="key"
                                   cssClass="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="keyword" class="col-sm-2 control-label">Search:</label>
+                    <label for="orderBean.orderKeyword" class="col-sm-2 control-label">Search:</label>
                     <div class="col-sm-10">
-                        <s:textfield cssClass="form-control" id="keyword" name="order.orderKeyword" placeholder="Keyword"></s:textfield>
+                        <s:textfield cssClass="form-control" id="order.orderKeyword" name="order.orderKeyword" placeholder="Keyword"></s:textfield>
                     </div>
                 </div>
             </div>
