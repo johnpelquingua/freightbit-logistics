@@ -3,6 +3,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
 <!-- MIDDLE -->
+<%--
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 <h1 class="page-header">Booking Info</h1>
@@ -671,3 +672,270 @@
 </div>
 </div>
 </div>
+--%>
+
+
+
+
+
+
+<div class="row" style=" margin-top: -15px; ">
+    <div class="col-lg-12">
+        <h1>Booking Module </h1>
+        <ol class="breadcrumb">
+            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='viewOrders' />"> <i class="fa fa-list"></i> Booking List </a></li>
+            <li class="active"> <i class="fa fa-info-circle"></i> Booking Information </li>
+        </ol>
+
+    </div>
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-info-circle"></i> Booking Information</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="panel panel-primary">
+
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-book"></i> Order Details</h3>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <div class="row">
+
+                                    <div class="col-lg-6 ">
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                            <tr>
+                                                <td style="font-weight: bold;">Booking Number:</td>
+                                                <td>Booking Number</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Service Mode:</td>
+                                                <td>Service Mode</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Origin Port:</td>
+                                                <td>Origin Port</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Payment Mode:</td>
+                                                <td>Payment Mode</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Notification Type:</td>
+                                                <td>Notification Type</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Comments:</td>
+                                                <td>Comments</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-lg-6 ">
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                            <tr>
+                                                <td style="font-weight: bold;">Booking Date:</td>
+                                                <td>Booking Date</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Service Requirement:</td>
+                                                <td>Service Requirement</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Destination Port:</td>
+                                                <td>Destination Port</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Total Rate:</td>
+                                                <td>Total Rate</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Status:</td>
+                                                <td>Status</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-primary">
+
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-male"></i> Shipper Information</h3>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 " align="center">
+                                        <img alt="User Pic" src="includes/images/photo.png" class="img-circle">
+                                    </div>
+                                    <div class=" col-md-9 col-lg-9 ">
+                                        <table class="table table-user-information">
+
+                                            <tbody>
+                                            <tr>
+                                                <td style="font-weight: bold;">Shipper Name:</td>
+                                                <td>Shipper Name</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Contact Person:</td>
+                                                <td>Contact Person</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Contact Number:</td>
+                                                <td>Contact Number</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Pick-up Date:</td>
+                                                <td>Pick-up Date</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Pick-up Address:</td>
+                                                <td>Pick-up Address</td>
+                                            </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="panel panel-primary">
+
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-male"></i> Consignee Information</h3>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 " align="center">
+                                        <img alt="User Pic" src="includes/images/photo.png" class="img-circle">
+                                    </div>
+                                    <div class=" col-md-9 col-lg-9 ">
+                                        <table class="table table-user-information">
+
+                                            <tbody>
+                                            <tr>
+                                                <td style="font-weight: bold;">Consignee Name:</td>
+                                                <td>Shipper Name</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Contact Person:</td>
+                                                <td>Contact Person</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Contact Number:</td>
+                                                <td>Contact Number</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Delivery Date:</td>
+                                                <td>Delivery Date</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold;">Delivery Address:</td>
+                                                <td>Delivery Address</td>
+                                            </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-list-ol"></i> Cargo Details</h3>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="table-responsive list-table">
+                                    <table class="table table-striped table-hover table-bordered text-center tablesorter">
+                                        <thead>
+                                        <tr class="header_center">
+
+                                            <th class="tb-font-black" style="text-align: center;">Quantity
+
+                                            </th>
+                                            <th class="tb-font-black" style="text-align: center;">Size
+                                            </th>
+                                            <th class="tb-font-black" style="text-align: center;">Class
+                                            </th>
+                                            <th class="tb-font-black" style="text-align: center;">Weight
+                                            </th>
+                                            <th class="tb-font-black" style="text-align: center;">Value
+                                            </th>
+                                            <th class="tb-font-black" style="text-align: center;">Description
+
+                                            </th>
+                                            <th class="tb-font-black" style="text-align: center;">Remarks
+                                            </th>
+                                            <th class="tb-font-black" style="text-align: center;">Rate
+                                            </th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr class="success">
+                                            <td class="tb-font-black">2</td>
+                                            <td class="tb-font-black">50</td>
+                                            <td class="tb-font-black">Premium</td>
+                                            <td class="tb-font-black">150</td>
+                                            <td class="tb-font-black">2,000</td>
+                                            <td class="tb-font-black">Door to Door</td>
+                                            <td class="tb-font-black">Approved</td>
+                                            <td class="tb-font-black">5,000</td>
+
+
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /.row -->
+
+

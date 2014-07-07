@@ -136,11 +136,11 @@
                                     <img src="includes/images/remove-user.png" class="icon-action circ-icon">
                                 </s:a>
 
-                                <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
-                                    <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                                <s:url var="viewInfoOrderUrl" action="viewInfoOrder">
+                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                 </s:url>
-                                <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
-                                     title="View Vendor Info">
+                                <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip"
+                                     title="View Booking Info">
                                     <img src="includes/images/info-b.png" class="icon-action circ-icon">
                                 </s:a>
                                 </display:column>
