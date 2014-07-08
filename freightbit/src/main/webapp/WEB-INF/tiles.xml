@@ -275,11 +275,11 @@
         <put-attribute name="body" value="/customer/update/customerSaveCompleteRates.jsp"/>
     </definition>
     <definition name="customer.customerAddContact.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Contacts Page"/>
+        <put-attribute name="title" value="Add New Contact Person"/>
         <put-attribute name="body" value="/customer/add/customerAddContact.jsp"/>
     </definition>
     <definition name="customer.customerEditContact.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Contacts Page"/>
+        <put-attribute name="title" value="Edit Contact Person"/>
         <put-attribute name="body" value="/customer/edit/customerEditContact.jsp"/>
     </definition>
     <definition name="customer.customerSaveCompleteContacts.tiles" extends="baseLayout">
@@ -287,11 +287,11 @@
         <put-attribute name="body" value="/customer/update/customerSaveCompleteContacts.jsp"/>
     </definition>
     <definition name="customer.customerAddItems.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Customer Page"/>
+        <put-attribute name="title" value="Add Item"/>
         <put-attribute name="body" value="/customer/add/customerAddItem.jsp"/>
     </definition>
     <definition name="customer.customerEditItem.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Customer Page"/>
+        <put-attribute name="title" value="Edit Item"/>
         <put-attribute name="body" value="/customer/edit/customerEditItem.jsp"/>
     </definition>
     <definition name="customer.customerViewItems.tiles" extends="baseLayout">
@@ -307,11 +307,11 @@
         <put-attribute name="body" value="/customer/view/customerListContact.jsp"/>
     </definition>
     <definition name="customer.customerAddConsignee.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Customer Page"/>
+        <put-attribute name="title" value="Add New Consignee"/>
         <put-attribute name="body" value="/customer/add/customerAddConsignee.jsp"/>
     </definition>
     <definition name="customer.customerListConsignee.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Custoemer List Consignee"/>
+        <put-attribute name="title" value="Customer List Consignee"/>
         <put-attribute name="body" value="/customer/view/customerListConsignee.jsp"/>
     </definition>
     <definition name="customer.customerSaveCompleteConsignee.tiles" extends="baseLayout">
@@ -319,7 +319,7 @@
         <put-attribute name="body" value="/customer/update/customerSaveCompleteConsignee.jsp"/>
     </definition>
     <definition name="customer.customerEditConsignee.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Customer Page"/>
+        <put-attribute name="title" value="Edit Consignee"/>
         <put-attribute name="body" value="/customer/edit/customerEditConsignee.jsp"/>
     </definition>
     <definition name="customer.customerInfoConsignee.tiles" extends="baseLayout">

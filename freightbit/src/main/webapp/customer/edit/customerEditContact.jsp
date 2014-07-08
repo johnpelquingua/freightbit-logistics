@@ -173,7 +173,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New Contact Person</h3>
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit Contact Person</h3>
             </div>
 
             <div class="panel-body">
