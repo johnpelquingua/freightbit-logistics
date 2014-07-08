@@ -125,7 +125,7 @@
 
                         <div class="col-sm-10" style="margin-left:4%">
                             <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
-                                         id="vendor.vendorName"/>
+                                         id="vendor.vendorName" pattern="[A-Z]+" title="Must be letters only"/>
                         </div>
                     </div>
                     <div class="form-group">
