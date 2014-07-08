@@ -133,7 +133,10 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String deleteOrder() {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        if (orderEntity.getOrderStatus().equals("APPROVED")) {
+        if (orderEntity.getOrderStatus().equals("PENDING") || orderEntity.getOrderStatus().equals("CANCELLED")) {
+            orderService.deleteOrder(orderEntity);
+            return SUCCESS;
+        } else {
             String column = getColumnFilter();
             List<Orders> orderEntityList = new ArrayList<Orders>();
             if (StringUtils.isNotBlank(column)) {
@@ -141,17 +144,12 @@ public class OrderAction extends ActionSupport implements Preparable {
             } else {
                 orderEntityList = orderService.findAllOrders();
             }
-
             for (Orders orderElem : orderEntityList) {
                 orders.add(transformToOrderFormBean(orderElem));
             }
-
             clearErrorsAndMessages();
-            addActionMessage("You can not delete a booking with status APPROVED.");
+            addActionMessage("You can not delete a booking with status rather than PENDING and CANCELLED.");
             return INPUT;
-        } else {
-            orderService.deleteOrder(orderEntity);
-            return SUCCESS;
         }
     }
 

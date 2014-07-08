@@ -72,6 +72,7 @@ public class OrderItems implements java.io.Serializable {
         this.clientId = clientId;
     }
 
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "orderId", nullable = false)
     public Orders getOrder() {
         return this.order;
