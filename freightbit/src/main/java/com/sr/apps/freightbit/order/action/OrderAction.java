@@ -58,8 +58,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     private ParameterService parameterService;
 
     public String viewOrders() {
-
-
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
@@ -71,7 +69,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         for (Orders orderElem : orderEntityList) {
             orders.add(transformToOrderFormBean(orderElem));
         }
-
         return SUCCESS;
     }
 
@@ -100,7 +97,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String loadAddOrderPage() {
-        //orderBean.setBookingDate(new Date());
+
         return SUCCESS;
     }
 
@@ -136,8 +133,26 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String deleteOrder() {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        orderService.deleteOrder(orderEntity);
-        return SUCCESS;
+        if (orderEntity.getOrderStatus().equals("APPROVED")) {
+            String column = getColumnFilter();
+            List<Orders> orderEntityList = new ArrayList<Orders>();
+            if (StringUtils.isNotBlank(column)) {
+                orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+            } else {
+                orderEntityList = orderService.findAllOrders();
+            }
+
+            for (Orders orderElem : orderEntityList) {
+                orders.add(transformToOrderFormBean(orderElem));
+            }
+
+            clearErrorsAndMessages();
+            addActionMessage("You can not delete a booking with status APPROVED.");
+            return INPUT;
+        } else {
+            orderService.deleteOrder(orderEntity);
+            return SUCCESS;
+        }
     }
 
     public String viewInfoOrder() {
@@ -194,7 +209,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 //		orderBean.setBookedBy(order.getCreatedBy());
 //		orderBean.setFreightType(order.getServiceType());
 //		orderBean.setModeOfService(order.getServiceMode());
-//        orderBean.setServiceRequirement(order.getServiceRequirement());
+//      orderBean.setServiceRequirement(order.getServiceRequirement());
 //		orderBean.setNotifyBy(order.getNotificationType());
 //		orderBean.setModeOfPayment(order.getPaymentMode());
 //		orderBean.setBookingDate(order.getOrderDate());

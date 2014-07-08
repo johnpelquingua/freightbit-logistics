@@ -86,6 +86,16 @@
 
     </div>
 </div>
+
+<s:if test="hasActionMessages()">
+    <div class="col-lg-7">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <!-- /.row -->
 
 <div class="row">
@@ -202,7 +212,9 @@
 
     }
 
+    function onDelete() {
 
+    }
 
 </script>
 
