@@ -61,61 +61,6 @@ public class OrderBean {
 	private List <OrderItemsBean> orderItemsBean;
     private List <CustomerBean> customerBean;
 
-    public OrderBean(Integer orderId, String customerName, Integer customerId, String orderNo, Date bookingDate, String freightType, String modeOfService, String modeOfPayment, String serviceRequirement, String notifyBy, String referenceNo, String originalRefNo, String containerNo, String sealNo, String bookedBy, String orderStatus, String shipperCode, String consigneeCode, Date pickupDate, Date pickupTime, String originationPort, Date deliveryDate, Date deliveryTime, String destinationPort, Double rates, String orderSearchCriteria, String orderKeyword, String orderNumber, String serviceType, Date orderDate, String comments, String truckCode, String trailerCode, String driverCode, String vesselNumber, Integer shipperAddressId, Integer shipperContactId, Integer consigneeContactId, Integer consigneeAddressId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, AddressBean shipperInfoAddress, ContactBean shipperInfoContact, AddressBean consigneeInfoAddress, ContactBean consigneeInfoContact, List<OrderItemsBean> orderItemsBean, List<CustomerBean> customerBean) {
-        this.orderId = orderId;
-        this.customerName = customerName;
-        this.customerId = customerId;
-        this.orderNo = orderNo;
-        this.bookingDate = bookingDate;
-        this.freightType = freightType;
-        this.modeOfService = modeOfService;
-        this.modeOfPayment = modeOfPayment;
-        this.serviceRequirement = serviceRequirement;
-        this.notifyBy = notifyBy;
-        this.referenceNo = referenceNo;
-        this.originalRefNo = originalRefNo;
-        this.containerNo = containerNo;
-        this.sealNo = sealNo;
-        this.bookedBy = bookedBy;
-        this.orderStatus = orderStatus;
-        this.shipperCode = shipperCode;
-        this.consigneeCode = consigneeCode;
-        this.pickupDate = pickupDate;
-        this.pickupTime = pickupTime;
-        this.originationPort = originationPort;
-        this.deliveryDate = deliveryDate;
-        this.deliveryTime = deliveryTime;
-        this.destinationPort = destinationPort;
-        this.rates = rates;
-        this.orderSearchCriteria = orderSearchCriteria;
-        this.orderKeyword = orderKeyword;
-        this.orderNumber = orderNumber;
-        this.serviceType = serviceType;
-        this.orderDate = orderDate;
-        this.comments = comments;
-        this.truckCode = truckCode;
-        this.trailerCode = trailerCode;
-        this.driverCode = driverCode;
-        this.vesselNumber = vesselNumber;
-        this.shipperAddressId = shipperAddressId;
-        this.shipperContactId = shipperContactId;
-        this.consigneeContactId = consigneeContactId;
-        this.consigneeAddressId = consigneeAddressId;
-        this.accountRep = accountRep;
-        this.createdTimestamp = createdTimestamp;
-        this.createdBy = createdBy;
-        this.modifiedTimestamp = modifiedTimestamp;
-        this.modifiedBy = modifiedBy;
-        this.shipperInfoAddress = shipperInfoAddress;
-        this.shipperInfoContact = shipperInfoContact;
-        this.consigneeInfoAddress = consigneeInfoAddress;
-        this.consigneeInfoContact = consigneeInfoContact;
-        this.orderItemsBean = orderItemsBean;
-        this.customerBean = customerBean;
-    }
-
-    public OrderBean() {
-    }
 
     public Integer getOrderId() {
 		return orderId;

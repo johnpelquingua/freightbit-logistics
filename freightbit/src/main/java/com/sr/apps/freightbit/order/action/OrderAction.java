@@ -39,7 +39,10 @@ public class OrderAction extends ActionSupport implements Preparable {
     private static final String COMPANY_CODE = "SRI";
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
+    private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
     private OrderBean order = new OrderBean();
+    private ContactBean contact = new ContactBean();
+    private AddressBean address = new AddressBean();
     private List<Customer> customerList = new ArrayList<Customer>();
     private List<Parameters> serviceRequirementList = new ArrayList<Parameters>();
     private List<Parameters> freightTypeList = new ArrayList<Parameters>();
@@ -133,7 +136,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String deleteOrder() {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        if (orderEntity.getOrderStatus().equals("PENDING") || orderEntity.getOrderStatus().equals("CANCELLED")) {
+        if (orderEntity.getOrderStatus().equals("PENDING") || orderEntity.getOrderStatus().equals("CANCELLED") || orderEntity.getOrderStatus().equals("DISAPPROVED")) {
             orderService.deleteOrder(orderEntity);
             return SUCCESS;
         } else {
@@ -155,7 +158,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String viewInfoOrder() {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        order = transformToOrderFormBean(orderEntity);
+        order = transformToFormBeanOrder(orderEntity);
         return SUCCESS;
     }
 
@@ -163,6 +166,79 @@ public class OrderAction extends ActionSupport implements Preparable {
         shipperList = customerService.findContactByRefIdAndType("SHIPPER", order.getCustomerId());
         consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE", order.getCustomerId());
         return SUCCESS;
+    }
+
+    private OrderBean transformToFormBeanOrder(Orders order) {
+        OrderBean orderBean = new OrderBean();
+        orderBean.setOrderNo(order.getOrderNumber());
+        orderBean.setBookedBy(order.getCreatedBy());
+        orderBean.setFreightType(order.getServiceType());
+        orderBean.setModeOfService(order.getServiceMode());
+        orderBean.setServiceRequirement(order.getServiceRequirement());
+        orderBean.setNotifyBy(order.getNotificationType());
+        orderBean.setModeOfPayment(order.getPaymentMode());
+        orderBean.setBookingDate(order.getOrderDate());
+        orderBean.setOrderStatus(order.getOrderStatus());
+        orderBean.setOriginationPort(order.getOriginationPort());
+        orderBean.setDestinationPort(order.getDestinationPort());
+        orderBean.setPickupDate(order.getPickupDate());
+        orderBean.setPickupTime(order.getPickupTime());
+        orderBean.setDeliveryDate(order.getDeliveryDate());
+        orderBean.setDeliveryTime(order.getDeliveryTime());
+        orderBean.setBookingDate(order.getOrderDate());
+        orderBean.setComments(order.getComments());
+        orderBean.setRates(order.getRates());
+        orderBean.setOrderStatus(order.getOrderStatus());
+
+        //customer info
+        List<Customer> customer = customerService.findCustomersByCriteria("customerCode", order.getShipperCode(), getClientId());
+        if (customer != null) {
+            orderBean.setCustomerName(customer.get(0).getCustomerName());
+        } else {
+            orderBean.setConsigneeCode(customer.get(0).getCustomerCode());
+        }
+
+        //shipper contact info
+        Contacts contacts = customerService.findContactById(order.getShipperContactId());
+        contact = new ContactBean();
+        contact.setName(getFullName(contacts.getLastName(), contacts.getFirstName(), contacts.getMiddleName()));
+        contact.setPhone(contacts.getPhone());
+        contact.setEmail(contacts.getEmail());
+        contact.setFax(contacts.getFax());
+        contact.setMobile(contacts.getMobile());
+        orderBean.setShipperInfoContact(contact);
+
+        Address addresss = customerService.findAddressById(order.getShipperAddressId());
+        address = new AddressBean();
+        address.setAddress(getAddress(addresss));
+        orderBean.setShipperInfoAddress(address);
+
+        //consignee Info
+        Contacts consigneeContact = customerService.findContactById(order.getConsigneeContactId());
+        contact = new ContactBean();
+        contact.setName(getFullName(consigneeContact.getLastName(), consigneeContact.getFirstName(), consigneeContact.getMiddleName()));
+        contact.setPhone(consigneeContact.getPhone());
+        contact.setEmail(consigneeContact.getEmail());
+        contact.setFax(consigneeContact.getFax());
+        contact.setMobile(consigneeContact.getMobile());
+        orderBean.setConsigneeInfoContact(contact);
+
+        Address consigneeAddress = customerService.findAddressById(order.getConsigneeAddressId());
+        address = new AddressBean();
+        address.setAddress(getAddress(consigneeAddress));
+        System.out.println(address);
+        orderBean.setConsigneeInfoAddress(address);
+
+        //Order Items Bean
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(order.getOrderId());
+
+        for (OrderItems orderItemElem : orderItemEntityList) {
+            System.out.println(orderItemElem);
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
+        orderBean.setOrderItemsBean(orderItems);
+
+        return orderBean;
     }
 
     private OrderBean transformToOrderFormBean(Orders order) {
@@ -202,66 +278,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setRates(order.getRates());
         orderBean.setServiceRequirement(order.getServiceRequirement());
         orderBean.setModeOfService(order.getServiceMode());
-//		OrderBean orderBean = new OrderBean();
-//		orderBean.setOrderNo(order.getOrderNumber());
-//		orderBean.setBookedBy(order.getCreatedBy());
-//		orderBean.setFreightType(order.getServiceType());
-//		orderBean.setModeOfService(order.getServiceMode());
-//      orderBean.setServiceRequirement(order.getServiceRequirement());
-//		orderBean.setNotifyBy(order.getNotificationType());
-//		orderBean.setModeOfPayment(order.getPaymentMode());
-//		orderBean.setBookingDate(order.getOrderDate());
-//		orderBean.setOrderStatus(order.getOrderStatus());
-//		orderBean.setOriginationPort(order.getOriginationPort());
-//		orderBean.setDestinationPort(order.getDestinationPort());
-//		orderBean.setPickupDate(order.getPickupDate());
-//		orderBean.setPickupTime(order.getPickupTime());
-//		orderBean.setDeliveryDate(order.getDeliveryDate());
-//		orderBean.setDeliveryTime(order.getDeliveryTime());
-//        orderBean.setBookingDate(new Date());
-//
-//        List <Customer> customer = customerService.findCustomersByCriteria("customerCode", order.getShipperCode(), getClientId());
-//
-//		if (customer != null) {
-//			orderBean.setCustomerName(customer.get(0).getCustomerName());
-//			orderBean.setShipperCode(customer.get(0).getCustomerCode());
-//		}else{
-//            orderBean.setConsigneeCode(customer.get(0).getCustomerCode());
-//        }
-//
-//		//Consignee Info
-//		Contacts consigneeContact = customerService.findContactById(order.getConsigneeContactId());
-//		ContactBean contactBean = new ContactBean();
-//		//contactBean.setName(getFullName(consigneeContact.getFirstName(), consigneeContact.getMiddleName(), consigneeContact.getLastName()));
-//		contactBean.setEmail(consigneeContact.getMobile());
-//		contactBean.setMobile(consigneeContact.getEmail());
-//		orderBean.setConsigneeInfoContact(contactBean);
-//
-//		Address consigneeAddress = customerService.findAddressById(order.getConsigneeAddressId());
-//		AddressBean addressBean = new AddressBean();
-//		addressBean.setAddress(getAddress(consigneeAddress));
-//		orderBean.setConsigneeInfoAddress(addressBean);
-//
-//		//Shipper Info
-//		Contacts shipperContact = customerService.findContactById(order.getShipperContactId());
-//	    contactBean = new ContactBean();
-//		//contactBean.setName(getFullName(shipperContact.getFirstName(), shipperContact.getMiddleName(), shipperContact.getLastName()));
-//		contactBean.setEmail(shipperContact.getMobile());
-//		contactBean.setMobile(shipperContact.getEmail());
-//		orderBean.setShipperInfoContact(contactBean);
-//
-//		Address shipperAddress = customerService.findAddressById(order.getShipperAddressId());
-//		addressBean = new AddressBean();
-//		addressBean.setAddress(getAddress(shipperAddress));
-//		orderBean.setShipperInfoAddress(addressBean);
-////
-//		//Order Items Bean
-//		List <OrderItems> orderItems = order.getOrderItems();
-//		List <OrderItemsBean> orderItemsBean = new ArrayList<OrderItemsBean>();
-//		for (OrderItems orderItem : orderItems) {
-//			orderItemsBean.add(transformToOrderItemsFormBean(orderItem));
-//		}
-//		orderBean.setOrderItemsBean(orderItemsBean);
 
         return orderBean;
     }
@@ -392,16 +408,16 @@ public class OrderAction extends ActionSupport implements Preparable {
         return (User) sessionAttributes.get("clientId");
     }
 
-    private String getFullName(String firstName, String middleName, String lastName) {
+    private String getFullName(String lastName, String firstName, String middleName) {
         StringBuilder fullName = new StringBuilder("");
+        if (StringUtils.isNotBlank(lastName)) {
+            fullName.append(lastName + ", ");
+        }
         if (StringUtils.isNotBlank(firstName)) {
-            fullName.append(firstName);
+            fullName.append(firstName + " ");
         }
         if (StringUtils.isNotBlank(middleName)) {
             fullName.append(middleName);
-        }
-        if (StringUtils.isNotBlank(lastName)) {
-            fullName.append(lastName);
         }
         return fullName.toString();
     }
@@ -409,13 +425,13 @@ public class OrderAction extends ActionSupport implements Preparable {
     private String getAddress(Address address) {
         StringBuilder fullAddress = new StringBuilder("");
         if (StringUtils.isNotBlank(address.getAddressLine1()))
-            fullAddress.append(address.getAddressLine1());
+            fullAddress.append(address.getAddressLine1() + " ");
         if (StringUtils.isNotBlank(address.getAddressLine2()))
-            fullAddress.append(address.getAddressLine2());
+            fullAddress.append(address.getAddressLine2() + " ");
         if (StringUtils.isNotBlank(address.getCity()))
-            fullAddress.append(address.getCity());
+            fullAddress.append(address.getCity() + " ");
         if (StringUtils.isNotBlank(address.getState()))
-            fullAddress.append(address.getState());
+            fullAddress.append(address.getState() + " ");
         if (StringUtils.isNotBlank(address.getZip()))
             fullAddress.append(address.getZip());
         return fullAddress.toString();
@@ -530,5 +546,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setOrderSearchList(List<Parameters> orderSearchList) {
         this.orderSearchList = orderSearchList;
+    }
+
+    public ContactBean getContact() {
+        return contact;
+    }
+
+    public void setContact(ContactBean contact) {
+        this.contact = contact;
     }
 }

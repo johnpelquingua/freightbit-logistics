@@ -453,7 +453,7 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderId", cascade = {CascadeType.ALL})
     public List<OrderItems> getOrderItems() {
         return this.orderItems;
     }

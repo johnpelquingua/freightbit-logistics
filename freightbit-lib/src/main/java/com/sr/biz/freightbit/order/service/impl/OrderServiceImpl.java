@@ -13,6 +13,7 @@ import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
 import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.dao.OrderItemsDao;
+import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
 import org.springframework.transaction.annotation.Propagation;
@@ -325,5 +326,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
+    @Override
+    public List<OrderItems> findAllItemByOrderId(Integer orderId) {
+        return orderItemsDao.findAllItemByOrderId(orderId);
+    }
 // End Items
 }

@@ -298,7 +298,7 @@
 
                         <div class="col-sm-10" style="width:70%;">
                             <s:textfield name="consignee.phone" cssClass="form-control" id="consignee.phone"
-                                         placeholder="Phone Number" maxLength="7" required="true" pattern="[0-9]+"
+                                         placeholder="Phone Number" maxLength="7" required="true" pattern="\d{7}"
                                          title="Phone should not contain special characters and/or letters."/>
                         </div>
                     </div>
@@ -310,7 +310,7 @@
                         <div class="col-sm-10" style="width:70%;">
                             <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee.mobile"
                                          placeholder="Mobile Number" maxLength="11" required="true"
-                                         pattern="[0-9]+"
+                                         pattern="\d{11}"
                                          title="Mobile should not contain special characters and/or letters."/>
                         </div>
                     </div>

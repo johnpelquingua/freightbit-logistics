@@ -2,6 +2,8 @@ package com.sr.apps.freightbit.order.formbean;
 
 public class OrderItemsBean {
 
+    private Integer orderItemId;
+    private Integer orderId;
     private Integer quantity;
     private String classification;
     private String cargoDetails;
@@ -73,5 +75,21 @@ public class OrderItemsBean {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+    public Integer getOrderItemId() {
+        return orderItemId;
+    }
+
+    public void setOrderItemId(Integer orderItemId) {
+        this.orderItemId = orderItemId;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 }

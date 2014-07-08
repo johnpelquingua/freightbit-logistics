@@ -7,6 +7,7 @@ import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
+import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 
 import java.util.List;
@@ -87,6 +88,8 @@ public interface OrderService {
     public List<Items> findItemByCustomerId(Integer customerId);
 
     public void updateItems(Items items);
+
+    public List<OrderItems> findAllItemByOrderId(Integer orderId);
 
 }
 

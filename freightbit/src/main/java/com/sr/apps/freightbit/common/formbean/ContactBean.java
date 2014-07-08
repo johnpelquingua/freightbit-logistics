@@ -23,12 +23,14 @@ public class ContactBean {
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
+    private String name;
+
 
     public ContactBean() {
 
     }
 
-    public ContactBean(Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public ContactBean(Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String name) {
         this.sessionVendorId = sessionVendorId;
         this.contactId = contactId;
         this.clientId = clientId;
@@ -46,6 +48,7 @@ public class ContactBean {
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
+        this.name = name;
     }
 
     public String getLastName() {
@@ -182,5 +185,13 @@ public class ContactBean {
 
     public void setCreatedTimestamp(Date createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

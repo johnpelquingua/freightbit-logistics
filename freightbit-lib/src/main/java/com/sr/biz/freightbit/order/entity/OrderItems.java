@@ -17,7 +17,8 @@ public class OrderItems implements java.io.Serializable {
 
     private Integer orderItemId;
     private Integer clientId;
-    private Orders order;
+//    private Orders order;
+    private Integer orderId;
     private Integer quantity;
     private String classification;
     private String commodity;
@@ -35,8 +36,10 @@ public class OrderItems implements java.io.Serializable {
     public OrderItems() {
     }
 
-    public OrderItems(Integer clientId, Integer quantity, String classification, String commodity, Double declaredValue, Double height, Double width, Double length, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double height, Double width, Double length, Double weight, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+        this.orderItemId = orderItemId;
         this.clientId = clientId;
+        this.orderId = orderId;
         this.quantity = quantity;
         this.classification = classification;
         this.commodity = commodity;
@@ -44,6 +47,7 @@ public class OrderItems implements java.io.Serializable {
         this.height = height;
         this.width = width;
         this.length = length;
+        this.weight = weight;
         this.comments = comments;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
@@ -72,16 +76,24 @@ public class OrderItems implements java.io.Serializable {
         this.clientId = clientId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "orderId", nullable = false)
-    public Orders getOrder() {
-        return this.order;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "orderId", nullable = false)
+//    public Orders getOrder() {
+//        return this.order;
+//    }
+//
+//    public void setOrder(Orders order) {
+//        this.order = order;
+//    }
+
+    @Column(name = "orderId")
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrder(Orders order) {
-        this.order = order;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
-
 
     @Column(name = "quantity", nullable = false)
     public Integer getQuantity() {
