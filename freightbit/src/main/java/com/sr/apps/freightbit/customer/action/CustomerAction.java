@@ -683,7 +683,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Matcher matcher1 = pattern.matcher(addressBean.getZip());
 
         if (!matcher1.matches()) {
-            addFieldError("address.zip", getText("err.regex.validtion.zip"));
+            addFieldError("address.zip", getText("err.regex.validation.zip"));
         }
 
         if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getAddressLine1())) {

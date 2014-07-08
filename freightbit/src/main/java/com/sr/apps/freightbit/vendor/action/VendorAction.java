@@ -36,6 +36,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by ADMIN on 5/28/2014.
@@ -921,7 +923,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     //address
 
     public String addAddress() throws Exception {
-        validateOnSubmitAdress(address);
+        validateOnSubmitAddress(address);
         if (hasFieldErrors()) {
             return INPUT;
         }
@@ -936,7 +938,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
     public String editAddress() {
-        validateOnSubmitAdress(address);
+        validateOnSubmitAddress(address);
         if (hasFieldErrors()) {
             return INPUT;
         }
@@ -989,8 +991,18 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public void validateOnSubmitAdress(AddressBean addressBean) {
+    public void validateOnSubmitAddress(AddressBean addressBean) {
         clearErrorsAndMessages();
+
+        String PATTERN = "[0-9]{4}";
+
+        Pattern pattern = Pattern.compile(PATTERN);
+        Matcher matcher1 = pattern.matcher(addressBean.getZip());
+
+        if (!matcher1.matches()) {
+            addFieldError("address.zip", getText("err.regex.validation.zip"));
+        }
+
         if (StringUtils.isBlank(addressBean.getAddressLine1())) {
             addFieldError("address.addressLine1", getText("err.addressLine1.required"));
         }
@@ -999,9 +1011,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
         if (StringUtils.isBlank(addressBean.getState())) {
             addFieldError("address.state", getText("err.state.required"));
-        }
-        if (StringUtils.isBlank(addressBean.getZip())) {
-            addFieldError("address.zip", getText("err.zip.required"));
         }
 
     }
