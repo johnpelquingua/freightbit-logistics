@@ -12,9 +12,8 @@
 </title>
 <link rel='stylesheet' href='includes/css/bootstrap-x.css'>
 <link rel='stylesheet' href='includes/css/main.css'>
-<script type='text/javascript' src='includes/js/jquery-1.11.1.js'></script>
-<script type='text/javascript' src='includes/js/bootstrap.min.js'></script>
-<script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>
+
+
 
     <sb:head/>
     <sx:head />
@@ -105,10 +104,12 @@
 
 <!-- JavaScript -->
 
+<script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>
 <script type='text/javascript' src='includes/js/jquery-1.11.1.js'></script>
 <script type='text/javascript' src='includes/js/bootstrap.js'></script>
 <script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>
 <script type='text/javascript' src='includes/js/validate.min.js'></script>
+<script type='text/javascript' src='includes/js/ernest.js'></script>
 
 <!-- Page Specific Plugins -->
 

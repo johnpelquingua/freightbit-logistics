@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../freightbit/freightbit.iml" filepath="$PROJECT_DIR$/../freightbit/freightbit.iml" />
       <module fileurl="file://$PROJECT_DIR$/freightbit-lib.iml" filepath="$PROJECT_DIR$/freightbit-lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/freightbit-lib.iml" filepath="$PROJECT_DIR$/freightbit-lib.iml" />
     </modules>
   </component>
 </project>

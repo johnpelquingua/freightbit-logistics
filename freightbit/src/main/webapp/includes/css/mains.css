@@ -681,14 +681,4 @@ ul#css3menu1 li {
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
     color: #545145 !important;
-    text-align: center !important;
 }
-
-span.pagebanner {
-    margin-left: 15px !important;
-}
-
-span.pagelinks {
-    margin-left: 15px !important;
-}
-
