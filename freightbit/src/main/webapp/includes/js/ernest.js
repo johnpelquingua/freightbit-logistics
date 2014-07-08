@@ -1,22 +1,44 @@
+function hideForm(){
 
-document.getElementById("items").style.display = 'none';
-document.getElementById("cargos").style.display = 'none';
+    document.getElementById("item").style.display = 'none';
+    document.getElementById("cargo").style.display = 'none';
+
+}
+
+function fcl(){
+
+        document.getElementById("cargo").style.display = 'block';
+        document.getElementById("item").style.display = 'none';
+        $("#cargo").addClass("active");
+}
+
+function lcl(){
+
+        document.getElementById("item").style.display = 'block';
+        document.getElementById("cargo").style.display = 'none';
+        $("#item").addClass("active");
+
+
+}
+
 
 function serviceValidate(){
 	var serviceReq = document.getElementById("serviceReq");
 	var pos = serviceReq.options[serviceReq.selectedIndex].value;
 	if(pos == "FULL CARGO LOAD"){
-	    document.getElementById("cargo").css('display', "");
-	    document.getElementById("cargos").style.display = 'block';
-        document.getElementById("items").style.display = 'none';
+
         document.getElementById("item").style.display = 'none';
+        document.getElementById("item-menu").style.display = 'none';
+	    document.getElementById("cargo-menu").style.display = 'block';
+
 
 	}
 	else if(pos == "LESS CARGO LOAD" || pos == "LOOSE CARGO LOAD" || pos == "ROLLING CARGO LOAD"){
-	    document.getElementById("item").css('display', "");
-	    document.getElementById("items").style.display = 'block';
-        document.getElementById("cargos").style.display = 'none';
+
         document.getElementById("cargo").style.display = 'none';
+        document.getElementById("cargo-menu").style.display = 'none';
+	    document.getElementById("item-menu").style.display = 'block';
+
 
 	}
 }
@@ -44,3 +66,4 @@ function typeValidate(){
         $("#deliveryaddress").prop('disabled', true);
     }
 }
+
