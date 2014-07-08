@@ -355,7 +355,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             truckEntity.setCreatedTimestamp(new Date());
             vendorService.addTrucks(truckEntity);
         }catch (TrucksAlreadyExistsException e) {
-            addFieldError("truck.plateNumber", getText("err.truck.already.exists"));
+            addFieldError("truck.truckCode", getText("err.truck.already.exists"));
             return INPUT;
         }
         return SUCCESS;
@@ -374,7 +374,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             truckEntity.setModifiedTimestamp(new Date());
             vendorService.updateTrucks(truckEntity);
         }catch (TrucksAlreadyExistsException e){
-            addFieldError("truck.plateNumber", getText("err.truck.already.exists"));
+            addFieldError("truck.truckCode", getText("err.truck.already.exists"));
             return INPUT;
         }
         return SUCCESS;

@@ -116,13 +116,18 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateContact(Contacts contacts) {
+        List<Contacts> contactList = new ArrayList<Contacts>();
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("firstName", contacts.getFirstName());
+        paramMap.put("lastName", contacts.getLastName());
+        paramMap.put("referenceId", contacts.getReferenceId());
+        paramMap.put("contactType", contacts.getContactType());
+        contactList = contactsDao.findContactsByParameterMap(paramMap, "Contacts");
 
-        if (contactsDao.findDuplicateContactByLastName(contacts.getLastName(), contacts.getContactId()).size() > 0) {
-            System.out.print(contacts.getLastName() + ", " + contacts.getContactId());
+        if (contactList != null && contactList.size() > 0)
             throw new ContactAlreadyExistsException(contacts.getLastName());
-        } else {
+        else
             contactsDao.updateContact(contacts);
-        }
     }
 
     @Override

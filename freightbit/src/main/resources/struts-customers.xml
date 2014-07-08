@@ -222,7 +222,7 @@
         <action name="editCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="editContact">
             <result name="success" type="redirect">loadSaveCompleteContact</result>
-            <result name="input" type="tiles">customer.customerAddContact.tiles</result>
+            <result name="input" type="tiles">customer.customerEditContact.tiles</result>
         </action>
 
         <action name="deleteCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"

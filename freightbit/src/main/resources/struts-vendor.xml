@@ -95,7 +95,7 @@
 
         <action name="editTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editTrucks">
             <result name="success" type="redirect">loadSaveCompleteTrucks</result>
-            <result name="input" type="tiles">vendor.vendorAddTrucks.tiles</result>
+            <result name="input" type="tiles">vendor.vendorEditTrucks.tiles</result>
         </action>
 
         <action name="loadSaveCompleteTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction"

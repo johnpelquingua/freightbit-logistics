@@ -181,8 +181,12 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateTrucks(Trucks trucks) {
-        trucksDao.updateTrucks(trucks);
+    public void updateTrucks(Trucks trucks) throws TrucksAlreadyExistsException {
+        if (trucksDao.findTrucksByTruckCode(trucks.getTruckCode()).size() > 0) {
+            throw new TrucksAlreadyExistsException(trucks.getTruckCode());
+        } else {
+            trucksDao.updateTrucks(trucks);
+        }
     }
 
     @Override
