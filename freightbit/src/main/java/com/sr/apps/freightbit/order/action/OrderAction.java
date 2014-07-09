@@ -119,7 +119,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String loadEditOrder() {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        order = transformToOrderFormBean(orderEntity);
+        order = transformToFormBeanOrder(orderEntity);
         return SUCCESS;
     }
 

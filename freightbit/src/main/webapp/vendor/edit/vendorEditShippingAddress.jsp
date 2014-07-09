@@ -142,6 +142,7 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form action="editShippingAddress" cssClass="form-horizontal" theme="bootstrap">
+                        <s:hidden value="%{address.addressId}" name="address.addressId" />
                         <div class="form-group">
 
                             <label for="address.addressType" class="col-sm-2 control-label" style="width:25%;">Address
