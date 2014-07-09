@@ -154,9 +154,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         validateOnSubmitEdit(vendor);
         if (hasFieldErrors()) {
             return INPUT;
-
         }
-
         try {
             Vendor vendorEntity = transformToEntityBean(vendor);
             vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
@@ -166,20 +164,15 @@ public class VendorAction extends ActionSupport implements Preparable {
             addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
             return INPUT;
         }
-
-
         /*return SUCCESS;*/
-
         clearErrorsAndMessages();
         addActionMessage("Success! Vendor has been updated.");
-
         if ("TRUCKING".equals(vendor.getVendorType())) {
             return "TRUCKING";
         } else {
             return "SHIPPING";
         }
     }
-
 
     public String loadVendorInfo() {
         Map sessionAttributes = ActionContext.getContext().getSession();

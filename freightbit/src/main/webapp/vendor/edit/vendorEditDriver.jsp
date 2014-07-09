@@ -175,7 +175,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Driver Code" name="driver.driverCode"
-                                             id="driver.driverCode"/>
+                                             id="driver.driverCode" pattern="[A-Za-z0-9]+" required="true"/>
                             </div>
 
                         </div>
@@ -186,7 +186,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="License Number"
-                                             name="driver.licenseNumber" id="driver.licenseNumber"/>
+                                             name="driver.licenseNumber" id="driver.licenseNumber" pattern="[A-Za-z0-9]+" required="true"/>
                             </div>
 
                         </div>
@@ -197,7 +197,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName"
-                                             id="driver.lastName"/>
+                                             id="driver.lastName" pattern="[A-Za-z]+" required="true"/>
                             </div>
 
                         </div>
@@ -208,7 +208,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName"
-                                             id="driver.firstName"/>
+                                             id="driver.firstName" pattern="[A-Za-z]+" required="true"/>
                             </div>
 
                         </div>
@@ -219,7 +219,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName"
-                                             id="driver.middleName"/>
+                                             id="driver.middleName" pattern="[A-Za-z]+"/>
                             </div>
 
                         </div>
@@ -230,7 +230,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"
-                                             id="driver.title"/>
+                                             id="driver.title" pattern="[A-Za-z]+" required="true"/>
                             </div>
 
                         </div>

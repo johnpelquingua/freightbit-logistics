@@ -151,13 +151,13 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Company Name</label>
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName" />
+                                <s:textfield  required="true" name="customer.customerName" pattern="[A-Z]+" cssClass="form-control" id="customer.customerName" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" style="width:25%;">Company Code</label>
                             <div class="col-sm-10" style="width:70%;">
-                                <s:textfield required="true" maxLength="3" pattern="[A-Z-]+" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" />
+                                <s:textfield required="true" maxLength="3" pattern="[A-Z]+" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" />
                             </div>
                         </div>
 
