@@ -48,7 +48,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-2 control-label" for="orderBean.serviceRequirement">Requirement:</label>
+    <label class="col-sm-2 control-label" for="orderBean.serviceRequirement">Service Requirement:</label>
 
     <div class="col-sm-9" style="margin-left:4%">
         <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
@@ -68,7 +68,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-2 control-label" for="orderBean.modeOfPayment">Payment:</label>
+    <label class="col-sm-2 control-label" for="orderBean.modeOfPayment">Payment Mode:</label>
 
     <div class="col-sm-9" style="margin-left:4%">
         <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
@@ -89,7 +89,7 @@
 <div class="tab-content">
 <div class="tab-pane fade in active" id="details">
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="orderBean.origin">Origin:</label>
+        <label class="col-sm-2 control-label" for="orderBean.origin">Origin Port:</label>
 
         <div class="col-sm-9" style="margin-left:4%">
             <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
@@ -98,7 +98,7 @@
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label"
-               for="orderBean.destination">Destination:</label>
+               for="orderBean.destination">Destination Port:</label>
 
         <div class="col-sm-9" style="margin-left:4%">
             <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
@@ -106,13 +106,29 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label"
+        <%--<label class="col-sm-2 control-label"
                for="orderBean.rates">Rates:</label>
 
         <div class="col-sm-9" style="margin-left:4%">
             <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
                          name="orderBean.rates"/>
-        </div>
+        </div>--%>
+
+            <label class="col-lg-2 control-label"
+                   for="orderBean.pickupDate" style="margin-top: 5px;">Pickup Date:</label>
+            <div class="col-lg-3" >
+                <input type="text" class="from_date form-control" id="datepicker1" name="orderBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;">
+
+            </div>
+
+            <label class="col-lg-2 control-label"
+                   for="orderBean.deliveryDate" style="margin-top: 5px;">Delivery Date:</label>
+            <div class="col-lg-4" >
+                <input type="text" class="to_date form-control" id="datepicker2" name="orderBean.deliveryDate" placeholder="Select end date" contenteditable="false" style="margin-bottom: 15px !important;">
+            </div>
+
+
+
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label"
@@ -129,9 +145,9 @@
         <label class="col-sm-2 control-label"
                for="orderBean.comments">Comments :</label>
 
-        <div class="col-sm-9" style="margin-left:4%">
-            <s:textfield cssClass="form-control"
-                         name="orderBean.comments"></s:textfield>
+        <div class="col-sm-9" style="margin-left:4%;">
+            <s:textarea cssClass="form-control"
+                         name="orderBean.comments" cssStyle="resize: none;"></s:textarea>
         </div>
     </div>
 </div>
@@ -155,7 +171,7 @@
                       listValue="customerName" emptyOption="true"/>
         </div>
     </div>
-    <div class="form-group">
+    <%--<div class="form-group">
         <label class="col-sm-2 control-label"
                for="orderBean.pickupDate">Pickup Date:</label>
 
@@ -172,7 +188,7 @@
                            value="%{orderBean.bookingDate}"
                     />
         </div>
-    </div>
+    </div>--%>
     <div class="form-group">
         <label class="col-sm-2 control-label" for="orderBean.pickupAddress">Pickup Address:</label>
 
@@ -204,7 +220,7 @@
                       listValue="customerName" emptyOption="true"/>
         </div>
     </div>
-    <div class="form-group">
+    <%--<div class="form-group">
         <label class="col-sm-2 control-label"
                for="orderBean.deliveryDate">Delivery Date:</label>
 
@@ -221,7 +237,7 @@
                            value="%{orderBean.bookingDate}"
                     />
         </div>
-    </div>
+    </div>--%>
     <div class="form-group">
         <label class="col-sm-2 control-label" for="orderBean.deliveryAddress">Delivery Address:</label>
 
@@ -247,7 +263,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="orderBean.size">Size:</label>
+        <label class="col-sm-2 control-label" for="orderBean.size">Volume:</label>
 
         <div class="col-sm-9" style="margin-left:4%">
             <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
@@ -301,11 +317,11 @@
         <label class="col-sm-2 control-label" for="orderBean.deliveryAddress">Remarks:</label>
 
         <div class="col-sm-9" style="margin-left:4%">
-            <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
+            <s:textarea cssClass="form-control" style="margin-bottom: 15px !important; resize:none;"
                          name="orderBean.orderNumber"/>
         </div>
     </div>
-    <div class="col-lg-2 col-lg-offset-10">
+    <div class="col-lg-2 col-lg-offset-10" style="margin-bottom: 20px;">
         <s:submit cssClass="btn btn-info pull-right" name="submit" value="Add"/>
     </div>
     <div class="row">
@@ -323,7 +339,7 @@
                                 <th class="tb-font-black" style="text-align: center;">Quantity <i
                                         class="fa fa-sort"></i>
                                 </th>
-                                <th class="tb-font-black" style="text-align: center;">Size <i class="fa fa-sort"></i>
+                                <th class="tb-font-black" style="text-align: center;">Volume <i class="fa fa-sort"></i>
                                 </th>
                                 <th class="tb-font-black" style="text-align: center;">Class <i class="fa fa-sort"></i>
                                 </th>
@@ -448,7 +464,7 @@
         <label class="col-sm-2 control-label" for="orderBean.deliveryAddress">Remarks:</label>
 
         <div class="col-sm-9" style="margin-left:4%">
-            <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
+            <s:textarea cssClass="form-control" style="margin-bottom: 15px !important; resize:none;"
                          name="orderBean.orderNumber"/>
         </div>
     </div>
@@ -540,3 +556,48 @@
 </div>
 </div>
 </div>
+
+
+
+
+<script type="text/javascript">
+
+    var startDate = new Date('01/01/2012');
+    var FromStartDate = new Date();
+    var FromEndDate = new Date();
+    var ToEndDate = new Date();
+
+    ToEndDate.setDate(ToEndDate.getDate()+365);
+
+    $('.from_date').datepicker({
+
+        weekStart: 1,
+        /*startDate: '01/01/2012',*/
+        startDate: FromStartDate,
+        /*endDate: FromEndDate,*/
+        endDate: ToEndDate,
+        autoclose: true
+    })
+            .on('changeDate', function(selected){
+                startDate = new Date(selected.date.valueOf());
+                startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+                $('.to_date').datepicker('setStartDate', startDate);
+            });
+
+    $('.to_date')
+            .datepicker({
+
+                weekStart: 1,
+                /*startDate: startDate,*/
+                startDate: FromStartDate,
+                endDate: ToEndDate,
+                autoclose: true
+            })
+
+            .on('changeDate', function(selected){
+                FromEndDate = new Date(selected.date.valueOf());
+                FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
+                $('.from_date').datepicker('setEndDate', FromEndDate);
+            });
+
+</script>
