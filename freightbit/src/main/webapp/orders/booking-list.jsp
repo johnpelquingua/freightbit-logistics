@@ -153,6 +153,10 @@
                                      title="View Booking Info">
                                     <img src="includes/images/info-b.png" class="icon-action circ-icon">
                                 </s:a>
+                                <s:a class="icon-action-link" href="#" rel="tooltip"
+                                     title="View Booking Info" id="approve" onclick="approve()">
+                                     <img src="includes/images/info-b.png" class="icon-action circ-icon">
+                                </s:a>
                                 </display:column>
                             </td>
 
@@ -181,7 +185,78 @@
 </div>
 
 
-<script language="JavaScript">
+
+<div id="modal">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <span class="pull-right ">
+                <a href="#" class="icon-action-link" id="closeModal" onclick="closeModal()" style="color:white;"> x </a>
+            </span>
+        </div>
+    <div class="panel-body">
+    <button class="btn btn-success">Approve</button>
+    <button class="btn btn-danger">Disapprove</button>
+    </div>
+    </div>
+</div>
+
+<style>
+#modal {
+  width: 300px;
+      height: 80px;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      margin-top: -100px;
+      margin-left: -150px;
+      background-color: rgba(0,0,0,0.5);
+      border-radius: 5px;
+      text-align: center;
+      z-index: 11; /* 1px higher than the overlay layer */
+
+    /* Embiggen */
+    transform: scale(1.5); /* prefix me */
+
+    /* Hidden */
+    opacity: 0;
+    pointer-events: none;
+}
+.dialogIsOpen #page-wrap {
+
+  /* Blur and de-color */
+  -webkit-filter: blur(5px) grayscale(50%);
+
+  /* Recede */
+  -webkit-transform: scale(0.9);
+
+}
+.dialogIsOpen #modal {
+
+  /* Regular size and visible */
+  transform: scale(1); /* prefix me */
+  opacity: 1;
+
+  /* Clickable */
+  pointer-events: auto;
+
+}
+#modal {
+
+  transition: all 0.4s ease; /* prefix me */
+
+}
+
+</style>
+
+<script>
+
+    function approve(){
+        $("body").addClass("dialogIsOpen");
+    }
+
+    function closeModal(){
+        $("body").removeClass("dialogIsOpen");
+    }
 
     var tbl = document.getElementById("order");
     if (tbl != null) {

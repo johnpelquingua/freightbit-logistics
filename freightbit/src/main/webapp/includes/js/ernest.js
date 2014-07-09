@@ -65,5 +65,11 @@ function typeValidate(){
         $("#pickupaddress").prop('disabled', true);
         $("#deliveryaddress").prop('disabled', true);
     }
+    else if(type == "DOOR TO DOOR"){
+            $("#datepicker1").prop('disabled', false);
+            $("#datepicker2").prop('disabled', false);
+            $("#pickupaddress").prop('disabled', false);
+            $("#deliveryaddress").prop('disabled', false);
+        }
 }
 
