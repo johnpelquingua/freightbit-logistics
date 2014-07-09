@@ -1,36 +1,5 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="sx" uri="/struts-dojo-tags" %>
-
-<%--<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><tiles:insertAttribute name="title" ignore="true" />
-</title>
-<link rel='stylesheet' href='includes/css/bootstrap-x.css'>
-<link rel='stylesheet' href='includes/css/main.css'>
-
-
-
-    <sb:head/>
-    <sx:head />
-</head>
-
-<body>
-
-   <tiles:insertAttribute name="banner" />
-   <div class="container-fluid">
-    <div class="row">
-        <tiles:insertAttribute name="menu" />
-        <tiles:insertAttribute name="body" />
-    </div>
-   </div>
-</body>
-</html>--%>
-
 
 <!DOCTYPE html>
 
@@ -52,15 +21,17 @@
     <!-- Add custom CSS here -->
 
     <link rel="stylesheet" href="includes/css/mains.css">
-    <link href="includes/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="includes/css/sb-admin.css">
+    <link rel="stylesheet" href="includes/css/datepicker.css">
     <link rel="stylesheet" href="includes/font-awesome/css/font-awesome.min.css">
 
-    <%--<script type='text/javascript' src='includes/js/jquery-1.11.1.js'></script>
-    <script type='text/javascript' src='includes/js/bootstrap.min.js'></script>
-    <script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>--%>
+    <!--Javascript here -->
 
-    <sb:head/>
-    <sx:head />
+    <script type='text/javascript' src='includes/js/jquery-1.11.1.js'></script>
+    <script type='text/javascript' src='includes/js/bootstrap.js'></script>
+    <script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>
+
+
 </head>
 
 <body>
@@ -89,7 +60,6 @@
 
                 <tiles:insertAttribute name="banner"/>
 
-
             </div>
             <!-- /.navbar-collapse -->
         </nav>
@@ -104,22 +74,13 @@
 
 <!-- JavaScript -->
 
-<script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>
-<script type='text/javascript' src='includes/js/jquery-1.11.1.js'></script>
-<script type='text/javascript' src='includes/js/bootstrap.js'></script>
-<script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>
 <script type='text/javascript' src='includes/js/validate.min.js'></script>
 <script type='text/javascript' src='includes/js/ernest.js'></script>
 
 <!-- Page Specific Plugins -->
 
-<%--<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>--%>
-
-<script src="includes/js/chart-data-morris.js"></script>
 <script src="includes/js/jquery.tablesorter.js"></script>
 <script src="includes/js/tables.js"></script>
-
 
 </body>
 </html>
