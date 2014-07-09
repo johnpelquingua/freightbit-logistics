@@ -182,18 +182,6 @@ public class VendorAction extends ActionSupport implements Preparable {
 
 
     public String viewInfoVendor() {
-        /*Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
-        vendor = transformToFormBean(vendorEntity);
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        sessionAttributes.put("vendorId", vendor.getVendorId());
-
-        if ("TRUCKING".equals(vendor.getVendorType())) {
-            return "TRUCKING";
-        } else {
-            return "SHIPPING";
-        }*/
-
         Vendor vendorEntity = new Vendor();
         if (!StringUtils.isBlank(vendorCodeParam))
             vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
@@ -536,7 +524,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             driverEntity.setCreatedTimestamp(new Date());
             vendorService.addDriver(driverEntity);
         }catch (DriverAlreadyExistsException e) {
-            addFieldError("driver.licenseNumber", getText("err.driver.already.exists"));
+            addFieldError("driver.driverCode", getText("err.driver.already.exists"));
             return INPUT;
         }
         /*vendorService.addDriver(transformToEntityBeanDriver(driver));*/
@@ -555,7 +543,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             driverEntity.setModifiedTimestamp(new Date());
             vendorService.updateDriver(driverEntity);
         }catch (DriverAlreadyExistsException e){
-            addFieldError("driver.licenseNumber", getText("err.driver.already.exists"));
+            addFieldError("driver.driverCode", getText("err.driver.already.exists"));
             return INPUT;
         }
 

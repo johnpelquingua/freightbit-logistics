@@ -112,7 +112,7 @@
 </s:if>
 
 <div class="row">
-    <div class="col-lg-7 col-lg-offset-2" style="margin-left: 0% !important;">
+    <div class="col-lg-9" style="margin-left: 0% !important;">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
@@ -239,7 +239,7 @@
         </div>
     </div>
 
-    <div class="col-lg-3 col-lg-offset-2">
+    <div class="col-lg-3">
         <div class="panel panel-primary">
 
             <%--<div class="panel-heading">

@@ -115,7 +115,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateContact(Contacts contacts) {
+    public void updateContact(Contacts contacts) throws ContactAlreadyExistsException{
         List<Contacts> contactList = new ArrayList<Contacts>();
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("firstName", contacts.getFirstName());

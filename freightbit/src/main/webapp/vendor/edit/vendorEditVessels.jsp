@@ -139,7 +139,7 @@
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Vessel Number"
                                              name="vessel.vesselNumber"
-                                             id="vessel.vesselNumber"/>
+                                             id="vessel.vesselNumber" pattern="[A-Za-z0-9]+" title="No special characters allowed"/>
                             </div>
 
                         </div>
@@ -150,7 +150,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Vessel Name" name="vessel.vesselName"
-                                             id="vessel.vesselName"/>
+                                             id="vessel.vesselName" pattern="[A-Za-z]+" title="No special characters allowed"/>
                             </div>
 
                         </div>
@@ -162,7 +162,7 @@
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Model Number"
                                              name="vessel.modelNumber"
-                                             id="vessel.modelNumber"/>
+                                             id="vessel.modelNumber" pattern="[A-Za-z0-9]+" title="No special characters allowed"/>
                             </div>
 
                         </div>
@@ -173,7 +173,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Year Model" name="vessel.modelYear"
-                                             id="vessel.modelYear"/>
+                                             id="vessel.modelYear" maxLength="4" pattern="\d{4}"/>
                             </div>
 
                         </div>

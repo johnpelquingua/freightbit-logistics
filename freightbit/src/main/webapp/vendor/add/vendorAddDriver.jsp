@@ -200,7 +200,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName"
-                                             id="driver.lastName" pattern="[A-Za-z]+" required="true"/>
+                                             id="driver.lastName" pattern="[A-Za-z\s]+" required="true"/>
                             </div>
 
                         </div>
@@ -211,7 +211,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName"
-                                             id="driver.firstName" pattern="[A-Za-z]+" required="true"/>
+                                             id="driver.firstName" pattern="[A-Za-z\s]+" required="true"/>
                             </div>
 
                         </div>
@@ -222,7 +222,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName"
-                                             id="driver.middleName" pattern="[A-Za-z]+"/>
+                                             id="driver.middleName" pattern="[A-Za-z\s]+"/>
                             </div>
 
                         </div>

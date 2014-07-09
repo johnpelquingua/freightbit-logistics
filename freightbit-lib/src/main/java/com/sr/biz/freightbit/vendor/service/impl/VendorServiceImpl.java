@@ -9,6 +9,7 @@ import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.dao.*;
 import com.sr.biz.freightbit.vendor.entity.*;
 import com.sr.biz.freightbit.vendor.exceptions.*;
@@ -16,8 +17,7 @@ import com.sr.biz.freightbit.vendor.service.VendorService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class VendorServiceImpl implements VendorService {
 
@@ -236,10 +236,12 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addDriver(Driver driver) throws DriverAlreadyExistsException {
-        if (driverDao.findDriverByLastName(driver.getLastName()).size() > 0)
-            throw new DriverAlreadyExistsException(driver.getLastName());
-        else
+        if (driverDao.findDriverByDriverCode(driver.getDriverCode()).size() > 0) {
+            throw new DriverAlreadyExistsException(driver.getDriverCode());
+        } else {
+            driver.setDateHired(new Date());
             driverDao.addDriver(driver);
+        }
     }
 
 
@@ -274,9 +276,9 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public void updateDateHired(Driver driver) {
-        driver.setDateHired(new Date());
-        driverDao.updateDriver(driver);
+    public void updateDateHired(Driver driver){
+            driver.setDateHired(new Date());
+            driverDao.updateDriver(driver);
     }
 
     @Override
@@ -287,8 +289,13 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateDriver(Driver driver) {
-        driverDao.updateDriver(driver);
+    public void updateDriver(Driver driver) throws DriverAlreadyExistsException {
+        if (driverDao.findDriverByDriverCode(driver.getDriverCode()).size() > 0) {
+            throw new DriverAlreadyExistsException(driver.getDriverCode());
+        } else {
+            driver.setDateHired(new Date());
+            driverDao.updateDriver(driver);
+        }
     }
 
     @Override
@@ -421,10 +428,19 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addContact(Contacts contacts) {
+    public void addContact(Contacts contacts) throws ContactAlreadyExistsException{
+        List<Contacts> contactList = new ArrayList<Contacts>();
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("firstName", contacts.getFirstName());
+        paramMap.put("lastName", contacts.getLastName());
+        paramMap.put("referenceId", contacts.getReferenceId());
+        paramMap.put("contactType", contacts.getContactType());
+        contactList = contactsDao.findContactsByParameterMap(paramMap, "Contacts");
 
-        contactsDao.addContact(contacts);
-
+        if (contactList != null && contactList.size() > 0)
+            throw new ContactAlreadyExistsException(contacts.getLastName());
+        else
+            contactsDao.addContact(contacts);
     }
 
     @Override
@@ -435,8 +451,19 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateContact(Contacts contacts) {
-        contactsDao.updateContact(contacts);
+    public void updateContact(Contacts contacts) throws ContactAlreadyExistsException{
+        List<Contacts> contactList = new ArrayList<Contacts>();
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("firstName", contacts.getFirstName());
+        paramMap.put("lastName", contacts.getLastName());
+        paramMap.put("referenceId", contacts.getReferenceId());
+        paramMap.put("contactType", contacts.getContactType());
+        contactList = contactsDao.findContactsByParameterMap(paramMap, "Contacts");
+
+        if (contactList != null && contactList.size() > 0)
+            throw new ContactAlreadyExistsException(contacts.getLastName());
+        else
+            contactsDao.updateContact(contacts);
     }
 
     @Override

@@ -165,45 +165,45 @@
                     <div class="form-group">
                         <label for="contact.lastName">Last Name</label>
                         <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
-                                     id="contact.lastName"/>
+                                     id="contact.lastName" pattern="[A-Za-z\s]+" title="Must be letters only"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.firstName">First Name</label>
                         <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                     id="contact.firstName"/>
+                                     id="contact.firstName" pattern="[A-Za-z\s]+" title="Must be letters only"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.firstName">Middle Name</label>
                         <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                                     id="contact.middleName"/>
+                                     id="contact.middleName" pattern="[A-Za-z\s]+" title="Must be letters only"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.firstName">Phone</label>
-                        <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone"/>
+                        <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone" maxLength="7" pattern="\d{7}"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.firstName">Mobile</label>
-                        <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile"/>
+                        <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile" maxLength="11" pattern="\d{11}"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.firstName">Fax</label>
-                        <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax"/>
+                        <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax" pattern="[0-9]+"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.firstName">E-Mail</label>
-                        <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email"/>
+                        <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email"/>
 
                     </div>
 

@@ -189,21 +189,21 @@
                     <div class="form-group">
                         <label for="contact.lastName">Last Name</label>
                         <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
-                                     id="contact.lastName"/>
+                                     id="contact.lastName" patttern="[A-Za-z\s]+" title="Must be letters only"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.firstName">First Name</label>
                         <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                     id="contact.firstName"/>
+                                     id="contact.firstName" patttern="[A-Za-z\s]+" title="Must be letters only"/>
 
                     </div>
 
                     <div class="form-group">
                         <label for="contact.firstName">Middle Name</label>
                         <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                                     id="contact.middleName"/>
+                                     id="contact.middleName" patttern="[A-Za-z\s]+" title="Must be letters only"/>
 
                     </div>
 
@@ -221,7 +221,7 @@
 
                     <div class="form-group">
                         <label for="contact.firstName">Fax</label>
-                        <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax" maxLength="11" pattern="[0-9]+"/>
+                        <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax" pattern="[0-9]+"/>
 
                     </div>
 
