@@ -213,15 +213,13 @@
                 <h3 class="panel-title"><i class="fa fa-list-ol"></i> Vendor Details</h3>
             </div>--%>
 
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
-                <li class="active"><a href="viewTruckingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li><a href="viewVendorTruckingContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
-                <li><a href="viewDrivers"><i class="fa fa-group fa-fw"></i> Drivers</a></li>
-                <li <%--class="active"--%>><a href="viewTrucks"><i class="fa fa-truck fa-fw"></i> Trucks</a></li>
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
+                    <li class="active"><a href="viewShippingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
+                    <li><a href="viewVendorShippingContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
+                    <li><a href="viewVessels"><i class="fa fa-anchor fa-fw"></i> Vessels</a></li>
 
-
-            </ul>
+                </ul>
         </div>
     </div>
 </div>

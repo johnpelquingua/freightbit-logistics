@@ -177,7 +177,7 @@
                     <button type="button" class="btn" onclick="location.href='viewOrders'">
                         Cancel
                     </button>
-                    <s:submit value="Submit" type="submit" cssClass="btn btn-info"></s:submit>
+                    <s:submit value="Search" type="submit" cssClass="btn btn-info"></s:submit>
 
                 </div>
             </div>

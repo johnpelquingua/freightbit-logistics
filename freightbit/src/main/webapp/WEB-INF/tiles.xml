@@ -332,19 +332,19 @@
     <!-- ORDER module tiles Begin-->
 
     <definition name="orders.booking-search.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Booking Page"/>
+        <put-attribute name="title" value="Search Booking"/>
         <put-attribute name="body" value="/orders/orderSearch.jsp"/>
     </definition>
     <definition name="orders.booking-list.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Booking Page"/>
+        <put-attribute name="title" value="Booking List"/>
         <put-attribute name="body" value="/orders/orderList.jsp"/>
     </definition>
     <definition name="orders.booking-info.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Booking Page"/>
+        <put-attribute name="title" value="Booking Information"/>
         <put-attribute name="body" value="/orders/orderInfo.jsp"/>
     </definition>
     <definition name="orders.booking-new.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Booking Page"/>
+        <put-attribute name="title" value="New Booking"/>
         <put-attribute name="body" value="/orders/orderAdd.jsp"/>
     </definition>
     <definition name="orders.booking-save.tiles" extends="baseLayout">
@@ -352,7 +352,7 @@
         <put-attribute name="body" value="/orders/booking-save.jsp"/>
     </definition>
     <definition name="orders.orderEdit.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Booking Page"/>
+        <put-attribute name="title" value="Edit Booking"/>
         <put-attribute name="body" value="/orders/orderEdit.jsp"/>
     </definition>
     <!-- ORDER module tiles End-->
