@@ -922,7 +922,7 @@
 
                         </thead>
                         <tbody>
-                            <s:iterator value="orderItems" var="orderItem">
+                            <s:iterator value="order.orderItemsBean" var="orderItem">
                                 <tr>
                                 <td><s:property value="quantity" /> </td>
                                 <td><s:property value="classification" /> </td>
@@ -930,9 +930,18 @@
                                 <td><s:property value="width" /> </td>
                                 <td><s:property value="length" /> </td>
                                 <td><s:property value="weight" /> </td>
-                                <td><s:property value="value" /> </td>
+                                <td><s:property value="declaredValue" /> </td>
                                 </tr>
                             </s:iterator>
+                            <%--<display:table id="orderItem" name="order.orderItemsBean" pagesize="10"--%>
+                                           <%--class="table table-striped table-hover table-bordered text-center tablesorter">--%>
+                                <%--<td><display:column property="quantity" title="Quantity" class="tb-font-black"--%>
+                                                    <%--style="text-align: center;"> </display:column></td>--%>
+                                <%--<td><display:column property="classification" title="Classification" class="tb-font-black"--%>
+                                                    <%--style="text-align: center;"> </display:column></td>--%>
+                                <%--<td><display:column property="quantity" title="Quantity" class="tb-font-black"--%>
+                                                    <%--style="text-align: center;"> </display:column></td>--%>
+                            <%--</display:table>--%>
                         </tbody>
                     </table>
                 </div>
