@@ -559,6 +559,7 @@
 
 
 
+<%--
 
 <script type="text/javascript">
 
@@ -600,4 +601,4 @@
                 $('.from_date').datepicker('setEndDate', FromEndDate);
             });
 
-</script>
+</script>--%>
