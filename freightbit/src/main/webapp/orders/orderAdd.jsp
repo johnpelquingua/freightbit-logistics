@@ -560,7 +560,6 @@
 
 
 <%--
-
 <script type="text/javascript">
 
     var startDate = new Date('01/01/2012');
@@ -602,3 +601,90 @@
             });
 
 </script>--%>
+
+<%--<script type="text/javascript">
+    var startDate = new Date('01/01/2012');
+    var FromStartDate = new Date();
+    var FromEndDate = new Date();
+    var ToEndDate = new Date();
+
+    ToEndDate.setDate(ToEndDate.getDate()+365);
+
+    $(function () {
+        $('#datepicker1').datetimepicker();
+    });
+</script>--%>
+
+<%--
+
+<script type="text/javascript">
+    $('#datepicker1').datetimepicker({
+        minDate: new Date(Y, M, d, 5, 00),
+        maxDate: new Date(2014, 11, 31, 6, 00)
+    });
+</script>
+--%>
+
+
+<script type="text/javascript">
+
+    var fromDatePickUp = $('#datepicker1');
+    var toDateDelivery = $('#datepicker2');
+
+    //pick up date validation
+    fromDatePickUp.datetimepicker({
+
+        // on 5:00pm
+        timeFormat: 'HH:mm',
+        onClose: function(dateText, inst) {
+
+            if (toDateDelivery.val() != '') {
+                var testStartDate = fromDatePickUp.datetimepicker('getDate');
+                var testEndDate = toDateDelivery.datetimepicker('getDate');
+
+                if (testStartDate > testEndDate)
+                    toDateDelivery.datetimepicker('setDate', testStartDate);
+
+            }
+
+            else {
+                toDateDelivery.val(dateText);
+            }
+        },
+
+        onSelect: function (selectedDateTime){
+            toDateDelivery.datetimepicker('option', 'minDate', fromDatePickUp.datetimepicker('getDate') );
+        }
+
+    });
+
+    // delivery date validation -jp
+    toDateDelivery.datetimepicker({
+
+        // on 6:00pm
+        timeFormat: 'HH:mm',
+        onClose: function(dateText, inst) {
+
+            if (fromDatePickUp.val() != '') {
+                var testStartDate = fromDatePickUp.datetimepicker('getDate');
+                var testEndDate = toDateDelivery.datetimepicker('getDate');
+
+                if (testStartDate > testEndDate)
+                    fromDatePickUp.datetimepicker('setDate', testEndDate);
+
+            }
+
+            else {
+                fromDatePickUp.val(dateText);
+            }
+        },
+
+        onSelect: function (selectedDateTime){
+            fromDatePickUp.datetimepicker('option', 'maxDate', toDateDelivery.datetimepicker('getDate') );
+        }
+
+    });
+
+
+</script>
+

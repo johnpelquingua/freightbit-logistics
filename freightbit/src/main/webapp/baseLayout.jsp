@@ -15,21 +15,32 @@
     </title>
 
     <!-- Bootstrap core CSS -->
-
     <link href="includes/css/bootstraps.css" rel="stylesheet">
 
     <!-- Add custom CSS here -->
-
     <link rel="stylesheet" href="includes/css/mains.css">
     <link rel="stylesheet" href="includes/css/sb-admin.css">
     <link rel="stylesheet" href="includes/css/datepicker.css">
+    <link rel="stylesheet" href="includes/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="includes/font-awesome/css/font-awesome.min.css">
 
-    <!--Javascript here -->
+    <link rel="stylesheet" href="includes/css/jquery-ui.css">
+    <link rel="stylesheet" href="includes/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="includes/css/jquery-ui.structure.css">
+    <link rel="stylesheet" href="includes/css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="includes/css/jquery-ui.theme.css">
+    <link rel="stylesheet" href="includes/css/jquery-ui.theme.min.css">
 
-    <script type='text/javascript' src='includes/js/jquery-1.11.1.js'></script>
+    <!--Javascript here -->
+    <%--<script type='text/javascript' src='includes/js/jquery-1.11.1.js'></script>--%>
     <script type='text/javascript' src='includes/js/bootstrap.js'></script>
-    <script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>
+    <script type='text/javascript' src='includes/js/jquery-2.1.1.js'></script>
+    <script type='text/javascript' src='includes/js/jquery-ui.js'></script>
+    <script type='text/javascript' src='includes/js/jquery-ui-timepicker-addon.js'></script>
+
+    <%--<script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>--%>
+    <%--<script type='text/javascript' src='includes/js/bootstrap-datetimepicker.min.js'></script>--%>
+
 
 
 </head>
