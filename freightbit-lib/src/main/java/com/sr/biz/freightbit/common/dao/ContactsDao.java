@@ -22,7 +22,7 @@ public interface ContactsDao {
 
 //    public List<Contacts> findAllContactsByClientId(long clientId);
 
-    public List<Contacts> findDuplicateContactByLastName(String lastName, Integer contactId);
+    public List<Contacts> findDuplicateContactByNameAndId(String lastName, String firstName, Integer contactId, Integer referenceId);
 
     public Contacts findContactByReferenceTableAndId(String referenceTable, Integer referenceID);
 

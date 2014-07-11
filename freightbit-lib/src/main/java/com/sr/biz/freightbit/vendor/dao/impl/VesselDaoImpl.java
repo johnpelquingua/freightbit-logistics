@@ -144,4 +144,22 @@ public class VesselDaoImpl extends HibernateDaoSupport implements VesselDao {
         }
     }
 
+    @Override
+    public List<Vessel> findDuplicateByVesselNumber(String vesselNumber, Integer vesselId) {
+        Log.debug("Finding duplicate vessel by vessel number");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Vessel v where v.vesselNumber= :vesselNumber and v.vesselId != :vesselId");
+            query.setParameter("vesselNumber", vesselNumber);
+            query.setParameter("vesselId", vesselId);
+            List<Vessel> results = (List<Vessel>) query.list();
+            Log.debug("Find vessel by vesselNumber successful, result size: "
+                    + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            Log.error("Find vessel by vesselNumber failed", re);
+            throw re;
+        }
+    }
+
 }

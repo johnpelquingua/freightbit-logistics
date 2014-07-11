@@ -33,8 +33,8 @@
 
     <!--Javascript here -->
     <%--<script type='text/javascript' src='includes/js/jquery-1.11.1.js'></script>--%>
-    <script type='text/javascript' src='includes/js/bootstrap.js'></script>
     <script type='text/javascript' src='includes/js/jquery-2.1.1.js'></script>
+    <script type='text/javascript' src='includes/js/bootstrap.js'></script>
     <script type='text/javascript' src='includes/js/jquery-ui.js'></script>
     <script type='text/javascript' src='includes/js/jquery-ui-timepicker-addon.js'></script>
 

@@ -369,9 +369,9 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addVessel(Vessel vessel) throws VesselAlreadyExistsException {
-//        if (vesselDao.findVesselByName(vessel.getVesselName()) != null)
-//            throw new VesselAlreadyExistsException(vessel.getVesselName());
-//        else
+        if (vesselDao.findDuplicateByVesselNumber(vessel.getVesselNumber(), vessel.getVesselId()).size() > 0)
+            throw new VesselAlreadyExistsException(vessel.getVesselNumber());
+        else
         vesselDao.addVessel(vessel);
     }
 
@@ -383,8 +383,11 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateVessel(Vessel vessel) {
-        vesselDao.updateVessel(vessel);
+    public void updateVessel(Vessel vessel) throws VesselAlreadyExistsException{
+        if (vesselDao.findDuplicateByVesselNumber(vessel.getVesselNumber(), vessel.getVesselId()).size() > 0)
+            throw new VesselAlreadyExistsException(vessel.getVesselNumber());
+        else
+            vesselDao.updateVessel(vessel);
     }
 
     @Override
@@ -429,15 +432,7 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addContact(Contacts contacts) throws ContactAlreadyExistsException{
-        List<Contacts> contactList = new ArrayList<Contacts>();
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("firstName", contacts.getFirstName());
-        paramMap.put("lastName", contacts.getLastName());
-        paramMap.put("referenceId", contacts.getReferenceId());
-        paramMap.put("contactType", contacts.getContactType());
-        contactList = contactsDao.findContactsByParameterMap(paramMap, "Contacts");
-
-        if (contactList != null && contactList.size() > 0)
+        if (contactsDao.findDuplicateContactByNameAndId(contacts.getLastName(), contacts.getFirstName(), contacts.getContactId(), contacts.getReferenceId()).size() > 0)
             throw new ContactAlreadyExistsException(contacts.getLastName());
         else
             contactsDao.addContact(contacts);
@@ -452,15 +447,7 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateContact(Contacts contacts) throws ContactAlreadyExistsException{
-        List<Contacts> contactList = new ArrayList<Contacts>();
-        Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put("firstName", contacts.getFirstName());
-        paramMap.put("lastName", contacts.getLastName());
-        paramMap.put("referenceId", contacts.getReferenceId());
-        paramMap.put("contactType", contacts.getContactType());
-        contactList = contactsDao.findContactsByParameterMap(paramMap, "Contacts");
-
-        if (contactList != null && contactList.size() > 0)
+        if (contactsDao.findDuplicateContactByNameAndId(contacts.getLastName(), contacts.getFirstName(), contacts.getContactId(), contacts.getReferenceId()).size() > 0)
             throw new ContactAlreadyExistsException(contacts.getLastName());
         else
             contactsDao.updateContact(contacts);

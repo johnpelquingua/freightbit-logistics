@@ -51,13 +51,15 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao 
     }
 
     @Override
-    public List<Contacts> findDuplicateContactByLastName(String lastName, Integer contactId) {
-        log.debug("Finding duplicate contact by contact lastName");
+    public List<Contacts> findDuplicateContactByNameAndId(String lastName, String firstName, Integer contactId, Integer referenceId) {
+        log.debug("Finding duplicate contact by contact name and Id");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from Contacts c where c.lastName= :lastName and c.contactId != :contactId");
+                    "from Contacts c where c.lastName= :lastName and c.firstName = :firstName and c.contactId != :contactId and c.referenceId = :referenceId");
             query.setParameter("contactId", contactId);
             query.setParameter("lastName", lastName);
+            query.setParameter("firstName", firstName);
+            query.setParameter("referenceId", referenceId);
             List<Contacts> results = (List<Contacts>) query.list();
             log.debug("Find Contact by lastName successful, result size: "
                     + results.size());
@@ -169,7 +171,7 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao 
     public List<Contacts> findContactByLastName(String lastName) {
         log.debug("finding Contact instance by Last Name");
         try {
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Contact c where c.lastName = :lastName");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Contacts c where c.lastName = :lastName");
             query.setParameter("lastName", lastName);
             List<Contacts> results = (List<Contacts>) query.list();
             log.debug("find by lastname successful, result size: " + results.size());
