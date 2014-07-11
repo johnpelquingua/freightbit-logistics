@@ -20,7 +20,7 @@ public interface OrderDao {
 
     public Orders findOrdersById (Integer orderId);
 
-    public List<Orders> findOrdersByOrderNumber (Integer orderNumber);
+    public List<Orders> findOrdersByOrderNumber (String orderNumber);
 
     public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId);
 }

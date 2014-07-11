@@ -1,17 +1,70 @@
 package com.sr.apps.freightbit.order.formbean;
 
+import java.util.Date;
+
 public class OrderItemsBean {
 
     private Integer orderItemId;
     private Integer orderId;
     private Integer quantity;
     private String classification;
-    private String cargoDetails;
+    private String description;
     private Double declaredValue;
-    private Double height;
-    private Double width;
-    private Double length;
     private Double weight;
+    private String remarks;
+    private Float rate;
+    private Date createdTimeStamp;
+    private String createdBy;
+    private Date modifiedTimeStamp;
+    private String modifiedBy;
+    private String nameSize;
+
+
+    public OrderItemsBean(){
+
+    }
+
+
+    public OrderItemsBean(Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy, String nameSize) {
+        this.orderItemId = orderItemId;
+        this.orderId = orderId;
+        this.quantity = quantity;
+        this.classification = classification;
+        this.description = description;
+        this.declaredValue = declaredValue;
+        this.weight = weight;
+        this.remarks = remarks;
+        this.rate = rate;
+        this.createdTimeStamp = createdTimeStamp;
+        this.createdBy = createdBy;
+        this.modifiedTimeStamp = modifiedTimeStamp;
+        this.modifiedBy = modifiedBy;
+        this.nameSize = nameSize;
+    }
+
+    public Float getRate() {
+        return rate;
+    }
+
+    public void setRate(Float rate) {
+        this.rate = rate;
+    }
+
+    public Integer getOrderItemId() {
+        return orderItemId;
+    }
+
+    public void setOrderItemId(Integer orderItemId) {
+        this.orderItemId = orderItemId;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
 
     public Integer getQuantity() {
         return quantity;
@@ -29,12 +82,12 @@ public class OrderItemsBean {
         this.classification = classification;
     }
 
-    public String getCargoDetails() {
-        return cargoDetails;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCargoDetails(String cargoDetails) {
-        this.cargoDetails = cargoDetails;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Double getDeclaredValue() {
@@ -45,30 +98,6 @@ public class OrderItemsBean {
         this.declaredValue = declaredValue;
     }
 
-    public Double getHeight() {
-        return height;
-    }
-
-    public void setHeight(Double height) {
-        this.height = height;
-    }
-
-    public Double getWidth() {
-        return width;
-    }
-
-    public void setWidth(Double width) {
-        this.width = width;
-    }
-
-    public Double getLength() {
-        return length;
-    }
-
-    public void setLength(Double length) {
-        this.length = length;
-    }
-
     public Double getWeight() {
         return weight;
     }
@@ -77,19 +106,51 @@ public class OrderItemsBean {
         this.weight = weight;
     }
 
-    public Integer getOrderItemId() {
-        return orderItemId;
+    public String getRemarks() {
+        return remarks;
     }
 
-    public void setOrderItemId(Integer orderItemId) {
-        this.orderItemId = orderItemId;
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public Date getCreatedTimeStamp() {
+        return createdTimeStamp;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setCreatedTimeStamp(Date createdTimeStamp) {
+        this.createdTimeStamp = createdTimeStamp;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getModifiedTimeStamp() {
+        return modifiedTimeStamp;
+    }
+
+    public void setModifiedTimeStamp(Date modifiedTimeStamp) {
+        this.modifiedTimeStamp = modifiedTimeStamp;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public String getNameSize() {
+        return nameSize;
+    }
+
+    public void setNameSize(String nameSize) {
+        this.nameSize = nameSize;
     }
 }

@@ -23,20 +23,19 @@ public class OrderItems implements java.io.Serializable {
     private String classification;
     private String commodity;
     private Double declaredValue;
-    private Double height;
-    private Double width;
-    private Double length;
     private Double weight;
     private String comments;
     private Date createdTimestamp;
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
+    private Float rate;
+    private String nameSize;
 
     public OrderItems() {
     }
 
-    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double height, Double width, Double length, Double weight, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double weight, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Float rate, String nameSize) {
         this.orderItemId = orderItemId;
         this.clientId = clientId;
         this.orderId = orderId;
@@ -44,15 +43,14 @@ public class OrderItems implements java.io.Serializable {
         this.classification = classification;
         this.commodity = commodity;
         this.declaredValue = declaredValue;
-        this.height = height;
-        this.width = width;
-        this.length = length;
         this.weight = weight;
         this.comments = comments;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
+        this.rate = rate;
+        this.nameSize = nameSize;
     }
 
     @Id
@@ -134,36 +132,6 @@ public class OrderItems implements java.io.Serializable {
         this.declaredValue = declaredValue;
     }
 
-
-    @Column(name = "height", nullable = false, precision = 12, scale = 0)
-    public Double getHeight() {
-        return this.height;
-    }
-
-    public void setHeight(Double height) {
-        this.height = height;
-    }
-
-
-    @Column(name = "width", nullable = false, precision = 12, scale = 0)
-    public Double getWidth() {
-        return this.width;
-    }
-
-    public void setWidth(Double width) {
-        this.width = width;
-    }
-
-
-    @Column(name = "length", nullable = false, precision = 12, scale = 0)
-    public Double getLength() {
-        return this.length;
-    }
-
-    public void setLength(Double length) {
-        this.length = length;
-    }
-
     @Column(name = "weight", nullable = false, precision = 12, scale = 0)
     public Double getWeight() {
         return weight;
@@ -222,7 +190,23 @@ public class OrderItems implements java.io.Serializable {
         this.modifiedBy = modifiedBy;
     }
 
+    @Column(name = "rate")
+    public Float getRate() {
+        return rate;
+    }
 
+    public void setRate(Float rate) {
+        this.rate = rate;
+    }
+
+    @Column(name = "nameSize" , nullable = false)
+    public String getNameSize() {
+        return nameSize;
+    }
+
+    public void setNameSize(String nameSize) {
+        this.nameSize = nameSize;
+    }
 }
 
 

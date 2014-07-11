@@ -109,7 +109,7 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
 
 
     @Override
-    public List<Orders> findOrdersByOrderNumber (Integer orderNumber){
+    public List<Orders> findOrdersByOrderNumber (String orderNumber){
         Log.debug("finding Orders instance by Order Number");
         try{
             Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderNumber = :orderNumber");
