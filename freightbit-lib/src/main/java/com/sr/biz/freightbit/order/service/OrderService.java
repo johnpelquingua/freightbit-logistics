@@ -29,7 +29,7 @@ public interface OrderService {
 
     public Orders findOrdersById(Integer orderId);
 
-    public Orders findOrdersByOrderNumber(Integer orderNumber);
+    public Orders findOrdersByOrderNumber(String orderNumber);
 
     public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId);
 

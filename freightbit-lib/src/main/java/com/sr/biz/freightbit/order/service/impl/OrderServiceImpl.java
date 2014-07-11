@@ -99,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Orders findOrdersByOrderNumber(Integer orderNumber) {
+    public Orders findOrdersByOrderNumber(String orderNumber) {
         List<Orders> result = orderDao.findOrdersByOrderNumber(orderNumber);
         if (result != null && !result.isEmpty())
             return result.get(0);

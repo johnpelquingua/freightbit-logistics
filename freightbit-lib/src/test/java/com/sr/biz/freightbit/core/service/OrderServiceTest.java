@@ -46,7 +46,7 @@ public class OrderServiceTest {
         List<Orders> existingOrderList = new ArrayList<>();
         existingOrderList.add(orders);
 
-        Mockito.when(orderDao.findOrdersByOrderNumber(213)).thenReturn(existingOrderList);
+        Mockito.when(orderDao.findOrdersByOrderNumber("MTY-213")).thenReturn(existingOrderList);
         orderService.addOrder(orders);
     }
 
