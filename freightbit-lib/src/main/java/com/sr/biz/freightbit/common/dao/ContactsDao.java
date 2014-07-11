@@ -30,7 +30,7 @@ public interface ContactsDao {
 
     public List<Contacts> findContactByReferenceId(Integer referenceId);
 
-    public List<Contacts> findContactByLastName(String lastName);
+    public List<Contacts> findContactByLastNameAndFirstName(String lastName, String firstName);
 
     public List<Contacts> findContactsByParameterMap(Map<String, Object> paramMap,
                                                      String entity);

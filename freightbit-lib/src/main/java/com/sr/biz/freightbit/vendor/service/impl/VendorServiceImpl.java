@@ -173,6 +173,7 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addTrucks(Trucks trucks) throws TrucksAlreadyExistsException {
+
         if (trucksDao.findTrucksByTruckCode(trucks.getTruckCode()).size() > 0)
             throw new TrucksAlreadyExistsException(trucks.getTruckCode());
         else
@@ -182,7 +183,8 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateTrucks(Trucks trucks) throws TrucksAlreadyExistsException {
-        if (trucksDao.findTrucksByTruckCode(trucks.getTruckCode()).size() > 0) {
+
+        if (trucksDao.findDuplicateTruckByTruckCodeAndId(trucks.getTruckCode(), trucks.getTruckId()).size() > 0) {
             throw new TrucksAlreadyExistsException(trucks.getTruckCode());
         } else {
             trucksDao.updateTrucks(trucks);
@@ -276,9 +278,9 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public void updateDateHired(Driver driver){
-            driver.setDateHired(new Date());
-            driverDao.updateDriver(driver);
+    public void updateDateHired(Driver driver) {
+        driver.setDateHired(new Date());
+        driverDao.updateDriver(driver);
     }
 
     @Override
@@ -290,7 +292,7 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateDriver(Driver driver) throws DriverAlreadyExistsException {
-        if (driverDao.findDriverByDriverCode(driver.getDriverCode()).size() > 0) {
+        if (driverDao.findDriverByDriverCodeAndId(driver.getDriverCode(), driver.getDriverId()).size() > 0) {
             throw new DriverAlreadyExistsException(driver.getDriverCode());
         } else {
             driver.setDateHired(new Date());
@@ -369,10 +371,10 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addVessel(Vessel vessel) throws VesselAlreadyExistsException {
-        if (vesselDao.findDuplicateByVesselNumber(vessel.getVesselNumber(), vessel.getVesselId()).size() > 0)
+        if (vesselDao.findDuplicateByVesselNumber(vessel.getVesselNumber()).size() > 0)
             throw new VesselAlreadyExistsException(vessel.getVesselNumber());
         else
-        vesselDao.addVessel(vessel);
+            vesselDao.addVessel(vessel);
     }
 
     @Override
@@ -383,8 +385,8 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateVessel(Vessel vessel) throws VesselAlreadyExistsException{
-        if (vesselDao.findDuplicateByVesselNumber(vessel.getVesselNumber(), vessel.getVesselId()).size() > 0)
+    public void updateVessel(Vessel vessel) throws VesselAlreadyExistsException {
+        if (vesselDao.findDuplicateByVesselNumberAndId(vessel.getVesselNumber(), vessel.getVesselId()).size() > 0)
             throw new VesselAlreadyExistsException(vessel.getVesselNumber());
         else
             vesselDao.updateVessel(vessel);
@@ -431,8 +433,8 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addContact(Contacts contacts) throws ContactAlreadyExistsException{
-        if (contactsDao.findDuplicateContactByNameAndId(contacts.getLastName(), contacts.getFirstName(), contacts.getContactId(), contacts.getReferenceId()).size() > 0)
+    public void addContact(Contacts contacts) throws ContactAlreadyExistsException {
+        if (contactsDao.findContactByLastNameAndFirstName(contacts.getLastName(), contacts.getFirstName()).size() > 0)
             throw new ContactAlreadyExistsException(contacts.getLastName());
         else
             contactsDao.addContact(contacts);
@@ -446,7 +448,7 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateContact(Contacts contacts) throws ContactAlreadyExistsException{
+    public void updateContact(Contacts contacts) throws ContactAlreadyExistsException {
         if (contactsDao.findDuplicateContactByNameAndId(contacts.getLastName(), contacts.getFirstName(), contacts.getContactId(), contacts.getReferenceId()).size() > 0)
             throw new ContactAlreadyExistsException(contacts.getLastName());
         else

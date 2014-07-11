@@ -9,6 +9,7 @@ import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface TrucksDao {
@@ -25,7 +26,7 @@ public interface TrucksDao {
 
     public List<Trucks> findAllTrucks();
 
-    public List<User> findAllUsersByClientId(Long clientId);
-
     public List<Trucks> findTrucksByVendorId(Integer vendorId);
+
+    public List<Trucks> findDuplicateTruckByTruckCodeAndId(String truckCode, Integer vendorId);
 }

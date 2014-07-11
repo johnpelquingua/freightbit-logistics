@@ -168,11 +168,12 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao 
     }
 
     @Override
-    public List<Contacts> findContactByLastName(String lastName) {
+    public List<Contacts> findContactByLastNameAndFirstName(String lastName, String firstName) {
         log.debug("finding Contact instance by Last Name");
         try {
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Contacts c where c.lastName = :lastName");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Contacts c where c.lastName = :lastName and c.firstName = :firstName");
             query.setParameter("lastName", lastName);
+            query.setParameter("firstName", firstName);
             List<Contacts> results = (List<Contacts>) query.list();
             log.debug("find by lastname successful, result size: " + results.size());
             return results;

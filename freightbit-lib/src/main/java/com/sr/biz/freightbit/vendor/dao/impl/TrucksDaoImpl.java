@@ -15,6 +15,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Transactional
 public class TrucksDaoImpl extends HibernateDaoSupport implements TrucksDao {
@@ -56,23 +58,6 @@ public class TrucksDaoImpl extends HibernateDaoSupport implements TrucksDao {
         } catch (RuntimeException e) {
             log.error("Find all failed", e);
             throw e;
-        }
-    }
-
-
-    public List<User> findAllUsersByClientId(Long clientId) {
-        log.debug("finding User instance by client");
-        try {
-            Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from User u where u.clientId = :clientId");
-            query.setParameter("clientId", clientId);
-            List<User> results = (List<User>) query.list();
-            log.debug("find by client id successful, result size: "
-                    + results.size());
-            return results;
-        } catch (RuntimeException re) {
-            log.error("find by client id failed", re);
-            throw re;
         }
     }
 
@@ -137,6 +122,24 @@ public class TrucksDaoImpl extends HibernateDaoSupport implements TrucksDao {
         } catch (RuntimeException e) {
             log.error("update failed", e);
             throw e;
+        }
+    }
+
+    @Override
+    public List<Trucks> findDuplicateTruckByTruckCodeAndId(String truckCode, Integer truckId) {
+        log.debug("Finding duplicate truck by code name and Id");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Trucks t where t.truckCode = :truckCode and t.truckId != :truckId");
+            query.setParameter("truckCode", truckCode);
+            query.setParameter("truckId", truckId);
+            List<Trucks> results = (List<Trucks>) query.list();
+            log.debug("Find truck successful, result size: "
+                    + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            log.error("Find contact by lastName failed", re);
+            throw re;
         }
     }
 }

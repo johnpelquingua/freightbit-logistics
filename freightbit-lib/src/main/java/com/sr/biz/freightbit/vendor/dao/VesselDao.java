@@ -26,5 +26,7 @@ public interface VesselDao {
 
     public List<Vessel> findVesselByVendorId(Integer vendorId);
 
-    public List<Vessel> findDuplicateByVesselNumber(String vesselNumber, Integer vesselId);
+    public List<Vessel> findDuplicateByVesselNumber(String vesselNumber);
+
+    public List<Vessel> findDuplicateByVesselNumberAndId(String vesselNumber, Integer vesselId);
 }
