@@ -46,10 +46,8 @@ public class Orders implements java.io.Serializable {
     private Date modifiedTimestamp;
     private String modifiedBy;
     private Date pickupDate;
-    private Date pickupTime;
     private String originationPort;
     private Date deliveryDate;
-    private Date deliveryTime;
     private String destinationPort;
     private Double rates;
     private List<OrderItems> orderItems = new ArrayList<OrderItems>();
@@ -388,7 +386,7 @@ public class Orders implements java.io.Serializable {
         this.pickupDate = pickupDate;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    /*@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "pickupTime")
     public Date getPickupTime() {
         return pickupTime;
@@ -397,7 +395,7 @@ public class Orders implements java.io.Serializable {
 
     public void setPickupTime(Date pickupTime) {
         this.pickupTime = pickupTime;
-    }
+    }*/
 
     @Column(name = "originationPort", length = 25)
     public String getOriginationPort() {
@@ -420,7 +418,7 @@ public class Orders implements java.io.Serializable {
         this.deliveryDate = deliveryDate;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    /*@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "deliveryTime")
     public Date getDeliveryTime() {
         return deliveryTime;
@@ -429,7 +427,7 @@ public class Orders implements java.io.Serializable {
 
     public void setDeliveryTime(Date deliveryTime) {
         this.deliveryTime = deliveryTime;
-    }
+    }*/
 
 
     @Column(name = "destinationPort", length = 25)
