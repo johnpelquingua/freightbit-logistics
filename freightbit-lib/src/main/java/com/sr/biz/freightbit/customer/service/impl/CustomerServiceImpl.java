@@ -343,8 +343,8 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Integer addCustomer(Customer customer) throws CustomerAlreadyExistsException {
 
-        if (customerDao.findCustomerByName(customer.getCustomerName()).size() > 0)
-            throw new CustomerAlreadyExistsException(customer.getCustomerName());
+        if (customerDao.findCustomerByCustomerCode(customer.getCustomerCode()).size() > 0)
+            throw new CustomerAlreadyExistsException(customer.getCustomerCode());
         else
             return customerDao.addCustomer(customer);
     }
@@ -357,8 +357,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateCustomer(Customer customer) {
-        customerDao.updateCustomer(customer);
+    public void updateCustomer(Customer customer) throws CustomerAlreadyExistsException {
+        if (customerDao.findDuplicateCustomerByCodeAndId(customer.getCustomerCode(), customer.getCustomerId()).size() > 0)
+            throw new CustomerAlreadyExistsException(customer.getCustomerCode());
+        else
+            customerDao.updateCustomer(customer);
     }
 
     @Override

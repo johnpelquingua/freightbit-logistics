@@ -192,4 +192,21 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
         return customers;
     }
 
+    @Override
+    public List<Customer> findDuplicateCustomerByCodeAndId(String customerCode, Integer customerId) {
+        log.debug("Find duplicate customer.");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Customer d where d.customerCode = :customerCode and d.customerId != :customerId");
+            query.setParameter("customerCode", customerCode);
+            query.setParameter("customerId", customerId);
+            List<Customer> results = (List<Customer>) query.list();
+            log.debug("Find by driverCode successful, result size: " + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            log.error("Find by driverCode failed", re);
+            throw re;
+        }
+    }
+
 }

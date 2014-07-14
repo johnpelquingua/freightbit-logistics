@@ -188,7 +188,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Plate Number" name="truck.plateNumber"
-                                             id="truck.plateNumber" pattern="[A-Z0-9]+" required="true" title="Must have Capital letters and numbers"/>
+                                             id="truck.plateNumber" required="true" />
                             </div>
 
                         </div>
@@ -199,7 +199,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Model Number" name="truck.modelNumber"
-                                             id="truck.modelNumber" pattern="[A-Za-z0-9]+" required="true"/>
+                                             id="truck.modelNumber" required="true"/>
                             </div>
 
                         </div>
@@ -210,7 +210,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Year Model" name="truck.modelYear"
-                                             id="truck.modelYear" pattern="\d{4}" required="true" maxLength="4"/>
+                                             id="truck.modelYear" required="true" maxLength="4"/>
                             </div>
 
                         </div>
@@ -222,7 +222,7 @@
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Engine Number"
                                              name="truck.engineNumber"
-                                             id="truck.engineNumber" pattern="[A-Za-z0-9]+" required="true"/>
+                                             id="truck.engineNumber" required="true"/>
                             </div>
 
                         </div>
@@ -233,7 +233,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Truck Code" name="truck.truckCode"
-                                             id="truck.truckCode" pattern="[A-Za-z0-9]+" required="true"/>
+                                             id="truck.truckCode" required="true"/>
                             </div>
 
                         </div>
@@ -244,7 +244,7 @@
 
                             <div class="col-sm-10">
                                 <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
-                                             id="truck.grossWeight" pattern="[0-9]+" required="true"/>
+                                             id="truck.grossWeight" required="true"/>
                             </div>
 
                         </div>

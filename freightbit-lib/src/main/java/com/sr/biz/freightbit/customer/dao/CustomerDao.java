@@ -31,4 +31,6 @@ public interface CustomerDao {
     public List<Customer> findCustomersByCriteria(String column, String value, Integer clientId);
 
     public List<Customer> findCustomerByCustomerCode(String customerCode);
+
+    public List<Customer> findDuplicateCustomerByCodeAndId(String customerCode, Integer customerId);
 }

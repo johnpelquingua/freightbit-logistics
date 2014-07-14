@@ -434,6 +434,49 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public void validateOnSubmitTrucks(TruckBean truckBean) {
         clearErrorsAndMessages();
+
+        String alpha = "[A-Z]+";
+        String plate = "[A-Z][A-Z][A-Z]+[-]\\d\\d\\d";
+        String alphaNumeric = "[A-Za-z0-9]+";
+        String year = "[0-9]{4}";
+        String weight = "[0-9]+";
+
+        Pattern codePattern = Pattern.compile(alpha);
+        Pattern plateNumberPattern = Pattern.compile(plate);
+        Pattern alphaNumericPattern = Pattern.compile(alphaNumeric);
+        Pattern yearPattern = Pattern.compile(year);
+        Pattern weightPattern = Pattern.compile(weight);
+
+        Matcher matcher = codePattern.matcher(truckBean.getTruckCode());
+        if (!matcher.matches()) {
+            addFieldError("truck.truckCode", "Code must be capital letters only.");
+        }
+
+        matcher = plateNumberPattern.matcher(truckBean.getPlateNumber());
+        if (!matcher.matches()) {
+            addFieldError("truck.plateNumber", "Plate Number must be in this format: ABC-123");
+        }
+
+        matcher = alphaNumericPattern.matcher(truckBean.getModelNumber());
+        if (!matcher.matches()) {
+            addFieldError("truck.modelNumber", "Model number must not contain special characters");
+        }
+
+        matcher = yearPattern.matcher(truckBean.getModelYear().toString());
+        if (!matcher.matches()) {
+            addFieldError("truck.modelYear", "Year must be numbers only");
+        }
+
+        matcher = weightPattern.matcher(truckBean.getGrossWeight().toString());
+        if (!matcher.matches()) {
+            addFieldError("truck.grossWeight", "Weight must be number only");
+        }
+
+        matcher = alphaNumericPattern.matcher(truckBean.getEngineNumber());
+        if (!matcher.matches()) {
+            addFieldError("truck.engineNumber", "Engine number must not contact special character");
+        }
+
         if (StringUtils.isBlank(truckBean.getPlateNumber())) {
             addFieldError("truck.plateNumber", getText("err.plateNumber.required"));
         }
