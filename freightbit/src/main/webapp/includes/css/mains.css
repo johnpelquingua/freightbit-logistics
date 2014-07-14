@@ -704,3 +704,14 @@ span.pagelinks {
 .ui-timepicker-rtl dl dt{ float: right; clear: right; }
 .ui-timepicker-rtl dl dd { margin: 0 40% 10px 10px; }
 
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1060px;
+    }
+}
+
+.container {
+    padding-right: 20px;
+    padding-left: 0px;
+}
