@@ -91,5 +91,7 @@ public interface OrderService {
 
     public List<OrderItems> findAllItemByOrderId(Integer orderId);
 
+    public String findNextBookingNo(Integer clientId, String companyCode);
+
 }
 

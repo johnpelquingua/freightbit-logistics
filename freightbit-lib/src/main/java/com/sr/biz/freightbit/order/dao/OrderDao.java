@@ -23,4 +23,6 @@ public interface OrderDao {
     public List<Orders> findOrdersByOrderNumber (String orderNumber);
 
     public List<Orders> findOrdersByCriteria(String column, String value, Integer clientId);
+
+    public Integer findNextBookingNo(Integer clientId, String companyCode);
 }

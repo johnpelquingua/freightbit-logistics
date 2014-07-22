@@ -330,5 +330,24 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderItems> findAllItemByOrderId(Integer orderId) {
         return orderItemsDao.findAllItemByOrderId(orderId);
     }
+
+    /**
+     * @param clientId
+     * @companyCode companyCode 3-character companyCode (eg., NTY, MTY)
+     * @return next booking no. Eg, NTY-0007, MTY-0000
+     */
+    @Override
+    public String findNextBookingNo(Integer clientId, String companyCode) {
+        Integer nextBookingNo = orderDao.findNextBookingNo(clientId, companyCode);
+        String nextBookingNoAsStr = nextBookingNo.toString();
+        int zerosToAdd = 4-nextBookingNoAsStr.length();
+        if (zerosToAdd == 3)
+            return companyCode + "-000" + nextBookingNoAsStr;
+        else if (zerosToAdd == 2)
+            return companyCode + "-00" + nextBookingNoAsStr;
+        else //if (zerosToAdd == 1)
+            return companyCode + "-0" + nextBookingNoAsStr;
+    }
+
 // End Items
 }
