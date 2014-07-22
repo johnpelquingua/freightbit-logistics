@@ -1,11 +1,13 @@
 package com.sr.apps.freightbit.order.action;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
+import com.sr.biz.freightbit.core.entity.Client;
 import org.apache.commons.lang3.StringUtils;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -13,8 +15,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
-import com.sr.apps.freightbit.core.formbean.UserBean;
-import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
@@ -26,18 +26,17 @@ import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.service.CustomerService;
-import com.sr.biz.freightbit.customer.service.ItemService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
-import org.apache.commons.lang3.StringUtils;
+import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.service.ClientService;
 
 public class OrderAction extends ActionSupport implements Preparable {
 
     private static final long serialVersionUID = 1L;
     private static final String ALPHA_NUM = "0123456789";
     private static final Integer compcode = 4;
-    //test data should be getCompanyCode(); -jp
     private static final String COMPANY_CODE = "SRI";
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
@@ -58,12 +57,21 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Contacts> consigneeList = new ArrayList<Contacts>();
     private List<CustomerBean> customerBean = new ArrayList<CustomerBean>();
     private List<Integer> itemQuantity;
+    private List<Contacts> contactsList = new ArrayList<Contacts>();
+    private List<Address> addressList = new ArrayList<Address>();
+    private List<Address> consigneeAddressList = new ArrayList<Address>();
 
     private Integer orderIdParam;
 
     private OrderService orderService;
     private CustomerService customerService;
     private ParameterService parameterService;
+    private ClientService clientService;
+
+    private String name;
+    private String age;
+
+    private Integer ID;
 
     public String viewOrders() {
         String column = getColumnFilter();
@@ -110,12 +118,12 @@ public class OrderAction extends ActionSupport implements Preparable {
         /*List<OrderItems> orderItemsFromSession = orderService.findAllItemByOrderId(order.getOrderId());*/
         List<OrderItems> orderItemsFromSession = orderService.findAllItemByOrderId(1);
 
-        System.out.println( "-------------------------------------" + orderItemsFromSession + "-------------------------------------" );
+        System.out.println( "-------------------------------------ORDER ITEMS FROM SESSION" + orderItemsFromSession + "-------------------------------------" );
 
 
         sessionAttributes.put("orderItems", orderItemsFromSession);
 
-        System.out.println( "-------------------------------------" + orderItems + "-------------------------------------" );
+        System.out.println( "-------------------------------------ORDER ITEMS" + orderItems + "-------------------------------------" );
 
         return SUCCESS;
     }
@@ -125,16 +133,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         List<OrderItems> orderItemsFromSession = (List) sessionAttributes.get("orderItems");
 
-
-
-
         if (orderItemsFromSession != null)
             orderItemsFromSession.add(transformToOrderItemsEntityBean(orderItem));
             sessionAttributes.put("orderItems", orderItemsFromSession);
         /*orderItems = orderItemsFromSession;*/
-
-
-
 
         System.out.println( "-------------------------------------" + orderItems + "-------------------------------------" );
 
@@ -200,10 +202,73 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String loadContactInfoList() {
-        shipperList = customerService.findContactByRefIdAndType("SHIPPER", order.getCustomerId());
+
+        System.out.println( "---------------SELECTED ITEM " + ID + "-------------------------------------" );
+
+        contactsList = customerService.findContactByReferenceId(ID);
+
+        addressList = customerService.findAllAddressByRefId(ID);
+
+        consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE", ID);
+
+        consigneeAddressList = customerService.findAddressByParameterMap(ID, "CONSIGNEE", getClientId() );
+
+        System.out.println( "-------------------------------------" + consigneeAddressList + "-------------------------------------" );
+
+        for(int i = 0; i < consigneeAddressList.size(); i++ ) {
+            System.out.println( "-------------------------------------BLA BLA-------------------------------------" );
+            System.out.println( "-------------------------------------SHIPPER LIST" + consigneeAddressList.get(i).getAddressLine2() + "-------------------------------------" );
+        }
+
+        /*shipperList = customerService.findContactByRefIdAndType("CUSTOMER", order.getCustomerId());
+
         consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE", order.getCustomerId());
+
         customerItemsList = customerService.findItemByCustomerId(order.getCustomerId());
+
+        */
+
+        System.out.println( "-------------------------------------FINISH-------------------------------------" );
+
         return SUCCESS;
+    }
+
+
+
+    private Orders transformToOrderEntityBean1stForm (OrderBean orderBean) {
+
+        Orders order = new Orders();
+
+        Client client = clientService.findClientById(getClientId().toString());
+        System.out.println( "------------------------------------CLIENT" + client + "-------------------------------------" );
+        order.setClient(client);
+        System.out.println( "-------------------------------------SERVICE REQUIREMENT" + orderBean.getServiceRequirement() + "-------------------------------------" );
+        order.setServiceRequirement(orderBean.getServiceRequirement());
+        System.out.println( "-------------------------------------SERVICE MODE" + orderBean.getModeOfService() + "-------------------------------------" );
+        order.setServiceMode(orderBean.getModeOfService());
+        System.out.println( "-------------------------------------SERVICE TYPE" + orderBean.getFreightType() + "-------------------------------------" );
+        order.setServiceType(orderBean.getFreightType());
+        System.out.println( "-------------------------------------PAYMENT MODE" + orderBean.getModeOfPayment() + "-------------------------------------" );
+        order.setPaymentMode(orderBean.getModeOfPayment());
+        System.out.println( "-------------------------------------Shipper ID" + orderBean.getCustomerId() + "-------------------------------------" );
+
+        order.setShipperAddressId(1);
+        order.setShipperContactId(1);
+
+        order.setNotificationType("SMS");
+        order.setComments("TEST");
+        order.setRates(45.88);
+        order.setCreatedTimestamp(new Date());
+        order.setCreatedBy("admin");
+        order.setModifiedTimestamp(new Date());
+        order.setModifiedBy("admin");
+        order.setConsigneeAddressId(1);
+        order.setConsigneeContactId(1);
+        order.setOrderDate(new Date());
+        order.setOrderNumber("MSX-123");
+        order.setOrderStatus("PENDING");
+
+        return order;
     }
 
     private OrderBean transformToFormBeanOrder(Orders order) {
@@ -220,9 +285,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setOriginationPort(order.getOriginationPort());
         orderBean.setDestinationPort(order.getDestinationPort());
         orderBean.setPickupDate(order.getPickupDate());
-       /* orderBean.setPickupTime(order.getPickupTime());*/
         orderBean.setDeliveryDate(order.getDeliveryDate());
-       /* orderBean.setDeliveryTime(order.getDeliveryTime());*/
         orderBean.setBookingDate(order.getOrderDate());
         orderBean.setComments(order.getComments());
         orderBean.setRates(order.getRates());
@@ -312,13 +375,14 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setModifiedBy(order.getModifiedBy());
         orderBean.setPickupDate(order.getPickupDate());
         orderBean.setOriginationPort(order.getOriginationPort());
-       /* orderBean.setPickupTime(order.getPickupTime());*/
         orderBean.setDeliveryDate(order.getDeliveryDate());
         orderBean.setDestinationPort(order.getDestinationPort());
-     /*   orderBean.setDeliveryTime(order.getDeliveryTime());*/
         orderBean.setRates(order.getRates());
         orderBean.setServiceRequirement(order.getServiceRequirement());
         orderBean.setModeOfService(order.getServiceMode());
+
+        /*Contacts shipperContact = customerService.findContactById(order.getShipperContactId());
+        orderBean.setCustomerId(shipperContact.getReferenceId());*/
 
         return orderBean;
     }
@@ -355,7 +419,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             int ndx = (int) (Math.random() * ALPHA_NUM.length());
             sb.append(ALPHA_NUM.charAt(ndx));
         }
-
 
         return comp.concat(sb.toString().toUpperCase());
     }
@@ -631,5 +694,57 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setItemQuantity(List<Integer> itemQuantity) {
         this.itemQuantity = itemQuantity;
+    }
+
+    public void setClientService(ClientService clientService) {
+        this.clientService = clientService;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getID() {
+        return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+
+    public List<Contacts> getContactsList() {
+        return contactsList;
+    }
+
+    public void setContactsList(List<Contacts> contactsList) {
+        this.contactsList = contactsList;
+    }
+
+    public List<Address> getAddressList() {
+        return addressList;
+    }
+
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
+    }
+
+    public List<Address> getConsigneeAddressList() {
+        return consigneeAddressList;
+    }
+
+    public void setConsigneeAddressList(List<Address> consigneeAddressList) {
+        this.consigneeAddressList = consigneeAddressList;
     }
 }

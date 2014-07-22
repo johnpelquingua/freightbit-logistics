@@ -540,6 +540,14 @@
 
 <%---------------------------------------------------------------------------------------------------------------------%>
 
+<%--<div id="leftDiv">
+    <s:include value="/orders/orderEdit.jsp"></s:include>
+</div>
+
+<div>
+    <a href="#" id="idAnchor">Partial Refresh</a>
+</div>--%>
+
 
 <div class="row">
 <div class="col-lg-12">
@@ -573,63 +581,107 @@
         <div class="col-xs-12">
             <div class="col-md-12 well text-center">
                 <h1> STEP 1</h1>
+                <%--<s:form cssClass="form-horizontal" theme="bootstrap" action="loadContactInfoList" >--%>
 
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="orderBean.serviceRequirement">Service Requirement:</label>
 
-                <div id="form1" class="form-group">
-                    <label class="col-sm-2 control-label" for="orderBean.serviceRequirement">Service Requirement:</label>
+                    <div class="col-sm-8" style="margin-left:4%">
 
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:select cssClass="form-control step1" style="margin-bottom: 15px !important;"
-                                  name="orderBean.serviceRequirement" list="serviceRequirementList" id="serviceReq"
+                        <s:select cssClass="form-control step1"
+                                  style="margin-bottom: 15px !important;"
+                                  name="order.serviceRequirement"
+                                  list="serviceRequirementList"
+                                  id="order.serviceRequirement"
                                   onchange="serviceValidate()"
                                   listKey="key"
-                                  listValue="value" emptyOption="true" />
+                                  listValue="value"
+
+                                  />
+
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="orderBean.modeOfService">Service Mode:</label>
+                    <label class="col-sm-3 control-label" for="orderBean.modeOfService">Service Mode:</label>
 
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:select id="mode" cssClass="form-control step1" style="margin-bottom: 15px !important;"
+                    <div class="col-sm-8" style="margin-left:4%">
+
+                        <s:select id="order.modeOfService"
+                                  cssClass="form-control step1"
+                                  style="margin-bottom: 15px !important;"
                                   onchange="typeValidate()"
-                                  name="orderBean.modeOfService" list="modeOfServiceList" listKey="key"
-                                  listValue="value" value="orderBean.modeOfService" emptyOption="true"/>
+                                  name="order.modeOfService"
+                                  list="modeOfServiceList"
+                                  listKey="key"
+                                  listValue="value"
+                                  value="orderBean.modeOfService"
+
+                                />
+
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="orderBean.freightType">Freight Type:</label>
+                    <label class="col-sm-3 control-label" for="orderBean.freightType">Freight Type:</label>
 
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:select cssClass="form-control step1" style="margin-bottom: 15px !important;"
-                                  name="orderBean.freightType" list="freightTypeList" listKey="key"
-                                  listValue="value" emptyOption="true"/>
+                    <div class="col-sm-8" style="margin-left:4%">
+
+                        <s:select id="order.freightType"
+                                  cssClass="form-control step1"
+                                  style="margin-bottom: 15px !important;"
+                                  name="order.freightType"
+                                  list="freightTypeList"
+                                  listKey="key"
+                                  listValue="value"
+
+                                />
+
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="orderBean.modeOfPayment">Payment Mode:</label>
+                    <label class="col-sm-3 control-label" for="orderBean.modeOfPayment">Payment Mode:</label>
 
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:select cssClass="form-control step1" style="margin-bottom: 15px !important;"
-                                  name="orderBean.modeOfPayment" list="modeOfPaymentList" listKey="key"
-                                  listValue="value" emptyOption="true"/>
+                    <div class="col-sm-8" style="margin-left:4%">
+
+                        <s:select id="order.modeOfPayment"
+                                  cssClass="form-control step1"
+                                  style="margin-bottom: 15px !important;"
+                                  name="order.modeOfPayment"
+                                  list="modeOfPaymentList"
+                                  listKey="key"
+                                  listValue="value"
+
+                                />
+
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label" for="orderBean.companyName">Shipper Name:</label>
+                    <label class="col-sm-3 control-label" for="orderBean.companyName">Customer Name:</label>
 
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:select cssClass="form-control step1" style="margin-bottom: 15px !important;"
-                                  name="orderBean.companyName" list="customerList" listKey="customerId"
-                                  listValue="customerName" emptyOption="true"/>
+                    <div class="col-sm-8" style="margin-left:4%">
+
+                        <s:select id="order.customerId"
+                                  cssClass="form-control step1"
+                                  style="margin-bottom: 15px !important;"
+                                  name="order.customerId"
+                                  list="customerList"
+                                  listKey="customerId"
+                                  listValue="customerName"
+
+                                />
+                                  <%--emptyOption="true"
+                                  required="true"--%>
+
+
                     </div>
                 </div>
 
-                <button id="activate-step-2" class="btn btn-primary btn-lg">Activate Step 2</button>
-
+                <button id="activate-step-2" class="btn btn-primary btn-lg">Next</button>
+                <%--<s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Next" />
+                </s:form>--%>
             </div>
         </div>
     </div>
@@ -638,140 +690,9 @@
         <div class="col-xs-12">
             <div class="col-md-12 well">
                 <h1 class="text-center"> STEP 2</h1>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"
-                           for="orderBean.orderNumber">Booking Number:</label>
-
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
-                                     name="orderBean.orderNumber" disabled="true"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 col-lg-offset-1 control-label"
-                           for="orderBean.pickupDate" style="margin-top: 5px;">Pickup Date/Time:</label>
-                    <div class="col-lg-3" >
-                        <input type="text" class="from_date form-control step2" id="datepicker1" name="orderBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;">
+                    <div id="2ndPart">
 
                     </div>
-
-                    <label class="col-lg-2 control-label"
-                           for="orderBean.deliveryDate" style="margin-top: 5px;">Delivery Date/Time:</label>
-                    <div class="col-lg-3" >
-                        <input type="text" class="to_date form-control step2" id="datepicker2" name="orderBean.deliveryDate" placeholder="Select end date" contenteditable="false" style="margin-bottom: 15px !important;">
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 col-lg-offset-1 control-label"
-                           for="orderBean.pickupDate" style="margin-top: 5px;">Port of Origin:</label>
-                    <div class="col-lg-3" >
-
-                        <s:textfield cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                     name="orderBean.origin" />
-
-                    </div>
-
-                    <label class="col-lg-2 control-label"
-                           for="orderBean.deliveryDate" style="margin-top: 5px;">Port of Destination:</label>
-                    <div class="col-lg-3" >
-
-                        <s:textfield cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                     name="orderBean.destination" />
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="orderBean.companyName">Shipper Name:</label>
-
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:textfield cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                  name="orderBean.companyName" list="customerList" listKey="customerId"
-                                  listValue="customerName" emptyOption="true" disabled="true"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="orderBean.contactPerson">Contact Person:</label>
-
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                  name="orderBean.contactPerson" list="customerList" listKey="customerId"
-                                  listValue="customerName" emptyOption="true"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="orderBean.pickupAddress">Pickup Address:</label>
-
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:select id="pickupaddress" cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                  name="orderBean.pickupAddress" list="customerList" listKey="customerId"
-                                  listValue="customerName" emptyOption="true"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"
-                           for="orderBean.rates">Notification Type:</label>
-
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                  name="orderBean.notifyBy" list="notifyByList" listKey="key"
-                                  listValue="value"
-                                  value="orderBean.notifyBy" emptyOption="true"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="orderBean.consigneeName">Consignee Name:</label>
-
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                  name="orderBean.consigneeName" list="customerList" listKey="customerId"
-                                  listValue="customerName" emptyOption="true"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="orderBean.consigneeContactPerson">Contact Person:</label>
-
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                  name="orderBean.consigneeContactPerson" list="customerList" listKey="customerId"
-                                  listValue="customerName" emptyOption="true"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="orderBean.deliveryAddress">Delivery Address:</label>
-
-                    <div class="col-sm-9" style="margin-left:4%">
-                        <s:select id="deliveryaddress" cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                  name="orderBean.deliveryAddress" list="customerList" listKey="customerId"
-                                  listValue="customerName" emptyOption="true"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"
-                           for="orderBean.comments">Comments :</label>
-
-                    <div class="col-sm-9" style="margin-left:4%;">
-                        <s:textarea cssClass="form-control step2"
-                                    name="orderBean.comments" cssStyle="resize: none;"></s:textarea>
-                    </div>
-                </div>
-
-                <button id="activate-step-3" class="btn btn-primary btn-lg">Activate Step 3</button>
-
             </div>
         </div>
     </div>
@@ -781,78 +702,6 @@
             <div class="col-md-12 well">
                 <h1 class="text-center"> STEP 3</h1>
 
-
-                            <div class="table-responsive list-table">
-                            <table class="table table-striped table-hover table-bordered text-center tablesorter" id="tab_logic">
-                                <thead>
-                                <tr >
-                                    <th class="text-center">
-                                        #
-                                    </th>
-                                    <th class="text-center">
-                                        Quantity
-                                    </th>
-                                    <th class="text-center">
-                                        Name
-                                    </th>
-                                    <th class="text-center">
-                                        Weight
-                                    </th>
-                                    <th class="text-center">
-                                        Value
-                                    </th>
-                                    <th class="text-center">
-                                        Class
-                                    </th>
-                                    <th class="text-center">
-                                       Rate
-                                    </th>
-                                    <th class="text-center">
-                                        Description
-                                    </th>
-                                    <th class="text-center">
-                                        Remarks
-                                    </th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr id='item0'>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        <input type="text" name='quantity0'  placeholder='Quantity' class="form-control"/>
-                                    </td>
-                                    <td>
-                                        <input type="text" name=name0' placeholder='Name' class="form-control"/>
-                                    </td>
-                                    <td>
-                                        <input type="text" name='weight0' placeholder='Weight' class="form-control"/>
-                                    </td>
-                                    <td>
-                                        <input type="text" name='value0'  placeholder='Value' class="form-control"/>
-                                    </td>
-                                    <td>
-                                        <input type="text" name='class0' placeholder='Classification' class="form-control"/>
-                                    </td>
-                                    <td>
-                                        <input type="text" name='rate0' placeholder='Rate' class="form-control"/>
-                                    </td>
-                                    <td>
-                                        <input type="text" name='description0'  placeholder='Description' class="form-control"/>
-                                    </td>
-                                    <td>
-                                        <input type="text" name='remarks0' placeholder='Remarks' class="form-control"/>
-                                    </td>
-
-                                </tr>
-                                <tr id='item1'></tr>
-                                </tbody>
-                            </table>
-                            </div>
-
-                    <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
 
 
             </div>
@@ -893,13 +742,12 @@ navListItems.click(function(e)
 
 $('ul.setup-panel li.active a').trigger('click');
 
-// DEMO ONLY //
 $('#activate-step-2').on('click', function(e) {
+
     $('ul.setup-panel li:eq(1)').removeClass('disabled');
     $('.step1').attr('disabled', 'disabled');
     $('ul.setup-panel li a[href="#step-2"]').trigger('click');
     $(this).remove();
-
 
 })
 
@@ -910,46 +758,81 @@ $('#activate-step-3').on('click', function(e) {
     $(this).remove();
 })
 
+var i=1;
+$("#add_row").click(function(){
+    $('#item'+i).html("<td>"+ (i+1) +"</td>" +
+            "<td><input name='quantity"+i+"' type='text' placeholder='Quantity' class='form-control input-md'  /> </td>" +
+            "<td><input  name='name"+i+"' type='text' placeholder='Name'  class='form-control input-md'></td>" +
+            "<td><input  name='weight"+i+"' type='text' placeholder='Weight'  class='form-control input-md'></td>" +
+            "<td><input  name='value"+i+"' type='text' placeholder='Value'  class='form-control input-md'></td>" +
+            "<td><input  name='class"+i+"' type='text' placeholder='Classification'  class='form-control input-md'></td>" +
+            "<td><input  name='rate"+i+"' type='text' placeholder='Rate'  class='form-control input-md'></td>" +
+            "<td><input  name='description"+i+"' type='text' placeholder='Description'  class='form-control input-md'></td>" +
+            "<td><input  name='remarks"+i+"' type='text' placeholder='Remarks'  class='form-control input-md'></td>");
 
+    $('#tab_logic').append('<tr id="item'+(i+1)+'"></tr>');
+    i++;
+});
 
+$("#delete_row").click(function(){
+    if(i>1){
+        $("#item"+(i-1)).html('');
+        i--;
+    }
+});
 
-    var i=1;
-    $("#add_row").click(function(){
-        $('#item'+i).html("<td>"+ (i+1) +"</td>" +
-                "<td><input name='quantity"+i+"' type='text' placeholder='Quantity' class='form-control input-md'  /> </td>" +
-                "<td><input  name='name"+i+"' type='text' placeholder='Name'  class='form-control input-md'></td>" +
-                "<td><input  name='weight"+i+"' type='text' placeholder='Weight'  class='form-control input-md'></td>" +
-                "<td><input  name='value"+i+"' type='text' placeholder='Value'  class='form-control input-md'></td>" +
-                "<td><input  name='class"+i+"' type='text' placeholder='Classification'  class='form-control input-md'></td>" +
-                "<td><input  name='rate"+i+"' type='text' placeholder='Rate'  class='form-control input-md'></td>" +
-                "<td><input  name='description"+i+"' type='text' placeholder='Description'  class='form-control input-md'></td>" +
-                "<td><input  name='remarks"+i+"' type='text' placeholder='Remarks'  class='form-control input-md'></td>");
+/*
+$('#idAnchor').click(function(){
 
-        $('#tab_logic').append('<tr id="item'+(i+1)+'"></tr>');
-        i++;
-    });
-    $("#delete_row").click(function(){
-        if(i>1){
-            $("#item"+(i-1)).html('');
-            i--;
+    var selectedItem = $("select[name='order.customerId'] option:selected").val();
+
+    $.ajax({
+        url: 'loadContactInfoList', // action to be perform
+        type: 'POST',       //type of posting the data
+        data: { name: "Jeetu", age: "24" }, // data to set to Action Class
+        data:{ name: selectedItem },
+        dataType: 'html',
+
+        success: function (html) {
+            alert(selectedItem);
+            alert(html);
+            $('#leftDiv').html(html); //set result.jsp output to leftDiv
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            alert('An error occurred! ' + thrownError);
         }
     });
+});
+*/
 
+    $('#activate-step-2').click(function(){
 
+        var selectedItem = $("select[name='order.customerId'] option:selected").val();
+
+        $.ajax({
+            url: 'loadContactInfoList', // action to be perform
+            type: 'POST',       //type of posting the data
+            //data: { name: "Jeetu", age: "24" }, // data to set to Action Class
+            data:{ ID: selectedItem },
+            dataType: 'html',
+
+            success: function (html) {
+                /*alert(selectedItem);
+                alert(html);*/
+                $('#2ndPart').html(html); //set result.jsp output to leftDiv
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+    });
 
 
 });
 
 </script>
 
-
-
-
 <%----------------------------------------------------------------------------------------------------------------------%>
-
-
-
-
 
 <script type="text/javascript">
 
@@ -1009,6 +892,8 @@ $('#activate-step-3').on('click', function(e) {
         }
 
     });
+
+
 
 
 </script>

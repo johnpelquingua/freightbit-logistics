@@ -2,6 +2,8 @@ package com.sr.biz.freightbit.order.entity;
 // Generated Jun 4, 2014 9:55:23 PM by Hibernate Tools 3.6.0
 
 
+import com.sr.biz.freightbit.core.entity.Client;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,7 +21,8 @@ import java.util.List;
 public class Orders implements java.io.Serializable {
 
     private Integer orderId;
-    private Integer clientId;
+    /*private Integer clientId;*/
+    private Client client;
     private String orderNumber;
     private String serviceRequirement;
     private String serviceType;
@@ -56,8 +59,8 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    public Orders(Integer clientId, String orderNumber, String serviceRequirement, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, Integer shipperAddressId, Integer shipperContactId, Integer consigneeAddressId, Integer consigneeContactId, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
-        this.clientId = clientId;
+    public Orders(Client client, String orderNumber, String serviceRequirement, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, Integer shipperAddressId, Integer shipperContactId, Integer consigneeAddressId, Integer consigneeContactId, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+        this.client = client;
         this.orderNumber = orderNumber;
         this.serviceRequirement = serviceRequirement;
         this.serviceType = serviceType;
@@ -77,8 +80,8 @@ public class Orders implements java.io.Serializable {
         this.modifiedBy = modifiedBy;
     }
 
-    public Orders(Integer clientId, String orderNumber, String serviceRequirement, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
-        this.clientId = clientId;
+    public Orders(Client client, String orderNumber, String serviceRequirement, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+        this.client = client;
         this.orderNumber = orderNumber;
         this.serviceRequirement = serviceRequirement;
         this.serviceType = serviceType;
@@ -118,15 +121,24 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    @Column(name = "clientId", nullable = false)
+    /*@Column(name = "clientId", nullable = false)
     public Integer getClientId() {
         return this.clientId;
     }
 
     public void setClientId(Integer clientId) {
         this.clientId = clientId;
+    }*/
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "clientId")
+    public Client getClient() {
+        return client;
     }
 
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     @Column(name = "orderNumber", unique = true, nullable = false)
     public String getOrderNumber() {

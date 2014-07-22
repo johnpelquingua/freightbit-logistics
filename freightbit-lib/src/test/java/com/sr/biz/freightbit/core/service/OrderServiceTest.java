@@ -46,7 +46,7 @@ public class OrderServiceTest {
         List<Orders> existingOrderList = new ArrayList<>();
         existingOrderList.add(orders);
 
-        Mockito.when(orderDao.findOrdersByOrderNumber("MTY-213")).thenReturn(existingOrderList);
+        Mockito.when(orderDao.findOrdersByOrderNumber("XRT-213")).thenReturn(existingOrderList);
         orderService.addOrder(orders);
     }
 
@@ -75,7 +75,7 @@ public class OrderServiceTest {
         Client client = new Client("Ernest", new Date(), "JMX", new Date(), "JMX");
 
         Orders orders = new Orders();
-        orders.setClientId(1);
+        orders.setClient(client);
         orders.setOrderNumber("213");
         orders.setServiceType("FCL");
         orders.setServiceMode("D/D");
