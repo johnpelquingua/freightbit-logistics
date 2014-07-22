@@ -42,11 +42,9 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
     private OrderBean order = new OrderBean();
-    private OrderItemsBean orderItem = new OrderItemsBean();
     private ContactBean contact = new ContactBean();
     private AddressBean address = new AddressBean();
     private List<Customer> customerList = new ArrayList<Customer>();
-    private List<Items> customerItemsList = new ArrayList<Items>();
     private List<Parameters> serviceRequirementList = new ArrayList<Parameters>();
     private List<Parameters> freightTypeList = new ArrayList<Parameters>();
     private List<Parameters> modeOfServiceList = new ArrayList<Parameters>();
@@ -86,6 +84,13 @@ public class OrderAction extends ActionSupport implements Preparable {
         for (Orders orderElem : orderEntityList) {
             orders.add(transformToOrderFormBean(orderElem));
         }
+        return SUCCESS;
+    }
+
+    public String viewSeaFreightPlanning(){
+        return SUCCESS;
+    }
+    public String viewInlandFreightPlanning(){
         return SUCCESS;
     }
 
@@ -135,7 +140,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         List<OrderItems> orderItemsFromSession = (List) sessionAttributes.get("orderItems");
 
         if (orderItemsFromSession != null)
-            orderItemsFromSession.add(transformToOrderItemsEntityBean(orderItem));
+            //orderItemsFromSession.add(transformToOrderItemsEntityBean(orderItem));
             sessionAttributes.put("orderItems", orderItemsFromSession);
         /*orderItems = orderItemsFromSession;*/
 
@@ -296,16 +301,13 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setComments(order.getComments());
         orderBean.setRates(order.getRates());
         orderBean.setOrderStatus(order.getOrderStatus());
-        System.out.println("-----------------------------" + order.getOrderStatus() + "-----------------------------------------");
 
         //customer info
         List<Customer> customer = customerService.findCustomersByCriteria("customerCode", order.getShipperCode(), getClientId());
         if (customer != null) {
             orderBean.setCustomerName(customer.get(0).getCustomerName());
-            System.out.println("-----------------------------" + customer.get(0).getCustomerName() + "-----------------------------------------");
         } else {
             orderBean.setConsigneeCode(customer.get(0).getCustomerCode());
-            System.out.println("-----------------------------" + customer.get(0).getCustomerCode() + "-----------------------------------------");
         }
 
         //shipper contact info
@@ -399,21 +401,17 @@ public class OrderAction extends ActionSupport implements Preparable {
         formBean.setCustomerName(customer.getCustomerName());
         return formBean;
     }
-//------------------------------ITEMS FORM BEAN-----------------------------------------------
 
     private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
-
         OrderItemsBean orderItemBean = new OrderItemsBean();
-
-        orderItemBean.setDescription(orderItem.getCommodity());
+       /* orderItemBean.setCargoDetails(orderItem.getCommodity());*/
         orderItemBean.setQuantity(orderItem.getQuantity());
         orderItemBean.setClassification(orderItem.getClassification());
         orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
+       /* orderItemBean.setHeight(orderItem.getHeight());
+        orderItemBean.setWidth(orderItem.getWidth());
+        orderItemBean.setLength(orderItem.getLength());*/
         orderItemBean.setWeight(orderItem.getWeight());
-        orderItemBean.setRemarks(orderItem.getComments());
-        orderItemBean.setRate(orderItem.getRate());
-        orderItemBean.setNameSize(orderItem.getNameSize());
-
         return orderItemBean;
     }
 
@@ -470,7 +468,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         return order;
     }
-    //------------------------------ITEMS ENTITY BEAN-----------------------------------------------
 
     private OrderItems transformToOrderItemsEntityBean(OrderItemsBean orderItemBean) {
         OrderItems orderItem = new OrderItems();
@@ -484,11 +481,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderItem.setQuantity(orderItemBean.getQuantity());
         orderItem.setClassification(orderItemBean.getClassification());
         orderItem.setDeclaredValue(orderItemBean.getDeclaredValue());
+       /* orderItem.setHeight(orderItemBean.getHeight());
+        orderItem.setWidth(orderItemBean.getWidth());
+        orderItem.setLength(orderItemBean.getLength());*/
         orderItem.setWeight(orderItemBean.getWeight());
-        orderItem.setComments(orderItemBean.getRemarks());
-        orderItem.setRate(orderItemBean.getRate());
-        orderItem.setNameSize(orderItemBean.getNameSize());
-
         return orderItem;
     }
 
@@ -556,14 +552,12 @@ public class OrderAction extends ActionSupport implements Preparable {
     @Override
     public void prepare() throws Exception {
         customerList = customerService.findAllCustomer();
-        customerItemsList = customerService.findItemByCustomerId(1);
         serviceRequirementList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.SERVICE_REQUIREMENT);
         freightTypeList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.FREIGHT_TYPE);
         modeOfPaymentList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.MODE_OF_PAYMENT);
         modeOfServiceList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.MODE_OF_SERVICE);
         notifyByList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.NOTIFY_BY);
         orderSearchList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.ORDER_SEARCH);
-        portsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS);
 
         itemQuantity = new ArrayList<Integer>();
         itemQuantity.add(1);
@@ -687,13 +681,13 @@ public class OrderAction extends ActionSupport implements Preparable {
         this.contact = contact;
     }
 
-    public List<Items> getCustomerItemsList() {
+  /*  public List<Items> getCustomerItemsList() {
         return customerItemsList;
     }
 
     public void setCustomerItemsList(List<Items> customerItemsList) {
         this.customerItemsList = customerItemsList;
-    }
+    }*/
 
     public List<Integer> getItemQuantity() {
         return itemQuantity;
