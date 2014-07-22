@@ -701,9 +701,9 @@
         <div class="col-xs-12">
             <div class="col-md-12 well">
                 <h1 class="text-center"> STEP 3</h1>
+                <div id="3rdPart">
 
-
-
+                </div>
             </div>
         </div>
     </div>

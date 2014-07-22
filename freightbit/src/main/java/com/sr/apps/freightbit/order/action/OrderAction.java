@@ -60,6 +60,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Contacts> contactsList = new ArrayList<Contacts>();
     private List<Address> addressList = new ArrayList<Address>();
     private List<Address> consigneeAddressList = new ArrayList<Address>();
+    private List<Parameters> portsList = new ArrayList<Parameters>();
 
     private Integer orderIdParam;
 
@@ -232,6 +233,11 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
+
+    public String load3rdPage() {
+        return SUCCESS;
+    }
+
 
 
 
@@ -557,6 +563,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         modeOfServiceList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.MODE_OF_SERVICE);
         notifyByList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.NOTIFY_BY);
         orderSearchList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.ORDER_SEARCH);
+        portsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS);
 
         itemQuantity = new ArrayList<Integer>();
         itemQuantity.add(1);
@@ -746,5 +753,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setConsigneeAddressList(List<Address> consigneeAddressList) {
         this.consigneeAddressList = consigneeAddressList;
+    }
+
+    public List<Parameters> getPortsList() {
+        return portsList;
+    }
+
+    public void setPortsList(List<Parameters> portsList) {
+        this.portsList = portsList;
     }
 }

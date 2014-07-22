@@ -41,4 +41,6 @@ public class ParameterConstants {
     public final static String RATES_TYPE = "RATES_TYPE";
 
     public final static String ORDER_SEARCH = "ORDER_SEARCH";
+
+    public final static String PORTS = "PORTS";
 }

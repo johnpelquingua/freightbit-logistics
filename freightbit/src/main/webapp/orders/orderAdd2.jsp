@@ -36,8 +36,9 @@
            for="orderBean.pickupDate" style="margin-top: 5px;">Port of Origin:</label>
     <div class="col-lg-3" >
 
-        <s:textfield cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                     name="orderBean.origin" />
+        <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                  name="order.shipperCode" list="portsList" listKey="key"
+                  listValue="value" />
 
     </div>
 
@@ -45,8 +46,9 @@
            for="orderBean.deliveryDate" style="margin-top: 5px;">Port of Destination:</label>
     <div class="col-lg-3" >
 
-        <s:textfield cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                     name="orderBean.destination" />
+        <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                  name="order.shipperCode" list="portsList" listKey="key"
+                  listValue="value" />
 
     </div>
 
@@ -110,7 +112,7 @@
     <div class="col-sm-9" style="margin-left:4%">
         <s:select id="deliveryaddress" cssClass="form-control step2" style="margin-bottom: 15px !important;"
                   name="orderBean.deliveryAddress" list="consigneeAddressList" listKey="addressId"
-                  listValue="addressLine2" emptyOption="true"/>
+                  listValue="addressLine2" />
     </div>
 </div>
 
@@ -188,6 +190,34 @@
     });
 
 
+    $('#activate-step-3').on('click', function(e) {
+        $('ul.setup-panel li:eq(2)').removeClass('disabled');
+        $('.step2').attr('disabled', 'disabled');
+        $('ul.setup-panel li a[href="#step-3"]').trigger('click');
+        $(this).remove();
+    })
+
+    $('#activate-step-3').click(function(){
+
+        var selectedItem = $("select[name='order.customerId'] option:selected").val();
+
+        $.ajax({
+            url: 'load3rdPage', // action to be perform
+            type: 'POST',       //type of posting the data
+            //data: { name: "Jeetu", age: "24" }, // data to set to Action Class
+            data:{ ID: selectedItem },
+            dataType: 'html',
+
+            success: function (html) {
+                /*alert(selectedItem);
+                 alert(html);*/
+                $('#3rdPart').html(html); //set result.jsp output to leftDiv
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+    });
 
 
 </script>
