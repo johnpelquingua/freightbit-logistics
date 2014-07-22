@@ -71,6 +71,10 @@ public class OrderAction extends ActionSupport implements Preparable {
     private String age;
 
     private Integer ID;
+    private String REQ;
+    private String MODE;
+    private String TYPE;
+    private String PAY;
 
     public String viewOrders() {
         String column = getColumnFilter();
@@ -209,7 +213,11 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String loadContactInfoList() {
 
-        System.out.println( "---------------SELECTED ITEM " + ID + "-------------------------------------" );
+        System.out.println( "---------------ID 1: " + ID + "-------------------------------------" );
+        System.out.println( "---------------REQ 1: " + REQ + "-------------------------------------" );
+        System.out.println( "---------------MODE 1: " + MODE + "-------------------------------------" );
+        System.out.println( "---------------TYPE 1: " + TYPE + "-------------------------------------" );
+        System.out.println( "---------------PAY 1: " + PAY + "-------------------------------------" );
 
         contactsList = customerService.findContactByReferenceId(ID);
 
@@ -240,6 +248,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String load3rdPage() {
+        System.out.println( "---------------ID 2: " + ID + "-------------------------------------" );
         return SUCCESS;
     }
 
@@ -491,6 +500,12 @@ public class OrderAction extends ActionSupport implements Preparable {
     public void validateOnSubmit(OrderBean orderBean) {
         clearErrorsAndMessages();
         //validate notification type
+
+        if (org.apache.commons.lang.StringUtils.isBlank(orderBean.getCustomerName())) {
+            addFieldError("order.customerId", getText("err.addressLine1.required"));
+        }
+
+
     }
 
     public List<Contacts> getShipperList() {
@@ -723,6 +738,38 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setID(Integer ID) {
         this.ID = ID;
+    }
+
+    public String getREQ() {
+        return REQ;
+    }
+
+    public void setREQ(String REQ) {
+        this.REQ = REQ;
+    }
+
+    public String getMODE() {
+        return MODE;
+    }
+
+    public void setMODE(String MODE) {
+        this.MODE = MODE;
+    }
+
+    public String getTYPE() {
+        return TYPE;
+    }
+
+    public void setTYPE(String TYPE) {
+        this.TYPE = TYPE;
+    }
+
+    public String getPAY() {
+        return PAY;
+    }
+
+    public void setPAY(String PAY) {
+        this.PAY = PAY;
     }
 
     public List<Contacts> getContactsList() {

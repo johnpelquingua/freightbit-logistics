@@ -596,7 +596,8 @@
                                   onchange="serviceValidate()"
                                   listKey="key"
                                   listValue="value"
-
+                                  emptyOption="true"
+                                  required="true"
                                   />
 
                     </div>
@@ -616,7 +617,8 @@
                                   listKey="key"
                                   listValue="value"
                                   value="orderBean.modeOfService"
-
+                                  emptyOption="true"
+                                  required="true"
                                 />
 
                     </div>
@@ -634,7 +636,8 @@
                                   list="freightTypeList"
                                   listKey="key"
                                   listValue="value"
-
+                                  emptyOption="true"
+                                  required="true"
                                 />
 
                     </div>
@@ -652,7 +655,8 @@
                                   list="modeOfPaymentList"
                                   listKey="key"
                                   listValue="value"
-
+                                  emptyOption="true"
+                                  required="true"
                                 />
 
                     </div>
@@ -670,7 +674,8 @@
                                   list="customerList"
                                   listKey="customerId"
                                   listValue="customerName"
-
+                                  emptyOption="true"
+                                  required="true"
                                 />
                                   <%--emptyOption="true"
                                   required="true"--%>
@@ -742,21 +747,70 @@ navListItems.click(function(e)
 
 $('ul.setup-panel li.active a').trigger('click');
 
-$('#activate-step-2').on('click', function(e) {
+/*$('#activate-step-2').on('click', function(e) {*/
 
-    $('ul.setup-panel li:eq(1)').removeClass('disabled');
-    $('.step1').attr('disabled', 'disabled');
-    $('ul.setup-panel li a[href="#step-2"]').trigger('click');
-    $(this).remove();
+           /* servReqt = document.getElementById("order.serviceRequirement").value;
+            modeServ = document.getElementById("order.modeOfService").value;
+            freight = document.getElementById("order.freightType").value;
+            modePay = document.getElementById("order.modeOfPayment").value;
+            cusName = document.getElementById("order.customerId").value;
 
-})
+    if (servReqt == null || servReqt == "" && modeServ == null || modeServ == "" && freight == null || freight == "" && modePay == null || modePay == "" && cusName == null || cusName == ""){
+        alert(servReqt);
+        alert(modeServ);
+        alert(freight);
+        alert(modePay);
+        alert(cusName);
+
+
+    }else{
+        alert(servReqt);
+        alert(modeServ);
+        alert(freight);
+        alert(modePay);
+        alert(cusName);
+
+        $('ul.setup-panel li:eq(1)').removeClass('disabled');
+        $('.step1').attr('disabled', 'disabled');
+        $('ul.setup-panel li a[href="#step-2"]').trigger('click');
+        $(this).remove();
+
+
+
+    }*/
+
+
+    $('#activate-step-2').on('click', function(e){
+
+        servReqt = document.getElementById("order.serviceRequirement").value;
+        modeServ = document.getElementById("order.modeOfService").value;
+        freight = document.getElementById("order.freightType").value;
+        modePay = document.getElementById("order.modeOfPayment").value;
+        cusName = document.getElementById("order.customerId").value;
+
+
+        if (servReqt == null || servReqt == "" || modeServ == null || modeServ == "" || freight == null || freight == "" || modePay == null || modePay == "" || cusName == null || cusName == ""){
+        alert("error");
+
+
+        }else{
+            $('ul.setup-panel li:eq(1)').removeClass('disabled');
+            $('.step1').attr('disabled', 'disabled');
+            $('ul.setup-panel li a[href="#step-2"]').trigger('click');
+            $(this).remove();
+        }
+
+
+
+
+});
 
 $('#activate-step-3').on('click', function(e) {
     $('ul.setup-panel li:eq(2)').removeClass('disabled');
     $('.step2').attr('disabled', 'disabled');
     $('ul.setup-panel li a[href="#step-3"]').trigger('click');
     $(this).remove();
-})
+});
 
 var i=1;
 $("#add_row").click(function(){
@@ -781,44 +835,32 @@ $("#delete_row").click(function(){
     }
 });
 
-/*
-$('#idAnchor').click(function(){
 
-    var selectedItem = $("select[name='order.customerId'] option:selected").val();
-
-    $.ajax({
-        url: 'loadContactInfoList', // action to be perform
-        type: 'POST',       //type of posting the data
-        data: { name: "Jeetu", age: "24" }, // data to set to Action Class
-        data:{ name: selectedItem },
-        dataType: 'html',
-
-        success: function (html) {
-            alert(selectedItem);
-            alert(html);
-            $('#leftDiv').html(html); //set result.jsp output to leftDiv
-        },
-        error: function(xhr, ajaxOptions, thrownError){
-            alert('An error occurred! ' + thrownError);
-        }
-    });
-});
-*/
 
     $('#activate-step-2').click(function(){
 
-        var selectedItem = $("select[name='order.customerId'] option:selected").val();
+        var custId = $("select[name='order.customerId'] option:selected").val();
+            serReq = $("select[name='order.serviceRequirement'] option:selected").val();
+            serMod = $("select[name='order.modeOfService'] option:selected").val();
+            fType = $("select[name='order.freightType'] option:selected").val();
+            payMod = $("select[name='order.modeOfPayment'] option:selected").val();
 
         $.ajax({
             url: 'loadContactInfoList', // action to be perform
             type: 'POST',       //type of posting the data
             //data: { name: "Jeetu", age: "24" }, // data to set to Action Class
-            data:{ ID: selectedItem },
+            data:{ ID: custId,
+                   REQ: serReq,
+                   MODE: serMod,
+                   TYPE: fType,
+                   PAY: payMod
+
+            },
             dataType: 'html',
 
             success: function (html) {
-                /*alert(selectedItem);
-                alert(html);*/
+                //alert(selectedItem);
+                //alert(html);
                 $('#2ndPart').html(html); //set result.jsp output to leftDiv
             },
             error: function(xhr, ajaxOptions, thrownError){
