@@ -1,20 +1,14 @@
-package com.sr.biz.freightbit.vesselSchedule.entity;
+package com.sr.apps.freightbit.operations.formbean;
 
-import javax.persistence.*;
-import java.io.Serializable;
-
-import java.sql.Time;
 import java.util.Date;
 
 /**
- * Created by Clarence C. Victoria on 7/22/14.
+ * Created by Clarence C. Victoria on 7/23/14.
  */
-
-@Entity
-@Table(name = "vesselschedules", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "vesselScheduleId"))
-public class VesselSchedules implements Serializable{
+public class VesselScheduleBean {
 
     private Integer vesselScheduleId;
+    private String voyageNumber;
     private Integer clientId;
     private Integer vendorId;
     private String originPort;
@@ -27,17 +21,20 @@ public class VesselSchedules implements Serializable{
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
-    private String voyageNumber;
+    private String vesselScheduleKeyword;
+    private String vesselScheduleCriteria;
 
-    public VesselSchedules() {
+    public VesselScheduleBean() {
+
     }
 
-    public VesselSchedules(Integer vesselScheduleId, Integer clientId,
-                           Integer vendorId, String originPort, Date departureDate,
-                           Date departureTime, String destinationPort, Date arrivalDate,
-                           Date arrivalTime, Date createdTimestamp, String createdBy,
-                           Date modifiedTimestamp, String modifiedBy, String voyageNumber) {
+    public VesselScheduleBean(Integer vesselScheduleId, String voyageNumber, Integer clientId,
+                              Integer vendorId, String originPort, Date departureDate, Date departureTime,
+                              String destinationPort, Date arrivalDate, Date arrivalTime, Date createdTimestamp,
+                              String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword,
+                              String vesselScheduleCriteria) {
         this.vesselScheduleId = vesselScheduleId;
+        this.voyageNumber = voyageNumber;
         this.clientId = clientId;
         this.vendorId = vendorId;
         this.originPort = originPort;
@@ -50,12 +47,10 @@ public class VesselSchedules implements Serializable{
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
-        this.voyageNumber = voyageNumber;
+        this.vesselScheduleKeyword = vesselScheduleKeyword;
+        this.vesselScheduleCriteria = vesselScheduleCriteria;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "vesselScheduleId", unique = true)
     public Integer getVesselScheduleId() {
         return vesselScheduleId;
     }
@@ -64,7 +59,14 @@ public class VesselSchedules implements Serializable{
         this.vesselScheduleId = vesselScheduleId;
     }
 
-    @Column(name = "clientId")
+    public String getVoyageNumber() {
+        return voyageNumber;
+    }
+
+    public void setVoyageNumber(String voyageNumber) {
+        this.voyageNumber = voyageNumber;
+    }
+
     public Integer getClientId() {
         return clientId;
     }
@@ -73,7 +75,6 @@ public class VesselSchedules implements Serializable{
         this.clientId = clientId;
     }
 
-    @Column(name = "vendorId")
     public Integer getVendorId() {
         return vendorId;
     }
@@ -82,7 +83,6 @@ public class VesselSchedules implements Serializable{
         this.vendorId = vendorId;
     }
 
-    @Column(name = "originPort")
     public String getOriginPort() {
         return originPort;
     }
@@ -91,7 +91,6 @@ public class VesselSchedules implements Serializable{
         this.originPort = originPort;
     }
 
-    @Column(name = "departureDate")
     public Date getDepartureDate() {
         return departureDate;
     }
@@ -100,7 +99,6 @@ public class VesselSchedules implements Serializable{
         this.departureDate = departureDate;
     }
 
-    @Column(name = "departureTime")
     public Date getDepartureTime() {
         return departureTime;
     }
@@ -109,7 +107,6 @@ public class VesselSchedules implements Serializable{
         this.departureTime = departureTime;
     }
 
-    @Column(name = "destinationPort")
     public String getDestinationPort() {
         return destinationPort;
     }
@@ -118,7 +115,6 @@ public class VesselSchedules implements Serializable{
         this.destinationPort = destinationPort;
     }
 
-    @Column(name = "arrivalDate")
     public Date getArrivalDate() {
         return arrivalDate;
     }
@@ -127,7 +123,6 @@ public class VesselSchedules implements Serializable{
         this.arrivalDate = arrivalDate;
     }
 
-    @Column(name = "arrivalTime")
     public Date getArrivalTime() {
         return arrivalTime;
     }
@@ -136,7 +131,6 @@ public class VesselSchedules implements Serializable{
         this.arrivalTime = arrivalTime;
     }
 
-    @Column(name = "createdTimestamp")
     public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
@@ -145,7 +139,6 @@ public class VesselSchedules implements Serializable{
         this.createdTimestamp = createdTimestamp;
     }
 
-    @Column(name = "createdBy")
     public String getCreatedBy() {
         return createdBy;
     }
@@ -154,7 +147,6 @@ public class VesselSchedules implements Serializable{
         this.createdBy = createdBy;
     }
 
-    @Column(name = "modifiedTimestamp")
     public Date getModifiedTimestamp() {
         return modifiedTimestamp;
     }
@@ -163,7 +155,6 @@ public class VesselSchedules implements Serializable{
         this.modifiedTimestamp = modifiedTimestamp;
     }
 
-    @Column(name = "modifiedBy")
     public String getModifiedBy() {
         return modifiedBy;
     }
@@ -172,12 +163,19 @@ public class VesselSchedules implements Serializable{
         this.modifiedBy = modifiedBy;
     }
 
-    @Column(name = "voyageNumber")
-    public String getVoyageNumber() {
-        return voyageNumber;
+    public String getVesselScheduleKeyword() {
+        return vesselScheduleKeyword;
     }
 
-    public void setVoyageNumber(String voyageNumber) {
-        this.voyageNumber = voyageNumber;
+    public void setVesselScheduleKeyword(String vesselScheduleKeyword) {
+        this.vesselScheduleKeyword = vesselScheduleKeyword;
+    }
+
+    public String getVesselScheduleCriteria() {
+        return vesselScheduleCriteria;
+    }
+
+    public void setVesselScheduleCriteria(String vesselScheduleCriteria) {
+        this.vesselScheduleCriteria = vesselScheduleCriteria;
     }
 }

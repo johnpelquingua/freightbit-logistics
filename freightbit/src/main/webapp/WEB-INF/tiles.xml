@@ -15,6 +15,29 @@
         <put-attribute name="body" value="/index.jsp"/>
     </definition>
 
+    <!--OPERATIONS module begin-->
+    <definition name="operations.vesselScheduleAdd.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Add new Vessel Schedule"/>
+        <put-attribute name="body" value="/operations/vesselScheduleAdd.jsp"/>
+    </definition>
+
+    <definition name="operations.vesselScheduleEdit.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Edit Vessel Schedule"/>
+        <put-attribute name="body" value="/operations/vesselScheduleEdit.jsp"/>
+    </definition>
+
+    <definition name="operations.vesselScheduleSearch.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Search Vessel Schedule"/>
+        <put-attribute name="body" value="/operations/vesselScheduleSearch.jsp"/>
+    </definition>
+
+    <definition name="operations.vesselScheduleList.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Add new Vessel Schedule"/>
+        <put-attribute name="body" value="/operations/vesselSchedulesList.jsp"/>
+    </definition>
+
+    <!--OPERATION module ends-->
+
     <!-- CORE module tiles Begin-->
     <definition name="core.userSearch.tiles" extends="baseLayout">
         <put-attribute name="title" value="User Page"/>

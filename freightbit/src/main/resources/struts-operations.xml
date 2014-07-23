@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="operations" namespace="/" extends="struts-default">
+
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>
+
+        <default-action-ref name="Operations"/>
+
+        <!--Vessel Schedule starts-->
+        <action name="addVesselSchedule" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
+                method="addVesselSchedule">
+            <result name="success" type="redirect">viewVesselSchedule</result>
+            <result name="input" type="tiles">operations.vesselScheduleAdd.tiles</result>
+        </action>
+
+        <action name="editVesselSchedule" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
+                method="editVesselSchedule">
+            <result name="success" type="tiles">operations.vesselScheduleEdit.tiles</result>
+        </action>
+
+        <action name="deleteVesselSchedule" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
+                method="deleteVesselSchedule">
+            <result name="success" type="tiles">operations.vesselScheduleList.tiles</result>
+        </action>
+
+        <action name="viewVesselSchedules" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
+                method="viewVesselSchedules">
+            <result name="success" type="tiles">operations.vesselScheduleList.tiles</result>
+        </action>
+
+        <action name="loadVesselScheduleSearch" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
+                method="loadVesselScheduleSearch">
+            <result name="success" type="tiles">operations.vesselScheduleSearch.tiles</result>
+        </action>
+
+        <!--Vessel Schedule Ends-->
+    </package>
+</struts>

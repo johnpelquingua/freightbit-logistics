@@ -60,4 +60,9 @@ public class VesselSchedulesServiceImpl implements VesselSchedulesService {
     public List<VesselSchedules> findVesselScheduleByVendorId(Integer vendorId) {
         return vesselSchedulesDao.findVesselSchedulesByVendorId(vendorId);
     }
+
+    @Override
+    public List<VesselSchedules> findVesselSchedulesByCriteria(String column, String value, Integer clientId) {
+        return vesselSchedulesDao.findVesselSchedulesByCriteria(column, value, clientId);
+    }
 }

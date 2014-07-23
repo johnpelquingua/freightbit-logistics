@@ -5,6 +5,7 @@ import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,9 +16,9 @@ import java.util.List;
  */
 
 @Transactional
-public class VesselSchedulesImpl extends HibernateDaoSupport implements VesselSchedulesDao{
+public class VesselSchedulesDaoImpl extends HibernateDaoSupport implements VesselSchedulesDao{
 
-    private static final Logger log = Logger.getLogger(VesselSchedulesImpl.class);
+    private static final Logger log = Logger.getLogger(VesselSchedulesDaoImpl.class);
 
     @Override
     public void addVesselSchedule(VesselSchedules vesselSchedules) {
@@ -99,5 +100,16 @@ public class VesselSchedulesImpl extends HibernateDaoSupport implements VesselSc
             log.error("Finding Vessel Schedule by vendorId failed", e);
             throw e;
         }
+    }
+
+    @Override
+    public List<VesselSchedules> findVesselSchedulesByCriteria(String column, String value, Integer clientId) {
+        log.debug("Find vendor by criteria ");
+        Session session = getSessionFactory().getCurrentSession();
+        List<VesselSchedules> vesselSchedules = session.createCriteria(VesselSchedules.class)
+                .add(Restrictions.like(column, value))
+                .add(Restrictions.eq("client.clientId", clientId))
+                .list();
+        return vesselSchedules;
     }
 }

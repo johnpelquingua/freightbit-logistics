@@ -21,4 +21,6 @@ public interface VesselSchedulesService {
     public List<VesselSchedules> findVesselSchedulesById(Integer vesselScheduleId);
 
     public List<VesselSchedules> findVesselScheduleByVendorId(Integer vendorId);
+
+    public List<VesselSchedules> findVesselSchedulesByCriteria(String column, String value, Integer clientId);
 }

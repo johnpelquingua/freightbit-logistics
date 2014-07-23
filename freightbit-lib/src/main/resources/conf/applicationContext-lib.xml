@@ -30,6 +30,7 @@
                 <value>com.sr.biz.freightbit.common.entity</value>
                 <value>com.sr.biz.freightbit.customer.entity</value>
                 <value>com.sr.biz.freightbit.order.entity</value>
+                <value>com.sr.biz.freightbit.vesselSchedule.entity</value>
             </array>
         </property>
         <property name="hibernateProperties">
@@ -94,6 +95,10 @@
         <property name="itemsDao" ref="itemsDao"/>
     </bean>
 
+    <bean id="vesselSchedulesService" class="com.sr.biz.freightbit.vesselSchedule.service.impl.VesselSchedulesServiceImpl">
+        <property name="vesselSchedulesDao" ref="vesselSchedulesDao"/>
+
+    </bean>
     <!--   <bean id="driverService" class="com.sr.biz.freightbit.vendor.service.impl.DriverServiceImpl">
            <property name="driverDao" ref="driverDao" />
        </bean>-->
@@ -170,6 +175,10 @@
     </bean>
 
     <bean id="orderItemsDao" class="com.sr.biz.freightbit.order.dao.impl.OrderItemsDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="vesselSchedulesDao" class="com.sr.biz.freightbit.vesselSchedule.dao.impl.VesselSchedulesDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 

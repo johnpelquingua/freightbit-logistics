@@ -17,6 +17,7 @@
     <include file="struts-reports.xml"/>
     <include file="struts-admin.xml"/>
     <include file="struts-user.xml"/>
+    <include file="struts-operations.xml"/>
 
     <package name="default" namespace="/" extends="struts-default">
         <result-types>

@@ -20,4 +20,6 @@ public interface VesselSchedulesDao {
     public List<VesselSchedules> findVesselScheduleById(Integer vesselScheduleId);
 
     public List<VesselSchedules> findVesselSchedulesByVendorId(Integer vendorId);
+
+    public List<VesselSchedules> findVesselSchedulesByCriteria(String column, String value, Integer clientId);
 }
