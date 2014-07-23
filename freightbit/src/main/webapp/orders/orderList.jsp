@@ -108,7 +108,6 @@
 
             <div class="panel-body">
                 <div class="table-responsive">
-
                         <display:table id="order" name="orders" requestURI="/viewOrders.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
 
