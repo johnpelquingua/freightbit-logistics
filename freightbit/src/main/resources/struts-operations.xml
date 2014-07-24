@@ -40,6 +40,20 @@
             <result name="success" type="tiles">operations.vesselScheduleSearch.tiles</result>
         </action>
 
+        <action name="loadAddVesselSchedule" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
+                method="loadAddVesselSchedule">
+            <result name="success" type="tiles">operations.vesselScheduleAdd.tiles</result>
+        </action>
+
         <!--Vessel Schedule Ends-->
+
+        <!--Status Starts here-->
+
+        <action name="viewStatusList" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
+                method="viewStatusList">
+            <result name="success" type="tiles">operations.statusList.tiles</result>
+        </action>
+
+        <!--Status ends here-->
     </package>
 </struts>

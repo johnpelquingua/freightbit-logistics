@@ -7,6 +7,10 @@ import com.sr.apps.freightbit.operations.formbean.VesselScheduleBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.service.ClientService;
+import com.sr.biz.freightbit.vendor.entity.Vendor;
+import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
 import com.sr.biz.freightbit.vesselSchedule.service.impl.VesselSchedulesServiceImpl;
@@ -29,17 +33,32 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
     private VesselSchedulesService vesselSchedulesService;
 
     private List<Parameters> vesselScheduleSearch = new ArrayList<Parameters>();
-
+    private List<Parameters> portsList = new ArrayList<Parameters>();
+    private List<Vendor> vendorList = new ArrayList<Vendor>();
 
     private ParameterService parameterService;
+    private ClientService clientService;
+    private VendorService vendorService;
 
     @Override
     public void prepare() {
         vesselScheduleSearch = parameterService.getParameterMap(ParameterConstants.VESSEL_SCHEDULE_SEARCH );
+        portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
+        vendorList = vendorService.findAllVendors();
     }
 
     public String addVesselSchedule(){
+        validateOnSubmit(vesselSchedule);
+        if (hasFieldErrors()) {
+            return INPUT;
+        } else {
+            try {
 
+            } catch (Exception e) {
+                addFieldError("vesselSchedule.voyageNumber", "Voyage Number already exists");
+                return INPUT;
+            }
+        }
         return SUCCESS;
     }
 
@@ -78,6 +97,25 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
 
     }
 
+    public VesselSchedules transformToEntityBean(VesselScheduleBean formBean) {
+        VesselSchedules entity = new VesselSchedules();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClientId(client.getClientId());
+
+        if (formBean.getVesselScheduleId() != null) {
+            entity.setVesselScheduleId(new Integer(formBean.getVesselScheduleId()));
+        }
+
+        entity.setVoyageNumber(formBean.getVoyageNumber());
+        entity.setVendorId(formBean.getVendorId());
+        entity.setOriginPort(formBean.getOriginPort());
+        entity.setDestinationPort(formBean.getDestinationPort());
+        entity.setArrivalDate(formBean.getArrivalDate());
+        entity.setDepartureDate(formBean.getDepartureDate());
+
+        return entity;
+    }
+
     public String getColumnFilter() {
         String column = "";
         if ("ESTIMATED DATE OF DEPARTURE".equals(vesselSchedule.getVesselScheduleCriteria())) {
@@ -100,11 +138,24 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         return clientId;
     }
 
-    public void validateOnSubmit() {
+    public void validateOnSubmit(VesselScheduleBean vesselSchedule) {
+        clearErrorsAndMessages();
+
+        if (StringUtils.isBlank(vesselSchedule.getVoyageNumber())) {
+            addFieldError("vesselSchedule.voyageNumber", "Voyage Number is required");
+        }
 
     }
 
     public String loadVesselScheduleSearch() {
+        return SUCCESS;
+    }
+
+    public String loadAddVesselSchedule() {
+        return SUCCESS;
+    }
+
+    public String viewStatusList() {
         return SUCCESS;
     }
 
@@ -146,5 +197,37 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
 
     public VesselSchedulesService getVesselSchedulesService() {
         return vesselSchedulesService;
+    }
+
+    public ClientService getClientService() {
+        return clientService;
+    }
+
+    public void setClientService(ClientService clientService) {
+        this.clientService = clientService;
+    }
+
+    public List<Vendor> getVendorList() {
+        return vendorList;
+    }
+
+    public void setVendorList(List<Vendor> vendorList) {
+        this.vendorList = vendorList;
+    }
+
+    public VendorService getVendorService() {
+        return vendorService;
+    }
+
+    public void setVendorService(VendorService vendorService) {
+        this.vendorService = vendorService;
+    }
+
+    public List<Parameters> getPortsList() {
+        return portsList;
+    }
+
+    public void setPortsList(List<Parameters> portsList) {
+        this.portsList = portsList;
     }
 }

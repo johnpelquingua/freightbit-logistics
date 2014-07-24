@@ -65,7 +65,7 @@
             <li><a href="<s:url action='viewSeaFreightPlanning' />"> <i class="fa fa-caret-right fa-fw"></i> Sea Freight Planning</a></li>
             <li><a href="<s:url action='viewInlandFreightPlanning' />"> <i class="fa fa-caret-right fa-fw"></i> Inland Freight Planning</a></li>
             <li><a href="<s:url action='loadVesselScheduleSearch' />"> <i class="fa fa-caret-right fa-fw"></i> Vessel Schedule</a></li>
-            <li><a href="#"> <i class="fa fa-caret-right fa-fw"></i> Status</a></li>
+            <li><a href="<s:url action='viewStatusList' />"> <i class="fa fa-caret-right fa-fw"></i> Status</a></li>
         </ul>
     </li>
     <li><a href="#" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-file-text"></i> Documentations</a></li>

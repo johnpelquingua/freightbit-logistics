@@ -36,6 +36,11 @@
         <put-attribute name="body" value="/operations/vesselSchedulesList.jsp"/>
     </definition>
 
+    <definition name="operations.statusList.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Add new Vessel Schedule"/>
+        <put-attribute name="body" value="/operations/statusListView.jsp"/>
+    </definition>
+
     <!--OPERATION module ends-->
 
     <!-- CORE module tiles Begin-->
