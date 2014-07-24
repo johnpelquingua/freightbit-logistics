@@ -1,22 +1,25 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
-<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<div class="row">
+    <div class="col-lg-12">
+        <h1>Vessel Schedules </h1>
+        <ol class="breadcrumb">
+            <li class="active" ><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><i class="fa fa-male"></i>Vessel Schedules</li>
+        </ol>
 
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    </div>
+</div><!-- /.row -->
 
-    <h1 class="booking page-header">
-        Vessel Schedules
-    </h1>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel booking panel-info">
-                <div class="booking panel-heading">
-                    <img src="includes/images/booking.png" class="box-icon">
-                    <span class="booking panel-title" style="color:white;">List of Vessel Schedules</span>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-search"></i>List of Vessel Schedules</h3>
+            </div>
+
+            <div class="panel-body">
+				
+				<div class="table-responsive">
                         <display:table id="vesselSchedule" name="vesselSchedules"
                                        requestURI="/viewVesselsSchedules.action" pagesize="10"
                                        class="table table-striped table-hover table-bordered text-center tablesorter"
@@ -53,25 +56,27 @@
                             </td>
 
                         </display:table>
-                    </div>
                 </div>
+				
 
-                <div class="panel-footer">
-                    <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="booking2.html">2</a></li>
-                        <li><a href="booking2.html">&raquo;</a></li>
-                    </ul>
 
-							<span class="pull-right">
-							<a href="vessel-schedule-add.html" class="icon-action-link"><img
-                                    src="includes/images/add-sched.png" class="icon-action circ-icon"> </a>
-							</span>
-                </div>
+
             </div>
+
+            <div class="panel-footer">
+                                <ul class="pagination">
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="booking2.html">2</a></li>
+                                    <li><a href="booking2.html">&raquo;</a></li>
+                                </ul>
+
+            							<span class="pull-right">
+            							<a href="vessel-schedule-add.html" class="icon-action-link"><img
+                                                src="includes/images/add-sched.png" class="icon-action circ-icon"> </a>
+            							</span>
+                            </div>
+
         </div>
-
     </div>
-
-</div>
+</div><!-- /.row -->
