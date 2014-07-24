@@ -64,7 +64,7 @@
         <ul class="dropdown-menu">
             <li><a href="<s:url action='viewSeaFreightPlanning' />"> <i class="fa fa-caret-right fa-fw"></i> Sea Freight Planning</a></li>
             <li><a href="<s:url action='viewInlandFreightPlanning' />"> <i class="fa fa-caret-right fa-fw"></i> Inland Freight Planning</a></li>
-            <li><a href="#"> <i class="fa fa-caret-right fa-fw"></i> Vessel Schedule</a></li>
+            <li><a href="<s:url action='loadVesselScheduleSearch' />"> <i class="fa fa-caret-right fa-fw"></i> Vessel Schedule</a></li>
             <li><a href="#"> <i class="fa fa-caret-right fa-fw"></i> Status</a></li>
         </ul>
     </li>
