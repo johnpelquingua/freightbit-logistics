@@ -31,6 +31,8 @@
 							  <th class="tb-font-black">Customer Code</th>
 							  <th class="tb-font-black">Consignee</th>
 							  <th class="tb-font-black">Status</th>
+							  <th class="tb-font-black">Service Requirement</th>
+							  <th class="tb-font-black">Service Mode</th>
 							  <th class="tb-font-black">Action</th>
 							</tr>
 						</thead>
@@ -41,6 +43,8 @@
 							  <td class="tb-font-black">SRI</td>
 							  <td class="tb-font-black">ITG</td>
 							  <td class="tb-font-black">SHIPPED</td>
+							  <td class="tb-font-black">FCL</td>
+							  <td class="tb-font-black">Door to Door</td>
 							  <td class="tb-font-black">
 								<a href="updateStatus.html" class="icon-action-link edit-booking">
                                     <img src="includes/images/edit-booking.png" class="icon-action circ-icon" title="Edit Schedule"
@@ -59,6 +63,8 @@
 							  <td class="tb-font-black">SRI</td>
 							  <td class="tb-font-black">ITG</td>
 							  <td class="tb-font-black">AT THE PORT</td>
+							  <td class="tb-font-black">FCL</td>
+                              							  <td class="tb-font-black">Door to Door</td>
 							  <td class="tb-font-black">
 								<a href="updateStatus.html" class="icon-action-link edit-booking">
 								    <img src="includes/images/edit-booking.png" class="icon-action circ-icon" title="Edit Schedule"
