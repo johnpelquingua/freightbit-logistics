@@ -23,7 +23,7 @@ public class VesselSchedulesServiceImpl implements VesselSchedulesService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addVesselSchedule(VesselSchedules vesselSchedules) throws VesselSchedulesAlreadyExistsException {
-        if (vesselSchedulesDao.findVesselScheduleById(vesselSchedules.getVesselScheduleId()).size() > 0) {
+        if (vesselSchedulesDao.findVesselScheduleByVoyageNumber(vesselSchedules.getVoyageNumber()).size() > 0) {
             throw new VesselSchedulesAlreadyExistsException(vesselSchedules.getVesselScheduleId());
         } else {
             vesselSchedulesDao.addVesselSchedule(vesselSchedules);
@@ -38,8 +38,8 @@ public class VesselSchedulesServiceImpl implements VesselSchedulesService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateVesselschedule(VesselSchedules vesselSchedules) throws VesselSchedulesAlreadyExistsException {
-        if (vesselSchedulesDao.findVesselScheduleById(vesselSchedules.getVesselScheduleId()).size() > 0) {
+    public void updateVesselSchedule(VesselSchedules vesselSchedules) throws VesselSchedulesAlreadyExistsException {
+        if (vesselSchedulesDao.findVesselScheduleByVoyageNumberAndId(vesselSchedules.getVoyageNumber(), vesselSchedules.getVesselScheduleId()).size() > 0) {
             throw new VesselSchedulesAlreadyExistsException(vesselSchedules.getVesselScheduleId());
         } else {
             vesselSchedulesDao.updateVesselSchedule(vesselSchedules);
@@ -52,7 +52,7 @@ public class VesselSchedulesServiceImpl implements VesselSchedulesService {
     }
 
     @Override
-    public List<VesselSchedules> findVesselSchedulesById(Integer vesselScheduleId) {
+    public VesselSchedules findVesselSchedulesById(Integer vesselScheduleId) {
         return vesselSchedulesDao.findVesselScheduleById(vesselScheduleId);
     }
 
@@ -64,5 +64,15 @@ public class VesselSchedulesServiceImpl implements VesselSchedulesService {
     @Override
     public List<VesselSchedules> findVesselSchedulesByCriteria(String column, String value, Integer clientId) {
         return vesselSchedulesDao.findVesselSchedulesByCriteria(column, value, clientId);
+    }
+
+    @Override
+    public List<VesselSchedules> findVesselScheduleByVoyageNumber(String voyageNumber) {
+        return vesselSchedulesDao.findVesselScheduleByVoyageNumber(voyageNumber);
+    }
+
+    @Override
+    public List<VesselSchedules> findVesselScheduleByVoyageNumberAndId(String voyageNumber, Integer vesselScheduleId) {
+        return vesselSchedulesDao.findVesselScheduleByVoyageNumberAndId(voyageNumber, vesselScheduleId);
     }
 }

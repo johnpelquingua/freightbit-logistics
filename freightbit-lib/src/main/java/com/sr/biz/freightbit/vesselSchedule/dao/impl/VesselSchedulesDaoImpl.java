@@ -72,11 +72,48 @@ public class VesselSchedulesDaoImpl extends HibernateDaoSupport implements Vesse
     }
 
     @Override
-    public List<VesselSchedules> findVesselScheduleById(Integer vesselScheduleId) {
+    public VesselSchedules findVesselScheduleById(Integer vesselScheduleId) {
         log.debug("Finding Vessel Schedule by Id");
         try {
 
-            Query query = getSessionFactory().getCurrentSession().createQuery("from VesselSchedules v where v.vesselScheduleId = :vesselScheduleId");
+            VesselSchedules instance = (VesselSchedules) getSessionFactory().getCurrentSession().get(VesselSchedules.class, vesselScheduleId);
+            if (instance == null) {
+                log.debug("get successful, no instance found");
+            } else {
+                log.debug("get successful, instance found");
+            }
+            return instance;
+
+
+        } catch (Exception e) {
+            log.error("Finding Vessel Schedule failed");
+            throw e;
+        }
+    }
+
+    @Override
+    public List<VesselSchedules> findVesselScheduleByVoyageNumber(String voyageNumber) {
+        log.debug("Finding Vessel Schedule by Id");
+        try {
+
+            Query query = getSessionFactory().getCurrentSession().createQuery("from VesselSchedules v where v.voyageNumber = :voyageNumber");
+            query.setParameter("voyageNumber", voyageNumber);
+            List<VesselSchedules> results = (List<VesselSchedules>) query.list();
+            log.debug("Find Vessel Schedules by Id successful" + results.size());
+            return results;
+        } catch (Exception e) {
+            log.error("Finding Vessel Schedule failed");
+            throw e;
+        }
+    }
+
+    @Override
+    public List<VesselSchedules> findVesselScheduleByVoyageNumberAndId(String voyageNumber, Integer vesselScheduleId) {
+        log.debug("Finding Vessel Schedule by Id");
+        try {
+
+            Query query = getSessionFactory().getCurrentSession().createQuery("from VesselSchedules v where v.voyageNumber = :voyageNumber and v.vesselScheduleId != :vesselScheduleId");
+            query.setParameter("voyageNumber", voyageNumber);
             query.setParameter("vesselScheduleId", vesselScheduleId);
             List<VesselSchedules> results = (List<VesselSchedules>) query.list();
             log.debug("Find Vessel Schedules by Id successful" + results.size());

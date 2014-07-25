@@ -1,6 +1,19 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+
+<s:if test="hasActionMessages()">
+    <div class="col-lg-7">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
     <div class="col-lg-12">
         <h1>Vessel Schedules </h1>c
@@ -42,22 +55,28 @@
 
                             <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td>
-
+                            <td class="tb-font-black" style="text-align: center;">
                                 <display:column title="Actions">
-                            <a href="vessel-schedule-edit.html" class="icon-action-link edit-booking"><img
-                                    src="includes/images/edit-booking.png" class="icon-action circ-icon"
-                                    title="Edit Schedule"
-                                    style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
-                            </a>
-                            <a href="#delete-Schedule" class="icon-action-link delete-booking"><img
-                                    src="includes/images/delete-sched.png" class="icon-action circ-icon"
-                                    title="Delete Schedule"
-                                    style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
-                            </a>
+
+                                <s:url var="editVesselScheduleUrl" action="loadEditVesselSchedule">
+                                    <s:param name="vesselScheduleIdParam" value="#attr.vesselSchedule.vesselScheduleId"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{editVesselScheduleUrl}" rel="tooltip"
+                                     title="Edit this vendor">
+                                <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                </s:a>
+
+                                <s:url var="deleteVesselScheduleUrl" action="deleteVesselSchedule">
+                                    <s:param name="vesselScheduleIdParam" value="#attr.vesselSchedule.vesselScheduleId"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{deleteVesselScheduleUrl}" rel="tooltip"
+                                     title="Delete this Vendor"
+                                     onclick="return confirm('Do you really want to delete?');">
+                                <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                </s:a>
+
                                 </display:column>
                             </td>
-
                         </display:table>
                 </div>
 				
@@ -75,7 +94,7 @@
                                 </ul>
 
             							<span class="pull-right">
-            							<a href="vessel-schedule-add.html" class="icon-action-link"><img
+            							<a href="loadAddVesselSchedule" class="icon-action-link"><img
                                                 src="includes/images/add-sched.png" class="icon-action circ-icon"> </a>
             							</span>
                             </div>

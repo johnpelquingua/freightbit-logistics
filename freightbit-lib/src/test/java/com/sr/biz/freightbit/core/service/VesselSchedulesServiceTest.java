@@ -1,12 +1,8 @@
 package com.sr.biz.freightbit.core.service;
 
-import com.sr.biz.freightbit.core.entity.Client;
-//import com.sr.biz.freightbit.vendor.exceptions.VesselAlreadyExistsException;
 import com.sr.biz.freightbit.vesselSchedule.dao.VesselSchedulesDao;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
-import com.sr.biz.freightbit.vesselSchedule.exception.VesselSchedulesAlreadyExistsException;
 import com.sr.biz.freightbit.vesselSchedule.service.impl.VesselSchedulesServiceImpl;
-import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,10 +37,10 @@ public class VesselSchedulesServiceTest {
     @Test
     public void testAddExistingVesselSchedule() {
         VesselSchedules vesselSchedules = initVesselSchedules();
-        List<VesselSchedules> existingVesselSchedulesList = new ArrayList<VesselSchedules>();
+        List<VesselSchedules> existingVesselSchedulesList = new ArrayList<>();
         existingVesselSchedulesList.add(vesselSchedules);
 
-        Mockito.when(vesselSchedulesDao.findVesselScheduleById(vesselSchedules.getVesselScheduleId())).thenReturn(new ArrayList<VesselSchedules>());
+        Mockito.when(vesselSchedulesDao.findVesselScheduleById(1)).thenReturn(vesselSchedules);
         vesselSchedulesDao.addVesselSchedule(vesselSchedules);
     }
 
@@ -60,18 +56,17 @@ public class VesselSchedulesServiceTest {
     }
 
     private VesselSchedules initVesselSchedules() {
-        Client client = new Client("Ernest", new Date(), "Clarence", new Date(), "Clarence");
 
         VesselSchedules vesselSchedules = new VesselSchedules();
 
         vesselSchedules.setClientId(1);
         vesselSchedules.setModifiedBy("Clarence");
-        vesselSchedules.setArrivalDate(new Date());
-        vesselSchedules.setArrivalTime(new Date());
+        vesselSchedules.setArrivalDate("1994-20-11");
+        vesselSchedules.setArrivalTime("1994-20-11");
         vesselSchedules.setCreatedBy("Clarence");
         vesselSchedules.setCreatedTimestamp(new Date());
-        vesselSchedules.setDepartureDate(new Date());
-        vesselSchedules.setDepartureTime(new Date());
+        vesselSchedules.setDepartureDate("1994-20-11");
+        vesselSchedules.setDepartureTime("1994-20-11");
         vesselSchedules.setDestinationPort("CCC");
         vesselSchedules.setOriginPort("CCC");
         vesselSchedules.setVendorId(1);

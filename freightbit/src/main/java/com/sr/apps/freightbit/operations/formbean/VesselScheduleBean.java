@@ -12,11 +12,11 @@ public class VesselScheduleBean {
     private Integer clientId;
     private Integer vendorId;
     private String originPort;
-    private Date departureDate;
-    private Date departureTime;
+    private String departureDate;
+    private String departureTime;
     private String destinationPort;
-    private Date arrivalDate;
-    private Date arrivalTime;
+    private String arrivalDate;
+    private String arrivalTime;
     private Date createdTimestamp;
     private String createdBy;
     private Date modifiedTimestamp;
@@ -28,11 +28,7 @@ public class VesselScheduleBean {
 
     }
 
-    public VesselScheduleBean(Integer vesselScheduleId, String voyageNumber, Integer clientId,
-                              Integer vendorId, String originPort, Date departureDate, Date departureTime,
-                              String destinationPort, Date arrivalDate, Date arrivalTime, Date createdTimestamp,
-                              String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword,
-                              String vesselScheduleCriteria) {
+    public VesselScheduleBean(Integer vesselScheduleId, String voyageNumber, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String destinationPort, String arrivalDate, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword, String vesselScheduleCriteria) {
         this.vesselScheduleId = vesselScheduleId;
         this.voyageNumber = voyageNumber;
         this.clientId = clientId;
@@ -91,19 +87,19 @@ public class VesselScheduleBean {
         this.originPort = originPort;
     }
 
-    public Date getDepartureDate() {
+    public String getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(Date departureDate) {
+    public void setDepartureDate(String departureDate) {
         this.departureDate = departureDate;
     }
 
-    public Date getDepartureTime() {
+    public String getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Date departureTime) {
+    public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
     }
 
@@ -115,19 +111,19 @@ public class VesselScheduleBean {
         this.destinationPort = destinationPort;
     }
 
-    public Date getArrivalDate() {
+    public String getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(Date arrivalDate) {
+    public void setArrivalDate(String arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public Date getArrivalTime() {
+    public String getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Date arrivalTime) {
+    public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 

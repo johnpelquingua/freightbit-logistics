@@ -151,7 +151,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
     public String editVendor() {
-        validateOnSubmitEdit(vendor);
+        validateOnSubmit(vendor);
         if (hasFieldErrors()) {
             return INPUT;
         }
@@ -247,24 +247,22 @@ public class VendorAction extends ActionSupport implements Preparable {
     public void validateOnSubmit(VendorBean vendorBean) {
         clearErrorsAndMessages();
 
-        /*String PATTERN = "[0-9A-Za-z]";
-        *//*String PATTERN = "[0-9A-Za-z]+";*//*
-        Pattern pattern = Pattern.compile(PATTERN);
-        Matcher matcher = pattern.matcher(vendorBean.getVendorName());
-        if(!matcher.matches()){
-            addFieldError("vendor.vendorName", getText("err.regex.vendorName.validation"));
-        }*/
+        String name = "[A-Za-z]+[ ]";
+        String code = "[A-Z]+";
 
-        if (StringUtils.isBlank(vendorBean.getVendorName())) {
-            addFieldError("vendor.vendorName", getText("err.vendorName.required"));
-        }
-        if (StringUtils.isBlank(vendorBean.getVendorCode())) {
-            addFieldError("vendor.vendorCode", getText("err.vendorCode.required"));
-        }
-    }
+        Pattern namePattern = Pattern.compile(name);
+        Pattern codePattern = Pattern.compile(code);
 
-    public void validateOnSubmitEdit(VendorBean vendorBean) {
-        clearErrorsAndMessages();
+        Matcher matcher = namePattern.matcher(vendorBean.getVendorName());
+        if (!matcher.matches()){
+            addFieldError("vendor.vendorName", "Name must be letters only.");
+        }
+
+        matcher = codePattern.matcher(vendorBean.getVendorCode());
+        if (!matcher.matches()){
+            addFieldError("vendor.vendorCode", "Code must be capital letters only.");
+        }
+
         if (StringUtils.isBlank(vendorBean.getVendorName())) {
             addFieldError("vendor.vendorName", getText("err.vendorName.required"));
         }
@@ -644,6 +642,32 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public void validateOnSubmitDriver(DriverBean driverBean) {
         clearErrorsAndMessages();
+
+        String alpha = "[A-Za-z]+[ ]";
+        String alphaNumeric = "[A-Za-z0-9]+";
+
+        Pattern namePattern = Pattern.compile(alpha);
+        Pattern alphaNumericPattern = Pattern.compile(alphaNumeric);
+
+        Matcher matcher = namePattern.matcher(driverBean.getLastName());
+        if (!matcher.matches()) {
+            addFieldError("driver.lastName", "Name must be letters only.");
+        }
+
+        matcher = namePattern.matcher(driverBean.getFirstName());
+        if (!matcher.matches()) {
+            addFieldError("driver.lastName", "Name must be letters only.");
+        }
+
+        matcher = namePattern.matcher(driverBean.getTitle());
+        if (!matcher.matches()) {
+            addFieldError("driver.firstName", "Title must be letters only.");
+        }
+
+        matcher = alphaNumericPattern.matcher(driverBean.getLicenseNumber());
+        if (!matcher.matches()) {
+            addFieldError("driver.licenseNumber", "License Number must be in valid format.");
+        }
 
         if (StringUtils.isBlank(driverBean.getDriverCode())) {
             addFieldError("driver.driverCode", getText("err.driverCode.required"));

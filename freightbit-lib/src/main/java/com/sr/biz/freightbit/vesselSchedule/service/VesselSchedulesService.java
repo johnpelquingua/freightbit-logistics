@@ -14,13 +14,17 @@ public interface VesselSchedulesService {
 
     public void deleteVesselSchedule(VesselSchedules vesselSchedules);
 
-    public void updateVesselschedule(VesselSchedules vesselSchedules) throws VesselSchedulesAlreadyExistsException;
+    public void updateVesselSchedule(VesselSchedules vesselSchedules) throws VesselSchedulesAlreadyExistsException;
 
     public List<VesselSchedules> findAllVesselSchedules();
 
-    public List<VesselSchedules> findVesselSchedulesById(Integer vesselScheduleId);
+    public VesselSchedules findVesselSchedulesById(Integer vesselScheduleId);
 
     public List<VesselSchedules> findVesselScheduleByVendorId(Integer vendorId);
 
     public List<VesselSchedules> findVesselSchedulesByCriteria(String column, String value, Integer clientId);
+
+    public List<VesselSchedules> findVesselScheduleByVoyageNumber(String voyageNumber);
+
+    public List<VesselSchedules> findVesselScheduleByVoyageNumberAndId(String voyageNumber, Integer vesselScheduleId);
 }
