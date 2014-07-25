@@ -10,7 +10,7 @@
     <div style="width:48%; float:left;margin-right:36px;">
         <div class="panel booking panel-info">
             <div class="booking panel-heading">
-                <img src="includes/images/booking.png" class="box-icon">
+                <img src="../includes/images/booking.png" class="box-icon">
                 <span class="booking panel-title">New Booking</span>
 
               </div>
@@ -59,7 +59,7 @@
     <div style="width:48%; float:left;">
         <div class="panel booking panel-info">
             <div class="booking panel-heading">
-                <img src="includes/images/booking.png" class="box-icon">
+                <img src="../includes/images/booking.png" class="box-icon">
                 <span class="booking panel-title">On-Going</span>
 
               </div>
@@ -111,7 +111,7 @@
 <div style="width:48%; float:left;margin-right:36px;">
         <div class="panel booking panel-info">
             <div class="booking panel-heading">
-                <img src="includes/images/account.png" class="box-icon">
+                <img src="../includes/images/account.png" class="box-icon">
                 <span class="booking panel-title">New Accounts</span>
 
               </div>
@@ -161,11 +161,11 @@
     <div style="width:48%; float:left;">
         <div class="panel booking panel-info">
             <div class="booking panel-heading">
-                <img src="includes/images/report.png" class="box-icon">
+                <img src="../includes/images/report.png" class="box-icon">
                 <span class="booking panel-title">Monthly Report</span>
             </div>
             <div class="panel-body" style="text-align:center;">
-                <img src="includes/images/graph.png" style="width:170px;">
+                <img src="../includes/images/graph.png" style="width:170px;">
                 <p style="margin:0;font-weight:bold;">September 2014</p>
             </div>
         </div>

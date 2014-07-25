@@ -11,7 +11,8 @@ public class UserBean {
     private String companyName;
     private String userName;
     private String password;
-    private String title;
+    private String reenterPassword;
+	private String title;
     private String emailAddress;
     private String contactNumber;
     private String userType;
@@ -114,6 +115,14 @@ public class UserBean {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getReenterPassword() {
+		return reenterPassword;
+	}
+	
+	public void setReenterPassword(String reenterPassword) {
+		this.reenterPassword = reenterPassword;
+	}
 
     public String getTitle() {
         return title;

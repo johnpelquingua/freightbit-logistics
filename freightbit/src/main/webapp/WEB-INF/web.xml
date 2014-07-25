@@ -13,6 +13,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/conf/applicationContext.xml
             classpath:/conf/applicationContext-lib.xml
+            classpath:/conf/spring-security.xml
         </param-value>
     </context-param>
 
@@ -33,6 +34,17 @@
         <listener-class>com.sr.apps.freightbit.core.listeners.Struts2ListenerOnGAE</listener-class>
     </listener>
 
+	 <filter>  
+		 <filter-name>springSecurityFilterChain</filter-name>  
+		 <filter-class>  
+		         org.springframework.web.filter.DelegatingFilterProxy  
+		 </filter-class>  
+	</filter>  
+	<filter-mapping>  
+			<filter-name>springSecurityFilterChain</filter-name>  
+		<url-pattern>/*</url-pattern>  
+	</filter-mapping>  
+	
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>

@@ -43,7 +43,7 @@
     </li>
 
     <li class="dropdown user-dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Super User <b
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <c:out value="${sessionScope.loggedinUser}"/><b
                 class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>

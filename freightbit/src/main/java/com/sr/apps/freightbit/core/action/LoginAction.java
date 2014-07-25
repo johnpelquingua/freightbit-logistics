@@ -1,12 +1,17 @@
 package com.sr.apps.freightbit.core.action;
 
+import java.security.Principal;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.service.UserService;
-import org.apache.log4j.Logger;
-import org.apache.struts2.interceptor.SessionAware;
-
-import java.util.Map;
 
 /**
  * Created by JMXPSX on 4/23/14.
@@ -27,19 +32,18 @@ public class LoginAction extends ActionSupport implements SessionAware {
     public String execute() throws Exception {
 
         log.debug("execute login...");
+        HttpServletRequest request = ServletActionContext.getRequest();  
+        Principal user = request.getUserPrincipal();
+        this.setUsername(request.getUserPrincipal().getName());  
 /*		if (sessionAttributes.get("USER")!= null){
             return SUCCESS;
 		}*/
 
         User userEntity = userService.findUserByUserName(username);
-        if (userEntity != null && password.equals(userEntity.getPassword())) {
-            //UserBean userBean = new UserBean();
-            //userBean.setId(userEntity.getUserId());
-            //userBean.setName(userEntity.getName());
-            //log.debug(userBean.toString());
-            //sessionAttributes.put("USER", userBean);
+        if (userEntity != null) {
             sessionAttributes.put("clientId", userEntity.getClient().getClientId());
             sessionAttributes.put("user", userEntity);
+            sessionAttributes.put("loggedinUser", userEntity.getFirstName() + " " + userEntity.getLastName());
             return SUCCESS;
         } else {
             log.debug("clearing errors and messages...");
@@ -50,13 +54,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     public void validate() {
-        if (getUsername().length() == 0) {
+/*        if (getUsername().length() == 0) {
             addFieldError("username", "User Name is required");
         }
 
         if (getPassword().length() == 0) {
             addFieldError("password", getText("password.required"));
-        }
+        }*/
 
     }
 

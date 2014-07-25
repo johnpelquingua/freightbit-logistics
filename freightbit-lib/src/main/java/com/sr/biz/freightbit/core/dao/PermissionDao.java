@@ -36,7 +36,7 @@ public interface PermissionDao {
 
     public List<PermissionUserGroup> findPermissionUserGroup(Integer clientId, Integer groupId, Integer userId, Integer permissionId);
 
-    void deletePermissionUserGroup(PermissionUserGroup permissionUserGroup);
+    public void deletePermissionUserGroup(PermissionUserGroup permissionUserGroup);
 
-    List<PermissionUserGroup> findPermissionUserGroups(Map<String, Object> paramMap, String entity);
+    public List<PermissionUserGroup> findPermissionUserGroups(Map<String, Object> paramMap, String entity);
 }

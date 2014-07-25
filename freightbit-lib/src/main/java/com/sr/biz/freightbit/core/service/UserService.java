@@ -1,9 +1,10 @@
 package com.sr.biz.freightbit.core.service;
 
+import java.util.List;
+
+import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.exceptions.UserAlreadyExistsException;
-
-import java.util.List;
 
 public interface UserService {
 

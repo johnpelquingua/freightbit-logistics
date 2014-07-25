@@ -71,6 +71,11 @@ public class UserAction extends ActionSupport implements Preparable {
     }
 
     public String loadAddUserPage() {
+        Client client = clientService.findClientById(getClientId().toString());
+    	if (client != null)
+    		user.setCompanyName(client.getClientName());
+    	else
+    		user.setCompanyName("");
         return SUCCESS;
     }
 
@@ -131,9 +136,9 @@ public class UserAction extends ActionSupport implements Preparable {
 
     public void validateOnSubmit(UserBean userBean) {
         clearErrorsAndMessages();
-        if (StringUtils.isBlank(userBean.getCompanyName())) {
+/*        if (StringUtils.isBlank(userBean.getCompanyName())) {
             addFieldError("user.companyName", getText("err.companyName.required"));
-        }
+        }*/
         if (StringUtils.isBlank(userBean.getFirstName())) {
             addFieldError("user.firstName", getText("err.firstName.required"));
         }
@@ -146,11 +151,18 @@ public class UserAction extends ActionSupport implements Preparable {
         if (StringUtils.isBlank(userBean.getPassword())) {
             addFieldError("user.password", getText("err.password.required"));
         }
+        if (StringUtils.isBlank(userBean.getReenterPassword())) {
+            addFieldError("user.reenterPassword", getText("err.reenterPassword.required"));
+        }
         if (StringUtils.isBlank(userBean.getEmailAddress())) {
             addFieldError("user.email", getText("err.email.required"));
         }
         if (StringUtils.isBlank(userBean.getContactNumber())) {
             addFieldError("user.contactNumber", getText("err.contactNumber.required"));
+        }
+        if (StringUtils.isNotBlank(userBean.getPassword()) && StringUtils.isNotBlank(userBean.getReenterPassword())) {
+        	if (!userBean.getPassword().equals(userBean.getReenterPassword()))
+        		addFieldError("user.password", getText("err.password.not.matched"));
         }
     }
 

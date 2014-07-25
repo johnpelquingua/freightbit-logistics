@@ -1,0 +1,47 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+      
+  <global-method-security pre-post-annotations="enabled">  
+     <!-- AspectJ pointcut expression that locates our "post" method and applies security that way  
+     <protect-pointcut expression="execution(* bigbank.*Service.post*(..))" access="ROLE_TELLER"/>  
+     -->  
+   </global-method-security>  
+
+ 
+	<http auto-config="true">
+		<intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/main/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES" />
+		<intercept-url pattern="/user/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/vendor/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/customers/loadAddCustomerPage" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES" />
+		<intercept-url pattern="/orders/**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_INLAND_FREIGHT, ROLE_SEA_FREIGHT, ROLE_SALES" />
+		<form-login login-page='/login.jsp'
+		default-target-url='/main/login.action'
+		username-parameter='username'
+		password-parameter='password' />
+		<logout/>
+		<!-- enable csrf protection 
+		<csrf/>-->
+	</http>
+
+    <authentication-manager >
+    	<authentication-provider ref="authProvider"></authentication-provider>  
+    </authentication-manager>
+    
+	<beans:bean id="authProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+	  <beans:property name="userDetailsService" ref="userDetailsService" />
+	  <beans:property name="passwordEncoder" ref="encoder" />
+	</beans:bean>
+  
+ 	<beans:bean id="encoder"  class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+ 	
+ 	<beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
+ 	
+ 
+</beans:beans>

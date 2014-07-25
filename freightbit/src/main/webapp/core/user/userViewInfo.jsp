@@ -16,13 +16,13 @@
             <div>
                 <div class="panel booking panel-info"  style="float:left; width:50%;">
                     <div class="booking panel-heading">
-                        <img src="includes/images/account.png" class="box-icon">
+                        <img src="../includes/images/account.png" class="box-icon">
                         <span class="booking panel-title">User Information</span>
                     </div>
                     <div class="panel-body">
                     <s:form action="User-Info" theme="bootstrap" cssClass="form-horizontal" >
                     <div style="float:left; width:50%;">
-                        <img src="includes/images/default-image.png" style="width:150px;margin:6px;">
+                        <img src="../includes/images/default-image.png" style="width:150px;margin:6px;">
                     </div>
                     <div style="float:left; width:50%;">
                         <h2><s:property value="user.name"></s:property></h2>
@@ -65,7 +65,7 @@
 <s:if test="hasActionMessages()">
     <div class="col-lg-7">
         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
@@ -82,7 +82,7 @@
             <div class="panel-body">
 
                 <div class="row">
-                    <div class="col-md-3 col-lg-3 " align="center"><img alt="User Pic" src="includes/images/photo.png"
+                    <div class="col-md-3 col-lg-3 " align="center"><img alt="User Pic" src="../includes/images/photo.png"
                                                                         class="img-circle"></div>
 
                     <div class=" col-md-9 col-lg-9 ">

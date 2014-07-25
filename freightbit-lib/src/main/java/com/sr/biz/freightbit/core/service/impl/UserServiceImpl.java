@@ -1,31 +1,44 @@
 package com.sr.biz.freightbit.core.service.impl;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.sr.biz.freightbit.core.dao.ClientDao;
 import com.sr.biz.freightbit.core.dao.UserDao;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.exceptions.UserAlreadyExistsException;
 import com.sr.biz.freightbit.core.service.UserService;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.List;
 
 
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
+    private ClientDao clientDao;
 
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
 
+	public void setClientDao(ClientDao clientDao) {
+		this.clientDao = clientDao;
+	}
+	
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addUser(User user) throws UserAlreadyExistsException {
-        if (userDao.findUserByUserName(user.getUsername()).size() > 0)
+        if (userDao.findUserByUserName(user.getUsername()) != null)
             throw new UserAlreadyExistsException(user.getUsername());
-        else
-            userDao.addUser(user);
+        else {
+        	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        	String hashedPassword = passwordEncoder.encode(user.getPassword());
+        	user.setPassword(hashedPassword);
+        	userDao.addUser(user);
+        }
     }
 
 
@@ -54,10 +67,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findUserByUserName(String userName) {
-        List<User> result = userDao.findUserByUserName(userName);
-        if (result != null && !result.isEmpty())
-            return result.get(0);
-        return null;
+       User result = userDao.findUserByUserName(userName);
+       return result;
     }
 
     @Override
@@ -76,4 +87,5 @@ public class UserServiceImpl implements UserService {
     public List<User> findUsersByCriteria(String column, String value, Integer clientId) {
         return userDao.findUsersByCriteria(column, value, clientId);
     }
+
 }

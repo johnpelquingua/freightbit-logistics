@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <title>ERNEST Logistics Corporation</title>
@@ -14,7 +15,7 @@
     <div class="navbar-inner" style="height: 80px; background: url('includes/images/background.jpg'); filter: none;">
         <div class="container">
             <brand>
-                <img src="includes/images/reallogo.png" style="margin-top: 20px; ">
+                <img src="../includes/images/reallogo.png" style="margin-top: 20px; ">
             </brand>
         </div>
     </div>
@@ -29,13 +30,13 @@
                 </div>
                 <s:actionerror/>
                 <div class="panel-body" style="margin-bottom: -30px;">
-                    <s:form class="form-horizontal" role="form" action="login" method="post" theme="bootstrap">
+                    <form class="form-horizontal" role="form" theme="bootstrap"  action="<c:url value='j_spring_security_check' />" method='POST'>
                         <div class="form-group">
                             <label class="col-sm-3 control-label" style="padding-top: 6px;">
                                 Username</label>
 
                             <div class="col-sm-9" style="margin-bottom: 15px;">
-                                <s:textfield name="username" cssClass="form-control" placeholder="Username"/>
+                                <s:textfield name="username" cssClass="form-control" placeholder="Username" required="true"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -43,27 +44,27 @@
                                 Password</label>
 
                             <div class="col-sm-9">
-                                <s:password name="password" type="password" cssClass="form-control"
-                                            placeholder="Password"/>
+                                <s:password name="password" type="password" cssClass="form-control" placeholder="Password" required="true"/>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-9">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"/>
+                                        <input type="checkbox" name="j_spring_security_remember_me"/>
                                         Remember me
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group last">
                             <div class="col-sm-offset-9 ">
                                 <s:submit cssClass="btn btn-info btn-sm" method="execute" value="Login"
                                           style=" color: #eac117; background-color: #000; border-color: #ddd; margin-left: 5px; padding: 5px 15px 5px 15px;"/>
                             </div>
                         </div>
-                    </s:form>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
                 </div>
                 <%--<div class="white navbar-fixed-bottom" style="padding-top: 20px; height: 80px; background: url('includes/images/background.jpg');">
 

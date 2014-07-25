@@ -220,9 +220,9 @@ public class PermissionAction extends ActionSupport {
             if (permissionUserGroup.getUserId() != null) {
                 user = userService.findUserById(permissionUserGroup.getUserId());
                 if (userGroups.length() == 0) {
-                    userGroups.append(user.getFirstName());
+                    userGroups.append(user.getUsername());
                 } else {
-                    userGroups.append(", ").append(user.getFirstName());
+                    userGroups.append(", ").append(user.getUsername());
                 }
             }
             if (permissionUserGroup.getGroupId() != null) {

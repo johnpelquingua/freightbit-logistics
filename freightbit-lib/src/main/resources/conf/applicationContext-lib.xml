@@ -67,6 +67,11 @@
     <bean id="permissionService" class="com.sr.biz.freightbit.core.service.impl.PermissionServiceImpl">
         <property name="permissionDao" ref="permissionDao"/>
     </bean>
+    
+    <bean id="userDetailsService" class="com.sr.biz.freightbit.core.service.impl.UserDetailsServiceImpl">
+        <property name="userDao" ref="userDao"/>
+        <property name="permissionDao" ref="permissionDao"/>
+    </bean>
 
     <bean id="customerService" class="com.sr.biz.freightbit.customer.service.impl.CustomerServiceImpl">
         <property name="customerDao" ref="customerDao"/>

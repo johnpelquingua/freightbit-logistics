@@ -16,7 +16,7 @@
 				<div class="col-md-12">
 					<div class="panel booking panel-info">
 						<div class="booking panel-heading">
-							<img src="includes/images/account.png" class="box-icon">
+							<img src="../includes/images/account.png" class="box-icon">
 							<span class="booking panel-title">User Information</span>
 						</div>
 
@@ -154,8 +154,9 @@
                         <label for="uCompanyName" class="col-lg-3 control-label" id="users-add-label">Company:</label>
 
                         <div class="col-lg-9">
-                            <s:textfield required="true" name="user.companyName" cssClass="form-control"
+                            <s:textfield disabled="true" required="true" name="user.companyName" cssClass="form-control"
                                          placeholder="Company Name"/>
+                            <s:hidden name="user.companyName" value="%{user.companyName}"/>
                         </div>
                     </div>
 
@@ -191,8 +192,17 @@
                         <label for="uPassword" class="col-lg-3 control-label" id="users-add-label">Password:</label>
 
                         <div class="col-lg-9">
-                            <s:textfield required="true" name="user.password" id="uPassword" cssClass="form-control"
+                            <s:password required="true" name="user.password" id="uPassword" cssClass="form-control"
                                          placeholder="Password"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="uPassword" class="col-lg-3 control-label" id="users-add-label">Re-enter Password:</label>
+
+                        <div class="col-lg-9">
+                            <s:password required="true" name="user.reenterPassword" id="uReenterPassword" cssClass="form-control"
+                                         placeholder="Re-enter Password"/>
                         </div>
                     </div>
 
@@ -244,6 +254,7 @@
                               <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
                             </span>
             </div>
+             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </s:form>
         </div>
     </div>

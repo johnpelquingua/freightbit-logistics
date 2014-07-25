@@ -103,16 +103,17 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
 
     @Override
-    public List<User> findUserByUserName(String username) {
+    public User findUserByUserName(String username) {
         log.debug("finding User instance by example");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
                     "from User u where u.username = :username");
             query.setParameter("username", username);
             List<User> results = (List<User>) query.list();
-            log.debug("find by username successful, result size: "
-                    + results.size());
-            return results;
+            if (results != null && results.size() > 0) {
+            	return results.get(0);
+            } 
+            return null;
         } catch (RuntimeException re) {
             log.error("find by username failed", re);
             throw re;
