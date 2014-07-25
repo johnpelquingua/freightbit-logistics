@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="true" %>
 <%--
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid">
@@ -8,12 +10,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img src="includes/images/reallogo.png" width="300px"></a>
+      <a class="navbar-brand" href="#"><img src="../includes/images/reallogo.png" width="300px"></a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Welcome, SuperUser</a></li>
-        <li><a href="#"><img src="includes/images/setting2.png" width="25px"></a></li>
+        <li><a href="#"><img src="../includes/images/setting2.png" width="25px"></a></li>
       </ul>
       <!--
       <form class="navbar-form navbar-right">
@@ -49,7 +51,7 @@
             <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
             <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
             <li class="divider"></li>
-            <li><a href="<c:url%20value=" j_spring_security_logout"/> <i class="fa fa-power-off"></i> Log Out</a></li>
+            <li><a href="<c:url value='../j_spring_security_logout'/>"> <i class="fa fa-power-off"></i> Log Out</a></li>
         </ul>
     </li>
 </ul>
