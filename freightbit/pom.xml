@@ -175,11 +175,6 @@
             <artifactId>xwork-core</artifactId>
             <version>2.3.16</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.struts.xwork</groupId>
-            <artifactId>xwork-core</artifactId>
-            <version>2.3.16</version>
-        </dependency>
 
         <dependency>
             <groupId>displaytag</groupId>
