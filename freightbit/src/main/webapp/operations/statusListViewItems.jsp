@@ -28,9 +28,7 @@
 						<thead>
 							<tr class="header_center active">
 							  <th class="tb-font-black"><input type="checkbox"></th>
-							  <th class="tb-font-black">Booking Number</th>
-							  <th class="tb-font-black">Customer Code</th>
-							  <th class="tb-font-black">Consignee</th>
+							  <th class="tb-font-black">Item Name</th>
 							  <th class="tb-font-black">Status</th>
 							  <th class="tb-font-black">Service Requirement</th>
 							  <th class="tb-font-black">Service Mode</th>
@@ -40,10 +38,8 @@
 						<tbody>
 							<tr class="success">
 							  <td class="tb-font-black"><input type="checkbox"></td>
-							  <td class="tb-font-black">MTY-1035</td>
-							  <td class="tb-font-black">SRI</td>
-							  <td class="tb-font-black">ITG</td>
-							  <td class="tb-font-black">SHIPPED</td>
+							  <td class="tb-font-black">Rock</td>
+							  <td class="tb-font-black">SHIPPING</td>
 							  <td class="tb-font-black">FCL</td>
 							  <td class="tb-font-black">Door to Door</td>
 							  <td class="tb-font-black">
@@ -59,24 +55,40 @@
 							</tr>
 							
 							<tr class="success">
-							  <td class="tb-font-black"><input type="checkbox"></td>
-							  <td class="tb-font-black">MTY-1035</td>
-							  <td class="tb-font-black">SRI</td>
-							  <td class="tb-font-black">ITG</td>
-							  <td class="tb-font-black">AT THE PORT</td>
-							  <td class="tb-font-black">FCL</td>
-                              							  <td class="tb-font-black">Door to Door</td>
-							  <td class="tb-font-black">
-								<a href="updateStatus.html" class="icon-action-link edit-booking">
-								    <img src="includes/images/edit-booking.png" class="icon-action circ-icon" title="Edit Schedule"
-								    style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
-							    </a>
-								<a href="#delete-Schedule" class="icon-action-link delete-booking">
-								    <img src="includes/images/delete-sched.png" class="icon-action circ-icon" title="Delete Schedule"
-								    style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
-								</a>
-							  </td>									  									  
-							</tr>
+                              <td class="tb-font-black"><input type="checkbox"></td>
+                              <td class="tb-font-black">Rock</td>
+                              <td class="tb-font-black">SHIPPING</td>
+                              <td class="tb-font-black">FCL</td>
+                              <td class="tb-font-black">Door to Door</td>
+                              <td class="tb-font-black">
+                            	<a href="updateStatus.html" class="icon-action-link edit-booking">
+                                    <img src="includes/images/edit-booking.png" class="icon-action circ-icon" title="Edit Schedule"
+                                    style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
+                                </a>
+                                <a href="#delete-Schedule" class="icon-action-link delete-booking">
+                                    <img src="includes/images/delete-sched.png" class="icon-action circ-icon" title="Delete Schedule"
+                                    style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
+                                </a>
+                              </td>
+                            </tr>
+
+                            <tr class="success">
+                              <td class="tb-font-black"><input type="checkbox"></td>
+                              <td class="tb-font-black">Rock</td>
+                              <td class="tb-font-black">SHIPPING</td>
+                              <td class="tb-font-black">FCL</td>
+                              <td class="tb-font-black">Door to Door</td>
+                              <td class="tb-font-black">
+                            	<a href="updateStatus.html" class="icon-action-link edit-booking">
+                                    <img src="includes/images/edit-booking.png" class="icon-action circ-icon" title="Edit Schedule"
+                                    style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
+                                </a>
+                                <a href="#delete-Schedule" class="icon-action-link delete-booking">
+                                    <img src="includes/images/delete-sched.png" class="icon-action circ-icon" title="Delete Schedule"
+                                    style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
+                                </a>
+                              </td>
+                            </tr>
 											
 						</tbody>
 					</table>

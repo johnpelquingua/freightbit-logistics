@@ -30,7 +30,6 @@
 							  <th class="tb-font-black">Booking Number</th>
 							  <th class="tb-font-black">Customer Code</th>
 							  <th class="tb-font-black">Consignee</th>
-							  <th class="tb-font-black">Status</th>
 							  <th class="tb-font-black">Service Requirement</th>
 							  <th class="tb-font-black">Service Mode</th>
 							  <th class="tb-font-black">Action</th>
@@ -42,7 +41,6 @@
 							  <td class="tb-font-black">MTY-1035</td>
 							  <td class="tb-font-black">SRI</td>
 							  <td class="tb-font-black">ITG</td>
-							  <td class="tb-font-black">SHIPPED</td>
 							  <td class="tb-font-black">FCL</td>
 							  <td class="tb-font-black">Door to Door</td>
 							  <td class="tb-font-black">
