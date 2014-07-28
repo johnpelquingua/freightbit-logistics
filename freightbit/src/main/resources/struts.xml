@@ -4,7 +4,7 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
-    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.devMode" value="false"/>
     <constant name="struts.custom.i18n.resources" value="ApplicationResources"/>
 
     <include file="struts-orders.xml"/>
@@ -19,7 +19,7 @@
     <include file="struts-user.xml"/>
     <include file="struts-operations.xml"/>
 
-    <package name="default" namespace="/main" extends="struts-default">
+    <package name="default" namespace="/" extends="struts-default">
         <result-types>
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
         </result-types>
