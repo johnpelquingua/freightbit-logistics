@@ -15,6 +15,9 @@
           <propertiesKeys disabled="false" />
         </configuration>
       </facet>
+      <facet type="google-app-engine" name="Google App Engine">
+        <configuration />
+      </facet>
     </facet>
     <facet type="Spring" name="Spring">
       <configuration>
@@ -115,6 +118,7 @@
     <orderEntry type="library" name="Maven: displaytag:displaytag-export-poi:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi:3.2-FINAL" level="project" />
     <orderEntry type="library" name="Maven: displaytag:displaytag-portlet:1.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="sass-stdlib" level="application" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">
