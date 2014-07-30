@@ -46,7 +46,7 @@ public class UserServiceTest {
          * Mock DAO: 1. Determine which DAO methods are invoked by the service
          * 2.  SYNTAX: when(dao.xMethod()).thenReturn(y) means when xMethod() is invoked, then return y
          */
-        Mockito.when(userDao.findUserByUserName("admin")).thenReturn(existingUserList);
+        //Mockito.when(userDao.findUserByUserName("admin")).thenReturn(existingUserList);
         userService.addUser(user);
     }
 
