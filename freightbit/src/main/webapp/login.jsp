@@ -10,6 +10,7 @@
 
     <s:head/>
 </head>
+
 <body style="background:url('includes/images/ernestlogo.jpg') no-repeat center center fixed; background-size:cover;">
 <%--<div class="navbar navbar-fixed-top">
     <div class="navbar-inner" style="height: 80px; background: url('includes/images/background.jpg'); filter: none;">
