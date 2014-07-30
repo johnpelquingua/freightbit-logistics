@@ -5,12 +5,17 @@
         "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-    <definition name="baseLayout" template="/baseLayout.jsp">
+    <definition name="baseLayoutMain" template="/baseLayout.jsp">
         <put-attribute name="title" value="Template"/>
         <put-attribute name="banner" value="/banner.jsp"/>
         <put-attribute name="menu" value="/menu.jsp"/>
     </definition>
-    <definition name="index.tiles" extends="baseLayout">
+        <definition name="baseLayout" template="/baseLayoutSub.jsp">
+        <put-attribute name="title" value="Template"/>
+        <put-attribute name="banner" value="/bannerSub.jsp"/>
+        <put-attribute name="menu" value="/menuSub.jsp"/>
+    </definition>
+    <definition name="index.tiles" extends="baseLayoutMain">
         <put-attribute name="title" value="Main Dashboard"/>
         <put-attribute name="body" value="/index.jsp"/>
     </definition>
