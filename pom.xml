@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>freightbit-logistics</groupId>
+  <artifactId>freightbits-logistics</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Main POM :: Freightbit</name>
+  <description>This module contains the freightbit and freightbit-lib</description>
+  
+   <developers>
+        <developer>
+            <id>johnpelquingua</id>
+            <name>Johnpel Quingua</name>
+            <email>johnpel@solutionsresource.com</email>
+        </developer>        
+    </developers>
+  
+  <modules>
+    <module>freightbit-lib</module>
+    <module>freightbit</module>
+  </modules>
+
+</project>
