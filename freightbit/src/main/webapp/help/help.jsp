@@ -30,7 +30,7 @@
 <%--
 <div style="height:1300px;" class="panel booking panel-info">
     <div class="booking panel-heading">
-        <img src="includes/images/booking.png" class="box-icon">
+        <img src="../includes/images/booking.png" class="box-icon">
         <span class="booking panel-title"><strong>Help Menu</strong></span>
     </div>
     <div class="panel-body">
@@ -39,7 +39,7 @@
                 <button id="searchbtn" type="button" class="btn btn-primary">Search</button>
             </div>
             <input id="searchtext" type="text" class="input-lg ">
-            <img id="infoimg" src="includes/images/info-help.png" class="box-icon pull-right">
+            <img id="infoimg" src="../includes/images/info-help.png" class="box-icon pull-right">
             <div id="info" class="alert alert-success pull-right">
                 <strong>Ernest Logistics Application v1.0</strong><br>
                 <strong>Ernest Logistics Application v1.0</strong>
@@ -230,7 +230,7 @@
 <div class="panel-body">
 <div style="height:1000px;" class="panel booking panel-info">
 <div class="booking panel-heading">
-    <img src="includes/images/booking.png" class="box-icon">
+    <img src="../includes/images/booking.png" class="box-icon">
     <span class="booking panel-title"><strong>Help Menu</strong></span>
 </div>
 <div class="panel-body">
@@ -239,7 +239,7 @@
         <button id="searchbtn" type="button" class="btn btn-primary">Search</button>
     </div>
     <input id="searchtext" type="text" class="input-lg ">
-    <img id="infoimg" src="includes/images/info-help.png" class="box-icon pull-right">
+    <img id="infoimg" src="../includes/images/info-help.png" class="box-icon pull-right">
     <div id="info" class="alert alert-success pull-right">
         <strong>Ernest Logistics Application v1.0</strong><br>
         <strong>Ernest Logistics Application v1.0</strong>

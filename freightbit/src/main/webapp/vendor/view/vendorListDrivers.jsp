@@ -11,7 +11,7 @@
 
                 <div class="panel-heading">
 
-                    <img src="includes/images/listofusers.png" class="box-icon"/> <span
+                    <img src="../includes/images/listofusers.png" class="box-icon"/> <span
                         class="panel-title">List of Drivers</span>
 
                 </div>
@@ -51,7 +51,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editVendorDriverUrl}" rel="tooltip"
                                              title="Edit this Driver">
-                                            <img src="includes/images/edit-user.png"
+                                            <img src="../includes/images/edit-user.png"
                                                  class="icon-action circ-icon"> </s:a>
 
                                         <s:url var="deleteVendorDriverUrl" action="deleteDriver">
@@ -60,7 +60,7 @@
                                         <s:a class="icon-action-link" href="%{deleteVendorDriverUrl}" rel="tooltip"
                                              title="Delete this Driver"
                                              onclick="return confirm('Do you really want to delete?');">
-                                            <img src="includes/images/remove-user.png"
+                                            <img src="../includes/images/remove-user.png"
                                                  class="icon-action circ-icon"> </s:a>
                                     </td>
                                 </tr>
@@ -73,7 +73,7 @@
                 <div class="panel-footer">
                         <span class="pull-right"> <a href="loadAddDriverPage"
                                                      class="icon-action-link" rel="tooltip" title="Add Vendor"><img
-                                src="includes/images/add-user.png" class="icon-action circ-icon">
+                                src="../includes/images/add-user.png" class="icon-action circ-icon">
                         </a>
                         </span>
 
@@ -166,7 +166,7 @@
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editVendorDriverUrl}" rel="tooltip"
                                          title="Edit this Driver">
-                                        <img src="includes/images/edit-user.png"
+                                        <img src="../includes/images/edit-user.png"
                                              class="icon-action circ-icon">
                                     </s:a>
                                     <s:url var="deleteVendorDriverUrl" action="deleteDriver">
@@ -175,7 +175,7 @@
                                     <s:a class="icon-action-link" href="%{deleteVendorDriverUrl}" rel="tooltip"
                                          title="Delete this Driver"
                                          onclick="return confirm('Do you really want to delete?');">
-                                        <img src="includes/images/remove-user.png"
+                                        <img src="../includes/images/remove-user.png"
                                              class="icon-action circ-icon">
                                     </s:a>
                                 </td>
@@ -210,7 +210,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editVendorDriverUrl}" rel="tooltip"
                                              title="Edit this Driver">
-                                            <img src="includes/images/edit-user.png"
+                                            <img src="../includes/images/edit-user.png"
                                                  class="icon-action circ-icon">
                                         </s:a>
                                         <s:url var="deleteVendorDriverUrl" action="deleteDriver">
@@ -219,7 +219,7 @@
                                         <s:a class="icon-action-link" href="%{deleteVendorDriverUrl}" rel="tooltip"
                                              title="Delete this Driver"
                                              onclick="return confirm('Do you really want to delete?');">
-                                            <img src="includes/images/remove-user.png"
+                                            <img src="../includes/images/remove-user.png"
                                                  class="icon-action circ-icon">
                                         </s:a>
                                     </display:column>
@@ -234,7 +234,7 @@
             <div class="panel-footer">
             <span class="pull-right"> <a href="loadAddDriverPage"
                                          class="icon-action-link" rel="tooltip" title="Add Vendor"><img
-                    src="includes/images/add-user.png" class="icon-action circ-icon">
+                    src="../includes/images/add-user.png" class="icon-action circ-icon">
             </a>
             </span>
             </div>

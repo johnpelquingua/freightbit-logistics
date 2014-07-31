@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <img src="includes/images/add-user.png" class="box-icon">
+                    <img src="../includes/images/add-user.png" class="box-icon">
                     <span class="panel-title">Vessel Schedule</span>
                 </div>
                 <div class="panel-body">

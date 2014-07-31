@@ -17,7 +17,7 @@
 
             <div class="panel booking panel-info">
                 <div class="booking panel-heading">
-                    <img src="includes/images/groups.png" class="box-icon">
+                    <img src="../includes/images/groups.png" class="box-icon">
                     <span class="booking panel-title">Manage Permissions</span>
 
                 </div>
@@ -28,7 +28,7 @@
 
                         <div class="panel booking panel-info" style="width:45%;float:left;margin:6px;">
                             <div class="booking panel-heading">
-                                <img src="includes/images/listofusers.png" class="box-icon">
+                                <img src="../includes/images/listofusers.png" class="box-icon">
                                 <span class="booking panel-title">List of Permissions</span>
 
                             </div>
@@ -62,11 +62,11 @@
                                     </table>
 							<span class="pull-right">
 								<a href="#" class="icon-action-link">
-                                    <img src="includes/images/check-16.png"
+                                    <img src="../includes/images/check-16.png"
                                          style="border-radius:6px; border:2px solid #707070; padding:2px;">
                                 </a>
 								<a href="#" class="icon-action-link">
-                                    <img src="includes/images/x-16.png"
+                                    <img src="../includes/images/x-16.png"
                                          style="border-radius:6px; border:2px solid #707070; padding:2px;">
                                 </a>
 							</span>
@@ -95,7 +95,7 @@
 
                         <div class="panel booking panel-info" style="width:45%;float:right;margin:6px;">
                             <div class="booking panel-heading">
-                                <img src="includes/images/listofusers.png" class="box-icon">
+                                <img src="../includes/images/listofusers.png" class="box-icon">
                                 <span class="booking panel-title">Selected Permissions</span>
 
                             </div>
@@ -121,7 +121,7 @@
                                     </table>
 							<span class="pull-right">
 								<a href="#" class="icon-action-link">
-                                    <img src="includes/images/x-16.png"
+                                    <img src="../includes/images/x-16.png"
                                          style="border-radius:6px; border:2px solid #707070; padding:2px;">
                                 </a>
 							</span>
@@ -157,7 +157,7 @@
     <div class="sidebar-box">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/chat.png" class="box-icon">
+                <img src="../includes/images/chat.png" class="box-icon">
                 <span class="panel-title">Online Chat</span>
 
             </div>

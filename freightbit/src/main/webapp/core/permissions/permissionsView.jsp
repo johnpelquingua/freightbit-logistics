@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="panel booking panel-info">
                 <div class="booking panel-heading">
-                    <img src="includes/images/listofusers.png" class="box-icon">
+                    <img src="../includes/images/listofusers.png" class="box-icon">
                     <span class="booking panel-title">List of Permissions</span>
                 </div>
                 <div class="panel-body">
@@ -34,7 +34,7 @@
                                         <td class="tb-font-black"><s:property value="permissionName"/></td>
                                         <td class="tb-font-black" align="center"><s:property value="userGroups"/></td>
                                         <td class="tb-font-black">
-                                            <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                                            <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img src="../includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                                         </td>
                                     </tr>
                                 </s:iterator>
@@ -51,7 +51,7 @@
                     </ul>
 
                     <span class="pull-right">
-                        <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                        <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img src="../includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                     </span>
                 </div>		  	
             </div>
@@ -62,7 +62,7 @@
     <div class="sidebar-box">
         <div class="panel panel-info">
            <!--  <div class="panel-heading">
-                <img src="includes/images/chat.png" class="box-icon">
+                <img src="../includes/images/chat.png" class="box-icon">
                 <span class="panel-title">Online Chat</span>
 
             </div>
@@ -78,7 +78,7 @@
 
 
 <!--<span class="pull-right">
-                                        <a href="groups-add.html" class="icon-action-link"><img src="includes/images/add-user.png" class="icon-action circ-icon"> </a>
+                                        <a href="groups-add.html" class="icon-action-link"><img src="../includes/images/add-user.png" class="icon-action circ-icon"> </a>
                                         </span>-->
 
 <!-- END OF MAIN BOX -->
@@ -133,7 +133,7 @@
                                 <td class="tb-font-black">
                                     <display:column title="Actions">
                                         <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img
-                                                src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                                                src="../includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                                     </display:column>
                                 </td>
                             </display:table>
@@ -148,7 +148,7 @@
 
                 <span class="pull-right">
                     <a href="<s:url value='loadEditPermissions' />" class="icon-action-link"><img
-                            src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                            src="../includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                 </span>
 
             </div>

@@ -12,7 +12,7 @@
 
                 <div class="panel-heading">
 
-                    <img src="includes/images/listofusers.png" class="box-icon"/> <span
+                    <img src="../includes/images/listofusers.png" class="box-icon"/> <span
                         class="panel-title">List of Vendors</span>
 
                 </div>
@@ -47,21 +47,21 @@
                                             <s:param name="vendorCodeParam" value="vendorCode"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip" title="Edit this vendor">
-                                            <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                            <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                                         </s:a>
 
                                         <s:url var="deleteVendorUrl" action="deleteVendor">
                                             <s:param name="vendorCodeParam" value="vendorCode"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip" title="Delete this Vendor" onclick="return confirm('Do you really want to delete?');">
-                                            <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                            <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
                                         </s:a>
 
                                         <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
                                             <s:param name="vendorCodeParam" value="vendorCode"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip" title="View Vendor Info">
-                                            <img src="includes/images/info-b.png" class="icon-action circ-icon">
+                                            <img src="../includes/images/info-b.png" class="icon-action circ-icon">
                                         </s:a>
 
                                     </td>
@@ -75,7 +75,7 @@
                 <div class="panel-footer">
                         <span class="pull-right">
                             <a href="loadAddVendorPage" class="icon-action-link" rel="tooltip" title="Add Vendor">
-                                <img src="includes/images/add-user.png" class="icon-action circ-icon">
+                                <img src="../includes/images/add-user.png" class="icon-action circ-icon">
                             </a>
                         </span>
 
@@ -165,19 +165,19 @@
                                         <s:param name="vendorCodeParam" value="vendorCode"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip" title="Edit this vendor">
-                                        <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                        <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                                     </s:a>
                                     <s:url var="deleteVendorUrl" action="deleteVendor">
                                         <s:param name="vendorCodeParam" value="vendorCode"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip" title="Delete this Vendor" onclick="return confirm('Do you really want to delete?');">
-                                        <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                        <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
                                     </s:a>
                                     <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
                                         <s:param name="vendorCodeParam" value="vendorCode"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip" title="View Vendor Info">
-                                        <img src="includes/images/info-b.png" class="icon-action circ-icon">
+                                        <img src="../includes/images/info-b.png" class="icon-action circ-icon">
                                     </s:a>
                                 </td>
                             </tr>
@@ -208,7 +208,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
                                              title="Edit this vendor">
-                                            <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                            <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                                         </s:a>
 
                                         <s:url var="deleteVendorUrl" action="deleteVendor">
@@ -217,7 +217,7 @@
                                         <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
                                              title="Delete this Vendor"
                                              onclick="return confirm('Do you really want to delete?');">
-                                            <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                            <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
                                         </s:a>
 
                                         <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
@@ -225,7 +225,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
                                              title="View Vendor Info">
-                                            <img src="includes/images/info-b.png" class="icon-action circ-icon">
+                                            <img src="../includes/images/info-b.png" class="icon-action circ-icon">
                                         </s:a>
                                     </display:column>
                                 </td>
@@ -239,7 +239,7 @@
             <div class="panel-footer">
             <span class="pull-right">
             <a href="loadAddVendorPage" class="icon-action-link" rel="tooltip" title="Add Vendor">
-                <img src="includes/images/add-user.png" class="icon-action circ-icon">
+                <img src="../includes/images/add-user.png" class="icon-action circ-icon">
             </a>
             </span>
                 <%--<ul class="pagination">

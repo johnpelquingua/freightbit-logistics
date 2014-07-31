@@ -15,29 +15,29 @@
     </title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../includes/css/bootstraps.css" rel="stylesheet">
+    <link href="includes//css/bootstraps.css" rel="stylesheet">
 
     <!-- Add custom CSS here -->
-    <link rel="stylesheet" href="../includes/css/mains.css">
-    <link rel="stylesheet" href="../includes/css/sb-admin.css">
-    <link rel="stylesheet" href="../includes/css/datepicker.css">
-    <link rel="stylesheet" href="../includes/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="../includes/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="includes//css/mains.css">
+    <link rel="stylesheet" href="includes//css/sb-admin.css">
+    <link rel="stylesheet" href="includes//css/datepicker.css">
+    <link rel="stylesheet" href="includes//css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="includes//font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="../includes/css/jquery-ui.css">
-    <link rel="stylesheet" href="../includes/css/jquery-ui.min.css">
-    <link rel="stylesheet" href="../includes/css/jquery-ui.structure.css">
-    <link rel="stylesheet" href="../includes/css/jquery-ui.structure.min.css">
-    <link rel="stylesheet" href="../includes/css/jquery-ui.theme.css">
-    <link rel="stylesheet" href="../includes/css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="includes//css/jquery-ui.css">
+    <link rel="stylesheet" href="includes//css/jquery-ui.min.css">
+    <link rel="stylesheet" href="includes//css/jquery-ui.structure.css">
+    <link rel="stylesheet" href="includes//css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="includes//css/jquery-ui.theme.css">
+    <link rel="stylesheet" href="includes//css/jquery-ui.theme.min.css">
 
     <!--Javascript here -->
-    <%--<script type='text/javascript' src='../includes/js/jquery-1.11.1.js'></script>--%>
-    <script type='text/javascript' src='../includes/js/jquery-2.1.1.js'></script>
-    <script type='text/javascript' src='../includes/js/bootstrap.js'></script>
+    <%--<script type='text/javascript' src='includes//js/jquery-1.11.1.js'></script>--%>
+    <script type='text/javascript' src='includes//js/jquery-2.1.1.js'></script>
+    <script type='text/javascript' src='includes//js/bootstrap.js'></script>
 
-    <script type='text/javascript' src='../includes/js/jquery-ui.js'></script>
-    <script type='text/javascript' src='../includes/js/jquery-ui-timepicker-addon.js'></script>
+    <script type='text/javascript' src='includes//js/jquery-ui.js'></script>
+    <script type='text/javascript' src='includes//js/jquery-ui-timepicker-addon.js'></script>
 
     <%--<script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>--%>
     <%--<script type='text/javascript' src='includes/js/bootstrap-datetimepicker.min.js'></script>--%>
@@ -62,7 +62,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand"><img src="../includes/images/reallogo.png" width="300px"></a>
+                <a class="navbar-brand"><img src="includes//images/reallogo.png" width="300px"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -86,13 +86,13 @@
 
 <!-- JavaScript -->
 
-<script type='text/javascript' src='../includes/js/validate.min.js'></script>
-<script type='text/javascript' src='../includes/js/ernest.js'></script>
+<script type='text/javascript' src='includes//js/validate.min.js'></script>
+<script type='text/javascript' src='includes//js/ernest.js'></script>
 
 <!-- Page Specific Plugins -->
 
-<script src="../includes/js/jquery.tablesorter.js"></script>
-<script src="../includes/js/tables.js"></script>
+<script src="includes//js/jquery.tablesorter.js"></script>
+<script src="includes//js/tables.js"></script>
 
 </body>
 </html>

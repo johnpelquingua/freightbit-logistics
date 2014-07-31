@@ -13,7 +13,7 @@
     <div class="main-box">
         <div class="panel booking panel-info">
             <div class="booking panel-heading">
-                <img src="includes/images/add-user.png" class="box-icon">
+                <img src="../includes/images/add-user.png" class="box-icon">
                 <span class="booking panel-title">Add Customer - Documents</span>
             </div>
             <div class="panel-body">
@@ -53,26 +53,26 @@
     <div class="sidebar-box">
         <div class="panel booking panel-info">
             <div class="booking panel-heading">
-                <img src="includes/images/calendar.png" class="box-icon">
+                <img src="../includes/images/calendar.png" class="box-icon">
                 <span class="booking panel-title">Process</span>
 
             </div>
             <div class="panel-body">
                 <ul class="nav">
-                    <li><a href="customer-add.jsp" class="side-help"><img src="includes/images/1.png"
+                    <li><a href="customer-add.jsp" class="side-help"><img src="../includes/images/1.png"
                                                                           class="img-sidehelp">Personal Information</a>
                     </li>
-                    <li><a href="customer-add2.jsp" class="side-help"><img src="includes/images/2.png"
+                    <li><a href="customer-add2.jsp" class="side-help"><img src="../includes/images/2.png"
                                                                            class="img-sidehelp">Contact Person</a></li>
-                    <li><a href="customer-add3.jsp" class="side-help"><img src="includes/images/3.png"
+                    <li><a href="customer-add3.jsp" class="side-help"><img src="../includes/images/3.png"
                                                                            class="img-sidehelp">Address</a></li>
-                    <li><a href="customer-add4.jsp" class="side-help"><img src="includes/images/4.png"
+                    <li><a href="customer-add4.jsp" class="side-help"><img src="../includes/images/4.png"
                                                                            class="img-sidehelp">Items</a></li>
-                    <li><a href="customer-add5.jsp" class="side-help"><img src="includes/images/5.png"
+                    <li><a href="customer-add5.jsp" class="side-help"><img src="../includes/images/5.png"
                                                                            class="img-sidehelp">Documents</a></li>
-                    <li><a href="customer-add7.jsp" class="side-help"><img src="includes/images/6.png"
+                    <li><a href="customer-add7.jsp" class="side-help"><img src="../includes/images/6.png"
                                                                            class="img-sidehelp">Rates</a></li>
-                    <li><a href="customerAddConsignee.jsp" class="side-help"><img src="includes/images/7.png"
+                    <li><a href="customerAddConsignee.jsp" class="side-help"><img src="../includes/images/7.png"
                                                                                   class="img-sidehelp">Consignee
                         Infomation</a></li>
                 </ul>

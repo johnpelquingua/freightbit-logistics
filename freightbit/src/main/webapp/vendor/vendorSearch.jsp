@@ -11,7 +11,7 @@
             <div class="panel panel-info">
 
                 <div class="panel-heading">
-                    <img src="includes/images/search.png" class="box-icon">
+                    <img src="../includes/images/search.png" class="box-icon">
                     <span class="panel-title">Search Vendor</span>
                 </div>
 

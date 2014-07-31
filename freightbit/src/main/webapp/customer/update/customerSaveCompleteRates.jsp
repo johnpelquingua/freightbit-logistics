@@ -19,7 +19,7 @@
 
             <div class="panel-heading">
 
-                <img src="includes/images/listofusers.png" class="box-icon"/> <span
+                <img src="../includes/images/listofusers.png" class="box-icon"/> <span
                     class="panel-title">List of Rates</span>
             </div>
 
@@ -48,7 +48,7 @@
                                         <s:param name="ratesIdParam" value="%{customerRateId}"></s:param>
                                     </s:url>
                                     <s:a href="%{loadEditRatesUrl}" class="icon-action-link" rel="tooltip"
-                                         title="Edit this Vendor Address"><img src="includes/images/edit-user.png"
+                                         title="Edit this Vendor Address"><img src="../includes/images/edit-user.png"
                                                                                class="icon-action circ-icon"> </s:a>
 
                                     <s:url var="deleteRatesUrl" action="deleteRates">
@@ -57,7 +57,7 @@
                                     <s:a class="icon-action-link" href="%{deleteRatesUrl}" rel="tooltip"
                                          title="Delete this Vendor Address"
                                          onclick="return confirm('Do you really want to delete?');"><img
-                                            src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                            src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
                                 </td>
                             </tr>
                         </s:iterator>
@@ -79,7 +79,7 @@
                     <s:param name="customerIdParam" value="customerIdParam"> </s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{loadAddRatesUrl}" rel="tooltip" title="Add Contact">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon">
+                    <img src="../includes/images/add-user.png" class="icon-action circ-icon">
                 </s:a>
             </span>
 

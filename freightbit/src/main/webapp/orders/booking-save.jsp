@@ -19,7 +19,7 @@
         <div class="col-md-12">
             <div class="panel booking panel-info">
                 <div class="booking panel-heading">
-                    <img src="includes/images/booking.png" class="box-icon">
+                    <img src="../includes/images/booking.png" class="box-icon">
                     <span class="booking panel-title">Booking Details</span>
                 </div>
                 <div class="panel-body">
@@ -311,7 +311,7 @@
                         											  <td class="tb-font-black"><s:property value="" /></td>
                         											  <td class="tb-font-black"><s:property value="" /></td>
                         											  <td class="tb-font-black"><s:property value="" /></td>
-                        											  <td><img src="includes/images/delete.png" /></td>
+                        											  <td><img src="../includes/images/delete.png" /></td>
                         											</tr>
                                                                     </s:iterator>
                         										  </tbody>

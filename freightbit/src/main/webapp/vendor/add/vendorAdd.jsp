@@ -13,7 +13,7 @@
         <div class="panel panel-info">
 
             <div class="panel-heading">
-                <img src="includes/images/add-user.png" class="box-icon">
+                <img src="../includes/images/add-user.png" class="box-icon">
                 <span class="panel-title">Personal Information</span>
             </div>
 

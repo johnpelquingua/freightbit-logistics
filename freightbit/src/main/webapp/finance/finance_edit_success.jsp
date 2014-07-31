@@ -13,7 +13,7 @@
 
     <div style="height:100%;" class="panel booking panel-info">
         <div class="booking panel-heading">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span class="booking panel-title">Finance</span>
         </div>
         <div class="panel-body">
@@ -42,9 +42,9 @@
 
                     <td class="tb-font-black">
                         <a href="edit-finance" class="icon-action-link" rel="tooltip" title="Edit this user"><img
-                                src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                                src="../includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                         <img onclick="javascript: confirm('Do want to delete sample user?');"
-                             src="includes/images/remove-user.png" class="icon-action circ-icon">
+                             src="../includes/images/remove-user.png" class="icon-action circ-icon">
                     </td>
                 </tr>
 

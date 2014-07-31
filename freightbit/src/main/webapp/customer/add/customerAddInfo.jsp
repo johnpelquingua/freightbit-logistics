@@ -12,7 +12,7 @@
 <div class="main-box">
     <div class="panel booking panel-info">
         <div class="booking panel-heading">
-              <img src="includes/images/add-user.png" class="box-icon">
+              <img src="../includes/images/add-user.png" class="box-icon">
                 <span class="booking panel-title">Add Customer - Personal Information</span>
         </div>
         <div class="panel-body">

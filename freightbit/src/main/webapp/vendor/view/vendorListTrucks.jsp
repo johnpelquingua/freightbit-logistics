@@ -10,7 +10,7 @@
 
                 <div class="panel-heading">
 
-                    <img src="includes/images/listofusers.png" class="box-icon"/> <span
+                    <img src="../includes/images/listofusers.png" class="box-icon"/> <span
                         class="panel-title">List of Trucks</span>
 
                 </div>
@@ -51,7 +51,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editTruckUrl}" rel="tooltip"
                                              title="Edit this vendor">
-                                            <img src="includes/images/edit-user.png"
+                                            <img src="../includes/images/edit-user.png"
                                                  class="icon-action circ-icon"> </s:a>
 
                                         <s:url var="deleteTruckUrl" action="deleteTrucks">
@@ -60,7 +60,7 @@
                                         <s:a class="icon-action-link" href="%{deleteTruckUrl}" rel="tooltip"
                                              title="Delete this Vendor"
                                              onclick="return confirm('Do you really want to delete?');">
-                                            <img src="includes/images/remove-user.png"
+                                            <img src="../includes/images/remove-user.png"
                                                  class="icon-action circ-icon"> </s:a>
                                     </td>
                                 </tr>
@@ -76,7 +76,7 @@
                                 <s:param name="vendorIdParam" value="vendorIdParam"></s:param>
                             </s:url>
                         <s:a href="%{addTrucksUrl}" cssClass="side-help" style="font-size: 15px;"><img
-                                src="includes/images/add-user.png" class="icon-action circ-icon"></s:a>
+                                src="../includes/images/add-user.png" class="icon-action circ-icon"></s:a>
                         </span>
 
                     <ul class="pagination">
@@ -164,7 +164,7 @@
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editTruckUrl}" rel="tooltip"
                                          title="Edit this vendor">
-                                        <img src="includes/images/edit-user.png"
+                                        <img src="../includes/images/edit-user.png"
                                              class="icon-action circ-icon"> </s:a>
 
                                     <s:url var="deleteTruckUrl" action="deleteTrucks">
@@ -173,7 +173,7 @@
                                     <s:a class="icon-action-link" href="%{deleteTruckUrl}" rel="tooltip"
                                          title="Delete this Vendor"
                                          onclick="return confirm('Do you really want to delete?');">
-                                        <img src="includes/images/remove-user.png"
+                                        <img src="../includes/images/remove-user.png"
                                              class="icon-action circ-icon"> </s:a>
                                 </td>
                             </tr>
@@ -206,7 +206,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editTruckUrl}" rel="tooltip"
                                              title="Edit this vendor">
-                                            <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                            <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                                         </s:a>
 
                                         <s:url var="deleteTruckUrl" action="deleteTrucks">
@@ -215,7 +215,7 @@
                                         <s:a class="icon-action-link" href="%{deleteTruckUrl}" rel="tooltip"
                                              title="Delete this Vendor"
                                              onclick="return confirm('Do you really want to delete?');">
-                                            <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                            <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
                                         </s:a>
                                     </display:column>
                                 </td>
@@ -229,7 +229,7 @@
             <div class="panel-footer">
             <span class="pull-right"> <a href="loadAddTrucksPage" class="icon-action-link" rel="tooltip"
                                          title="Add Vendor"><img
-                    src="includes/images/add-user.png" class="icon-action circ-icon">
+                    src="../includes/images/add-user.png" class="icon-action circ-icon">
             </a>
             </span>
             </div>

@@ -53,7 +53,7 @@
 
 <div style="height:100%;" class="panel booking panel-info">
 <div class="booking panel-heading">
-    <img src="includes/images/booking.png" class="box-icon">
+    <img src="../includes/images/booking.png" class="box-icon">
     <span class="booking panel-title">Reports</span>
 </div>
 <div class="panel-body">
@@ -64,19 +64,19 @@
             <center style="margin-top:-10px; margin-bottom:20px;">
                 <h5><strong>Full Truck Load</strong><h5>
             </center>
-            <img style="margin-left:75px; margin-top:-40px;" src="includes/images/ftl.png">
+            <img style="margin-left:75px; margin-top:-40px;" src="../includes/images/ftl.png">
         </div>
 
         <div id="RollingCargo" class="divbox" style="float:left; margin-bottom:20px; margin-top:20px;">
             <div style="margin-left:70px; padding-top:30px">
-                <img src="includes/images/booking.png" class="box-icon">
+                <img src="../includes/images/booking.png" class="box-icon">
                 <span><strong>Rolling Cargo</strong></span>
             </div>
         </div>
 
         <div id="LooseCargo" class="divbox" style="float:left">
             <div style="margin-left:70px; padding-top:30px">
-                <img src="includes/images/booking.png" class="box-icon">
+                <img src="../includes/images/booking.png" class="box-icon">
                 <span><strong>Loose Cargo</strong></span>
             </div>
         </div>
@@ -87,14 +87,14 @@
     <div style=" width:250px;float:left;margin-left:70px; ">
         <div id="FullContainerLoad" class="divbox" style="float:left;">
             <div style="margin-left:70px; padding-top:30px">
-                <img src="includes/images/booking.png" class="box-icon">
+                <img src="../includes/images/booking.png" class="box-icon">
                 <span><strong>Full Container Load</strong></span>
             </div>
         </div>
 
         <div id="LessContainerLoad" class="divbox" style="float:left; margin-bottom:20px; margin-top:20px;">
             <div style="margin-left:70px; padding-top:30px">
-                <img src="includes/images/booking.png" class="box-icon">
+                <img src="../includes/images/booking.png" class="box-icon">
                 <span><strong>Less Container Load</strong></span>
             </div>
         </div>
@@ -107,14 +107,14 @@
             <center style="margin-top:-15px; margin-bottom:25px;">
                 <h5><strong>Sales</strong><h5>
             </center>
-            <img height="100" style="margin-left:80px; margin-top:-15px;" src="includes/images/sales.png">
+            <img height="100" style="margin-left:80px; margin-top:-15px;" src="../includes/images/sales.png">
         </div>
 
         <div id="CustomerRelations" class="divbox" style="float:left; margin-bottom:20px; margin-top:20px;">
             <center style="margin-top:-10px; margin-bottom:20px;">
                 <h5><strong>Customer Relation</strong><h5>
             </center>
-            <img height="100" style="margin-left:80px; margin-top:-15px;" src="includes/images/customer-relation.png">
+            <img height="100" style="margin-left:80px; margin-top:-15px;" src="../includes/images/customer-relation.png">
         </div>
 
     </div>
@@ -133,7 +133,7 @@
     </div>
     <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Transactions</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -143,7 +143,7 @@
     </div>
     <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Statistics</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -159,7 +159,7 @@
     <hr>
     <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Reports</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -169,7 +169,7 @@
     </div>
     <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Transactions</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -179,7 +179,7 @@
     </div>
     <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Statistics</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -195,7 +195,7 @@
     <hr>
     <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Reports</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -205,7 +205,7 @@
     </div>
     <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Transactions</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -215,7 +215,7 @@
     </div>
     <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Statistics</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -231,7 +231,7 @@
     <hr>
     <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Reports</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -241,7 +241,7 @@
     </div>
     <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Transactions</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -251,7 +251,7 @@
     </div>
     <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Statistics</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -267,7 +267,7 @@
     <hr>
     <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Reports</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -277,7 +277,7 @@
     </div>
     <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Transactions</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -287,7 +287,7 @@
     </div>
     <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Statistics</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -303,7 +303,7 @@
     <hr>
     <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Reports</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -313,7 +313,7 @@
     </div>
     <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Transactions</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -323,7 +323,7 @@
     </div>
     <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Statistics</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -339,7 +339,7 @@
     <hr>
     <div class="selection" style=" background-color: #f1eb49;margin-left:10px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Reports</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -349,7 +349,7 @@
     </div>
     <div class="selection" style="background-color: #6599FF; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Transactions</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>
@@ -359,7 +359,7 @@
     </div>
     <div class="selection" style="background-color: #FF9900; margin-left:20px; float:left">
         <div style="margin-left:10px; padding-top:15px">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span><strong>Statistics</strong></span>
             <hr>
             <a href="FTL_Report" class="btn btn-default">View the latest reports</a>

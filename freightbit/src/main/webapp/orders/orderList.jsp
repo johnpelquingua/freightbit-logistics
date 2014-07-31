@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="panel booking panel-info">
                 <div class="booking panel-heading">
-                    <img src="includes/images/booking.png" class="box-icon">
+                    <img src="../includes/images/booking.png" class="box-icon">
                     <span class="booking panel-title">List of Bookings</span>
                 </div>
                 <div class="panel-body">
@@ -45,9 +45,9 @@
                               <td class="tb-font-black">Merlin</td>
 
                               <td class="tb-font-black">
-                                  <a href="#"><img src="includes/images/edit-booking.png" title="Edit Booking"> </a>
-                                  <a href="#"><img src="includes/images/delete-booking.png" title="Delete Booking"> </a>
-                                  <a href="#"><img src="includes/images/info-booking.png" title="Booking Info"> </a>
+                                  <a href="#"><img src="../includes/images/edit-booking.png" title="Edit Booking"> </a>
+                                  <a href="#"><img src="../includes/images/delete-booking.png" title="Delete Booking"> </a>
+                                  <a href="#"><img src="../includes/images/info-booking.png" title="Booking Info"> </a>
                               </td>
 
                             </tr>
@@ -133,7 +133,7 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editOrderUrl}" rel="tooltip"
                                      title="Edit this vendor">
-                                    <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                    <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                                 </s:a>
 
                                 <s:url var="deleteOrderUrl" action="deleteOrder">
@@ -142,7 +142,7 @@
                                 <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip"
                                      title="Delete this order"
                                      onclick="return confirm('Do you really want to delete?');">
-                                    <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                    <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
                                 </s:a>
 
                                 <s:url var="viewInfoOrderUrl" action="viewInfoOrder">
@@ -150,11 +150,11 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip"
                                      title="View Booking Info">
-                                    <img src="includes/images/info-b.png" class="icon-action circ-icon">
+                                    <img src="../includes/images/info-b.png" class="icon-action circ-icon">
                                 </s:a>
                                 <s:a class="icon-action-link" href="#" rel="tooltip"
                                      title="View Booking Info" id="approve" onclick="approve()">
-                                     <img src="includes/images/info-b.png" class="icon-action circ-icon">
+                                     <img src="../includes/images/info-b.png" class="icon-action circ-icon">
                                 </s:a>
                                 </display:column>
                             </td>

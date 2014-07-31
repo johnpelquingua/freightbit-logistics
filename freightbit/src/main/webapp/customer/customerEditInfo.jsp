@@ -14,7 +14,7 @@
 		<div class="main-box">
 			<div class="panel booking panel-info">
 				<div class="booking panel-heading">
-					  <img src="includes/images/add-user.png" class="box-icon">
+					  <img src="../includes/images/add-user.png" class="box-icon">
 						<span class="booking panel-title">Edit Customer - Personal Information</span>
 				</div>
 				<div class="panel-body">
@@ -96,7 +96,7 @@
 		<div class="sidebar-box">
 				  <div class="panel booking panel-info">
 					  <div class="booking panel-heading">
-					  <img src="includes/images/calendar.png" class="box-icon">
+					  <img src="../includes/images/calendar.png" class="box-icon">
 						<span class="booking panel-title">Calendar</span>
 						
 					  </div>

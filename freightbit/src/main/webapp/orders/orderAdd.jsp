@@ -24,7 +24,7 @@
 <div class="col-lg-12">
 <div class="panel panel-primary">
 <div class="panel-heading">
-    <img src="includes/images/add-user.png" class="box-icon">
+    <img src="../includes/images/add-user.png" class="box-icon">
     <span class="panel-title">Booking Information</span>
 </div>
 <div class="panel-body">
@@ -553,7 +553,7 @@
 <div class="col-lg-12">
 <div class="panel panel-primary">
 <div class="panel-heading">
-    <img src="includes/images/add-user.png" class="box-icon">
+    <img src="../includes/images/add-user.png" class="box-icon">
     <span class="panel-title">Booking Information</span>
 </div>
 <div class="panel-body">

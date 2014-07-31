@@ -14,7 +14,7 @@
     <div class="main-box">
         <div class="panel booking panel-info">
             <div class="booking panel-heading">
-                <img src="includes/images/add-user.png" class="box-icon">
+                <img src="../includes/images/add-user.png" class="box-icon">
                 <span class="booking panel-title">Add Customer - Address</span>
             </div>
             <div class="panel-body">
@@ -78,7 +78,7 @@
     <div class="sidebar-box">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/calendar.png" class="box-icon">
+                <img src="../includes/images/calendar.png" class="box-icon">
                 <span class="panel-title">Process</span>
             </div>
 
@@ -86,19 +86,19 @@
                 <ul class="nav" style="margin-top: -10px;">
                     <li>
                         <a href="viewTrucks" class="side-help" style="font-size: 15px;"><img
-                                src="includes/images/1.png"
+                                src="../includes/images/1.png"
                                 class="img-sidehelp">List of Trucks</a>
                     </li>
                     <li>
                         <a href="viewDrivers" class="side-help" style="font-size: 15px;"><img
-                                src="includes/images/2.png"
+                                src="../includes/images/2.png"
                                 class="img-sidehelp">List of Drivers</a>
                     </li>
-                    <li><a href="viewVendorTruckingContacts" class="side-help" style="font-size: 15px;"><img src="includes/images/3.png"
+                    <li><a href="viewVendorTruckingContacts" class="side-help" style="font-size: 15px;"><img src="../includes/images/3.png"
                                                                                                              class="img-sidehelp">Contact
                         Person</a></li>
                     <li><a href="viewTruckingAddress" class="side-help" style="font-size: 15px;"><img
-                            src="includes/images/4.png"
+                            src="../includes/images/4.png"
                             class="img-sidehelp">Address</a>
                     </li>
                 </ul>

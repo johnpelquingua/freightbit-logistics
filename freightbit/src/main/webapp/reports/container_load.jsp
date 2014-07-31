@@ -22,11 +22,11 @@
 
     <div style="height:100%;" class="panel booking panel-info">
         <div style="height:55px;" class="booking panel-heading">
-            <img src="includes/images/booking.png" class="box-icon">
+            <img src="../includes/images/booking.png" class="box-icon">
             <span id="FullContainerLoad" class="booking panel-title"><strong>Full Container Load</strong></span>
             <span id="LessContainerLoad" style="display:none" class="booking panel-title"><strong>Less Container
                 Load</strong></span>
-            <img id="containerNext" src="includes/images/right.png" height="25" class="box-icon"
+            <img id="containerNext" src="../includes/images/right.png" height="25" class="box-icon"
                  style="margin-left:10px;"/>
         </div>
 

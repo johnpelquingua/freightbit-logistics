@@ -63,7 +63,7 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editVesselScheduleUrl}" rel="tooltip"
                                      title="Edit this vendor">
-                                <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                                 </s:a>
 
                                 <s:url var="deleteVesselScheduleUrl" action="deleteVesselSchedule">
@@ -72,7 +72,7 @@
                                 <s:a class="icon-action-link" href="%{deleteVesselScheduleUrl}" rel="tooltip"
                                      title="Delete this Vendor"
                                      onclick="return confirm('Do you really want to delete?');">
-                                <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
                                 </s:a>
 
                                 </display:column>
@@ -95,7 +95,7 @@
 
             							<span class="pull-right">
             							<a href="loadAddVesselSchedule" class="icon-action-link"><img
-                                                src="includes/images/add-sched.png" class="icon-action circ-icon"> </a>
+                                                src="../includes/images/add-sched.png" class="icon-action circ-icon"> </a>
             							</span>
                             </div>
 

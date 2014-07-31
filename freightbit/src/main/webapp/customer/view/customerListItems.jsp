@@ -13,7 +13,7 @@
     <div class="panel panel-info">
 
         <div class="panel-heading">
-            <img src="includes/images/listofusers.png" class="box-icon"/>
+            <img src="../includes/images/listofusers.png" class="box-icon"/>
             <span class="panel-title">List of Items</span>
 
         </div>
@@ -56,7 +56,7 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editItemUrl}" rel="tooltip"
                                      title="Edit this driver">
-                                    <img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
+                                    <img src="../includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
 
                                 <s:url var="deleteItemUrl" action="deleteItem">
                                     <s:param name="customersItemIdParam" value="%{customerItemsId}"></s:param>
@@ -64,7 +64,7 @@
                                 <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
                                      title="Delete this Item?"
                                      onclick="return confirm('Do you really want to delete?');">
-                                    <img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                    <img src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
                             </td>
                         </tr>
                     </s:iterator>
@@ -85,7 +85,7 @@
                     <s:param name="customerIdParam" value="customerIdParam"> </s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{loadAddItemUrl}" rel="tooltip" title="Add Contact">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon">
+                    <img src="../includes/images/add-user.png" class="icon-action circ-icon">
                 </s:a>
             </span>
         </div>
@@ -169,7 +169,7 @@
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editItemUrl}" rel="tooltip"
                                          title="Edit this driver">
-                                        <img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
+                                        <img src="../includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
 
                                     <s:url var="deleteItemUrl" action="deleteItem">
                                         <s:param name="customersItemIdParam" value="%{customerItemsId}"></s:param>
@@ -177,7 +177,7 @@
                                     <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
                                          title="Delete this Item?"
                                          onclick="return confirm('Do you really want to delete?');">
-                                        <img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                        <img src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
                                 </td>
                             </tr>
                         </s:iterator>
@@ -219,7 +219,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editItemUrl}" rel="tooltip"
                                              title="Edit this driver">
-                                            <img src="includes/images/edit-user.png"
+                                            <img src="../includes/images/edit-user.png"
                                                  class="icon-action circ-icon"> </s:a>
 
                                         <s:url var="deleteItemUrl" action="deleteItem">
@@ -229,7 +229,7 @@
                                         <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
                                              title="Delete this Item?"
                                              onclick="return confirm('Do you really want to delete?');">
-                                            <img src="includes/images/remove-user.png"
+                                            <img src="../includes/images/remove-user.png"
                                                  class="icon-action circ-icon"> </s:a>
                                     </display:column>
                                 </td>
@@ -250,7 +250,7 @@
                     <s:param name="customerIdParam" value="customerIdParam"> </s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{loadAddItemUrl}" rel="tooltip" title="Add Contact">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon">
+                    <img src="../includes/images/add-user.png" class="icon-action circ-icon">
                 </s:a>
             </span>
             </div>

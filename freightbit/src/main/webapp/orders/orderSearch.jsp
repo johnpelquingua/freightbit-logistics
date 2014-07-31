@@ -16,7 +16,7 @@
 				<div class="panel booking panel-info">
 
 					<div class="booking panel-heading">
-						<img src="includes/images/search.png" class="box-icon">
+						<img src="../includes/images/search.png" class="box-icon">
 						<span class="booking panel-title">Search Booking</span>
 					</div>
 
@@ -52,7 +52,7 @@
 									<div class="col-sm-4">
 										<sj:datepicker id="datepicker1"
                                            displayFormat="mm-dd-yy"
-                                           imageUrl="includes/images/datepicker.gif"
+                                           imageUrl="../includes/images/datepicker.gif"
                                            imageTooltip="Select Your Birthdate"
                                            showButton="true"
                                            changeYear="true"
@@ -63,7 +63,7 @@
 									<div class="col-sm-4">
 										<sj:datepicker id="datepicker2"
                                            displayFormat="mm-dd-yy"
-                                           imageUrl="includes/images/datepicker.gif"
+                                           imageUrl="../includes/images/datepicker.gif"
                                            imageTooltip="Select Your Birthdate"
                                            showButton="true"
                                            changeYear="true"
@@ -118,7 +118,7 @@
 		<div class="sidebar-box">
 		  <div class="panel booking panel-info">
 			  <div class="booking panel-heading">
-			  <img src="includes/images/calendar.png" class="box-icon">
+			  <img src="../includes/images/calendar.png" class="box-icon">
 				<span class="booking panel-title">Calendar</span>
 				
 			  </div>

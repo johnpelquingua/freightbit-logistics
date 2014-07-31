@@ -71,7 +71,7 @@
                                         <td class="tb-font-black">Door to Door</td>
                                         <td class="tb-font-black">ACCEPTED</td>
                                         <td class="tb-font-black">
-                                            <a href="seafreight-operation-container.html" class="icon-action-link edit-booking"><img src="includes/images/listofusers-b.png" style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;" class="icon-action circ-icon"></a>
+                                            <a href="seafreight-operation-container.html" class="icon-action-link edit-booking"><img src="../includes/images/listofusers-b.png" style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;" class="icon-action circ-icon"></a>
                                         </td>
                                     </tr>
                                     <tr class="success">
@@ -85,7 +85,7 @@
                                         <td class="tb-font-black">Door to Door</td>
                                         <td class="tb-font-black">ACCEPTED</td>
                                         <td class="tb-font-black">
-                                            <a href="seafreight-operation-container.html" class="icon-action-link edit-booking"><img src="includes/images/listofusers-b.png" style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;" class="icon-action circ-icon"></a>
+                                            <a href="seafreight-operation-container.html" class="icon-action-link edit-booking"><img src="../includes/images/listofusers-b.png" style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;" class="icon-action circ-icon"></a>
                                         </td>
                                     </tr>
 

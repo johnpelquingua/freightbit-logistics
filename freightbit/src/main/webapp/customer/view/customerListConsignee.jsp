@@ -17,7 +17,7 @@
 
             <div class="panel-heading">
 
-                <img src="includes/images/listofusers.png" class="box-icon"/> <span
+                <img src="../includes/images/listofusers.png" class="box-icon"/> <span
                     class="panel-title">List of Consignees</span>
             </div>
 
@@ -50,7 +50,7 @@
                                         <s:param name="addressIdParam" value="%{addressId}"></s:param>
                                     </s:url>
                                     <s:a href="%{loadEditConsigneeUrl}" class="icon-action-link" rel="tooltip"
-                                         title="Edit this Vendor Address"><img src="includes/images/edit-user.png"
+                                         title="Edit this Vendor Address"><img src="../includes/images/edit-user.png"
                                                                                class="icon-action circ-icon"> </s:a>
 
                                     <s:url var="deleteConsigneeUrl" action="deleteConsignee">
@@ -60,13 +60,13 @@
                                     <s:a class="icon-action-link" href="%{deleteConsigneeUrl}" rel="tooltip"
                                          title="Delete this Consignee"
                                          onclick="return confirm('Do you really want to delete?');"><img
-                                            src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                            src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
                                     <s:url var="consigneeInfoUrl" action="consigneeInfo">
                                         <s:param name="contactCodeParam" value="%{contactId}"></s:param>
                                         <s:param name="addressIdParam" value="%{addressId}"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{consigneeInfoUrl}" rel="tooltip"><img
-                                            src="includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
+                                            src="../includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
                                 </td>
                             </tr>
                         </s:iterator>
@@ -88,7 +88,7 @@
                     <s:param name="customerIdParam" value="customerIdParam"> </s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{loadAddConsigneeUrl}" rel="tooltip" title="Add Contact">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon">
+                    <img src="../includes/images/add-user.png" class="icon-action circ-icon">
                 </s:a>
             </span>
 
@@ -164,7 +164,7 @@
                                         <s:param name="addressIdParam" value="%{addressId}"></s:param>
                                     </s:url>
                                     <s:a href="%{loadEditConsigneeUrl}" class="icon-action-link" rel="tooltip"
-                                         title="Edit this Vendor Address"><img src="includes/images/edit-user.png"
+                                         title="Edit this Vendor Address"><img src="../includes/images/edit-user.png"
                                                                                class="icon-action circ-icon"> </s:a>
 
                                     <s:url var="deleteConsigneeUrl" action="deleteConsignee">
@@ -174,13 +174,13 @@
                                     <s:a class="icon-action-link" href="%{deleteConsigneeUrl}" rel="tooltip"
                                          title="Delete this Consignee"
                                          onclick="return confirm('Do you really want to delete?');"><img
-                                            src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                            src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
                                     <s:url var="consigneeInfoUrl" action="consigneeInfo">
                                         <s:param name="contactCodeParam" value="%{contactId}"></s:param>
                                         <s:param name="addressIdParam" value="%{addressId}"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{consigneeInfoUrl}" rel="tooltip"><img
-                                            src="includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
+                                            src="../includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
                                 </td>
                             </tr>
                         </s:iterator>
@@ -213,7 +213,7 @@
                                                      value="%{#attr.consignee.addressId}"></s:param>
                                         </s:url>
                                         <s:a href="%{loadEditConsigneeUrl}" class="icon-action-link" rel="tooltip"
-                                             title="Edit this Vendor Address"><img src="includes/images/edit-user.png"
+                                             title="Edit this Vendor Address"><img src="../includes/images/edit-user.png"
                                                                                    class="icon-action circ-icon"> </s:a>
 
                                         <s:url var="deleteConsigneeUrl" action="deleteConsignee">
@@ -225,7 +225,7 @@
                                         <s:a class="icon-action-link" href="%{deleteConsigneeUrl}" rel="tooltip"
                                              title="Delete this Consignee"
                                              onclick="return confirm('Do you really want to delete?');"><img
-                                                src="includes/images/remove-user.png"
+                                                src="../includes/images/remove-user.png"
                                                 class="icon-action circ-icon"> </s:a>
                                         <s:url var="consigneeInfoUrl" action="consigneeInfo">
                                             <s:param name="contactCodeParam"
@@ -234,7 +234,7 @@
                                                      value="%{#attr.consignee.addressId}"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{consigneeInfoUrl}" rel="tooltip"><img
-                                                src="includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
+                                                src="../includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
                                     </display:column>
                                 </td>
                             </display:table>
@@ -253,7 +253,7 @@
                     <s:param name="customerIdParam" value="customerIdParam"> </s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{loadAddConsigneeUrl}" rel="tooltip" title="Add Contact">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon">
+                    <img src="../includes/images/add-user.png" class="icon-action circ-icon">
                 </s:a>
             </span>
 

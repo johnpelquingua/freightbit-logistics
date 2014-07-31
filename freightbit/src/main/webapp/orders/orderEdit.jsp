@@ -30,7 +30,7 @@
 <div class="col-lg-12">
 <div class="panel panel-primary">
 <div class="panel-heading">
-    <img src="includes/images/add-user.png" class="box-icon">
+    <img src="../includes/images/add-user.png" class="box-icon">
     <span class="panel-title">Booking Information</span>
 </div>
 <div class="panel-body">
@@ -181,7 +181,7 @@
         <div class="col-sm-9" style="margin-left:4%">
             <sj:datepicker id="datepicker1"
                            displayFormat="mm-dd-yy"
-                           imageUrl="includes/images/datepicker.gif"
+                           imageUrl="../includes/images/datepicker.gif"
                            imageTooltip="Select Your Birthdate"
                            showButton="true"
                            changeYear="true"
@@ -230,7 +230,7 @@
         <div class="col-sm-9" style="margin-left:4%">
             <sj:datepicker id="datepicker2"
                            displayFormat="mm-dd-yy"
-                           imageUrl="includes/images/datepicker.gif"
+                           imageUrl="../includes/images/datepicker.gif"
                            imageTooltip="Select Your Birthdate"
                            showButton="true"
                            changeYear="true"
@@ -372,9 +372,9 @@
                                 <td class="tb-font-black">5,000</td>
 
                                 <td class="tb-font-black">
-                                    <%--<a href="#"><img src="includes/images/edit-booking.png" title="Edit Booking"> </a>
-                                    <a href="#"><img src="includes/images/delete-booking.png" title="Delete Booking"> </a>
-                                    <a href="#"><img src="includes/images/info-booking.png" title="Booking Info"> </a>--%>
+                                    <%--<a href="#"><img src="../includes/images/edit-booking.png" title="Edit Booking"> </a>
+                                    <a href="#"><img src="../includes/images/delete-booking.png" title="Delete Booking"> </a>
+                                    <a href="#"><img src="../includes/images/info-booking.png" title="Booking Info"> </a>--%>
 
                                     <a href="#"><i class="fa fa-times-circle"></i></a>
 
@@ -388,7 +388,7 @@
                 <div class="panel-footer">
                     <%--<span class="pull-right">
                     <a href="viewOrders" class="icon-action-link" rel="tooltip" >
-                        <img src="includes/images/add-user.png" class="icon-action circ-icon">
+                        <img src="../includes/images/add-user.png" class="icon-action circ-icon">
                     </a>
                     </span>--%>
                                 <span class="col-lg-offset-9">
@@ -519,9 +519,9 @@
                                 <td class="tb-font-black">5,000</td>
 
                                 <td class="tb-font-black">
-                                    <%--<a href="#"><img src="includes/images/edit-booking.png" title="Edit Booking"> </a>
-                                    <a href="#"><img src="includes/images/delete-booking.png" title="Delete Booking"> </a>
-                                    <a href="#"><img src="includes/images/info-booking.png" title="Booking Info"> </a>--%>
+                                    <%--<a href="#"><img src="../includes/images/edit-booking.png" title="Edit Booking"> </a>
+                                    <a href="#"><img src="../includes/images/delete-booking.png" title="Delete Booking"> </a>
+                                    <a href="#"><img src="../includes/images/info-booking.png" title="Booking Info"> </a>--%>
 
                                     <a href="#"><i class="fa fa-times-circle"></i></a>
 
@@ -535,7 +535,7 @@
                 <div class="panel-footer">
                     <%--<span class="pull-right">
                     <a href="viewOrders" class="icon-action-link" rel="tooltip" >
-                        <img src="includes/images/add-user.png" class="icon-action circ-icon">
+                        <img src="../includes/images/add-user.png" class="icon-action circ-icon">
                     </a>
                     </span>--%>
                                 <span class="col-lg-offset-9">

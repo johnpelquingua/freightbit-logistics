@@ -11,7 +11,7 @@
 
                 <div class="panel booking panel-info">
                   <div class="booking panel-heading">
-                    <img src="includes/images/listofusers.png" class="box-icon">
+                    <img src="../includes/images/listofusers.png" class="box-icon">
                     <span class="booking panel-title">List of Customers</span>
 
                   </div>
@@ -42,17 +42,17 @@
                                  <s:url var="editCustomerUrl" action="loadEditCustomerPage">
                                      <s:param name="customerCodeParam" value="customerCode"></s:param>
                                  </s:url>
-                                 <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip" title="Edit this Customer"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
+                                 <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip" title="Edit this Customer"><img src="../includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
 
                                <s:url var="deleteCustomerUrl" action="deleteCustomer">
                                      <s:param name="customerCodeParam" value="customerCode"></s:param>
                                 </s:url>
-                                <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip" title="Delete this Customer" onclick="return confirm('Do you really want to delete?');"><img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip" title="Delete this Customer" onclick="return confirm('Do you really want to delete?');"><img src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
 
                                <s:url var="customerInfoUrl" action="customerInfo">
                                      <s:param name="customerCodeParam" value="customerCode"></s:param>
                                 </s:url>
-                                <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img src="includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
+                                <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img src="../includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
 
 
 
@@ -71,7 +71,7 @@
                         </ul>
 
                         <span class="pull-right">
-                        <a href="loadAddCustomerPage" class="icon-action-link"><img src="includes/images/add-user.png" class="icon-action circ-icon"> </a>
+                        <a href="loadAddCustomerPage" class="icon-action-link"><img src="../includes/images/add-user.png" class="icon-action circ-icon"> </a>
                         </span>
 
                       </div>
@@ -135,15 +135,15 @@
                                     <s:url var="editCustomerUrl" action="loadEditCustomerPage">
                                         <s:param name="customerCodeParam" value="customerCode"></s:param>
                                     </s:url>
-                                    <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip" title="Edit this Customer"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
+                                    <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip" title="Edit this Customer"><img src="../includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
                                     <s:url var="deleteCustomerUrl" action="deleteCustomer">
                                         <s:param name="customerCodeParam" value="customerCode"></s:param>
                                     </s:url>
-                                    <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip" title="Delete this Customer" onclick="return confirm('Do you really want to delete?');"><img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                                    <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip" title="Delete this Customer" onclick="return confirm('Do you really want to delete?');"><img src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
                                     <s:url var="customerInfoUrl" action="customerInfo">
                                         <s:param name="customerCodeParam" value="customerCode"></s:param>
                                     </s:url>
-                                    <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img src="includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
+                                    <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img src="../includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
                                 </td>
                             </tr>
                         </s:iterator>
@@ -174,7 +174,7 @@
                                                      value="#attr.customer.customerCode"></s:param>
                                         </s:url>
                                         <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip"
-                                             title="Edit this Customer"><img src="includes/images/edit-user.png"
+                                             title="Edit this Customer"><img src="../includes/images/edit-user.png"
                                                                              class="icon-action circ-icon"> </s:a>
                                         <s:url var="deleteCustomerUrl" action="deleteCustomer">
                                             <s:param name="customerCodeParam"
@@ -183,14 +183,14 @@
                                         <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip"
                                              title="Delete this Customer"
                                              onclick="return confirm('Do you really want to delete?');"><img
-                                                src="includes/images/remove-user.png"
+                                                src="../includes/images/remove-user.png"
                                                 class="icon-action circ-icon"> </s:a>
                                         <s:url var="customerInfoUrl" action="customerInfo">
                                             <s:param name="customerCodeParam"
                                                      value="#attr.customer.customerCode"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img
-                                                src="includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
+                                                src="../includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
                                     </display:column>
                                 </td>
                             </display:table>
@@ -202,7 +202,7 @@
             </div>
             <div class="panel-footer">
             <span class="pull-right">
-            <a href="loadAddCustomerPage" class="icon-action-link"><img src="includes/images/add-user.png"
+            <a href="loadAddCustomerPage" class="icon-action-link"><img src="../includes/images/add-user.png"
                                                                         class="icon-action circ-icon"> </a>
             </span>
             </div>

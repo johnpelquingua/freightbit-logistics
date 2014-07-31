@@ -10,7 +10,7 @@
     <div class="col-md-12">
           <div class="panel panel-info">
               <div class="panel-heading">
-              <img src="includes/images/listofusers.png" class="box-icon">
+              <img src="../includes/images/listofusers.png" class="box-icon">
                 <span class="panel-title">List of Groups</span>
               </div>
               <div class="panel-body">
@@ -36,11 +36,11 @@
                               <s:url var="loadEditGroupUrl" action="loadEditGroupPage">
                                 <s:param name="groupCodeParam" value="groupCode"></s:param>
                             </s:url>
-                            <s:a href="%{loadEditGroupUrl}" class="icon-action-link" rel="tooltip" title="Edit this group"><img src="includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
+                            <s:a href="%{loadEditGroupUrl}" class="icon-action-link" rel="tooltip" title="Edit this group"><img src="../includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
                             <s:url var="deleteGroupUrl" action="deleteGroup">
                                     <s:param name="groupCodeParam" value="groupCode"></s:param>
                             </s:url>
-                            <s:a class="icon-action-link" href="%{deleteGroupUrl}" rel="tooltip" title="Delete this group" onclick="return confirm('Do you really want to delete?');"><img src="includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
+                            <s:a class="icon-action-link" href="%{deleteGroupUrl}" rel="tooltip" title="Delete this group" onclick="return confirm('Do you really want to delete?');"><img src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
                           </td>
                         </tr>
                         </s:iterator>
@@ -56,7 +56,7 @@
                     </ul>
 
                     <span class="pull-right">
-                    <a href="<s:url action='loadAddGroupPage'/>" class="icon-action-link"><img src="includes/images/add-user.png" class="icon-action circ-icon"> </a>
+                    <a href="<s:url action='loadAddGroupPage'/>" class="icon-action-link"><img src="../includes/images/add-user.png" class="icon-action circ-icon"> </a>
                     </span>
 
                   </div>
@@ -107,7 +107,7 @@
                                             <s:param name="groupCodeParam" value="#attr.group.groupCode"></s:param>
                                         </s:url>
                                         <s:a href="%{loadEditGroupUrl}" class="icon-action-link" rel="tooltip"
-                                             title="Edit this group"><img src="includes/images/edit-user.png"
+                                             title="Edit this group"><img src="../includes/images/edit-user.png"
                                                                           class="icon-action circ-icon"> </s:a>
                                         <s:url var="deleteGroupUrl" action="deleteGroup">
                                             <s:param name="groupCodeParam" value="#attr.group.groupCode"></s:param>
@@ -115,7 +115,7 @@
                                         <s:a class="icon-action-link" href="%{deleteGroupUrl}" rel="tooltip"
                                              title="Delete this group"
                                              onclick="return confirm('Do you really want to delete?');"><img
-                                                src="includes/images/remove-user.png"
+                                                src="../includes/images/remove-user.png"
                                                 class="icon-action circ-icon"> </s:a>
                                     </display:column>
                                 </td>
@@ -130,7 +130,7 @@
 
                 <span class="pull-right">
                 <a href="<s:url action='loadAddGroupPage'/>" class="icon-action-link"><img
-                        src="includes/images/add-user.png" class="icon-action circ-icon"> </a>
+                        src="../includes/images/add-user.png" class="icon-action circ-icon"> </a>
                 </span>
 
             </div>

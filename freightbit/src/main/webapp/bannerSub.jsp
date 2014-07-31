@@ -34,7 +34,7 @@
 
             <li class="message-preview">
                 <a href="#">
-                    <span class="avatar"><img alt="User Pic" src="includes/images/photo.png" class="img-circle"
+                    <span class="avatar"><img alt="User Pic" src="../includes/images/photo.png" class="img-circle"
                                               style="width:40px; "></span>
                     <span class="name">Jan Ernest:</span>
                     <span class="message">3 New Bookings</span>

@@ -8,7 +8,7 @@
     <div class="row">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/listofusers.png" class="box-icon"/>
+                <img src="../includes/images/listofusers.png" class="box-icon"/>
                 <span class="panel-title">List of Contacts</span>
             </div>
             <div class="panel-body">
@@ -45,7 +45,7 @@
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editContactsUrl}" rel="tooltip"
                                          title="Edit this contact person">
-                                        <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                        <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                                     </s:a>
 
                                     <s:url var="deleteContactsUrl" action="deleteTruckingContact">
@@ -54,7 +54,7 @@
                                     <s:a class="icon-action-link" href="%{deleteContactsUrl}" rel="tooltip"
                                          title="Delete this Contact Person"
                                          onclick="return confirm('Do you really want to delete?');">
-                                        <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                        <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
                                     </s:a>
                                 </td>
                             </tr>
@@ -74,7 +74,7 @@
                     <s:param name="vendorIdParam" value="vendorIdParam"> </s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{loadAddContactUrl}" rel="tooltip" title="Add Contact">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon">
+                    <img src="../includes/images/add-user.png" class="icon-action circ-icon">
                 </s:a>
             </span>
             </div>
@@ -155,7 +155,7 @@
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editContactsUrl}" rel="tooltip"
                                          title="Edit this contact person">
-                                        <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                        <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                                     </s:a>
 
                                     <s:url var="deleteContactsUrl" action="deleteTruckingContact">
@@ -164,7 +164,7 @@
                                     <s:a class="icon-action-link" href="%{deleteContactsUrl}" rel="tooltip"
                                          title="Delete this Contact Person"
                                          onclick="return confirm('Do you really want to delete?');">
-                                        <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                        <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
                                     </s:a>
                                 </td>
                             </tr>
@@ -200,7 +200,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editContactsUrl}" rel="tooltip"
                                              title="Edit this contact person">
-                                            <img src="includes/images/edit-user.png" class="icon-action circ-icon">
+                                            <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                                         </s:a>
 
                                         <s:url var="deleteContactsUrl" action="deleteTruckingContact">
@@ -209,7 +209,7 @@
                                         <s:a class="icon-action-link" href="%{deleteContactsUrl}" rel="tooltip"
                                              title="Delete this Contact Person"
                                              onclick="return confirm('Do you really want to delete?');">
-                                            <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                            <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
                                         </s:a>
                                     </display:column>
                                 </td>
@@ -232,7 +232,7 @@
                     <s:param name="vendorIdParam" value="vendorIdParam"> </s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{loadAddContactUrl}" rel="tooltip" title="Add Contact">
-                    <img src="includes/images/add-user.png" class="icon-action circ-icon">
+                    <img src="../includes/images/add-user.png" class="icon-action circ-icon">
                 </s:a>
             </span>
             </div>

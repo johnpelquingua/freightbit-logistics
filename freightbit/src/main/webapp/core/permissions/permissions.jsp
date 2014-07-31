@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="panel booking panel-info">
                 <div class="booking panel-heading">
-                    <img src="includes/images/listofusers.png" class="box-icon">
+                    <img src="../includes/images/listofusers.png" class="box-icon">
                     <span class="booking panel-title">List of Permissions</span>
                 </div>
                 <div class="panel-body">
@@ -32,7 +32,7 @@
                                 <td class="tb-font-black" align="center"></td>
                                 <td class="tb-font-black">
                                     <a href="permissions-edit" class="icon-action-link"><img
-                                            src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                                            src="../includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                                 </td>
                             </tr>
                             <tr>
@@ -41,7 +41,7 @@
                                 <td class="tb-font-black" align="center">Jan</td>
                                 <td class="tb-font-black">
                                     <a href="permissions-edit" class="icon-action-link"><img
-                                            src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                                            src="../includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                                 </td>
                             </tr>
                             <tr>
@@ -50,7 +50,7 @@
                                 <td class="tb-font-black" align="center">Jan</td>
                                 <td class="tb-font-black">
                                     <a href="permissions-edit" class="icon-action-link"><img
-                                            src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                                            src="../includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                                 </td>
                             </tr>
                             <tr>
@@ -59,7 +59,7 @@
                                 <td class="tb-font-black" align="center"></td>
                                 <td class="tb-font-black">
                                     <a href="permissions-edit" class="icon-action-link"><img
-                                            src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                                            src="../includes/images/edit-user.png" class="icon-action circ-icon"> </a>
                                 </td>
                             </tr>
                             </tbody>
@@ -80,7 +80,7 @@
 							
 							<span class="pull-right">
 							<a href="<s:url value='permissions-edit' />" class="icon-action-link"><img
-                                    src="includes/images/edit-user.png" class="icon-action circ-icon"> </a>
+                                    src="../includes/images/edit-user.png" class="icon-action circ-icon"> </a>
 							</span>
                 </div>
             </div>
@@ -91,7 +91,7 @@
     <div class="sidebar-box">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/chat.png" class="box-icon">
+                <img src="../includes/images/chat.png" class="box-icon">
                 <span class="panel-title">Online Chat</span>
 
             </div>
@@ -106,7 +106,7 @@
 
 
 <!--<span class="pull-right">
-<a href="groups-add.html" class="icon-action-link"><img src="includes/images/add-user.png" class="icon-action circ-icon"> </a>
+<a href="groups-add.html" class="icon-action-link"><img src="../includes/images/add-user.png" class="icon-action circ-icon"> </a>
 </span>-->
 
 <!-- END OF MAIN BOX -->

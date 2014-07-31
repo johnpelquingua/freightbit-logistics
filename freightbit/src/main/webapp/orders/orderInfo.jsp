@@ -15,7 +15,7 @@
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/booking.png" class="box-icon">
+                <img src="../includes/images/booking.png" class="box-icon">
                 <span class="panel-title">Booking Details</span>
             </div>
             <div class="panel-body">
@@ -65,12 +65,12 @@
     <div class="col-md-6">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/account.png" class="box-icon">
+                <img src="../includes/images/account.png" class="box-icon">
                 <span class="panel-title">Shipper Information</span>
             </div>
             <div class="panel-body">
                 <div style="float:left; width:40%;">
-                    <img src="includes/images/default-image.png" style="width:150px;margin:6px;">
+                    <img src="../includes/images/default-image.png" style="width:150px;margin:6px;">
                 </div>
                 <div style="float:left; width:60%;">
                     <h2><s:property value="bookings[0].bookingCompany"></s:property></h2>
@@ -84,12 +84,12 @@
     <div class="col-md-6">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/account.png" class="box-icon">
+                <img src="../includes/images/account.png" class="box-icon">
                 <span class="panel-title">Consignee Information</span>
             </div>
             <div class="panel-body">
                 <div style="float:left; width:40%;">
-                    <img src="includes/images/default-image.png" style="width:150px;margin:6px;">
+                    <img src="../includes/images/default-image.png" style="width:150px;margin:6px;">
                 </div>
                 <div style="float:left; width:60%;">
                     <h2><s:property value="bookings[1].bookingCompany"></s:property></h2>
@@ -106,7 +106,7 @@
     <div class="col-md-6">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/listofusers.png" class="box-icon">
+                <img src="../includes/images/listofusers.png" class="box-icon">
                 <span class="panel-title">Shipper Details</span>
             </div>
             <div class="panel-body">
@@ -160,7 +160,7 @@
     <div class="col-md-6">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/listofusers.png" class="box-icon">
+                <img src="../includes/images/listofusers.png" class="box-icon">
                 <span class="panel-title">Consignee Details</span>
             </div>
             <div class="panel-body">
@@ -221,7 +221,7 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/listofusers.png" class="box-icon">
+                <img src="../includes/images/listofusers.png" class="box-icon">
                 <span class="panel-title">Cargo Listing</span>
             </div>
 
@@ -288,7 +288,7 @@
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 
-    <h4 class="modal-title" id="myModalLabel"><span><img src="includes/images/edit-booking-b.png"/>&nbsp;</span>Edit
+    <h4 class="modal-title" id="myModalLabel"><span><img src="../includes/images/edit-booking-b.png"/>&nbsp;</span>Edit
         Booking</h4>
 </div>
 <div class="modal-body">
@@ -651,7 +651,7 @@
                                 <td class="tb-font-black"></td>
                                 <td class="tb-font-black"></td>
                                 <td class="tb-font-black"></td>
-                                <td><img src="includes/images/delete.png"/></td>
+                                <td><img src="../includes/images/delete.png"/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -788,7 +788,7 @@
 
                 <div class="row">
                     <div class="col-md-3 col-lg-3 " align="center">
-                        <img alt="User Pic" src="includes/images/photo.png" class="img-circle">
+                        <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
                     </div>
                     <div class=" col-md-9 col-lg-9 ">
                         <table class="table table-user-information">
@@ -848,7 +848,7 @@
 
                 <div class="row">
                     <div class="col-md-3 col-lg-3 " align="center">
-                        <img alt="User Pic" src="includes/images/photo.png" class="img-circle">
+                        <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
                     </div>
                     <div class=" col-md-9 col-lg-9 ">
                         <table class="table table-user-information">

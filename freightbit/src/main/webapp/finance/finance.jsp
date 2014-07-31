@@ -8,7 +8,7 @@
 
 <div style="height:100%;" class="panel booking panel-info">
 <div class="booking panel-heading">
-<img src="includes/images/booking.png" class="box-icon">
+<img src="../includes/images/booking.png" class="box-icon">
 <span class="booking panel-title">Finance</span>
 </div>
 <div class="panel-body" >

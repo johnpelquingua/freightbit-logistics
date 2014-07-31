@@ -44,11 +44,11 @@
 							  <td class="tb-font-black">Door to Door</td>
 							  <td class="tb-font-black">
 								<a href="updateStatus.html" class="icon-action-link edit-booking">
-                                    <img src="includes/images/edit-booking.png" class="icon-action circ-icon" title="Edit Schedule"
+                                    <img src="../includes/images/edit-booking.png" class="icon-action circ-icon" title="Edit Schedule"
                                     style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
                                 </a>
                                 <a href="#delete-Schedule" class="icon-action-link delete-booking">
-                                    <img src="includes/images/delete-sched.png" class="icon-action circ-icon" title="Delete Schedule"
+                                    <img src="../includes/images/delete-sched.png" class="icon-action circ-icon" title="Delete Schedule"
                                     style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
                                 </a>
 							  </td>
@@ -62,11 +62,11 @@
                               <td class="tb-font-black">Door to Door</td>
                               <td class="tb-font-black">
                             	<a href="updateStatus.html" class="icon-action-link edit-booking">
-                                    <img src="includes/images/edit-booking.png" class="icon-action circ-icon" title="Edit Schedule"
+                                    <img src="../includes/images/edit-booking.png" class="icon-action circ-icon" title="Edit Schedule"
                                     style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
                                 </a>
                                 <a href="#delete-Schedule" class="icon-action-link delete-booking">
-                                    <img src="includes/images/delete-sched.png" class="icon-action circ-icon" title="Delete Schedule"
+                                    <img src="../includes/images/delete-sched.png" class="icon-action circ-icon" title="Delete Schedule"
                                     style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
                                 </a>
                               </td>
@@ -80,11 +80,11 @@
                               <td class="tb-font-black">Door to Door</td>
                               <td class="tb-font-black">
                             	<a href="updateStatus.html" class="icon-action-link edit-booking">
-                                    <img src="includes/images/edit-booking.png" class="icon-action circ-icon" title="Edit Schedule"
+                                    <img src="../includes/images/edit-booking.png" class="icon-action circ-icon" title="Edit Schedule"
                                     style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
                                 </a>
                                 <a href="#delete-Schedule" class="icon-action-link delete-booking">
-                                    <img src="includes/images/delete-sched.png" class="icon-action circ-icon" title="Delete Schedule"
+                                    <img src="../includes/images/delete-sched.png" class="icon-action circ-icon" title="Delete Schedule"
                                     style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;">
                                 </a>
                               </td>
@@ -109,7 +109,7 @@
 
             							<span class="pull-right">
             							<a href="vessel-schedule-add.html" class="icon-action-link"><img
-                                                src="includes/images/add-sched.png" class="icon-action circ-icon"> </a>
+                                                src="../includes/images/add-sched.png" class="icon-action circ-icon"> </a>
             							</span>
                             </div>
 

@@ -11,7 +11,7 @@
 				<div class="panel panel-info">
 
 					<div class="panel-heading">
-						<img src="includes/images/search.png" class="box-icon">
+						<img src="../includes/images/search.png" class="box-icon">
 						<span class="panel-title">Search User</span>
 					</div>
 
@@ -63,7 +63,7 @@
 		<div class="sidebar-box">
 		  <div class="panel panel-info">
 			  <div class="panel-heading">
-			  <img src="includes/images/chat.png" class="box-icon">
+			  <img src="../includes/images/chat.png" class="box-icon">
 				<span class="panel-title">Online Chat</span>
 
 			  </div>

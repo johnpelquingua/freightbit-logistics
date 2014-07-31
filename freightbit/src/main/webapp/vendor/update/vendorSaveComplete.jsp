@@ -16,7 +16,7 @@
 
                 <div class="panel-heading">
 
-                    <img src="includes/images/listofusers.png" class="box-icon"/>
+                    <img src="../includes/images/listofusers.png" class="box-icon"/>
                     <span class="panel-title">List of Vendors</span>
 
                 </div>
@@ -49,7 +49,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
                                              title="Edit this vendor">
-                                            <img src="includes/images/edit-user.png"
+                                            <img src="../includes/images/edit-user.png"
                                                  class="icon-action circ-icon"> </s:a>
 
                                         <s:url var="deleteVendorUrl" action="deleteVendor">
@@ -58,7 +58,7 @@
                                         <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
                                              title="Delete this Vendor"
                                              onclick="return confirm('Do you really want to delete?');">
-                                            <img src="includes/images/remove-user.png"
+                                            <img src="../includes/images/remove-user.png"
                                                  class="icon-action circ-icon"> </s:a>
 
                                         <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
@@ -67,7 +67,7 @@
                                         <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
                                              title="View Vendor Info">
                                             <img
-                                                    src="includes/images/info-b.png"
+                                                    src="../includes/images/info-b.png"
                                                     class="icon-action circ-icon"> </s:a></td>
                                 </tr>
                             </s:iterator>
@@ -79,7 +79,7 @@
                 <div class="panel-footer">
 							<span class="pull-right">
 								<a href="loadAddVendorPage" class="icon-action-link" rel="tooltip"
-                                   title="Add Vendor"><img src="includes/images/add-user.png"
+                                   title="Add Vendor"><img src="../includes/images/add-user.png"
                                                            class="icon-action circ-icon"> </a>
 							</span>
 

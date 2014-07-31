@@ -8,7 +8,7 @@
     <div class="main-box">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/add-user.png" class="box-icon">
+                <img src="../includes/images/add-user.png" class="box-icon">
                 <span class="panel-title">Contact Person Information</span>
             </div>
             <div class="panel-body">
@@ -92,7 +92,7 @@
     <div class="sidebar-box">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <img src="includes/images/calendar.png" class="box-icon">
+                <img src="../includes/images/calendar.png" class="box-icon">
                 <span class="panel-title">Process</span>
             </div>
             <div class="panel-body" style="height: 195px;">
@@ -100,20 +100,20 @@
 
                     <li>
                         <a href="viewTrucks" class="side-help" style="font-size: 15px;">
-                            <img src="includes/images/1.png" class="img-sidehelp">List of Trucks
+                            <img src="../includes/images/1.png" class="img-sidehelp">List of Trucks
                         </a>
                     </li>
                     <li><a href="viewDrivers" class="side-help" style="font-size: 15px;">
-                        <img src="includes/images/2.png" class="img-sidehelp">Driver Information</a>
+                        <img src="../includes/images/2.png" class="img-sidehelp">Driver Information</a>
                     </li>
                     <li>
                         <a href="viewVendorTruckingContacts" class="side-help" style="font-size: 15px;">
-                            <img src="includes/images/3.png" class="img-sidehelp">Contact Information
+                            <img src="../includes/images/3.png" class="img-sidehelp">Contact Information
                         </a>
                     </li>
                     <li>
                         <a href="viewTruckingAddress" class="side-help" style="font-size: 15px;">
-                            <img src="includes/images/4.png" class="img-sidehelp">Address</a>
+                            <img src="../includes/images/4.png" class="img-sidehelp">Address</a>
                     </li>
                 </ul>
             </div>

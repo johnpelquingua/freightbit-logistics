@@ -47,7 +47,7 @@
 			<div class="col-md-12">
 				<div class="panel panel-info">
 				  <div class="panel-heading">
-				  	<img src="includes/images/groups.png" class="box-icon">
+				  	<img src="../includes/images/groups.png" class="box-icon">
 					<span class="panel-title">Edit Group</span>
 				  </div>
 
@@ -83,7 +83,7 @@
 
 				<div class="panel panel-info" style="float: left; width: 50%">
 					 <div class="panel-heading">
-						<img src="includes/images/listofusers.png" class="box-icon">
+						<img src="../includes/images/listofusers.png" class="box-icon">
 						<span class="panel-title">Staff</span>
 					  </div>
 		
@@ -111,7 +111,7 @@
 								  <td class="tb-font-black"><s:property value="client.clientName"/><s:set name="groupMembers[%{#m.index}].client.clientName" value="%{client.clientName}"/></td>
 								  <td class="tb-font-black">
 									<a href="#" class="icon-action-link">
-										<img src="includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
+										<img src="../includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
 									</a>
 								   </td>
 								 </tr>
@@ -126,7 +126,7 @@
 								  <td class="tb-font-black"><s:property value="client.clientName"/></td>
 								  <td class="tb-font-black">
 									<!-- <a href="#" class="icon-action-link">
-										<img src="includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
+										<img src="../includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
 									</a>-->
 									<s:url var="removeUserFromGroupUrl" action="removeUserFromGroupForEdit">
 								    	<s:param name="userNameParam" value="username"></s:param>
@@ -135,7 +135,7 @@
 								    	<s:set name="groupDesc" value="%{groupBean.description}" scope="session"/>
 								    	<s:set name="groupId" value="%{groupBean.groupId}" scope="session"/>
 								    </s:url>
-								    <s:a href="%{removeUserFromGroupUrl}"  class="icon-action-link" title="Remove this user"><img src="includes/images/delete-16.png"> </s:a>
+								    <s:a href="%{removeUserFromGroupUrl}"  class="icon-action-link" title="Remove this user"><img src="../includes/images/delete-16.png"> </s:a>
 								   </td>
 								 </tr>
 								</s:iterator>
@@ -143,7 +143,7 @@
 							</table>
 						<!-- 	<span class="pull-right">
 								<a href="#" class="icon-action-link">
-									<img src="includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
+									<img src="../includes/images/delete-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
 								</a>
 							</span> -->
 					</div>
@@ -152,7 +152,7 @@
 
 				<div class="panel panel-info" style="width:49%; float:right;">
 				    <div class="panel-heading">
-						<img src="includes/images/listofusers.png" class="box-icon">
+						<img src="../includes/images/listofusers.png" class="box-icon">
 						<span class="panel-title">Users</span>
 					</div>
 					
@@ -178,7 +178,7 @@
 								  <td class="tb-font-black"><s:property value="client.clientName"/></td>
 								  <td class="tb-font-black">
 								<!-- 	<a href="#" class="icon-action-link">
-										<img src="includes/images/plus-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
+										<img src="../includes/images/plus-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
 									</a> -->
 									<s:url var="addUserToGroupUrl" action="addUserToGroupForEdit">
 								    	<s:param name="userNameParam" value="username"></s:param>
@@ -187,7 +187,7 @@
 								    	<s:set name="groupDesc" value="%{groupBean.description}" scope="session"/>
 								    	<s:set name="groupId" value="%{groupBean.groupId}" scope="session"/>
 								    </s:url>
-								    <s:a href="%{addUserToGroupUrl}"  class="icon-action-link" title="Add this user"><img src="includes/images/plus-16.png"> </s:a>
+								    <s:a href="%{addUserToGroupUrl}"  class="icon-action-link" title="Add this user"><img src="../includes/images/plus-16.png"> </s:a>
 									</td>
 								</tr>
 							 </s:iterator>	
@@ -196,7 +196,7 @@
 						<!--<s:hidden name="groupMembers" value="%{groupMembers}"/>-->
 					<!-- 	<div class="pull-right">
 							<a href="#" class="icon-action-link">
-								<img src="includes/images/plus-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
+								<img src="../includes/images/plus-16.png" style="border-radius:6px; border:2px solid #707070; padding:2px;">
 							</a>
 						</div> -->
 					</div>
@@ -312,7 +312,7 @@
                                                        scope="session"/>
                                             </s:url>
                                             <s:a href="%{addUserToGroupUrl}" class="icon-action-link"
-                                                 title="Add this user"><img src="includes/images/plus-16.png"> </s:a>
+                                                 title="Add this user"><img src="../includes/images/plus-16.png"> </s:a>
 
 
                                         </display:column>
@@ -369,7 +369,7 @@
                                                         <s:set name="groupDesc" value="%{groupBean.description}" scope="session"/>
                                                         <s:set name="groupId" value="%{groupBean.groupId}" scope="session"/>
                                                     </s:url>
-                                                    <s:a href="%{removeUserFromGroupUrl}"  class="icon-action-link" title="Remove this user"><img src="includes/images/delete-16.png"> </s:a>
+                                                    <s:a href="%{removeUserFromGroupUrl}"  class="icon-action-link" title="Remove this user"><img src="../includes/images/delete-16.png"> </s:a>
                                                 </td>
 
                                             </tr>
@@ -409,7 +409,7 @@
                                                 </s:url>
                                                 <s:a href="%{removeUserFromGroupUrl}" class="icon-action-link"
                                                      title="Remove this user"><img
-                                                        src="includes/images/delete-16.png"> </s:a>
+                                                        src="../includes/images/delete-16.png"> </s:a>
                                             </display:column>
                                         </td>
                                     </display:table>
