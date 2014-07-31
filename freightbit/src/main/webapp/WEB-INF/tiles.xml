@@ -15,7 +15,7 @@
         <put-attribute name="banner" value="/bannerSub.jsp"/>
         <put-attribute name="menu" value="/menuSub.jsp"/>
     </definition>
-    <definition name="index.tiles" extends="baseLayoutMain">
+    <definition name="index.tiles" extends="baseLayout">
         <put-attribute name="title" value="Main Dashboard"/>
         <put-attribute name="body" value="/index.jsp"/>
     </definition>

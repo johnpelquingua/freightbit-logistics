@@ -17,16 +17,17 @@
 	<http auto-config="true">
 		<intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/includes/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/struts/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<intercept-url pattern="/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES" />
 		<intercept-url pattern="/user/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/vendor/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/customers/loadAddCustomerPage" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES" />
 		<intercept-url pattern="/orders/**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_INLAND_FREIGHT, ROLE_SEA_FREIGHT, ROLE_SALES" />
 		<form-login login-page='/login.jsp'
-		default-target-url='/login.action'
+		default-target-url='/main/login.action'
 		username-parameter='username'
 		password-parameter='password' />
-		<logout/>
+		<logout logout-success-url="/main/login.action"/>
 		<!-- enable csrf protection 
 		<csrf/>-->
 	</http>
