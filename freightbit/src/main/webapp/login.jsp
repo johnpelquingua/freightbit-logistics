@@ -5,7 +5,7 @@
 <head>
     <title>ERNEST Logistics Corporation</title>
     <link rel='stylesheet' href='includes/css/bootstraps.css'>
-    <link rel='stylesheet" href="includes/css/mains.css'>
+    <link rel='stylesheet' href='includes/css/mains.css'>
     <link rel="shortcut icon" href="http://www.ernest.com.ph/sites/default/files/favicon.ico"/>
 
     <s:head/>
@@ -13,10 +13,10 @@
 
 <body style="background:url('includes/images/ernestlogo.jpg') no-repeat center center fixed; background-size:cover;">
 <%--<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner" style="height: 80px; background: url('includes/images/background.jpg'); filter: none;">
+    <div class="navbar-inner" style="height: 80px; background: url('..includes/images/background.jpg'); filter: none;">
         <div class="container">
             <brand>
-                <img src="../includes/images/reallogo.png" style="margin-top: 20px; ">
+                <img src="../..includes/images/reallogo.png" style="margin-top: 20px; ">
             </brand>
         </div>
     </div>
@@ -67,7 +67,7 @@
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                 </div>
-                <%--<div class="white navbar-fixed-bottom" style="padding-top: 20px; height: 80px; background: url('includes/images/background.jpg');">
+                <%--<div class="white navbar-fixed-bottom" style="padding-top: 20px; height: 80px; background: url('..includes/images/background.jpg');">
 
                 </div>--%>
             </div>
