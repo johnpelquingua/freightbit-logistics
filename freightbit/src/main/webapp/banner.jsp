@@ -34,7 +34,7 @@
 
             <li class="message-preview">
                 <a href="#">
-                    <span class="avatar"><img alt="User Pic" src="includes/images/photo.png" class="img-circle"
+                    <span class="avatar"><img alt="User Pic" src="../includes/images/photo.png" class="img-circle"
                                               style="width:40px; "></span>
                     <span class="name">Jan Ernest:</span>
                     <span class="message">3 New Bookings</span>
@@ -51,7 +51,7 @@
             <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
             <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
             <li class="divider"></li>
-            <li><a href="<c:url value='j_spring_security_logout'/>"> <i class="fa fa-power-off"></i> Log Out</a></li>
+            <li><a href="<c:url value='../j_spring_security_logout'/>"> <i class="fa fa-power-off"></i> Log Out</a></li>
         </ul>
     </li>
 </ul>
