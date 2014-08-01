@@ -76,7 +76,7 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
         try {
             log.debug("Finding orders succeeded");
             Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.status not in(:statusList)");
-            query.setParameterList("statusList", statusList);
+            query.setParameter("statusList", statusList);
             List<Orders> results = (List<Orders>) query.list();
             return results;
         } catch (Exception e) {

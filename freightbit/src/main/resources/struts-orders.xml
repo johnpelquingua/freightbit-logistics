@@ -58,5 +58,12 @@
             <result name="success">/orders/orderAdd3.jsp</result>
         </action>
 
+        <action name="viewSeaFreightPlanning" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewSeaFreightPlanning">
+            <result name="success" type="tiles">operations.seafreight.tiles</result>
+        </action>
+        <action name="viewInlandFreightPlanning" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewInlandFreightPlanning">
+            <result name="success" type="tiles">operations.inlandfreight.tiles</result>
+        </action>
+
     </package>
 </struts>

@@ -53,7 +53,6 @@ public class OrderBean {
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
-    private String status;
 
 	private AddressBean shipperInfoAddress;
 	private ContactBean shipperInfoContact;
@@ -408,13 +407,5 @@ public class OrderBean {
 
     public void setConsigneeAddressId(Integer consigneeAddressId) {
         this.consigneeAddressId = consigneeAddressId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

@@ -31,12 +31,11 @@ public class OrderItems implements java.io.Serializable {
     private String modifiedBy;
     private Float rate;
     private String nameSize;
-    private String status;
 
     public OrderItems() {
     }
 
-    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double weight, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Float rate, String nameSize, String status) {
+    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double weight, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Float rate, String nameSize) {
         this.orderItemId = orderItemId;
         this.clientId = clientId;
         this.orderId = orderId;
@@ -52,7 +51,6 @@ public class OrderItems implements java.io.Serializable {
         this.modifiedBy = modifiedBy;
         this.rate = rate;
         this.nameSize = nameSize;
-        this.status = status;
     }
 
     @Id
@@ -208,15 +206,6 @@ public class OrderItems implements java.io.Serializable {
 
     public void setNameSize(String nameSize) {
         this.nameSize = nameSize;
-    }
-
-    @Column(name = "status")
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }
 
