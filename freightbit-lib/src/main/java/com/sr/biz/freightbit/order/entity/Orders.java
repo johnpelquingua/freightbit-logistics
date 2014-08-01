@@ -59,28 +59,8 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    public Orders(Client client, String orderNumber, String serviceRequirement, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, Integer shipperAddressId, Integer shipperContactId, Integer consigneeAddressId, Integer consigneeContactId, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
-        this.client = client;
-        this.orderNumber = orderNumber;
-        this.serviceRequirement = serviceRequirement;
-        this.serviceType = serviceType;
-        this.serviceMode = serviceMode;
-        this.notificationType = notificationType;
-        this.orderDate = orderDate;
-        this.paymentMode = paymentMode;
-        this.comments = comments;
-        this.orderStatus = orderStatus;
-        this.shipperAddressId = shipperAddressId;
-        this.shipperContactId = shipperContactId;
-        this.consigneeAddressId = consigneeAddressId;
-        this.consigneeContactId = consigneeContactId;
-        this.createdTimestamp = createdTimestamp;
-        this.createdBy = createdBy;
-        this.modifiedTimestamp = modifiedTimestamp;
-        this.modifiedBy = modifiedBy;
-    }
-
-    public Orders(Client client, String orderNumber, String serviceRequirement, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public Orders(Integer orderId, Client client, String orderNumber, String serviceRequirement, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Date pickupDate, String originationPort, Date deliveryDate, String destinationPort, Double rates, List<OrderItems> orderItems) {
+        this.orderId = orderId;
         this.client = client;
         this.orderNumber = orderNumber;
         this.serviceRequirement = serviceRequirement;
@@ -107,6 +87,12 @@ public class Orders implements java.io.Serializable {
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
+        this.pickupDate = pickupDate;
+        this.originationPort = originationPort;
+        this.deliveryDate = deliveryDate;
+        this.destinationPort = destinationPort;
+        this.rates = rates;
+        this.orderItems = orderItems;
     }
 
     @Id
@@ -471,7 +457,6 @@ public class Orders implements java.io.Serializable {
     public void setOrderItems(List<OrderItems> orderItems) {
         this.orderItems = orderItems;
     }
-
 
 }
 

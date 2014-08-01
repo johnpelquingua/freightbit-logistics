@@ -206,10 +206,6 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
-    public String viewStatusList() {
-        return SUCCESS;
-    }
-
     public String loadEditVesselSchedule() {
         VesselSchedules entity = vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam);
         vesselSchedule = transformToFormBean(entity);

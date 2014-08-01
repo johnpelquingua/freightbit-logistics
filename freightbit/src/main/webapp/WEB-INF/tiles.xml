@@ -5,12 +5,13 @@
         "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
+
     <definition name="baseLayoutMain" template="/baseLayoutMain.jsp">
         <put-attribute name="title" value="Template"/>
         <put-attribute name="banner" value="/bannerMain.jsp"/>
         <put-attribute name="menu" value="/menuMain.jsp"/>
     </definition>
-        <definition name="baseLayout" template="/baseLayout.jsp">
+    <definition name="baseLayout" template="/baseLayout.jsp">
         <put-attribute name="title" value="Main Dashboard"/>
         <put-attribute name="banner" value="/banner.jsp"/>
         <put-attribute name="menu" value="/menu.jsp"/>
@@ -44,6 +45,31 @@
     <definition name="operations.statusList.tiles" extends="baseLayout">
         <put-attribute name="title" value="Status List"/>
         <put-attribute name="body" value="/operations/statusListView.jsp"/>
+    </definition>
+
+    <definition name="operations.statusListItems.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="body" value="/operations/statusListViewItems.jsp"/>
+    </definition>
+
+    <definition name="operations.inlandFreightList.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="body" value="/operations/inland_freight/inlandFreightList.jsp"/>
+    </definition>
+
+    <definition name="operations.inlandFreightPlanning.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="body" value="/operations/inland_freight/inlandFreightPlanning.jsp"/>
+    </definition>
+
+    <definition name="operations.seaFreightList.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="body" value="/operations/sea_freight/seaFreightList.jsp"/>
+    </definition>
+
+    <definition name="operations.seaFreightPlanning.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanning.jsp"/>
     </definition>
 
     <!--OPERATION module ends-->
@@ -389,21 +415,6 @@
         <put-attribute name="body" value="/orders/orderEdit.jsp"/>
     </definition>
     <!-- ORDER module tiles End-->
-
-
-    <!-- OPERATION module tiles Start -->
-
-    <definition name="operations.seafreight.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Sea Freight List"/>
-        <put-attribute name="body" value="/operations/sea_freight/seaFreightList.jsp"/>
-    </definition>
-
-    <definition name="operations.inlandfreight.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Inland Freight List"/>
-        <put-attribute name="body" value="/operations/inland_freight/inlandFreightList.jsp"/>
-    </definition>
-
-    <!-- OPERATION module tiles End -->
 
     <!-- Please rename your tiles def accordingly (Please refer to above) where name=folderName.jspName.tiles -->
 

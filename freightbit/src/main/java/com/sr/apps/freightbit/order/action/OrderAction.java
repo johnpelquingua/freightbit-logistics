@@ -33,7 +33,7 @@ import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.service.ClientService;
 
 public class OrderAction extends ActionSupport implements Preparable {
-
+//
     private static final long serialVersionUID = 1L;
     private static final String ALPHA_NUM = "0123456789";
     private static final Integer compcode = 4;
@@ -95,6 +95,14 @@ public class OrderAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
     public String viewInlandFreightPlanning(){
+        return SUCCESS;
+    }
+
+    public String viewInlandFreightList() {
+        return SUCCESS;
+    }
+
+    public String viewSeaFreightList() {
         return SUCCESS;
     }
 
