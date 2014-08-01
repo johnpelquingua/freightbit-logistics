@@ -90,7 +90,7 @@
         <h1>Vendor Trucking Contacts </h1>
         <ol class="breadcrumb">
 
-            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i> Vendor</li>
             <li class="active"><a href="<s:url action='viewVendors' />"> <i class="fa fa-list"></i> Vendor List</a></li>
             <li class="active"><a href="<s:url action='viewInfoVendor' />"> <i class="fa fa-info-circle"></i> Vendor

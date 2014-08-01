@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1>Finance Module </h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-money"></i> Finance</li>
             <li class="active"><i class="fa fa-plus"></i> Add New Finance</li>
         </ol>

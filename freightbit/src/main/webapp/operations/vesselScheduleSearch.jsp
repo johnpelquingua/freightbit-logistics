@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <h1>Search Vessel Schedule </h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-search"></i> Search Vessel Schedule</li>
         </ol>
     </div>

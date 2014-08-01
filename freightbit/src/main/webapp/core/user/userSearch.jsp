@@ -104,7 +104,7 @@
     <div class="col-lg-12">
         <h1>Accounts Module </h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-user"></i> User</li>
             <li class="active"><i class="fa fa-search"></i> Search User</li>
         </ol>
