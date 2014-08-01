@@ -16,7 +16,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Vessel Schedules </h1>c
+        <h1>Vessel Schedules </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i>Vessel Schedules</li>

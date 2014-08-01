@@ -1,22 +1,32 @@
-<!-- MIDDLE -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<!-- END OF THE MIDDLE -->
 
-    <h1 class="page-header">Edit Vessel Schedule</h1>
+<div class="row" style="margin-top:-15px;">
+    <div class="col-lg-12">
+        <h1>Add Vessel Schedule</h1>
+        <ol class="breadcrumb">
+            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><i class="fa fa-male"></i> Vessel Schedule List</li>
+            <li class="active"><i class="fa fa-plus"></i> Add Vessel Schedule</li>
+        </ol>
 
-    <!-- EDIT HERE -->
+    </div>
+</div>
+<!-- /.row -->
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <img src="../includes/images/add-user.png" class="box-icon">
-                    <span class="panel-title">Vessel Schedule</span>
-                </div>
-                <div class="panel-body">
+<div class="row">
+    <div class="col-lg-7 col-lg-offset-2" style="margin-left: 21% !important;">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+				<span class="panel-title">Vessel Schedule</span>
+            </div>
+
+            <div class="panel-body">
+             
 
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addVesselSchedule">
 
@@ -122,21 +132,14 @@
 
                     </s:form>
 
-                </div>
-
+               
             </div>
-
+            
+            
         </div>
 
-
     </div>
-
-
-    <!-- END OF EDIT -->
-
-</div>
-
-<!-- END OF THE MIDDLE -->
+</div><!-- /.row -->
 
 <script type="text/javascript">
 
