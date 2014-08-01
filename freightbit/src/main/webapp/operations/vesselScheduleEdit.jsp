@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
@@ -28,15 +28,16 @@
 			<div class="panel-body">
 
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="editVesselSchedule">
-                    <s:hidden value="%{vesselSchedule.vesselScheduleId}" name="vesselSchedule.vesselScheduleId" />
-                        <s:hidden value="%{vesselSchedule.createdBy}" name="vesselSchedule.createdBy" />
-                        <s:hidden value="%{vesselSchedule.createdTimestamp}" name="vesselSchedule.createdTimestamp" />
+                        <s:hidden value="%{vesselSchedule.vesselScheduleId}" name="vesselSchedule.vesselScheduleId"/>
+                        <s:hidden value="%{vesselSchedule.createdBy}" name="vesselSchedule.createdBy"/>
+                        <s:hidden value="%{vesselSchedule.createdTimestamp}" name="vesselSchedule.createdTimestamp"/>
                         <div class="form-group">
 
-                            <label for="vesselSchedule.voyageNumber" class="col-sm-2 control-label">Voyage Number:</label>
+                            <label for="vesselSchedule.voyageNumber" class="col-sm-2 control-label">Voyage
+                                Number:</label>
 
                             <div class="col-sm-10">
-                                <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber" />
+                                <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber"/>
                             </div>
 
                         </div>
@@ -57,40 +58,48 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.departureDate" class="col-sm-2 control-label"> Date of Departure:</label>
+                            <label for="vesselSchedule.departureDate" class="col-sm-2 control-label"> Date of
+                                Departure:</label>
 
                             <div class="col-sm-10">
-                                <s:textfield cssClass="form-control" id="departureDate" name="vesselSchedule.departureDate" />
+                                <s:textfield cssClass="form-control" id="departureDate"
+                                             name="vesselSchedule.departureDate"/>
                             </div>
 
                         </div>
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.departureTime" class="col-sm-2 control-label"> Time of Departure:</label>
+                            <label for="vesselSchedule.departureTime" class="col-sm-2 control-label"> Time of
+                                Departure:</label>
 
                             <div class="col-sm-10">
-                                <s:textfield cssClass="form-control" id="departureTime" name="vesselSchedule.departureTime" />
+                                <s:textfield cssClass="form-control" id="departureTime"
+                                             name="vesselSchedule.departureTime"/>
                             </div>
 
                         </div>
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.arrivalDate" class="col-sm-2 control-label">Date of Arrival:</label>
+                            <label for="vesselSchedule.arrivalDate" class="col-sm-2 control-label">Date of
+                                Arrival:</label>
 
                             <div class="col-sm-10">
-                                <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" />
+                                <s:textfield cssClass="form-control" id="arrivalDate"
+                                             name="vesselSchedule.arrivalDate"/>
                             </div>
 
                         </div>
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.arrivalTime" class="col-sm-2 control-label"> Time of Arrival:</label>
+                            <label for="vesselSchedule.arrivalTime" class="col-sm-2 control-label"> Time of
+                                Arrival:</label>
 
                             <div class="col-sm-10">
-                                <s:textfield cssClass="form-control" id="arrivalTime" name="vesselSchedule.arrivalTime" />
+                                <s:textfield cssClass="form-control" id="arrivalTime"
+                                             name="vesselSchedule.arrivalTime"/>
                             </div>
 
                         </div>
@@ -111,7 +120,8 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.destinationPort" class="col-sm-2 control-label">Pier Destination:</label>
+                            <label for="vesselSchedule.destinationPort" class="col-sm-2 control-label">Pier
+                                Destination:</label>
 
                             <div class="col-sm-10">
                                 <s:select emptyOption="true" id="vesselSchedule.destinationPort"
@@ -153,7 +163,7 @@
                 // on 5:00pm
                 dateFormat: 'yy-dd-mm',
 //        timeFormat: 'HH:mm',
-                onClose: function(dateText, inst) {
+                onClose: function (dateText, inst) {
 //
                     if (arrivalDate.val() != '') {
                         var testStartDate = departureDate.datepicker('getDate');
@@ -169,8 +179,8 @@
                     }
                 },
 
-                onSelect: function (selectedDateTime){
-                    arrivalDate.datepicker('option', 'minDate', departureDate.datepicker('getDate') );
+                onSelect: function (selectedDateTime) {
+                    arrivalDate.datepicker('option', 'minDate', departureDate.datepicker('getDate'));
                 }
 
             }
@@ -178,12 +188,12 @@
     );
 
     // delivery date validation -jp
-    arrivalDate.datepicker( {
+    arrivalDate.datepicker({
 
         // on 6:00pm
         dateFormat: 'yy-dd-mm',
 //        timeFormat: 'HH:mm',
-        onClose: function(dateText, inst) {
+        onClose: function (dateText, inst) {
 
             if (departureDate.val() != '') {
                 var testStartDate = departureDate.datepicker('getDate');
@@ -199,30 +209,30 @@
             }
         },
 
-        onSelect: function (selectedDateTime){
-            departureDate.datepicker('option', 'maxDate', arrivalDate.datepicker('getDate') );
+        onSelect: function (selectedDateTime) {
+            departureDate.datepicker('option', 'maxDate', arrivalDate.datepicker('getDate'));
         }
 
 
 
     });
 
-    $('#arrivalTime').timepicker( {
+    $('#arrivalTime').timepicker({
         timeFormat: 'HH:mm:ss'
     });
 
-    $('#departureTime').timepicker( {
+    $('#departureTime').timepicker({
         timeFormat: 'HH:mm:ss'
     });
 
-    $('#activate-step-3').on('click', function(e) {
+    $('#activate-step-3').on('click', function (e) {
         $('ul.setup-panel li:eq(2)').removeClass('disabled');
         $('.step2').attr('disabled', 'disabled');
         $('ul.setup-panel li a[href="#step-3"]').trigger('click');
         $(this).remove();
     })
 
-    $('#activate-step-3').click(function(){
+    $('#activate-step-3').click(function () {
 
         var selectedItem = $("select[name='order.customerId'] option:selected").val();
 
@@ -230,7 +240,7 @@
             url: 'load3rdPage', // action to be perform
             type: 'POST',       //type of posting the data
             //data: { name: "Jeetu", age: "24" }, // data to set to Action Class
-            data:{ ID: selectedItem },
+            data: { ID: selectedItem },
             dataType: 'html',
 
             success: function (html) {
@@ -238,7 +248,7 @@
                  alert(html);*/
                 $('#3rdPart').html(html); //set result.jsp output to leftDiv
             },
-            error: function(xhr, ajaxOptions, thrownError){
+            error: function (xhr, ajaxOptions, thrownError) {
                 alert('An error occurred! ' + thrownError);
             }
         });

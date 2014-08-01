@@ -25,6 +25,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private OrderStatusLogsService orderStatusLogsService;
 
     private Integer orderIdParam;
+    private String orderNoParam;
 
     @Override
     public void prepare() {}
@@ -102,5 +103,13 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setOrderItems(List<OrderItemsBean> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public String getOrderNoParam() {
+        return orderNoParam;
+    }
+
+    public void setOrderNoParam(String orderNoParam) {
+        this.orderNoParam = orderNoParam;
     }
 }

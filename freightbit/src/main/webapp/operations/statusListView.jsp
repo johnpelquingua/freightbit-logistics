@@ -49,6 +49,8 @@
                             <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                                 <s:param name="orderIdParam"
                                          value="#attr.order.orderId"></s:param>
+                                <s:param name="orderNoParam"
+                                         value="#attr.order.orderNo"></s:param>
                             </s:url>
                             <s:a class="icon-action-link" href="%{viewStatusListItemsUrl}" rel="tooltip"
                                  title="Update Status">
