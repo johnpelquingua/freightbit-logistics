@@ -18,6 +18,7 @@ public class OrderItemsBean {
     private Date modifiedTimeStamp;
     private String modifiedBy;
     private String nameSize;
+    private String status;
 
 
     public OrderItemsBean(){
@@ -25,7 +26,7 @@ public class OrderItemsBean {
     }
 
 
-    public OrderItemsBean(Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy, String nameSize) {
+    public OrderItemsBean(Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy, String nameSize, String status) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.quantity = quantity;
@@ -40,6 +41,7 @@ public class OrderItemsBean {
         this.modifiedTimeStamp = modifiedTimeStamp;
         this.modifiedBy = modifiedBy;
         this.nameSize = nameSize;
+        this.status = status;
     }
 
     public Float getRate() {
@@ -152,5 +154,13 @@ public class OrderItemsBean {
 
     public void setNameSize(String nameSize) {
         this.nameSize = nameSize;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
