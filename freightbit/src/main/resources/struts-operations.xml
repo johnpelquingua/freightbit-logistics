@@ -59,11 +59,35 @@
 
         <!--Status Starts here-->
 
-        <action name="viewStatusList" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
+        <action name="viewStatusList" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
                 method="viewStatusList">
             <result name="success" type="tiles">operations.statusList.tiles</result>
         </action>
 
+        <action name="viewStatusListItems" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
+                method="viewStatusListItems">
+            <result name="success" type="tiles">operations.statusListItems.tiles</result>
+        </action>
+
+
         <!--Status ends here-->
+
+        <!--Operations starts here-->
+        <action name="viewSeaFreightPlanning" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewSeaFreightPlanning">
+            <result name="success" type="tiles">operations.seaFreightPlanning.tiles</result>
+        </action>
+
+        <action name="viewInlandFreightPlanning" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewInlandFreightPlanning">
+            <result name="success" type="tiles">operations.inlandFreightPlanning.tiles</result>
+        </action>
+
+        <action name="viewSeaFreightList" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewSeaFreightList">
+            <result name="success" type="tiles">operations.seaFreightList.tiles</result>
+        </action>
+
+        <action name="viewInlandFreightList" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewInlandFreightList">
+            <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
+        </action>
+        <!--Operations ends here-->
     </package>
 </struts>
