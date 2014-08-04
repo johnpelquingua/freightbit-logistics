@@ -57,6 +57,11 @@
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightList.jsp"/>
     </definition>
 
+    <definition name="operations.inlandFreightItemList.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="body" value="/operations/inland_freight/inlandFreightItemList.jsp"/>
+    </definition>
+
     <definition name="operations.inlandFreightPlanning.tiles" extends="baseLayout">
         <put-attribute name="title" value="Status List"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightPlanning.jsp"/>
@@ -65,6 +70,11 @@
     <definition name="operations.seaFreightList.tiles" extends="baseLayout">
         <put-attribute name="title" value="Status List"/>
         <put-attribute name="body" value="/operations/sea_freight/seaFreightList.jsp"/>
+    </definition>
+
+    <definition name="operations.seaFreightItemList.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="body" value="/operations/sea_freight/seaFreightItemList.jsp"/>
     </definition>
 
     <definition name="operations.seaFreightPlanning.tiles" extends="baseLayout">

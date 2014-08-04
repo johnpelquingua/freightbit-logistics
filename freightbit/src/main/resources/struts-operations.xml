@@ -73,20 +73,28 @@
         <!--Status ends here-->
 
         <!--Operations starts here-->
-        <action name="viewSeaFreightPlanning" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewSeaFreightPlanning">
+        <action name="viewSeaFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
             <result name="success" type="tiles">operations.seaFreightPlanning.tiles</result>
         </action>
 
-        <action name="viewInlandFreightPlanning" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewInlandFreightPlanning">
+        <action name="viewInlandFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
             <result name="success" type="tiles">operations.inlandFreightPlanning.tiles</result>
         </action>
 
-        <action name="viewSeaFreightList" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewSeaFreightList">
+        <action name="viewSeaFreightList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
             <result name="success" type="tiles">operations.seaFreightList.tiles</result>
         </action>
 
-        <action name="viewInlandFreightList" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewInlandFreightList">
+        <action name="viewInlandFreightList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
             <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
+        </action>
+
+        <action name="viewSeaFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
+            <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
+        </action>
+
+        <action name="viewInlandFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
+            <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
         </action>
         <!--Operations ends here-->
     </package>

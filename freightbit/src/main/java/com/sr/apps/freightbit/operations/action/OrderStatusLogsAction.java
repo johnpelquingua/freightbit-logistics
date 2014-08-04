@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private static final long serialVersionUID = 1L;
-    private static final Logger log = Logger.getLogger(VesselScheduleAction.class);
+    private static final Logger log = Logger.getLogger(OrderStatusLogsAction.class);
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
@@ -26,6 +26,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     private Integer orderIdParam;
     private String orderNoParam;
+    private String orderItemIdParam;
 
     @Override
     public void prepare() {}
@@ -111,5 +112,13 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setOrderNoParam(String orderNoParam) {
         this.orderNoParam = orderNoParam;
+    }
+
+    public String getOrderItemIdParam() {
+        return orderItemIdParam;
+    }
+
+    public void setOrderItemIdParam(String orderItemIdParam) {
+        this.orderItemIdParam = orderItemIdParam;
     }
 }

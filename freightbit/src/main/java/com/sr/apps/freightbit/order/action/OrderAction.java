@@ -91,21 +91,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String viewSeaFreightPlanning(){
-        return SUCCESS;
-    }
-    public String viewInlandFreightPlanning(){
-        return SUCCESS;
-    }
-
-    public String viewInlandFreightList() {
-        return SUCCESS;
-    }
-
-    public String viewSeaFreightList() {
-        return SUCCESS;
-    }
-
     public String getColumnFilter() {
         String column = "";
         if (order == null) {
