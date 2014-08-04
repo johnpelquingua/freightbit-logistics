@@ -6,7 +6,7 @@
         <h1>Update Status</h1>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><i class="fa fa-male"></i>Status</li>
+            <li class="active"><i class="fa fa-list"></i> On Going Booking List</li>
         </ol>
 
     </div>
@@ -54,7 +54,8 @@
                             </s:url>
                             <s:a class="icon-action-link" href="%{viewStatusListItemsUrl}" rel="tooltip"
                                  title="Update Status">
-                                <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
+                                <img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
+                                style="border-radius:25%;">
                             </s:a>
 
                         </display:column></td>
@@ -65,14 +66,6 @@
 
             </div>
 
-            <div class="panel-footer">
-
-
-    <span class="pull-right">
-    <a href="vessel-schedule-add.html" class="icon-action-link"><img
-            src="../includes/images/add-sched.png" class="icon-action circ-icon"> </a>
-    </span>
-            </div>
 
         </div>
     </div>

@@ -9,8 +9,8 @@
         <h1>Edit Vessel Schedule</h1>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><i class="fa fa-male"></i> Vessel Schedule List</li>
-            <li class="active"><i class="fa fa-plus"></i> Edi Vessel Schedule</li>
+            <li class="active"><i class="fa fa-list"></i> Vessel Schedule List</li>
+            <li class="active"><i class="fa fa-pencil-square-o"></i> Edi Vessel Schedule</li>
         </ol>
 
     </div>

@@ -19,7 +19,7 @@
         <h1>Vessel Schedules </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><i class="fa fa-male"></i>Vessel Schedules</li>
+            <li class="active"><i class="fa fa-list"></i> Vessel Schedules</li>
         </ol>
 
     </div>
@@ -63,7 +63,8 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editVesselScheduleUrl}" rel="tooltip"
                                      title="Edit this vendor">
-                                <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
+                                <img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
+                                style="border-radius:25%;">
                                 </s:a>
 
                                 <s:url var="deleteVesselScheduleUrl" action="deleteVesselSchedule">
@@ -72,7 +73,8 @@
                                 <s:a class="icon-action-link" href="%{deleteVesselScheduleUrl}" rel="tooltip"
                                      title="Delete this Vendor"
                                      onclick="return confirm('Do you really want to delete?');">
-                                <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
+                                <img src="../includes/images/delete-booking.png" class="icon-action circ-icon"
+                                style="border-radius:25%;">
                                 </s:a>
 
                                 </display:column>
