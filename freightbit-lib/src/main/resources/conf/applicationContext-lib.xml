@@ -18,7 +18,7 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
-          p:url="${jdbc.databaseurl}" p:username="${jdbc.username}" p:password="${jdbc.password}"/>
+          p:url="jdbc:mysql://localhost:3306/freightbit" p:username="root" p:password=""/>
 
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -109,10 +109,18 @@
         <property name="orderStatusLogsDao" ref="orderStatusLogsDao"/>
     </bean>
 
+    <bean id="operationsService" class="com.sr.biz.freightbit.operations.service.impl.OperationsServiceImpl">
+        <property name="operationsDao" ref="operationsDao"/>
+    </bean>
+
     <!-- Services End -->
     <!-- DAOs -->
 
     <bean id="contactsDao" class="com.sr.biz.freightbit.common.dao.impl.ContactsDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="operationsDao" class="com.sr.biz.freightbit.operations.dao.impl.OperationsDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
