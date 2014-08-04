@@ -133,7 +133,8 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editOrderUrl}" rel="tooltip"
                                      title="Edit this vendor">
-                                    <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
+                                    <img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
+                                    style="border-radius: 25%;">
                                 </s:a>
 
                                 <s:url var="deleteOrderUrl" action="deleteOrder">
@@ -142,7 +143,8 @@
                                 <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip"
                                      title="Delete this order"
                                      onclick="return confirm('Do you really want to delete?');">
-                                    <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
+                                    <img src="../includes/images/delete-booking.png" class="icon-action circ-icon"
+                                    style="border-radius: 25%;">
                                 </s:a>
 
                                 <s:url var="viewInfoOrderUrl" action="viewInfoOrder">
@@ -150,11 +152,13 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip"
                                      title="View Booking Info">
-                                    <img src="../includes/images/info-b.png" class="icon-action circ-icon">
+                                    <img src="../includes/images/info-b.png" class="icon-action circ-icon"
+                                    style="border-radius: 25%;">
                                 </s:a>
                                 <s:a class="icon-action-link" href="#" rel="tooltip"
                                      title="View Booking Info" id="approve" onclick="approve()">
-                                     <img src="../includes/images/info-b.png" class="icon-action circ-icon">
+                                     <img src="../includes/images/info-b.png" class="icon-action circ-icon"
+                                     style="border-radius: 25%;">
                                 </s:a>
                                 </display:column>
                             </td>
