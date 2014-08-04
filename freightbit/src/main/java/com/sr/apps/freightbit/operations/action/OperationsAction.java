@@ -2,11 +2,15 @@ package com.sr.apps.freightbit.operations.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+import com.sr.apps.freightbit.operations.formbean.VesselScheduleBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
+import com.sr.biz.freightbit.vendor.entity.Vendor;
+import com.sr.biz.freightbit.vendor.service.VendorService;
+import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -21,15 +25,32 @@ public class OperationsAction extends ActionSupport implements Preparable{
 
     private Integer orderIdParam;
     private Integer orderItemIdParam;
+    private Integer nameSizeParam;
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
+    private List<VesselScheduleBean> vesselSchedules = new ArrayList<VesselScheduleBean>();
+
+    private List<Vendor> vendorList = new ArrayList<Vendor>();
 
     private OrderItemsBean orderItem = new OrderItemsBean();
+
     private OperationsService operationsService;
+    private VendorService vendorService;
 
     @Override
     public void prepare() {
+        vendorList = vendorService.findVendorsByCriteria("vendorType", "SHIPPING", 1);
+    }
+
+    public void listAllVesselSchedule(Integer vendorId) {
+        List<VesselSchedules> vesselSchedulesList = new ArrayList<VesselSchedules>();
+
+        vesselSchedulesList = operationsService.findVesselScheduleByVendorId(vendorId);
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+            vesselSchedules.add(transformToFormBeanVesselSchdedule(vesselScheduleElem));
+        }
 
     }
 
@@ -82,6 +103,26 @@ public class OperationsAction extends ActionSupport implements Preparable{
         return formBean;
     }
 
+    public VesselScheduleBean transformToFormBeanVesselSchdedule(VesselSchedules entity) {
+        VesselScheduleBean formBean = new VesselScheduleBean();
+        formBean.setVesselScheduleId(entity.getVesselScheduleId());
+        formBean.setVendorId(entity.getVendorId());
+        formBean.setOriginPort(entity.getOriginPort());
+        formBean.setDestinationPort(entity.getDestinationPort());
+        formBean.setArrivalDate(entity.getArrivalDate());
+        formBean.setArrivalTime(entity.getArrivalTime());
+        formBean.setDepartureDate(entity.getDepartureDate());
+        formBean.setDepartureTime(entity.getDepartureTime());
+        formBean.setClientId(entity.getClientId());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+        formBean.setModifiedBy(entity.getModifiedBy());
+        formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
+        formBean.setVoyageNumber(entity.getVoyageNumber());
+        return formBean;
+
+    }
+
     public Integer getOrderIdParam() {
         return orderIdParam;
     }
@@ -128,5 +169,29 @@ public class OperationsAction extends ActionSupport implements Preparable{
 
     public void setOrderItem(OrderItemsBean orderItem) {
         this.orderItem = orderItem;
+    }
+
+    public List<Vendor> getVendorList() {
+        return vendorList;
+    }
+
+    public void setVendorList(List<Vendor> vendorList) {
+        this.vendorList = vendorList;
+    }
+
+    public void setVendorService(VendorService vendorService) {
+        this.vendorService = vendorService;
+    }
+
+    public Integer getNameSizeParam() {
+        return nameSizeParam;
+    }
+
+    public void setNameSizeParam(Integer nameSizeParam) {
+        this.nameSizeParam = nameSizeParam;
+    }
+
+    public VendorService getVendorService() {
+        return vendorService;
     }
 }

@@ -31,6 +31,8 @@
                                 <s:url var="viewSeaFreightPlanningUrl" action="viewSeaFreightPlanning">
                                     <s:param name="orderItemIdParam"
                                              value="#attr.orderItem.orderItemId"></s:param>
+                                    <s:param name="nameSizeParam"
+                                             value="#attr.orderItem.nameSize"></s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{viewSeaFreightPlanningUrl}" rel="tooltip"
                                      title="Update Status">

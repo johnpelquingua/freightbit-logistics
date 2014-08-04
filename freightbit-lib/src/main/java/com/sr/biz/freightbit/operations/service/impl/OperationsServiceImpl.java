@@ -4,6 +4,7 @@ import com.sr.biz.freightbit.operations.dao.OperationsDao;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
+import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 
 import java.util.List;
 
@@ -31,6 +32,11 @@ public class OperationsServiceImpl implements OperationsService{
     @Override
     public OrderItems findOrderItemById(Integer orderItemId) {
         return operationsDao.findOrderItemById(orderItemId);
+    }
+
+    @Override
+    public List<VesselSchedules> findVesselScheduleByVendorId(Integer vendorId) {
+        return operationsDao.findVesselScheduleByVendorId(vendorId);
     }
 
 }

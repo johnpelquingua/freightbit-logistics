@@ -18,7 +18,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-search"></i>MTY-0001</h3>
+                <h3 class="panel-title"><i class="fa fa-search"></i><s:property value="nameSizeParam" /> </h3>
             </div>
 
             <div class="panel-body">
@@ -27,25 +27,23 @@
 
 							  <div class="form-group">
 
-							    <label for="booknum" class="col-sm-2 control-label">Container Number:</label>
+							    <label for="operations.nameSizeParam" class="col-sm-2 control-label">Container Number:</label>
 
 							    <div class="col-sm-10">
-							      <input type="text" class="form-control" id="booknum" value="Container-1, Container-2, Container-3" disabled>
+							      <s:textfield cssClass="form-control" id="operations.nameSizeParam" name="operations.nameSizeParam"  value="%{nameSizeParam}" disabled="true" />
 							    </div>
 
 							  </div>
 							  
 							  <div class="form-group">
 
-							    <label for="vendor" class="col-sm-2 control-label">Vendor:</label>
+							    <label for="operations.vendorList" class="col-sm-2 control-label">Vendor:</label>
 
 							    <div class="col-sm-10">
 									<div style="width:90%;float:left;padding-right:10px;">
-									<select class="form-control" id="vendor">
-										<option>Vendor 1</option>
-										<option>Vendor 2</option>
-										<option>Vendor 3</option>
-									</select>
+                                        <s:select list="vendorList" name="operations.vendorList" id="operations.vendorList"
+                                                  listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                                ></s:select>
 									</div>
 									<div style="width:5%;float:left;">
 									<a href="#.html" class="icon-action-link">
@@ -58,11 +56,11 @@
 							  
 							  <div class="form-group">
 
-							    <label for="driver" class="col-sm-2 control-label">Select Date:</label>
+							    <label for="operations.date" class="col-sm-2 control-label">Select Date:</label>
 
 							    <div class="col-sm-10">
 								
-							      <input type="date" class="form-control" id="dit" >
+							      <input type="date" class="form-control" name="operations.date" id="operations.date" >
 								
 							    </div>
 
