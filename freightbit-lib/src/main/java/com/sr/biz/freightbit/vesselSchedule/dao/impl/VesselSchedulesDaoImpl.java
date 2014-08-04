@@ -140,12 +140,11 @@ public class VesselSchedulesDaoImpl extends HibernateDaoSupport implements Vesse
     }
 
     @Override
-    public List<VesselSchedules> findVesselSchedulesByCriteria(String column, String value, Integer clientId) {
+    public List<VesselSchedules> findVesselSchedulesByCriteria(String column, String value) {
         log.debug("Find vendor by criteria ");
         Session session = getSessionFactory().getCurrentSession();
         List<VesselSchedules> vesselSchedules = session.createCriteria(VesselSchedules.class)
                 .add(Restrictions.like(column, value))
-                .add(Restrictions.eq("client.clientId", clientId))
                 .list();
         return vesselSchedules;
     }

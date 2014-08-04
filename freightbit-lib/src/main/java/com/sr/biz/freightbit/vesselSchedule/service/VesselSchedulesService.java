@@ -22,7 +22,7 @@ public interface VesselSchedulesService {
 
     public List<VesselSchedules> findVesselScheduleByVendorId(Integer vendorId);
 
-    public List<VesselSchedules> findVesselSchedulesByCriteria(String column, String value, Integer clientId);
+    public List<VesselSchedules> findVesselSchedulesByCriteria(String column, String value);
 
     public List<VesselSchedules> findVesselScheduleByVoyageNumber(String voyageNumber);
 

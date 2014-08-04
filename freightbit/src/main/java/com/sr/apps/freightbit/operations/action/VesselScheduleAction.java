@@ -114,7 +114,7 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         List <VesselSchedules> vesselSchedulesEntityList = new ArrayList<VesselSchedules>();
 
         if (StringUtils.isNotBlank(column)) {
-            vesselSchedulesEntityList = vesselSchedulesService.findVesselSchedulesByCriteria(column, vesselSchedule.getVesselScheduleKeyword(), getClientId());
+            vesselSchedulesEntityList = vesselSchedulesService.findVesselSchedulesByCriteria(column, vesselSchedule.getVesselScheduleKeyword());
         } else {
             vesselSchedulesEntityList = vesselSchedulesService.findAllVesselSchedules();
         }
