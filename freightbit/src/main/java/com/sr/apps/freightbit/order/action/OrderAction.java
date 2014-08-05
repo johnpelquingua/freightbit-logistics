@@ -1,6 +1,5 @@
 package com.sr.apps.freightbit.order.action;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,20 +23,13 @@ import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.customer.entity.Customer;
-import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
-import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.service.ClientService;
 
 public class OrderAction extends ActionSupport implements Preparable {
-//
-    private static final long serialVersionUID = 1L;
-    private static final String ALPHA_NUM = "0123456789";
-    private static final Integer compcode = 4;
-    private static final String COMPANY_CODE = "SRI";
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
@@ -75,6 +67,9 @@ public class OrderAction extends ActionSupport implements Preparable {
     private String MODE;
     private String TYPE;
     private String PAY;
+    private String custName; // get the customer name from ID
+    private String custCode; // get customer code from ID
+    private String orderNum; // get the order number
 
     public String viewOrders() {
         String column = getColumnFilter();
@@ -116,17 +111,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String loadAddOrderPage() {
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        /*List<OrderItems> orderItemsFromSession = orderService.findAllItemByOrderId(order.getOrderId());*/
-        List<OrderItems> orderItemsFromSession = orderService.findAllItemByOrderId(1);
-
-        System.out.println( "-------------------------------------ORDER ITEMS FROM SESSION" + orderItemsFromSession + "-------------------------------------" );
-
-
-        sessionAttributes.put("orderItems", orderItemsFromSession);
-
-        System.out.println( "-------------------------------------ORDER ITEMS" + orderItems + "-------------------------------------" );
 
         return SUCCESS;
     }
@@ -212,6 +196,16 @@ public class OrderAction extends ActionSupport implements Preparable {
         System.out.println( "---------------TYPE 1: " + TYPE + "-------------------------------------" );
         System.out.println( "---------------PAY 1: " + PAY + "-------------------------------------" );
 
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Customer customerEntity = customerService.findCustomerById(ID);
+
+        custName = customerEntity.getCustomerName();
+
+        sessionAttributes.put("custName", custName );
+
+        custCode = customerEntity.getCustomerCode();
+
         contactsList = customerService.findContactByReferenceId(ID);
 
         addressList = customerService.findAllAddressByRefId(ID);
@@ -223,7 +217,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         System.out.println( "-------------------------------------" + consigneeAddressList + "-------------------------------------" );
 
         for(int i = 0; i < consigneeAddressList.size(); i++ ) {
-            System.out.println( "-------------------------------------BLA BLA-------------------------------------" );
+
             System.out.println( "-------------------------------------SHIPPER LIST" + consigneeAddressList.get(i).getAddressLine2() + "-------------------------------------" );
         }
 
@@ -235,8 +229,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         */
 
-        System.out.println( "-------------------------------------FINISH-------------------------------------" );
-
         return SUCCESS;
     }
 
@@ -244,9 +236,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         System.out.println( "---------------ID 2: " + ID + "-------------------------------------" );
         return SUCCESS;
     }
-
-
-
 
     private Orders transformToOrderEntityBean1stForm (OrderBean orderBean) {
 
@@ -417,18 +406,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         return orderItemBean;
     }
 
-    public static String getOrderNum(int compcode) {
-        StringBuilder sb = new StringBuilder(compcode);
-        String comp = COMPANY_CODE + "-";
-
-        for (int i = 0; i < compcode; i++) {
-            int ndx = (int) (Math.random() * ALPHA_NUM.length());
-            sb.append(ALPHA_NUM.charAt(ndx));
-        }
-
-        return comp.concat(sb.toString().toUpperCase());
-    }
-
     private Orders transformToOrderEntityBean(OrderBean orderBean) {
         Orders order = new Orders();
         order.setOrderNumber(orderBean.getOrderNo());
@@ -498,7 +475,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             addFieldError("order.customerId", getText("err.addressLine1.required"));
         }
 
-
     }
 
     public List<Contacts> getShipperList() {
@@ -566,6 +542,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         modeOfServiceList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.MODE_OF_SERVICE);
         notifyByList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.NOTIFY_BY);
         orderSearchList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.ORDER_SEARCH);
+        portsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS_LIST);
 
         itemQuantity = new ArrayList<Integer>();
         itemQuantity.add(1);
@@ -795,5 +772,29 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setPortsList(List<Parameters> portsList) {
         this.portsList = portsList;
+    }
+
+    public String getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(String orderNum) {
+        this.orderNum = orderNum;
+    }
+
+    public String getCustCode() {
+        return custCode;
+    }
+
+    public void setCustCode(String custCode) {
+        this.custCode = custCode;
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
     }
 }

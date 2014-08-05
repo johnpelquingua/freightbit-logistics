@@ -18,7 +18,7 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close" p:driverClassName="${jdbc.driverClassName}"
-          p:url="jdbc:mysql://localhost:3306/freightbit" p:username="root" p:password=""/>
+          p:url="jdbc:mysql://localhost:3306/freightbit" p:username="root" p:password="srllc00"/>
 
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

@@ -560,7 +560,7 @@
 
 <div class="container">
     <div class="row form-group">
-        <div class="col-xs-12">
+        <div class="col-lg-12">
             <ul class="nav nav-pills nav-justified thumbnail setup-panel">
                 <li class="active"><a href="#step-1">
                     <h4 class="list-group-item-heading">Step 1</h4>
@@ -578,15 +578,15 @@
         </div>
     </div>
     <div class="row setup-content" id="step-1">
-        <div class="col-xs-12">
-            <div class="col-md-12 well text-center">
+        <div class="col-lg-12">
+            <div class="col-lg-12 well text-center">
                 <h1> STEP 1</h1>
                 <%--<s:form cssClass="form-horizontal" theme="bootstrap" action="loadContactInfoList" >--%>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="orderBean.serviceRequirement">Service Requirement:</label>
+                    <label class="col-lg-3 control-label">Service Requirement:</label>
 
-                    <div class="col-sm-8" style="margin-left:4%">
+                    <div class="col-lg-9">
 
                         <s:select cssClass="form-control step1"
                                   style="margin-bottom: 15px !important;"
@@ -604,9 +604,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="orderBean.modeOfService">Service Mode:</label>
+                    <label class="col-lg-3 control-label">Service Mode:</label>
 
-                    <div class="col-sm-8" style="margin-left:4%">
+                    <div class="col-lg-9">
 
                         <s:select id="order.modeOfService"
                                   cssClass="form-control step1"
@@ -625,9 +625,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="orderBean.freightType">Freight Type:</label>
+                    <label class="col-lg-3 control-label">Freight Type:</label>
 
-                    <div class="col-sm-8" style="margin-left:4%">
+                    <div class="col-lg-9">
 
                         <s:select id="order.freightType"
                                   cssClass="form-control step1"
@@ -644,9 +644,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="orderBean.modeOfPayment">Payment Mode:</label>
+                    <label class="col-lg-3 control-label">Payment Mode:</label>
 
-                    <div class="col-sm-8" style="margin-left:4%">
+                    <div class="col-lg-9">
 
                         <s:select id="order.modeOfPayment"
                                   cssClass="form-control step1"
@@ -663,9 +663,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="orderBean.companyName">Customer Name:</label>
+                    <label class="col-lg-3 control-label">Customer Name:</label>
 
-                    <div class="col-sm-8" style="margin-left:4%">
+                    <div class="col-lg-9">
 
                         <s:select id="order.customerId"
                                   cssClass="form-control step1"
@@ -676,6 +676,7 @@
                                   listValue="customerName"
                                   emptyOption="true"
                                   required="true"
+                                  onchange="contactSearch()"
                                 />
                                   <%--emptyOption="true"
                                   required="true"--%>
@@ -684,9 +685,18 @@
                     </div>
                 </div>
 
-                <button id="activate-step-2" class="btn btn-primary btn-lg">Next</button>
+                <%--<button id="activate-step-2" class="btn btn-primary pull-right" style="margin-bottom: 15px !important;">Next</button>--%>
                 <%--<s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Next" />
                 </s:form>--%>
+
+                <div id="2ndPart" style="clear:both;">
+
+                </div>
+
+                <div id="3rdPart" style="clear:both;">
+
+                </div>
+
             </div>
         </div>
     </div>
@@ -695,9 +705,7 @@
         <div class="col-xs-12">
             <div class="col-md-12 well">
                 <h1 class="text-center"> STEP 2</h1>
-                    <div id="2ndPart">
 
-                    </div>
             </div>
         </div>
     </div>
@@ -706,9 +714,7 @@
         <div class="col-xs-12">
             <div class="col-md-12 well">
                 <h1 class="text-center"> STEP 3</h1>
-                <div id="3rdPart">
 
-                </div>
             </div>
         </div>
     </div>
@@ -741,141 +747,114 @@ navListItems.click(function(e)
     $item.addClass('active');
     allWells.hide();
     $target.show();
-}
+    }
 
 });
 
 $('ul.setup-panel li.active a').trigger('click');
 
-/*$('#activate-step-2').on('click', function(e) {*/
 
-           /* servReqt = document.getElementById("order.serviceRequirement").value;
-            modeServ = document.getElementById("order.modeOfService").value;
-            freight = document.getElementById("order.freightType").value;
-            modePay = document.getElementById("order.modeOfPayment").value;
-            cusName = document.getElementById("order.customerId").value;
+/*$('#activate-step-2').on('click', function(e){
 
-    if (servReqt == null || servReqt == "" && modeServ == null || modeServ == "" && freight == null || freight == "" && modePay == null || modePay == "" && cusName == null || cusName == ""){
-        alert(servReqt);
-        alert(modeServ);
-        alert(freight);
-        alert(modePay);
-        alert(cusName);
+    servReqt = document.getElementById("order.serviceRequirement").value;
+    modeServ = document.getElementById("order.modeOfService").value;
+    freight = document.getElementById("order.freightType").value;
+    modePay = document.getElementById("order.modeOfPayment").value;
+    cusName = document.getElementById("order.customerId").value;
 
+    if (servReqt == null || servReqt == "" || modeServ == null || modeServ == "" || freight == null || freight == "" || modePay == null || modePay == "" || cusName == null || cusName == ""){
+    alert("error");
 
     }else{
-        alert(servReqt);
-        alert(modeServ);
-        alert(freight);
-        alert(modePay);
-        alert(cusName);
-
         $('ul.setup-panel li:eq(1)').removeClass('disabled');
         $('.step1').attr('disabled', 'disabled');
         $('ul.setup-panel li a[href="#step-2"]').trigger('click');
         $(this).remove();
+    }
 
+});*/
 
-
-    }*/
-
-
-    $('#activate-step-2').on('click', function(e){
-
-        servReqt = document.getElementById("order.serviceRequirement").value;
-        modeServ = document.getElementById("order.modeOfService").value;
-        freight = document.getElementById("order.freightType").value;
-        modePay = document.getElementById("order.modeOfPayment").value;
-        cusName = document.getElementById("order.customerId").value;
-
-
-        if (servReqt == null || servReqt == "" || modeServ == null || modeServ == "" || freight == null || freight == "" || modePay == null || modePay == "" || cusName == null || cusName == ""){
-        alert("error");
-
-
-        }else{
-            $('ul.setup-panel li:eq(1)').removeClass('disabled');
-            $('.step1').attr('disabled', 'disabled');
-            $('ul.setup-panel li a[href="#step-2"]').trigger('click');
-            $(this).remove();
-        }
-
-
-
-
-});
-
-$('#activate-step-3').on('click', function(e) {
+/*$('#activate-step-3').on('click', function(e) {
     $('ul.setup-panel li:eq(2)').removeClass('disabled');
     $('.step2').attr('disabled', 'disabled');
     $('ul.setup-panel li a[href="#step-3"]').trigger('click');
     $(this).remove();
-});
+});*/
 
-var i=1;
-$("#add_row").click(function(){
-    $('#item'+i).html("<td>"+ (i+1) +"</td>" +
-            "<td><input name='quantity"+i+"' type='text' placeholder='Quantity' class='form-control input-md'  /> </td>" +
-            "<td><input  name='name"+i+"' type='text' placeholder='Name'  class='form-control input-md'></td>" +
-            "<td><input  name='weight"+i+"' type='text' placeholder='Weight'  class='form-control input-md'></td>" +
-            "<td><input  name='value"+i+"' type='text' placeholder='Value'  class='form-control input-md'></td>" +
-            "<td><input  name='class"+i+"' type='text' placeholder='Classification'  class='form-control input-md'></td>" +
-            "<td><input  name='rate"+i+"' type='text' placeholder='Rate'  class='form-control input-md'></td>" +
-            "<td><input  name='description"+i+"' type='text' placeholder='Description'  class='form-control input-md'></td>" +
-            "<td><input  name='remarks"+i+"' type='text' placeholder='Remarks'  class='form-control input-md'></td>");
-
-    $('#tab_logic').append('<tr id="item'+(i+1)+'"></tr>');
-    i++;
-});
-
-$("#delete_row").click(function(){
-    if(i>1){
-        $("#item"+(i-1)).html('');
-        i--;
-    }
-});
+/*$('#activate-step-2').click(function(){
 
 
+    var custId = $("select[name='order.customerId'] option:selected").val();
+        serReq = $("select[name='order.serviceRequirement'] option:selected").val();
+        serMod = $("select[name='order.modeOfService'] option:selected").val();
+        fType = $("select[name='order.freightType'] option:selected").val();
+        payMod = $("select[name='order.modeOfPayment'] option:selected").val();
 
-    $('#activate-step-2').click(function(){
+    $.ajax({
+        url: 'loadContactInfoList',
+        type: 'POST',
 
-        var custId = $("select[name='order.customerId'] option:selected").val();
-            serReq = $("select[name='order.serviceRequirement'] option:selected").val();
-            serMod = $("select[name='order.modeOfService'] option:selected").val();
-            fType = $("select[name='order.freightType'] option:selected").val();
-            payMod = $("select[name='order.modeOfPayment'] option:selected").val();
+        data:{ ID: custId,
+               REQ: serReq,
+               MODE: serMod,
+               TYPE: fType,
+               PAY: payMod
 
-        $.ajax({
-            url: 'loadContactInfoList', // action to be perform
-            type: 'POST',       //type of posting the data
-            //data: { name: "Jeetu", age: "24" }, // data to set to Action Class
-            data:{ ID: custId,
-                   REQ: serReq,
-                   MODE: serMod,
-                   TYPE: fType,
-                   PAY: payMod
+        },
+        dataType: 'html',
 
-            },
-            dataType: 'html',
+        success: function (html) {
 
-            success: function (html) {
-                //alert(selectedItem);
-                //alert(html);
-                $('#2ndPart').html(html); //set result.jsp output to leftDiv
-            },
-            error: function(xhr, ajaxOptions, thrownError){
-                alert('An error occurred! ' + thrownError);
-            }
-        });
+            $('#2ndPart').html(html);
+        },
+        error: function(thrownError){
+            alert('An error occurred! ' + thrownError);
+        }
     });
 
+});*/
 
 });
+
+
+
+function contactSearch(){
+
+    var custId = $("select[name='order.customerId'] option:selected").val();
+    serReq = $("select[name='order.serviceRequirement'] option:selected").val();
+    serMod = $("select[name='order.modeOfService'] option:selected").val();
+    fType = $("select[name='order.freightType'] option:selected").val();
+    payMod = $("select[name='order.modeOfPayment'] option:selected").val();
+
+    $.ajax({
+        url: 'loadContactInfoList',
+        type: 'POST',
+
+        data:{ ID: custId,
+            REQ: serReq,
+            MODE: serMod,
+            TYPE: fType,
+            PAY: payMod
+
+        },
+        dataType: 'html',
+
+        success: function (html) {
+
+            $('#2ndPart').html(html);
+        },
+        error: function(thrownError){
+            alert('An error occurred! ' + thrownError);
+        }
+    });
+
+}
 
 </script>
 
 <%----------------------------------------------------------------------------------------------------------------------%>
 
+<%--
 <script type="text/javascript">
 
     var fromDatePickUp = $('#datepicker1');
@@ -935,7 +914,5 @@ $("#delete_row").click(function(){
 
     });
 
-
-
-
 </script>
+--%>
