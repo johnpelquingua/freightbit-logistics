@@ -45,4 +45,6 @@ public class ParameterConstants {
     public final static String PORTS = "PORTS";
 
     public final static String VESSEL_SCHEDULE_SEARCH = "VESSEL_SCHEDULE_SEARCH";
+
+    public final static String ORDER_STATUS = "ORDER_STATUS";
 }

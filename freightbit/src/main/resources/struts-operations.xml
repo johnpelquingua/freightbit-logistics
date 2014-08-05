@@ -69,6 +69,16 @@
             <result name="success" type="tiles">operations.statusListItems.tiles</result>
         </action>
 
+        <action name="loadUpdateStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
+                method="loadUpdateStatus">
+            <result name="success" type="tiles">operations.updateStatus.tiles</result>
+        </action>
+
+        <action name="updateStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
+                method="loadUpdateStatus">
+            <result name="success" type="tiles">operations.updateStatus.tiles</result>
+        </action>
+
 
         <!--Status ends here-->
 
@@ -96,6 +106,10 @@
 
         <action name="viewInlandFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
             <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
+        </action>
+
+        <action name="findVesselSchedule" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="findVesselSchedule">
+            <result name="success" type="tiles">operations.seaFreightPlanning.tiles</result>
         </action>
         <!--Operations ends here-->
     </package>

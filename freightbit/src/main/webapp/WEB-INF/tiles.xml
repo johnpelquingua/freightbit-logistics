@@ -52,6 +52,11 @@
         <put-attribute name="body" value="/operations/statusListViewItems.jsp"/>
     </definition>
 
+    <definition name="operations.updateStatus.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="body" value="/operations/updateStatus.jsp"/>
+    </definition>
+
     <definition name="operations.inlandFreightList.tiles" extends="baseLayout">
         <put-attribute name="title" value="Status List"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightList.jsp"/>

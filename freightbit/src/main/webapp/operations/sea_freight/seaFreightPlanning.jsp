@@ -1,135 +1,139 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+
 
 <div class="row">
     <div class="col-lg-12">
         <h1>Sea Freight Planning</h1>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
             <li class="active"><i class="fa fa-male"></i>List of Bookings</li>
-			<li class="active"><i class="fa fa-male"></i>List of Items / Containers</li>
-			<li class="active"><i class="fa fa-male"></i>Sea Freight Planning</li>
+            <li class="active"><i class="fa fa-male"></i>List of Items / Containers</li>
+            <li class="active"><i class="fa fa-male"></i>Sea Freight Planning</li>
         </ol>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-search"></i><s:property value="nameSizeParam" /> </h3>
+                <h3 class="panel-title"><i class="fa fa-search"></i><s:property value="nameSizeParam"/></h3>
             </div>
 
             <div class="panel-body">
-				
-				<form class="form-horizontal" role="form">
+                <%--<s:property value="%{#parameters.nameSizeParam}"/>--%>
+                <%--<s:property value="%{#parameters.orderItemIdParam}"/>--%>
 
-							  <div class="form-group">
+                <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap">
 
-							    <label for="operations.nameSizeParam" class="col-sm-2 control-label">Container Number:</label>
+                    <s:hidden name="operationsBean.orderItemParam" value="%{orderItemIdParam}"/>
+                    <s:hidden name="operationsBean.nameSizeParam" value="%{nameSizeParam}"/>
 
-							    <div class="col-sm-10">
-							      <s:textfield cssClass="form-control" id="operations.nameSizeParam" name="operations.nameSizeParam"  value="%{nameSizeParam}" disabled="true" />
-							    </div>
+                    <div class="form-group">
 
-							  </div>
-							  
-							  <div class="form-group">
 
-							    <label for="operations.vendorList" class="col-sm-2 control-label">Vendor:</label>
+                        <label for="operations.nameSizeParam" class="col-sm-2 control-label">Container Number:</label>
 
-							    <div class="col-sm-10">
-									<div style="width:90%;float:left;padding-right:10px;">
-                                        <s:select list="vendorList" name="operations.vendorList" id="operations.vendorList"
-                                                  listKey="vendorId" listValue="vendorCode" cssClass="form-control"
-                                                ></s:select>
-									</div>
-									<div style="width:5%;float:left;">
-									<a href="#.html" class="icon-action-link">
-										<img src="images/add-sched.png" class="icon-action circ-icon">
-									</a>
-									</div>
-							    </div>
+                        <div class="col-sm-10">
+                            <s:textfield cssClass="form-control" id="operations.nameSizeParam"
+                                         name="operations.nameSizeParam" value="%{nameSizeParam}" disabled="true"/>
+                        </div>
 
-							  </div>
-							  
-							  <div class="form-group">
+                    </div>
 
-							    <label for="operations.date" class="col-sm-2 control-label">Select Date:</label>
+                    <div class="form-group">
 
-							    <div class="col-sm-10">
-								
-							      <input type="date" class="form-control" name="operations.date" id="operations.date" >
-								
-							    </div>
+                        <label for="operationsBean.vendorList" class="col-sm-2 control-label">Vendor:</label>
 
-							  </div>
-							  
-							  <div class="form-group">
+                        <div class="col-sm-10">
+                            <div style="width:90%;float:left;padding-right:10px;">
+                                <s:select list="vendorList" name="operationsBean.vendorList"
+                                          id="operationsBean.vendorList"
+                                          listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                          emptyOption="true"
+                                        ></s:select>
+                            </div>
+                            <div style="width:5%;float:left;">
+                                <a href="../vendor/loadAddVendorPage" class="icon-action-link">
+                                    <img src="../includes/images/add-sched.png" class="icon-action circ-icon">
+                                </a>
+                            </div>
+                        </div>
 
-							    <hr>
-								<center><h4>List of Schedules</h4></center>
-								<hr>
+                    </div>
 
-							  </div>
+                    <div class="form-group">
 
-								<table class="table table-striped table-bordered text-center">
-									<thead>
-										<tr class="header_center active">
-										  <th class="tb-font-black">Select</th>
-										  <th class="tb-font-black">Vendor Name</th>
-										  <th class="tb-font-black">Voyage Number</th>
-										  <th class="tb-font-black">Date of Departure</th>
-										  <th class="tb-font-black">Date of Arrival</th>
-										  <th class="tb-font-black">Pier Origin</th>
-										  <th class="tb-font-black">Pier Destination</th>
-										  
-										</tr>
-									</thead>
-								<tbody>
-									<tr class="success">
-									  <td class="tb-font-black"><input type="radio"></td>
-									  <td class="tb-font-black">Vendor 1</td>
-									  <td class="tb-font-black">V-283</td>
-									  <td class="tb-font-black">2/14/2014</td>
-									  <td class="tb-font-black">2/14/2014</td>
-									  <td class="tb-font-black">Batangas</td>
-									  <td class="tb-font-black">Davao</td>
-									</tr>
-									<tr class="success">
-									  <td class="tb-font-black"><input type="radio"></td>
-									  <td class="tb-font-black">Vendor 2</td>
-									  <td class="tb-font-black">V-284</td>
-									  <td class="tb-font-black">2/14/2014</td>
-									  <td class="tb-font-black">2/14/2014</td>
-									  <td class="tb-font-black">Manila</td>
-									  <td class="tb-font-black">Davao</td>
-									</tr>
-									<tr class="success">
-									  <td class="tb-font-black"><input type="radio"></td>
-									  <td class="tb-font-black">Vendor 3</td>
-									  <td class="tb-font-black">V-285</td>
-									  <td class="tb-font-black">2/14/2014</td>
-									  <td class="tb-font-black">2/14/2014</td>
-									  <td class="tb-font-black">Bacolod</td>
-									  <td class="tb-font-black">Davao</td>
-									</tr>
-													
-								</tbody>
-								</table>
-							
-							  
-						</form>
-				
+                        <label for="operations.date" class="col-sm-2 control-label">Select Date:</label>
 
-					<div style="float: right;">
-						<button class="btn btn-default" onclick="location.href='inland-operation.html'">Save</button>
-						<button class="btn btn-default" onclick="location.href='inland-operation.html'">Cancel</button>
-					</div>
+                        <div class="col-sm-10">
+
+                            <s:textfield cssClass="form-control" id="date" name="operations.date"/>
+
+                        </div>
+
+                    </div>
+
+                    <s:submit cssClass="btn btn-default btn-info pull-right" name="submit" value="Search"/>
+
+                </s:form>
+
+                <div class="form-group">
+
+                    <hr>
+                    <center><h4>List of Schedules</h4></center>
+                    <hr>
+
+                </div>
+
+                <display:table id="vesselSchedule" name="vesselSchedules"
+                               requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                               class="table table-striped table-hover table-bordered text-center tablesorter"
+                               style="margin-top: 15px;">
+                    <td><display:column><input type="radio"/></display:column></td>
+
+                    <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+
+                    <td><display:column property="originPort" title="Origin" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+
+                    <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+
+                    <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+
+                    <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+                </display:table>
+
+
+                <div style="float: right;">
+                    <button class="btn btn-default" onclick="location.href='inland-operation.html'">Save</button>
+                    <button class="btn btn-default" onclick="location.href='inland-operation.html'">Cancel</button>
+                </div>
 
             </div>
 
         </div>
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->
+
+<script type="text/javascript">
+
+    //pick up date validation
+    $("#date").datepicker({dateFormat: 'yy-dd-mm'}
+
+    );
+
+</script>

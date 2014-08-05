@@ -2,8 +2,12 @@ package com.sr.apps.freightbit.operations.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+import com.sr.apps.freightbit.operations.formbean.OrderStatusLogsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
+import com.sr.apps.freightbit.util.ParameterConstants;
+import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.operations.service.OrderStatusLogsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
@@ -21,15 +25,22 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
+    private List<Parameters> orderStatusList = new ArrayList<Parameters>();
+
+    private OrderItemsBean orderItem = new OrderItemsBean();
+    private OrderStatusLogsBean orderStatusLogsBean = new OrderStatusLogsBean();
 
     private OrderStatusLogsService orderStatusLogsService;
+    private ParameterService parameterService;
 
     private Integer orderIdParam;
     private String orderNoParam;
-    private String orderItemIdParam;
+    private Integer orderItemIdParam;
 
     @Override
-    public void prepare() {}
+    public void prepare() {
+        orderStatusList = parameterService.getParameterMap(ParameterConstants.ORDER_STATUS);
+    }
 
     public String viewStatusList() {
         List<Orders> orderEntityList = new ArrayList<Orders>();
@@ -51,6 +62,33 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
         return SUCCESS;
+    }
+
+    public String loadUpdateStatus() {
+        OrderItems entity = orderStatusLogsService.findOrderItemById(orderItemIdParam);
+        System.out.print("<<ORDERITEMIDPARAM" + orderItemIdParam);
+        orderItem = transformToOrderItemFormBean(entity);
+        return SUCCESS;
+    }
+
+    public String updateStatus() {
+        try {
+            OrderItems entity = transformToOrderItemEntity(orderItem);
+            orderStatusLogsService.updateStatusOrderItem(entity);
+        } catch (Exception e) {
+            return SUCCESS;
+        }
+
+        return SUCCESS;
+
+    }
+
+    public OrderItems transformToOrderItemEntity (OrderItemsBean formBean) {
+        OrderItems entity = new OrderItems();
+        entity.setStatus(formBean.getStatus());
+        System.out.print("<<<ORDER ITEM:" + formBean.getOrderItemId() );
+        entity.setOrderItemId(formBean.getOrderItemId());
+        return entity;
     }
 
     public OrderBean transformToOrderFormBean(Orders entity) {
@@ -114,11 +152,39 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         this.orderNoParam = orderNoParam;
     }
 
-    public String getOrderItemIdParam() {
+    public Integer getOrderItemIdParam() {
         return orderItemIdParam;
     }
 
-    public void setOrderItemIdParam(String orderItemIdParam) {
+    public void setOrderItemIdParam(Integer orderItemIdParam) {
         this.orderItemIdParam = orderItemIdParam;
+    }
+
+    public OrderItemsBean getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(OrderItemsBean orderItem) {
+        this.orderItem = orderItem;
+    }
+
+    public List<Parameters> getOrderStatusList() {
+        return orderStatusList;
+    }
+
+    public void setOrderStatusList(List<Parameters> orderStatusList) {
+        this.orderStatusList = orderStatusList;
+    }
+
+    public void setParameterService(ParameterService parameterService) {
+        this.parameterService = parameterService;
+    }
+
+    public OrderStatusLogsBean getOrderStatusLogsBean() {
+        return orderStatusLogsBean;
+    }
+
+    public void setOrderStatusLogsBean(OrderStatusLogsBean orderStatusLogsBean) {
+        this.orderStatusLogsBean = orderStatusLogsBean;
     }
 }

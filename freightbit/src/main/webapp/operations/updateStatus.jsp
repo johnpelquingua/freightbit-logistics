@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
@@ -22,47 +22,59 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-				<span class="panel-title">Details</span>
+                <span class="panel-title">Details</span>
             </div>
 
-			<div class="panel-body">
+            <div class="panel-body">
 
-                <form class="form-horizontal" role="form">
+                <s:form cssClass="form-horizontal" theme="bootstrap" action="updateStatus">
+                    <s:hidden name="orderItem.orderItemIdParam" value="%{orderItemIdParam}"/>
 
-					<div class="form-group">
+                    <div class="form-group">
 
-					  <label for="voyagenum" class="col-sm-2 control-label">Booking Number:</label>
+                        <label for="orderItem.voyageNumber" class="col-sm-2 control-label">Booking Number:</label>
 
-					  <div class="col-sm-10">
-					    <input type="text" class="form-control" id="voyagenum" value="MTY-1035" disabled>
-					  </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="orderItem.voyageNumber" value="MTY-1035"
+                                   disabled>
+                        </div>
 
-					</div>
+                    </div>
 
-					<div class="form-group">
+                    <div class="form-group">
 
-					  <label for="dateOfdep" class="col-sm-2 control-label"> Status</label>
+                        <label for="orderItem.voyageNumber" class="col-sm-2 control-label">Booking Number:</label>
 
-					  <div class="col-sm-10">
-						<select class="form-control">
-							<option>SHIPPED</option>
-							<option>AT THE PORT</option>
-						</select>
-					  </div>
+                        <div class="col-sm-10">
+                            <s:textfield name="orderItem.nameSize" cssClass="form-control"/>
+                        </div>
 
-					</div>
-							  
-				</form>
-						
-				<div style="float: right;">
-					<button class="btn btn-default" onclick="location.href='updateStatusList.html'">Save</button>
-					<button class="btn btn-default" onclick="location.href='updateStatusList.html'">Cancel</button>
-				</div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="orderItem.status" class="col-sm-2 control-label"> Status</label>
+
+                        <div class="col-sm-10">
+                            <s:select list="orderStatusList" listValue="value" listKey="key"
+                                      name="orderItem.status" id="orderItem.status"
+                                      value="orderItem.status"
+                                      cssClass="form-control" emptyOption="true"></s:select>
+                        </div>
+
+                    </div>
+
+                    <div style="float: right;">
+                        <s:submit value="SUBMIT"></s:submit>
+                    </div>
+
+                </s:form>
 
             </div>
-            
-            
+
+
         </div>
 
     </div>
-</div><!-- /.row -->
+</div>
+<!-- /.row -->

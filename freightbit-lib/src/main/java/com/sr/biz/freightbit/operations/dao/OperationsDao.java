@@ -19,4 +19,6 @@ public interface OperationsDao {
 
     public List<VesselSchedules> findVesselScheduleByVendorId(Integer vendorId);
 
+    public List<VesselSchedules> findAllVesselSchedule();
+
 }

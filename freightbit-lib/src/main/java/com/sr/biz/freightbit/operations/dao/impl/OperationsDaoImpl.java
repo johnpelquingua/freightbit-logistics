@@ -80,4 +80,18 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
             throw e;
         }
     }
+
+    @Override
+    public List<VesselSchedules> findAllVesselSchedule() {
+        log.debug("Find initiated");
+        try {
+             log.debug("Find succeed");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from VesselSchedules");
+            List<VesselSchedules> results = (List<VesselSchedules>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Find failed", e);
+            throw e;
+        }
+    }
 }

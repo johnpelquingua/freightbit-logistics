@@ -37,11 +37,11 @@
                                             style="text-align: center;"> </display:column></td>
 
                         <td><display:column title="Action">
-                            <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
-                                <s:param name="orderIdParam"
-                                         value="#attr.order.orderId"></s:param>
+                            <s:url var="loadUpdateStatusUrl" action="loadUpdateStatus">
+                                <s:param name="orderItemIdParam"
+                                         value="#attr.orderItem.orderItemId"></s:param>
                             </s:url>
-                            <s:a class="icon-action-link" href="%{viewStatusListItemsUrl}" rel="tooltip"
+                            <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip"
                                  title="Update Status">
                                 <img src="../includes/images/edit-user.png" class="icon-action circ-icon"
                                 style="border-radius:25%;">

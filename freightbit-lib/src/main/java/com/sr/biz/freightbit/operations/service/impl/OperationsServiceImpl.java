@@ -39,4 +39,9 @@ public class OperationsServiceImpl implements OperationsService{
         return operationsDao.findVesselScheduleByVendorId(vendorId);
     }
 
+    @Override
+    public List<VesselSchedules> findAllVesselSchedule() {
+        return operationsDao.findAllVesselSchedule();
+    }
+
 }
