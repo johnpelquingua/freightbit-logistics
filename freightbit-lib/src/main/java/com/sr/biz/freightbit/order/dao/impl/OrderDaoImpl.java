@@ -140,19 +140,22 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
      */
     @Override
     public Integer findNextBookingNo(Integer clientId, String companyCode) {
-        Log.debug("Getting latest booking no for companyCode [" + companyCode +"]");
-        String sql = "SELECT MAX(bookingNo)+1 as nextBookingNo"
-                + "FROM (SELECT orderNumber, SUBSTRING(orderNumber, 5) AS bookingNo"
-                + "FROM freightbit.orders"
-                + "where clientId= :clientId"
-                + "and orderNumber like :companyCode) as o";
-        Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
-        query.setParameter("clientId", clientId);
-        query.setParameter("companyCode", companyCode+"%");
-        List <Integer> results = query.list();
-        if (results != null && results.size() > 0)
-            return results.get(0);
-
-        return 0;
+     Log.debug("Getting latest booking no for companyCode [" + companyCode +"]");
+     String sql = "SELECT MAX(bookingNo)+1 as nextBookingNo"
+       + " FROM (SELECT orderNumber, SUBSTRING(orderNumber, 5) AS bookingNo"
+       + " FROM freightbit.orders"
+       + " where clientId= :clientId"
+          + " and orderNumber like :companyCode) as o";
+     Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
+     query.setParameter("clientId", clientId);
+     query.setParameter("companyCode", companyCode+"%");
+     List<Double> results = query.list();
+     System.out.println("results: " + results);
+     if (results != null && results.size() > 0 && results.get(0) != null) {
+      System.out.println("results size: " + results.size());
+      System.out.println("results.get(o): " + results.get(0));
+      return results.get(0).intValue();
+     }
+     return 0;
     }
 }
