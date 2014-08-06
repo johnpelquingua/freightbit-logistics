@@ -100,14 +100,14 @@
         </label>
 
         <div class="col-lg-3" >
-            <s:select cssClass="form-control"
+            <%--<s:select cssClass="form-control"
                       style="margin-bottom: 15px !important;"
                       id="orderItem.quantity"
                       name="orderItem.quantity"
                       list="containerQuantity"
                       emptyOption="true"
 
-                    />
+                    />--%>
 
         </div>
 
@@ -120,13 +120,13 @@
         </label>
 
         <div class="col-lg-3" >
-            <s:select cssClass="form-control"
+           <%-- <s:select cssClass="form-control"
                       style="margin-bottom: 15px !important;"
                       id="item_quantity"
                       name="orderItem.quantity"
                       list="itemQuantity"
                       emptyOption="true"
-                    />
+                    />--%>
         </div>
 
     </s:else>
@@ -138,7 +138,7 @@
         </label>
 
         <div class="col-lg-3" >
-            <s:select cssClass="form-control"
+            <%--<s:select cssClass="form-control"
                       style="margin-bottom: 15px !important;"
                       id="orderItem.nameSize"
                       name="orderItem.nameSize"
@@ -147,7 +147,7 @@
                       listValue="value"
                       emptyOption="true"
                       value="%{orderItem.nameSize}"
-                    />
+                    />--%>
         </div>
 
     </s:if>

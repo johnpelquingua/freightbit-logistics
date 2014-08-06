@@ -429,6 +429,10 @@
         <put-attribute name="title" value="Edit Booking"/>
         <put-attribute name="body" value="/orders/orderEdit.jsp"/>
     </definition>
+    <definition name="orders.add-booking-info.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Add Booking"/>
+        <put-attribute name="body" value="/orders/orderAddInfo.jsp"/>
+    </definition>
     <!-- ORDER module tiles End-->
 
     <!-- Please rename your tiles def accordingly (Please refer to above) where name=folderName.jspName.tiles -->

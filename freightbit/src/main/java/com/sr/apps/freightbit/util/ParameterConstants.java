@@ -48,5 +48,4 @@ public class ParameterConstants {
 
     public final static String ORDER_STATUS = "ORDER_STATUS";
 
-    public final static String PORTS_LIST = "PORTS_LIST";
 }

@@ -3,51 +3,15 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
 
-<div class="form-group">
-    <label class="col-lg-3 control-label" >Booking Number:</label>
+<%--<div class="form-group">
+    <label class="col-lg-3 control-label" style="margin-top: 5px;">Booking Number:</label>
 
     <div class="col-lg-9">
         <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;"
                      name="orderBean.orderNumber" disabled="true"/>
-    </div>
-</div>
-
-<div class="form-group">
-
-    <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date/Time:</label>
-    <div class="col-lg-3" >
-        <input type="text" class="from_date form-control step2" id="datepicker1" name="orderBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;">
 
     </div>
-
-    <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date/Time:</label>
-    <div class="col-lg-3" >
-        <input type="text" class="to_date form-control step2" id="datepicker2" name="orderBean.deliveryDate" placeholder="Select end date" contenteditable="false" style="margin-bottom: 15px !important;">
-    </div>
-
-</div>
-
-<div class="form-group">
-
-    <label class="col-lg-3 control-label" style="margin-top: 5px;">Port of Origin:</label>
-    <div class="col-lg-3" >
-
-        <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                  name="order.shipperCode" list="portsList" listKey="key"
-                  listValue="value" />
-
-    </div>
-
-    <label class="col-lg-3 control-label" style="margin-top: 5px;">Port of Destination:</label>
-    <div class="col-lg-3" >
-
-        <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                  name="order.shipperCode" list="portsList" listKey="key"
-                  listValue="value" />
-
-    </div>
-
-</div>
+</div>--%>
 
 
 <%--<div class="form-group">
@@ -60,71 +24,73 @@
 </div>--%>
 
 <div class="form-group">
-    <label class="col-lg-3 control-label">Contact Person:</label>
+    <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person:</label>
 
     <div class="col-lg-9">
-        <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                  name="order.shipperCode" list="contactsList" listKey="contactId"
-                  listValue="firstName" />
+        <s:select id="order.shipperContactId" cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                  name="order.shipperContactId" list="contactsList" listKey="contactId"
+                  listValue="firstName +' '+ middleName +' '+ lastName"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label class="col-lg-3 control-label" for="orderBean.pickupAddress">Pickup Address:</label>
+    <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address:</label>
 
     <div class="col-lg-9">
         <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                  name="orderBean.pickupAddress" list="addressList" listKey="addressId"
-                  listValue="addressLine1" />
+                  id="order.shipperAddressId" name="order.shipperAddressId" list="addressList" listKey="addressId"
+                  listValue="addressLine1 + ' ' + addressLine2" />
     </div>
 </div>
 
 <div class="form-group">
-    <label class="col-lg-3 control-label">Notification Type:</label>
+    <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type:</label>
 
     <div class="col-lg-9">
         <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                  name="orderBean.notifyBy" list="notifyByList" listKey="key"
+                  name="order.notifyBy" list="notifyByList" listKey="key"
                   listValue="value"
                   value="orderBean.notifyBy" />
     </div>
 </div>
 
 <div class="form-group">
-    <label class="col-lg-3 control-label" for="orderBean.consigneeName">Consignee Name:</label>
+    <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name:</label>
 
     <div class="col-lg-9">
         <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                  name="orderBean.consigneeName" list="consigneeList" listKey="contactId"
-                  listValue="firstName" />
+                  id="order.consigneeContactId" name="order.consigneeContactId" list="consigneeList" listKey="contactId"
+                  listValue="firstName +' '+ middleName +' '+ lastName" />
     </div>
 </div>
 
 <div class="form-group">
-    <label class="col-lg-3 control-label" for="orderBean.deliveryAddress">Delivery Address:</label>
+    <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address:</label>
 
     <div class="col-lg-9">
-        <s:select id="deliveryaddress" cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                  name="orderBean.deliveryAddress" list="consigneeAddressList" listKey="addressId"
-                  listValue="addressLine2" />
+        <s:select id="deliveryAddress" cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                  name="order.consigneeAddressId" list="consigneeAddressList" listKey="addressId"
+                  listValue="addressLine1 + ' ' + addressLine2" />
     </div>
 </div>
 
 <div class="form-group">
-    <label class="col-lg-3 control-label" for="orderBean.comments">Comments :</label>
+    <label class="col-lg-3 control-label" style="margin-top: 5px;">Comments :</label>
 
     <div class="col-lg-9">
         <s:textarea cssClass="form-control step2"
-                    name="orderBean.comments" cssStyle="resize: none; margin-bottom: 15px !important;"></s:textarea>
+                    name="order.comments" cssStyle="resize: none; margin-bottom: 15px !important;"></s:textarea>
     </div>
 </div>
 
-<button id="activate-step-3" class="btn btn-primary pull-right" style="margin-bottom: 15px !important;">Save</button>
+<s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Save" />
+
+<%--<button id="activate-step-3" class="btn btn-primary pull-right" style="margin-bottom: 15px !important;">Save</button>--%>
 
 
 <script type="text/javascript">
 
-    var fromDatePickUp = $('#datepicker1');
+    /*var fromDatePickUp = $('#datepicker1');
     var toDateDelivery = $('#datepicker2');
 
     //pick up date validation
@@ -179,7 +145,7 @@
             fromDatePickUp.datetimepicker('option', 'maxDate', toDateDelivery.datetimepicker('getDate') );
         }
 
-    });
+    });*/
 
 
     /*$('#activate-step-3').on('click', function(e) {

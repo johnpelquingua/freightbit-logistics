@@ -566,22 +566,22 @@
                     <h4 class="list-group-item-heading">Step 1</h4>
                     <p class="list-group-item-text">First step description</p>
                 </a></li>
-                <li class="disabled"><a href="#step-2">
+                <%--<li class="disabled"><a href="#step-2">
                     <h4 class="list-group-item-heading">Step 2</h4>
                     <p class="list-group-item-text">Second step description</p>
                 </a></li>
                 <li class="disabled"><a href="#step-3">
                     <h4 class="list-group-item-heading">Step 3</h4>
                     <p class="list-group-item-text">Third step description</p>
-                </a></li>
+                </a></li>--%>
             </ul>
         </div>
     </div>
     <div class="row setup-content" id="step-1">
         <div class="col-lg-12">
             <div class="col-lg-12 well text-center">
-                <h1> STEP 1</h1>
-                <%--<s:form cssClass="form-horizontal" theme="bootstrap" action="loadContactInfoList" >--%>
+                <%--<h1> STEP 1</h1>--%>
+                <s:form theme="bootstrap" action="addOrder" >
 
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Service Requirement:</label>
@@ -596,9 +596,7 @@
                                   onchange="serviceValidate()"
                                   listKey="key"
                                   listValue="value"
-                                  emptyOption="true"
-                                  required="true"
-                                  />
+                        />
 
                     </div>
                 </div>
@@ -617,9 +615,7 @@
                                   listKey="key"
                                   listValue="value"
                                   value="orderBean.modeOfService"
-                                  emptyOption="true"
-                                  required="true"
-                                />
+                        />
 
                     </div>
                 </div>
@@ -636,9 +632,7 @@
                                   list="freightTypeList"
                                   listKey="key"
                                   listValue="value"
-                                  emptyOption="true"
-                                  required="true"
-                                />
+                        />
 
                     </div>
                 </div>
@@ -655,9 +649,7 @@
                                   list="modeOfPaymentList"
                                   listKey="key"
                                   listValue="value"
-                                  emptyOption="true"
-                                  required="true"
-                                />
+                        />
 
                     </div>
                 </div>
@@ -674,24 +666,124 @@
                                   list="customerList"
                                   listKey="customerId"
                                   listValue="customerName"
-                                  emptyOption="true"
-                                  required="true"
                                   onchange="contactSearch()"
-                                />
-                                  <%--emptyOption="true"
-                                  required="true"--%>
-
+                                  emptyOption="true"
+                        />
 
                     </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date/Time:</label>
+                    <div class="col-lg-3" >
+                        <input type="text" class="from_date form-control step2" id="datepicker1" name="orderBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;">
+
+                    </div>
+
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date/Time:</label>
+                    <div class="col-lg-3" >
+                        <input type="text" class="to_date form-control step2" id="datepicker2" name="orderBean.deliveryDate" placeholder="Select end date" contenteditable="false" style="margin-bottom: 15px !important;">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Port of Origin:</label>
+                    <div class="col-lg-3" >
+
+                        <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                                  name="order.originationPort" list="portsList" listKey="key"
+                                  listValue="value" />
+
+                    </div>
+
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Port of Destination:</label>
+                    <div class="col-lg-3" >
+
+                        <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                                  name="order.destinationPort" list="portsList" listKey="key"
+                                  listValue="value" />
+
+                    </div>
+
                 </div>
 
                 <%--<button id="activate-step-2" class="btn btn-primary pull-right" style="margin-bottom: 15px !important;">Next</button>--%>
                 <%--<s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Next" />
                 </s:form>--%>
 
+                <div id="2ndPartOnLoad" style="clear:both;">
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person:</label>
+
+                        <div class="col-lg-9">
+                            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                                      list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address:</label>
+
+                        <div class="col-lg-9">
+                            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                                      list="addressList" listKey="addressId" listValue="addressLine1 + ' ' + addressLine2" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type:</label>
+
+                        <div class="col-lg-9">
+                            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                                      list="notifyByList" listKey="key" listValue="value" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name:</label>
+
+                        <div class="col-lg-9">
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                      list="consigneeList" listKey="contactId"
+                                      listValue="firstName +' '+ middleName +' '+ lastName" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address:</label>
+
+                        <div class="col-lg-9">
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                      list="consigneeAddressList" listKey="addressId"
+                                      listValue="addressLine1 + ' ' + addressLine2" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Comments :</label>
+
+                        <div class="col-lg-9">
+                            <s:textarea cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important;"></s:textarea>
+                        </div>
+                    </div>
+
+                    <s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Save" />
+
+                </div>
+
                 <div id="2ndPart" style="clear:both;">
 
                 </div>
+
+                </s:form>
 
                 <div id="3rdPart" style="clear:both;">
 
@@ -814,57 +906,16 @@ $('ul.setup-panel li.active a').trigger('click');
 
 });*/
 
-});
-
-
-
-function contactSearch(){
-
-    var custId = $("select[name='order.customerId'] option:selected").val();
-    serReq = $("select[name='order.serviceRequirement'] option:selected").val();
-    serMod = $("select[name='order.modeOfService'] option:selected").val();
-    fType = $("select[name='order.freightType'] option:selected").val();
-    payMod = $("select[name='order.modeOfPayment'] option:selected").val();
-
-    $.ajax({
-        url: 'loadContactInfoList',
-        type: 'POST',
-
-        data:{ ID: custId,
-            REQ: serReq,
-            MODE: serMod,
-            TYPE: fType,
-            PAY: payMod
-
-        },
-        dataType: 'html',
-
-        success: function (html) {
-
-            $('#2ndPart').html(html);
-        },
-        error: function(thrownError){
-            alert('An error occurred! ' + thrownError);
-        }
-    });
-
-}
-
-</script>
-
-<%----------------------------------------------------------------------------------------------------------------------%>
-
-<%--
-<script type="text/javascript">
-
     var fromDatePickUp = $('#datepicker1');
     var toDateDelivery = $('#datepicker2');
+
 
     //pick up date validation
     fromDatePickUp.datetimepicker({
 
         // on 5:00pm
-        timeFormat: 'HH:mm',
+        timeFormat: 'h:mm TT',
+        minDate: 0,
         onClose: function(dateText, inst) {
 
             if (toDateDelivery.val() != '') {
@@ -891,7 +942,8 @@ function contactSearch(){
     toDateDelivery.datetimepicker({
 
         // on 6:00pm
-        timeFormat: 'HH:mm',
+        timeFormat: 'h:mm TT',
+        minDate: 0,
         onClose: function(dateText, inst) {
 
             if (fromDatePickUp.val() != '') {
@@ -914,5 +966,59 @@ function contactSearch(){
 
     });
 
+});
+
+
+
+function contactSearch(){
+
+    var custId = $("select[name='order.customerId'] option:selected").val();
+    serReq = $("select[name='order.serviceRequirement'] option:selected").val();
+    serMod = $("select[name='order.modeOfService'] option:selected").val();
+    fType = $("select[name='order.freightType'] option:selected").val();
+    payMod = $("select[name='order.modeOfPayment'] option:selected").val();
+
+    if (custId == "") {
+
+            document.getElementById("2ndPartOnLoad").style.display = 'block';
+            document.getElementById("2ndPart").style.display = 'none';
+            document.getElementById("order.shipperContactId").options.length = 0;
+            document.getElementById("order.pickupAddress").options.length = 0;
+            document.getElementById("order.consigneeContactId").options.length = 0;
+            document.getElementById("deliveryAddress").options.length = 0;
+
+    } else {
+            document.getElementById("2ndPartOnLoad").style.display = 'none';
+            document.getElementById("2ndPart").style.display = 'block';
+            $.ajax({
+                url: 'loadContactInfoList',
+                type: 'POST',
+
+                data: { ID: custId,
+                    REQ: serReq,
+                    MODE: serMod,
+                    TYPE: fType,
+                    PAY: payMod
+
+                },
+                dataType: 'html',
+
+                success: function (html) {
+
+                    $('#2ndPart').html(html);
+                },
+                error: function (thrownError) {
+                    alert('An error occurred! ' + thrownError);
+                }
+            });
+    }
+
+}
+
+
+
+
 </script>
---%>
+
+<%----------------------------------------------------------------------------------------------------------------------%>
+

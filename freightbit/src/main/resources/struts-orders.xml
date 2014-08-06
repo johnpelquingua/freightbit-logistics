@@ -53,9 +53,8 @@
             <result name="success">/orders/orderAdd2.jsp</result>
         </action>
 
-        <action name="load3rdPage" class="com.sr.apps.freightbit.order.action.OrderAction"
-                method="load3rdPage">
-            <result name="success">/orders/orderAdd3.jsp</result>
+        <action name="addOrder" class="com.sr.apps.freightbit.order.action.OrderAction" method="addOrder">
+            <result name="success" type="tiles">orders.add-booking-info.tiles</result>
         </action>
 
     </package>

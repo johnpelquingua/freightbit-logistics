@@ -28,6 +28,8 @@ public interface AddressDao {
 
     public List<Address> findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType);
 
+    public List<Address> findAddressByShipper(String referenceTable, Integer referenceId, String addressType);
+
     public List<Address> findAddressesByParameterMap(Map<String, Object> paramMap,
                                                      String entity);
 
