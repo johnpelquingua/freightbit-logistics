@@ -153,13 +153,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         order = transformToOrderFormBean(orderEntityLoad);
         // Get Customer ID
-        Integer custId = orderEntityLoad.getShipperContactId();
+        //Integer custId = orderEntityLoad.getShipperContactId();
 
-        Customer customer = customerService.findCustomerById(custId);
+        //Customer customer = customerService.findCustomerById(custId);
 
-        String custName = customer.getCustomerName();
+        //String custName = customer.getCustomerName();
 
-        order.setCustomerName(custName);
+        //order.setCustomerName(custName);
 
 
 
@@ -233,11 +233,11 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         System.out.println( "-------------------------------------CLIENT ID " + getClientId() + "-------------------------------------" );
 
-        /*orderNum = orderService.findNextBookingNo(getClientId(), custCode);
+        orderNum = orderService.findNextBookingNo(getClientId(), custCode);
 
         System.out.println( "-------------------------------------Order Number " + orderNum + "-------------------------------------" );
 
-        sessionAttributes.put("orderNum", orderNum );*/
+        sessionAttributes.put("orderNum", orderNum );
 
         contactsList = customerService.findContactByParameterMap(ID, "shipper", getClientId());
 
@@ -277,7 +277,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setConsigneeAddressId(formBean.getConsigneeContactId());
         entity.setConsigneeContactId(formBean.getConsigneeAddressId());
         entity.setOrderDate(new Date());
-        entity.setOrderNumber("MSX-123");
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        entity.setOrderNumber(sessionAttributes.get("orderNum").toString());
         entity.setOrderStatus("PENDING");
         entity.setOriginationPort(formBean.getOriginationPort());
         entity.setDestinationPort(formBean.getDestinationPort());
