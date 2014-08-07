@@ -226,6 +226,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public List<Address> findAddressByShipper(String addressType, Integer customerId) {
+        return addressDao.findAddressByShipper("CUSTOMERS", customerId, addressType);
+    }
+
+    @Override
     public List<Address> findAddressByCriteria(String addressType, Integer customerId) {
         return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
     }

@@ -63,6 +63,8 @@ public interface CustomerService {
 
     public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId);
 
+    public List<Address> findAddressByShipper(String addressType, Integer customerId);
+
     public List<Address> findAddressByParameterMap(Integer referenceId, String addressType, Integer clientId);
 
     public List<Address> findAddressByCriteria(String addressType, Integer customerId);
@@ -77,7 +79,7 @@ public interface CustomerService {
 
     public List<Customer> findAllCustomer();
 
-    public Customer findCustomerById(Integer clientId);
+    public Customer findCustomerById(Integer customerId);
 
     public List<Customer> findCustomerByClientId(Integer clientId);
 
