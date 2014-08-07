@@ -144,24 +144,12 @@ public class OrderAction extends ActionSupport implements Preparable {
         Orders orderEntity = transformToOrderEntityBean1stForm(order);
 
         orderService.addOrder(orderEntity);
-
+        // To get generated Order Id
         orderIdPass = orderEntity.getOrderId();
 
-        System.out.println("------------------------------------------------ Order Id: " + orderIdPass);
-
         Orders orderEntityLoad = orderService.findOrdersById(orderIdPass);
-
+        // Display Order Data to form
         order = transformToOrderFormBean(orderEntityLoad);
-        // Get Customer ID
-        //Integer custId = orderEntityLoad.getShipperContactId();
-
-        //Customer customer = customerService.findCustomerById(custId);
-
-        //String custName = customer.getCustomerName();
-
-        //order.setCustomerName(custName);
-
-
 
         return SUCCESS;
     }
@@ -222,34 +210,23 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         Customer customerEntity = customerService.findCustomerById(ID);
-
+        // To get Customer Name from Customer ID
         custName = customerEntity.getCustomerName();
-
+        // Put Customer Name in session
         sessionAttributes.put("custName", custName );
-
+        // To get Customer Code from Customer ID
         custCode = customerEntity.getCustomerCode();
-
-        System.out.println( "-------------------------------------CUST CODE " + custCode + "-------------------------------------" );
-
-        System.out.println( "-------------------------------------CLIENT ID " + getClientId() + "-------------------------------------" );
-
+        // To get Order Number and show it to form
         orderNum = orderService.findNextBookingNo(getClientId(), custCode);
-
-        System.out.println( "-------------------------------------Order Number " + orderNum + "-------------------------------------" );
-
+        // Put Order Number in session
         sessionAttributes.put("orderNum", orderNum );
-
+        // To show Customer's contacts list
         contactsList = customerService.findContactByParameterMap(ID, "shipper", getClientId());
-
+        // To show Customer's Pick-up Address list
         addressList = customerService.findAddressByShipper("CONSIGNEE", ID);
-
-        for(int i = 0; i < addressList.size(); i++ ) {
-
-            System.out.println( "-------------------------------------SHIPPER ADDRESS" + addressList.get(i).getAddressLine1() + "-------------------------------------" );
-        }
-
+        // To show Customer's Consignee List
         consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE", ID);
-
+        // To show Customer's Consignee's Addresses list
         consigneeAddressList = customerService.findAddressByParameterMap(ID, "CONSIGNEE", getClientId() );
 
         return SUCCESS;
@@ -274,8 +251,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setCreatedBy("admin");
         entity.setModifiedTimestamp(new Date());
         entity.setModifiedBy("admin");
-        entity.setConsigneeAddressId(formBean.getConsigneeContactId());
-        entity.setConsigneeContactId(formBean.getConsigneeAddressId());
+        entity.setConsigneeAddressId(formBean.getConsigneeAddressId());
+        entity.setConsigneeContactId(formBean.getConsigneeContactId());
         entity.setOrderDate(new Date());
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -397,7 +374,35 @@ public class OrderAction extends ActionSupport implements Preparable {
         /*Contacts shipperContact = customerService.findContactById(order.getShipperContactId());
         orderBean.setCustomerId(shipperContact.getReferenceId());*/
 
-
+        //shipper contact info
+        Contacts contacts = customerService.findContactById(order.getShipperContactId());
+        contact = new ContactBean();
+        contact.setName(getFullName(contacts.getLastName(), contacts.getFirstName(), contacts.getMiddleName()));
+        contact.setPhone(contacts.getPhone());
+        contact.setEmail(contacts.getEmail());
+        contact.setFax(contacts.getFax());
+        contact.setMobile(contacts.getMobile());
+        orderBean.setShipperInfoContact(contact);
+        //get shipper address
+        Address addresss = customerService.findAddressById(order.getShipperAddressId());
+        address = new AddressBean();
+        address.setAddress(getAddress(addresss));
+        orderBean.setShipperInfoAddress(address);
+        //consignee Info
+        Contacts consigneeContact = customerService.findContactById(order.getConsigneeContactId());
+        contact = new ContactBean();
+        contact.setName(getFullName(consigneeContact.getLastName(), consigneeContact.getFirstName(), consigneeContact.getMiddleName()));
+        contact.setPhone(consigneeContact.getPhone());
+        contact.setEmail(consigneeContact.getEmail());
+        contact.setFax(consigneeContact.getFax());
+        contact.setMobile(consigneeContact.getMobile());
+        orderBean.setConsigneeInfoContact(contact);
+        // consignee address
+        Address consigneeAddress = customerService.findAddressById(order.getConsigneeAddressId());
+        address = new AddressBean();
+        address.setAddress(getAddress(consigneeAddress));
+        System.out.println(address);
+        orderBean.setConsigneeInfoAddress(address);
 
         return orderBean;
     }

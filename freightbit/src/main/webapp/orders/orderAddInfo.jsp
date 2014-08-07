@@ -239,39 +239,47 @@
                 <div class="table-responsive list-table">
                     <table class="table table-striped table-hover table-bordered text-center tablesorter">
                         <thead>
-                        <tr>
-                            <th>Quantity</th>
-                            <th>Class</th>
-                            <th>Height</th>
-                            <th>Width</th>
-                            <th>Length</th>
-                            <th>Weight</th>
-                            <th>Value</th>
+                        <tr class="header_center">
+                            <th class="tb-font-black">Quantity</th>
+                            <th class="tb-font-black">Size</th>
+                            <th class="tb-font-black">Weight</th>
+                            <th class="tb-font-black">Class</th>
+                            <th class="tb-font-black">Commodity</th>
+                            <th class="tb-font-black">Value</th>
+                            <th class="tb-font-black">Rate</th>
+                            <th class="tb-font-black">Comment</th>
+                            <th class="tb-font-black">Action</th>
                         </tr>
-
                         </thead>
                         <tbody>
-                        <s:iterator value="order.orderItemsBean" var="orderItem">
+
+                        <s:iterator value="orderItems" var="orderItem">
                             <tr>
-                                <td><s:property value="quantity" /> </td>
-                                <td><s:property value="classification" /> </td>
-                                <td><s:property value="height" /> </td>
-                                <td><s:property value="width" /> </td>
-                                <td><s:property value="length" /> </td>
-                                <td><s:property value="weight" /> </td>
-                                <td><s:property value="declaredValue" /> </td>
+                                <td class="tb-font-black"><s:property value="quantity"/></td>
+                                <td class="tb-font-black"><s:property value="nameSize"/></td>
+                                <td class="tb-font-black"><s:property value="weight"/></td>
+                                <td class="tb-font-black"><s:property value="classification"/></td>
+                                <td class="tb-font-black"><s:property value="description"/></td>
+                                <td class="tb-font-black"><s:property value="declaredValue"/></td>
+                                <td class="tb-font-black"><s:property value="rate"/></td>
+                                <td class="tb-font-black"><s:property value="remarks"/></td>
+
+                                <td class="tb-font-black">
+
+                                    <s:url var="deleteItemUrl" action="deleteItem">
+                                        <s:param name="customersItemIdParam" value="%{customerItemsId}"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
+                                         title="Delete this Item?"
+                                         onclick="return confirm('Do you really want to delete?');">
+                                        <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                    </s:a>
+
+                                </td>
                             </tr>
                         </s:iterator>
-                        <%--<display:table id="orderItem" name="order.orderItemsBean" pagesize="10"--%>
-                        <%--class="table table-striped table-hover table-bordered text-center tablesorter">--%>
-                        <%--<td><display:column property="quantity" title="Quantity" class="tb-font-black"--%>
-                        <%--style="text-align: center;"> </display:column></td>--%>
-                        <%--<td><display:column property="classification" title="Classification" class="tb-font-black"--%>
-                        <%--style="text-align: center;"> </display:column></td>--%>
-                        <%--<td><display:column property="quantity" title="Quantity" class="tb-font-black"--%>
-                        <%--style="text-align: center;"> </display:column></td>--%>
-                        <%--</display:table>--%>
                         </tbody>
+
                     </table>
                 </div>
             </div>
