@@ -10,6 +10,7 @@
     <include file="struts-orders.xml"/>
     <include file="struts-finance.xml"/>
     <include file="struts-permission.xml"/>
+    <include file="struts-documents.xml"/>
     <include file="struts-group.xml"/>
     <include file="struts-help.xml"/>
     <include file="struts-vendor.xml"/>

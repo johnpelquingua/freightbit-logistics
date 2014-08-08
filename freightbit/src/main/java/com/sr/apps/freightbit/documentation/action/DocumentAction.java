@@ -41,14 +41,19 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class DocumentAction extends ActionSupport implements Preparable {
+public class DocumentAction extends ActionSupport {
 
-    private List<CustomerBean> customers = new ArrayList<CustomerBean>();
-    private List<AddressBean> addresss = new ArrayList<AddressBean>();
-    private List<ItemBean> items = new ArrayList<ItemBean>();
-    private List<RatesBean> rates = new ArrayList<RatesBean>();
-    private List<ContactBean> contacts = new ArrayList<ContactBean>();
-    private List<ConsigneeBean> consignees = new ArrayList<ConsigneeBean>();
+    public String viewArchivedDocuments() {
+        return SUCCESS;
+    }
+
+    public String viewPendingDocuments() {
+        return SUCCESS;
+    }
+
+    public String viewPlainDocuments() {
+        return SUCCESS;
+    }
 
     @Override
     public void prepare(){

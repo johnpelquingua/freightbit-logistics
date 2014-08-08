@@ -89,6 +89,25 @@
 
     <!--OPERATION module ends-->
 
+    <!-- DOCUMENTATION module begin -->
+
+    <definition name="documentation.viewPendingDocuments.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Pending Documents"/>
+        <put-attribute name="body" value="/documentation/penging_docs/viewPendingDocuments.jsp"/>
+    </definition>
+
+    <definition name="documentation.viewPlainDocuments.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Plain Documents"/>
+        <put-attribute name="body" value="/documentation/plain_docs/viewPlainDocuments.jsp"/>
+    </definition>
+
+    <definition name="documentation.viewArchivedDocuments.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Archived Documents"/>
+        <put-attribute name="body" value="/documentation/archived_docs/viewArchivedDocuments.jsp"/>
+    </definition>
+
+    <!-- DOCUMENTATION module end -->
+
     <!-- CORE module tiles Begin-->
     <definition name="core.userSearch.tiles" extends="baseLayout">
         <put-attribute name="title" value="User Page"/>

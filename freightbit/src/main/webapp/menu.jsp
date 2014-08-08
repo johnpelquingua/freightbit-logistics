@@ -73,7 +73,15 @@
             <li><a href="<s:url action='operations/viewStatusList' />"> <i class="fa fa-caret-right fa-fw"></i> Status</a></li>
         </ul>
     </li>
-    <li><a href="#" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-file-text"></i> Documentations</a></li>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-file-text"></i> Documentations</a>
+        <ul class="dropdown-menu">
+            <li><a href="<s:url action='documentation/viewPendingDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Pending Documents</a></li>
+            <li><a href="<s:url action='documentation/viewPlainDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Plain Documents</a></li>
+            <li><a href="<s:url action='documentation/viewArchivedDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Archived Documents</a></li>
+        </ul>
+    </li>
 
     <sec:authorize access="hasRole('ROLE_ADMIN')">
     <li class="dropdown">
