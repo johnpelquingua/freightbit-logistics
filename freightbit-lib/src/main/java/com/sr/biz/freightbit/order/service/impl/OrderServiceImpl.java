@@ -16,6 +16,7 @@ import com.sr.biz.freightbit.order.dao.OrderItemsDao;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
+import com.sr.biz.freightbit.order.entity.OrderItems;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -278,11 +279,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addItem(Items items) throws ItemAlreadyExistsException {
-        if (itemsDao.findUserByItemName(items.getItemName()).size() > 0)
+    public void addItem(OrderItems orderItems) {
+       /* if (itemsDao.findUserByItemName(items.getItemName()).size() > 0)
             throw new ItemAlreadyExistsException(items.getItemName());
         else
-            itemsDao.addItems(items);
+            itemsDao.addItems(items);*/
+        orderItemsDao.addItems(orderItems);
     }
 
     @Override

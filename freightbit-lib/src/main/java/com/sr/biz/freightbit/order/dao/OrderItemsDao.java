@@ -8,4 +8,6 @@ public interface OrderItemsDao {
 
     public List<OrderItems> findAllItemByOrderId(Integer orderId);
 
+    public void addItems(OrderItems orderItems);
+
 }

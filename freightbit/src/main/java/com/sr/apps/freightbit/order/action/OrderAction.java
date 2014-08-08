@@ -125,6 +125,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
+        sessionAttributes.get("orderIdPass");
+
         List<OrderItems> orderItemsFromSession = (List) sessionAttributes.get("orderItem");
 
         if (orderItemsFromSession == null) {
@@ -147,6 +149,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
+        sessionAttributes.get("orderIdPass");
+
         List<OrderItems> orderItemsFromSessionAdd = (List) sessionAttributes.get("orderItemsFromSession");
 
         for (OrderItems orderItemElem : orderItemsFromSessionAdd) {
@@ -159,6 +163,28 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         sessionAttributes.put("orderItem", orderItemsFromSessionAdd);
+
+        return SUCCESS;
+    }
+
+    public String addOrderItemsInDB() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        sessionAttributes.get("orderIdPass");
+        System.out.println("---------------------------------- Order ID DB " + sessionAttributes.get("orderIdPass"));
+        List<OrderItems> orderItemEntityList = (List) sessionAttributes.get("orderItem");
+
+        for (OrderItems orderItemElem : orderItemEntityList) {
+
+            for(int i = 0; i < orderItemEntityList.size(); i++ ){
+                orderItemElem.setOrderId((Integer)sessionAttributes.get("orderIdPass"));
+                System.out.println("---------------------------------- Order ID DB " + sessionAttributes.get("orderIdPass"));
+                System.out.println("---------------------------------- Item Name DB " + orderItemElem.getNameSize());
+                orderService.addItem(orderItemElem);
+            }
+
+        }
 
         return SUCCESS;
     }
@@ -536,6 +562,12 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setNameSize(formBean.getNameSize());
         entity.setRate(formBean.getRate());
         entity.setComments(formBean.getRemarks());
+        entity.setStatus(formBean.getStatus());
+        entity.setVolume(formBean.getVolume());
+        entity.setCreatedBy("admin");
+        entity.setModifiedBy("admin");
+        entity.setCreatedTimestamp(new Date());
+        entity.setModifiedTimestamp(new Date());
 
         return entity;
     }

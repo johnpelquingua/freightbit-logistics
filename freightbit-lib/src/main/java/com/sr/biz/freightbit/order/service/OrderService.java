@@ -73,7 +73,7 @@ public interface OrderService {
 
     public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId);
 
-    public void addItem(Items items) throws ItemAlreadyExistsException;
+    public void addItem(OrderItems orderItems);
 
     public void deleteItem(Items items);
 

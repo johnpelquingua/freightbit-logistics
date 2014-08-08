@@ -456,7 +456,10 @@
 
                 </div>
 
-
+            <span class="pull-right">
+            <a href="addOrderItemsInDB" class="icon-action-link"><img src="../includes/images/add-user.png"
+                                                                        class="icon-action circ-icon"> </a>
+            </span>
 
             <div id="containerPart" style="clear:both;">
 
