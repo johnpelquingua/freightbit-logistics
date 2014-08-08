@@ -55,10 +55,7 @@ public class DocumentAction extends ActionSupport {
         return SUCCESS;
     }
 
-    @Override
-    public void prepare(){
 
-    }
 
 
 }

@@ -12,8 +12,16 @@
 
         <default-action-ref name="Documents"/>
 
-        <action name="viewOrders" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewOrders">
-            <result name="success" type="tiles">orders.booking-list.tiles</result>
+        <action name="viewPlainDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewPlainDocuments">
+            <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>
+        </action>
+
+        <action name="viewPendingDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewPendingDocuments">
+            <result name="success" type="tiles">documentation.viewPendingDocuments.tiles</result>
+        </action>
+
+        <action name="viewArchivedDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewArchivedDocuments">
+            <result name="success" type="tiles">documentation.viewArchivedDocuments.tiles</result>
         </action>
 
     </package>
