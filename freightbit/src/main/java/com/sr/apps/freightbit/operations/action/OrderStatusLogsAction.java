@@ -1,5 +1,6 @@
 package com.sr.apps.freightbit.operations.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.operations.formbean.OrderStatusLogsBean;
@@ -15,6 +16,7 @@ import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Clarence C. Victoria on 7/31/14.
@@ -61,6 +63,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         for (OrderItems orderItemsElem : orderItemEntityList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", orderIdParam);
+
         return SUCCESS;
     }
 
@@ -70,24 +76,38 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String loadUpdateStatusComplete() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
+
+        List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
+
+        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParamSession);
+
+        for (OrderItems orderItemsElem : orderItemEntityList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Items has been updated.");
+        return SUCCESS;
+    }
+
     public String updateStatus() {
         try {
             OrderItems entity = transformToOrderItemEntity(orderItem);
             orderStatusLogsService.updateStatusOrderItem(entity);
         } catch (Exception e) {
-            return SUCCESS;
+            addActionError("Update Failed");
+            return INPUT;
         }
-
         return SUCCESS;
 
     }
 
     public OrderItems transformToOrderItemEntity (OrderItemsBean formBean) {
-        OrderItems entity = new OrderItems();
+        OrderItems entity = orderStatusLogsService.findOrderItemById(formBean.getOrderItemId());
         entity.setStatus(formBean.getStatus());
-        entity.setOrderItemId(formBean.getOrderItemId());
-        System.out.print("<<--------------------------" + entity.getStatus() + ", " + entity.getOrderItemId() + "------------------------------->" );
-
         return entity;
     }
 

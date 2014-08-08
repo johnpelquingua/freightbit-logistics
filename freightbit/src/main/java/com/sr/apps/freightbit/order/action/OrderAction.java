@@ -375,28 +375,28 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setCustomerId(shipperContact.getReferenceId());*/
 
         //shipper contact info
-        Contacts contacts = customerService.findContactById(order.getShipperContactId());
+        /*Contacts contacts = customerService.findContactById(order.getShipperContactId());
         contact = new ContactBean();
         contact.setName(getFullName(contacts.getLastName(), contacts.getFirstName(), contacts.getMiddleName()));
         contact.setPhone(contacts.getPhone());
         contact.setEmail(contacts.getEmail());
         contact.setFax(contacts.getFax());
         contact.setMobile(contacts.getMobile());
-        orderBean.setShipperInfoContact(contact);
+        orderBean.setShipperInfoContact(contact);*/
         //get shipper address
         Address addresss = customerService.findAddressById(order.getShipperAddressId());
         address = new AddressBean();
         address.setAddress(getAddress(addresss));
         orderBean.setShipperInfoAddress(address);
         //consignee Info
-        Contacts consigneeContact = customerService.findContactById(order.getConsigneeContactId());
+        /*Contacts consigneeContact = customerService.findContactById(order.getConsigneeContactId());
         contact = new ContactBean();
         contact.setName(getFullName(consigneeContact.getLastName(), consigneeContact.getFirstName(), consigneeContact.getMiddleName()));
         contact.setPhone(consigneeContact.getPhone());
         contact.setEmail(consigneeContact.getEmail());
         contact.setFax(consigneeContact.getFax());
         contact.setMobile(consigneeContact.getMobile());
-        orderBean.setConsigneeInfoContact(contact);
+        orderBean.setConsigneeInfoContact(contact);*/
         // consignee address
         Address consigneeAddress = customerService.findAddressById(order.getConsigneeAddressId());
         address = new AddressBean();
