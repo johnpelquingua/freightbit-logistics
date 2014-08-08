@@ -3,7 +3,7 @@ package com.sr.apps.freightbit.order.formbean;
 import java.util.Date;
 
 public class OrderItemsBean {
-//
+
     private Integer orderItemId;
     private Integer orderId;
     private Integer quantity;
@@ -19,13 +19,14 @@ public class OrderItemsBean {
     private String modifiedBy;
     private String nameSize;
     private String status;
+    private Float volume;
 
     public OrderItemsBean(){
 
     }
 
-
-    public OrderItemsBean(Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy, String nameSize, String status) {
+    public OrderItemsBean(String createdBy, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimeStamp, Date modifiedTimeStamp, String modifiedBy, String nameSize, String status, Float volume) {
+        this.createdBy = createdBy;
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.quantity = quantity;
@@ -36,11 +37,11 @@ public class OrderItemsBean {
         this.remarks = remarks;
         this.rate = rate;
         this.createdTimeStamp = createdTimeStamp;
-        this.createdBy = createdBy;
         this.modifiedTimeStamp = modifiedTimeStamp;
         this.modifiedBy = modifiedBy;
         this.nameSize = nameSize;
         this.status = status;
+        this.volume = volume;
     }
 
     public Float getRate() {
@@ -161,5 +162,13 @@ public class OrderItemsBean {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Float getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Float volume) {
+        this.volume = volume;
     }
 }

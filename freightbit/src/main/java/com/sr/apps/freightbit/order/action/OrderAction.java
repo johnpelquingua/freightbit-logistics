@@ -8,6 +8,7 @@ import java.util.Map;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.customer.entity.Items;
 import org.apache.commons.lang3.StringUtils;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -33,6 +34,7 @@ import com.sr.biz.freightbit.core.service.ClientService;
 public class OrderAction extends ActionSupport implements Preparable {
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
+    private OrderItemsBean orderItem = new OrderItemsBean();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
     private OrderBean order = new OrderBean();
     private ContactBean contact = new ContactBean();
@@ -47,6 +49,8 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Contacts> shipperList = new ArrayList<Contacts>();
     private List<Contacts> consigneeList = new ArrayList<Contacts>();
     private List<CustomerBean> customerBean = new ArrayList<CustomerBean>();
+    private List<Integer> containerQuantity;
+    private List<Parameters> containerList = new ArrayList<Parameters>();
     private List<Integer> itemQuantity;
     private List<Contacts> contactsList = new ArrayList<Contacts>();
     private List<Address> addressList = new ArrayList<Address>();
@@ -117,15 +121,44 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String addItemsInTable() {
 
+        //OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
+
         Map sessionAttributes = ActionContext.getContext().getSession();
-        List<OrderItems> orderItemsFromSession = (List) sessionAttributes.get("orderItems");
 
-        if (orderItemsFromSession != null)
-            //orderItemsFromSession.add(transformToOrderItemsEntityBean(orderItem));
-            sessionAttributes.put("orderItems", orderItemsFromSession);
-        /*orderItems = orderItemsFromSession;*/
+        List<OrderItems> orderItemsFromSession = (List) sessionAttributes.get("orderItem");
 
-        System.out.println( "-------------------------------------" + orderItems + "-------------------------------------" );
+        if (orderItemsFromSession == null) {
+            //create a list orderitems
+            List <OrderItems> orderItemsList = new ArrayList();
+            orderItemsList.add(transformToOrderItemsEntityBean(orderItem)); //orderItem is galing sa form
+            sessionAttributes.put("orderItemsFromSession", orderItemsList);
+
+        } else {
+            orderItemsFromSession.add(transformToOrderItemsEntityBean(orderItem));
+            sessionAttributes.put("orderItemsFromSession", orderItemsFromSession);
+        }
+
+
+
+        return SUCCESS;
+    }
+
+    public String addedItemsInTable() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        List<OrderItems> orderItemsFromSessionAdd = (List) sessionAttributes.get("orderItemsFromSession");
+
+        for (OrderItems orderItemElem : orderItemsFromSessionAdd) {
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
+
+        for(int i = 0; i < orderItemsFromSessionAdd.size(); i++ ) {
+
+            System.out.println("-------------------------------------Order Item " + orderItemsFromSessionAdd.get(i).getOrderItemId() + "-------------------------------------");
+        }
+
+        sessionAttributes.put("orderItem", orderItemsFromSessionAdd);
 
         return SUCCESS;
     }
@@ -150,6 +183,12 @@ public class OrderAction extends ActionSupport implements Preparable {
         Orders orderEntityLoad = orderService.findOrdersById(orderIdPass);
         // Display Order Data to form
         order = transformToOrderFormBean(orderEntityLoad);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        sessionAttributes.put("orderIdPass", orderIdPass);
+
+
 
         return SUCCESS;
     }
@@ -416,14 +455,20 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
         OrderItemsBean orderItemBean = new OrderItemsBean();
-       /* orderItemBean.setCargoDetails(orderItem.getCommodity());*/
+
         orderItemBean.setQuantity(orderItem.getQuantity());
+        orderItemBean.setNameSize(orderItem.getNameSize());
+        orderItemBean.setWeight(orderItem.getWeight());
+        orderItemBean.setVolume(orderItem.getVolume());
         orderItemBean.setClassification(orderItem.getClassification());
+        orderItemBean.setDescription(orderItem.getCommodity());
+        orderItemBean.setRate(orderItem.getRate());
         orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
-       /* orderItemBean.setHeight(orderItem.getHeight());
+        orderItemBean.setRemarks(orderItem.getComments());
+        /*orderItemBean.setHeight(orderItem.getHeight());
         orderItemBean.setWidth(orderItem.getWidth());
         orderItemBean.setLength(orderItem.getLength());*/
-        orderItemBean.setWeight(orderItem.getWeight());
+
         return orderItemBean;
     }
 
@@ -469,23 +514,30 @@ public class OrderAction extends ActionSupport implements Preparable {
         return order;
     }
 
-    private OrderItems transformToOrderItemsEntityBean(OrderItemsBean orderItemBean) {
-        OrderItems orderItem = new OrderItems();
+    private OrderItems transformToOrderItemsEntityBean(OrderItemsBean formBean) {
+        OrderItems entity = new OrderItems();
 
         //TO DO: To included OrderItems entity in Order Entity
 /*		if (orderItem.getOrderItemId() != null && !("").equals(orderItem.getOrderItemId()))
             orderItem.setOrderItemId(orderItemBean.getOrderItemId());
 		
 		orderItem.setOrderId(orderItemBean.getOrderId());*/
-        orderItem.setCommodity(orderItemBean.getDescription());
-        orderItem.setQuantity(orderItemBean.getQuantity());
-        orderItem.setClassification(orderItemBean.getClassification());
-        orderItem.setDeclaredValue(orderItemBean.getDeclaredValue());
+        Client client = clientService.findClientById(getClientId().toString());
+
+        entity.setClientId(client.getClientId());
+        entity.setCommodity(formBean.getDescription());
+        entity.setQuantity(formBean.getQuantity());
+        entity.setClassification(formBean.getClassification());
+        entity.setDeclaredValue(formBean.getDeclaredValue());
        /* orderItem.setHeight(orderItemBean.getHeight());
         orderItem.setWidth(orderItemBean.getWidth());
         orderItem.setLength(orderItemBean.getLength());*/
-        orderItem.setWeight(orderItemBean.getWeight());
-        return orderItem;
+        entity.setWeight(formBean.getWeight());
+        entity.setNameSize(formBean.getNameSize());
+        entity.setRate(formBean.getRate());
+        entity.setComments(formBean.getRemarks());
+
+        return entity;
     }
 
     public void validateOnSubmit(OrderBean orderBean) {
@@ -564,6 +616,14 @@ public class OrderAction extends ActionSupport implements Preparable {
         notifyByList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.NOTIFY_BY);
         orderSearchList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.ORDER_SEARCH);
         portsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS);
+        containerList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
+
+        containerQuantity = new ArrayList<Integer>();
+        containerQuantity.add(1);
+        containerQuantity.add(2);
+        containerQuantity.add(3);
+        containerQuantity.add(4);
+        containerQuantity.add(5);
 
         itemQuantity = new ArrayList<Integer>();
         itemQuantity.add(1);
@@ -576,6 +636,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         itemQuantity.add(8);
         itemQuantity.add(9);
         itemQuantity.add(10);
+
+
 
     }
 
@@ -695,6 +757,22 @@ public class OrderAction extends ActionSupport implements Preparable {
         this.customerItemsList = customerItemsList;
     }*/
 
+    public List<Parameters> getContainerList() {
+        return containerList;
+    }
+
+    public void setContainerList(List<Parameters> containerList) {
+        this.containerList = containerList;
+    }
+
+    public List<Integer> getContainerQuantity() {
+        return containerQuantity;
+    }
+
+    public void setContainerQuantity(List<Integer> containerQuantity) {
+        this.containerQuantity = containerQuantity;
+    }
+
     public List<Integer> getItemQuantity() {
         return itemQuantity;
     }
@@ -809,5 +887,21 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setOrderIdPass(Integer orderIdPass) {
         this.orderIdPass = orderIdPass;
+    }
+
+    public OrderItemsBean getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(OrderItemsBean orderItem) {
+        this.orderItem = orderItem;
+    }
+
+    public List<OrderItemsBean> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItemsBean> orderItems) {
+        this.orderItems = orderItems;
     }
 }
