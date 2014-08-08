@@ -12,11 +12,11 @@
         <property name="parameterService" ref="parameterService"></property>
     </bean>
 
-    <bean id="customerAction" class="com.sr.apps.freightbit.customer.action.CustomerAction">
+  <!--   <bean id="customerAction" class="com.sr.apps.freightbit.customer.action.CustomerAction">
         <property name="customerService" ref="customerService"></property>
         <property name="clientService" ref="clientService"></property>
         <property name="parameterService" ref="parameterService"></property>
-    </bean>
+    </bean> -->
 
     <!--<bean id="groupAction" class="com.sr.apps.freightbit.core.action.GroupAction">-->
     <!--<property name="userService" ref="userService"></property>-->

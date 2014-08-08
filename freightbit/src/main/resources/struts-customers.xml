@@ -23,13 +23,13 @@
 
         <action name="loadEditCustomerPage" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="loadEditCustomerPage">
-            <result name="success" type="tiles">customer.customerEdit.tiles</result>
+            <result name="success" type="tiles">customer.loadEditCustomer.tiles</result>
         </action>
 
-        <action name="loadSaveCompletePage" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+       <!-- <action name="loadSaveCompletePage" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="loadSaveCompletePage">
             <result name="success" type="tiles">customer.customerSaveComplete.tiles</result>
-        </action>
+        </action>-->
 
         <action name="editItem" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerEditItem">
             <result name="success" type="tiles">customer.customerEditItem.tiles</result>
@@ -68,8 +68,8 @@
             <result name="success" type="tiles">customer.customerSearch.tiles</result>
         </action>
 
-        <action name="customerSearchExecute" class="com.sr.apps.freightbit.customer.action.CustomerAction"
-                method="customerSearchExecute">
+        <action name="searchCustomers" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+                method="searchCustomers">
             <result name="input" type="tiles">customer.customerSearch.tiles</result>
             <result name="success" type="tiles">customer.customerList.tiles</result>
         </action>
@@ -80,20 +80,20 @@
         </action>
 
         <action name="deleteCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction"
-                method="customerDeleteExecute">
+                method="deleteCustomer">
             <result name="success" type="redirect">customerList</result>
         </action>
 
         <action name="addCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction"
-                method="customerAddExecute">
+                method="addCustomer">
             <result name="input" type="tiles">customer.customerAdd.tiles</result>
             <result name="success" type="tiles">customer.customerInfo.tiles</result>
             <!--<result name="success" type="redirect">customerInfo</result>-->
         </action>
 
         <action name="editCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction"
-                method="customerEditExecute">
-            <result name="input" type="tiles">customer.customerEdit.tiles</result>
+                method="editCustomer">
+            <result name="input" type="tiles">customer.loadEditCustomer.tiles</result>
             <result name="success" type="tiles">customer.customerInfo.tiles</result>
         </action>
 

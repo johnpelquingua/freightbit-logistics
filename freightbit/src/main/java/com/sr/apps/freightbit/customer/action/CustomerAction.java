@@ -42,6 +42,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(CustomerAction.class);
+    
+    private Map sessionAttributes = ActionContext.getContext().getSession();
 
     private List<CustomerBean> customers = new ArrayList<CustomerBean>();
     private List<AddressBean> addresss = new ArrayList<AddressBean>();
@@ -84,21 +86,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private boolean customer_mayorsPermit;
     private boolean customer_aaf;
     private boolean customer_signatureCard;
-
-    @Override
-    public void prepare() {
-        addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
-        customerTypeList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_TYPE);
-        customerSearchList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_SEARCH);
-        rateTypeList = parameterService.getParameterMap(ParameterConstants.RATES_TYPE);
-        contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
-    }
-
-    public Integer getCustomerSessionId() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        Integer customerId = (Integer) sessionAttributes.get("customerId");
-        return customerId;
-    }
 
 
     ////// START OF ITEMS ///////////////
@@ -160,7 +147,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         String PATTERN = "[A-Za-z]+";
         String PATTERN2 = "[0-9]";
-        /*String PATTERN = "[0-9A-Za-z]+";*/
         Pattern pattern1 = Pattern.compile(PATTERN);
         Pattern pattern2 = Pattern.compile(PATTERN2);
 
@@ -279,29 +265,17 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String customerInfo() {
-
-        System.out.println("----------------------------------add customer " + customerCodeParam + "-------------------------------------------");
-
         Customer customerEntity = new Customer();
         if (!StringUtils.isBlank(customerCodeParam))
             customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
         else
             customerEntity = customerService.findCustomerById(getCustomerSessionId());
         customer = transformToFormBean(customerEntity);
-
-        /*Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
-        customer = transformToFormBean(customerEntity);*/
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("customerId", customer.getCustomerId());
-
         return SUCCESS;
 
     }
 
-
-    ////// START OF CUSTOMER ///////////////
-    // DONE WITH MODIFY and CREATE BY
     public String loadAddCustomerPage() {
         return SUCCESS;
     }
@@ -309,32 +283,23 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public String loadEditCustomerPage() {
         Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
         customer = transformToFormBean(customerEntity);
+        sessionAttributes.put("customerId", customer.getCustomerId());
         return SUCCESS;
     }
 
-    public String loadSaveCompletePage() {
-        /*List<Customer> customerEntityList = customerService.findAllCustomer();
-        for (Customer customerElem : customerEntityList) {
-            customers.add(transformToFormBean(customerElem));
-        }*/
-
+/*    public String loadSaveCompletePage() {
         Customer customerEntity = new Customer();
         if (!StringUtils.isBlank(customerCodeParam))
             customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
         else
             customerEntity = customerService.findCustomerById(getCustomerSessionId());
         customer = transformToFormBean(customerEntity);
-
-        /*Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
-        customer = transformToFormBean(customerEntity);*/
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("customerId", customer.getCustomerId());
 
         return SUCCESS;
-    }
+    }*/
 
-    public String customerSearchExecute() {
+    public String searchCustomers() {
         String column = getColumnFilter();
         List<Customer> customerEntityList = new ArrayList<Customer>();
 
@@ -366,43 +331,29 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return column;
     }
 
-    public String customerDeleteExecute() {
-
+    public String deleteCustomer() {
         Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
         customerService.deleteCustomer(customerEntity);
         return SUCCESS;
     }
 
-    public String customerEdit() {
-
+    public String loadEditCustomer() {
         Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
         customer = transformToFormBean(customerEntity);
         return SUCCESS;
     }
 
-    public String customerEditExecute() {
+    public String editCustomer() {
         validateOnSubmit(customer);
         if (hasActionErrors()) {
             return INPUT;
         }
 
-        /*customerService.updateCustomer(transformToEntityBean(customer));*/
-
         try {
-
-            System.out.println("----------------------------------dti - edit " + customer_dti + "-------------------------------------------");
-
-            System.out.println("----------------------------------permit - edit " + customer_mayorsPermit +  "-------------------------------------------");
-
-            System.out.println("----------------------------------aaf - edit " + customer_aaf +  "-------------------------------------------");
-
-            System.out.println("----------------------------------card - edit " + customer_signatureCard   +"-------------------------------------------");
-
             Customer customerEntity = transformToEntityBean(customer);
             customerEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             customerEntity.setModifiedTimestamp(new Date());
             customerService.updateCustomer(customerEntity);
-
         } catch (CustomerAlreadyExistsException e) {
             addFieldError("customer.customerCode", getText("err.customerCode.already.exist"));
             return INPUT;
@@ -410,38 +361,20 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         clearErrorsAndMessages();
         addActionMessage("Success! Customer has been updated.");
-
         return SUCCESS;
-
     }
 
-    public String customerAddExecute() throws Exception {
+    public String addCustomer() throws Exception {
         validateOnSubmit(customer);
         if (hasFieldErrors())
             return INPUT;
 
-        /*customerService.addCustomer(transformToEntityBean(customer));*/
-
         try {
-
-
-            System.out.println("----------------------------------dti - add " + customer_dti + "-------------------------------------------");
-
-            System.out.println("----------------------------------permit - add " + customer_mayorsPermit +  "-------------------------------------------");
-
-            System.out.println("----------------------------------aaf - add " + customer_aaf +  "-------------------------------------------");
-
-            System.out.println("----------------------------------card - add " + customer_signatureCard   +"-------------------------------------------");
-
-
-
             Customer customerEntity = transformToEntityBean(customer);
             customerEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             customerEntity.setCreatedTimestamp(new Date());
             customerEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             customerService.addCustomer(customerEntity);
-
-
         }catch(CustomerAlreadyExistsException e) {
             addFieldError("customer.customerCode", getText("err.customer.already.exist"));
             return INPUT;
@@ -449,7 +382,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         clearErrorsAndMessages();
         addActionMessage("Success! New Customer has been added.");
-
         return SUCCESS;
     }
 
@@ -461,6 +393,22 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public void validateOnSubmit(CustomerBean customerBean) {
+        clearErrorsAndMessages();
+        if (StringUtils.isBlank(customerBean.getCustomerName())) {
+            addFieldError("customer.customerName", getText("err.customerName.required"));
+        }
+        if (StringUtils.isBlank(customerBean.getPhone())) {
+            addFieldError("customer.phone", getText("err.phone.required"));
+        }
+        if (StringUtils.isBlank(customerBean.getMobile())) {
+            addFieldError("customer.mobile", getText("err.mobile.required"));
+        }
+        if (StringUtils.isBlank(customerBean.getEmail())) {
+            addFieldError("customer.email", getText("err.email.required"));
+        }
+    }
+    
     private CustomerBean transformToFormBean(Customer entity) {
 
         CustomerBean formBean = new CustomerBean();
@@ -510,33 +458,21 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     /*Dti Checkbox*/
     public boolean isCheckDti() {
-
-
-
         return customer_dti;
     }
 
     /*Mayor's Permit Checkbox*/
     public boolean isCheckMayorsPermit() {
-
-
-
         return customer_mayorsPermit;
     }
 
     /*Account Application Form Checkbox*/
     public boolean isCheckAaf() {
-
-
-
         return customer_aaf;
     }
 
     /*Signature Card Checkbox*/
     public boolean isCheckSignatureCard() {
-
-
-
         return customer_signatureCard;
     }
 
@@ -558,7 +494,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         System.out.println("----------------------------------dti " + customer_dti + "" + formBean.getDti() + "-------------------------------------------");
 
         if (customer_dti){
-
             formBean.setDti(1);
             entity.setDti(1);
         }else {
@@ -1065,14 +1000,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         Contacts consigneeEntity1 = transformContactToEntityBean(consignee);
         consigneeEntity1.setModifiedBy(commonUtils.getUserNameFromSession());
-
         consigneeEntity1.setModifiedTimestamp(new Date());
-
-
 
         Address consigneeEntity2 = transformAddressToEntityBean(consignee);
         consigneeEntity2.setModifiedBy(commonUtils.getUserNameFromSession());
-
         consigneeEntity2.setModifiedTimestamp(new Date());
 
         customerService.updateConsignee(consigneeEntity1, consigneeEntity2);
@@ -1169,7 +1100,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         }
 
         Integer customerId = getCustomerSessionId();
-
         entity.setReferenceTable("CUSTOMERS");
         entity.setReferenceId(customerId);
         entity.setAddressLine1(formBean.getAddressLine1());
@@ -1196,7 +1126,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         }
 
         Integer customerId = getCustomerSessionId();
-
         entity.setReferenceTable("CUSTOMERS");
         entity.setContactType("CONSIGNEE");
         entity.setReferenceId(customerId);
@@ -1226,18 +1155,15 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setEmail(contact.getEmail());
         formBean.setContactId(contact.getContactId());
         formBean.setFax(contact.getFax());
-
         formBean.setCreatedBy1(contact.getCreatedBy());
         formBean.setCreatedTimeStamp1(contact.getCreatedTimestamp());
         formBean.setReferenceId1(contact.getReferenceId());
-
         formBean.setAddressLine1(address.getAddressLine1());
         formBean.setAddressLine2(address.getAddressLine2());
         formBean.setCity(address.getCity());
         formBean.setState(address.getState());
         formBean.setZip(address.getZip());
         formBean.setAddressId(address.getAddressId());
-
         formBean.setCreatedBy2(address.getCreatedBy());
         formBean.setCreatedTimeStamp2(address.getCreatedTimestamp());
         formBean.setReferenceId2(address.getReferenceId());
@@ -1251,21 +1177,19 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Integer clientId = (Integer) sessionAttributes.get("clientId");
         return clientId;
     }
+    
+    @Override
+    public void prepare() {
+        addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
+        customerTypeList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_TYPE);
+        customerSearchList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_SEARCH);
+        rateTypeList = parameterService.getParameterMap(ParameterConstants.RATES_TYPE);
+        contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
+    }
 
-    public void validateOnSubmit(CustomerBean customerBean) {
-        clearErrorsAndMessages();
-        if (StringUtils.isBlank(customerBean.getCustomerName())) {
-            addFieldError("customer.customerName", getText("err.customerName.required"));
-        }
-        if (StringUtils.isBlank(customerBean.getPhone())) {
-            addFieldError("customer.phone", getText("err.phone.required"));
-        }
-        if (StringUtils.isBlank(customerBean.getMobile())) {
-            addFieldError("customer.mobile", getText("err.mobile.required"));
-        }
-        if (StringUtils.isBlank(customerBean.getEmail())) {
-            addFieldError("customer.email", getText("err.email.required"));
-        }
+    private Integer getCustomerSessionId() {
+        Integer customerId = (Integer) sessionAttributes.get("customerId");
+        return customerId;
     }
 
 
