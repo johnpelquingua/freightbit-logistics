@@ -66,7 +66,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public String loadUpdateStatus() {
         OrderItems entity = orderStatusLogsService.findOrderItemById(orderItemIdParam);
-        System.out.print("<<ORDERITEMIDPARAM" + orderItemIdParam);
         orderItem = transformToOrderItemFormBean(entity);
         return SUCCESS;
     }
@@ -86,8 +85,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public OrderItems transformToOrderItemEntity (OrderItemsBean formBean) {
         OrderItems entity = new OrderItems();
         entity.setStatus(formBean.getStatus());
-        System.out.print("<<<ORDER ITEM:" + formBean.getOrderItemId() );
         entity.setOrderItemId(formBean.getOrderItemId());
+        System.out.print("<<--------------------------" + entity.getStatus() + ", " + entity.getOrderItemId() + "------------------------------->" );
+
         return entity;
     }
 

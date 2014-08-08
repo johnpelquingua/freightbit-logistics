@@ -36,7 +36,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
     private List<VesselScheduleBean> vesselSchedules = new ArrayList<VesselScheduleBean>();
 
-    private List<Vendor> vendorList = new ArrayList<Vendor>();
+    private List<Vendor> vendorShippingList = new ArrayList<Vendor>();
+    private List<Vendor> vendorTruckingList = new ArrayList<Vendor>();
 
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OperationsBean operationsBean = new OperationsBean();
@@ -48,13 +49,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     @Override
     public void prepare() {
-        vendorList = vendorService.findVendorsByCriteria("vendorType", "SHIPPING", 1);
+        vendorShippingList = vendorService.findVendorsByCriteria("vendorType", "SHIPPING", 1);
+        vendorTruckingList = vendorService.findVendorsByCriteria("vendorType", "TRUCKING", 1);
     }
 
     public String findVesselSchedule() {
-        System.out.print("<------------------NameSizeParam: " + operationsBean.getNameSizeParam() + "--------------------------->");
-        System.out.print("<------------------orderItemIdParam: " + operationsBean.getOrderItemParam() + "--------------------------->");
-
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderItemIdParam", operationsBean.getOrderItemParam());
         sessionAttributes.put("nameSizeParam", operationsBean.getNameSizeParam());
@@ -66,6 +65,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
             vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
         }
+
         return SUCCESS;
     }
 
@@ -188,12 +188,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
         this.orderItem = orderItem;
     }
 
-    public List<Vendor> getVendorList() {
-        return vendorList;
+    public List<Vendor> getVendorShippingList() {
+        return vendorShippingList;
     }
 
-    public void setVendorList(List<Vendor> vendorList) {
-        this.vendorList = vendorList;
+    public void setVendorShippingList(List<Vendor> vendorShippingList) {
+        this.vendorShippingList = vendorShippingList;
     }
 
     public void setVendorService(VendorService vendorService) {
@@ -226,5 +226,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setOperationsBean(OperationsBean operationsBean) {
         this.operationsBean = operationsBean;
+    }
+
+    public List<Vendor> getVendorTruckingList() {
+        return vendorTruckingList;
+    }
+
+    public void setVendorTruckingList(List<Vendor> vendorTruckingList) {
+        this.vendorTruckingList = vendorTruckingList;
+    }
+
+    public Map getParamMap() {
+        return paramMap;
+    }
+
+    public void setParamMap(Map paramMap) {
+        this.paramMap = paramMap;
     }
 }

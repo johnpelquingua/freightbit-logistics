@@ -75,8 +75,8 @@
         </action>
 
         <action name="updateStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
-                method="loadUpdateStatus">
-            <result name="success" type="tiles">operations.updateStatus.tiles</result>
+                method="updateStatus">
+            <result name="success" type="redirect">viewStatusListItems</result>
         </action>
 
 

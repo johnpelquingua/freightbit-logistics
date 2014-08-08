@@ -50,7 +50,10 @@ public class DocumentAction extends ActionSupport implements Preparable {
     private List<ContactBean> contacts = new ArrayList<ContactBean>();
     private List<ConsigneeBean> consignees = new ArrayList<ConsigneeBean>();
 
+    @Override
+    public void prepare(){
 
+    }
 
 
 }

@@ -28,7 +28,7 @@
             <div class="panel-body">
 
                 <s:form cssClass="form-horizontal" theme="bootstrap" action="updateStatus">
-                    <s:hidden name="orderItem.orderItemIdParam" value="%{orderItemIdParam}"/>
+                    <s:hidden name="orderItem.orderItemId" value="%{orderItemIdParam}"/>
 
                     <div class="form-group">
 

@@ -53,6 +53,8 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
             Session session = getSessionFactory().getCurrentSession();
             session.saveOrUpdate(orderItems);
             log.debug("update succeed");
+            System.out.println("<----------------update succeed---------------->");
+            System.out.println(orderItems.getStatus() + ", " + orderItems.getOrderItemId());
         } catch (Exception e) {
             log.error("Update failed");
             throw e;
@@ -114,7 +116,7 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
             return instance;
 
         } catch (Exception e) {
-            log.error("Finding orderitem failed");
+            log.error("Finding order item failed");
             throw e;
         }
     }

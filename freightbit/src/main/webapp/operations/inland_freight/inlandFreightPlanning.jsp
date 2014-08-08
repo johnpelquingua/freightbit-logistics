@@ -1,121 +1,240 @@
-<html lang="en"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-    <title>Inland Operations</title>
+<!-- MIDDLE -->
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <h1 class="page-header">Inland Freight Planning</h1>
 
-    <link href="css/main.css" rel="stylesheet">
+    <!-- EDIT HERE -->
 
-    <link href="css/jojo.css" rel="stylesheet">
+    <div class="main-box">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <img src="images/add-user.png" class="box-icon">
+                    <span class="panel-title">Inland Operation</span>
+                </div>
+                <div class="panel-body">
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+                    <form class="form-horizontal" role="form">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <style id="holderjs-style" type="text/css"></style></head>
+                        <div class="form-group">
 
-<body style="">
+                            <label for="booknum" class="col-sm-2 control-label">Booking Number:</label>
 
-        <!-- MIDDLE -->
-
-        <div class="row" style="margin-top:-15px;">
-
-            <h1>Inland Freight Operations</h1>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-list"></i> Inland Freight Operations
-
-                            </h3>
-                        </div>
-
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered text-center">
-                                    <thead>
-                                    <tr class="header_center active">
-                                        <th class="tb-font-black"><input type="checkbox"></th>
-                                        <th class="tb-font-black">Booking Number</th>
-                                        <th class="tb-font-black">Booking Date</th>
-                                        <th class="tb-font-black">Customer Name</th>
-                                        <th class="tb-font-black">Consignee</th>
-                                        <th class="tb-font-black">Pick up Date</th>
-                                        <th class="tb-font-black">Estimated Delivery</th>
-                                        <th class="tb-font-black">Service Mode</th>
-                                        <th class="tb-font-black">Status</th>
-                                        <th class="tb-font-black">Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr class="success">
-                                        <td class="tb-font-black"><input type="checkbox"></td>
-                                        <td class="tb-font-black">MTY-1035</td>
-                                        <td class="tb-font-black">Mar. 19, 2013</td>
-                                        <td class="tb-font-black">Mighty Corp.</td>
-                                        <td class="tb-font-black">Bacolod City</td>
-                                        <td class="tb-font-black">Mar. 20, 2013</td>
-                                        <td class="tb-font-black">2 Days</td>
-                                        <td class="tb-font-black">Door to Door</td>
-                                        <td class="tb-font-black">ACCEPTED</td>
-                                        <td class="tb-font-black">
-                                            <a href="seafreight-operation-container.html" class="icon-action-link edit-booking"><img src="../includes/images/listofusers-b.png" style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;" class="icon-action circ-icon"></a>
-                                        </td>
-                                    </tr>
-                                    <tr class="success">
-                                        <td class="tb-font-black"><input type="checkbox"></td>
-                                        <td class="tb-font-black">MTY-1035</td>
-                                        <td class="tb-font-black">Mar. 19, 2013</td>
-                                        <td class="tb-font-black">Mighty Corp.</td>
-                                        <td class="tb-font-black">Bacolod City</td>
-                                        <td class="tb-font-black">Mar. 20, 2013</td>
-                                        <td class="tb-font-black">2 Days</td>
-                                        <td class="tb-font-black">Door to Door</td>
-                                        <td class="tb-font-black">ACCEPTED</td>
-                                        <td class="tb-font-black">
-                                            <a href="seafreight-operation-container.html" class="icon-action-link edit-booking"><img src="../includes/images/listofusers-b.png" style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;" class="icon-action circ-icon"></a>
-                                        </td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="booknum" value="MTY-1035" disabled>
                             </div>
+
                         </div>
 
-                        <div class="panel-footer">
-                            <ul class="pagination">
-                                <li><a href="#">&laquo;</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="booking2.html">2</a></li>
-                                <li><a href="booking2.html">&raquo;</a></li>
-                            </ul>
+                        <div class="form-group">
+
+                            <label for="vendor" class="col-sm-2 control-label">Vendor:</label>
+
+                            <div class="col-sm-10">
+                                <div style="width:90%;float:left;padding-right:10px;">
+                                    <s:select list="vendorTruckingList" name="operationsBean.vendorList"
+                                              id="operationsBean.vendorList"
+                                              listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                              emptyOption="true"
+                                            ></s:select>
+                                </div>
+                                <div style="width:5%;float:left;">
+                                    <a href="#.html" class="icon-action-link">
+                                        <img src="images/add-sched.png" class="icon-action circ-icon">
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
+
+                        <div class="form-group">
+
+                            <label for="driver" class="col-sm-2 control-label">Driver:</label>
+
+                            <div class="col-sm-10">
+                                <div style="width:90%;float:left;padding-right:10px;">
+                                    <select class="form-control" id="driver">
+                                        <option>Driver 1</option>
+                                        <option>Driver 2</option>
+                                        <option>Driver 3</option>
+                                    </select>
+                                </div>
+                                <div style="width:5%;float:left;">
+                                    <a href="#.html" class="icon-action-link">
+                                        <img src="images/add-sched.png" class="icon-action circ-icon">
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="truck" class="col-sm-2 control-label">Truck:</label>
+
+                            <div class="col-sm-10">
+                                <div style="width:90%;float:left;padding-right:10px;">
+                                    <select class="form-control" id="truck">
+                                        <option>Truck 1 - Plate Number 1</option>
+                                        <option>Truck 2 - Plate Number 2</option>
+                                        <option>Truck 3 - Plate Number 3</option>
+                                    </select>
+                                </div>
+                                <div style="width:5%;float:left;">
+                                    <a href="#.html" class="icon-action-link">
+                                        <img src="images/add-sched.png" class="icon-action circ-icon">
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="pickup" class="col-sm-2 control-label">Pickup Date:</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="from_date form-control step2" id="pickup" name="pickup" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;">
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="dropoff" class="col-sm-2 control-label">Drop off Date:</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="from_date form-control step2" id="dropoff" name="dropoff" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;">
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                    <div style="float: right;">
+                        <button class="btn btn-default" onclick="location.href='inland-operation.html'">Save</button>
+                        <button class="btn btn-default" onclick="location.href='inland-operation.html'">Cancel</button>
                     </div>
+
                 </div>
 
             </div>
-        <!-- END OF MAIN BOX -->
+
+        </div>
 
 
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/tooltip.js"></script>
-        <script src="js/docs.min.js"></script>
+    </div>
 
-</body>
-</html>
+
+    <!--SIDEBAR -->
+
+    <div class="sidebar-box">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <img src="images/chat.png" class="box-icon">
+                <span class="panel-title">Booking Information</span>
+
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive list-table">
+                    <table class="table table-striped table-bordered text-center">
+                        <tbody>
+                        <tr>
+                            <td class="tb-font-black">Shipper</td>
+                            <td class="tb-font-black">Solutions Resource</td>
+                        </tr>
+                        <tr>
+                            <td class="tb-font-black">Consignee</td>
+                            <td class="tb-font-black">Solutions Resource</td>
+                        </tr>
+                        <tr>
+                            <td class="tb-font-black">Pick up Address</td>
+                            <td class="tb-font-black">Luzon</td>
+                        </tr>
+                        <tr>
+                            <td class="tb-font-black">Delivery Address</td>
+                            <td class="tb-font-black">Davao</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END OF SIDEBAR -->
+
+</div>
+
+<!-- END OF THE MIDDLE -->
+
+</div>
+</div>
+
+<script type="text/javascript">
+
+        var pickup = $('#pickup');
+        var dropoff = $('#dropoff');
+
+
+        //pick up date validation
+        pickup.datetimepicker({
+
+            // on 5:00pm
+            timeFormat: 'h:mm TT',
+            minDate: 0,
+            onClose: function(dateText, inst) {
+
+                if (dropoff.val() != '') {
+                    var testStartDate = pickup.datetimepicker('getDate');
+                    var testEndDate = dropoff.datetimepicker('getDate');
+
+                    if (testStartDate > testEndDate)
+                        dropoff.datetimepicker('setDate', testStartDate);
+
+                }
+
+                else {
+                    dropoff.val(dateText);
+                }
+            },
+
+            onSelect: function (selectedDateTime){
+                dropoff.datetimepicker('option', 'minDate', pickup.datetimepicker('getDate') );
+            }
+
+        });
+
+        // delivery date validation -jp
+        dropoff.datetimepicker({
+
+            // on 6:00pm
+            timeFormat: 'h:mm TT',
+            minDate: 0,
+            onClose: function(dateText, inst) {
+
+                if (pickup.val() != '') {
+                    var testStartDate = pickup.datetimepicker('getDate');
+                    var testEndDate = dropoff.datetimepicker('getDate');
+
+                    if (testStartDate > testEndDate)
+                        pickup.datetimepicker('setDate', testEndDate);
+
+                }
+
+                else {
+                    pickup.val(dateText);
+                }
+            },
+
+            onSelect: function (selectedDateTime){
+                pickup.datetimepicker('option', 'maxDate', dropoff.datetimepicker('getDate') );
+            }
+
+        });
+
+</script>

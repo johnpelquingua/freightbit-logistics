@@ -1,10 +1,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true" %>
 
 <div class="row">
     <div class="col-lg-12">
@@ -55,7 +54,7 @@
 
                         <div class="col-sm-10">
                             <div style="width:90%;float:left;padding-right:10px;">
-                                <s:select list="vendorList" name="operationsBean.vendorList"
+                                <s:select list="vendorShippingList" name="operationsBean.vendorList"
                                           id="operationsBean.vendorList"
                                           listKey="vendorId" listValue="vendorCode" cssClass="form-control"
                                           emptyOption="true"
