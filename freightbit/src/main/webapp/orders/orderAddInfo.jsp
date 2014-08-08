@@ -33,7 +33,8 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-book"></i> Order Details</h3>
+                <h3 class="panel-title"><i class="fa fa-book"></i> Order Details
+                </h3>
             </div>
 
             <div class="panel-body">
@@ -103,6 +104,13 @@
 
         </div>
     </div>
+
+    <div class="col-lg-2">
+        <div class="btn-toolbar pull-right">
+            <a class="btn btn-primary">Edit Booking</a>
+        </div>
+    </div>
+
 </div>
 
 <div class="row">
@@ -228,67 +236,241 @@
 </div>
 
 <div class="row">
+
     <div class="col-lg-12">
+
         <div class="panel panel-primary">
 
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-list-ol"></i> Cargo Details</h3>
             </div>
 
-            <div class="panel-body">
-                <div class="table-responsive list-table">
-                    <table class="table table-striped table-hover table-bordered text-center tablesorter">
-                        <thead>
-                        <tr class="header_center">
-                            <th class="tb-font-black">Quantity</th>
-                            <th class="tb-font-black">Size</th>
-                            <th class="tb-font-black">Weight</th>
-                            <th class="tb-font-black">Class</th>
-                            <th class="tb-font-black">Commodity</th>
-                            <th class="tb-font-black">Value</th>
-                            <th class="tb-font-black">Rate</th>
-                            <th class="tb-font-black">Comment</th>
-                            <th class="tb-font-black">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+            <s:form cssClass="form-horizontal" theme="bootstrap" action="addItemsInTable" >
 
-                        <s:iterator value="orderItems" var="orderItem">
-                            <tr>
-                                <td class="tb-font-black"><s:property value="quantity"/></td>
-                                <td class="tb-font-black"><s:property value="nameSize"/></td>
-                                <td class="tb-font-black"><s:property value="weight"/></td>
-                                <td class="tb-font-black"><s:property value="classification"/></td>
-                                <td class="tb-font-black"><s:property value="description"/></td>
-                                <td class="tb-font-black"><s:property value="declaredValue"/></td>
-                                <td class="tb-font-black"><s:property value="rate"/></td>
-                                <td class="tb-font-black"><s:property value="remarks"/></td>
+                <div class="form-group" style="padding-top: 25px;">
 
-                                <td class="tb-font-black">
+                    <label class="col-lg-2 col-lg-offset-1 control-label" >
+                        Container Quantity:
+                    </label>
 
-                                    <s:url var="deleteItemUrl" action="deleteItem">
-                                        <s:param name="customersItemIdParam" value="%{customerItemsId}"></s:param>
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
-                                         title="Delete this Item?"
-                                         onclick="return confirm('Do you really want to delete?');">
-                                        <img src="includes/images/remove-user.png" class="icon-action circ-icon">
-                                    </s:a>
+                    <div class="col-lg-3" >
+                        <s:select cssClass="form-control"
 
-                                </td>
-                            </tr>
-                        </s:iterator>
-                        </tbody>
+                                  id="orderItem.quantity"
+                                  name="orderItem.quantity"
+                                  list="containerQuantity"
+                                  emptyOption="true"
+                                />
+                    </div>
 
-                    </table>
+                    <label class="col-lg-2 control-label" >
+                        Container Size:
+                    </label>
+
+                    <div class="col-lg-3" >
+                        <s:select cssClass="form-control"
+
+                                  id="orderItem.nameSize"
+                                  name="orderItem.nameSize"
+                                  list="containerList"
+                                  listKey="key"
+                                  listValue="value"
+                                  emptyOption="true"
+                                  value="%{orderItem.nameSize}"
+                                />
+                    </div>
+
                 </div>
+
+                <div class="form-group">
+
+                    <label class="col-lg-2 col-lg-offset-1 control-label">
+                        Weight:
+                    </label>
+
+                    <div class="col-lg-3" >
+                        <s:textfield cssClass="form-control step3"
+                                     name="orderItem.weight"
+                                     id="orderItem.weight"
+                                     value="%{orderItem.weight}"
+
+                                />
+                    </div>
+
+                    <label class="col-lg-2 control-label" >
+                        Volume:
+                    </label>
+                    <div class="col-lg-3" >
+                            <%--<s:select cssClass="form-control step3"
+                                        id="volume"
+                                        name="orderItem.volume"
+                                        value="%{orderItem.volume}"
+                                        style="margin-bottom: 15px !important;"
+                                        list="{'Select Volume'}"
+                                        />--%>
+                        <s:textfield cssClass="form-control step3"
+                                     name="orderItem.volume"
+                                     id="orderItem.volume"
+
+                                />
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-lg-2 col-lg-offset-1 control-label" >
+                        Classification:
+                    </label>
+
+                    <div class="col-lg-3" >
+                        <s:textfield cssClass="form-control step3"
+                                     name="orderItem.classification"
+                                     id="orderItem.classification"
+                                      />
+
+                    </div>
+
+                    <label class="col-lg-2 control-label" for="orderItem.description" >
+                        Commodity:
+                    </label>
+
+                    <div class="col-lg-3" >
+
+                        <s:textfield cssClass="form-control step3"
+                             name="orderItem.description"
+                             id="description"
+                             value="%{orderItem.description}"
+
+                        />
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-lg-2 col-lg-offset-1 control-label" >
+                        Rate:
+                    </label>
+                    <div class="col-lg-3" >
+                        <s:textfield cssClass="form-control step3"
+                             id="orderItem.rate"
+                             name="orderItem.rate"
+                             value="%{orderItem.rate}"
+
+                        />
+                    </div>
+
+                    <label class="col-lg-2 control-label">
+                        Declared Value:
+                    </label>
+                    <div class="col-lg-3" >
+
+                        <s:textfield cssClass="form-control step3"
+                             name="orderItem.declaredValue"
+                             id="orderItem.declaredValue"
+                             value="%{orderItem.declaredValue}"
+
+                        />
+
+                    </div>
+
+                </div>
+
+                <div class="form-group" >
+
+                    <label class="col-lg-2 col-lg-offset-1 control-label">
+                        Comments:
+                    </label>
+                    <div class="col-lg-3" >
+                        <s:textarea cssClass="form-control step3"
+                            name="orderItem.remarks"
+                            id="orderItem.remarks"
+                            value="%{orderItem.remarks}"
+                            style="resize: none"
+                        />
+                    </div>
+
+                    <div class="col-lg-2 col-lg-offset-4" style="margin-top: 20px;">
+                        <s:submit name="submit" cssClass="btn btn-primary" value="Add Item" />
+                    </div>
+
+                </div>
+
+            </s:form>
+
+                <div class="itemPartOnLoad">
+
+                <div class="panel-body">
+                    <div class="table-responsive list-table">
+                        <table class="table table-striped table-hover table-bordered text-center tablesorter">
+                            <thead>
+                            <tr class="header_center">
+                                <th class="tb-font-black">Quantity</th>
+                                <th class="tb-font-black">Size</th>
+                                <th class="tb-font-black">Weight</th>
+                                <th class="tb-font-black">Volume</th>
+                                <th class="tb-font-black">Class</th>
+                                <th class="tb-font-black">Commodity</th>
+                                <th class="tb-font-black">Rate</th>
+                                <th class="tb-font-black">Value</th>
+                                <th class="tb-font-black">Comments</th>
+                                <th class="tb-font-black">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <s:iterator value="orderItems" var="orderItem">
+                                <tr>
+                                    <td class="tb-font-black"><s:property value="quantity"/></td>
+                                    <td class="tb-font-black"><s:property value="nameSize"/></td>
+                                    <td class="tb-font-black"><s:property value="weight"/></td>
+                                    <td class="tb-font-black"><s:property value="weight"/></td>
+                                    <td class="tb-font-black"><s:property value="classification"/></td>
+                                    <td class="tb-font-black"><s:property value="description"/></td>
+                                    <td class="tb-font-black"><s:property value="declaredValue"/></td>
+                                    <td class="tb-font-black"><s:property value="rate"/></td>
+                                    <td class="tb-font-black"><s:property value="remarks"/></td>
+
+                                    <td class="tb-font-black">
+
+                                        <s:url var="deleteItemUrl" action="deleteItem">
+                                            <s:param name="" value="%{customerItemsId}"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
+                                             title="Delete this Item?"
+                                             onclick="return confirm('Do you really want to delete?');">
+                                            <img src="includes/images/remove-user.png" class="icon-action circ-icon">
+                                        </s:a>
+
+                                    </td>
+                                </tr>
+                            </s:iterator>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+
+                </div>
+
+
+
+            <div id="containerPart" style="clear:both;">
+
+            </div>
+
+            <div id="itemPart" style="clear:both;">
+
             </div>
 
         </div>
     </div>
 </div>
+
 </div>
 </div>
 </div>
 </div>
-<!-- /.row -->

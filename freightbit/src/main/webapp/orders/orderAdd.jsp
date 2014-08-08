@@ -785,10 +785,6 @@
 
                 </s:form>
 
-                <div id="3rdPart" style="clear:both;">
-
-                </div>
-
             </div>
         </div>
     </div>

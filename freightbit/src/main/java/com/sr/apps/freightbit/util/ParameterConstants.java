@@ -48,4 +48,6 @@ public class ParameterConstants {
 
     public final static String ORDER_STATUS = "ORDER_STATUS";
 
+    public final static String CONTAINER_SIZE = "CONTAINER_SIZE";
+
 }

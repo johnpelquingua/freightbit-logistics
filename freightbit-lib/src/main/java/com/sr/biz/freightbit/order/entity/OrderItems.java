@@ -32,11 +32,12 @@ public class OrderItems implements java.io.Serializable {
     private Float rate;
     private String nameSize;
     private String status;
+    private Float volume;
 
     public OrderItems() {
     }
 
-    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double weight, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Float rate, String nameSize, String status) {
+    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double weight, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Float rate, String nameSize, String status, Float volume) {
         this.orderItemId = orderItemId;
         this.clientId = clientId;
         this.orderId = orderId;
@@ -53,6 +54,7 @@ public class OrderItems implements java.io.Serializable {
         this.rate = rate;
         this.nameSize = nameSize;
         this.status = status;
+        this.volume = volume;
     }
 
     @Id
@@ -217,6 +219,15 @@ public class OrderItems implements java.io.Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Column(name = "volume")
+    public Float getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Float volume) {
+        this.volume = volume;
     }
 }
 
