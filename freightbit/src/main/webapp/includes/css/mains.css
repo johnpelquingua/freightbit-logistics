@@ -6,6 +6,8 @@
 
 body {
     background: #dfe0e1;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #636363;
 }
 
 .drop-span:hover {
@@ -714,3 +716,56 @@ span.pagelinks {
     padding-right: 20px;
     padding-left: 0px;
 }
+
+.box-header h3.title {
+     margin: 0;
+     line-height: 37px;
+     color: #636363;
+     font-size: 12px;
+     text-transform: uppercase;
+     padding-left: 9px;
+     border-bottom: 1px solid #cdcdcd;
+ }
+
+.title-label {
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 18px;
+    display: block;
+    margin-bottom: 5px !important;
+
+}
+
+ .navbar-inverse, .side-nav {
+     background-color: #323232 !important;
+ }
+
+ .navbar {
+     min-height: 55px !important;
+ }
+
+ .side-nav {
+     top: 55px !important;
+ }
+
+ .navbar-nav > li > a {
+     line-height: 24px !important;
+ }
+
+ .navbar-inverse .navbar-nav > li > a {
+     font-size: 12px !important;
+     color: #dddddd !important;
+ }
+
+ .dropdown-menu > li > a {
+     font-size: 12px;
+ }
+
+ .dropdown-menu > li > a {
+     padding: 0px 20px !important;
+ }
+
+ h1, .h1 {
+     font-size: 24px;
+
+ }

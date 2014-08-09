@@ -973,7 +973,7 @@ function contactSearch(){
     serMod = $("select[name='order.modeOfService'] option:selected").val();
     fType = $("select[name='order.freightType'] option:selected").val();
     payMod = $("select[name='order.modeOfPayment'] option:selected").val();
-
+    alert(custId);
     if (custId == "") {
 
             document.getElementById("2ndPartOnLoad").style.display = 'block';

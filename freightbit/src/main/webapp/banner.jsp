@@ -27,15 +27,31 @@
 </div>--%>
 
 <ul class="nav navbar-nav navbar-right navbar-user">
+
     <li class="dropdown messages-dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Notifications <span
-                class="badge">3</span> <b class="caret"></b></a>
-        <ul class="dropdown-menu" style="min-width: 220px;">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-question-circle"></i> Help
+            <b class="caret"></b></a>
+        <ul class="dropdown-menu" style="min-width: 130px;">
 
             <li class="message-preview">
                 <a href="#">
-                    <span class="avatar"><img alt="User Pic" src="../includes/images/photo.png" class="img-circle"
-                                              style="width:40px; "></span>
+                    <li><a href="Help"><i class="fa fa-question-circle"></i> Help Center</a></li>
+
+                </a>
+            </li>
+
+        </ul>
+
+    </li>
+
+    <li class="dropdown messages-dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Notifications
+            <b class="caret"></b></a>
+        <ul class="dropdown-menu" style="min-width: 190px;">
+
+            <li class="message-preview">
+                <a href="#">
+                    <span class="avatar"><img alt="User Pic" src="../includes/images/photo.png" class="img-circle" style="width:40px; "></span>
                     <span class="name">Jan Ernest:</span>
                     <span class="message">3 New Bookings</span>
                 </a>
@@ -48,8 +64,8 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <c:out value="${sessionScope.loggedinUser}"/><b
                 class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-            <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+            <li><a href="#"><i class="fa fa-user"></i> Edit Profile</a></li>
+            <li><a href="#"><i class="fa fa-gear"></i> User Settings</a></li>
             <li class="divider"></li>
             <li><a href="<c:url value='../j_spring_security_logout'/>"> <i class="fa fa-power-off"></i> Log Out</a></li>
         </ul>

@@ -23,53 +23,58 @@
 </div>--%>
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4" style="margin-top: 165px;">
+        <div class="col-md-4 col-md-offset-4" style="margin-top: 100px;">
             <div class="panel panel-default" style="border-color:#000 !important;">
                 <div class="panel-heading" style="font-size: 24px;background-color: #000;">
                     <img src="includes/images/ernest-logo_2.png"
                          style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
                 </div>
+                <div class="box-header">
+                    <h3 class="title">
+                        Log in
+                    </h3>
+                </div>
                 <s:actionerror/>
-                <div class="panel-body" style="margin-bottom: -30px;">
+                <div class="panel-body">
                     <form class="form-horizontal" role="form" theme="bootstrap"  action="<c:url value='j_spring_security_check' />" method='POST'>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" style="padding-top: 6px;">
+                            <label class="col-lg-12 control-label title-label" style="text-align: left">
                                 Username</label>
 
-                            <div class="col-sm-9" style="margin-bottom: 15px;">
-                                <s:textfield name="username" cssClass="form-control" placeholder="Username" required="true"/>
+                            <div class="col-lg-12">
+                                <s:textfield name="username" cssClass="form-control" required="true" cssStyle="background: url('includes/images/asterisk.png'); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat;"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label" style="padding-top: 6px;">
+                            <label class="col-lg-12 control-label title-label" style="text-align: left">
                                 Password</label>
 
-                            <div class="col-sm-9">
-                                <s:password name="password" type="password" cssClass="form-control" placeholder="Password" required="true"/>
+                            <div class="col-lg-12">
+                                <s:password name="password" type="password" cssClass="form-control" required="true" cssStyle="background: url('includes/images/asterisk.png'); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat;"/>
                             </div>
                         </div>
-                        <!-- <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
+
+                        <div class="form-group" style="border-bottom: 1px solid #cdcdcd; padding-bottom: 15px;">
+                            <div class="col-lg-12">
                                 <div class="checkbox">
-                                    <label>
+                                    <label style="font-size: 12px; font-weight: normal; line-height: 18px;">
                                         <input type="checkbox" name="j_spring_security_remember_me"/>
-                                        Remember me
+                                        Remember me on this computer
                                     </label>
                                 </div>
                             </div>
-                        </div>-->
-                        <div class="form-group last">
-                            <div class="col-sm-offset-9 ">
-                                <s:submit cssClass="btn btn-info btn-sm" method="execute" value="Login"
-                                          style=" color: #eac117; background-color: #000; border-color: #ddd; margin-left: 5px; padding: 5px 15px 5px 15px;"/>
+                        </div>
+
+                        <div class="form-group last" style="margin-bottom: -10px;">
+                            <div class="col-sm-offset-6 ">
+                                <s:submit cssClass="btn btn-primary btn-sm" method="execute" value="Log in" cssStyle="margin-right: 15px;"/>
+                                          <%--style=" color: #eac117; background-color: #000; border-color: #ddd; margin-left: 5px; padding: 5px 15px 5px 15px;"/>--%>
                             </div>
                         </div>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                 </div>
-                <%--<div class="white navbar-fixed-bottom" style="padding-top: 20px; height: 80px; background: url('..includes/images/background.jpg');">
 
-                </div>--%>
             </div>
         </div>
     </div>
