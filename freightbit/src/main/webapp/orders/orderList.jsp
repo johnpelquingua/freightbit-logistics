@@ -2,86 +2,12 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<%--
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-    <h1 class="booking page-header">
-    Booking
-    </h1>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel booking panel-info">
-                <div class="booking panel-heading">
-                    <img src="../includes/images/booking.png" class="box-icon">
-                    <span class="booking panel-title">List of Bookings</span>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered text-center">
-                            <thead>
-                                <tr class="header_center active">
-                                  <th class="tb-font-black">Booking Date</th>
-                                  <th class="tb-font-black">Booking Number</th>
-                                  <th class="tb-font-black">Customer</th>
-                                  <th class="tb-font-black">Consignee</th>
-                                  <th class="tb-font-black">Destination</th>
-                                  <th class="tb-font-black">Date / Time</th>
-                                  <th class="tb-font-black">Status</th>
-                                  <th class="tb-font-black">Processed By</th>
-                                  <th class="tb-font-black">Action</th>
-                                </tr>
-                            </thead>
-                        <tbody>
-
-                            <tr>
-                              <td class="tb-font-black">5-26-2014 </td>
-                              <td class="tb-font-black">MTY-123 </td>
-                              <td class="tb-font-black">Mighty Corp.</td>
-                              <td class="tb-font-black">Palawan Co.</td>
-                              <td class="tb-font-black">Palawan, Puerto Princesa</td>
-                              <td class="tb-font-black">5-28-2014 / 7:45:00</td>
-                              <td class="tb-font-black">Active</td>
-                              <td class="tb-font-black">Merlin</td>
-
-                              <td class="tb-font-black">
-                                  <a href="#"><img src="../includes/images/edit-booking.png" title="Edit Booking"> </a>
-                                  <a href="#"><img src="../includes/images/delete-booking.png" title="Delete Booking"> </a>
-                                  <a href="#"><img src="../includes/images/info-booking.png" title="Booking Info"> </a>
-                              </td>
-
-                            </tr>
-
-                        </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="panel-footer">
-
-                    <span class="pull-right">
-                        <button type="button" class="btn btn-info new-booking" onclick="location.href='bookingSearch'">
-                              Search Booking
-                        </button>
-                        <button type="button" class="btn btn-info new-booking" onclick="location.href='loadAddOrderPage'">
-                              New Booking
-                        </button>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-</div>
---%>
-
 <div class="row" style=" margin-top: -15px; ">
     <div class="col-lg-12">
         <h1>Booking Module </h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><i class="fa fa-list"></i> Booking List</li>
+            <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
+            <li class="active"> Booking List</li>
         </ol>
 
     </div>
@@ -103,7 +29,16 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> Booking List</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Booking List</h3>
+                <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking" onclick="location.href='bookingSearch'">
+                        <i class="fa fa-search"></i> Search Booking
+                    </button>
+                    <button type="button" class="btn btn-primary new-booking"
+                            onclick="location.href='loadAddOrderPage'">
+                        <i class="fa fa-book"></i> New Booking
+                    </button>
+                </span>
             </div>
 
             <div class="panel-body">
@@ -112,10 +47,10 @@
                                        style="margin-top: 15px;">
 
                             <td><display:column property="orderNumber" title="Order #" class="tb-font-black"
-                                                style="text-align: center;" > </display:column></td>
-                            <td><display:column property="shipperCode" title="Shipper" class="tb-font-black"
+                                                style="text-align: center;" > </i></display:column></td>
+                            <td><display:column property="shipperContactId" title="Shipper" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="consigneeCode" title="Consignee" class="tb-font-black"
+                            <td><display:column property="consigneeContactId" title="Consignee" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="serviceType" title="Type" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
@@ -132,19 +67,21 @@
                                     <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editOrderUrl}" rel="tooltip"
-                                     title="Edit this vendor">
-                                    <img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
-                                    style="border-radius: 25%;">
+                                     title ="Edit order">
+                                    <%--<img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
+                                    style="border-radius: 25%;">--%>
+                                    <i class="fa fa-pencil"></i>
                                 </s:a>
 
                                 <s:url var="deleteOrderUrl" action="deleteOrder">
                                     <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip"
-                                     title="Delete this order"
+                                     title="Delete order"
                                      onclick="return confirm('Do you really want to delete?');">
-                                    <img src="../includes/images/delete-booking.png" class="icon-action circ-icon"
-                                    style="border-radius: 25%;">
+                                    <%--<img src="../includes/images/delete-booking.png" class="icon-action circ-icon"
+                                    style="border-radius: 25%;">--%>
+                                    <i class="fa fa-trash-o"></i>
                                 </s:a>
 
                                 <s:url var="viewInfoOrderUrl" action="viewInfoOrder">
@@ -152,18 +89,20 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip"
                                      title="View Booking Info">
-                                    <img src="../includes/images/info-b.png" class="icon-action circ-icon"
-                                    style="border-radius: 25%;">
+                                    <%--<img src="../includes/images/info-b.png" class="icon-action circ-icon"
+                                    style="border-radius: 25%;">--%>
+                                    <i class="fa fa-info-circle"></i>
                                 </s:a>
                                 <s:a class="icon-action-link" href="#" rel="tooltip"
-                                     title="View Booking Info" id="approve" onclick="approve()">
-                                     <img src="../includes/images/info-b.png" class="icon-action circ-icon"
-                                     style="border-radius: 25%;">
+                                     title="Approve or Disapprove order" id="approve" onclick="approve()">
+                                     <%--<img src="../includes/images/info-b.png" class="icon-action circ-icon"
+                                     style="border-radius: 25%;">--%>
+                                    <i class="fa fa-check-circle-o"></i>
                                 </s:a>
                                 </display:column>
                             </td>
 
-                        </display:table>
+                        </display:table >
 
                 </div>
             </div>
@@ -171,10 +110,10 @@
             <div class="panel-footer">
 
                     <span class="pull-right">
-                        <button type="button" class="btn btn-info new-booking" onclick="location.href='bookingSearch'">
+                        <button type="button" class="btn btn-success new-booking" onclick="location.href='bookingSearch'">
                             <i class="fa fa-search"></i> Search Booking
                         </button>
-                        <button type="button" class="btn btn-info new-booking"
+                        <button type="button" class="btn btn-primary new-booking"
                                 onclick="location.href='loadAddOrderPage'">
                             <i class="fa fa-book"></i> New Booking
                         </button>
@@ -183,7 +122,6 @@
         </div>
     </div>
     <!-- /.row -->
-
 
 </div>
 
@@ -204,26 +142,28 @@
 </div>
 
 <style>
+
 #modal {
   width: 300px;
-      height: 80px;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      margin-top: -100px;
-      margin-left: -150px;
-      background-color: rgba(0,0,0,0.5);
-      border-radius: 5px;
-      text-align: center;
-      z-index: 11; /* 1px higher than the overlay layer */
+  height: 80px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -150px;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 5px;
+  text-align: center;
+  z-index: 11; /* 1px higher than the overlay layer */
 
-    /* Embiggen */
-    transform: scale(1.5); /* prefix me */
+   /* Embiggen */
+   transform: scale(1.5); /* prefix me */
 
-    /* Hidden */
-    opacity: 0;
-    pointer-events: none;
+   /* Hidden */
+   opacity: 0;
+   pointer-events: none;
 }
+
 .dialogIsOpen #page-wrap {
 
   /* Blur and de-color */
@@ -233,6 +173,7 @@
   -webkit-transform: scale(0.9);
 
 }
+
 .dialogIsOpen #modal {
 
   /* Regular size and visible */

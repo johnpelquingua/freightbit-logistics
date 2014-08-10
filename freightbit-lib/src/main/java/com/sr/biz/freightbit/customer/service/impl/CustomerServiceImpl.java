@@ -219,6 +219,10 @@ public class CustomerServiceImpl implements CustomerService {
         return addressDao.findAddressById(addressId);
     }
 
+    @Override
+    public Address findAddressByRefId(Integer contactId) {
+        return addressDao.findAddressByRefId(contactId);
+    }
 
     @Override
     public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId) {

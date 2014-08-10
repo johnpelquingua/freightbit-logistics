@@ -663,7 +663,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         Integer customerId = getCustomerSessionId();
 
-        entity.setReferenceTable("CUSTOMER");
+        entity.setReferenceTable("CUSTOMERS");
         entity.setReferenceId(customerId);
         entity.setAddressLine1(formBean.getAddressLine1());
         entity.setAddressLine2(formBean.getAddressLine2());

@@ -682,8 +682,9 @@ ul#css3menu1 li {
 }
 
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
-    color: #545145 !important;
     text-align: center !important;
+    color: #454545 !important;
+
 }
 
 span.pagebanner {
@@ -768,4 +769,26 @@ span.pagelinks {
  h1, .h1 {
      font-size: 24px;
 
+ }
+
+ legend {
+     font-size: 15.6px;
+     font-weight: 600;
+     margin-bottom: 0;
+     display: block;
+     width: 100%;
+     padding: 0;
+     margin-bottom: 18px;
+     font-size: 18px;
+     line-height: 36px;
+     border: 0;
+     border-bottom: 1px solid #e5e5e5;
+ }
+
+ .control-label {
+     text-align: right;
+     font-size: 12px;
+     font-weight: normal;
+     line-height: 18px;
+     margin-top: 10px !important;
  }

@@ -24,6 +24,8 @@ public interface AddressDao {
 
     public Address findAddressById(Integer addressId);
 
+    public Address findAddressByRefId(Integer contactId);
+
     public Address findContactByReferenceTableAndId(String referenceTable, Integer referenceId);
 
     public List<Address> findAddressByRefTableAndIdAndType(String referenceTable, Integer referenceId, String addressType);

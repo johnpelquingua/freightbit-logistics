@@ -553,159 +553,197 @@
 <div class="col-lg-12">
 <div class="panel panel-primary">
 <div class="panel-heading">
-    <img src="../includes/images/add-user.png" class="box-icon">
+    <%--<img src="../includes/images/add-user.png" class="box-icon">--%>
+     <i class="fa fa-book"></i>
     <span class="panel-title">Booking Information</span>
 </div>
 <div class="panel-body">
 
 <div class="container">
     <div class="row form-group">
-        <div class="col-lg-12">
+        <%--<div class="col-lg-12">
             <ul class="nav nav-pills nav-justified thumbnail setup-panel">
                 <li class="active"><a href="#step-1">
                     <h4 class="list-group-item-heading">Step 1</h4>
                     <p class="list-group-item-text">First step description</p>
                 </a></li>
-                <%--<li class="disabled"><a href="#step-2">
+                <li class="disabled"><a href="#step-2">
                     <h4 class="list-group-item-heading">Step 2</h4>
                     <p class="list-group-item-text">Second step description</p>
                 </a></li>
                 <li class="disabled"><a href="#step-3">
                     <h4 class="list-group-item-heading">Step 3</h4>
                     <p class="list-group-item-text">Third step description</p>
-                </a></li>--%>
+                </a></li>
             </ul>
-        </div>
+        </div>--%>
     </div>
     <div class="row setup-content" id="step-1">
         <div class="col-lg-12">
-            <div class="col-lg-12 well text-center">
-                <%--<h1> STEP 1</h1>--%>
-                <s:form theme="bootstrap" action="addOrder" >
 
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Service Requirement:</label>
+            <div class="col-lg-12 text-center">
 
-                    <div class="col-lg-9">
+                <div class="well">
+                    <fieldset class="inputs">
+                        <legend style="text-align: left;">
+                            <span >
+                                Basic Information
+                            </span>
+                        </legend>
 
-                        <s:select cssClass="form-control step1"
-                                  style="margin-bottom: 15px !important;"
-                                  name="order.serviceRequirement"
-                                  list="serviceRequirementList"
-                                  id="order.serviceRequirement"
-                                  onchange="serviceValidate()"
-                                  listKey="key"
-                                  listValue="value"
-                        />
+                        <s:form theme="bootstrap" action="addOrder" >
 
-                    </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <label class="col-lg-2 control-label">Service Requirement*</label>
+
+                            <div class="col-lg-10">
+
+                                <s:select cssClass="form-control step1"
+                                          style="margin-bottom: 15px !important;"
+                                          name="order.serviceRequirement"
+                                          list="serviceRequirementList"
+                                          id="order.serviceRequirement"
+                                          onchange="serviceValidate()"
+                                          listKey="key"
+                                          listValue="value"
+                                />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Service Mode*</label>
+
+                            <div class="col-lg-10">
+
+                                <s:select id="order.modeOfService"
+                                          cssClass="form-control step1"
+                                          style="margin-bottom: 15px !important;"
+                                          onchange="typeValidate()"
+                                          name="order.modeOfService"
+                                          list="modeOfServiceList"
+                                          listKey="key"
+                                          listValue="value"
+                                          value="orderBean.modeOfService"
+                                />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Freight Type*</label>
+
+                            <div class="col-lg-10">
+
+                                <s:select id="order.freightType"
+                                          cssClass="form-control step1"
+                                          style="margin-bottom: 15px !important;"
+                                          name="order.freightType"
+                                          list="freightTypeList"
+                                          listKey="key"
+                                          listValue="value"
+                                />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Payment Mode*</label>
+
+                            <div class="col-lg-10">
+
+                                <s:select id="order.modeOfPayment"
+                                          cssClass="form-control step1"
+                                          style="margin-bottom: 15px !important;"
+                                          name="order.modeOfPayment"
+                                          list="modeOfPaymentList"
+                                          listKey="key"
+                                          listValue="value"
+                                />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Customer Name*</label>
+
+                            <div class="col-lg-10">
+
+                                <s:select id="customerName"
+                                          cssClass="form-control step1"
+                                          style="margin-bottom: 15px !important;"
+                                          name="order.customerId"
+                                          list="customerList"
+                                          listKey="customerId"
+                                          listValue="customerName"
+                                          emptyOption="true"
+                                />
+                                <%--onchange="contactSearch()"--%>
+
+                            </div>
+                            <div id="ajaxResponse"></div>
+                        </div>
+
+                    </fieldset>
                 </div>
 
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Service Mode:</label>
-
-                    <div class="col-lg-9">
-
-                        <s:select id="order.modeOfService"
-                                  cssClass="form-control step1"
-                                  style="margin-bottom: 15px !important;"
-                                  onchange="typeValidate()"
-                                  name="order.modeOfService"
-                                  list="modeOfServiceList"
-                                  listKey="key"
-                                  listValue="value"
-                                  value="orderBean.modeOfService"
-                        />
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Freight Type:</label>
-
-                    <div class="col-lg-9">
-
-                        <s:select id="order.freightType"
-                                  cssClass="form-control step1"
-                                  style="margin-bottom: 15px !important;"
-                                  name="order.freightType"
-                                  list="freightTypeList"
-                                  listKey="key"
-                                  listValue="value"
-                        />
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Payment Mode:</label>
-
-                    <div class="col-lg-9">
-
-                        <s:select id="order.modeOfPayment"
-                                  cssClass="form-control step1"
-                                  style="margin-bottom: 15px !important;"
-                                  name="order.modeOfPayment"
-                                  list="modeOfPaymentList"
-                                  listKey="key"
-                                  listValue="value"
-                        />
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Customer Name:</label>
-
-                    <div class="col-lg-9">
-
-                        <s:select id="order.customerId"
-                                  cssClass="form-control step1"
-                                  style="margin-bottom: 15px !important;"
-                                  name="order.customerId"
-                                  list="customerList"
-                                  listKey="customerId"
-                                  listValue="customerName"
-                                  onchange="contactSearch()"
-                                  emptyOption="true"
-                        />
-
-                    </div>
-                </div>
+                <legend style="text-align: left;">
+                            <span >
+                                Booking Information
+                            </span>
+                </legend>
 
                 <div class="form-group">
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date/Time:</label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date and Time</label>
                     <div class="col-lg-3" >
-                        <input type="text" class="from_date form-control step2" id="datepicker1" name="orderBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="from_date form-control step2" id="datepicker1" name="orderBean.pickupDate" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;">
 
                     </div>
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date/Time:</label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date and Time</label>
                     <div class="col-lg-3" >
-                        <input type="text" class="to_date form-control step2" id="datepicker2" name="orderBean.deliveryDate" placeholder="Select end date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="to_date form-control step2" id="datepicker2" name="orderBean.deliveryDate" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;">
                     </div>
 
                 </div>
 
                 <div class="form-group">
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Port of Origin:</label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Origin Port</label>
                     <div class="col-lg-3" >
 
                         <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                  name="order.originationPort" list="portsList" listKey="key"
+                                  id="select1" name="order.originationPort" list="portsList" listKey="key"
                                   listValue="value" />
 
                     </div>
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Port of Destination:</label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Destination Port</label>
                     <div class="col-lg-3" >
 
                         <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                  name="order.destinationPort" list="portsList" listKey="key"
+                                  id="select2" name="order.destinationPort" list="portsList" listKey="key"
                                   listValue="value" />
 
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type</label>
+
+                        <div class="col-lg-9">
+                            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                                      list="notifyByList" listKey="key" listValue="value" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Comments </label>
+
+                        <div class="col-lg-9">
+                            <s:textarea cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important;"></s:textarea>
+                        </div>
                     </div>
 
                 </div>
@@ -716,41 +754,45 @@
 
                 <div id="2ndPartOnLoad" style="clear:both;">
 
+                    <legend style="text-align: left;">
+                            <span >
+                                Shipper Information
+                            </span>
+                    </legend>
+
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person:</label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person</label>
 
                         <div class="col-lg-9">
-                            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                      list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName"/>
+                            <%--<s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperContact"
+                                      list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName"/>--%>
+                                <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperContact" name="order.shipperContactId"
+                                          list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName"/>
                         </div>
 
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address:</label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address</label>
 
                         <div class="col-lg-9">
-                            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
                                       list="addressList" listKey="addressId" listValue="addressLine1 + ' ' + addressLine2" />
                         </div>
 
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type:</label>
-
-                        <div class="col-lg-9">
-                            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                      list="notifyByList" listKey="key" listValue="value" />
-                        </div>
-
-                    </div>
+                    <legend style="text-align: left;">
+                            <span >
+                                Consignee Information
+                            </span>
+                    </legend>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name:</label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name</label>
 
                         <div class="col-lg-9">
-                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperConsignee" name="order.consigneeContactId"
                                       list="consigneeList" listKey="contactId"
                                       listValue="firstName +' '+ middleName +' '+ lastName" />
                         </div>
@@ -758,54 +800,159 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address:</label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address</label>
 
                         <div class="col-lg-9">
-                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeAddress" name="order.consigneeAddressId"
                                       list="consigneeAddressList" listKey="addressId"
                                       listValue="addressLine1 + ' ' + addressLine2" />
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Comments :</label>
-
-                        <div class="col-lg-9">
-                            <s:textarea cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important;"></s:textarea>
-                        </div>
-                    </div>
-
-                    <s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Save" />
+                    <%--<s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Save" />--%>
 
                 </div>
 
-                <div id="2ndPart" style="clear:both;">
+                <div id="2ndPart" style="clear:both;" class="well">
+
+                    <fieldset class="inputs">
+
+                        <legend style="text-align: left;">
+                            <span>
+                                Cargo Information
+                            </span>
+                        </legend>
+
+                        <div class="form-group">
+
+
+
+                                <label class="col-lg-3 control-label">
+                                    Container Quantity
+                                </label>
+
+                                <div class="col-lg-3" >
+                                        <s:select cssClass="form-control"
+                                                  style="margin-bottom: 15px !important;"
+                                                  id="orderItem.quantity"
+                                                  name="orderItem.quantity"
+                                                  list="containerQuantity"
+                                        />
+                                </div>
+
+                                <label class="col-lg-3 control-label">
+                                    Container Size
+                                </label>
+
+                                <div class="col-lg-3" >
+                                        <s:select cssClass="form-control"
+                                                  style="margin-bottom: 15px !important;"
+                                                  id="orderItem.nameSize"
+                                                  name="orderItem.nameSize"
+                                                  list="containerList"
+                                                  listKey="key"
+                                                  listValue="value"
+                                        />
+                                </div>
+
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="col-lg-3 control-label" for="orderItem.weight">
+                                Weight (kg)
+                            </label>
+
+                            <div class="col-lg-3" >
+                                <s:textfield cssClass="form-control step3"
+                                             name="orderItem.weight"
+                                             id="orderItem.weight"
+                                             value="%{orderItem.weight}"
+                                             style="margin-bottom: 15px !important;"
+                                />
+                            </div>
+
+                            <label class="col-lg-3 control-label">
+                                Volume (cm³)
+                            </label>
+                            <div class="col-lg-3" >
+                                    <%--<s:select cssClass="form-control step3"
+                                                id="volume"
+                                                name="orderItem.volume"
+                                                value="%{orderItem.volume}"
+                                                style="margin-bottom: 15px !important;"
+                                                list="{'Select Volume'}"
+                                                />--%>
+                                <s:textfield cssClass="form-control step3"
+                                             name="orderItem.volume"
+                                             id="orderItem.volume"
+                                             style="margin-bottom: 15px !important;"
+                                />
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="col-lg-3 control-label">
+                                    Classification
+                                </label>
+
+                                <div class="col-lg-3" >
+                                    <s:textfield cssClass="form-control step3"
+                                                 name="orderItem.classification"
+                                                 id="orderItem.classification"
+                                                 style="margin-bottom: 15px !important;" />
+
+                                </div>
+
+                                <label class="col-lg-3 control-label">
+                                    Commodity
+                                </label>
+
+                                <div class="col-lg-3" >
+
+                                        <s:textfield cssClass="form-control step3"
+                                                     name="orderItem.description"
+                                                     id="description"
+                                                     value="%{orderItem.description}"
+                                                     style="margin-bottom: 15px !important;"
+                                        />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
 
                 </div>
 
                 </s:form>
 
             </div>
+
         </div>
     </div>
 
-    <div class="row setup-content" id="step-2">
+    <%--<div class="row setup-content" id="step-2">
         <div class="col-xs-12">
             <div class="col-md-12 well">
                 <h1 class="text-center"> STEP 2</h1>
 
             </div>
         </div>
-    </div>
+    </div>--%>
 
-    <div class="row setup-content" id="step-3">
+    <%--<div class="row setup-content" id="step-3">
         <div class="col-xs-12">
             <div class="col-md-12 well">
                 <h1 class="text-center"> STEP 3</h1>
 
             </div>
         </div>
-    </div>
+    </div>--%>
 
 </div>
 
@@ -816,95 +963,109 @@
 
 <script type="text/javascript">
 
+// Date and Timepicker options
+
 $(document).ready(function() {
 
-var navListItems = $('ul.setup-panel li a'),
-allWells = $('.setup-content');
+    // Customer Dropdown
+    $('#customerName').change(function(event) {
+        var custId = $("#customerName").val();
+        alert(custId);
 
-allWells.hide();
-
-navListItems.click(function(e)
-
-{
-    e.preventDefault();
-    var $target = $($(this).attr('href')),
-    $item = $(this).closest('li');
-
-    if (!$item.hasClass('disabled')) {
-    navListItems.closest('li').removeClass('active');
-    $item.addClass('active');
-    allWells.hide();
-    $target.show();
-    }
-
-});
-
-$('ul.setup-panel li.active a').trigger('click');
-
-
-/*$('#activate-step-2').on('click', function(e){
-
-    servReqt = document.getElementById("order.serviceRequirement").value;
-    modeServ = document.getElementById("order.modeOfService").value;
-    freight = document.getElementById("order.freightType").value;
-    modePay = document.getElementById("order.modeOfPayment").value;
-    cusName = document.getElementById("order.customerId").value;
-
-    if (servReqt == null || servReqt == "" || modeServ == null || modeServ == "" || freight == null || freight == "" || modePay == null || modePay == "" || cusName == null || cusName == ""){
-    alert("error");
-
-    }else{
-        $('ul.setup-panel li:eq(1)').removeClass('disabled');
-        $('.step1').attr('disabled', 'disabled');
-        $('ul.setup-panel li a[href="#step-2"]').trigger('click');
-        $(this).remove();
-    }
-
-});*/
-
-/*$('#activate-step-3').on('click', function(e) {
-    $('ul.setup-panel li:eq(2)').removeClass('disabled');
-    $('.step2').attr('disabled', 'disabled');
-    $('ul.setup-panel li a[href="#step-3"]').trigger('click');
-    $(this).remove();
-});*/
-
-/*$('#activate-step-2').click(function(){
-
-
-    var custId = $("select[name='order.customerId'] option:selected").val();
-        serReq = $("select[name='order.serviceRequirement'] option:selected").val();
-        serMod = $("select[name='order.modeOfService'] option:selected").val();
-        fType = $("select[name='order.freightType'] option:selected").val();
-        payMod = $("select[name='order.modeOfPayment'] option:selected").val();
-
-    $.ajax({
-        url: 'loadContactInfoList',
-        type: 'POST',
-
-        data:{ ID: custId,
-               REQ: serReq,
-               MODE: serMod,
-               TYPE: fType,
-               PAY: payMod
-
+        $.getJSON('customerAction', {
+            customerID : custId
         },
-        dataType: 'html',
+            function(jsonResponse) {
+                alert(jsonResponse.dummyMsg);
 
-        success: function (html) {
+            $('#ajaxResponse').text(jsonResponse.dummyMsg);
 
-            $('#2ndPart').html(html);
-        },
-        error: function(thrownError){
-            alert('An error occurred! ' + thrownError);
-        }
+            var select = $('#shipperContact');
+
+            select.find('option').remove();
+
+            var select2 = $('#shipperAddress');
+
+            select2.find('option').remove();
+
+            var select3 = $('#shipperConsignee');
+
+            select3.find('option').remove();
+
+            var select4 = $('#consigneeAddress');
+
+            select4.find('option').remove();
+
+            // populate customer consignee list
+            $.each(jsonResponse.customerContactsMap, function(key, value) {
+
+            $('<option>').val(key).text(value).appendTo(select);
+
+            });
+            // populate customer address list
+            $.each(jsonResponse.customerAddressMap, function(key, value) {
+
+                $('<option>').val(key).text(value).appendTo(select2);
+
+            });
+            // populate customer consignee list
+            $.each(jsonResponse.customerConsigneeMap, function(key, value) {
+                //alert($("#shipperConsignee").val());
+
+                if($("#shipperConsignee").val() != ''){
+                    $('<option>').val(null).text("").appendTo(select3);
+                    $('<option>').val(key).text(value).appendTo(select3);
+                }else{
+                    $('<option>').val(key).text(value).appendTo(select3);
+                }
+            });
+
+            // populate customer address list
+            $.each(jsonResponse.consigneeAddressMap, function(key, value) {
+                //alert($("#consigneeAddress").val());
+
+                if($("#consigneeAddress").val() != ''){
+                    $('<option>').val(null).text("").appendTo(select4);
+                    $('<option>').val(key).text(value).appendTo(select4);
+                }else{
+                    $('<option>').val(key).text(value).appendTo(select4);
+                }
+
+            });
+
+        });
+
     });
 
-});*/
+    //Consignee on Select
+    $('#shipperConsignee').change(function(event) {
+        var custId = $("#customerName").val();
+        var consignee_Id = $("#shipperConsignee").val();
 
+        $.getJSON('consigneeAction', {
+            customerID : custId,
+            consigneeId : consignee_Id
+        },
+        function(jsonResponse) {
+            alert(consignee_Id);
+        var select4 = $('#consigneeAddress');
+
+        select4.find('option').remove();
+
+        // populate consignee address
+        $.each(jsonResponse.consigneeAddressMap, function(key, value) {
+
+                $('<option>').val(key).text(value).appendTo(select4);
+
+        });
+
+        });
+
+    });
+
+    // Date Time Picker
     var fromDatePickUp = $('#datepicker1');
     var toDateDelivery = $('#datepicker2');
-
 
     //pick up date validation
     fromDatePickUp.datetimepicker({
@@ -921,16 +1082,16 @@ $('ul.setup-panel li.active a').trigger('click');
                 if (testStartDate > testEndDate)
                     toDateDelivery.datetimepicker('setDate', testStartDate);
 
-            }
+                }
 
             else {
                 toDateDelivery.val(dateText);
-            }
-        },
+                }
+            },
 
         onSelect: function (selectedDateTime){
             toDateDelivery.datetimepicker('option', 'minDate', fromDatePickUp.datetimepicker('getDate') );
-        }
+            }
 
     });
 
@@ -949,72 +1110,242 @@ $('ul.setup-panel li.active a').trigger('click');
                 if (testStartDate > testEndDate)
                     fromDatePickUp.datetimepicker('setDate', testEndDate);
 
-            }
+                }
 
             else {
                 fromDatePickUp.val(dateText);
-            }
-        },
+                }
+            },
 
         onSelect: function (selectedDateTime){
             fromDatePickUp.datetimepicker('option', 'maxDate', toDateDelivery.datetimepicker('getDate') );
-        }
+            }
 
-    });
+        });
 
 });
 
+    // For Service Mode Dropdown selection
 
+    function dynamicDropdown(select, index) {
 
-function contactSearch(){
+    var opt = select.options,
+            lent = opt.length;
 
-    var custId = $("select[name='order.customerId'] option:selected").val();
-    serReq = $("select[name='order.serviceRequirement'] option:selected").val();
-    serMod = $("select[name='order.modeOfService'] option:selected").val();
-    fType = $("select[name='order.freightType'] option:selected").val();
-    payMod = $("select[name='order.modeOfPayment'] option:selected").val();
-    alert(custId);
-    if (custId == "") {
-
-            document.getElementById("2ndPartOnLoad").style.display = 'block';
-            document.getElementById("2ndPart").style.display = 'none';
-            document.getElementById("order.shipperContactId").options.length = 0;
-            document.getElementById("order.pickupAddress").options.length = 0;
-            document.getElementById("order.consigneeContactId").options.length = 0;
-            document.getElementById("deliveryAddress").options.length = 0;
-
-    } else {
-            document.getElementById("2ndPartOnLoad").style.display = 'none';
-            document.getElementById("2ndPart").style.display = 'block';
-            $.ajax({
-                url: 'loadContactInfoList',
-                type: 'POST',
-
-                data: { ID: custId,
-                    REQ: serReq,
-                    MODE: serMod,
-                    TYPE: fType,
-                    PAY: payMod
-
-                },
-                dataType: 'html',
-
-                success: function (html) {
-
-                    $('#2ndPart').html(html);
-                },
-                error: function (thrownError) {
-                    alert('An error occurred! ' + thrownError);
-                }
-            });
+    while ( lent-- ){
+        opt[ lent ].disabled = false;
     }
 
-}
+    alert(select.options[ index ].value);
 
 
+    // If Service Requirement is Rolling Cargo
+    if (select.options[ index ].value === 'ROLLING CARGO LOAD') {
+        sMode.options[0].disabled = true;
+        sMode.options[1].disabled = true;
+        sMode.options[2].disabled = true;
+        sMode.options[3].disabled = false;
+        sMode.value = (sMode.options[3].value);
+        sType.options[0].disabled = true;
+        sType.options[1].disabled = false;
+        sType.options[2].disabled = true;
+        sType.value = (sType.options[1].value);
 
+
+    } else {
+        sMode.options[0].disabled = false;
+        sMode.options[1].disabled = false;
+        sMode.options[2].disabled = false;
+        sMode.options[3].disabled = false;
+        sMode.value = (sMode.options[0].value);
+        sType.options[0].disabled = false;
+        sType.options[1].disabled = false;
+        sType.options[2].disabled = false;
+        sType.value = (sType.options[0].value);
+    }
+
+    if (select.options[ index ].value === 'DOOR TO DOOR') {
+
+        sType.options[0].disabled = false;
+        sType.options[1].disabled = true;
+        sType.options[2].disabled = false;
+        sType.value = (sType.options[0].value);
+
+    }
+
+    // If Service Mode is Door to Pier or Pier to Door
+    if (select.options[ index ].value === 'DOOR TO PIER' || select.options[ index ].value === 'PIER TO DOOR') {
+
+        sType.options[0].disabled = false;
+        sType.options[1].disabled = true;
+        sType.options[2].disabled = false;
+        sType.value = (sType.options[0].value);
+
+        }
+    // If Service Mode is Pier to Pier
+    if (select.options[ index ].value === 'PIER TO PIER') {
+
+        sType.options[0].disabled = true;
+        sType.options[1].disabled = false;
+        sType.options[2].disabled = true;
+        sType.value = (sType.options[1].value);
+
+        }
+    // If Service Type is Shipping
+    if (select.options[ index ].value === 'SHIPPING'){
+
+        sMode.options[0].disabled = true;
+        sMode.options[1].disabled = true;
+        sMode.options[2].disabled = true;
+        sMode.options[3].disabled = false;
+        sMode.value = (sMode.options[3].value);
+
+        }
+    // If Service Type is Trucking or Shipping and Trucking
+    if (select.options[ index ].value === 'TRUCKING' || select.options[ index ].value === 'SHIPPING AND TRUCKING') {
+
+        sMode.value = (sMode.options[0].value);
+        sMode.options[0].disabled = false;
+        sMode.options[1].disabled = false;
+        sMode.options[2].disabled = false;
+        sMode.options[3].disabled = true;
+        }
+    }
+
+    var sReq =  select = document.getElementById('order.serviceRequirement');
+    var sType = select = document.getElementById('order.freightType');
+    var sMode = select = document.getElementById('order.modeOfService');
+
+    sReq.onchange = function() {
+        dynamicDropdown.call(this, sReq ,this.selectedIndex);
+    };
+
+    sType.onchange = function() {
+        dynamicDropdown.call(this, sType ,this.selectedIndex);
+    };
+
+    sMode.onchange = function() {
+        dynamicDropdown.call(this, sMode, this.selectedIndex);
+    };
+
+// Avoid selecting duplicate ports
+
+    function preventDuplicatePort(select, index) {
+
+        var options = select.options,
+                len = options.length;
+
+        while ( len-- ){
+            options[ len ].disabled = false;
+            }
+
+        select.options[ index ].disabled = true;
+
+        if( index === select.selectedIndex ){
+            alert('You already selected the same port "' + select.options[index].text + '". Please choose another' );
+            /*this.selectedIndex = 0;*/
+            select2.value = '';
+            }
+
+    }
+
+    var select1 = select = document.getElementById('select1');
+    var select2 = select = document.getElementById('select2');
+
+    select2.value = '';
+
+    select1.onchange = function() {
+        preventDuplicatePort.call(this, select2, this.selectedIndex);
+        };
+
+    select2.onchange = function() {
+        preventDuplicatePort.call(this, select1, this.selectedIndex);
+        };
 
 </script>
 
 <%----------------------------------------------------------------------------------------------------------------------%>
 
+<%--
+var navListItems = $('ul.setup-panel li a'),
+allWells = $('.setup-content');
+
+allWells.hide();
+
+navListItems.click(function(e)
+
+{
+e.preventDefault();
+var $target = $($(this).attr('href')),
+$item = $(this).closest('li');
+
+if (!$item.hasClass('disabled')) {
+navListItems.closest('li').removeClass('active');
+$item.addClass('active');
+allWells.hide();
+$target.show();
+}
+
+});
+
+$('ul.setup-panel li.active a').trigger('click');*/
+
+/*$('#activate-step-2').on('click', function(e){
+
+servReqt = document.getElementById("order.serviceRequirement").value;
+modeServ = document.getElementById("order.modeOfService").value;
+freight = document.getElementById("order.freightType").value;
+modePay = document.getElementById("order.modeOfPayment").value;
+cusName = document.getElementById("order.customerId").value;
+
+if (servReqt == null || servReqt == "" || modeServ == null || modeServ == "" || freight == null || freight == "" || modePay == null || modePay == "" || cusName == null || cusName == ""){
+alert("error");
+
+}else{
+$('ul.setup-panel li:eq(1)').removeClass('disabled');
+$('.step1').attr('disabled', 'disabled');
+$('ul.setup-panel li a[href="#step-2"]').trigger('click');
+$(this).remove();
+}
+
+});*/
+
+/*$('#activate-step-3').on('click', function(e) {
+$('ul.setup-panel li:eq(2)').removeClass('disabled');
+$('.step2').attr('disabled', 'disabled');
+$('ul.setup-panel li a[href="#step-3"]').trigger('click');
+$(this).remove();
+});*/
+
+/*$('#activate-step-2').click(function(){
+
+
+var custId = $("select[name='order.customerId'] option:selected").val();
+serReq = $("select[name='order.serviceRequirement'] option:selected").val();
+serMod = $("select[name='order.modeOfService'] option:selected").val();
+fType = $("select[name='order.freightType'] option:selected").val();
+payMod = $("select[name='order.modeOfPayment'] option:selected").val();
+
+$.ajax({
+url: 'loadContactInfoList',
+type: 'POST',
+
+data:{ ID: custId,
+REQ: serReq,
+MODE: serMod,
+TYPE: fType,
+PAY: payMod
+
+},
+dataType: 'html',
+
+success: function (html) {
+
+$('#2ndPart').html(html);
+},
+error: function(thrownError){
+alert('An error occurred! ' + thrownError);
+}
+});
+
+});--%>

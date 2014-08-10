@@ -1,9 +1,6 @@
 package com.sr.apps.freightbit.order.action;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.util.CommonUtils;
@@ -74,6 +71,83 @@ public class OrderAction extends ActionSupport implements Preparable {
     private String custCode; // get customer code from ID
     private String orderNum; // get the order number
     private Integer orderIdPass;
+
+    private Map<Integer, String> customerContactsMap = new LinkedHashMap<Integer, String>();
+    private String dummyMsg;
+    private Integer customerID;
+    private Map<Integer, String> customerAddressMap = new HashMap<Integer, String>();
+
+    private Map<Integer, String> customerConsigneeMap = new HashMap<Integer, String>();
+
+    private Map<Integer, String> consigneeAddressMap = new HashMap<Integer, String>();
+    private Integer consigneeId;
+
+    public String customerAction() {
+
+        System.out.println( "---------------TEST " + customerID + "-------------------------------------" );
+
+        List <Contacts> shipperContacts = customerService.findContactByRefIdAndType("shipper",customerID );
+
+        for(int i = 0; i < shipperContacts.size(); i++ ) {
+
+            System.out.println("-------------------------------------Shipper Contact " + shipperContacts.get(i).getFirstName() + "-------------------------------------");
+            customerContactsMap.put(shipperContacts.get(i).getContactId(), shipperContacts.get(i).getFirstName() + ' ' + shipperContacts.get(i).getMiddleName() + ' ' + shipperContacts.get(i).getLastName()  );
+
+        }
+
+        List <Address> shipperAddresses = customerService.findAddressByShipper("CONSIGNEE",customerID );
+
+        for(int i = 0; i < shipperAddresses.size(); i++ ) {
+
+            System.out.println("-------------------------------------Shipper Address " + shipperAddresses.get(i).getAddressId() + "-------------------------------------");
+            customerAddressMap.put(shipperAddresses.get(i).getAddressId(), shipperAddresses.get(i).getAddressLine1() + ' ' + shipperAddresses.get(i).getCity()  );
+            //customerAddressMap.put(1, "ano ba"  );
+
+        }
+
+        List <Contacts> shipperConsignee = customerService.findContactByRefIdAndType("CONSIGNEE",customerID);
+
+        for(int i = 0; i < shipperConsignee.size(); i++ ) {
+
+            System.out.println("-------------------------------------Shipper Consignee " + shipperConsignee.get(i).getFirstName() + "-------------------------------------");
+            customerConsigneeMap.put(shipperConsignee.get(i).getContactId(), shipperConsignee.get(i).getFirstName() + ' ' + shipperConsignee.get(i).getMiddleName() + ' ' + shipperConsignee.get(i).getLastName()  );
+
+        }
+
+        List <Address> consigneeAddresses = customerService.findAddressByCriteria("CONSIGNEE",customerID );
+
+        for(int i = 0; i < consigneeAddresses.size(); i++ ) {
+
+            System.out.println("-------------------------------------Consignee Addresses" + consigneeAddresses.get(i).getAddressLine1() + "-------------------------------------");
+            consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
+
+        }
+
+        dummyMsg = "Ajax action Triggered";
+        return SUCCESS;
+    }
+
+    public String consigneeAction() {
+
+        if (consigneeId != null) {
+            Address consigneeAddress = customerService.findAddressByParameterMap(getClientId(), "CONSIGNEE", getClientId(), consigneeId);
+            System.out.println("-------------------------------------Consignee Addresses" + consigneeAddress.getAddressId() + "-------------------------------------");
+            consigneeAddressMap.put(consigneeAddress.getAddressId(), consigneeAddress.getAddressLine1() + ' ' + consigneeAddress.getAddressLine2() + ' ' + consigneeAddress.getCity()  );
+        }else{
+            List <Address> consigneeAddresses = customerService.findAddressByCriteria("CONSIGNEE",customerID );
+
+            for(int i = 0; i < consigneeAddresses.size(); i++ ) {
+
+                System.out.println("-------------------------------------Consignee Addresses" + consigneeAddresses.get(i).getAddressId() + "-------------------------------------");
+                consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
+
+            }
+
+
+        }
+
+        return SUCCESS;
+    }
 
     public String viewOrders() {
         String column = getColumnFilter();
@@ -930,5 +1004,61 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setOrderItems(List<OrderItemsBean> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public Integer getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(Integer customerID) {
+        this.customerID = customerID;
+    }
+
+    public String getDummyMsg() {
+        return dummyMsg;
+    }
+
+    public void setDummyMsg(String dummyMsg) {
+        this.dummyMsg = dummyMsg;
+    }
+
+    public Map<Integer, String> getCustomerAddressMap() {
+        return customerAddressMap;
+    }
+
+    public void setCustomerAddressMap(Map<Integer, String> customerAddressMap) {
+        this.customerAddressMap = customerAddressMap;
+    }
+
+    public Map<Integer, String> getCustomerConsigneeMap() {
+        return customerConsigneeMap;
+    }
+
+    public void setCustomerConsigneeMap(Map<Integer, String> customerConsigneeMap) {
+        this.customerConsigneeMap = customerConsigneeMap;
+    }
+
+    public Map<Integer, String> getCustomerContactsMap() {
+        return customerContactsMap;
+    }
+
+    public void setCustomerContactsMap(Map<Integer, String> customerContactsMap) {
+        this.customerContactsMap = customerContactsMap;
+    }
+
+    public Map<Integer, String> getConsigneeAddressMap() {
+        return consigneeAddressMap;
+    }
+
+    public void setConsigneeAddressMap(Map<Integer, String> consigneeAddressMap) {
+        this.consigneeAddressMap = consigneeAddressMap;
+    }
+
+    public Integer getConsigneeId() {
+        return consigneeId;
+    }
+
+    public void setConsigneeId(Integer consigneeId) {
+        this.consigneeId = consigneeId;
     }
 }
