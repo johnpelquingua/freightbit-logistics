@@ -4,7 +4,12 @@
 
 <div class="row" style=" margin-top: -15px; ">
     <div class="col-lg-12">
-        <h1>Booking Module </h1>
+
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-book"></i> Booking Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
             <li class="active"> Booking List</li>

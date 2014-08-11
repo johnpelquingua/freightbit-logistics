@@ -54,7 +54,7 @@
 
         <action name="addItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addItemsInTable">
-            <result name="success" type="redirect">addedItemsInTable</result>
+            <result name="success">/orders/orderAdd2.jsp</result>
         </action>
 
         <action name="addedItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
@@ -76,6 +76,10 @@
     </action>
 
     <action name="consigneeAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="consigneeAction">
+        <result type="json">/orders/orderAdd.jsp</result>
+    </action>
+
+    <action name="addressAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="addressAction">
         <result type="json">/orders/orderAdd.jsp</result>
     </action>
 

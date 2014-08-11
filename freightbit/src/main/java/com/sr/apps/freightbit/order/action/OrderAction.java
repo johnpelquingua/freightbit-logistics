@@ -5,7 +5,6 @@ import java.util.*;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.customer.entity.Items;
 import org.apache.commons.lang3.StringUtils;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -55,8 +54,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Parameters> portsList = new ArrayList<Parameters>();
 
     private Integer orderIdParam;
-    private CommonUtils commonUtils;
-
     private OrderService orderService;
     private CustomerService customerService;
     private ParameterService parameterService;
@@ -81,6 +78,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     private Map<Integer, String> consigneeAddressMap = new HashMap<Integer, String>();
     private Integer consigneeId;
+    private Integer addressId;
 
     public String customerAction() {
 
@@ -101,7 +99,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
             System.out.println("-------------------------------------Shipper Address " + shipperAddresses.get(i).getAddressId() + "-------------------------------------");
             customerAddressMap.put(shipperAddresses.get(i).getAddressId(), shipperAddresses.get(i).getAddressLine1() + ' ' + shipperAddresses.get(i).getCity()  );
-            //customerAddressMap.put(1, "ano ba"  );
 
         }
 
@@ -124,6 +121,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         dummyMsg = "Ajax action Triggered";
+
         return SUCCESS;
     }
 
@@ -143,6 +141,34 @@ public class OrderAction extends ActionSupport implements Preparable {
 
             }
 
+        }
+
+        return SUCCESS;
+    }
+
+    public String addressAction() {
+
+        System.out.println("-------------------------------------Address ID" + addressId + "-------------------------------------");
+
+        if (addressId != null) {
+            Address consigneeAddress = customerService.findAddressById(addressId);
+
+            Contacts customerConsignee = customerService.findContactById(consigneeAddress.getContactReferenceId());
+
+            System.out.println("-------------------------------------Consignee Consignee" + customerConsignee.getFirstName() + "-------------------------------------");
+            customerConsigneeMap.put(customerConsignee.getContactId(), customerConsignee.getFirstName() + ' ' + customerConsignee.getMiddleName() + ' ' + customerConsignee.getLastName()  );
+
+
+        }else{
+
+            List <Contacts> customerConsignee = customerService.findContactByRefIdAndType("CONSIGNEE",customerID);
+
+            for(int i = 0; i < customerConsignee.size(); i++ ) {
+
+                System.out.println("-------------------------------------Consignee Consignee " + customerConsignee.get(i).getFirstName() + "-------------------------------------");
+                customerConsigneeMap.put(customerConsignee.get(i).getContactId(), customerConsignee.get(i).getFirstName() + ' ' + customerConsignee.get(i).getMiddleName() + ' ' + customerConsignee.get(i).getLastName()  );
+
+            }
 
         }
 
@@ -214,8 +240,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             sessionAttributes.put("orderItemsFromSession", orderItemsFromSession);
         }
 
-
-
         return SUCCESS;
     }
 
@@ -282,8 +306,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         sessionAttributes.put("orderIdPass", orderIdPass);
-
-
 
         return SUCCESS;
     }
@@ -738,8 +760,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         itemQuantity.add(9);
         itemQuantity.add(10);
 
-
-
     }
 
     public List<OrderBean> getOrders() {
@@ -1060,5 +1080,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setConsigneeId(Integer consigneeId) {
         this.consigneeId = consigneeId;
+    }
+
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
     }
 }

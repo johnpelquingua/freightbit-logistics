@@ -182,11 +182,12 @@
 
 <div class="row" style=" margin-top: -15px; ">
     <div class="col-lg-12">
-        <h1>Dashboard </h1>
-        <%-- <ol class="breadcrumb">
-             <li class="active" ><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
 
-         </ol>--%>
+        <legend style="text-align: left;">
+            <span >
+               <h1 style="color: #636363;"><i class="fa fa-dashboard"></i> Dashboard </h1>
+            </span>
+        </legend>
 
     </div>
 </div>
