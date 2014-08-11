@@ -1,7 +1,7 @@
 package com.sr.biz.freightbit.documentation.dao.impl;
 
-import com.sr.biz.freightbit.documentation.dao.DocumentationDao;
-import com.sr.biz.freightbit.documentation.entity.Documentation;
+import com.sr.biz.freightbit.documentation.dao.DocumentsDao;
+import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.order.entity.Orders;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -15,21 +15,21 @@ import java.util.List;
 /**
  * Created by Clarence C. Victoria on 8/8/14.
  */
-public class DocumentationDaoImpl extends HibernateDaoSupport implements DocumentationDao {
-    private static final Logger log = Logger.getLogger(DocumentationDaoImpl.class);
+public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDao {
+    private static final Logger log = Logger.getLogger(DocumentsDaoImpl.class);
 
     @Override
-    public List<Documentation> findDocumentationByCriteria(String column, String value) {
+    public List<Documents> findDocumentationByCriteria(String column, String value) {
         log.debug("Find documentation by criteria started");
         Session session = getSessionFactory().getCurrentSession();
-        List<Documentation> documents = session.createCriteria(Documentation.class)
+        List<Documents> documents = session.createCriteria(Documents.class)
                 .add(Restrictions.like(column, value))
                 .list();
         return documents;
     }
 
     @Override
-    public List<Orders> findAllOrdersDocumentation() {
+    public List<Orders> findAllOrdersDocuments() {
 
         List<String> statusList = new ArrayList<>();
         statusList.add("APPROVED");

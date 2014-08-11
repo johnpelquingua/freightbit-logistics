@@ -32,6 +32,7 @@
                 <value>com.sr.biz.freightbit.order.entity</value>
                 <value>com.sr.biz.freightbit.vesselSchedule.entity</value>
                 <value>com.sr.biz.freightbit.operations.entity</value>
+                <value>com.sr.biz.freightbit.documentation.entity</value>
             </array>
         </property>
         <property name="hibernateProperties">
@@ -113,10 +114,18 @@
         <property name="operationsDao" ref="operationsDao"/>
     </bean>
 
+    <bean id="documentsService" class="com.sr.biz.freightbit.documentation.service.impl.DocumentsServiceImpl">
+        <property name="documentsDao" ref="documentsDao"/>
+    </bean>
+
     <!-- Services End -->
     <!-- DAOs -->
 
     <bean id="contactsDao" class="com.sr.biz.freightbit.common.dao.impl.ContactsDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="documentsDao" class="com.sr.biz.freightbit.documentation.dao.impl.DocumentsDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 

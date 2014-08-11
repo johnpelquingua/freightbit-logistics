@@ -46,47 +46,47 @@
     </definition>
 
     <definition name="operations.statusList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="title" value="Order List"/>
         <put-attribute name="body" value="/operations/statusListView.jsp"/>
     </definition>
 
     <definition name="operations.statusListItems.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="title" value="Order Item List"/>
         <put-attribute name="body" value="/operations/statusListViewItems.jsp"/>
     </definition>
 
     <definition name="operations.updateStatus.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="title" value="Update Status"/>
         <put-attribute name="body" value="/operations/updateStatus.jsp"/>
     </definition>
 
     <definition name="operations.inlandFreightList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="title" value="Inland Freight List"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightList.jsp"/>
     </definition>
 
     <definition name="operations.inlandFreightItemList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="title" value="Inland Freight Item List"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightItemList.jsp"/>
     </definition>
 
     <definition name="operations.inlandFreightPlanning.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="title" value="Inland Freight Planning"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightPlanning.jsp"/>
     </definition>
 
     <definition name="operations.seaFreightList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="title" value="Sea Freight List"/>
         <put-attribute name="body" value="/operations/sea_freight/seaFreightList.jsp"/>
     </definition>
 
     <definition name="operations.seaFreightItemList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="title" value="Sea Freight Item List"/>
         <put-attribute name="body" value="/operations/sea_freight/seaFreightItemList.jsp"/>
     </definition>
 
     <definition name="operations.seaFreightPlanning.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Status List"/>
+        <put-attribute name="title" value="Sea Freight Planning"/>
         <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanning.jsp"/>
     </definition>
 
