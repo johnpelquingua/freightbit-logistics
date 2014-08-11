@@ -12,19 +12,23 @@ import java.util.List;
  */
 public class DocumentsServiceImpl implements DocumentsService {
 
-    DocumentsDaoImpl documentationDao = new DocumentsDaoImpl();
+    DocumentsDaoImpl documentsDao = new DocumentsDaoImpl();
 
-    public void setDocumentationDao(DocumentsDaoImpl documentationDao) {
-        this.documentationDao = documentationDao;
+    public DocumentsDaoImpl getDocumentsDao() {
+        return documentsDao;
+    }
+
+    public void setDocumentsDao(DocumentsDaoImpl documentsDao) {
+        this.documentsDao = documentsDao;
     }
 
     @Override
     public List<Documents> findDocumentationByCriteria(String column, String value) {
-        return documentationDao.findDocumentationByCriteria(column, value);
+        return documentsDao.findDocumentationByCriteria(column, value);
     }
 
     @Override
     public List<Orders> findAllOrdersDocumentation() {
-        return documentationDao.findAllOrdersDocuments();
+        return documentsDao.findAllOrdersDocuments();
     }
 }
