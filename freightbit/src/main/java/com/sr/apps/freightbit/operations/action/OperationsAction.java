@@ -54,13 +54,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String findVesselSchedule() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        sessionAttributes.put("orderItemIdParam", operationsBean.getOrderItemParam());
-        sessionAttributes.put("nameSizeParam", operationsBean.getNameSizeParam());
 
         List<VesselSchedules> vesselSchedulesList = new ArrayList<VesselSchedules>();
 
         vesselSchedulesList = operationsService.findVesselScheduleByVendorId(operationsBean.getVendorList());
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderItemIdParam", operationsBean.getOrderItemParam());
+        sessionAttributes.put("nameSizeParam", operationsBean.getNameSizeParam());
+
+        System.out.println("<-------------------orderItemIdParam: " + sessionAttributes.get("orderItemIdParam") + "------------------->");
+        System.out.println("<-------------------nameSizeParam: " + sessionAttributes.get("nameSizeParam") + "------------------->");
 
         for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
             vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));

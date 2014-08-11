@@ -249,7 +249,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     public void validateOnSubmit(VendorBean vendorBean) {
         clearErrorsAndMessages();
 
-        String name = "[A-Za-z]+[ ]";
+        String name = "^[a-zA-Z][a-zA-Z ]+$";
         String code = "[A-Z]+";
 
         Pattern namePattern = Pattern.compile(name);

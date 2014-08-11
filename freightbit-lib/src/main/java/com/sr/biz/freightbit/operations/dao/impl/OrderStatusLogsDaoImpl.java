@@ -62,29 +62,29 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
     }
 
     @Override
-    public List<Orders> findAllOrders() {
+        public List<Orders> findAllOrders() {
 
-        List<String> statusList = new ArrayList<>();
-        statusList.add("APPROVED");
-        statusList.add("PENDING");
-        statusList.add("DISAPPROVED");
-        statusList.add("BOOKING ON PROCESS");
-        statusList.add("PLANNING 1");
-        statusList.add("PLANNING 2");
-        statusList.add("PLANNING 3");
-        statusList.add("SERVICE ACCOMPLISHED");
+            List<String> statusList = new ArrayList<>();
+            statusList.add("APPROVED");
+            statusList.add("PENDING");
+            statusList.add("DISAPPROVED");
+            statusList.add("BOOKING ON PROCESS");
+            statusList.add("PLANNING 1");
+            statusList.add("PLANNING 2");
+            statusList.add("PLANNING 3");
+            statusList.add("SERVICE ACCOMPLISHED");
 
-        log.debug("Finding orders with filter");
-        try {
-            log.debug("Finding orders succeeded");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderStatus not in(:statusList)");
-            query.setParameterList("statusList", statusList);
-            List<Orders> results = (List<Orders>) query.list();
-            return results;
-        } catch (Exception e) {
-            log.error("Finding orders failed");
-            throw e;
-        }
+            log.debug("Finding orders with filter");
+            try {
+                log.debug("Finding orders succeeded");
+                Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderStatus not in(:statusList)");
+                query.setParameterList("statusList", statusList);
+                List<Orders> results = (List<Orders>) query.list();
+                return results;
+            } catch (Exception e) {
+                log.error("Finding orders failed");
+                throw e;
+            }
     }
 
     @Override

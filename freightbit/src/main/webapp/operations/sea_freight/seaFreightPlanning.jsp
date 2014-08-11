@@ -2,7 +2,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
 
 <div class="row">
@@ -24,7 +24,8 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-search"></i><s:property value="nameSizeParam"/></h3>
+                <h3 class="panel-title"><i class="fa fa-search"></i><c:out
+                        value="${sessionScope.nameSizeParam}"/></h3>
             </div>
 
             <div class="panel-body">
@@ -42,8 +43,9 @@
                         <label for="operations.nameSizeParam" class="col-sm-2 control-label">Container Number:</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" id="operations.nameSizeParam"
-                                         name="operations.nameSizeParam" value="%{nameSizeParam}" disabled="true"/>
+                            <div class="form-control">
+                                <c:out value="${sessionScope.nameSizeParam}"/>
+                            </div>
                         </div>
 
                     </div>
@@ -69,17 +71,17 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <%--<div class="form-group">--%>
 
-                        <label for="operations.date" class="col-sm-2 control-label">Select Date:</label>
+                    <%--<label for="operations.date" class="col-sm-2 control-label">Select Date:</label>--%>
 
-                        <div class="col-sm-10">
+                    <%--<div class="col-sm-10">--%>
 
-                            <s:textfield cssClass="form-control" id="date" name="operations.date"/>
+                    <%--<s:textfield cssClass="form-control" id="date" name="operations.date"/>--%>
 
-                        </div>
+                    <%--</div>--%>
 
-                    </div>
+                    <%--</div>--%>
 
                     <s:submit cssClass="btn btn-default btn-info pull-right" name="submit" value="Search"/>
 
