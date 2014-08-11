@@ -65,7 +65,7 @@
                     </div>
 
                     <div style="float: right;">
-                        <s:submit value="SUBMIT"></s:submit>
+                        <s:submit cssClass="btn btn-default btn-info pull-right" value="SUBMIT"></s:submit>
                     </div>
 
                 </s:form>

@@ -96,7 +96,7 @@
 
     <definition name="documentation.viewPendingDocuments.tiles" extends="baseLayout">
         <put-attribute name="title" value="Pending Documents"/>
-        <put-attribute name="body" value="/documentation/penging_docs/viewPendingDocuments.jsp"/>
+        <put-attribute name="body" value="/documentation/pending_docs/viewPendingDocuments.jsp"/>
     </definition>
 
     <definition name="documentation.viewPlainDocuments.tiles" extends="baseLayout">

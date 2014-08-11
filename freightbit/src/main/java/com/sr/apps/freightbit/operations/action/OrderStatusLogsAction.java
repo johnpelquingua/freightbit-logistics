@@ -6,15 +6,18 @@ import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.operations.formbean.OrderStatusLogsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
+import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
 import com.sr.biz.freightbit.operations.service.OrderStatusLogsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +31,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
     private List<Parameters> orderStatusList = new ArrayList<Parameters>();
+
+    private CommonUtils commonUtils = new CommonUtils();
 
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OrderStatusLogsBean orderStatusLogsBean = new OrderStatusLogsBean();
@@ -73,6 +78,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public String loadUpdateStatus() {
         OrderItems entity = orderStatusLogsService.findOrderItemById(orderItemIdParam);
         orderItem = transformToOrderItemFormBean(entity);
+        Map sessionAttributes = ActionContext.getContext().getSession();
+       sessionAttributes.put("orderItemIdParam", orderItemIdParam);
         return SUCCESS;
     }
 
@@ -97,6 +104,17 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         try {
             OrderItems entity = transformToOrderItemEntity(orderItem);
             orderStatusLogsService.updateStatusOrderItem(entity);
+
+            OrderStatusLogs orderStatusLogs = new OrderStatusLogs();
+            Map sessionAttributes = ActionContext.getContext().getSession();
+
+            orderStatusLogs.setOrderId((Integer) sessionAttributes.get("orderIdParam"));
+            orderStatusLogs.setOrderItemId((Integer) sessionAttributes.get("orderItemIdParam"));
+            orderStatusLogs.setCreatedTimestamp(new Date());
+            orderStatusLogs.setCreatedBy(commonUtils.getUserNameFromSession());
+            orderStatusLogs.setStatus(orderItem.getStatus());
+
+            orderStatusLogsService.addStatus(orderStatusLogs);
         } catch (Exception e) {
             addActionError("Update Failed");
             return INPUT;
@@ -206,5 +224,17 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setOrderStatusLogsBean(OrderStatusLogsBean orderStatusLogsBean) {
         this.orderStatusLogsBean = orderStatusLogsBean;
+    }
+
+    public CommonUtils getCommonUtils() {
+        return commonUtils;
+    }
+
+    public void setCommonUtils(CommonUtils commonUtils) {
+        this.commonUtils = commonUtils;
+    }
+
+    public ParameterService getParameterService() {
+        return parameterService;
     }
 }
