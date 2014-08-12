@@ -702,15 +702,31 @@ $(document).ready(function() {
     // Save Items in Table
 
     $('#addItem').click(function(){
+
         var orderItemQuantity = $("#orderItem_quantity").val();
-        alert(orderItemQuantity);
+        var orderItemNameSize = $("#orderItem_nameSize").val();
+        var orderItemWeight = $("#orderItem_weight").val();
+        var orderItemVolume = $("#orderItem_volume").val();
+        var orderItemClassification = $("#orderItem_classification").val();
+        var orderItemDescription = $("#orderItem_description").val();
+        var orderItemRate = $("#orderItem_rate").val();
+        var orderItemDeclaredValue = $("#orderItem_declaredValue").val();
+        var orderItemRemarks = $("#orderItem_remarks").val();
 
         $.ajax({
             url: 'addItemsInTable',
             type: 'POST',
             data: {
-                name: 'Jeetu',
-                age: '24'
+
+                orderItemQuantityParam: orderItemQuantity,
+                orderItemNameSizeParam: orderItemNameSize,
+                orderItemWeightParam:orderItemWeight,
+                orderItemVolumeParam:orderItemVolume,
+                orderItemClassificationParam:orderItemClassification,
+                orderItemDescriptionParam:orderItemDescription,
+                orderItemRateParam:orderItemRate,
+                orderItemDeclaredValueParam:orderItemDeclaredValue,
+                orderItemRemarksParam:orderItemRemarks
 
             },
             dataType: 'html',

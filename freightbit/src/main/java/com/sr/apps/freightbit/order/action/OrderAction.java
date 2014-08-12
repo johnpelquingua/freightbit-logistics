@@ -52,6 +52,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Address> addressList = new ArrayList<Address>();
     private List<Address> consigneeAddressList = new ArrayList<Address>();
     private List<Parameters> portsList = new ArrayList<Parameters>();
+    private CommonUtils commonUtils = new CommonUtils();
 
     private Integer orderIdParam;
     private OrderService orderService;
@@ -68,6 +69,16 @@ public class OrderAction extends ActionSupport implements Preparable {
     private String custCode; // get customer code from ID
     private String orderNum; // get the order number
     private Integer orderIdPass;
+
+    private Integer orderItemQuantityParam;
+    private String orderItemNameSizeParam;
+    private Double orderItemWeightParam;
+    private Float orderItemVolumeParam;
+    private String orderItemClassificationParam;
+    private String orderItemDescriptionParam;
+    private Float orderItemRateParam;
+    private Double orderItemDeclaredValueParam;
+    private String orderItemRemarksParam;
 
     private Map<Integer, String> customerContactsMap = new LinkedHashMap<Integer, String>();
     private String dummyMsg;
@@ -223,7 +234,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         //OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
+        /*Map sessionAttributes = ActionContext.getContext().getSession();
 
         sessionAttributes.get("orderIdPass");
 
@@ -238,14 +249,93 @@ public class OrderAction extends ActionSupport implements Preparable {
         } else {
             orderItemsFromSession.add(transformToOrderItemsEntityBean(orderItem));
             sessionAttributes.put("orderItemsFromSession", orderItemsFromSession);
+        }*/
+
+
+
+        /*OrderItems entity = new OrderItems();
+
+        entity.setQuantity(orderItemQuantityParam);
+        entity.setNameSize(orderItemNameSizeParam);
+        entity.setWeight(orderItemWeightParam);
+        entity.setVolume(orderItemVolumeParam);
+        entity.setClassification(orderItemClassificationParam);
+        entity.setCommodity(orderItemDescriptionParam);
+        entity.setRate(orderItemRateParam);
+        entity.setDeclaredValue(orderItemDeclaredValueParam);
+        entity.setComments(orderItemRemarksParam);
+
+        OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);*/
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        List<OrderItems> orderItemsFromSession = (List) sessionAttributes.get("orderItemsFromSession");
+
+        if (orderItemsFromSession == null) {
+
+            //create a list orderitems
+            List <OrderItems> orderItemsList = new ArrayList();
+
+            OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
+
+            orderItemEntity.setQuantity(orderItemQuantityParam);
+            orderItemEntity.setNameSize(orderItemNameSizeParam);
+            orderItemEntity.setWeight(orderItemWeightParam);
+            orderItemEntity.setVolume(orderItemVolumeParam);
+            orderItemEntity.setClassification(orderItemClassificationParam);
+            orderItemEntity.setCommodity(orderItemDescriptionParam);
+            orderItemEntity.setRate(orderItemRateParam);
+            orderItemEntity.setDeclaredValue(orderItemDeclaredValueParam);
+            orderItemEntity.setComments(orderItemRemarksParam);
+
+            orderItemsList.add(orderItemEntity); //orderItem is galing sa form
+
+            for(int i = 0; i < orderItemsList.size(); i++ ) {
+
+                System.out.println("-------------------------------------Order Item NULL " + orderItemsList.get(i).getOrderItemId() + "-------------------------------------");
+            }
+
+            sessionAttributes.put("orderItemsFromSession", orderItemsList);
+
+
+        } else {
+
+            OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
+
+            orderItemEntity.setQuantity(orderItemQuantityParam);
+            orderItemEntity.setNameSize(orderItemNameSizeParam);
+            orderItemEntity.setWeight(orderItemWeightParam);
+            orderItemEntity.setVolume(orderItemVolumeParam);
+            orderItemEntity.setClassification(orderItemClassificationParam);
+            orderItemEntity.setCommodity(orderItemDescriptionParam);
+            orderItemEntity.setRate(orderItemRateParam);
+            orderItemEntity.setDeclaredValue(orderItemDeclaredValueParam);
+            orderItemEntity.setComments(orderItemRemarksParam);
+
+            System.out.println("-------------------------------------Order Item NOT NULL Get Comments " + orderItemEntity.getComments() + "-------------------------------------");
+
+            orderItemsFromSession.add(orderItemEntity);
+
+            for(int i = 0; i < orderItemsFromSession.size(); i++ ) {
+
+                System.out.println("-------------------------------------Order Item NOT NULL " + orderItemsFromSession.get(i).getOrderItemId() + "-------------------------------------");
+            }
+
+            sessionAttributes.put("orderItemsFromSession", orderItemsFromSession);
         }
+
+        for (OrderItems orderItemElem : orderItemsFromSession) {
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
+
+
 
         return SUCCESS;
     }
 
     public String addedItemsInTable() {
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
+        /*Map sessionAttributes = ActionContext.getContext().getSession();
 
         sessionAttributes.get("orderIdPass");
 
@@ -260,7 +350,9 @@ public class OrderAction extends ActionSupport implements Preparable {
             System.out.println("-------------------------------------Order Item " + orderItemsFromSessionAdd.get(i).getOrderItemId() + "-------------------------------------");
         }
 
-        sessionAttributes.put("orderItem", orderItemsFromSessionAdd);
+        sessionAttributes.put("orderItem", orderItemsFromSessionAdd);*/
+
+
 
         return SUCCESS;
     }
@@ -632,6 +724,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     private OrderItems transformToOrderItemsEntityBean(OrderItemsBean formBean) {
+
         OrderItems entity = new OrderItems();
 
         //TO DO: To included OrderItems entity in Order Entity
@@ -642,21 +735,24 @@ public class OrderAction extends ActionSupport implements Preparable {
         Client client = clientService.findClientById(getClientId().toString());
 
         entity.setClientId(client.getClientId());
-        entity.setCommodity(formBean.getDescription());
-        entity.setQuantity(formBean.getQuantity());
-        entity.setClassification(formBean.getClassification());
-        entity.setDeclaredValue(formBean.getDeclaredValue());
+        //entity.setCommodity(formBean.getDescription());
+        //entity.setQuantity(formBean.getQuantity());
+        //entity.setClassification(formBean.getClassification());
+        //entity.setDeclaredValue(formBean.getDeclaredValue());
+
        /* orderItem.setHeight(orderItemBean.getHeight());
         orderItem.setWidth(orderItemBean.getWidth());
         orderItem.setLength(orderItemBean.getLength());*/
-        entity.setWeight(formBean.getWeight());
-        entity.setNameSize(formBean.getNameSize());
-        entity.setRate(formBean.getRate());
-        entity.setComments(formBean.getRemarks());
-        entity.setStatus("pending");
-        entity.setVolume(formBean.getVolume());
-        entity.setCreatedBy("admin");
-        entity.setModifiedBy("admin");
+
+        //entity.setWeight(formBean.getWeight());
+        //entity.setNameSize(formBean.getNameSize());
+        //entity.setRate(formBean.getRate());
+        //entity.setComments(formBean.getRemarks());
+        entity.setStatus("PENDING");
+
+        //entity.setVolume(formBean.getVolume());
+        entity.setCreatedBy(commonUtils.getUserNameFromSession());
+        entity.setModifiedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimestamp(new Date());
         entity.setModifiedTimestamp(new Date());
 
@@ -1088,5 +1184,77 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setAddressId(Integer addressId) {
         this.addressId = addressId;
+    }
+
+    public String getOrderItemRemarksParam() {
+        return orderItemRemarksParam;
+    }
+
+    public void setOrderItemRemarksParam(String orderItemRemarksParam) {
+        this.orderItemRemarksParam = orderItemRemarksParam;
+    }
+
+    public Double getOrderItemDeclaredValueParam() {
+        return orderItemDeclaredValueParam;
+    }
+
+    public void setOrderItemDeclaredValueParam(Double orderItemDeclaredValueParam) {
+        this.orderItemDeclaredValueParam = orderItemDeclaredValueParam;
+    }
+
+    public Float getOrderItemRateParam() {
+        return orderItemRateParam;
+    }
+
+    public void setOrderItemRateParam(Float orderItemRateParam) {
+        this.orderItemRateParam = orderItemRateParam;
+    }
+
+    public String getOrderItemDescriptionParam() {
+        return orderItemDescriptionParam;
+    }
+
+    public void setOrderItemDescriptionParam(String orderItemDescriptionParam) {
+        this.orderItemDescriptionParam = orderItemDescriptionParam;
+    }
+
+    public String getOrderItemClassificationParam() {
+        return orderItemClassificationParam;
+    }
+
+    public void setOrderItemClassificationParam(String orderItemClassificationParam) {
+        this.orderItemClassificationParam = orderItemClassificationParam;
+    }
+
+    public Float getOrderItemVolumeParam() {
+        return orderItemVolumeParam;
+    }
+
+    public void setOrderItemVolumeParam(Float orderItemVolumeParam) {
+        this.orderItemVolumeParam = orderItemVolumeParam;
+    }
+
+    public Double getOrderItemWeightParam() {
+        return orderItemWeightParam;
+    }
+
+    public void setOrderItemWeightParam(Double orderItemWeightParam) {
+        this.orderItemWeightParam = orderItemWeightParam;
+    }
+
+    public String getOrderItemNameSizeParam() {
+        return orderItemNameSizeParam;
+    }
+
+    public void setOrderItemNameSizeParam(String orderItemNameSizeParam) {
+        this.orderItemNameSizeParam = orderItemNameSizeParam;
+    }
+
+    public Integer getOrderItemQuantityParam() {
+        return orderItemQuantityParam;
+    }
+
+    public void setOrderItemQuantityParam(Integer orderItemQuantityParam) {
+        this.orderItemQuantityParam = orderItemQuantityParam;
     }
 }
