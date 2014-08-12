@@ -187,7 +187,7 @@
                     <tbody>
                     <table>
                         <tr>
-                            <display:table id="contact" name="contacts" requestURI="/viewCustomerContacts.action"
+                            <display:table id="contact" name="contacts" requestURI="viewCustomerContacts.action"
                                            pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">

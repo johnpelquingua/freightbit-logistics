@@ -167,7 +167,7 @@
                     <table>
                         <tr>
 
-                            <display:table id="address" name="addresss" requestURI="/viewTruckingAddress.action"
+                            <display:table id="address" name="addresss" requestURI="viewTruckingAddress.action"
                                            pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">

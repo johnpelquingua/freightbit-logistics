@@ -191,7 +191,7 @@
                     <tbody>
                     <table>
                         <tr>
-                            <display:table id="consignee" name="consignees" requestURI="/viewConsignees.action"
+                            <display:table id="consignee" name="consignees" requestURI="viewConsignees.action"
                                            pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">

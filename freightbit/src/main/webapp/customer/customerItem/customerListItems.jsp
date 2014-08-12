@@ -188,7 +188,7 @@
                     <tbody>
                     <table>
                         <tr>
-                            <display:table id="item" name="items" requestURI="/viewItem.action" pagesize="10"
+                            <display:table id="item" name="items" requestURI="viewItem.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
                                 <td><display:column property="itemName" title="Item Name" class="tb-font-black"

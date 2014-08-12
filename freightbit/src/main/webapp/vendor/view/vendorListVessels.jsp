@@ -172,7 +172,7 @@
                     <tbody>
                     <table>
                         <tr>
-                            <display:table id="vessel" name="vessels" requestURI="/viewVessels.action" pagesize="10"
+                            <display:table id="vessel" name="vessels" requestURI="viewVessels.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
                                 <td><display:column property="vesselNumber" title="Vessel Number" class="tb-font-black"

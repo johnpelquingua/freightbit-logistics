@@ -35,7 +35,7 @@
 
                 <div class="table-responsive">
                     <display:table id="orderItem" name="orderItems"
-                                   requestURI="/viewStatusListItems.action" pagesize="10"
+                                   requestURI="viewStatusListItems.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                    style="margin-top: 15px;">
 

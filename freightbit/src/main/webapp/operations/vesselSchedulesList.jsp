@@ -37,7 +37,7 @@
 				
 				<div class="table-responsive">
                         <display:table id="vesselSchedule" name="vesselSchedules"
-                                       requestURI="/viewVesselsSchedules.action" pagesize="10"
+                                       requestURI="viewVesselsSchedules.action" pagesize="10"
                                        class="table table-striped table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
 

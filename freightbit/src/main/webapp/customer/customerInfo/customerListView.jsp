@@ -154,7 +154,7 @@
                     <tbody>
                     <table>
                         <tr>
-                            <display:table id="customer" name="customers" requestURI="../customerList.action"
+                            <display:table id="customer" name="customers" requestURI="customerList.action"
                                            pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">

@@ -187,7 +187,7 @@
                     <tbody>
                     <table>
                         <tr>
-                            <display:table id="driver" name="drivers" requestURI="/viewDrivers.action" pagesize="10"
+                            <display:table id="driver" name="drivers" requestURI="viewDrivers.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
                                 <td><display:column property="driverCode" title="Driver Code" class="tb-font-black"
