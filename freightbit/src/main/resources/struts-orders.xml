@@ -69,19 +69,19 @@
 
     </package>
 
-    <package name="order" namespace="/" extends="json-default">
+    <package name="order" namespace="/orders" extends="json-default">
 
-    <action name="customerAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="customerAction">
-        <result type="json">/orders/orderAdd.jsp</result>
-    </action>
+        <action name="customerAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="customerAction">
+            <result type="json">/orders/orderAdd.jsp</result>
+        </action>
 
-    <action name="consigneeAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="consigneeAction">
-        <result type="json">/orders/orderAdd.jsp</result>
-    </action>
+        <action name="consigneeAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="consigneeAction">
+            <result type="json">/orders/orderAdd.jsp</result>
+        </action>
 
-    <action name="addressAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="addressAction">
-        <result type="json">/orders/orderAdd.jsp</result>
-    </action>
+        <action name="addressAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="addressAction">
+            <result type="json">/orders/orderAdd.jsp</result>
+        </action>
 
     </package>
 </struts>

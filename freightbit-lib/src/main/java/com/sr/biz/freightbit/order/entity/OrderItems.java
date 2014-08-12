@@ -17,7 +17,7 @@ public class OrderItems implements java.io.Serializable {
 
     private Integer orderItemId;
     private Integer clientId;
-//    private Orders order;
+    private Orders order;
     private Integer orderId;
     private Integer quantity;
     private String classification;
@@ -78,24 +78,24 @@ public class OrderItems implements java.io.Serializable {
         this.clientId = clientId;
     }
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "orderId", nullable = false)
-//    public Orders getOrder() {
-//        return this.order;
-//    }
-//
-//    public void setOrder(Orders order) {
-//        this.order = order;
-//    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "orderId", nullable = false)
+    public Orders getOrder() {
+        return this.order;
+    }
 
-    @Column(name = "orderId")
+    public void setOrder(Orders order) {
+        this.order = order;
+    }
+
+    /*@Column(name = "orderId")
     public Integer getOrderId() {
         return orderId;
     }
 
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
-    }
+    }*/
 
     @Column(name = "quantity", nullable = false)
     public Integer getQuantity() {

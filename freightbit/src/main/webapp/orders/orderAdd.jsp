@@ -25,7 +25,7 @@
                                 Basic Information
                             </span>
                         </legend>
-
+                        <s:form action="addOrder" theme="bootstrap">
                         <div class="form-group" style="margin-top: 15px;">
                             <label class="col-lg-2 control-label">Service Requirement*</label>
 
@@ -130,13 +130,13 @@
 
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date and Time</label>
                     <div class="col-lg-3" >
-                        <input type="text" class="from_date form-control step2" id="datepicker1" name="orderBean.pickupDate" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="from_date form-control step2" id="datepicker1" name="order.pickupDate" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;">
 
                     </div>
 
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date and Time</label>
                     <div class="col-lg-3" >
-                        <input type="text" class="to_date form-control step2" id="datepicker2" name="orderBean.deliveryDate" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="to_date form-control step2" id="datepicker2" name="order.deliveryDate" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;">
                     </div>
 
                 </div>
@@ -166,7 +166,7 @@
 
                         <div class="col-lg-9">
                             <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                      list="notifyByList" listKey="key" listValue="value" />
+                                      name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" />
                         </div>
 
                     </div>
@@ -175,7 +175,7 @@
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Comments </label>
 
                         <div class="col-lg-9">
-                            <s:textarea cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important;"></s:textarea>
+                            <s:textfield  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important;" />
                         </div>
                     </div>
 
@@ -248,8 +248,8 @@
                         </div>
                     </div>
 
-                    <%--<s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Save" />--%>
-
+                <s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Save" />
+                </s:form>
                 </div>
                 <%--Cargo / Item Box--%>
                 <div id="2ndPart" style="clear:both;" class="well">
@@ -418,7 +418,7 @@
 
                 <div id="3rdPart" style="clear:both;" class="well">
 
-                    <fieldset>
+                    <%--<fieldset>
 
                         <legend style="text-align: left;">
                             <span>
@@ -457,14 +457,14 @@
 
                                             <td class="tb-font-black">
 
-                                                <%--<s:url var="deleteItemUrl" action="deleteItem">
+                                                &lt;%&ndash;<s:url var="deleteItemUrl" action="deleteItem">
                                                     <s:param name="customersItemIdParam" value="%{customerItemsId}"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
                                                      title="Delete this Item?"
                                                      onclick="return confirm('Do you really want to delete?');">
                                                     <img src="includes/images/remove-user.png" class="icon-action circ-icon">
-                                                </s:a>--%>
+                                                </s:a>&ndash;%&gt;
 
                                             </td>
                                         </tr>
@@ -475,7 +475,7 @@
                         </div>
 
                     </fieldset>
-
+--%>
                 </div>
 
                 <button type="button" class="btn btn-primary pull-right"
