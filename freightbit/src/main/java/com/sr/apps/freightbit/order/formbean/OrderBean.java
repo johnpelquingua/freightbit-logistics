@@ -408,4 +408,6 @@ public class OrderBean {
     public void setConsigneeAddressId(Integer consigneeAddressId) {
         this.consigneeAddressId = consigneeAddressId;
     }
+
+
 }

@@ -78,7 +78,7 @@ public class OrderItems implements java.io.Serializable {
         this.clientId = clientId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    /*@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "orderId", nullable = false)
     public Orders getOrder() {
         return this.order;
@@ -86,16 +86,16 @@ public class OrderItems implements java.io.Serializable {
 
     public void setOrder(Orders order) {
         this.order = order;
-    }
+    }*/
 
-    /*@Column(name = "orderId")
+    @Column(name = "orderId")
     public Integer getOrderId() {
         return orderId;
     }
 
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
-    }*/
+    }
 
     @Column(name = "quantity", nullable = false)
     public Integer getQuantity() {

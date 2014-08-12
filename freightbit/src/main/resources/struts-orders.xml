@@ -49,12 +49,17 @@
         </action>
 
         <action name="addOrder" class="com.sr.apps.freightbit.order.action.OrderAction" method="addOrder">
+            <result name="success" type="redirect">addOrderInfo</result>
+        </action>
+
+        <action name="addOrderInfo" class="com.sr.apps.freightbit.order.action.OrderAction" method="addOrderInfo">
             <result name="success" type="tiles">orders.add-booking-info.tiles</result>
         </action>
 
         <action name="addItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addItemsInTable">
-            <result name="success">/orders/orderAdd2.jsp</result>
+            <!--<result name="success" type="redirect">addedItemsInTable</result>-->
+            <result name="success" type="tiles">orders.add-booking-info.tiles</result>
         </action>
 
         <action name="addedItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"

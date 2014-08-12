@@ -5,6 +5,7 @@ package com.sr.biz.freightbit.order.entity;
 import com.sr.biz.freightbit.core.entity.Client;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -59,7 +60,8 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    public Orders(Integer orderId, Client client, String orderNumber, String serviceRequirement, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Date pickupDate, String originationPort, Date deliveryDate, String destinationPort, Double rates, List<OrderItems> orderItems) {
+    public Orders(String truckCode, Integer orderId, Client client, String orderNumber, String serviceRequirement, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Timestamp pickupDate, String originationPort, Timestamp deliveryDate, String destinationPort, Double rates, List<OrderItems> orderItems) {
+        this.truckCode = truckCode;
         this.orderId = orderId;
         this.client = client;
         this.orderNumber = orderNumber;
@@ -72,7 +74,6 @@ public class Orders implements java.io.Serializable {
         this.comments = comments;
         this.orderStatus = orderStatus;
         this.vendorCode = vendorCode;
-        this.truckCode = truckCode;
         this.trailerCode = trailerCode;
         this.driverCode = driverCode;
         this.vesselNumber = vesselNumber;
@@ -380,7 +381,7 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    public void setPickupDate(Date pickupDate) {
+    public void setPickupDate(Timestamp pickupDate) {
         this.pickupDate = pickupDate;
     }
 
@@ -412,7 +413,7 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    public void setDeliveryDate(Date deliveryDate) {
+    public void setDeliveryDate(Timestamp deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 

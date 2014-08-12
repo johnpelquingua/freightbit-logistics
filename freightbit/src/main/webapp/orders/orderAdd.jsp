@@ -27,7 +27,7 @@
                         </legend>
                         <s:form action="addOrder" theme="bootstrap">
                         <div class="form-group" style="margin-top: 15px;">
-                            <label class="col-lg-2 control-label">Service Requirement*</label>
+                            <label class="col-lg-2 control-label">Service Requirement</label>
 
                             <div class="col-lg-10">
 
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Service Mode*</label>
+                            <label class="col-lg-2 control-label">Service Mode</label>
 
                             <div class="col-lg-10">
 
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Freight Type*</label>
+                            <label class="col-lg-2 control-label">Freight Type</label>
 
                             <div class="col-lg-10">
 
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Payment Mode*</label>
+                            <label class="col-lg-2 control-label">Payment Mode</label>
 
                             <div class="col-lg-10">
 
@@ -98,7 +98,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Customer Name*</label>
+                            <label class="col-lg-2 control-label">Customer Name</label>
 
                             <div class="col-lg-10">
 
@@ -110,6 +110,7 @@
                                           listKey="customerId"
                                           listValue="customerName"
                                           emptyOption="true"
+                                          required="true"
                                 />
                                 <%--onchange="contactSearch()"--%>
 
@@ -130,13 +131,13 @@
 
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date and Time</label>
                     <div class="col-lg-3" >
-                        <input type="text" class="from_date form-control step2" id="datepicker1" name="order.pickupDate" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="from_date form-control step2" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;">
 
                     </div>
 
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date and Time</label>
                     <div class="col-lg-3" >
-                        <input type="text" class="to_date form-control step2" id="datepicker2" name="order.deliveryDate" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="to_date form-control step2" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;">
                     </div>
 
                 </div>
@@ -148,7 +149,7 @@
 
                         <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
                                   id="select1" name="order.originationPort" list="portsList" listKey="key"
-                                  listValue="value" />
+                                  listValue="value" required="true"/>
 
                     </div>
 
@@ -157,7 +158,7 @@
 
                         <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
                                   id="select2" name="order.destinationPort" list="portsList" listKey="key"
-                                  listValue="value" />
+                                  listValue="value" required="true"/>
 
                     </div>
 
@@ -175,7 +176,7 @@
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Comments </label>
 
                         <div class="col-lg-9">
-                            <s:textfield  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important;" />
+                            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important;" required="true"/>
                         </div>
                     </div>
 
@@ -196,21 +197,39 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person</label>
 
-                        <div class="col-lg-9">
+                        <div class="col-lg-6">
                             <%--<s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperContact"
                                       list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName"/>--%>
-                                <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperContact" name="order.shipperContactId"
-                                          list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName"/>
+                                <s:select cssClass="form-control step2" style="margin-bottom: 15px !important; width: 555px;" id="shipperContact" name="order.shipperContactId"
+                                          list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
+                        </div>
+
+                        <div class="col-lg-3 ">
+
+                            <button type="button" class="btn btn-info pull-right"
+                                    onclick="location.href='loadAddOrderPage'">
+                                Add Contact Person
+                            </button>
+
                         </div>
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="clear: both;">
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address</label>
 
-                        <div class="col-lg-9">
-                            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
-                                      list="addressList" listKey="addressId" listValue="addressLine1 + ' ' + addressLine2" />
+                        <div class="col-lg-6">
+                            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important; width: 555px;" id="shipperAddress" name="order.shipperAddressId"
+                                      list="addressList" listKey="addressId" listValue="addressLine1 + ' ' + addressLine2" required="true"/>
+                        </div>
+
+                        <div class="col-lg-3 ">
+
+                            <button type="button" class="btn btn-info pull-right"
+                                    onclick="location.href='loadAddOrderPage'" style="width: 153px;">
+                                Add Address
+                            </button>
+
                         </div>
 
                     </div>
@@ -219,10 +238,10 @@
                             <span >
                                 Consignee Information
 
-                                <button type="button" class="btn btn-info pull-right"
+                                <%--<button type="button" class="btn btn-info pull-right"
                                         onclick="location.href='loadAddOrderPage'">
-                                    <i class="fa fa-plus"></i> Add New Consignee
-                                </button>
+                                     Add Consignee
+                                </button>--%>
 
                             </span>
                     </legend>
@@ -230,29 +249,46 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name</label>
 
-                        <div class="col-lg-9">
-                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperConsignee" name="order.consigneeContactId"
+                        <div class="col-lg-6">
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important; width: 555px;" id="shipperConsignee" name="order.consigneeContactId"
                                       list="consigneeList" listKey="contactId"
-                                      listValue="firstName +' '+ middleName +' '+ lastName" />
+                                      listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
+                        </div>
+
+                        <div class="col-lg-3 ">
+                            <button type="button" class="btn btn-info pull-right"
+                                    onclick="location.href='loadAddOrderPage'" style="width: 153px;">
+                                Add Consignee
+                            </button>
                         </div>
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="clear:both;">
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address</label>
 
-                        <div class="col-lg-9">
-                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeAddress" name="order.consigneeAddressId"
+                        <div class="col-lg-6">
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important; width: 728px;" id="consigneeAddress" name="order.consigneeAddressId"
                                       list="consigneeAddressList" listKey="addressId"
-                                      listValue="addressLine1 + ' ' + addressLine2" />
+                                      listValue="addressLine1 + ' ' + addressLine2" required="true"/>
                         </div>
+
+
                     </div>
 
-                <s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Save" />
+                <div style="clear: both;">
+
+                    <button type="button" id="Cancel" class="btn btn-lg">
+                        Cancel
+                    </button>
+
+                    <s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Next" />
+
+                </div>
                 </s:form>
                 </div>
                 <%--Cargo / Item Box--%>
-                <div id="2ndPart" style="clear:both;" class="well">
+                <%--<div id="2ndPart" style="clear:both;" class="well">
 
                     <fieldset class="inputs">
 
@@ -262,7 +298,7 @@
                             </span>
                         </legend>
 
-                        <%--<s:form cssClass="form-horizontal" theme="bootstrap" action="addItemsInTable" >--%>
+                        &lt;%&ndash;<s:form cssClass="form-horizontal" theme="bootstrap" action="addItemsInTable" >&ndash;%&gt;
 
                         <div class="form-group">
 
@@ -403,9 +439,9 @@
                             <i class="fa fa-plus"></i> Add Container
                         </button>
 
-                        <%--<s:submit name="submit"  cssClass="btn btn-info pull-right" cssStyle="margin-top: 15px;" value="Add Container" />--%>
+                        &lt;%&ndash;<s:submit name="submit"  cssClass="btn btn-info pull-right" cssStyle="margin-top: 15px;" value="Add Container" />&ndash;%&gt;
 
-                        <%--</s:form>--%>
+                        &lt;%&ndash;</s:form>&ndash;%&gt;
 
                     </fieldset>
 
@@ -414,11 +450,11 @@
 
                     </div>
 
-                </div> <%-- End Cargo / Item Box--%>
+                </div>--%> <%-- End Cargo / Item Box--%>
 
-                <div id="3rdPart" style="clear:both;" class="well">
+                <%--<div id="3rdPart" >
 
-                    <%--<fieldset>
+                    <fieldset>
 
                         <legend style="text-align: left;">
                             <span>
@@ -475,14 +511,14 @@
                         </div>
 
                     </fieldset>
---%>
-                </div>
 
-                <button type="button" class="btn btn-primary pull-right"
+                </div>--%>
+
+                <%--<button type="button" class="btn btn-primary pull-right"
                         style="margin-top: 15px;"
                         onclick="location.href='loadAddOrderPage'">
                     <i class="fa fa-plus"></i> Create Booking
-                </button>
+                </button>--%>
 
             </div>
 
@@ -731,6 +767,7 @@ $(document).ready(function() {
             },
             dataType: 'html',
             success: function (html) {
+                alert(html);
                 ('#3rdPart').html(html);
             },
             error: function(xhr, ajaxOptions, thrownError){
