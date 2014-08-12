@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header">Customer Profile</h1>
@@ -153,7 +154,7 @@
                     <tbody>
                     <table>
                         <tr>
-                            <display:table id="customer" name="customers" requestURI="/customerList.action"
+                            <display:table id="customer" name="customers" requestURI="../customerList.action"
                                            pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
@@ -173,24 +174,31 @@
                                             <s:param name="customerCodeParam"
                                                      value="#attr.customer.customerCode"></s:param>
                                         </s:url>
-                                        <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip"
-                                             title="Edit this Customer"><img src="../includes/images/edit-user.png"
-                                                                             class="icon-action circ-icon"> </s:a>
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                                        <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip" title="Edit this Customer">
+                                        	<img src="../includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
+                                        </sec:authorize>
+                                        
                                         <s:url var="deleteCustomerUrl" action="deleteCustomer">
                                             <s:param name="customerCodeParam"
                                                      value="#attr.customer.customerCode"></s:param>
                                         </s:url>
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
                                         <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip"
                                              title="Delete this Customer"
                                              onclick="return confirm('Do you really want to delete?');"><img
                                                 src="../includes/images/remove-user.png"
                                                 class="icon-action circ-icon"> </s:a>
+                                        </sec:authorize>
+                                        
                                         <s:url var="customerInfoUrl" action="customerInfo">
                                             <s:param name="customerCodeParam"
                                                      value="#attr.customer.customerCode"></s:param>
                                         </s:url>
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">
                                         <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img
                                                 src="../includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
+                                        </sec:authorize>
                                     </display:column>
                                 </td>
                             </display:table>

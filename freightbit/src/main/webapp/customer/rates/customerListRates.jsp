@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Rates Module</h1>
 
@@ -219,13 +219,20 @@
             </div>--%>
 
             <ul class="nav nav-pills nav-stacked">
-                <li><a href="customerInfo"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
+           	   <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                <li><a href="#"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
                 <li><a href="viewAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li><a href="viewCustomerContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
+                <li><a href="viewCustomerContacts"><i class="fa fa-group fa-fw"></i> Contacts</a></li>
                 <li><a href="viewItem"><i class="fa fa-list-ol fa-fw"></i> Items</a></li>
+                </sec:authorize>
+                
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">
                 <li class="active"><a href="viewRates"><i class="fa fa-money fa-fw"></i> Rates</a></li>
+                </sec:authorize>
+                
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
                 <li><a href="viewConsignees"><i class="fa fa-list fa-fw"></i> Consignee List</a></li>
-
+                </sec:authorize>
             </ul>
         </div>
     </div>
