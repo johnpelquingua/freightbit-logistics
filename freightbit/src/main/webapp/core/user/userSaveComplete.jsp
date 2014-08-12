@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
-
-<!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header">Users</h1>
 
-
-    <!-- EDIT HERE -->
     <div class="row alert alert-success alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <strong>Success!</strong> The data has been successfully saved.
@@ -122,42 +118,4 @@
         </div>
 
     </div>
-
-
-    <!--<div id="openModal" class="modalDialog">
-        <div>
-            <div class="panel panel-info">
-                <a href="#close" title="Close" class="close">X</a>
-
-                <div class="panel-heading">
-                    <h3 class="panel-title">Confirm Delete</h3>
-                </div>
-
-                <div class="panel-body">
-                    <div style="text-align:center;">
-                        <span>Do you really want to delete <em>'001, Russel, Company 001, Russelpo, Freight Operations Specialist'</em> ? This action is irreversible.</span>
-                    </div>
-                </div>
-
-                <div class="panel-footer">
-                    <div class="btn-group btn-group-justified">
-                        <div class="btn-group">
-                            <button class="btn btn-default" onclick="location.href='#close'">Yes</button>
-                        </div>
-                        <div class="btn-group">
-                            <button class="btn btn-default" onclick="location.href='#close'">No</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>-->
-
-    <!-- SIDEBAR GOES HERE -->
-
-
-    <!-- END OF EDIT -->
-
-
-    <!-- END OF THE MIDDLE -->
+</div>

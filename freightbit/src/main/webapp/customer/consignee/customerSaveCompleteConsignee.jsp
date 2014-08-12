@@ -1,18 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Clarence C. Victoria
-  Date: 6/25/14
-  Time: 2:46 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%--
-  Created by IntelliJ IDEA.
-  User: Clarence C. Victoria
-  Date: 6/25/14
-  Time: 1:21 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Consignee Module</h1>
 
@@ -104,4 +91,3 @@
         </div>
     </div>
 </div>
-

@@ -2,14 +2,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
-<!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <s:form action="User-List-Info" theme="bootstrap" cssClass="form-horizontal">
     <h1 class="page-header">Edit <em>'<s:property value="users[1].name"></s:property>'</em></h1>
-
-    <!-- EDIT HERE -->
-
-    <!-- MAIN BOX -->
 
     <div class="row">
         <div class="col-md-12">
@@ -132,20 +127,6 @@
         </div>
 
     </div>
-
-
-    <!-- SIDEBAR GOES HERE -->
-
-
-    <!-- END OF EDIT -->
-
-
-    <!-- END OF THE MIDDLE -->
-
-    <!-- Bootstrap core JavaScript
-   ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-
 
     <script>
 

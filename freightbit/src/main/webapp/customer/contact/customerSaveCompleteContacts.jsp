@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
-<!-- MIDDLE -->
+
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <h1 class="page-header">Contact Person</h1>
 
@@ -9,7 +9,6 @@
         <strong>Success!</strong> The data has been successfully saved.
     </div>
 
-    <!-- EDIT HERE -->
     <div class="row">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -21,7 +20,6 @@
                     <table class="table table-striped table-bordered text-center">
                         <thead>
                         <tr class="header_center">
-                            <%--<th class="tb-font-black">Contact Type</th>--%>
                             <th class="tb-font-black"><input type="checkbox"/></th>
                             <th class="tb-font-black">Last Name</th>
                             <th class="tb-font-black">First Name</th>
@@ -90,5 +88,3 @@
         </div>
     </div>
 </div>
-
-<!-- END OF THE MIDDLE -->

@@ -4,12 +4,9 @@
 
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
-<!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header">Permissions</h1>
-
-    <!-- MAIN BOX -->
 
     <div class="main-box">
         <div class="col-md-12">
@@ -128,11 +125,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <!-- END OF TABLE-->
-
-
                     </div>
 
 
@@ -153,7 +145,6 @@
 
     </div>
 
-    <!-- SIDBAR GOES HERE -->
     <div class="sidebar-box">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -168,9 +159,4 @@
             </div>
         </div>
     </div>
-
-
-    <!-- END OF MAIN BOX -->
-
-
-    <!-- END OF THE MIDDLE -->
+</div>

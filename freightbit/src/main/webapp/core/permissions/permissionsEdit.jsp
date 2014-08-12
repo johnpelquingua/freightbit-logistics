@@ -54,12 +54,11 @@
         });
     });
 </script>
-<!-- MIDDLE -->
+
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header">Permissions</h1>
 
-    <!-- MAIN BOX -->
     <s:if test="hasActionMessages()">
     <div class="row alert alert-success alert-dismissable">
         <s:actionmessage/>
@@ -187,14 +186,7 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <!-- END OF TABLE-->
-
-
                     </div>
-
-
                 </div>
 
                 <div>
@@ -215,8 +207,6 @@
         </div>
 
     </div>
-
-    <!-- SIDBAR GOES HERE -->
     <div class="sidebar-box">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -231,14 +221,3 @@
             </div>
         </div>
     </div>
-
-
-    <!-- END OF MAIN BOX -->
-
-
-    <!-- END OF THE MIDDLE -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../includes/js/bootstrap.min.js"></script>

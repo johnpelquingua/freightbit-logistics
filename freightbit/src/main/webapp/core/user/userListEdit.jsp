@@ -2,15 +2,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
-<!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header">Users</h1>
-
-
-    <!-- MAIN BOX -->
-
-    <!-- EDIT HERE -->
 
     <div class="row">
         <div class="col-md-12">
@@ -18,7 +12,7 @@
 
                 <div class="panel-heading">
                     <img src="../includes/images/listofusers.png" class="box-icon"/>
-						<span class="panel-title">Edit User</h3>
+                    <span class="panel-title">Edit User</h3></span>
                 </div>
 
                 <div class="panel-body">
@@ -136,13 +130,4 @@
         </div>
         </s:form>
     </div>
-
-
-    <!-- SIDEBAR GOES HERE -->
-
-
-    <!-- END OF EDIT -->
-
-
-    <!-- END OF THE MIDDLE -->
-		
+</div>

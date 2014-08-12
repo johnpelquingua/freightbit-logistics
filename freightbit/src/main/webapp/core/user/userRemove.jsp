@@ -2,14 +2,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
-<!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header">Users</h1>
-
-    <!-- EDIT HERE -->
-
-    <!-- MAIN BOX -->
 
     <div class="row">
         <div class="col-md-12">
@@ -118,10 +113,3 @@
         </div>
     </div>
 </div>
-
-
-<!-- END OF MAIN BOX -->
-
-
-<!-- END OF THE MIDDLE -->
-		

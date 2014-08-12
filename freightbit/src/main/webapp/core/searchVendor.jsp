@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
-<!-- MIDDLE -->
+
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header">Vendor Module</h1>
 
-    <!-- EDIT HERE -->
     <div class="main-box">
         <div class="col-md-12">
             <div class="panel panel-info">
@@ -84,8 +83,6 @@
         </div>
     </div>
 
-
-    <!-- SIDBAR GOES HERE -->
     <div class="sidebar-box">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -100,8 +97,4 @@
             </div>
         </div>
     </div>
-    <!-- END OF EDIT -->
-
-
 </div>
-<!-- END OF THE MIDDLE -->

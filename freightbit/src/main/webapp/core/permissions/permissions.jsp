@@ -1,11 +1,8 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header">Permissions</h1>
-
-    <!-- MAIN BOX -->
 
     <div class="main-box">
         <div class="col-md-12">
@@ -19,7 +16,6 @@
                         <table class="table table-striped table-bordered text-center" id="groups-list">
                             <thead>
                             <tr class="header_center">
-                                <!--<th class="tb-font-black"><input type="checkbox" /></th>-->
                                 <th class="tb-font-black">Permissions</th>
                                 <th class="tb-font-black">Users/Groups</th>
                                 <th class="tb-font-black">Action</th>
@@ -27,7 +23,6 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <!--<th class="tb-font-black"><input type="checkbox" /></th>-->
                                 <td class="tb-font-black">Admin System</td>
                                 <td class="tb-font-black" align="center"></td>
                                 <td class="tb-font-black">
@@ -36,7 +31,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <!--<th class="tb-font-black"><input type="checkbox" /></th>-->
                                 <td class="tb-font-black">Create New Booking</td>
                                 <td class="tb-font-black" align="center">Jan</td>
                                 <td class="tb-font-black">
@@ -45,7 +39,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <!--<th class="tb-font-black"><input type="checkbox" /></th>-->
                                 <td class="tb-font-black">Add Customer</td>
                                 <td class="tb-font-black" align="center">Jan</td>
                                 <td class="tb-font-black">
@@ -54,7 +47,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <!--<th class="tb-font-black"><input type="checkbox" /></th>-->
                                 <td class="tb-font-black">Add Vendor</td>
                                 <td class="tb-font-black" align="center"></td>
                                 <td class="tb-font-black">
@@ -86,8 +78,6 @@
             </div>
         </div>
     </div>
-
-    <!-- SIDBAR GOES HERE -->
     <div class="sidebar-box">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -103,23 +93,3 @@
         </div>
     </div>
 </div>
-
-
-<!--<span class="pull-right">
-<a href="groups-add.html" class="icon-action-link"><img src="../includes/images/add-user.png" class="icon-action circ-icon"> </a>
-</span>-->
-
-<!-- END OF MAIN BOX -->
-
-
-<!-- END OF THE MIDDLE -->
-
-</div>
-</div>
-</div>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/docs.min.js"></script>

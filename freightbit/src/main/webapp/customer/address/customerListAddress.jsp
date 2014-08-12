@@ -1,107 +1,22 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
- <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%--
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="page-header">Vendor Module</h1>
-
-    <div class="col-md-12">
-        <div class="panel panel-info">
-
-            <div class="panel-heading">
-
-                <img src="../includes/images/listofusers.png" class="box-icon"/> <span
-                    class="panel-title">List of Vendors</span>
-            </div>
-
-            <div class="panel-body">
-                <div class="table-responsive list-table">
-                    <table class="table table-striped table-bordered text-center" id="customer-list">
-                        <thead>
-                        <tr class="header_center">
-                            <th class="tb-font-black">Address Type</th>
-                            <th class="tb-font-black">Address 1</th>
-                            <th class="tb-font-black">Address 2</th>
-                            <th class="tb-font-black">City</th>
-                            <th class="tb-font-black">State</th>
-                            <th class="tb-font-black">Zip</th>
-                            <th class="tb-font-black">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <s:iterator value="addresss" var="address">
-                            <tr>
-                                <td class="tb-font-black"><s:property value="addressType"/></td>
-                                <td class="tb-font-black"><s:property value="addressLine1"/></td>
-                                <td class="tb-font-black"><s:property value="addressLine2"/></td>
-                                <td class="tb-font-black"><s:property value="city"/></td>
-                                <td class="tb-font-black"><s:property value="state"/></td>
-                                <td class="tb-font-black"><s:property value="zip"/></td>
-
-                                <td>
-
-                                    <s:url var="loadEditAddressUrl" action="loadEditAddress">
-                                        <s:param name="addressIdParam" value="%{addressId}"></s:param>
-                                    </s:url>
-                                    <s:a href="%{loadEditAddressUrl}" class="icon-action-link" rel="tooltip"
-                                         title="Edit this Vendor Address"><img src="../includes/images/edit-user.png"
-                                                                               class="icon-action circ-icon"> </s:a>
-
-                                    <s:url var="deleteAddressUrl" action="deleteAddress">
-                                        <s:param name="addressIdParam" value="%{addressId}"></s:param>
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{deleteAddressUrl}" rel="tooltip"
-                                         title="Delete this Vendor Address"
-                                         onclick="return confirm('Do you really want to delete?');"><img
-                                            src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
-                                </td>
-                            </tr>
-                        </s:iterator>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="panel-footer">
-
-                <ul class="pagination">
-                    <li class="disabled"><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li class="disabled"><a href="#">&raquo;</a></li>
-                </ul>
-
-            <span class="pull-right">
-                <s:url var="loadAddAddressUrl" action="loadAddAddress">
-                    <s:param name="customerIdParam" value="customerIdParam"> </s:param>
-                </s:url>
-                <s:a class="icon-action-link" href="%{loadAddAddressUrl}" rel="tooltip" title="Add Contact">
-                    <img src="../includes/images/add-user.png" class="icon-action circ-icon">
-                </s:a>
-            </span>
-
-            </div>
-        </div>
-    </div>
-</div>
---%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="row" style="margin-top: -15px;">
     <div class="col-lg-12">
         <h1>Customer List Address </h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><i class="fa fa-male"></i> Customer</li>
-            <li class="active"><a href="<s:url action='customerList' />"> <i class="fa fa-list"></i> Customer List</a>
+            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Customer</li>
+            <li class="active"><a href="<s:url action='customerList' />"> Customer List</a>
             </li>
-            <li class="active"><a href="<s:url action='customerInfo' />"> <i class="fa fa-info-circle"></i> Customer
+            <li class="active"><a href="<s:url action='customerInfo' />"> Customer
                 Profile</a></li>
-            <li class="active"><i class="fa fa-home"></i> Address</li>
+            <li class="active"> Address</li>
         </ol>
 
     </div>
 </div>
-<!-- /.row -->
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-7">
@@ -124,50 +39,6 @@
             <div class="panel-body">
 
                 <div class="table-responsive list-table">
-                    <%--<table class="table table-striped table-bordered text-center" id="customer-list">
-                        <thead>
-                        <tr class="header_center">
-                            <th class="tb-font-black" style="text-align: center;">Address Type <i class="fa fa-sort"></i></th>
-                            <th class="tb-font-black" style="text-align: center;">Address 1 <i class="fa fa-sort"></i></th>
-                            <th class="tb-font-black" style="text-align: center;">Address 2 <i class="fa fa-sort"></i></th>
-                            <th class="tb-font-black" style="text-align: center;">City <i class="fa fa-sort"></i></th>
-                            <th class="tb-font-black" style="text-align: center;">State <i class="fa fa-sort"></i></th>
-                            <th class="tb-font-black" style="text-align: center;">Zip <i class="fa fa-sort"></i></th>
-                            <th class="tb-font-black" style="text-align: center;">Action </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <s:iterator value="addresss" var="address">
-                            <tr>
-                                <td class="tb-font-black"><s:property value="addressType"/></td>
-                                <td class="tb-font-black"><s:property value="addressLine1"/></td>
-                                <td class="tb-font-black"><s:property value="addressLine2"/></td>
-                                <td class="tb-font-black"><s:property value="city"/></td>
-                                <td class="tb-font-black"><s:property value="state"/></td>
-                                <td class="tb-font-black"><s:property value="zip"/></td>
-
-                                <td>
-
-                                    <s:url var="loadEditAddressUrl" action="loadEditAddress">
-                                        <s:param name="addressIdParam" value="%{addressId}"></s:param>
-                                    </s:url>
-                                    <s:a href="%{loadEditAddressUrl}" class="icon-action-link" rel="tooltip"
-                                         title="Edit this Vendor Address"><img src="../includes/images/edit-user.png"
-                                                                               class="icon-action circ-icon"> </s:a>
-
-                                    <s:url var="deleteAddressUrl" action="deleteAddress">
-                                        <s:param name="addressIdParam" value="%{addressId}"></s:param>
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{deleteAddressUrl}" rel="tooltip"
-                                         title="Delete this Vendor Address"
-                                         onclick="return confirm('Do you really want to delete?');"><img
-                                            src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
-                                </td>
-                            </tr>
-                        </s:iterator>
-                        </tbody>
-                    </table>--%>
-
                     <tbody>
                     <table>
                         <tr>
@@ -192,8 +63,9 @@
                                             <s:param name="addressIdParam" value="%{#attr.address.addressId}"></s:param>
                                         </s:url>
                                         <s:a href="%{loadEditAddressUrl}" class="icon-action-link" rel="tooltip"
-                                             title="Edit this Vendor Address"><img src="../includes/images/edit-user.png"
-                                                                                   class="icon-action circ-icon"> </s:a>
+                                             title="Edit this Vendor Address"><img
+                                                src="../includes/images/edit-user.png"
+                                                class="icon-action circ-icon"> </s:a>
 
                                         <s:url var="deleteAddressUrl" action="deleteAddress">
                                             <s:param name="addressIdParam" value="%{#attr.address.addressId}"></s:param>
@@ -233,27 +105,25 @@
     <div class="col-lg-2">
         <div class="panel panel-primary">
 
-            <%--<div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list-ol"></i> Vendor Details</h3>
-            </div>--%>
-
             <ul class="nav nav-pills nav-stacked">
-           	   <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                <li><a href="#"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
-                <li class="active"><a href="viewAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li><a href="viewCustomerContacts"><i class="fa fa-group fa-fw"></i> Contacts</a></li>
-                <li><a href="viewItem"><i class="fa fa-list-ol fa-fw"></i> Items</a></li>
+                <sec:authorize
+                        access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                    <li><a href="#"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
+                    <li class="active"><a href="viewAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
+                    <li><a href="viewCustomerContacts"><i class="fa fa-group fa-fw"></i> Contacts</a></li>
+                    <li><a href="viewItem"><i class="fa fa-list-ol fa-fw"></i> Items</a></li>
                 </sec:authorize>
-                
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">
-                <li><a href="viewRates"><i class="fa fa-money fa-fw"></i> Rates</a></li>
+
+                <sec:authorize
+                        access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">
+                    <li><a href="viewRates"><i class="fa fa-money fa-fw"></i> Rates</a></li>
                 </sec:authorize>
-                
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                <li><a href="viewConsignees"><i class="fa fa-list fa-fw"></i> Consignee List</a></li>
+
+                <sec:authorize
+                        access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                    <li><a href="viewConsignees"><i class="fa fa-list fa-fw"></i> Consignee List</a></li>
                 </sec:authorize>
             </ul>
         </div>
     </div>
 </div>
-<!-- /.row -->
