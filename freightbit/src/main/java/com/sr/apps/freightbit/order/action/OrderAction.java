@@ -5,6 +5,7 @@ import java.util.*;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.customer.entity.Items;
 import org.apache.commons.lang3.StringUtils;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -53,6 +54,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Address> consigneeAddressList = new ArrayList<Address>();
     private List<Parameters> portsList = new ArrayList<Parameters>();
     private CommonUtils commonUtils = new CommonUtils();
+    private List<Items> customerItems = new ArrayList<Items>();
 
     private Integer orderIdParam;
     private OrderService orderService;
@@ -323,21 +325,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String addOrderItemsInDB() {
-
-        /*Map sessionAttributes = ActionContext.getContext().getSession();
-
-        sessionAttributes.get("orderIdPass");
-
-        List<OrderItems> orderItemEntityList = (List) sessionAttributes.get("orderItem");
-
-        for (OrderItems orderItemElem : orderItemEntityList) {
-            orderItemElem.setOrderId((Integer)sessionAttributes.get("orderIdPass"));
-            orderService.addItem(orderItemElem);
-
-        }*/
-        return SUCCESS;
-    }
 
     public String bookingSearch() {
         return SUCCESS;
@@ -373,11 +360,18 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY Add Order Info"+ sessionAttributes.get("orderIdPass"));
 
-
-
         Orders orderEntityForm = orderService.findOrdersById((Integer)sessionAttributes.get("orderIdPass"));
         // Display Order Data to form
         order = transformToOrderFormBean(orderEntityForm);
+        // get contact id from shipper
+        Integer contactIdParam = orderEntityForm.getShipperContactId();
+        // shipper id from contact
+        Contacts contactEntity = customerService.findContactById(contactIdParam);
+        Customer customerEntity = customerService.findCustomerById(contactEntity.getReferenceId());
+        // get customer items
+        customerItems = customerService.findItemByCustomerId(customerEntity.getCustomerId());
+
+
 
         return SUCCESS;
     }
@@ -1272,5 +1266,11 @@ public class OrderAction extends ActionSupport implements Preparable {
         this.orderItemQuantityParam = orderItemQuantityParam;
     }
 
+    public List<Items> getCustomerItems() {
+        return customerItems;
+    }
 
+    public void setCustomerItems(List<Items> customerItems) {
+        this.customerItems = customerItems;
+    }
 }

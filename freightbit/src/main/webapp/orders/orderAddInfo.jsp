@@ -6,12 +6,15 @@
 
 <div class="row" style=" margin-top: -15px; ">
     <div class="col-lg-12">
-        <h1>Booking Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-book"></i> Booking Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewOrders' />"> <i class="fa fa-list"></i> Booking List </a>
-            </li>
-            <li class="active"><i class="fa fa-info-circle"></i> Booking Information</li>
+            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='viewOrders' />"> Booking List </a> </li>
+            <li class="active"> Booking Information</li>
         </ol>
 
     </div>
@@ -246,39 +249,99 @@
                 <fieldset class="inputs">
 
                     <legend style="text-align: left;">
-                                    <span>
-                                        Cargo Information
-                                    </span>
+                        <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <span>
+                                Cargo Information
+                            </span>
+                        </s:if>
+                        <s:else>
+                            <span>
+                                Item Information
+                            </span>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-info pull-right" onclick="location.href='#'">
+                                    Add New Item
+                                </button>
+                            </div>
+                        </s:else>
                     </legend>
 
                     <div class="form-group" style="padding-top: 25px;">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Container Quantity
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <span>
+                                    Container Quantity
+                                </span>
+                            </s:if>
+                            <s:else>
+                                <span>
+                                    Item Quantity
+                                </span>
+                            </s:else>
                         </label>
 
                         <div class="col-lg-3" >
-                            <s:select cssClass="form-control"
-                                      id="orderItem.quantity"
-                                      name="orderItem.quantity"
-                                      list="containerQuantity"
-                                      emptyOption="true"
-                            />
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <span>
+                                <s:select cssClass="form-control"
+                                          id="orderItem.quantity"
+                                          name="orderItem.quantity"
+                                          list="containerQuantity"
+                                          emptyOption="true"
+                                        />
+                            </span>
+                            </s:if>
+                            <s:else>
+                            <span>
+                                <s:select cssClass="form-control"
+                                          id="orderItem.quantity"
+                                          name="orderItem.quantity"
+                                          list="itemQuantity"
+                                          emptyOption="true"
+                                        />
+                            </span>
+                            </s:else>
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Container Size
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <span>
+                                    Container Size
+                                </span>
+                            </s:if>
+                            <s:else>
+                                <span>
+                                    Item Name
+                                </span>
+                            </s:else>
                         </label>
 
                         <div class="col-lg-3" >
-                            <s:select cssClass="form-control"
-                                      id="orderItem.nameSize"
-                                      name="orderItem.nameSize"
-                                      list="containerList"
-                                      listKey="key"
-                                      listValue="value"
-                                      emptyOption="true"
-                            />
+
+
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <span>
+                                    <s:select cssClass="form-control"
+                                              id="orderItem.nameSize"
+                                              name="orderItem.nameSize"
+                                              list="containerList"
+                                              listKey="key"
+                                              listValue="value"
+                                              emptyOption="true"
+                                            />
+                                </span>
+                            </s:if>
+                            <s:else>
+                                <s:select cssClass="form-control"
+                                          id="orderItem.nameSize"
+                                          name="orderItem.nameSize"
+                                          list="customerItems"
+                                          listKey="customerItemsId"
+                                          listValue="ItemName"
+                                          emptyOption="true"
+                                        />
+                            </s:else>
                         </div>
 
                     </div>
@@ -376,7 +439,16 @@
                     <legend />
 
                     <div style="clear:both; margin-top: 20px;" class="pull-right">
-                        <s:submit name="submit" cssClass="btn btn-primary" value="Add Cargo" />
+                        <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <span>
+                                <s:submit name="submit" cssClass="btn btn-primary" value="Add Cargo to List" />
+                            </span>
+                        </s:if>
+                        <s:else>
+                            <span>
+                                <s:submit name="submit" cssClass="btn btn-primary" value="Add Item to List" />
+                            </span>
+                        </s:else>
                     </div>
 
                 </fieldset>
@@ -398,9 +470,16 @@
         <fieldset>
 
             <legend style="text-align: left;">
+                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                             <span>
                                 Cargo Listing
                             </span>
+                </s:if>
+                <s:else>
+                            <span>
+                                Item Listing
+                            </span>
+                </s:else>
             </legend>
 
             <div class="panel-body">
@@ -409,7 +488,16 @@
                         <thead>
                         <tr class="header_center" style="background-color: #fff;">
                             <th class="tb-font-black">Quantity</th>
-                            <th class="tb-font-black">Size</th>
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <span>
+                                <th class="tb-font-black">Size</th>
+                            </span>
+                            </s:if>
+                            <s:else>
+                            <span>
+                                <th class="tb-font-black">Name</th>
+                            </span>
+                            </s:else>
                             <th class="tb-font-black">Weight</th>
                             <th class="tb-font-black">Class</th>
                             <th class="tb-font-black">Commodity</th>

@@ -138,11 +138,15 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Booking Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-book"></i> Booking Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewOrders' />"> <i class="fa fa-list"></i> Booking List </a></li>
-            <li class="active"><i class="fa fa-search"></i> Search Booking</li>
+            <li class="active" ><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='viewOrders' />"> Booking List </a></li>
+            <li class="active"> Search Booking</li>
         </ol>
     </div>
 </div>
@@ -156,8 +160,8 @@
             <div class="panel-body">
                 <s:form action="viewOrders" theme="bootstrap" cssClass="form-horizontal" >
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Search by:</label>
-                    <div class="col-sm-10">
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Search by</label>
+                    <div class="col-lg-10">
                         <s:select emptyOption="true" id="order.orderSearchCriteria"
                                   value="order.orderSearchCriteria"
                                   name="order.orderSearchCriteria"
@@ -166,18 +170,18 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="orderBean.orderKeyword" class="col-sm-2 control-label">Search:</label>
-                    <div class="col-sm-10">
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Search</label>
+                    <div class="col-lg-10">
                         <s:textfield cssClass="form-control" id="order.orderKeyword" name="order.orderKeyword" placeholder="Keyword"></s:textfield>
                     </div>
                 </div>
             </div>
             <div class="panel-footer">
-                <div class="btn-group pull-right">
+                <div class="pull-right">
                     <button type="button" class="btn" onclick="location.href='viewOrders'">
                         Cancel
                     </button>
-                    <s:submit value="Search" type="submit" cssClass="btn btn-info"></s:submit>
+                    <s:submit value="Search" type="submit" cssClass="btn btn-primary"></s:submit>
 
                 </div>
             </div>

@@ -17,7 +17,7 @@ public class OrderItems implements java.io.Serializable {
 
     private Integer orderItemId;
     private Integer clientId;
-    private Orders order;
+    //private Orders order;
     private Integer orderId;
     private Integer quantity;
     private String classification;
