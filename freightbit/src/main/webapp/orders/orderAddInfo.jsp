@@ -295,7 +295,7 @@
                             <s:else>
                             <span>
                                 <s:select cssClass="form-control"
-                                          id="orderItem.quantity"
+                                          id="orderItem_quantity"
                                           name="orderItem.quantity"
                                           list="itemQuantity"
                                           emptyOption="true"
@@ -665,7 +665,9 @@
 
                     $('<option>').val(key).text(value).appendTo(select3);
                     var itemValue = $("#orderItem_declaredValue").val();
-                    document.getElementById("orderItem_declaredValue_textfield").value = itemValue;
+                    var itemQuantity = $("#orderItem_quantity").val();
+                    var totalvalue = itemValue * itemQuantity;
+                    document.getElementById("orderItem_declaredValue_textfield").value = totalvalue;
 
 
                 });

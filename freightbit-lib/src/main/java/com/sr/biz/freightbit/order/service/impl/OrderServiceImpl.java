@@ -329,6 +329,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<OrderItems> findAllItemByOrderId(Integer orderId) {
         return orderItemsDao.findAllItemByOrderId(orderId);
     }

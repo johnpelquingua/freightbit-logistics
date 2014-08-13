@@ -596,7 +596,11 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Customer shipperName = customerService.findCustomerById(contactShipperName.getReferenceId());
 
-        orderBean.setCustomerName(shipperName.getCustomerName());
+        if (shipperName!=null) {
+            orderBean.setCustomerName(shipperName.getCustomerName());
+        }else{
+            orderBean.setCustomerName("NINJA TURTLES !!!");
+        }
 
         orderBean.setPickupDate(order.getPickupDate());
         System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"+order.getPickupDate());
@@ -762,6 +766,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"+ sessionAttributes.get("orderIdPass"));
 
         entity.setOrderId((Integer)sessionAttributes.get("orderIdPass"));
+        System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"+ formBean.getDescription());
         entity.setCommodity(formBean.getDescription());
         entity.setQuantity(formBean.getQuantity());
         entity.setClassification(formBean.getClassification());
