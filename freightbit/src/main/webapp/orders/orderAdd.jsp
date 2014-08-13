@@ -534,8 +534,6 @@
 
 <script type="text/javascript">
 
-// Date and Timepicker options
-
 $(document).ready(function() {
 
     // Customer Dropdown

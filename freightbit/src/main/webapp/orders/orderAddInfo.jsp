@@ -334,7 +334,7 @@
                             </s:if>
                             <s:else>
                                 <s:select cssClass="form-control"
-                                          id="orderItem.nameSize"
+                                          id="itemName"
                                           name="orderItem.nameSize"
                                           list="customerItems"
                                           listKey="customerItemsId"
@@ -363,10 +363,28 @@
                             Volume (cm³)
                         </label>
                         <div class="col-lg-3" >
-                            <s:textfield cssClass="form-control step3"
-                                         name="orderItem.volume"
-                                         id="orderItem.volume"
-                            />
+
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <s:textfield cssClass="form-control step3"
+                                          name="orderItem.volume"
+                                          id="orderItem.volume"
+                                />
+                            </s:if>
+                            <s:else>
+                                <s:select cssClass="form-control step3"
+                                          name="orderItem.volume"
+                                          id="orderItem_volume"
+                                          list="#{orderItem_volume}"
+                                          value="%{orderItem_volume}"
+                                          style="display:none"
+                                />
+                                <s:textfield cssClass="form-control step3"
+                                             name="orderItem.volume"
+                                             id="orderItem_volume_textfield"
+                                             disabled="true"
+                                />
+                            </s:else>
+
                         </div>
 
                     </div>
@@ -389,10 +407,28 @@
                         </label>
 
                         <div class="col-lg-3" >
-                            <s:textfield cssClass="form-control step3"
-                                 name="orderItem.description"
-                                 id="orderItem.description"
-                            />
+
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <s:textfield cssClass="form-control step3"
+                                             name="orderItem.description"
+                                             id="orderItem.description"
+                                        />
+                            </s:if>
+                            <s:else>
+                                <s:select cssClass="form-control step3"
+                                          name="orderItem.description"
+                                          id="orderItem_description"
+                                          list="#{orderItem_description}"
+                                          value="%{orderItem_description}"
+                                          style="display:none"
+                                        />
+                                <s:textfield cssClass="form-control step3"
+                                             name="orderItem.description"
+                                             id="orderItem_description_textfield"
+                                             disabled="true"
+                                        />
+                            </s:else>
+
                         </div>
 
                     </div>
@@ -413,10 +449,28 @@
                             Declared Value (Php)
                         </label>
                         <div class="col-lg-3" >
-                            <s:textfield cssClass="form-control step3"
-                                 name="orderItem.declaredValue"
-                                 id="orderItem.declaredValue"
-                            />
+
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <s:textfield cssClass="form-control step3"
+                                             name="orderItem.declaredValue"
+                                             id="orderItem.declaredValue"
+                                        />
+                            </s:if>
+                            <s:else>
+                                <s:select cssClass="form-control step3"
+                                          name="orderItem.declaredValue"
+                                          id="orderItem_declaredValue"
+                                          list="#{orderItem_declaredValue}"
+                                          value="%{orderItem_declaredValue}"
+                                          style="display:none"
+                                        />
+                                <s:textfield cssClass="form-control step3"
+                                             name="orderItem.declaredValue"
+                                             id="orderItem_declaredValue_textfield"
+                                             disabled="true"
+                                        />
+                            </s:else>
+
                         </div>
 
                     </div>
@@ -561,3 +615,65 @@
 </div>
 </div>
 </div>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $('#itemName').change(function(event) {
+
+            var item_Id = $("#itemName").val();
+            alert(item_Id);
+
+            $.getJSON('itemAction', {
+                itemId: item_Id
+            },
+
+            function (jsonResponse) {
+                var select = $('#orderItem_volume');
+
+                select.find('option').remove();
+
+                var select2 = $('#orderItem_description');
+
+                select2.find('option').remove();
+
+                var select3 = $('#orderItem_declaredValue');
+
+                select3.find('option').remove();
+
+                // populate item volume based on length X Width X Height
+                $.each(jsonResponse.shipperItemVolumeMap, function (key, value) {
+
+                    $('<option>').val(key).text(value).appendTo(select);
+                    var itemVolume = $("#orderItem_volume").val();
+                    document.getElementById("orderItem_volume_textfield").value = itemVolume;
+
+                });
+
+                // populate item description
+                $.each(jsonResponse.shipperItemCommodityMap, function (key, value) {
+
+                    $('<option>').val(key).text(value).appendTo(select2);
+                    var itemCommodity = $("#orderItem_description").val();
+                    document.getElementById("orderItem_description_textfield").value = itemCommodity;
+
+                });
+
+                // populate item declared value
+                $.each(jsonResponse.shipperItemValueMap, function (key, value) {
+
+                    $('<option>').val(key).text(value).appendTo(select3);
+                    var itemValue = $("#orderItem_declaredValue").val();
+                    document.getElementById("orderItem_declaredValue_textfield").value = itemValue;
+
+
+                });
+
+            });
+
+        });
+
+    });
+
+</script>

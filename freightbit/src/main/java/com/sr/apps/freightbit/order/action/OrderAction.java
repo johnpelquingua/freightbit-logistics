@@ -93,6 +93,24 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Integer consigneeId;
     private Integer addressId;
 
+    private Map<Integer, Integer> shipperItemVolumeMap = new HashMap<Integer, Integer>();
+    private Map<String, String> shipperItemCommodityMap = new HashMap<String, String>();
+    private Map<Float, Float> shipperItemValueMap = new HashMap<Float, Float>();
+    private Integer itemId;
+
+    public String itemAction() {
+
+        Items shipperItem = customerService.findItemByCustomerItemsId(itemId);
+
+            shipperItemVolumeMap.put(shipperItem.getLength() * shipperItem.getWidth() * shipperItem.getHeight(), shipperItem.getLength() * shipperItem.getWidth() * shipperItem.getHeight());
+
+            shipperItemCommodityMap.put(shipperItem.getDescription(), shipperItem.getDescription());
+
+            shipperItemValueMap.put(shipperItem.getBasePrice(), shipperItem.getBasePrice());
+
+        return SUCCESS;
+    }
+
     public String customerAction() {
 
         List <Contacts> shipperContacts = customerService.findContactByRefIdAndType("shipper",customerID );
@@ -1272,5 +1290,37 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setCustomerItems(List<Items> customerItems) {
         this.customerItems = customerItems;
+    }
+
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
+    }
+
+    public Map<Float, Float> getShipperItemValueMap() {
+        return shipperItemValueMap;
+    }
+
+    public void setShipperItemValueMap(Map<Float, Float> shipperItemValueMap) {
+        this.shipperItemValueMap = shipperItemValueMap;
+    }
+
+    public Map<String, String> getShipperItemCommodityMap() {
+        return shipperItemCommodityMap;
+    }
+
+    public void setShipperItemCommodityMap(Map<String, String> shipperItemCommodityMap) {
+        this.shipperItemCommodityMap = shipperItemCommodityMap;
+    }
+
+    public Map<Integer, Integer> getShipperItemVolumeMap() {
+        return shipperItemVolumeMap;
+    }
+
+    public void setShipperItemVolumeMap(Map<Integer, Integer> shipperItemVolumeMap) {
+        this.shipperItemVolumeMap = shipperItemVolumeMap;
     }
 }
