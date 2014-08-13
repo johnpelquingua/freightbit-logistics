@@ -12,7 +12,6 @@
 
     </div>
 </div>
-<!-- /.row -->
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-7">
@@ -74,4 +73,3 @@
         </div>
     </div>
 </div>
-<!-- /.row -->

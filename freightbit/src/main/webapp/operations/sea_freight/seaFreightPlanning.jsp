@@ -17,7 +17,6 @@
 
     </div>
 </div>
-<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-12">
@@ -29,8 +28,6 @@
             </div>
 
             <div class="panel-body">
-                <%--<s:property value="%{#parameters.nameSizeParam}"/>--%>
-                <%--<s:property value="%{#parameters.orderItemIdParam}"/>--%>
 
                 <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap">
 
@@ -70,18 +67,6 @@
                         </div>
 
                     </div>
-
-                    <%--<div class="form-group">--%>
-
-                    <%--<label for="operations.date" class="col-sm-2 control-label">Select Date:</label>--%>
-
-                    <%--<div class="col-sm-10">--%>
-
-                    <%--<s:textfield cssClass="form-control" id="date" name="operations.date"/>--%>
-
-                    <%--</div>--%>
-
-                    <%--</div>--%>
 
                     <s:submit cssClass="btn btn-default btn-info pull-right" name="submit" value="Search"/>
 
@@ -128,13 +113,7 @@
         </div>
     </div>
 </div>
-<!-- /.row -->
 
 <script type="text/javascript">
-
-    //pick up date validation
-    $("#date").datepicker({dateFormat: 'yy-dd-mm'}
-
-    );
-
+    $("#date").datepicker({dateFormat: 'yy-dd-mm'});
 </script>

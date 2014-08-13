@@ -2,12 +2,9 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<!-- MIDDLE -->
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
     <h1 class="page-header">Inland Freight Planning</h1>
-
-    <!-- EDIT HERE -->
 
     <div class="main-box">
         <div class="col-md-12">
@@ -129,9 +126,6 @@
 
     </div>
 
-
-    <!--SIDEBAR -->
-
     <div class="sidebar-box">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -166,11 +160,7 @@
         </div>
     </div>
 
-    <!-- END OF SIDEBAR -->
-
 </div>
-
-<!-- END OF THE MIDDLE -->
 
 </div>
 </div>

@@ -2,20 +2,17 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
-<!-- END OF THE MIDDLE -->
-
 <div class="row" style="margin-top:-15px;">
     <div class="col-lg-12">
         <h1>Edit Vessel Schedule</h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><i class="fa fa-list"></i> Vessel Schedule List</li>
-            <li class="active"><i class="fa fa-pencil-square-o"></i> Edi Vessel Schedule</li>
+            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Vessel Schedule List</li>
+            <li class="active"> Edit Vessel Schedule</li>
         </ol>
 
     </div>
 </div>
-<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-7 col-lg-offset-2" style="margin-left: 21% !important;">
@@ -149,8 +146,7 @@
         </div>
 
     </div>
-</div><!-- /.row -->
-
+</div>
 
 <script type="text/javascript">
 
