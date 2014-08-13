@@ -52,6 +52,10 @@
             <result name="success" type="redirect">addOrderInfo</result>
         </action>
 
+        <action name="deleteItem" class="com.sr.apps.freightbit.order.action.OrderAction" method="deleteItem">
+            <result name="success" type="tiles">orders.add-booking-info.tiles</result>
+        </action>
+
         <action name="addOrderInfo" class="com.sr.apps.freightbit.order.action.OrderAction" method="addOrderInfo">
             <result name="success" type="tiles">orders.add-booking-info.tiles</result>
         </action>
@@ -59,17 +63,12 @@
         <action name="addItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addItemsInTable">
             <!--<result name="success" type="redirect">addedItemsInTable</result>-->
-            <result name="success" type="tiles">orders.add-booking-info.tiles</result>
+            <result name="success" type="redirect">addedItemsInTable</result>
         </action>
 
         <action name="addedItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addedItemsInTable">
             <result name="success" type="tiles">orders.add-booking-info.tiles</result>
-        </action>
-
-        <action name="addOrderItemsInDB" class="com.sr.apps.freightbit.order.action.OrderAction"
-                method="addOrderItemsInDB">
-            <result name="success" type="tiles">orders.booking-info.tiles</result>
         </action>
 
     </package>

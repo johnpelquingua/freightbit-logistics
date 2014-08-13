@@ -57,6 +57,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Items> customerItems = new ArrayList<Items>();
 
     private Integer orderIdParam;
+    private Integer orderItemIdParam;
     private OrderService orderService;
     private CustomerService customerService;
     private ParameterService parameterService;
@@ -222,6 +223,14 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String addItemsInTable() {
 
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+
+
+        Orders orderEntityForm = orderService.findOrdersById((Integer)sessionAttributes.get("orderIdPass"));
+        // Display Order Data to form
+        order = transformToOrderFormBean(orderEntityForm);
+
         OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
 
         orderService.addItem(orderItemEntity);
@@ -297,9 +306,16 @@ public class OrderAction extends ActionSupport implements Preparable {
         }*/
         Integer idOrder = orderItemEntity.getOrderId();
 
-        System.out.println("-------------------------------------IN ORDER" + idOrder + "-------------------------------------");
 
-        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(idOrder);
+
+        sessionAttributes.put("idOrder", idOrder);
+
+
+
+
+
+
+        /*List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(idOrder);
 
         for(int i = 0; i < orderItemEntityList.size(); i++ ) {
 
@@ -309,7 +325,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         for (OrderItems orderItemElem : orderItemEntityList) {
             System.out.println("-------------------------------------orderItemElem " + orderItemElem.getNameSize() + "-------------------------------------");
             orderItems.add(transformToOrderItemsFormBean(orderItemElem));
-        }
+        }*/
 
         return SUCCESS;
     }
@@ -318,13 +334,52 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        System.out.println("-------------------------------------Added items in table Order ID Added" + sessionAttributes.get("orderIdPass") + "-------------------------------------");
 
-        Integer idOrder = (Integer) sessionAttributes.get("orderIdPass");
 
-        System.out.println("-------------------------------------IN ORDER" + idOrder + "-------------------------------------");
+        Orders orderEntityForm = orderService.findOrdersById((Integer)sessionAttributes.get("orderIdPass"));
+        // Display Order Data to form
+        order = transformToOrderFormBean(orderEntityForm);
 
-        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(idOrder);
+
+
+
+
+        customerItems = (List)sessionAttributes.get("customerItems");
+
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("idOrder"));
+
+
+
+        for (OrderItems orderItemElem : orderItemEntityList) {
+
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
+
+
+
+
+
+        return SUCCESS;
+    }
+
+    public String deleteItem() {
+
+        OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemIdParam);
+        orderService.deleteItem(orderItemEntity);
+
+        // repopulate booking details on first form
+
+
+
+        Orders orderEntityForm = orderService.findOrdersById(orderItemEntity.getOrderId());
+        // Display Order Data to form
+        order = transformToOrderFormBean(orderEntityForm);
+
+
+
+        // Display order items in table
+
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(orderItemEntity.getOrderId());
 
         for(int i = 0; i < orderItemEntityList.size(); i++ ) {
 
@@ -338,11 +393,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 
 
 
-        //sessionAttributes.put("orderItem", orderItemEntityList);
-
         return SUCCESS;
     }
-
 
     public String bookingSearch() {
         return SUCCESS;
@@ -367,7 +419,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         sessionAttributes.put("orderIdPass", orderIdPass);
 
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA Add Order"+ sessionAttributes.get("orderIdPass"));
+
 
         return SUCCESS;
     }
@@ -376,7 +428,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY Add Order Info"+ sessionAttributes.get("orderIdPass"));
+
 
         Orders orderEntityForm = orderService.findOrdersById((Integer)sessionAttributes.get("orderIdPass"));
         // Display Order Data to form
@@ -389,6 +441,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         // get customer items
         customerItems = customerService.findItemByCustomerId(customerEntity.getCustomerId());
 
+        sessionAttributes.put("customerItems", customerItems);
 
 
         return SUCCESS;
@@ -651,6 +704,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         OrderItemsBean orderItemBean = new OrderItemsBean();
 
+        System.out.println( "---------------ORDER ITEM ID " + orderItem.getOrderItemId() + "-------------------------------------" );
+        orderItemBean.setOrderItemId(orderItem.getOrderItemId());
         orderItemBean.setQuantity(orderItem.getQuantity());
         System.out.println( "---------------NAMESIZE " + orderItem.getNameSize() + "-------------------------------------" );
         orderItemBean.setNameSize(orderItem.getNameSize());
@@ -1327,5 +1382,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setShipperItemVolumeMap(Map<Integer, Integer> shipperItemVolumeMap) {
         this.shipperItemVolumeMap = shipperItemVolumeMap;
+    }
+
+    public Integer getOrderItemIdParam() {
+        return orderItemIdParam;
+    }
+
+    public void setOrderItemIdParam(Integer orderItemIdParam) {
+        this.orderItemIdParam = orderItemIdParam;
     }
 }

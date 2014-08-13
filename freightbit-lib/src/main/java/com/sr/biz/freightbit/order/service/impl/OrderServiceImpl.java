@@ -289,8 +289,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void deleteItem(Items items) {
-        itemsDao.deleteItems(items);
+    public void deleteItem(OrderItems orderItems) {
+        /*itemsDao.deleteItems(items);*/
+        orderItemsDao.deleteItem(orderItems);
     }
 
     @Override
@@ -311,8 +312,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Items findItemByCustomerItemsId(Integer customerItemsId) {
-        return itemsDao.findItemByCustomerItemsId(customerItemsId);
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public OrderItems findOrderItemByOrderItemId(Integer orderItemId) {
+        /*return itemsDao.findItemByCustomerItemsId(customerItemsId);*/
+        return orderItemsDao.findOrderItemByOrderItemId(orderItemId);
     }
 
     @Override

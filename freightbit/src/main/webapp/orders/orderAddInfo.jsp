@@ -110,7 +110,7 @@
 
     <div class="col-lg-2">
         <div class="btn-toolbar pull-right">
-            <a class="btn btn-primary">Edit Booking</a>
+            <a class="btn btn-primary btn-lg">Edit Booking</a>
         </div>
     </div>
 
@@ -289,6 +289,7 @@
                                           name="orderItem.quantity"
                                           list="containerQuantity"
                                           emptyOption="true"
+                                          required="true"
                                         />
                             </span>
                             </s:if>
@@ -299,6 +300,7 @@
                                           name="orderItem.quantity"
                                           list="itemQuantity"
                                           emptyOption="true"
+                                          required="true"
                                         />
                             </span>
                             </s:else>
@@ -329,6 +331,7 @@
                                               listKey="key"
                                               listValue="value"
                                               emptyOption="true"
+                                              required="true"
                                             />
                                 </span>
                             </s:if>
@@ -340,6 +343,7 @@
                                           listKey="customerItemsId"
                                           listValue="ItemName"
                                           emptyOption="true"
+                                          required="true"
                                         />
                             </s:else>
                         </div>
@@ -356,6 +360,7 @@
                             <s:textfield cssClass="form-control step3"
                                          name="orderItem.weight"
                                          id="orderItem.weight"
+                                         required="true"
                             />
                         </div>
 
@@ -368,6 +373,7 @@
                                 <s:textfield cssClass="form-control step3"
                                           name="orderItem.volume"
                                           id="orderItem.volume"
+                                          required="true"
                                 />
                             </s:if>
                             <s:else>
@@ -382,6 +388,7 @@
                                              name="orderItem.volume"
                                              id="orderItem_volume_textfield"
                                              disabled="true"
+
                                 />
                             </s:else>
 
@@ -399,6 +406,7 @@
                             <s:textfield cssClass="form-control step3"
                                          name="orderItem.classification"
                                          id="orderItem.classification"
+                                         required="true"
                             />
                         </div>
 
@@ -412,6 +420,7 @@
                                 <s:textfield cssClass="form-control step3"
                                              name="orderItem.description"
                                              id="orderItem.description"
+                                             required="true"
                                         />
                             </s:if>
                             <s:else>
@@ -426,6 +435,7 @@
                                              name="orderItem.description"
                                              id="orderItem_description_textfield"
                                              disabled="true"
+                                             required="true"
                                         />
                             </s:else>
 
@@ -442,6 +452,7 @@
                             <s:textfield cssClass="form-control step3"
                                  id="orderItem.rate"
                                  name="orderItem.rate"
+                                 required="true"
                             />
                         </div>
 
@@ -454,6 +465,7 @@
                                 <s:textfield cssClass="form-control step3"
                                              name="orderItem.declaredValue"
                                              id="orderItem.declaredValue"
+                                             required="true"
                                         />
                             </s:if>
                             <s:else>
@@ -485,6 +497,7 @@
                                 name="orderItem.remarks"
                                 id="orderItem.remarks"
                                 cssStyle="resize: none;"
+                                required="true"
                             />
                         </div>
 
@@ -495,12 +508,12 @@
                     <div style="clear:both; margin-top: 20px;" class="pull-right">
                         <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                             <span>
-                                <s:submit name="submit" cssClass="btn btn-primary" value="Add Cargo to List" />
+                                <s:submit name="submit" cssClass="btn btn-primary" id="submit_button" value="Add Cargo to List" />
                             </span>
                         </s:if>
                         <s:else>
                             <span>
-                                <s:submit name="submit" cssClass="btn btn-primary" value="Add Item to List" />
+                                <s:submit name="submit" cssClass="btn btn-primary" id="submit_button" value="Add Item to List" />
                             </span>
                         </s:else>
                     </div>
@@ -576,19 +589,20 @@
 
                                 <td class="tb-font-black">
 
-                                    &lt;%&ndash;<s:url var="deleteItemUrl" action="deleteItem">
-                                    <s:param name="customersItemIdParam" value="%{customerItemsId}"></s:param>
-                                </s:url>
+                                    <s:url var="deleteItemUrl" action="deleteItem">
+                                        <s:param name="orderItemIdParam" value="%{orderItemId}"></s:param>
+                                    </s:url>
                                     <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
                                          title="Delete this Item?"
-                                         onclick="return confirm('Do you really want to delete?');">
-                                        <img src="includes/images/remove-user.png" class="icon-action circ-icon">
-                                    </s:a>&ndash;%&gt;
+                                         onclick="return confirm('Do you really want to delete this item?');">
+                                        <i class="fa fa-trash-o"></i>
+                                    </s:a>
 
                                 </td>
                             </tr>
                         </s:iterator>
                         </tbody>
+                        <s:property  value="%{customerItemsId}"/>
                     </table>
                 </div>
             </div>
@@ -603,17 +617,72 @@
 
 <div style="text-align: center;">
 
-    <button type="button" id="Cancel" class="btn btn-lg btn-primary">
+    <%--<button type="button" id="Cancel" class="btn btn-lg btn-primary">
         Create Booking
-    </button>
+    </button>--%>
 
     <%--<s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Next" />--%>
 
 </div>
 
 </div>
+
+<div class="panel-footer">
+
+    <div class="pull-right">
+        <!-- Button trigger modal -->
+
+        <button class="btn btn-lg" data-toggle="modal" data-target="#cancelBooking">
+            Cancel
+        </button>
+
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveBooking">
+            Save Booking
+        </button>
+    </div>
+
+</div>
+
 </div>
 </div>
+</div>
+
+<!-- Save Booking Modal -->
+<div class="modal fade" id="saveBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
+                <h4 class="modal-title" id="myModalLabel">Save Booking</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to save booking now?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" href="#"><a style="color: #fff; text-decoration: none;" href="<s:url action='../orders/viewOrders' />">Yes</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cancel Booking Modal -->
+<div class="modal fade" id="cancelBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
+                <h4 class="modal-title" id="myModalLabel">Cancel Booking</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to cancel the booking?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary">Yes</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">

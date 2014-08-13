@@ -43,5 +43,40 @@ public class OrderItemsDaoImpl extends HibernateDaoSupport implements OrderItems
             throw re;
         }
     }
+
+    @Override
+    public void deleteItem(OrderItems orderItems){
+        Log.debug("deleting a item");
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            session.delete(orderItems);
+            Log.debug("delete successful");
+        }catch(RuntimeException re){
+            Log.error("delete failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+
+    public OrderItems findOrderItemByOrderItemId(Integer orderItemId){
+        Log.debug("getting Item instance with id: " + orderItemId);
+
+        try{
+            OrderItems instance = (OrderItems) getSessionFactory().getCurrentSession().get(
+                    OrderItems.class, orderItemId);
+            if (instance == null) {
+                Log.debug("get successful, no instance found");
+            } else {
+                Log.debug("get successful, instance found");
+            }
+            return instance;
+
+        }catch(RuntimeException re){
+            Log.error("get failed", re);
+            throw re;
+        }
+
+    }
 }
 

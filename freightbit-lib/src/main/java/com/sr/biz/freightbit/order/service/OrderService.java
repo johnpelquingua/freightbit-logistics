@@ -75,7 +75,7 @@ public interface OrderService {
 
     public void addItem(OrderItems orderItems);
 
-    public void deleteItem(Items items);
+    public void deleteItem(OrderItems orderItems);
 
     public List<Items> findAllItems(Integer customerItemsId);
 
@@ -83,7 +83,7 @@ public interface OrderService {
 
     public List<Items> findUserByItemName(String itemName);
 
-    public Items findItemByCustomerItemsId(Integer customerItemsId);
+    public OrderItems findOrderItemByOrderItemId(Integer orderItemId);
 
     public List<Items> findItemByCustomerId(Integer customerId);
 

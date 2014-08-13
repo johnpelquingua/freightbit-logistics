@@ -14,6 +14,7 @@ import com.sr.biz.freightbit.customer.entity.Rates;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
 import com.sr.biz.freightbit.customer.service.CustomerService;
+import com.sr.biz.freightbit.order.entity.OrderItems;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -329,7 +330,6 @@ public class CustomerServiceImpl implements CustomerService {
     public Items findItemByCustomerItemsId(Integer customerItemsId) {
         return itemsDao.findItemByCustomerItemsId(customerItemsId);
     }
-
 
     @Override
     public List<Items> findItemByCustomerId(Integer customerId) {

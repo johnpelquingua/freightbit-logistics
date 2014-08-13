@@ -278,14 +278,8 @@
 
                 <div style="clear: both;">
 
-                    <button type="button" id="Cancel" class="btn btn-lg">
-                        Cancel
-                    </button>
-
-                    <s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Next" />
-
                 </div>
-                </s:form>
+
                 </div>
                 <%--Cargo / Item Box--%>
                 <%--<div id="2ndPart" style="clear:both;" class="well">
@@ -528,6 +522,20 @@
 </div>
 
 </div>
+
+<div class="panel-footer">
+
+    <div class="pull-right">
+        <button type="button" id="Cancel" class="btn btn-lg">
+            Cancel
+        </button>
+
+        <s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Next" />
+        </s:form>
+    </div>
+
+</div>
+
 </div>
 </div>
 </div>
@@ -808,11 +816,11 @@ $(document).ready(function() {
         sMode.options[1].disabled = false;
         sMode.options[2].disabled = false;
         sMode.options[3].disabled = false;
-        sMode.value = (sMode.options[0].value);
+        /*sMode.value = (sMode.options[0].value);*/
         sType.options[0].disabled = false;
         sType.options[1].disabled = false;
         sType.options[2].disabled = false;
-        sType.value = (sType.options[0].value);
+        /*sType.value = (sType.options[0].value);*/
     }
 
     if (select.options[ index ].value === 'DOOR TO DOOR') {
