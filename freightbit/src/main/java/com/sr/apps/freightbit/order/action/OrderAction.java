@@ -225,107 +225,58 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-
-
         Orders orderEntityForm = orderService.findOrdersById((Integer)sessionAttributes.get("orderIdPass"));
         // Display Order Data to form
         order = transformToOrderFormBean(orderEntityForm);
 
+        // Get Service Requirement
+        String orderLimit = orderEntityForm.getServiceRequirement();
+        // Get Order Item List
+        List <OrderItems> orderItemNumberList = orderService.findAllItemByOrderId((Integer)sessionAttributes.get("orderIdPass"));
+
+        // get total quantity from database
+        Integer orderItemQuantityTotal = 0;
+
+        for(int i = 0; i < orderItemNumberList.size(); i++ ) {
+
+            orderItemQuantityTotal = orderItemQuantityTotal + orderItemNumberList.get(i).getQuantity();
+        }
+
         OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
+        //get quantity of item from form
+        Integer orderItemEntityQuantity = orderItemEntity.getQuantity();
+        //count quantity of item from form and from database
+        Integer orderItemQuantityGrandTotal = orderItemQuantityTotal + orderItemEntityQuantity;
 
-        orderService.addItem(orderItemEntity);
+        // Condition where it will only allow to add 5 containers and 10 items only
+        if(orderLimit.equals("FULL CARGO LOAD")){
+            if(orderItemQuantityGrandTotal > 5){
+                String messageFlag = "FCL_LIMIT";
+                sessionAttributes.put("messageFlag", messageFlag);
 
-        /*Map sessionAttributes = ActionContext.getContext().getSession();
+            }else{
+                // Add order items to database
+                orderService.addItem(orderItemEntity);
+                String messageFlag = "FCL_OK";
+                sessionAttributes.put("messageFlag", messageFlag);
+            }
 
-        orderIdPass = orderItemEntity.getOrderId();
+        }else{
+            if(orderItemQuantityGrandTotal > 10){
+                String messageFlag = "OTHERS_LIMIT";
+                sessionAttributes.put("messageFlag", messageFlag);
+            }else{
+                // Add order items to database
+                orderService.addItem(orderItemEntity);
+                String messageFlag = "OTHERS_OK";
+                sessionAttributes.put("messageFlag", messageFlag);
+            }
 
-        sessionAttributes.put("orderIdPass", orderIdPass);
-
-        System.out.println("-------------------------------------Added items in table Order ID Add" + sessionAttributes.get("orderIdPass") + "-------------------------------------");
-*/
-        /*OrderItems entity = new OrderItems();
-
-        entity.setQuantity(orderItemQuantityParam);
-        entity.setNameSize(orderItemNameSizeParam);
-        entity.setWeight(orderItemWeightParam);
-        entity.setVolume(orderItemVolumeParam);
-        entity.setClassification(orderItemClassificationParam);
-        entity.setCommodity(orderItemDescriptionParam);
-        entity.setRate(orderItemRateParam);
-        entity.setDeclaredValue(orderItemDeclaredValueParam);
-        entity.setComments(orderItemRemarksParam);
-
-        OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);*/
-
-        /*Map sessionAttributes = ActionContext.getContext().getSession();
-
-        List<OrderItems> orderItemsFromSession = (List) sessionAttributes.get("orderItemsFromSession");
-
-        if (orderItemsFromSession == null) {
-            //create a list orderitems
-            List <OrderItems> orderItemsList = new ArrayList();
-
-            OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
-
-            orderItemEntity.setQuantity(orderItemQuantityParam);
-            orderItemEntity.setNameSize(orderItemNameSizeParam);
-            orderItemEntity.setWeight(orderItemWeightParam);
-            orderItemEntity.setVolume(orderItemVolumeParam);
-            orderItemEntity.setClassification(orderItemClassificationParam);
-            orderItemEntity.setCommodity(orderItemDescriptionParam);
-            orderItemEntity.setRate(orderItemRateParam);
-            orderItemEntity.setDeclaredValue(orderItemDeclaredValueParam);
-            orderItemEntity.setComments(orderItemRemarksParam);
-
-            orderItemsList.add(orderItemEntity); //orderItem is galing sa form
-
-            sessionAttributes.put("orderItemsFromSession", orderItemsList);
-
-        } else {
-
-            OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
-
-            orderItemEntity.setQuantity(orderItemQuantityParam);
-            orderItemEntity.setNameSize(orderItemNameSizeParam);
-            orderItemEntity.setWeight(orderItemWeightParam);
-            orderItemEntity.setVolume(orderItemVolumeParam);
-            orderItemEntity.setClassification(orderItemClassificationParam);
-            orderItemEntity.setCommodity(orderItemDescriptionParam);
-            orderItemEntity.setRate(orderItemRateParam);
-            orderItemEntity.setDeclaredValue(orderItemDeclaredValueParam);
-            orderItemEntity.setComments(orderItemRemarksParam);
-            orderItemsFromSession.add(orderItemEntity);
-
-            sessionAttributes.put("orderItemsFromSession", orderItemsFromSession);
         }
-
-        List<OrderItems> orderItemsFromSessionTable = (List) sessionAttributes.get("orderItemsFromSession");
-
-        for (OrderItems orderItemElem : orderItemsFromSessionTable) {
-            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
-        }*/
+        // Get Order Id
         Integer idOrder = orderItemEntity.getOrderId();
-
-
-
+        // Put Order Id in session
         sessionAttributes.put("idOrder", idOrder);
-
-
-
-
-
-
-        /*List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(idOrder);
-
-        for(int i = 0; i < orderItemEntityList.size(); i++ ) {
-
-            System.out.println("-------------------------------------Order Item " + orderItemEntityList.get(i).getNameSize() + "-------------------------------------");
-        }
-
-        for (OrderItems orderItemElem : orderItemEntityList) {
-            System.out.println("-------------------------------------orderItemElem " + orderItemElem.getNameSize() + "-------------------------------------");
-            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
-        }*/
 
         return SUCCESS;
     }
@@ -334,30 +285,36 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-
-
         Orders orderEntityForm = orderService.findOrdersById((Integer)sessionAttributes.get("orderIdPass"));
+
         // Display Order Data to form
         order = transformToOrderFormBean(orderEntityForm);
-
-
-
-
-
+        // repopulate customer items
         customerItems = (List)sessionAttributes.get("customerItems");
 
         List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("idOrder"));
 
-
-
+        // display item listing in table
         for (OrderItems orderItemElem : orderItemEntityList) {
 
             orderItems.add(transformToOrderItemsFormBean(orderItemElem));
         }
+        // get message flag from session
+        String messageFlagPass = sessionAttributes.get("messageFlag").toString();
 
-
-
-
+        if(messageFlagPass == "FCL_LIMIT") {
+            //error add container
+            clearErrorsAndMessages();
+            addActionMessage("Sorry you can not exceed 5 containers.");
+        }else if(messageFlagPass == "OTHERS_LIMIT") {
+            //error add item
+            clearErrorsAndMessages();
+            addActionMessage("Sorry you can not exceed 10 items.");
+        }else{
+            // Success Add item
+            clearErrorsAndMessages();
+            addActionMessage("Success! Booking Item has been added.");
+        }
 
         return SUCCESS;
     }
@@ -368,30 +325,25 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderService.deleteItem(orderItemEntity);
 
         // repopulate booking details on first form
-
-
-
         Orders orderEntityForm = orderService.findOrdersById(orderItemEntity.getOrderId());
         // Display Order Data to form
         order = transformToOrderFormBean(orderEntityForm);
 
-
+        // repopulate customer items after order item delete
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        customerItems = (List)sessionAttributes.get("customerItems");
 
         // Display order items in table
 
         List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(orderItemEntity.getOrderId());
 
-        for(int i = 0; i < orderItemEntityList.size(); i++ ) {
-
-            System.out.println("-------------------------------------Order Item " + orderItemEntityList.get(i).getNameSize() + "-------------------------------------");
-        }
-
         for (OrderItems orderItemElem : orderItemEntityList) {
-            System.out.println("-------------------------------------orderItemElem " + orderItemElem.getNameSize() + "-------------------------------------");
+
             orderItems.add(transformToOrderItemsFormBean(orderItemElem));
         }
 
-
+        clearErrorsAndMessages();
+        addActionMessage("Success! Booking Item has been deleted.");
 
         return SUCCESS;
     }
@@ -419,16 +371,12 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         sessionAttributes.put("orderIdPass", orderIdPass);
 
-
-
         return SUCCESS;
     }
 
     public String addOrderInfo() {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
-
-
 
         Orders orderEntityForm = orderService.findOrdersById((Integer)sessionAttributes.get("orderIdPass"));
         // Display Order Data to form
@@ -442,7 +390,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         customerItems = customerService.findItemByCustomerId(customerEntity.getCustomerId());
 
         sessionAttributes.put("customerItems", customerItems);
-
 
         return SUCCESS;
     }
@@ -639,11 +586,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setRates(order.getRates());
         orderBean.setServiceRequirement(order.getServiceRequirement());
         orderBean.setModeOfService(order.getServiceMode());
-        //shipper name
-        /*Contacts shipperContact = customerService.findContactById(order.getShipperContactId());
-        orderBean.setCustomerId(shipperContact.getReferenceId());
-        orderBean.setCustomerName(shipperContact.getFirstName()+" "+shipperContact.getMiddleName()+" "+shipperContact.getLastName());
-        */
 
         Contacts contactShipperName = customerService.findContactById(order.getShipperContactId());
 
@@ -704,10 +646,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         OrderItemsBean orderItemBean = new OrderItemsBean();
 
-        System.out.println( "---------------ORDER ITEM ID " + orderItem.getOrderItemId() + "-------------------------------------" );
         orderItemBean.setOrderItemId(orderItem.getOrderItemId());
         orderItemBean.setQuantity(orderItem.getQuantity());
-        System.out.println( "---------------NAMESIZE " + orderItem.getNameSize() + "-------------------------------------" );
         orderItemBean.setNameSize(orderItem.getNameSize());
         orderItemBean.setWeight(orderItem.getWeight());
         orderItemBean.setVolume(orderItem.getVolume());
@@ -716,9 +656,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderItemBean.setRate(orderItem.getRate());
         orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
         orderItemBean.setRemarks(orderItem.getComments());
-        /*orderItemBean.setHeight(orderItem.getHeight());
-        orderItemBean.setWidth(orderItem.getWidth());
-        orderItemBean.setLength(orderItem.getLength());*/
 
         return orderItemBean;
     }
@@ -768,9 +705,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Client client = clientService.findClientById(getClientId().toString());
 
         entity.setClient(client);
-
         entity.setOrderDate(new Date()); // Booking Date
-
         entity.setServiceRequirement(formBean.getServiceRequirement());
 
         Customer customerEntity = customerService.findCustomerById(formBean.getCustomerId());
@@ -817,20 +752,11 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setClientId(client.getClientId());
 
         Map sessionAttributes = ActionContext.getContext().getSession();
-
-        System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY"+ sessionAttributes.get("orderIdPass"));
-
         entity.setOrderId((Integer)sessionAttributes.get("orderIdPass"));
-        System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"+ formBean.getDescription());
         entity.setCommodity(formBean.getDescription());
         entity.setQuantity(formBean.getQuantity());
         entity.setClassification(formBean.getClassification());
         entity.setDeclaredValue(formBean.getDeclaredValue());
-
-       /* orderItem.setHeight(orderItemBean.getHeight());
-        orderItem.setWidth(orderItemBean.getWidth());
-        orderItem.setLength(orderItemBean.getLength());*/
-
         entity.setWeight(formBean.getWeight());
         entity.setNameSize(formBean.getNameSize());
         entity.setRate(formBean.getRate());

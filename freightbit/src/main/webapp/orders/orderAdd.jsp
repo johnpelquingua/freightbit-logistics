@@ -115,7 +115,7 @@
                                 <%--onchange="contactSearch()"--%>
 
                             </div>
-                            <div id="ajaxResponse"></div>
+                            <%--<div id="ajaxResponse"></div>--%>
                         </div>
 
                     </fieldset>
@@ -526,7 +526,7 @@
 <div class="panel-footer">
 
     <div class="pull-right">
-        <button type="button" id="Cancel" class="btn btn-lg">
+        <button type="button" id="Cancel" class="btn btn-lg" data-toggle="modal" data-target="#cancelBooking">
             Cancel
         </button>
 
@@ -540,6 +540,26 @@
 </div>
 </div>
 
+<!-- Cancel Booking Modal -->
+<div class="modal fade" id="cancelBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
+                <h4 class="modal-title" id="myModalLabel">Cancel Booking</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to cancel the booking?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -547,13 +567,13 @@ $(document).ready(function() {
     // Customer Dropdown
     $('#customerName').change(function(event) {
         var custId = $("#customerName").val();
-        alert(custId);
+        /*alert(custId);*/
 
         $.getJSON('customerAction', {
             customerID : custId
         },
             function(jsonResponse) {
-                alert(jsonResponse.dummyMsg);
+                /*alert(jsonResponse.dummyMsg);*/
 
             $('#ajaxResponse').text(jsonResponse.dummyMsg);
 
@@ -624,7 +644,7 @@ $(document).ready(function() {
             consigneeId : consignee_Id
         },
         function(jsonResponse) {
-            alert(consignee_Id);
+            /*alert(consignee_Id);*/
         var select4 = $('#consigneeAddress');
 
         select4.find('option').remove();
@@ -651,13 +671,13 @@ $(document).ready(function() {
     $('#consigneeAddress').change(function(event) {
         var custId = $("#customerName").val();
         var address_Id = $("#consigneeAddress").val();
-        alert(address_Id);
+        /*alert(address_Id);*/
         $.getJSON('addressAction', {
             customerID : custId,
             addressId: address_Id
         },
             function (jsonResponse) {
-                alert(address_Id);
+                /*alert(address_Id);*/
                 var select3 = $('#shipperConsignee');
 
                 select3.find('option').remove();
@@ -795,7 +815,7 @@ $(document).ready(function() {
         opt[ lent ].disabled = false;
     }
 
-    alert(select.options[ index ].value);
+    /*alert(select.options[ index ].value);*/
 
 
     // If Service Requirement is Rolling Cargo

@@ -238,6 +238,15 @@
     </div>
 </div>
 
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-star"></i></button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
 
     <div class="col-lg-12" >
@@ -365,7 +374,7 @@
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Volume (cm³)
+                            Volume (cm&#179;)
                         </label>
                         <div class="col-lg-3" >
 
@@ -660,7 +669,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary" href="#"><a style="color: #fff; text-decoration: none;" href="<s:url action='../orders/viewOrders' />">Yes</a></button>
+                <%--<button type="button" class="btn btn-primary" href="#"><a style="color: #fff; text-decoration: none;" href="<s:url action='../orders/viewOrders' />">Yes</a></button>--%>
+                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
             </div>
         </div>
     </div>
@@ -692,7 +702,7 @@
         $('#itemName').change(function(event) {
 
             var item_Id = $("#itemName").val();
-            alert(item_Id);
+            /*alert(item_Id);*/
 
             $.getJSON('itemAction', {
                 itemId: item_Id
