@@ -809,3 +809,20 @@ span.pagelinks {
      position: relative;
      top: 7px;
  }
+
+ label.checkbox {
+     font-size: 12px;
+     font-weight: normal;
+ }
+
+ table.table.table-user-information.profile>tbody>tr>td.header {
+     font-size: 12px;
+     font-weight: normal;
+     text-align: right !important;
+ }
+
+ table.table.table-user-information.profile>tbody>tr>td {
+     font-size: 12px;
+     font-weight: normal;
+     text-align: left !important;
+ }

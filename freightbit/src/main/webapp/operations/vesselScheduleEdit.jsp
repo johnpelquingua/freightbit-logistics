@@ -12,7 +12,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> Vessel Schedule List</li>
+            <li class="active"><a href="<s:url action='../operations/viewVesselSchedules'/>"> Vessel Schedules </a></li>
             <li class="active"> Edit Vessel Schedule</li>
         </ol>
 
@@ -134,10 +134,10 @@
             <div class="panel-footer">
 
                 <div class="pull-right">
-                    <button type="button" id="Cancel" class="btn btn-lg" data-toggle="modal" data-target="#cancelBooking">
+                    <button type="button" id="Cancel" class="btn" data-toggle="modal" data-target="#cancelBooking">
                         Cancel
                     </button>
-                    <s:submit cssClass="btn btn-primary btn-lg" name="submit" value="Save"/>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                     </s:form>
                 </div>
 

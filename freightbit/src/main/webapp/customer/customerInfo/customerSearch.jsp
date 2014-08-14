@@ -1,8 +1,13 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<div class="row" style=" margin-top: -15px; ">
+<div class="row">
     <div class="col-lg-12">
-        <h1>Search Customer </h1>
+
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-male"></i> Search Customer </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Customer</li>
@@ -11,7 +16,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-7 col-lg-offset-2" style="margin-left: 21% !important;">
+    <div class="col-lg-6 col-lg-offset-3">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-search"></i> Search </h3>
@@ -20,7 +25,7 @@
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="searchCustomers" theme="bootstrap">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Search By</label>
+                        <label class="col-sm-2 control-label" style="padding-top:0px;">Search By</label>
 
                         <div class="col-sm-10">
                             <s:select emptyOption="true" id="customer.customerSearchCriteria"
@@ -31,7 +36,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Search</label>
+                        <label class="col-sm-2 control-label" style="padding-top:0px;">Search</label>
 
                         <div class="col-sm-10">
                             <s:textfield name="customer.customerKeyword" cssClass="form-control" placeholder="Keyword"/>
@@ -40,15 +45,16 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <div class="btn-group pull-right">
+                <div class= "pull-right">
                     <button type="button" class="btn" onclick="location.href='customerList'">
                         Cancel
                     </button>
-                    <s:submit name="submit" cssClass="btn btn-info pull-right" value="Search"/>
+                    <s:submit name="submit" cssClass="btn btn-primary" value="Search"/>
                 </div>
             </div>
-            </s:form>
+
         </div>
+        </s:form>
     </div>
 </div>
 </div>
