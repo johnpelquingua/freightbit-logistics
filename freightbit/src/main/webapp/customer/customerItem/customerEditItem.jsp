@@ -7,7 +7,7 @@
         <h1>Customer Module </h1>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><i class="fa fa-male"></i> Customer</li>
+            <li class="active"> Customer</li>
             <li class="active"><a href="<s:url action='customerList' />"> Customer List</a></li>
             <li class="active"><a href="<s:url action='customerInfo' />"> Customer Profile</a></li>
             <li class="active"><a href="<s:url action='viewItem' />"> Items</a></li>
