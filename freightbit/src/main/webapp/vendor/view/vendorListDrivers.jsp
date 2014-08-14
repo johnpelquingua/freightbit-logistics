@@ -29,8 +29,13 @@
     <div class="col-lg-7 col-lg-offset-2" style="margin-left: 0% !important;">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-group"></i> Drivers</h3>
-
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-group"></i> Drivers</h3>
+                <span class="pull-right">
+                    <button type="button" class="btn btn-primary new-booking"
+                            onclick="location.href='loadAddDriverPage'">
+                        <i class="fa fa-book"></i> New Driver
+                    </button>
+                </span>
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
@@ -82,11 +87,12 @@
                 </div>
             </div>
             <div class="panel-footer">
-            <span class="pull-right"> <a href="loadAddDriverPage"
-                                         class="icon-action-link" rel="tooltip" title="Add Vendor"><img
-                    src="../includes/images/add-user.png" class="icon-action circ-icon">
-            </a>
-            </span>
+                <span class="pull-right">
+                    <button type="button" class="btn btn-primary new-booking"
+                            onclick="location.href='loadAddDriverPage'">
+                        <i class="fa fa-book"></i> New Driver
+                    </button>
+                </span>
             </div>
         </div>
     </div>

@@ -1,16 +1,13 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <div class="row">
     <div class="col-lg-12">
-
-        <legend style="text-align: left;">
-            <span >
-               <h1><i class="fa fa-anchor"></i> Vessel Schedules </h1>
-            </span>
-        </legend>
+        <h1>Vessel Schedules </h1>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Vessel Schedules</li>
@@ -33,11 +30,16 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Vessel Schedules List</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-search"></i>List of Vessel
+                    Schedules</h3>
                 <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking"
+                            onclick="location.href='loadVesselScheduleSearch'">
+                        <i class="fa fa-search"></i> Search Schedule
+                    </button>
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddVesselSchedule'">
-                        <i class="fa fa-anchor"></i> New Vessel Schedule
+                        <i class="fa fa-book"></i> New Schedule
                     </button>
                 </span>
             </div>
@@ -72,10 +74,9 @@
                                              value="#attr.vesselSchedule.vesselScheduleId"></s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editVesselScheduleUrl}" rel="tooltip"
-                                     title="Edit Vendor Schedule">
-                                    <%--<img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
-                                         style="border-radius:25%;">--%>
-                                    <i class="fa fa-pencil"></i>
+                                     title="Edit this vendor">
+                                    <img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
+                                         style="border-radius:25%;">
                                 </s:a>
 
                                 <s:url var="deleteVesselScheduleUrl" action="deleteVesselSchedule">
@@ -83,11 +84,10 @@
                                              value="#attr.vesselSchedule.vesselScheduleId"></s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{deleteVesselScheduleUrl}" rel="tooltip"
-                                     title="Delete Vessel Schedule"
+                                     title="Delete this Vendor"
                                      onclick="return confirm('Do you really want to delete?');">
-                                    <%--<img src="../includes/images/delete-booking.png" class="icon-action circ-icon"
-                                         style="border-radius:25%;">--%>
-                                    <i class="fa fa-trash-o"></i>
+                                    <img src="../includes/images/delete-booking.png" class="icon-action circ-icon"
+                                         style="border-radius:25%;">
                                 </s:a>
 
                             </display:column>
@@ -95,17 +95,21 @@
                     </display:table>
                 </div>
 
+
             </div>
 
             <div class="panel-footer">
 
                 <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking"
+                            onclick="location.href='loadVesselScheduleSearch'">
+                        <i class="fa fa-search"></i> Search Schedule
+                    </button>
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddVesselSchedule'">
-                        <i class="fa fa-anchor"></i> New Vessel Schedule
+                        <i class="fa fa-book"></i> New Schedule
                     </button>
                 </span>
-
             </div>
         </div>
     </div>

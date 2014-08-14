@@ -687,6 +687,12 @@ ul#css3menu1 li {
 
 }
 
+ table.table.leftAlign.table-user-information>thead>tr>th, table.table.leftAlign.table-user-information>tbody>tr>th, table.table.leftAlign.table-user-information>tfoot>tr>th, table.table.leftAlign.table-user-information>thead>tr>td, table.table.leftAlign.table-user-information>tbody>tr>td, table.table.leftAlign.table-user-information>tfoot>tr>td {
+     text-align: left !important;
+     color: #636363 !important;
+
+ }
+
 span.pagebanner {
     margin-left: 15px !important;
 }

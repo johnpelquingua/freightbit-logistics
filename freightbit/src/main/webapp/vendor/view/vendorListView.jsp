@@ -18,7 +18,8 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Vendor List</h3>
                 <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchVendorPage'">
+                    <button type="button" class="btn btn-success new-booking"
+                            onclick="location.href='loadSearchVendorPage'">
                         <i class="fa fa-search"></i> Search Vendor
                     </button>
                     <button type="button" class="btn btn-primary new-booking"
@@ -80,8 +81,9 @@
                 </div>
             </div>
             <div class="panel-footer">
-            <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchVendorPage'">
+                <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking"
+                            onclick="location.href='loadSearchVendorPage'">
                         <i class="fa fa-search"></i> Search Vendor
                     </button>
                     <button type="button" class="btn btn-primary new-booking"
