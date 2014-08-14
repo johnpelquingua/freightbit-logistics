@@ -129,6 +129,14 @@
                                       listValue="value" cssClass="form-control" value="user.status"/>
                         </div>
                     </div>
+                    
+                    <div class="form-group">
+                        <label for="uStatus" class="col-lg-3 control-label" id="users-add-label">Permissions:</label>
+
+                        <div class="col-lg-9">
+                        <s:checkboxlist list="permissionsList"  name="permissionsSelected" value="preSelectedPermissions" listKey="permissionId" listValue="permissionName"/>
+                        </div>
+                    </div>
                 </div>
 
 

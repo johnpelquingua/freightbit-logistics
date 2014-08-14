@@ -4,6 +4,7 @@ package com.sr.biz.freightbit.core.dao.impl;
 
 import com.sr.biz.freightbit.core.dao.UserDao;
 import com.sr.biz.freightbit.core.entity.User;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -24,12 +25,13 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
 
     @Override
-    public void addUser(User user) {
+    public Integer addUser(User user) {
         log.debug("adding a new User");
         try {
             Session session = getSessionFactory().getCurrentSession();
-            session.save(user);
-            log.debug("add successful");
+            Integer userId = (Integer) session.save(user);
+            log.debug("Add user successful");
+            return userId;
         } catch (RuntimeException re) {
             log.error("add failed", re);
             throw re;

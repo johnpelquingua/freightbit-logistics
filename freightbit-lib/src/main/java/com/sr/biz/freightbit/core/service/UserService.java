@@ -8,7 +8,7 @@ import com.sr.biz.freightbit.core.exceptions.UserAlreadyExistsException;
 
 public interface UserService {
 
-    public void addUser(User user) throws UserAlreadyExistsException;
+    public Integer addUser(User user) throws UserAlreadyExistsException;
 
     public void updateUser(User user);
 

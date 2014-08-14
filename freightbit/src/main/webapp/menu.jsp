@@ -110,7 +110,7 @@
         <ul class="dropdown-menu">
             <li><a href="<s:url action='../user/loadSearchUserPage' />"> <i class="fa fa-caret-right fa-fw"></i> User</a></li>
             <li><a href="<s:url action='../user/viewGroups' />"> <i class="fa fa-caret-right fa-fw"></i> Group</a></li>
-            <li><a href="<s:url action='../user/viewPermissions' />"> <i class="fa fa-caret-right fa-fw"></i> Permission</a></li>
+           <!--  <li><a href="<s:url action='../user/viewPermissions' />"> <i class="fa fa-caret-right fa-fw"></i> Permission</a></li> -->
         </ul>
     </li>
     </sec:authorize>

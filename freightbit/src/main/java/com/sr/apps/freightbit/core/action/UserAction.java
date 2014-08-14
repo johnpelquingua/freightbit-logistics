@@ -3,18 +3,26 @@ package com.sr.apps.freightbit.core.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+import com.sr.apps.freightbit.core.formbean.PermissionBean;
 import com.sr.apps.freightbit.core.formbean.UserBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.entity.Group;
+import com.sr.biz.freightbit.core.entity.Permission;
+import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.service.ClientService;
+import com.sr.biz.freightbit.core.service.PermissionService;
 import com.sr.biz.freightbit.core.service.UserService;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,10 +43,15 @@ public class UserAction extends ActionSupport implements Preparable {
     private List<Parameters> userSearchList = new ArrayList<Parameters>();
     private UserBean user = new UserBean(); //single user object
     private String userNameParam; //parameter used to identify which specific user is to be edited/deleted/viewed
-
+    private List<PermissionBean> permissionsList = new ArrayList<PermissionBean>(); //list of permissions from Permissions table
+    private String permissionsSelected; //will contain the checked permissions from the jsp
+    private String[] preSelectedPermissions; //the default permission id's assigned to the user
+    private String[] preSelectedPermissionNames; //the permission names assigned to the user
+    
     private UserService userService;
     private ClientService clientService;
     private ParameterService parameterService;
+    private PermissionService permissionService;
 
     public String loadSearchUserPage() {
         return SUCCESS;
@@ -76,6 +89,7 @@ public class UserAction extends ActionSupport implements Preparable {
     		user.setCompanyName(client.getClientName());
     	else
     		user.setCompanyName("");
+    	populatePermissionsList(-1);
         return SUCCESS;
     }
 
@@ -83,8 +97,10 @@ public class UserAction extends ActionSupport implements Preparable {
         validateOnSubmit(user);
         if (hasFieldErrors())
             return INPUT;
-        userService.addUser(transformToEntityBean(user));
-
+        Integer userId = userService.addUser(transformToEntityBean(user));
+        addPermissionsToUser(userId);
+        populatePermissionsList(userId);
+        
         clearErrorsAndMessages();
         addActionMessage("Success! A New User has been added.");
 
@@ -94,15 +110,20 @@ public class UserAction extends ActionSupport implements Preparable {
     public String loadEditUserPage() {
         User userEntity = userService.findUserByUserName(userNameParam);
         user = transformToFormBean(userEntity);
+        populatePermissionsList(-1);
         return SUCCESS;
     }
 
     public String editUser() {
-        validateOnSubmit(user);
+        validateOnSubmit(user); 
         if (hasFieldErrors())
             return INPUT;
         userService.updateUser(transformToEntityBean(user));
-
+        if (StringUtils.isNotBlank(user.getUserId())) {
+        	addPermissionsToUser(Integer.parseInt(user.getUserId()));
+        	populatePermissionsList(Integer.parseInt(user.getUserId()));
+        }
+        
         clearErrorsAndMessages();
         addActionMessage("Success! User has been updated.");
 
@@ -123,10 +144,35 @@ public class UserAction extends ActionSupport implements Preparable {
         for (User userElem : userEntityList) {
             users.add(transformToFormBean(userElem)); //used to populate user list table
         }
-
+        populatePermissionsList(-1);
         return SUCCESS;
     }
+    
+    private void addPermissionsToUser(Integer userId) {
+        PermissionUserGroup permissionUserGroup;
 
+        //remove current permissions assigned to the user
+    	findCurrentUserPermissions(userId); //populates preSelectedPermissions
+        for (String permissionId : preSelectedPermissions) {
+            permissionUserGroup = permissionService.findPermissionUserGroup(getClientId(), getClientId(), userId, Integer.parseInt(permissionId)); //-1 represents the groupId
+            if (permissionUserGroup != null) {
+                permissionService.deletePermissionOfUser(permissionUserGroup);
+            }
+        }
+
+        //add newly selected permissions
+    	String[] permissionIdArray = permissionsSelected.split("\\s*[,]");
+        for (String permissionId : permissionIdArray) {
+            permissionUserGroup = new PermissionUserGroup();
+            permissionUserGroup.setClientId(getClientId());
+            permissionUserGroup.setGroupId(getClientId());
+            permissionUserGroup.setUserId(userId);
+            permissionUserGroup.setPermissionId(Integer.parseInt(permissionId.trim()));
+            permissionService.addPermissionToUser(permissionUserGroup);
+        }
+    }
+
+ 
     @Override
     public void prepare() {
         userSearchList = parameterService.getParameterMap(ParameterConstants.USER, ParameterConstants.SEARCH_CRITERIA);
@@ -166,16 +212,46 @@ public class UserAction extends ActionSupport implements Preparable {
         }
     }
 
+    private void populatePermissionsList(Integer userId) {
+        List<Permission> permissionList = (List<Permission>) permissionService.getPermissions(getClientId());
+        for (Permission permission : permissionList) {
+            permissionsList.add(transformToPermissionsFormBean(permission));
+        }
+        //Integer userId = -1;
+        if (userId.equals(-1)) { 
+        	User user = userService.findUserByUserName(userNameParam);
+        	if (user!=null)
+        		userId = user.getUserId();
+        } 
+        findCurrentUserPermissions(userId); //populates preSelectedPermissions
+    }
+
+	private void findCurrentUserPermissions(Integer userId) {
+		List<Permission> selectedPermissionsList = (List<Permission>) permissionService.findPermissionByUser(getClientId(), userId);
+        if (selectedPermissionsList != null) {
+        	preSelectedPermissions = new String[selectedPermissionsList.size()];
+        	preSelectedPermissionNames = new String[selectedPermissionsList.size()];
+        }
+
+        for (int i=0; i<selectedPermissionsList.size(); i++) {
+        	String permissionId=selectedPermissionsList.get(i).getPermissionId().toString();
+        	preSelectedPermissions[i] = permissionId;      	
+        	String permissionName=selectedPermissionsList.get(i).getDescription();
+        	preSelectedPermissionNames[i] = permissionName;
+        }
+	}
+    
     //used to transform a formbean to an entity bean
     private User transformToEntityBean(UserBean formBean) {
         User entity = new User();
         Client client = clientService.findClientById(getClientId().toString());
         entity.setClient(client);
-        if (formBean.getUserId() != null)
+        if (StringUtils.isNotBlank(formBean.getUserId()))
             entity.setUserId(new Integer(formBean.getUserId()));
 
         entity.setUsername(formBean.getUserName());
         entity.setPassword(formBean.getPassword());
+        
         entity.setTitle(formBean.getTitle());
         entity.setEmail(formBean.getEmailAddress());
         entity.setFirstName(formBean.getFirstName());
@@ -183,6 +259,7 @@ public class UserAction extends ActionSupport implements Preparable {
         entity.setStatus(formBean.getStatus());
         entity.setContactNo(formBean.getContactNumber());
         entity.setUserType(formBean.getUserType());
+        
         return entity;
     }
 
@@ -204,9 +281,19 @@ public class UserAction extends ActionSupport implements Preparable {
         return formBean;
     }
 
+    private PermissionBean transformToPermissionsFormBean(Permission permission) {
+        PermissionBean formBean = new PermissionBean();
+        formBean.setClientId(permission.getClientId().toString());
+        formBean.setPermissionId(permission.getPermissionId().toString());
+        formBean.setPermissionName(permission.getDescription());
+        List<PermissionUserGroup> permissionUserGroups
+                = permissionService.getPermissionUserGroupsByClientIdAndPermissionId(permission.getClientId(), permission.getPermissionId());
 
+        return formBean;
+    }
+    
     private Integer getClientId() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
+    	Map sessionAttributes = ActionContext.getContext().getSession();
         Integer clientId = (Integer) sessionAttributes.get("clientId");
         return clientId;
     }
@@ -261,7 +348,49 @@ public class UserAction extends ActionSupport implements Preparable {
         this.users = users;
     }
 
-    public void setUserService(UserService userService) {
+    public String getPermissionsSelected() {
+		return permissionsSelected;
+	}
+
+	public void setPermissionsSelected(String permissionsSelected) {
+		this.permissionsSelected = permissionsSelected;
+	}
+
+	public String[] getPreSelectedPermissions() {
+		return preSelectedPermissions;
+	}
+
+	public void setPreSelectedPermissions(
+			String[] preSelectedPermissions) {
+		this.preSelectedPermissions = preSelectedPermissions;
+	}
+
+	public List<PermissionBean> getPermissionsList() {
+		return permissionsList;
+	}
+
+	public void setPermissionsList(List<PermissionBean> permissionsList) {
+		this.permissionsList = permissionsList;
+	}
+
+	public String[] getPreSelectedPermissionNames() {
+		return preSelectedPermissionNames;
+	}
+
+	public void setPreSelectedPermissionNames(String[] preSelectedPermissionNames) {
+		this.preSelectedPermissionNames = preSelectedPermissionNames;
+	}
+
+
+	public PermissionService getPermissionService() {
+		return permissionService;
+	}
+
+	public void setPermissionService(PermissionService permissionService) {
+		this.permissionService = permissionService;
+	}
+
+	public void setUserService(UserService userService) {
         this.userService = userService;
     }
 

@@ -29,6 +29,7 @@
 
                     <s:form action="editUser" theme="bootstrap" cssClass="form-horizontal" method="post" name="addForm">
                     <s:hidden name="user.userId" value="%{user.userId}"/>
+                    
                     <div class="form-group">
                         <label for="uType" class="col-lg-3 control-label" id="users-add-label"> User Type:</label>
 
@@ -76,7 +77,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                 <div class="form-group">
                         <label for="uPassword" class="col-lg-3 control-label" id="users-add-label">Password:</label>
 
                         <div class="col-lg-9">
@@ -129,6 +130,14 @@
                         <div class="col-lg-9">
                             <s:select required="true" name="user.status" id="uStatus" list="statusList" listKey="key"
                                       listValue="value" cssClass="form-control" value="user.status"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="uStatus" class="col-lg-3 control-label" id="users-add-label">Permissions:</label>
+
+                        <div class="col-lg-9">
+                        <s:checkboxlist list="permissionsList"  name="permissionsSelected" value="preSelectedPermissions" listKey="permissionId" listValue="permissionName"/>
                         </div>
                     </div>
                 </div>

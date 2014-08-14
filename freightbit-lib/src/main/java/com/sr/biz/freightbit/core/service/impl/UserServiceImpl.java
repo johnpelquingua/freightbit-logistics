@@ -30,14 +30,14 @@ public class UserServiceImpl implements UserService {
 	
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addUser(User user) throws UserAlreadyExistsException {
+    public Integer addUser(User user) throws UserAlreadyExistsException {
         if (userDao.findUserByUserName(user.getUsername()) != null)
             throw new UserAlreadyExistsException(user.getUsername());
         else {
         	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         	String hashedPassword = passwordEncoder.encode(user.getPassword());
         	user.setPassword(hashedPassword);
-        	userDao.addUser(user);
+        	return userDao.addUser(user);
         }
     }
 
@@ -80,6 +80,9 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateUser(User user) {
+     	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    	String hashedPassword = passwordEncoder.encode(user.getPassword());
+    	user.setPassword(hashedPassword);
         userDao.updateUser(user);
     }
 

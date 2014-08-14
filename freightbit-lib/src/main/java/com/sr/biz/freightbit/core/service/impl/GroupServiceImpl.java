@@ -138,6 +138,7 @@ public class GroupServiceImpl implements GroupService {
 
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<User> findAllUsersByGroupId(Integer groupId) {
         List<GroupUser> groupUsers = groupUserDao.findAllUsersByGroupId(groupId);
         List<User> users = new ArrayList();
@@ -161,6 +162,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public Integer getNoOfMembers(Integer groupId) {
         List<GroupUser> groupUsers = groupUserDao.findAllUsersByGroupId(groupId);
         return groupUsers.size();

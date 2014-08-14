@@ -64,10 +64,6 @@
                                 <td><s:property value="user.userName"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: bold;">Password:</td>
-                                <td><s:property value="user.password"/></td>
-                            </tr>
-                            <tr>
                                 <td style="font-weight: bold;">Title:</td>
                                 <td><s:property value="user.title"/></td>
                             </tr>
@@ -83,7 +79,14 @@
                                 <td style="font-weight: bold;">Status:</td>
                                 <td><s:property value="user.status"/></td>
                             </tr>
-
+                            <tr>
+                            	<td style="font-weight: bold;">Permissions:</td>
+                            	<!--  <td><s:property value="preSelectedPermissionDesc"/></td>-->
+                            	
+                            	<td><table><s:iterator value="preSelectedPermissionNames" var="permName">
+                            		<tr><td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<s:property value="permName"/></td></tr>
+                            	</s:iterator></table></td>
+                            </tr>
                             </tbody>
                         </table>
 
