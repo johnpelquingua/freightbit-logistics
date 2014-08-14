@@ -26,6 +26,9 @@ public class User implements java.io.Serializable {
     private String status;
     private String contactNo;
     private String userType;
+    private String passwordResetToken;
+    private Date passwordResetTime;
+    private String customerCode;
 
     public User() {
     }
@@ -174,5 +177,32 @@ public class User implements java.io.Serializable {
     public void setUserType(String userType) {
         this.userType = userType;
     }
+
+    @Column(name="passwordResetToken")
+	public String getPasswordResetToken() {
+		return passwordResetToken;
+	}
+
+	public void setPasswordResetToken(String passwordResetToken) {
+		this.passwordResetToken = passwordResetToken;
+	}
+
+	@Column(name="passwordResetTime")
+	public Date getPasswordResetTime() {
+		return passwordResetTime;
+	}
+
+	public void setPasswordResetTime(Date passwordResetTime) {
+		this.passwordResetTime = passwordResetTime;
+	}
+
+	@Column(name="customerCode")
+	public String getCustomerCode() {
+		return customerCode;
+	}
+
+	public void setCustomerCode(String customerCode) {
+		this.customerCode = customerCode;
+	}
 
 }
