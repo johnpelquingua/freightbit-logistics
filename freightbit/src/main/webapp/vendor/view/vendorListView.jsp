@@ -16,9 +16,16 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> Vendor List
-
-                </h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Vendor List</h3>
+                <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchVendorPage'">
+                        <i class="fa fa-search"></i> Search Vendor
+                    </button>
+                    <button type="button" class="btn btn-primary new-booking"
+                            onclick="location.href='loadAddVendorPage'">
+                        <i class="fa fa-book"></i> New Vendor
+                    </button>
+                </span>
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
@@ -74,10 +81,14 @@
             </div>
             <div class="panel-footer">
             <span class="pull-right">
-            <a href="loadAddVendorPage" class="icon-action-link" rel="tooltip" title="Add Vendor">
-                <img src="../includes/images/add-user.png" class="icon-action circ-icon">
-            </a>
-            </span>
+                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchVendorPage'">
+                        <i class="fa fa-search"></i> Search Vendor
+                    </button>
+                    <button type="button" class="btn btn-primary new-booking"
+                            onclick="location.href='loadAddVendorPage'">
+                        <i class="fa fa-book"></i> New Vendor
+                    </button>
+                </span>
             </div>
         </div>
     </div>

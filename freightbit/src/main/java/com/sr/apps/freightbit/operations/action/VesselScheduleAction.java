@@ -58,17 +58,18 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
             return INPUT;
         }
 
-        try {
+//        try {
             VesselSchedules entity = transformToEntityBean(vesselSchedule);
             entity.setCreatedBy(commonUtils.getUserNameFromSession());
             entity.setCreatedTimestamp(new Date());
             entity.setModifiedBy(commonUtils.getUserNameFromSession());
             entity.setModifiedTimestamp(new Date());
+        System.out.println("<-------------------------------------------" + entity.getVoyageNumber());
             vesselSchedulesService.addVesselSchedule(entity);
-        } catch (Exception e) {
-            addFieldError("vesselSchedule.voyageNumber", "Voyage Number already exists");
-            return INPUT;
-        }
+//        } catch (Exception e) {
+//            addFieldError("vesselSchedule.voyageNumber", "Voyage Number already exists");
+//            return INPUT;
+//        }
 
         return SUCCESS;
     }

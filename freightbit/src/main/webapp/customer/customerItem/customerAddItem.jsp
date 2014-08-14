@@ -73,7 +73,7 @@
                                              cssClass="form-control"/>
                             </div>
 
-                            <label class="col-sm-2 control-label" for="textinput">Lenght: </label>
+                            <label class="col-sm-2 control-label" for="textinput">Length: </label>
 
                             <div class="col-sm-4">
                                 <s:textfield name="item.length" id="item.length" required="true" cssClass="form-control"

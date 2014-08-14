@@ -16,8 +16,18 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title" style="position: relative; top: 2px;"><i class="fa fa-list"></i> Customer List
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Customer List
                 </h3>
+                <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking"
+                            onclick="location.href='loadSearchCustomerPage'">
+                        <i class="fa fa-search"></i> Search Customer
+                    </button>
+                    <button type="button" class="btn btn-primary new-booking"
+                            onclick="location.href='loadAddCustomerPage'">
+                        <i class="fa fa-book"></i> New Customer
+                    </button>
+                </span>
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
@@ -44,30 +54,36 @@
                                             <s:param name="customerCodeParam"
                                                      value="#attr.customer.customerCode"></s:param>
                                         </s:url>
-                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                                        <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip" title="Edit this Customer">
-                                        	<img src="../includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>
+                                        <sec:authorize
+                                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                                            <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip"
+                                                 title="Edit this Customer">
+                                                <img src="../includes/images/edit-user.png"
+                                                     class="icon-action circ-icon"> </s:a>
                                         </sec:authorize>
-                                        
+
                                         <s:url var="deleteCustomerUrl" action="deleteCustomer">
                                             <s:param name="customerCodeParam"
                                                      value="#attr.customer.customerCode"></s:param>
                                         </s:url>
-                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                                        <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip"
-                                             title="Delete this Customer"
-                                             onclick="return confirm('Do you really want to delete?');"><img
-                                                src="../includes/images/remove-user.png"
-                                                class="icon-action circ-icon"> </s:a>
+                                        <sec:authorize
+                                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                                            <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip"
+                                                 title="Delete this Customer"
+                                                 onclick="return confirm('Do you really want to delete?');"><img
+                                                    src="../includes/images/remove-user.png"
+                                                    class="icon-action circ-icon"> </s:a>
                                         </sec:authorize>
-                                        
+
                                         <s:url var="customerInfoUrl" action="customerInfo">
                                             <s:param name="customerCodeParam"
                                                      value="#attr.customer.customerCode"></s:param>
                                         </s:url>
-                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">
-                                        <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img
-                                                src="../includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
+                                        <sec:authorize
+                                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">
+                                            <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip"><img
+                                                    src="../includes/images/info-b.png"
+                                                    class="icon-action circ-icon"> </s:a>
                                         </sec:authorize>
                                     </display:column>
                                 </td>
@@ -79,10 +95,17 @@
                 </div>
             </div>
             <div class="panel-footer">
-            <span class="pull-right">
-            <a href="loadAddCustomerPage" class="icon-action-link"><img src="../includes/images/add-user.png"
-                                                                        class="icon-action circ-icon"> </a>
-            </span>
+
+                <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking"
+                            onclick="location.href='loadSearchCustomerPage'">
+                        <i class="fa fa-search"></i> Search Vendor
+                    </button>
+                    <button type="button" class="btn btn-primary new-booking"
+                            onclick="location.href='loadAddCustomerPage'">
+                        <i class="fa fa-book"></i> New Vendor
+                    </button>
+                </span>
             </div>
         </div>
     </div>

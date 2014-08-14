@@ -24,7 +24,7 @@ public class VesselSchedulesServiceImpl implements VesselSchedulesService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addVesselSchedule(VesselSchedules vesselSchedules) throws VesselSchedulesAlreadyExistsException {
         if (vesselSchedulesDao.findVesselScheduleByVoyageNumber(vesselSchedules.getVoyageNumber()).size() > 0) {
-            throw new VesselSchedulesAlreadyExistsException(vesselSchedules.getVesselScheduleId());
+            throw new VesselSchedulesAlreadyExistsException(vesselSchedules.getVoyageNumber());
         } else {
             vesselSchedulesDao.addVesselSchedule(vesselSchedules);
         }
