@@ -112,7 +112,6 @@
                                           emptyOption="true"
                                           required="true"
                                 />
-                                <%--onchange="contactSearch()"--%>
 
                             </div>
                             <%--<div id="ajaxResponse"></div>--%>
@@ -198,8 +197,7 @@
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person</label>
 
                         <div class="col-lg-6">
-                            <%--<s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperContact"
-                                      list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName"/>--%>
+
                                 <s:select cssClass="form-control step2" style="margin-bottom: 15px !important; width: 555px;" id="shipperContact" name="order.shipperContactId"
                                           list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
                         </div>
@@ -237,12 +235,6 @@
                     <legend style="text-align: left;">
                             <span >
                                 Consignee Information
-
-                                <%--<button type="button" class="btn btn-info pull-right"
-                                        onclick="location.href='loadAddOrderPage'">
-                                     Add Consignee
-                                </button>--%>
-
                             </span>
                     </legend>
 
@@ -273,7 +265,6 @@
                                       listValue="addressLine1 + ' ' + addressLine2" required="true"/>
                         </div>
 
-
                     </div>
 
                 <div style="clear: both;">
@@ -281,238 +272,6 @@
                 </div>
 
                 </div>
-                <%--Cargo / Item Box--%>
-                <%--<div id="2ndPart" style="clear:both;" class="well">
-
-                    <fieldset class="inputs">
-
-                        <legend style="text-align: left;">
-                            <span>
-                                Cargo Information
-                            </span>
-                        </legend>
-
-                        &lt;%&ndash;<s:form cssClass="form-horizontal" theme="bootstrap" action="addItemsInTable" >&ndash;%&gt;
-
-                        <div class="form-group">
-
-                            <label class="col-lg-3 control-label">
-                                Container Quantity
-                            </label>
-
-                            <div class="col-lg-3" >
-                                    <s:select cssClass="form-control"
-                                              id="orderItem_quantity"
-                                              name="orderItem.quantity"
-                                              list="containerQuantity"
-                                              cssStyle="margin-bottom: 15px !important;"
-                                    />
-                            </div>
-
-                            <label class="col-lg-3 control-label">
-                                Container Size
-                            </label>
-
-                            <div class="col-lg-3" >
-                                    <s:select cssClass="form-control"
-                                              id="orderItem_nameSize"
-                                              name="orderItem.nameSize"
-                                              list="containerList"
-                                              listKey="key"
-                                              listValue="value"
-                                              cssStyle="margin-bottom: 15px !important;"
-                                    />
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-lg-3 control-label" for="orderItem.weight">
-                                Weight (kg)
-                            </label>
-
-                            <div class="col-lg-3" >
-                                <s:textfield cssClass="form-control step3"
-                                             name="orderItem.weight"
-                                             id="orderItem_weight"
-                                             cssStyle="margin-bottom: 15px !important;"
-                                />
-                            </div>
-
-                            <label class="col-lg-3 control-label">
-                                Volume (cm³)
-                            </label>
-                            <div class="col-lg-3" >
-                                <s:textfield cssClass="form-control step3"
-                                             name="orderItem.volume"
-                                             id="orderItem_volume"
-                                             cssStyle="margin-bottom: 15px !important;"
-                                />
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-lg-3 control-label">
-                                Classification
-                            </label>
-
-                            <div class="col-lg-3" >
-                                <s:textfield cssClass="form-control step3"
-                                             name="orderItem.classification"
-                                             id="orderItem_classification"
-                                             cssStyle="margin-bottom: 15px !important;"
-                                 />
-                            </div>
-
-                            <label class="col-lg-3 control-label">
-                                Commodity
-                            </label>
-
-                            <div class="col-lg-3" >
-
-                                <s:textfield cssClass="form-control step3"
-                                             name="orderItem.description"
-                                             id="orderItem_description"
-                                             cssStyle="margin-bottom: 15px !important;"
-                                 />
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-lg-3 control-label">
-                                Rate (Php)
-                            </label>
-                            <div class="col-lg-3" >
-                                <s:textfield cssClass="form-control step3"
-                                             id="orderItem_rate"
-                                             name="orderItem.rate"
-                                             cssStyle="margin-bottom: 15px !important;"
-                                 />
-                            </div>
-
-                            <label class="col-lg-3 control-label">
-                                Declared Value (Php)
-                            </label>
-                            <div class="col-lg-3">
-
-                                <s:textfield cssClass="form-control step3"
-                                             name="orderItem.declaredValue"
-                                             id="orderItem_declaredValue"
-                                             cssStyle="margin-bottom: 15px !important;"
-                                />
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-lg-3 control-label">
-                                Comments
-                            </label>
-                            <div class="col-lg-3" >
-                                <s:textarea cssClass="form-control step3"
-                                            name="orderItem.remarks"
-                                            id="orderItem_remarks"
-                                            cssStyle="margin-bottom: 15px !important; resize: none;"
-
-                                />
-                            </div>
-
-                        </div>
-
-                        <legend />
-
-                        <button type="button" id="addItem" class="btn btn-info pull-right" style="margin-top: 15px;">
-                            <i class="fa fa-plus"></i> Add Container
-                        </button>
-
-                        &lt;%&ndash;<s:submit name="submit"  cssClass="btn btn-info pull-right" cssStyle="margin-top: 15px;" value="Add Container" />&ndash;%&gt;
-
-                        &lt;%&ndash;</s:form>&ndash;%&gt;
-
-                    </fieldset>
-
-                    <div>
-
-
-                    </div>
-
-                </div>--%> <%-- End Cargo / Item Box--%>
-
-                <%--<div id="3rdPart" >
-
-                    <fieldset>
-
-                        <legend style="text-align: left;">
-                            <span>
-                                Cargo Listing
-                            </span>
-                        </legend>
-
-                        <div class="panel-body">
-                            <div class="table-responsive list-table">
-                                <table class="table table-striped table-hover table-bordered text-center tablesorter" id="customer-list">
-                                    <thead>
-                                    <tr class="header_center" style="background-color: #fff;">
-                                        <th class="tb-font-black">Quantity</th>
-                                        <th class="tb-font-black">Size</th>
-                                        <th class="tb-font-black">Weight</th>
-                                        <th class="tb-font-black">Class</th>
-                                        <th class="tb-font-black">Commodity</th>
-                                        <th class="tb-font-black">Value</th>
-                                        <th class="tb-font-black">Rate</th>
-                                        <th class="tb-font-black">Comment</th>
-                                        <th class="tb-font-black">Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <s:iterator value="orderItems" var="orderItem">
-                                        <tr>
-                                            <td class="tb-font-black"><s:property value="quantity"/></td>
-                                            <td class="tb-font-black"><s:property value="nameSize"/></td>
-                                            <td class="tb-font-black"><s:property value="weight"/></td>
-                                            <td class="tb-font-black"><s:property value="classification"/></td>
-                                            <td class="tb-font-black"><s:property value="description"/></td>
-                                            <td class="tb-font-black"><s:property value="declaredValue"/></td>
-                                            <td class="tb-font-black"><s:property value="rate"/></td>
-                                            <td class="tb-font-black"><s:property value="remarks"/></td>
-
-                                            <td class="tb-font-black">
-
-                                                &lt;%&ndash;<s:url var="deleteItemUrl" action="deleteItem">
-                                                    <s:param name="customersItemIdParam" value="%{customerItemsId}"></s:param>
-                                                </s:url>
-                                                <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
-                                                     title="Delete this Item?"
-                                                     onclick="return confirm('Do you really want to delete?');">
-                                                    <img src="includes/images/remove-user.png" class="icon-action circ-icon">
-                                                </s:a>&ndash;%&gt;
-
-                                            </td>
-                                        </tr>
-                                    </s:iterator>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                    </fieldset>
-
-                </div>--%>
-
-                <%--<button type="button" class="btn btn-primary pull-right"
-                        style="margin-top: 15px;"
-                        onclick="location.href='loadAddOrderPage'">
-                    <i class="fa fa-plus"></i> Create Booking
-                </button>--%>
 
             </div>
 
@@ -761,47 +520,6 @@ $(document).ready(function() {
 
         });
 
-    // Save Items in Table
-
-    $('#addItem').click(function(){
-
-        var orderItemQuantity = $("#orderItem_quantity").val();
-        var orderItemNameSize = $("#orderItem_nameSize").val();
-        var orderItemWeight = $("#orderItem_weight").val();
-        var orderItemVolume = $("#orderItem_volume").val();
-        var orderItemClassification = $("#orderItem_classification").val();
-        var orderItemDescription = $("#orderItem_description").val();
-        var orderItemRate = $("#orderItem_rate").val();
-        var orderItemDeclaredValue = $("#orderItem_declaredValue").val();
-        var orderItemRemarks = $("#orderItem_remarks").val();
-
-        $.ajax({
-            url: 'addItemsInTable',
-            type: 'POST',
-            data: {
-
-                orderItemQuantityParam: orderItemQuantity,
-                orderItemNameSizeParam: orderItemNameSize,
-                orderItemWeightParam:orderItemWeight,
-                orderItemVolumeParam:orderItemVolume,
-                orderItemClassificationParam:orderItemClassification,
-                orderItemDescriptionParam:orderItemDescription,
-                orderItemRateParam:orderItemRate,
-                orderItemDeclaredValueParam:orderItemDeclaredValue,
-                orderItemRemarksParam:orderItemRemarks
-
-            },
-            dataType: 'html',
-            success: function (html) {
-                alert(html);
-                ('#3rdPart').html(html);
-            },
-            error: function(xhr, ajaxOptions, thrownError){
-                alert('An error occurred! ' + thrownError);
-            }
-        });
-    });
-
 });
 
     // For Service Mode Dropdown selection
@@ -820,74 +538,118 @@ $(document).ready(function() {
 
     // If Service Requirement is Rolling Cargo
     if (select.options[ index ].value === 'ROLLING CARGO LOAD') {
-        sMode.options[0].disabled = true;
-        sMode.options[1].disabled = true;
-        sMode.options[2].disabled = true;
-        sMode.options[3].disabled = false;
-        sMode.value = (sMode.options[3].value);
-        sType.options[0].disabled = true;
-        sType.options[1].disabled = false;
-        sType.options[2].disabled = true;
-        sType.value = (sType.options[1].value);
 
+        for (var i = 0; i < sMode.options.length; i++){
+
+            if(sMode.options[i].value == "PIER TO PIER"){
+                sMode.options[i].disabled = false;
+                sMode.options[i].selected = true;
+            }else{
+                sMode.options[i].disabled = true;
+            }
+        }
+
+        for (var i = 0; i < sType.options.length; i++){
+
+            if(sType.options[i].value != "SHIPPING"){
+                sType.options[i].disabled = true;
+            }else{
+                sType.options[i].disabled = false;
+                sType.options[i].selected = true;
+            }
+        }
 
     } else {
-        sMode.options[0].disabled = false;
-        sMode.options[1].disabled = false;
-        sMode.options[2].disabled = false;
-        sMode.options[3].disabled = false;
-        /*sMode.value = (sMode.options[0].value);*/
-        sType.options[0].disabled = false;
-        sType.options[1].disabled = false;
-        sType.options[2].disabled = false;
-        /*sType.value = (sType.options[0].value);*/
-    }
 
-    if (select.options[ index ].value === 'DOOR TO DOOR') {
+        for (var i = 0; i < sMode.options.length; i++){
 
-        sType.options[0].disabled = false;
-        sType.options[1].disabled = true;
-        sType.options[2].disabled = false;
-        sType.value = (sType.options[0].value);
+            if(sMode.options[i].value == "DOOR TO DOOR"){
+                sMode.options[i].disabled = false;
+                sMode.options[i].selected = true;
+            }else{
+                sMode.options[i].disabled = false;
 
-    }
-
-    // If Service Mode is Door to Pier or Pier to Door
-    if (select.options[ index ].value === 'DOOR TO PIER' || select.options[ index ].value === 'PIER TO DOOR') {
-
-        sType.options[0].disabled = false;
-        sType.options[1].disabled = true;
-        sType.options[2].disabled = false;
-        sType.value = (sType.options[0].value);
+            }
 
         }
+
+        for (var i = 0; i < sType.options.length; i++){
+
+            if(sType.options[i].value == "SHIPPING AND TRUCKING"){
+                sType.options[i].disabled = false;
+                sType.options[i].selected = true;
+            }else{
+                sType.options[i].disabled = false;
+
+            }
+        }
+    }
+    // if service mode is Door to Door, Door to Pier and Pier to Door
+    if (select.options[ index ].value === 'DOOR TO DOOR' || select.options[ index ].value === 'DOOR TO PIER' || select.options[ index ].value === 'PIER TO DOOR') {
+
+        for (var i = 0; i < sType.options.length; i++){
+
+            if(sType.options[i].value == "SHIPPING" ){
+                sType.options[i].disabled = true;
+
+            }else {
+                if(sType.options[i].value == "SHIPPING AND TRUCKING"){
+                    sType.options[i].disabled = false;
+                    sType.options[i].selected = true;
+                }else{
+                    sType.options[i].disabled = false;
+
+                }
+            }
+        }
+    }
+
     // If Service Mode is Pier to Pier
     if (select.options[ index ].value === 'PIER TO PIER') {
 
-        sType.options[0].disabled = true;
-        sType.options[1].disabled = false;
-        sType.options[2].disabled = true;
-        sType.value = (sType.options[1].value);
+        for (var i = 0; i < sType.options.length; i++){
+
+            if(sType.options[i].value != "SHIPPING"){
+                sType.options[i].disabled = true;
+            }else{
+                sType.options[i].disabled = false;
+                sType.options[i].selected = true;
+            }
+        }
 
         }
     // If Service Type is Shipping
     if (select.options[ index ].value === 'SHIPPING'){
 
-        sMode.options[0].disabled = true;
-        sMode.options[1].disabled = true;
-        sMode.options[2].disabled = true;
-        sMode.options[3].disabled = false;
-        sMode.value = (sMode.options[3].value);
+        for (var i = 0; i < sMode.options.length; i++){
+
+            if(sMode.options[i].value == "PIER TO PIER"){
+                sMode.options[i].disabled = false;
+                sMode.options[i].selected = true;
+            }else{
+                sMode.options[i].disabled = true;
+            }
+        }
 
         }
     // If Service Type is Trucking or Shipping and Trucking
     if (select.options[ index ].value === 'TRUCKING' || select.options[ index ].value === 'SHIPPING AND TRUCKING') {
 
-        sMode.value = (sMode.options[0].value);
-        sMode.options[0].disabled = false;
-        sMode.options[1].disabled = false;
-        sMode.options[2].disabled = false;
-        sMode.options[3].disabled = true;
+            for (var i = 0; i < sMode.options.length; i++){
+
+                if(sMode.options[i].value == "PIER TO PIER"){
+                    sMode.options[i].disabled = true;
+                }else{
+                    if(sMode.options[i].value == "DOOR TO DOOR"){
+                        sMode.options[i].disabled = false;
+                        sMode.options[i].selected = true;
+                    }else{
+                        sMode.options[i].disabled = false;
+
+                    }
+                }
+            }
+
         }
     }
 

@@ -2,9 +2,14 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
-<div class="row" style="margin-top:-15px;">
+<div class="row">
     <div class="col-lg-12">
-        <h1>Add Vessel Schedule</h1>
+
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-anchor"></i> Vessel Schedule </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Vessel Schedule List</li>
@@ -15,23 +20,22 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-7 col-lg-offset-2" style="margin-left: 21% !important;">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-				<span class="panel-title">Vessel Schedule</span>
+				<span class="panel-title"><i class="fa fa-plus"></i> Add Vessel Schedule</span>
             </div>
 
             <div class="panel-body">
-             
 
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addVesselSchedule">
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.voyageNumber" class="col-sm-2 control-label">Voyage Number:</label>
+                            <label for="vesselSchedule.voyageNumber" class="col-lg-2 control-label" style="padding-top:0px;">Voyage Number</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber" />
                             </div>
 
@@ -39,9 +43,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.vendorId" class="col-sm-2 control-label"> Vendor:</label>
+                            <label for="vesselSchedule.vendorId" class="col-lg-2 control-label" style="padding-top:0px;"> Vendor</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-9">
                                 <s:select emptyOption="true" id="vesselSchedule.vendorId"
                                           value="vvesselSchedule.vendorId"
                                           name="vesselSchedule.vendorId"
@@ -53,9 +57,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.departureDate" class="col-sm-2 control-label"> Date of Departure:</label>
+                            <label for="vesselSchedule.departureDate" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Date</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" id="departureDate" name="vesselSchedule.departureDate" />
                             </div>
 
@@ -63,9 +67,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.departureTime" class="col-sm-2 control-label"> Time of Departure:</label>
+                            <label for="vesselSchedule.departureTime" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Time</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" id="departureTime" name="vesselSchedule.departureTime" />
                             </div>
 
@@ -73,9 +77,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.arrivalDate" class="col-sm-2 control-label">Date of Arrival:</label>
+                            <label for="vesselSchedule.arrivalDate" class="col-sm-2 control-label" style="padding-top:0px;">Arrival Date</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" />
                             </div>
 
@@ -83,9 +87,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.arrivalTime" class="col-sm-2 control-label"> Time of Arrival:</label>
+                            <label for="vesselSchedule.arrivalTime" class="col-lg-2 control-label" style="padding-top:0px;"> Arrival Time</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" id="arrivalTime" name="vesselSchedule.arrivalTime" />
                             </div>
 
@@ -93,10 +97,10 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.originPort" class="col-sm-2 control-label">Pier Origin:</label>
+                            <label for="vesselSchedule.originPort" class="col-lg-2 control-label" style="padding-top:0px;">Origin Pier</label>
 
-                            <div class="col-sm-10">
-                                <s:select emptyOption="true" id="vesselSchedule.originPort"
+                            <div class="col-lg-9">
+                                <s:select emptyOption="true" id="vesselSchedule_originPort"
                                           value="vesselSchedule.originPort"
                                           name="vesselSchedule.originPort"
                                           list="portsList" listValue="value" listKey="key"
@@ -107,10 +111,10 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.destinationPort" class="col-sm-2 control-label">Pier Destination:</label>
+                            <label for="vesselSchedule.destinationPort" class="col-lg-2 control-label" style="padding-top:0px;">Destination Pier</label>
 
-                            <div class="col-sm-10">
-                                <s:select emptyOption="true" id="vesselSchedule.destinationPort"
+                            <div class="col-lg-9">
+                                <s:select emptyOption="true" id="vesselSchedule_destinationPort"
                                           value="vesselSchedule.destinationPort"
                                           name="vesselSchedule.destinationPort"
                                           list="portsList" listValue="value" listKey="key"
@@ -119,20 +123,20 @@
 
                         </div>
 
-
-                    <div style="float: right;">
-                        <s:submit cssClass="btn btn-default btn-info pull-right" name="submit" value="Save"/>
-                        <button class="btn btn-default" onclick="location.href='vessel-schedule-list.html'">
-                            Cancel
-                        </button>
-                    </div>
-
-                    </s:form>
-
-               
             </div>
-            
-            
+
+            <div class="panel-footer">
+
+                <div class="pull-right">
+                    <button type="button" id="Cancel" class="btn btn-lg" data-toggle="modal" data-target="#cancelBooking">
+                        Cancel
+                    </button>
+                    <s:submit cssClass="btn btn-primary btn-lg" name="submit" value="Save"/>
+                    </s:form>
+                </div>
+
+            </div>
+
         </div>
 
     </div>
@@ -142,10 +146,11 @@
 
     var departureDate = $('#departureDate');
     var arrivalDate = $('#arrivalDate');
-
+    // departure date
     departureDate.datepicker({
 
         dateFormat: 'yy-dd-mm',
+        minDate: 0,
 
         onClose: function(dateText, inst) {
             if (arrivalDate.val() != '') {
@@ -163,13 +168,15 @@
         onSelect: function (selectedDateTime){
             arrivalDate.datepicker('option', 'minDate', departureDate.datepicker('getDate') );
         }
-
     }
 
     );
-
-    arrivalDate.datepicker( {
+    // arrival date
+    arrivalDate.datepicker(
+            {
         dateFormat: 'yy-dd-mm',
+        minDate: 0,
+
         onClose: function(dateText, inst) {
 
             if (departureDate.val() != '') {
@@ -189,47 +196,51 @@
         onSelect: function (selectedDateTime){
             departureDate.datepicker('option', 'maxDate', arrivalDate.datepicker('getDate') );
         }
-
-
-
     });
 
     $('#arrivalTime').timepicker( {
-        timeFormat: 'HH:mm:ss'
+        timeFormat: 'h:mm TT'
+
     });
 
     $('#departureTime').timepicker( {
-        timeFormat: 'HH:mm:ss'
+        timeFormat: 'h:mm TT'
+
     });
 
-    $('#activate-step-3').on('click', function(e) {
-        $('ul.setup-panel li:eq(2)').removeClass('disabled');
-        $('.step2').attr('disabled', 'disabled');
-        $('ul.setup-panel li a[href="#step-3"]').trigger('click');
-        $(this).remove();
-    })
+    // Avoid selecting duplicate ports
 
-    $('#activate-step-3').click(function(){
+    function preventDuplicatePort(select, index) {
 
-        var selectedItem = $("select[name='order.customerId'] option:selected").val();
+        var options = select.options,
+                len = options.length;
 
-        $.ajax({
-            url: 'load3rdPage', // action to be perform
-            type: 'POST',       //type of posting the data
-            //data: { name: "Jeetu", age: "24" }, // data to set to Action Class
-            data:{ ID: selectedItem },
-            dataType: 'html',
+        while ( len-- ){
+            options[ len ].disabled = false;
+        }
 
-            success: function (html) {
-                /*alert(selectedItem);
-                 alert(html);*/
-                $('#3rdPart').html(html); //set result.jsp output to leftDiv
-            },
-            error: function(xhr, ajaxOptions, thrownError){
-                alert('An error occurred! ' + thrownError);
-            }
-        });
-    });
+        select.options[ index ].disabled = true;
+
+        if( index === select.selectedIndex ){
+            alert('You already selected the same port "' + select.options[index].text + '". Please choose another' );
+            /*this.selectedIndex = 0;*/
+            select2.value = '';
+        }
+
+    }
+
+    var select1 = select = document.getElementById('vesselSchedule_originPort');
+    var select2 = select = document.getElementById('vesselSchedule_destinationPort');
+
+    select2.value = '';
+
+    select1.onchange = function() {
+        preventDuplicatePort.call(this, select2, this.selectedIndex);
+    };
+
+    select2.onchange = function() {
+        preventDuplicatePort.call(this, select1, this.selectedIndex);
+    };
 
 
 </script>

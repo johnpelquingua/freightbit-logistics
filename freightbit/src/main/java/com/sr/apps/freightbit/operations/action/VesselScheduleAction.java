@@ -107,6 +107,9 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         VesselSchedules entity = vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam);
         vesselSchedulesService.deleteVesselSchedule(entity);
 
+        clearErrorsAndMessages();
+        addActionMessage("Success! Vessel Schedule has been deleted.");
+
         return SUCCESS;
     }
 
@@ -210,6 +213,8 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
     public String loadEditVesselSchedule() {
         VesselSchedules entity = vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam);
         vesselSchedule = transformToFormBean(entity);
+        clearErrorsAndMessages();
+        addActionMessage("Success! Vessel Schedule has been updated.");
         return SUCCESS;
     }
 

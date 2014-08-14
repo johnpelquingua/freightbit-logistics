@@ -160,7 +160,7 @@
             <div class="panel-body">
                 <s:form action="viewOrders" theme="bootstrap" cssClass="form-horizontal" >
                 <div class="form-group">
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Search by</label>
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Search By</label>
                     <div class="col-lg-10">
                         <s:select emptyOption="true" id="order.orderSearchCriteria"
                                   value="order.orderSearchCriteria"

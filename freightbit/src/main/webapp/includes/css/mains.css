@@ -792,3 +792,14 @@ span.pagelinks {
      line-height: 18px;
      margin-top: 10px !important;
  }
+
+ span.help-inline {
+     color: #D8000C;
+     background-color: #FFBABA;
+     border-radius: 10px;
+     font-family: Tahoma,Geneva,Arial,sans-serif;
+     font-size: 11px;
+     padding: 10px 10px 10px 10px;
+     position: relative;
+     top: 7px;
+ }
