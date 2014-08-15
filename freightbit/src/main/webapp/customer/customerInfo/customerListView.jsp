@@ -7,7 +7,7 @@
 
         <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-male"></i> Customer List </h1>
+               <h1><i class="fa fa-male"></i> Customer Module </h1>
             </span>
         </legend>
         <ol class="breadcrumb">

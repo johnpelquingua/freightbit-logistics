@@ -4,7 +4,11 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Customer Rates Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-male"></i> Customer Module</h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Customer</li>
@@ -13,44 +17,46 @@
             <li class="active"><a href="<s:url action='customerInfo' />"> Customer
                 Profile</a></li>
             <li class="active"><a href="<s:url action='viewRates' />"> Rates </a></li>
-            <li class="active"> Add New Rate</li>
+            <li class="active"> Add Rate</li>
         </ol>
 
     </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-2">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New Rate</h3>
+                <h3 class="panel-title"><i class="fa fa-plus"></i> Add Rate</h3>
             </div>
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="addRates" theme="bootstrap">
                         <div class="form-group">
-                            <label for="rates.origin" class="col-sm-2 control-label" style="width:25%;">Origin</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Origin</label>
 
-                            <div class="col-sm-10" style="width:70%;">
-                                <s:textfield name="rate.origin" cssClass="form-control" id="rates.origin"
-                                             placeholder="Origin"/>
+                            <div class="col-lg-10" >
+                                <s:select name="rate.origin" cssClass="form-control" id="select1"
+                                          list="portsList" listKey="key"
+                                          listValue="value" placeholder="Origin"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="rates.destination" class="col-sm-2 control-label"
-                                   style="width:25%;">Destination</label>
+                            <label class="col-sm-2 control-label"
+                                   style="padding-top:0px;">Destination</label>
 
-                            <div class="col-sm-10" style="width:70%;">
-                                <s:textfield name="rate.destination" cssClass="form-control" id="rates.destination"
-                                             placeholder="Destination"/>
+                            <div class="col-lg-10" >
+                                <s:select name="rate.destination" cssClass="form-control" id="select2"
+                                          list="portsList" listKey="key"
+                                          listValue="value" placeholder="Destination"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="rates.rate" class="col-sm-2 control-label" style="width:25%;">Rate</label>
+                            <label for="rates.rate" class="col-lg-2 control-label" style="padding-top:0px;">Rate (Php)</label>
 
-                            <div class="col-sm-10" style="width:70%;">
+                            <div class="col-lg-10" >
                                 <s:textfield name="rate.rate" cssClass="form-control" id="rates.rate"
                                              placeholder="Rate"/>
                             </div>
@@ -58,28 +64,31 @@
 
                         <div class="form-group">
 
-                            <label for="rates.rateType" class="col-sm-2 control-label" style="width:25%;">Rates
+                            <label for="rates.rateType" class="col-lg-2 control-label" style="padding-top:0px;">Rate
                                 Type</label>
 
-                            <div class="col-sm-10" style="width:70%;">
+                            <div class="col-lg-10" >
                                 <s:select name="rate.rateType" list="rateTypeList" listValue="value" listKey="key"
                                           cssClass="form-control" id="rates.rateType" emptyOption="true"/>
                             </div>
 
                         </div>
-                        <div class="pull-right">
 
-                            <s:submit type="submit" value="Save" cssClass="btn btn-info"/>
-                        </div>
-                    </s:form>
                 </div>
             </div>
 
-
+            <div class="panel-footer">
+                <div class="pull-right">
+                    <a href="viewRates" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <s:submit type="submit" value="Save" cssClass="btn btn-primary"/>
+                </div>
+            </div>
+            </s:form>
         </div>
 
     </div>
-    <div class="col-lg-2 col-lg-offset-2">
+
+    <%--<div class="col-lg-2 col-lg-offset-2">
         <div class="panel panel-primary">
             <ul class="nav nav-pills nav-stacked">
            	   <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
@@ -98,5 +107,44 @@
                 </sec:authorize>
             </ul>
         </div>
-    </div>
+    </div>--%>
+
 </div>
+
+<script type="text/javascript">
+
+    // Avoid selecting duplicate ports
+
+    function preventDuplicatePort(select, index) {
+
+        var options = select.options,
+                len = options.length;
+
+        while ( len-- ){
+            options[ len ].disabled = false;
+        }
+
+        select.options[ index ].disabled = true;
+
+        if( index === select.selectedIndex ){
+            alert('You already selected the same port "' + select.options[index].text + '". Please choose another' );
+            /*this.selectedIndex = 0;*/
+            select2.value = '';
+        }
+
+    }
+
+    var select1 = select = document.getElementById('select1');
+    var select2 = select = document.getElementById('select2');
+
+    select2.value = '';
+
+    select1.onchange = function() {
+    preventDuplicatePort.call(this, select2, this.selectedIndex);
+    };
+
+    select2.onchange = function() {
+    preventDuplicatePort.call(this, select1, this.selectedIndex);
+    };
+
+</script>

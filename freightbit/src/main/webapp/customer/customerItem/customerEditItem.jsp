@@ -4,7 +4,11 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Customer Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-male"></i> Customer Module</h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Customer</li>
@@ -18,7 +22,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
@@ -34,76 +38,74 @@
                     <s:hidden name="item.createdBy" value="%{item.createdBy}" />
 
                         <div class="form-group" >
-                            <label class="col-sm-2 control-label" for="textinput">Item Name:</label>
-                            <div class="col-sm-4">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                            <div class="col-lg-3">
                                 <s:textfield name="item.itemName" id="item.itemName" required="true" cssClass="form-control"/>
                             </div>
 
-                            <label class="col-sm-2 control-label" for="textinput">Item Code:</label>
-                            <div class="col-sm-4">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Item Code</label>
+                            <div class="col-lg-3">
                                 <s:textfield name="item.itemCode" id="item.itemCode" required="true" cssClass="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="textinput">Base Price:</label>
-                            <div class="col-sm-4">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Base Price (Php)</label>
+                            <div class="col-lg-3">
                                 <s:textfield name="item.basePrice" id="item.basePrice" required="true" cssClass="form-control"  />
                             </div>
 
-                            <label class="col-sm-2 control-label" for="textinput">SRP:</label>
-                            <div class="col-sm-4">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)</label>
+                            <div class="col-lg-3">
                                 <s:textfield  name="item.srp" id="item.srp" required="true" cssClass="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="textinput">Critical Quality:</label>
-                            <div class="col-sm-4">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Critical Quality</label>
+                            <div class="col-lg-3">
                                 <s:textfield name="item.criticalQuality" id="item.criticalQuality" required="true" cssClass="form-control" />
                             </div>
 
-                            <label class="col-sm-2 control-label" for="textinput">Lenght: </label>
-                            <div class="col-sm-4">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Lenght </label>
+                            <div class="col-lg-3">
                                 <s:textfield name="item.length" id="item.length" required="true" cssClass="form-control" style="150px" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="textinput">Width:</label>
-                            <div class="col-sm-4">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Width</label>
+                            <div class="col-lg-3">
                                 <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control" />
                             </div>
 
-                            <label class="col-sm-2 control-label" for="textinput">Height: </label>
-                            <div class="col-sm-4">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Height </label>
+                            <div class="col-lg-3">
                                 <s:textfield name="item.height" id="item.height" required="true" cssClass="form-control" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="textinput">Description:</label>
-                            <div class="col-sm-4">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Description</label>
+                            <div class="col-lg-3">
                                 <s:textarea name="item.description" id="item.description" required="true" resize="none" style="resize:none" rows="3" cssClass="form-control"  />
                             </div>
 
-                            <label class="col-sm-2 control-label" for="textinput">Note: </label>
-                            <div class="col-sm-4">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Note </label>
+                            <div class="col-lg-3">
                                 <s:textarea name="item.note" id="item.note" required="true" cssClass="form-control" style="resize:none" rows="3" />
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <div class="pull-right">
-
-                                    <button type="submit" class="btn btn-info">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                    </s:form>
                 </div>
             </div>
+
+            <div class="panel-footer">
+                <div class="pull-right">
+                    <a href="viewItem" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+            </s:form>
         </div>
     </div>
 
-    <div class="col-lg-2">
+    <%--<div class="col-lg-2">
         <div class="panel panel-primary">
             <ul class="nav nav-pills nav-stacked">
            	   <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
@@ -122,5 +124,6 @@
                 </sec:authorize>
             </ul>
         </div>
-    </div>
+    </div>--%>
+
 </div>

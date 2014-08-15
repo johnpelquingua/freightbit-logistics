@@ -57,6 +57,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private List<Parameters> addressTypeList = new ArrayList<Parameters>();
     private List<Parameters> rateTypeList = new ArrayList<Parameters>();
     private List<Parameters> contactTypeList = new ArrayList<Parameters>();
+    private List<Parameters> portsList = new ArrayList<Parameters>();
 
     private Integer customersItemIdParam;
     private String customerCodeParam;
@@ -1185,6 +1186,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         customerSearchList = parameterService.getParameterMap(ParameterConstants.CUSTOMER_SEARCH);
         rateTypeList = parameterService.getParameterMap(ParameterConstants.RATES_TYPE);
         contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
+        portsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS);
     }
 
     private Integer getCustomerSessionId() {
@@ -1431,5 +1433,13 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void setCustomer_signatureCard(boolean customer_signatureCard) {
         this.customer_signatureCard = customer_signatureCard;
+    }
+
+    public List<Parameters> getPortsList() {
+        return portsList;
+    }
+
+    public void setPortsList(List<Parameters> portsList) {
+        this.portsList = portsList;
     }
 }

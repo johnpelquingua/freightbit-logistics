@@ -4,7 +4,11 @@
 
 <div class="row" style="margin-top: -15px;">
     <div class="col-lg-12">
-        <h1>Customer List Consignee </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-male"></i> Customer Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Customer</li>
@@ -12,7 +16,7 @@
             </li>
             <li class="active"><a href="<s:url action='customerInfo' />"> Customer
                 Profile</a></li>
-            <li class="active"> Consignee List</li>
+            <li class="active"> Consignee </li>
         </ol>
 
     </div>
@@ -27,15 +31,23 @@
     </div>
 </s:if>
 
-
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title" style="position: relative; top: 2px;"><i class="fa fa-list"></i> Consignee List
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Consignee List
                 </h3>
-
+                <span class="pull-right">
+                    <s:url var="loadAddConsigneeUrl" action="loadAddConsignee">
+                        <s:param name="customerIdParam" value="customerIdParam"> </s:param>
+                    </s:url>
+                    <s:a class="icon-action-link" href="%{loadAddConsigneeUrl}" rel="tooltip" title="Add Contact">
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa fa-male"> </i> New Consignee
+                        </button>
+                    </s:a>
+                </span>
             </div>
 
             <div class="panel-body">
@@ -67,8 +79,10 @@
                                                      value="%{#attr.consignee.addressId}"></s:param>
                                         </s:url>
                                         <s:a href="%{loadEditConsigneeUrl}" class="icon-action-link" rel="tooltip"
-                                             title="Edit this Vendor Address"><img src="../includes/images/edit-user.png"
-                                                                                   class="icon-action circ-icon"> </s:a>
+                                             title="Edit this Vendor Address">
+                                            <%--<img src="../includes/images/edit-user.png" class="icon-action circ-icon">--%>
+                                            <i class="fa fa-pencil"></i>
+                                        </s:a>
 
                                         <s:url var="deleteConsigneeUrl" action="deleteConsignee">
                                             <s:param name="contactCodeParam"
@@ -78,17 +92,20 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{deleteConsigneeUrl}" rel="tooltip"
                                              title="Delete this Consignee"
-                                             onclick="return confirm('Do you really want to delete?');"><img
-                                                src="../includes/images/remove-user.png"
-                                                class="icon-action circ-icon"> </s:a>
+                                             onclick="return confirm('Do you really want to delete?');">
+                                            <%--<img src="../includes/images/remove-user.png" class="icon-action circ-icon">--%>
+                                            <i class="fa fa-trash-o"></i>
+                                        </s:a>
                                         <s:url var="consigneeInfoUrl" action="consigneeInfo">
                                             <s:param name="contactCodeParam"
                                                      value="%{#attr.consignee.contactId}"></s:param>
                                             <s:param name="addressIdParam"
                                                      value="%{#attr.consignee.addressId}"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{consigneeInfoUrl}" rel="tooltip"><img
-                                                src="../includes/images/info-b.png" class="icon-action circ-icon"> </s:a>
+                                        <s:a class="icon-action-link" href="%{consigneeInfoUrl}" rel="tooltip">
+                                            <%--<img src="../includes/images/info-b.png" class="icon-action circ-icon">--%>
+                                            <i class="fa fa-info-circle"></i>
+                                        </s:a>
                                     </display:column>
                                 </td>
                             </display:table>
@@ -107,7 +124,9 @@
                     <s:param name="customerIdParam" value="customerIdParam"> </s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{loadAddConsigneeUrl}" rel="tooltip" title="Add Contact">
-                    <img src="../includes/images/add-user.png" class="icon-action circ-icon">
+                    <button type="button" class="btn btn-primary">
+                        <i class="fa fa-male"> </i> New Consignee
+                    </button>
                 </s:a>
             </span>
 
@@ -115,7 +134,8 @@
 
         </div>
     </div>
-    <div class="col-lg-2">
+
+    <%--<div class="col-lg-2">
         <div class="panel panel-primary">
 
             <ul class="nav nav-pills nav-stacked">
@@ -135,5 +155,6 @@
                 </sec:authorize>
             </ul>
         </div>
-    </div>
+    </div>--%>
+
 </div>

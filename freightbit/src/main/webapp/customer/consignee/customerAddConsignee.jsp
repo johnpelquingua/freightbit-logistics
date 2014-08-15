@@ -4,7 +4,11 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Customer Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-male"></i> Customer Module</h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Customer</li>
@@ -14,7 +18,7 @@
                 Profile</a></li>
             <li class="active"><a href="<s:url action='viewConsignees' />"> Consignee List</a>
             </li>
-            <li class="active">Add New Consignee</li>
+            <li class="active">Add Consignee</li>
         </ol>
 
     </div>
@@ -22,22 +26,22 @@
 <!-- /.row -->
 
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-2">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New Consignee</h3>
+                <h3 class="panel-title"><i class="fa fa-plus"></i> Add Consignee</h3>
             </div>
 
             <div class="panel-body">
 
                 <s:form cssClass="form-horizontal" action="addConsignee" theme="bootstrap">
                     <div class="form-group">
-                        <label for="consignee.firstName" class="col-sm-2 control-label" style="width:25%;">First
-                            Name:
+                        <label for="consignee.firstName" class="col-lg-2 control-label" style="padding-top:0px;">First
+                            Name
                         </label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-sm-10" >
                             <s:textfield name="consignee.firstName" cssClass="form-control" id="consignee.firstName"
                                          placeholder="First Name" maxLength="30" autofocus="true" required="true"
                                          pattern="[a-zA-Z\s]+"
@@ -46,11 +50,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.middleName" class="col-sm-2 control-label" style="width:25%;">Middle
-                            Name:
+                        <label for="consignee.middleName" class="col-lg-2 control-label" style="padding-top:0px;">Middle
+                            Name
                         </label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-lg-10" >
                             <s:textfield name="consignee.middleName" cssClass="form-control"
                                          id="consignee.middleName"
                                          placeholder="Middle Name" maxLength="30" pattern="[a-zA-Z\s]+"
@@ -59,10 +63,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.lastName" class="col-sm-2 control-label" style="width:25%;">Last Name:
+                        <label for="consignee.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name
                         </label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-lg-10" >
                             <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
                                          placeholder="Last Name" maxLength="30" required="true"
                                          pattern="[a-zA-Z\s]+"
@@ -71,10 +75,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.phone" class="col-sm-2 control-label" style="width:25%;">Phone:
+                        <label for="consignee.phone" class="col-lg-2 control-label" style="padding-top:0px;">Phone
                         </label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-lg-10" >
                             <s:textfield name="consignee.phone" cssClass="form-control" id="consignee.phone"
                                          placeholder="Phone Number" maxLength="7" required="true" pattern="\d{7}"
                                          title="Phone should not contain special characters and/or letters."/>
@@ -82,10 +86,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.mobile" class="col-sm-2 control-label" style="width:25%;">Mobile:
+                        <label for="consignee.mobile" class="col-lg-2 control-label" style="padding-top:0px;">Mobile
                         </label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-lg-10" >
                             <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee.mobile"
                                          placeholder="Mobile Number" maxLength="11" required="true"
                                          pattern="\d{11}"
@@ -94,20 +98,20 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.email" class="col-sm-2 control-label" style="width:25%;">Email:
-                            :</label>
+                        <label for="consignee.email" class="col-lg-2 control-label" style="padding-top:0px;">Email
+                            </label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-lg-10" >
                             <s:textfield name="consignee.email" cssClass="form-control" id="consignee.email"
                                          placeholder="Email Address" type="email" required="true"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.fax" class="col-sm-2 control-label" style="width:25%;">Fax:
+                        <label for="consignee.fax" class="col-lg-2 control-label" style="padding-top:0px;">Fax
                         </label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-lg-10" >
                             <s:textfield name="consignee.fax" cssClass="form-control" id="consignee.fax"
                                          placeholder="Fax Number" maxLength="11" pattern="[0-9]+"
                                          title="Fax should not contain special characters and/or letters."/>
@@ -115,30 +119,30 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.addressLine1" class="col-sm-2 control-label" style="width:25%;">Address
-                            1:</label>
+                        <label for="consignee.addressLine1" class="col-lg-2 control-label" style="padding-top:0px;">Address
+                            Line 1</label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-lg-10" >
                             <s:textfield name="consignee.addressLine1" cssClass="form-control"
                                          id="consignee.addressLine1" placeholder="Address 1" required="true"
                                          maxLength="50"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="consignee.addressLine2" class="col-sm-2 control-label" style="width:25%;">Address
-                            2:</label>
+                        <label for="consignee.addressLine2" class="col-lg-2 control-label" style="padding-top:0px;">Address
+                            Line 2</label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-lg-10" >
                             <s:textfield name="consignee.addressLine2" cssClass="form-control"
                                          id="consignee.addressLine2" placeholder="Address 2" maxLength="50"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.city" class="col-sm-2 control-label" style="width:25%;">City:
+                        <label for="consignee.city" class="col-lg-2 control-label" style="padding-top:0px;">City
                         </label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-lg-10" >
                             <s:textfield name="consignee.city" cssClass="form-control"
                                          id="consignee.city" placeholder="City" required="true"
                                          pattern="[a-zA-Z]+" maxLength="50"
@@ -147,10 +151,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.state" class="col-sm-2 control-label" style="width:25%;">State:
+                        <label for="consignee.state" class="col-lg-2 control-label" style="padding-top:0px;">Region
                         </label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-lg-10" >
                             <s:textfield name="consignee.state" cssClass="form-control"
                                          id="consignee.state" placeholder="State" maxLength="50" pattern="[a-zA-Z]+"
                                          title="State should not contain special characters and/or numbers."/>
@@ -158,26 +162,32 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.zip" class="col-sm-2 control-label" style="width:25%;">ZIP:
+                        <label for="consignee.zip" class="col-lg-2 control-label" style="padding-top:0px;">ZIP
                         </label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-lg-10" >
                             <s:textfield name="consignee.zip" cssClass="form-control"
                                          id="consignee.zip" placeholder="ZIP" required="true"
                                          pattern="[0-9]+" maxLength="4"
                                          title="ZIP should not contain special characters and/or letters."/>
                         </div>
                     </div>
-				  <span class="pull-right" style="margin-right:32px;">
-					<s:submit cssClass="btn btn-info" name="submit" value="Save"/>
-				  </span>
-                </s:form>
-
             </div>
+
+            <div class="panel-footer">
+                <div class= "pull-right">
+                    <%--<button type="button" class="btn" onclick="location.href='customerList'">
+                        Cancel
+                    </button>--%>
+                    <a href="viewConsignees" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <s:submit name="submit" cssClass="btn btn-primary" value="Save"/>
+                </div>
+            </div>
+            </s:form>
         </div>
     </div>
 
-    <div class="col-lg-2 col-lg-offset-2">
+    <%--<div class="col-lg-2 col-lg-offset-2">
         <div class="panel panel-primary">
 
             <ul class="nav nav-pills nav-stacked">
@@ -197,5 +207,6 @@
                 </sec:authorize>
             </ul>
         </div>
-    </div>
+    </div>--%>
+
 </div>

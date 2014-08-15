@@ -46,9 +46,9 @@
             </div>
             <div class="panel-footer">
                 <div class= "pull-right">
-                    <button type="button" class="btn" onclick="location.href='customerList'">
+                    <%--<button type="button" class="btn" onclick="location.href='customerList'">
                         Cancel
-                    </button>
+                    </button>--%>
                     <s:submit name="submit" cssClass="btn btn-primary" value="Search"/>
                 </div>
             </div>

@@ -137,9 +137,6 @@
                         </div>
                     </div>
 
-
-
-
                     <%--<div class="col-lg-3">
                         <div class="panel ">
 
@@ -163,7 +160,6 @@
                         </div>
                     </div>--%>
 
-
                     <div class="row">
                         <div class="col-lg-2">
                             <div class="panel panel-info" >
@@ -173,10 +169,11 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-12" style="text-align: center;">
+
                                             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                                            <a href="#" class="btn btn-primary" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-info-circle fa-fw"></i> <br/>Profile</a>
+                                            <a href="" class="btn btn-primary" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-info-circle fa-fw"></i> <br/>Profile</a>
                                             <a href="viewAddress" class="btn btn-warning" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-home fa-fw"></i> <br/>Address</a>
-                                            <a href="viewCustomerContacts" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Contacts</a>
+                                            <a href="viewCustomerContacts" class="btn btn-violet" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Contacts</a>
 
 
                                             <a href="viewItem" class="btn btn-success" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list-ol fa-fw"></i> <br/>Items</a>
@@ -198,13 +195,11 @@
                         </div>
                     </div>
 
-
                 </div>
 
             </div>
         </div>
     </div>
-
 
     <%--<div class="col-lg-3">
         <div class="panel ">
