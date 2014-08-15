@@ -16,6 +16,15 @@
     </div>
 </div>
 
+<s:if test="hasActionMessages()">
+    <div class="col-lg-7">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">

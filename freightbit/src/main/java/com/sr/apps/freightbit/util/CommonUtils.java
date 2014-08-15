@@ -12,5 +12,11 @@ public class CommonUtils {
         User user = (User) sessionAttributes.get("user");
         return user.getUsername();
     }
+    
+    public User getUser() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        User user = (User) sessionAttributes.get("user");
+        return user;
+    }
 
 }

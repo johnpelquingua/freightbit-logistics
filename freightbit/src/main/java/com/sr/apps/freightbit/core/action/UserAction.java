@@ -14,6 +14,7 @@ import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.core.formbean.PasswordBean;
 import com.sr.apps.freightbit.core.formbean.PermissionBean;
 import com.sr.apps.freightbit.core.formbean.UserBean;
+import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
@@ -53,6 +54,7 @@ public class UserAction extends ActionSupport implements Preparable {
     private ClientService clientService;
     private ParameterService parameterService;
     private PermissionService permissionService;
+    private CommonUtils commonUtils;
 
     public String loadSearchUserPage() {
         return SUCCESS;
@@ -133,7 +135,11 @@ public class UserAction extends ActionSupport implements Preparable {
 
     public String deleteUser() {
         User userEntity = userService.findUserByUserName(userNameParam);
-        userService.deleteUser(userEntity);
+        Integer currentLoggedInUser = commonUtils.getUser().getUserId();
+        if (currentLoggedInUser.equals(userEntity.getUserId()))
+        	addActionMessage("Current logged-in user cannot be deleted.");
+        else 
+        	userService.deleteUser(userEntity);
         return SUCCESS;
     }
 
@@ -445,4 +451,9 @@ public class UserAction extends ActionSupport implements Preparable {
         this.parameterService = parameterService;
     }
 
+	public void setCommonUtils(CommonUtils commonUtils) {
+		this.commonUtils = commonUtils;
+	}
+
+    
 }
