@@ -9,10 +9,10 @@
     <div class="col-lg-12">
         <h1>Sea Freight Planning</h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><i class="fa fa-male"></i>List of Bookings</li>
-            <li class="active"><i class="fa fa-male"></i>List of Items / Containers</li>
-            <li class="active"><i class="fa fa-male"></i>Sea Freight Planning</li>
+            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> List of Bookings</li>
+            <li class="active"> List of Items / Containers</li>
+            <li class="active"> Sea Freight Planning</li>
         </ol>
 
     </div>
@@ -23,8 +23,9 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-search"></i><c:out
-                        value="${sessionScope.nameSizeParam}"/></h3>
+                <h3 class="panel-title"><i class="fa fa-search"></i>
+                    <%--<s:property value="%{nameSizeParam}" /> --%>
+                    <c:out value="${sessionScope.nameSizeParam}"/></h3>
             </div>
 
             <div class="panel-body">
@@ -41,6 +42,7 @@
 
                         <div class="col-sm-10">
                             <div class="form-control">
+                                <%--<s:property value="%{nameSizeParam}" />--%>
                                 <c:out value="${sessionScope.nameSizeParam}"/>
                             </div>
                         </div>

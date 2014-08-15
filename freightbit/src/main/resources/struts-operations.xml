@@ -119,4 +119,10 @@
         </action>
         <!--Operations ends here-->
     </package>
+
+    <package name="operation" namespace="/operations" extends="json-default">
+        <action name="listVendorDriverAndTrucks" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="listVendorDriverAndTrucks">
+            <result type="json">/operations/sea_freight/seaFreightPlanning.jsp</result>
+        </action>
+    </package>
 </struts>

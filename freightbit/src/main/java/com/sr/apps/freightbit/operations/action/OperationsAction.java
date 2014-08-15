@@ -10,16 +10,15 @@ import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
+import com.sr.biz.freightbit.vendor.entity.Driver;
+import com.sr.biz.freightbit.vendor.entity.Trucks;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.ParameterAware;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Clarence C. Victoria on 8/4/14.
@@ -31,6 +30,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Integer orderIdParam;
     private Integer orderItemIdParam;
     private Integer nameSizeParam;
+    private Integer vendorId;
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
@@ -39,11 +39,18 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Vendor> vendorShippingList = new ArrayList<Vendor>();
     private List<Vendor> vendorTruckingList = new ArrayList<Vendor>();
 
+    private List<Driver> listDrivers = new ArrayList<Driver>();
+
+
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OperationsBean operationsBean = new OperationsBean();
 
     private OperationsService operationsService;
     private VendorService vendorService;
+
+
+    private Map<Integer, String> driverMap = new LinkedHashMap<Integer, String>();
+    private Map<Integer, String> trucksMap = new HashMap<Integer, String>();
 
     Map paramMap = new HashMap();
 
@@ -99,6 +106,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
+        return SUCCESS;
+    }
+
+    public String listVendorDriverAndTrucks() {
+        List<Driver> driverList = vendorService.findDriverByVendorId(vendorId);
+        List<Trucks> trucksList = vendorService.findTrucksByVendorId(vendorId);
+
+        for(int i = 0; i < driverList.size(); i++) {
+            driverMap.put(driverList.get(i).getDriverId(), driverList.get(i).getFirstName() + " " + driverList.get(i).getLastName());
+        }
+
+        for(int i = 0; i <trucksList.size(); i++) {
+            trucksMap.put(trucksList.get(i).getTruckId(), trucksList.get(i).getTruckCode());
+        }
+
         return SUCCESS;
     }
 
@@ -246,5 +268,37 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setParamMap(Map paramMap) {
         this.paramMap = paramMap;
+    }
+
+    public Integer getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
+    }
+
+    public Map<Integer, String> getDriverMap() {
+        return driverMap;
+    }
+
+    public void setDriverMap(Map<Integer, String> driverMap) {
+        this.driverMap = driverMap;
+    }
+
+    public Map<Integer, String> getTrucksMap() {
+        return trucksMap;
+    }
+
+    public void setTrucksMap(Map<Integer, String> trucksMap) {
+        this.trucksMap = trucksMap;
+    }
+
+    public List<Driver> getListDrivers() {
+        return listDrivers;
+    }
+
+    public void setListDrivers(List<Driver> listDrivers) {
+        this.listDrivers = listDrivers;
     }
 }

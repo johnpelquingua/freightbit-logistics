@@ -5,8 +5,8 @@
     <div class="col-lg-12">
         <h1>Update Status</h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><i class="fa fa-list"></i> On Going Booking List</li>
+            <li class="active"><a href="<s:url action='home' />"> Dashboard </a></li>
+            <li class="active"> On Going Booking List</li>
         </ol>
 
     </div>

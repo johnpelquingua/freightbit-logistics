@@ -29,12 +29,12 @@
 
                         <div class="form-group">
 
-                            <label for="vendor" class="col-sm-2 control-label">Vendor:</label>
+                            <label for="vendorList" class="col-sm-2 control-label">Vendor:</label>
 
                             <div class="col-sm-10">
                                 <div style="width:90%;float:left;padding-right:10px;">
                                     <s:select list="vendorTruckingList" name="operationsBean.vendorList"
-                                              id="operationsBean.vendorList"
+                                              id="vendorList"
                                               listKey="vendorId" listValue="vendorCode" cssClass="form-control"
                                               emptyOption="true"
                                             ></s:select>
@@ -53,13 +53,11 @@
                             <label for="driver" class="col-sm-2 control-label">Driver:</label>
 
                             <div class="col-sm-10">
-                                <div style="width:90%;float:left;padding-right:10px;">
-                                    <select class="form-control" id="driver">
-                                        <option>Driver 1</option>
-                                        <option>Driver 2</option>
-                                        <option>Driver 3</option>
-                                    </select>
-                                </div>
+                                <s:select list="listDrivers" name="operationsBean.driverList"
+                                          id="driverList"
+                                          listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
+                                          emptyOption="true"
+                                        ></s:select>
                                 <div style="width:5%;float:left;">
                                     <a href="#.html" class="icon-action-link">
                                         <img src="images/add-sched.png" class="icon-action circ-icon">
@@ -75,11 +73,11 @@
 
                             <div class="col-sm-10">
                                 <div style="width:90%;float:left;padding-right:10px;">
-                                    <select class="form-control" id="truck">
-                                        <option>Truck 1 - Plate Number 1</option>
-                                        <option>Truck 2 - Plate Number 2</option>
-                                        <option>Truck 3 - Plate Number 3</option>
-                                    </select>
+                                    <s:select list="listDrivers" name="operationsBean.trucksList"
+                                              id="trucksList"
+                                              listKey="truckId" listValue="truckCode" cssClass="form-control"
+                                              emptyOption="true"
+                                            ></s:select>
                                 </div>
                                 <div style="width:5%;float:left;">
                                     <a href="#.html" class="icon-action-link">
@@ -225,6 +223,35 @@
                 pickup.datetimepicker('option', 'maxDate', dropoff.datetimepicker('getDate') );
             }
 
+        });
+
+        $(document).ready(function() {
+            $('#vendorList').change(function(event) {
+                var vendorId = $("#vendorList").val();
+
+                $.getJSON('listVendorDriverAndTrucks', {
+                            vendorId : vendorId
+                        },
+
+                        function(jsonResponse) {
+
+                            var driver = $('#driverList');
+
+                            driver.find('option').remove();
+
+                            var truck = $('#trucksList');
+
+                            truck.find('option').remove();
+
+                            $.each(jsonResponse.driverMap, function(key, value) {
+                                $('<option>').val(key).text(value).appendTo(driver);
+                            });
+
+                            $.each(jsonResponse.trucksMap, function(key, value) {
+                                $('<option>').val(key).text(value).appendTo(truck);
+                            });
+                        });
+            });
         });
 
 </script>
