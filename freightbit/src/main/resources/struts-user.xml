@@ -48,6 +48,20 @@
         <action name="deleteUser" class="com.sr.apps.freightbit.core.action.UserAction" method="deleteUser">
             <result name="success" type="redirect">viewUsers</result>
         </action>
+        
+        <action name="loadChangePassword" class="com.sr.apps.freightbit.core.action.UserAction" method="loadChangePassword">
+            <result name="success" type="tiles">core.passwordChange.tiles</result>
+        </action>
+        
+        <action name="changePassword" class="com.sr.apps.freightbit.core.action.UserAction" method="changePassword">
+             <result name="success" type="tiles">core.passwordChange.tiles</result>
+            <!--<result name="success" type="redirectAction">  
+            	<param name="actionName">loadEditUserPage</param>  
+            	<param name="namespace">/user</param>  
+            	<param name="userNameParam">${user.userName}</param>  
+        	</result>  -->
+            <result name="input" type="tiles">core.passwordChange.tiles</result>
+        </action>
 
         <action name="viewGroups" class="com.sr.apps.freightbit.core.action.GroupAction" method="viewGroups">
             <result name="success" type="tiles">core.groupListView.tiles</result>

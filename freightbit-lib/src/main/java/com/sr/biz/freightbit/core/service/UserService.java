@@ -30,4 +30,6 @@ public interface UserService {
     public User findUserByUserName(String userName);
 
     public List<User> findUsersByCriteria(String column, String value, Integer clientId);
+
+	public void updateUserPassword(User user);
 }

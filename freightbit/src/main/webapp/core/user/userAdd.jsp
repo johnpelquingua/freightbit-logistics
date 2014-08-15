@@ -50,7 +50,7 @@
                         <label for="firstName" class="col-lg-3 control-label" id="users-add-label">First Name:</label>
 
                         <div class="col-lg-9">
-                            <s:textfield required="true" name="user.firstName" id="firstName" cssClass="form-control"
+                            <s:textfield required="true" name="user.firstName" id="firstName" cssClass="form-control" maxlength="25"
                                          placeholder="First Name"/>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         <label for="LastName" class="col-lg-3 control-label" id="users-add-label">Last Name:</label>
 
                         <div class="col-lg-9">
-                            <s:textfield required="true" name="user.lastName" id="lastName" cssClass="form-control"
+                            <s:textfield required="true" name="user.lastName" id="lastName" cssClass="form-control" maxlength="25"
                                          placeholder="Last Name"/>
                         </div>
                     </div>
@@ -69,8 +69,8 @@
                         <label for="uUserName" class="col-lg-3 control-label" id="users-add-label">User Name:</label>
 
                         <div class="col-lg-9">
-                            <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control"
-                                         placeholder="User Name"/>
+                            <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control" maxlength="25" pattern="[^\s]{4,25}"
+                                         placeholder="User Name" title="Username must have minimum 4 characters."/>
                         </div>
                     </div>
 
@@ -78,8 +78,8 @@
                         <label for="uPassword" class="col-lg-3 control-label" id="users-add-label">Password:</label>
 
                         <div class="col-lg-9">
-                            <s:password required="true" name="user.password" id="uPassword" cssClass="form-control"
-                                         placeholder="Password"/>
+                            <s:password required="true" name="user.password" id="uPassword" cssClass="form-control" maxlength="25"
+                                       pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces."   placeholder="Password"/>
                         </div>
                     </div>
                     
@@ -87,8 +87,8 @@
                         <label for="uPassword" class="col-lg-3 control-label" id="users-add-label">Re-enter Password:</label>
 
                         <div class="col-lg-9">
-                            <s:password required="true" name="user.reenterPassword" id="uReenterPassword" cssClass="form-control"
-                                         placeholder="Re-enter Password"/>
+                            <s:password required="true" name="user.reenterPassword" id="uReenterPassword" cssClass="form-control" maxlength="25"
+                                   pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces."       placeholder="Re-enter Password"/>
                         </div>
                     </div>
 
@@ -96,7 +96,7 @@
                         <label for="uTitle" class="col-lg-3 control-label" id="users-add-label">Title:</label>
 
                         <div class="col-lg-9">
-                            <s:textfield required="true" name="user.title" id="uTitle" cssClass="form-control"
+                            <s:textfield required="true" name="user.title" id="uTitle" cssClass="form-control" maxlength="50"
                                          placeholder="Title"/>
                         </div>
                     </div>
@@ -106,7 +106,8 @@
                             Address:</label>
 
                         <div class="col-lg-9">
-                            <s:textfield required="true" name="user.emailAddress" id="uEmailAddress"
+                            <s:textfield required="true" name="user.emailAddress" id="uEmailAddress" maxlength="50"
+                             pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
                                          cssClass="form-control" placeholder="Email Address"/>
                         </div>
                     </div>
@@ -117,7 +118,8 @@
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.contactNumber" id="uContactNumber"
-                                         cssClass="form-control" placeholder="Contact Number"/>
+                                         cssClass="form-control" placeholder="Contact Number" maxLength="11" 
+                                     	 pattern="\d{7,11}" title="Contact Number should not contain special characters and/or letters."/>
                         </div>
                     </div>
 

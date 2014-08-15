@@ -37,6 +37,11 @@
                 <s:actionerror/>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" theme="bootstrap"  action="<c:url value='j_spring_security_check' />" method='POST'>
+						<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+						      <font color="red">
+						        <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+						      </font>
+						</c:if>
                         <div class="form-group">
                             <label class="col-lg-12 control-label title-label" style="text-align: left">
                                 Username</label>

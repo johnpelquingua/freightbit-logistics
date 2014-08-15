@@ -54,6 +54,8 @@
 
     <bean id="userService" class="com.sr.biz.freightbit.core.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
+        <property name="groupUserDao" ref="groupUserDao"/>
+        <property name="permissionDao" ref="permissionDao"/>
     </bean>
 
     <bean id="groupService" class="com.sr.biz.freightbit.core.service.impl.GroupServiceImpl">

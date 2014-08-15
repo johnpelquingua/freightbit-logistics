@@ -113,7 +113,7 @@
                         <table>
                             <tr>
 
-                                <display:table id="user" name="users" requestURI="/loadEditGroupPage.action"
+                                <display:table id="user" name="users" requestURI="loadEditGroupPage.action"
                                                pagesize="5"
                                                class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">
@@ -172,7 +172,7 @@
                             <table>
                                 <tr>
                                     <display:table id="groupMember" name="groupMembers"
-                                                   requestURI="/loadEditGroupPage.action" pagesize="5"
+                                                   requestURI="loadEditGroupPage.action" pagesize="5"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
                                         <td><display:column property="userId" title="User ID" class="tb-font-black"

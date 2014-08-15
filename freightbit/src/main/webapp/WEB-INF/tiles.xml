@@ -136,6 +136,10 @@
         <put-attribute name="title" value="Users Page"/>
         <put-attribute name="body" value="/core/user/userViewInfo.jsp"/>
     </definition>
+    <definition name="core.passwordChange.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Users Page"/>
+        <put-attribute name="body" value="/core/user/passwordChange.jsp"/>
+    </definition>
     <definition name="core.groupListView.tiles" extends="baseLayout">
         <put-attribute name="title" value="Group Page"/>
         <put-attribute name="body" value="/core/group/groupListView.jsp"/>

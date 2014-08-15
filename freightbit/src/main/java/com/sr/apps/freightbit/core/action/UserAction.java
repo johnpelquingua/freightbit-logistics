@@ -1,30 +1,29 @@
 package com.sr.apps.freightbit.core.action;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+import com.sr.apps.freightbit.core.formbean.PasswordBean;
 import com.sr.apps.freightbit.core.formbean.PermissionBean;
 import com.sr.apps.freightbit.core.formbean.UserBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.entity.Group;
 import com.sr.biz.freightbit.core.entity.Permission;
 import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.core.service.PermissionService;
 import com.sr.biz.freightbit.core.service.UserService;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * UserAction includes view list of users, add, delete, edit, and view user info
@@ -47,6 +46,8 @@ public class UserAction extends ActionSupport implements Preparable {
     private String permissionsSelected; //will contain the checked permissions from the jsp
     private String[] preSelectedPermissions; //the default permission id's assigned to the user
     private String[] preSelectedPermissionNames; //the permission names assigned to the user
+    
+    private PasswordBean passwordBean = new PasswordBean();
     
     private UserService userService;
     private ClientService clientService;
@@ -115,7 +116,7 @@ public class UserAction extends ActionSupport implements Preparable {
     }
 
     public String editUser() {
-        validateOnSubmit(user); 
+       /// validateOnSubmit(user); 
         if (hasFieldErrors())
             return INPUT;
         userService.updateUser(transformToEntityBean(user));
@@ -146,6 +147,29 @@ public class UserAction extends ActionSupport implements Preparable {
         }
         populatePermissionsList(-1);
         return SUCCESS;
+    }
+    
+    public String loadChangePassword() {
+        User userEntity = userService.findUserByUserName(userNameParam);
+        user = transformToFormBean(userEntity); 
+        return SUCCESS;
+    }
+    
+    public String changePassword(){
+    	User userEntity = userService.findUserByUserName(user.getUserName());
+    	validateChangePasswordPage(userEntity.getPassword());
+        if (hasFieldErrors())
+            return INPUT;
+        
+        userEntity.setPassword(passwordBean.getNewPassword());
+        userService.updateUserPassword(userEntity);
+        
+        user = transformToFormBean(userEntity); 
+        populatePermissionsList(-1);
+        
+        clearErrorsAndMessages();
+        addActionMessage("Success! Password has been updated.");
+    	return SUCCESS;   	    
     }
     
     private void addPermissionsToUser(Integer userId) {
@@ -211,6 +235,15 @@ public class UserAction extends ActionSupport implements Preparable {
         		addFieldError("user.password", getText("err.password.not.matched"));
         }
     }
+    
+    private void validateChangePasswordPage(String currentPassword) {
+        if (StringUtils.isNotBlank(passwordBean.getNewPassword()) && StringUtils.isNotBlank(passwordBean.getRetypeNewPassword())) {
+        	if (!passwordBean.getNewPassword().equals(passwordBean.getRetypeNewPassword()))
+        		addFieldError("passwordBean.newPassword", getText("err.password.not.matched"));
+        }
+    	if (!BCrypt.checkpw(passwordBean.getCurrentPassword(), currentPassword))
+    		addFieldError("passwordBean.currentPassword", getText("err.current.password.not.matched"));
+    }
 
     private void populatePermissionsList(Integer userId) {
         List<Permission> permissionList = (List<Permission>) permissionService.getPermissions(getClientId());
@@ -246,11 +279,13 @@ public class UserAction extends ActionSupport implements Preparable {
         User entity = new User();
         Client client = clientService.findClientById(getClientId().toString());
         entity.setClient(client);
-        if (StringUtils.isNotBlank(formBean.getUserId()))
+        if (StringUtils.isNotBlank(formBean.getUserId())) {
             entity.setUserId(new Integer(formBean.getUserId()));
+            entity = userService.findUserById(Integer.parseInt(formBean.getUserId()));
+        }
 
         entity.setUsername(formBean.getUserName());
-        entity.setPassword(formBean.getPassword());
+        //entity.setPassword(formBean.getPassword());
         
         entity.setTitle(formBean.getTitle());
         entity.setEmail(formBean.getEmailAddress());
@@ -381,6 +416,14 @@ public class UserAction extends ActionSupport implements Preparable {
 		this.preSelectedPermissionNames = preSelectedPermissionNames;
 	}
 
+
+	public PasswordBean getPasswordBean() {
+		return passwordBean;
+	}
+
+	public void setPasswordBean(PasswordBean passwordBean) {
+		this.passwordBean = passwordBean;
+	}
 
 	public PermissionService getPermissionService() {
 		return permissionService;
