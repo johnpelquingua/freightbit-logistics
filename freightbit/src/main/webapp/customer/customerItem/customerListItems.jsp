@@ -62,26 +62,26 @@
                                     <display:table id="item" name="items" requestURI="viewItem.action" pagesize="10"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
-                                        <td><display:column property="itemName" title="Name" class="tb-font-black"
+                                        <td><display:column property="itemName" title="Name <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="itemCode" title="Code" class="tb-font-black"
+                                        <td><display:column property="itemCode" title="Code <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="length" title="Length" class="tb-font-black"
+                                        <td><display:column property="length" title="Length <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="width" title="Width" class="tb-font-black"
+                                        <td><display:column property="width" title="Width <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="height" title="Height" class="tb-font-black"
+                                        <td><display:column property="height" title="Height <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="srp" title="SRP" class="tb-font-black"
+                                        <td><display:column property="srp" title="SRP <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="criticalQuality" title="Critical Quality"
+                                        <td><display:column property="criticalQuality" title="Critical Quality <i class='fa fa-sort' />"
                                                             class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="basePrice" title="Base Price" class="tb-font-black"
+                                        <td><display:column property="basePrice" title="Base Price <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="note" title="Note" class="tb-font-black"
+                                        <td><display:column property="note" title="Note <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="description" title="Description" class="tb-font-black"
+                                        <td><display:column property="description" title="Description <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">

@@ -31,9 +31,9 @@
                                            pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
-                                <td><display:column property="permissionName" title="Permissions"
+                                <td><display:column property="permissionName" title="Permissions <i class='fa fa-sort' />"
                                                     class="tb-font-black"/></td>
-                                <td><display:column property="userGroups" title="Users/Groups"
+                                <td><display:column property="userGroups" title="Users/Groups <i class='fa fa-sort' />"
                                                     class="tb-font-black"/></td>
                                 <td class="tb-font-black">
                                     <display:column title="Actions">

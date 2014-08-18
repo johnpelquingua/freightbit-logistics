@@ -45,18 +45,18 @@
                             <display:table id="driver" name="drivers" requestURI="viewDrivers.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
-                                <td><display:column property="driverCode" title="Driver Code" class="tb-font-black"
+                                <td><display:column property="driverCode" title="Driver Code <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="licenseNumber" title="License Number"
+                                <td><display:column property="licenseNumber" title="License Number <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="title" title="Title" class="tb-font-black"
+                                <td><display:column property="title" title="Title <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="lastName" title="Last Name" class="tb-font-black"
+                                <td><display:column property="lastName" title="Last Name <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="firstName" title="First Name" class="tb-font-black"
+                                <td><display:column property="firstName" title="First Name <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="middleName" title="Middle Name" class="tb-font-black"
+                                <td><display:column property="middleName" title="Middle Name <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td class="tb-font-black" style="text-align: center;">
                                     <display:column title="Actions">

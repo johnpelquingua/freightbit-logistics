@@ -60,17 +60,17 @@
                                     <display:table id="address" name="addresss" requestURI="viewAddress.action" pagesize="10"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
-                                        <td><display:column property="addressType" title="Type" class="tb-font-black"
+                                        <td><display:column property="addressType <i class='fa fa-sort' />" title="Type" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="addressLine1" title="Address Line 1" class="tb-font-black"
+                                        <td><display:column property="addressLine1" title="Address Line 1 <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="addressLine2" title="Address Line 2" class="tb-font-black"
+                                        <td><display:column property="addressLine2" title="Address Line 2 <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="city" title="City" class="tb-font-black"
+                                        <td><display:column property="city" title="City <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="state" title="Region" class="tb-font-black"
+                                        <td><display:column property="state" title="Region <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="zip" title="Zip" class="tb-font-black"
+                                        <td><display:column property="zip" title="Zip <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">

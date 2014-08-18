@@ -22,7 +22,7 @@
                             <label for="booknum" class="col-sm-2 control-label">Booking Number:</label>
 
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="booknum" value="MTY-1035" disabled>
+                                <s:textfield cssClass="form-control" value="%{orderNoParam}" name="order.orderId" disabled="true"></s:textfield>
                             </div>
 
                         </div>

@@ -28,20 +28,20 @@
                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                    style="margin-top: 15px;">
 
-                        <td><display:column property="orderNo" title="Order #" class="tb-font-black"
+                        <td><display:column property="orderNo" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="customerName" title="Customer" class="tb-font-black"
+                        <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="consigneeCode" title="Consignee" class="tb-font-black"
+                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="serviceRequirement" title="Service Requirement"
+                        <td><display:column property="serviceRequirement" title="Service Requirement <i class='fa fa-sort' />"
                                             class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="modeOfService" title="Service Mode" class="tb-font-black"
+                        <td><display:column property="modeOfService" title="Service Mode <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
                         <td><display:column title="Action">

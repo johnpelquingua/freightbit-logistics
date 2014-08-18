@@ -44,17 +44,17 @@
                             <display:table id="truck" name="trucks" requestURI="viewTrucks.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
-                                <td><display:column property="truckCode" title="Truck Code" class="tb-font-black"
+                                <td><display:column property="truckCode" title="Truck Code <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="plateNumber" title="Plate Number" class="tb-font-black"
+                                <td><display:column property="plateNumber" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="truckType" title="Truck Type" class="tb-font-black"
+                                <td><display:column property="truckType" title="Truck Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="modelNumber" title="Model Number" class="tb-font-black"
+                                <td><display:column property="modelNumber" title="Model Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="engineNumber" title="Engine Number" class="tb-font-black"
+                                <td><display:column property="engineNumber" title="Engine Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="grossWeight" title="Gross Weight" class="tb-font-black"
+                                <td><display:column property="grossWeight" title="Gross Weight <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td class="tb-font-black" style="text-align: center;">
                                     <display:column title="Actions">

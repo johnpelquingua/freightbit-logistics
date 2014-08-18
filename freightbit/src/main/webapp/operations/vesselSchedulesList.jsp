@@ -56,19 +56,19 @@
                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                    style="margin-top: 15px;">
 
-                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                        <td><display:column property="voyageNumber" title="Voyage # <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="originPort" title="Origin" class="tb-font-black"
+                        <td><display:column property="originPort" title="Origin <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
+                        <td><display:column property="destinationPort" title="Destination <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                        <td><display:column property="departureDate" title="Departure <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                        <td><display:column property="arrivalDate" title="Arrival <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td class="tb-font-black" style="text-align: center;">
                             <display:column title="Actions">

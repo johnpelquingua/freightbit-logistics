@@ -38,10 +38,10 @@
                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                    style="margin-top: 15px;">
 
-                        <td><display:column property="nameSize" title="Name" class="tb-font-black"
+                        <td><display:column property="nameSize" title="Name <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="status" title="Status" class="tb-font-black"
+                        <td><display:column property="status" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
                         <td><display:column title="Action">

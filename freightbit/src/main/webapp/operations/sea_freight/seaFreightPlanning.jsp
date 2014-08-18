@@ -24,7 +24,7 @@
 
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-search"></i>
-                    <%--<s:property value="%{nameSizeParam}" /> --%>
+                    <%--<s:property value="%{nameSizeParam}" />--%>
                     <c:out value="${sessionScope.nameSizeParam}"/></h3>
             </div>
 

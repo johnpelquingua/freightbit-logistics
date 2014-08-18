@@ -36,13 +36,13 @@
                             <display:table id="vendor" name="vendors" requestURI="viewVendors.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
-                                <td><display:column property="vendorCode" title="Vendor Code" class="tb-font-black"
+                                <td><display:column property="vendorCode" title="Vendor Code <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vendorName" title="Company Name" class="tb-font-black"
+                                <td><display:column property="vendorName" title="Company Name <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vendorType" title="Type" class="tb-font-black"
+                                <td><display:column property="vendorType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vendorClass" title="Class" class="tb-font-black"
+                                <td><display:column property="vendorClass" title="Class <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td class="tb-font-black" style="text-align: center;">
                                     <display:column title="Actions">

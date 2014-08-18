@@ -53,6 +53,7 @@ public class OrderBean {
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
+    private String vendorCode;
 
 	private AddressBean shipperInfoAddress;
 	private ContactBean shipperInfoContact;
@@ -409,5 +410,11 @@ public class OrderBean {
         this.consigneeAddressId = consigneeAddressId;
     }
 
+    public String getVendorCode() {
+        return vendorCode;
+    }
 
+    public void setVendorCode(String vendorCode) {
+        this.vendorCode = vendorCode;
+    }
 }

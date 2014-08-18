@@ -41,13 +41,13 @@
                             <display:table id="user" name="users" requestURI="viewUsers.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
-                                <td><display:column property="title" title="Title" class="tb-font-black"/></td>
-                                <td><display:column property="firstName" title="First Name" class="tb-font-black"/></td>
-                                <td><display:column property="lastName" title="Last Name" class="tb-font-black"/></td>
-                                <td><display:column property="companyName" title="Company Name"
+                                <td><display:column property="title" title="Title <i class='fa fa-sort' />" class="tb-font-black"/></td>
+                                <td><display:column property="firstName" title="First Name <i class='fa fa-sort' />" class="tb-font-black"/></td>
+                                <td><display:column property="lastName" title="Last Name <i class='fa fa-sort' />" class="tb-font-black"/></td>
+                                <td><display:column property="companyName" title="Company Name <i class='fa fa-sort' />"
                                                     class="tb-font-black"/></td>
-                                <td><display:column property="userName" title="User Name" class="tb-font-black"/></td>
-                                <td><display:column property="userType" title="User Type" class="tb-font-black"/></td>
+                                <td><display:column property="userName" title="User Name <i class='fa fa-sort' />" class="tb-font-black"/></td>
+                                <td><display:column property="userType" title="User Type <i class='fa fa-sort' />" class="tb-font-black"/></td>
 
                                 <td class="tb-font-black">
                                     <display:column title="Actions">

@@ -43,15 +43,15 @@
                                            pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
-                                <td><display:column property="customerName" title="Customer Name" class="tb-font-black"
+                                <td><display:column property="customerName" title="Customer Name <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="customerType" title="Customer Type" class="tb-font-black"
+                                <td><display:column property="customerType" title="Customer Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="email" title="E-mail Address" class="tb-font-black"
+                                <td><display:column property="email" title="E-mail Address <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="website" title="Website" class="tb-font-black"
+                                <td><display:column property="website" title="Website <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="phone" title="Contact Number" class="tb-font-black"
+                                <td><display:column property="phone" title="Contact Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td class="tb-font-black" style="text-align: center;">
                                     <display:column title="Actions">

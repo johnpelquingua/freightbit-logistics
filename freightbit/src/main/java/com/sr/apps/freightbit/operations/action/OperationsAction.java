@@ -31,6 +31,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Integer orderItemIdParam;
     private Integer nameSizeParam;
     private Integer vendorId;
+    private String orderNoParam;
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
@@ -40,7 +41,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Vendor> vendorTruckingList = new ArrayList<Vendor>();
 
     private List<Driver> listDrivers = new ArrayList<Driver>();
-
 
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OperationsBean operationsBean = new OperationsBean();
@@ -96,7 +96,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
         return SUCCESS;
     }
-
 
     public String viewFreightItemList() {
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
@@ -164,7 +163,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return formBean;
     }
 
-
+    public Orders transformOrderToEntityBean (OrderBean formBean) {
+        Orders entity = new Orders();
+        entity.setVendorCode(formBean.getVendorCode());
+        return  entity;
+    }
 
     public Integer getOrderIdParam() {
         return orderIdParam;
@@ -300,5 +303,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setListDrivers(List<Driver> listDrivers) {
         this.listDrivers = listDrivers;
+    }
+
+    public String getOrderNoParam() {
+        return orderNoParam;
+    }
+
+    public void setOrderNoParam(String orderNoParam) {
+        this.orderNoParam = orderNoParam;
     }
 }

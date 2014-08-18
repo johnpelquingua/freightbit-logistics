@@ -28,9 +28,9 @@
                             <display:table id="group" name="groups" requestURI="/viewGroups.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
-                                <td><display:column property="groupCode" title="Group Code" class="tb-font-black"/></td>
-                                <td><display:column property="groupName" title="Group Name" class="tb-font-black"/></td>
-                                <td><display:column property="membersNum" title="No. of Members"
+                                <td><display:column property="groupCode" title="Group Code <i class='fa fa-sort' />" class="tb-font-black"/></td>
+                                <td><display:column property="groupName" title="Group Name <i class='fa fa-sort' />" class="tb-font-black"/></td>
+                                <td><display:column property="membersNum" title="No. of Members <i class='fa fa-sort' />"
                                                     class="tb-font-black"/></td>
                                 <td class="tb-font-black">
                                     <display:column title="Actions">

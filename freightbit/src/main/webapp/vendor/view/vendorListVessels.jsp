@@ -43,13 +43,13 @@
                             <display:table id="vessel" name="vessels" requestURI="viewVessels.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
-                                <td><display:column property="vesselNumber" title="Vessel Number" class="tb-font-black"
+                                <td><display:column property="vesselNumber" title="Vessel Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vesselName" title="Vessel Name" class="tb-font-black"
+                                <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="modelNumber" title="Model Number" class="tb-font-black"
+                                <td><display:column property="modelNumber" title="Model Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="modelYear" title="Model Year" class="tb-font-black"
+                                <td><display:column property="modelYear" title="Model Year <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td class="tb-font-black" style="text-align: center;">
                                     <display:column title="Actions">

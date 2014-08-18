@@ -15,22 +15,27 @@
                 </div>
 
                 <div class="panel-body">
+                    <s:hidden value="%{orderNoParam}" />
                     <div class="table-responsive">
                         <display:table id="orderItem" name="orderItems"
                                        requestURI="/viewSeaFreightItemList.action" pagesize="10"
                                        class="table table-striped table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
 
-                            <td><display:column property="nameSize" title="Name" class="tb-font-black"
+                            <td><display:column property="nameSize" title="Name <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
-                            <td><display:column property="status" title="Status" class="tb-font-black"
+                            <td><display:column property="status" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
                             <td><display:column title="Action">
                                 <s:url var="viewInlandFreightPlanningUrl" action="viewInlandFreightPlanning">
                                     <s:param name="orderItemIdParam"
-                                             value="#attr.orderItem.orderItemId"></s:param>
+                                             value="#attr.orderItem.orderItemId">
+                                            </s:param>
+                                    <s:param name="orderNoParam"
+                                             value="orderNoParam">
+                                             </s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{viewInlandFreightPlanningUrl}" rel="tooltip"
                                      title="Update Status">

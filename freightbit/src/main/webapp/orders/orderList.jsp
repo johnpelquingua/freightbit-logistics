@@ -51,19 +51,19 @@
                         <display:table id="order" name="orders" requestURI="viewOrders.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
 
-                            <td><display:column property="orderNumber" title="Order #" class="tb-font-black"
+                            <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;" > </i></display:column></td>
-                            <td><display:column property="shipperContactId" title="Shipper" class="tb-font-black"
+                            <td><display:column property="shipperContactId" title="Shipper <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="consigneeContactId" title="Consignee" class="tb-font-black"
+                            <td><display:column property="consigneeContactId" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="serviceType" title="Type" class="tb-font-black"
+                            <td><display:column property="serviceType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="modeOfService" title="Mode" class="tb-font-black"
+                            <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="orderDate" title="Order Date" class="tb-font-black"
+                            <td><display:column property="orderDate" title="Order Date <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="orderStatus" title="Status" class="tb-font-black status-color"
+                            <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"
                                                 style="text-align: center;"> </display:column></td>
 
                             <td class="tb-font-black" style="text-align: center;">

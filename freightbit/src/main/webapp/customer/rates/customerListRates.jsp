@@ -103,13 +103,13 @@
                                 <display:table id="rate" name="rates" requestURI="viewRates.action" pagesize="10"
                                                class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">
-                                    <td><display:column property="origin" title="Origin" class="tb-font-black"
+                                    <td><display:column property="origin" title="Origin <i class='fa fa-sort' />" class="tb-font-black"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="destination" title="Destination" class="tb-font-black"
+                                    <td><display:column property="destination" title="Destination <i class='fa fa-sort' />" class="tb-font-black"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="rate" title="Rate" class="tb-font-black"
+                                    <td><display:column property="rate" title="Rate <i class='fa fa-sort' />" class="tb-font-black"
                                                         style="text-align: center;"> </display:column></td>
-                                    <td><display:column property="rateType" title="Rate Type" class="tb-font-black"
+                                    <td><display:column property="rateType" title="Rate Type <i class='fa fa-sort' />" class="tb-font-black"
                                                         style="text-align: center;"> </display:column></td>
                                     <td class="tb-font-black" style="text-align: center;">
                                         <display:column title="Actions">

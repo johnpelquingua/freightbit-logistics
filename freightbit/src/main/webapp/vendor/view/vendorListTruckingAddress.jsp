@@ -44,17 +44,17 @@
                                            pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
-                                <td><display:column property="addressType" title="Address Type" class="tb-font-black"
+                                <td><display:column property="addressType" title="Address Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="addressLine1" title="Address 1" class="tb-font-black"
+                                <td><display:column property="addressLine1" title="Address 1 <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="addressLine2" title="Address 2" class="tb-font-black"
+                                <td><display:column property="addressLine2" title="Address 2 <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="city" title="City" class="tb-font-black"
+                                <td><display:column property="city" title="City <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="state" title="State" class="tb-font-black"
+                                <td><display:column property="state" title="State <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="zip" title="Zip" class="tb-font-black"
+                                <td><display:column property="zip" title="Zip <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td class="tb-font-black" style="text-align: center;">
                                     <display:column title="Actions">
