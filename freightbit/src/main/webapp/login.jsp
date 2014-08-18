@@ -29,11 +29,6 @@
                     <img src="includes/images/ernest-logo_2.png"
                          style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
                 </div>
-                <div class="box-header">
-                    <h3 class="title">
-                        Log in
-                    </h3>
-                </div>
                 <s:actionerror/>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" theme="bootstrap"  action="<c:url value='j_spring_security_check' />" method='POST'>
