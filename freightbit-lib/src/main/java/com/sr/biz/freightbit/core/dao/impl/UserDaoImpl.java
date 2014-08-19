@@ -4,6 +4,7 @@ package com.sr.biz.freightbit.core.dao.impl;
 
 import com.sr.biz.freightbit.core.dao.UserDao;
 import com.sr.biz.freightbit.core.entity.User;
+import com.sr.biz.freightbit.vendor.entity.Vendor;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -151,6 +152,24 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
                 .add(Restrictions.eq("client.clientId", clientId))
                 .list();
         return users;
+    }
+    
+    @Override
+    public List<User> findDuplicateUserByUserName(String userName, Integer userId) {
+        log.debug("Finding duplicate user by user name");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from User u where u.username= :userName and u.userId != :userId");
+            query.setParameter("userName", userName);
+            query.setParameter("userId", userId);
+            List<User> results = (List<User>) query.list();
+            log.debug("Find User by userName successful, result size: "
+                    + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            log.error("Find User by vendor code failed", re);
+            throw re;
+        }
     }
 
 }

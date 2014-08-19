@@ -22,4 +22,6 @@ public interface UserDao {
 
     public List<User> findUsersByCriteria(String column, String value, Integer clientId);
 
+	public List<User> findDuplicateUserByUserName(String userName, Integer userId);
+
 }

@@ -144,6 +144,18 @@
         <put-attribute name="title" value="Group Page"/>
         <put-attribute name="body" value="/core/group/groupListView.jsp"/>
     </definition>
+    <definition name="core.userProfileView.tiles" extends="baseLayout">
+        <put-attribute name="title" value="User Profile"/>
+        <put-attribute name="body" value="/core/userProfile/userProfileView.jsp"/>
+    </definition>
+    <definition name="core.userProfileEdit.tiles" extends="baseLayout">
+        <put-attribute name="title" value="User Profile"/>
+        <put-attribute name="body" value="/core/userProfile/userProfileEdit.jsp"/>
+    </definition>
+    <definition name="core.userProfileChangePassword.tiles" extends="baseLayout">
+        <put-attribute name="title" value="User Profile"/>
+        <put-attribute name="body" value="/core/userProfile/userProfileChangePassword.jsp"/>
+    </definition>
     <definition name="core.groupAdd.tiles" extends="baseLayout">
         <put-attribute name="title" value="Group Page"/>
         <put-attribute name="body" value="/core/group/groupAdd.jsp"/>

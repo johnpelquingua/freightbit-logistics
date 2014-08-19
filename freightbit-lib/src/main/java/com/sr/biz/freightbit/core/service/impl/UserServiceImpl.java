@@ -101,8 +101,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void updateUser(User user) {
-        userDao.updateUser(user);
+    public void updateUser(User user) throws UserAlreadyExistsException {
+        if (userDao.findDuplicateUserByUserName(user.getUsername(), user.getUserId()).size() > 0)
+            throw new UserAlreadyExistsException(user.getUsername());
+        else {
+        	userDao.updateUser(user);
+        }
     }
     
     @Override

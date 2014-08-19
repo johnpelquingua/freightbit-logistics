@@ -63,7 +63,7 @@
     <li class="dropdown user-dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <c:out value="${sessionScope.loggedinUser}"/><b class="caret"></b></a>
         <ul class="dropdown-menu" style="min-width: 130px;">
-            <li><a href="#"><i class="fa fa-user"></i> Edit Profile</a></li>
+            <li><a href="user/viewUserProfile"><i class="fa fa-user"></i> Edit Profile</a></li>
             <li><a href="#"><i class="fa fa-gear"></i> User Settings</a></li>
             <li class="divider"></li>
             <li><a href="<c:url value='j_spring_security_logout'/>"> <i class="fa fa-power-off"></i> Log Out</a></li>

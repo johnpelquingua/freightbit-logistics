@@ -22,6 +22,7 @@ import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.entity.Permission;
 import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
 import com.sr.biz.freightbit.core.entity.User;
+import com.sr.biz.freightbit.core.exceptions.UserAlreadyExistsException;
 import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.core.service.PermissionService;
 import com.sr.biz.freightbit.core.service.UserService;
@@ -43,6 +44,7 @@ public class UserAction extends ActionSupport implements Preparable {
     private List<Parameters> userSearchList = new ArrayList<Parameters>();
     private UserBean user = new UserBean(); //single user object
     private String userNameParam; //parameter used to identify which specific user is to be edited/deleted/viewed
+    private Integer userIdParam; 
     private List<PermissionBean> permissionsList = new ArrayList<PermissionBean>(); //list of permissions from Permissions table
     private String permissionsSelected; //will contain the checked permissions from the jsp
     private String[] preSelectedPermissions; //the default permission id's assigned to the user
@@ -97,17 +99,22 @@ public class UserAction extends ActionSupport implements Preparable {
     }
 
     public String addUser() throws Exception {
-        validateOnSubmit(user);
-        if (hasFieldErrors())
+    	try {
+	        validateOnSubmit(user);
+	        if (hasFieldErrors())
+	            return INPUT;
+	        Integer userId = userService.addUser(transformToEntityBean(user));
+	        addPermissionsToUser(userId);
+	        populatePermissionsList(userId);
+	        
+	        clearErrorsAndMessages();
+	        addActionMessage("Success! A New User has been added.");
+	
+	        return SUCCESS;
+        } catch (UserAlreadyExistsException e) {
+            addFieldError("user.userName", getText("err.username.already.exists"));
             return INPUT;
-        Integer userId = userService.addUser(transformToEntityBean(user));
-        addPermissionsToUser(userId);
-        populatePermissionsList(userId);
-        
-        clearErrorsAndMessages();
-        addActionMessage("Success! A New User has been added.");
-
-        return SUCCESS;
+        }
     }
 
     public String loadEditUserPage() {
@@ -117,20 +124,25 @@ public class UserAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String editUser() {
+    public String editUser() throws Exception {
        /// validateOnSubmit(user); 
-        if (hasFieldErrors())
-            return INPUT;
-        userService.updateUser(transformToEntityBean(user));
-        if (StringUtils.isNotBlank(user.getUserId())) {
-        	addPermissionsToUser(Integer.parseInt(user.getUserId()));
-        	populatePermissionsList(Integer.parseInt(user.getUserId()));
+        //if (hasFieldErrors())
+         //   return INPUT;
+    	populatePermissionsList(Integer.parseInt(user.getUserId()));
+        try {
+	    	userService.updateUser(transformToEntityBean(user));
+	        if (StringUtils.isNotBlank(user.getUserId())) {
+	        	addPermissionsToUser(Integer.parseInt(user.getUserId()));
+	        }
+	        
+	        clearErrorsAndMessages();
+	        addActionMessage("Success! User has been updated.");
+	
+	        return SUCCESS;
+        } catch (UserAlreadyExistsException e) {
+             addFieldError("user.userName", getText("err.username.already.exists"));
+             return INPUT;
         }
-        
-        clearErrorsAndMessages();
-        addActionMessage("Success! User has been updated.");
-
-        return SUCCESS;
     }
 
     public String deleteUser() {
@@ -146,17 +158,12 @@ public class UserAction extends ActionSupport implements Preparable {
     public String viewUserInfo() {
         User userEntity = userService.findUserByUserName(userNameParam);
         user = transformToFormBean(userEntity); //specific user to view
-
-        List<User> userEntityList = userService.findAllUsers(getClientId());
-        for (User userElem : userEntityList) {
-            users.add(transformToFormBean(userElem)); //used to populate user list table
-        }
         populatePermissionsList(-1);
         return SUCCESS;
     }
     
     public String loadChangePassword() {
-        User userEntity = userService.findUserByUserName(userNameParam);
+        User userEntity = userService.findUserById(userIdParam);
         user = transformToFormBean(userEntity); 
         return SUCCESS;
     }
@@ -176,6 +183,45 @@ public class UserAction extends ActionSupport implements Preparable {
         clearErrorsAndMessages();
         addActionMessage("Success! Password has been updated.");
     	return SUCCESS;   	    
+    }
+    
+    public String viewUserProfile(){
+        User userEntity = userService.findUserByUserName(commonUtils.getUserNameFromSession());
+        user = transformToFormBean(userEntity); //specific user to view
+    	return SUCCESS;
+    }
+    
+    public String loadEditUserProfile() {
+        User userEntity = userService.findUserByUserName(commonUtils.getUserNameFromSession());
+        user = transformToFormBean(userEntity);
+    	return SUCCESS;
+    }
+    
+    public String editUserProfile() throws Exception {
+    	if(StringUtils.isNotBlank(user.getUserId())) {
+    		try {
+	    		User userEntity = userService.findUserById(Integer.parseInt(user.getUserId()));
+	        
+		        userEntity.setFirstName(user.getFirstName());
+		        userEntity.setLastName(user.getLastName());
+		        userEntity.setUsername(user.getUserName());
+		        userEntity.setTitle(user.getTitle());
+		        userEntity.setEmail(user.getEmailAddress());
+		        userEntity.setContactNo(user.getContactNumber());
+		        userService.updateUser(userEntity);        
+		        
+		        clearErrorsAndMessages();
+		        addActionMessage("Success! User Profile has been updated.");
+		    	return SUCCESS;
+    		} catch (UserAlreadyExistsException e) {
+                addFieldError("user.userName", getText("err.username.already.exists"));
+                return INPUT;
+            }
+    	} else {
+    		clearErrorsAndMessages();
+ 	        addActionMessage("An error has occured during update.");
+    		return INPUT;
+    	}
     }
     
     private void addPermissionsToUser(Integer userId) {
@@ -339,7 +385,15 @@ public class UserAction extends ActionSupport implements Preparable {
         return clientId;
     }
 
-    public String getUserNameParam() {
+    public Integer getUserIdParam() {
+		return userIdParam;
+	}
+
+	public void setUserIdParam(Integer userIdParam) {
+		this.userIdParam = userIdParam;
+	}
+
+	public String getUserNameParam() {
         return userNameParam;
     }
 

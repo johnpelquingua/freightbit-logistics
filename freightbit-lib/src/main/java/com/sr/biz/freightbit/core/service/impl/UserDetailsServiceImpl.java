@@ -36,13 +36,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException, DataAccessException
     {
-        System.out.println("Getting access details from Users Dao !!");
         com.sr.biz.freightbit.core.entity.User user = userDao.findUserByUserName(username);
         if (user != null) {
         	List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
         	List <String> permissionNames = findPermissionByUser(user.getClient().getClientId(), user.getUserId());
         	for (String permissionName : permissionNames) {
         		authList.add(new GrantedAuthorityImpl(permissionName));
+        		System.out.println("Permissions: [" + permissionName +"]\n");
         	}
 	        UserDetails userDetails = new org.springframework.security.core.userdetails.User(username, user.getPassword(), true, true, true, true, authList);
 	        return userDetails;

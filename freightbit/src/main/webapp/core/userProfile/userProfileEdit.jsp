@@ -3,15 +3,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Accounts Module </h1>
-        <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> Accounts</li>
-            <li class="active"> User</li>
-            <li class="active"><a href="<s:url action='viewUsers' />"> User List</a></li>
-            <li class="active"> Edit User</li>
-        </ol>
-
+        <h1>User Profile </h1>
     </div>
 </div>
 
@@ -30,28 +22,16 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit User</h3>
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit User Profile</h3>
             </div>
 
             <div class="panel-body">
-
                 <div class="table-responsive list-table">
-
-                    <s:form action="editUser" theme="bootstrap" cssClass="form-horizontal" method="post" name="addForm">
+                    <s:form action="editUserProfile" theme="bootstrap" cssClass="form-horizontal" method="post" name="editUserProfileForm">
                     <s:hidden name="user.userId" value="%{user.userId}"/>
-                    
-                    <div class="form-group">
-                        <label for="uType" class="col-lg-3 control-label" id="users-add-label"> User Type:</label>
-
-                        <div class="col-lg-9">
-                            <s:select name="user.userType" id="uType" list="userTypeList" listKey="key"
-                                      listValue="value" cssClass="form-control" value="user.userType"/>
-                        </div>
-                    </div>
 
                     <div class="form-group">
                         <label for="uCompanyName" class="col-lg-3 control-label" id="users-add-label">Company:</label>
-
                         <div class="col-lg-9">
                             <s:textfield disabled="true" required="true" name="user.companyName" cssClass="form-control"
                                          placeholder="Company Name"/>
@@ -91,7 +71,7 @@
                         <label for="uPassword" class="col-lg-3 control-label" id="users-add-label">Password:</label>
 
                         <div class="col-lg-9">
-                            <s:url var="loadChangePasswordUrl" action="loadChangePassword">
+                            <s:url var="loadChangePasswordUrl" action="loadChangePasswordFromUserProfile">
                                 <s:param name="userIdParam" value="%{user.userId}"></s:param>
                             </s:url>
                             <s:a href="%{loadChangePasswordUrl}" class="btn btn-default" id="users-add-btn">Change Password</s:a>
@@ -128,33 +108,14 @@
                                      	 pattern="\d{7,11}" title="Contact Number should not contain special characters and/or letters."/>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="uStatus" class="col-lg-3 control-label" id="users-add-label">Status:</label>
-
-                        <div class="col-lg-9">
-                            <s:select required="true" name="user.status" id="uStatus" list="statusList" listKey="key"
-                                      listValue="value" cssClass="form-control" value="user.status"/>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="uStatus" class="col-lg-3 control-label" id="users-add-label">Permissions:</label>
-
-                        <div class="col-lg-9">
-                        <s:checkboxlist list="permissionsList"  name="permissionsSelected" value="preSelectedPermissions" listKey="permissionId" listValue="permissionName"/>
-                        </div>
-                    </div>
                 </div>
-
-
             </div>
 
             <div class="panel-footer">
-                            <span class="pull-right">
-                              <a href="viewUsers" class="btn btn-default" id="users-add-btn">Cancel</a>
-                              <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
-                            </span>
+                   <span class="pull-right">
+                     <a href="viewUserProfile" class="btn btn-default" id="users-add-btn">Cancel</a>
+                     <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
+                   </span>
             </div>
 
             </s:form>
