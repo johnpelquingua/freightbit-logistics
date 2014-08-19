@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Sea Freight Planning</h1>
+        <h1><i class="fa fa-anchor"></i> Sea Freight Planning</h1>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> List of Bookings</li>

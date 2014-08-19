@@ -3,7 +3,7 @@
 
 <div class="row" style="margin-top:-15px;">
 
-    <h1>Inland Freight Operations</h1>
+    <h1><i class="fa fa-truck"></i> Inland Freight Operations</h1>
 
     <div class="row">
         <div class="col-lg-12">

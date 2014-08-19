@@ -645,7 +645,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     public void validateOnSubmitDriver(DriverBean driverBean) {
         clearErrorsAndMessages();
 
-        String alpha = "[A-Za-z]+[ ]";
+        String alpha = "^[a-zA-Z][a-zA-Z ]+$";
         String alphaNumeric = "[A-Za-z0-9]+";
 
         Pattern namePattern = Pattern.compile(alpha);
@@ -653,17 +653,17 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         Matcher matcher = namePattern.matcher(driverBean.getLastName());
         if (!matcher.matches()) {
-            addFieldError("driver.lastName", "Name must be letters only.");
+            addFieldError("driver.lastName", "Last Name must be letters only.");
         }
 
         matcher = namePattern.matcher(driverBean.getFirstName());
         if (!matcher.matches()) {
-            addFieldError("driver.lastName", "Name must be letters only.");
+            addFieldError("driver.firstName", "First Name must be letters only.");
         }
 
         matcher = namePattern.matcher(driverBean.getTitle());
         if (!matcher.matches()) {
-            addFieldError("driver.firstName", "Title must be letters only.");
+            addFieldError("driver.title", "Title must be letters only.");
         }
 
         matcher = alphaNumericPattern.matcher(driverBean.getLicenseNumber());
