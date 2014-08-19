@@ -3,7 +3,11 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Vendor Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-building"></i> Vendor Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Vendor</li>
@@ -11,18 +15,18 @@
             <li class="active"><a href="<s:url action='viewInfoVendor' />"> Vendor
                 Profile</a></li>
             <li class="active"><a href="<s:url action='viewDrivers' />"> Drivers</a></li>
-            <li class="active"> Add New Driver</li>
+            <li class="active"> Add Driver</li>
         </ol>
 
     </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-2">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New Driver</h3>
+                <h3 class="panel-title"><i class="fa fa-plus"></i> Add Driver</h3>
             </div>
 
             <div class="panel-body">
@@ -30,9 +34,9 @@
                     <s:form cssClass="form-horizontal" action="addDriver" theme="bootstrap">
                         <div class="form-group">
 
-                            <label for="driver.driverCode" class="col-sm-2 control-label">Code:</label>
+                            <label for="driver.driverCode" class="col-lg-2 control-label" style="padding-top:0px;">Code</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Driver Code" name="driver.driverCode"
                                              id="driver.driverCode" required="true" />
                             </div>
@@ -41,9 +45,9 @@
 
                         <div class="form-group">
 
-                            <label for="driver.licenseNumber" class="col-sm-2 control-label">License:</label>
+                            <label for="driver.licenseNumber" class="col-lg-2 control-label" style="padding-top:0px;">License</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="License Number"
                                              name="driver.licenseNumber" id="driver.licenseNumber" required="true"/>
                             </div>
@@ -52,9 +56,9 @@
 
                         <div class="form-group">
 
-                            <label for="driver.lastName" class="col-sm-2 control-label">Last Name:</label>
+                            <label for="driver.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName"
                                              id="driver.lastName" required="true"/>
                             </div>
@@ -63,9 +67,9 @@
 
                         <div class="form-group">
 
-                            <label for="driver.firstName" class="col-sm-2 control-label">First Name:</label>
+                            <label for="driver.firstName" class="col-lg-2 control-label" style="padding-top:0px;">First Name</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName"
                                              id="driver.firstName" required="true"/>
                             </div>
@@ -74,9 +78,9 @@
 
                         <div class="form-group">
 
-                            <label for="driver.middleName" class="col-sm-2 control-label">Middle Name:</label>
+                            <label for="driver.middleName" class="col-lg-2 control-label" style="padding-top:0px;">Middle Name</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName"
                                              id="driver.middleName" />
                             </div>
@@ -85,9 +89,9 @@
 
                         <div class="form-group">
 
-                            <label for="driver.title" class="col-sm-2 control-label">Title:</label>
+                            <label for="driver.title" class="col-lg-2 control-label" style="padding-top:0px;">Title</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"
                                              id="driver.title" required="true"/>
                             </div>
@@ -96,35 +100,46 @@
 
                         <div class="form-group">
 
-                            <label class="col-sm-2 control-label" for="driver.status">Status:</label>
+                            <label class="col-lg-2 control-label" for="driver.status" style="padding-top:0px;">Status</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-10">
                                 <s:select list="statusList" listKey="key" listValue="value" name="driver.status"
                                           cssClass="form-control"/>
                             </div>
 
                         </div>
 
-                        <div class="pull-right">
+                        <%--<div class="pull-right">
 
                             <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
                         </div>
 
-                    </s:form>
+                    </s:form>--%>
                 </div>
             </div>
+
+            <div class="panel-footer">
+                <div class="pull-right">
+                    <a href="viewDrivers" class="btn btn-default" id ="groups-btn">Cancel</a>
+
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+            </div>
+            </s:form>
+
         </div>
     </div>
 
-    <div class="col-lg-2 col-lg-offset-2">
+    <%--<div class="col-lg-2 col-lg-offset-2">
         <div class="panel panel-primary">
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
                 <li><a href="viewTruckingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
                 <li><a href="viewVendorTruckingContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
                 <li class="active"><a href="viewDrivers"><i class="fa fa-group fa-fw"></i> Drivers</a></li>
-                <li <%--class="active"--%>><a href="viewTrucks"><i class="fa fa-truck fa-fw"></i> Trucks</a></li>
+                <li &lt;%&ndash;class="active"&ndash;%&gt;><a href="viewTrucks"><i class="fa fa-truck fa-fw"></i> Trucks</a></li>
             </ul>
         </div>
-    </div>
+    </div>--%>
+
 </div>

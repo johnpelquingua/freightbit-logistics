@@ -3,7 +3,11 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Vendor Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-building"></i> Vendor Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Vendor</li>
@@ -18,7 +22,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-2">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
@@ -33,9 +37,9 @@
                         <s:hidden name="vessel.createdBy" value="%{vessel.createdBy}" />
                         <div class="form-group">
 
-                            <label for="vessel.vesselNumber" class="col-sm-2 control-label">Vessel:</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Vessel</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Vessel Number"
                                              name="vessel.vesselNumber"
                                              id="vessel.vesselNumber" pattern="[A-Za-z0-9]+" title="No special characters allowed"/>
@@ -45,9 +49,9 @@
 
                         <div class="form-group">
 
-                            <label for="vessel.vesselName" class="col-sm-2 control-label">Name:</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Name</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Vessel Name" name="vessel.vesselName"
                                              id="vessel.vesselName" pattern="[A-Za-z]+" title="No special characters allowed"/>
                             </div>
@@ -56,9 +60,9 @@
 
                         <div class="form-group">
 
-                            <label for="vessel.modelNumber" class="col-sm-2 control-label">Model:</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Model</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Model Number"
                                              name="vessel.modelNumber"
                                              id="vessel.modelNumber" pattern="[A-Za-z0-9]+" title="No special characters allowed"/>
@@ -68,27 +72,38 @@
 
                         <div class="form-group">
 
-                            <label for="vessel.modelYear" class="col-sm-2 control-label">Year Model:</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Year Model</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Year Model" name="vessel.modelYear"
                                              id="vessel.modelYear" maxLength="4" pattern="\d{4}"/>
                             </div>
 
                         </div>
 
-                        <div class="pull-right">
+                        <%--<div class="pull-right">
 
                             <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
                         </div>
 
-                    </s:form>
+                    </s:form>--%>
+
                 </div>
             </div>
+
+            <div class="panel-footer">
+                <div class="pull-right">
+                    <a href="viewVessels" class="btn btn-default" id ="groups-btn">Cancel</a>
+
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+            </div>
+            </s:form>
+
         </div>
     </div>
 
-    <div class="col-lg-2 col-lg-offset-2">
+    <%--<div class="col-lg-2 col-lg-offset-2">
         <div class="panel panel-primary">
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
@@ -97,5 +112,6 @@
                 <li class="active"><a href="viewVessels"><i class="fa fa-anchor fa-fw"></i> Vessels</a></li>
             </ul>
         </div>
-    </div>
+    </div>--%>
+
 </div>

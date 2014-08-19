@@ -872,3 +872,12 @@ span.pagelinks {
      color: #9C73D1;
      background-color: #ffffff;
  }
+
+ table.table.table-user-information.vendor-profile>tbody>tr>td.header {
+    width: 201px;
+    text-align: right !important;
+ }
+
+ table.table.table-user-information.vendor-profile>tbody>tr>td {
+     text-align: left !important;
+ }

@@ -33,7 +33,6 @@
 
             <div class="panel-body">
 
-
                     <s:form action="addAddress" cssClass="form-horizontal" theme="bootstrap">
                         <div class="form-group">
 
@@ -82,7 +81,6 @@
                                 <s:textfield name="address.zip" id="address.zip" cssClass="form-control"/>
                             </div>
                         </div>
-
 
             </div>
 

@@ -3,7 +3,11 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Vendor Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-building"></i> Vendor Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Vendor</li>
@@ -12,90 +16,113 @@
                 Profile</a></li>
             <li class="active"><a href="<s:url action='viewVendorTruckingContacts' />">
                 Contact Persons</a></li>
-            <li class="active"> Add New Contact Person</li>
+            <li class="active"> Add Contact Person</li>
         </ol>
 
     </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-2">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-user"></i> Add New Contact Person</h3>
+                <h3 class="panel-title"><i class="fa fa-user"></i> Add Contact Person</h3>
             </div>
 
             <div class="panel-body">
 
-                <s:form role="form" action="addTruckingContact" theme="bootstrap">
+                <div class="table-responsive list-table">
 
-                    <div class="form-group">
-                        <label for="contact.contactType">Contact Type</label>
-                        <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
-                                  listKey="key" listValue="value" cssClass="form-control"
-                                  value="contact.contactType"/>
+                    <s:form role="form" action="addTruckingContact" cssClass="form-horizontal" theme="bootstrap">
 
-                    </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Contact Type</label>
+                            <div class="col-lg-10">
+                            <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
+                                      listKey="key" listValue="value" cssClass="form-control"
+                                      value="contact.contactType"/>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="contact.lastName">Last Name</label>
-                        <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
-                                     id="contact.lastName" pattern="[A-Za-z\s]+" title="Must be letters only"/>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Last Name</label>
+                            <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
+                                         id="contact.lastName" pattern="[A-Za-z\s]+" title="Must be letters only"/>
+                            </div>
+                        </div>
 
-                    </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">First Name</label>
+                            <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
+                                         id="contact.firstName" pattern="[A-Za-z\s]+" title="Must be letters only"/>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="contact.firstName">First Name</label>
-                        <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                     id="contact.firstName" pattern="[A-Za-z\s]+" title="Must be letters only"/>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Middle Name</label>
+                            <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
+                                         id="contact.middleName" pattern="[A-Za-z\s]+" title="Must be letters only"/>
+                            </div>
+                        </div>
 
-                    </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Phone</label>
+                            <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone" maxLength="7"
+                                         pattern="\d{7}"/>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="contact.firstName">Middle Name</label>
-                        <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                                     id="contact.middleName" pattern="[A-Za-z\s]+" title="Must be letters only"/>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile</label>
+                            <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile" maxLength="11"
+                                         pattern="\d{11}"/>
+                            </div>
+                        </div>
 
-                    </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Fax</label>
+                            <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax" pattern="[0-9]+"/>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="contact.firstName">Phone</label>
-                        <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone" maxLength="7"
-                                     pattern="\d{7}"/>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">E-Mail</label>
+                            <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email"/>
+                            </div>
+                        </div>
 
-                    </div>
+                        <%--<button class="btn btn-default">Cancel</button>--%>
+                        <%--<div class="pull-right">
+                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="contact.firstName">Mobile</label>
-                        <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile" maxLength="11"
-                                     pattern="\d{11}"/>
+                    </s:form>--%>
 
-                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="contact.firstName">Fax</label>
-                        <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax" pattern="[0-9]+"/>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact.firstName">E-Mail</label>
-                        <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email"/>
-
-                    </div>
-
-
-                    <%--<button class="btn btn-default">Cancel</button>--%>
-                    <div class="pull-right">
-                        <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
-                    </div>
-                </s:form>
             </div>
+
+            <div class="panel-footer">
+                <div class="pull-right">
+                    <a href="viewVendorTruckingContacts" class="btn btn-default" id ="groups-btn">Cancel</a>
+
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+            </div>
+            </s:form>
+
         </div>
     </div>
 
-    <div class="col-lg-2 col-lg-offset-2">
+    <%--<div class="col-lg-2 col-lg-offset-2">
         <div class="panel panel-primary">
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
@@ -105,5 +132,6 @@
                 <li><a href="viewTrucks"><i class="fa fa-truck fa-fw"></i> Trucks</a></li>
             </ul>
         </div>
-    </div>
+    </div>--%>
+
 </div>

@@ -31,7 +31,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-primary ">
+        <div class="panel panel-primary">
 
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Customer Profile</h3>
@@ -39,7 +39,6 @@
                     <button type="button" class="btn btn-success new-booking" onclick="location.href=''">
                         <i class="fa fa-pencil"></i> Edit Customer
                     </button>
-
                 </span>
             </div>
 
@@ -50,6 +49,7 @@
                     <div class="col-lg-6 col-lg-offset-2">
 
                         <div class="panel panel-info ">
+
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-info-circle"></i> Details</h3>
                             </div>

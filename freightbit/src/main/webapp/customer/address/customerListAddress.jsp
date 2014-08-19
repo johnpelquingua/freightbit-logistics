@@ -60,7 +60,7 @@
                                     <display:table id="address" name="addresss" requestURI="viewAddress.action" pagesize="10"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
-                                        <td><display:column property="addressType <i class='fa fa-sort' />" title="Type" class="tb-font-black"
+                                        <td><display:column property="addressType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="addressLine1" title="Address Line 1 <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>

@@ -1,8 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<div class="row" style="margin-top:-15px;">
+<div class="row">
     <div class="col-lg-12">
-        <h1>Edit Vendor</h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-building"></i> Vendor Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"><a href="<s:url action='viewVendors' />"> Vendor List</a></li>
@@ -11,7 +15,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-7 col-lg-offset-2" style="margin-left: 21% !important;">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-edit"></i> Edit Vendor</h3>
@@ -22,43 +26,43 @@
                 <s:hidden name="vendor.createdTimeStamp" value="%{vendor.createdTimeStamp}" />
                 <s:hidden name="vendor.createdBy" value="%{vendor.createdBy}" />
                 <div class="form-group">
-                    <label for="vendor.vendorName" class="col-sm-2 control-label">Name</label>
+                    <label for="vendor.vendorName" class="col-lg-2 control-label" style="padding-top:0px;">Name</label>
 
-                    <div class="col-sm-10">
+                    <div class="col-lg-9">
                         <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Vendor Name"
                                      name="vendor.vendorName"></s:textfield>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="vendor.vendorCode" class="col-sm-2 control-label">Code</label>
+                    <label for="vendor.vendorCode" class="col-lg-2 control-label" style="padding-top:0px;">Code</label>
 
-                    <div class="col-sm-10">
+                    <div class="col-lg-9">
                         <s:textfield cssClass="form-control" id="vendor.vendorCode" placeholder="Vendor Code"
                                      name="vendor.vendorCode" maxLength="3" pattern="[A-Z]+" title="Must be letters only and CAPS."></s:textfield>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="vendor.vendorType" class="col-sm-2 control-label">Type</label>
+                    <label for="vendor.vendorType" class="col-lg-2 control-label" style="padding-top:0px;">Type</label>
 
-                    <div class="col-sm-10">
+                    <div class="col-lg-9">
                         <s:select cssClass="form-control" id="vendor.vendorType" list="vendorTypeList" listValue="value"
                                   listKey="key"
                                   name="vendor.vendorType"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="vendor.vendorClass" class="col-sm-2 control-label">Class Name</label>
+                    <label for="vendor.vendorClass" class="col-lg-2 control-label" style="padding-top:0px;">Class Name</label>
 
-                    <div class="col-sm-10">
+                    <div class="col-lg-9">
                         <s:select cssClass="form-control" id="vendor.vendorClass" list="vendorClassList" listKey="key"
                                   listValue="value"
                                   name="vendor.vendorClass"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="vendor.vendorStatus" class="col-sm-2 control-label">Status</label>
+                    <label for="vendor.vendorStatus" class="col-lg-2 control-label" style="padding-top:0px;">Status</label>
 
-                    <div class="col-sm-10">
+                    <div class="col-lg-9">
                         <s:select cssClass="form-control" id="vendor.vendorStatus" list="statusList"
                                   listKey="key" listValue="value"
                                   name="vendor.vendorStatus"/>
@@ -69,7 +73,7 @@
                 <div class="" style="float: right;">
                     <button class="btn btn-default" onclick="this.form.action='viewVendors'"/>
                     Cancel</button>
-                    <s:submit cssClass="btn btn-default btn-info" value="Save" type="submit"/>
+                    <s:submit cssClass="btn btn-primary" value="Save" type="submit"/>
                 </div>
                 </s:form>
             </div>

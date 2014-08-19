@@ -5,7 +5,11 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Vendor Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-building"></i> Vendor Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Vendor</li>
@@ -20,7 +24,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-2">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
@@ -33,50 +37,49 @@
                         <s:hidden value="%{address.addressId}" name="address.addressId" />
                         <div class="form-group">
 
-                            <label for="address.addressType" class="col-sm-2 control-label" style="width:25%;">Address
-                                Type</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Address Type</label>
 
-                            <div class="col-sm-10" style="width:70%;">
+                            <div class="col-lg-10">
                                 <s:select name="address.addressType" list="addressTypeList" listValue="value"
                                           listKey="key" cssClass="form-control" id="address.addressType"
                                           emptyOption="true"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Address Line 1</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Address Line 1</label>
 
-                            <div class="col-sm-10" style="width:70%;">
+                            <div class="col-lg-10">
                                 <s:textfield name="address.addressLine1" id="address.addressLine1"
                                              cssClass="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Address Line 2</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Address Line 2</label>
 
-                            <div class="col-sm-10" style="width:70%;">
+                            <div class="col-lg-10">
                                 <s:textfield name="address.addressLine2" id="address.addressLine2"
                                              cssClass="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">City</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">City</label>
 
-                            <div class="col-sm-10" style="width:70%;">
+                            <div class="col-lg-10">
                                 <s:textfield name="address.city" id="address.city" cssClass="form-control"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">State</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Region</label>
 
-                            <div class="col-sm-10" style="width:70%;">
+                            <div class="col-lg-10">
                                 <s:textfield name="address.state" id="address.state" cssClass="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" style="width:25%;">Zip Code</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Zip Code</label>
 
-                            <div class="col-sm-10" style="width:70%;">
+                            <div class="col-lg-10">
                                 <s:textfield name="address.zip" id="address.zip" cssClass="form-control" pattern="[0-9]+"/>
                             </div>
                         </div>
@@ -84,17 +87,29 @@
                         <s:hidden name="vendorIdParam" id="vendorIdParam" value="%{vendorIdParam}"/>
                         <s:hidden name="address.createdTimeStamp" value="%{address.createdTimeStamp}" />
                         <s:hidden name="address.createdBy" value="%{address.createdBy}" />
-                        <div class=" pull-right">
+
+                        <%--<div class=" pull-right">
                             <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
                         </div>
-                    </s:form>
+                    </s:form>--%>
+
                 </div>
 
             </div>
+
+            <div class="panel-footer">
+                <div class="pull-right">
+                    <a href="viewTruckingAddress" class="btn btn-default" id ="groups-btn">Cancel</a>
+
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+            </div>
+            </s:form>
+
         </div>
     </div>
 
-    <div class="col-lg-2 col-lg-offset-2">
+    <%--<div class="col-lg-2 col-lg-offset-2">
         <div class="panel panel-primary">
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
@@ -104,5 +119,6 @@
                 <li><a href="viewTrucks"><i class="fa fa-truck fa-fw"></i> Trucks</a></li>
             </ul>
         </div>
-    </div>
+    </div>--%>
+
 </div>

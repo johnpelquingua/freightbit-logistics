@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<div class="row" style="margin-top:-15px;">
+<div class="row">
     <div class="col-lg-12">
 
         <legend style="text-align: left;">
@@ -17,6 +17,15 @@
     </div>
 </div>
 
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
@@ -29,7 +38,7 @@
                     </button>
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddVendorPage'">
-                        <i class="fa fa-book"></i> New Vendor
+                        <i class="fa fa-building"></i> New Vendor
                     </button>
                 </span>
             </div>
@@ -57,7 +66,8 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
                                              title="Edit this vendor">
-                                            <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
+                                            <%--<img src="../includes/images/edit-user.png" class="icon-action circ-icon">--%>
+                                            <i class="fa fa-pencil"></i>
                                         </s:a>
 
                                         <s:url var="deleteVendorUrl" action="deleteVendor">
@@ -66,7 +76,8 @@
                                         <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
                                              title="Delete this Vendor"
                                              onclick="return confirm('Do you really want to delete?');">
-                                            <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
+                                            <%--<img src="../includes/images/remove-user.png" class="icon-action circ-icon">--%>
+                                            <i class="fa fa-trash-o"></i>
                                         </s:a>
 
                                         <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
@@ -74,7 +85,8 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
                                              title="View Vendor Info">
-                                            <img src="../includes/images/info-b.png" class="icon-action circ-icon">
+                                            <%--<img src="../includes/images/info-b.png" class="icon-action circ-icon">--%>
+                                            <i class="fa fa-info-circle"></i>
                                         </s:a>
                                     </display:column>
                                 </td>
@@ -93,7 +105,7 @@
                     </button>
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddVendorPage'">
-                        <i class="fa fa-book"></i> New Vendor
+                        <i class="fa fa-building"></i> New Vendor
                     </button>
                 </span>
             </div>

@@ -1,9 +1,13 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<div class="row" style="margin-top:-15px;">
+<div class="row">
     <div class="col-lg-12">
-        <h1>Vendor List Trucks</h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-building"></i> Vendor Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Vendor</li>
@@ -26,12 +30,19 @@
 </s:if>
 
 <div class="row">
-    <div class="col-lg-9" style="margin-left: 0% !important;">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-truck"></i> Trucks</h3>
-
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Trucks List</h3>
+                <span class="pull-right">
+                    <%--<a href="loadAddTrucksPage" class="icon-action-link" rel="tooltip" title="Add Driver">
+                        <img src="../includes/images/add-user.png" class="icon-action circ-icon">
+                    </a>--%>
+                    <button type="button" class="btn btn-primary" onclick="location.href='loadAddTrucksPage'">
+                        <i class="fa fa-truck"></i> New Truck
+                    </button>
+                </span>
             </div>
 
             <div class="panel-body">
@@ -63,7 +74,8 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editTruckUrl}" rel="tooltip"
                                              title="Edit this vendor">
-                                            <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
+                                            <%--<img src="../includes/images/edit-user.png" class="icon-action circ-icon">--%>
+                                            <i class="fa fa-pencil"></i>
                                         </s:a>
 
                                         <s:url var="deleteTruckUrl" action="deleteTrucks">
@@ -72,7 +84,8 @@
                                         <s:a class="icon-action-link" href="%{deleteTruckUrl}" rel="tooltip"
                                              title="Delete this Vendor"
                                              onclick="return confirm('Do you really want to delete?');">
-                                            <img src="../includes/images/remove-user.png" class="icon-action circ-icon">
+                                            <%--<img src="../includes/images/remove-user.png" class="icon-action circ-icon">--%>
+                                            <i class="fa fa-trash-o"></i>
                                         </s:a>
                                     </display:column>
                                 </td>
@@ -84,17 +97,20 @@
                 </div>
             </div>
             <div class="panel-footer">
-            <span class="pull-right"> <a href="loadAddTrucksPage" class="icon-action-link" rel="tooltip"
-                                         title="Add Vendor"><img
-                    src="../includes/images/add-user.png" class="icon-action circ-icon">
-            </a>
-            </span>
+                <span class="pull-right">
+                    <%--<a href="loadAddTrucksPage" class="icon-action-link" rel="tooltip" title="Add Driver">
+                        <img src="../includes/images/add-user.png" class="icon-action circ-icon">
+                    </a>--%>
+                    <button type="button" class="btn btn-primary" onclick="location.href='loadAddTrucksPage'">
+                        <i class="fa fa-truck"></i> New Truck
+                    </button>
+                </span>
             </div>
 
         </div>
     </div>
 
-    <div class="col-lg-3">
+    <%--<div class="col-lg-3">
         <div class="panel panel-primary">
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
@@ -104,5 +120,6 @@
                 <li class="active"><a href="viewTrucks"><i class="fa fa-truck fa-fw"></i> Trucks</a></li>
             </ul>
         </div>
-    </div>
+    </div>--%>
+
 </div>
