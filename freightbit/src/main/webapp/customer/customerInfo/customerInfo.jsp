@@ -30,7 +30,7 @@
 </s:if>
 
 <div class="row">
-    <div class="col-lg-12 " >
+    <div class="col-lg-12">
         <div class="panel panel-primary ">
 
             <div class="panel-heading">
@@ -47,14 +47,15 @@
 
                 <div class="row">
 
-                    <div class="col-lg-2" align="center">
-                        <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
+                    <div class="col-lg-6 col-lg-offset-2">
 
-                    </div>
-                    <div class="col-lg-8">
                         <div class="panel panel-info ">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-info-circle"></i> Details</h3>
+                            </div>
+
+                            <div align="center" style="margin-top: 10px;">
+                                <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
                             </div>
 
                             <table class="table table-user-information profile">
@@ -133,8 +134,10 @@
                                 </tr>
                                 </tbody>
                                 <s:set name="customerId" value="%{customer.customerId}" scope="session"/>
-                        </table>
+                                <%--<s:property value="%{customer.customerId}" />--%>
+                            </table>
                         </div>
+
                     </div>
 
                     <%--<div class="col-lg-3">
@@ -160,37 +163,36 @@
                         </div>
                     </div>--%>
 
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <div class="panel panel-info" >
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-lg-12" style="text-align: center;">
 
-                                            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                                            <a href="" class="btn btn-primary" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-info-circle fa-fw"></i> <br/>Profile</a>
-                                            <a href="viewAddress" class="btn btn-warning" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-home fa-fw"></i> <br/>Address</a>
-                                            <a href="viewCustomerContacts" class="btn btn-violet" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Contacts</a>
+                    <div class="col-lg-2 col-lg-offset-2">
+                        <div class="panel panel-info" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12" style="text-align: center;">
+
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                                        <a href="" class="btn btn-default active" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-info-circle fa-fw"></i> <br/>Profile</a>
+                                        <a href="viewAddress" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-home fa-fw"></i> <br/>Address</a>
+                                        <a href="viewCustomerContacts" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Contacts</a>
 
 
-                                            <a href="viewItem" class="btn btn-success" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list-ol fa-fw"></i> <br/>Items</a>
-                                            </sec:authorize>
+                                        <a href="viewItem" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list-ol fa-fw"></i> <br/>Items</a>
+                                        </sec:authorize>
 
-                                            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">
-                                            <a href="viewRates" class="btn btn-info" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-money fa-fw"></i> <br/>Rates</a>
-                                            </sec:authorize>
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">
+                                        <a href="viewRates" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-money fa-fw"></i> <br/>Rates</a>
+                                        </sec:authorize>
 
-                                            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                                            <a href="viewConsignees" class="btn btn-danger" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list fa-fw"></i> <br/>Consignee</a>
-                                            </sec:authorize>
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                                        <a href="viewConsignees" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list fa-fw"></i> <br/>Consignee</a>
+                                        </sec:authorize>
 
-                                        </div>
                                     </div>
-
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -198,6 +200,7 @@
                 </div>
 
             </div>
+
         </div>
     </div>
 

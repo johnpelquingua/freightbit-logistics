@@ -1066,6 +1066,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Contacts contactEntity = customerService.findContactById(contactCodeParam);
         Address addressEntity = customerService.findAddressById(addressIdParam);
         consignee = transformToFormBeanConsignee(addressEntity, contactEntity);
+        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"+ contactEntity.getReferenceId());
+        sessionAttributes.put("customerId", contactEntity.getReferenceId());
+
         return SUCCESS;
     }
 

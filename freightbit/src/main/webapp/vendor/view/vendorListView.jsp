@@ -3,7 +3,12 @@
 
 <div class="row" style="margin-top:-15px;">
     <div class="col-lg-12">
-        <h1>Vendor List</h1>
+
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-building"></i> Vendor Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Vendor</li>
