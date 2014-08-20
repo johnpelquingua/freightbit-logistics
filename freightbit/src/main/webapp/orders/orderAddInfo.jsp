@@ -26,13 +26,16 @@
 <div class="panel panel-primary">
 
 <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-info-circle"></i> Booking Information</h3>
+    <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Booking Information</h3>
+    <div class="btn-toolbar pull-right">
+        <a class="btn btn-primary" title="Edit Booking" ><i class="fa fa-edit"></i></a>
+    </div>
 </div>
 
 <div class="panel-body">
 
 <div class="row">
-    <div class="col-lg-8 col-lg-offset-2">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
@@ -109,9 +112,7 @@
     </div>
 
     <div class="col-lg-2">
-        <div class="btn-toolbar pull-right">
-            <a class="btn btn-primary btn-lg">Edit Booking</a>
-        </div>
+
     </div>
 
 </div>
@@ -369,7 +370,7 @@
                             <s:textfield cssClass="form-control step3"
                                          name="orderItem.weight"
                                          id="orderItem.weight"
-                                         required="true"
+
                             />
                         </div>
 
@@ -382,18 +383,18 @@
                                 <s:textfield cssClass="form-control step3"
                                           name="orderItem.volume"
                                           id="orderItem.volume"
-                                          required="true"
+                                          disabled="true"
                                 />
                             </s:if>
                             <s:else>
-                                <s:select cssClass="form-control step3"
+                                <s:select cssClass="form-control"
                                           name="orderItem.volume"
                                           id="orderItem_volume"
                                           list="#{orderItem_volume}"
                                           value="%{orderItem_volume}"
                                           style="display:none"
                                 />
-                                <s:textfield cssClass="form-control step3"
+                                <s:textfield cssClass="form-control"
                                              name="orderItem.volume"
                                              id="orderItem_volume_textfield"
                                              disabled="true"
@@ -407,7 +408,7 @@
 
                     <div class="form-group">
 
-                        <label class="col-lg-3 control-label" style="padding-top: 0px;">
+                        <%--<label class="col-lg-3 control-label" style="padding-top: 0px;">
                             Classification
                         </label>
 
@@ -417,6 +418,17 @@
                                          id="orderItem.classification"
                                          required="true"
                             />
+                        </div>--%>
+
+                        <label class="col-lg-3 control-label" style="padding-top: 0px;">
+                            Rate (Php)
+                        </label>
+                        <div class="col-lg-3" >
+                            <s:textfield cssClass="form-control step3"
+                                         id="orderItem.rate"
+                                         name="orderItem.rate"
+                                         required="true"
+                                    />
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
@@ -429,18 +441,18 @@
                                 <s:textfield cssClass="form-control step3"
                                              name="orderItem.description"
                                              id="orderItem.description"
-                                             required="true"
+
                                         />
                             </s:if>
                             <s:else>
-                                <s:select cssClass="form-control step3"
+                                <s:select cssClass="form-control"
                                           name="orderItem.description"
                                           id="orderItem_description"
                                           list="#{orderItem_description}"
                                           value="%{orderItem_description}"
                                           style="display:none"
                                         />
-                                <s:textfield cssClass="form-control step3"
+                                <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem_description_textfield"
                                              disabled="true"
@@ -455,14 +467,15 @@
                     <div class="form-group">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Rate (Php)
+                            Comments
                         </label>
                         <div class="col-lg-3" >
-                            <s:textfield cssClass="form-control step3"
-                                 id="orderItem.rate"
-                                 name="orderItem.rate"
-                                 required="true"
-                            />
+                            <s:textarea cssClass="form-control step3"
+                                        name="orderItem.remarks"
+                                        id="orderItem.remarks"
+                                        cssStyle="resize: none;"
+
+                                    />
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
@@ -474,7 +487,7 @@
                                 <s:textfield cssClass="form-control step3"
                                              name="orderItem.declaredValue"
                                              id="orderItem.declaredValue"
-                                             required="true"
+
                                         />
                             </s:if>
                             <s:else>
@@ -492,22 +505,6 @@
                                         />
                             </s:else>
 
-                        </div>
-
-                    </div>
-
-                    <div class="form-group" >
-
-                        <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Comments
-                        </label>
-                        <div class="col-lg-3" >
-                            <s:textarea cssClass="form-control step3"
-                                name="orderItem.remarks"
-                                id="orderItem.remarks"
-                                cssStyle="resize: none;"
-                                required="true"
-                            />
                         </div>
 
                     </div>
@@ -575,7 +572,7 @@
                             </span>
                             </s:else>
                             <th class="tb-font-black">Weight</th>
-                            <th class="tb-font-black">Class</th>
+                            <%--<th class="tb-font-black">Class</th>--%>
                             <th class="tb-font-black">Commodity</th>
                             <th class="tb-font-black">Value</th>
                             <th class="tb-font-black">Rate</th>
@@ -590,7 +587,7 @@
                                 <td class="tb-font-black"><s:property value="quantity"/></td>
                                 <td class="tb-font-black"><s:property value="nameSize"/></td>
                                 <td class="tb-font-black"><s:property value="weight"/></td>
-                                <td class="tb-font-black"><s:property value="classification"/></td>
+                                <%--<td class="tb-font-black"><s:property value="classification"/></td>--%>
                                 <td class="tb-font-black"><s:property value="description"/></td>
                                 <td class="tb-font-black"><s:property value="declaredValue"/></td>
                                 <td class="tb-font-black"><s:property value="rate"/></td>
@@ -641,11 +638,11 @@
     <div class="pull-right">
         <!-- Button trigger modal -->
 
-        <button class="btn btn-lg" data-toggle="modal" data-target="#cancelBooking">
+        <button class="btn" data-toggle="modal" data-target="#cancelBooking">
             Cancel
         </button>
 
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#saveBooking">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#saveBooking">
             Save Booking
         </button>
     </div>
@@ -689,7 +686,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary">Yes</button>
+                <%--<s:property value="order.orderId"/>--%>
+                <s:url var="deleteOrderUrl" action="deleteOrder">
+                    <s:param name="orderIdParam" value="order.orderId"></s:param>
+                </s:url>
+                <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip">
+                     <button type="button" class="btn btn-primary">Yes</button>
+                </s:a>
+
             </div>
         </div>
     </div>

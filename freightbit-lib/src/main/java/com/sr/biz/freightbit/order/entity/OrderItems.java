@@ -88,7 +88,7 @@ public class OrderItems implements java.io.Serializable {
         this.order = order;
     }*/
 
-    @Column(name = "orderId")
+    @Column(name = "orderId", nullable = false)
     public Integer getOrderId() {
         return orderId;
     }
@@ -107,7 +107,7 @@ public class OrderItems implements java.io.Serializable {
     }
 
 
-    @Column(name = "classification", nullable = false, length = 10)
+    @Column(name = "classification")
     public String getClassification() {
         return this.classification;
     }
@@ -117,7 +117,7 @@ public class OrderItems implements java.io.Serializable {
     }
 
 
-    @Column(name = "commodity", nullable = false, length = 100)
+    @Column(name = "commodity")
     public String getCommodity() {
         return this.commodity;
     }
@@ -127,7 +127,8 @@ public class OrderItems implements java.io.Serializable {
     }
 
 
-    @Column(name = "declaredValue", nullable = false, precision = 12, scale = 0)
+    /*@Column(name = "declaredValue", nullable = false, precision = 12, scale = 0)*/
+    @Column(name = "declaredValue")
     public Double getDeclaredValue() {
         return this.declaredValue;
     }
@@ -136,7 +137,7 @@ public class OrderItems implements java.io.Serializable {
         this.declaredValue = declaredValue;
     }
 
-    @Column(name = "weight", nullable = false, precision = 12, scale = 0)
+    @Column(name = "weight")
     public Double getWeight() {
         return weight;
     }
@@ -145,7 +146,7 @@ public class OrderItems implements java.io.Serializable {
         this.weight = weight;
     }
 
-    @Column(name = "comments", nullable = false)
+    @Column(name = "comments")
     public String getComments() {
         return this.comments;
     }
@@ -155,7 +156,7 @@ public class OrderItems implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createdTimestamp", nullable = false, length = 19)
+    @Column(name = "createdTimestamp")
     public Date getCreatedTimestamp() {
         return this.createdTimestamp;
     }
@@ -165,7 +166,7 @@ public class OrderItems implements java.io.Serializable {
     }
 
 
-    @Column(name = "createdBy", nullable = false, length = 10)
+    @Column(name = "createdBy")
     public String getCreatedBy() {
         return this.createdBy;
     }
@@ -175,7 +176,7 @@ public class OrderItems implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "modifiedTimestamp", nullable = false, length = 19)
+    @Column(name = "modifiedTimestamp")
     public Date getModifiedTimestamp() {
         return this.modifiedTimestamp;
     }
@@ -185,7 +186,7 @@ public class OrderItems implements java.io.Serializable {
     }
 
 
-    @Column(name = "modifiedBy", nullable = false, length = 10)
+    @Column(name = "modifiedBy")
     public String getModifiedBy() {
         return this.modifiedBy;
     }
@@ -194,7 +195,7 @@ public class OrderItems implements java.io.Serializable {
         this.modifiedBy = modifiedBy;
     }
 
-    @Column(name = "rate")
+    @Column(name = "rate" , nullable = false)
     public Float getRate() {
         return rate;
     }

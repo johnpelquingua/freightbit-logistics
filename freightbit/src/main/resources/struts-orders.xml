@@ -71,6 +71,11 @@
             <result name="success" type="tiles">orders.add-booking-info.tiles</result>
         </action>
 
+        <action name="addedItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="addedItemsInTable">
+            <result name="success" type="tiles">orders.add-booking-info.tiles</result>
+        </action>
+
     </package>
 
     <package name="order" namespace="/orders" extends="json-default">
