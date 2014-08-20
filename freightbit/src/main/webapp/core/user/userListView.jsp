@@ -30,7 +30,18 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> User List</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> User List
+                </h3>
+                <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking"
+                            onclick="location.href='loadSearchUserPage'">
+                        <i class="fa fa-search"></i> Search User
+                    </button>
+                    <button type="button" class="btn btn-primary new-booking"
+                            onclick="location.href='loadAddUserPage'">
+                        <i class="fa fa-male"></i> New User
+                    </button>
+                </span>
             </div>
 
             <div class="panel-body">
@@ -54,23 +65,19 @@
                                         <s:url var="loadEditUserUrl" action="loadEditUserPage">
                                             <s:param name="userNameParam" value="#attr.user.userName"></s:param>
                                         </s:url>
-                                        <s:a href="%{loadEditUserUrl}" class="icon-action-link" rel="tooltip"
-                                             title="Edit this user"><img src="../includes/images/edit-user.png"
-                                                                         class="icon-action circ-icon"> </s:a>
+                                        <s:a href="%{loadEditUserUrl}" class="icon-action-link" rel="tooltip" title="Edit this user">
+                                        <!-- <img src="../includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>--><i class="fa fa-pencil"></i>
                                         <s:url var="deleteUserUrl" action="deleteUser">
                                             <s:param name="userNameParam" value="#attr.user.userName"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{deleteUserUrl}" rel="tooltip"
-                                             title="Delete this user"
-                                             onclick="return confirm('Do you really want to delete?');"><img
-                                                src="../includes/images/remove-user.png"
-                                                class="icon-action circ-icon"> </s:a>
+                                        <s:a class="icon-action-link" href="%{deleteUserUrl}" rel="tooltip" title="Delete this user" onclick="return confirm('Do you really want to delete?');">
+                                        <!-- <img src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>--> <i class="fa fa-trash-o"></i>
                                         <s:url var="viewUserInfoUrl" action="viewUserInfo">
                                             <s:param name="userNameParam" value="#attr.user.userName"></s:param>
                                         </s:url>
-                                        <s:a href="%{viewUserInfoUrl}" class="icon-action-link" rel="tooltip"
-                                             title="View this user"><img src="../includes/images/info-b.png"
-                                                                         class="icon-action circ-icon"> </s:a>
+                                        <s:a href="%{viewUserInfoUrl}" class="icon-action-link" rel="tooltip" title="View this user">
+                                        <!-- <img src="../includes/images/info-b.png" class="icon-action circ-icon"> </s:a> -->
+                                        <i class="fa fa-info-circle"></i>
                                     </display:column>
                                 </td>
                             </display:table>
@@ -81,8 +88,14 @@
             </div>
             <div class="panel-footer">
                 <span class="pull-right">
-                    <a href="loadAddUserPage" class="icon-action-link" rel="tooltip" title="Add User"><img
-                            src="../includes/images/add-user.png" class="icon-action circ-icon"> </a>
+                    <button type="button" class="btn btn-success new-booking"
+                            onclick="location.href='loadSearchUserPage'">
+                        <i class="fa fa-search"></i> Search User
+                    </button>
+                    <button type="button" class="btn btn-primary new-booking"
+                            onclick="location.href='loadAddUserPage'">
+                        <i class="fa fa-male"></i> New User
+                    </button>
                 </span>
             </div>
         </div>
