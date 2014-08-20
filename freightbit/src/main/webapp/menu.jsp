@@ -53,7 +53,7 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-user"></i> Accounts <b class="caret"></b></a>
         <ul class="dropdown-menu">
-            <li><a href="<s:url action='../user/viewUsers' />"> <i class="fa fa-caret-right fa-fw"></i> User</a></li> 
+            <li><a href="<s:url action='../user/loadSearchUserPage' />"> <i class="fa fa-caret-right fa-fw"></i> User</a></li>
             <li><a href="<s:url action='../user/viewGroups' />"> <i class="fa fa-caret-right fa-fw"></i> Group</a></li>
            <!--  <li><a href="<s:url action='../user/viewPermissions' />"> <i class="fa fa-caret-right fa-fw"></i> Permission</a></li> -->
         </ul>

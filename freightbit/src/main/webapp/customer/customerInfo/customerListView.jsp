@@ -28,12 +28,10 @@
                             onclick="location.href='loadSearchCustomerPage'">
                         <i class="fa fa-search"></i> Search Customer
                     </button>
-                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddCustomerPage'">
                         <i class="fa fa-male"></i> New Customer
                     </button>
-                    </sec:authorize>
                 </span>
             </div>
             <div class="panel-body">
@@ -112,12 +110,10 @@
                             onclick="location.href='loadSearchCustomerPage'">
                         <i class="fa fa-search"></i> Search Customer
                     </button>
-                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddCustomerPage'">
                         <i class="fa fa-male"></i> New Customer
                     </button>
-                    </sec:authorize>
                 </span>
             </div>
         </div>
