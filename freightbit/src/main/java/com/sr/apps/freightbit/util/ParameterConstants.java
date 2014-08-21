@@ -7,6 +7,10 @@ public class ParameterConstants {
     public final static String STATUS = "STATUS";
 
     public final static String USER = "USER";
+    
+    public final static String CUSTOMERS = "CUSTOMERS";
+    
+    public final static String VENDORS = "VENDORS";
 
     public final static String SEARCH_CRITERIA = "SEARCH_CRITERIA";
 

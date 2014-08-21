@@ -12,4 +12,11 @@ public interface ParameterService {
     public List<Parameters> getParameterMap(String referenceTable, String referenceColumn);
 
     public List<Parameters> findParametersByProperty(Map<String, Object> params);
+
+	public void addParameter(Parameters param);
+
+	public void deleteParameter(Parameters param);
+
+	public String updateParameters(List<Parameters> paramList, String referenceTable,
+			String referenceColumn);
 }

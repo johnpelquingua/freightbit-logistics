@@ -2,6 +2,8 @@ package com.sr.biz.freightbit.common.dao.impl;
 
 import com.sr.biz.freightbit.common.dao.ParameterDao;
 import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.core.entity.User;
+
 import org.apache.log4j.Logger;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Query;
@@ -57,6 +59,58 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
             log.error("Finding parameter failed.", onfe);
             throw onfe;
         }
+    }
+    
+    @Override
+    public void addParameter(Parameters param) {
+        log.debug("adding a new Parameter");
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            Integer userId = (Integer) session.save(param);
+            log.debug("Add parameter successful");
+        } catch (RuntimeException re) {
+            log.error("Add parameter failed", re);
+            throw re;
+        }
+    }
+    
+    @Override
+    public void deleteParameter(Parameters param) {
+        log.debug("Removing parameter");
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            session.delete(param);
+            log.debug("Delete parameter successful");
+        } catch (RuntimeException re) {
+            log.error("Delete parameter failed", re);
+            throw re;
+        }
+
+    }
+    
+    @Override
+    public void deleteParameters(String referenceTable, String referenceColumn) {
+    	try {
+    		Session session = getSessionFactory().getCurrentSession();
+    		Query query = session.createQuery("Delete from Parameters where referenceTable = :referenceTable and referenceColumn = :referenceColumn");
+    		query.setParameter("referenceTable", referenceTable);
+    		query.setParameter("referenceColumn", referenceColumn);
+    	} catch (RuntimeException e) {
+    		log.error("Deleting parameters failed");
+    	}
+    }
+    
+    @Override
+    public void addParameters(List <Parameters> paramList) {
+    	try {
+    		Session session = getSessionFactory().getCurrentSession();
+    		for (Parameters param:paramList) {
+    			session.save(param);
+    		}
+    		log.debug("Add parameters successful");
+    	} catch (RuntimeException e) {
+    		log.error("Deleting parameters failed");
+    	}
     }
 
 }

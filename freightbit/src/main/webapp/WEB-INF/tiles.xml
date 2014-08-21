@@ -176,6 +176,12 @@
         <put-attribute name="title" value="Permission Page"/>
         <put-attribute name="body" value="/core/permissions/permissionsEdit.jsp"/>
     </definition>
+    <definition name="core.generalSettings.tiles" extends="baseLayout">
+        <put-attribute name="title" value="General Settings"/>
+        <put-attribute name="body" value="/core/settings/generalSettings.jsp"/>
+    </definition>
+    
+    
 
     <!-- CORE module tiles End-->
 

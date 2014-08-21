@@ -4,7 +4,7 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <package name="user" namespace="/user" extends="struts-default">
+    <package name="user" namespace="/core" extends="struts-default">
 
         <result-types>
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
@@ -162,6 +162,16 @@
         <action name="editPermission" class="com.sr.apps.freightbit.core.action.PermissionAction"
                 method="editPermission">
             <result name="success" type="redirectAction">loadEditPermissions</result>
+        </action>
+        
+        <action name="loadGeneralSettings" class="com.sr.apps.freightbit.core.action.GeneralSettingsAction"
+                method="loadGeneralSettings">
+            <result name="success" type="tiles">core.generalSettings.tiles</result>
+        </action>
+        
+        <action name="editGeneralSettings" class="com.sr.apps.freightbit.core.action.GeneralSettingsAction"
+                method="editGeneralSettings">
+            <result name="success" type="tiles">core.generalSettings.tiles</result>
         </action>
 
     </package>

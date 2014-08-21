@@ -23,13 +23,39 @@ public class ParameterServiceImpl implements ParameterService {
         return parameterMap;
     }
 
+    @Override
     public List<Parameters> getParameterMap(String referenceTable, String referenceColumn) {
         List<Parameters> parameterMap = parameterDao.findParameterMapByRefColumn(referenceTable, referenceColumn);
         return parameterMap;
     }
 
+    @Override
     public List<Parameters> findParametersByProperty(Map<String, Object> params) {
         return parameterDao.findParametersByProperty(params);
     }
 
+    @Override
+    public void addParameter(Parameters param) {
+         parameterDao.addParameter(param);
+    }
+    
+    @Override
+    public void deleteParameter(Parameters param) {
+    	 parameterDao.deleteParameter(param);
+    }
+    
+    @Override
+    public String updateParameters(List <Parameters> paramList, String referenceTable, String referenceColumn) {
+    	try {
+    		//Get current parameters and delete them
+    		parameterDao.deleteParameters(referenceTable, referenceColumn);
+    		parameterDao.addParameters(paramList);
+    		return "";
+    	} catch (Exception e) {
+    		if (paramList != null && paramList.size() > 0)
+    			return paramList.get(0).getReferenceColumn();
+    		else
+    			return "ERROR";
+    	}
+    }
 }

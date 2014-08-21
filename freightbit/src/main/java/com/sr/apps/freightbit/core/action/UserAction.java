@@ -94,6 +94,8 @@ public class UserAction extends ActionSupport implements Preparable {
     		user.setCompanyName(client.getClientName());
     	else
     		user.setCompanyName("");
+    	user.setUserName("");
+    	user.setPassword("");
     	populatePermissionsList(-1);
         return SUCCESS;
     }
