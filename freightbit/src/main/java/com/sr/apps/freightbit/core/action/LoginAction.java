@@ -41,6 +41,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
         User userEntity = userService.findUserByUserName(username);
         if (userEntity != null) {
+        	userService.updateLastVisitDate(userEntity);
             sessionAttributes.put("clientId", userEntity.getClient().getClientId());
             sessionAttributes.put("user", userEntity);
             sessionAttributes.put("loggedinUser", userEntity.getFirstName() + " " + userEntity.getLastName());
