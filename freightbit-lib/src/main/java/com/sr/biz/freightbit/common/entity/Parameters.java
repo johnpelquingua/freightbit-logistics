@@ -95,7 +95,7 @@ public class Parameters implements java.io.Serializable {
     }
 
 
-    @Column(name = "key", length = 50)
+    @Column(name = "[key]", length = 50)
     public String getKey() {
         return this.key;
     }
@@ -105,7 +105,7 @@ public class Parameters implements java.io.Serializable {
     }
 
 
-    @Column(name = "value", length = 50)
+    @Column(name = "[value]", length = 50)
     public String getValue() {
         return this.value;
     }
@@ -134,8 +134,7 @@ public class Parameters implements java.io.Serializable {
         this.notes = notes;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createdTimestamp", nullable = false, length = 19)
+    @Column(name = "createdTimestamp")
     public Date getCreatedTimestamp() {
         return this.createdTimestamp;
     }
@@ -154,8 +153,7 @@ public class Parameters implements java.io.Serializable {
         this.createdBy = createdBy;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "modifiedTimestamp", nullable = false, length = 19)
+    @Column(name = "modifiedTimestamp")
     public Date getModifiedTimestamp() {
         return this.modifiedTimestamp;
     }

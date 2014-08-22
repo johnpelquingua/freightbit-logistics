@@ -339,7 +339,8 @@ public class UserAction extends ActionSupport implements Preparable {
         }
 
         entity.setUsername(formBean.getUserName());
-        //entity.setPassword(formBean.getPassword());
+        if(StringUtils.isNotBlank(formBean.getPassword()))
+        	entity.setPassword(formBean.getPassword());
         
         entity.setTitle(formBean.getTitle());
         entity.setEmail(formBean.getEmailAddress());

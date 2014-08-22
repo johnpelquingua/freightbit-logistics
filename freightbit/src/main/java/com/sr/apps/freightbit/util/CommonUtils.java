@@ -18,5 +18,11 @@ public class CommonUtils {
         User user = (User) sessionAttributes.get("user");
         return user;
     }
+    
+    public Integer getClientId() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer clientId = (Integer) sessionAttributes.get("clientId");
+        return clientId;
+    }
 
 }

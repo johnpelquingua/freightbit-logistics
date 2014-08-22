@@ -48,8 +48,12 @@ public class ParameterServiceImpl implements ParameterService {
     public String updateParameters(List <Parameters> paramList, String referenceTable, String referenceColumn) {
     	try {
     		//Get current parameters and delete them
-    		parameterDao.deleteParameters(referenceTable, referenceColumn);
-    		parameterDao.addParameters(paramList);
+    		//parameterDao.deleteParameters(referenceTable, referenceColumn);
+    		if (paramList != null && paramList.size() > 0)
+    			parameterDao.addParameters(paramList);
+/*    		for (Parameters param : paramList) {
+    			parameterDao.addParameter(param);
+    		}*/
     		return "";
     	} catch (Exception e) {
     		if (paramList != null && paramList.size() > 0)
@@ -58,4 +62,5 @@ public class ParameterServiceImpl implements ParameterService {
     			return "ERROR";
     	}
     }
+
 }

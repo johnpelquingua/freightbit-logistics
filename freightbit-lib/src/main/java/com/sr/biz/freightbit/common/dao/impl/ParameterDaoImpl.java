@@ -66,7 +66,7 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
         log.debug("adding a new Parameter");
         try {
             Session session = getSessionFactory().getCurrentSession();
-            Integer userId = (Integer) session.save(param);
+            Integer paramId = (Integer) session.save(param);
             log.debug("Add parameter successful");
         } catch (RuntimeException re) {
             log.error("Add parameter failed", re);
@@ -109,7 +109,7 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
     		}
     		log.debug("Add parameters successful");
     	} catch (RuntimeException e) {
-    		log.error("Deleting parameters failed");
+    		log.error("Adding parameters failed");
     	}
     }
 
