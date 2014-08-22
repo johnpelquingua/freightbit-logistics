@@ -118,8 +118,8 @@
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.contactNumber" id="uContactNumber"
-                                         cssClass="form-control" placeholder="Contact Number" maxLength="11" 
-                                     	 pattern="\d{7,11}" title="Contact Number should not contain special characters and/or letters."/>
+                                         cssClass="form-control" placeholder="Contact Number" maxLength="14" 
+                                     	 pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                         </div>
                     </div>
 
