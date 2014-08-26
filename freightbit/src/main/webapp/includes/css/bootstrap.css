@@ -195,6 +195,7 @@ input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 
+
 fieldset {
     padding: .35em .625em .75em;
     margin: 0 2px;
@@ -2131,14 +2132,16 @@ output {
 .form-control::-webkit-input-placeholder {
     color: #999;
 }
-
+ .form-control[readonly],
 .form-control[disabled],
-.form-control[readonly],
-fieldset[disabled] .form-control {
+fieldset[disabled].form-control{
     cursor: not-allowed;
     background-color: #eee;
     opacity: 1;
 }
+
+
+
 
 textarea.form-control {
     height: auto;

@@ -80,7 +80,7 @@
             <div class="panel-footer">
                 <div class="pull-right">
                     <a href="viewRates" class="btn btn-default" id ="groups-btn">Cancel</a>
-                    <s:submit type="submit" value="Save" cssClass="btn btn-primary"/>
+                    <s:submit type="submit" value="Save" cssClass="btn btn-primary" id="strut" disabled="true"/>
                 </div>
             </div>
             </s:form>
@@ -145,6 +145,27 @@
 
     select2.onchange = function() {
     preventDuplicatePort.call(this, select1, this.selectedIndex);
+    };
+
+
+    function validateRate(){
+        var ratesField = document.getElementById('rates.rate');
+        var Xrate = document.getElementById('rates.rate').value;
+        var sa = document.getElementById('strut');
+            if (Xrate == "" || null){
+            alert("Rates Required");
+                ratesField.focus();
+                sa.disabled=true;
+            }
+           else{
+                sa.disabled=false;
+            }
+    }
+    var ratesField2 = document.getElementById('rates.rate');
+
+    ratesField2.onchange = function(){
+        validateRate();
+
     };
 
 </script>

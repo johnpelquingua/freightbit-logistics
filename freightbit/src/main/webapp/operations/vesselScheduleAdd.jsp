@@ -60,7 +60,7 @@
                             <label for="vesselSchedule.departureDate" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Date</label>
 
                             <div class="col-lg-9">
-                                <s:textfield cssClass="form-control" id="departureDate" name="vesselSchedule.departureDate" />
+                                <s:textfield cssClass="form-control" id="departureDate" name="vesselSchedule.departureDate" readonly="true" onfocus="this.blur()" />
                             </div>
 
                         </div>
@@ -80,7 +80,7 @@
                             <label for="vesselSchedule.arrivalDate" class="col-sm-2 control-label" style="padding-top:0px;">Arrival Date</label>
 
                             <div class="col-lg-9">
-                                <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" />
+                                <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true" onfocus="this.blur()"/>
                             </div>
 
                         </div>
@@ -142,6 +142,26 @@
     </div>
 </div><!-- /.row -->
 
+<!-- Cancel Booking Modal -->
+<div class="modal fade" id="cancelBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
+                <h4 class="modal-title" id="myModalLabel">Cancel Booking</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to cancel the booking?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='viewVesselSchedules'">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script type="text/javascript">
 
     var departureDate = $('#departureDate');
@@ -149,7 +169,7 @@
     // departure date
     departureDate.datepicker({
 
-        dateFormat: 'yy-dd-mm',
+        dateFormat: 'mm-dd-yy',
         minDate: 0,
 
         onClose: function(dateText, inst) {
@@ -174,7 +194,7 @@
     // arrival date
     arrivalDate.datepicker(
             {
-        dateFormat: 'yy-dd-mm',
+        dateFormat: 'mm-dd-yy',
         minDate: 0,
 
         onClose: function(dateText, inst) {
@@ -207,6 +227,24 @@
         timeFormat: 'h:mm TT'
 
     });
+
+    //Avoid later arrival date than departure date
+    function preventDateLate(){
+
+       var arriveDate = document.getElementById('arrivalDate').value;
+       var departDate = document.getElementById('departureDate').value;
+
+    if(arriveDate<departDate){
+        alert("Your Arrival date is later than your Departure date");
+    }
+
+        var Depdate = document.getElementById('departureDate');
+        Depdate.onchange = function(){
+          preventDateLate();
+        };
+
+    }
+
 
     // Avoid selecting duplicate ports
 

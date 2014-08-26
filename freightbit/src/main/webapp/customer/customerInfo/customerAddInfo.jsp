@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax  No.</label>
                             <div class="col-lg-9" >
-                                <s:textfield  required="true" name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11" pattern="[0-9]+"/>
+                                <s:textfield  name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11" pattern="[0-9]+"/>
                             </div>
                         </div>
                         <div class="form-group">
