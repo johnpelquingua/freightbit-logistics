@@ -6,6 +6,7 @@ import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -91,6 +92,19 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
             return results;
         } catch (Exception e) {
             log.error("Find failed", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public void updateOrderItem(OrderItems orderItems) {
+        log.debug("Updating orderItems thru Planning Module");
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            session.saveOrUpdate(orderItems);
+            log.debug("Update Successful");
+        } catch (Exception e) {
+            log.error("Update failed", e);
             throw e;
         }
     }

@@ -1,5 +1,6 @@
 package com.sr.apps.freightbit.order.action;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
@@ -735,6 +736,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setShipperContactId(formBean.getShipperContactId());
         entity.setConsigneeAddressId(formBean.getConsigneeAddressId());
         entity.setConsigneeContactId(formBean.getConsigneeContactId());
+        entity.setDeliveryDate(new Timestamp((formBean.getDeliveryDate()).getTime()));
+        entity.setPickupDate(new Timestamp((formBean.getPickupDate()).getTime()));
 
         return entity;
     }

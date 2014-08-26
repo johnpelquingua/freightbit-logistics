@@ -4,7 +4,7 @@
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-    <h1 class="page-header"><i class="fa fa-truck"></i> Inland Freight Planning</h1>
+    <h1 class="page-header"><i class="fa fa-truck"></i> Inland Freight Planning: Origin</h1>
 
     <div class="main-box">
         <div class="col-md-12">
@@ -15,14 +15,29 @@
                 </div>
                 <div class="panel-body">
 
-                    <form class="form-horizontal" role="form">
-
+                    <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsOrigin">
+                       <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
+                        <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
+                        <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
+                        <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
+                        <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
+                        <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
+                        <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
+                        <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
+                        <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
+                        <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
+                        <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
+                        <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
+                        <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
+                        <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
+                        <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
+                        <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
                         <div class="form-group">
 
                             <label for="booknum" class="col-sm-2 control-label">Booking Number:</label>
 
                             <div class="col-sm-10">
-                                <s:textfield cssClass="form-control" value="%{orderNoParam}" name="order.orderId" disabled="true"></s:textfield>
+                                <s:textfield cssClass="form-control" value="%{orderItem.orderId}" name="order.orderId" disabled="true"></s:textfield>
                             </div>
 
                         </div>
@@ -33,8 +48,8 @@
 
                             <div class="col-sm-10">
                                 <div style="width:90%;float:left;padding-right:10px;">
-                                    <s:select list="vendorTruckingList" name="operationsBean.vendorList"
-                                              id="vendorList"
+                                    <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
+                                              id="vendorListOrigin"
                                               listKey="vendorId" listValue="vendorCode" cssClass="form-control"
                                               emptyOption="true"
                                             ></s:select>
@@ -93,27 +108,17 @@
                             <label for="pickup" class="col-sm-2 control-label">Pickup Date:</label>
 
                             <div class="col-sm-10">
-                                <input type="text" class="from_date form-control step2" id="pickup" name="pickup" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;">
+                                <input type="text" class="from_date form-control step2" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;">
                             </div>
 
                         </div>
-
-                        <div class="form-group">
-
-                            <label for="dropoff" class="col-sm-2 control-label">Drop off Date:</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="from_date form-control step2" id="dropoff" name="dropoff" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;">
-                            </div>
-
-                        </div>
-
-                    </form>
 
                     <div style="float: right;">
-                        <button class="btn btn-default" onclick="location.href='inland-operation.html'">Save</button>
+                        <button class="btn btn-default" >Save</button>
                         <button class="btn btn-default" onclick="location.href='inland-operation.html'">Cancel</button>
                     </div>
+
+                    </s:form>
 
                 </div>
 
@@ -170,19 +175,20 @@
 
 
         //pick up date validation
-        pickup.datetimepicker({
+        pickup.datepicker({
 
             // on 5:00pm
-            timeFormat: 'h:mm TT',
+//            timeFormat: 'h:mm TT',
+            dateFormat: 'yy-mm-dd',
             minDate: 0,
             onClose: function(dateText, inst) {
 
                 if (dropoff.val() != '') {
-                    var testStartDate = pickup.datetimepicker('getDate');
-                    var testEndDate = dropoff.datetimepicker('getDate');
+                    var testStartDate = pickup.datepicker('getDate');
+                    var testEndDate = dropoff.datepicker('getDate');
 
                     if (testStartDate > testEndDate)
-                        dropoff.datetimepicker('setDate', testStartDate);
+                        dropoff.datepicker('setDate', testStartDate);
 
                 }
 
@@ -226,8 +232,8 @@
         });
 
         $(document).ready(function() {
-            $('#vendorList').change(function(event) {
-                var vendorId = $("#vendorList").val();
+            $('#vendorListOrigin').change(function(event) {
+                var vendorId = $("#vendorListOrigin").val();
 
                 $.getJSON('listVendorDriverAndTrucks', {
                             vendorId : vendorId

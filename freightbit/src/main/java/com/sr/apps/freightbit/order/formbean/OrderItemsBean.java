@@ -20,6 +20,9 @@ public class OrderItemsBean {
     private String nameSize;
     private String status;
     private Float volume;
+    private Integer clientId;
+    private String commmodity;
+    private String comments;
 
     public OrderItemsBean(){
 
@@ -42,6 +45,30 @@ public class OrderItemsBean {
         this.nameSize = nameSize;
         this.status = status;
         this.volume = volume;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getCommmodity() {
+        return commmodity;
+    }
+
+    public void setCommmodity(String commmodity) {
+        this.commmodity = commmodity;
+    }
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 
     public Float getRate() {

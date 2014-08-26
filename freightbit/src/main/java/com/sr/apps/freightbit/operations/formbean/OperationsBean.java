@@ -1,5 +1,7 @@
 package com.sr.apps.freightbit.operations.formbean;
 
+import java.util.Date;
+
 /**
  * Created by Clarence C. Victoria on 8/5/14.
  */
@@ -8,10 +10,142 @@ public class OperationsBean {
     private Integer orderItemParam;
     private String nameSizeParam;
     private Integer vendorList;
+    private Integer vendorListOrigin;
+    private Integer vendorListDestination;
     private Integer orderId;
     private String vendorCode;
-    private String driverCode;
-    private String truckCode;
+    private String trucksList;
+    private String driverList;
+    private String pickupDate;
+    private String deliveryDate;
+    private Integer orderItemId;
+
+    private Integer clientId;
+    private String nameSize;
+    private Integer quantity;
+    private String classification;
+    private String commodity;
+    private Double declaredValue;
+    private String comments;
+    private Float rate;
+    private Date createdTimestamp;
+    private String createdBy;
+    private String modifiedBy;
+    private Date modifiedTimestamp;
+    private String status;
+    private Double weight;
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(Date createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public Date getModifiedTimestamp() {
+        return modifiedTimestamp;
+    }
+
+    public void setModifiedTimestamp(Date modifiedTimestamp) {
+        this.modifiedTimestamp = modifiedTimestamp;
+    }
+
+    public Float getRate() {
+        return rate;
+    }
+
+    public void setRate(Float rate) {
+        this.rate = rate;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getClassification() {
+        return classification;
+    }
+
+    public void setClassification(String classification) {
+        this.classification = classification;
+    }
+
+    public String getCommodity() {
+        return commodity;
+    }
+
+    public void setCommodity(String commodity) {
+        this.commodity = commodity;
+    }
+
+    public Double getDeclaredValue() {
+        return declaredValue;
+    }
+
+    public void setDeclaredValue(Double declaredValue) {
+        this.declaredValue = declaredValue;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getNameSize() {
+        return nameSize;
+    }
+
+    public void setNameSize(String nameSize) {
+        this.nameSize = nameSize;
+    }
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
+    }
 
     public Integer getVendorList() {
         return vendorList;
@@ -19,6 +153,22 @@ public class OperationsBean {
 
     public void setVendorList(Integer vendorList) {
         this.vendorList = vendorList;
+    }
+
+    public Integer getVendorListOrigin() {
+        return vendorListOrigin;
+    }
+
+    public void setVendorListOrigin(Integer vendorListOrigin) {
+        this.vendorListOrigin = vendorListOrigin;
+    }
+
+    public Integer getVendorListDestination() {
+        return vendorListDestination;
+    }
+
+    public void setVendorListDestination(Integer vendorListDestination) {
+        this.vendorListDestination = vendorListDestination;
     }
 
     public String getNameSizeParam() {
@@ -53,19 +203,43 @@ public class OperationsBean {
         this.vendorCode = vendorCode;
     }
 
-    public String getDriverCode() {
-        return driverCode;
+    public String getTrucksList() {
+        return trucksList;
     }
 
-    public void setDriverCode(String driverCode) {
-        this.driverCode = driverCode;
+    public void setTrucksList(String trucksList) {
+        this.trucksList = trucksList;
     }
 
-    public String getTruckCode() {
-        return truckCode;
+    public String getDriverList() {
+        return driverList;
     }
 
-    public void setTruckCode(String truckCode) {
-        this.truckCode = truckCode;
+    public void setDriverList(String driverList) {
+        this.driverList = driverList;
+    }
+
+    public String getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(String deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public String getPickupDate() {
+        return pickupDate;
+    }
+
+    public void setPickupDate(String pickupDate) {
+        this.pickupDate = pickupDate;
+    }
+
+    public Integer getOrderItemId() {
+        return orderItemId;
+    }
+
+    public void setOrderItemId(Integer orderItemId) {
+        this.orderItemId = orderItemId;
     }
 }

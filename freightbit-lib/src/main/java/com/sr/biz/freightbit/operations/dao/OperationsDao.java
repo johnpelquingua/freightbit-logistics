@@ -21,4 +21,6 @@ public interface OperationsDao {
 
     public List<VesselSchedules> findAllVesselSchedule();
 
+    public void updateOrderItem(OrderItems orderItems);
+
 }

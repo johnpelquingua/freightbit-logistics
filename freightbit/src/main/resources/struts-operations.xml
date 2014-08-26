@@ -95,7 +95,22 @@
         </action>
 
         <action name="viewInlandFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
-            <result name="success" type="tiles">operations.inlandFreightPlanning.tiles</result>
+            <result name="PLANNING2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+            <result name="PLANNING3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+        </action>
+
+        <action name="editOrderItemsOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsOrigin">
+            <result name="success" type="redirect">updateCompleteInlandPlanning</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+        </action>
+
+        <action name="editOrderItemsDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsDestination">
+            <result name="success" type="redirect">updateCompleteInlandPlanning</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+        </action>
+
+        <action name="updateCompleteInlandPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="updateCompleteInlandPlanning">
+            <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
         </action>
 
         <action name="viewSeaFreightList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
@@ -118,6 +133,11 @@
             <result name="success" type="tiles">operations.seaFreightPlanning.tiles</result>
         </action>
         <!--Operations ends here-->
+
+        <action name="checkStatus" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkStatus">
+            <result name="planning2" type="tiles">operations.seaFreightPlanning.tiles</result>
+            <result name="planning3" type="tiles">operations.seaFreightPlanning.tiles</result>
+        </action>
     </package>
 
     <package name="operation" namespace="/operations" extends="json-default">
