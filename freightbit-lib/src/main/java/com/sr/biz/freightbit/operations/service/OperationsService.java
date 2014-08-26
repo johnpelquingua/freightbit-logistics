@@ -21,4 +21,6 @@ public interface OperationsService {
 
     public List<VesselSchedules> findAllVesselSchedule();
 
+    public void updateOrderItem (OrderItems orderItems);
+
 }

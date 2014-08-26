@@ -44,4 +44,9 @@ public class OperationsServiceImpl implements OperationsService{
         return operationsDao.findAllVesselSchedule();
     }
 
+    @Override
+    public void updateOrderItem (OrderItems orderItems) {
+        operationsDao.updateOrderItem(orderItems);
+    }
+
 }

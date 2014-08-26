@@ -60,6 +60,44 @@ public class OperationsAction extends ActionSupport implements Preparable {
         vendorTruckingList = vendorService.findVendorsByCriteria("vendorType", "TRUCKING", 1);
     }
 
+    public String updateCompleteInlandPlanning() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
+
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderId);
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+        return SUCCESS;
+    }
+
+    public String editOrderItemsOrigin() {
+        try {
+            OrderItems entity = transformOrderItemToEntityBeanOrigin(operationsBean);
+            operationsService.updateOrderItem(entity);
+        } catch (Exception e) {
+            log.error("Update Orderitem failed", e);
+            return INPUT;
+        }
+
+        return SUCCESS;
+    }
+
+    public String editOrderItemsDestination() {
+        try {
+            OrderItems entity = transformOrderItemToEntityBeanDestination(operationsBean);
+            operationsService.updateOrderItem(entity);
+        } catch (Exception e) {
+            log.error("Update Orderitem failed", e);
+            return INPUT;
+        }
+
+        return SUCCESS;
+    }
+
     public String findVesselSchedule() {
 
         List<VesselSchedules> vesselSchedulesList = new ArrayList<VesselSchedules>();
@@ -83,7 +121,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String viewFreightPlanning(){
         OrderItems entity = operationsService.findOrderItemById(orderItemIdParam);
         orderItem = transformToOrderItemFormBean(entity);
-        return SUCCESS;
+        if ("PLANNING 2".equals(entity.getStatus())) {
+            return "PLANNING2";
+        } else {
+            return "PLANNING3";
+        }
+
     }
 
     public String viewFreightList() {
@@ -101,6 +144,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
         orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", orderIdParam);
 
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
@@ -136,12 +182,78 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public OrderItemsBean transformToOrderItemFormBean(OrderItems entity) {
-
         OrderItemsBean formBean = new OrderItemsBean();
         formBean.setNameSize(entity.getNameSize());
         formBean.setStatus(entity.getStatus());
         formBean.setOrderItemId(entity.getOrderItemId());
+        formBean.setClientId(entity.getClientId());
+        formBean.setNameSize(entity.getNameSize());
+        formBean.setOrderId(entity.getOrderId());
+        formBean.setQuantity(entity.getQuantity());
+        formBean.setClassification(entity.getClassification());
+        formBean.setCommmodity(entity.getCommodity());
+        formBean.setDeclaredValue(entity.getDeclaredValue());
+        formBean.setComments(entity.getComments());
+        formBean.setRate(entity.getRate());
+        formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setModifiedBy(entity.getModifiedBy());
+        formBean.setModifiedTimeStamp(entity.getModifiedTimestamp());
+        formBean.setStatus(entity.getStatus());
+        formBean.setWeight(entity.getWeight());
+        formBean.setVendorSea(entity.getVendorSea());
+        formBean.setVendorOrigin(entity.getVendorOrigin());
+        formBean.setFinalPickupDate(entity.getFinalPickupDate());
         return formBean;
+    }
+
+    public OrderItems transformOrderItemToEntityBeanOrigin (OperationsBean formBean) {
+        OrderItems entity = new OrderItems();
+        entity.setVendorOrigin(formBean.getVendorListOrigin().toString());
+        entity.setFinalPickupDate(formBean.getPickupDate());
+        entity.setOrderItemId(formBean.getOrderItemId());
+        entity.setClientId(formBean.getClientId());
+        entity.setNameSize(formBean.getNameSize());
+        entity.setOrderId(formBean.getOrderId());
+        entity.setQuantity(formBean.getQuantity());
+        entity.setClassification(formBean.getClassification());
+        entity.setCommodity(formBean.getCommodity());
+        entity.setDeclaredValue(formBean.getDeclaredValue());
+        entity.setComments(formBean.getComments());
+        entity.setRate(formBean.getRate());
+        entity.setCreatedBy(formBean.getCreatedBy());
+        entity.setModifiedBy(formBean.getModifiedBy());
+        entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
+        entity.setModifiedTimestamp(formBean.getModifiedTimestamp());
+        entity.setWeight(formBean.getWeight());
+        entity.setStatus("PLANNING 3");
+        return entity;
+    }
+
+    public OrderItems transformOrderItemToEntityBeanDestination (OperationsBean formBean) {
+        OrderItems entity = new OrderItems();
+        entity.setVendorDestination(formBean.getVendorListDestination().toString());
+        entity.setFinalDeliveryDate(formBean.getDeliveryDate());
+        entity.setOrderItemId(formBean.getOrderItemId());
+        entity.setClientId(formBean.getClientId());
+        entity.setNameSize(formBean.getNameSize());
+        entity.setOrderId(formBean.getOrderId());
+        entity.setQuantity(formBean.getQuantity());
+        entity.setClassification(formBean.getClassification());
+        entity.setCommodity(formBean.getCommodity());
+        entity.setDeclaredValue(formBean.getDeclaredValue());
+        entity.setComments(formBean.getComments());
+        entity.setRate(formBean.getRate());
+        entity.setCreatedBy(formBean.getCreatedBy());
+        entity.setModifiedBy(formBean.getModifiedBy());
+        entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
+        entity.setModifiedTimestamp(formBean.getModifiedTimestamp());
+        entity.setWeight(formBean.getWeight());
+        entity.setStatus(formBean.getStatus());
+        entity.setVendorOrigin(formBean.getVendorOrigin());
+        entity.setFinalPickupDate(formBean.getPickupDate());
+        entity.setVendorSea(formBean.getVendorSea());
+        return entity;
     }
 
     public VesselScheduleBean transformToFormBeanVesselSchedule(VesselSchedules entity) {
@@ -168,6 +280,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setVendorCode(formBean.getVendorCode());
         return  entity;
     }
+
+
 
     public Integer getOrderIdParam() {
         return orderIdParam;

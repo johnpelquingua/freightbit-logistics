@@ -2,6 +2,7 @@ package com.sr.apps.freightbit.order.formbean;
 
 import java.util.Date;
 import java.util.List;
+import java.sql.Timestamp;
 
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;

@@ -1,5 +1,6 @@
 package com.sr.apps.freightbit.order.action;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
@@ -138,7 +139,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
         }
 
-        dummyMsg = "Ajax action Triggered";
+        //dummyMsg = "Ajax action Triggered";
 
         return SUCCESS;
     }
@@ -417,8 +418,18 @@ public class OrderAction extends ActionSupport implements Preparable {
     public String deleteOrder() {
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
+
         if (orderEntity.getOrderStatus().equals("PENDING") || orderEntity.getOrderStatus().equals("CANCELLED") || orderEntity.getOrderStatus().equals("DISAPPROVED")) {
             orderService.deleteOrder(orderEntity);
+
+            List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(orderIdParam);
+            // delete Order Items that are under OrderId
+            for (OrderItems orderItemElem : orderItemsEntity) {
+
+                orderService.deleteItem(orderItemElem);
+
+            }
+
             return SUCCESS;
         } else {
             String column = getColumnFilter();
@@ -735,6 +746,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setShipperContactId(formBean.getShipperContactId());
         entity.setConsigneeAddressId(formBean.getConsigneeAddressId());
         entity.setConsigneeContactId(formBean.getConsigneeContactId());
+        entity.setDeliveryDate(new Timestamp((formBean.getDeliveryDate()).getTime()));
+        entity.setPickupDate(new Timestamp((formBean.getPickupDate()).getTime()));
 
         return entity;
     }

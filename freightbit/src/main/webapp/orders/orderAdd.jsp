@@ -576,7 +576,7 @@ $(document).ready(function() {
 
             if(sMode.options[i].value == "DOOR TO DOOR"){
                 sMode.options[i].disabled = false;
-                sMode.options[i].selected = true;
+                //sMode.options[i].selected = true;
             }else{
                 sMode.options[i].disabled = false;
 
@@ -588,7 +588,7 @@ $(document).ready(function() {
 
             if(sType.options[i].value == "SHIPPING AND TRUCKING"){
                 sType.options[i].disabled = false;
-                sType.options[i].selected = true;
+                //sType.options[i].selected = true;
             }else{
                 sType.options[i].disabled = false;
 
@@ -609,7 +609,7 @@ $(document).ready(function() {
                     sType.options[i].selected = true;
                 }else{
                     sType.options[i].disabled = false;
-
+0
                 }
             }
         }
@@ -653,7 +653,7 @@ $(document).ready(function() {
                 }else{
                     if(sMode.options[i].value == "DOOR TO DOOR"){
                         sMode.options[i].disabled = false;
-                        sMode.options[i].selected = true;
+                        //sMode.options[i].selected = true;
                     }else{
                         sMode.options[i].disabled = false;
 
@@ -664,7 +664,7 @@ $(document).ready(function() {
         }
     }
 
-    var sReq =  select = document.getElementById('order.serviceRequirement');
+    var sReq = select = document.getElementById('order.serviceRequirement');
     var sType = select = document.getElementById('order.freightType');
     var sMode = select = document.getElementById('order.modeOfService');
 

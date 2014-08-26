@@ -34,10 +34,18 @@ public class OrderItems implements java.io.Serializable {
     private String status;
     private Float volume;
 
+//    for planning
+    private String vendorOrigin;
+    private String vendorSea;
+    private String vendorDestination;
+    private String finalPickupDate;
+    private String finalDeliveryDate;
+//
+
     public OrderItems() {
     }
 
-    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double weight, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Float rate, String nameSize, String status, Float volume) {
+    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double weight, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Float rate, String nameSize, String status, Float volume, String vendorOrigin, String vendorSea, String vendorDestination, String finalPickupDate, String finalDeliveryDate) {
         this.orderItemId = orderItemId;
         this.clientId = clientId;
         this.orderId = orderId;
@@ -55,11 +63,16 @@ public class OrderItems implements java.io.Serializable {
         this.nameSize = nameSize;
         this.status = status;
         this.volume = volume;
+        this.vendorOrigin = vendorOrigin;
+        this.vendorSea = vendorSea;
+        this.vendorDestination = vendorDestination;
+        this.finalPickupDate = finalPickupDate;
+        this.finalDeliveryDate = finalDeliveryDate;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "orderItemId", unique = true, nullable = false)
+    @Column(name = "orderItemId", unique = true)
     public Integer getOrderItemId() {
         return this.orderItemId;
     }
@@ -69,7 +82,7 @@ public class OrderItems implements java.io.Serializable {
     }
 
 
-    @Column(name = "clientId", nullable = false)
+    @Column(name = "clientId")
     public Integer getClientId() {
         return this.clientId;
     }
@@ -88,7 +101,7 @@ public class OrderItems implements java.io.Serializable {
         this.order = order;
     }*/
 
-    @Column(name = "orderId", nullable = false)
+    @Column(name = "orderId")
     public Integer getOrderId() {
         return orderId;
     }
@@ -97,7 +110,7 @@ public class OrderItems implements java.io.Serializable {
         this.orderId = orderId;
     }
 
-    @Column(name = "quantity", nullable = false)
+    @Column(name = "quantity")
     public Integer getQuantity() {
         return this.quantity;
     }
@@ -195,7 +208,7 @@ public class OrderItems implements java.io.Serializable {
         this.modifiedBy = modifiedBy;
     }
 
-    @Column(name = "rate" , nullable = false)
+    @Column(name = "rate")
     public Float getRate() {
         return rate;
     }
@@ -204,7 +217,7 @@ public class OrderItems implements java.io.Serializable {
         this.rate = rate;
     }
 
-    @Column(name = "nameSize" , nullable = false)
+    @Column(name = "nameSize")
     public String getNameSize() {
         return nameSize;
     }
@@ -229,6 +242,51 @@ public class OrderItems implements java.io.Serializable {
 
     public void setVolume(Float volume) {
         this.volume = volume;
+    }
+
+    @Column(name = "vendorOrigin")
+    public String getVendorOrigin() {
+        return vendorOrigin;
+    }
+
+    public void setVendorOrigin(String vendorOrigin) {
+        this.vendorOrigin = vendorOrigin;
+    }
+
+    @Column(name = "vendorSea")
+    public String getVendorSea() {
+        return vendorSea;
+    }
+
+    public void setVendorSea(String vendorSea) {
+        this.vendorSea = vendorSea;
+    }
+
+    @Column(name = "vendorDestination")
+    public String getVendorDestination() {
+        return vendorDestination;
+    }
+
+    public void setVendorDestination(String vendorDestination) {
+        this.vendorDestination = vendorDestination;
+    }
+
+    @Column(name = "finalPickupDate")
+    public String getFinalPickupDate() {
+        return finalPickupDate;
+    }
+
+    public void setFinalPickupDate(String finalPickupDate) {
+        this.finalPickupDate = finalPickupDate;
+    }
+
+    @Column(name = "finalDeliveryDate")
+    public String getFinalDeliveryDate() {
+        return finalDeliveryDate;
+    }
+
+    public void setFinalDeliveryDate(String finalDeliveryDate) {
+        this.finalDeliveryDate = finalDeliveryDate;
     }
 }
 

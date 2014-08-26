@@ -20,6 +20,13 @@ public class OrderItemsBean {
     private String nameSize;
     private String status;
     private Float volume;
+    private Integer clientId;
+    private String commmodity;
+    private String comments;
+
+    private String vendorSea;
+    private String vendorOrigin;
+    private String finalPickupDate;
 
     public OrderItemsBean(){
 
@@ -42,6 +49,54 @@ public class OrderItemsBean {
         this.nameSize = nameSize;
         this.status = status;
         this.volume = volume;
+    }
+
+    public String getVendorSea() {
+        return vendorSea;
+    }
+
+    public void setVendorSea(String vendorSea) {
+        this.vendorSea = vendorSea;
+    }
+
+    public String getVendorOrigin() {
+        return vendorOrigin;
+    }
+
+    public void setVendorOrigin(String vendorOrigin) {
+        this.vendorOrigin = vendorOrigin;
+    }
+
+    public String getFinalPickupDate() {
+        return finalPickupDate;
+    }
+
+    public void setFinalPickupDate(String finalPickupDate) {
+        this.finalPickupDate = finalPickupDate;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getCommmodity() {
+        return commmodity;
+    }
+
+    public void setCommmodity(String commmodity) {
+        this.commmodity = commmodity;
+    }
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 
     public Float getRate() {
