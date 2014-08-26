@@ -367,7 +367,7 @@
                         </label>
 
                         <div class="col-lg-3" >
-                            <s:textfield cssClass="form-control step3"
+                            <s:textfield cssClass="form-control"
                                          name="orderItem.weight"
                                          id="orderItem.weight"
 
@@ -380,9 +380,14 @@
                         <div class="col-lg-3" >
 
                             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                                <s:textfield cssClass="form-control step3"
+                                <s:textfield cssClass="form-control"
                                           name="orderItem.volume"
                                           id="orderItem.volume"
+                                          style="display:none"
+                                />
+                                <s:textfield cssClass="form-control"
+                                          name="orderItem.volume"
+                                          id="orderItemVolume"
                                           disabled="true"
                                 />
                             </s:if>
@@ -398,7 +403,6 @@
                                              name="orderItem.volume"
                                              id="orderItem_volume_textfield"
                                              disabled="true"
-
                                 />
                             </s:else>
 
@@ -424,7 +428,7 @@
                             Rate (Php)
                         </label>
                         <div class="col-lg-3" >
-                            <s:textfield cssClass="form-control step3"
+                            <s:textfield cssClass="form-control"
                                          id="orderItem.rate"
                                          name="orderItem.rate"
                                          required="true"
@@ -438,7 +442,7 @@
                         <div class="col-lg-3" >
 
                             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                                <s:textfield cssClass="form-control step3"
+                                <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem.description"
 
@@ -470,7 +474,7 @@
                             Comments
                         </label>
                         <div class="col-lg-3" >
-                            <s:textarea cssClass="form-control step3"
+                            <s:textarea cssClass="form-control"
                                         name="orderItem.remarks"
                                         id="orderItem.remarks"
                                         cssStyle="resize: none;"
@@ -484,7 +488,7 @@
                         <div class="col-lg-3" >
 
                             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                                <s:textfield cssClass="form-control step3"
+                                <s:textfield cssClass="form-control"
                                              name="orderItem.declaredValue"
                                              id="orderItem.declaredValue"
 
@@ -498,7 +502,7 @@
                                           value="%{orderItem_declaredValue}"
                                           style="display:none"
                                         />
-                                <s:textfield cssClass="form-control step3"
+                                <s:textfield cssClass="form-control"
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValue_textfield"
                                              disabled="true"
@@ -557,7 +561,7 @@
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <table class="table table-striped table-hover table-bordered text-center tablesorter" id="customer-list">
+                    <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
                         <thead>
                         <tr class="header_center" style="background-color: #fff;">
                             <th class="tb-font-black">Quantity</th>
@@ -571,11 +575,11 @@
                                 <th class="tb-font-black">Name</th>
                             </span>
                             </s:else>
-                            <th class="tb-font-black">Weight</th>
-                            <%--<th class="tb-font-black">Class</th>--%>
+                            <th class="tb-font-black">Weight <br /> (kg) </th>
+                            <th class="tb-font-black">Volume <br /> (cm&#179;) </th>
                             <th class="tb-font-black">Commodity</th>
-                            <th class="tb-font-black">Value</th>
-                            <th class="tb-font-black">Rate</th>
+                            <th class="tb-font-black">Value <br /> (Php) </th>
+                            <th class="tb-font-black">Rate <br /> (Php) </th>
                             <th class="tb-font-black">Comment</th>
                             <th class="tb-font-black">Action</th>
                         </tr>
@@ -587,7 +591,7 @@
                                 <td class="tb-font-black"><s:property value="quantity"/></td>
                                 <td class="tb-font-black"><s:property value="nameSize"/></td>
                                 <td class="tb-font-black"><s:property value="weight"/></td>
-                                <%--<td class="tb-font-black"><s:property value="classification"/></td>--%>
+                                <td class="tb-font-black"><s:property value="volume"/></td>
                                 <td class="tb-font-black"><s:property value="description"/></td>
                                 <td class="tb-font-black"><s:property value="declaredValue"/></td>
                                 <td class="tb-font-black"><s:property value="rate"/></td>
@@ -610,6 +614,19 @@
                         </tbody>
                         <s:property  value="%{customerItemsId}"/>
                     </table>
+                </div>
+            </div>
+
+            <legend />
+
+            <div style="clear:both;">
+                <div class="col-lg-12" style="margin-top: 20px;">
+                    <div class="col-lg-2 col-lg-offset-7">
+                    Total Rate: Php
+                    </div>
+                    <div class="col-lg-2" id="totalRate">
+
+                    </div>
                 </div>
             </div>
 
@@ -706,7 +723,14 @@
         $('#itemName').change(function(event) {
 
             var item_Id = $("#itemName").val();
-            /*alert(item_Id);*/
+            //alert(item_Id);
+
+            if(item_Id == '') {
+                document.getElementById("orderItem_volume_textfield").value = '';
+                document.getElementById("orderItem_description_textfield").value = '';
+                document.getElementById("orderItem_declaredValue_textfield").value = '';
+            }
+
 
             $.getJSON('itemAction', {
                 itemId: item_Id
@@ -752,13 +776,78 @@
                     var totalvalue = itemValue * itemQuantity;
                     document.getElementById("orderItem_declaredValue_textfield").value = totalvalue;
 
-
                 });
 
             });
 
         });
 
+        // Adding of Rates and displaying it in Total Rates
+        var tbl = document.getElementById("orderItems");
+        if (tbl != null) {
+
+            var orderItemTotalRate = 0;
+
+            for (var i = 0; i < tbl.rows.length; i++){
+
+                var orderItemRate = parseInt(tbl.rows[i+1].cells[6].innerHTML);
+
+                orderItemTotalRate = orderItemTotalRate + orderItemRate;
+
+                document.getElementById("totalRate").innerHTML = orderItemTotalRate;
+
+            }
+
+        }
+
     });
+
+    // On dropdown change
+    function dynamicDropdown(select, index) {
+
+        var opt = select.options,
+                lent = opt.length;
+
+        while (lent--) {
+            opt[ lent ].disabled = false;
+        }
+
+        //alert(select.options[ index ].value);
+
+        if (select.options[ index ].value === '') {
+
+            document.getElementById("orderItem.volume").value = "";
+            document.getElementById("orderItemVolume").value = "";
+
+        }
+
+        if (select.options[ index ].value === '10 FOOTER') {
+
+            document.getElementById("orderItem.volume").value = "14";
+            document.getElementById("orderItemVolume").value = "14";
+
+        }
+
+        if (select.options[ index ].value === '20 FOOTER') {
+
+            document.getElementById("orderItem.volume").value = "28";
+            document.getElementById("orderItemVolume").value = "28";
+
+        }
+
+        if (select.options[ index ].value === '40 FOOTER') {
+
+            document.getElementById("orderItem.volume").value = "56";
+            document.getElementById("orderItemVolume").value = "56";
+
+        }
+
+    }
+
+    var sContainer = select = document.getElementById('orderItem.nameSize');
+
+    sContainer.onchange = function() {
+        dynamicDropdown.call(this, sContainer ,this.selectedIndex);
+    };
 
 </script>
