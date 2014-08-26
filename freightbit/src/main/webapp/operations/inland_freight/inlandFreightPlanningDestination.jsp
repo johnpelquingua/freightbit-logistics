@@ -39,6 +39,9 @@
                         <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
                         <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
                         <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
+                        <s:hidden name="operationsBean.pickupDate" value="%{orderItem.finalPickupDate}" />
+                        <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
+                        <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
                         <div class="form-group">
 
                             <label for="booknum" class="col-sm-2 control-label">Booking Number:</label>
@@ -211,19 +214,20 @@
     });
 
     // delivery date validation -jp
-    dropoff.datetimepicker({
+    dropoff.datepicker({
 
         // on 6:00pm
-        timeFormat: 'h:mm TT',
+//        timeFormat: 'h:mm TT',
+        dateFormat: 'yy-mm-dd',
         minDate: 0,
         onClose: function(dateText, inst) {
 
             if (pickup.val() != '') {
-                var testStartDate = pickup.datetimepicker('getDate');
-                var testEndDate = dropoff.datetimepicker('getDate');
+                var testStartDate = pickup.datepicker('getDate');
+                var testEndDate = dropoff.datepicker('getDate');
 
                 if (testStartDate > testEndDate)
-                    pickup.datetimepicker('setDate', testEndDate);
+                    pickup.datepicker('setDate', testEndDate);
 
             }
 
@@ -233,7 +237,7 @@
         },
 
         onSelect: function (selectedDateTime){
-            pickup.datetimepicker('option', 'maxDate', dropoff.datetimepicker('getDate') );
+            pickup.datepicker('option', 'maxDate', dropoff.datepicker('getDate') );
         }
 
     });

@@ -201,6 +201,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModifiedTimeStamp(entity.getModifiedTimestamp());
         formBean.setStatus(entity.getStatus());
         formBean.setWeight(entity.getWeight());
+        formBean.setVendorSea(entity.getVendorSea());
+        formBean.setVendorOrigin(entity.getVendorOrigin());
+        formBean.setFinalPickupDate(entity.getFinalPickupDate());
         return formBean;
     }
 
@@ -247,6 +250,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setModifiedTimestamp(formBean.getModifiedTimestamp());
         entity.setWeight(formBean.getWeight());
         entity.setStatus(formBean.getStatus());
+        entity.setVendorOrigin(formBean.getVendorOrigin());
+        entity.setFinalPickupDate(formBean.getPickupDate());
+        entity.setVendorSea(formBean.getVendorSea());
         return entity;
     }
 

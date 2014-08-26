@@ -35,6 +35,25 @@ public class OperationsBean {
     private String status;
     private Double weight;
 
+    private String vendorOrigin;
+    private String vendorSea;
+
+    public String getVendorOrigin() {
+        return vendorOrigin;
+    }
+
+    public void setVendorOrigin(String vendorOrigin) {
+        this.vendorOrigin = vendorOrigin;
+    }
+
+    public String getVendorSea() {
+        return vendorSea;
+    }
+
+    public void setVendorSea(String vendorSea) {
+        this.vendorSea = vendorSea;
+    }
+
     public Double getWeight() {
         return weight;
     }
@@ -219,20 +238,20 @@ public class OperationsBean {
         this.driverList = driverList;
     }
 
-    public String getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(String deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
     public String getPickupDate() {
         return pickupDate;
     }
 
     public void setPickupDate(String pickupDate) {
         this.pickupDate = pickupDate;
+    }
+
+    public String getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(String deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
     public Integer getOrderItemId() {

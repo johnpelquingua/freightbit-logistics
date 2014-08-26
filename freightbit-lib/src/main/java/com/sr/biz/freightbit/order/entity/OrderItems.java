@@ -45,13 +45,7 @@ public class OrderItems implements java.io.Serializable {
     public OrderItems() {
     }
 
-    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId,
-                      Integer quantity, String classification, String commodity,
-                      Double declaredValue, Double weight, String comments,
-                      Date createdTimestamp, String createdBy, Date modifiedTimestamp,
-                      String modifiedBy, Float rate, String nameSize, String status,
-                      Float volume, String vendorOrigin, String vendorSea,
-                      String vendorDestination, String finalPickupDate, String finalDeliveryDate) {
+    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double weight, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Float rate, String nameSize, String status, Float volume, String vendorOrigin, String vendorSea, String vendorDestination, String finalPickupDate, String finalDeliveryDate) {
         this.orderItemId = orderItemId;
         this.clientId = clientId;
         this.orderId = orderId;
