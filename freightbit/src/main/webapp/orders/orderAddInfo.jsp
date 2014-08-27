@@ -300,6 +300,7 @@
                                           list="containerQuantity"
                                           emptyOption="true"
                                           required="true"
+                                          onchange="fcl()"
                                         />
                             </span>
                             </s:if>
@@ -311,6 +312,7 @@
                                           list="itemQuantity"
                                           emptyOption="true"
                                           required="true"
+                                          onchange="lcl()"
                                         />
                             </span>
                             </s:else>
@@ -330,7 +332,6 @@
                         </label>
 
                         <div class="col-lg-3" >
-
 
                             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                                 <span>
@@ -495,7 +496,7 @@
                                         />
                             </s:if>
                             <s:else>
-                                <s:select cssClass="form-control step3"
+                                <s:select cssClass="form-control"
                                           name="orderItem.declaredValue"
                                           id="orderItem_declaredValue"
                                           list="#{orderItem_declaredValue}"
@@ -719,7 +720,7 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
-
+        // On click event of Item name change
         $('#itemName').change(function(event) {
 
             var item_Id = $("#itemName").val();
@@ -730,7 +731,6 @@
                 document.getElementById("orderItem_description_textfield").value = '';
                 document.getElementById("orderItem_declaredValue_textfield").value = '';
             }
-
 
             $.getJSON('itemAction', {
                 itemId: item_Id
@@ -749,37 +749,127 @@
 
                 select3.find('option').remove();
 
-                // populate item volume based on length X Width X Height
-                $.each(jsonResponse.shipperItemVolumeMap, function (key, value) {
+                var itemQuantity = $("#orderItem_quantity").val();
+                // Set quantity to 1 when Item name is selected first
+                if(itemQuantity == '') {
+                    document.getElementById("orderItem_quantity").value = 1;
+                }
 
-                    $('<option>').val(key).text(value).appendTo(select);
-                    var itemVolume = $("#orderItem_volume").val();
-                    document.getElementById("orderItem_volume_textfield").value = itemVolume;
+                    // populate item volume based on length X Width X Height
+                    $.each(jsonResponse.shipperItemVolumeMap, function (key, value) {
 
-                });
+                        $('<option>').val(key).text(value).appendTo(select);
 
-                // populate item description
-                $.each(jsonResponse.shipperItemCommodityMap, function (key, value) {
+                        var itemVolume = $("#orderItem_volume").val(); // get value of volume
+                        document.getElementById("orderItem_volume_textfield").value = itemVolume; // set volume of Item volume textfield
+                        var itemNum = $("#orderItem_quantity").val(); // get value of quantity
+                        var totalVolume = itemNum * itemVolume; // compute for total volume
+                        $("#orderItem_volume").html(""); // clear list of order Item volume dropdown
+                        var newOption = $('<option value="'+totalVolume+'">'+totalVolume+'</option>'); // append new value to the dropdown list
+                        $("#orderItem_volume").append(newOption);
+                        document.getElementById("orderItem_volume_textfield").value = totalVolume; // set total volume to the order item volume textfield
 
-                    $('<option>').val(key).text(value).appendTo(select2);
-                    var itemCommodity = $("#orderItem_description").val();
-                    document.getElementById("orderItem_description_textfield").value = itemCommodity;
+                    });
 
-                });
+                    // populate item description
+                    $.each(jsonResponse.shipperItemCommodityMap, function (key, value) {
 
-                // populate item declared value
-                $.each(jsonResponse.shipperItemValueMap, function (key, value) {
+                        $('<option>').val(key).text(value).appendTo(select2);
 
-                    $('<option>').val(key).text(value).appendTo(select3);
-                    var itemValue = $("#orderItem_declaredValue").val();
-                    var itemQuantity = $("#orderItem_quantity").val();
-                    var totalvalue = itemValue * itemQuantity;
-                    document.getElementById("orderItem_declaredValue_textfield").value = totalvalue;
+                        var itemCommodity = $("#orderItem_description").val();
+                        document.getElementById("orderItem_description_textfield").value = itemCommodity;
 
-                });
+                    });
 
+                    // populate item declared value
+                    $.each(jsonResponse.shipperItemValueMap, function (key, value) {
+
+                        $('<option>').val(key).text(value).appendTo(select3);
+
+                        var itemValue = $("#orderItem_declaredValue").val(); // get value of order item
+                        document.getElementById("orderItem_declaredValue_textfield").value = itemValue; // set value of order item to textfield
+                        var itemNum = $("#orderItem_quantity").val(); // get value of quantity
+                        var totalValue = itemNum * itemValue; // compute for total value
+                        $("#orderItem_declaredValue").html(""); // clear list of order Item value dropdown
+                        var newOption2 = $('<option value="'+totalValue+'">'+totalValue+'</option>'); // append new value to the dropdown list
+                        $("#orderItem_declaredValue").append(newOption2);
+                        document.getElementById("orderItem_declaredValue_textfield").value = totalValue; // set total value to the order item value textfield
+                    });
             });
 
+        });
+
+        // On click event of Item Quantity change
+        $('#orderItem_quantity').change(function(event) {
+
+            var item_Id = $("#itemName").val();
+            //alert(item_Id);
+
+            if(item_Id == '') {
+                document.getElementById("orderItem_volume_textfield").value = '';
+                document.getElementById("orderItem_description_textfield").value = '';
+                document.getElementById("orderItem_declaredValue_textfield").value = '';
+            }
+
+            $.getJSON('itemAction', {
+                itemId: item_Id
+            },
+
+                function (jsonResponse) {
+                    var select = $('#orderItem_volume');
+
+                    select.find('option').remove();
+
+                    var select2 = $('#orderItem_description');
+
+                    select2.find('option').remove();
+
+                    var select3 = $('#orderItem_declaredValue');
+
+                    select3.find('option').remove();
+
+                    // populate item volume based on length X Width X Height
+                    $.each(jsonResponse.shipperItemVolumeMap, function (key, value) {
+
+                        $('<option>').val(key).text(value).appendTo(select);
+
+                        var itemVolume = $("#orderItem_volume").val(); // get value of volume
+                        document.getElementById("orderItem_volume_textfield").value = itemVolume; // set volume of Item volume textfield
+                        var itemNum = $("#orderItem_quantity").val(); // get value of quantity
+                        var totalVolume = itemNum * itemVolume; // compute for total volume
+                        $("#orderItem_volume").html(""); // clear list of order Item volume dropdown
+                        var newOption = $('<option value="'+totalVolume+'">'+totalVolume+'</option>'); // append new value to the dropdown list
+                        $("#orderItem_volume").append(newOption);
+                        document.getElementById("orderItem_volume_textfield").value = totalVolume; // set total volume to the order item volume textfield
+
+                    });
+
+                    // populate item description
+                    $.each(jsonResponse.shipperItemCommodityMap, function (key, value) {
+
+                        $('<option>').val(key).text(value).appendTo(select2);
+
+                        var itemCommodity = $("#orderItem_description").val();
+                        document.getElementById("orderItem_description_textfield").value = itemCommodity;
+
+                    });
+
+                    // populate item declared value
+                    $.each(jsonResponse.shipperItemValueMap, function (key, value) {
+
+                        $('<option>').val(key).text(value).appendTo(select3);
+
+                        var itemValue = $("#orderItem_declaredValue").val(); // get value of order item
+                        document.getElementById("orderItem_declaredValue_textfield").value = itemValue; // set value of order item to textfield
+                        var itemNum = $("#orderItem_quantity").val(); // get value of quantity
+                        var totalValue = itemNum * itemValue; // compute for total value
+                        $("#orderItem_declaredValue").html(""); // clear list of order Item value dropdown
+                        var newOption2 = $('<option value="'+totalValue+'">'+totalValue+'</option>'); // append new value to the dropdown list
+                        $("#orderItem_declaredValue").append(newOption2);
+                        document.getElementById("orderItem_declaredValue_textfield").value = totalValue; // set total value to the order item value textfield
+                    });
+
+                });
         });
 
         // Adding of Rates and displaying it in Total Rates
@@ -795,11 +885,8 @@
                 orderItemTotalRate = orderItemTotalRate + orderItemRate;
 
                 document.getElementById("totalRate").innerHTML = orderItemTotalRate;
-
             }
-
         }
-
     });
 
     // On dropdown change
@@ -811,43 +898,67 @@
         while (lent--) {
             opt[ lent ].disabled = false;
         }
-
         //alert(select.options[ index ].value);
 
         if (select.options[ index ].value === '') {
 
             document.getElementById("orderItem.volume").value = "";
             document.getElementById("orderItemVolume").value = "";
-
         }
 
         if (select.options[ index ].value === '10 FOOTER') {
 
-            document.getElementById("orderItem.volume").value = "14";
-            document.getElementById("orderItemVolume").value = "14";
+            var containerQuantityNull = document.getElementById("orderItem.quantity").value;
 
+            if(containerQuantityNull == '') {
+                document.getElementById("orderItem.quantity").value = 1;
+                document.getElementById("orderItem.volume").value = "14";
+                document.getElementById("orderItemVolume").value = "14";
+            }else{
+                var containerQuantity = document.getElementById("orderItem.quantity").value;
+                var containerVolume = containerQuantity * 14;
+                document.getElementById("orderItem.volume").value = containerVolume;
+                document.getElementById("orderItemVolume").value = containerVolume;
+            }
         }
 
         if (select.options[ index ].value === '20 FOOTER') {
 
-            document.getElementById("orderItem.volume").value = "28";
-            document.getElementById("orderItemVolume").value = "28";
+            var containerQuantityNull = document.getElementById("orderItem.quantity").value;
 
+            if(containerQuantityNull == '') {
+                document.getElementById("orderItem.quantity").value = 1;
+                document.getElementById("orderItem.volume").value = "28";
+                document.getElementById("orderItemVolume").value = "28";
+            }else {
+                var containerQuantity = document.getElementById("orderItem.quantity").value;
+                var containerVolume = containerQuantity * 28;
+                document.getElementById("orderItem.volume").value = containerVolume;
+                document.getElementById("orderItemVolume").value = containerVolume;
+            }
         }
 
         if (select.options[ index ].value === '40 FOOTER') {
 
-            document.getElementById("orderItem.volume").value = "56";
-            document.getElementById("orderItemVolume").value = "56";
+            var containerQuantity = document.getElementById("orderItem.quantity").value;
 
+            if(containerQuantity == '') {
+                document.getElementById("orderItem.quantity").value = 1;
+                document.getElementById("orderItem.volume").value = "56";
+                document.getElementById("orderItemVolume").value = "56";
+            }else {
+                var containerQuantity = document.getElementById("orderItem.quantity").value;
+                var containerVolume = containerQuantity * 56;
+                document.getElementById("orderItem.volume").value = containerVolume;
+                document.getElementById("orderItemVolume").value = containerVolume;
+            }
         }
-
     }
 
     var sContainer = select = document.getElementById('orderItem.nameSize');
 
-    sContainer.onchange = function() {
-        dynamicDropdown.call(this, sContainer ,this.selectedIndex);
+    sContainer.onchange = function () {
+        dynamicDropdown.call(this, sContainer, this.selectedIndex);
     };
 
 </script>

@@ -47,8 +47,10 @@ public class OrderBean {
     private String vesselNumber;
     private Integer shipperAddressId;
     private Integer shipperContactId;
+    private String shipperContactName;
     private Integer consigneeContactId;
     private Integer consigneeAddressId;
+    private String consigneeName;
     private String accountRep;
     private Date createdTimestamp;
     private String createdBy;
@@ -417,5 +419,21 @@ public class OrderBean {
 
     public void setVendorCode(String vendorCode) {
         this.vendorCode = vendorCode;
+    }
+
+    public String getShipperContactName() {
+        return shipperContactName;
+    }
+
+    public void setShipperContactName(String shipperContactName) {
+        this.shipperContactName = shipperContactName;
+    }
+
+    public String getConsigneeName() {
+        return consigneeName;
+    }
+
+    public void setConsigneeName(String consigneeName) {
+        this.consigneeName = consigneeName;
     }
 }

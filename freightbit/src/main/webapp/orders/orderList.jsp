@@ -53,9 +53,9 @@
 
                             <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;" > </i></display:column></td>
-                            <td><display:column property="shipperContactId" title="Shipper <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="consigneeContactId" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="serviceType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>

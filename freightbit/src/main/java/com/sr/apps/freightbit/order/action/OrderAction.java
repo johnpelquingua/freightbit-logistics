@@ -579,12 +579,17 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setTrailerCode(order.getTrailerCode());
         orderBean.setDriverCode(order.getDriverCode());
         orderBean.setVesselNumber(order.getVesselNumber());
-        orderBean.setShipperCode(order.getShipperCode());
-        orderBean.setShipperAddressId(order.getShipperAddressId());
+        /*orderBean.setShipperCode(order.getShipperCode());
+        orderBean.setShipperAddressId(order.getShipperAddressId());*/
         orderBean.setShipperContactId(order.getShipperContactId());
-        orderBean.setConsigneeCode(order.getConsigneeCode());
-        orderBean.setConsigneeAddressId(order.getConsigneeAddressId());
+        // get Customer name
+        Contacts shipperContactName = customerService.findContactById(order.getShipperContactId());
+        orderBean.setShipperContactName(getFullName(shipperContactName.getLastName(), shipperContactName.getFirstName(), shipperContactName.getMiddleName()));
+        /*orderBean.setConsigneeCode(order.getConsigneeCode());
+        orderBean.setConsigneeAddressId(order.getConsigneeAddressId());*/
         orderBean.setConsigneeContactId(order.getConsigneeContactId());
+        Contacts consigneeContactName = customerService.findContactById(order.getConsigneeContactId());
+        orderBean.setConsigneeName(getFullName(consigneeContactName.getLastName(), consigneeContactName.getFirstName(), consigneeContactName.getMiddleName()));
         orderBean.setAccountRep(order.getAccountRep());
         orderBean.setCreatedTimestamp(order.getCreatedTimestamp());
         orderBean.setCreatedBy(order.getCreatedBy());
@@ -609,39 +614,53 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         orderBean.setPickupDate(order.getPickupDate());
-        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"+order.getPickupDate());
         orderBean.setDeliveryDate(order.getDeliveryDate());
-        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"+order.getDeliveryDate());
 
         //shipper contact info
         Contacts contacts = customerService.findContactById(order.getShipperContactId());
-        contact = new ContactBean();
-        contact.setName(getFullName(contacts.getLastName(), contacts.getFirstName(), contacts.getMiddleName()));
-        contact.setPhone(contacts.getPhone());
-        contact.setEmail(contacts.getEmail());
-        contact.setFax(contacts.getFax());
-        contact.setMobile(contacts.getMobile());
-        orderBean.setShipperInfoContact(contact);
+            contact = new ContactBean();
+            contact.setName(getFullName(contacts.getLastName(), contacts.getFirstName(), contacts.getMiddleName()));
+            contact.setPhone(contacts.getPhone());
+            contact.setEmail(contacts.getEmail());
+            contact.setFax(contacts.getFax());
+            contact.setMobile(contacts.getMobile());
+            orderBean.setShipperInfoContact(contact);
+
         //get shipper address
-        Address addresss = customerService.findAddressById(order.getShipperAddressId());
-        address = new AddressBean();
-        address.setAddress(getAddress(addresss));
-        orderBean.setShipperInfoAddress(address);
+        System.out.println("-----------------------------------------------Shipper Address ID " + order.getShipperAddressId() );
+        if (order.getShipperAddressId()!=null) {
+            Address addresses = customerService.findAddressById(order.getShipperAddressId());
+            address = new AddressBean();
+            address.setAddress(getAddress(addresses));
+            orderBean.setShipperInfoAddress(address);
+        }else{
+            address = new AddressBean();
+            address.setAddress("NONE");
+            orderBean.setShipperInfoAddress(address);
+        }
+
         //consignee Info
         Contacts consigneeContact = customerService.findContactById(order.getConsigneeContactId());
-        contact = new ContactBean();
-        contact.setName(getFullName(consigneeContact.getLastName(), consigneeContact.getFirstName(), consigneeContact.getMiddleName()));
-        contact.setPhone(consigneeContact.getPhone());
-        contact.setEmail(consigneeContact.getEmail());
-        contact.setFax(consigneeContact.getFax());
-        contact.setMobile(consigneeContact.getMobile());
-        orderBean.setConsigneeInfoContact(contact);
+
+            contact = new ContactBean();
+            contact.setName(getFullName(consigneeContact.getLastName(), consigneeContact.getFirstName(), consigneeContact.getMiddleName()));
+            contact.setPhone(consigneeContact.getPhone());
+            contact.setEmail(consigneeContact.getEmail());
+            contact.setFax(consigneeContact.getFax());
+            contact.setMobile(consigneeContact.getMobile());
+            orderBean.setConsigneeInfoContact(contact);
+
         // consignee address
-        Address consigneeAddress = customerService.findAddressById(order.getConsigneeAddressId());
-        address = new AddressBean();
-        address.setAddress(getAddress(consigneeAddress));
-        System.out.println(address);
-        orderBean.setConsigneeInfoAddress(address);
+        if (order.getConsigneeAddressId()!=null) {
+            Address consigneeAddress = customerService.findAddressById(order.getConsigneeAddressId());
+            address = new AddressBean();
+            address.setAddress(getAddress(consigneeAddress));
+            orderBean.setConsigneeInfoAddress(address);
+        }else{
+            address = new AddressBean();
+            address.setAddress("NONE");
+            orderBean.setConsigneeInfoAddress(address);
+        }
 
         return orderBean;
     }
