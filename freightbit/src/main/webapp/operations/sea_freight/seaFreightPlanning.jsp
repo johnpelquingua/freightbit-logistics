@@ -86,7 +86,6 @@
                                requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                class="table table-striped table-hover table-bordered text-center tablesorter"
                                style="margin-top: 15px;">
-                    <td><display:column><input type="radio"/></display:column></td>
 
                     <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
                                         style="text-align: center;"> </display:column></td>
@@ -102,6 +101,21 @@
 
                     <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
                                         style="text-align: center;"> </display:column></td>
+
+                    <td><display:column title="Action">
+                        <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{viewFreightItemListUrl}" rel="tooltip"
+                             title="Update Status">
+                            <%--<img src="../includes/images/edit-user.png" class="icon-action circ-icon">--%>
+                            Choose this Vessel
+                        </s:a>
+
+                    </display:column></td>
                 </display:table>
 
 

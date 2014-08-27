@@ -74,6 +74,18 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String editOrderItemsSea() {
+        try {
+            OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
+            operationsService.updateOrderItem(entity);
+        } catch (Exception e) {
+            log.error("Update Orderitem failed", e);
+            return INPUT;
+        }
+
+        return SUCCESS;
+    }
+
     public String editOrderItemsOrigin() {
         try {
             OrderItems entity = transformOrderItemToEntityBeanOrigin(operationsBean);
@@ -104,12 +116,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         vesselSchedulesList = operationsService.findVesselScheduleByVendorId(operationsBean.getVendorList());
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        sessionAttributes.put("orderItemIdParam", operationsBean.getOrderItemParam());
-        sessionAttributes.put("nameSizeParam", operationsBean.getNameSizeParam());
-
-        System.out.println("<-------------------orderItemIdParam: " + sessionAttributes.get("orderItemIdParam") + "------------------->");
-        System.out.println("<-------------------nameSizeParam: " + sessionAttributes.get("nameSizeParam") + "------------------->");
 
         for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
             vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
@@ -119,14 +125,23 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String viewFreightPlanning(){
+
         OrderItems entity = operationsService.findOrderItemById(orderItemIdParam);
         orderItem = transformToOrderItemFormBean(entity);
-        if ("PLANNING 2".equals(entity.getStatus())) {
-            return "PLANNING2";
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderItemIdParam", entity.getOrderId());
+        sessionAttributes.put("nameSizeParam", entity.getNameSize());
+        System.out.println("<------------------nameSizeParam: \n \n" + sessionAttributes.get("nameSizeParam"));
+        System.out.println("<------------------orderItemIdParam: \n \n" + sessionAttributes.get("orderItemIdParam"));
+
+        if ("PLANNING 1".equals(entity.getStatus())) {
+            return "PLANNING1";
+        } else if ("PLANNING 2".equals(entity.getStatus())) {
+            return " PLANNING2";
         } else {
             return "PLANNING3";
         }
-
     }
 
     public String viewFreightList() {
@@ -144,6 +159,34 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
         orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", orderIdParam);
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+        return SUCCESS;
+    }
+
+    public String viewFreightItemListLand() {
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderIdLand(orderIdParam);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", orderIdParam);
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+        return SUCCESS;
+    }
+
+    public String viewFreightItemListSea() {
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderIdSea(orderIdParam);
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderIdParam", orderIdParam);
@@ -205,6 +248,29 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setVendorOrigin(entity.getVendorOrigin());
         formBean.setFinalPickupDate(entity.getFinalPickupDate());
         return formBean;
+    }
+
+    public OrderItems transformOrderItemToEntityBeanSea (OperationsBean formBean) {
+        OrderItems entity = new OrderItems();
+        entity.setVendorOrigin(formBean.getVendorListOrigin().toString());
+        entity.setFinalPickupDate(formBean.getPickupDate());
+        entity.setOrderItemId(formBean.getOrderItemId());
+        entity.setClientId(formBean.getClientId());
+        entity.setNameSize(formBean.getNameSize());
+        entity.setOrderId(formBean.getOrderId());
+        entity.setQuantity(formBean.getQuantity());
+        entity.setClassification(formBean.getClassification());
+        entity.setCommodity(formBean.getCommodity());
+        entity.setDeclaredValue(formBean.getDeclaredValue());
+        entity.setComments(formBean.getComments());
+        entity.setRate(formBean.getRate());
+        entity.setCreatedBy(formBean.getCreatedBy());
+        entity.setModifiedBy(formBean.getModifiedBy());
+        entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
+        entity.setModifiedTimestamp(formBean.getModifiedTimestamp());
+        entity.setWeight(formBean.getWeight());
+        entity.setStatus("PLANNING 2");
+        return entity;
     }
 
     public OrderItems transformOrderItemToEntityBeanOrigin (OperationsBean formBean) {

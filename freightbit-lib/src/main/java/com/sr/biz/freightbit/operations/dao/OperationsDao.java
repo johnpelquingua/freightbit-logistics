@@ -23,4 +23,8 @@ public interface OperationsDao {
 
     public void updateOrderItem(OrderItems orderItems);
 
+    public List<OrderItems> findAllOrderItemsByOrderIdSea(Integer orderId);
+
+    public List<OrderItems> findAllOrderItemsByOrderIdLand(Integer orderId);
+
 }

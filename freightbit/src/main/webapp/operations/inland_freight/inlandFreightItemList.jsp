@@ -29,7 +29,7 @@
                                                 style="text-align: center;"> </display:column></td>
 
                             <td><display:column title="Action">
-                                <s:url var="viewInlandFreightPlanningUrl" action="viewInlandFreightPlanning">
+                                <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
                                     <s:param name="orderItemIdParam"
                                              value="#attr.orderItem.orderItemId">
                                             </s:param>
@@ -37,7 +37,7 @@
                                              value="orderNoParam">
                                              </s:param>
                                 </s:url>
-                                <s:a class="icon-action-link" href="%{viewInlandFreightPlanningUrl}" rel="tooltip"
+                                <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
                                      title="Update Status">
                                     <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                                 </s:a>
