@@ -31,12 +31,11 @@
 
                             <div class="col-lg-10">
 
-                                <s:select cssClass="form-control step1"
+                                <s:select cssClass="form-control"
                                           style="margin-bottom: 15px !important;"
                                           name="order.serviceRequirement"
                                           list="serviceRequirementList"
                                           id="order.serviceRequirement"
-                                          onchange="serviceValidate()"
                                           listKey="key"
                                           listValue="value"
                                 />
@@ -50,9 +49,8 @@
                             <div class="col-lg-10">
 
                                 <s:select id="order_modeOfService"
-                                          cssClass="form-control step1"
+                                          cssClass="form-control"
                                           style="margin-bottom: 15px !important;"
-                                          onchange="typeValidate()"
                                           name="order.modeOfService"
                                           list="modeOfServiceList"
                                           listKey="key"
@@ -630,6 +628,38 @@ $(document).ready(function() {
                 }
             }
         }
+
+        if (select.options[ index ].value === 'DOOR TO PIER'){
+
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#shipperAddress").prop('disabled', false);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").prop('disabled', true);
+            $("#consigneeAddress").val('');
+        }else if (select.options[ index ].value === 'PIER TO DOOR'){
+
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#shipperAddress").prop('disabled', true);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").prop('disabled', false);
+            $("#consigneeAddress").val('');
+
+        }else {
+
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#shipperAddress").prop('disabled', false);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").prop('disabled', false);
+            $("#consigneeAddress").val('');
+        }
+
+
     }
 
     // If Service Mode is Pier to Pier
@@ -644,6 +674,14 @@ $(document).ready(function() {
                 sType.options[i].selected = true;
             }
         }
+
+        $("#customerName").val('');
+        $("#shipperContact").val('');
+        $("#shipperAddress").prop('disabled', true);
+        $("#shipperAddress").val('');
+        $("#shipperConsignee").val('');
+        $("#consigneeAddress").prop('disabled', true);
+        $("#consigneeAddress").val('');
 
         }
     // If Service Type is Shipping
@@ -730,6 +768,7 @@ $(document).ready(function() {
     select2.onchange = function() {
         preventDuplicatePort.call(this, select1, this.selectedIndex);
         };
+
 
 </script>
 

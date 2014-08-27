@@ -312,7 +312,6 @@
                                           list="itemQuantity"
                                           emptyOption="true"
                                           required="true"
-                                          onchange="lcl()"
                                         />
                             </span>
                             </s:else>
