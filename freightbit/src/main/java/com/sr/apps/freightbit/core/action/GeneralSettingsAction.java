@@ -19,9 +19,11 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 	private List <Parameters> vendorClassParamList = new ArrayList<Parameters>();
 	private List <Parameters> customerTypeParamList = new ArrayList<Parameters>();
 	private List <Parameters> portsParamsList = new ArrayList<Parameters>();
+	private List <Parameters> vendorTypeParamList = new ArrayList<Parameters>();
 	private String vendorClassAdded;
 	private String customerTypeAdded;
 	private String portsAdded;
+	private String vendorTypeAdded;
 	
 	public String loadGeneralSettings() {
 		return SUCCESS;
@@ -31,9 +33,11 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 		List <Parameters> newVendorClassParamList = transformToParameterEntityBean(vendorClassAdded, ParameterConstants.VENDORS, ParameterConstants.VENDOR_CLASS);
 		List <Parameters> newCustomerTypeParamList = transformToParameterEntityBean(customerTypeAdded, ParameterConstants.CUSTOMERS, ParameterConstants.CUSTOMER_TYPE);
 		List <Parameters> newPortParamList = transformToParameterEntityBean(portsAdded, ParameterConstants.ORDER, ParameterConstants.PORTS);
+		List <Parameters> newVendorTypeParamList = transformToParameterEntityBean(vendorTypeAdded, ParameterConstants.VENDORS, ParameterConstants.VENDOR_TYPE);
 		parameterService.updateParameters(newVendorClassParamList, "VENDORS", "VENDOR_CLASS");
 		parameterService.updateParameters(newCustomerTypeParamList, "CUSTOMERS", "CUSTOMER_TYPE");
 		parameterService.updateParameters(newPortParamList, "ORDER", "PORTS");
+		parameterService.updateParameters(newVendorTypeParamList, "VENDORS", "VENDOR_TYPE");
 		return SUCCESS;
 	}
 	
@@ -63,8 +67,8 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
         vendorClassParamList = parameterService.getParameterMap(ParameterConstants.VENDORS, ParameterConstants.VENDOR_CLASS);
         customerTypeParamList = parameterService.getParameterMap(ParameterConstants.CUSTOMERS, ParameterConstants.CUSTOMER_TYPE);
         portsParamsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS);
+        vendorTypeParamList = parameterService.getParameterMap(ParameterConstants.VENDORS, ParameterConstants.VENDOR_TYPE);
     }
-    
     
 
 	public String getVendorClassAdded() {
@@ -89,6 +93,22 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 
 	public void setPortsAdded(String portsAdded) {
 		this.portsAdded = portsAdded;
+	}
+
+	public List<Parameters> getVendorTypeParamList() {
+		return vendorTypeParamList;
+	}
+
+	public void setVendorTypeParamList(List<Parameters> vendorTypeParamList) {
+		this.vendorTypeParamList = vendorTypeParamList;
+	}
+
+	public String getVendorTypeAdded() {
+		return vendorTypeAdded;
+	}
+
+	public void setVendorTypeAdded(String vendorTypeAdded) {
+		this.vendorTypeAdded = vendorTypeAdded;
 	}
 
 	public void setParameterService(ParameterService parameterService) {

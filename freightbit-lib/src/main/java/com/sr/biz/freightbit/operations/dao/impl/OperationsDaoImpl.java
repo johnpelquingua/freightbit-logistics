@@ -50,6 +50,36 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
     }
 
     @Override
+    public List<OrderItems> findAllOrderItemsByOrderIdSea(Integer orderId) {
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderItems o where o.orderId = :orderId and o.status='PLANNING 1'");
+            query.setParameter("orderId", orderId);
+            List<OrderItems> results = (List<OrderItems>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Find failed.", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public List<OrderItems> findAllOrderItemsByOrderIdLand(Integer orderId) {
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderItems o where o.orderId = :orderId and (o.status = 'PLANNING 2' or o.status = 'PLANNING 3')");
+            query.setParameter("orderId", orderId);
+            List<OrderItems> results = (List<OrderItems>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Find failed.", e);
+            throw e;
+        }
+    }
+
+    @Override
     public OrderItems findOrderItemById(Integer orderItemId) {
         log.debug("Find initiated");
         try {

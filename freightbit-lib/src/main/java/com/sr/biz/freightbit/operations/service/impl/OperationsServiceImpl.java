@@ -30,6 +30,16 @@ public class OperationsServiceImpl implements OperationsService{
     }
 
     @Override
+    public List<OrderItems> findAllOrderItemsByOrderIdSea(Integer orderId) {
+        return operationsDao.findAllOrderItemsByOrderIdSea(orderId);
+    }
+
+    @Override
+    public List<OrderItems> findAllOrderItemsByOrderIdLand(Integer orderId) {
+        return operationsDao.findAllOrderItemsByOrderIdLand(orderId);
+    }
+
+    @Override
     public OrderItems findOrderItemById(Integer orderItemId) {
         return operationsDao.findOrderItemById(orderItemId);
     }
@@ -48,5 +58,7 @@ public class OperationsServiceImpl implements OperationsService{
     public void updateOrderItem (OrderItems orderItems) {
         operationsDao.updateOrderItem(orderItems);
     }
+
+
 
 }

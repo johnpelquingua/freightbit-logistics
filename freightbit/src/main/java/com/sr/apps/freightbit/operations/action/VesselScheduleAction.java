@@ -49,7 +49,7 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
     public void prepare() {
         vesselScheduleSearch = parameterService.getParameterMap(ParameterConstants.VESSEL_SCHEDULE_SEARCH );
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
-        vendorList = vendorService.findAllVendors();
+        vendorList = vendorService.findAllShippingVendor();
     }
 
     public String addVesselSchedule(){
@@ -146,6 +146,7 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         formBean.setModifiedBy(entity.getModifiedBy());
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
         formBean.setVoyageNumber(entity.getVoyageNumber());
+        formBean.setVendorCode(entity.getVendorCode());
         return formBean;
 
     }
@@ -167,6 +168,7 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         entity.setArrivalTime(formBean.getArrivalTime());
         entity.setDepartureTime(formBean.getDepartureTime());
         entity.setDepartureDate(formBean.getDepartureDate());
+        entity.setVendorCode(vendorService.findVendorById(formBean.getVendorId()).getVendorCode());
 
         return entity;
     }

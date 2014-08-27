@@ -19,6 +19,7 @@ public class ContactBean {
     private String mobile;
     private String fax;
     private String email;
+    private String position;
     private Date createdTimestamp;
     private String createdBy;
     private Date modifiedTimestamp;
@@ -30,7 +31,7 @@ public class ContactBean {
 
     }
 
-    public ContactBean(Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String name) {
+    public ContactBean(Integer sessionVendorId, Integer contactId, Integer clientId, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email, String position, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String name) {
         this.sessionVendorId = sessionVendorId;
         this.contactId = contactId;
         this.clientId = clientId;
@@ -44,6 +45,7 @@ public class ContactBean {
         this.mobile = mobile;
         this.fax = fax;
         this.email = email;
+        this.position = position;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
@@ -193,5 +195,13 @@ public class ContactBean {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

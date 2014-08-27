@@ -40,6 +40,7 @@ public class OrderItems implements java.io.Serializable {
     private String vendorDestination;
     private String finalPickupDate;
     private String finalDeliveryDate;
+    private Integer vesselScheduleId;
 //
 
     public OrderItems() {
@@ -287,6 +288,15 @@ public class OrderItems implements java.io.Serializable {
 
     public void setFinalDeliveryDate(String finalDeliveryDate) {
         this.finalDeliveryDate = finalDeliveryDate;
+    }
+
+    @Column(name = "vesselScheduleId")
+    public Integer getVesselScheduleId() {
+        return vesselScheduleId;
+    }
+
+    public void setVesselScheduleId(Integer vesselScheduleId) {
+        this.vesselScheduleId = vesselScheduleId;
     }
 }
 

@@ -25,6 +25,8 @@ public interface VendorService {
 
     public List<Vendor> findAllVendors();
 
+    public List<Vendor> findAllShippingVendor();
+
     public List<Vendor> findAllVendorByClientId(Integer clientId);
 
     public Vendor findVendorByVendorCode(String vendorCode);

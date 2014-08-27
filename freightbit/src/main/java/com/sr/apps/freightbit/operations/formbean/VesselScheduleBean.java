@@ -23,6 +23,9 @@ public class VesselScheduleBean {
     private String modifiedBy;
     private String vesselScheduleKeyword;
     private String vesselScheduleCriteria;
+    private String vendorCode;
+
+
 
     public VesselScheduleBean() {
 
@@ -45,6 +48,14 @@ public class VesselScheduleBean {
         this.modifiedBy = modifiedBy;
         this.vesselScheduleKeyword = vesselScheduleKeyword;
         this.vesselScheduleCriteria = vesselScheduleCriteria;
+    }
+
+    public String getVendorCode() {
+        return vendorCode;
+    }
+
+    public void setVendorCode(String vendorCode) {
+        this.vendorCode = vendorCode;
     }
 
     public Integer getVesselScheduleId() {

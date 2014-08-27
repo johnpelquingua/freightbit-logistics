@@ -28,13 +28,15 @@
                                                 style="text-align: center;"> </display:column></td>
 
                             <td><display:column title="Action">
-                                <s:url var="viewSeaFreightPlanningUrl" action="viewSeaFreightPlanning">
+                                <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
                                     <s:param name="orderItemIdParam"
-                                             value="#attr.orderItem.orderItemId"></s:param>
+                                             value="#attr.orderItem.orderItemId">
+                                    </s:param>
                                     <s:param name="nameSizeParam"
-                                             value="#attr.orderItem.nameSize"></s:param>
+                                             value="#attr.orderItem.nameSizeParam">
+                                    </s:param>
                                 </s:url>
-                                <s:a class="icon-action-link" href="%{viewSeaFreightPlanningUrl}" rel="tooltip"
+                                <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
                                      title="Update Status">
                                     <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                                 </s:a>

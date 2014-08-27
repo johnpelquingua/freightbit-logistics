@@ -89,14 +89,19 @@
         <!--Status ends here-->
 
         <!--Operations starts here-->
-        <action name="viewSeaFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
-            <result name="success" type="tiles">operations.seaFreightPlanning.tiles</result>
-            <result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>
-        </action>
+        <!--<action name="viewSeaFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">-->
+            <!--<result name="success" type="tiles">operations.seaFreightPlanning.tiles</result>-->
+        <!--</action>-->
 
-        <action name="viewInlandFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
+        <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
+            <result name="PLANNING1" type="tiles">operations.seaFreightPlanning.tiles</result>
             <result name="PLANNING2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
             <result name="PLANNING3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+        </action>
+
+        <action name="editOrderItemsSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsSea">
+            <result name="success" type="redirect">updateCompleteInlandPlanning</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
         </action>
 
         <action name="editOrderItemsOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsOrigin">
@@ -121,11 +126,11 @@
             <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
         </action>
 
-        <action name="viewSeaFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
+        <action name="viewSeaFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListSea">
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
 
-        <action name="viewInlandFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
+        <action name="viewInlandFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListLand">
             <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
         </action>
 

@@ -28,4 +28,6 @@ public interface VendorDao {
     List<Vendor> findDuplicateVendorByVendorCode(String vendorCode,
                                                  Integer vendorId);
 
+    public List<Vendor> findAllShippingVendor();
+
 }

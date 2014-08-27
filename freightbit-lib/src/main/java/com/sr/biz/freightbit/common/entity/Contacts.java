@@ -25,6 +25,7 @@ public class Contacts implements Serializable {
     private String mobile;
     private String fax;
     private String email;
+    private String position;
     private Date createdTimestamp;
     private String createdBy;
     private Date modifiedTimestamp;
@@ -33,8 +34,7 @@ public class Contacts implements Serializable {
     public Contacts() {
     }
 
-    public Contacts(Integer contactId, Client client, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
-
+    public Contacts(Integer contactId, Client client, String referenceTable, Integer referenceId, String contactType, String firstName, String middleName, String lastName, String phone, String mobile, String fax, String email, String position, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
         this.contactId = contactId;
         this.client = client;
         this.referenceTable = referenceTable;
@@ -47,6 +47,7 @@ public class Contacts implements Serializable {
         this.mobile = mobile;
         this.fax = fax;
         this.email = email;
+        this.position = position;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
@@ -162,6 +163,15 @@ public class Contacts implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Column(name = "position")
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     @Column(name = "createdTimestamp")

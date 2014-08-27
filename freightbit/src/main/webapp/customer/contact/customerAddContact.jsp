@@ -107,6 +107,14 @@
                                          type="email" required="true"/>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="contact.email" class="col-lg-2 control-label" style="padding-top:0px;">Position</label>
+                        <div class="col-lg-10" >
+                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
+                                         type="text" required="true"/>
+                        </div>
+                    </div>
             </div>
 
             <div class="panel-footer">

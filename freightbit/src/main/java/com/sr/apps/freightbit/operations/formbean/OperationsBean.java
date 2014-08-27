@@ -38,6 +38,8 @@ public class OperationsBean {
     private String vendorOrigin;
     private String vendorSea;
 
+    private Integer vesselScheduleId;
+
     public String getVendorOrigin() {
         return vendorOrigin;
     }
@@ -261,4 +263,6 @@ public class OperationsBean {
     public void setOrderItemId(Integer orderItemId) {
         this.orderItemId = orderItemId;
     }
+
+
 }
