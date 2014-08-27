@@ -30,9 +30,11 @@
                             <td><display:column title="Action">
                                 <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
                                     <s:param name="orderItemIdParam"
-                                             value="#attr.orderItem.orderItemId"></s:param>
+                                             value="#attr.orderItem.orderItemId">
+                                    </s:param>
                                     <s:param name="nameSizeParam"
-                                             value="#attr.orderItem.nameSize"></s:param>
+                                             value="#attr.orderItem.nameSizeParam">
+                                    </s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
                                      title="Update Status">

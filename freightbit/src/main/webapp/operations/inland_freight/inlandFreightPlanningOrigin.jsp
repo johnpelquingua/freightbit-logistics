@@ -16,7 +16,7 @@
                 <div class="panel-body">
 
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsOrigin">
-                       <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
+                        <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                         <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                         <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
                         <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />

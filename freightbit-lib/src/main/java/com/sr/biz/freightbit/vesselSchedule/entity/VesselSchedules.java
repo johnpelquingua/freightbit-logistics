@@ -28,11 +28,12 @@ public class VesselSchedules implements Serializable{
     private Date modifiedTimestamp;
     private String modifiedBy;
     private String voyageNumber;
+    private String vendorCode;
 
     public VesselSchedules() {
     }
 
-    public VesselSchedules(Integer vesselScheduleId, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String destinationPort, String arrivalDate, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String voyageNumber) {
+    public VesselSchedules(Integer vesselScheduleId, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String destinationPort, String arrivalDate, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String voyageNumber, String vendorCode) {
         this.vesselScheduleId = vesselScheduleId;
         this.clientId = clientId;
         this.vendorId = vendorId;
@@ -47,6 +48,7 @@ public class VesselSchedules implements Serializable{
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
         this.voyageNumber = voyageNumber;
+        this.vendorCode = vendorCode;
     }
 
     @Id
@@ -175,5 +177,14 @@ public class VesselSchedules implements Serializable{
 
     public void setVoyageNumber(String voyageNumber) {
         this.voyageNumber = voyageNumber;
+    }
+
+    @Column(name = "vendorCode")
+    public String getVendorCode() {
+        return vendorCode;
+    }
+
+    public void setVendorCode(String vendorCode) {
+        this.vendorCode = vendorCode;
     }
 }

@@ -99,6 +99,13 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Position</label>
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"/>
+                            </div>
+                        </div>
+
                         <%--<button class="btn btn-default">Cancel</button>--%>
                         <%--<div class="pull-right">
                             <s:submit cssClass="btn btn-info" name="submit" value="Save"/>

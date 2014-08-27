@@ -61,6 +61,18 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
     }
 
     @Override
+    public List<Vendor> findAllShippingVendor() {
+        log.debug("Finding all Vendors");
+        try {
+            return getSessionFactory().getCurrentSession()
+                    .createQuery("from Vendor where vendorType = 'SHIPPING'").list();
+        } catch (RuntimeException re) {
+            log.error("Find all failed", re);
+            throw re;
+        }
+    }
+
+    @Override
     public List<Vendor> findAllVendorByClientId(Integer clientId) {
         log.debug("Finding Vendor instance by Client");
         try {

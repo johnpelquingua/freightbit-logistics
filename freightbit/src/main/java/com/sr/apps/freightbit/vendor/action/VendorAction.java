@@ -179,6 +179,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     public String loadVendorInfo() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("vendorId", vendor.getVendorId());
+        sessionAttributes.put("vendorCode", vendor.getVendorCode());
         return SUCCESS;
     }
 
@@ -929,6 +930,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setEmail(contactBean.getEmail());
         entity.setCreatedBy(contactBean.getCreatedBy());
         entity.setCreatedTimestamp(contactBean.getCreatedTimestamp());
+        entity.setPosition(contactBean.getPosition());
         return entity;
     }
 
@@ -948,6 +950,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setEmail(entity.getEmail());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+        formBean.setPosition(entity.getPosition());
         return formBean;
     }
 
@@ -1121,6 +1124,8 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         return vendorId;
     }
+
+
 
     @Override
     public void prepare() {

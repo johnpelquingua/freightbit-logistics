@@ -928,7 +928,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setEmail(contactBean.getEmail());
         entity.setCreatedBy(contactBean.getCreatedBy());
         entity.setCreatedTimestamp(contactBean.getCreatedTimestamp());
-
+        entity.setPosition(contactBean.getPosition());
         return entity;
     }
 
@@ -949,7 +949,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setEmail(entity.getEmail());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
-
+        formBean.setPosition(entity.getPosition());
         return formBean;
     }
 

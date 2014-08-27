@@ -32,8 +32,22 @@
 
                 <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap">
 
-                    <s:hidden name="operationsBean.orderItemParam" value="%{orderItemIdParam}"/>
-                    <s:hidden name="operationsBean.nameSizeParam" value="%{nameSizeParam}"/>
+                    <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
+                    <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
+                    <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
+                    <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
+                    <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
+                    <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
+                    <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
+                    <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
+                    <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
+                    <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
+                    <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
+                    <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
+                    <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
+                    <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
+                    <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
+                    <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
 
                     <div class="form-group">
 
@@ -103,16 +117,14 @@
                                         style="text-align: center;"> </display:column></td>
 
                     <td><display:column title="Action">
-                        <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
-                            <s:param name="orderIdParam"
-                                     value="#attr.order.orderId"></s:param>
-                            <s:param name="orderNoParam"
-                                     value="#attr.order.orderNo"></s:param>
+                        <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                            <s:param name="vesselScheduleIdParam"
+                                     value="#attr.vesselSchedule.vesselScheduleId">
+                            </s:param>
                         </s:url>
-                        <s:a class="icon-action-link" href="%{viewFreightItemListUrl}" rel="tooltip"
+                        <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
                              title="Update Status">
-                            <%--<img src="../includes/images/edit-user.png" class="icon-action circ-icon">--%>
-                            Choose this Vessel
+                            <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
                         </s:a>
 
                     </display:column></td>

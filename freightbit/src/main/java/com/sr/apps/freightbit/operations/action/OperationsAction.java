@@ -32,6 +32,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Integer nameSizeParam;
     private Integer vendorId;
     private String orderNoParam;
+    private Integer vesselScheduleIdParam;
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
@@ -77,6 +78,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String editOrderItemsSea() {
         try {
             OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
+            entity.setVesselScheduleId(vesselScheduleIdParam);
             operationsService.updateOrderItem(entity);
         } catch (Exception e) {
             log.error("Update Orderitem failed", e);
@@ -116,6 +118,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         vesselSchedulesList = operationsService.findVesselScheduleByVendorId(operationsBean.getVendorList());
 
+        OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
 
         for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
             vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
@@ -252,8 +255,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public OrderItems transformOrderItemToEntityBeanSea (OperationsBean formBean) {
         OrderItems entity = new OrderItems();
-        entity.setVendorOrigin(formBean.getVendorListOrigin().toString());
-        entity.setFinalPickupDate(formBean.getPickupDate());
         entity.setOrderItemId(formBean.getOrderItemId());
         entity.setClientId(formBean.getClientId());
         entity.setNameSize(formBean.getNameSize());
@@ -270,6 +271,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setModifiedTimestamp(formBean.getModifiedTimestamp());
         entity.setWeight(formBean.getWeight());
         entity.setStatus("PLANNING 2");
+        entity.setVendorSea(formBean.getVendorSea());
         return entity;
     }
 
@@ -491,5 +493,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setOrderNoParam(String orderNoParam) {
         this.orderNoParam = orderNoParam;
+    }
+
+    public Integer getVesselScheduleIdParam() {
+        return vesselScheduleIdParam;
+    }
+
+    public void setVesselScheduleIdParam(Integer vesselScheduleIdParam) {
+        this.vesselScheduleIdParam = vesselScheduleIdParam;
     }
 }
