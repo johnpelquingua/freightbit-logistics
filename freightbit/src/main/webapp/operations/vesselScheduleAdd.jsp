@@ -228,22 +228,6 @@
 
     });
 
-    //Avoid later arrival date than departure date
-    function preventDateLate(){
-
-       var arriveDate = document.getElementById('arrivalDate').value;
-       var departDate = document.getElementById('departureDate').value;
-
-    if(arriveDate<departDate){
-        alert("Your Arrival date is later than your Departure date");
-    }
-
-        var Depdate = document.getElementById('departureDate');
-        Depdate.onchange = function(){
-          preventDateLate();
-        };
-
-    }
 
 
     // Avoid selecting duplicate ports

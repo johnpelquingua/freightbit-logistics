@@ -74,7 +74,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" id="departureTime"
-                                             name="vesselSchedule.departureTime"/>
+                                             name="vesselSchedule.departureTime" readonly="true"/>
                             </div>
 
                         </div>
@@ -84,8 +84,7 @@
                             <label for="vesselSchedule.arrivalDate" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date</label>
 
                             <div class="col-lg-9">
-                                <s:textfield cssClass="form-control" id="arrivalDate"
-                                             name="vesselSchedule.arrivalDate"/>
+                                <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true"/>
                             </div>
 
                         </div>
@@ -176,7 +175,7 @@
     departureDate.datepicker({
 
 
-                dateFormat: 'yy-dd-mm',
+                dateFormat: 'mm-dd-yy',
                 minDate: 0,
 
                 onClose: function (dateText, inst) {
@@ -207,7 +206,7 @@
     arrivalDate.datepicker({
 
         // on 6:00pm
-        dateFormat: 'yy-dd-mm',
+        dateFormat: 'mm-dd-yy',
 //        timeFormat: 'HH:mm',
         onClose: function (dateText, inst) {
 

@@ -93,7 +93,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">E-Mail</label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email"/>
+                            <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email" id="emailfield" />
                             </div>
                         </div>
 
@@ -128,5 +128,21 @@
             </ul>
         </div>
     </div>--%>
+    <script type="text/javascript">
+        var emailbean = document.getElementById('emailfield').value;
+        var emailf = document.getElementById('emailfield');
+        var emailformat = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,3})+$/ ;
+        function validateEmail(){
+            if(!emailformat.test(emailf.value)){
+                alert("Invalid email use the format: email@yahoo.com");
+                emailf.focus();
+            }
+        }
+
+        var emailf2 = document.getElementById('emailfield');
+        emailf2.onchange= function(){
+            validateEmail();
+        };
+    </script>
 
 </div>

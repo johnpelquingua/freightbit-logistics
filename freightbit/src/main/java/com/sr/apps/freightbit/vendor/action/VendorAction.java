@@ -252,8 +252,10 @@ public class VendorAction extends ActionSupport implements Preparable {
         String name = "^[a-zA-Z][a-zA-Z ]+$";
         String code = "[A-Z]+";
 
+
         Pattern namePattern = Pattern.compile(name);
         Pattern codePattern = Pattern.compile(code);
+
 
         Matcher matcher = namePattern.matcher(vendorBean.getVendorName());
         if (!matcher.matches()){
@@ -271,7 +273,8 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (StringUtils.isBlank(vendorBean.getVendorCode())) {
             addFieldError("vendor.vendorCode", getText("err.vendorCode.required"));
         }
-    }
+
+}
 
     private Vendor transformToEntityBean(VendorBean vendorBean) {
         Vendor entity = new Vendor();
@@ -670,6 +673,12 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (!matcher.matches()) {
             addFieldError("driver.licenseNumber", "License Number must be in valid format.");
         }
+
+        matcher= alphaNumericPattern.matcher(driverBean.getDriverCode());
+        if (!matcher.matches()){
+            addFieldError("driver.driverCode"," (Must be three (3) CAPITAL LETTERS only)");
+        }
+
 
         if (StringUtils.isBlank(driverBean.getDriverCode())) {
             addFieldError("driver.driverCode", getText("err.driverCode.required"));

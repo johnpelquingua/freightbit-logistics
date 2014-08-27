@@ -67,3 +67,19 @@ function typeValidate(){
     }
 }
 
+
+//function validateInput(){
+//    var input = document.getElementById('driver.driverCode').value;
+//
+//    if(/^[a-zA-Z0-9- ]*$/.test(input) == false) {
+//        alert('Your string contains illegal characters.');
+//    }
+//}
+//
+//var input2 = document.getElementById('driver.driverCode');
+//input2.onblur = function(){
+//    validateInput();
+//    input2.focus();
+//};
+
+

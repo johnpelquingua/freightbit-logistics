@@ -396,6 +396,16 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void validateOnSubmit(CustomerBean customerBean) {
         clearErrorsAndMessages();
+
+        String alpha = "^[a-zA-Z][a-zA-Z ]+$";
+        Pattern namePattern = Pattern.compile(alpha);
+
+        Matcher matcher = namePattern.matcher(customerBean.getCustomerName());
+        if (!matcher.matches()){
+            addFieldError("customer.customerName", "(Must be three (3) CAPITAL LETTERS only)");
+        }
+
+
         if (StringUtils.isBlank(customerBean.getCustomerName())) {
             addFieldError("customer.customerName", getText("err.customerName.required"));
         }
