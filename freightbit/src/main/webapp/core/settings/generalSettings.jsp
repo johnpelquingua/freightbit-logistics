@@ -30,6 +30,7 @@
                 <div class="table-responsive list-table">
                     <s:form action="editGeneralSettings" theme="bootstrap" cssClass="form-horizontal" method="post" name="editGeneralSettingsForm">
                     <s:hidden name="vendorClassAdded"/>
+                    <s:hidden name="vendorTypeAdded"/>
                     <s:hidden name="customerTypeAdded"/>
                     <s:hidden name="portsAdded"/>
 
@@ -43,6 +44,21 @@
                              	<div class="controls">
                              		<input type="text" name="vendorClass_1" value="" id="vendorClass_1" class="form-control" style="width:85%; display:inline;"/>
                              		<input type="button" value="-"/> <input type="button" value="+" id="addVendorClassTextBox"/>
+                             	</div>
+                             </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="vendorTypeId">
+                        <label for="vendorType" class="col-lg-3 control-label" id="users-add-label">Vendor Type:</label>
+                        <div class="col-lg-9" id="vendorTypeDiv">
+                             <s:iterator value="vendorTypeParamList" var="vendorType">
+                             	<s:textfield disabled="true" required="true" name="value" cssClass="form-control"/>
+                             </s:iterator> 
+                             <div class="control-group" id="vendorTypeGroup">
+                             	<div class="controls">
+                             		<input type="text" name="vendorType_1" value="" id="vendorType_1" class="form-control" style="width:85%; display:inline;"/>
+                             		<input type="button" value="-"/> <input type="button" value="+" id="addVendorTypeTextBox"/>
                              	</div>
                              </div>
                         </div>
@@ -115,6 +131,23 @@ $(document).ready(function() {
 	    vendorClassCounter++;
 	});
   
+  
+  var vendorTypeCounter = $("#vendorTypeGroup").length + 1;
+  $("#addVendorTypeTextBox").click(function() {
+	   var fieldWrapper = $("<div class=\"control-group \" id=\"vendorTypeGroup\"><div class=\"controls\"></div></div>");
+	   var textField = "<input type=\"text\" name=\"vendorType_"+vendorTypeCounter+"\" value=\"\" id=\"vendorType_"+vendorTypeCounter+"\" class=\"form-control\" style=\"width: 85%; display: inline;\" />\n";
+	   var removeButton = $("<input type=\"button\" value=\"-\" />");
+	        removeButton.click(function() {
+	            $(this).parent().remove();
+	        });
+
+	   fieldWrapper.append(textField).append(removeButton);
+	    
+	    $("#vendorTypeDiv").append(fieldWrapper);
+	    vendorTypeCounter++;
+	});
+  
+  
 
   var customerTypeCounter = $("#customerTypeGroup").length + 1;
   $("#addCustomerTypeTextBox").click(function() {
@@ -157,6 +190,15 @@ $(document).ready(function() {
 			  msg += ", " + $('#vendorClass_' + i).val();
 		}
         document.forms[0].vendorClassAdded.value = msg;
+        
+		var msg = '';
+		for(i=1; i<vendorTypeCounter; i++){
+		  if (i==1)
+			  msg=$('#vendorType_' + i).val();
+		  else
+			  msg += ", " + $('#vendorType_' + i).val();
+		}
+        document.forms[0].vendorTypeAdded.value = msg;
         
 		var msg = '';
 		for(i=1; i<customerTypeCounter; i++){
