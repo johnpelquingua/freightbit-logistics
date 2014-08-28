@@ -20,10 +20,14 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 	private List <Parameters> customerTypeParamList = new ArrayList<Parameters>();
 	private List <Parameters> portsParamsList = new ArrayList<Parameters>();
 	private List <Parameters> vendorTypeParamList = new ArrayList<Parameters>();
+	private List <Parameters> contactTypeParamList = new ArrayList<Parameters>();
+	private List <Parameters> addressTypeParamList = new ArrayList<Parameters>();
 	private String vendorClassAdded;
 	private String customerTypeAdded;
 	private String portsAdded;
 	private String vendorTypeAdded;
+	private String contactTypeAdded;
+	private String addressTypeAdded;
 	
 	public String loadGeneralSettings() {
 		return SUCCESS;
@@ -34,10 +38,14 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 		List <Parameters> newCustomerTypeParamList = transformToParameterEntityBean(customerTypeAdded, ParameterConstants.CUSTOMERS, ParameterConstants.CUSTOMER_TYPE);
 		List <Parameters> newPortParamList = transformToParameterEntityBean(portsAdded, ParameterConstants.ORDER, ParameterConstants.PORTS);
 		List <Parameters> newVendorTypeParamList = transformToParameterEntityBean(vendorTypeAdded, ParameterConstants.VENDORS, ParameterConstants.VENDOR_TYPE);
-		parameterService.updateParameters(newVendorClassParamList, "VENDORS", "VENDOR_CLASS");
-		parameterService.updateParameters(newCustomerTypeParamList, "CUSTOMERS", "CUSTOMER_TYPE");
-		parameterService.updateParameters(newPortParamList, "ORDER", "PORTS");
-		parameterService.updateParameters(newVendorTypeParamList, "VENDORS", "VENDOR_TYPE");
+		List <Parameters> newContactTypeParamList = transformToParameterEntityBean(contactTypeAdded, ParameterConstants.CONTACTS, ParameterConstants.CONTACT_TYPE);
+		List <Parameters> newAddressTypeParamList = transformToParameterEntityBean(addressTypeAdded, ParameterConstants.ADDRESS, ParameterConstants.ADDRESS_TYPE);
+		parameterService.updateParameters(newVendorClassParamList, ParameterConstants.VENDORS, ParameterConstants.VENDOR_CLASS);
+		parameterService.updateParameters(newCustomerTypeParamList, ParameterConstants.CUSTOMERS, ParameterConstants.CUSTOMER_TYPE);
+		parameterService.updateParameters(newPortParamList, ParameterConstants.ORDER, ParameterConstants.PORTS);
+		parameterService.updateParameters(newVendorTypeParamList, ParameterConstants.VENDORS, ParameterConstants.VENDOR_TYPE);
+		parameterService.updateParameters(newContactTypeParamList, ParameterConstants.CONTACTS, ParameterConstants.CONTACT_TYPE);
+		parameterService.updateParameters(newAddressTypeParamList, ParameterConstants.ADDRESS, ParameterConstants.ADDRESS_TYPE);
 		return SUCCESS;
 	}
 	
@@ -68,6 +76,8 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
         customerTypeParamList = parameterService.getParameterMap(ParameterConstants.CUSTOMERS, ParameterConstants.CUSTOMER_TYPE);
         portsParamsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS);
         vendorTypeParamList = parameterService.getParameterMap(ParameterConstants.VENDORS, ParameterConstants.VENDOR_TYPE);
+        contactTypeParamList = parameterService.getParameterMap(ParameterConstants.CONTACTS, ParameterConstants.CONTACT_TYPE);
+        addressTypeParamList = parameterService.getParameterMap(ParameterConstants.ADDRESS, ParameterConstants.ADDRESS_TYPE);
     }
     
 
@@ -143,5 +153,38 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 		this.portsParamsList = portsParamsList;
 	}
 
+	public List<Parameters> getContactTypeParamList() {
+		return contactTypeParamList;
+	}
+
+	public void setContactTypeParamList(List<Parameters> contactTypeParamList) {
+		this.contactTypeParamList = contactTypeParamList;
+	}
+
+	public List<Parameters> getAddressTypeParamList() {
+		return addressTypeParamList;
+	}
+
+	public void setAddressTypeParamList(List<Parameters> addressTypeParamList) {
+		this.addressTypeParamList = addressTypeParamList;
+	}
+
+	public String getContactTypeAdded() {
+		return contactTypeAdded;
+	}
+
+	public void setContactTypeAdded(String contactTypeAdded) {
+		this.contactTypeAdded = contactTypeAdded;
+	}
+
+	public String getAddressTypeAdded() {
+		return addressTypeAdded;
+	}
+
+	public void setAddressTypeAdded(String addressTypeAdded) {
+		this.addressTypeAdded = addressTypeAdded;
+	}
+
+	
 
 }

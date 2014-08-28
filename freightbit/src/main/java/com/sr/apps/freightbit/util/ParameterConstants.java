@@ -54,4 +54,8 @@ public class ParameterConstants {
 
     public final static String CONTAINER_SIZE = "CONTAINER_SIZE";
 
+	public static final String CONTACTS = "CONTACTS";
+
+	public static final String ADDRESS = "ADDRESS";
+
 }

@@ -32,6 +32,8 @@
                     <s:hidden name="vendorClassAdded"/>
                     <s:hidden name="vendorTypeAdded"/>
                     <s:hidden name="customerTypeAdded"/>
+                    <s:hidden name="addressTypeAdded"/>
+                    <s:hidden name="contactTypeAdded"/>
                     <s:hidden name="portsAdded"/>
 
                     <div class="form-group" id="vendorClassId">
@@ -74,6 +76,36 @@
                              	<div class="controls">
                              		<input type="text" name="customerType_1" value="" id="customerType_1" class="form-control" style="width:85%; display:inline;"/>
                              		<input type="button" value="-"/> <input type="button" value="+" id="addCustomerTypeTextBox"/>
+                             	</div>
+                             </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="contactTypeId">
+                        <label for="contactType" class="col-lg-3 control-label" id="users-add-label">Contact Type:</label>
+                        <div class="col-lg-9" id="contactTypeDiv">
+                             <s:iterator value="contactTypeParamList" var="contactType">
+                             	<s:textfield disabled="true" required="true" name="value" cssClass="form-control"/>
+                             </s:iterator> 
+                             <div class="control-group" id="contactTypeGroup">
+                             	<div class="controls">
+                             		<input type="text" name="contactType_1" value="" id="contactType_1" class="form-control" style="width:85%; display:inline;"/>
+                             		<input type="button" value="-"/> <input type="button" value="+" id="addContactTypeTextBox"/>
+                             	</div>
+                             </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="addressTypeId">
+                        <label for="addressType" class="col-lg-3 control-label" id="users-add-label">Address Type:</label>
+                        <div class="col-lg-9" id="addressTypeDiv">
+                             <s:iterator value="addressTypeParamList" var="addressType">
+                             	<s:textfield disabled="true" required="true" name="value" cssClass="form-control"/>
+                             </s:iterator> 
+                             <div class="control-group" id="addressTypeGroup">
+                             	<div class="controls">
+                             		<input type="text" name="addressType_1" value="" id="addressType_1" class="form-control" style="width:85%; display:inline;"/>
+                             		<input type="button" value="-"/> <input type="button" value="+" id="addAddressTypeTextBox"/>
                              	</div>
                              </div>
                         </div>
@@ -165,6 +197,38 @@ $(document).ready(function() {
 	    customerTypeCounter++;
 	});
   
+  var contactTypeCounter = $("#contactTypeGroup").length + 1;
+  $("#addContactTypeTextBox").click(function() {
+	   var fieldWrapper = $("<div class=\"control-group \" id=\"contactTypeGroup\"><div class=\"controls\"></div></div>");
+	   var textField = "<input type=\"text\" name=\"contactType_"+contactTypeCounter+"\" value=\"\" id=\"contactType_"+contactTypeCounter+"\" class=\"form-control\" style=\"width: 85%; display: inline;\" />\n";
+	   var removeButton = $("<input type=\"button\" value=\"-\" />");
+	        removeButton.click(function() {
+	            $(this).parent().remove();
+	        });
+	   //var addButton = $("<input type=\"button\" value=\"+\" id=\"add\"/>");
+
+	   fieldWrapper.append(textField).append(removeButton);
+	    
+	    $("#contactTypeDiv").append(fieldWrapper);
+	    contactTypeCounter++;
+	});
+  
+  var addressTypeCounter = $("#addressTypeGroup").length + 1;
+  $("#addAddressTypeTextBox").click(function() {
+	   var fieldWrapper = $("<div class=\"control-group \" id=\"addressTypeGroup\"><div class=\"controls\"></div></div>");
+	   var textField = "<input type=\"text\" name=\"addressType_"+addressTypeCounter+"\" value=\"\" id=\"addressType_"+addressTypeCounter+"\" class=\"form-control\" style=\"width: 85%; display: inline;\" />\n";
+	   var removeButton = $("<input type=\"button\" value=\"-\" />");
+	        removeButton.click(function() {
+	            $(this).parent().remove();
+	        });
+	   //var addButton = $("<input type=\"button\" value=\"+\" id=\"add\"/>");
+
+	   fieldWrapper.append(textField).append(removeButton);
+	    
+	    $("#addressTypeDiv").append(fieldWrapper);
+	    addressTypeCounter++;
+	});
+  
   var orderPortCounter = $("#orderPortGroup").length + 1;
   $("#addOrderPortTextBox").click(function() {
 	   var fieldWrapper = $("<div class=\"control-group \" id=\"orderPortGroup\"><div class=\"controls\"></div></div>");
@@ -208,6 +272,24 @@ $(document).ready(function() {
 			  msg += ", " + $('#customerType_' + i).val();
 		}
         document.forms[0].customerTypeAdded.value = msg;
+        
+		var msg = '';
+		for(i=1; i<contactTypeCounter; i++){
+		  if (i==1)
+			  msg=$('#contactType_' + i).val();
+		  else
+			  msg += ", " + $('#contactType_' + i).val();
+		}
+        document.forms[0].contactTypeAdded.value = msg;
+        
+		var msg = '';
+		for(i=1; i<addressTypeCounter; i++){
+		  if (i==1)
+			  msg=$('#addressType_' + i).val();
+		  else
+			  msg += ", " + $('#addressType_' + i).val();
+		}
+        document.forms[0].addressTypeAdded.value = msg;
         
 		var msg = '';
 		for(i=1; i<orderPortCounter; i++){
