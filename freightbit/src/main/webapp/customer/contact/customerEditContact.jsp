@@ -77,8 +77,8 @@
                         <label for="contact.phone" class="col-lg-2 control-label" style="padding-top:0px;">Phone</label>
                         <div class="col-lg-10" >
                             <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
-                                         maxLength="7" required="true" pattern="\d{7}"
-                                         title="Phone should not contain special characters and/or letters. Must be 7 digits."/>
+                                         maxLength="14" required="true" 
+										 pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                         </div>
                     </div>
 
@@ -86,9 +86,9 @@
                         <label for="contact.mobile" class="col-lg-2 control-label" style="padding-top:0px;">Mobile</label>
                         <div class="col-lg-10" >
                             <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
-                                         maxLength="11" required="true"
-                                         pattern="\d{11}"
-                                         title="Mobile should not contain special characters and/or letters."/>
+                                         maxLength="19" required="true"
+                                         pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
+                                         title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                         </div>
                     </div>
 
@@ -96,8 +96,8 @@
                         <label for="contact.fax" class="col-lg-2 control-label" style="padding-top:0px;">Fax</label>
                         <div class="col-lg-10" >
                             <s:textfield cssClass="form-control" placeholder="contact.fax" name="contact.fax"
-                                         maxLength="11" pattern="[0-9]+"
-                                         title="Fax should not contain special characters and/or letters."/>
+                                         maxLength="14"  
+                                         pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
                         </div>
                     </div>
 

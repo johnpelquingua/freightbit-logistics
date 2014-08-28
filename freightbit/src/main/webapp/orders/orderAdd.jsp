@@ -31,12 +31,11 @@
 
                             <div class="col-lg-10">
 
-                                <s:select cssClass="form-control step1"
+                                <s:select cssClass="form-control"
                                           style="margin-bottom: 15px !important;"
                                           name="order.serviceRequirement"
                                           list="serviceRequirementList"
                                           id="order.serviceRequirement"
-                                          onchange="serviceValidate()"
                                           listKey="key"
                                           listValue="value"
                                 />
@@ -49,10 +48,9 @@
 
                             <div class="col-lg-10">
 
-                                <s:select id="order.modeOfService"
-                                          cssClass="form-control step1"
+                                <s:select id="order_modeOfService"
+                                          cssClass="form-control"
                                           style="margin-bottom: 15px !important;"
-                                          onchange="typeValidate()"
                                           name="order.modeOfService"
                                           list="modeOfServiceList"
                                           listKey="key"
@@ -366,13 +364,27 @@ $(document).ready(function() {
             // populate customer consignee list
             $.each(jsonResponse.customerContactsMap, function(key, value) {
 
-            $('<option>').val(key).text(value).appendTo(select);
+                $('<option>').val(key).text(value).appendTo(select);
 
             });
             // populate customer address list
             $.each(jsonResponse.customerAddressMap, function(key, value) {
 
-                $('<option>').val(key).text(value).appendTo(select2);
+                if($("#order_modeOfService").val() == 'DOOR TO PIER') {
+                    $("#shipperAddress").prop('disabled', false);
+                    $("#consigneeAddress").prop('disabled', true);
+                    $('<option>').val(key).text(value).appendTo(select2);
+                }else if ($("#order_modeOfService").val() == 'PIER TO DOOR') {
+                    $("#shipperAddress").prop('disabled', true);
+                    $("#consigneeAddress").prop('disabled', false);
+                }else if ($("#order_modeOfService").val() == 'PIER TO PIER'){
+                    $("#consigneeAddress").prop('disabled', true);
+                    $("#shipperAddress").prop('disabled', true);
+                }else{
+                    $("#shipperAddress").prop('disabled', false);
+                    $("#consigneeAddress").prop('disabled', false);
+                    $('<option>').val(key).text(value).appendTo(select2);
+                }
 
             });
             // populate customer consignee list
@@ -422,15 +434,18 @@ $(document).ready(function() {
         // populate consignee address
         $.each(jsonResponse.consigneeAddressMap, function(key, value) {
 
-            if($("#shipperConsignee").val() != ''){
-                $('<option>').val(key).text(value).appendTo(select4);
-            }else{
-                if($("#consigneeAddress").val() != ''){
-                    $('<option>').val(null).text("").appendTo(select4);
-                }
-                $('<option>').val(key).text(value).appendTo(select4);
-            }
+            if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR') {
 
+                if ($("#shipperConsignee").val() != '') {
+                    $('<option>').val(key).text(value).appendTo(select4);
+                } else {
+                    if ($("#consigneeAddress").val() != '') {
+                        $('<option>').val(null).text("").appendTo(select4);
+                    }
+                    $('<option>').val(key).text(value).appendTo(select4);
+                }
+
+            }
         });
 
         });
@@ -613,6 +628,38 @@ $(document).ready(function() {
                 }
             }
         }
+
+        if (select.options[ index ].value === 'DOOR TO PIER'){
+
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#shipperAddress").prop('disabled', false);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").prop('disabled', true);
+            $("#consigneeAddress").val('');
+        }else if (select.options[ index ].value === 'PIER TO DOOR'){
+
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#shipperAddress").prop('disabled', true);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").prop('disabled', false);
+            $("#consigneeAddress").val('');
+
+        }else {
+
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#shipperAddress").prop('disabled', false);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").prop('disabled', false);
+            $("#consigneeAddress").val('');
+        }
+
+
     }
 
     // If Service Mode is Pier to Pier
@@ -627,6 +674,14 @@ $(document).ready(function() {
                 sType.options[i].selected = true;
             }
         }
+
+        $("#customerName").val('');
+        $("#shipperContact").val('');
+        $("#shipperAddress").prop('disabled', true);
+        $("#shipperAddress").val('');
+        $("#shipperConsignee").val('');
+        $("#consigneeAddress").prop('disabled', true);
+        $("#consigneeAddress").val('');
 
         }
     // If Service Type is Shipping
@@ -666,7 +721,7 @@ $(document).ready(function() {
 
     var sReq = select = document.getElementById('order.serviceRequirement');
     var sType = select = document.getElementById('order.freightType');
-    var sMode = select = document.getElementById('order.modeOfService');
+    var sMode = select = document.getElementById('order_modeOfService');
 
     sReq.onchange = function() {
         dynamicDropdown.call(this, sReq ,this.selectedIndex);
@@ -713,6 +768,7 @@ $(document).ready(function() {
     select2.onchange = function() {
         preventDuplicatePort.call(this, select1, this.selectedIndex);
         };
+
 
 </script>
 

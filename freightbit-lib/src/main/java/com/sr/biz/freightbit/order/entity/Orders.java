@@ -275,7 +275,7 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    @Column(name = "shipperAddressId", nullable = false)
+    @Column(name = "shipperAddressId")
     public Integer getShipperAddressId() {
         return this.shipperAddressId;
     }
@@ -305,7 +305,7 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    @Column(name = "consigneeAddressId", nullable = false)
+    @Column(name = "consigneeAddressId")
     public Integer getConsigneeAddressId() {
         return this.consigneeAddressId;
     }
@@ -315,7 +315,7 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    @Column(name = "consigneeContactId", nullable = false)
+    @Column(name = "consigneeContactId")
     public Integer getConsigneeContactId() {
         return this.consigneeContactId;
     }

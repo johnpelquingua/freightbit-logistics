@@ -1,24 +1,27 @@
-function hideForm(){
-
-    document.getElementById("item").style.display = 'none';
-    document.getElementById("cargo").style.display = 'none';
-
-}
-
 function fcl(){
+    var containerVolume = document.getElementById("orderItem.volume").value;
 
-        document.getElementById("cargo").style.display = 'block';
-        document.getElementById("item").style.display = 'none';
-        $("#cargo").addClass("active");
-}
+    if(containerVolume != ''){
+        var containerQuantity = document.getElementById("orderItem.quantity").value;
+        var containerSize = document.getElementById("orderItem.nameSize").value;
 
-function lcl(){
+        if(containerQuantity == '') {
+            document.getElementById("orderItem.nameSize").value ='';
+            document.getElementById("orderItem.volume").value = '';
+            document.getElementById("orderItemVolume").value = '';
+        }
 
-        document.getElementById("item").style.display = 'block';
-        document.getElementById("cargo").style.display = 'none';
-        $("#item").addClass("active");
+        if (containerSize == '10 FOOTER'){
+            var totalVolume = containerQuantity * 14;
+        }else if (containerSize == '20 FOOTER'){
+            var totalVolume = containerQuantity * 28;
+        }else if (containerSize == '40 FOOTER') {
+            var totalVolume = containerQuantity * 56;
+        }
 
-
+        document.getElementById("orderItem.volume").value = totalVolume;
+        document.getElementById("orderItemVolume").value = totalVolume;
+    }
 }
 
 
@@ -66,20 +69,4 @@ function typeValidate(){
         $("#deliveryaddress").prop('disabled', true);
     }
 }
-
-
-//function validateInput(){
-//    var input = document.getElementById('driver.driverCode').value;
-//
-//    if(/^[a-zA-Z0-9- ]*$/.test(input) == false) {
-//        alert('Your string contains illegal characters.');
-//    }
-//}
-//
-//var input2 = document.getElementById('driver.driverCode');
-//input2.onblur = function(){
-//    validateInput();
-//    input2.focus();
-//};
-
 

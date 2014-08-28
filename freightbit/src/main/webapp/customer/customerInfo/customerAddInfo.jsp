@@ -54,25 +54,29 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Phone No.</label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer.phone" maxLength="7" pattern="\d{7}"/>
+                                <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer.phone" maxLength="14" 
+                                pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile No.</label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer.mobile" maxLength="11" pattern="\d{11}"/>
+                                <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer.mobile" maxLength="19" 
+								pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
+                                title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax  No.</label>
                             <div class="col-lg-9" >
-                                <s:textfield  name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11" pattern="[0-9]+"/>
+                                <s:textfield  required="true" name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11" pattern="[0-9]+"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Email Address</label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email"/>
+                                <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email"
+								maxLength="50" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
                             </div>
                         </div>
                         <div class="form-group">
