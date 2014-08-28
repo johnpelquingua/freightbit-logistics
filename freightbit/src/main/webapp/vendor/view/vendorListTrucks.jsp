@@ -57,38 +57,46 @@
                                     <display:table id="truck" name="trucks" requestURI="viewTrucks.action" pagesize="10"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
-                                        <td><display:column property="truckCode" title="Truck Code <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
                                         <td><display:column property="plateNumber" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="truckType" title="Truck Type <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="truckCode" title="LTO Certificate Number <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="modelNumber" title="Model Number <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="engineNumber" title="Make <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="engineNumber" title="Engine Number <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="modelNumber" title="Model <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="truckType" title="Body Type <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="grossWeight" title="Gross Weight <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">
+
                                                 <s:url var="editTruckUrl" action="loadEditTrucksPage">
                                                     <s:param name="truckCodeParam" value="#attr.truck.truckCode"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{editTruckUrl}" rel="tooltip"
-                                                     title="Edit this vendor">
-                                                    <%--<img src="../includes/images/edit-user.png" class="icon-action circ-icon">--%>
-                                                    <i class="fa fa-pencil"></i>
+                                                     title="Edit Truck">
+                                                     <i class="fa fa-pencil"></i>
                                                 </s:a>
 
                                                 <s:url var="deleteTruckUrl" action="deleteTrucks">
                                                     <s:param name="truckCodeParam" value="#attr.truck.truckCode"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{deleteTruckUrl}" rel="tooltip"
-                                                     title="Delete this Vendor"
+                                                     title="Delete Truck"
                                                      onclick="return confirm('Do you really want to delete?');">
-                                                    <%--<img src="../includes/images/remove-user.png" class="icon-action circ-icon">--%>
-                                                    <i class="fa fa-trash-o"></i>
+                                                     <i class="fa fa-trash-o"></i>
                                                 </s:a>
+
+                                                <s:url var="viewInfoTruckUrl" action="viewInfoTruck">
+                                                    <s:param name="truckCodeParam" value="#attr.truck.truckCode"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{viewInfoTruckUrl}" rel="tooltip"
+                                                     title="View Truck Info">
+                                                     <i class="fa fa-info-circle"></i>
+                                                </s:a>
+
                                             </display:column>
                                         </td>
                                     </display:table>

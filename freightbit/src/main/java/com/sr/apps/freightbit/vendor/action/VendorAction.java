@@ -61,6 +61,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private List<Parameters> vendorClassList = new ArrayList<Parameters>();
     private List<Parameters> contactTypeList = new ArrayList<Parameters>();
     private List<Parameters> addressTypeList = new ArrayList<Parameters>();
+    private List<Parameters> vesselTypeList = new ArrayList<Parameters>();
 
     private VendorBean vendor = new VendorBean();
     private TruckBean truck = new TruckBean();
@@ -392,6 +393,17 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String viewInfoTruck() {
+
+        Trucks truckEntity = new Trucks();
+
+        truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
+
+        truck = transformToFormBeanTrucks(truckEntity);
+
+        return SUCCESS;
+    }
+
     private Trucks transformToEntityBeanTrucks(TruckBean truckBean) {
         Trucks entity = new Trucks();
         Client client = clientService.findClientById(getClientId().toString());
@@ -413,6 +425,13 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setGrossWeight(truckBean.getGrossWeight());
         entity.setCreatedBy(truckBean.getCreatedBy());
         entity.setCreatedTimestamp(truckBean.getCreatedTimeStamp());
+        entity.setMotorVehicleNumber(truckBean.getMotorVehicleNumber());
+        entity.setIssueDate(truckBean.getIssueDate());
+        entity.setNetWeight(truckBean.getNetWeight());
+        entity.setNetCapacity(truckBean.getNetCapacity());
+        entity.setOwnerName(truckBean.getOwnerName());
+        entity.setOwnerAddress(truckBean.getOwnerAddress());
+        entity.setOfficialReceipt(truckBean.getOfficialReceipt());
 
         return entity;
     }
@@ -432,6 +451,13 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setVendorId(entity.getVendorId());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
+        formBean.setMotorVehicleNumber(entity.getMotorVehicleNumber());
+        formBean.setIssueDate(entity.getIssueDate());
+        formBean.setNetWeight(entity.getNetWeight());
+        formBean.setNetCapacity(entity.getNetCapacity());
+        formBean.setOwnerName(entity.getOwnerName());
+        formBean.setOwnerAddress(entity.getOwnerAddress());
+        formBean.setOfficialReceipt(entity.getOfficialReceipt());
 
         return formBean;
     }
@@ -789,10 +815,11 @@ public class VendorAction extends ActionSupport implements Preparable {
         Integer vendorId = getSessionVendorId();
 
         entity.setVendorId(vendorId);
-        entity.setVesselNumber(vesselBean.getVesselNumber());
+        /*entity.setVesselNumber(vesselBean.getVesselNumber());*/
         entity.setVesselName(vesselBean.getVesselName());
-        entity.setModelNumber(vesselBean.getModelNumber());
-        entity.setModelYear(vesselBean.getModelYear());
+        /*entity.setModelNumber(vesselBean.getModelNumber());
+        entity.setModelYear(vesselBean.getModelYear());*/
+        entity.setVesselType(vesselBean.getVesselType());
         entity.setCreatedBy(vesselBean.getCreatedBy());
         entity.setCreatedTimestamp(vesselBean.getCreatedTimeStamp());
 
@@ -802,10 +829,11 @@ public class VendorAction extends ActionSupport implements Preparable {
     private VesselBean transformToFormBeanVessel(Vessel entity) {
         VesselBean formBean = new VesselBean();
 
-        formBean.setModelNumber(entity.getModelNumber());
+        /*formBean.setModelNumber(entity.getModelNumber());*/
         formBean.setVesselName(entity.getVesselName());
-        formBean.setVesselNumber(entity.getVesselNumber());
-        formBean.setModelYear(entity.getModelYear());
+        formBean.setVesselType(entity.getVesselType());
+        /*formBean.setVesselNumber(entity.getVesselNumber());
+        formBean.setModelYear(entity.getModelYear());*/
         formBean.setVendorId(entity.getVendorId());
         formBean.setVesselId(entity.getVesselId());
         formBean.setCreatedBy(entity.getCreatedBy());
@@ -817,7 +845,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     public void validateOnSubmitVessels(VesselBean vesselBean) {
         clearErrorsAndMessages();
 
-        if (StringUtils.isBlank(vesselBean.getVesselNumber())) {
+        /*if (StringUtils.isBlank(vesselBean.getVesselNumber())) {
             addFieldError("vessel.vesselNumber", getText("err.vesselNumber.required"));
         }
         if (StringUtils.isBlank(vesselBean.getModelNumber())) {
@@ -825,7 +853,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
         if (vesselBean.getModelYear() == null) {
             addFieldError("vessel.modelYear", getText("err.modelYear.required"));
-        }
+        }*/
         if (StringUtils.isBlank(vesselBean.getVesselName())) {
             addFieldError("vessel.vesselName", getText("err.vesselName.required"));
         }
@@ -1145,6 +1173,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         vendorClassList = parameterService.getParameterMap(ParameterConstants.VENDOR_CLASS);
         contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
         addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
+        vesselTypeList = parameterService.getParameterMap(ParameterConstants.VESSEL_TYPE);
     }
 
     public String getVendorKeyword() {
@@ -1339,7 +1368,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         this.vendorIdParam = vendorIdParam;
     }
 
-
     public List<VesselBean> getVessels() {
         return vessels;
     }
@@ -1398,5 +1426,13 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public void setCommonUtils(CommonUtils commonUtils) {
         this.commonUtils = commonUtils;
+    }
+
+    public List<Parameters> getVesselTypeList() {
+        return vesselTypeList;
+    }
+
+    public void setVesselTypeList(List<Parameters> vesselTypeList) {
+        this.vesselTypeList = vesselTypeList;
     }
 }

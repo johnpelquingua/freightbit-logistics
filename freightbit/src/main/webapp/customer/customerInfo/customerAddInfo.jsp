@@ -43,8 +43,6 @@
                             </div>
                         </div>
 
-
-
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Customer Type</label>
                             <div class="col-lg-9" >

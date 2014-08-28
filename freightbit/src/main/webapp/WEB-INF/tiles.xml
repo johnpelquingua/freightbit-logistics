@@ -201,7 +201,7 @@
         <put-attribute name="body" value="/vendor/add/vendorAdd.jsp"/>
     </definition>
     <definition name="vendor.vendorAddTrucks.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Add New Trucks"/>
+        <put-attribute name="title" value="Add Trucks"/>
         <put-attribute name="body" value="/vendor/add/vendorAddTrucks.jsp"/>
     </definition>
     <definition name="vendor.vendorAddDriver.tiles" extends="baseLayout">
@@ -251,6 +251,10 @@
     <definition name="vendor.vendorEditTrucks.tiles" extends="baseLayout">
         <put-attribute name="title" value="Edit Trucks"/>
         <put-attribute name="body" value="/vendor/edit/vendorEditTrucks.jsp"/>
+    </definition>
+    <definition name="vendor.viewInfoTruck.tiles" extends="baseLayout">
+        <put-attribute name="title" value="View Truck Information"/>
+        <put-attribute name="body" value="/vendor/view/vendorViewTruckInfo.jsp"/>
     </definition>
     <definition name="vendor.vendorEditDriver.tiles" extends="baseLayout">
         <put-attribute name="title" value="Edit Driver"/>

@@ -35,7 +35,7 @@
                         <s:hidden name="vessel.vesselId" value="%{vessel.vesselId}" />
                         <s:hidden name="vessel.createdTimeStamp" value="%{vessel.createdTimeStamp}" />
                         <s:hidden name="vessel.createdBy" value="%{vessel.createdBy}" />
-                        <div class="form-group">
+                        <%--<div class="form-group">
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Vessel</label>
 
@@ -45,11 +45,11 @@
                                              id="vessel.vesselNumber" pattern="[A-Za-z0-9]+" title="No special characters allowed"/>
                             </div>
 
-                        </div>
+                        </div>--%>
 
                         <div class="form-group">
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Name</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Vessel Name</label>
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Vessel Name" name="vessel.vesselName"
@@ -60,17 +60,24 @@
 
                         <div class="form-group">
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Model</label>
+                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Model</label>
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Model Number"
                                              name="vessel.modelNumber"
                                              id="vessel.modelNumber" pattern="[A-Za-z0-9]+" title="No special characters allowed"/>
+                            </div>--%>
+
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Vessel Type</label>
+
+                            <div class="col-lg-10">
+                                <s:select cssClass="form-control" placeholder="Vessel Type" name="vessel.vesselType"
+                                          listKey="key" listValue="value" list="vesselTypeList" id="vessel.vesselType" pattern="[A-Za-z]+" title="No special characters allowed"/>
                             </div>
 
                         </div>
 
-                        <div class="form-group">
+                        <%--<div class="form-group">
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Year Model</label>
 
@@ -79,14 +86,7 @@
                                              id="vessel.modelYear" maxLength="4" pattern="\d{4}"/>
                             </div>
 
-                        </div>
-
-                        <%--<div class="pull-right">
-
-                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
-                        </div>
-
-                    </s:form>--%>
+                        </div>--%>
 
                 </div>
             </div>
@@ -102,16 +102,5 @@
 
         </div>
     </div>
-
-    <%--<div class="col-lg-2 col-lg-offset-2">
-        <div class="panel panel-primary">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
-                <li><a href="viewShippingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li><a href="#"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
-                <li class="active"><a href="viewVessels"><i class="fa fa-anchor fa-fw"></i> Vessels</a></li>
-            </ul>
-        </div>
-    </div>--%>
 
 </div>

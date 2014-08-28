@@ -17,11 +17,19 @@ public class TruckBean {
     private String createdBy;
     private Date modifiedTimeStamp;
     private String modifiedBy;
+    private String motorVehicleNumber;
+    private Date issueDate;
+    private Integer netWeight;
+    private Integer netCapacity;
+    private String ownerName;
+    private String ownerAddress;
+    private String officialReceipt;
 
     public TruckBean() {
     }
 
-    public TruckBean(Integer truckId, String truckCode, String truckType, String plateNumber, String modelNumber, Integer modelYear, String engineNumber, Integer grossWeight, Integer vendorId, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
+    public TruckBean(Integer vendorId, Integer truckId, String truckCode, String truckType, String plateNumber, String modelNumber, Integer modelYear, String engineNumber, Integer grossWeight, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy, String motorVehicleNumber, Date issueDate, Integer netWeight, Integer netCapacity, String ownerName, String ownerAddress, String officialReceipt) {
+        this.vendorId = vendorId;
         this.truckId = truckId;
         this.truckCode = truckCode;
         this.truckType = truckType;
@@ -30,11 +38,17 @@ public class TruckBean {
         this.modelYear = modelYear;
         this.engineNumber = engineNumber;
         this.grossWeight = grossWeight;
-        this.vendorId = vendorId;
         this.createdTimeStamp = createdTimeStamp;
         this.createdBy = createdBy;
         this.modifiedTimeStamp = modifiedTimeStamp;
         this.modifiedBy = modifiedBy;
+        this.motorVehicleNumber = motorVehicleNumber;
+        this.issueDate = issueDate;
+        this.netWeight = netWeight;
+        this.netCapacity = netCapacity;
+        this.ownerName = ownerName;
+        this.ownerAddress = ownerAddress;
+        this.officialReceipt = officialReceipt;
     }
 
     public Integer getTruckId() {
@@ -139,5 +153,61 @@ public class TruckBean {
 
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
+    }
+
+    public String getMotorVehicleNumber() {
+        return motorVehicleNumber;
+    }
+
+    public void setMotorVehicleNumber(String motorVehicleNumber) {
+        this.motorVehicleNumber = motorVehicleNumber;
+    }
+
+    public Date getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(Date issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public Integer getNetWeight() {
+        return netWeight;
+    }
+
+    public void setNetWeight(Integer netWeight) {
+        this.netWeight = netWeight;
+    }
+
+    public Integer getNetCapacity() {
+        return netCapacity;
+    }
+
+    public void setNetCapacity(Integer netCapacity) {
+        this.netCapacity = netCapacity;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getOwnerAddress() {
+        return ownerAddress;
+    }
+
+    public void setOwnerAddress(String ownerAddress) {
+        this.ownerAddress = ownerAddress;
+    }
+
+    public String getOfficialReceipt() {
+        return officialReceipt;
+    }
+
+    public void setOfficialReceipt(String officialReceipt) {
+        this.officialReceipt = officialReceipt;
     }
 }

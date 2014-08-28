@@ -25,15 +25,13 @@ public class Vessel implements Serializable {
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
+    private String vesselType;
 
 
     public Vessel() {
     }
 
-    public Vessel(Integer vesselId, Client clientId, Integer vendorId, String vesselNumber,
-                  String vesselName, String modelNumber, Integer modelYear, Date createdTimestamp,
-                  String createdBy, Date modifiedTimestamp, String modifiedBy) {
-
+    public Vessel(Integer vesselId, Client clientId, Integer vendorId, String vesselNumber, String vesselName, String modelNumber, Integer modelYear, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselType) {
         this.vesselId = vesselId;
         this.clientId = clientId;
         this.vendorId = vendorId;
@@ -45,6 +43,7 @@ public class Vessel implements Serializable {
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
+        this.vesselType = vesselType;
     }
 
     @Id
@@ -147,5 +146,14 @@ public class Vessel implements Serializable {
 
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
+    }
+
+    @Column(name = "vesselType")
+    public String getVesselType() {
+        return vesselType;
+    }
+
+    public void setVesselType(String vesselType) {
+        this.vesselType = vesselType;
     }
 }

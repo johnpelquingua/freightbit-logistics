@@ -216,14 +216,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (itemBean.getWidth() == null) {
             addFieldError("item.width", getText("err.width.required"));
         }
-        if (itemBean.getCriticalQuality() == null) {
+        /*if (itemBean.getCriticalQuality() == null) {
             addFieldError("item.criticalQuality", getText("err.criticalQuality.required"));
-        }
+        }*/
         if (itemBean.getBasePrice() == null) {
             addFieldError("item.basePrice", getText("err.basePrice.required"));
         }
-
-
         if (StringUtils.isBlank(itemBean.getDescription())) {
             addFieldError("item.description", getText("err.description.required"));
         }

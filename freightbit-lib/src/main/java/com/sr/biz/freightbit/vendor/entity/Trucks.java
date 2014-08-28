@@ -33,16 +33,19 @@ public class Trucks implements Serializable {
     private String createdBy;
     private Date modifiedTimestamp;
     private String modifiedBy;
+    private String motorVehicleNumber;
+    private Date issueDate;
+    private Integer netWeight;
+    private Integer netCapacity;
+    private String ownerName;
+    private String ownerAddress;
+    private String officialReceipt;
 
     public Trucks() {
     }
 
-    public Trucks(Integer truckId, Client client, Integer vendorId,
-                  String truckCode, String truckType, String plateNumber,
-                  String modelNumber, Integer modelYear,
-                  String engineNumber, Integer grossWeight,
-                  Date createdTimestamp, String createdBy,
-                  Date modifiedTimestamp, String modifiedBy) {
+    public Trucks(String modifiedBy, Integer truckId, Client client, Integer vendorId, String truckCode, String truckType, String plateNumber, String modelNumber, Integer modelYear, String engineNumber, Integer grossWeight, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String motorVehicleNumber, Date issueDate, Integer netWeight, Integer netCapacity, String ownerName, String ownerAddress, String officialReceipt) {
+        this.modifiedBy = modifiedBy;
         this.truckId = truckId;
         this.client = client;
         this.vendorId = vendorId;
@@ -56,7 +59,13 @@ public class Trucks implements Serializable {
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
-        this.modifiedBy = modifiedBy;
+        this.motorVehicleNumber = motorVehicleNumber;
+        this.issueDate = issueDate;
+        this.netWeight = netWeight;
+        this.netCapacity = netCapacity;
+        this.ownerName = ownerName;
+        this.ownerAddress = ownerAddress;
+        this.officialReceipt = officialReceipt;
     }
 
     @Id
@@ -186,5 +195,68 @@ public class Trucks implements Serializable {
 
     public void setVendorId(Integer vendorId) {
         this.vendorId = vendorId;
+    }
+
+    @Column(name = "motorVehicleNumber")
+    public String getMotorVehicleNumber() {
+        return motorVehicleNumber;
+    }
+
+    public void setMotorVehicleNumber(String motorVehicleNumber) {
+        this.motorVehicleNumber = motorVehicleNumber;
+    }
+
+    @Column(name = "issueDate")
+    public Date getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(Date issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    @Column(name = "netWeight")
+    public Integer getNetWeight() {
+        return netWeight;
+    }
+
+    public void setNetWeight(Integer netWeight) {
+        this.netWeight = netWeight;
+    }
+
+    @Column(name = "netCapacity")
+    public Integer getNetCapacity() {
+        return netCapacity;
+    }
+
+    public void setNetCapacity(Integer netCapacity) {
+        this.netCapacity = netCapacity;
+    }
+
+    @Column(name = "ownerName")
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    @Column(name = "ownerAddress")
+    public String getOwnerAddress() {
+        return ownerAddress;
+    }
+
+    public void setOwnerAddress(String ownerAddress) {
+        this.ownerAddress = ownerAddress;
+    }
+
+    @Column(name = "officialReceipt")
+    public String getOfficialReceipt() {
+        return officialReceipt;
+    }
+
+    public void setOfficialReceipt(String officialReceipt) {
+        this.officialReceipt = officialReceipt;
     }
 }

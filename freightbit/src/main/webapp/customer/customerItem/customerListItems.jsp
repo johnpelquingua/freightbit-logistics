@@ -66,18 +66,18 @@
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="itemCode" title="Code <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="length" title="Length <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="length" title="Length (m) <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="width" title="Width <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="width" title="Width (m) <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="height" title="Height <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="height" title="Height (m) <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="srp" title="SRP <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="srp" title="SRP (Php) <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="criticalQuality" title="Critical Quality <i class='fa fa-sort' />"
+                                        <%--<td><display:column property="criticalQuality" title="Critical Quality <i class='fa fa-sort' />"
                                                             class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="basePrice" title="Base Price <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>--%>
+                                        <td><display:column property="basePrice" title="Base Price (Php) <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="note" title="Note <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>

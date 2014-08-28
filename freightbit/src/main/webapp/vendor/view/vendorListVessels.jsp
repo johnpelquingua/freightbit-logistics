@@ -57,14 +57,14 @@
                                     <display:table id="vessel" name="vessels" requestURI="viewVessels.action" pagesize="10"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
-                                        <td><display:column property="vesselNumber" title="Vessel Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                        <%--<td><display:column property="vesselNumber" title="Vessel Number <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>--%>
                                         <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="modelNumber" title="Model Number <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="vesselType" title="Vessel Type <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="modelYear" title="Model Year <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                        <%--<td><display:column property="modelYear" title="Model Year <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>--%>
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">
                                                 <s:url var="editVesselUrl" action="loadEditVesselsPage">
@@ -134,16 +134,5 @@
             </div>
         </div>
     </div>
-
-    <%--<div class="col-lg-3 col-lg-offset-2">
-        <div class="panel panel-primary">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
-                <li><a href="viewShippingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li><a href="viewVendorShippingContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
-                <li class="active"><a href="viewVessels"><i class="fa fa-anchor fa-fw"></i> Vessels</a></li>
-            </ul>
-        </div>
-    </div>--%>
 
 </div>

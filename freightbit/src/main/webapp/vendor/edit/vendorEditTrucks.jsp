@@ -35,9 +35,75 @@
                         <s:hidden name="truck.truckId" value="%{truck.truckId}"/>
                         <s:hidden name="truck.createdTimeStamp" value="%{truck.createdTimeStamp}" />
                         <s:hidden name="truck.createdBy" value="%{truck.createdBy}" />
+                        <%--Plate Number = plateNumber--%>
                         <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Type</label>
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="Plate Number" name="truck.plateNumber"
+                                             id="truck.plateNumber" required="true" />
+                            </div>
+                            <div class="col-lg-10 col-lg-offset-2">
+                                e.g. ABC-123, XYZ-7890, etc.
+                            </div>
+                        </div>
+                            <%--LTO Certificate Number = code--%>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">LTO Certificate Number</label>
+
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
+                                             id="truck.truckCode" required="true"/>
+                            </div>
+
+                        </div>
+                            <%--MV File Number--%>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">MV File Number</label>
+
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="MV File Number" name="truck.motorVehicleNumber"
+                                             id="truck.motorVehicleNumber" required="true"/>
+                            </div>
+                        </div>
+                            <%--CR Date of Issue--%>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">CR Date of Issue</label>
+
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="CR Date of Issue" name="truck.issueDate"
+                                             id="issueDate" required="true"/>
+                            </div>
+                        </div>
+                            <%--Make = engineNumber--%>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Make</label>
+
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="Make"
+                                             name="truck.engineNumber"
+                                             id="truck.engineNumber" required="true"/>
+                            </div>
+                            <div class="col-lg-10 col-lg-offset-2">
+                                e.g. Toyota, GMC, Chevrolet, etc.
+                            </div>
+                        </div>
+                            <%--Model = modelNumber--%>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Model</label>
+
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="Model" name="truck.modelNumber"
+                                             id="truck.modelNumber" required="true"/>
+                            </div>
+                            <div class="col-lg-10 col-lg-offset-2">
+                                e.g. 4Runner, Yukon, Silverado, etc.
+                            </div>
+
+                        </div>
+                            <%--Type of Body = truckType--%>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Type of Body</label>
 
                             <div class="col-lg-10">
                                 <s:select list="truckTypeList" name="truck.truckType" listKey="key" listValue="value"
@@ -45,80 +111,72 @@
 
                             </div>
                         </div>
-
+                            <%--Year Model = modelYear--%>
                         <div class="form-group">
-
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Plate</label>
-
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="Plate Number" name="truck.plateNumber"
-                                             id="truck.plateNumber" required="true" />
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Model</label>
-
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="Model Number" name="truck.modelNumber"
-                                             id="truck.modelNumber" required="true"/>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Year Model</label>
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Year Model" name="truck.modelYear"
                                              id="truck.modelYear" required="true" maxLength="4"/>
                             </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Engine</label>
-
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="Engine Number"
-                                             name="truck.engineNumber"
-                                             id="truck.engineNumber" required="true"/>
+                            <div class="col-lg-10 col-lg-offset-2">
+                                e.g. 1999, 2012, etc.
                             </div>
-
                         </div>
-
+                            <%--Gross Weight = grossWeight--%>
                         <div class="form-group">
-
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Code</label>
-
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="Truck Code" name="truck.truckCode"
-                                             id="truck.truckCode" required="true"/>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Weight</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight (kg.)</label>
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
                                              id="truck.grossWeight" required="true"/>
                             </div>
-
                         </div>
+                            <%--Net Weight = netWeight--%>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Net Weight (kg.)</label>
 
-
-                        <%--<div class="pull-right">
-                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="Net Weight" name="truck.netWeight"
+                                             id="truck.netWeight" required="true"/>
+                            </div>
                         </div>
+                            <%--Net Capacity = netCapacity--%>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Net Capacity</label>
 
-                    </s:form>--%>
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="Net Capacity" name="truck.netCapacity"
+                                             id="truck.netCapacity" required="true"/>
+                            </div>
+                        </div>
+                            <%--Owner's Name = ownerName--%>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Owner's Name</label>
+
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="Owner's Name" name="truck.ownerName"
+                                             id="truck.ownerName" required="true"/>
+                            </div>
+                        </div>
+                            <%--Owner's Address = ownerAddress--%>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Owner's Address</label>
+
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="Owner's Address" name="truck.ownerAddress"
+                                             id="truck.ownerAddress" required="true"/>
+                            </div>
+                        </div>
+                            <%--O.R. Number = officialReceipt--%>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">O.R. Number</label>
+
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt"
+                                             id="truck.officialReceipt" required="true"/>
+                            </div>
+                        </div>
 
                 </div>
 
@@ -135,17 +193,5 @@
 
         </div>
     </div>
-
-    <%--<div class="col-lg-2 col-lg-offset-2">
-        <div class="panel panel-primary">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="viewInfoVendor"><i class="fa fa-info-circle fa-fw"></i> Profile</a></li>
-                <li><a href="viewTruckingAddress"><i class="fa fa-home fa-fw"></i> Address</a></li>
-                <li><a href="viewVendorTruckingContacts"><i class="fa fa-group fa-fw"></i> Contact Persons</a></li>
-                <li><a href="viewDrivers"><i class="fa fa-group fa-fw"></i> Drivers</a></li>
-                <li class="active"><a href="viewTrucks"><i class="fa fa-truck fa-fw"></i> Trucks</a></li>
-            </ul>
-        </div>
-    </div>--%>
 
 </div>

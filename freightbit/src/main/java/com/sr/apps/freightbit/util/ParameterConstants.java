@@ -58,4 +58,6 @@ public class ParameterConstants {
 
 	public static final String ADDRESS = "ADDRESS";
 
+    public final static String VESSEL_TYPE = "VESSEL_TYPE";
+
 }

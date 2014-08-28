@@ -14,11 +14,13 @@ public class VesselBean {
     private String createdBy;
     private Date modifiedTimeStamp;
     private String modifiedBy;
+    private String vesselType;
 
     public VesselBean() {
     }
 
-    public VesselBean(Integer vendorId, String vesselNumber, String vesselName, String modelNumber, Integer modelYear, Integer vesselId, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
+    public VesselBean(String vesselType, Integer vendorId, String vesselNumber, String vesselName, String modelNumber, Integer modelYear, Integer vesselId, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
+        this.vesselType = vesselType;
         this.vendorId = vendorId;
         this.vesselNumber = vesselNumber;
         this.vesselName = vesselName;
@@ -109,5 +111,13 @@ public class VesselBean {
 
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
+    }
+
+    public String getVesselType() {
+        return vesselType;
+    }
+
+    public void setVesselType(String vesselType) {
+        this.vesselType = vesselType;
     }
 }
