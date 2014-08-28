@@ -33,13 +33,13 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px !important; margin-top: 0px !important;">Company Name / Customer Name</label>
                             <div class="col-lg-9" >
-                                <s:textfield  required="true" name="customer.customerName" pattern="[A-Z]+" cssClass="form-control" id="customer.customerName" />
+                                <s:textfield  required="true" name="customer.customerName" pattern="[A-Za-z]+" cssClass="form-control" id="customer.customerName" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Company Code</label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" maxLength="3" pattern="[A-Z]+" name="customer.customerCode" cssClass="form-control" id="customer.customerCode" />
+                                <s:textfield required="true" maxLength="3" pattern="[A-Za-z]+" name="customer.customerCode" cssClass="form-control" id="customer.customerCode" />
                             </div>
                         </div>
 
