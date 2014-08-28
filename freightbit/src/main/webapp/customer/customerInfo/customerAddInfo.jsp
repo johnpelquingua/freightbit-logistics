@@ -69,7 +69,12 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax  No.</label>
                             <div class="col-lg-9" >
-                                <s:textfield  required="true" name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11" pattern="[0-9]+"/>
+<<<<<<< HEAD
+                                <s:textfield  name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11" pattern="[0-9]+"/>
+=======
+                                <s:textfield  required="true" name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="14" 
+                                 pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+>>>>>>> ac33275e89949d187a41449861392a9c2e7b3fa7
                             </div>
                         </div>
                         <div class="form-group">

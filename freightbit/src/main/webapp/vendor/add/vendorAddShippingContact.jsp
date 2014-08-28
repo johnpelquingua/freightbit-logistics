@@ -97,7 +97,12 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">E-Mail</label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email"/>
+<<<<<<< HEAD
+                            <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email" id="emailfield" />
+=======
+                            <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email" maxLength="50"
+                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
+>>>>>>> ac33275e89949d187a41449861392a9c2e7b3fa7
                             </div>
                         </div>
 
