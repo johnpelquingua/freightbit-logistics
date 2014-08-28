@@ -16,7 +16,6 @@ import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import org.apache.log4j.Logger;
-import org.apache.struts2.interceptor.ParameterAware;
 
 import java.util.*;
 
@@ -67,11 +66,33 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
-        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderId);
+        orderItemsList = operationsService.findAllOrderItemsByOrderIdLand(orderId);
 
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Items has been updated.");
+
+        return SUCCESS;
+    }
+
+    public String updateCompleteSeaPlanning() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
+
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderIdSea(orderId);
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Items has been updated and moved to Inland Freight Planning.");
+
         return SUCCESS;
     }
 
@@ -113,12 +134,35 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String findVesselSchedule() {
+        OperationsBean formBean = new OperationsBean();
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderItemId", operationsBean.getOrderItemId());
+        sessionAttributes.put("clientId", operationsBean.getClientId());
+        sessionAttributes.put("nameSize", operationsBean.getNameSize());
+        sessionAttributes.put("orderId", operationsBean.getOrderId());
+        sessionAttributes.put("quantity", operationsBean.getQuantity());
+        sessionAttributes.put("classification", operationsBean.getClassification());
+        sessionAttributes.put("commodity", operationsBean.getCommodity());
+        sessionAttributes.put("declaredValue", operationsBean.getDeclaredValue());
+        sessionAttributes.put("comments", operationsBean.getComments());
+        sessionAttributes.put("rate", operationsBean.getRate());
+        sessionAttributes.put("createdBy", operationsBean.getCreatedBy());
+        sessionAttributes.put("modifiedBy", operationsBean.getModifiedBy());
+        sessionAttributes.put("createdTimestamp", operationsBean.getCreatedTimestamp());
+        sessionAttributes.put("modifiedTimestamp", operationsBean.getModifiedTimestamp());
+        sessionAttributes.put("weight", operationsBean.getWeight());
+        sessionAttributes.put("status", "PLANNING 2");
+        sessionAttributes.put("vendorSea", operationsBean.getVendorSea());
+
+        System.out.println("<------------------Client ID: " + sessionAttributes.get("clientId") + "-----> \n \n");
+        System.out.println("<------------------Client ID: " + operationsBean.getClientId() + "-----> \n \n");
+        System.out.println("<------------------VendorList: " + operationsBean.getVendorList() + "-----> \n \n");
+        System.out.println("<------------------Commodity: " + operationsBean.getCommodity() + "-----> \n \n");
 
         List<VesselSchedules> vesselSchedulesList = new ArrayList<VesselSchedules>();
 
         vesselSchedulesList = operationsService.findVesselScheduleByVendorId(operationsBean.getVendorList());
-
-        OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
 
         for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
             vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
@@ -135,14 +179,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderItemIdParam", entity.getOrderId());
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
-        System.out.println("<------------------nameSizeParam: \n \n" + sessionAttributes.get("nameSizeParam"));
-        System.out.println("<------------------orderItemIdParam: \n \n" + sessionAttributes.get("orderItemIdParam"));
 
         if ("PLANNING 1".equals(entity.getStatus())) {
+
             return "PLANNING1";
+
         } else if ("PLANNING 2".equals(entity.getStatus())) {
-            return " PLANNING2";
+
+            return "PLANNING2";
+
         } else {
+
             return "PLANNING3";
         }
     }
@@ -237,7 +284,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setOrderId(entity.getOrderId());
         formBean.setQuantity(entity.getQuantity());
         formBean.setClassification(entity.getClassification());
-        formBean.setCommmodity(entity.getCommodity());
+        formBean.setCommodity(entity.getCommodity());
         formBean.setDeclaredValue(entity.getDeclaredValue());
         formBean.setComments(entity.getComments());
         formBean.setRate(entity.getRate());
@@ -250,28 +297,53 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setVendorSea(entity.getVendorSea());
         formBean.setVendorOrigin(entity.getVendorOrigin());
         formBean.setFinalPickupDate(entity.getFinalPickupDate());
+
+        System.out.println("<------------- Commodity Entity: " + entity.getCommodity() + "---> \n \n");
+        System.out.println("<------------- Commodity Entity: " + formBean.getCommodity() + "---> \n \n");
         return formBean;
     }
 
     public OrderItems transformOrderItemToEntityBeanSea (OperationsBean formBean) {
         OrderItems entity = new OrderItems();
-        entity.setOrderItemId(formBean.getOrderItemId());
-        entity.setClientId(formBean.getClientId());
-        entity.setNameSize(formBean.getNameSize());
-        entity.setOrderId(formBean.getOrderId());
-        entity.setQuantity(formBean.getQuantity());
-        entity.setClassification(formBean.getClassification());
-        entity.setCommodity(formBean.getCommodity());
-        entity.setDeclaredValue(formBean.getDeclaredValue());
-        entity.setComments(formBean.getComments());
-        entity.setRate(formBean.getRate());
-        entity.setCreatedBy(formBean.getCreatedBy());
-        entity.setModifiedBy(formBean.getModifiedBy());
-        entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
-        entity.setModifiedTimestamp(formBean.getModifiedTimestamp());
-        entity.setWeight(formBean.getWeight());
-        entity.setStatus("PLANNING 2");
-        entity.setVendorSea(formBean.getVendorSea());
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer orderItemId = (Integer) sessionAttributes.get("orderItemId");
+        Integer clientId = (Integer) sessionAttributes.get("clientId");
+        Integer orderId = (Integer) sessionAttributes.get("orderId");
+        String nameSize = (String) sessionAttributes.get("nameSize");
+        Integer quantity = (Integer) sessionAttributes.get("quantity");
+        String classification = (String) sessionAttributes.get("classification");
+        String commodity = (String) sessionAttributes.get("commodity");
+        Double declaredValue = (Double) sessionAttributes.get("declaredValue");
+        String comments = (String) sessionAttributes.get("comments");
+        Float rate = (Float) sessionAttributes.get("rate");
+        String createdBy = (String) sessionAttributes.get("createdBy");
+        String modifiedBy = (String) sessionAttributes.get("modifiedBy");
+        Date createdTimestamp = (Date) sessionAttributes.get("createdTimestamp");
+        Date modifiedTimestamp = (Date) sessionAttributes.get("modifiedTimestamp");
+        Double weight = (Double) sessionAttributes.get("weight");
+        String status = (String) sessionAttributes.get("status");
+        String vendorSea = (String) sessionAttributes.get("vendorSea");
+
+
+        System.out.println("<------------------Client ID: " + clientId + "-----> \n \n");
+        entity.setOrderItemId(orderItemId);
+        entity.setClientId(clientId);
+        entity.setNameSize(nameSize);
+        entity.setOrderId(orderId);
+        entity.setQuantity(quantity);
+        entity.setClassification(classification);
+        entity.setCommodity(commodity);
+        entity.setDeclaredValue(declaredValue);
+        entity.setComments(comments);
+        entity.setRate(rate);
+        entity.setCreatedBy(createdBy);
+        entity.setModifiedBy(modifiedBy);
+        entity.setCreatedTimestamp(createdTimestamp);
+        entity.setModifiedTimestamp(modifiedTimestamp);
+        entity.setWeight(weight);
+        entity.setStatus(status);
+        entity.setVendorSea(vendorSea);
         return entity;
     }
 

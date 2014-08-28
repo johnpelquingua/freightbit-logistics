@@ -124,17 +124,11 @@
                         </s:url>
                         <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
                              title="Update Status">
-                            <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
+                            Choose this vessel...
                         </s:a>
 
                     </display:column></td>
                 </display:table>
-
-
-                <div style="float: right;">
-                    <button class="btn btn-default" onclick="location.href='inland-operation.html'">Save</button>
-                    <button class="btn btn-default" onclick="location.href='inland-operation.html'">Cancel</button>
-                </div>
 
             </div>
 

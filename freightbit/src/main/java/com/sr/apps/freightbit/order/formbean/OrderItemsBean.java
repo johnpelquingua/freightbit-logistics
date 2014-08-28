@@ -21,7 +21,7 @@ public class OrderItemsBean {
     private String status;
     private Float volume;
     private Integer clientId;
-    private String commmodity;
+    private String commodity;
     private String comments;
 
     private String vendorSea;
@@ -83,12 +83,12 @@ public class OrderItemsBean {
         this.comments = comments;
     }
 
-    public String getCommmodity() {
-        return commmodity;
+    public String getCommodity() {
+        return commodity;
     }
 
-    public void setCommmodity(String commmodity) {
-        this.commmodity = commmodity;
+    public void setCommodity(String commodity) {
+        this.commodity = commodity;
     }
 
     public Integer getClientId() {

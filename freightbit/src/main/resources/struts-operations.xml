@@ -100,7 +100,7 @@
         </action>
 
         <action name="editOrderItemsSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsSea">
-            <result name="success" type="redirect">updateCompleteInlandPlanning</result>
+            <result name="success" type="redirect">updateCompleteSeaPlanning</result>
             <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
         </action>
 
@@ -116,6 +116,10 @@
 
         <action name="updateCompleteInlandPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="updateCompleteInlandPlanning">
             <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
+        </action>
+
+        <action name="updateCompleteSeaPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="updateCompleteSeaPlanning">
+            <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
 
         <action name="viewSeaFreightList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">

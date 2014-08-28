@@ -5,6 +5,15 @@
 
     <h1><i class="fa fa-anchor"></i> Seafreight Operations</h1>
 
+    <s:if test="hasActionMessages()">
+        <div class="col-lg-12">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+            </div>
+        </div>
+    </s:if>
+
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-primary">
@@ -13,6 +22,8 @@
 
                     </h3>
                 </div>
+
+
 
                 <div class="panel-body">
                     <div class="table-responsive">
