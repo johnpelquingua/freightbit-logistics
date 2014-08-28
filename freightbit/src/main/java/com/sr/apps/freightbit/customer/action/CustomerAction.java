@@ -148,10 +148,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         String PATTERN = "[A-Za-z]+";
         String PATTERN2 = "[0-9]";
+        String PATTERN3 = "[A-Z]{3}+";
         Pattern pattern1 = Pattern.compile(PATTERN);
         Pattern pattern2 = Pattern.compile(PATTERN2);
+        Pattern pattern3 = Pattern.compile(PATTERN3);
 
-        Matcher matcher = pattern1.matcher(itemBean.getItemCode());
+        Matcher matcher = pattern3.matcher(itemBean.getItemCode());
         //Matcher matcher1 = pattern2.matcher(itemBean.getSrp());
         if (!matcher.matches()) {
             addFieldError("item.itemCode", getText("err.regex.validation.itemcode"));
