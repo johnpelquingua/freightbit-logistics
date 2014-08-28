@@ -69,8 +69,8 @@
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="city" title="City <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="state" title="State <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                        <%--<td><display:column property="state" title="State <i class='fa fa-sort' />" class="tb-font-black"--%>
+                                                            <%--style="text-align: center;"> </display:column></td>--%>
                                         <td><display:column property="zip" title="Zip <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td class="tb-font-black" style="text-align: center;">
