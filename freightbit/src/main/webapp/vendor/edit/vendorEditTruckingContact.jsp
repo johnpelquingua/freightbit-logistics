@@ -74,28 +74,33 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Phone</label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone" maxLength="7" pattern="\d{7}"/>
+                            <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone" maxLength="14" 
+                            pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile</label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile" maxLength="11" pattern="\d{11}"/>
+                            <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile" maxLength="19"
+                             pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
+                             title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax</label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax" pattern="[0-9]+"/>
+                            <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax" maxLength="14" 
+                                         pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">E-Mail</label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email"/>
+                            <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email" maxLength="50"
+                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
                             </div>
                         </div>
 
