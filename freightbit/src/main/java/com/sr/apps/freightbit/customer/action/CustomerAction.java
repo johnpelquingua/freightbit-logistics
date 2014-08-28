@@ -147,11 +147,13 @@ public class CustomerAction extends ActionSupport implements Preparable {
         clearErrorsAndMessages();
 
         String PATTERN = "[A-Za-z]+";
-        String PATTERN2 = "[0-9]";
+        String PATTERN2 = "[0-9^.]+";
         String PATTERN3 = "[A-Z]{3}+";
+        String PATTERN4 = "[A-Za-z0-9 ]+";
         Pattern pattern1 = Pattern.compile(PATTERN);
         Pattern pattern2 = Pattern.compile(PATTERN2);
         Pattern pattern3 = Pattern.compile(PATTERN3);
+        Pattern pattern4 = Pattern.compile(PATTERN4);
 
         Matcher matcher = pattern3.matcher(itemBean.getItemCode());
         //Matcher matcher1 = pattern2.matcher(itemBean.getSrp());
@@ -159,11 +161,44 @@ public class CustomerAction extends ActionSupport implements Preparable {
             addFieldError("item.itemCode", getText("err.regex.validation.itemcode"));
         }
 
-        /*if(!matcher1.matches()){
-            addFieldError("item.srp", getText("err.regex.validation.itemcode"));
-        }*/
+        Matcher matcher1 = pattern4.matcher(itemBean.getItemName());
+        if(!matcher1.matches()){
+            addFieldError("item.itemName", getText("Special Characters in item name is not valid"));
+        }
 
-        /*if (StringUtils.isBlank(itemBean.getItemCode())) {
+        Matcher matcher2 = pattern2.matcher(itemBean.getBasePrice().toString());
+        if(!matcher2.matches()){
+            addFieldError("item.basePrice", getText("Special Characters in base price is not valid"));
+        }
+
+        Matcher matcher3 = pattern2.matcher(itemBean.getCriticalQuality().toString());
+        if(!matcher3.matches()){
+            addFieldError("item.criticalQuality", getText("Special Characters in Quality is not valid"));
+        }
+
+        Matcher matcher4 = pattern2.matcher(itemBean.getWidth().toString());
+        if(!matcher4.matches()){
+            addFieldError("item.width", getText("Special Characters in width is not valid"));
+        }
+
+        Matcher matcher5 = pattern2.matcher(itemBean.getSrp().toString());
+        if(!matcher5.matches()){
+            addFieldError("item.srp", getText("Special Characters in SRP is not valid"));
+        }
+
+        Matcher matcher6 = pattern2.matcher(itemBean.getLength().toString());
+        if(!matcher6.matches()){
+            addFieldError("item.length", getText("Special Characters in length is not valid"));
+        }
+
+        Matcher matcher7 = pattern2.matcher(itemBean.getHeight().toString());
+        if(!matcher7.matches()){
+            addFieldError("item.height", getText("Special Characters in height is not valid"));
+        }
+
+        //null
+
+        if (StringUtils.isBlank(itemBean.getItemCode())) {
             addFieldError("item.itemCode", getText("err.itemCode.required"));
         }
 
@@ -173,7 +208,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         if (itemBean.getSrp() == null) {
             addFieldError("item.srp", getText("err.srp.required"));
-        }*/
+        }
 
         if (itemBean.getLength() == null) {
             addFieldError("item.length", getText("err.length.required"));
