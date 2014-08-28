@@ -88,7 +88,7 @@ public class Driver implements Serializable {
         this.vendorId = vendorId;
     }
 
-    @Column(name = "driverCode", unique = true, nullable = false)
+    @Column(name = "driverCode", unique = true)
     public String getDriverCode() {
         return driverCode;
     }

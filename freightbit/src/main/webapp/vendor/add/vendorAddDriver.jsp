@@ -32,16 +32,16 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="addDriver" theme="bootstrap">
-                        <div class="form-group">
+                        <%--<div class="form-group">--%>
 
-                            <label for="driver.driverCode" class="col-lg-2 control-label" style="padding-top:0px;">Code</label>
+                            <%--<label for="driver.driverCode" class="col-lg-2 control-label" style="padding-top:0px;">Code</label>--%>
 
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="Driver Code" name="driver.driverCode"
-                                             id="driver.driverCode" required="true" />
-                            </div>
+                            <%--<div class="col-lg-10">--%>
+                                <%--<s:textfield cssClass="form-control" placeholder="Driver Code" name="driver.driverCode"--%>
+                                             <%--id="driver.driverCode" required="true" />--%>
+                            <%--</div>--%>
 
-                        </div>
+                        <%--</div>--%>
 
                         <div class="form-group">
 

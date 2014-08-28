@@ -615,7 +615,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         entity.setVendorId((Integer) sessionAttributes.get("vendorId"));
 
-        entity.setDriverCode(driverBean.getDriverCode());
+//        entity.setDriverCode(driverBean.getDriverCode());
         entity.setLicenseNumber(driverBean.getLicenseNumber());
         entity.setLastName(driverBean.getLastName());
         entity.setFirstName(driverBean.getFirstName());
@@ -675,15 +675,15 @@ public class VendorAction extends ActionSupport implements Preparable {
             addFieldError("driver.licenseNumber", "License Number must be in valid format.");
         }
 
-        matcher= alphaNumericPattern.matcher(driverBean.getDriverCode());
-        if (!matcher.matches()){
-            addFieldError("driver.driverCode"," (Must be three (3) CAPITAL LETTERS only)");
-        }
+//        matcher= alphaNumericPattern.matcher(driverBean.getDriverCode());
+//        if (!matcher.matches()){
+//            addFieldError("driver.driverCode"," (Must be three (3) CAPITAL LETTERS only)");
+//        }
 
 
-        if (StringUtils.isBlank(driverBean.getDriverCode())) {
-            addFieldError("driver.driverCode", getText("err.driverCode.required"));
-        }
+//        if (StringUtils.isBlank(driverBean.getDriverCode())) {
+//            addFieldError("driver.driverCode", getText("err.driverCode.required"));
+//        }
         if (StringUtils.isBlank(driverBean.getLicenseNumber())) {
             addFieldError("driver.licenseNumber", getText("err.licenseNumber.required"));
         }
