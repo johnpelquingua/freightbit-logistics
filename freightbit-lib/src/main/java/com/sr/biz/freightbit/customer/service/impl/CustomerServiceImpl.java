@@ -297,7 +297,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addItem(Items items) throws ItemAlreadyExistsException {
-        if (itemsDao.findUserByItemName(items.getItemName()).size() > 0)
+        if (itemsDao.findUserByItemName(items.getItemCode()).size() > 0)
             throw new ItemAlreadyExistsException(items.getItemName());
         else
             itemsDao.addItems(items);

@@ -48,7 +48,7 @@
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.itemCode" id="item.itemCode" required="true"
-                                             cssClass="form-control"/>
+                                             cssClass="form-control" maxLength="3" />
                             </div>
                         </div>
 
