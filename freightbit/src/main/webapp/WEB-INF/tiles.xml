@@ -118,7 +118,7 @@
 
     <!-- CORE module tiles Begin-->
     <definition name="core.userSearch.tiles" extends="baseLayout">
-        <put-attribute name="title" value="User Page"/>
+        <put-attribute name="title" value="Search User"/>
         <put-attribute name="body" value="/core/user/userSearch.jsp"/>
     </definition>
     <definition name="core.userListView.tiles" extends="baseLayout">
@@ -162,7 +162,7 @@
         <put-attribute name="body" value="/core/userProfile/userProfileChangePassword.jsp"/>
     </definition>
     <definition name="core.groupAdd.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Group Page"/>
+        <put-attribute name="title" value="Add New Group"/>
         <put-attribute name="body" value="/core/group/groupAdd.jsp"/>
     </definition>
     <definition name="core.groupEdit.tiles" extends="baseLayout">

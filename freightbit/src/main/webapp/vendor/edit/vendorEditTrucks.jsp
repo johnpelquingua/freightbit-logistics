@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Plate Number" name="truck.plateNumber"
                                              id="truck.plateNumber" required="true" />
                             </div>
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">LTO Certificate Number</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
                                              id="truck.truckCode" required="true"/>
                             </div>
@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">MV File Number</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="MV File Number" name="truck.motorVehicleNumber"
                                              id="truck.motorVehicleNumber" required="true"/>
                             </div>
@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">CR Date of Issue</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="CR Date of Issue" name="truck.issueDate"
                                              id="issueDate" required="true"/>
                             </div>
@@ -79,7 +79,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Make</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Make"
                                              name="truck.engineNumber"
                                              id="truck.engineNumber" required="true"/>
@@ -92,7 +92,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Model</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Model" name="truck.modelNumber"
                                              id="truck.modelNumber" required="true"/>
                             </div>
@@ -105,7 +105,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Type of Body</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:select list="truckTypeList" name="truck.truckType" listKey="key" listValue="value"
                                           cssClass="form-control"/>
 
@@ -115,7 +115,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Year Model</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Year Model" name="truck.modelYear"
                                              id="truck.modelYear" required="true" maxLength="4"/>
                             </div>
@@ -127,7 +127,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight (kg.)</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
                                              id="truck.grossWeight" required="true"/>
                             </div>
@@ -136,7 +136,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Net Weight (kg.)</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Net Weight" name="truck.netWeight"
                                              id="truck.netWeight" required="true"/>
                             </div>
@@ -145,7 +145,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Net Capacity</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Net Capacity" name="truck.netCapacity"
                                              id="truck.netCapacity" required="true"/>
                             </div>
@@ -154,7 +154,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Owner's Name</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Owner's Name" name="truck.ownerName"
                                              id="truck.ownerName" required="true"/>
                             </div>
@@ -163,7 +163,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Owner's Address</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Owner's Address" name="truck.ownerAddress"
                                              id="truck.ownerAddress" required="true"/>
                             </div>
@@ -172,7 +172,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">O.R. Number</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt"
                                              id="truck.officialReceipt" required="true"/>
                             </div>

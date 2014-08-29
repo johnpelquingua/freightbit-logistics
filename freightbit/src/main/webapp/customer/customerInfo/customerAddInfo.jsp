@@ -33,15 +33,19 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px !important; margin-top: 0px !important;">Company Name / Customer Name</label>
                             <div class="col-lg-9" >
-                                <s:textfield  required="true" name="customer.customerName" pattern="[A-Za-z]+" cssClass="form-control" id="customer.customerName" />
+                                <span class="asterisk_input"></span>
+                                <s:textfield  required="true" name="customer.customerName" pattern="^[a-zA-Z][a-zA-Z ]+$" cssClass="form-control" id="customer.customerName" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Company Code</label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" maxLength="3" pattern="[A-Za-z]+" name="customer.customerCode" cssClass="form-control" id="customer.customerCode" />
+                                <span class="asterisk_input"></span>
+                                <s:textfield required="true" maxLength="3" pattern="[A-Z]+" name="customer.customerCode" cssClass="form-control" id="customer.customerCode" />
                             </div>
                         </div>
+
+
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Customer Type</label>
@@ -60,19 +64,19 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile No.</label>
                             <div class="col-lg-9" >
                                 <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer.mobile" maxLength="19" 
-								pattern="\(\+63[0-9]{3}\) ?[0-9]{3}-[0-9]{4}"
+								pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
                                 title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax  No.</label>
                             <div class="col-lg-9" >
-<%--<<<<<<< HEAD--%>
-                                <%--<s:textfield  name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11" pattern="[0-9]+"/>--%>
-<%--=======--%>
-                                <s:textfield  name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="14"
-                                 pattern="\([0-9]{2,3}\) ?[0-9]{3}\-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
-<%-->>>>>>> ac33275e89949d187a41449861392a9c2e7b3fa7--%>
+<<<<<<< HEAD
+                                <s:textfield  name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="11" pattern="[0-9]+"/>
+=======
+                                <s:textfield  required="true" name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="14" 
+                                 pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+>>>>>>> ac33275e89949d187a41449861392a9c2e7b3fa7
                             </div>
                         </div>
                         <div class="form-group">

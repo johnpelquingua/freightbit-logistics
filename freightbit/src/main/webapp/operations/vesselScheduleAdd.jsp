@@ -35,7 +35,7 @@
 
                             <label for="vesselSchedule.voyageNumber" class="col-lg-2 control-label" style="padding-top:0px;">Voyage Number</label>
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-9"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber" />
                             </div>
 
@@ -45,7 +45,7 @@
 
                             <label for="vesselSchedule.vendorId" class="col-lg-2 control-label" style="padding-top:0px;"> Vendor</label>
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-9"><span class="asterisk_input"></span>
                                 <s:select emptyOption="true" id="vesselSchedule.vendorId"
                                           value="vvesselSchedule.vendorId"
                                           name="vesselSchedule.vendorId"
@@ -59,7 +59,7 @@
 
                             <label for="vesselSchedule.departureDate" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Date</label>
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-9"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" id="departureDate" name="vesselSchedule.departureDate" readonly="true" onfocus="this.blur()" />
                             </div>
 
@@ -69,7 +69,7 @@
 
                             <label for="vesselSchedule.departureTime" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Time</label>
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-9"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" id="departureTime" name="vesselSchedule.departureTime" />
                             </div>
 
@@ -79,7 +79,7 @@
 
                             <label for="vesselSchedule.arrivalDate" class="col-sm-2 control-label" style="padding-top:0px;">Arrival Date</label>
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-9"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true" onfocus="this.blur()"/>
                             </div>
 
@@ -89,7 +89,7 @@
 
                             <label for="vesselSchedule.arrivalTime" class="col-lg-2 control-label" style="padding-top:0px;"> Arrival Time</label>
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-9"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" id="arrivalTime" name="vesselSchedule.arrivalTime" />
                             </div>
 
@@ -99,7 +99,7 @@
 
                             <label for="vesselSchedule.originPort" class="col-lg-2 control-label" style="padding-top:0px;">Origin Pier</label>
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-9"><span class="asterisk_input"></span>
                                 <s:select emptyOption="true" id="vesselSchedule_originPort"
                                           value="vesselSchedule.originPort"
                                           name="vesselSchedule.originPort"
@@ -113,7 +113,7 @@
 
                             <label for="vesselSchedule.destinationPort" class="col-lg-2 control-label" style="padding-top:0px;">Destination Pier</label>
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-9"><span class="asterisk_input"></span>
                                 <s:select emptyOption="true" id="vesselSchedule_destinationPort"
                                           value="vesselSchedule.destinationPort"
                                           name="vesselSchedule.destinationPort"

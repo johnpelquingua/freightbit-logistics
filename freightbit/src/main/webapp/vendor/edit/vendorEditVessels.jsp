@@ -39,7 +39,7 @@
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Vessel</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Vessel Number"
                                              name="vessel.vesselNumber"
                                              id="vessel.vesselNumber" pattern="[A-Za-z0-9]+" title="No special characters allowed"/>
@@ -51,7 +51,7 @@
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Vessel Name</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Vessel Name" name="vessel.vesselName"
                                              id="vessel.vesselName" pattern="[A-Za-z]+" title="No special characters allowed"/>
                             </div>
@@ -62,7 +62,7 @@
 
                             <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Model</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Model Number"
                                              name="vessel.modelNumber"
                                              id="vessel.modelNumber" pattern="[A-Za-z0-9]+" title="No special characters allowed"/>
@@ -81,7 +81,7 @@
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Year Model</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield cssClass="form-control" placeholder="Year Model" name="vessel.modelYear"
                                              id="vessel.modelYear" maxLength="4" pattern="\d{4}"/>
                             </div>

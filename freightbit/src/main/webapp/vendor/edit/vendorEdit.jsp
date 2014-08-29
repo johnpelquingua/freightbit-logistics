@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <label for="vendor.vendorName" class="col-lg-2 control-label" style="padding-top:0px;">Name</label>
 
-                    <div class="col-lg-9">
+                    <div class="col-lg-9"><span class="asterisk_input"></span>
                         <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Vendor Name"
                                      name="vendor.vendorName"></s:textfield>
                     </div>
@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <label for="vendor.vendorCode" class="col-lg-2 control-label" style="padding-top:0px;">Code</label>
 
-                    <div class="col-lg-9">
+                    <div class="col-lg-9"><span class="asterisk_input"></span>
                         <s:textfield cssClass="form-control" id="vendor.vendorCode" placeholder="Vendor Code"
                                      name="vendor.vendorCode" maxLength="3" pattern="[A-Z]+" title="Must be letters only and CAPS."></s:textfield>
                     </div>
@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <label for="vendor.vendorType" class="col-lg-2 control-label" style="padding-top:0px;">Type</label>
 
-                    <div class="col-lg-9">
+                    <div class="col-lg-9"><span class="asterisk_input"></span>
                         <s:select cssClass="form-control" id="vendor.vendorType" list="vendorTypeList" listValue="value"
                                   listKey="key"
                                   name="vendor.vendorType"/>
@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <label for="vendor.vendorClass" class="col-lg-2 control-label" style="padding-top:0px;">Class Name</label>
 
-                    <div class="col-lg-9">
+                    <div class="col-lg-9"><span class="asterisk_input"></span>
                         <s:select cssClass="form-control" id="vendor.vendorClass" list="vendorClassList" listKey="key"
                                   listValue="value"
                                   name="vendor.vendorClass"/>
@@ -62,7 +62,7 @@
                 <div class="form-group">
                     <label for="vendor.vendorStatus" class="col-lg-2 control-label" style="padding-top:0px;">Status</label>
 
-                    <div class="col-lg-9">
+                    <div class="col-lg-9"><span class="asterisk_input"></span>
                         <s:select cssClass="form-control" id="vendor.vendorStatus" list="statusList"
                                   listKey="key" listValue="value"
                                   name="vendor.vendorStatus"/>

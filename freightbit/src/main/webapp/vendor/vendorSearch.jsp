@@ -32,7 +32,7 @@
                                   value="vendor.vendorSearchCriteria"
                                   name="vendor.vendorSearchCriteria"
                                   list="vendorSearchList" listValue="value" listKey="key"
-                                  cssClass="form-control"/>
+                                  cssClass="form-control vendorCriteriaCSS"/>
                     </div>
                 </div>
                 <div class="form-group">

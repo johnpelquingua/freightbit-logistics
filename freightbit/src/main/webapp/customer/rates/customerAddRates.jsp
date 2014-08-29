@@ -38,6 +38,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Origin</label>
 
                             <div class="col-lg-10" >
+                                <span class="asterisk_input"></span>
                                 <s:select name="rate.origin" cssClass="form-control" id="select1"
                                           list="portsList" listKey="key"
                                           listValue="value" placeholder="Origin"/>
@@ -48,6 +49,7 @@
                                    style="padding-top:0px;">Destination</label>
 
                             <div class="col-lg-10" >
+                                <span class="asterisk_input"></span>
                                 <s:select name="rate.destination" cssClass="form-control" id="select2"
                                           list="portsList" listKey="key"
                                           listValue="value" placeholder="Destination"/>
@@ -57,8 +59,9 @@
                             <label for="rates.rate" class="col-lg-2 control-label" style="padding-top:0px;">Rate (Php)</label>
 
                             <div class="col-lg-10" >
-                                <s:textfield name="rate.rate" cssClass="form-control" id="rates.rate"
-                                             placeholder="Rate"/>
+                                <span class="asterisk_input"></span>
+                                <s:textfield required="true" name="rate.rate" cssClass="form-control" id="rates.rate"
+                                             placeholder="Rate" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
@@ -167,5 +170,14 @@
         validateRate();
 
     };
+
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
 
 </script>

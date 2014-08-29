@@ -37,7 +37,7 @@
                 <s:hidden name="contact.createdBy" value="%{contact.createdBy}" />
                     <div class="form-group">
                         <label for="contact.contactType" class="col-lg-2 control-label" style="padding-top:0px;">Contact Type</label>
-                        <div class="col-lg-10" >
+                        <div class="col-lg-10" ><span class="asterisk_input"></span>
                             <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
                                       listKey="key" listValue="value" cssClass="form-control"
                                       value="contact.contactType" emptyOption="true"/>
@@ -46,7 +46,7 @@
 
                     <div class="form-group">
                         <label for="contact.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name</label>
-                        <div class="col-lg-10" >
+                        <div class="col-lg-10" ><span class="asterisk_input"></span>
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                          id="contact.lastName" required="true" maxLength="30" autofocus="true"
                                          pattern="[a-zA-Z\s]+"
@@ -56,7 +56,7 @@
 
                     <div class="form-group">
                         <label for="contact.firstName" class="col-lg-2 control-label" style="padding-top:0px;">First Name</label>
-                        <div class="col-lg-10" >
+                        <div class="col-lg-10" ><span class="asterisk_input"></span>
                             <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
                                          id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s]+"
                                          title="Name should not contain special characters and/or numbers."
@@ -66,7 +66,7 @@
 
                     <div class="form-group">
                         <label for="contact.middleName" class="col-lg-2 control-label" style="padding-top:0px;">Middle Name</label>
-                        <div class="col-lg-10" >
+                        <div class="col-lg-10" ><span class="asterisk_input"></span>
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
                                          id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s]+"
                                          title="Name should not contain special characters and/or numbers."/>
@@ -75,7 +75,7 @@
 
                     <div class="form-group">
                         <label for="contact.phone" class="col-lg-2 control-label" style="padding-top:0px;">Phone</label>
-                        <div class="col-lg-10" >
+                        <div class="col-lg-10" ><span class="asterisk_input"></span>
                             <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
                                          maxLength="14" required="true" 
 										 pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
@@ -84,7 +84,7 @@
 
                     <div class="form-group">
                         <label for="contact.mobile" class="col-lg-2 control-label" style="padding-top:0px;">Mobile</label>
-                        <div class="col-lg-10" >
+                        <div class="col-lg-10" ><span class="asterisk_input"></span>
                             <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
                                          maxLength="19" required="true"
                                          pattern="\(\+63[0-9]{3}\) ?[0-9]{3}-[0-9]{4}"
@@ -103,7 +103,7 @@
 
                     <div class="form-group">
                         <label for="contact.email" class="col-lg-2 control-label" style="padding-top:0px;">E-Mail</label>
-                        <div class="col-lg-10" >
+                        <div class="col-lg-10" ><span class="asterisk_input"></span>
                             <s:textfield cssClass="form-control" placeholder="contact.email" name="contact.email"
                                          type="email" required="true"/>
                         </div>
@@ -111,7 +111,7 @@
 
                     <div class="form-group">
                         <label for="contact.email" class="col-lg-2 control-label" style="padding-top:0px;">Position</label>
-                        <div class="col-lg-10" >
+                        <div class="col-lg-10" ><span class="asterisk_input"></span>
                             <s:textfield cssClass="form-control" placeholder="Position  " name="contact.position"
                                          type="text" required="true"/>
                         </div>

@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.lang.*;
 
 /**
  * Created by ADMIN on 5/28/2014.
@@ -673,9 +674,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getCity())) {
             addFieldError("address.city", getText("err.city.required"));
         }
-        if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getState())) {
-            addFieldError("address.state", getText("err.state.required"));
-        }
+//        if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getState())) {
+//            addFieldError("address.state", getText("err.state.required"));
+//        }
       /*  if (org.apache.commons.lang.StringUtils.isBlank(addressBean.getZip())) {
             addFieldError("address.zip", getText("err.zip.required"));
         }*/
@@ -798,15 +799,19 @@ public class CustomerAction extends ActionSupport implements Preparable {
         clearErrorsAndMessages();
 
         String PATTERN = "[0-9A-Za-z]+";
-       /* String PATTERN2 = "[-+]?[0-9]*\.?[0-9]*";*/
+//        String PATTERN2 = "[0.0-9.9]*";
         /*String PATTERN = "[0-9A-Za-z]+";*/
+//        float amount=ratesBean.getRate();
+//        String strAmount = String.valueOf(amount);
 
         Pattern pattern = Pattern.compile(PATTERN);
-       /* Pattern pattern2 = Pattern.compile(PATTERN2);*/
+//        Pattern pattern2 = Pattern.compile(PATTERN2);
+
 
         Matcher matcher1 = pattern.matcher(ratesBean.getOrigin());
         Matcher matcher2 = pattern.matcher(ratesBean.getDestination());
-        //Matcher matcher3 = pattern2.matcher(ratesBean.getRate());
+//        Matcher matcher3 = pattern2.matcher(strAmount);
+
 
         if (!matcher1.matches()) {
             addFieldError("rates.origin", getText("err.regex.validation.rates"));
@@ -819,10 +824,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
             addFieldError("rates.rate", getText("err.rate.required"));
         }
 
-        /*if(!matcher3.matches()){
-            addFieldError("rates.rate", getText("err.regex.validation.rates.float"));
-        }
-*/
+//        if(!matcher3.matches()){
+//            addFieldError("rates.rate", getText("err.regex.validation.rates.float"));
+//        }
+
        /* if (StringUtils.isBlank(ratesBean.getOrigin())) {
             addFieldError("rates.origin", getText("err.origin.required"));
         }

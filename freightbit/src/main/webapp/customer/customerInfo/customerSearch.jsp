@@ -32,7 +32,7 @@
                                       value="customer.customerSearchCriteria"
                                       name="customer.customerSearchCriteria"
                                       list="customerSearchList" listValue="value" listKey="key"
-                                      cssClass="form-control"/>
+                                      cssClass="form-control customerCriteriaCSS"/>
                         </div>
                     </div>
                     <div class="form-group">

@@ -96,7 +96,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }
 
         clearErrorsAndMessages();
-        addActionMessage("Success! Items has been updated.");
+        addActionMessage("Success! Status has been updated.");
         return SUCCESS;
     }
 

@@ -244,7 +244,10 @@ public class VendorAction extends ActionSupport implements Preparable {
             column = "vendorName";
         } else if ("VENDOR TYPE".equals(vendor.getVendorSearchCriteria())) {
             column = "vendorType";
+        }else if ("VENDOR CLASS".equals(vendor.getVendorSearchCriteria())){
+            column ="vendorClass";
         }
+
         return column;
     }
 
@@ -1099,9 +1102,9 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (StringUtils.isBlank(addressBean.getCity())) {
             addFieldError("address.city", getText("err.city.required"));
         }
-        if (StringUtils.isBlank(addressBean.getState())) {
-            addFieldError("address.state", getText("err.state.required"));
-        }
+//        if (StringUtils.isBlank(addressBean.getState())) {
+//            addFieldError("address.state", getText("err.state.required"));
+//        }
 
     }
 

@@ -22,183 +22,151 @@
             <li class="active"><a href="<s:url action='viewInfoVendor' />"> Vendor
                 Profile</a></li>
             <li class="active"><a href="<s:url action='viewTrucks' />"> Trucks</a></li>
-            <li class="active"> Edit Truck</li>
+            <li class="active">Truck Info</li>
         </ol>
 
     </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12" >
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit Truck</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Truck Information</h3>
+                <span class="pull-right">
+                    <s:url var="loadEditTrucks" action="loadEditTrucksPage">
+                        <s:param name="truckCodeParam" value="truck.truckCode"></s:param>
+                    </s:url>
+                    <s:a href="%{loadEditTrucks}">
+                    <button type="button" class="btn btn-success">
+                        <i class="fa fa-pencil"></i> Edit truck Info
+                    </button>
+                    </s:a>
+                </span>
             </div>
 
             <div class="panel-body">
-                <div class="table-responsive list-table">
-                    <s:form cssClass="form-horizontal" action="editTrucks" method="post" theme="bootstrap">
-                    <s:hidden name="truck.truckId" value="%{truck.truckId}"/>
-                    <s:hidden name="truck.createdTimeStamp" value="%{truck.createdTimeStamp}" />
-                    <s:hidden name="truck.createdBy" value="%{truck.createdBy}" />
-                        <%--Plate Number = plateNumber--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
+                <%--<s:property value="%{truck.truckId}"/>--%>
+                <s:hidden name="truck.truckId" value="%{truck.truckId}"/>
+                <s:hidden name="truck.createdTimeStamp" value="%{truck.createdTimeStamp}" />
+                <s:hidden name="truck.createdBy" value="%{truck.createdBy}" />
 
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Plate Number" name="truck.plateNumber"
-                                         id="truck.plateNumber" required="true" />
-                        </div>
-                        <div class="col-lg-10 col-lg-offset-2">
-                            e.g. ABC-123, XYZ-7890, etc.
-                        </div>
-                    </div>
-                        <%--LTO Certificate Number = code--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">LTO Certificate Number</label>
+                <div class="row">
 
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
-                                         id="truck.truckCode" required="true"/>
-                        </div>
+                    <div class="col-lg-6 col-lg-offset-2">
 
-                    </div>
-                        <%--MV File Number--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">MV File Number</label>
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-info-circle"></i> Details</h3>
+                            </div>
 
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="MV File Number" name="truck.motorVehicleNumber"
-                                         id="truck.motorVehicleNumber" required="true"/>
-                        </div>
-                    </div>
-                        <%--CR Date of Issue--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">CR Date of Issue</label>
+                            <div class="row">
+                                <div class="col-lg-12">
 
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="CR Date of Issue" name="truck.issueDate"
-                                         id="issueDate" required="true"/>
-                        </div>
-                    </div>
-                        <%--Make = engineNumber--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Make</label>
+                                    <div class="col-lg-3">
+                                        <div align="center" style="margin-top: 10px;">
+                                            <i class="fa fa-truck fa-fw icon-15e"></i>
+                                        </div>
+                                    </div>
 
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Make"
-                                         name="truck.engineNumber"
-                                         id="truck.engineNumber" required="true"/>
-                        </div>
-                        <div class="col-lg-10 col-lg-offset-2">
-                            e.g. Toyota, GMC, Chevrolet, etc.
-                        </div>
-                    </div>
-                        <%--Model = modelNumber--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Model</label>
+                                    <div class="col-lg-9">
+                                        <table class="table table-user-information" style="margin-top: 10px;">
+                                            <tbody>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; border-top: none; text-align: right !important;">Plate Number</td>
+                                                <td style="border-top: none; text-align: left !important;"><s:property value="truck.plateNumber"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">LTO Certificate</td>
+                                                <td style="text-align: left !important"><s:property value="truck.truckCode"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Motor Vehicle number</td>
+                                                <td style="text-align: left !important"><s:property value="truck.motorVehicleNumber"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Date of Issue</td>
+                                                <td style="text-align: left !important"><s:property value="truck.issueDate"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Make</td>
+                                                <td style="text-align: left !important"><s:property value="truck.engineNumber"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Model</td>
+                                                <td style="text-align: left !important"><s:property value="truck.modelNumber"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Type of Body</td>
+                                                <td style="text-align: left !important"><s:property value="truck.truckType"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Year Model</td>
+                                                <td style="text-align: left !important"><s:property value="truck.modelYear"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Gross Weight</td>
+                                                <td style="text-align: left !important"><s:property value="truck.grossWeight"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Net Weight</td>
+                                                <td style="text-align: left !important"><s:property value="truck.netWeight"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Net Capacity</td>
+                                                <td style="text-align: left !important"><s:property value="truck.netCapacity"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Owner Name</td>
+                                                <td style="text-align: left !important"><s:property value="truck.ownerName"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Owner's Address</td>
+                                                <td style="text-align: left !important"><s:property value="truck.ownerAddress"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">O.R. Number</td>
+                                                <td style="text-align: left !important"><s:property value="truck.officialReceipt"/></td>
+                                            </tr>
+                                            </tbody>
+                                            <%--<s:set name="customerId" value="%{customer.customerId}" scope="session"/>--%>
+                                            <%--<s:set name="truck.truckId" value="%{truck.truckId}" scope="session"/>--%>
+                                            <%--<s:property value="%{consignee.referenceId1}" />--%>
+                                        </table>
+                                    </div>
 
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Model" name="truck.modelNumber"
-                                         id="truck.modelNumber" required="true"/>
-                        </div>
-                        <div class="col-lg-10 col-lg-offset-2">
-                            e.g. 4Runner, Yukon, Silverado, etc.
-                        </div>
+                                </div>
+                            </div>
 
-                    </div>
-                        <%--Type of Body = truckType--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Type of Body</label>
-
-                        <div class="col-lg-10">
-                            <s:select list="truckTypeList" name="truck.truckType" listKey="key" listValue="value"
-                                      cssClass="form-control"/>
-
-                        </div>
-                    </div>
-                        <%--Year Model = modelYear--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Year Model</label>
-
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Year Model" name="truck.modelYear"
-                                         id="truck.modelYear" required="true" maxLength="4"/>
-                        </div>
-                        <div class="col-lg-10 col-lg-offset-2">
-                            e.g. 1999, 2012, etc.
-                        </div>
-                    </div>
-                        <%--Gross Weight = grossWeight--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight (kg.)</label>
-
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
-                                         id="truck.grossWeight" required="true"/>
                         </div>
                     </div>
-                        <%--Net Weight = netWeight--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Net Weight (kg.)</label>
 
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Net Weight" name="truck.netWeight"
-                                         id="truck.netWeight" required="true"/>
-                        </div>
-                    </div>
-                        <%--Net Capacity = netCapacity--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Net Capacity</label>
+                    <div class="col-lg-2 col-lg-offset-2">
+                        <div class="panel panel-info" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12" style="text-align: center;">
 
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Net Capacity" name="truck.netCapacity"
-                                         id="truck.netCapacity" required="true"/>
-                        </div>
-                    </div>
-                        <%--Owner's Name = ownerName--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Owner's Name</label>
+                                        <a href="" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-info-circle fa-fw"></i> <br/>Profile</a>
+                                        <a href="viewTruckingAddress" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-home fa-fw"></i> <br/>Address</a>
+                                        <a href="viewVendorTruckingContacts" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Contacts</a>
+                                        <a href="viewDrivers" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Drivers</a>
+                                        <a href="viewTrucks" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-truck fa-fw"></i> <br/>Trucks</a>
 
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Owner's Name" name="truck.ownerName"
-                                         id="truck.ownerName" required="true"/>
-                        </div>
-                    </div>
-                        <%--Owner's Address = ownerAddress--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Owner's Address</label>
+                                    </div>
+                                </div>
 
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Owner's Address" name="truck.ownerAddress"
-                                         id="truck.ownerAddress" required="true"/>
-                        </div>
-                    </div>
-                        <%--O.R. Number = officialReceipt--%>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">O.R. Number</label>
-
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt"
-                                         id="truck.officialReceipt" required="true"/>
+                            </div>
                         </div>
                     </div>
 
                 </div>
 
             </div>
-
-            <div class="panel-footer">
-                <div class="pull-right">
-                    <a href="viewTrucks" class="btn btn-default" id ="groups-btn">Cancel</a>
-
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
-                </div>
-            </div>
-            </s:form>
-
         </div>
     </div>
-
-</div>
+    </div>

@@ -40,9 +40,9 @@
 
                     <div class="form-group">
 
-                        <label for="orderItem.voyageNumber" class="col-sm-2 control-label">Booking Number:</label>
+                        <label for="orderItem.voyageNumber" class="col-sm-2 control-label">Item/Container</label>
 
-                        <div class="col-sm-10">
+                        <div class="col-sm-10"><span class="asterisk_input"></span>
                             <s:textfield name="orderItem.nameSize" cssClass="form-control"/>
                         </div>
 

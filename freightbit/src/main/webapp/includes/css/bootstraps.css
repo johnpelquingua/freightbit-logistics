@@ -7098,4 +7098,31 @@ td.visible-print {
     }
 }
 
+select.customerCriteriaCSS option:nth-child(4){
+     display:none !important;
+ }
+
+ select.customerCriteriaCSS option:nth-child(4){
+     display:none !important;
+ }
+
+ select.vendorCriteriaCSS option:nth-child(6){
+     display:none !important;
+ }
+
+
+ .asterisk_input:after {
+     content:" *";
+     color: #e32;
+     position: absolute;
+     margin: 0px 0px 0px -20px;
+     font-size: medium;
+     padding: 0 5px 0 0; }
+
+
+ .icon-15e{
+     font-size:7em;
+ }
+
+
 /*# sourceMappingURL=bootstrap.css.map */

@@ -27,7 +27,7 @@
                         </legend>
                         <s:form action="addOrder" theme="bootstrap">
                         <div class="form-group" style="margin-top: 15px;">
-                            <label class="col-lg-2 control-label">Service Requirement</label>
+                            <label class="col-lg-2 control-label">Service Requirement <span class="asterisk_input lefts"></span> </label>
 
                             <div class="col-lg-10">
 

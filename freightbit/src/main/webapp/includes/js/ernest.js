@@ -68,4 +68,7 @@ function typeValidate(){
         $("#pickupaddress").prop('disabled', true);
         $("#deliveryaddress").prop('disabled', true);
     }
+
 }
+
+

@@ -38,7 +38,7 @@
 
                             <label for="address.addressType" class="col-lg-2 control-label" style="padding-top:0px;">Address Type</label>
 
-                            <div class="col-lg-10" >
+                            <div class="col-lg-10" ><span class="asterisk_input"></span>
                                 <s:select name="address.addressType" list="addressTypeList" listValue="value"
                                           listKey="key"
                                           cssClass="form-control" id="address.addressType" emptyOption="true"/>
@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Address Line 1</label>
 
-                            <div class="col-lg-10" >
+                            <div class="col-lg-10" ><span class="asterisk_input"></span>
                                 <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control"/>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;" >City</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield name="address.city" id="address.city" cssClass="form-control"/>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Zip Code</label>
 
-                            <div class="col-lg-10">
+                            <div class="col-lg-10"><span class="asterisk_input"></span>
                                 <s:textfield name="address.zip" id="address.zip" cssClass="form-control"/>
                             </div>
                         </div>
