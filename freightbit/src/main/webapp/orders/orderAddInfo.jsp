@@ -241,7 +241,7 @@
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
-        <div class="alert alert-success">
+        <div id="alert" class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-star"></i></button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
@@ -561,6 +561,7 @@
 
             <div class="panel-body">
                 <div class="table-responsive list-table">
+
                     <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
                         <thead>
                         <tr class="header_center" style="background-color: #fff;">
@@ -612,8 +613,9 @@
                             </tr>
                         </s:iterator>
                         </tbody>
-                        <s:property  value="%{customerItemsId}"/>
+                        <%--<s:property  value="%{customerItemsId}"/>--%>
                     </table>
+
                 </div>
             </div>
 
@@ -654,7 +656,6 @@
 
     <div class="pull-right">
         <!-- Button trigger modal -->
-
         <button class="btn" data-toggle="modal" data-target="#cancelBooking">
             Cancel
         </button>
@@ -710,7 +711,6 @@
                 <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip">
                      <button type="button" class="btn btn-primary">Yes</button>
                 </s:a>
-
             </div>
         </div>
     </div>

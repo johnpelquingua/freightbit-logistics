@@ -27,6 +27,7 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="editCustomer">
+                    <s:property value="%{customer.customerId}"/>
                     <s:hidden name="customer.customerId" value="%{customer.customerId}"/>
                     <s:hidden name="customer.createdTimestamp" value="%{customer.createdTimestamp}"/>
                     <s:hidden name="customer.createdBy" value="%{customer.createdBy}"/>

@@ -431,6 +431,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             }
 
             return SUCCESS;
+
         } else {
             String column = getColumnFilter();
             List<Orders> orderEntityList = new ArrayList<Orders>();
@@ -443,15 +444,42 @@ public class OrderAction extends ActionSupport implements Preparable {
                 orders.add(transformToOrderFormBean(orderElem));
             }
             clearErrorsAndMessages();
-            addActionMessage("You can not delete a booking with status rather than PENDING and CANCELLED.");
+            addActionMessage("You can only delete booking with status of PENDING and CANCELLED.");
             return INPUT;
         }
+    }
+
+    public String approveOrder(){
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        orderEntity.setOrderStatus("APPROVE");
+        orderService.updateOrder(orderEntity);
+        clearErrorsAndMessages();
+        addActionMessage("Booking successfully Approved!");
+        return SUCCESS;
+
+    }
+
+    public String disapproveOrder(){
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        orderEntity.setOrderStatus("DISAPPROVE");
+        orderService.updateOrder(orderEntity);
+        clearErrorsAndMessages();
+        addActionMessage("Booking disapproved.");
+        return SUCCESS;
+
     }
 
     public String viewInfoOrder() {
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         order = transformToOrderFormBean(orderEntity);
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(orderIdParam);
+        // display item listing in table
+        for (OrderItems orderItemElem : orderItemEntityList) {
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
         return SUCCESS;
     }
 

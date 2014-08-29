@@ -39,6 +39,16 @@
             <result name="input" type="tiles">orders.booking-list.tiles</result>
         </action>
 
+        <action name="approveOrder" class="com.sr.apps.freightbit.order.action.OrderAction" method="approveOrder">
+            <result name="success" type="redirect">viewOrders</result>
+            <result name="input" type="tiles">orders.booking-list.tiles</result>
+        </action>
+
+        <action name="disapproveOrder" class="com.sr.apps.freightbit.order.action.OrderAction" method="disapproveOrder">
+            <result name="success" type="redirect">viewOrders</result>
+            <result name="input" type="tiles">orders.booking-list.tiles</result>
+        </action>
+
         <action name="viewInfoOrder" class="com.sr.apps.freightbit.order.action.OrderAction" method="viewInfoOrder">
             <result name="success" type="tiles">orders.booking-info.tiles</result>
         </action>

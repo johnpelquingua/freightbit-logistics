@@ -68,42 +68,45 @@
 
                             <td class="tb-font-black" style="text-align: center;">
                                 <display:column title="Actions">
-                                <s:url var="editOrderUrl" action="loadEditOrder">
-                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                </s:url>
-                                <s:a class="icon-action-link" href="%{editOrderUrl}" rel="tooltip"
-                                     title ="Edit order">
-                                    <%--<img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
-                                    style="border-radius: 25%;">--%>
-                                    <i class="fa fa-pencil"></i>
-                                </s:a>
 
-                                <s:url var="deleteOrderUrl" action="deleteOrder">
-                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                </s:url>
-                                <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip"
-                                     title="Delete order"
-                                     onclick="return confirm('Do you really want to delete?');">
-                                    <%--<img src="../includes/images/delete-booking.png" class="icon-action circ-icon"
-                                    style="border-radius: 25%;">--%>
-                                    <i class="fa fa-trash-o"></i>
-                                </s:a>
+                                    <%--edit booking--%>
+                                    <s:url var="editOrderUrl" action="loadEditOrder">
+                                        <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{editOrderUrl}" rel="tooltip" title ="Edit Booking">
+                                        <i class="fa fa-pencil"></i>
+                                    </s:a>
+                                    <%--delete booking--%>
+                                    <s:url var="deleteOrderUrl" action="deleteOrder">
+                                        <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip" title="Delete Booking" onclick="return confirm('Do you really want to delete?');">
+                                        <i class="fa fa-trash-o"></i>
+                                    </s:a>
+                                    <%--info booking--%>
+                                    <s:url var="viewInfoOrderUrl" action="viewInfoOrder">
+                                        <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
+                                        <i class="fa fa-info-circle"></i>
+                                    </s:a>
+                                    | <%--separator--%>
+                                    <%--approve booking--%>
+                                    <%--<s:property value="%{#attr.order.orderId}"/>--%>
+                                    <s:url var="approveOrderUrl" action="approveOrder">
+                                        <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{approveOrderUrl}" rel="tooltip" title="Approve Booking" onclick="return confirm('Approve Booking?');">
+                                        <i class="fa fa-check"></i>
+                                    </s:a>
+                                    <%--disapprove booking--%>
+                                    <s:url var="disapproveOrderUrl" action="disapproveOrder">
+                                        <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{disapproveOrderUrl}" rel="tooltip" title="Disapprove Booking" onclick="return confirm('Disapprove Booking?');">
+                                        <i class="fa fa-times"></i>
+                                    </s:a>
 
-                                <s:url var="viewInfoOrderUrl" action="viewInfoOrder">
-                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                </s:url>
-                                <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip"
-                                     title="View Booking Info">
-                                    <%--<img src="../includes/images/info-b.png" class="icon-action circ-icon"
-                                    style="border-radius: 25%;">--%>
-                                    <i class="fa fa-info-circle"></i>
-                                </s:a>
-                                <s:a class="icon-action-link" href="#" rel="tooltip"
-                                     title="Approve or Disapprove order" id="approve" onclick="approve()">
-                                     <%--<img src="../includes/images/info-b.png" class="icon-action circ-icon"
-                                     style="border-radius: 25%;">--%>
-                                    <i class="fa fa-check-circle-o"></i>
-                                </s:a>
                                 </display:column>
                             </td>
 
@@ -113,40 +116,62 @@
             </div>
 
             <div class="panel-footer">
-
-                    <span class="pull-right">
-                        <button type="button" class="btn btn-success new-booking" onclick="location.href='bookingSearch'">
-                            <i class="fa fa-search"></i> Search Booking
-                        </button>
-                        <button type="button" class="btn btn-primary new-booking"
-                                onclick="location.href='loadAddOrderPage'">
-                            <i class="fa fa-book"></i> New Booking
-                        </button>
-                    </span>
+                <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking" onclick="location.href='bookingSearch'">
+                        <i class="fa fa-search"></i> Search Booking
+                    </button>
+                    <button type="button" class="btn btn-primary new-booking"
+                            onclick="location.href='loadAddOrderPage'">
+                        <i class="fa fa-book"></i> New Booking
+                    </button>
+                </span>
             </div>
+
         </div>
     </div>
     <!-- /.row -->
-
 </div>
 
+<%--Approve and Disapprove Modal--%>
+<%--<div class="modal fade" id="approveDisapprove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Approve or Disapprove Booking</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure with your changes?</p>
+            </div>
+            <div class="modal-footer">
 
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <s:property value="%{#attr.order.orderId}"/>
+                <s:url var="approveDisapproveOrderUrl" action="approveDisapproveOrder">
+                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                </s:url>
+                <s:a class="icon-action-link" href="%{approveDisapproveOrderUrl}" rel="tooltip">
+                    <button type="button" class="btn btn-primary">Yes</button>
+                </s:a>
+            </div>
+        </div>
+    </div>
+</div>--%>
 
-<div id="modal">
+<%--<div id="modal">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <span class="pull-right ">
                 <a href="#" class="icon-action-link" id="closeModal" onclick="closeModal()" style="color:white;"> x </a>
             </span>
         </div>
-    <div class="panel-body">
-    <button class="btn btn-success">Approve</button>
-    <button class="btn btn-danger">Disapprove</button>
+        <div class="panel-body">
+            <button class="btn btn-success">Approve</button>
+            <button class="btn btn-danger">Disapprove</button>
+        </div>
     </div>
-    </div>
-</div>
+</div>--%>
 
-<style>
+<%--<style>
 
 #modal {
   width: 300px;
@@ -160,53 +185,45 @@
   border-radius: 5px;
   text-align: center;
   z-index: 11; /* 1px higher than the overlay layer */
-
    /* Embiggen */
    transform: scale(1.5); /* prefix me */
-
    /* Hidden */
    opacity: 0;
    pointer-events: none;
 }
 
 .dialogIsOpen #page-wrap {
-
   /* Blur and de-color */
   -webkit-filter: blur(5px) grayscale(50%);
-
   /* Recede */
   -webkit-transform: scale(0.9);
-
 }
 
 .dialogIsOpen #modal {
-
   /* Regular size and visible */
   transform: scale(1); /* prefix me */
   opacity: 1;
-
   /* Clickable */
   pointer-events: auto;
-
 }
+
 #modal {
-
   transition: all 0.4s ease; /* prefix me */
-
 }
 
-</style>
+</style>--%>
 
 <script>
 
-    function approve(){
+    /*function approve(){
         $("body").addClass("dialogIsOpen");
     }
 
     function closeModal(){
         $("body").removeClass("dialogIsOpen");
-    }
+    }*/
 
+    /*color coding of rows*/
     var tbl = document.getElementById("order");
     if (tbl != null) {
         for (var i = 0; i < tbl.rows.length; i++){
@@ -231,13 +248,7 @@
                     tbl.rows[i].cells[j].style.backgroundColor="#dff0d8";
                 }
             }
-
         }
-
-    }
-
-    function onDelete() {
-
     }
 
 </script>
