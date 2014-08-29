@@ -67,7 +67,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="order.freightType"
-                                          cssClass="form-control step1"
+                                          cssClass="form-control"
                                           style="margin-bottom: 15px !important;"
                                           name="order.freightType"
                                           list="freightTypeList"

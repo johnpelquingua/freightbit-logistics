@@ -240,7 +240,7 @@
 </div>
 
 <s:if test="hasActionMessages()">
-    <div class="col-lg-12">
+    <div class="col-lg-12" id="successDiv">
         <div id="alert" class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-star"></i></button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
@@ -719,6 +719,11 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
+        // Anchor on successDiv on every add order item
+        if ($('#successDiv').length !== 0){
+            window.location.href = '#successDiv';
+        }
+
         // On click event of Item name change
         $('#itemName').change(function(event) {
 

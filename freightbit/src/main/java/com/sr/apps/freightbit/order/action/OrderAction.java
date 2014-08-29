@@ -398,8 +398,90 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String loadEditOrder() {
 
-        Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        order = transformToFormBeanOrder(orderEntity);
+
+        System.out.println("99999999999999999999999999999999999999999999999999999 " + orderIdParam);
+
+
+        Orders orderEntityForm = orderService.findOrdersById(orderIdParam);
+        // Display Order Data to form
+        order = transformToOrderFormBean(orderEntityForm);
+
+
+
+
+
+
+
+
+
+        /*Customer customerNumber = customerService.findCustomerById(orderEntityForm.getShipperContactId());*/
+
+        Contacts contactShipperName = customerService.findContactById(orderEntityForm.getShipperContactId());
+
+        Customer shipperName = customerService.findCustomerById(contactShipperName.getReferenceId());
+
+        System.out.println("************************************************************* " + shipperName.getCustomerId());
+
+        contactsList = customerService.findContactByRefIdAndType("shipper",shipperName.getCustomerId());
+
+        addressList = customerService.findAddressByShipper("CONSIGNEE",shipperName.getCustomerId());
+
+        consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE",shipperName.getCustomerId());
+
+        consigneeAddressList = customerService.findAddressByCriteria("CONSIGNEE",shipperName.getCustomerId());
+
+
+
+
+
+
+
+
+        /*Contacts contactShipperName = customerService.findContactById(order.getShipperContactId());
+
+        Customer shipperName = customerService.findCustomerById(contactShipperName.getReferenceId());
+
+        if (shipperName!=null) {
+            orderBean.setCustomerId(shipperName.getCustomerId());
+            orderBean.setCustomerName(shipperName.getCustomerName());
+        }else{
+            orderBean.setCustomerId(0);
+            orderBean.setCustomerName("NINJA TURTLES !!!");
+        }*/
+
+
+        /*List <Contacts> contactsList = customerService.findContactByRefIdAndType("shipper",shipperName.getCustomerId() );
+
+        for (Contacts contactEnt : contactsList) {
+            System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + contactEnt);
+
+        }
+
+
+
+
+        List <Address> addressList = customerService.findAddressByShipper("CONSIGNEE",shipperName.getCustomerId() );
+
+        for (Address addressEnt : addressList) {
+            System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg" + addressEnt);
+
+        }
+
+        List <Contacts> consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE",shipperName.getCustomerId());
+
+        for (Contacts contactEnt2 : consigneeList) {
+            System.out.println("cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" + contactEnt2);
+
+        }
+
+        List <Address> consigneeAddressList = customerService.findAddressByCriteria("CONSIGNEE",customerID );
+
+        for (Address addressEnt2 : consigneeAddressList) {
+            System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp" + addressEnt2);
+
+        }
+*/
+
         return SUCCESS;
     }
 
@@ -595,7 +677,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         orderBean.setOrderId(order.getOrderId());
         orderBean.setOrderNumber(order.getOrderNumber());
-        orderBean.setServiceType(order.getServiceType());
+        orderBean.setFreightType(order.getServiceType());
         orderBean.setModeOfService(order.getServiceMode());
         orderBean.setNotifyBy(order.getNotificationType());
         orderBean.setOrderDate(order.getOrderDate());
@@ -607,14 +689,14 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setTrailerCode(order.getTrailerCode());
         orderBean.setDriverCode(order.getDriverCode());
         orderBean.setVesselNumber(order.getVesselNumber());
-        /*orderBean.setShipperCode(order.getShipperCode());
-        orderBean.setShipperAddressId(order.getShipperAddressId());*/
+        /*orderBean.setShipperCode(order.getShipperCode());*/
+        orderBean.setShipperAddressId(order.getShipperAddressId());
         orderBean.setShipperContactId(order.getShipperContactId());
         // get Customer name
         Contacts shipperContactName = customerService.findContactById(order.getShipperContactId());
         orderBean.setShipperContactName(getFullName(shipperContactName.getLastName(), shipperContactName.getFirstName(), shipperContactName.getMiddleName()));
-        /*orderBean.setConsigneeCode(order.getConsigneeCode());
-        orderBean.setConsigneeAddressId(order.getConsigneeAddressId());*/
+        /*orderBean.setConsigneeCode(order.getConsigneeCode());*/
+        orderBean.setConsigneeAddressId(order.getConsigneeAddressId());
         orderBean.setConsigneeContactId(order.getConsigneeContactId());
         Contacts consigneeContactName = customerService.findContactById(order.getConsigneeContactId());
         orderBean.setConsigneeName(getFullName(consigneeContactName.getLastName(), consigneeContactName.getFirstName(), consigneeContactName.getMiddleName()));
@@ -636,8 +718,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         Customer shipperName = customerService.findCustomerById(contactShipperName.getReferenceId());
 
         if (shipperName!=null) {
+            orderBean.setCustomerId(shipperName.getCustomerId());
             orderBean.setCustomerName(shipperName.getCustomerName());
         }else{
+            orderBean.setCustomerId(0);
             orderBean.setCustomerName("NINJA TURTLES !!!");
         }
 
@@ -689,6 +773,12 @@ public class OrderAction extends ActionSupport implements Preparable {
             address.setAddress("NONE");
             orderBean.setConsigneeInfoAddress(address);
         }
+
+        System.out.println("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV " + shipperName.getCustomerId() );
+
+
+
+
 
         return orderBean;
     }
