@@ -27,7 +27,7 @@
                         </legend>
                         <s:form action="addOrder" theme="bootstrap">
                         <div class="form-group" style="margin-top: 15px;">
-                            <label class="col-lg-2 control-label">Service Requirement <span class="asterisk_input lefts"></span> </label>
+                            <label class="col-lg-2 control-label">Service Requirement <span class="asterisk_red"></span> </label>
 
                             <div class="col-lg-10">
 
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Service Mode</label>
+                            <label class="col-lg-2 control-label">Service Mode<span class="asterisk_red"></label>
 
                             <div class="col-lg-10">
 
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Freight Type</label>
+                            <label class="col-lg-2 control-label">Freight Type<span class="asterisk_red"></label>
 
                             <div class="col-lg-10">
 
@@ -79,7 +79,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Payment Mode</label>
+                            <label class="col-lg-2 control-label">Payment Mode<span class="asterisk_red"></label>
 
                             <div class="col-lg-10">
 
@@ -96,7 +96,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Customer Name</label>
+                            <label class="col-lg-2 control-label">Customer Name<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
 
@@ -126,13 +126,13 @@
 
                 <div class="form-group">
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date and Time</label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date and Time<span class="asterisk_red"></label>
                     <div class="col-lg-3" >
                         <input type="text" class="from_date form-control step2" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;">
 
                     </div>
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date and Time</label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date and Time<span class="asterisk_red"></label>
                     <div class="col-lg-3" >
                         <input type="text" class="to_date form-control step2" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;">
                     </div>
@@ -141,7 +141,7 @@
 
                 <div class="form-group">
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Origin Port</label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Origin Port<span class="asterisk_red"></label>
                     <div class="col-lg-3" >
 
                         <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
@@ -150,7 +150,7 @@
 
                     </div>
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Destination Port</label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Destination Port<span class="asterisk_red"></label>
                     <div class="col-lg-3" >
 
                         <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
@@ -160,7 +160,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type</label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type<span class="asterisk_red"></label>
 
                         <div class="col-lg-9">
                             <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
@@ -192,7 +192,7 @@
                     </legend>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person</label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person<span class="asterisk_red"></label>
 
                         <div class="col-lg-8">
 
@@ -207,7 +207,7 @@
                                 Add Contact Person
                             </button>--%>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-info"><i class="fa fa-plus"></i></a>
+                                <a data-toggle="modal" data-target="#createContact" class="btn btn-info"><i class="fa fa-plus"></i></a>
                             </div>
 
                         </div>
@@ -215,7 +215,7 @@
                     </div>
 
                     <div class="form-group" style="clear: both;">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address</label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address<span class="asterisk_red"></label>
 
                         <div class="col-lg-8">
                             <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
@@ -230,7 +230,7 @@
                             </button>--%>
 
                             <div class="pull-right">
-                                <a href="#" class="btn btn-info"><i class="fa fa-plus"></i></a>
+                                <a href="#createContact" class="btn btn-info"><i class="fa fa-plus"></i></a>
                             </div>
 
                         </div>
@@ -244,7 +244,7 @@
                     </legend>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name</label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name<span class="asterisk_red"></label>
 
                         <div class="col-lg-8">
                             <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperConsignee" name="order.consigneeContactId"
@@ -266,7 +266,7 @@
                     </div>
 
                     <div class="form-group" style="clear:both;">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address</label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address<span class="asterisk_red"></label>
 
                         <div class="col-lg-8">
                             <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeAddress" name="order.consigneeAddressId"
@@ -327,6 +327,65 @@
     </div>
 </div>
 
+<%--start--%>
+<div class="modal fade" id="createContact" role="form" aria-labelledby="myModalLabel1" >
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Add Contact</h4>
+    </div>
+        <div class="modal-body">
+            <div class="panel-body">
+                <s:form action="addCustomerContact" cssClass="form-horizontal" theme="bootstrap">
+
+            <label>Contact Type</label>
+                    <%--<s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"--%>
+                              <%--listKey="key" listValue="value" cssClass="form-control"--%>
+                              <%--value="contact.contactType" emptyOption="true"/>--%>
+                 <label>Last name</label>
+            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
+                         id="contact.lastName" required="true" maxLength="30" autofocus="true"
+                         pattern="[a-zA-Z\s]+"
+                         title="Name should not contain special characters and/or numbers."/>
+            <label>First Name</label>
+                <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
+                             id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s]+"
+                             title="Name should not contain special characters and/or numbers."
+                             required="true"/>
+            <label>Middle Name</label>
+                <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
+                             id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s]+"
+                             title="Name should not contain special characters and/or numbers."/>
+            <label>Phone</label>
+                <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
+                             maxLength="14" required="true"
+                             pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+            <label>Mobile</label>
+                <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
+                             maxLength="19" required="true"
+                             pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
+                             title="(+639XX) XXX-XXXX Mobile should not contain special characters and/or letters."/>
+            <label>Fax</label>
+                <s:textfield cssClass="form-control" placeholder="contact.fax" name="contact.fax"
+                             maxLength="14" pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+            <label>Email</label>
+                <s:textfield cssClass="form-control" placeholder="contact.email" name="contact.email"
+                             type="email" required="true"/>
+            <label>Position</label>
+                <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
+                             type="text" required="true"/>
+                <div class="panel-footer">
+                 <div class="pull-right">
+                <a href="" class="btn btn-default" id ="groups-btn">Cancel</a>
+                <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                        </div>
+                </div>
+                </s:form>
+        </div>
+        </div>
+    </div>
+</div>
+<%--end--%>
 
 <script type="text/javascript">
 

@@ -5612,6 +5612,14 @@ button.close {
     .modal-sm {
         width: 300px
     }
+
+    .modal-form{
+        width:500px;
+
+
+    }
+
+
 }
 
 @media (min-width:992px) {

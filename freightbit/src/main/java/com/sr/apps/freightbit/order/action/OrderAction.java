@@ -56,6 +56,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Parameters> portsList = new ArrayList<Parameters>();
     private CommonUtils commonUtils = new CommonUtils();
     private List<Items> customerItems = new ArrayList<Items>();
+    private List<Parameters> contactTypeList = new ArrayList<Parameters>();
 
     private Integer orderIdParam;
     private Integer orderItemIdParam;
@@ -998,6 +999,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderSearchList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.ORDER_SEARCH);
         portsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS);
         containerList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
+        contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
 
         containerQuantity = new ArrayList<Integer>();
         containerQuantity.add(1);
@@ -1466,5 +1468,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setOrderItemIdParam(Integer orderItemIdParam) {
         this.orderItemIdParam = orderItemIdParam;
+    }
+
+    public void setContactTypeList(List<Parameters> contactTypeList) {
+        this.contactTypeList = contactTypeList;
+    }
+
+    public List<Parameters> getContactTypeList() {
+        return contactTypeList;
     }
 }

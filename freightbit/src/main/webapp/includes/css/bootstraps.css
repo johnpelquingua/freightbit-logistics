@@ -7111,7 +7111,7 @@ select.customerCriteriaCSS option:nth-child(4){
  }
 
 
- .asterisk_input:after {
+ .asterisk_red:after {
      content:" *";
      color: #e32;
      position: absolute;
@@ -7123,6 +7123,8 @@ select.customerCriteriaCSS option:nth-child(4){
  .icon-15e{
      font-size:7em;
  }
+
+
 
 
 /*# sourceMappingURL=bootstrap.css.map */
