@@ -41,12 +41,24 @@ public class OrderItems implements java.io.Serializable {
     private String finalPickupDate;
     private String finalDeliveryDate;
     private Integer vesselScheduleId;
+    private String driverOrigin;
+    private String driverDestination;
+    private String truckOrigin;
+    private String truckDestination;
 //
 
     public OrderItems() {
     }
 
-    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId, Integer quantity, String classification, String commodity, Double declaredValue, Double weight, String comments, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Float rate, String nameSize, String status, Float volume, String vendorOrigin, String vendorSea, String vendorDestination, String finalPickupDate, String finalDeliveryDate) {
+    public OrderItems(Integer orderItemId, Integer clientId, Integer orderId,
+                      Integer quantity, String classification, String commodity,
+                      Double declaredValue, Double weight, String comments,
+                      Date createdTimestamp, String createdBy, Date modifiedTimestamp,
+                      String modifiedBy, Float rate, String nameSize,
+                      String status, Float volume, String vendorOrigin,
+                      String vendorSea, String vendorDestination, String finalPickupDate,
+                      String finalDeliveryDate, Integer vesselScheduleId, String driverOrigin,
+                      String driverDestination, String truckOrigin, String truckDestination) {
         this.orderItemId = orderItemId;
         this.clientId = clientId;
         this.orderId = orderId;
@@ -69,6 +81,11 @@ public class OrderItems implements java.io.Serializable {
         this.vendorDestination = vendorDestination;
         this.finalPickupDate = finalPickupDate;
         this.finalDeliveryDate = finalDeliveryDate;
+        this.vesselScheduleId = vesselScheduleId;
+        this.driverOrigin = driverOrigin;
+        this.driverDestination = driverDestination;
+        this.truckOrigin = truckOrigin;
+        this.truckDestination = truckDestination;
     }
 
     @Id
@@ -297,6 +314,42 @@ public class OrderItems implements java.io.Serializable {
 
     public void setVesselScheduleId(Integer vesselScheduleId) {
         this.vesselScheduleId = vesselScheduleId;
+    }
+
+    @Column(name = "driverOrigin")
+    public String getDriverOrigin() {
+        return driverOrigin;
+    }
+
+    public void setDriverOrigin(String driverOrigin) {
+        this.driverOrigin = driverOrigin;
+    }
+
+    @Column(name = "driverDestination")
+    public String getDriverDestination() {
+        return driverDestination;
+    }
+
+    public void setDriverDestination(String driverDestination) {
+        this.driverDestination = driverDestination;
+    }
+
+    @Column(name = "truckOrigin")
+    public String getTruckOrigin() {
+        return truckOrigin;
+    }
+
+    public void setTruckOrigin(String truckOrigin) {
+        this.truckOrigin = truckOrigin;
+    }
+
+    @Column(name = "truckDestination")
+    public String getTruckDestination() {
+        return truckDestination;
+    }
+
+    public void setTruckDestination(String truckDestination) {
+        this.truckDestination = truckDestination;
     }
 }
 

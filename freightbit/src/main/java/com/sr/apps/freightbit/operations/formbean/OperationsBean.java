@@ -37,6 +37,10 @@ public class OperationsBean {
 
     private String vendorOrigin;
     private String vendorSea;
+    private String driverOrigin;
+    private String driverDestination;
+    private String truckOrigin;
+    private String truckDestination;
 
     private Integer vesselScheduleId;
 
@@ -264,5 +268,43 @@ public class OperationsBean {
         this.orderItemId = orderItemId;
     }
 
+    public String getDriverOrigin() {
+        return driverOrigin;
+    }
 
+    public void setDriverOrigin(String driverOrigin) {
+        this.driverOrigin = driverOrigin;
+    }
+
+    public String getDriverDestination() {
+        return driverDestination;
+    }
+
+    public void setDriverDestination(String driverDestination) {
+        this.driverDestination = driverDestination;
+    }
+
+    public String getTruckOrigin() {
+        return truckOrigin;
+    }
+
+    public void setTruckOrigin(String truckOrigin) {
+        this.truckOrigin = truckOrigin;
+    }
+
+    public String getTruckDestination() {
+        return truckDestination;
+    }
+
+    public void setTruckDestination(String truckDestination) {
+        this.truckDestination = truckDestination;
+    }
+
+    public Integer getVesselScheduleId() {
+        return vesselScheduleId;
+    }
+
+    public void setVesselScheduleId(Integer vesselScheduleId) {
+        this.vesselScheduleId = vesselScheduleId;
+    }
 }

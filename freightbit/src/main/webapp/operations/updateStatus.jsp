@@ -2,6 +2,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="true" %>
+
 <div class="row" style="margin-top:-15px;">
     <div class="col-lg-12">
         <h1>Update Status</h1>
@@ -32,8 +35,8 @@
                         <label for="orderItem.voyageNumber" class="col-sm-2 control-label">Booking Number:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="orderItem.voyageNumber" value="MTY-1035"
-                                   disabled>
+                            <input type="text" class="form-control" id="orderItem.voyageNumber" value=<c:out value="${sessionScope.nameSizeParam}"/>
+                                   disabled="true" >
                         </div>
 
                     </div>

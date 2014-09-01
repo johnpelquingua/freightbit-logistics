@@ -30,6 +30,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Integer orderItemIdParam;
     private Integer nameSizeParam;
     private Integer vendorId;
+    private String vendorCode;
     private String orderNoParam;
     private Integer vesselScheduleIdParam;
 
@@ -49,8 +50,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private VendorService vendorService;
 
 
-    private Map<Integer, String> driverMap = new LinkedHashMap<Integer, String>();
-    private Map<Integer, String> trucksMap = new HashMap<Integer, String>();
+    private Map<String, String> driverMap = new LinkedHashMap<String, String>();
+    private Map<String, String> trucksMap = new HashMap<String, String>();
 
     Map paramMap = new HashMap();
 
@@ -252,11 +253,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Trucks> trucksList = vendorService.findTrucksByVendorId(vendorId);
 
         for(int i = 0; i < driverList.size(); i++) {
-            driverMap.put(driverList.get(i).getDriverId(), driverList.get(i).getFirstName() + " " + driverList.get(i).getLastName());
+            driverMap.put(driverList.get(i).getFirstName() + " " + driverList.get(i).getLastName(), driverList.get(i).getFirstName() + " " + driverList.get(i).getLastName());
         }
 
         for(int i = 0; i <trucksList.size(); i++) {
-            trucksMap.put(trucksList.get(i).getTruckId(), trucksList.get(i).getTruckCode());
+            trucksMap.put(trucksList.get(i).getTruckCode(), trucksList.get(i).getTruckCode());
         }
 
         return SUCCESS;
@@ -295,11 +296,25 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setStatus(entity.getStatus());
         formBean.setWeight(entity.getWeight());
         formBean.setVendorSea(entity.getVendorSea());
-        formBean.setVendorOrigin(entity.getVendorOrigin());
-        formBean.setFinalPickupDate(entity.getFinalPickupDate());
 
-        System.out.println("<------------- Commodity Entity: " + entity.getCommodity() + "---> \n \n");
-        System.out.println("<------------- Commodity Entity: " + formBean.getCommodity() + "---> \n \n");
+        if (entity.getVendorOrigin() != null) {
+            formBean.setVendorOrigin(vendorService.findVendorById(Integer.parseInt(entity.getVendorOrigin())).getVendorCode());
+        } else {
+            formBean.setVendorOrigin(" ");
+        }
+
+        if (entity.getVendorDestination() != null) {
+            formBean.setVendorDestination(vendorService.findVendorById(Integer.parseInt(entity.getVendorDestination())).getVendorCode());
+        } else {
+            formBean.setVendorDestination(" ");
+        }
+
+        formBean.setFinalPickupDate(entity.getFinalPickupDate());
+        formBean.setDriverOrigin(entity.getDriverOrigin());
+        formBean.setDriverDestination(entity.getDriverDestination());
+        formBean.setTruckOrigin(entity.getTruckOrigin());
+        formBean.setTruckDestination(entity.getTruckDestination());
+
         return formBean;
     }
 
@@ -325,8 +340,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         String status = (String) sessionAttributes.get("status");
         String vendorSea = (String) sessionAttributes.get("vendorSea");
 
-
-        System.out.println("<------------------Client ID: " + clientId + "-----> \n \n");
         entity.setOrderItemId(orderItemId);
         entity.setClientId(clientId);
         entity.setNameSize(nameSize);
@@ -367,6 +380,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setModifiedTimestamp(formBean.getModifiedTimestamp());
         entity.setWeight(formBean.getWeight());
         entity.setStatus("PLANNING 3");
+        entity.setDriverOrigin(formBean.getDriverOrigin());
+        entity.setTruckOrigin(formBean.getTruckOrigin());
         return entity;
     }
 
@@ -393,6 +408,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setVendorOrigin(formBean.getVendorOrigin());
         entity.setFinalPickupDate(formBean.getPickupDate());
         entity.setVendorSea(formBean.getVendorSea());
+        entity.setDriverDestination(formBean.getDriverDestination());
+        entity.setTruckDestination(formBean.getTruckDestination());
         return entity;
     }
 
@@ -535,19 +552,19 @@ public class OperationsAction extends ActionSupport implements Preparable {
         this.vendorId = vendorId;
     }
 
-    public Map<Integer, String> getDriverMap() {
+    public Map<String, String> getDriverMap() {
         return driverMap;
     }
 
-    public void setDriverMap(Map<Integer, String> driverMap) {
+    public void setDriverMap(Map<String, String> driverMap) {
         this.driverMap = driverMap;
     }
 
-    public Map<Integer, String> getTrucksMap() {
+    public Map<String, String> getTrucksMap() {
         return trucksMap;
     }
 
-    public void setTrucksMap(Map<Integer, String> trucksMap) {
+    public void setTrucksMap(Map<String, String> trucksMap) {
         this.trucksMap = trucksMap;
     }
 
@@ -573,5 +590,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setVesselScheduleIdParam(Integer vesselScheduleIdParam) {
         this.vesselScheduleIdParam = vesselScheduleIdParam;
+    }
+
+    public String getVendorCode() {
+        return vendorCode;
+    }
+
+    public void setVendorCode(String vendorCode) {
+        this.vendorCode = vendorCode;
     }
 }

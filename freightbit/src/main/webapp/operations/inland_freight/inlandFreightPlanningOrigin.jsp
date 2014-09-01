@@ -8,10 +8,29 @@
 
     <div class="main-box">
         <div class="col-md-12">
+
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <img src="images/add-user.png" class="box-icon">
-                    <span class="panel-title">Inland Operation</span>
+                    <span class="panel-title">Booking Information</span>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+
+                        <label for="book-num" class="col-sm-2 control-label">Booking Number:</label>
+
+                        <div class="col-sm-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.orderId}" name="book-num" disabled="true"></s:textfield>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <img src="images/add-user.png" class="box-icon">
+                    <span class="panel-title">Inland Operation: Origin</span>
                 </div>
                 <div class="panel-body">
 
@@ -32,6 +51,7 @@
                         <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
                         <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
                         <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
+                        <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
                         <div class="form-group">
 
                             <label for="booknum" class="col-sm-2 control-label">Booking Number:</label>
@@ -68,9 +88,9 @@
                             <label for="driver" class="col-sm-2 control-label">Driver:</label>
 
                             <div class="col-sm-10">
-                                <s:select list="listDrivers" name="operationsBean.driverList"
+                                <s:select list="listDrivers" name="operationsBean.driverOrigin"
                                           id="driverList"
-                                          listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
+                                          listKey="firstName + lastName" listValue="firstName + lastName" cssClass="form-control"
                                           emptyOption="true"
                                         ></s:select>
                                 <div style="width:5%;float:left;">
@@ -88,9 +108,9 @@
 
                             <div class="col-sm-10">
                                 <div style="width:90%;float:left;padding-right:10px;">
-                                    <s:select list="listDrivers" name="operationsBean.trucksList"
+                                    <s:select list="listDrivers" name="operationsBean.truckOrigin"
                                               id="trucksList"
-                                              listKey="truckId" listValue="truckCode" cssClass="form-control"
+                                              listKey="truckCode" listValue="truckCode" cssClass="form-control"
                                               emptyOption="true"
                                             ></s:select>
                                 </div>
@@ -108,7 +128,7 @@
                             <label for="pickup" class="col-sm-2 control-label">Pickup Date:</label>
 
                             <div class="col-sm-10">
-                                <input type="text" class="from_date form-control step2" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;">
+                                <s:textfield type="text" cssClass="from_date form-control step2" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                             </div>
 
                         </div>
@@ -124,43 +144,60 @@
 
             </div>
 
-        </div>
-
-
-    </div>
-
-    <div class="sidebar-box">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <img src="images/chat.png" class="box-icon">
-                <span class="panel-title">Booking Information</span>
-
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive list-table">
-                    <table class="table table-striped table-bordered text-center">
-                        <tbody>
-                        <tr>
-                            <td class="tb-font-black">Shipper</td>
-                            <td class="tb-font-black">Solutions Resource</td>
-                        </tr>
-                        <tr>
-                            <td class="tb-font-black">Consignee</td>
-                            <td class="tb-font-black">Solutions Resource</td>
-                        </tr>
-                        <tr>
-                            <td class="tb-font-black">Pick up Address</td>
-                            <td class="tb-font-black">Luzon</td>
-                        </tr>
-                        <tr>
-                            <td class="tb-font-black">Delivery Address</td>
-                            <td class="tb-font-black">Davao</td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <img src="images/add-user.png" class="box-icon">
+                    <span class="panel-title">Inland Operation: Destination</span>
                 </div>
+                <div class="panel-body">
+
+
+                        <div class="form-group">
+
+                            <label for="vendorList" class="col-sm-2 control-label">Vendor:</label>
+
+                            <div class="col-sm-10">
+                                <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="driver" class="col-sm-2 control-label">Driver:</label>
+
+                            <div class="col-sm-10">
+                                <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="truck" class="col-sm-2 control-label">Truck:</label>
+
+                            <div class="col-sm-10">
+                                <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="pickup" class="col-sm-2 control-label">Pickup Date:</label>
+
+                            <div class="col-sm-10">
+                                <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
+                            </div>
+
+                        </div>
+                </div>
+
             </div>
+
         </div>
+
+
     </div>
 
 </div>

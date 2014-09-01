@@ -26,14 +26,26 @@ public class OrderItemsBean {
 
     private String vendorSea;
     private String vendorOrigin;
+    private String vendorDestination;
     private String finalPickupDate;
+    private String driverOrigin;
+    private String driverDestination;
+    private String truckOrigin;
+    private String truckDestination;
 
     public OrderItemsBean(){
 
     }
 
-    public OrderItemsBean(String createdBy, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimeStamp, Date modifiedTimeStamp, String modifiedBy, String nameSize, String status, Float volume) {
-        this.createdBy = createdBy;
+    public OrderItemsBean(Integer orderItemId, Integer orderId, Integer quantity,
+                          String classification, String description, Double declaredValue,
+                          Double weight, String remarks, Float rate, Date createdTimeStamp,
+                          String createdBy, Date modifiedTimeStamp, String modifiedBy,
+                          String nameSize, String status, Float volume,
+                          Integer clientId, String commodity, String comments,
+                          String vendorSea, String vendorOrigin, String vendorDestination,
+                          String finalPickupDate, String driverOrigin, String driverDestination,
+                          String truckOrigin, String truckDestination) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.quantity = quantity;
@@ -44,11 +56,23 @@ public class OrderItemsBean {
         this.remarks = remarks;
         this.rate = rate;
         this.createdTimeStamp = createdTimeStamp;
+        this.createdBy = createdBy;
         this.modifiedTimeStamp = modifiedTimeStamp;
         this.modifiedBy = modifiedBy;
         this.nameSize = nameSize;
         this.status = status;
         this.volume = volume;
+        this.clientId = clientId;
+        this.commodity = commodity;
+        this.comments = comments;
+        this.vendorSea = vendorSea;
+        this.vendorOrigin = vendorOrigin;
+        this.vendorDestination = vendorDestination;
+        this.finalPickupDate = finalPickupDate;
+        this.driverOrigin = driverOrigin;
+        this.driverDestination = driverDestination;
+        this.truckOrigin = truckOrigin;
+        this.truckDestination = truckDestination;
     }
 
     public String getVendorSea() {
@@ -225,5 +249,45 @@ public class OrderItemsBean {
 
     public void setVolume(Float volume) {
         this.volume = volume;
+    }
+
+    public String getDriverOrigin() {
+        return driverOrigin;
+    }
+
+    public void setDriverOrigin(String driverOrigin) {
+        this.driverOrigin = driverOrigin;
+    }
+
+    public String getDriverDestination() {
+        return driverDestination;
+    }
+
+    public void setDriverDestination(String driverDestination) {
+        this.driverDestination = driverDestination;
+    }
+
+    public String getTruckOrigin() {
+        return truckOrigin;
+    }
+
+    public void setTruckOrigin(String truckOrigin) {
+        this.truckOrigin = truckOrigin;
+    }
+
+    public String getTruckDestination() {
+        return truckDestination;
+    }
+
+    public void setTruckDestination(String truckDestination) {
+        this.truckDestination = truckDestination;
+    }
+
+    public String getVendorDestination() {
+        return vendorDestination;
+    }
+
+    public void setVendorDestination(String vendorDestination) {
+        this.vendorDestination = vendorDestination;
     }
 }
