@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Origin</label>
 
-                            <div class="col-lg-10" ><span class="asterisk_input"></span>
+                            <div class="col-lg-10" ><span class="asterisk_red"></span>
                                 <s:select name="rate.origin" cssClass="form-control" id="select1"
                                           list="portsList" listKey="key"
                                           listValue="value" placeholder="Origin"/>
@@ -54,16 +54,16 @@
                             <label class="col-lg-2 control-label"
                                    style="padding-top:0px;">Destination</label>
 
-                            <div class="col-lg-10" ><span class="asterisk_input"></span>
+                            <div class="col-lg-10" ><span class="asterisk_red"></span>
                                 <s:select name="rate.destination" cssClass="form-control" id="select2"
                                           list="portsList" listKey="key"
                                           listValue="value" placeholder="Destination"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="rates.rate" class="col-lg-2 control-label" style="padding-top:0px;">Rate</label>
+                            <label for="rates.rate" class="col-lg-2 control-label" style="padding-top:0px;">Rate<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10">
                                 <s:textfield name="rate.rate" cssClass="form-control" id="rates.rate"
                                              placeholder="Rate" onkeypress="return isNumberKey(event)"/>
                             </div>

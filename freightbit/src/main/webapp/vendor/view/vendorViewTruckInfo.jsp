@@ -57,9 +57,9 @@
                     <div class="col-lg-6 col-lg-offset-2">
 
                         <div class="panel panel-info">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-info-circle"></i> Details</h3>
-                            </div>
+                            <%--<div class="panel-heading">--%>
+                                <%--<h3 class="panel-title"><i class="fa fa-info-circle"></i> Details</h3>--%>
+                            <%--</div>--%>
 
                             <div class="row">
                                 <div class="col-lg-12">
@@ -74,59 +74,59 @@
                                         <table class="table table-user-information" style="margin-top: 10px;">
                                             <tbody>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; border-top: none; text-align: right !important;">Plate Number</td>
+                                                <td style="font-weight:bold; font-size: 12px; border-top: none; text-align: left !important;">Plate Number</td>
                                                 <td style="border-top: none; text-align: left !important;"><s:property value="truck.plateNumber"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">LTO Certificate</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">LTO Certificate</td>
                                                 <td style="text-align: left !important"><s:property value="truck.truckCode"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Motor Vehicle number</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">Motor Vehicle number</td>
                                                 <td style="text-align: left !important"><s:property value="truck.motorVehicleNumber"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Date of Issue</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">Date of Issue</td>
                                                 <td style="text-align: left !important"><s:property value="truck.issueDate"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Make</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">Make</td>
                                                 <td style="text-align: left !important"><s:property value="truck.engineNumber"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Model</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">Model</td>
                                                 <td style="text-align: left !important"><s:property value="truck.modelNumber"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Type of Body</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">Type of Body</td>
                                                 <td style="text-align: left !important"><s:property value="truck.truckType"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Year Model</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">Year Model</td>
                                                 <td style="text-align: left !important"><s:property value="truck.modelYear"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Gross Weight</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">Gross Weight</td>
                                                 <td style="text-align: left !important"><s:property value="truck.grossWeight"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Net Weight</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">Net Weight</td>
                                                 <td style="text-align: left !important"><s:property value="truck.netWeight"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Net Capacity</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">Net Capacity</td>
                                                 <td style="text-align: left !important"><s:property value="truck.netCapacity"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Owner Name</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">Owner Name</td>
                                                 <td style="text-align: left !important"><s:property value="truck.ownerName"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Owner's Address</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">Owner's Address</td>
                                                 <td style="text-align: left !important"><s:property value="truck.ownerAddress"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">O.R. Number</td>
+                                                <td style="font-weight:bold; font-size: 12px; text-align: left !important;">O.R. Number</td>
                                                 <td style="text-align: left !important"><s:property value="truck.officialReceipt"/></td>
                                             </tr>
                                             </tbody>
@@ -144,9 +144,9 @@
 
                     <div class="col-lg-2 col-lg-offset-2">
                         <div class="panel panel-info" >
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>
-                            </div>
+                            <%--<div class="panel-heading">--%>
+                                <%--<h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>--%>
+                            <%--</div>--%>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12" style="text-align: center;">

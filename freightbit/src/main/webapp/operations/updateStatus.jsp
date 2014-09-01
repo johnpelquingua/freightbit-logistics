@@ -43,9 +43,9 @@
 
                     <div class="form-group">
 
-                        <label for="orderItem.voyageNumber" class="col-sm-2 control-label">Item/Container</label>
+                        <label for="orderItem.voyageNumber" class="col-sm-2 control-label">Item/Container<span class="asterisk_special"></span></label>
 
-                        <div class="col-sm-10"><span class="asterisk_input"></span>
+                        <div class="col-sm-10">
                             <s:textfield name="orderItem.nameSize" cssClass="form-control"/>
                         </div>
 

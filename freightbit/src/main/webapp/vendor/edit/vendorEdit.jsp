@@ -26,43 +26,43 @@
                 <s:hidden name="vendor.createdTimeStamp" value="%{vendor.createdTimeStamp}" />
                 <s:hidden name="vendor.createdBy" value="%{vendor.createdBy}" />
                 <div class="form-group">
-                    <label for="vendor.vendorName" class="col-lg-2 control-label" style="padding-top:0px;">Name</label>
+                    <label for="vendor.vendorName" class="col-lg-2 control-label" style="padding-top:0px;">Name<span class="asterisk_red"></span></label>
 
-                    <div class="col-lg-9"><span class="asterisk_input"></span>
+                    <div class="col-lg-9">
                         <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Vendor Name"
                                      name="vendor.vendorName"></s:textfield>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="vendor.vendorCode" class="col-lg-2 control-label" style="padding-top:0px;">Code</label>
+                    <label for="vendor.vendorCode" class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></span></label>
 
-                    <div class="col-lg-9"><span class="asterisk_input"></span>
+                    <div class="col-lg-9">
                         <s:textfield cssClass="form-control" id="vendor.vendorCode" placeholder="Vendor Code"
                                      name="vendor.vendorCode" maxLength="3" pattern="[A-Z]+" title="Must be letters only and CAPS."></s:textfield>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="vendor.vendorType" class="col-lg-2 control-label" style="padding-top:0px;">Type</label>
+                    <label for="vendor.vendorType" class="col-lg-2 control-label" style="padding-top:0px;">Type<span class="asterisk_red"></span></label>
 
-                    <div class="col-lg-9"><span class="asterisk_input"></span>
+                    <div class="col-lg-9">
                         <s:select cssClass="form-control" id="vendor.vendorType" list="vendorTypeList" listValue="value"
                                   listKey="key"
                                   name="vendor.vendorType"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="vendor.vendorClass" class="col-lg-2 control-label" style="padding-top:0px;">Class Name</label>
+                    <label for="vendor.vendorClass" class="col-lg-2 control-label" style="padding-top:0px;">Class Name<span class="asterisk_red"></span></label>
 
-                    <div class="col-lg-9"><span class="asterisk_input"></span>
+                    <div class="col-lg-9">
                         <s:select cssClass="form-control" id="vendor.vendorClass" list="vendorClassList" listKey="key"
                                   listValue="value"
                                   name="vendor.vendorClass"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="vendor.vendorStatus" class="col-lg-2 control-label" style="padding-top:0px;">Status</label>
+                    <label for="vendor.vendorStatus" class="col-lg-2 control-label" style="padding-top:0px;">Status<span class="asterisk_red"></span></label>
 
-                    <div class="col-lg-9"><span class="asterisk_input"></span>
+                    <div class="col-lg-9">
                         <s:select cssClass="form-control" id="vendor.vendorStatus" list="statusList"
                                   listKey="key" listValue="value"
                                   name="vendor.vendorStatus"/>

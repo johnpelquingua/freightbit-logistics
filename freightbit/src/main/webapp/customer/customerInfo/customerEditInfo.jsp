@@ -33,34 +33,34 @@
                     <s:hidden name="customer.createdBy" value="%{customer.createdBy}"/>
                     <div class="form-group">
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px !important; margin-top: 0px !important;">Company Name / Customer Name</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px !important; margin-top: 0px !important;">Company Name / Customer Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <span class="asterisk_input"></span>
+
                                 <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Company Code</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <span class="asterisk_input"></span>
+
                                 <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Customer Type</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Customer Type<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
                                 <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="form-control"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Phone Number</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Phone Number<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
                                 <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer.phone" maxLength="14" 
                                 pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile Number</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile Number<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
                                 <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer.mobile" maxLength="19" 
                                 pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
@@ -70,12 +70,12 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax  Number</label>
                             <div class="col-lg-9" >
-                                <s:textfield  required="true" name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="14" 
+                                <s:textfield   name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="14"
                                  pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Email Address</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
                                 <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email" maxLength="50"
                                          pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
@@ -91,7 +91,7 @@
                         <div class="col-lg-9 col-lg-offset-2">
                             <div class="panel panel-info" >
                                 <div class="panel-heading">
-                                    <h3 class="panel-title"><i class="fa fa-file-text"></i> Documents</h3>
+                                    <h3 class="panel-title"><i class="fa fa-file-text"></i> Documents<span class="asterisk_red"></span></h3>
                                 </div>
                                 <div class="form-group" >
 

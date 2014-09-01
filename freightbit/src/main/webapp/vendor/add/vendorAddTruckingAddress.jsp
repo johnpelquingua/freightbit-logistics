@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Address Line 1</label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10"><span class="asterisk_red"></span>
                                 <s:textfield name="address.addressLine1" id="address.addressLine1"
                                              cssClass="form-control" required="true"/>
                             </div>
@@ -64,7 +64,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">City</label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10"><span class="asterisk_red"></span>
                                 <s:textfield name="address.city" id="address.city" cssClass="form-control" required="true"/>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Zip Code</label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10"><span class="asterisk_red"></span>
                                 <s:textfield name="address.zip" id="address.zip" cssClass="form-control" pattern="[0-9]+"/>
                             </div>
                         </div>

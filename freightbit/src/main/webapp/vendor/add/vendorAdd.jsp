@@ -31,41 +31,41 @@
 
                     <s:form cssClass="form-horizontal" action="addVendor" method="POST" theme="bootstrap">
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Type</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Type<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-9"><span class="asterisk_input"></span>
+                        <div class="col-lg-9"></span>
                             <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
                                       listKey="key" listValue="value" cssClass="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Company</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Company<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-9"><span class="asterisk_input"></span>
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
                                          id="vendor.vendorName" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Code</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-9"><span class="asterisk_input"></span>
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" name="vendor.vendorCode" id="vendor.vendorCode"
                                          placeholder="Code" maxLength="3" pattern="[A-Z]+" title="Must be letters only"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Class</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Class<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-9"><span class="asterisk_input"></span>
+                        <div class="col-lg-9">
                             <s:select list="vendorClassList" listKey="key" listValue="value" cssClass="form-control"
                                       id="vendor.vendorClass" name="vendor.vendorClass"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Status</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Status<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-9"><span class="asterisk_input"></span>
+                        <div class="col-lg-9">
                             <s:select list="statusList" listKey="key" listValue="value" cssClass="form-control"
                                       id="vendor.vendorStatus" name="vendor.vendorStatus"/>
                         </div>

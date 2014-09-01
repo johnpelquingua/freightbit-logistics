@@ -41,7 +41,7 @@
     </definition>
 
     <definition name="operations.vesselScheduleList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Add new Vessel Schedule"/>
+        <put-attribute name="title" value="Vessel Schedule List"/>
         <put-attribute name="body" value="/operations/vesselSchedulesList.jsp"/>
     </definition>
 
@@ -370,11 +370,11 @@
         <put-attribute name="body" value="/customer/customerInfo/customerInfo.jsp"/>
     </definition>
     <definition name="customer.customerAddAddress.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Address Module"/>
+        <put-attribute name="title" value="Add Address"/>
         <put-attribute name="body" value="/customer/address/customerAddAddress.jsp"/>
     </definition>
     <definition name="customer.customerEditAddress.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Address Module"/>
+        <put-attribute name="title" value="Edit Address"/>
         <put-attribute name="body" value="/customer/address/customerEditAddress.jsp"/>
     </definition>
     <definition name="customer.customerSaveCompleteAddress.tiles" extends="baseLayout">

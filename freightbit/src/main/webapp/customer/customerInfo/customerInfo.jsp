@@ -50,9 +50,9 @@
 
                         <div class="panel panel-info ">
 
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-info-circle"></i> Details</h3>
-                            </div>
+                            <%--<div class="panel-heading">--%>
+                                <%--<h3 class="panel-title"><i class="fa fa-info-circle"></i> Details</h3>--%>
+                            <%--</div>--%>
 
                             <div align="center" style="margin-top: 10px;">
                                 <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
@@ -61,23 +61,23 @@
                             <table class="table table-user-information profile">
                                 <tbody>
                                 <tr>
-                                    <td class="header" style="font-weight:normal; font-size: 12px; border-top: none;">Name</td>
+                                    <td class="header" style="font-weight:Bold; font-size: 12px; border-top: none; text-align: left !important;">Name</td>
                                     <td style="border-top: none;"><s:property value="customer.customerName"/></td>
                                 </tr>
                                 <tr>
-                                    <td class="header" style="font-weight:normal; font-size: 12px;">Customer Code</td>
+                                    <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Customer Code</td>
                                     <td style="text-transform:uppercase"><s:property value="customer.customerCode" /></td>
                                 </tr>
                                 <tr>
-                                    <td class="header" style="font-weight:normal; font-size: 12px;">Customer Type</td>
+                                    <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Customer Type</td>
                                     <td><s:property value="customer.customerType"/></td>
                                 </tr>
                                 <tr>
-                                    <td class="header"style="font-weight:normal; font-size: 12px;">Email</td>
+                                    <td class="header"style="font-weight:Bold; font-size: 12px; text-align: left !important;">Email</td>
                                     <td><s:property value="customer.email"/></td>
                                 </tr>
                                 <tr>
-                                    <td class="header" style="font-weight:normal; font-size: 12px;">Contact Numbers</td>
+                                    <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Contact Numbers</td>
                                     <td>
                                         <i class="fa fa-phone"></i> <s:property value="customer.phone"/> <br><br>
                                         <i class="fa fa-mobile-phone"></i> <s:property value="customer.mobile"/> <br><br>
@@ -86,7 +86,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="header" style="font-weight:normal; font-size: 12px;">Documents</td>
+                                    <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Documents</td>
                                     <td>
                                         <s:hidden value="customer.dti" />
                                         <s:hidden value="customer.mayorsPermit" />
@@ -166,9 +166,9 @@
 
                     <div class="col-lg-2 col-lg-offset-2">
                         <div class="panel panel-info" >
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>
-                            </div>
+                            <%--<div class="panel-heading">--%>
+                                <%--<h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>--%>
+                            <%--</div>--%>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12" style="text-align: center;">

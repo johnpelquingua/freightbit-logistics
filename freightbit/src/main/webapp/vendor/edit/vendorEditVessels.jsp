@@ -49,9 +49,9 @@
 
                         <div class="form-group">
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Vessel Name</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Vessel Name<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Vessel Name" name="vessel.vesselName"
                                              id="vessel.vesselName" pattern="[A-Za-z]+" title="No special characters allowed"/>
                             </div>
@@ -68,7 +68,7 @@
                                              id="vessel.modelNumber" pattern="[A-Za-z0-9]+" title="No special characters allowed"/>
                             </div>--%>
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Vessel Type</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Vessel Type<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
                                 <s:select cssClass="form-control" placeholder="Vessel Type" name="vessel.vesselType"

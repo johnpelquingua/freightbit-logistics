@@ -351,6 +351,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
     public String editTrucks() {
+
         validateOnSubmitTrucks(truck);
         if (hasFieldErrors()) {
             return INPUT;
@@ -362,6 +363,8 @@ public class VendorAction extends ActionSupport implements Preparable {
             truckEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             truckEntity.setModifiedTimestamp(new Date());
             vendorService.updateTrucks(truckEntity);
+
+
         }catch (TrucksAlreadyExistsException e){
             addFieldError("truck.truckCode", getText("err.truck.already.exists"));
             return INPUT;
@@ -393,6 +396,8 @@ public class VendorAction extends ActionSupport implements Preparable {
         for (Trucks truckElem : truckEntityList) {
             trucks.add(transformToFormBeanTrucks(truckElem));
         }
+
+
         return SUCCESS;
     }
 

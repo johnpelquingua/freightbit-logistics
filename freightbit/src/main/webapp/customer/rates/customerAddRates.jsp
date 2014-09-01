@@ -38,7 +38,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Origin</label>
 
                             <div class="col-lg-10" >
-                                <span class="asterisk_input"></span>
+                                <span class="asterisk_red"></span>
                                 <s:select name="rate.origin" cssClass="form-control" id="select1"
                                           list="portsList" listKey="key"
                                           listValue="value" placeholder="Origin"/>
@@ -49,17 +49,17 @@
                                    style="padding-top:0px;">Destination</label>
 
                             <div class="col-lg-10" >
-                                <span class="asterisk_input"></span>
+                                <span class="asterisk_red"></span>
                                 <s:select name="rate.destination" cssClass="form-control" id="select2"
                                           list="portsList" listKey="key"
                                           listValue="value" placeholder="Destination"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="rates.rate" class="col-lg-2 control-label" style="padding-top:0px;">Rate (Php)</label>
+                            <label for="rates.rate" class="col-lg-2 control-label" style="padding-top:0px;">Rate (Php)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10" >
-                                <span class="asterisk_input"></span>
+
                                 <s:textfield required="true" name="rate.rate" cssClass="form-control" id="rates.rate"
                                              placeholder="Rate" onkeypress="return isNumberKey(event)"/>
                             </div>
@@ -174,7 +174,7 @@
     function isNumberKey(evt)
     {
         var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57) || (charCode == 46 && $(this).val().indexOf('.') != -1))
             return false;
 
         return true;

@@ -43,9 +43,9 @@
                     <div class="col-lg-6 col-lg-offset-2">
 
                         <div class="panel panel-info">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-info-circle"></i> Details</h3>
-                            </div>
+                            <%--<div class="panel-heading">--%>
+                                <%--<h3 class="panel-title"><i class="fa fa-info-circle"></i> Details</h3>--%>
+                            <%--</div>--%>
 
                             <div class="row">
                                 <div class="col-lg-12">
@@ -60,51 +60,51 @@
                                         <table class="table table-user-information" style="margin-top: 10px;">
                                             <tbody>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; border-top: none; text-align: right !important;">First Name</td>
+                                                <td style="font-weight:Bold; font-size: 12px; border-top: none; text-align: left !important;">First Name</td>
                                                 <td style="border-top: none; text-align: left !important;"><s:property value="consignee.firstName"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Middle Name</td>
+                                                <td style="font-weight:Bold; font-size: 12px; text-align: left !important;">Middle Name</td>
                                                 <td style="text-align: left !important"><s:property value="consignee.middleName"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Last Name</td>
+                                                <td style="font-weight:Bold; font-size: 12px; text-align: left !important;">Last Name</td>
                                                 <td style="text-align: left !important"><s:property value="consignee.lastName"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Phone</td>
+                                                <td style="font-weight:Bold; font-size: 12px; text-align: left !important;">Phone</td>
                                                 <td style="text-align: left !important"><s:property value="consignee.phone"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Mobile</td>
+                                                <td style="font-weight:Bold; font-size: 12px; text-align: left !important;">Mobile</td>
                                                 <td style="text-align: left !important"><s:property value="consignee.mobile"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Email</td>
+                                                <td style="font-weight:Bold; font-size: 12px; text-align: left !important;">Email</td>
                                                 <td style="text-align: left !important"><s:property value="consignee.email"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Fax</td>
+                                                <td style="font-weight:Bold; font-size: 12px; text-align: left !important;">Fax</td>
                                                 <td style="text-align: left !important"><s:property value="consignee.fax"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Address Line 1</td>
+                                                <td style="font-weight:Bold; font-size: 12px; text-align: left !important;">Address Line 1</td>
                                                 <td style="text-align: left !important"><s:property value="consignee.addressLine1"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Address Line 2</td>
+                                                <td style="font-weight:Bold; font-size: 12px; text-align: left !important;">Address Line 2</td>
                                                 <td style="text-align: left !important"><s:property value="consignee.addressLine2"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">City</td>
+                                                <td style="font-weight:Bold; font-size: 12px; text-align: left !important;">City</td>
                                                 <td style="text-align: left !important"><s:property value="consignee.city"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">Region</td>
+                                                <td style="font-weight:Bold; font-size: 12px; text-align: left !important;">Region</td>
                                                 <td style="text-align: left !important"><s:property value="consignee.state"/></td>
                                             </tr>
                                             <tr>
-                                                <td style="font-weight:normal; font-size: 12px; text-align: right !important;">ZIP</td>
+                                                <td style="font-weight:Bold; font-size: 12px; text-align: left !important;">ZIP</td>
                                                 <td style="text-align: left !important"><s:property value="consignee.zip"/></td>
                                             </tr>
 
@@ -123,9 +123,9 @@
 
                     <div class="col-lg-2 col-lg-offset-2">
                         <div class="panel panel-info" >
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>
-                            </div>
+                            <%--<div class="panel-heading">--%>
+                                <%--<h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>--%>
+                            <%--</div>--%>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12" style="text-align: center;">

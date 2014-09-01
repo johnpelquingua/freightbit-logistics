@@ -58,7 +58,7 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
             return INPUT;
         }
 
-//        try {
+        try {
             VesselSchedules entity = transformToEntityBean(vesselSchedule);
             entity.setCreatedBy(commonUtils.getUserNameFromSession());
             entity.setCreatedTimestamp(new Date());
@@ -66,10 +66,10 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
             entity.setModifiedTimestamp(new Date());
         System.out.println("<-------------------------------------------" + entity.getVoyageNumber());
             vesselSchedulesService.addVesselSchedule(entity);
-//        } catch (Exception e) {
-//            addFieldError("vesselSchedule.voyageNumber", "Voyage Number already exists");
-//            return INPUT;
-//        }
+        } catch (Exception e) {
+            addFieldError("vesselSchedule.voyageNumber", "Voyage Number already exists");
+            return INPUT;
+        }
 
         return SUCCESS;
     }
@@ -79,15 +79,15 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         if (hasFieldErrors()) {
             return INPUT;
         }
-        try {
+//        try {
             VesselSchedules entity = transformToEntityBean(vesselSchedule);
             entity.setModifiedBy(commonUtils.getUserNameFromSession());
             entity.setModifiedTimestamp(new Date());
             vesselSchedulesService.updateVesselSchedule(entity);
-        } catch (Exception e) {
-            addFieldError("vesselSchedule.voyageNumber", "Voyage Number already exists");
-            return INPUT;
-        }
+//        } catch (Exception e) {
+//            addFieldError("vesselSchedule.voyageNumber", "Voyage Number already exists");
+//            return INPUT;
+//        }
 
         return SUCCESS;
     }

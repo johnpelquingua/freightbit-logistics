@@ -38,8 +38,8 @@
                         <s:hidden name="contact.contactId" value="%{contact.contactId}"/>
                         <s:hidden name="contact.createdTimestamp" value="%{contact.createdTimestamp}"/>
                         <s:hidden name="contact.createdBy" value="%{contact.createdBy}"/>
-                        <div class="form-group"><span class="asterisk_input"></span>
-                            <label class="col-lg-2 control-label" style="padding-top:0px;" >Contact Type</label>
+                        <div class="form-group"><span class="asterisk_red"></span>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;" >Contact Type<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
                             <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
                                       listKey="key" listValue="value" cssClass="form-control"
@@ -48,16 +48,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Last Name</label>
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span></label>
+                            <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                          id="contact.lastName" patttern="[A-Za-z\s]+" title="Must be letters only"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">First Name</label>
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">First Name<span class="asterisk_red"></span></label>
+                            <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
                                          id="contact.firstName" patttern="[A-Za-z\s]+" title="Must be letters only"/>
                             </div>
@@ -65,23 +65,23 @@
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Middle Name</label>
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
                                          id="contact.middleName" patttern="[A-Za-z\s]+" title="Must be letters only"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Phone</label>
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Phone<span class="asterisk_red"></span></label>
+                            <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone" maxLength="14"
                                         pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile</label>
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile<span class="asterisk_red"></span></label>
+                            <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile" maxLength="19"
                                          pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
                                          title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters." />
@@ -97,16 +97,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">E-Mail</label>
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">E-Mail<span class="asterisk_red"></span></label>
+                            <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email" type="email" maxLength="50"
                                          pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Position</label>
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Position<span class="asterisk_red"></span></label>
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"/>
                             </div>
                         </div>

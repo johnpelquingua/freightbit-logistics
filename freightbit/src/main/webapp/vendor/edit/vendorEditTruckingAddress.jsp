@@ -46,9 +46,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Address Line 1</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Address Line 1<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10"><span class="asterisk_red"></span>
                                 <s:textfield name="address.addressLine1" id="address.addressLine1"
                                              cssClass="form-control"  required="true"/>
                             </div>
@@ -62,9 +62,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">City</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">City<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10">
                                 <s:textfield name="address.city" id="address.city" cssClass="form-control"  required="true"/>
                             </div>
                         </div>
@@ -77,9 +77,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Zip Code</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Zip Code<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10">
                                 <s:textfield name="address.zip" id="address.zip" cssClass="form-control" pattern="[0-9]+"  required="true"/>
                             </div>
                         </div>

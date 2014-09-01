@@ -47,9 +47,9 @@
 
                         <div class="form-group">
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">License</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">License<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="License Number"
                                              name="driver.licenseNumber" id="driver.licenseNumber" pattern="[A-Za-z0-9]+" required="true"/>
                             </div>
@@ -58,9 +58,9 @@
 
                         <div class="form-group">
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Last Name</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName"
                                              id="driver.lastName" pattern="[A-Za-z\s]+" required="true"/>
                             </div>
@@ -69,9 +69,9 @@
 
                         <div class="form-group">
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">First Name</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">First Name<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName"
                                              id="driver.firstName" pattern="[A-Za-z\s]+" required="true"/>
                             </div>
@@ -82,7 +82,7 @@
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Middle Name</label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName"
                                              id="driver.middleName" pattern="[A-Za-z\s]+"/>
                             </div>
@@ -91,9 +91,9 @@
 
                         <div class="form-group">
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Title</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Title<span class="asterisk_red"></span>e</label>
 
-                            <div class="col-lg-10"><span class="asterisk_input"></span>
+                            <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"
                                              id="driver.title" pattern="[A-Za-z]+" required="true"/>
                             </div>

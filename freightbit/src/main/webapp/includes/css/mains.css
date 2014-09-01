@@ -882,3 +882,18 @@ span.pagelinks {
      text-align: left !important;
  }
 
+ .asterisk_red:after {
+     content:" *";
+     color: #e32;
+     position: relative;
+     margin: 0px 0px 0px -0px;
+     font-size: medium;
+     padding: 0 0px 0 0; }
+
+ .asterisk_special:after {
+     content:"*";
+     color: #e32;
+     position: relative;
+     margin: 0px 0px 0px -0px;
+     font-size: medium;
+     padding: 0 0px 0 0; }
