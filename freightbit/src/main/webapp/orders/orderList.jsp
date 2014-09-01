@@ -99,11 +99,11 @@
                                     <s:a class="icon-action-link" href="%{approveOrderUrl}" rel="tooltip" title="Approve Booking" onclick="return confirm('Approve Booking?');">
                                         <i class="fa fa-check"></i>
                                     </s:a>
-                                    <%--disapprove booking--%>
-                                    <s:url var="disapproveOrderUrl" action="disapproveOrder">
+                                    <%--cancel booking--%>
+                                    <s:url var="cancelOrderUrl" action="cancelOrder">
                                         <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                     </s:url>
-                                    <s:a class="icon-action-link" href="%{disapproveOrderUrl}" rel="tooltip" title="Disapprove Booking" onclick="return confirm('Disapprove Booking?');">
+                                    <s:a class="icon-action-link" href="%{cancelOrderUrl}" rel="tooltip" title="Cancel Booking" onclick="return confirm('Cancel Booking?');">
                                         <i class="fa fa-times"></i>
                                     </s:a>
 
@@ -132,124 +132,38 @@
     <!-- /.row -->
 </div>
 
-<%--Approve and Disapprove Modal--%>
-<%--<div class="modal fade" id="approveDisapprove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Approve or Disapprove Booking</h4>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure with your changes?</p>
-            </div>
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <s:property value="%{#attr.order.orderId}"/>
-                <s:url var="approveDisapproveOrderUrl" action="approveDisapproveOrder">
-                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                </s:url>
-                <s:a class="icon-action-link" href="%{approveDisapproveOrderUrl}" rel="tooltip">
-                    <button type="button" class="btn btn-primary">Yes</button>
-                </s:a>
-            </div>
-        </div>
-    </div>
-</div>--%>
-
-<%--<div id="modal">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <span class="pull-right ">
-                <a href="#" class="icon-action-link" id="closeModal" onclick="closeModal()" style="color:white;"> x </a>
-            </span>
-        </div>
-        <div class="panel-body">
-            <button class="btn btn-success">Approve</button>
-            <button class="btn btn-danger">Disapprove</button>
-        </div>
-    </div>
-</div>--%>
-
-<%--<style>
-
-#modal {
-  width: 300px;
-  height: 80px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -100px;
-  margin-left: -150px;
-  background-color: rgba(0,0,0,0.5);
-  border-radius: 5px;
-  text-align: center;
-  z-index: 11; /* 1px higher than the overlay layer */
-   /* Embiggen */
-   transform: scale(1.5); /* prefix me */
-   /* Hidden */
-   opacity: 0;
-   pointer-events: none;
-}
-
-.dialogIsOpen #page-wrap {
-  /* Blur and de-color */
-  -webkit-filter: blur(5px) grayscale(50%);
-  /* Recede */
-  -webkit-transform: scale(0.9);
-}
-
-.dialogIsOpen #modal {
-  /* Regular size and visible */
-  transform: scale(1); /* prefix me */
-  opacity: 1;
-  /* Clickable */
-  pointer-events: auto;
-}
-
-#modal {
-  transition: all 0.4s ease; /* prefix me */
-}
-
-</style>--%>
-
 <script>
 
-    /*function approve(){
-        $("body").addClass("dialogIsOpen");
-    }
-
-    function closeModal(){
-        $("body").removeClass("dialogIsOpen");
-    }*/
-
+$(document).ready(function() {
     /*color coding of rows*/
     var tbl = document.getElementById("order");
     if (tbl != null) {
-        for (var i = 0; i < tbl.rows.length; i++){
+        for (var i = 0; i < tbl.rows.length; i++) {
 
             if (tbl.rows[i].cells[6].innerHTML == "PENDING") {
                 /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
-                for (var j = 0; j < tbl.rows[i].cells.length; j++){
-                    tbl.rows[i].cells[j].style.backgroundColor="#fcf8e3";
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[j].style.backgroundColor = "#fcf8e3";
                 }
             }
 
             if (tbl.rows[i].cells[6].innerHTML == "DISAPPROVED" || tbl.rows[i].cells[6].innerHTML == "CANCELLED") {
                 /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
-                for (var j = 0; j < tbl.rows[i].cells.length; j++){
-                    tbl.rows[i].cells[j].style.backgroundColor="#f2dede";
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[j].style.backgroundColor = "#f2dede";
                 }
             }
 
-            if (tbl.rows[i].cells[6].innerHTML == "APPROVED" || tbl.rows[i].cells[6].innerHTML == "SERVICE ACCOMPLISHED") {
+            if (tbl.rows[i].cells[6].innerHTML == "APPROVE" || tbl.rows[i].cells[6].innerHTML == "SERVICE ACCOMPLISHED") {
                 /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
-                for (var j = 0; j < tbl.rows[i].cells.length; j++){
-                    tbl.rows[i].cells[j].style.backgroundColor="#dff0d8";
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[j].style.backgroundColor = "#dff0d8";
                 }
             }
         }
     }
+
+});
 
 </script>
 

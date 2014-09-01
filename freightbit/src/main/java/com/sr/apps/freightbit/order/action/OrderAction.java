@@ -6,6 +6,7 @@ import java.util.*;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
 import com.sr.biz.freightbit.customer.entity.Items;
 import org.apache.commons.lang3.StringUtils;
 
@@ -88,10 +89,11 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Map<Integer, String> customerContactsMap = new LinkedHashMap<Integer, String>();
     private String dummyMsg;
     private Integer customerID;
+    // map customer addresses on dropdown
     private Map<Integer, String> customerAddressMap = new HashMap<Integer, String>();
-
+    // map customer consignee on dropdown
     private Map<Integer, String> customerConsigneeMap = new HashMap<Integer, String>();
-
+    // map customer cosignee address on dropdown
     private Map<Integer, String> consigneeAddressMap = new HashMap<Integer, String>();
     private Integer consigneeId;
     private Integer addressId;
@@ -361,8 +363,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             return INPUT;
         }*/
 
-        //orderService.addOrder(transformToOrderEntityBean(order));
-
         Orders orderEntity = transformToOrderEntityBean(order);
 
         orderService.addOrder(orderEntity);
@@ -370,7 +370,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderIdPass = orderEntity.getOrderId();
 
         Map sessionAttributes = ActionContext.getContext().getSession();
-
+        // Put Order Id to Order Id session
         sessionAttributes.put("orderIdPass", orderIdPass);
 
         return SUCCESS;
@@ -390,6 +390,14 @@ public class OrderAction extends ActionSupport implements Preparable {
         Customer customerEntity = customerService.findCustomerById(contactEntity.getReferenceId());
         // get customer items
         customerItems = customerService.findItemByCustomerId(customerEntity.getCustomerId());
+        // get order items on order edit module
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("orderIdPass"));
+
+        // display item listing in table
+        for (OrderItems orderItemElem : orderItemEntityList) {
+
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
 
         sessionAttributes.put("customerItems", customerItems);
 
@@ -398,103 +406,54 @@ public class OrderAction extends ActionSupport implements Preparable {
 
 
     public String loadEditOrder() {
-
-
-        System.out.println("99999999999999999999999999999999999999999999999999999 " + orderIdParam);
-
-
+        //orderIdParam is Order ID passed from form
         Orders orderEntityForm = orderService.findOrdersById(orderIdParam);
         // Display Order Data to form
         order = transformToOrderFormBean(orderEntityForm);
 
-
-
-
-
-
-
-
-
-        /*Customer customerNumber = customerService.findCustomerById(orderEntityForm.getShipperContactId());*/
-
         Contacts contactShipperName = customerService.findContactById(orderEntityForm.getShipperContactId());
 
         Customer shipperName = customerService.findCustomerById(contactShipperName.getReferenceId());
-
-        System.out.println("************************************************************* " + shipperName.getCustomerId());
-
+        // displays customer contacts list
         contactsList = customerService.findContactByRefIdAndType("shipper",shipperName.getCustomerId());
-
+        // display customer address list
         addressList = customerService.findAddressByShipper("CONSIGNEE",shipperName.getCustomerId());
-
+        // displays customer consignee list
         consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE",shipperName.getCustomerId());
-
+        // displays customer consignee address list
         consigneeAddressList = customerService.findAddressByCriteria("CONSIGNEE",shipperName.getCustomerId());
 
-
-
-
-
-
-
-
-        /*Contacts contactShipperName = customerService.findContactById(order.getShipperContactId());
-
-        Customer shipperName = customerService.findCustomerById(contactShipperName.getReferenceId());
-
-        if (shipperName!=null) {
-            orderBean.setCustomerId(shipperName.getCustomerId());
-            orderBean.setCustomerName(shipperName.getCustomerName());
-        }else{
-            orderBean.setCustomerId(0);
-            orderBean.setCustomerName("NINJA TURTLES !!!");
-        }*/
-
-
-        /*List <Contacts> contactsList = customerService.findContactByRefIdAndType("shipper",shipperName.getCustomerId() );
-
-        for (Contacts contactEnt : contactsList) {
-            System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + contactEnt);
-
-        }
-
-
-
-
-        List <Address> addressList = customerService.findAddressByShipper("CONSIGNEE",shipperName.getCustomerId() );
-
-        for (Address addressEnt : addressList) {
-            System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg" + addressEnt);
-
-        }
-
-        List <Contacts> consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE",shipperName.getCustomerId());
-
-        for (Contacts contactEnt2 : consigneeList) {
-            System.out.println("cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" + contactEnt2);
-
-        }
-
-        List <Address> consigneeAddressList = customerService.findAddressByCriteria("CONSIGNEE",customerID );
-
-        for (Address addressEnt2 : consigneeAddressList) {
-            System.out.println("pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp" + addressEnt2);
-
-        }
-*/
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        // put value of orderIdPass into session
+        sessionAttributes.put("orderIdPass", orderIdParam);
 
         return SUCCESS;
     }
 
     public String editOrder() {
 
-        Orders orderEntity = orderService.findOrdersById(orderIdParam);
-
-        validateOnSubmit(order);
+        /*validateOnSubmit(order);
         if (hasFieldErrors()) {
             return INPUT;
+        }*/
+        try {
+            Orders orderEntity = transformToOrderEntityBean(order);
+            orderEntity.setModifiedTimestamp(new Date());
+            orderEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            orderService.updateOrder(orderEntity);
+
+            // To get generated Order Id
+            orderIdPass = orderEntity.getOrderId();
+
+            Map sessionAttributes = ActionContext.getContext().getSession();
+
+            sessionAttributes.put("orderIdPass", orderIdPass);
+
+        } catch(OrderAlreadyExistsException e) {
+            addFieldError("order.orderNumber", getText("err.orderNumber.already.exists"));
+            return INPUT;
         }
-        orderService.updateOrder(orderEntity);
+
         return SUCCESS;
     }
 
@@ -502,7 +461,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
 
-        if (orderEntity.getOrderStatus().equals("PENDING") || orderEntity.getOrderStatus().equals("CANCELLED") || orderEntity.getOrderStatus().equals("DISAPPROVED")) {
+        if (orderEntity.getOrderStatus().equals("PENDING") || orderEntity.getOrderStatus().equals("CANCELLED")) {
             orderService.deleteOrder(orderEntity);
 
             List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(orderIdParam);
@@ -543,13 +502,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     }
 
-    public String disapproveOrder(){
+    public String cancelOrder(){
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        orderEntity.setOrderStatus("DISAPPROVE");
+        orderEntity.setOrderStatus("CANCELLED");
         orderService.updateOrder(orderEntity);
         clearErrorsAndMessages();
-        addActionMessage("Booking disapproved.");
+        addActionMessage("Booking cancelled.");
         return SUCCESS;
 
     }
@@ -567,12 +526,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String loadContactInfoList() {
-
-        System.out.println( "---------------ID 1: " + ID + "-------------------------------------" );
-        System.out.println( "---------------REQ 1: " + REQ + "-------------------------------------" );
-        System.out.println( "---------------MODE 1: " + MODE + "-------------------------------------" );
-        System.out.println( "---------------TYPE 1: " + TYPE + "-------------------------------------" );
-        System.out.println( "---------------PAY 1: " + PAY + "-------------------------------------" );
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
@@ -775,12 +728,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             orderBean.setConsigneeInfoAddress(address);
         }
 
-        System.out.println("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV " + shipperName.getCustomerId() );
-
-
-
-
-
         return orderBean;
     }
 
@@ -864,8 +811,16 @@ public class OrderAction extends ActionSupport implements Preparable {
         custCode = customerEntity.getCustomerCode();
         // To get Order Number and show it to form
         orderNum = orderService.findNextBookingNo(getClientId(), custCode);
+        // Order Number will get information on Order edit
+        if (formBean.getOrderNumber() != null){
+            entity.setOrderNumber(new String(formBean.getOrderNumber()));
+        }else{
+            entity.setOrderNumber(orderNum);
+        }
+        // Order Id will get data on order edit
+        if (formBean.getOrderId() != null)
+            entity.setOrderId(new Integer(formBean.getOrderId()));
 
-        entity.setOrderNumber(orderNum);
         entity.setServiceType(formBean.getFreightType());
         entity.setServiceMode(formBean.getModeOfService());
         entity.setNotificationType(formBean.getNotifyBy());
@@ -925,7 +880,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     public void validateOnSubmit(OrderBean orderBean) {
         clearErrorsAndMessages();
         //validate notification type
-
         if (org.apache.commons.lang.StringUtils.isBlank(orderBean.getCustomerName())) {
             addFieldError("order.customerId", getText("err.addressLine1.required"));
         }

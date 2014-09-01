@@ -520,9 +520,11 @@
                                 Basic Information
                             </span>
         </legend>
-        <s:form action="addOrder" theme="bootstrap">
+        <s:form action="editOrder" theme="bootstrap">
         <s:property value="%{order.orderId}"/>
-        <s:hidden name="order.orderId" value="%{customer.orderId}"/>
+        <s:hidden name="order.orderId" value="%{order.orderId}"/>
+        <s:property value="%{order.orderNumber}"/>
+        <s:hidden name="order.orderNumber" value="%{order.orderNumber}"/>
         <div class="form-group" style="margin-top: 15px;">
             <label class="col-lg-2 control-label">Service Requirement</label>
 
@@ -629,13 +631,13 @@
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date and Time</label>
     <div class="col-lg-3" >
         <s:property value="%{order.pickupDate}" />
-        <input type="text" class="from_date form-control step2" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;">
+        <s:textfield type="text" class="from_date form-control step2" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;" />
     </div>
 
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date and Time</label>
     <div class="col-lg-3" >
         <s:property value="%{order.deliveryDate}" />
-        <input type="text" class="to_date form-control step2" id="datepicker2" name="order.deliveryDate" value="%{order.deliveryDate}" required="true" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;">
+        <s:textfield type="text" class="to_date form-control step2" id="datepicker2" name="order.deliveryDate" value="%{order.deliveryDate}" required="true" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;" />
     </div>
 
 </div>
@@ -836,6 +838,88 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
+
+    $( window ).load(function() {
+        var custId = $("#customerName").val();
+        /*alert(custId);*/
+
+        $.getJSON('customerAction', {
+                    customerID : custId
+                },
+                function(jsonResponse) {
+                    /*alert(jsonResponse.dummyMsg);*/
+
+                    $('#ajaxResponse').text(jsonResponse.dummyMsg);
+
+                    var select = $('#shipperContact');
+
+                    select.find('option').remove();
+
+                    var select2 = $('#shipperAddress');
+
+                    select2.find('option').remove();
+
+                    var select3 = $('#shipperConsignee');
+
+                    select3.find('option').remove();
+
+                    var select4 = $('#consigneeAddress');
+
+                    select4.find('option').remove();
+
+                    // populate customer consignee list
+                    $.each(jsonResponse.customerContactsMap, function(key, value) {
+
+                        $('<option>').val(key).text(value).appendTo(select);
+
+                    });
+                    // populate customer address list
+                    $.each(jsonResponse.customerAddressMap, function(key, value) {
+
+                        if($("#order_modeOfService").val() == 'DOOR TO PIER') {
+                            $("#shipperAddress").prop('disabled', false);
+                            $("#consigneeAddress").prop('disabled', true);
+                            $('<option>').val(key).text(value).appendTo(select2);
+                        }else if ($("#order_modeOfService").val() == 'PIER TO DOOR') {
+                            $("#shipperAddress").prop('disabled', true);
+                            $("#consigneeAddress").prop('disabled', false);
+                        }else if ($("#order_modeOfService").val() == 'PIER TO PIER'){
+                            $("#consigneeAddress").prop('disabled', true);
+                            $("#shipperAddress").prop('disabled', true);
+                        }else{
+                            $("#shipperAddress").prop('disabled', false);
+                            $("#consigneeAddress").prop('disabled', false);
+                            $('<option>').val(key).text(value).appendTo(select2);
+                        }
+
+                    });
+                    // populate customer consignee list
+                    $.each(jsonResponse.customerConsigneeMap, function(key, value) {
+                        //alert($("#shipperConsignee").val());
+
+                        if($("#shipperConsignee").val() != ''){
+                            $('<option>').val(null).text("").appendTo(select3);
+                            $('<option>').val(key).text(value).appendTo(select3);
+                        }else{
+                            $('<option>').val(key).text(value).appendTo(select3);
+                        }
+                    });
+
+                    // populate customer address list
+                    $.each(jsonResponse.consigneeAddressMap, function(key, value) {
+                        //alert($("#consigneeAddress").val());
+
+                        if($("#consigneeAddress").val() != ''){
+                            $('<option>').val(null).text("").appendTo(select4);
+                            $('<option>').val(key).text(value).appendTo(select4);
+                        }else{
+                            $('<option>').val(key).text(value).appendTo(select4);
+                        }
+
+                    });
+
+        });
+    });
 
     // Customer Dropdown
     $('#customerName').change(function(event) {

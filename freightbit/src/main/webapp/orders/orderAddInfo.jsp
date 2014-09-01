@@ -255,7 +255,8 @@
         <div class="well">
 
             <s:form cssClass="form-horizontal" theme="bootstrap" action="addItemsInTable" >
-
+            <s:property value="%{order.orderId}"/>
+            <s:hidden name="order.orderId" value="%{order.orderId}"/>
                 <fieldset class="inputs">
 
                     <legend style="text-align: left;">

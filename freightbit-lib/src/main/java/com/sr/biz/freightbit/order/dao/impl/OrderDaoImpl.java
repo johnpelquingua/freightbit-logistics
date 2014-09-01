@@ -61,6 +61,24 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         }
     }
 
+    @Override
+    public List<Orders> findDuplicateOrderByOrderCode(String orderNumber, Integer orderId){
+        Log.debug("Finding duplicate order by order number");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Orders o where o.orderNumber= :orderNumber and o.orderId != :orderId");
+            query.setParameter("orderNumber", orderNumber);
+            query.setParameter("orderId", orderId);
+            List<Orders> results = (List<Orders>) query.list();
+            Log.debug("Find Order by OrderNumber successful, result size " + results.size());
+            return results;
+
+        } catch (RuntimeException re){
+            Log.error("Find Order by OrderNumber failed", re);
+            throw re;
+        }
+    }
+
 
     @Override
     public List<Orders> findAllOrders(){

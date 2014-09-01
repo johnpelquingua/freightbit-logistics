@@ -5,6 +5,7 @@ import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
+import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
 import com.sr.biz.freightbit.customer.dao.CustomerDao;
 import com.sr.biz.freightbit.customer.dao.ItemsDao;
 import com.sr.biz.freightbit.customer.entity.Customer;
@@ -80,7 +81,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateOrder(Orders orders) {
-        orderDao.updateOrder(orders);
+        if (orderDao.findDuplicateOrderByOrderCode(orders.getOrderNumber(), orders.getOrderId()).size() > 0)
+            throw new OrderAlreadyExistsException(orders.getOrderNumber());
+        else
+            orderDao.updateOrder(orders);
     }
 
     @Override
