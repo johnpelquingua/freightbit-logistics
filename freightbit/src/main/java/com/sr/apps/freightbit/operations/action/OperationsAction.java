@@ -10,11 +10,13 @@ import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
+import com.sr.biz.freightbit.order.service.OrderService;
 import com.sr.biz.freightbit.vendor.entity.Driver;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
+import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
 import org.apache.log4j.Logger;
 
 import java.util.*;
@@ -45,10 +47,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OperationsBean operationsBean = new OperationsBean();
+    private OrderBean order = new OrderBean();
 
     private OperationsService operationsService;
     private VendorService vendorService;
-
+    private VesselSchedulesService vesselSchedulesService;
+    private OrderService orderService;
 
     private Map<String, String> driverMap = new LinkedHashMap<String, String>();
     private Map<String, String> trucksMap = new HashMap<String, String>();
@@ -67,7 +71,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
-        orderItemsList = operationsService.findAllOrderItemsByOrderIdLand(orderId);
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderId);
 
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
@@ -85,7 +89,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
-        orderItemsList = operationsService.findAllOrderItemsByOrderIdSea(orderId);
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderId);
 
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
@@ -100,7 +104,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String editOrderItemsSea() {
         try {
             OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
-            entity.setVesselScheduleId(vesselScheduleIdParam);
+            entity.setVesselScheduleId(vesselScheduleIdParam.toString());
             operationsService.updateOrderItem(entity);
         } catch (Exception e) {
             log.error("Update Orderitem failed", e);
@@ -135,7 +139,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String findVesselSchedule() {
-        OperationsBean formBean = new OperationsBean();
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderItemId", operationsBean.getOrderItemId());
@@ -154,12 +157,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("modifiedTimestamp", operationsBean.getModifiedTimestamp());
         sessionAttributes.put("weight", operationsBean.getWeight());
         sessionAttributes.put("status", "PLANNING 2");
-        sessionAttributes.put("vendorSea", operationsBean.getVendorSea());
+        sessionAttributes.put("vendorSea", operationsBean.getVendorList());
 
         System.out.println("<------------------Client ID: " + sessionAttributes.get("clientId") + "-----> \n \n");
         System.out.println("<------------------Client ID: " + operationsBean.getClientId() + "-----> \n \n");
         System.out.println("<------------------VendorList: " + operationsBean.getVendorList() + "-----> \n \n");
         System.out.println("<------------------Commodity: " + operationsBean.getCommodity() + "-----> \n \n");
+        System.out.println("<------------------VendorSea: " + operationsBean.getVendorList() + "-----> \n \n");
 
         List<VesselSchedules> vesselSchedulesList = new ArrayList<VesselSchedules>();
 
@@ -174,10 +178,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String viewFreightPlanning(){
 
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
         OrderItems entity = operationsService.findOrderItemById(orderItemIdParam);
         orderItem = transformToOrderItemFormBean(entity);
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        order = transformToOrderFormBean(orderEntity);
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderItemIdParam", entity.getOrderId());
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 
@@ -199,6 +206,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Orders> ordersList = new ArrayList<Orders>();
 
         ordersList = operationsService.findAllOrders();
+
 
         for (Orders orderElem : ordersList) {
             orders.add(transformToOrderFormBean(orderElem));
@@ -272,6 +280,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModeOfService(entity.getServiceMode());
         formBean.setConsigneeCode(entity.getConsigneeCode());
         formBean.setOrderId(entity.getOrderId());
+        formBean.setOrderStatus(entity.getOrderStatus());
         return formBean;
     }
 
@@ -297,16 +306,28 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setWeight(entity.getWeight());
         formBean.setVendorSea(entity.getVendorSea());
 
-        if (entity.getVendorOrigin() != null) {
-            formBean.setVendorOrigin(vendorService.findVendorById(Integer.parseInt(entity.getVendorOrigin())).getVendorCode());
+        if (entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin())) {
+            formBean.setVendorDestination("");
         } else {
-            formBean.setVendorOrigin(" ");
+            formBean.setVendorOrigin(vendorService.findVendorById(Integer.parseInt(entity.getVendorOrigin())).getVendorCode());
         }
 
-        if (entity.getVendorDestination() != null) {
-            formBean.setVendorDestination(vendorService.findVendorById(Integer.parseInt(entity.getVendorDestination())).getVendorCode());
+        if (entity.getVendorDestination() == null || "".equals(entity.getVendorDestination())) {
+            formBean.setVendorDestination("");
         } else {
-            formBean.setVendorDestination(" ");
+            formBean.setVendorDestination(vendorService.findVendorById(Integer.parseInt(entity.getVendorDestination())).getVendorCode());
+        }
+
+        if (entity.getVendorSea() == null || "".equals(entity.getVendorSea())) {
+            formBean.setVendorSea("");
+        } else {
+            formBean.setVendorSea(vendorService.findVendorById(Integer.parseInt(entity.getVendorSea())).getVendorCode());
+        }
+
+        if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId())) {
+            formBean.setVesselScheduleId("");
+        } else {
+            formBean.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(Integer.parseInt(entity.getVesselScheduleId())).getVoyageNumber());
         }
 
         formBean.setFinalPickupDate(entity.getFinalPickupDate());
@@ -338,7 +359,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Date modifiedTimestamp = (Date) sessionAttributes.get("modifiedTimestamp");
         Double weight = (Double) sessionAttributes.get("weight");
         String status = (String) sessionAttributes.get("status");
-        String vendorSea = (String) sessionAttributes.get("vendorSea");
+        String vendorSea = sessionAttributes.get("vendorSea").toString();
+
+        System.out.println("<---------VendorSea: " + vendorSea + "------------------->");
+        System.out.println("<---------VendorSea: " + sessionAttributes.get("vendorSea").toString() + "------------------->");
 
         entity.setOrderItemId(orderItemId);
         entity.setClientId(clientId);
@@ -598,5 +622,29 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setVendorCode(String vendorCode) {
         this.vendorCode = vendorCode;
+    }
+
+    public VesselSchedulesService getVesselSchedulesService() {
+        return vesselSchedulesService;
+    }
+
+    public void setVesselSchedulesService(VesselSchedulesService vesselSchedulesService) {
+        this.vesselSchedulesService = vesselSchedulesService;
+    }
+
+    public OrderBean getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderBean order) {
+        this.order = order;
+    }
+
+    public OrderService getOrderService() {
+        return orderService;
+    }
+
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
     }
 }

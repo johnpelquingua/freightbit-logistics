@@ -32,20 +32,25 @@ public class OrderItemsBean {
     private String driverDestination;
     private String truckOrigin;
     private String truckDestination;
+    private String vesselScheduleId;
 
     public OrderItemsBean(){
 
     }
 
-    public OrderItemsBean(Integer orderItemId, Integer orderId, Integer quantity,
-                          String classification, String description, Double declaredValue,
-                          Double weight, String remarks, Float rate, Date createdTimeStamp,
-                          String createdBy, Date modifiedTimeStamp, String modifiedBy,
+    public OrderItemsBean(Integer orderItemId, Integer orderId,
+                          Integer quantity, String classification,
+                          String description, Double declaredValue,
+                          Double weight, String remarks, Float rate,
+                          Date createdTimeStamp, String createdBy,
+                          Date modifiedTimeStamp, String modifiedBy,
                           String nameSize, String status, Float volume,
                           Integer clientId, String commodity, String comments,
-                          String vendorSea, String vendorOrigin, String vendorDestination,
-                          String finalPickupDate, String driverOrigin, String driverDestination,
-                          String truckOrigin, String truckDestination) {
+                          String vendorSea, String vendorOrigin,
+                          String vendorDestination, String finalPickupDate,
+                          String driverOrigin, String driverDestination,
+                          String truckOrigin, String truckDestination,
+                          String vesselScheduleId) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.quantity = quantity;
@@ -73,6 +78,7 @@ public class OrderItemsBean {
         this.driverDestination = driverDestination;
         this.truckOrigin = truckOrigin;
         this.truckDestination = truckDestination;
+        this.vesselScheduleId = vesselScheduleId;
     }
 
     public String getVendorSea() {
@@ -289,5 +295,13 @@ public class OrderItemsBean {
 
     public void setVendorDestination(String vendorDestination) {
         this.vendorDestination = vendorDestination;
+    }
+
+    public String getVesselScheduleId() {
+        return vesselScheduleId;
+    }
+
+    public void setVesselScheduleId(String vesselScheduleId) {
+        this.vesselScheduleId = vesselScheduleId;
     }
 }

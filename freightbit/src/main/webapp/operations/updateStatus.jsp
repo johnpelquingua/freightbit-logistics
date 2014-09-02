@@ -35,8 +35,11 @@
                         <label for="orderItem.voyageNumber" class="col-sm-2 control-label">Booking Number:</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="orderItem.voyageNumber" value=<c:out value="${sessionScope.nameSizeParam}"/>
-                                   disabled="true" >
+                            <%--<input type="text" class="form-control" id="orderItem.voyageNumber" disabled="true" value=  />--%>
+                            <div class="form-control">
+                                    <%--<s:property value="%{nameSizeParam}" />--%>
+                                    <c:out value="${sessionScope.orderNoParam}"/>
+                            </div>
                         </div>
 
                     </div>

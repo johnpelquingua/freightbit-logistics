@@ -42,7 +42,7 @@ public class OperationsBean {
     private String truckOrigin;
     private String truckDestination;
 
-    private Integer vesselScheduleId;
+    private String vesselScheduleId;
 
     public String getVendorOrigin() {
         return vendorOrigin;
@@ -300,11 +300,11 @@ public class OperationsBean {
         this.truckDestination = truckDestination;
     }
 
-    public Integer getVesselScheduleId() {
+    public String getVesselScheduleId() {
         return vesselScheduleId;
     }
 
-    public void setVesselScheduleId(Integer vesselScheduleId) {
+    public void setVesselScheduleId(String vesselScheduleId) {
         this.vesselScheduleId = vesselScheduleId;
     }
 }

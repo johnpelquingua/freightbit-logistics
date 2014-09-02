@@ -130,11 +130,11 @@
             <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
         </action>
 
-        <action name="viewSeaFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListSea">
+        <action name="viewSeaFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
 
-        <action name="viewInlandFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListLand">
+        <action name="viewInlandFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
             <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
         </action>
 

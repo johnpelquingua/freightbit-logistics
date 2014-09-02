@@ -20,17 +20,58 @@
 
 <div class="row">
     <div class="col-lg-12">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="fa fa-truck"></i>
+            <span class="panel-title">Booking Information</span>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="book-num" class="col-sm-2 control-label">Booking Number:</label>
+                <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px;">
+                    <s:textfield cssClass="form-control" value="%{order.orderNo}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="book-num" class="col-sm-2 control-label">Service Mode:</label>
+                <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px;">
+                    <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="book-num" class="col-sm-2 control-label">Service Type:</label>
+                <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px;">
+                    <s:textfield cssClass="form-control" value="%{order.serviceRequirement}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="book-num" class="col-sm-2 control-label">Customer Name:</label>
+                <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px;">
+                    <s:textfield cssClass="form-control" value="%{order.customerName}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="book-num" class="col-sm-2 control-label">Consignee Name:</label>
+                <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px;">
+                    <s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-search"></i>
+                <h3 class="panel-title"><i class="fa fa-anchor"></i>
                     <%--<s:property value="%{nameSizeParam}" />--%>
                     <c:out value="${sessionScope.nameSizeParam}"/></h3>
             </div>
 
             <div class="panel-body">
 
-                <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap">
+                <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
 
                     <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                     <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
@@ -67,7 +108,7 @@
 
                         <label for="operationsBean.vendorList" class="col-sm-2 control-label">Vendor:</label>
 
-                        <div class="col-sm-10">
+                        <div class="col-sm-10" style="width: 80%;">
                             <div style="width:90%;float:left;padding-right:10px;">
                                 <s:select list="vendorShippingList" name="operationsBean.vendorList"
                                           id="operationsBean.vendorList"
@@ -76,15 +117,15 @@
                                         ></s:select>
                             </div>
                             <div style="width:5%;float:left;">
-                                <a href="../vendor/loadAddVendorPage" class="icon-action-link">
-                                    <img src="../includes/images/add-sched.png" class="icon-action circ-icon">
+                                <a href="#.html" class="btn btn-info">
+                                    <i class="fa fa-plus"></i>
                                 </a>
                             </div>
                         </div>
 
                     </div>
 
-                    <s:submit cssClass="btn btn-default btn-info pull-right" name="submit" value="Search"/>
+                    <s:submit cssClass="btn btn-default btn-info pull-right" style="position: relative;top: -50px;" name="submit" value="Search"/>
 
                 </s:form>
 
@@ -130,6 +171,103 @@
                     </display:column></td>
                 </display:table>
 
+            </div>
+
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-truck"></i>
+                <span class="panel-title">Inland Operation: Origin</span>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+
+                    <label class="col-sm-2 control-label">Vendor:</label>
+
+                    <div class="col-sm-10" style="padding: 0px; width: 77.5%; position: relative; left: 15px;">
+                        <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-sm-2 control-label">Driver:</label>
+
+                    <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px;">
+                        <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label class="col-sm-2 control-label">Truck:</label>
+
+                    <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px; margin-top: -10px;">
+                        <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Pickup Date:</label>
+                    <div class="col-sm-10" style="padding: 0px; width: 77.5%; position: relative; left: 15px;">
+                        <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-truck"></i>
+                <span class="panel-title">Inland Operation: Destination</span>
+            </div>
+            <div class="panel-body">
+
+
+                <div class="form-group">
+
+                    <label for="vendorList" class="col-sm-2 control-label">Vendor:</label>
+
+                    <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px; margin-top: -10px;">
+                        <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="driver" class="col-sm-2 control-label">Driver:</label>
+
+                    <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px; margin-top: -10px;">
+                        <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="truck" class="col-sm-2 control-label">Truck:</label>
+
+                    <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px; margin-top: -10px;">
+                        <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="pickup" class="col-sm-2 control-label">Pickup Date:</label>
+
+                    <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px; margin-top: -10px;">
+                        <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
+                    </div>
+
+                </div>
             </div>
 
         </div>

@@ -29,7 +29,7 @@
                     <div class="table-responsive">
                         <display:table id="orderItem" name="orderItems"
                                        requestURI="/viewSeaFreightItemList.action" pagesize="10"
-                                       class="table table-striped table-hover table-bordered text-center tablesorter"
+                                       class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                        style="margin-top: 15px;">
 
                             <td><display:column property="nameSize" title="Name <i class='fa fa-sort' />" class="tb-font-black"
@@ -49,7 +49,7 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
                                      title="Update Status">
-                                    <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
+                                    <i class="fa fa-pencil"></i>
                                 </s:a>
 
                             </display:column></td>

@@ -37,6 +37,9 @@
                             <td><display:column property="modeOfService" title="Service Mode <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
+                            <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
                             <td><display:column title="Action">
                                 <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
                                     <s:param name="orderIdParam"
@@ -46,7 +49,7 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{viewFreightItemListUrl}" rel="tooltip"
                                      title="Update Status">
-                                    <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
+                                    <i class="fa fa-pencil"></i>
                                 </s:a>
 
                             </display:column></td>
@@ -68,3 +71,38 @@
 
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function() {
+        /*color coding of rows*/
+        var tbl = document.getElementById("order");
+        if (tbl != null) {
+            for (var i = 0; i < tbl.rows.length; i++) {
+
+                if (tbl.rows[i].cells[5].innerHTML == "PENDING") {
+                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[j].style.backgroundColor = "#fcf8e3";
+                    }
+                }
+
+                if (tbl.rows[i].cells[5].innerHTML == "DISAPPROVED" || tbl.rows[i].cells[5].innerHTML == "CANCELLED") {
+                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[j].style.backgroundColor = "#f2dede";
+                    }
+                }
+
+                if (tbl.rows[i].cells[5].innerHTML == "APPROVE" || tbl.rows[i].cells[5].innerHTML == "SERVICE ACCOMPLISHED") {
+                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[j].style.backgroundColor = "#dff0d8";
+                    }
+                }
+            }
+        }
+
+    });
+
+</script>

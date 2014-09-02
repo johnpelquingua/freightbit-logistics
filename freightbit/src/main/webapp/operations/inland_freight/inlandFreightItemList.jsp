@@ -40,6 +40,8 @@
                                                 style="text-align: center;"> </display:column></td>
 
                             <td><display:column title="Action">
+
+
                                 <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
                                     <s:param name="orderItemIdParam"
                                              value="#attr.orderItem.orderItemId">
@@ -50,7 +52,7 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
                                      title="Update Status">
-                                    <img src="../includes/images/edit-user.png" class="icon-action circ-icon">
+                                    <i class="fa fa-pencil"></i>
                                 </s:a>
 
                             </display:column></td>
@@ -72,3 +74,38 @@
 
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function() {
+        /*color coding of rows*/
+        var tbl = document.getElementById("orderItem");
+        if (tbl != null) {
+            for (var i = 0; i < tbl.rows.length; i++) {
+
+                if (tbl.rows[i].cells[1].innerHTML == "PLANNING 1") {
+                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[j].style.backgroundColor = "#fcf8e3";
+                    }
+                }
+
+                if (tbl.rows[i].cells[1].innerHTML == "PLANNING 2") {
+                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[j].style.backgroundColor = "#f2dede";
+                    }
+                }
+
+                if (tbl.rows[i].cells[1].innerHTML == "PLANNING 3") {
+                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[j].style.backgroundColor = "#dff0d8";
+                    }
+                }
+            }
+        }
+
+    });
+
+</script>
