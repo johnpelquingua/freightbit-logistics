@@ -3,7 +3,11 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Accounts Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-user"></i> Accounts Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Accounts</li>
@@ -24,72 +28,126 @@
     </div>
 </s:if>
 
-<div class="panel-body">
+<%--
 <div class="row">
     <div class="col-lg-6 col-lg-offset-2">
         <div class="panel panel-info">
 
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-info-circle"></i> User Profile</h3>
+            </div>--%>
+
+<div class="row">
+    <div class="col-lg-12" >
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> User Information</h3>
+                <span class="pull-right">
+                    <%--TO DO--%>
+                    <%--<s:url var="loadEditTrucks" action="loadEditTrucksPage">
+                        <s:param name="truckCodeParam" value="truck.truckCode"></s:param>
+                    </s:url>--%>
+                    <%--TO DO--%>
+                    <s:a href="%{loadEditUser}">
+                        <button type="button" class="btn btn-success">
+                            <i class="fa fa-pencil"></i> Edit User Info
+                        </button>
+                    </s:a>
+                </span>
             </div>
 
-             <div align="center" style="margin-top: 10px;">
-                     <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
-             </div>
-                                   
-             <table class="table table-user-information profile">
-                 <tbody>
-                 <tr>
-                     <td class="header" style="font-weight:normal; font-size: 12px; border-top: none;">User Type</td>
-                      <td style="border-top: none;"><s:property value="user.userType"/></td>
-                 </tr>
-                 <tr>
-                      <td class="header" style="font-weight:normal; font-size: 12px; border-top: none;">Last Name</td>
-                      <td style="border-top: none;"><s:property value="user.lastName"/></td>
-                 </tr>
-                 <tr>
-                     <td class="header" style="font-weight:normal; font-size: 12px; border-top: none;">First Name</td>
-                      <td style="border-top: none;"><s:property value="user.firstName"/></td>
-                 </tr>
+            <div class="panel-body">
 
-                 <tr>
-                 <tr>
-                      <td class="header" style="font-weight:normal; font-size: 12px; border-top: none;">Company</td>
-                      <td style="border-top: none;"><s:property value="user.companyName"/></td>
-                 </tr>
-                 <tr>
-                      <td class="header" style="font-weight:normal; font-size: 12px; border-top: none;">Username</td>
-                      <td style="border-top: none;"><s:property value="user.userName"/></td>
-                 </tr>
-                 <tr>
-                      <td class="header" style="font-weight:normal; font-size: 12px; border-top: none;">Title</td>
-                      <td style="border-top: none;"><s:property value="user.title"/></td>
-                 </tr>
-                 <tr>
-                      <td class="header" style="font-weight:normal; font-size: 12px; border-top: none;">E-mail</td>
-                      <td style="border-top: none;"><s:property value="user.emailAddress"/></td>
-                 </tr>
-                 <tr>
-                      <td class="header" style="font-weight:normal; font-size: 12px; border-top: none;">Contact Number</td>
-                     <td style="border-top: none;"><i class="fa fa-phone"></i><s:property value="user.contactNumber"/></td>
-                 </tr>
-                 <tr>
-                      <td class="header" style="font-weight:normal; font-size: 12px; border-top: none;">Status</td>
-                      <td style="border-top: none;"><s:property value="user.status"/></td>
-                 </tr>
-                 <tr>
-                 	 <td class="header" style="font-weight:normal; font-size: 12px; border-top: none;">Permissions</td>                          	
-                 	 <td style="border-top: none;"><table><s:iterator value="preSelectedPermissionNames" var="permName">
-                 		<tr><td><i class="fa fa-check-square-o"></i><s:property value="permName"/></td></tr>
-                 	</s:iterator></table></td>
-                 </tr>
-                 </tbody>
-             </table>
+                 <%--<div align="center" style="margin-top: 10px;">
+                         <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
+                 </div>--%>
+
+                     <div class="row">
+
+                         <div class="col-lg-6 col-lg-offset-3">
+
+                             <div class="panel panel-info">
+
+                                 <div class="row">
+
+                                     <div class="col-lg-12">
+
+                                         <div class="col-lg-3">
+                                             <div align="center" style="margin-top: 10px;">
+                                                 <div align="center" style="margin-top: 10px;">
+                                                     <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
+                                                 </div>
+                                             </div>
+                                         </div>
+
+                                         <div class="col-lg-9">
+                                             <table class="table table-user-information profile" style="margin-top: 10px;">
+                                                 <tbody>
+                                                 <tr>
+                                                     <td class="header" style="font-weight:bold; font-size: 12px; border-top: none;text-align: left !important;">User Type</td>
+                                                      <td style="border-top: none;"><s:property value="user.userType"/></td>
+                                                 </tr>
+                                                 <tr>
+                                                      <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Last Name</td>
+                                                      <td><s:property value="user.lastName"/></td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">First Name</td>
+                                                      <td><s:property value="user.firstName"/></td>
+                                                 </tr>
+
+                                                 <tr>
+                                                 <tr>
+                                                      <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Company</td>
+                                                      <td><s:property value="user.companyName"/></td>
+                                                 </tr>
+                                                 <tr>
+                                                      <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Username</td>
+                                                      <td><s:property value="user.userName"/></td>
+                                                 </tr>
+                                                 <tr>
+                                                      <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Title</td>
+                                                      <td><s:property value="user.title"/></td>
+                                                 </tr>
+                                                 <tr>
+                                                      <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">E-mail</td>
+                                                      <td><s:property value="user.emailAddress"/></td>
+                                                 </tr>
+                                                 <tr>
+                                                      <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Contact Number</td>
+                                                     <td><i class="fa fa-phone"></i><s:property value="user.contactNumber"/></td>
+                                                 </tr>
+                                                 <tr>
+                                                      <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Status</td>
+                                                      <td><s:property value="user.status"/></td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Permissions</td>
+                                                     <td><table><s:iterator value="preSelectedPermissionNames" var="permName">
+                                                        <tr><td><i class="fa fa-check-square-o"></i><s:property value="permName"/></td></tr>
+                                                    </s:iterator></table></td>
+                                                 </tr>
+                                                 </tbody>
+                                             </table>
+                                         </div>
+
+                                     </div>
+                                 </row>
+
+                             </div>
+                         </div>
+                     </div>
 
                    
             </div>
 
-            </div>
         </div>
     </div>
 </div>
+
+<%--
+            </div>
+        </div>
+    </div>
+</div>--%>

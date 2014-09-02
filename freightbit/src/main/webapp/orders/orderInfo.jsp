@@ -3,6 +3,22 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<div class="row">
+    <div class="col-lg-12">
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-book"></i> Booking Module </h1>
+            </span>
+        </legend>
+        <ol class="breadcrumb">
+            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"><a href="<s:url action='viewOrders' />"> Booking List </a> </li>
+            <li class="active"> Booking Information</li>
+        </ol>
+
+    </div>
+</div>
+
 <div class="panel panel-primary">
 
     <div class="panel-heading">
@@ -25,47 +41,51 @@
                     <br/>
 
                     <table class="table leftAlign table-user-information">
-                        <th style="font-size: 20px; border-top: none; width: 300px;">Booking Number: <s:property
-                                value="order.orderNo"/></th>
+                        <th style="font-size: 20px; border-top: none; width: 300px;">
+                            Booking Number
+                        </th>
+                        <th style="font-size: 20px; border-top: none; width: 300px;">
+                            <s:property value="order.orderNumber"/>
+                        </th>
                         <tbody>
                         <tr>
-                            <td style="color: gray !important;">Service Mode:</td>
+                            <td style="color: gray !important;">Service Mode</td>
                             <td><s:property value="order.modeOfService"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Origin Port:</td>
+                            <td style="color: gray !important;">Origin Port</td>
                             <td><s:property value="order.originationPort"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Payment Mode:</td>
+                            <td style="color: gray !important;">Payment Mode</td>
                             <td><s:property value="order.modeOfPayment"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Notification Type:</td>
+                            <td style="color: gray !important;">Notification Type</td>
                             <td><s:property value="order.notifyBy"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Booking Date:</td>
+                            <td style="color: gray !important;">Booking Date</td>
                             <td><s:property value="order.orderDate"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Service Requirement:</td>
+                            <td style="color: gray !important;">Service Requirement</td>
                             <td><s:property value="order.serviceRequirement"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Destination Port:</td>
+                            <td style="color: gray !important;">Destination Port</td>
                             <td><s:property value="order.destinationPort"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Total Rate:</td>
+                            <td style="color: gray !important;">Total Rate</td>
                             <td><s:property value="order.rates"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Status:</td>
+                            <td style="color: gray !important;">Status</td>
                             <td><s:property value="order.orderStatus"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Comments:</td>
+                            <td style="color: gray !important;">Comments</td>
                             <td><s:property value="order.comments"/></td>
                         </tr>
 
@@ -87,35 +107,35 @@
                         <tbody>
 
                         <tr>
-                            <td style="color: gray !important;">Shipper Name:</td>
+                            <td style="color: gray !important;">Shipper Name</td>
                             <td><s:property value="order.customerName"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Contact Person:</td>
+                            <td style="color: gray !important;">Contact Person</td>
                             <td><s:property value="order.shipperInfoContact.name"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Contact Number:</td>
+                            <td style="color: gray !important;">Contact Number</td>
                             <td><s:property value="order.shipperInfoContact.phone"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Mobile:</td>
+                            <td style="color: gray !important;">Mobile</td>
                             <td><s:property value="order.shipperInfoContact.mobile"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Fax:</td>
+                            <td style="color: gray !important;">Fax</td>
                             <td><s:property value="order.shipperInfoContact.fax"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">E-Mail:</td>
+                            <td style="color: gray !important;">E-Mail</td>
                             <td><s:property value="order.shipperInfoContact.email"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Pick-up Date:</td>
+                            <td style="color: gray !important;">Pick-up Date</td>
                             <td><s:property value="order.pickupDate"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Pick-up Address:</td>
+                            <td style="color: gray !important;">Pick-up Address</td>
                             <td><s:property value="order.shipperInfoAddress.address"/></td>
                         </tr>
 
@@ -134,31 +154,31 @@
                             <td><s:property value="order.customerName"/></td>
                         </tr>--%>
                         <tr>
-                            <td style="color: gray !important;">Consignee Name:</td>
+                            <td style="color: gray !important;">Consignee Name</td>
                             <td><s:property value="order.consigneeInfoContact.name"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Contact Number:</td>
+                            <td style="color: gray !important;">Contact Number</td>
                             <td><s:property value="order.consigneeInfoContact.phone"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Mobile:</td>
+                            <td style="color: gray !important;">Mobile</td>
                             <td><s:property value="order.consigneeInfoContact.mobile"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Fax:</td>
+                            <td style="color: gray !important;">Fax</td>
                             <td><s:property value="order.consigneeInfoContact.fax"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">E-Mail:</td>
+                            <td style="color: gray !important;">E-Mail</td>
                             <td><s:property value="order.consigneeInfoContact.email"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Delivery Date:</td>
+                            <td style="color: gray !important;">Delivery Date</td>
                             <td><s:property value="order.deliveryDate"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Delivery Address:</td>
+                            <td style="color: gray !important;">Delivery Address</td>
                             <td><s:property value="order.consigneeInfoAddress.address"/></td>
                         </tr>
                         </tbody>
@@ -252,6 +272,17 @@
 
         </div>
     </div>
+
+    <div class="panel-footer">
+
+        <div class="pull-right">
+            <button type="button" id="Cancel" class="btn" onclick="location.href='viewOrders'">
+                Back to Booking List
+            </button>
+        </div>
+
+    </div>
+
 </div>
 
 <!-- /.row -->

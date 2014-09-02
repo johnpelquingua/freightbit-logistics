@@ -2,7 +2,11 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <div class="row">
     <div class="col-lg-12">
-        <h1>Accounts Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-user"></i> Accounts Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Accounts</li>
@@ -22,7 +26,7 @@
                 <span class="pull-right">
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddGroupPage'">
-                        <i class="fa fa-male"></i> New Group
+                        <i class="fa fa-group"></i> New Group
                     </button>
                 </span>
             </div>
@@ -65,7 +69,7 @@
                 <span class="pull-right">
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddGroupPage'">
-                        <i class="fa fa-male"></i> New Group
+                        <i class="fa fa-group"></i> New Group
                     </button>
                 </span>
 

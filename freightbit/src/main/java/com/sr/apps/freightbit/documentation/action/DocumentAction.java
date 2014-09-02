@@ -42,13 +42,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String viewPendingDocuments() {
-        List<Orders> orderEntityList = new ArrayList<Orders>();
+        /*List<Orders> orderEntityList = new ArrayList<Orders>();
 
         orderEntityList = documentsService.findAllOrdersDocumentation();
 
         for (Orders orderElem : orderEntityList) {
             orders.add(transformOrdersToFormBean(orderElem));
-        }
+        }*/
 
         return SUCCESS;
     }

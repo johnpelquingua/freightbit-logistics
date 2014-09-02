@@ -162,7 +162,7 @@
             <!--FTL STATISTICS END -->
             <!-- END OF EDIT -->
         </div>
-        <script src="./jquery.js"></script>
+        <%--<script src="./jquery.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script>
 
@@ -219,4 +219,4 @@
                 var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
                 chart.draw(data, options);
             }
-        </script>
+        </script>--%>

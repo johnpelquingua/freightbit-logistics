@@ -35,13 +35,17 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Accounts Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-user"></i> Accounts Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Accounts</li>
             <li class="active"> Group</li>
             <li class="active"><a href="<s:url action='viewGroups' />"> Group List</a></li>
-            <li class="active"> Add New Group</li>
+            <li class="active"> Add Group</li>
         </ol>
 
     </div>
@@ -55,31 +59,31 @@
             <div class="panel panel-primary">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-plus"></i> Add New Group</h3>
+                    <h3 class="panel-title"><i class="fa fa-plus"></i> Add Group</h3>
                 </div>
 
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <label for="code" class="col-lg-2 control-label" style="width:20%;">Code:</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Code</label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-sm-10">
                             <s:textfield required="true" name="groupBean.groupCode" cssClass="form-control"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="col-lg-2 control-label" style="width:20%;">Name:</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Name</label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-sm-10">
                             <s:textfield required="true" name="groupBean.groupName" cssClass="form-control"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="Description" class="col-lg-2 control-label" style="width:20%;">Description:</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Description</label>
 
-                        <div class="col-sm-10" style="width:70%;">
+                        <div class="col-sm-10">
                             <s:textfield name="groupBean.description" cssClass="form-control"/>
                         </div>
                     </div>
@@ -88,7 +92,7 @@
 
                 <span class="pull-right">
                     <a href="viewGroups" class="btn btn-default ">Cancel</a>
-                    <s:submit name="submit" value="Save" cssClass="btn btn-info"/>
+                    <s:submit name="submit" value="Save" cssClass="btn btn-primary"/>
                 </span>
 
                 </div>

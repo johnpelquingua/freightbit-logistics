@@ -91,8 +91,6 @@
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{editItemUrl}" rel="tooltip"
                                                      title="Edit this driver">
-                                                    <%--<img src="../includes/images/edit-user.png"
-                                                         class="icon-action circ-icon"> --%>
                                                     <i class="fa fa-pencil"></i>
                                                 </s:a>
 
@@ -103,8 +101,6 @@
                                                 <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
                                                      title="Delete this Item?"
                                                      onclick="return confirm('Do you really want to delete?');">
-                                                    <%--<img src="../includes/images/remove-user.png"
-                                                         class="icon-action circ-icon"> --%>
                                                     <i class="fa fa-trash-o"></i>
                                                 </s:a>
                                             </display:column>
@@ -119,9 +115,9 @@
 
                     <div class="col-lg-2">
                         <div class="panel panel-info" >
-                            <div class="panel-heading">
+                            <%--<div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>
-                            </div>
+                            </div>--%>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12" style="text-align: center;">

@@ -4,7 +4,7 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 
-<div class="row" style=" margin-top: -15px; ">
+<div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
@@ -255,7 +255,7 @@
         <div class="well">
 
             <s:form cssClass="form-horizontal" theme="bootstrap" action="addItemsInTable" >
-            <s:property value="%{order.orderId}"/>
+            <%--<s:property value="%{order.orderId}"/>--%>
             <s:hidden name="order.orderId" value="%{order.orderId}"/>
                 <fieldset class="inputs">
 

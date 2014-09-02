@@ -350,11 +350,11 @@
         <put-attribute name="body" value="/customer/customerInfo/customerSearch.jsp"/>
     </definition>
     <definition name="customer.customerAdd.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Add New Customer"/>
+        <put-attribute name="title" value="Add Customer"/>
         <put-attribute name="body" value="/customer/customerInfo/customerAddInfo.jsp"/>
     </definition>
     <definition name="customer.loadEditCustomer.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Customer Page"/>
+        <put-attribute name="title" value="Edit Customer"/>
         <put-attribute name="body" value="/customer/customerInfo/customerEditInfo.jsp"/>
     </definition>
     <definition name="customer.customerList.tiles" extends="baseLayout">
@@ -488,40 +488,33 @@
     </definition>
     <!-- ORDER module tiles End-->
 
-    <!-- Please rename your tiles def accordingly (Please refer to above) where name=folderName.jspName.tiles -->
+    <!-- REPORT module tiles Begin-->
 
-    <definition name="permission.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Permission Page"/>
-        <put-attribute name="body" value="/core/permissions/permissions.jsp"/>
-    </definition>
-    <definition name="permission-edit.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Permission Page"/>
-        <put-attribute name="body" value="/core/permissions/permissions-edit.jsp"/>
-    </definition>
-    <definition name="help.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Help Page"/>
-        <put-attribute name="body" value="/help/help.jsp"/>
-    </definition>
-    <definition name="full_truck_load.tiles" extends="baseLayout">
+    <definition name="report.full_truck_load.tiles" extends="baseLayout">
         <put-attribute name="title" value="Reports Page"/>
         <put-attribute name="body" value="/reports/full_truck_load.jsp"/>
     </definition>
-    <definition name="container_load.tiles" extends="baseLayout">
+    <definition name="report.container_load.tiles" extends="baseLayout">
         <put-attribute name="title" value="Reports Page"/>
         <put-attribute name="body" value="/reports/container_load.jsp"/>
     </definition>
-    <definition name="cargo.tiles" extends="baseLayout">
+    <definition name="report.cargo.tiles" extends="baseLayout">
         <put-attribute name="title" value="Reports Page"/>
         <put-attribute name="body" value="/reports/cargo.jsp"/>
     </definition>
-    <definition name="customer_relation.tiles" extends="baseLayout">
+    <definition name="report.customer_relation.tiles" extends="baseLayout">
         <put-attribute name="title" value="Reports Page"/>
         <put-attribute name="body" value="/reports/customer_relation.jsp"/>
     </definition>
-    <definition name="sales.tiles" extends="baseLayout">
+    <definition name="report.sales.tiles" extends="baseLayout">
         <put-attribute name="title" value="Reports Page"/>
         <put-attribute name="body" value="/reports/sales.jsp"/>
     </definition>
+
+    <!-- REPORT module tiles End-->
+
+    <!-- FINANCE module tiles Begin-->
+
     <definition name="finance.tiles" extends="baseLayout">
         <put-attribute name="title" value="Finance Page"/>
         <put-attribute name="body" value="/finance/finance.jsp"/>
@@ -538,4 +531,22 @@
         <put-attribute name="title" value="Finance Page"/>
         <put-attribute name="body" value="/finance/edit_finance.jsp"/>
     </definition>
+
+    <!-- FINANCE module tiles End-->
+
+    <!-- Please rename your tiles def accordingly (Please refer to above) where name=folderName.jspName.tiles -->
+
+    <definition name="permission.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Permission Page"/>
+        <put-attribute name="body" value="/core/permissions/permissions.jsp"/>
+    </definition>
+    <definition name="permission-edit.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Permission Page"/>
+        <put-attribute name="body" value="/core/permissions/permissions-edit.jsp"/>
+    </definition>
+    <definition name="help.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Help Page"/>
+        <put-attribute name="body" value="/help/help.jsp"/>
+    </definition>
+
 </tiles-definitions>

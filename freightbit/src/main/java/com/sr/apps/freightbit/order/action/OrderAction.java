@@ -143,9 +143,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         for(int i = 0; i < consigneeAddresses.size(); i++ ) {
             consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
         }
-
         //dummyMsg = "Ajax action Triggered";
-
         return SUCCESS;
     }
 
@@ -367,12 +365,10 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String addOrder() {
-
         /*validateOnSubmit(order);
         if (hasFieldErrors()) {
             return INPUT;
         }*/
-
         Orders orderEntity = transformToOrderEntityBean(order);
 
         orderService.addOrder(orderEntity);
@@ -441,7 +437,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String editOrder() {
-
         /*validateOnSubmit(order);
         if (hasFieldErrors()) {
             return INPUT;
@@ -765,7 +760,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             orderBean.setShipperInfoContact(contact);
 
         //get shipper address
-        System.out.println("-----------------------------------------------Shipper Address ID " + order.getShipperAddressId() );
         if (order.getShipperAddressId()!=null) {
             Address addresses = customerService.findAddressById(order.getShipperAddressId());
             address = new AddressBean();
@@ -876,6 +870,8 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     private Orders transformToOrderEntityBean(OrderBean formBean) {
+
+        /*Contacts test = customerService.fin*/
 
         /*Orders order = new Orders();
         order.setOrderNumber(orderBean.getOrderNo());

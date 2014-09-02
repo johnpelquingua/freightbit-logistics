@@ -3,6 +3,23 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
 <div class="row">
+    <div class="col-lg-12">
+
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-book"></i> Booking Module </h1>
+            </span>
+        </legend>
+        <ol class="breadcrumb">
+            <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
+            <li class="active"><a href="<s:url action='viewOrders' />"> Booking List </a></li>
+            <li class="active"> New Booking</li>
+        </ol>
+
+    </div>
+</div>
+
+<div class="row">
 <div class="col-lg-12">
 <div class="panel panel-primary">
 <div class="panel-heading">
@@ -44,7 +61,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Service Mode<span class="asterisk_red"></label>
+                            <label class="col-lg-2 control-label">Service Mode<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
 
@@ -62,7 +79,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Freight Type<span class="asterisk_red"></label>
+                            <label class="col-lg-2 control-label">Freight Type<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
 
@@ -79,7 +96,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label">Payment Mode<span class="asterisk_red"></label>
+                            <label class="col-lg-2 control-label">Payment Mode<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
 
@@ -127,13 +144,13 @@
 
                 <div class="form-group">
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date and Time<span class="asterisk_red"></label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date and Time<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
                         <input type="text" class="from_date form-control step2" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;">
 
                     </div>
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date and Time<span class="asterisk_red"></label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date and Time<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
                         <input type="text" class="to_date form-control step2" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;">
                     </div>
@@ -142,7 +159,7 @@
 
                 <div class="form-group">
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Origin Port<span class="asterisk_red"></label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Origin Port<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
 
                         <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
@@ -151,7 +168,7 @@
 
                     </div>
 
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Destination Port<span class="asterisk_red"></label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Destination Port<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
 
                         <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
@@ -161,7 +178,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type<span class="asterisk_red"></label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
                             <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
@@ -193,7 +210,7 @@
                     </legend>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person<span class="asterisk_red"></label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-8">
 
@@ -245,7 +262,7 @@
                     </legend>
 
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name<span class="asterisk_red"></label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-8">
                             <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperConsignee" name="order.consigneeContactId"
@@ -267,7 +284,7 @@
                     </div>
 
                     <div class="form-group" style="clear:both;">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address<span class="asterisk_red"></label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-8">
                             <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeAddress" name="order.consigneeAddressId"

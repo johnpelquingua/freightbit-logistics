@@ -2,7 +2,11 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Accounts Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-user"></i> Accounts Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> User</li>
@@ -17,7 +21,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-search"></i> Search User</h3>
+                <h3 class="panel-title"><i class="fa fa-search"></i> Search</h3>
             </div>
 
             <div class="panel-body">
@@ -27,7 +31,7 @@
 
                 <div class="form-group">
 
-                    <label for="user.userSearchCriteria" class="col-sm-2 control-label">Search By:</label>
+                    <label for="user.userSearchCriteria" class="col-sm-2 control-label" style="padding-top:0px;">Search By</label>
 
                     <div class="col-sm-10">
                         <s:select emptyOption="true" list="userSearchList" listValue="value" listKey="key"
@@ -38,7 +42,7 @@
 
                 <div class="form-group">
 
-                    <label for="user.userSearchCriteria" class="col-sm-2 control-label">Search:</label>
+                    <label for="user.userSearchCriteria" class="col-sm-2 control-label" style="padding-top:0px;">Search</label>
 
                     <div class="col-sm-10">
                         <s:textfield cssClass="form-control" placeholder="Keyword" name="user.userKeyword"/>
@@ -48,11 +52,11 @@
 
             </div>
             <div class="panel-footer">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn" onclick="location.href='viewUsers'">
+                <div class="pull-right">
+                    <%--<button type="button" class="btn" onclick="location.href='viewUsers'">
                         Cancel
-                    </button>
-                    <button class="btn btn-info pull-right">Search</button>
+                    </button>--%>
+                    <button class="btn btn-primary pull-right">Search</button>
                 </div>
             </div>
             </s:form>

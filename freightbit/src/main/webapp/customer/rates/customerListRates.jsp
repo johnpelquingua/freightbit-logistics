@@ -58,44 +58,6 @@
                     <div class="col-lg-10">
 
                     <div class="table-responsive list-table">
-                        <%--<table class="table table-striped table-bordered text-center table-hover" id="customer-list">
-                            <thead>
-                            <tr class="header_center">
-                                <th class="tb-font-black" style="text-align: center;">Origin <i class="fa fa-sort"></i></th>
-                                <th class="tb-font-black" style="text-align: center;">Destination <i class="fa fa-sort"></i></th>
-                                <th class="tb-font-black" style="text-align: center;">Rate <i class="fa fa-sort"></i></th>
-                                <th class="tb-font-black" style="text-align: center;">Rate Type <i class="fa fa-sort"></i></th>
-                                <th class="tb-font-black" style="text-align: center;">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <s:iterator value="rates" var="rate">
-                                <tr>
-                                    <td class="tb-font-black"><s:property value="origin"/></td>
-                                    <td class="tb-font-black"><s:property value="destination"/></td>
-                                    <td class="tb-font-black"><s:property value="rate"/></td>
-                                    <td class="tb-font-black"><s:property value="rateType"/></td>
-                                    <td>
-
-                                        <s:url var="loadEditRatesUrl" action="loadEditRates">
-                                            <s:param name="ratesIdParam" value="%{customerRateId}"></s:param>
-                                        </s:url>
-                                        <s:a href="%{loadEditRatesUrl}" class="icon-action-link" rel="tooltip"
-                                             title="Edit this Vendor Address"><img src="../includes/images/edit-user.png"
-                                                                                   class="icon-action circ-icon"> </s:a>
-
-                                        <s:url var="deleteRatesUrl" action="deleteRates">
-                                            <s:param name="ratesIdParam" value="%{customerRateId}"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{deleteRatesUrl}" rel="tooltip"
-                                             title="Delete this Vendor Address"
-                                             onclick="return confirm('Do you really want to delete?');"><img
-                                                src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>
-                                    </td>
-                                </tr>
-                            </s:iterator>
-                            </tbody>
-                        </table>--%>
 
                         <tbody>
                         <table>
@@ -144,9 +106,9 @@
 
                     <div class="col-lg-2">
                         <div class="panel panel-info" >
-                            <div class="panel-heading">
+                            <%--<div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>
-                            </div>
+                            </div>--%>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12" style="text-align: center;">

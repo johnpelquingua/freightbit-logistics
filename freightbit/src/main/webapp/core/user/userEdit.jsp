@@ -3,7 +3,11 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Accounts Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-user"></i> Accounts Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Accounts</li>
@@ -41,7 +45,7 @@
                     <s:hidden name="user.userId" value="%{user.userId}"/>
                     
                     <div class="form-group">
-                        <label for="uType" class="col-lg-3 control-label" id="users-add-label"> User Type:</label>
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;"> User Type<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
                             <s:select name="user.userType" id="uType" list="userTypeList" listKey="key"
@@ -50,7 +54,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="uCompanyName" class="col-lg-3 control-label" id="users-add-label">Company:</label>
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Company <span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
                             <s:textfield disabled="true" required="true" name="user.companyName" cssClass="form-control"
@@ -60,7 +64,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="firstName" class="col-lg-3 control-label" id="users-add-label">First Name:</label>
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">First Name <span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.firstName" id="firstName" cssClass="form-control" maxlength="25"
@@ -69,7 +73,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="LastName" class="col-lg-3 control-label" id="users-add-label">Last Name:</label>
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Last Name <span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.lastName" id="lastName" cssClass="form-control" maxlength="25"
@@ -79,7 +83,7 @@
 
 
                     <div class="form-group">
-                        <label for="uUserName" class="col-lg-3 control-label" id="users-add-label">User Name:</label>
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">User Name <span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control" maxlength="25" pattern="[^\s]{4,25}"
@@ -88,18 +92,18 @@
                     </div>
 
                  <div class="form-group">
-                        <label for="uPassword" class="col-lg-3 control-label" id="users-add-label">Password:</label>
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Password <span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
                             <s:url var="loadChangePasswordUrl" action="loadChangePassword">
                                 <s:param name="userIdParam" value="%{user.userId}"></s:param>
                             </s:url>
-                            <s:a href="%{loadChangePasswordUrl}" class="btn btn-default" id="users-add-btn">Change Password</s:a>
+                            <s:a href="%{loadChangePasswordUrl}" class="btn btn-default" id="users-add-btn">Change Password </s:a>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="uTitle" class="col-lg-3 control-label" id="users-add-label">Title:</label>
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Title <span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.title" id="uTitle" cssClass="form-control" maxlength="50"
@@ -108,8 +112,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="uEmailAddress" class="col-lg-3 control-label" id="users-add-label">Email
-                            Address:</label>
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Email
+                            Address <span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.emailAddress" id="uEmailAddress" maxlength="50" 
@@ -119,8 +123,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="uContactNumber" class="col-lg-3 control-label" id="users-add-label">Contact
-                            Number:</label>
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Contact
+                            Number <span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.contactNumber" id="uContactNumber"
@@ -130,7 +134,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="uStatus" class="col-lg-3 control-label" id="users-add-label">Status:</label>
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Status <span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
                             <s:select required="true" name="user.status" id="uStatus" list="statusList" listKey="key"
@@ -139,7 +143,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="uStatus" class="col-lg-3 control-label" id="users-add-label">Permissions:</label>
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Permissions </label>
 
                         <div class="col-lg-9">
                         <s:checkboxlist list="permissionsList"  name="permissionsSelected" value="preSelectedPermissions" listKey="permissionId" listValue="permissionName"/>
@@ -153,7 +157,7 @@
             <div class="panel-footer">
                             <span class="pull-right">
                               <a href="viewUsers" class="btn btn-default" id="users-add-btn">Cancel</a>
-                              <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
+                              <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                             </span>
             </div>
 

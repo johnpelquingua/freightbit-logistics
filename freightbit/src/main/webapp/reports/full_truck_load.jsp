@@ -37,7 +37,7 @@
         function placeMarker(location) {
             var marker = new google.maps.Marker({
                 position: location,
-                map: map,
+                map: map
             });
             var infowindow = new google.maps.InfoWindow({
                 content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
@@ -47,10 +47,7 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-
-
 </head>
-
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 <!-- EDIT HERE -->
@@ -440,7 +437,6 @@
 </div>
 <!--FTL TRANSACTION END -->
 
-
 <div style="display:none" id="div_statistics"> <!-- FTL STATISTICS-->
 </div>
 <!--FTL STATISTICS END -->
@@ -449,6 +445,7 @@
 </div>
 </div>
 
+<%--
 <script>
     $('#transactionmenu').click(function () {
         $('#div_report').hide('fast');
@@ -480,9 +477,7 @@
 </script>
 
 
-<script><!--
-FTLREPORT
-JQuery -->
+<script>
 
 $('#bookingstoplan').click(function () {
     $('#tblfinishtrans').fadeOut();
@@ -533,7 +528,7 @@ $('#finishtrans').click(function () {
             ['Sept', 21, 33, 24, 55, 5],
             ['Oct', 15, 33, 14, 35, 25],
             ['Nov', 51, 33, 24, 51, 35],
-            ['Dec', 31, 13, 14, 45, 51],
+            ['Dec', 31, 13, 14, 45, 51]
         ]);
 
         var options = {
@@ -550,7 +545,7 @@ $('#finishtrans').click(function () {
 </script>
 <!-- FTLREPORT JQuery END -->
 
-<!-- FTLTRANS JQuery -->
+
 <script>
     $('#ongoingtrans').click(function () {
         $('#tblcompletetrans').fadeOut("fast", function () {
@@ -567,5 +562,4 @@ $('#finishtrans').click(function () {
             $('#ongoingtrans').removeClass("active");
         });
     });
-</script>
-<!-- FTLTRANS JQuery  END-->
+</script>--%>

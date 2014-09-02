@@ -1,11 +1,8 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<%--<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,9 +25,10 @@
             -->
         </div>
     </div>
-</div>
+</div>--%>
 
 
+<%--
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
@@ -185,4 +183,106 @@
         </div>
     </div>
 </div>
+</div>
+--%>
+
+
+<!-- MAIN BOX -->
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="panel booking panel-info">
+            <div class="booking panel-heading">
+                <img src="images/listofusers.png" class="box-icon">
+                <span class="booking panel-title">List of Current Transactions</span>
+
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive list-table">
+                    <table class="table table-striped table-bordered text-center" id="customer-list">
+                        <thead>
+                        <tr class="header_center">
+                            <th class="tb-font-black"><input type="checkbox" /></th>
+                            <th class="tb-font-black">Booking Code</th>
+                            <th class="tb-font-black">Company Code</th>
+                            <th class="tb-font-black">Status</th>
+                            <th class="tb-font-black">Service Type</th>
+                            <th class="tb-font-black">Service Mode</th>
+                            <th class="tb-font-black">Date of Pick up</th>
+                            <th class="tb-font-black">Date of Delivery</th>
+                            <th class="tb-font-black">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="tb-font-black"><input type="checkbox" /></td>
+                            <td class="tb-font-black">MTY-0001</td>
+                            <td class="tb-font-black">MTY</td>
+                            <td class="tb-font-black">At Port</td>
+                            <td class="tb-font-black" align="center">Trucking - Shipping</td>
+                            <td class="tb-font-black" align="center">D/D</td>
+                            <td class="tb-font-black">Jan 7, 2014</td>
+                            <td class="tb-font-black">Jan 10, 2014</td>
+                            <td class="tb-font-black">
+                                <a href="documentation-view.html" class="icon-action-link edit-booking"><img src="images/edit-booking.png" class="icon-actio" title="View Document" style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;"> </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tb-font-black"><input type="checkbox" /></td>
+                            <td class="tb-font-black">MTY-0002</td>
+                            <td class="tb-font-black">MTY</td>
+                            <td class="tb-font-black">At Port</td>
+                            <td class="tb-font-black" align="center">Trucking - Shipping</td>
+                            <td class="tb-font-black" align="center">D/P</td>
+                            <td class="tb-font-black">Jan 7, 2014</td>
+                            <td class="tb-font-black">Jan 10, 2014</td>
+                            <td class="tb-font-black">
+                                <a href="documentation-view2.html" class="icon-action-link edit-booking"><img src="images/edit-booking.png" class="icon-actio" title="View Document" style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;"> </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tb-font-black"><input type="checkbox" /></td>
+                            <td class="tb-font-black">MTY-0003</td>
+                            <td class="tb-font-black">MTY</td>
+                            <td class="tb-font-black">At Port</td>
+                            <td class="tb-font-black" align="center">Trucking - Shipping</td>
+                            <td class="tb-font-black" align="center">P/D</td>
+                            <td class="tb-font-black">Jan 7, 2014</td>
+                            <td class="tb-font-black">Jan 10, 2014</td>
+                            <td class="tb-font-black">
+                                <a href="documentation-view3.html" class="icon-action-link edit-booking"><img src="images/edit-booking.png" class="icon-actio" title="View Document" style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;"> </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tb-font-black"><input type="checkbox" /></td>
+                            <td class="tb-font-black">MTY-0004</td>
+                            <td class="tb-font-black">MTY</td>
+                            <td class="tb-font-black">At Port</td>
+                            <td class="tb-font-black" align="center">Trucking - Shipping</td>
+                            <td class="tb-font-black" align="center">P/P</td>
+                            <td class="tb-font-black">Jan 7, 2014</td>
+                            <td class="tb-font-black">Jan 10, 2014</td>
+                            <td class="tb-font-black">
+                                <a href="documentation-view4.html" class="icon-action-link edit-booking"><img src="images/edit-booking.png" class="icon-actio" title="View Document" style="background-color: gray; padding: 6px; margin-right: 6px; border-radius: 20%;"> </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <ul class="pagination">
+                    <li><a href="#">&laquo;</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
 </div>

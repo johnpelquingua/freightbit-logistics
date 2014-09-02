@@ -3,7 +3,6 @@
 
 <div class="row">
     <div class="col-lg-12">
-
         <legend style="text-align: left;">
             <span >
                <h1><i class="fa fa-building"></i> Vendor Module </h1>

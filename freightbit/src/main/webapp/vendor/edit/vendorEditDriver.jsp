@@ -34,16 +34,6 @@
                         <s:hidden name="driver.driverId" value="%{driver.driverId}"/>
                         <s:hidden name="driver.createdTimeStamp" value="%{driver.createdTimeStamp}" />
                         <s:hidden name="driver.createdBy" value="%{driver.createdBy}" />
-                        <%--<div class="form-group">--%>
-
-                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Code</label>--%>
-
-                            <%--<div class="col-lg-10">--%>
-                                <%--<s:textfield cssClass="form-control" placeholder="Driver Code" name="driver.driverCode"--%>
-                                             <%--id="driver.driverCode" pattern="[A-Za-z0-9]+" required="true"/>--%>
-                            <%--</div>--%>
-
-                        <%--</div>--%>
 
                         <div class="form-group">
 
@@ -91,7 +81,7 @@
 
                         <div class="form-group">
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Title<span class="asterisk_red"></span>e</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Title<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"

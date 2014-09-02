@@ -1,10 +1,14 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1>Finance Module </h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-money"></i> Finance Module </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='../home' />"> <i class="fa fa-dashboard"></i> Dashboard </a></li>
-            <li class="active"><i class="fa fa-money"></i> Finance</li>
-            <li class="active"><i class="fa fa-plus"></i> Add New Finance</li>
+            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Finance</li>
+            <li class="active"> Add New Finance</li>
         </ol>
 
     </div>
@@ -12,11 +16,11 @@
 <!-- /.row -->
 
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-plus"></i> Add New Finance</h3>
+                <h3 class="panel-title"><i class="fa fa-plus"></i> Add Finance</h3>
             </div>
 
             <div class="panel-body">

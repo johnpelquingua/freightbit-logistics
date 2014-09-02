@@ -161,7 +161,7 @@
         </div>
         <script src="./jquery.js"></script>
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        <script>
+        <%--<script>
 
             $('#transactionmenu').click(function () {
                 $('#div_report').hide('fast');
@@ -216,4 +216,4 @@
                 var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
                 chart.draw(data, options);
             }
-        </script>
+        </script>--%>

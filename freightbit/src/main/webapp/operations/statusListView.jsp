@@ -3,10 +3,14 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Update Status</h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-exchange"></i> Status </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='home' />"> Dashboard </a></li>
-            <li class="active"> On Going Booking List</li>
+            <li class="active"> On Going Booking</li>
         </ol>
 
     </div>
@@ -17,7 +21,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-search"></i>List of On-going Bookings</h3>
+                <h3 class="panel-title"><i class="fa fa-list"></i> On Going Booking List</h3>
             </div>
 
             <div class="panel-body">
@@ -53,7 +57,9 @@
                             </s:url>
                             <s:a class="icon-action-link" href="%{viewStatusListItemsUrl}" rel="tooltip"
                                  title="Update Status">
-                                <i class="fa fa-pencil"></i>
+                                <%--<img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
+                                style="border-radius:25%;">--%>
+                                <i class="fa fa-edit"></i>
                             </s:a>
 
                         </display:column></td>

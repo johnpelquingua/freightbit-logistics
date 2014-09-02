@@ -5,9 +5,14 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
 
-<div class="row" style="margin-top:-15px;">
+<div class="row">
     <div class="col-lg-12">
         <h1>Update Status</h1>
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-exchange"></i> Status </h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> List of On-going Booking</li>
@@ -18,6 +23,7 @@
 </div>
 
 <div class="row">
+
     <div class="col-lg-7 col-lg-offset-2" style="margin-left: 21% !important;">
         <div class="panel panel-primary">
 
@@ -75,8 +81,7 @@
 
             </div>
 
-
         </div>
-
     </div>
+
 </div>
