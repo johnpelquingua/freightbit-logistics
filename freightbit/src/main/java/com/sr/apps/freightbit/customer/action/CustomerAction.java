@@ -967,7 +967,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         System.out.println(commonUtils.getUserNameFromSession());
         Integer customerId = getCustomerSessionId();
         entity.setReferenceId(customerId);
-        entity.setReferenceTable("CUSTOMER");
+        entity.setReferenceTable("CUSTOMERS");
         entity.setContactType(contactBean.getContactType());
         entity.setFirstName(contactBean.getFirstName());
         entity.setMiddleName(contactBean.getMiddleName());

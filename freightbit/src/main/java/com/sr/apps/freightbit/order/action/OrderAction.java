@@ -6,6 +6,7 @@ import java.util.*;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
 import com.sr.biz.freightbit.customer.entity.Items;
 import org.apache.commons.lang3.StringUtils;
@@ -29,6 +30,7 @@ import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
 import com.sr.biz.freightbit.core.service.ClientService;
+import org.hibernate.internal.CriteriaImpl;
 
 public class OrderAction extends ActionSupport implements Preparable {
 
@@ -223,7 +225,15 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     }
 
-    public String loadAddOrderPage() { return SUCCESS; }
+    public String loadAddOrderPage() {return SUCCESS; }
+
+    public String reloadAddOrderPage(){
+      /* Map sessionAttributes =ActionContext.getContext().getSession();
+       order = transformToOrderFormBean((Orders)sessionAttributes.get("orderValues"));
+        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC "+ order.getOrderId());
+        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"+ order.getCustomerId());*/
+       return SUCCESS;
+    }
 
     public String addItemsInTable() {
 
@@ -552,6 +562,60 @@ public class OrderAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+//    when adding customer contacts inside booking
+
+
+    public String addCustomerContact() {
+
+        try {
+            Contacts contactEntity = transformToEntityBeanContacts(contact);
+            contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            contactEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            contactEntity.setCreatedTimestamp(new Date());
+            customerService.addContact(contactEntity);
+        } catch (ContactAlreadyExistsException e) {
+            addFieldError("contact.lastName", getText("err.contact.already.exists"));
+            return INPUT;
+        }
+
+//        putting order values from form to session
+
+        /*Orders orderEntity = transformToOrderEntityAddOtherInfo(order);
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA "+ orderEntity.getOrderId());
+        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"+ orderEntity.getCustomerId());
+        Map sessionAttributes = ActionContext.getContext().getSession();
+      sessionAttributes.put("orderValues", orderEntity);*/
+
+        return SUCCESS;
+    }
+
+    private Contacts transformToEntityBeanContacts(ContactBean contactBean) {
+        Contacts entity = new Contacts();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
+        if (contactBean.getContactId() != null) {
+            entity.setContactId(contactBean.getContactId());
+        }
+
+        entity.setReferenceId(contactBean.getReferenceId());
+        entity.setReferenceTable("CUSTOMERS");
+        entity.setContactType(contactBean.getContactType());
+        entity.setFirstName(contactBean.getFirstName());
+        entity.setMiddleName(contactBean.getMiddleName());
+        entity.setLastName(contactBean.getLastName());
+        entity.setPhone(contactBean.getPhone());
+        entity.setMobile(contactBean.getMobile());
+        entity.setFax(contactBean.getFax());
+        entity.setEmail(contactBean.getEmail());
+        entity.setCreatedBy(contactBean.getCreatedBy());
+        entity.setCreatedTimestamp(contactBean.getCreatedTimestamp());
+        entity.setPosition(contactBean.getPosition());
+        return entity;
+    }
+
+
+
+
 
     private OrderBean transformToFormBeanOrder(Orders order) {
 
@@ -628,6 +692,14 @@ public class OrderAction extends ActionSupport implements Preparable {
     private OrderBean transformToOrderFormBean(Orders order) {
 
         OrderBean orderBean = new OrderBean();
+
+//        Orders orderCheck = orderService.findOrdersById(order.getOrderId());
+//
+//    if (orderCheck!=null) {
+//        orderBean.setOrderId(order.getOrderId());
+//    }else{
+//        orderBean.setOrderId(0);
+//    }
 
         orderBean.setOrderId(order.getOrderId());
         orderBean.setOrderNumber(order.getOrderNumber());
@@ -730,6 +802,53 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         return orderBean;
     }
+
+//    tentative
+
+    private Orders transformToOrderEntityAddOtherInfo(OrderBean formBean){
+
+        Orders entity = new Orders();
+
+        entity.setServiceRequirement(formBean.getServiceRequirement());
+        entity.setServiceMode(formBean.getModeOfService());
+        entity.setServiceType(formBean.getServiceType());
+        entity.setPaymentMode(formBean.getModeOfPayment());
+
+        Contacts contactShipperId = customerService.findContactById(formBean.getShipperContactId());
+        Customer customerId = customerService.findCustomerById(contactShipperId.getReferenceId());
+        entity.setCustomerId(customerId.getCustomerId());
+
+        entity.setPickupDate(new Timestamp((formBean.getPickupDate()).getTime()));
+        entity.setDeliveryDate(new Timestamp((formBean.getDeliveryDate().getTime())));
+        entity.setOriginationPort(formBean.getOriginationPort());
+        entity.setDestinationPort(formBean.getDestinationPort());
+        entity.setNotificationType(formBean.getNotifyBy());
+        entity.setComments(formBean.getComments());
+        entity.setShipperContactId(formBean.getShipperContactId());
+        entity.setShipperAddressId(formBean.getShipperAddressId());
+        entity.setConsigneeContactId(formBean.getConsigneeContactId());
+        entity.setConsigneeAddressId(formBean.getConsigneeAddressId());
+
+        entity.setOrderId(0);
+        entity.setOrderNumber("abc-123");
+        entity.setOrderDate(new Date());
+        entity.setOrderStatus("Pending");
+        entity.setModifiedTimestamp(new Date());
+        entity.setModifiedBy("Admin");
+
+       return  entity;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     private CustomerBean transformToCustomerFormBean(Customer customer) {
 

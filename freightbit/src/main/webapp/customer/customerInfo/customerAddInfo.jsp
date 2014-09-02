@@ -95,7 +95,7 @@
                         <div class="col-lg-9 col-lg-offset-2">
                             <div class="panel panel-info" >
                                 <div class="panel-heading">
-                                    <h3 class="panel-title"><i class="fa fa-file-text"></i> Documents<span class="asterisk_red"></span></h3>
+                                    <h3 class="panel-title"><i class="fa fa-file-text"></i> Documents</h3>
                                 </div>
                                 <div class="form-group">
 

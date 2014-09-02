@@ -96,6 +96,7 @@
                         </div>
 
                         <div class="form-group">
+
                             <label class="col-lg-2 control-label">Customer Name<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
@@ -207,7 +208,7 @@
                                 Add Contact Person
                             </button>--%>
                             <div class="pull-right">
-                                <a data-toggle="modal" data-target="#createContact" class="btn btn-info"><i class="fa fa-plus"></i></a>
+                                <a data-toggle="modal" data-target="#createContact"  class="btn btn-info" id="idCustomer"><i class="fa fa-plus"></i></a>
                             </div>
 
                         </div>
@@ -215,7 +216,7 @@
                     </div>
 
                     <div class="form-group" style="clear: both;">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address<span class="asterisk_red"></label>
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-8">
                             <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
@@ -230,7 +231,7 @@
                             </button>--%>
 
                             <div class="pull-right">
-                                <a href="#createContact" class="btn btn-info"><i class="fa fa-plus"></i></a>
+                                <a href="" class="btn btn-info" ><i class="fa fa-plus"></i></a>
                             </div>
 
                         </div>
@@ -332,46 +333,50 @@
     <div class="modal-dialog modal-form">
         <div class="modal-content">
     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title" id="myModalLabel1">Add Contact</h4>
+
     </div>
         <div class="modal-body">
             <div class="panel-body">
                 <s:form action="addCustomerContact" cssClass="form-horizontal" theme="bootstrap">
 
-            <label>Contact Type</label>
-                    <%--<s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"--%>
-                              <%--listKey="key" listValue="value" cssClass="form-control"--%>
-                              <%--value="contact.contactType" emptyOption="true"/>--%>
-                 <label>Last name</label>
+                    <s:textfield name="contact.referenceId" id="custIdHolder"></s:textfield>
+
+            <label>Contact Type.<span class="asterisk_red"></span></label>
+                    <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
+                              listKey="key" listValue="value" cssClass="form-control"
+                              value="contact.contactType" emptyOption="true"/>
+                 <label>Last name.<span class="asterisk_red"></span></label>
             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                          id="contact.lastName" required="true" maxLength="30" autofocus="true"
                          pattern="[a-zA-Z\s]+"
                          title="Name should not contain special characters and/or numbers."/>
-            <label>First Name</label>
+            <label>First Name.<span class="asterisk_red"></span></label>
                 <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
                              id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s]+"
                              title="Name should not contain special characters and/or numbers."
                              required="true"/>
-            <label>Middle Name</label>
+            <label>Middle Name.<span class="asterisk_red"></span></label>
                 <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
                              id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s]+"
                              title="Name should not contain special characters and/or numbers."/>
-            <label>Phone</label>
+            <label>Phone.<span class="asterisk_red"></span></label>
                 <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
                              maxLength="14" required="true"
                              pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
-            <label>Mobile</label>
+            <label>Mobile.<span class="asterisk_red"></span></label>
                 <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
                              maxLength="19" required="true"
                              pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
-                             title="(+639XX) XXX-XXXX Mobile should not contain special characters and/or letters."/>
+                             title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
             <label>Fax</label>
                 <s:textfield cssClass="form-control" placeholder="contact.fax" name="contact.fax"
                              maxLength="14" pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
-            <label>Email</label>
+            <label>Email.<span class="asterisk_red"></span></label>
                 <s:textfield cssClass="form-control" placeholder="contact.email" name="contact.email"
                              type="email" required="true"/>
-            <label>Position</label>
+            <label>Position.<span class="asterisk_red"></span></label>
                 <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
                              type="text" required="true"/>
                 <div class="panel-footer">
@@ -380,12 +385,19 @@
                 <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                         </div>
                 </div>
+
                 </s:form>
         </div>
         </div>
     </div>
 </div>
 <%--end--%>
+
+
+<%--START OF MODAL--%>
+
+
+
 
 <script type="text/javascript">
 
@@ -828,6 +840,20 @@ $(document).ready(function() {
         preventDuplicatePort.call(this, select1, this.selectedIndex);
         };
 
+function getId(){
+   var custId = $("#customerName").val();
+    alert(custId);
 
+}
+
+
+
+$(document).ready(function(){
+    $("#idCustomer").click(function(){
+        var custId = $("#customerName").val();
+        alert(custId);
+      $("#custIdHolder").val(custId);
+    });
+});
 </script>
 

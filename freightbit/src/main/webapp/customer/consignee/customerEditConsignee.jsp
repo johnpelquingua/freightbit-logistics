@@ -176,7 +176,7 @@
                         </label>
 
                         <div class="col-lg-10" >
-                            <span class="asterisk_red"></span>
+
                             <s:textfield name="consignee.zip" cssClass="form-control"
                                          id="consignee.zip" placeholder="ZIP" required="true"
                                          pattern="[0-9]+" maxLength="4"

@@ -87,7 +87,7 @@
                             <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
                                          maxLength="19" required="true"
                                          pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
-                                         title="(+639XX) XXX-XXXX Mobile should not contain special characters and/or letters."/>
+                                         title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                         </div>
                     </div>
 

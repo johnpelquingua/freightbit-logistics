@@ -35,9 +35,9 @@
                         <s:hidden value="%{vesselSchedule.createdTimestamp}" name="vesselSchedule.createdTimestamp"/>
                         <div class="form-group">
 
-                            <label for="vesselSchedule.voyageNumber" class="col-lg-2 control-label" style="padding-top:0px;">Voyage Number</label>
+                            <label for="vesselSchedule.voyageNumber" class="col-lg-2 control-label" style="padding-top:0px;">Voyage Number<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9"><span class="asterisk_red"></span>
+                            <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber"/>
                             </div>
 
@@ -45,9 +45,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.vendorId" class="col-lg-2 control-label" style="padding-top:0px;"> Vendor</label>
+                            <label for="vesselSchedule.vendorId" class="col-lg-2 control-label" style="padding-top:0px;"> Vendor<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9"><span class="asterisk_red"></span>
+                            <div class="col-lg-9">
                                 <s:select emptyOption="true" id="vesselSchedule.vendorId"
                                           value="vesselSchedule.vendorId"
                                           name="vesselSchedule.vendorId"
@@ -59,9 +59,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.departureDate" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Date</label>
+                            <label for="vesselSchedule.departureDate" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Date<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9"><span class="asterisk_red"></span>
+                            <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" id="departureDate"
                                              name="vesselSchedule.departureDate"/>
                             </div>
@@ -70,9 +70,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.departureTime" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Time</label>
+                            <label for="vesselSchedule.departureTime" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Time<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9"><span class="asterisk_red"></span>
+                            <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" id="departureTime"
                                              name="vesselSchedule.departureTime" readonly="true"/>
                             </div>
@@ -81,9 +81,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.arrivalDate" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date</label>
+                            <label for="vesselSchedule.arrivalDate" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9"><span class="asterisk_red"></span>
+                            <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true"/>
                             </div>
 
@@ -91,9 +91,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.arrivalTime" class="col-lg-2 control-label" style="padding-top:0px;"> Arrival Time</label>
+                            <label for="vesselSchedule.arrivalTime" class="col-lg-2 control-label" style="padding-top:0px;"> Arrival Time<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9"><span class="asterisk_red"></span>
+                            <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" id="arrivalTime"
                                              name="vesselSchedule.arrivalTime"/>
                             </div>
@@ -102,9 +102,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.originPort" class="col-lg-2 control-label" style="padding-top:0px;">Origin Pier</label>
+                            <label for="vesselSchedule.originPort" class="col-lg-2 control-label" style="padding-top:0px;">Origin Pier<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9"><span class="asterisk_red"></span>
+                            <div class="col-lg-9">
                                 <s:select emptyOption="true" id="vesselSchedule_originPort"
                                           value="vesselSchedule.originPort"
                                           name="vesselSchedule.originPort"
@@ -116,9 +116,9 @@
 
                         <div class="form-group">
 
-                            <label for="vesselSchedule.destinationPort" class="col-lg-2 control-label" style="padding-top:0px;">Destination Pier</label>
+                            <label for="vesselSchedule.destinationPort" class="col-lg-2 control-label" style="padding-top:0px;">Destination Pier<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9"><span class="asterisk_red"></span>
+                            <div class="col-lg-9">
                                 <s:select emptyOption="true" id="vesselSchedule_destinationPort"
                                           value="vesselSchedule.destinationPort"
                                           name="vesselSchedule.destinationPort"
