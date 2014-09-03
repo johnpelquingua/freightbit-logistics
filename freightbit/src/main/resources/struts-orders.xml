@@ -98,8 +98,14 @@
         <action name="AddCustomerContactsInBooking" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="reloadAddOrderPage">
             <result name="success" type="tiles">orders.booking-new.tiles</result>
-
         </action>
+
+        <action name="loadAddCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+                method="loadAddContactBooking">
+            <result name="success" type="redirect">AddCustomerContactsBooking</result>
+        </action>
+
+
 
     </package>
 

@@ -100,7 +100,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Integer consigneeId;
     private Integer addressId;
 
-    private Map<Integer, Integer> shipperItemVolumeMap = new HashMap<Integer, Integer>();
+    private Map<Double, Double> shipperItemVolumeMap = new HashMap<Double, Double>();
     private Map<String, String> shipperItemCommodityMap = new HashMap<String, String>();
     private Map<Float, Float> shipperItemValueMap = new HashMap<Float, Float>();
     private Integer itemId;
@@ -594,7 +594,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         entity.setReferenceId(contactBean.getReferenceId());
         entity.setReferenceTable("CUSTOMERS");
-        entity.setContactType(contactBean.getContactType());
+        entity.setContactType("shipper");
         entity.setFirstName(contactBean.getFirstName());
         entity.setMiddleName(contactBean.getMiddleName());
         entity.setLastName(contactBean.getLastName());
@@ -799,57 +799,46 @@ public class OrderAction extends ActionSupport implements Preparable {
 
 //    tentative
 
-    private Orders transformToOrderEntityAddOtherInfo(OrderBean formBean){
-
-        Orders entity = new Orders();
-
-        entity.setServiceRequirement(formBean.getServiceRequirement());
-        entity.setServiceMode(formBean.getModeOfService());
-        entity.setServiceType(formBean.getServiceType());
-        entity.setPaymentMode(formBean.getModeOfPayment());
-
-        Contacts contactShipperId = customerService.findContactById(formBean.getShipperContactId());
-        Customer customerId = customerService.findCustomerById(contactShipperId.getReferenceId());
-        entity.setCustomerId(customerId.getCustomerId());
-
-        entity.setPickupDate(new Timestamp((formBean.getPickupDate()).getTime()));
-        entity.setDeliveryDate(new Timestamp((formBean.getDeliveryDate().getTime())));
-        entity.setOriginationPort(formBean.getOriginationPort());
-        entity.setDestinationPort(formBean.getDestinationPort());
-        entity.setNotificationType(formBean.getNotifyBy());
-        entity.setComments(formBean.getComments());
-        entity.setShipperContactId(formBean.getShipperContactId());
-        entity.setShipperAddressId(formBean.getShipperAddressId());
-        entity.setConsigneeContactId(formBean.getConsigneeContactId());
-        entity.setConsigneeAddressId(formBean.getConsigneeAddressId());
-
-        entity.setOrderId(0);
-        entity.setOrderNumber("abc-123");
-        entity.setOrderDate(new Date());
-        entity.setOrderStatus("Pending");
-        entity.setModifiedTimestamp(new Date());
-        entity.setModifiedBy("Admin");
-
-       return  entity;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    private CustomerBean transformToCustomerFormBean(Customer customer) {
-
-        CustomerBean formBean = new CustomerBean();
-        formBean.setCustomerName(customer.getCustomerName());
-        return formBean;
-    }
+//    private Orders transformToOrderEntityAddOtherInfo(OrderBean formBean){
+//
+//        Orders entity = new Orders();
+//
+//        entity.setServiceRequirement(formBean.getServiceRequirement());
+//        entity.setServiceMode(formBean.getModeOfService());
+//        entity.setServiceType(formBean.getServiceType());
+//        entity.setPaymentMode(formBean.getModeOfPayment());
+//
+//        Contacts contactShipperId = customerService.findContactById(formBean.getShipperContactId());
+//        Customer customerId = customerService.findCustomerById(contactShipperId.getReferenceId());
+//        entity.setCustomerId(customerId.getCustomerId());
+//
+//        entity.setPickupDate(new Timestamp((formBean.getPickupDate()).getTime()));
+//        entity.setDeliveryDate(new Timestamp((formBean.getDeliveryDate().getTime())));
+//        entity.setOriginationPort(formBean.getOriginationPort());
+//        entity.setDestinationPort(formBean.getDestinationPort());
+//        entity.setNotificationType(formBean.getNotifyBy());
+//        entity.setComments(formBean.getComments());
+//        entity.setShipperContactId(formBean.getShipperContactId());
+//        entity.setShipperAddressId(formBean.getShipperAddressId());
+//        entity.setConsigneeContactId(formBean.getConsigneeContactId());
+//        entity.setConsigneeAddressId(formBean.getConsigneeAddressId());
+//
+//        entity.setOrderId(0);
+//        entity.setOrderNumber("abc-123");
+//        entity.setOrderDate(new Date());
+//        entity.setOrderStatus("Pending");
+//        entity.setModifiedTimestamp(new Date());
+//        entity.setModifiedBy("Admin");
+//
+//       return  entity;
+//    }
+//
+//    private CustomerBean transformToCustomerFormBean(Customer customer) {
+//
+//        CustomerBean formBean = new CustomerBean();
+//        formBean.setCustomerName(customer.getCustomerName());
+//        return formBean;
+//    }
 
     private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
 
@@ -1523,11 +1512,11 @@ public class OrderAction extends ActionSupport implements Preparable {
         this.shipperItemCommodityMap = shipperItemCommodityMap;
     }
 
-    public Map<Integer, Integer> getShipperItemVolumeMap() {
+    public Map<Double, Double> getShipperItemVolumeMap() {
         return shipperItemVolumeMap;
     }
 
-    public void setShipperItemVolumeMap(Map<Integer, Integer> shipperItemVolumeMap) {
+    public void setShipperItemVolumeMap(Map<Double, Double> shipperItemVolumeMap) {
         this.shipperItemVolumeMap = shipperItemVolumeMap;
     }
 

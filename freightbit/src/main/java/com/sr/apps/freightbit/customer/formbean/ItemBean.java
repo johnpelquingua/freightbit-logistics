@@ -12,9 +12,9 @@ public class ItemBean {
     private Integer customerId;
     private String itemName;
     private String itemCode;
-    private Integer length;
-    private Integer width;
-    private Integer height;
+    private Double length;
+    private Double width;
+    private Double height;
     private Float srp;
     private Integer criticalQuality;
     private Float basePrice;
@@ -32,7 +32,7 @@ public class ItemBean {
 
 
     public ItemBean(Integer customerItemsId, Integer customerId, String itemName,
-                    String itemCode, Integer length, Integer width, Integer height, Float srp, Integer criticalQuality,
+                    String itemCode, Double length, Double width, Double height, Float srp, Integer criticalQuality,
                     Float basePrice, String note, String description, Date createdTimeStamp, String createdBy,
                     Date modifiedTimeStamp, String modifiedBy) {
 
@@ -88,27 +88,27 @@ public class ItemBean {
         this.itemCode = itemCode;
     }
 
-    public Integer getLength() {
+    public Double getLength() {
         return length;
     }
 
-    public void setLength(Integer length) {
+    public void setLength(Double length) {
         this.length = length;
     }
 
-    public Integer getWidth() {
+    public Double getWidth() {
         return width;
     }
 
-    public void setWidth(Integer width) {
+    public void setWidth(Double width) {
         this.width = width;
     }
 
-    public Integer getHeight() {
+    public Double getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public void setHeight(Double height) {
         this.height = height;
     }
 

@@ -38,7 +38,7 @@
                         <s:hidden name="contact.contactId" value="%{contact.contactId}"/>
                         <s:hidden name="contact.createdTimestamp" value="%{contact.createdTimestamp}"/>
                         <s:hidden name="contact.createdBy" value="%{contact.createdBy}"/>
-                        <div class="form-group"><span class="asterisk_red"></span>
+                        <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;" >Contact Type<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
                             <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"

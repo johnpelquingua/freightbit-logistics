@@ -210,8 +210,8 @@
 
     issueDate.datepicker({
 
-        dateFormat: 'yy-dd-mm',
-        minDate: 0
+        dateFormat: 'mm/dd/yy',
+        startDate: 2
 
     });
 

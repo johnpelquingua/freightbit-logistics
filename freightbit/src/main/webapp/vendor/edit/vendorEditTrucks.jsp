@@ -73,6 +73,7 @@
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="CR Date of Issue" name="truck.issueDate"
                                              id="issueDate" required="true"/>
+
                             </div>
                         </div>
                             <%--Make = engineNumber--%>
@@ -195,3 +196,16 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+
+    var issueDate = $('#issueDate');
+
+    issueDate.datepicker({
+
+        dateFormat: 'mm/dd/yy',
+        startDate: 2
+
+    });
+
+</script>

@@ -80,14 +80,14 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.srp" id="item.srp" required="true" cssClass="form-control" pattern="[0-9]+" title="Special characters in Quality is not valid"/>
+                                <s:textfield name="item.srp" id="item.srp" required="true" cssClass="form-control" pattern="[0-9.]+" title="Special characters in Quality is not valid"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Length (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.length" id="item.length" required="true" cssClass="form-control"
-                                             style="150px" pattern="[0-9]+" title="Special characters in length is not valid"/>
+                                             style="150px" pattern="[0-9.]+" title="Special characters in length is not valid"/>
                             </div>
                         </div>
 
@@ -96,14 +96,14 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Width (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control"  pattern="[0-9]+" title="Special characters in width is not valid"/>
+                                <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control"  pattern="[0-9.]+" title="Special characters in width is not valid"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Height (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.height" id="item.height" required="true"
-                                             cssClass="form-control" pattern="[0-9]+" title="Special characters in height is not valid"/>
+                                             cssClass="form-control" pattern="[0-9.]+" title="Special characters in height is not valid"/>
                             </div>
                         </div>
 

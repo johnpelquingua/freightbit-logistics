@@ -68,6 +68,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private String customerKeyword;
     private Integer ratesIdParam;
     private Integer contactCodeParam;
+    private Integer customerIdParam;
 
     private CustomerBean customer = new CustomerBean();
     private ItemBean item = new ItemBean();
@@ -172,10 +173,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
             addFieldError("item.basePrice", getText("Special Characters in base price is not valid"));
         }
 
-        Matcher matcher3 = pattern2.matcher(itemBean.getCriticalQuality().toString());
-        if(!matcher3.matches()){
-            addFieldError("item.criticalQuality", getText("Special Characters in Quality is not valid"));
-        }
+//        Matcher matcher3 = pattern2.matcher(itemBean.getCriticalQuality().toString());
+//        if(!matcher3.matches()){
+//            addFieldError("item.criticalQuality", getText("Special Characters in Quality is not valid"));
+//        }
 
         Matcher matcher4 = pattern2.matcher(itemBean.getWidth().toString());
         if(!matcher4.matches()){
@@ -884,6 +885,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+//    public String loadAddContactBooking() {
+//        System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj" + customerIdParam);
+//
+//        return SUCCESS;
+//    }
+
     public String loadEditContact() {
         Contacts contactEntity = customerService.findContactById(contactCodeParam);
         contact = transformToFormBeanContacts(contactEntity);
@@ -1495,4 +1502,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public void setPortsList(List<Parameters> portsList) {
         this.portsList = portsList;
     }
+
+
 }

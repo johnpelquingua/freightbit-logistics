@@ -226,7 +226,16 @@
                             </button>--%>
                             <div class="pull-right">
                                 <a data-toggle="modal" data-target="#createContact"  class="btn btn-info" id="idCustomer"><i class="fa fa-plus"></i></a>
-                            </div>
+
+                                    <%--<s:url var="loadAddContactUrl" action="loadAddCustomerContact">--%>
+                                        <%--<s:param name="CustomerIDParam" value="%{order.customerId}"> </s:param>--%>
+                                    <%--</s:url>--%>
+                                    <%--<s:a class="icon-action-link" href="%{loadAddContactUrl}" rel="tooltip" title="Add Contact">--%>
+                                        <%--<button type="button" class="btn btn-info" id="idCustomer">--%>
+                                            <%--<i class="fa fa-plus"> </i>--%>
+                                        <%--</button>--%>
+                                    <%--</s:a>--%>
+                        </div>
 
                         </div>
 
@@ -248,7 +257,7 @@
                             </button>--%>
 
                             <div class="pull-right">
-                                <a href="" class="btn btn-info" ><i class="fa fa-plus"></i></a>
+                                <a data-toggle="modal" data-target="#createAddress" class="btn btn-info" ><i class="fa fa-plus"></i></a>
                             </div>
 
                         </div>
@@ -276,7 +285,7 @@
                                 Add Consignee
                             </button>--%>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-info"><i class="fa fa-plus"></i></a>
+                                <a data-toggle="modal" data-target="#createConsignee" class="btn btn-info"><i class="fa fa-plus"></i></a>
                             </div>
 
                         </div>
@@ -360,59 +369,108 @@
 
                     <s:textfield name="contact.referenceId" id="custIdHolder"></s:textfield>
 
-            <label>Contact Type.<span class="asterisk_red"></span></label>
-                    <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
-                              listKey="key" listValue="value" cssClass="form-control"
-                              value="contact.contactType" emptyOption="true"/>
-                 <label>Last name.<span class="asterisk_red"></span></label>
-            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
+        <%--<label>Contact Type.<span class="asterisk_red"></span></label>--%>
+                    <%--&lt;%&ndash;<s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"&ndash;%&gt;--%>
+                              <%--&lt;%&ndash;listKey="key" listValue="value" cssClass="form-control"&ndash;%&gt;--%>
+                              <%--&lt;%&ndash;value="contact.contactType" emptyOption="true"/>&ndash;%&gt;--%>
+        <label>Last name.<span class="asterisk_red"></span></label>
+                    <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                          id="contact.lastName" required="true" maxLength="30" autofocus="true"
                          pattern="[a-zA-Z\s]+"
                          title="Name should not contain special characters and/or numbers."/>
-            <label>First Name.<span class="asterisk_red"></span></label>
-                <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
+        <label>First Name.<span class="asterisk_red"></span></label>
+                    <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
                              id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s]+"
                              title="Name should not contain special characters and/or numbers."
                              required="true"/>
-            <label>Middle Name.<span class="asterisk_red"></span></label>
-                <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
+        <label>Middle Name.<span class="asterisk_red"></span></label>
+                    <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
                              id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s]+"
                              title="Name should not contain special characters and/or numbers."/>
-            <label>Phone.<span class="asterisk_red"></span></label>
-                <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
+        <label>Phone.<span class="asterisk_red"></span></label>
+                    <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
                              maxLength="14" required="true"
                              pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
-            <label>Mobile.<span class="asterisk_red"></span></label>
-                <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
+        <label>Mobile.<span class="asterisk_red"></span></label>
+                    <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
                              maxLength="19" required="true"
                              pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
                              title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
-            <label>Fax</label>
-                <s:textfield cssClass="form-control" placeholder="contact.fax" name="contact.fax"
+        <label>Fax</label>
+                    <s:textfield cssClass="form-control" placeholder="contact.fax" name="contact.fax"
                              maxLength="14" pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
-            <label>Email.<span class="asterisk_red"></span></label>
-                <s:textfield cssClass="form-control" placeholder="contact.email" name="contact.email"
+        <label>Email.<span class="asterisk_red"></span></label>
+                    <s:textfield cssClass="form-control" placeholder="contact.email" name="contact.email"
                              type="email" required="true"/>
-            <label>Position.<span class="asterisk_red"></span></label>
-                <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
+        <label>Position.<span class="asterisk_red"></span></label>
+                    <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
                              type="text" required="true"/>
-                <div class="panel-footer">
-                 <div class="pull-right">
+    <div class="panel-footer">
+    <div class="pull-right">
                 <a href="" class="btn btn-default" id ="groups-btn">Cancel</a>
                 <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
-                        </div>
-                </div>
+    </div>
+    </div>
 
                 </s:form>
         </div>
         </div>
     </div>
 </div>
+    </div>
 <%--end--%>
 
+ <%--START OF MODAL ADD ADDRESS--%>
 
-<%--START OF MODAL--%>
+    <div class="modal fade" id="createAddress" role="form" aria-labelledby="myModalLabel2" >
+        <div class="modal-dialog modal-form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel2">Add Address</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body">
 
+
+                            <%--<label>Address Type<span class="asterisk_red"></span></label>--%>
+
+                            <%--<div class="col-lg-10" >--%>
+                                <%--<s:select name="address.addressType" list="addressTypeList" listValue="value"--%>
+                                          <%--listKey="key"--%>
+                                          <%--cssClass="form-control" id="address.addressType" emptyOption="true"/>--%>
+                            <%--</div>--%>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%--END OF MODAL--%>
+
+    <%--<%--START OF Third modal--%>--%>
+
+    <div class="modal fade" id="createConsignee" role="form" aria-labelledby="myModalLabel3" >
+        <div class="modal-dialog modal-form">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel3">Add Consignee</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body">
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%--<%--END OF MODAL--%>--%>
 
 
 
@@ -868,7 +926,12 @@ function getId(){
 $(document).ready(function(){
     $("#idCustomer").click(function(){
         var custId = $("#customerName").val();
-        alert(custId);
+        if (custId == "" || null ){
+            alert("Select a customer first");
+            $("#customerName").focus();
+           return false;
+        }
+//        alert(custId);
       $("#custIdHolder").val(custId);
     });
 });
