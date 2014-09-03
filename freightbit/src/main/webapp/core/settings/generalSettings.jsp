@@ -17,11 +17,11 @@
 </div>
 
 
-<s:if test="hasActionErrors()">
+<s:if test="hasActionMessages()">
     <div class="col-lg-7">
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
 </s:if>
@@ -71,7 +71,7 @@
                                             <label for="vendorClass" class="col-lg-3 control-label" id="users-add-label">Vendor Class:</label>
                                             <div class="col-lg-9" id="vendorClassDiv">
                                                 <s:iterator value="vendorClassParamList" var="vendorClass">
-                                                    <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('vendorClass', this, '%{parameterId}');"/>
+                                                    <s:textfield disabled="true" required="true" name="value" cssClass="form-control"/>
                                                 </s:iterator>
                                                 <div class="control-group" id="vendorClassGroup">
                                                     <div class="controls">
@@ -88,7 +88,7 @@
                                             <label for="vendorType" class="col-lg-3 control-label" id="users-add-label">Vendor Type:</label>
                                             <div class="col-lg-9" id="vendorTypeDiv">
                                                 <s:iterator value="vendorTypeParamList" var="vendorType">
-                                                    <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('vendorType', this, '%{parameterId}');"/>
+                                                    <s:textfield disabled="true" required="true" name="value" cssClass="form-control"/>
                                                 </s:iterator>
                                                 <div class="control-group" id="vendorTypeGroup">
                                                     <div class="controls">
@@ -190,20 +190,7 @@
 
 
 <script type="text/javascript">
-var vendorClassParamMap= "";
-var vendorTypeParamMap = "";
-var customerTypeParamMap = "";
-function trackTextFieldChanges(paramName, here, key) {
-	if ('vendorClass' == paramName) {
-		vendorClassParamMap += "{"+key+":"+here.value+"} , ";
-	} else 	if ('vendorType' == paramName) {
-		vendorTypeParamMap += "{"+key+":"+here.value+"} , ";
-	} else 	if ('customerType' == paramName) {
-		customerTypeParamMap += "{"+key+":"+here.value+"} , ";
-	}
-} 
-
-
+ 
 $(document).ready(function() {
 	
    var vendorClassCounter = $("#vendorClassGroup").length + 1;
@@ -214,6 +201,8 @@ $(document).ready(function() {
 	        removeButton.click(function() {
 	            $(this).parent().remove();
 	        });
+	   //var addButton = $("<input type=\"button\" value=\"+\" id=\"add\"/>");
+
 	   fieldWrapper.append(textField).append(removeButton);
 	    
 	    $("#vendorClassDiv").append(fieldWrapper);
@@ -306,21 +295,21 @@ $(document).ready(function() {
 		var msg = '';
 		for(i=1; i<vendorClassCounter; i++){
 		  if (i==1)
-			  msg="{NEW_"+i+":"+ $('#vendorClass_' + i).val() +"}";
+			  msg=$('#vendorClass_' + i).val();
 		  else
-			  msg += ", {NEW_"+i+":" + $('#vendorClass_' + i).val() +"}";
-		}		
-        document.forms[0].vendorClassAdded.value = vendorClassParamMap + "" + msg;
-
+			  msg += ", " + $('#vendorClass_' + i).val();
+		}
+        document.forms[0].vendorClassAdded.value = msg;
+        
 		var msg = '';
 		for(i=1; i<vendorTypeCounter; i++){
 		  if (i==1)
-			  msg="{NEW_"+i+":"+ $('#vendorType_' + i).val() +"}";
+			  msg=$('#vendorType_' + i).val();
 		  else
-			  msg += ", {NEW_"+i+":" + $('#vendorType_' + i).val() +"}";
-		}		
-        document.forms[0].vendorTypeAdded.value = vendorTypeParamMap + "" + msg;
-
+			  msg += ", " + $('#vendorType_' + i).val();
+		}
+        document.forms[0].vendorTypeAdded.value = msg;
+        
 		var msg = '';
 		for(i=1; i<customerTypeCounter; i++){
 		  if (i==1)
