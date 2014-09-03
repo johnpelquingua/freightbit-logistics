@@ -335,7 +335,7 @@ body {
     top: 4px;
 }
 
-input#datepicker1, input#datepicker2, input#datepicker3, input#datepicker4 {
+input #datepicker1, input#datepicker2, input#datepicker3, input#datepicker4 {
     width: 100%;
     padding: 6px 12px;
     border: 1px solid #ccc;
