@@ -41,7 +41,6 @@
 
                             <td><display:column title="Action">
 
-
                                 <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
                                     <s:param name="orderItemIdParam"
                                              value="#attr.orderItem.orderItemId">
@@ -52,7 +51,20 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
                                      title="Update Status">
-                                    <i class="fa fa-pencil"></i>
+                                    <i class="fa fa-edit"></i>
+                                </s:a>
+
+                                <s:url var="viewInfoUrl" action="viewInfo">
+                                    <s:param name="orderItemIdParam"
+                                             value="#attr.orderItem.orderItemId">
+                                    </s:param>
+                                    <s:param name="orderNoParam"
+                                             value="orderNoParam">
+                                    </s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
+                                     title="Show Information">
+                                    <i class="fa fa-info-circle"></i>
                                 </s:a>
 
                             </display:column></td>

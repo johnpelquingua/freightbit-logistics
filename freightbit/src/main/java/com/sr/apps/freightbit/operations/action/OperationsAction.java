@@ -176,6 +176,18 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String viewInfo() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        OrderItems entity = operationsService.findOrderItemById(orderItemIdParam);
+        orderItem = transformToOrderItemFormBean(entity);
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        order = transformToOrderFormBean(orderEntity);
+
+        return SUCCESS;
+    }
+
     public String viewFreightPlanning(){
 
         Map sessionAttributes = ActionContext.getContext().getSession();

@@ -141,6 +141,10 @@
         <action name="findVesselSchedule" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="findVesselSchedule">
             <result name="success" type="tiles">operations.seaFreightPlanning.tiles</result>
         </action>
+
+        <action name="viewInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfo">
+            <result name="success" type="tiles">operations.viewInfo.tiles</result>
+        </action>
         <!--Operations ends here-->
 
         <action name="checkStatus" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkStatus">
