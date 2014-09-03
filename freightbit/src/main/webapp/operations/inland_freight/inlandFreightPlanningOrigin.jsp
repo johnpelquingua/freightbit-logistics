@@ -5,11 +5,12 @@
 <div class="row">
     <div class="col-lg-12">
         <h1><i class="fa fa-truck"></i> Inland Freight Planning: Origin</h1>
+
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> List of Bookings</li>
-            <li class="active"> List of Items / Containers</li>
-            <li class="active"> Inland Freight Planning</li>
+            <li class="active"> Inland Freight Planning: Orders  </li>
+            <li class="active"> Inland Freight Planning: Items / Containers</li>
+            <li class="active"> Inland Freight Planning: Origin</li>
         </ol>
     </div>
 </div>

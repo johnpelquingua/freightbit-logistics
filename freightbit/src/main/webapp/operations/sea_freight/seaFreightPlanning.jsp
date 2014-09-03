@@ -10,8 +10,8 @@
         <h1><i class="fa fa-anchor"></i> Sea Freight Planning</h1>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> List of Bookings</li>
-            <li class="active"> List of Items / Containers</li>
+            <li class="active"> Sea Freight Planning : Orders </li>
+            <li class="active"> Sea Freight Planning: Items / Containers </li>
             <li class="active"> Sea Freight Planning</li>
         </ol>
 

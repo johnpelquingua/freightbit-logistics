@@ -4,15 +4,11 @@
 <div class="row">
 
     <div class="col-lg-12">
+       <h1><i class="fa fa-anchor"></i> Sea Freight Planning : Orders </h1>
 
-        <legend style="text-align: left;">
-            <span >
-               <h1><i class="fa fa-anchor"></i> Seafreight Operations </h1>
-            </span>
-        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> Seafreight Operations </li>
+            <li class="active"> Sea Freight Planning : Orders </li>
         </ol>
 
     </div>

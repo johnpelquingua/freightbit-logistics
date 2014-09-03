@@ -1,9 +1,19 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<div class="row" style="margin-top:-15px;">
+<div class="row">
+    <div class="col-lg-12">
+        <h1><i class="fa fa-anchor"></i> Sea Freight Planning: Items / Containers</h1>
+        <ol class="breadcrumb">
+            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Sea Freight Planning : Orders </li>
+            <li class="active"> Sea Freight Planning: Items / Containers</li>
+        </ol>
 
-    <h1><i class="fa fa-anchor"></i> Seafreight Operations</h1>
+    </div>
+</div>
+
+<div class="row" style="margin-top:-15px;">
 
     <s:if test="hasActionMessages()">
         <div class="col-lg-12">

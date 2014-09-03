@@ -18,13 +18,8 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1><i class="fa fa-truck"></i> Inland Freight Planning: Destination</h1>
-        <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> List of Bookings</li>
-            <li class="active"> List of Items / Containers</li>
-            <li class="active"> Inland Freight Planning</li>
-        </ol>
+        <h1><i class="fa fa-truck"></i> View Information: <s:property value="%{order.orderNo}" /> </h1>
+        <br>
     </div>
 </div>
 <div class="row">

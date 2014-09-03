@@ -2,19 +2,12 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <div class="row">
-
-
-
     <div class="col-lg-12">
+       <h1><i class="fa fa-truck"></i> Inland Freight Planning: Orders </h1>
 
-        <legend style="text-align: left;">
-            <span >
-               <h1><i class="fa fa-truck"></i> Inland Freight Operations</h1>
-            </span>
-        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> Inland Freight Operations</li>
+            <li class="active"> Inland Freight Planning: Orders </li>
         </ol>
 
     </div>
@@ -66,6 +59,13 @@
                             <s:a class="icon-action-link" href="%{viewFreightItemListUrl}" rel="tooltip"
                                  title="Update Status">
                                 <i class="fa fa-edit"></i>
+                            </s:a>
+
+                            <s:url var="viewInfoOrderUrl" action="../orders/viewInfoOrder">
+                                <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
+                                <i class="fa fa-info-circle"></i>
                             </s:a>
                         </display:column></td>
 

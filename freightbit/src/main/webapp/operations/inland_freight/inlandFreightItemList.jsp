@@ -1,9 +1,20 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<div class="row" style="margin-top:-15px;">
+<div class="row">
+    <div class="col-lg-12">
+        <h1><i class="fa fa-anchor"></i> Inland Freight Planning: Items / Containers</h1>
 
-    <h1><i class="fa fa-truck"></i> Inland Freight Operations</h1>
+        <ol class="breadcrumb">
+            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
+            <li class="active"> Inland Freight Planning: Orders  </li>
+            <li class="active"> Inland Freight Planning: Items / Containers</li>
+        </ol>
+
+    </div>
+</div>
+
+<div class="row">
 
     <s:if test="hasActionMessages()">
         <div class="col-lg-12">
