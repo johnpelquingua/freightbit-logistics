@@ -16,7 +16,7 @@
     <script src="../main/js/jquery.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY5btBzW_s-TajCW-arvjYbUJzVJTmen8&sensor=false"></script>
-    <script>
+    <%--<script>
         var map;
         var myCenter = new google.maps.LatLng(51.508742, -0.120850);
 
@@ -46,7 +46,7 @@
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+    </script>--%>
 </head>
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

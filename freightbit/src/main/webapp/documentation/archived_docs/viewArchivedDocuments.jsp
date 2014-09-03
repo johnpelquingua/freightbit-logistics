@@ -1,10 +1,23 @@
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<div class="row">
+    <div class="col-lg-12">
+
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-file-text"></i> Documents Module </h1>
+            </span>
+        </legend>
+        <ol class="breadcrumb">
+            <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
+            <li class="active"> Archived Documents List</li>
+        </ol>
+
+    </div>
+</div>
 
 <div class="container-fluid">
     <div class="row">
@@ -12,8 +25,6 @@
 
         <!-- MIDDLE -->
         <div class="col-lg-12 main">
-
-            <h1 class="page-header">Archives</h1>
 
             <!-- MAIN BOX -->
 
@@ -23,7 +34,7 @@
                     <div class="panel booking panel-info">
                         <div class="booking panel-heading">
                             <img src="images/listofusers.png" class="box-icon">
-                            <span class="booking panel-title">List of Past Transactions</span>
+                            <span class="booking panel-title">Archived Documents List</span>
 
                         </div>
                         <div class="panel-body">
@@ -69,18 +80,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="panel-footer">
-                            <ul class="pagination">
-                                <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
 
-                        </div>
                     </div>
 
                 </div>

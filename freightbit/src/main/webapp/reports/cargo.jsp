@@ -9,7 +9,7 @@
     <script src="./jquery.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY5btBzW_s-TajCW-arvjYbUJzVJTmen8&sensor=false">
     </script>
-    <script>
+    <%--<script>
         function initialize() {
             var mapProp = {
                 center: new google.maps.LatLng(14.5833, 120.9667),
@@ -36,13 +36,14 @@
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+    </script>--%>
 
     <script>
 
     </script>
 </head>
 
+<%--
 <div id="googleMap" style="width:1366px; height: 500px;"></div>
 <br>
 
@@ -50,6 +51,7 @@
 
     <h1><a href="#" id="minimize">minimize</a></h1>
 </div>
+--%>
 
 
 

@@ -499,7 +499,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     public String approveOrder(){
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        orderEntity.setOrderStatus("APPROVE");
+        orderEntity.setOrderStatus("APPROVED");
         orderService.updateOrder(orderEntity);
         clearErrorsAndMessages();
         addActionMessage("Booking successfully Approved!");
@@ -971,7 +971,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setNameSize(formBean.getNameSize());
         entity.setRate(formBean.getRate());
         entity.setComments(formBean.getRemarks());
-        entity.setStatus("PENDING");
+        entity.setStatus("PLANNING 1");
         entity.setVolume(formBean.getVolume());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setModifiedBy(commonUtils.getUserNameFromSession());

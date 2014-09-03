@@ -1,165 +1,373 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<div class="row">
+    <div class="col-lg-12">
 
-<div class="container-fluid">
+        <legend style="text-align: left;">
+            <span >
+               <h1><i class="fa fa-file-text"></i> Documents Module </h1>
+            </span>
+        </legend>
+        <ol class="breadcrumb">
+            <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
+            <li class="active"> Plain Documents List</li>
+        </ol>
+
+    </div>
+</div>
+<%--First Row--%>
 <div class="row">
 
-<!-- MIDDLE -->
-<div class="col-lg-12 main">
-
-    <h1 class="page-header">Documents</h1>
-
-    <!-- MAIN BOX -->
-
-    <div class="row">
-        <div class="col-xs-6 col-md-4">
-            <div class="panel booking panel-info" style="background-color: #F1EB49;">
-                <div class="panel-body">
-                    <center>
-                        <h3>
-                            <img src="images/document-b.png" style="position: relative; bottom: 4px;">
-                            WAY BILL
-                            <br>
-                            ORIGIN
-                        </h3>
-                    </center>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">House Waybill Origin</div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-xs-6 col-md-4">
-            <div class="panel booking panel-info" style="background-color: #F1EB49;">
-                <div class="panel-body">
-                    <center>
-                        <h3>
-                            <img src="images/document-b.png" style="position: relative; bottom: 4px;">
-                            WAY BILL
-                            <br>
-                            DESTINATION
-                        </h3>
-                    </center>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create Waybill Origin</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
                 </div>
-            </div>
-        </div>
-
-
-        <div class="col-xs-6 col-md-4">
-            <div class="panel booking panel-info" style="background-color: #F1EB49;">
-                <div class="panel-body">
-                    <center>
-                        <h3>
-                            <img src="images/document-b.png" style="position: relative; bottom: 4px;">
-                            ACCEPTANCE ORDER
-
-                        </h3>
-                    </center>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-6 col-md-4">
-            <div class="panel booking panel-info" style="background-color: #F1EB49;">
-                <div class="panel-body">
-                    <center>
-                        <h3>
-                            <img src="images/document-b.png" style="position: relative; bottom: 4px;">
-                            RELEASE ORDER
-                            <br>
-                            <br>
-                        </h3>
-                    </center>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-6 col-md-4">
-            <div class="panel booking panel-info" style="background-color: #F1EB49;">
-                <div class="panel-body">
-                    <center>
-                        <h3>
-                            <img src="images/document-b.png" style="position: relative; bottom: 4px;">
-                            BILL OF LADING
-                            <br>
-                            <br>
-                        </h3>
-                    </center>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-6 col-md-4">
-            <div class="panel booking panel-info" style="background-color: #F1EB49;">
-                <div class="panel-body">
-                    <center>
-
-                        <h3>
-                            <img src="images/document-b.png" style="position: relative; bottom: 4px;">
-                            LOAD MANIFEST
-                            <br>
-                            <br>
-                        </h3>
-                    </center>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-6 col-md-4">
-            <div class="panel booking panel-info" style="background-color: #F1EB49;">
-                <div class="panel-body">
-                    <center>
-
-                        <h3>
-                            <img src="images/document-b.png" style="position: relative; bottom: 4px;">
-                            AUTHORITY
-                            <br>
-                            TO LOAD
-                        </h3>
-                    </center>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-6 col-md-4">
-            <div class="panel booking panel-info" style="background-color: #F1EB49;">
-                <div class="panel-body">
-                    <center>
-
-                        <h3>
-                            <img src="images/document-b.png" style="position: relative; bottom: 4px;">
-                            AUTHORITY
-                            <br>
-                            TO WITHDRAW
-                        </h3>
-                    </center>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-6 col-md-4">
-            <div class="panel booking panel-info" style="background-color: #F1EB49;">
-                <div class="panel-body">
-                    <center>
-
-                        <h3>
-                            <img src="images/document-b.png" style="position: relative; bottom: 4px;">
-                            BOOKING
-                            <br>
-                            REQUEST FORM
-                        </h3>
-                    </center>
-                </div>
-            </div>
+            </a>
         </div>
     </div>
 
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">House Waybill Destination</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create Waybill Destination</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">Acceptance Receipt</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create Acceptance Receipt</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">Release Order</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create Release Order</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+<%--End of First Row--%>
+
+<%--Second Row--%>
+
+<div class="row">
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">House Bill of Lading</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create House Bill of Lading</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">Proforma Bill of Lading</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create Proforma Bill of Lading</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">Load Manifest</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create Load Manifest</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">Authority to Load</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create Authority to Load</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
 
 </div>
 
+<%--End of Second Row--%>
+
+<%--Third Row--%>
+
+<div class="row">
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">Authority to Withdraw</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create Authority to Withdraw</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">Booking Request Form</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create Booking Request Form</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">Sales Invoice</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create Sales Invoice</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">Trip Report</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create Trip Report</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
 
 </div>
+
+<%--End of Third Row--%>
+
+<div class="row">
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">Equipment Interchange Receipt 1</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create EIR 1</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background: #428bca !important;">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-file-text fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <br />
+                        <div class="huge">Equipment Interchange Receipt 2</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">Create EIR 2</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
 </div>
-</div>
+
+<%--Fourth Row--%>
+
+
+
+<%--End of Fourth Row--%>
+
