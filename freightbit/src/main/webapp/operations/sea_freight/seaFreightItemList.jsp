@@ -3,37 +3,38 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1><i class="fa fa-anchor"></i> Sea Freight Planning: Items / Containers</h1>
+        <legend style="text-align: left;">
+            <span >
+                <h1><i class="fa fa-anchor"></i> Sea Freight Planning : Containers / Items</h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> Sea Freight Planning : Orders </li>
-            <li class="active"> Sea Freight Planning: Items / Containers</li>
+            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Orders </a></li>
+            <li class="active"> Sea Freight Planning : Containers / Items</li>
         </ol>
-
     </div>
 </div>
 
-<div class="row" style="margin-top:-15px;">
-
-    <s:if test="hasActionMessages()">
-        <div class="col-lg-12">
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
-            </div>
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
-    </s:if>
+    </div>
+</s:if>
 
-    <div class="row">
+<div class="row">
+
         <div class="col-lg-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-list"></i> Sea Freight Operations
 
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-list"></i> Sea Freight Operations
                     </h3>
                 </div>
-
-
 
                 <div class="panel-body">
                     <div class="table-responsive">
@@ -80,16 +81,16 @@
                         </display:table>
                     </div>
                 </div>
+
             </div>
         </div>
 
-    </div>
 </div>
 
 <script>
 
     $(document).ready(function() {
-        /*color coding of rows*/
+
         var tbl = document.getElementById("orderItem");
         if (tbl != null) {
             for (var i = 0; i < tbl.rows.length; i++) {

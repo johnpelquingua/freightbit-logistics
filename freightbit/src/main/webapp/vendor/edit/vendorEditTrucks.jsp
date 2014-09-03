@@ -17,7 +17,6 @@
             <li class="active"><a href="<s:url action='viewTrucks' />"> Trucks</a></li>
             <li class="active"> Edit Truck</li>
         </ol>
-
     </div>
 </div>
 

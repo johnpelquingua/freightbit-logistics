@@ -371,7 +371,7 @@
                             <s:textfield cssClass="form-control"
                                          name="orderItem.weight"
                                          id="orderItem.weight"
-
+                                         type="number"
                             />
                         </div>
 
@@ -413,18 +413,6 @@
 
                     <div class="form-group">
 
-                        <%--<label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Classification
-                        </label>
-
-                        <div class="col-lg-3" >
-                            <s:textfield cssClass="form-control step3"
-                                         name="orderItem.classification"
-                                         id="orderItem.classification"
-                                         required="true"
-                            />
-                        </div>--%>
-
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
                             Rate (Php)
                         </label>
@@ -433,6 +421,7 @@
                                          id="orderItem.rate"
                                          name="orderItem.rate"
                                          required="true"
+                                         type="number"
                                     />
                         </div>
 
@@ -492,6 +481,7 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.declaredValue"
                                              id="orderItem.declaredValue"
+                                             type="number"
 
                                         />
                             </s:if>

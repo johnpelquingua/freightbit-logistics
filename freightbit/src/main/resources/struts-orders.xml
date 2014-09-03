@@ -76,13 +76,8 @@
 
         <action name="addItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addItemsInTable">
-            <!--<result name="success" type="redirect">addedItemsInTable</result>-->
+            <result name="input" type="tiles">orders.add-booking-info.tiles</result>
             <result name="success" type="redirect">addedItemsInTable</result>
-        </action>
-
-        <action name="addedItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
-                method="addedItemsInTable">
-            <result name="success" type="tiles">orders.add-booking-info.tiles</result>
         </action>
 
         <action name="addedItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"

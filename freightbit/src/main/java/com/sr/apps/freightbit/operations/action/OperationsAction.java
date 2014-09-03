@@ -3,10 +3,12 @@ package com.sr.apps.freightbit.operations.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.operations.formbean.OperationsBean;
 import com.sr.apps.freightbit.operations.formbean.VesselScheduleBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
+import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
@@ -17,6 +19,9 @@ import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
+import com.sr.biz.freightbit.customer.entity.Customer;
+import com.sr.biz.freightbit.customer.service.CustomerService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import java.util.*;
@@ -53,6 +58,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private VendorService vendorService;
     private VesselSchedulesService vesselSchedulesService;
     private OrderService orderService;
+    private CustomerService customerService;
 
     private Map<String, String> driverMap = new LinkedHashMap<String, String>();
     private Map<String, String> trucksMap = new HashMap<String, String>();
@@ -219,7 +225,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         ordersList = operationsService.findAllOrders();
 
-
         for (Orders orderElem : ordersList) {
             orders.add(transformToOrderFormBean(orderElem));
         }
@@ -287,10 +292,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         OrderBean formBean = new OrderBean();
         formBean.setOrderNo(entity.getOrderNumber());
-        formBean.setCustomerName(entity.getShipperCode());
+        //get shipper's name
+        Contacts shipperContactName = customerService.findContactById(entity.getShipperContactId());
+        Customer customerName = customerService.findCustomerById(shipperContactName.getReferenceId());
+        formBean.setCustomerName((customerName.getCustomerName()));
+        //formBean.setCustomerName(entity.getShipperCode());
         formBean.setServiceRequirement(entity.getServiceRequirement());
         formBean.setModeOfService(entity.getServiceMode());
-        formBean.setConsigneeCode(entity.getConsigneeCode());
+        //get consignee name
+        Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
+        formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
+        //formBean.setConsigneeCode(entity.getConsigneeCode());
         formBean.setOrderId(entity.getOrderId());
         formBean.setOrderStatus(entity.getOrderStatus());
         return formBean;
@@ -474,7 +486,19 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return  entity;
     }
 
-
+    private String getFullName(String lastName, String firstName, String middleName) {
+        StringBuilder fullName = new StringBuilder("");
+        if (StringUtils.isNotBlank(lastName)) {
+            fullName.append(lastName + ", ");
+        }
+        if (StringUtils.isNotBlank(firstName)) {
+            fullName.append(firstName + " ");
+        }
+        if (StringUtils.isNotBlank(middleName)) {
+            fullName.append(middleName);
+        }
+        return fullName.toString();
+    }
 
     public Integer getOrderIdParam() {
         return orderIdParam;
@@ -658,5 +682,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setOrderService(OrderService orderService) {
         this.orderService = orderService;
+    }
+
+    public CustomerService getCustomerService() {
+        return customerService;
+    }
+
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
     }
 }

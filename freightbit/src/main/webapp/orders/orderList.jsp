@@ -4,7 +4,6 @@
 
 <div class="row">
     <div class="col-lg-12">
-
         <legend style="text-align: left;">
             <span >
                <h1><i class="fa fa-book"></i> Booking Module </h1>
@@ -57,7 +56,7 @@
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="serviceType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
@@ -154,7 +153,7 @@ $(document).ready(function() {
                 }
             }
 
-            if (tbl.rows[i].cells[6].innerHTML == "APPROVE" || tbl.rows[i].cells[6].innerHTML == "SERVICE ACCOMPLISHED") {
+            if (tbl.rows[i].cells[6].innerHTML == "APPROVED" || tbl.rows[i].cells[6].innerHTML == "SERVICE ACCOMPLISHED") {
                 /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
                 for (var j = 0; j < tbl.rows[i].cells.length; j++) {
                     tbl.rows[i].cells[j].style.backgroundColor = "#dff0d8";

@@ -30,7 +30,6 @@ import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
 import com.sr.biz.freightbit.core.service.ClientService;
-import org.hibernate.internal.CriteriaImpl;
 
 public class OrderAction extends ActionSupport implements Preparable {
 
@@ -226,10 +225,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     public String loadAddOrderPage() {return SUCCESS; }
 
     public String reloadAddOrderPage(){
-      /* Map sessionAttributes =ActionContext.getContext().getSession();
-       order = transformToOrderFormBean((Orders)sessionAttributes.get("orderValues"));
-        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC "+ order.getOrderId());
-        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"+ order.getCustomerId());*/
+
        return SUCCESS;
     }
 
@@ -346,7 +342,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         customerItems = (List)sessionAttributes.get("customerItems");
 
         // Display order items in table
-
         List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(orderItemEntity.getOrderId());
 
         for (OrderItems orderItemElem : orderItemEntityList) {
@@ -474,9 +469,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             for (OrderItems orderItemElem : orderItemsEntity) {
 
                 orderService.deleteItem(orderItemElem);
-
             }
-
             return SUCCESS;
 
         } else {
@@ -573,14 +566,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             return INPUT;
         }
 
-//        putting order values from form to session
-
-        /*Orders orderEntity = transformToOrderEntityAddOtherInfo(order);
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA "+ orderEntity.getOrderId());
-        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"+ orderEntity.getCustomerId());
-        Map sessionAttributes = ActionContext.getContext().getSession();
-      sessionAttributes.put("orderValues", orderEntity);*/
-
         return SUCCESS;
     }
 
@@ -588,6 +573,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Contacts entity = new Contacts();
         Client client = clientService.findClientById(getClientId().toString());
         entity.setClient(client);
+
         if (contactBean.getContactId() != null) {
             entity.setContactId(contactBean.getContactId());
         }
@@ -607,10 +593,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setPosition(contactBean.getPosition());
         return entity;
     }
-
-
-
-
 
     private OrderBean transformToFormBeanOrder(Orders order) {
 
@@ -981,12 +963,12 @@ public class OrderAction extends ActionSupport implements Preparable {
         return entity;
     }
 
-    public void validateOnSubmit(OrderBean orderBean) {
+    public void validateOnSubmit(OrderItems orderItemBean) {
         clearErrorsAndMessages();
         //validate notification type
-        if (org.apache.commons.lang.StringUtils.isBlank(orderBean.getCustomerName())) {
+        /*if (org.apache.commons.lang.StringUtils.isBlank(orderItemBean.getQuantity())) {
             addFieldError("order.customerId", getText("err.addressLine1.required"));
-        }
+        }*/
 
     }
 
@@ -1187,14 +1169,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     public void setContact(ContactBean contact) {
         this.contact = contact;
     }
-
-  /*  public List<Items> getCustomerItemsList() {
-        return customerItemsList;
-    }
-
-    public void setCustomerItemsList(List<Items> customerItemsList) {
-        this.customerItemsList = customerItemsList;
-    }*/
 
     public List<Parameters> getContainerList() {
         return containerList;

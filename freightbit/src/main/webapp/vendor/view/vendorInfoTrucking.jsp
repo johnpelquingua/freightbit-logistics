@@ -46,15 +46,9 @@
 
                 <div class="row">
 
-                    <%--<div class="col-md-3 col-lg-3 " align="center"><img alt="User Pic" src="../includes/images/photo.png" class="img-circle"></div>--%>
-
                     <div class=" col-lg-6 col-lg-offset-2">
 
                         <div class="panel panel-info ">
-
-                            <%--<div align="center" style="margin-top: 10px;">
-                                <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
-                            </div>--%>
 
                             <div class="row">
                                 <div class="col-lg-12">

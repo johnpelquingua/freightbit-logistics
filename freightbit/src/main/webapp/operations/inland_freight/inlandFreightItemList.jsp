@@ -3,38 +3,38 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1><i class="fa fa-anchor"></i> Inland Freight Planning: Items / Containers</h1>
-
+        <legend style="text-align: left;">
+            <span >
+                <h1><i class="fa fa-truck"></i> Inland Freight Planning : Containers / Items</h1>
+            </span>
+        </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> Inland Freight Planning: Orders  </li>
-            <li class="active"> Inland Freight Planning: Items / Containers</li>
+            <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Inland Freight Planning : Orders  </a></li>
+            <li class="active"> Inland Freight Planning : Containers / Items</li>
         </ol>
-
     </div>
 </div>
 
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
 
-    <s:if test="hasActionMessages()">
-        <div class="col-lg-12">
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
-            </div>
-        </div>
-    </s:if>
-
-    <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-list"></i> Inland Freight Operations
 
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-list"></i> Inland Freight Operations
                     </h3>
                 </div>
-
-
 
                 <div class="panel-body">
                     <s:hidden value="%{orderNoParam}" />
@@ -84,18 +84,9 @@
                     </div>
                 </div>
 
-                <div class="panel-footer">
-                    <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="booking2.html">2</a></li>
-                        <li><a href="booking2.html">&raquo;</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
 
-    </div>
 </div>
 
 <script>

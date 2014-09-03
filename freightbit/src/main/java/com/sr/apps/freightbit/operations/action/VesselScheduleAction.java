@@ -14,7 +14,7 @@ import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
-import com.sr.biz.freightbit.vesselSchedule.service.impl.VesselSchedulesServiceImpl;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -146,7 +146,14 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         formBean.setModifiedBy(entity.getModifiedBy());
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
         formBean.setVoyageNumber(entity.getVoyageNumber());
-        formBean.setVendorCode(entity.getVendorCode());
+        // get Vendor Name
+        Vendor vendorName = vendorService.findVendorById(entity.getVendorId());
+        if (vendorName!=null){
+            formBean.setVendorCode(vendorName.getVendorName());
+        }else{
+            formBean.setVendorCode("NONE");
+        }
+
         return formBean;
 
     }
@@ -307,4 +314,6 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
     public void setVesselScheduleIdParam(Integer vesselScheduleIdParam) {
         this.vesselScheduleIdParam = vesselScheduleIdParam;
     }
+
+
 }

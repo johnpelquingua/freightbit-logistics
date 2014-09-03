@@ -4,7 +4,6 @@
 
 <div class="row">
     <div class="col-lg-12">
-
         <legend style="text-align: left;">
             <span >
                <h1><i class="fa fa-book"></i> Booking Module </h1>
@@ -355,69 +354,68 @@
 </div>
 
 <%--start--%>
-<div class="modal fade" id="createContact" role="form" aria-labelledby="myModalLabel1" >
+<div class="modal fade" id="createContact" role="form" aria-labelledby="myModalLabel1">
     <div class="modal-dialog modal-form">
         <div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title" id="myModalLabel1">Add Contact</h4>
 
-    </div>
-        <div class="modal-body">
-            <div class="panel-body">
-                <s:form action="addCustomerContact" cssClass="form-horizontal" theme="bootstrap">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel1">Add Contact Person</h4>
+            </div>
 
-                    <s:textfield name="contact.referenceId" id="custIdHolder"></s:textfield>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <s:form action="addCustomerContact" cssClass="form-horizontal" theme="bootstrap">
+                        <%--<s:textfield name="contact.referenceId" id="custIdHolder"></s:textfield>--%>
+                        <%--<label>Contact Type.<span class="asterisk_red"></span></label>--%>
+                                    <%--&lt;%&ndash;<s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"&ndash;%&gt;--%>
+                                              <%--&lt;%&ndash;listKey="key" listValue="value" cssClass="form-control"&ndash;%&gt;--%>
+                                              <%--&lt;%&ndash;value="contact.contactType" emptyOption="true"/>&ndash;%&gt;--%>
+                        <label>Last name<span class="asterisk_red"></span></label>
+                            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
+                                 id="contact.lastName" required="true" maxLength="30" autofocus="true"
+                                 pattern="[a-zA-Z\s]+"
+                                 title="Name should not contain special characters and/or numbers."/>
+                        <label>First Name<span class="asterisk_red"></span></label>
+                            <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
+                                     id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s]+"
+                                     title="Name should not contain special characters and/or numbers."
+                                     required="true"/>
+                        <label>Middle Name<span class="asterisk_red"></span></label>
+                            <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
+                                     id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s]+"
+                                     title="Name should not contain special characters and/or numbers."/>
+                        <label>Phone<span class="asterisk_red"></span></label>
+                            <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
+                                     maxLength="14" required="true"
+                                     pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                        <label>Mobile<span class="asterisk_red"></span></label>
+                            <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
+                                     maxLength="19" required="true"
+                                     pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
+                                     title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                        <label>Fax</label>
+                            <s:textfield cssClass="form-control" placeholder="contact.fax" name="contact.fax"
+                                     maxLength="14" pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                        <label>Email<span class="asterisk_red"></span></label>
+                            <s:textfield cssClass="form-control" placeholder="contact.email" name="contact.email"
+                                     type="email" required="true"/>
+                        <label>Position<span class="asterisk_red"></span></label>
+                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
+                                     type="text" required="true"/>
+                    </s:form>
+                </div>
+            </div>
 
-        <%--<label>Contact Type.<span class="asterisk_red"></span></label>--%>
-                    <%--&lt;%&ndash;<s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"&ndash;%&gt;--%>
-                              <%--&lt;%&ndash;listKey="key" listValue="value" cssClass="form-control"&ndash;%&gt;--%>
-                              <%--&lt;%&ndash;value="contact.contactType" emptyOption="true"/>&ndash;%&gt;--%>
-        <label>Last name.<span class="asterisk_red"></span></label>
-                    <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
-                         id="contact.lastName" required="true" maxLength="30" autofocus="true"
-                         pattern="[a-zA-Z\s]+"
-                         title="Name should not contain special characters and/or numbers."/>
-        <label>First Name.<span class="asterisk_red"></span></label>
-                    <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                             id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s]+"
-                             title="Name should not contain special characters and/or numbers."
-                             required="true"/>
-        <label>Middle Name.<span class="asterisk_red"></span></label>
-                    <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                             id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s]+"
-                             title="Name should not contain special characters and/or numbers."/>
-        <label>Phone.<span class="asterisk_red"></span></label>
-                    <s:textfield cssClass="form-control" placeholder="contact.phone" name="contact.phone"
-                             maxLength="14" required="true"
-                             pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
-        <label>Mobile.<span class="asterisk_red"></span></label>
-                    <s:textfield cssClass="form-control" placeholder="contact.mobile" name="contact.mobile"
-                             maxLength="19" required="true"
-                             pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
-                             title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
-        <label>Fax</label>
-                    <s:textfield cssClass="form-control" placeholder="contact.fax" name="contact.fax"
-                             maxLength="14" pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
-        <label>Email.<span class="asterisk_red"></span></label>
-                    <s:textfield cssClass="form-control" placeholder="contact.email" name="contact.email"
-                             type="email" required="true"/>
-        <label>Position.<span class="asterisk_red"></span></label>
-                    <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
-                             type="text" required="true"/>
-    <div class="panel-footer">
-    <div class="pull-right">
-                <a href="" class="btn btn-default" id ="groups-btn">Cancel</a>
-                <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
-    </div>
-    </div>
+            <div class="modal-footer">
+                <div>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+            </div>
 
-                </s:form>
-        </div>
         </div>
     </div>
 </div>
-    </div>
 <%--end--%>
 
  <%--START OF MODAL ADD ADDRESS--%>
@@ -432,7 +430,6 @@
                 <div class="modal-body">
                     <div class="panel-body">
 
-
                             <%--<label>Address Type<span class="asterisk_red"></span></label>--%>
 
                             <%--<div class="col-lg-10" >--%>
@@ -441,7 +438,10 @@
                                           <%--cssClass="form-control" id="address.addressType" emptyOption="true"/>--%>
                             <%--</div>--%>
 
-
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div>
 
                     </div>
                 </div>
@@ -451,7 +451,7 @@
 
     <%--END OF MODAL--%>
 
-    <%--<%--START OF Third modal--%>--%>
+    <%--<%--START OF Third modal--%>
 
     <div class="modal fade" id="createConsignee" role="form" aria-labelledby="myModalLabel3" >
         <div class="modal-dialog modal-form">
@@ -467,12 +467,16 @@
 
                     </div>
                 </div>
+
+                <div class="modal-footer">
+                    <div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <%--<%--END OF MODAL--%>--%>
-
-
+    <%--<%--END OF MODAL--%>
 
 <script type="text/javascript">
 
@@ -631,7 +635,6 @@ $(document).ready(function() {
 
     });
 
-
     // Date Time Picker
     var fromDatePickUp = $('#datepicker1');
     var toDateDelivery = $('#datepicker2');
@@ -693,7 +696,6 @@ $(document).ready(function() {
         });
 
 });
-
     // For Service Mode Dropdown selection
 
     function dynamicDropdown(select, index) {
@@ -804,8 +806,6 @@ $(document).ready(function() {
             $("#consigneeAddress").prop('disabled', false);
             $("#consigneeAddress").val('');
         }
-
-
     }
 
     // If Service Mode is Pier to Pier
@@ -899,7 +899,6 @@ $(document).ready(function() {
             /*this.selectedIndex = 0;*/
             select2.value = '';
             }
-
     }
 
     var select1 = select = document.getElementById('select1');
@@ -921,8 +920,6 @@ function getId(){
 
 }
 
-
-
 $(document).ready(function(){
     $("#idCustomer").click(function(){
         var custId = $("#customerName").val();
@@ -936,4 +933,3 @@ $(document).ready(function(){
     });
 });
 </script>
-
