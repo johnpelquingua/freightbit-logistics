@@ -95,11 +95,30 @@
             <result name="success" type="tiles">orders.booking-new.tiles</result>
         </action>
 
-        <action name="loadAddCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
-                method="loadAddContactBooking">
-            <result name="success" type="redirect">AddCustomerContactsBooking</result>
+        <!--<action name="loadAddCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"-->
+                <!--method="loadAddContactBooking">-->
+            <!--<result name="success" type="redirect">AddCustomerContactsBooking</result>-->
+        <!--</action>-->
+
+        <action name="addCustomerAddress" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="addAddress">
+            <result name="success" type="redirect">AddCustomerAddressInBooking</result>
         </action>
 
+        <action name="AddCustomerAddressInBooking" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="reloadAddOrderPage">
+            <result name="success" type="tiles">orders.booking-new.tiles</result>
+        </action>
+
+        <action name="addConsigneeBooking" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="addConsignee">
+            <result name="success" type="redirect">AddConsigneeInBooking</result>
+        </action>
+
+        <action name="AddConsigneeInBooking" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="reloadAddOrderPage">
+            <result name="success" type="tiles">orders.booking-new.tiles</result>
+        </action>
 
 
     </package>

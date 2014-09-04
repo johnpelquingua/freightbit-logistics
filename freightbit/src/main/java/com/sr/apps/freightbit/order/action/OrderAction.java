@@ -3,6 +3,7 @@ package com.sr.apps.freightbit.order.action;
 import java.sql.Timestamp;
 import java.util.*;
 
+import com.sr.apps.freightbit.customer.formbean.ConsigneeBean;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.biz.freightbit.core.entity.Client;
@@ -16,6 +17,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
+import com.sr.apps.freightbit.customer.formbean.ConsigneeBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
@@ -39,6 +41,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private OrderBean order = new OrderBean();
     private ContactBean contact = new ContactBean();
     private AddressBean address = new AddressBean();
+    private ConsigneeBean consigneeBean = new ConsigneeBean();
     private List<Customer> customerList = new ArrayList<Customer>();
     private List<Parameters> serviceRequirementList = new ArrayList<Parameters>();
     private List<Parameters> freightTypeList = new ArrayList<Parameters>();
@@ -59,13 +62,18 @@ public class OrderAction extends ActionSupport implements Preparable {
     private CommonUtils commonUtils = new CommonUtils();
     private List<Items> customerItems = new ArrayList<Items>();
     private List<Parameters> contactTypeList = new ArrayList<Parameters>();
+    private List<Parameters> addressTypeList = new ArrayList<Parameters>();
 
     private Integer orderIdParam;
     private Integer orderItemIdParam;
     private OrderService orderService;
     private CustomerService customerService;
     private ParameterService parameterService;
+
+
+
     private ClientService clientService;
+    private ConsigneeBean consignee = new ConsigneeBean();
 
     private Integer ID;
     private String REQ;
@@ -594,6 +602,122 @@ public class OrderAction extends ActionSupport implements Preparable {
         return entity;
     }
 
+
+    //adding customer address in booking
+    public String addAddress() throws Exception {
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        Address addressEntity = transformToEntityBeanAddress(address);
+        addressEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+        addressEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+        addressEntity.setCreatedTimestamp(new Date());
+        customerService.addAddress(addressEntity);
+        return SUCCESS;
+    }
+
+    public Address transformToEntityBeanAddress(AddressBean formBean) {
+        Address entity = new Address();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClientId(client);
+
+        if (formBean.getAddressId() != null) {
+            entity.setAddressId(formBean.getAddressId());
+        }
+
+        entity.setReferenceTable("CUSTOMERS");
+        entity.setReferenceId(formBean.getReferenceId());
+        entity.setAddressLine1(formBean.getAddressLine1());
+        entity.setAddressLine2(formBean.getAddressLine2());
+        entity.setAddressType(formBean.getAddressType());
+        entity.setCity(formBean.getCity());
+        entity.setState(formBean.getState());
+        entity.setZip(formBean.getZip());
+        entity.setCreatedTimestamp(formBean.getCreatedTimeStamp());
+        entity.setCreatedBy(formBean.getCreatedBy());
+        /*entity.setModifiedTimestamp(new Date());
+        entity.setModifiedBy(getClientId().toString());*/
+
+        return entity;
+    }
+
+    //add consignee in the booking
+    public String addConsignee() {
+
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+
+        Contacts consigneeEntity1 = transformContactToEntityBean(consignee);
+        consigneeEntity1.setModifiedBy(commonUtils.getUserNameFromSession());
+        consigneeEntity1.setCreatedBy(commonUtils.getUserNameFromSession());
+        consigneeEntity1.setCreatedTimestamp(new Date());
+
+        Address consigneeEntity2 = transformAddressToEntityBean(consignee);
+        consigneeEntity2.setModifiedBy(commonUtils.getUserNameFromSession());
+        consigneeEntity2.setCreatedBy(commonUtils.getUserNameFromSession());
+        consigneeEntity2.setCreatedTimestamp(new Date());
+
+        customerService.addConsignee(consigneeEntity1, consigneeEntity2);
+
+        return SUCCESS;
+    }
+
+    public Contacts transformContactToEntityBean(ConsigneeBean formBean) {
+        Contacts entity = new Contacts();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
+
+//        if (formBean.getContactId() != null) {
+//            entity.setContactId(formBean.getContactId());
+//        }
+
+//        Integer customerId = getCustomerSessionId();
+        entity.setReferenceTable("CUSTOMERS");
+        entity.setContactType("CONSIGNEE");
+        entity.setReferenceId(formBean.getReferenceId1());
+        entity.setFirstName(formBean.getFirstName());
+        entity.setMiddleName(formBean.getMiddleName());
+        entity.setLastName(formBean.getLastName());
+        entity.setPhone(formBean.getPhone());
+        entity.setMobile(formBean.getMobile());
+        entity.setEmail(formBean.getEmail());
+        entity.setFax(formBean.getFax());
+        entity.setCreatedTimestamp(formBean.getCreatedTimeStamp1());
+        entity.setCreatedBy(formBean.getCreatedBy1());
+        /*entity.setModifiedTimestamp(new Date());
+        entity.setModifiedBy("admin");*/
+
+        return entity;
+    }
+
+    public Address transformAddressToEntityBean(ConsigneeBean formBean) {
+        Address entity = new Address();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClientId(client);
+
+        if (formBean.getAddressId() != null) {
+            entity.setAddressId(formBean.getAddressId());
+        }
+
+//        Integer customerId = getCustomerSessionId();
+        entity.setReferenceTable("CUSTOMERS");
+        entity.setReferenceId(formBean.getReferenceId1());
+        entity.setAddressLine1(formBean.getAddressLine1());
+        entity.setAddressLine2(formBean.getAddressLine2());
+        entity.setAddressType("CONSIGNEE");
+        entity.setCity(formBean.getCity());
+        entity.setState(formBean.getState());
+        entity.setZip(formBean.getZip());
+        entity.setCreatedTimestamp(formBean.getCreatedTimeStamp2());
+        entity.setCreatedBy(formBean.getCreatedBy2());
+        /*entity.setModifiedTimestamp(new Date());
+        entity.setModifiedBy(commonUtils.getUserNameFromSession());*/
+
+        return entity;
+    }
+    //end
+
     private OrderBean transformToFormBeanOrder(Orders order) {
 
         OrderBean orderBean = new OrderBean();
@@ -779,48 +903,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         return orderBean;
     }
 
-//    tentative
-
-//    private Orders transformToOrderEntityAddOtherInfo(OrderBean formBean){
-//
-//        Orders entity = new Orders();
-//
-//        entity.setServiceRequirement(formBean.getServiceRequirement());
-//        entity.setServiceMode(formBean.getModeOfService());
-//        entity.setServiceType(formBean.getServiceType());
-//        entity.setPaymentMode(formBean.getModeOfPayment());
-//
-//        Contacts contactShipperId = customerService.findContactById(formBean.getShipperContactId());
-//        Customer customerId = customerService.findCustomerById(contactShipperId.getReferenceId());
-//        entity.setCustomerId(customerId.getCustomerId());
-//
-//        entity.setPickupDate(new Timestamp((formBean.getPickupDate()).getTime()));
-//        entity.setDeliveryDate(new Timestamp((formBean.getDeliveryDate().getTime())));
-//        entity.setOriginationPort(formBean.getOriginationPort());
-//        entity.setDestinationPort(formBean.getDestinationPort());
-//        entity.setNotificationType(formBean.getNotifyBy());
-//        entity.setComments(formBean.getComments());
-//        entity.setShipperContactId(formBean.getShipperContactId());
-//        entity.setShipperAddressId(formBean.getShipperAddressId());
-//        entity.setConsigneeContactId(formBean.getConsigneeContactId());
-//        entity.setConsigneeAddressId(formBean.getConsigneeAddressId());
-//
-//        entity.setOrderId(0);
-//        entity.setOrderNumber("abc-123");
-//        entity.setOrderDate(new Date());
-//        entity.setOrderStatus("Pending");
-//        entity.setModifiedTimestamp(new Date());
-//        entity.setModifiedBy("Admin");
-//
-//       return  entity;
-//    }
-//
-//    private CustomerBean transformToCustomerFormBean(Customer customer) {
-//
-//        CustomerBean formBean = new CustomerBean();
-//        formBean.setCustomerName(customer.getCustomerName());
-//        return formBean;
-//    }
 
     private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
 
@@ -1040,6 +1122,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         portsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS);
         containerList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
         contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
+        addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
 
         containerQuantity = new ArrayList<Integer>();
         containerQuantity.add(1);
@@ -1508,5 +1591,29 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public List<Parameters> getContactTypeList() {
         return contactTypeList;
+    }
+
+    public List<Parameters> getAddressTypeList() {
+        return addressTypeList;
+    }
+
+    public void setAddressTypeList(List<Parameters> addressTypeList) {
+        this.addressTypeList = addressTypeList;
+    }
+
+    public AddressBean getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressBean address) {
+        this.address = address;
+    }
+
+    public ConsigneeBean getConsignee() {
+        return consignee;
+    }
+
+    public void setConsignee(ConsigneeBean consignee) {
+        this.consignee = consignee;
     }
 }
