@@ -41,7 +41,7 @@
 
                             <div class="col-lg-8">
                                 <s:textfield name="item.itemName" id="item.itemName" required="true"
-                                             cssClass="form-control" pattern="[A-Za-z]+" title="Must be letters only"/>
+                                             cssClass="form-control" pattern="[A-Za-z ]+" title="Must be letters only"/>
                             </div>
                         </div>
 

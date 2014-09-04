@@ -51,9 +51,11 @@
                                           style="margin-bottom: 15px !important;"
                                           name="order.serviceRequirement"
                                           list="serviceRequirementList"
-                                          id="order.serviceRequirement"
+                                          id="order_serviceRequirement"
                                           listKey="key"
                                           listValue="value"
+                                          required="true"
+                                          emptyOption="true"
                                 />
 
                             </div>
@@ -72,6 +74,8 @@
                                           listKey="key"
                                           listValue="value"
                                           value="orderBean.modeOfService"
+                                          required="true"
+                                          emptyOption="true"
                                 />
 
                             </div>
@@ -82,13 +86,15 @@
 
                             <div class="col-lg-10">
 
-                                <s:select id="order.freightType"
+                                <s:select id="order_freightType"
                                           cssClass="form-control"
                                           style="margin-bottom: 15px !important;"
                                           name="order.freightType"
                                           list="freightTypeList"
                                           listKey="key"
                                           listValue="value"
+                                          required="true"
+                                          emptyOption="true"
                                 />
 
                             </div>
@@ -99,13 +105,15 @@
 
                             <div class="col-lg-10">
 
-                                <s:select id="order.modeOfPayment"
+                                <s:select id="order_modeOfPayment"
                                           cssClass="form-control step1"
                                           style="margin-bottom: 15px !important;"
                                           name="order.modeOfPayment"
                                           list="modeOfPaymentList"
                                           listKey="key"
                                           listValue="value"
+                                          required="true"
+                                          emptyOption="true"
                                 />
 
                             </div>
@@ -126,6 +134,7 @@
                                           listValue="customerName"
                                           emptyOption="true"
                                           required="true"
+
                                 />
 
                             </div>
@@ -181,7 +190,7 @@
 
                         <div class="col-lg-9">
                             <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                      name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" />
+                                      name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>
                         </div>
 
                     </div>
@@ -190,7 +199,7 @@
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Comments </label>
 
                         <div class="col-lg-9">
-                            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important;" />
+                            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important;" id="Comments" />
                         </div>
                     </div>
 
@@ -357,7 +366,6 @@
 <div class="modal fade" id="createContact" role="form" aria-labelledby="myModalLabel1">
     <div class="modal-dialog modal-form">
         <div class="modal-content">
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" id="myModalLabel1">Add Contact Person</h4>
@@ -366,11 +374,11 @@
             <div class="modal-body">
                 <div class="panel-body">
                     <s:form action="addCustomerContact" cssClass="form-horizontal" theme="bootstrap">
-                        <%--<s:textfield name="contact.referenceId" id="custIdHolder"></s:textfield>--%>
+                        <s:hidden name="contact.referenceId" id="custIdHolder"/>
                         <%--<label>Contact Type.<span class="asterisk_red"></span></label>--%>
-                                    <%--&lt;%&ndash;<s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"&ndash;%&gt;--%>
-                                              <%--&lt;%&ndash;listKey="key" listValue="value" cssClass="form-control"&ndash;%&gt;--%>
-                                              <%--&lt;%&ndash;value="contact.contactType" emptyOption="true"/>&ndash;%&gt;--%>
+                                    <%--<%--<s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"--%>
+                                              <%--<%--listKey="key" listValue="value" cssClass="form-control"--%>
+                                              <%--<%--value="contact.contactType" emptyOption="true"/>--%>
                         <label>Last name<span class="asterisk_red"></span></label>
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                  id="contact.lastName" required="true" maxLength="30" autofocus="true"
@@ -403,7 +411,7 @@
                         <label>Position<span class="asterisk_red"></span></label>
                             <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
                                      type="text" required="true"/>
-                    </s:form>
+
                 </div>
             </div>
 
@@ -412,7 +420,7 @@
                     <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                 </div>
             </div>
-
+            </s:form>
         </div>
     </div>
 </div>
@@ -865,8 +873,8 @@ $(document).ready(function() {
         }
     }
 
-    var sReq = select = document.getElementById('order.serviceRequirement');
-    var sType = select = document.getElementById('order.freightType');
+    var sReq = select = document.getElementById('order_serviceRequirement');
+    var sType = select = document.getElementById('order_freightType');
     var sMode = select = document.getElementById('order_modeOfService');
 
     sReq.onchange = function() {
@@ -923,13 +931,145 @@ function getId(){
 $(document).ready(function(){
     $("#idCustomer").click(function(){
         var custId = $("#customerName").val();
+        getThis();
         if (custId == "" || null ){
             alert("Select a customer first");
             $("#customerName").focus();
            return false;
         }
-//        alert(custId);
       $("#custIdHolder").val(custId);
     });
 });
+
+function getThis(){
+    var ServiceReqField = $("#order_serviceRequirement").val();
+    var ServiceModeField =$("#order_modeOfService").val();
+    var FreightTypeField = $("#order_freightType").val();
+    var PaymentModeField = $("#order_modeOfPayment").val();
+    var CustNameField = $("#customerName").val();
+    var Pickdatefield = $("#datepicker1").val();
+    var Deldatefield = $("#datepicker2").val();
+    var OriginPortField = $("#select1").val();
+    var DestinationPortField = $("#select2").val();
+    var NotificationField = $("#notification_type").val();
+    var CommentsField = $("#Comments").val();
+
+
+    localStorage.setItem("ServiceReqField",ServiceReqField);
+    localStorage.setItem("ServiceModeField",ServiceModeField);
+    localStorage.setItem("FreightTypeField",FreightTypeField);
+    localStorage.setItem("PaymentModeField",PaymentModeField);
+    localStorage.setItem("CustNameField", CustNameField);
+    localStorage.setItem("Pickdatefield",Pickdatefield);
+    localStorage.setItem("Deldatefield",Deldatefield);
+    localStorage.setItem("OriginPortField",OriginPortField);
+    localStorage.setItem("DestinationPortField",DestinationPortField);
+    localStorage.setItem("NotificationField",NotificationField);
+    localStorage.setItem("CommentsField",CommentsField);
+
+}
+function setThis()
+{
+    $("#order_serviceRequirement").val(localStorage.getItem("ServiceReqField"));
+    $("#order_modeOfService").val(localStorage.getItem("ServiceModeField"));
+    $("#order_freightType").val(localStorage.getItem("FreightTypeField"));
+    $("#order_modeOfPayment").val(localStorage.getItem("PaymentModeField"));
+    $("#customerName").val(localStorage.getItem("CustNameField"));
+    $("#datepicker1").val(localStorage.getItem("Pickdatefield"));
+    $("#datepicker2").val(localStorage.getItem("Deldatefield"));
+    $("#select1").val(localStorage.getItem("OriginPortField"));
+    $("#select2").val(localStorage.getItem("DestinationPortField"));
+    $("#notification_type").val(localStorage.getItem("NotificationField"));
+    $("#Comments").val(localStorage.getItem("CommentsField"));
+}
+
+$(document).ready(function(){
+    $(window).load(function(){
+//        sets the form values
+        setThis();
+
+        var custId = $("#customerName").val();
+
+        $.getJSON('customerAction', {
+                    customerID : custId
+                },
+                function(jsonResponse) {
+                    /*alert(jsonResponse.dummyMsg);*/
+
+                    $('#ajaxResponse').text(jsonResponse.dummyMsg);
+
+                    var select = $('#shipperContact');
+
+                    select.find('option').remove();
+
+                    var select2 = $('#shipperAddress');
+
+                    select2.find('option').remove();
+
+                    var select3 = $('#shipperConsignee');
+
+                    select3.find('option').remove();
+
+                    var select4 = $('#consigneeAddress');
+
+                    select4.find('option').remove();
+
+                    // populate customer consignee list
+                    $.each(jsonResponse.customerContactsMap, function(key, value) {
+
+                        $('<option>').val(key).text(value).appendTo(select);
+
+                    });
+                    // populate customer address list
+                    $.each(jsonResponse.customerAddressMap, function(key, value) {
+
+                        if($("#order_modeOfService").val() == 'DOOR TO PIER') {
+                            $("#shipperAddress").prop('disabled', false);
+                            $("#consigneeAddress").prop('disabled', true);
+                            $('<option>').val(key).text(value).appendTo(select2);
+                        }else if ($("#order_modeOfService").val() == 'PIER TO DOOR') {
+                            $("#shipperAddress").prop('disabled', true);
+                            $("#consigneeAddress").prop('disabled', false);
+                        }else if ($("#order_modeOfService").val() == 'PIER TO PIER'){
+                            $("#consigneeAddress").prop('disabled', true);
+                            $("#shipperAddress").prop('disabled', true);
+                        }else{
+                            $("#shipperAddress").prop('disabled', false);
+                            $("#consigneeAddress").prop('disabled', false);
+                            $('<option>').val(key).text(value).appendTo(select2);
+                        }
+
+                    });
+                    // populate customer consignee list
+                    $.each(jsonResponse.customerConsigneeMap, function(key, value) {
+                        //alert($("#shipperConsignee").val());
+
+                        if($("#shipperConsignee").val() != ''){
+                            //$('<option>').val(null).text("").appendTo(select3);
+                            $('<option>').val(key).text(value).appendTo(select3);
+                        }else{
+                            $('<option>').val(key).text(value).appendTo(select3);
+                        }
+                    });
+
+                    // populate customer address list
+                    $.each(jsonResponse.consigneeAddressMap, function(key, value) {
+                        //alert($("#consigneeAddress").val());
+
+                        if($("#consigneeAddress").val() != ''){
+                            if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER'){
+                                $('<option>').val(null).text("").appendTo(select4);
+                            }
+                            $('<option>').val(key).text(value).appendTo(select4);
+                        }else{
+                            $('<option>').val(key).text(value).appendTo(select4);
+                        }
+                    });
+                });
+
+        localStorage.clear();
+    });
+});
+
+
 </script>
