@@ -5,13 +5,25 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-                <h1><i class="fa fa-truck"></i> Inland Freight Planning : Containers / Items</h1>
+
+                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                    <h1><i class="fa fa-truck"></i> Inland Freight Planning : Containers</h1>
+                </s:if>
+                <s:else>
+                    <h1><i class="fa fa-truck"></i> Inland Freight Planning : Items</h1>
+                </s:else>
             </span>
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Inland Freight Planning : Orders  </a></li>
-            <li class="active"> Inland Freight Planning : Containers / Items</li>
+            <%--<li class="active"> Inland Freight Planning : Containers / Items</li>--%>
+            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <li class="active"> Inland Freight Planning : Containers </li>
+            </s:if>
+            <s:else>
+                <li class="active"> Inland Freight Planning : Items</li>
+            </s:else>
         </ol>
     </div>
 </div>
@@ -27,16 +39,57 @@
 
 <div class="row">
 
-        <div class="col-lg-12">
-            <div class="panel panel-primary">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
 
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        <i class="fa fa-list"></i> Inland Freight Operations
-                    </h3>
-                </div>
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <i class="fa fa-list"></i> Inland Freight Operations
+                </h3>
+            </div>
 
-                <div class="panel-body">
+            <div class="panel-body">
+
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-book"></i>
+                            <span class="panel-title">Booking Information</span>
+                        </div>
+                        <div class="panel-body form-horizontal">
+                            <div class="form-group">
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking Number</label>
+                                <div class="col-lg-10">
+                                    <s:textfield cssClass="form-control" value="%{order.orderNumber}" name="book-num" disabled="true"></s:textfield>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Mode</label>
+                                <div class="col-lg-10">
+                                    <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num" disabled="true"></s:textfield>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Type</label>
+                                <div class="col-lg-10">
+                                    <s:textfield cssClass="form-control" value="%{order.serviceRequirement}" name="book-num" disabled="true"></s:textfield>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer Name</label>
+                                <div class="col-lg-10">
+                                    <s:textfield cssClass="form-control" value="%{order.customerName}" name="book-num" disabled="true"></s:textfield>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Consignee Name</label>
+                                <div class="col-lg-10">
+                                    <s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num" disabled="true"></s:textfield>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <s:hidden value="%{orderNoParam}" />
                     <div class="table-responsive">
                         <display:table id="orderItem" name="orderItems"
@@ -65,7 +118,7 @@
                                     <i class="fa fa-edit"></i>
                                 </s:a>
 
-                                <s:url var="viewInfoUrl" action="viewInfo">
+                                <s:url var="viewInfoUrl" action="viewInlandFreightInfo">
                                     <s:param name="orderItemIdParam"
                                              value="#attr.orderItem.orderItemId">
                                     </s:param>
@@ -77,16 +130,13 @@
                                      title="Show Information">
                                     <i class="fa fa-info-circle"></i>
                                 </s:a>
-
                             </display:column></td>
-
                         </display:table>
                     </div>
                 </div>
-
             </div>
         </div>
-
+    </div>
 </div>
 
 <script>

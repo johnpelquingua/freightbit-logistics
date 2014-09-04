@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Clarence C. Victoria
-  Date: 8/26/14
-  Time: 10:19 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>

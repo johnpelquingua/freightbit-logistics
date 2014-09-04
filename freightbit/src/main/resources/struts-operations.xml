@@ -145,6 +145,22 @@
         <action name="viewInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfo">
             <result name="success" type="tiles">operations.viewInfo.tiles</result>
         </action>
+
+        <action name="viewInlandFreightInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfo">
+            <result name="success" type="tiles">operations.viewInlandFreightInfo.tiles</result>
+        </action>
+
+        <action name="viewSeaFreightInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfo">
+            <result name="success" type="tiles">operations.viewSeaFreightInfo.tiles</result>
+        </action>
+
+        <action name="viewInfoOrderInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfoOrderInland">
+            <result name="success" type="tiles">operations.viewInfoOrderInland.tiles</result>
+        </action>
+
+        <action name="viewInfoOrderSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfoOrderSea">
+            <result name="success" type="tiles">operations.viewInfoOrderSea.tiles</result>
+        </action>
         <!--Operations ends here-->
 
         <action name="checkStatus" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkStatus">

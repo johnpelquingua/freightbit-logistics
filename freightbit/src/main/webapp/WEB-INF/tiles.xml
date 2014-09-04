@@ -100,6 +100,26 @@
         <put-attribute name="body" value="/operations/planningInfo.jsp"/>
     </definition>
 
+    <definition name="operations.viewSeaFreightInfo.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Sea Freight Planning"/>
+        <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanningInfo.jsp"/>
+    </definition>
+
+    <definition name="operations.viewInlandFreightInfo.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Inland Freight Planning"/>
+        <put-attribute name="body" value="/operations/inland_freight/inlandFreightPlanningInfo.jsp"/>
+    </definition>
+
+    <definition name="operations.viewInfoOrderInland.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Booking Information"/>
+        <put-attribute name="body" value="/operations/inland_freight/inlandFreightBookingInfo.jsp"/>
+    </definition>
+
+    <definition name="operations.viewInfoOrderSea.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Booking Information"/>
+        <put-attribute name="body" value="/operations/sea_freight/seaFreightBookingInfo.jsp"/>
+    </definition>
+
     <!--OPERATION module ends-->
 
     <!-- DOCUMENTATION module begin -->

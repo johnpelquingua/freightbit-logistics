@@ -3,11 +3,14 @@ package com.sr.apps.freightbit.operations.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+import com.sr.apps.freightbit.common.formbean.AddressBean;
+import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.operations.formbean.OperationsBean;
 import com.sr.apps.freightbit.operations.formbean.VesselScheduleBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
+import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
@@ -53,6 +56,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OperationsBean operationsBean = new OperationsBean();
     private OrderBean order = new OrderBean();
+    private ContactBean contact = new ContactBean();
+    private AddressBean address = new AddressBean();
 
     private OperationsService operationsService;
     private VendorService vendorService;
@@ -207,15 +212,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 
         if ("PLANNING 1".equals(entity.getStatus())) {
-
             return "PLANNING1";
-
         } else if ("PLANNING 2".equals(entity.getStatus())) {
-
             return "PLANNING2";
-
         } else {
-
             return "PLANNING3";
         }
     }
@@ -232,7 +232,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String viewFreightItemList() {
+
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
 
         orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
 
@@ -245,7 +249,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String viewFreightItemListLand() {
+    public String viewFreightItemListLand( ) {
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
         orderItemsList = operationsService.findAllOrderItemsByOrderIdLand(orderIdParam);
@@ -273,6 +277,48 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String viewInfoOrderInland() {
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(orderIdParam);
+        // display item listing in table
+        for (OrderItems orderItemElem : orderItemEntityList) {
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
+        return SUCCESS;
+    }
+
+    public String viewInfoOrderSea() {
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(orderIdParam);
+        // display item listing in table
+        for (OrderItems orderItemElem : orderItemEntityList) {
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
+        return SUCCESS;
+    }
+
+    private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
+
+        OrderItemsBean orderItemBean = new OrderItemsBean();
+
+        orderItemBean.setOrderItemId(orderItem.getOrderItemId());
+        orderItemBean.setQuantity(orderItem.getQuantity());
+        orderItemBean.setNameSize(orderItem.getNameSize());
+        orderItemBean.setWeight(orderItem.getWeight());
+        orderItemBean.setVolume(orderItem.getVolume());
+        orderItemBean.setClassification(orderItem.getClassification());
+        orderItemBean.setDescription(orderItem.getCommodity());
+        orderItemBean.setRate(orderItem.getRate());
+        orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
+        orderItemBean.setRemarks(orderItem.getComments());
+
+        return orderItemBean;
+    }
+
     public String listVendorDriverAndTrucks() {
         List<Driver> driverList = vendorService.findDriverByVendorId(vendorId);
         List<Trucks> trucksList = vendorService.findTrucksByVendorId(vendorId);
@@ -291,7 +337,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public OrderBean transformToOrderFormBean(Orders entity) {
 
         OrderBean formBean = new OrderBean();
-        formBean.setOrderNo(entity.getOrderNumber());
+        formBean.setOrderNumber(entity.getOrderNumber());
         //get shipper's name
         Contacts shipperContactName = customerService.findContactById(entity.getShipperContactId());
         Customer customerName = customerService.findCustomerById(shipperContactName.getReferenceId());
@@ -305,6 +351,74 @@ public class OperationsAction extends ActionSupport implements Preparable {
         //formBean.setConsigneeCode(entity.getConsigneeCode());
         formBean.setOrderId(entity.getOrderId());
         formBean.setOrderStatus(entity.getOrderStatus());
+        formBean.setFreightType(entity.getServiceType());
+        formBean.setOriginationPort(entity.getOriginationPort());
+        formBean.setModeOfPayment(entity.getPaymentMode());
+        formBean.setNotifyBy(entity.getNotificationType());
+        formBean.setOrderDate(entity.getOrderDate());
+        formBean.setDestinationPort(entity.getDestinationPort());
+        formBean.setRates(entity.getRates());
+        formBean.setComments(entity.getComments());
+        formBean.setPickupDate(entity.getPickupDate());
+        formBean.setDeliveryDate(entity.getDeliveryDate());
+
+        Contacts contactShipperName = customerService.findContactById(entity.getShipperContactId());
+
+        Customer shipperName = customerService.findCustomerById(contactShipperName.getReferenceId());
+
+        if (shipperName!=null) {
+            formBean.setCustomerId(shipperName.getCustomerId());
+            formBean.setCustomerName(shipperName.getCustomerName());
+        }else{
+            formBean.setCustomerId(0);
+            formBean.setCustomerName("NINJA TURTLES !!!");
+        }
+
+        //shipper contact info
+        Contacts contacts = customerService.findContactById(entity.getShipperContactId());
+            contact = new ContactBean();
+            contact.setName(getFullName(contacts.getLastName(), contacts.getFirstName(), contacts.getMiddleName()));
+            contact.setPhone(contacts.getPhone());
+            contact.setEmail(contacts.getEmail());
+            contact.setFax(contacts.getFax());
+            contact.setMobile(contacts.getMobile());
+            formBean.setShipperInfoContact(contact);
+
+        //get shipper address
+        if (order.getShipperAddressId()!=null) {
+            Address addresses = customerService.findAddressById(entity.getShipperAddressId());
+            address = new AddressBean();
+            address.setAddress(getAddress(addresses));
+            formBean.setShipperInfoAddress(address);
+        }else{
+            address = new AddressBean();
+            address.setAddress("NONE");
+            formBean.setShipperInfoAddress(address);
+        }
+
+        //consignee Info
+        Contacts consigneeContact = customerService.findContactById(entity.getConsigneeContactId());
+
+            contact = new ContactBean();
+            contact.setName(getFullName(consigneeContact.getLastName(), consigneeContact.getFirstName(), consigneeContact.getMiddleName()));
+            contact.setPhone(consigneeContact.getPhone());
+            contact.setEmail(consigneeContact.getEmail());
+            contact.setFax(consigneeContact.getFax());
+            contact.setMobile(consigneeContact.getMobile());
+            formBean.setConsigneeInfoContact(contact);
+
+        // consignee address
+        if (order.getConsigneeAddressId()!=null) {
+            Address consigneeAddress = customerService.findAddressById(entity.getConsigneeAddressId());
+            address = new AddressBean();
+            address.setAddress(getAddress(consigneeAddress));
+            formBean.setConsigneeInfoAddress(address);
+        }else{
+            address = new AddressBean();
+            address.setAddress("NONE");
+            formBean.setConsigneeInfoAddress(address);
+        }
+
         return formBean;
     }
 
@@ -500,6 +614,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return fullName.toString();
     }
 
+    private String getAddress(Address address) {
+        StringBuilder fullAddress = new StringBuilder("");
+        if (StringUtils.isNotBlank(address.getAddressLine1()))
+            fullAddress.append(address.getAddressLine1() + " ");
+        if (StringUtils.isNotBlank(address.getAddressLine2()))
+            fullAddress.append(address.getAddressLine2() + " ");
+        if (StringUtils.isNotBlank(address.getCity()))
+            fullAddress.append(address.getCity() + " ");
+        if (StringUtils.isNotBlank(address.getState()))
+            fullAddress.append(address.getState() + " ");
+        if (StringUtils.isNotBlank(address.getZip()))
+            fullAddress.append(address.getZip());
+        return fullAddress.toString();
+    }
+
     public Integer getOrderIdParam() {
         return orderIdParam;
     }
@@ -690,5 +819,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
+    }
+
+    public ContactBean getContact() {
+        return contact;
+    }
+
+    public void setContact(ContactBean contact) {
+        this.contact = contact;
+    }
+
+    public AddressBean getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressBean address) {
+        this.address = address;
     }
 }

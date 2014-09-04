@@ -31,13 +31,16 @@
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
 
-                        <td><display:column property="orderNo" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
                         <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
                         <td><display:column property="serviceRequirement" title="Service Requirement <i class='fa fa-sort' />"
@@ -62,7 +65,7 @@
                                 <i class="fa fa-edit"></i>
                             </s:a>
 
-                            <s:url var="viewInfoOrderUrl" action="../orders/viewInfoOrder">
+                            <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderInland">
                                 <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                             </s:url>
                             <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
@@ -87,22 +90,22 @@
         if (tbl != null) {
             for (var i = 0; i < tbl.rows.length; i++) {
 
-                if (tbl.rows[i].cells[5].innerHTML == "PENDING") {
+                if (tbl.rows[i].cells[6].innerHTML == "PENDING") {
                     /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
                     for (var j = 0; j < tbl.rows[i].cells.length; j++) {
                         tbl.rows[i].cells[j].style.backgroundColor = "#fcf8e3";
-                        tbl.rows[i].cells[6].innerHTML= "<i class='fa fa-ban'></i>";
+                        tbl.rows[i].cells[7].innerHTML= "<i class='fa fa-ban'></i>";
                     }
                 }
-                if (tbl.rows[i].cells[5].innerHTML == "DISAPPROVED" || tbl.rows[i].cells[5].innerHTML == "CANCELLED") {
+                if (tbl.rows[i].cells[6].innerHTML == "DISAPPROVED" || tbl.rows[i].cells[5].innerHTML == "CANCELLED") {
                     /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
                     for (var j = 0; j < tbl.rows[i].cells.length; j++) {
                         tbl.rows[i].cells[j].style.backgroundColor = "#f2dede";
-                        tbl.rows[i].cells[6].innerHTML= "<i class='fa fa-ban'></i>";
+                        tbl.rows[i].cells[7].innerHTML= "<i class='fa fa-ban'></i>";
                     }
                 }
 
-                if (tbl.rows[i].cells[5].innerHTML == "APPROVED" || tbl.rows[i].cells[5].innerHTML == "SERVICE ACCOMPLISHED") {
+                if (tbl.rows[i].cells[6].innerHTML == "APPROVED" || tbl.rows[i].cells[5].innerHTML == "SERVICE ACCOMPLISHED") {
                     /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
                     for (var j = 0; j < tbl.rows[i].cells.length; j++) {
                         tbl.rows[i].cells[j].style.backgroundColor = "#dff0d8";
