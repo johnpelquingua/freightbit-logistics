@@ -28,6 +28,7 @@ public class OrderItemsBean {
     private String vendorOrigin;
     private String vendorDestination;
     private String finalPickupDate;
+    private String finalDeliveryDate;
     private String driverOrigin;
     private String driverDestination;
     private String truckOrigin;
@@ -303,5 +304,13 @@ public class OrderItemsBean {
 
     public void setVesselScheduleId(String vesselScheduleId) {
         this.vesselScheduleId = vesselScheduleId;
+    }
+
+    public String getFinalDeliveryDate() {
+        return finalDeliveryDate;
+    }
+
+    public void setFinalDeliveryDate(String finalDeliveryDate) {
+        this.finalDeliveryDate = finalDeliveryDate;
     }
 }

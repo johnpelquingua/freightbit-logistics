@@ -78,6 +78,29 @@
         </div>
 
     </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="fa fa-anchor"></i>
+            <span class="panel-title">Sea Operation</span>
+        </div>
+        <div class="panel-body form-horizontal">
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                <div class="col-lg-10">
+                    <s:textfield cssClass="form-control" value="%{orderItem.vendorSea}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Voyage Number </label>
+                <div class="col-lg-10">
+                    <s:textfield cssClass="form-control" value="%{orderItem.vesselScheduleId}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+        </div>
+
+    </div>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-truck"></i>
@@ -103,15 +126,7 @@
                     <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
                     <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
                     <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
-                    <%--<div class="form-group">
 
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Booking Number</label>
-
-                        <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" value="%{orderItem.orderId}" name="order.orderId" disabled="true"></s:textfield>
-                        </div>
-
-                    </div>--%>
                     <s:hidden value="%{orderItem.orderId}" name="order.orderId"/>
                     <div class="form-group">
 
@@ -194,7 +209,7 @@
                     </div>
 
                 <div style="float: right;">
-                    <button class="btn btn-primary" >Save</button>
+                    <s:submit cssClass="btn btn-primary" ></s:submit>
                 </div>
 
                 </s:form>

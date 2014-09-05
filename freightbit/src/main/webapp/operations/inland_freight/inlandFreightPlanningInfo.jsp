@@ -187,7 +187,7 @@
 
             <div class="form-group">
 
-                <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
 
                 <div class="col-lg-10">
                     <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />

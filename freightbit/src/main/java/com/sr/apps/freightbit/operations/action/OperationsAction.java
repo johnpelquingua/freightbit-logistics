@@ -126,11 +126,16 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String editOrderItemsOrigin() {
+        System.out.println("<---------------------Update Orderitem failed-----------------------> \n");
+
         try {
             OrderItems entity = transformOrderItemToEntityBeanOrigin(operationsBean);
             operationsService.updateOrderItem(entity);
+            System.out.println("<---------------------Update Orderitem failed-----------------------> \n");
+
         } catch (Exception e) {
-            log.error("Update Orderitem failed", e);
+            log.error( e.getMessage());
+            System.out.println("<---------------------Update Orderitem failed-----------------------> \n");
             return INPUT;
         }
 
@@ -169,12 +174,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("weight", operationsBean.getWeight());
         sessionAttributes.put("status", "PLANNING 2");
         sessionAttributes.put("vendorSea", operationsBean.getVendorList());
-
-        System.out.println("<------------------Client ID: " + sessionAttributes.get("clientId") + "-----> \n \n");
-        System.out.println("<------------------Client ID: " + operationsBean.getClientId() + "-----> \n \n");
-        System.out.println("<------------------VendorList: " + operationsBean.getVendorList() + "-----> \n \n");
-        System.out.println("<------------------Commodity: " + operationsBean.getCommodity() + "-----> \n \n");
-        System.out.println("<------------------VendorSea: " + operationsBean.getVendorList() + "-----> \n \n");
 
         List<VesselSchedules> vesselSchedulesList = new ArrayList<VesselSchedules>();
 
@@ -284,7 +283,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(orderIdParam);
         // display item listing in table
         for (OrderItems orderItemElem : orderItemEntityList) {
-            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+            orderItems.add(transformToOrderItemFormBean(orderItemElem));
         }
         return SUCCESS;
     }
@@ -296,28 +295,28 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(orderIdParam);
         // display item listing in table
         for (OrderItems orderItemElem : orderItemEntityList) {
-            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+            orderItems.add(transformToOrderItemFormBean(orderItemElem));
         }
         return SUCCESS;
     }
 
-    private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
-
-        OrderItemsBean orderItemBean = new OrderItemsBean();
-
-        orderItemBean.setOrderItemId(orderItem.getOrderItemId());
-        orderItemBean.setQuantity(orderItem.getQuantity());
-        orderItemBean.setNameSize(orderItem.getNameSize());
-        orderItemBean.setWeight(orderItem.getWeight());
-        orderItemBean.setVolume(orderItem.getVolume());
-        orderItemBean.setClassification(orderItem.getClassification());
-        orderItemBean.setDescription(orderItem.getCommodity());
-        orderItemBean.setRate(orderItem.getRate());
-        orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
-        orderItemBean.setRemarks(orderItem.getComments());
-
-        return orderItemBean;
-    }
+//    private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
+//
+//        OrderItemsBean orderItemBean = new OrderItemsBean();
+//
+//        orderItemBean.setOrderItemId(orderItem.getOrderItemId());
+//        orderItemBean.setQuantity(orderItem.getQuantity());
+//        orderItemBean.setNameSize(orderItem.getNameSize());
+//        orderItemBean.setWeight(orderItem.getWeight());
+//        orderItemBean.setVolume(orderItem.getVolume());
+//        orderItemBean.setClassification(orderItem.getClassification());
+//        orderItemBean.setDescription(orderItem.getCommodity());
+//        orderItemBean.setRate(orderItem.getRate());
+//        orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
+//        orderItemBean.setRemarks(orderItem.getComments());
+//
+//        return orderItemBean;
+//    }
 
     public String listVendorDriverAndTrucks() {
         List<Driver> driverList = vendorService.findDriverByVendorId(vendorId);
@@ -376,13 +375,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         //shipper contact info
         Contacts contacts = customerService.findContactById(entity.getShipperContactId());
-            contact = new ContactBean();
-            contact.setName(getFullName(contacts.getLastName(), contacts.getFirstName(), contacts.getMiddleName()));
-            contact.setPhone(contacts.getPhone());
-            contact.setEmail(contacts.getEmail());
-            contact.setFax(contacts.getFax());
-            contact.setMobile(contacts.getMobile());
-            formBean.setShipperInfoContact(contact);
+        contact = new ContactBean();
+        contact.setName(getFullName(contacts.getLastName(), contacts.getFirstName(), contacts.getMiddleName()));
+        contact.setPhone(contacts.getPhone());
+        contact.setEmail(contacts.getEmail());
+        contact.setFax(contacts.getFax());
+        contact.setMobile(contacts.getMobile());
+        formBean.setShipperInfoContact(contact);
 
         //get shipper address
         if (order.getShipperAddressId()!=null) {
@@ -399,13 +398,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         //consignee Info
         Contacts consigneeContact = customerService.findContactById(entity.getConsigneeContactId());
 
-            contact = new ContactBean();
-            contact.setName(getFullName(consigneeContact.getLastName(), consigneeContact.getFirstName(), consigneeContact.getMiddleName()));
-            contact.setPhone(consigneeContact.getPhone());
-            contact.setEmail(consigneeContact.getEmail());
-            contact.setFax(consigneeContact.getFax());
-            contact.setMobile(consigneeContact.getMobile());
-            formBean.setConsigneeInfoContact(contact);
+        contact = new ContactBean();
+        contact.setName(getFullName(consigneeContact.getLastName(), consigneeContact.getFirstName(), consigneeContact.getMiddleName()));
+        contact.setPhone(consigneeContact.getPhone());
+        contact.setEmail(consigneeContact.getEmail());
+        contact.setFax(consigneeContact.getFax());
+        contact.setMobile(consigneeContact.getMobile());
+        formBean.setConsigneeInfoContact(contact);
 
         // consignee address
         if (order.getConsigneeAddressId()!=null) {
@@ -443,24 +442,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setStatus(entity.getStatus());
         formBean.setWeight(entity.getWeight());
         formBean.setVendorSea(entity.getVendorSea());
-
-        if (entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin())) {
-            formBean.setVendorDestination("");
-        } else {
-            formBean.setVendorOrigin(vendorService.findVendorById(Integer.parseInt(entity.getVendorOrigin())).getVendorCode());
-        }
-
-        if (entity.getVendorDestination() == null || "".equals(entity.getVendorDestination())) {
-            formBean.setVendorDestination("");
-        } else {
-            formBean.setVendorDestination(vendorService.findVendorById(Integer.parseInt(entity.getVendorDestination())).getVendorCode());
-        }
-
-        if (entity.getVendorSea() == null || "".equals(entity.getVendorSea())) {
-            formBean.setVendorSea("");
-        } else {
-            formBean.setVendorSea(vendorService.findVendorById(Integer.parseInt(entity.getVendorSea())).getVendorCode());
-        }
+        formBean.setVendorOrigin(entity.getVendorOrigin());
+        formBean.setVendorDestination(entity.getVendorDestination());
+        formBean.setVendorSea(entity.getVendorSea());
 
         if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId())) {
             formBean.setVesselScheduleId("");
@@ -469,6 +453,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         formBean.setFinalPickupDate(entity.getFinalPickupDate());
+        formBean.setFinalDeliveryDate(entity.getFinalDeliveryDate());
         formBean.setDriverOrigin(entity.getDriverOrigin());
         formBean.setDriverDestination(entity.getDriverDestination());
         formBean.setTruckOrigin(entity.getTruckOrigin());
@@ -522,34 +507,51 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return entity;
     }
 
-    public OrderItems transformOrderItemToEntityBeanOrigin (OperationsBean formBean) {
+    public OrderItems transformOrderItemToEntityBeanOrigin (OperationsBean operationsBean) {
         OrderItems entity = new OrderItems();
-        entity.setVendorOrigin(formBean.getVendorListOrigin().toString());
-        entity.setFinalPickupDate(formBean.getPickupDate());
-        entity.setOrderItemId(formBean.getOrderItemId());
-        entity.setClientId(formBean.getClientId());
-        entity.setNameSize(formBean.getNameSize());
-        entity.setOrderId(formBean.getOrderId());
-        entity.setQuantity(formBean.getQuantity());
-        entity.setClassification(formBean.getClassification());
-        entity.setCommodity(formBean.getCommodity());
-        entity.setDeclaredValue(formBean.getDeclaredValue());
-        entity.setComments(formBean.getComments());
-        entity.setRate(formBean.getRate());
-        entity.setCreatedBy(formBean.getCreatedBy());
-        entity.setModifiedBy(formBean.getModifiedBy());
-        entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
-        entity.setModifiedTimestamp(formBean.getModifiedTimestamp());
-        entity.setWeight(formBean.getWeight());
+        entity.setVendorOrigin(operationsBean.getVendorListOrigin().toString());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getVendorListOrigin() + "\n");
+        entity.setFinalPickupDate(operationsBean.getPickupDate());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getPickupDate() + "\n");
+        entity.setOrderItemId(operationsBean.getOrderItemId());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getOrderItemId() + "\n");
+        entity.setClientId(operationsBean.getClientId());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getClientId() + "\n");
+        entity.setNameSize(operationsBean.getNameSize());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getNameSize() + "\n");
+        entity.setOrderId(operationsBean.getOrderId());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getOrderId() + "\n");
+        entity.setQuantity(operationsBean.getQuantity());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getQuantity() + "\n");
+        entity.setClassification(operationsBean.getClassification());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getClassification() + "\n");
+        entity.setCommodity(operationsBean.getCommodity());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getCommodity() + "\n");
+        entity.setDeclaredValue(operationsBean.getDeclaredValue());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getDeclaredValue() + "\n");
+        entity.setComments(operationsBean.getComments());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getComments() + "\n");
+        entity.setRate(operationsBean.getRate());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getRate() + "\n");
+        entity.setCreatedBy(operationsBean.getCreatedBy());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getCreatedBy() + "\n");
+        entity.setModifiedBy(operationsBean.getModifiedBy());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getModifiedBy() + "\n");
+        entity.setCreatedTimestamp(operationsBean.getCreatedTimestamp());
+        entity.setModifiedTimestamp(operationsBean.getModifiedTimestamp());
+        entity.setWeight(operationsBean.getWeight());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getWeight() + "\n");
         entity.setStatus("PLANNING 3");
-        entity.setDriverOrigin(formBean.getDriverOrigin());
-        entity.setTruckOrigin(formBean.getTruckOrigin());
+        entity.setDriverOrigin(operationsBean.getDriverOrigin());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getDriverOrigin() + "\n");
+        entity.setTruckOrigin(operationsBean.getTruckOrigin());
+        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getTruckOrigin() + "\n");
         return entity;
     }
 
     public OrderItems transformOrderItemToEntityBeanDestination (OperationsBean formBean) {
         OrderItems entity = new OrderItems();
-        entity.setVendorDestination(formBean.getVendorListDestination().toString());
+        entity.setVendorDestination(vendorService.findVendorById(formBean.getVendorListDestination()).getVendorCode());
         entity.setFinalDeliveryDate(formBean.getDeliveryDate());
         entity.setOrderItemId(formBean.getOrderItemId());
         entity.setClientId(formBean.getClientId());
