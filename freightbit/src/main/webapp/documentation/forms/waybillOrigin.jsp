@@ -7,16 +7,22 @@
 --%>
 
 <!-- MIDDLE -->
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-    <h1 class="page-header">Document</h1>
-
+<div class="row">
+    <div class="col-lg-12">
+        <legend style="text-align: left;">
+            <span>
+                <h1><i class="fa fa-file-text"></i> Way Bill: Origin</h1>
+            </span>
+        </legend>
+    </div>
+    <!-- MAIN BOX -->
+</div>
     <!-- MAIN BOX -->
 
-    <div class="main-box">
-        <div class="panel booking panel-info">
+    <div class="row">
+        <div class="panel booking panel-primary">
             <div class="booking panel-heading">
-                <img src="images/document.png" class="box-icon">
+                <i class="fa fa-file-text"></i>
                 <span class="booking panel-title">Way Bill Origin</span>
             </div>
             <div class="panel-body">
@@ -27,15 +33,14 @@
                             <label for="shipper" class="col-sm-2 control-label" style="width:25%;">Shipper</label>
 
                             <div class="col-sm-10" style="width:70%;">
-                                <input type="text" class="form-control" id="shipper" value="RUSSEL'S COMPANY" disabled/>
+                                <input type="text" class="form-control" id="shipper"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="consignee" class="col-sm-2 control-label" style="width:25%;">Consignee</label>
 
                             <div class="col-sm-10" style="width:70%;">
-                                <input type="text" class="form-control" id="consignee" value="SOLUTIONS RESOURCE"
-                                       disabled/>
+                                <input type="text" class="form-control" id="consignee"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -43,8 +48,7 @@
                                 Address</label>
 
                             <div class="col-sm-10" style="width:70%;">
-                                <input type="text" class="form-control" id="pu-address"
-                                       value="123 Biglang Liko St. Quezon City" disabled/>
+                                <input type="text" class="form-control" id="pu-address"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -52,15 +56,14 @@
                                 Address</label>
 
                             <div class="col-sm-10" style="width:70%;">
-                                <input type="text" class="form-control" id="da-address"
-                                       value="123 Biglang Liko St. Dagupan" disabled/>
+                                <input type="text" class="form-control" id="da-address"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="type" class="col-sm-2 control-label" style="width:25%;">Type of Service</label>
 
                             <div class="col-sm-10" style="width:70%;">
-                                <input type="text" class="form-control" id="type" value="Door to Door" disabled/>
+                                <input type="text" class="form-control" id="type"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -94,40 +97,15 @@
                             </div>
                         </div>
 				  <span class="pull-right" style="margin-right:32px;">
-					<a href="#" class="btn btn-default" id="groups-btn" style="width:70px;">Back</a>
-					<button href="#" class="btn btn-default" id="groups-btn" style="width:70px;">Save</button>
-					<a href="#" class="btn btn-default" id="groups-btn" style="width:70px;">Print</a>
-				  </span>
+                        <a href="#" class="btn btn-default" id="groups-btn" style="width:70px;">Back</a>
+                        <button href="#" class="btn btn-primary" id="groups-btn" style="width:70px;">Save</button>
+                    </span>
+                    <span class="pull-left" style="margin-right:32px;">
+                        <a href="#" class="btn btn-default" id="groups-btn" style="width:70px;"><i class="fa fa-print"></i> Print</a>
+                    </span>
                     </form>
 
                 </div>
             </div>
         </div>
     </div>
-
-
-    <!-- END OF MAIN BOX -->
-
-    <!-- SIDEBAR -->
-
-    <div class="sidebar-box">
-        <div class="panel booking panel-info">
-            <div class="booking panel-heading">
-                <img src="images/calendar.png" class="box-icon">
-                <span class="booking panel-title">Other Documents</span>
-
-            </div>
-            <div class="panel-body">
-                <ul class="nav">
-                    <li><a href="#" class="balak">Way Bill Destination</a></li>
-                    <li><a href="#" class="balak">Acceptance Order</a></li>
-                    <li><a href="#" class="balak">Release Order</a></li>
-                    <li><a href="#" class="balak">Bill of Lading</a></li>
-                    <li><a href="#" class="balak">Load Manifest</a></li>
-                    <li><a href="#" class="balak">Authority to Load</a></li>
-                    <li><a href="#" class="balak">Authority to Withdraw</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>

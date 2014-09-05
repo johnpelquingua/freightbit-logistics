@@ -4,7 +4,7 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <package name="documents" namespace="/documentation" extends="struts-default">
+    <package name="documentation" namespace="/documentation" extends="struts-default">
 
         <result-types>
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
@@ -22,6 +22,26 @@
 
         <action name="viewArchivedDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewArchivedDocuments">
             <result name="success" type="tiles">documentation.viewArchivedDocuments.tiles</result>
+        </action>
+
+        <action name="viewAcceptanceReceipt" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewAcceptanceReceipt">
+            <result name="success" type="tiles">documentation.acceptanceReceipt.tiles</result>
+        </action>
+
+        <action name="viewBillOfLading" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewBillOfLading">
+            <result name="success" type="tiles">documentation.billOfLading.tiles</result>
+        </action>
+
+        <action name="viewWayBillOrigin" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewWayBillOrigin">
+            <result name="success" type="tiles">documentation.wayBillOrigin.tiles</result>
+        </action>
+
+        <action name="viewWayBillDestination" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewWayBillDestination">
+            <result name="success" type="tiles">documentation.wayBillDestination.tiles</result>
+        </action>
+
+        <action name="viewReleaseOrder" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewReleaseOrder">
+            <result name="success" type="tiles">documentation.releaseOrder.tiles</result>
         </action>
 
     </package>

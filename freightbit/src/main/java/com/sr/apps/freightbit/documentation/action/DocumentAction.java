@@ -57,6 +57,27 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
+    public String viewAcceptanceReceipt() {
+        return SUCCESS;
+    }
+
+    public String viewBillOfLading() {
+        return SUCCESS;
+    }
+
+    public String viewWayBillOrigin() {
+        return SUCCESS;
+    }
+
+    public String viewWayBillDestination() {
+        return SUCCESS;
+    }
+
+    public String viewReleaseOrder() {
+        return SUCCESS;
+    }
+
+
     public OrderBean transformOrdersToFormBean(Orders entity) {
         OrderBean formBean = new OrderBean();
         formBean.setOrderNumber(entity.getOrderNumber());

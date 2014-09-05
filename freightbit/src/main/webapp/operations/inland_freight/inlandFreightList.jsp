@@ -97,7 +97,7 @@
                         tbl.rows[i].cells[7].innerHTML= "<i class='fa fa-ban'></i>";
                     }
                 }
-                if (tbl.rows[i].cells[6].innerHTML == "DISAPPROVED" || tbl.rows[i].cells[5].innerHTML == "CANCELLED") {
+                if (tbl.rows[i].cells[6].innerHTML == "DISAPPROVED" || tbl.rows[i].cells[6].innerHTML == "CANCELLED") {
                     /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
                     for (var j = 0; j < tbl.rows[i].cells.length; j++) {
                         tbl.rows[i].cells[j].style.backgroundColor = "#f2dede";
@@ -105,7 +105,7 @@
                     }
                 }
 
-                if (tbl.rows[i].cells[6].innerHTML == "APPROVED" || tbl.rows[i].cells[5].innerHTML == "SERVICE ACCOMPLISHED") {
+                if (tbl.rows[i].cells[6].innerHTML == "APPROVED" || tbl.rows[i].cells[6].innerHTML == "SERVICE ACCOMPLISHED") {
                     /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
                     for (var j = 0; j < tbl.rows[i].cells.length; j++) {
                         tbl.rows[i].cells[j].style.backgroundColor = "#dff0d8";

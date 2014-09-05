@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="viewWayBillOrigin">
                 <div class="panel-footer">
                     <span class="pull-left">Create Waybill Origin</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="viewWayBillDestination">
                 <div class="panel-footer">
                     <span class="pull-left">Create Waybill Destination</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="viewAcceptanceReceipt">
                 <div class="panel-footer">
                     <span class="pull-left">Create Acceptance Receipt</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -102,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="viewReleaseOrder">
                 <div class="panel-footer">
                     <span class="pull-left">Create Release Order</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -132,7 +132,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="viewBillOfLading">
                 <div class="panel-footer">
                     <span class="pull-left">Create House Bill of Lading</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

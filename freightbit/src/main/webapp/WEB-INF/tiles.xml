@@ -139,6 +139,31 @@
         <put-attribute name="body" value="/documentation/archived_docs/viewArchivedDocuments.jsp"/>
     </definition>
 
+    <definition name="documentation.acceptanceReceipt.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Acceptance Receipt Form"/>
+        <put-attribute name="body" value="/documentation/forms/acceptanceReceipt.jsp"/>
+    </definition>
+
+    <definition name="documentation.billOfLading.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Bill of Lading"/>
+        <put-attribute name="body" value="/documentation/forms/billOfLading.jsp"/>
+    </definition>
+
+    <definition name="documentation.wayBillOrigin.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Way Bill Origin"/>
+        <put-attribute name="body" value="/documentation/forms/waybillOrigin.jsp"/>
+    </definition>
+
+    <definition name="documentation.wayBillDestination.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Bill of Destination"/>
+        <put-attribute name="body" value="/documentation/forms/waybillDestination.jsp"/>
+    </definition>
+
+    <definition name="documentation.releaseOrder.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Bill of Destination"/>
+        <put-attribute name="body" value="/documentation/forms/releaseOrder.jsp"/>
+    </definition>
+
     <!-- DOCUMENTATION module end -->
 
     <!-- CORE module tiles Begin-->
