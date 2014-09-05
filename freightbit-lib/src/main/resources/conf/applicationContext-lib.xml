@@ -50,6 +50,11 @@
 
     <bean id="parameterService" class="com.sr.biz.freightbit.common.service.impl.ParameterServiceImpl">
         <property name="parameterDao" ref="parameterDao"/>
+        <property name="vendorDao" ref="vendorDao"/>
+        <property name="orderDao" ref="orderDao"/>
+        <property name="customerDao" ref="customerDao"/>
+        <property name="contactsDao" ref="contactsDao"/>
+        <property name="addressDao" ref="addressDao"/>
     </bean>
 
     <bean id="userService" class="com.sr.biz.freightbit.core.service.impl.UserServiceImpl">

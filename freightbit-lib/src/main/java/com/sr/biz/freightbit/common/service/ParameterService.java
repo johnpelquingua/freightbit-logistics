@@ -18,5 +18,5 @@ public interface ParameterService {
 	public void deleteParameter(Parameters param);
 
 	public String updateParameters(List<Parameters> paramList, String referenceTable,
-			String referenceColumn);
+			String referenceColumn) throws Exception;
 }

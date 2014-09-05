@@ -18,6 +18,24 @@ import java.util.Map;
 public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDao {
 
     private static final Logger log = Logger.getLogger(ParameterDaoImpl.class);
+    
+    @Override
+    public Parameters findParameterById(Integer parameterId) {
+        log.debug("finding Parameter by Id");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Parameters p where p.parameterId = :parameterId");
+            query.setParameter("parameterId", parameterId);
+            List<Parameters> results = (List<Parameters>) query.list();
+            if (results != null && results.size() > 0) {
+            	return results.get(0);
+            } 
+            return null;
+        } catch (RuntimeException re) {
+            log.error("find by username failed", re);
+            throw re;
+        }
+    }
 
     @Override
     public List<Parameters> findParameterMapByRefColumn(String referenceColumn) {
@@ -78,8 +96,12 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
     public void deleteParameter(Parameters param) {
         log.debug("Removing parameter");
         try {
-            Session session = getSessionFactory().getCurrentSession();
-            session.delete(param);
+/*            Session session = getSessionFactory().getCurrentSession();
+            session.delete(param);*/
+    		Session session = getSessionFactory().getCurrentSession();
+    		Query query = session.createQuery("Delete from Parameters where parameterId = :parameterId");
+    		query.setParameter("parameterId", param.getParameterId());
+    		int result = query.executeUpdate();
             log.debug("Delete parameter successful");
         } catch (RuntimeException re) {
             log.error("Delete parameter failed", re);
@@ -111,6 +133,23 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
     	} catch (RuntimeException e) {
     		log.error("Adding parameters failed");
     	}
+    }
+    
+    @Override
+    public void updateParameter(Parameters param) {
+        log.debug("updating a Parameter");
+        try {
+    		Session session = getSessionFactory().getCurrentSession();
+    		Query query = session.createQuery("Update Parameters set value = :value, label = :label where parameterId = :parameterId");
+    		query.setParameter("value", param.getValue());
+    		query.setParameter("label", param.getValue());
+    		query.setParameter("parameterId", param.getParameterId());
+    		int result = query.executeUpdate();
+            log.debug("update successful");
+        } catch (RuntimeException re) {
+            log.error("update failed", re);
+            throw re;
+        }
     }
 
 }

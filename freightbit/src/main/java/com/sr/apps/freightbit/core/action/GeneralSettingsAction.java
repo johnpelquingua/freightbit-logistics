@@ -1,7 +1,9 @@
 package com.sr.apps.freightbit.core.action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -11,6 +13,7 @@ import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.core.exceptions.ParameterInUseException;
 
 public class GeneralSettingsAction extends ActionSupport implements Preparable {
 	
@@ -28,43 +31,63 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 	private String vendorTypeAdded;
 	private String contactTypeAdded;
 	private String addressTypeAdded;
+	private Map<String, String> vendorClassMap = new HashMap<String, String>();
 	
 	public String loadGeneralSettings() {
 		return SUCCESS;
 	}
 	
-	public String editGeneralSettings() {
+	public String editGeneralSettings() throws Exception {
 		List <Parameters> newVendorClassParamList = transformToParameterEntityBean(vendorClassAdded, ParameterConstants.VENDORS, ParameterConstants.VENDOR_CLASS);
 		List <Parameters> newCustomerTypeParamList = transformToParameterEntityBean(customerTypeAdded, ParameterConstants.CUSTOMERS, ParameterConstants.CUSTOMER_TYPE);
 		List <Parameters> newPortParamList = transformToParameterEntityBean(portsAdded, ParameterConstants.ORDER, ParameterConstants.PORTS);
 		List <Parameters> newVendorTypeParamList = transformToParameterEntityBean(vendorTypeAdded, ParameterConstants.VENDORS, ParameterConstants.VENDOR_TYPE);
 		List <Parameters> newContactTypeParamList = transformToParameterEntityBean(contactTypeAdded, ParameterConstants.CONTACTS, ParameterConstants.CONTACT_TYPE);
 		List <Parameters> newAddressTypeParamList = transformToParameterEntityBean(addressTypeAdded, ParameterConstants.ADDRESS, ParameterConstants.ADDRESS_TYPE);
-		parameterService.updateParameters(newVendorClassParamList, ParameterConstants.VENDORS, ParameterConstants.VENDOR_CLASS);
-		parameterService.updateParameters(newCustomerTypeParamList, ParameterConstants.CUSTOMERS, ParameterConstants.CUSTOMER_TYPE);
-		parameterService.updateParameters(newPortParamList, ParameterConstants.ORDER, ParameterConstants.PORTS);
-		parameterService.updateParameters(newVendorTypeParamList, ParameterConstants.VENDORS, ParameterConstants.VENDOR_TYPE);
-		parameterService.updateParameters(newContactTypeParamList, ParameterConstants.CONTACTS, ParameterConstants.CONTACT_TYPE);
-		parameterService.updateParameters(newAddressTypeParamList, ParameterConstants.ADDRESS, ParameterConstants.ADDRESS_TYPE);
+		try {
+			parameterService.updateParameters(newVendorClassParamList, ParameterConstants.VENDORS, ParameterConstants.VENDOR_CLASS);
+			parameterService.updateParameters(newCustomerTypeParamList, ParameterConstants.CUSTOMERS, ParameterConstants.CUSTOMER_TYPE);
+			parameterService.updateParameters(newPortParamList, ParameterConstants.ORDER, ParameterConstants.PORTS);
+			parameterService.updateParameters(newVendorTypeParamList, ParameterConstants.VENDORS, ParameterConstants.VENDOR_TYPE);
+			parameterService.updateParameters(newContactTypeParamList, ParameterConstants.CONTACTS, ParameterConstants.CONTACT_TYPE);
+			parameterService.updateParameters(newAddressTypeParamList, ParameterConstants.ADDRESS, ParameterConstants.ADDRESS_TYPE);
+		} catch (ParameterInUseException e) {
+			addActionError(e.getName());
+			addActionMessage(e.getName());
+			return INPUT;
+		} catch (Exception e) {
+			addActionError("Error updating fields");
+			return INPUT;
+		}
 		return SUCCESS;
 	}
 	
 	private List <Parameters> transformToParameterEntityBean(String parameterString, String referenceTable, String referenceColumn) {
-		String[] parameterArray = parameterString.split(",");
+		String[] parameterArray = parameterString.split(","); //{key:value}
 		List <Parameters> parameterList = new ArrayList<Parameters>();
 		for (int i=0; i<parameterArray.length; i++) {
-			String currStr = parameterArray[i].trim();
-			if (StringUtils.isNotBlank(currStr)) {
+			String currMap = parameterArray[i].trim();
+			if (StringUtils.isNotBlank(currMap)) {
+				String key = currMap.substring(1,currMap.indexOf(":"));
+				String value = currMap.substring(currMap.indexOf(":")+1, currMap.indexOf("}"));
 				Parameters paramEntity = new Parameters();
-				paramEntity.setClientId(commonUtils.getClientId());
-				paramEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-				paramEntity.setKey(currStr.toUpperCase());
-				paramEntity.setLabel(currStr);
-				paramEntity.setModifiedBy(commonUtils.getUserNameFromSession());
-				paramEntity.setReferenceColumn(referenceColumn);
-				paramEntity.setReferenceTable(referenceTable);
-				paramEntity.setValue(currStr);
-				parameterList.add(paramEntity);
+				if (!key.startsWith("NEW_")) {
+					paramEntity.setParameterId(Integer.parseInt(key));
+					paramEntity.setValue(value);		
+					parameterList.add(paramEntity);
+				} else {
+					if (StringUtils.isNotBlank(value)) {
+						paramEntity.setClientId(commonUtils.getClientId());
+						paramEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+						paramEntity.setLabel(value);
+						paramEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+						paramEntity.setReferenceColumn(referenceColumn);
+						paramEntity.setReferenceTable(referenceTable);
+						paramEntity.setValue(value);
+						paramEntity.setKey(value.toUpperCase());
+						parameterList.add(paramEntity);
+					}
+				}
 			}
 		}
 		return parameterList;
@@ -183,6 +206,14 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 
 	public void setAddressTypeAdded(String addressTypeAdded) {
 		this.addressTypeAdded = addressTypeAdded;
+	}
+
+	public Map<String, String> getVendorClassMap() {
+		return vendorClassMap;
+	}
+
+	public void setVendorClassMap(Map<String, String> vendorClassMap) {
+		this.vendorClassMap = vendorClassMap;
 	}
 
 	

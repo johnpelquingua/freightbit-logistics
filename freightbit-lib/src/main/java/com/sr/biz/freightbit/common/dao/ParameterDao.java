@@ -20,4 +20,8 @@ public interface ParameterDao {
 	public void addParameters(List<Parameters> paramList);
 
 	public void deleteParameters(String referenceTable, String referenceColumn);
+
+	public void updateParameter(Parameters param);
+
+	public Parameters findParameterById(Integer parameterId);
 }
