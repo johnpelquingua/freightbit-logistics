@@ -1,5 +1,5 @@
 package com.sr.apps.freightbit.operations.formbean;
-
+//
 import java.util.Date;
 
 /**

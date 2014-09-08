@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-
+//
 <div class="row">
     <div class="col-lg-12">
         <h1>Update Status</h1>
