@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-
+//
 <div class="row">
 
     <div class="col-lg-12">
