@@ -1,7 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-//
+
 <div class="row">
 
     <div class="col-lg-12">
@@ -17,11 +17,11 @@
 </div>
 
 
-<s:if test="hasActionMessages()">
+<s:if test="hasActionErrors()">
     <div class="col-lg-7">
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+            <strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
 </s:if>
@@ -71,7 +71,7 @@
                                             <label for="vendorClass" class="col-lg-3 control-label" id="users-add-label">Vendor Class:</label>
                                             <div class="col-lg-9" id="vendorClassDiv">
                                                 <s:iterator value="vendorClassParamList" var="vendorClass">
-                                                    <s:textfield disabled="true" required="true" name="value" cssClass="form-control"/>
+                                                    <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('vendorClass', this, '%{parameterId}');"/>
                                                 </s:iterator>
                                                 <div class="control-group" id="vendorClassGroup">
                                                     <div class="controls">
@@ -88,7 +88,7 @@
                                             <label for="vendorType" class="col-lg-3 control-label" id="users-add-label">Vendor Type:</label>
                                             <div class="col-lg-9" id="vendorTypeDiv">
                                                 <s:iterator value="vendorTypeParamList" var="vendorType">
-                                                    <s:textfield disabled="true" required="true" name="value" cssClass="form-control"/>
+                                                    <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('vendorType', this, '%{parameterId}');"/>
                                                 </s:iterator>
                                                 <div class="control-group" id="vendorTypeGroup">
                                                     <div class="controls">
@@ -108,7 +108,7 @@
                                     <label for="customerType" class="col-lg-3 control-label" id="users-add-label">Customer Type:</label>
                                     <div class="col-lg-9" id="customerTypeDiv">
                                         <s:iterator value="customerTypeParamList" var="customerType">
-                                            <s:textfield disabled="true" required="true" name="value" cssClass="form-control"/>
+                                            <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('customerType', this, '%{parameterId}');"/>
                                         </s:iterator>
                                         <div class="control-group" id="customerTypeGroup">
                                             <div class="controls">
@@ -126,7 +126,7 @@
                                     <label for="contactType" class="col-lg-3 control-label" id="users-add-label">Contact Type:</label>
                                     <div class="col-lg-9" id="contactTypeDiv">
                                         <s:iterator value="contactTypeParamList" var="contactType">
-                                            <s:textfield disabled="true" required="true" name="value" cssClass="form-control"/>
+                                            <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('contactType', this, '%{parameterId}');"/>
                                         </s:iterator>
                                         <div class="control-group" id="contactTypeGroup">
                                             <div class="controls">
@@ -143,7 +143,7 @@
                                     <label for="addressType" class="col-lg-3 control-label" id="users-add-label">Address Type:</label>
                                     <div class="col-lg-9" id="addressTypeDiv">
                                         <s:iterator value="addressTypeParamList" var="addressType">
-                                            <s:textfield disabled="true" required="true" name="value" cssClass="form-control"/>
+                                            <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('addressType', this, '%{parameterId}');"/>
                                         </s:iterator>
                                         <div class="control-group" id="addressTypeGroup">
                                             <div class="controls">
@@ -160,7 +160,7 @@
                                     <label for="orderPort" class="col-lg-3 control-label" id="users-add-label">Ports:</label>
                                     <div class="col-lg-9" id="orderPortDiv">
                                         <s:iterator value="portsParamsList" var="orderPort">
-                                            <s:textfield disabled="true" required="true" name="value" cssClass="form-control"/>
+                                             <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('ports', this, '%{parameterId}');"/>
                                         </s:iterator>
                                         <div class="control-group" id="orderPortGroup">
                                             <div class="controls">
@@ -190,7 +190,29 @@
 
 
 <script type="text/javascript">
- 
+var vendorClassParamMap= "";
+var vendorTypeParamMap = "";
+var customerTypeParamMap = "";
+var contactTypeParamMap = "";
+var addressTypeParamMap = "";
+var portsParamMap = "";
+function trackTextFieldChanges(paramName, here, key) {
+	if ('vendorClass' == paramName) {
+		vendorClassParamMap += "{"+key+":"+here.value+"} , ";
+	} else 	if ('vendorType' == paramName) {
+		vendorTypeParamMap += "{"+key+":"+here.value+"} , ";
+	} else 	if ('customerType' == paramName) {
+		customerTypeParamMap += "{"+key+":"+here.value+"} , ";
+	} else 	if ('addressType' == paramName) {
+		addressTypeParamMap += "{"+key+":"+here.value+"} , ";
+	} else 	if ('contactType' == paramName) {
+		contactTypeParamMap += "{"+key+":"+here.value+"} , ";
+	} else 	if ('ports' == paramName) {
+		portsParamMap += "{"+key+":"+here.value+"} , ";
+	}
+} 
+
+
 $(document).ready(function() {
 	
    var vendorClassCounter = $("#vendorClassGroup").length + 1;
@@ -201,8 +223,6 @@ $(document).ready(function() {
 	        removeButton.click(function() {
 	            $(this).parent().remove();
 	        });
-	   //var addButton = $("<input type=\"button\" value=\"+\" id=\"add\"/>");
-
 	   fieldWrapper.append(textField).append(removeButton);
 	    
 	    $("#vendorClassDiv").append(fieldWrapper);
@@ -295,56 +315,56 @@ $(document).ready(function() {
 		var msg = '';
 		for(i=1; i<vendorClassCounter; i++){
 		  if (i==1)
-			  msg=$('#vendorClass_' + i).val();
+			  msg="{NEW_"+i+":"+ $('#vendorClass_' + i).val() +"}";
 		  else
-			  msg += ", " + $('#vendorClass_' + i).val();
-		}
-        document.forms[0].vendorClassAdded.value = msg;
-        
+			  msg += ", {NEW_"+i+":" + $('#vendorClass_' + i).val() +"}";
+		}		
+        document.forms[0].vendorClassAdded.value = vendorClassParamMap + "" + msg;
+
 		var msg = '';
 		for(i=1; i<vendorTypeCounter; i++){
 		  if (i==1)
-			  msg=$('#vendorType_' + i).val();
+			  msg="{NEW_"+i+":"+ $('#vendorType_' + i).val() +"}";
 		  else
-			  msg += ", " + $('#vendorType_' + i).val();
-		}
-        document.forms[0].vendorTypeAdded.value = msg;
-        
+			  msg += ", {NEW_"+i+":" + $('#vendorType_' + i).val() +"}";
+		}		
+        document.forms[0].vendorTypeAdded.value = vendorTypeParamMap + "" + msg;
+
 		var msg = '';
 		for(i=1; i<customerTypeCounter; i++){
-		  if (i==1)
-			  msg=$('#customerType_' + i).val();
-		  else
-			  msg += ", " + $('#customerType_' + i).val();
+			if (i==1)
+				  msg="{NEW_"+i+":"+ $('#customerType_' + i).val() +"}";
+			  else
+				  msg += ", {NEW_"+i+":" + $('#customerType_' + i).val() +"}";
 		}
-        document.forms[0].customerTypeAdded.value = msg;
+        document.forms[0].customerTypeAdded.value = customerTypeParamMap + "" + msg;
         
 		var msg = '';
 		for(i=1; i<contactTypeCounter; i++){
-		  if (i==1)
-			  msg=$('#contactType_' + i).val();
-		  else
-			  msg += ", " + $('#contactType_' + i).val();
+			if (i==1)
+				  msg="{NEW_"+i+":"+ $('#contactType_' + i).val() +"}";
+			  else
+				  msg += ", {NEW_"+i+":" + $('#contactType_' + i).val() +"}";
 		}
-        document.forms[0].contactTypeAdded.value = msg;
+        document.forms[0].contactTypeAdded.value = contactTypeParamMap + "" + msg;
         
 		var msg = '';
 		for(i=1; i<addressTypeCounter; i++){
-		  if (i==1)
-			  msg=$('#addressType_' + i).val();
-		  else
-			  msg += ", " + $('#addressType_' + i).val();
+			if (i==1)
+				  msg="{NEW_"+i+":"+ $('#addressType_' + i).val() +"}";
+			  else
+				  msg += ", {NEW_"+i+":" + $('#addressType_' + i).val() +"}";
 		}
-        document.forms[0].addressTypeAdded.value = msg;
+        document.forms[0].addressTypeAdded.value = addressTypeParamMap + "" + msg;
         
 		var msg = '';
 		for(i=1; i<orderPortCounter; i++){
-		  if (i==1)
-			  msg=$('#orderPort_' + i).val();
-		  else
-			  msg += ", " + $('#orderPort_' + i).val();
+			if (i==1)
+				  msg="{NEW_"+i+":"+ $('#orderPort_' + i).val() +"}";
+			  else
+				  msg += ", {NEW_"+i+":" + $('#orderPort_' + i).val() +"}";
 		}
-        document.forms[0].portsAdded.value = msg;
+        document.forms[0].portsAdded.value = portsParamMap + "" + msg;
         document.forms[0].action = "editGeneralSettings";
         document.forms[0].submit();
 	});
