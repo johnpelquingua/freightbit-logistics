@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-//
+
 <div class="row">
     <div class="col-lg-12">
 

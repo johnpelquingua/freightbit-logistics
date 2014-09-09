@@ -133,6 +133,7 @@
                           emptyOption="true"
                           required="true"
                           value="order.customerId"
+                          disabled="true"
                         />
 
             </div>

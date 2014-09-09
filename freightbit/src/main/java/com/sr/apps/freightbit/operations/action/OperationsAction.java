@@ -134,7 +134,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             System.out.println("<---------------------Update Orderitem failed-----------------------> \n");
 
         } catch (Exception e) {
-            log.error( e.getMessage());
+            log.error( "update failed", e);
             System.out.println("<---------------------Update Orderitem failed-----------------------> \n");
             return INPUT;
         }
@@ -503,49 +503,33 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setModifiedTimestamp(modifiedTimestamp);
         entity.setWeight(weight);
         entity.setStatus(status);
-        entity.setVendorSea(vendorSea);
+        entity.setVendorSea(vendorService.findVendorById(Integer.parseInt(vendorSea)).getVendorCode());
         return entity;
     }
 
-    public OrderItems transformOrderItemToEntityBeanOrigin (OperationsBean operationsBean) {
+    public OrderItems transformOrderItemToEntityBeanOrigin (OperationsBean formBean) {
         OrderItems entity = new OrderItems();
-        entity.setVendorOrigin(operationsBean.getVendorListOrigin().toString());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getVendorListOrigin() + "\n");
-        entity.setFinalPickupDate(operationsBean.getPickupDate());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getPickupDate() + "\n");
-        entity.setOrderItemId(operationsBean.getOrderItemId());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getOrderItemId() + "\n");
-        entity.setClientId(operationsBean.getClientId());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getClientId() + "\n");
-        entity.setNameSize(operationsBean.getNameSize());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getNameSize() + "\n");
-        entity.setOrderId(operationsBean.getOrderId());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getOrderId() + "\n");
-        entity.setQuantity(operationsBean.getQuantity());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getQuantity() + "\n");
-        entity.setClassification(operationsBean.getClassification());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getClassification() + "\n");
-        entity.setCommodity(operationsBean.getCommodity());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getCommodity() + "\n");
-        entity.setDeclaredValue(operationsBean.getDeclaredValue());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getDeclaredValue() + "\n");
-        entity.setComments(operationsBean.getComments());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getComments() + "\n");
-        entity.setRate(operationsBean.getRate());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getRate() + "\n");
-        entity.setCreatedBy(operationsBean.getCreatedBy());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getCreatedBy() + "\n");
-        entity.setModifiedBy(operationsBean.getModifiedBy());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getModifiedBy() + "\n");
-        entity.setCreatedTimestamp(operationsBean.getCreatedTimestamp());
-        entity.setModifiedTimestamp(operationsBean.getModifiedTimestamp());
-        entity.setWeight(operationsBean.getWeight());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getWeight() + "\n");
+        entity.setVendorOrigin(vendorService.findVendorById(formBean.getVendorListOrigin()).getVendorCode());
+        entity.setFinalPickupDate(formBean.getPickupDate());
+        entity.setOrderItemId(formBean.getOrderItemId());
+        entity.setClientId(formBean.getClientId());
+        entity.setNameSize(formBean.getNameSize());
+        entity.setOrderId(formBean.getOrderId());
+        entity.setQuantity(formBean.getQuantity());
+        entity.setClassification(formBean.getClassification());
+        entity.setCommodity(formBean.getCommodity());
+        entity.setDeclaredValue(formBean.getDeclaredValue());
+        entity.setComments(formBean.getComments());
+        entity.setRate(formBean.getRate());
+        entity.setCreatedBy(formBean.getCreatedBy());
+        entity.setModifiedBy(formBean.getModifiedBy());
+        entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
+        entity.setModifiedTimestamp(formBean.getModifiedTimestamp());
+        entity.setWeight(formBean.getWeight());
         entity.setStatus("PLANNING 3");
-        entity.setDriverOrigin(operationsBean.getDriverOrigin());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getDriverOrigin() + "\n");
-        entity.setTruckOrigin(operationsBean.getTruckOrigin());
-        System.out.println("<---------------------------Vendor Origin: " + operationsBean.getTruckOrigin() + "\n");
+        entity.setDriverOrigin(formBean.getDriverOrigin());
+        entity.setTruckOrigin(formBean.getTruckOrigin());
+
         return entity;
     }
 
