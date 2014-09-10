@@ -239,14 +239,7 @@
     </div>
 </div>
 
-<s:if test="hasActionMessages()">
-    <div class="col-lg-12" id="successDiv">
-        <div id="alert" class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
-        </div>
-    </div>
-</s:if>
+
 
 <div class="row">
 
@@ -529,6 +522,15 @@
 
 </div>
 
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12" id="successDiv">
+        <div id="alert" class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
 
     <div class="col-lg-12">
@@ -539,14 +541,14 @@
 
             <legend style="text-align: left;">
                 <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                            <span>
-                                Cargo Listing
-                            </span>
+                            <h4>
+                                Cargo Listing <small>(Maximum of 5 Containers)</small>
+                            </h4>
                 </s:if>
                 <s:else>
-                            <span>
-                                Item Listing
-                            </span>
+                            <h4>
+                                Item Listing <small>(Maximum of 10 Items)</small>
+                            </h4>
                 </s:else>
             </legend>
 

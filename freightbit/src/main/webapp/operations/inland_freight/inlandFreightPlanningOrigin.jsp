@@ -196,7 +196,7 @@
 
                     <div class="form-group" style="margin-bottom: 0px !important;">
 
-                        <label for="dropoff" class="col-sm-2 control-label">Drop off Date:</label>
+                        <label for="dropoff" class="col-sm-2 control-label">Pickup Date:</label>
 
                         <div class="col-sm-10" style="padding: 0px; width: 75.5% !important; position: relative; left: 15px;">
                             <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalPickupdate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
@@ -253,7 +253,7 @@
 
                     <div class="form-group">
 
-                        <label for="pickup" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+                        <label for="pickup" class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
 
                         <div class="col-lg-10">
                             <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
