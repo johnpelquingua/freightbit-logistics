@@ -128,6 +128,7 @@
                     <%--<s:hidden name="operationsBean.pickupDate" value="%{orderItem.finalPickupDate}" />--%>
                     <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
                     <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
+                    <s:hidden name="operationsBean.vesselScheduleId" value="%{orderItem.vesselScheduleId}" />
                     <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
 
                     <div class="form-group">

@@ -188,7 +188,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String editOrderItemsSea() {
         try {
             OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
-            entity.setVesselScheduleId(vesselScheduleIdParam.toString());
+            entity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
             operationsService.updateOrderItem(entity);
         } catch (Exception e) {
             log.error("Update Orderitem failed", e);
@@ -593,7 +593,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId())) {
             formBean.setVesselScheduleId("");
         } else {
-            formBean.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(Integer.parseInt(entity.getVesselScheduleId())).getVoyageNumber());
+            formBean.setVesselScheduleId(entity.getVesselScheduleId());
         }
 
         formBean.setFinalPickupDate(entity.getFinalPickupDate());
@@ -673,6 +673,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setStatus("PLANNING 3");
         entity.setDriverOrigin(formBean.getDriverOrigin());
         entity.setTruckOrigin(formBean.getTruckOrigin());
+        entity.setVendorSea(formBean.getVendorSea());
+        entity.setVesselScheduleId(formBean.getVesselScheduleId());
 
         return entity;
     }
@@ -702,6 +704,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setVendorSea(formBean.getVendorSea());
         entity.setDriverDestination(formBean.getDriverDestination());
         entity.setTruckDestination(formBean.getTruckDestination());
+        entity.setDriverOrigin(formBean.getDriverOrigin());
+        entity.setTruckOrigin(formBean.getTruckOrigin());
+        entity.setVendorSea(formBean.getVendorSea());
+        entity.setVesselScheduleId(formBean.getVesselScheduleId());
+
         return entity;
     }
 

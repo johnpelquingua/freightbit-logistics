@@ -152,6 +152,9 @@
                     <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
                     <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
                     <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
+                    <s:hidden name="operationsBean.vesselScheduleId" value="%{orderItem.vesselScheduleId}" />
+                    <s:hidden name="operationsBean.driverOrigin" value="%{orderItem.driverOrigin}" />
+                    <s:hidden name="operationsBean.truckOrigin" value="%{orderItem.truckOrigin}" />
 
                     <div class="form-group">
 
