@@ -99,6 +99,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String updateCompleteInlandPlanning() {
         Map sessionAttributes = ActionContext.getContext().getSession();
+
         Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
 
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
@@ -170,7 +171,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String updateCompleteSeaPlanning() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
+        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" + orderId);
+        // Display basic order data
 
+
+        Orders orderEntity = orderService.findOrdersById(orderId);
+
+        order = transformToOrderFormBean(orderEntity);
+        // displays order items under orders
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
         orderItemsList = operationsService.findAllOrderItemsByOrderId(orderId);
@@ -195,6 +203,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
             return INPUT;
         }
 
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderId);
         return SUCCESS;
     }
 
@@ -392,7 +404,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String viewFreightItemListLand( ) {
+    /*public String viewFreightItemListLand( ) {
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
         orderItemsList = operationsService.findAllOrderItemsByOrderIdLand(orderIdParam);
@@ -404,9 +416,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
         return SUCCESS;
-    }
+    }*/
 
-    public String viewFreightItemListSea() {
+    /*public String viewFreightItemListSea() {
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
         orderItemsList = operationsService.findAllOrderItemsByOrderIdSea(orderIdParam);
@@ -418,7 +430,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
         return SUCCESS;
-    }
+    }*/
 
     public String viewInfoOrderInland() {
 
