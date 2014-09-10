@@ -84,9 +84,8 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-anchor"></i>
-                    <%--<s:property value="%{nameSizeParam}" />--%>
-                    <c:out value="${sessionScope.nameSizeParam}"/></h3>
+                <i class="fa fa-anchor"></i>
+                <span class="panel-title">Sea Operation</span>
             </div>
 
             <div class="panel-body">

@@ -102,129 +102,135 @@
 
 </div>
 
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <i class="fa fa-truck"></i>
-        <span class="panel-title">Inland Operation : Origin</span>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-truck"></i>
+                    <span class="panel-title">Inland Operation : Origin</span>
+                </div>
+                <div class="panel-body form-horizontal">
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-truck"></i>
+                    <span class="panel-title">Inland Operation : Destination</span>
+                </div>
+                <div class="panel-body form-horizontal">
+
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="panel-body form-horizontal">
-        <div class="form-group">
 
-            <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+<div class="pull-right">
+    <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+        <s:param name="orderIdParam"
+                 value="#attr.order.orderId"></s:param>
+        <s:param name="orderNoParam"
+                 value="#attr.order.orderNo"></s:param>
+    </s:url>
+    <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+         title="Update Status">
 
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
-            </div>
-        </div>
+        <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+            <button type="button" class="btn btn-default">
+                Back to Sea Freight Planning : Containers
+            </button>
+        </s:if>
+        <s:else>
+            <button type="button" class="btn btn-default">
+                Back to Sea Freight Planning : Items
+            </button>
+        </s:else>
 
-        <div class="form-group">
-
-            <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
-
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
-            </div>
-
-        </div>
-
-        <div class="form-group">
-            <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
-            </div>
-        </div>
-
-    </div>
-
+    </s:a>
 </div>
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <i class="fa fa-truck"></i>
-            <span class="panel-title">Inland Operation : Destination</span>
-        </div>
-        <div class="panel-body form-horizontal">
 
 
-            <div class="form-group">
 
-                <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-
-                <div class="col-lg-10">
-                    <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />
-                </div>
-
-            </div>
-
-            <div class="form-group">
-
-                <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-
-                <div class="col-lg-10">
-                    <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />
-                </div>
-
-            </div>
-
-            <div class="form-group">
-
-                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
-
-                <div class="col-lg-10">
-                    <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
-                </div>
-
-            </div>
-
-            <div class="form-group">
-
-                <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-
-                <div class="col-lg-10">
-                    <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
-                </div>
-
-            </div>
-        </div>
-
-        <div class="panel-footer">
-
-            <div class="pull-right">
-                <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                    <s:param name="orderIdParam"
-                             value="#attr.order.orderId"></s:param>
-                    <s:param name="orderNoParam"
-                             value="#attr.order.orderNo"></s:param>
-                </s:url>
-                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                     title="Update Status">
-
-                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                        <button type="button" class="btn">
-                            Back to Sea Freight Planning : Containers
-                        </button>
-                    </s:if>
-                    <s:else>
-                        <button type="button" class="btn">
-                            Back to Sea Freight Planning : Items
-                        </button>
-                    </s:else>
-
-                </s:a>
-            </div>
-
-        </div>
-
-    </div>
 
 </div>
 
