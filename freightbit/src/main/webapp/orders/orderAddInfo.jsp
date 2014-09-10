@@ -275,12 +275,12 @@
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
                             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                                 <span>
-                                    Container Quantity
+                                    Container Quantity<span class="asterisk_red">
                                 </span>
                             </s:if>
                             <s:else>
                                 <span>
-                                    Item Quantity
+                                    Item Quantity<span class="asterisk_red">
                                 </span>
                             </s:else>
                         </label>
@@ -314,12 +314,12 @@
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
                             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                                 <span>
-                                    Container Size
+                                    Container Size<span class="asterisk_red">
                                 </span>
                             </s:if>
                             <s:else>
                                 <span>
-                                    Item Name
+                                    Item Name<span class="asterisk_red">
                                 </span>
                             </s:else>
                         </label>
@@ -357,7 +357,7 @@
                     <div class="form-group">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Weight (kg)
+                            Weight (kg)<span class="asterisk_red">
                         </label>
 
                         <div class="col-lg-3" >
@@ -365,6 +365,7 @@
                                          name="orderItem.weight"
                                          id="orderItem.weight"
                                          type="number"
+                                         min="1"
                             />
                         </div>
 
@@ -407,7 +408,7 @@
                     <div class="form-group">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Rate (Php)
+                            Rate (Php)<span class="asterisk_red">
                         </label>
                         <div class="col-lg-3" >
                             <s:textfield cssClass="form-control"
@@ -415,6 +416,7 @@
                                          name="orderItem.rate"
                                          required="true"
                                          type="number"
+                                         min="1"
                                     />
                         </div>
 
@@ -466,7 +468,7 @@
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Declared Value (Php)
+                            Declared Value (Php)<span class="asterisk_red">
                         </label>
                         <div class="col-lg-3" >
 
@@ -475,6 +477,7 @@
                                              name="orderItem.declaredValue"
                                              id="orderItem.declaredValue"
                                              type="number"
+                                             min="1"
 
                                         />
                             </s:if>

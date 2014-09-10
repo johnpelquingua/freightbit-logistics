@@ -37,8 +37,8 @@
                     <label for="vendor.vendorCode" class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></span></label>
 
                     <div class="col-lg-9">
-                        <s:textfield cssClass="form-control" id="vendor.vendorCode" placeholder="Vendor Code"
-                                     name="vendor.vendorCode" maxLength="3" pattern="[A-Z]+" title="Must be letters only and CAPS."></s:textfield>
+                        <s:textfield cssClass="form-control" id="vendor_vendorCode" placeholder="Vendor Code"
+                                     name="vendor.vendorCode" maxLength="3" pattern="[A-Z]+" title="Must be letters only and CAPS." onkeypress="return alphaKeyOnly(event)"></s:textfield>
                     </div>
                 </div>
                 <div class="form-group">
@@ -80,3 +80,20 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#vendor_vendorCode").keyup(function(){
+            this.value=this.value.toUpperCase();
+
+        });
+    });
+    function alphaKeyOnly(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if ((charCode > 32 && charCode < 57)||(charCode > 57 && charCode <65) || (charCode > 90 && charCode < 97) )
+            return false;
+
+        return true;
+    }
+</script>

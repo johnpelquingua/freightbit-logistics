@@ -44,11 +44,11 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> User Information</h3>
                 <span class="pull-right">
-                    <%--TO DO--%>
-                    <%--<s:url var="loadEditTrucks" action="loadEditTrucksPage">
-                        <s:param name="truckCodeParam" value="truck.truckCode"></s:param>
-                    </s:url>--%>
-                    <%--TO DO--%>
+
+                    <s:url var="loadEditUser" action="loadEditUserPage">
+                        <s:param name="userNameParam" value="user.userName"></s:param>
+                    </s:url>
+
                     <s:a href="%{loadEditUser}">
                         <button type="button" class="btn btn-success">
                             <i class="fa fa-pencil"></i> Edit User Info

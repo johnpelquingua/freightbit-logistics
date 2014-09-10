@@ -41,7 +41,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
 
-                                <s:textfield required="true" maxLength="3" pattern="[A-Z]+" name="customer.customerCode" cssClass="form-control" id="customer.customerCode" />
+                                <s:textfield required="true" maxLength="3" pattern="[A-Z]+" name="customer.customerCode" cssClass="form-control" id="customer_customerCode" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
@@ -56,15 +56,15 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Phone No.<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer.phone" maxLength="14" 
-                                pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer_phone" maxLength="14"
+                                placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile No.<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer.mobile" maxLength="19" 
-								pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
+                                <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer_mobile" maxLength="19"
+                                    placeholder="(+639XX) (XXX-XXXX)"
                                 title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                             </div>
                         </div>
@@ -73,8 +73,8 @@
                             <div class="col-lg-9" >
 
 
-                                <s:textfield  name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="14"
-                                 pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                                <s:textfield  name="customer.fax" cssClass="form-control" id="customer_fax" maxLength="14"
+                                 placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
 
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
                                 <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email"
-								maxLength="50" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
+								 placeholder="E-mail" maxLength="50" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -140,6 +140,25 @@
 </div>
 
 <script type="text/javascript">
-    $("#customer.mobile")
+    $(document).ready(function(){
+
+        $("#customer_phone").mask("(999) 999-9999");
+        $("#customer_mobile").mask("(+63999)(999-9999)");
+        $("#customer_fax").mask("(999) 999-9999");
+
+    });
+
+    $("#customer_customerCode").keyup(function(){
+       this.value=this.value.toUpperCase();
+    });
+
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if ((charCode > 32 && charCode < 57)||(charCode > 57 && charCode <65) || (charCode > 90 && charCode < 97) )
+            return false;
+
+        return true;
+    }
 
 </script>

@@ -12,7 +12,7 @@
 
                 <div class="panel-heading">
                     <img src="../includes/images/listofusers.png" class="box-icon"/>
-						<span class="panel-title">Edit User</h3>
+						<span class="panel-title">Edit User</span>
                 </div>
 
                 <div class="panel-body">

@@ -58,7 +58,7 @@
         </label>
 
         <div class="col-lg-3" >
-            <%--<s:select cssClass="form-control"
+            <s:select cssClass="form-control"
                       style="margin-bottom: 15px !important;"
                       id="orderItem.nameSize"
                       name="orderItem.nameSize"
@@ -67,7 +67,7 @@
                       listValue="value"
                       emptyOption="true"
                       value="%{orderItem.nameSize}"
-                    />--%>
+                    />
         </div>
 
     </s:if>
@@ -79,7 +79,7 @@
         </label>
 
         <div class="col-lg-3" >
-            <%--<s:select cssClass="form-control"
+            <s:select cssClass="form-control"
                       style="margin-bottom: 15px !important;"
                       id="name_Size"
                       name="orderItem.nameSize"
@@ -88,7 +88,7 @@
                       listValue="itemName"
                       emptyOption="true"
                       value="%{orderItem.nameSize}"
-                    />--%>
+                    />
         </div>
 
     </s:else>

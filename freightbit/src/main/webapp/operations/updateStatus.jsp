@@ -9,9 +9,9 @@
     <div class="col-lg-12">
         <h1>Update Status</h1>
         <legend style="text-align: left;">
-            <span >
-               <h1><i class="fa fa-exchange"></i> Status </h1>
-            </span>
+            <%--<span >--%>
+               <%--<h1><i class="fa fa-exchange"></i> Status </h1>--%>
+            <%--</span>--%>
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>

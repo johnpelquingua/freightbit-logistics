@@ -85,9 +85,9 @@
 
                         <div class="col-lg-10" >
 
-                            <s:textfield name="consignee.phone" cssClass="form-control" id="consignee.phone"
-                                         placeholder="Phone Number" maxLength="14" required="true" 
-                                         pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                            <s:textfield name="consignee.phone" cssClass="form-control" id="consignee_phone"
+                                         placeholder="(XXX) XXX-XXXX" maxLength="14" required="true"
+                                         title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                         </div>
                     </div>
 
@@ -97,9 +97,9 @@
 
                         <div class="col-lg-10" >
 
-                            <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee.mobile"
-                                         placeholder="Mobile Number" maxLength="19" required="true"
-                                         pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
+                            <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee_mobile"
+                                         placeholder="(+639XX) (XXX-XXXX)" maxLength="19" required="true"
+
                                          title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
 
                             <s:textfield name="consignee.email" cssClass="form-control" id="consignee.email"
                                          placeholder="Email Address" type="email" required="true" maxLength="50"
-                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
+                                        />
                         </div>
                     </div>
 
@@ -122,9 +122,9 @@
 
                         <div class="col-lg-10" >
 
-                            <s:textfield name="consignee.fax" cssClass="form-control" id="consignee.fax"
-                                         placeholder="Fax Number" maxLength="14" 
-                                         pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                            <s:textfield name="consignee.fax" cssClass="form-control" id="consignee_fax"
+                                         placeholder="(XXX) XXX-XXXX" maxLength="14"
+                                          title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
                         </div>
                     </div>
 
@@ -157,7 +157,7 @@
 
                             <s:textfield name="consignee.city" cssClass="form-control"
                                          id="consignee.city" placeholder="City" required="true"
-                                         pattern="[a-zA-Z]+" maxLength="50"
+                                         pattern="[a-zA-Z ]+" maxLength="50"
                                          title="City should not contain special characters and/or numbers."/>
                         </div>
                     </div>
@@ -223,3 +223,14 @@
     </div>--%>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#consignee_phone").mask("(999) 999-9999");
+        $("#consignee_mobile").mask("(+63999)(999-9999)");
+        $("#consignee_fax").mask("(999) 999-9999");
+
+    });
+
+</script>

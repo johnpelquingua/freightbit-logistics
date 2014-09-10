@@ -136,7 +136,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Permissions</label>
+                        <label class="col-lg-3 control-label"  style="padding-top:0px;">Permissions</label>
 
                         <div class="col-lg-9">
                         <s:checkboxlist list="permissionsList"  name="permissionsSelected" value="preSelectedPermissions" listKey="permissionId" listValue="permissionName"/>

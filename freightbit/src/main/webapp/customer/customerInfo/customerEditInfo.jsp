@@ -43,7 +43,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
 
-                                <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" />
+                                <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" onkeypress="return alphaKeyOnly(event)"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -55,30 +55,30 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Phone Number<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer.phone" maxLength="14" 
-                                pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer_phone" maxLength="14"
+                                placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile Number<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer.mobile" maxLength="19" 
-                                pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
+                                <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer_mobile" maxLength="19"
+                                placeholder="(+639XX)(XXX-XXXX)"
                                 title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax  Number</label>
                             <div class="col-lg-9" >
-                                <s:textfield   name="customer.fax" cssClass="form-control" id="customer.fax" maxLength="14"
-                                 pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                                <s:textfield   name="customer.fax" cssClass="form-control" id="customer_fax" maxLength="14"
+                                 title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters." placeholder="(XXX) XXX-XXXX"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
                                 <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email" maxLength="50"
-                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
+                                        placeholder="E-mail" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -163,3 +163,28 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#customer_phone").mask("(999) 999-9999");
+        $("#customer_mobile").mask("(+63999)(999-9999)");
+        $("#customer_fax").mask("(999) 999-9999");
+
+    });
+
+    $("#customer_customerCode").keyup(function(){
+
+        this.value=this.value.toUpperCase();
+    });
+
+    function alphaKeyOnly(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if ((charCode > 32 && charCode < 57)||(charCode > 57 && charCode <65) || (charCode > 90 && charCode < 97) )
+            return false;
+
+        return true;
+    }
+
+</script>

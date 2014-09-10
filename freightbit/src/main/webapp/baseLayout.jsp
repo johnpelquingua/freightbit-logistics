@@ -93,6 +93,6 @@
 
 <script src="../includes/js/jquery.tablesorter.js"></script>
 <script src="../includes/js/tables.js"></script>
-
+<script src="../includes/js/mask.js"></script>
 </body>
 </html>

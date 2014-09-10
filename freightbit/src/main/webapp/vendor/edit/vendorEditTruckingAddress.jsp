@@ -37,7 +37,7 @@
                         <s:hidden value="%{address.addressId}" name="address.addressId" />
                         <div class="form-group">
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Address Type</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Address Type<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
                                 <s:select name="address.addressType" list="addressTypeList" listValue="value"
@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Address Line 1<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-10"><span class="asterisk_red"></span>
+                            <div class="col-lg-10">
                                 <s:textfield name="address.addressLine1" id="address.addressLine1"
                                              cssClass="form-control"  required="true"/>
                             </div>

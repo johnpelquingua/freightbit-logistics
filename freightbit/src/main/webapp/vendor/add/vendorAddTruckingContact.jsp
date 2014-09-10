@@ -72,16 +72,16 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Phone<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Phone" name="contact.phone" maxLength="14"
-                                         pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                            <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.phone" maxLength="14"
+                                         id="trucking_phone" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Mobile" name="contact.mobile" maxLength="19"
-                                         pattern="\(\+63[0-9]{3}\) ?\([0-9]{3}-[0-9]{4}\)"
+                            <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile" maxLength="19"
+                                         id="trucking_mobile"
                                          title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                             </div>
                         </div>
@@ -89,8 +89,8 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax</label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Fax" name="contact.fax" maxLength="14" 
-                                         pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                            <s:textfield cssClass="form-control" placeholder="(XXX)XXX-XXXX" name="contact.fax" maxLength="14"
+                                        id="trucking_fax" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
                             </div>
                         </div>
 
@@ -145,3 +145,13 @@
     </div>--%>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#trucking_phone").mask("(999) 999-9999");
+        $("#trucking_mobile").mask("(+63999)(999-9999)");
+        $("#trucking_fax").mask("(999) 999-9999");
+
+    });
+</script>

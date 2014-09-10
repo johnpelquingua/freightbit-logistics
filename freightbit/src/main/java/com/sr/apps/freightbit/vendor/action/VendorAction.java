@@ -473,7 +473,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     public void validateOnSubmitTrucks(TruckBean truckBean) {
         clearErrorsAndMessages();
 
-        String alpha = "[A-Z]+";
+        String alpha = "[A-Z0-9]+";
         String plate = "[A-Z][A-Z][A-Z]+[-]\\d\\d\\d";
         String alphaNumeric = "[A-Za-z0-9]+";
         String year = "[0-9]{4}";
@@ -487,7 +487,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         Matcher matcher = codePattern.matcher(truckBean.getTruckCode());
         if (!matcher.matches()) {
-            addFieldError("truck.truckCode", "Code must be capital letters only.");
+            addFieldError("truck.truckCode", "Code must be Alphanumeric characters  only.");
         }
 
         matcher = plateNumberPattern.matcher(truckBean.getPlateNumber());

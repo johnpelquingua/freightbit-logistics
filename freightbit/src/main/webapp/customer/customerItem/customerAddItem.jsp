@@ -58,7 +58,7 @@
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.basePrice" id="item.basePrice" required="true"
-                                             cssClass="form-control" pattern="[0-9.]+" title="Special characters in Price is not valid"/>
+                                             cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Price is not valid"/>
                             </div>
 
                             <%--<label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)</label>--%>
@@ -80,7 +80,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.srp" id="item.srp" required="true" cssClass="form-control" pattern="[0-9.]+" title="Special characters in Quality is not valid"/>
+                                <s:textfield name="item.srp" id="item.srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Quality is not valid"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Length (m)<span class="asterisk_red"></span></label>
