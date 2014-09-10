@@ -1,7 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
 
@@ -74,7 +73,7 @@
             </div>
             <div class="form-group">
                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Consignee Name</label>
-                <div class="col-lg-10">
+                <div class="col-lg-10" id="anchorDiv">
                     <s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num" disabled="true"></s:textfield>
                 </div>
             </div>
@@ -94,10 +93,13 @@
 
                 <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
 
+                    <%--<c:out value="${sessionScope.orderItemIdParam}" />--%>
+
                     <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                     <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                     <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
-                    <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
+                    <s:hidden name="operationsBean.orderId" value="%{order.orderId}" />
+                    <%--<s:property value="%{order.orderId}" />--%>
                     <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
                     <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
                     <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
@@ -136,7 +138,7 @@
                         <div class="col-lg-4">
                             <div>
                                 <s:select list="vendorShippingList" name="operationsBean.vendorList"
-                                          id="operationsBean.vendorList"
+                                          id="operationsBean_vendorList"
                                           listKey="vendorId" listValue="vendorCode" cssClass="form-control"
                                           emptyOption="true"
                                         ></s:select>
@@ -151,7 +153,7 @@
                         </div>
                         <div class="col-lg-2" style="text-align: center;">
                             <div>
-                                <a href="#" class="btn btn-info" style="width: 135px;">
+                                <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
                                     <%--<i class="fa fa-plus"> Add Vendor</i>--%>
                                     Add Vendor
                                 </a>
@@ -159,7 +161,7 @@
                         </div>
                         <div class="col-lg-2" style="text-align: center;">
                             <div>
-                                <a href="#" class="btn btn-info" style="width: 135px;">
+                                <a data-toggle="modal" data-target="#addSchedule" id="createSchedule" class="btn btn-info" style="width: 135px;">
                                     Add Schedule
                                 </a>
                             </div>
@@ -178,6 +180,16 @@
                     <hr>
 
                 </div>
+
+                <%--alert on every schedule load--%>
+                <s:if test="hasActionMessages()">
+                    <div class="col-lg-12" id="successDiv">
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+                        </div>
+                    </div>
+                </s:if>
 
                 <display:table id="vesselSchedule" name="vesselSchedules"
                                requestURI="/viewSeaFreightPlanning.action" pagesize="10"
@@ -311,10 +323,306 @@
                 </div>
             </div>
 
+            <div class="panel-footer">
+
+                <div class="pull-right">
+                    <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                        <s:param name="orderIdParam"
+                                 value="#attr.order.orderId"></s:param>
+                        <s:param name="orderNoParam"
+                                 value="#attr.order.orderNo"></s:param>
+                    </s:url>
+                    <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                         title="Update Status">
+
+                        <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <button type="button" class="btn">
+                                Back to Sea Freight Planning : Containers
+                            </button>
+                        </s:if>
+                        <s:else>
+                            <button type="button" class="btn">
+                                Back to Sea Freight Planning : Items
+                            </button>
+                        </s:else>
+
+                    </s:a>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </div>
 
+<%--Start Add Vendor Modal--%>
+
+<div class="modal fade" id="createVendor" role="form" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel1">Add Vendor</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="panel-body">
+
+                    <s:property  value="%{orderItem.orderItemId}"/>
+                    <%--<s:textfield id="itemIdHolder"  value="%{orderItem.orderItemId}"/>--%>
+                            <s:form action="addVendor" cssClass="form-horizontal" theme="bootstrap">
+                            <label>Name<span class="asterisk_red"></span></label>
+
+                                <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Vendor Name"
+                                             name="vendor.vendorName"></s:textfield>
+
+                            <label>Code<span class="asterisk_red"></span></label>
+
+                                <s:textfield cssClass="form-control" id="vendor.vendorCode" placeholder="Vendor Code"
+                                             name="vendor.vendorCode" maxLength="3" pattern="[A-Z]+" title="Must be letters only and CAPS."></s:textfield>
+
+                            <label>Class Name<span class="asterisk_red"></span></label>
+
+                                <s:select cssClass="form-control" id="vendor.vendorClass" list="vendorClassList" listKey="key"
+                                          listValue="value"
+                                          name="vendor.vendorClass"/>
+
+                            <label>Status<span class="asterisk_red"></span></label>
+
+                                <s:select cssClass="form-control" id="vendor.vendorStatus" list="statusList"
+                                          listKey="key" listValue="value"
+                                          name="vendor.vendorStatus"/>
+
+                            <%--<s:textfield name="orderIdParam" value="%{orderItem.orderId}" />
+                            <s:textfield name="orderItemIdParam" value="%{orderItem.orderItemId}" />      --%>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div>
+                            <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+            </div>
+                            </s:form>
+        </div>
+    </div>
+</div>
+
+<%--End Add Vendor Modal--%>
+
+<%--Start Add Schedule--%>
+
+<div class="modal fade" id="addSchedule" role="form" aria-labelledby="myModalLabel2">
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel2">Add Schedule</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="panel-body">
+
+                    <s:form cssClass="form-horizontal" theme="bootstrap" action="addVesselScheduleInPlanning">
+
+                            <label>Voyage Number<span class="asterisk_red"></span></label>
+
+
+                            <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber"/>
+
+
+                            <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
+                            <%--<label> Vendor<span class="asterisk_red"></span></label>--%>
+
+                            <%--<div class="col-lg-9">
+                            <s:select emptyOption="true" id="vesselSchedule.vendorId"
+                                      value="vesselSchedule.vendorId"
+                                      name="vesselSchedule.vendorId"
+                                      list="vendorList" listValue="vendorName" listKey="vendorId"
+                                      cssClass="form-control"/>
+                            </div>--%>
+
+                            <label> Departure Date<span class="asterisk_red"></span></label>
+
+
+                            <s:textfield cssClass="form-control" id="departureDate"
+                                         name="vesselSchedule.departureDate"/>
+
+
+                            <label> Departure Time<span class="asterisk_red"></span></label>
+
+
+                            <s:textfield cssClass="form-control" id="departureTime"
+                                         name="vesselSchedule.departureTime" readonly="true"/>
+
+
+                            <label>Arrival Date<span class="asterisk_red"></span></label>
+
+
+                            <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true"/>
+
+
+                            <label> Arrival Time<span class="asterisk_red"></span></label>
+
+
+                            <s:textfield cssClass="form-control" id="arrivalTime"
+                                         name="vesselSchedule.arrivalTime"/>
+
+
+                            <label>Origin Pier<span class="asterisk_red"></span></label>
+
+
+                        <s:select emptyOption="true" id="vesselSchedule_originPort"
+                                  value="vesselSchedule.originPort"
+                                  name="vesselSchedule.originPort"
+                                  list="portsList" listValue="value" listKey="key"
+                                  cssClass="form-control"/>
+
+
+                            <label>Destination Pier<span class="asterisk_red"></span></label>
+
+
+                            <s:select emptyOption="true" id="vesselSchedule_destinationPort"
+                                      value="vesselSchedule.destinationPort"
+                                      name="vesselSchedule.destinationPort"
+                                      list="portsList" listValue="value" listKey="key"
+                                      cssClass="form-control"/>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                    </s:form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--End Add Schedule--%>
+
 <script type="text/javascript">
+
     $("#date").datepicker({dateFormat: 'yy-dd-mm'});
+
+    // Anchor on successDiv on every schedule load
+    if ($('#successDiv').length !== 0){
+        window.location.href = '#anchorDiv';
+    }
+
+    // User must choose a vendor first before adding vessel schedule
+    $(document).ready(function(){
+        $("#createSchedule").click(function() {
+            var vendorId = $("#operationsBean_vendorList").val();
+
+            if (vendorId == "" || null){
+                alert("Select a vendor first");
+                $("#operationsBean_vendorList").focus();
+                return false;
+            }
+
+            $("#vendorIdHolder").val(vendorId);
+        });
+    });
+
+    var departureDate = $('#departureDate');
+    var arrivalDate = $('#arrivalDate');
+    // departure date
+    departureDate.datepicker({
+
+                dateFormat: 'mm-dd-yy',
+                minDate: 0,
+
+                onClose: function(dateText, inst) {
+                    if (arrivalDate.val() != '') {
+                        var testStartDate = departureDate.datepicker('getDate');
+                        var testEndDate = departureDate.datepicker('getDate');
+
+                        if (testStartDate > testEndDate)
+                            arrivalDate.datepicker('setDate', testStartDate);
+                    }
+                    else {
+                        arrivalDate.val(dateText);
+                    }
+                },
+
+                onSelect: function (selectedDateTime){
+                    arrivalDate.datepicker('option', 'minDate', departureDate.datepicker('getDate') );
+                }
+            }
+
+    );
+    // arrival date
+    arrivalDate.datepicker(
+            {
+                dateFormat: 'mm-dd-yy',
+                minDate: 0,
+
+                onClose: function(dateText, inst) {
+
+                    if (departureDate.val() != '') {
+                        var testStartDate = departureDate.datepicker('getDate');
+                        var testEndDate = arrivalDate.datepicker('getDate');
+
+                        if (testStartDate > testEndDate)
+                            departureDate.datepicker('setDate', testEndDate);
+
+                    }
+
+                    else {
+                        departureDate.val(dateText);
+                    }
+                },
+
+                onSelect: function (selectedDateTime){
+                    departureDate.datepicker('option', 'maxDate', arrivalDate.datepicker('getDate') );
+                }
+            });
+
+    $('#arrivalTime').timepicker( {
+        timeFormat: 'h:mm TT'
+
+    });
+
+    $('#departureTime').timepicker( {
+        timeFormat: 'h:mm TT'
+
+    });
+
+    // Avoid selecting duplicate ports
+
+    function preventDuplicatePort(select, index) {
+
+        var options = select.options,
+                len = options.length;
+
+        while ( len-- ){
+            options[ len ].disabled = false;
+        }
+
+        select.options[ index ].disabled = true;
+
+        if( index === select.selectedIndex ){
+            alert('You already selected the same port "' + select.options[index].text + '". Please choose another' );
+            /*this.selectedIndex = 0;*/
+            select2.value = '';
+        }
+
+    }
+
+    var select1 = select = document.getElementById('vesselSchedule_originPort');
+    var select2 = select = document.getElementById('vesselSchedule_destinationPort');
+
+    select2.value = '';
+
+    select1.onchange = function() {
+        preventDuplicatePort.call(this, select2, this.selectedIndex);
+    };
+
+    select2.onchange = function() {
+        preventDuplicatePort.call(this, select1, this.selectedIndex);
+    };
+
 </script>
