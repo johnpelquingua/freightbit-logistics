@@ -122,11 +122,10 @@
             <label class="col-lg-2 control-label">Customer Name<span class="asterisk_red"></span></label>
 
             <div class="col-lg-10">
-                <%--<s:property value="%{order.customerId}" />--%>
+                <s:hidden name="order.customerId" value="%{order.customerId}" />
                 <s:select id="customerName"
                           cssClass="form-control step1"
                           style="margin-bottom: 15px !important;"
-                          name="order.customerId"
                           list="customerList"
                           listKey="customerId"
                           listValue="customerName"
@@ -154,13 +153,13 @@
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date and Time<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.pickupDate}" />--%>
-        <s:textfield type="text" class="from_date form-control step2" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;" />
+        <s:textfield type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;" />
     </div>
 
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date and Time<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.deliveryDate}" />--%>
-        <s:textfield type="text" class="to_date form-control step2" id="datepicker2" name="order.deliveryDate" value="%{order.deliveryDate}" required="true" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;" />
+        <s:textfield type="text" class="to_date form-control" id="datepicker2" name="order.deliveryDate" value="%{order.deliveryDate}" required="true" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;" />
     </div>
 
 </div>

@@ -220,20 +220,20 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-8">
+                        <div class="col-lg-7">
 
                                 <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperContact" name="order.shipperContactId"
                                           list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
                         </div>
 
-                        <div class="col-lg-1">
+                        <div class="col-lg-2">
 
                             <%--<button type="button" class="btn btn-info pull-right"
                                     onclick="location.href='loadAddOrderPage'">
                                 Add Contact Person
                             </button>--%>
                             <div class="pull-right">
-                                <a data-toggle="modal" data-target="#createContact"  class="btn btn-info" id="idCustomer"><i class="fa fa-plus"></i></a>
+                                <a data-toggle="modal" data-target="#createContact"  class="btn btn-info" id="idCustomer"> Add Contact Person</a>
 
                                     <%--<s:url var="loadAddContactUrl" action="loadAddCustomerContact">--%>
                                         <%--<s:param name="CustomerIDParam" value="%{order.customerId}"> </s:param>--%>
@@ -252,12 +252,12 @@
                     <div class="form-group" style="clear: both;">
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-8">
+                        <div class="col-lg-7">
                             <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
                                       list="addressList" listKey="addressId" listValue="addressLine1 + ' ' + addressLine2" required="true"/>
                         </div>
 
-                        <div class="col-lg-1">
+                        <div class="col-lg-2">
 
                             <%--<button type="button" class="btn btn-info pull-right"
                                     onclick="location.href='loadAddOrderPage'" style="width: 153px;">
@@ -265,7 +265,7 @@
                             </button>--%>
 
                             <div class="pull-right">
-                                <a data-toggle="modal" data-target="#createAddress" class="btn btn-info" id="idAddress"><i class="fa fa-plus"></i></a>
+                                <a data-toggle="modal" data-target="#createAddress" class="btn btn-info" id="idAddress" style="width: 151px !important;"> Add Address</a>
                             </div>
 
                         </div>
@@ -281,19 +281,19 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-8">
+                        <div class="col-lg-7">
                             <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperConsignee" name="order.consigneeContactId"
                                       list="consigneeList" listKey="contactId"
                                       listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
                         </div>
 
-                        <div class="col-lg-1">
+                        <div class="col-lg-2">
                             <%--<button type="button" class="btn btn-info pull-right"
                                     onclick="location.href='loadAddOrderPage'" style="width: 153px;">
                                 Add Consignee
                             </button>--%>
                             <div class="pull-right">
-                                <a data-toggle="modal" data-target="#createConsignee" class="btn btn-info" id="idConsignee"><i class="fa fa-plus"></i></a>
+                                <a data-toggle="modal" data-target="#createConsignee" class="btn btn-info" id="idConsignee" style="width: 151px !important;"> Add Consignee</a>
                             </div>
 
                         </div>
@@ -303,7 +303,7 @@
                     <div class="form-group" style="clear:both;">
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-8">
+                        <div class="col-lg-9">
                             <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeAddress" name="order.consigneeAddressId"
                                       list="consigneeAddressList" listKey="addressId"
                                       listValue="addressLine1 + ' ' + addressLine2" required="true"/>

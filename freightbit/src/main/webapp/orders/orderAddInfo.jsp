@@ -28,7 +28,7 @@
 <div class="panel-heading">
     <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Booking Information</h3>
     <div class="btn-toolbar pull-right">
-        <a class="btn btn-primary" title="Edit Booking" ><i class="fa fa-edit"></i></a>
+        <a class="btn btn-info" title="Edit Booking" >Edit Booking</a>
     </div>
 </div>
 

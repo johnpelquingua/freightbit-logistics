@@ -971,7 +971,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setClient(client);
         entity.setOrderDate(new Date()); // Booking Date
         entity.setServiceRequirement(formBean.getServiceRequirement());
-
+        System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT " + formBean.getCustomerId());
         Customer customerEntity = customerService.findCustomerById(formBean.getCustomerId());
         // To get Customer Name from Customer ID
         custName = customerEntity.getCustomerName();

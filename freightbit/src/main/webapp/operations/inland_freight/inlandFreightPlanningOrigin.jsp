@@ -133,19 +133,22 @@
 
                     <div class="form-group">
 
-                        <label for="operationsBean.vendorListDestination" class="col-sm-2 control-label">Vendor:</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
 
-                        <div class="col-sm-10">
-                            <div style="width:90%;float:left;padding-right:10px;">
+                        <div class="col-lg-8">
+                            <div>
                                 <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
                                           id="vendorListOrigin"
                                           listKey="vendorId" listValue="vendorCode" cssClass="form-control"
                                           emptyOption="true" value="%{orderItem.vendorDestination}"
                                         ></s:select>
                             </div>
-                            <div style="width:5%;float:left;">
+                        </div>
+                        <div class="col-lg-2">
+                            <div>
                                 <a href="#.html" class="btn btn-info">
-                                    <i class="fa fa-plus"></i>
+                                    <%--<i class="fa fa-plus"></i>--%>
+                                    Add Vendor
                                 </a>
                             </div>
                         </div>
@@ -154,19 +157,22 @@
 
                     <div class="form-group">
 
-                        <label for="operationsBean.driverDestination" class="col-sm-2 control-label">Driver:</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
 
-                        <div class="col-sm-10">
-                            <div style="width:90%;float:left;padding-right:10px;">
+                        <div class="col-lg-8">
+                            <div>
                                 <s:select list="listDrivers" name="operationsBean.driverOrigin"
                                           id="driverList"
                                           listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
                                           emptyOption="true" value="%{orderItem.driverDestination}"
                                         ></s:select>
                             </div>
-                            <div style="width:5%;float:left;">
-                                <a href="#.html" class="btn btn-info">
-                                    <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="col-lg-2">
+                            <div>
+                                <a href="#.html" class="btn btn-info" style="width:100px !important;">
+                                    <%--<i class="fa fa-plus"></i>--%>
+                                    Add Driver
                                 </a>
                             </div>
                         </div>
@@ -175,37 +181,40 @@
 
                     <div class="form-group">
 
-                        <label for="operationsBean.truckDestination" class="col-sm-2 control-label">Truck:</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
 
-                        <div class="col-sm-10">
-                            <div style="width:90%;float:left;padding-right:10px;">
+                        <div class="col-lg-8">
+                            <div>
                                 <s:select list="listDrivers" name="operationsBean.truckOrigin"
                                           id="trucksList"
                                           listKey="truckId" listValue="truckCode" cssClass="form-control"
                                           emptyOption="true" value="%{orderItem.truckDestination}"
                                         ></s:select>
                             </div>
-                            <div style="width:5%;float:left;">
-                                <a href="#.html" class="btn btn-info">
-                                    <i class="fa fa-plus"></i>
+                        </div>
+                        <div class="col-lg-2">
+                            <div>
+                                <a href="#.html" class="btn btn-info" style="width:100px !important;">
+                                    <%--<i class="fa fa-plus"></i>--%>
+                                    Add Truck
                                 </a>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="form-group" style="margin-bottom: 0px !important;">
+                    <div class="form-group">
 
-                        <label for="dropoff" class="col-sm-2 control-label">Pickup Date:</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
-                        <div class="col-sm-10" style="padding: 0px; width: 75.5% !important; position: relative; left: 15px;">
+                        <div class="col-lg-10">
                             <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalPickupdate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                         </div>
 
                     </div>
 
                     <div style="float: right;">
-                        <button class="btn btn-primary" style="position: relative; left: -50px;">Save</button>
+                        <button class="btn btn-primary" >Save</button>
                     </div>
 
                 </s:form>
@@ -253,13 +262,42 @@
 
                     <div class="form-group">
 
-                        <label for="pickup" class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
+                        <label for="pickup" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
                         <div class="col-lg-10">
                             <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
                         </div>
 
                     </div>
+            </div>
+
+            <div class="panel-footer">
+
+                <div class="pull-right">
+
+                    <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
+                        <s:param name="orderIdParam"
+                                 value="#attr.order.orderId"></s:param>
+                        <s:param name="orderNoParam"
+                                 value="#attr.order.orderNo"></s:param>
+                    </s:url>
+                    <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                         title="Update Status">
+
+                        <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <button type="button" class="btn">
+                                Inland Freight Planning : Containers
+                            </button>
+                        </s:if>
+                        <s:else>
+                            <button type="button" class="btn">
+                                Inland Freight Planning : Items
+                            </button>
+                        </s:else>
+                    </s:a>
+
+                </div>
+
             </div>
 
         </div>
