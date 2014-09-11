@@ -70,8 +70,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     private CustomerService customerService;
     private ParameterService parameterService;
 
-
-
     private ClientService clientService;
     private ConsigneeBean consignee = new ConsigneeBean();
 
@@ -463,6 +461,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         return SUCCESS;
+
     }
 
     public String deleteOrder() {
@@ -635,8 +634,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setZip(formBean.getZip());
         entity.setCreatedTimestamp(formBean.getCreatedTimeStamp());
         entity.setCreatedBy(formBean.getCreatedBy());
-        /*entity.setModifiedTimestamp(new Date());
-        entity.setModifiedBy(getClientId().toString());*/
 
         return entity;
     }
@@ -668,11 +665,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         Client client = clientService.findClientById(getClientId().toString());
         entity.setClient(client);
 
-//        if (formBean.getContactId() != null) {
-//            entity.setContactId(formBean.getContactId());
-//        }
-
-//        Integer customerId = getCustomerSessionId();
         entity.setReferenceTable("CUSTOMERS");
         entity.setContactType("CONSIGNEE");
         entity.setReferenceId(formBean.getReferenceId1());
@@ -685,8 +677,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setFax(formBean.getFax());
         entity.setCreatedTimestamp(formBean.getCreatedTimeStamp1());
         entity.setCreatedBy(formBean.getCreatedBy1());
-        /*entity.setModifiedTimestamp(new Date());
-        entity.setModifiedBy("admin");*/
 
         return entity;
     }
@@ -700,7 +690,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             entity.setAddressId(formBean.getAddressId());
         }
 
-//        Integer customerId = getCustomerSessionId();
         entity.setReferenceTable("CUSTOMERS");
         entity.setReferenceId(formBean.getReferenceId1());
         entity.setAddressLine1(formBean.getAddressLine1());
@@ -711,8 +700,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setZip(formBean.getZip());
         entity.setCreatedTimestamp(formBean.getCreatedTimeStamp2());
         entity.setCreatedBy(formBean.getCreatedBy2());
-        /*entity.setModifiedTimestamp(new Date());
-        entity.setModifiedBy(commonUtils.getUserNameFromSession());*/
 
         return entity;
     }
@@ -793,14 +780,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     private OrderBean transformToOrderFormBean(Orders order) {
 
         OrderBean orderBean = new OrderBean();
-
-//        Orders orderCheck = orderService.findOrdersById(order.getOrderId());
-//
-//    if (orderCheck!=null) {
-//        orderBean.setOrderId(order.getOrderId());
-//    }else{
-//        orderBean.setOrderId(0);
-//    }
 
         orderBean.setOrderId(order.getOrderId());
         orderBean.setOrderNumber(order.getOrderNumber());
@@ -903,7 +882,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         return orderBean;
     }
 
-
     private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
 
         OrderItemsBean orderItemBean = new OrderItemsBean();
@@ -971,7 +949,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setClient(client);
         entity.setOrderDate(new Date()); // Booking Date
         entity.setServiceRequirement(formBean.getServiceRequirement());
-        System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT " + formBean.getCustomerId());
         Customer customerEntity = customerService.findCustomerById(formBean.getCustomerId());
         // To get Customer Name from Customer ID
         custName = customerEntity.getCustomerName();
@@ -1016,11 +993,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private OrderItems transformToOrderItemsEntityBean(OrderItemsBean formBean) {
 
         OrderItems entity = new OrderItems();
-        //TO DO: To included OrderItems entity in Order Entity
-/*		if (orderItem.getOrderItemId() != null && !("").equals(orderItem.getOrderItemId()))
-            orderItem.setOrderItemId(orderItemBean.getOrderItemId());
-		
-		orderItem.setOrderId(orderItemBean.getOrderId());*/
+
         Client client = clientService.findClientById(getClientId().toString());
 
         entity.setClientId(client.getClientId());
@@ -1047,10 +1020,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void validateOnSubmit(OrderItems orderItemBean) {
         clearErrorsAndMessages();
-        //validate notification type
-        /*if (org.apache.commons.lang.StringUtils.isBlank(orderItemBean.getQuantity())) {
-            addFieldError("order.customerId", getText("err.addressLine1.required"));
-        }*/
 
     }
 

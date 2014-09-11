@@ -15,7 +15,6 @@
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Orders </a></li>
             <li class="active">
-                <%--<a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Containers / Items </a>--%>
                 <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
                     <s:param name="orderIdParam"
                              value="#attr.order.orderId"></s:param>
@@ -92,13 +91,13 @@
 
                 <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
 
-                    <%--<c:out value="${sessionScope.orderItemIdParam}" />--%>
-
+                    <%--<c:out value="${sessionScope.orderItemIdParam}" />
+                    <c:out value="${sessionScope.orderIdParam}" />--%>
+                    <c:out value="${sessionScope.vendorIdPass}" />
                     <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                     <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                     <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
                     <s:hidden name="operationsBean.orderId" value="%{order.orderId}" />
-                    <%--<s:property value="%{order.orderId}" />--%>
                     <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
                     <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
                     <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
@@ -123,7 +122,6 @@
 
                         <div class="col-lg-10">
                             <div class="form-control">
-                                <%--<s:property value="%{nameSizeParam}" />--%>
                                 <c:out value="${sessionScope.nameSizeParam}"/>
                             </div>
                         </div>
@@ -153,7 +151,6 @@
                         <div class="col-lg-2" style="text-align: center;">
                             <div>
                                 <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
-                                    <%--<i class="fa fa-plus"> Add Vendor</i>--%>
                                     Add Vendor
                                 </a>
                             </div>
@@ -168,14 +165,12 @@
 
                     </div>
 
-                    <%--<s:submit cssClass="btn btn-default btn-info pull-right" style="position: relative;top: -50px;" name="submit" value="Search"/>--%>
-
                 </s:form>
 
                 <div class="form-group" style="padding-top: 50px;">
 
                     <hr>
-                    <h4 style="text-align:center;">List of Schedules</h4>
+                        <h4 style="text-align:center;">List of Schedules</h4>
                     <hr>
 
                 </div>
@@ -184,7 +179,7 @@
                 <s:if test="hasActionMessages()">
                     <div class="col-lg-12" id="successDiv">
                         <div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
                             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
                         </div>
                     </div>
@@ -214,6 +209,9 @@
                         <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
                             <s:param name="vesselScheduleIdParam"
                                      value="#attr.vesselSchedule.vesselScheduleId">
+                            </s:param>
+                            <s:param name="vendorIdParam"
+                                     value="#attr.vesselSchedule.vendorId">
                             </s:param>
                         </s:url>
                         <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
@@ -367,7 +365,7 @@
             <div class="modal-body">
                 <div class="panel-body">
 
-                    <s:property  value="%{orderItem.orderItemId}"/>
+                    <%--<s:property  value="%{orderItem.orderItemId}"/>--%>
                     <%--<s:textfield id="itemIdHolder"  value="%{orderItem.orderItemId}"/>--%>
                             <s:form action="addVendor" cssClass="form-horizontal" theme="bootstrap">
                             <label>Name<span class="asterisk_red"></span></label>
@@ -391,9 +389,6 @@
                                 <s:select cssClass="form-control" id="vendor.vendorStatus" list="statusList"
                                           listKey="key" listValue="value"
                                           name="vendor.vendorStatus"/>
-
-                            <%--<s:textfield name="orderIdParam" value="%{orderItem.orderId}" />
-                            <s:textfield name="orderItemIdParam" value="%{orderItem.orderItemId}" />      --%>
 
                 </div>
             </div>
@@ -426,50 +421,30 @@
 
                             <label>Voyage Number<span class="asterisk_red"></span></label>
 
-
                             <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber"/>
 
-
                             <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
-                            <%--<label> Vendor<span class="asterisk_red"></span></label>--%>
-
-                            <%--<div class="col-lg-9">
-                            <s:select emptyOption="true" id="vesselSchedule.vendorId"
-                                      value="vesselSchedule.vendorId"
-                                      name="vesselSchedule.vendorId"
-                                      list="vendorList" listValue="vendorName" listKey="vendorId"
-                                      cssClass="form-control"/>
-                            </div>--%>
 
                             <label> Departure Date<span class="asterisk_red"></span></label>
-
 
                             <s:textfield cssClass="form-control" id="departureDate"
                                          name="vesselSchedule.departureDate"/>
 
-
                             <label> Departure Time<span class="asterisk_red"></span></label>
-
 
                             <s:textfield cssClass="form-control" id="departureTime"
                                          name="vesselSchedule.departureTime" readonly="true"/>
 
-
                             <label>Arrival Date<span class="asterisk_red"></span></label>
-
 
                             <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true"/>
 
-
                             <label> Arrival Time<span class="asterisk_red"></span></label>
-
 
                             <s:textfield cssClass="form-control" id="arrivalTime"
                                          name="vesselSchedule.arrivalTime"/>
 
-
                             <label>Origin Pier<span class="asterisk_red"></span></label>
-
 
                         <s:select emptyOption="true" id="vesselSchedule_originPort"
                                   value="vesselSchedule.originPort"
@@ -477,9 +452,7 @@
                                   list="portsList" listValue="value" listKey="key"
                                   cssClass="form-control"/>
 
-
                             <label>Destination Pier<span class="asterisk_red"></span></label>
-
 
                             <s:select emptyOption="true" id="vesselSchedule_destinationPort"
                                       value="vesselSchedule.destinationPort"

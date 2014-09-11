@@ -3,7 +3,7 @@ package com.sr.apps.freightbit.order.formbean;
 import java.util.Date;
 
 public class OrderItemsBean {
-//
+
     private Integer orderItemId;
     private Integer orderId;
     private Integer quantity;

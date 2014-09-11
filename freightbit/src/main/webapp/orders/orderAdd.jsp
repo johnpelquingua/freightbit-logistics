@@ -205,10 +205,6 @@
 
                 </div>
 
-                <%--<button id="activate-step-2" class="btn btn-primary pull-right" style="margin-bottom: 15px !important;">Next</button>--%>
-                <%--<s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Next" />
-                </s:form>--%>
-
                 <div id="2ndPartOnLoad" style="clear:both;">
 
                     <legend style="text-align: left;">
@@ -228,21 +224,9 @@
 
                         <div class="col-lg-2">
 
-                            <%--<button type="button" class="btn btn-info pull-right"
-                                    onclick="location.href='loadAddOrderPage'">
-                                Add Contact Person
-                            </button>--%>
                             <div class="pull-right">
                                 <a data-toggle="modal" data-target="#createContact"  class="btn btn-info" id="idCustomer"> Add Contact Person</a>
 
-                                    <%--<s:url var="loadAddContactUrl" action="loadAddCustomerContact">--%>
-                                        <%--<s:param name="CustomerIDParam" value="%{order.customerId}"> </s:param>--%>
-                                    <%--</s:url>--%>
-                                    <%--<s:a class="icon-action-link" href="%{loadAddContactUrl}" rel="tooltip" title="Add Contact">--%>
-                                        <%--<button type="button" class="btn btn-info" id="idCustomer">--%>
-                                            <%--<i class="fa fa-plus"> </i>--%>
-                                        <%--</button>--%>
-                                    <%--</s:a>--%>
                         </div>
 
                         </div>
@@ -258,11 +242,6 @@
                         </div>
 
                         <div class="col-lg-2">
-
-                            <%--<button type="button" class="btn btn-info pull-right"
-                                    onclick="location.href='loadAddOrderPage'" style="width: 153px;">
-                                Add Address
-                            </button>--%>
 
                             <div class="pull-right">
                                 <a data-toggle="modal" data-target="#createAddress" class="btn btn-info" id="idAddress" style="width: 151px !important;"> Add Address</a>
@@ -288,10 +267,7 @@
                         </div>
 
                         <div class="col-lg-2">
-                            <%--<button type="button" class="btn btn-info pull-right"
-                                    onclick="location.href='loadAddOrderPage'" style="width: 153px;">
-                                Add Consignee
-                            </button>--%>
+
                             <div class="pull-right">
                                 <a data-toggle="modal" data-target="#createConsignee" class="btn btn-info" id="idConsignee" style="width: 151px !important;"> Add Consignee</a>
                             </div>

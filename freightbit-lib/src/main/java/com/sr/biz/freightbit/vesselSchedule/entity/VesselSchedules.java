@@ -2,7 +2,6 @@ package com.sr.biz.freightbit.vesselSchedule.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
 import java.sql.Time;
 import java.util.Date;
 

@@ -1,5 +1,5 @@
 package com.sr.apps.freightbit.operations.action;
-//
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
@@ -51,6 +51,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private String vendorCode;
     private String orderNoParam;
     private Integer vesselScheduleIdParam;
+    private Integer vendorIdParam;
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
@@ -171,10 +172,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String updateCompleteSeaPlanning() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
-        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" + orderId);
+
         // Display basic order data
-
-
         Orders orderEntity = orderService.findOrdersById(orderId);
 
         order = transformToOrderFormBean(orderEntity);
@@ -204,23 +203,22 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         Map sessionAttributes = ActionContext.getContext().getSession();
+        /*System.out.print("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" + vendorIdParam);*/
+        sessionAttributes.put("vendorIdParam", vendorIdParam);
 
         Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderId);
+
         return SUCCESS;
     }
 
     public String editOrderItemsOrigin() {
-        System.out.println("<---------------------Update Orderitem failed-----------------------> \n");
 
         try {
             OrderItems entity = transformOrderItemToEntityBeanOrigin(operationsBean);
             operationsService.updateOrderItem(entity);
-            System.out.println("<---------------------Update Orderitem failed-----------------------> \n");
 
         } catch (Exception e) {
             log.error( "update failed", e);
-            System.out.println("<---------------------Update Orderitem failed-----------------------> \n");
             return INPUT;
         }
 
@@ -257,6 +255,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
             return INPUT;
         }
 
+        Integer vendorIdPass = (transformToVesselScheduleEntityBean(vesselSchedule).getVendorId());
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("vendorIdPass", vendorIdPass);
+        sessionAttributes.put("nameSizeParam", sessionAttributes.get("nameSizeParam"));
         return SUCCESS;
     }
 
@@ -285,12 +288,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String findVesselSchedule() {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
+
         Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
         order = transformToOrderFormBean(orderEntity);
+
         sessionAttributes.put("orderItemId", operationsBean.getOrderItemId());
-        /*sessionAttributes.put("clientId", operationsBean.getClientId());*/
         sessionAttributes.put("nameSize", operationsBean.getNameSize());
-        sessionAttributes.put("orderId", operationsBean.getOrderId());
         sessionAttributes.put("quantity", operationsBean.getQuantity());
         sessionAttributes.put("classification", operationsBean.getClassification());
         sessionAttributes.put("commodity", operationsBean.getCommodity());
@@ -306,13 +309,20 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("vendorSea", operationsBean.getVendorList());
         sessionAttributes.put("orderIdParam", operationsBean.getOrderId());
 
-        List<VesselSchedules> vesselSchedulesList = new ArrayList<VesselSchedules>();
-
-        vesselSchedulesList = operationsService.findVesselScheduleByVendorId(operationsBean.getVendorList());
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByVendorId(operationsBean.getVendorList());
 
         for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
             vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
         }
+
+        sessionAttributes.put("orderItemIdParam", (Integer)sessionAttributes.get("orderItemIdParam"));
+
+        // return the values of operation bean back to hidden fields
+        OrderItems entity = operationsService.findOrderItemById((Integer)sessionAttributes.get("orderItemIdParam"));
+
+        orderItem = transformToOrderItemFormBean(entity);
+
+        //sessionAttributes.put("nameSizeParam", operationsBean.getNameSize());
 
         clearErrorsAndMessages();
         addActionMessage("Vessel Schedule loaded !");
@@ -364,10 +374,20 @@ public class OperationsAction extends ActionSupport implements Preparable {
         orderItem = transformToOrderItemFormBean(entity);
 
         Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
         order = transformToOrderFormBean(orderEntity);
 
         sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
-        sessionAttributes.put("nameSizeParam", entity.getNameSize());
+        /*sessionAttributes.put("nameSizeParam", entity.getNameSize());*/
+        sessionAttributes.put("nameSizeParam", sessionAttributes.get("nameSizeParam"));
+
+        // should put vendor id
+
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByVendorId((Integer)sessionAttributes.get("vendorIdPass"));
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
 
         clearErrorsAndMessages();
         addActionMessage("Vendor Added Successfully!");
@@ -404,34 +424,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    /*public String viewFreightItemListLand( ) {
-        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
-
-        orderItemsList = operationsService.findAllOrderItemsByOrderIdLand(orderIdParam);
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        sessionAttributes.put("orderIdParam", orderIdParam);
-
-        for(OrderItems orderItemsElem : orderItemsList) {
-            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
-        }
-        return SUCCESS;
-    }*/
-
-    /*public String viewFreightItemListSea() {
-        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
-
-        orderItemsList = operationsService.findAllOrderItemsByOrderIdSea(orderIdParam);
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        sessionAttributes.put("orderIdParam", orderIdParam);
-
-        for(OrderItems orderItemsElem : orderItemsList) {
-            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
-        }
-        return SUCCESS;
-    }*/
-
     public String viewInfoOrderInland() {
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
@@ -455,24 +447,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
         return SUCCESS;
     }
-
-//    private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
-//
-//        OrderItemsBean orderItemBean = new OrderItemsBean();
-//
-//        orderItemBean.setOrderItemId(orderItem.getOrderItemId());
-//        orderItemBean.setQuantity(orderItem.getQuantity());
-//        orderItemBean.setNameSize(orderItem.getNameSize());
-//        orderItemBean.setWeight(orderItem.getWeight());
-//        orderItemBean.setVolume(orderItem.getVolume());
-//        orderItemBean.setClassification(orderItem.getClassification());
-//        orderItemBean.setDescription(orderItem.getCommodity());
-//        orderItemBean.setRate(orderItem.getRate());
-//        orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
-//        orderItemBean.setRemarks(orderItem.getComments());
-//
-//        return orderItemBean;
-//    }
 
     public String listVendorDriverAndTrucks() {
         List<Driver> driverList = vendorService.findDriverByVendorId(vendorId);
@@ -600,7 +574,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setVendorSea(entity.getVendorSea());
         formBean.setVendorOrigin(entity.getVendorOrigin());
         formBean.setVendorDestination(entity.getVendorDestination());
-        formBean.setVendorSea(entity.getVendorSea());
+        /*formBean.setVendorSea(entity.getVendorSea());*/
 
         if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId())) {
             formBean.setVesselScheduleId("");
@@ -624,7 +598,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer orderItemId = (Integer) sessionAttributes.get("orderItemId");
         Integer clientId = (Integer) sessionAttributes.get("clientId");
-        Integer orderId = (Integer) sessionAttributes.get("orderId");
+        Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
         String nameSize = (String) sessionAttributes.get("nameSize");
         Integer quantity = (Integer) sessionAttributes.get("quantity");
         String classification = (String) sessionAttributes.get("classification");
@@ -1064,5 +1038,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setVesselSchedule(VesselScheduleBean vesselSchedule) {
         this.vesselSchedule = vesselSchedule;
+    }
+
+    public Integer getVendorIdParam() {
+        return vendorIdParam;
+    }
+
+    public void setVendorIdParam(Integer vendorIdParam) {
+        this.vendorIdParam = vendorIdParam;
     }
 }
