@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="true" %>
 <%--
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -34,8 +35,8 @@
         <ul class="dropdown-menu" style="min-width: 130px;">
 
             <li class="message-preview">
-                <a href="#">
-                    <li><a href="Help"><i class="fa fa-question-circle"></i> Help Center</a></li>
+                <a href="orders/bookingPlanner.jsp">
+                    <li><a href="orders/bookingCalendar.jsp"><i class="fa fa-question-circle"></i> Help Center</a></li>
 
                 </a>
             </li>
@@ -64,7 +65,9 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <c:out value="${sessionScope.loggedinUser}"/><b class="caret"></b></a>
         <ul class="dropdown-menu" style="min-width: 130px;">
             <li><a href="core/viewUserProfile"><i class="fa fa-user"></i> Edit Profile</a></li>
+             <sec:authorize access="hasRole('ROLE_ADMIN')">
             <li><a href="core/loadGeneralSettings"><i class="fa fa-gear"></i> General Settings</a></li>
+            </sec:authorize>
             <li class="divider"></li>
             <li><a href="<c:url value='j_spring_security_logout'/>"> <i class="fa fa-power-off"></i> Log Out</a></li>
         </ul>

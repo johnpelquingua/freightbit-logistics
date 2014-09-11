@@ -1,4 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <%@ page session="true" %>
 <%--
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -65,7 +67,9 @@
                 class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="../core/viewUserProfile"><i class="fa fa-user"></i> Edit Profile</a></li>
+             <sec:authorize access="hasRole('ROLE_ADMIN')">
             <li><a href="../core/loadGeneralSettings"><i class="fa fa-gear"></i> General Settings</a></li>
+            </sec:authorize>
             <li class="divider"></li>
             <li><a href="<c:url value='../j_spring_security_logout'/>"> <i class="fa fa-power-off"></i> Log Out</a></li>
         </ul>

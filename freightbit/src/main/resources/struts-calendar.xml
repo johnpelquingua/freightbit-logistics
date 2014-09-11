@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="calendar" namespace="/calendar" extends="struts-default">
+        
+		<action name="loadCalendar" class="com.sr.apps.freightbit.calendar.CalendarAction" method="loadCalendar">
+			<result name="success">/calendar/calendar.jsp</result>
+		</action>
+		
+		<action name="events" class="com.sr.apps.freightbit.calendar.CalendarAction" method="events">
+			<result name="success">/calendar/calendarEvents.jsp</result>
+		</action>
+    </package>
+</struts>

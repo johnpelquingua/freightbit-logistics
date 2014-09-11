@@ -19,7 +19,8 @@
     <include file="struts-admin.xml"/>
     <include file="struts-user.xml"/>
     <include file="struts-operations.xml"/>
-
+    <include file="struts-calendar.xml"/>
+    
     <package name="default" namespace="/" extends="struts-default">
         <result-types>
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
