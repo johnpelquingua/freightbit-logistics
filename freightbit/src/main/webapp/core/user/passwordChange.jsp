@@ -83,6 +83,7 @@
             <s:if test="hasActionMessages()">
             	<s:a href="%{loadEditUserUrl}" class="btn btn-default" id="users-add-btn"><< Back</s:a>
             </s:if>
+
             </s:form>
 
         </div>

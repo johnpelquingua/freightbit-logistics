@@ -51,7 +51,7 @@
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Base Price (Php)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.basePrice" id="item.basePrice" required="true" cssClass="form-control" pattern="[0-9.]+" title="Special characters in Price is not valid" />
+                                <s:textfield name="item.basePrice" id="item_basePrice" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Price is not valid" />
                             </div>
 
                             <%--<label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)</label>--%>
@@ -66,7 +66,7 @@
                             <%--</div>--%>
                             <label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield  name="item.srp" id="item.srp" required="true" cssClass="form-control" pattern="[0-9.]+" title="Special characters in SRP is not valid"/>
+                                <s:textfield  name="item.srp" id="item.srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in SRP is not valid"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Length (m)<span class="asterisk_red"></span></label>
@@ -131,3 +131,12 @@
     </div>--%>
 
 </div>
+
+<%--<script type="text/javascript">--%>
+    <%--$(document).ready(function(){--%>
+
+        <%--$("#item_basePrice").mask("999,999,999.00");--%>
+
+    <%--});--%>
+
+<%--</script>--%>

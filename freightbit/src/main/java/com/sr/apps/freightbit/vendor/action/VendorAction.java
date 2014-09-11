@@ -473,7 +473,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     public void validateOnSubmitTrucks(TruckBean truckBean) {
         clearErrorsAndMessages();
 
-        String alpha = "[A-Z0-9]+";
+        String alpha = "[0-9]+";
         String plate = "[A-Z][A-Z][A-Z]+[-]\\d\\d\\d";
         String alphaNumeric = "[A-Za-z0-9]+";
         String year = "[0-9]{4}";
@@ -487,7 +487,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         Matcher matcher = codePattern.matcher(truckBean.getTruckCode());
         if (!matcher.matches()) {
-            addFieldError("truck.truckCode", "Code must be Alphanumeric characters  only.");
+            addFieldError("truck.truckCode", "Code must numeric characters  only.");
         }
 
         matcher = plateNumberPattern.matcher(truckBean.getPlateNumber());
@@ -685,9 +685,11 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         String alpha = "^[a-zA-Z][a-zA-Z ]+$";
         String alphaNumeric = "[A-Za-z0-9]+";
+        String title = "^[a-zA-Z. ]+$";
 
         Pattern namePattern = Pattern.compile(alpha);
         Pattern alphaNumericPattern = Pattern.compile(alphaNumeric);
+        Pattern stringtitle = Pattern.compile(title);
 
         Matcher matcher = namePattern.matcher(driverBean.getLastName());
         if (!matcher.matches()) {
@@ -699,15 +701,15 @@ public class VendorAction extends ActionSupport implements Preparable {
             addFieldError("driver.firstName", "First Name must be letters only.");
         }
 
-        matcher = namePattern.matcher(driverBean.getTitle());
+        matcher = stringtitle.matcher(driverBean.getTitle());
         if (!matcher.matches()) {
             addFieldError("driver.title", "Title must be letters only.");
         }
 
-        matcher = alphaNumericPattern.matcher(driverBean.getLicenseNumber());
-        if (!matcher.matches()) {
-            addFieldError("driver.licenseNumber", "License Number must be in valid format.");
-        }
+//        matcher = alphaNumericPattern.matcher(driverBean.getLicenseNumber());
+//        if (!matcher.matches()) {
+//            addFieldError("driver.licenseNumber", "License Number must be in valid format.");
+//        }
 
 //        matcher= alphaNumericPattern.matcher(driverBean.getDriverCode());
 //        if (!matcher.matches()){

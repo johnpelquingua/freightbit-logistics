@@ -38,7 +38,7 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Plate Number" name="truck.plateNumber"
-                                             id="truck.plateNumber" required="true" />
+                                             id="truck_plateNumber" required="true" />
                             </div>
                             <div class="col-lg-10 col-lg-offset-2">
                                 e.g. ABC-123, XYZ-7890, etc.
@@ -60,7 +60,7 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="MV File Number" name="truck.motorVehicleNumber"
-                                             id="truck.motorVehicleNumber" required="true"/>
+                                             id="truck_motorVehicleNumber" required="true" />
                             </div>
                         </div>
                         <%--CR Date of Issue--%>
@@ -214,5 +214,15 @@
         startDate: 2
 
     });
+
+
+    $(document).ready(function(){
+
+        $("#truck_motorVehicleNumber").mask("9999-99999999999");
+//        $("#truck_plateNumber").mask("AAA-999");
+//        $("#shipping_fax").mask("(999) 999-9999");
+
+    });
+
 
 </script>
