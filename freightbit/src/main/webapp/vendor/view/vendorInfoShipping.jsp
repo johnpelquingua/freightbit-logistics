@@ -33,9 +33,14 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Vendor Shipping Profile</h3>
                 <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking" onclick="location.href=''">
-                        <i class="fa fa-pencil"></i> Edit Vendor
-                    </button>
+                    <s:url var="editVendorUrl" action="loadEditVendorPage">
+                        <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
+                    </s:url>
+                        <s:a cssClass="btn btn-success new-booking" href="%{editVendorUrl}" rel="tooltip"
+                             title="Edit this vendor">
+                            <%--<img src="../includes/images/edit-user.png" class="icon-action circ-icon">--%>
+                            <i class="fa fa-pencil"></i> Edit Vendor
+                        </s:a>
                 </span>
             </div>
 

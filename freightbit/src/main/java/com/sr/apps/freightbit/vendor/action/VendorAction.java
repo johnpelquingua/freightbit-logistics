@@ -369,12 +369,17 @@ public class VendorAction extends ActionSupport implements Preparable {
             addFieldError("truck.truckCode", getText("err.truck.already.exists"));
             return INPUT;
         }
+
         return SUCCESS;
     }
 
     public String deleteTrucks() {
         Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
         vendorService.deleteTrucks(truckEntity);
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Truck has been deleted.");
+
         return SUCCESS;
     }
 
@@ -382,6 +387,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer vendorId = (Integer) sessionAttributes.get("vendorId");
         List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorId);
+
         for (Trucks truckElem : truckEntityList) {
             trucks.add(transformToFormBeanTrucks(truckElem));
         }
@@ -634,6 +640,10 @@ public class VendorAction extends ActionSupport implements Preparable {
     public String deleteDriver() {
         Driver driverEntity = vendorService.findDriverByDriverCode(driverCodeParam);
         vendorService.deleteDriver(driverEntity);
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Driver has been deleted.");
+
         return SUCCESS;
     }
 
@@ -788,6 +798,10 @@ public class VendorAction extends ActionSupport implements Preparable {
     public String deleteVessels() {
         Vessel vesselEntity = vendorService.findVesselByName(vesselNameParam);
         vendorService.deleteVessel(vesselEntity);
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Vessel has been deleted.");
+
         return SUCCESS;
     }
 
@@ -954,6 +968,9 @@ public class VendorAction extends ActionSupport implements Preparable {
         Contacts contactEntity = vendorService.findContactById(contactCodeParam);
         vendorService.deleteContact(contactEntity);
 
+        clearErrorsAndMessages();
+        addActionMessage("Success! Contact has been deleted.");
+
         return SUCCESS;
     }
 
@@ -1054,6 +1071,10 @@ public class VendorAction extends ActionSupport implements Preparable {
     public String deleteAddress() {
         Address addressEntity = vendorService.findAddressById(addressIdParam);
         vendorService.deleteAddress(addressEntity);
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Address has been deleted.");
+
         return SUCCESS;
     }
 

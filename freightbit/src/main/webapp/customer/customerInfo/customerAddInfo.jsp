@@ -28,69 +28,72 @@
                 <div class="table-responsive list-table">
 
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addCustomer">
+                    <div class="col-lg-12">
 
-                        <div class="form-group">
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px !important; margin-top: 0px !important;">Company Name / Customer Name<span class="asterisk_red"></span></label>
-                            <div class="col-lg-9" >
+                        <div class="col-lg-6">
 
-                                <s:textfield  required="true" name="customer.customerName"  cssClass="form-control" id="customer.customerName" />
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px !important; margin-top: 0px !important;">Company/Customer Name<span class="asterisk_red"></span></label>
+                                <div class="col-lg-8" >
+
+                                    <s:textfield  required="true" name="customer.customerName"  cssClass="form-control" id="customer.customerName" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
+                                <div class="col-lg-8" >
+
+                                    <s:textfield required="true" maxLength="3" pattern="[A-Z]+" name="customer.customerCode" cssClass="form-control" id="customer_customerCode" onkeypress="return isNumberKey(event)"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Customer Type<span class="asterisk_red"></span></label>
+                                <div class="col-lg-8" >
+                                    <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Phone No.<span class="asterisk_red"></span></label>
+                                <div class="col-lg-8" >
+                                    <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer_phone" maxLength="14"
+                                    placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Mobile No.<span class="asterisk_red"></span></label>
+                                <div class="col-lg-8" >
+                                    <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer_mobile" maxLength="19"
+                                        placeholder="(+639XX) (XXX-XXXX)"
+                                    title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Fax  No.</label>
+                                <div class="col-lg-8" >
+                                    <s:textfield  name="customer.fax" cssClass="form-control" id="customer_fax" maxLength="14"
+                                     placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
+                                <div class="col-lg-8" >
+                                    <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email"
+                                     placeholder="E-mail" maxLength="50" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Website</label>
+                                <div class="col-lg-8" >
+                                    <s:textfield name="customer.website" cssClass="form-control" id="customer.website"/>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
-                            <div class="col-lg-9" >
 
-                                <s:textfield required="true" maxLength="3" pattern="[A-Z]+" name="customer.customerCode" cssClass="form-control" id="customer_customerCode" onkeypress="return isNumberKey(event)"/>
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Customer Type<span class="asterisk_red"></span></label>
-                            <div class="col-lg-9" >
-                                <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="form-control"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Phone No.<span class="asterisk_red"></span></label>
-                            <div class="col-lg-9" >
-                                <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer_phone" maxLength="14"
-                                placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile No.<span class="asterisk_red"></span></label>
-                            <div class="col-lg-9" >
-                                <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer_mobile" maxLength="19"
-                                    placeholder="(+639XX) (XXX-XXXX)"
-                                title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Fax  No.</label>
-                            <div class="col-lg-9" >
-
-
-                                <s:textfield  name="customer.fax" cssClass="form-control" id="customer_fax" maxLength="14"
-                                 placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
-                            <div class="col-lg-9" >
-                                <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email"
-								 placeholder="E-mail" maxLength="50" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Website</label>
-                            <div class="col-lg-9" >
-                                <s:textfield name="customer.website" cssClass="form-control" id="customer.website"/>
-                            </div>
-                        </div>
+                    </div>
 
                         <div class="col-lg-9 col-lg-offset-2">
                             <div class="panel panel-info" >

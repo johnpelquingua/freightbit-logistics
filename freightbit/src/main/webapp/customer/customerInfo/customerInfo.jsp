@@ -36,9 +36,19 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Customer Profile</h3>
                 <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking" onclick="location.href=''">
-                        <i class="fa fa-pencil"></i> Edit Customer
-                    </button>
+                    <s:url var="editCustomerUrl" action="loadEditCustomerPage">
+                        <s:param name="customerCodeParam"
+                                 value="#attr.customer.customerCode"></s:param>
+                    </s:url>
+                        <sec:authorize
+                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                            <s:a href="%{editCustomerUrl}" cssClass="btn btn-success new-booking" rel="tooltip"
+                                 title="Edit this Customer">
+                                <%--<img src="../includes/images/edit-user.png"
+                                     class="icon-action circ-icon"> --%>
+                                <i class="fa fa-pencil"></i> Edit Customer
+                            </s:a>
+                        </sec:authorize>
                 </span>
             </div>
 
