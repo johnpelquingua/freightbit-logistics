@@ -134,7 +134,6 @@
                                           listValue="customerName"
                                           emptyOption="true"
                                           required="true"
-
                                 />
 
                             </div>
@@ -191,7 +190,7 @@
                         <div class="col-lg-9" style="text-align:left !important;">
                             <%--<s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
                                       name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>--%>
-                                <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy"/>
+                                <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy" />
                         </div>
                     </div>
 
@@ -323,7 +322,6 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
                 <h4 class="modal-title" id="myModalLabel">Cancel Booking</h4>
             </div>
             <div class="modal-body">
@@ -331,7 +329,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
+                <%--<button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>--%>
+                <s:property value="order.orderId"/>
+                <s:url var="deleteOrderUrl" action="deleteOrder">
+                    <s:param name="orderIdParam" value="order.orderId"></s:param>
+                </s:url>
+                <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip">
+                    <button type="button" class="btn btn-primary">Yes</button>
+                </s:a>
             </div>
         </div>
     </div>
@@ -350,11 +355,8 @@
                 <div class="panel-body">
 
                     <s:form action="addCustomerContact" cssClass="form-horizontal" theme="bootstrap">
-                        <s:hidden name="contact.referenceId" id="custIdHolder"/>
-                        <%--<label>Contact Type.<span class="asterisk_red"></span></label>--%>
-                                    <%--<s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"--%>
-                                            <%--listKey="key" listValue="value" cssClass="form-control"--%>
-                      <div class="form-group">                         <%--value="contact.contactType" emptyOption="true"/>--%>
+                    <s:hidden name="contact.referenceId" id="custIdHolder"/>
+                      <div class="form-group">
                         <label class="col-lg-3">Last name<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
@@ -710,27 +712,12 @@ $(document).ready(function() {
             });
             // populate customer consignee list
             $.each(jsonResponse.customerConsigneeMap, function(key, value) {
-                //alert($("#shipperConsignee").val());
 
-                /*if($("#shipperConsignee").val() != ''){
-                    $('<option>').val(null).text("").appendTo(select3);
-                    $('<option>').val(key).text(value).appendTo(select3);
-                }else{
-                    $('<option>').val(key).text(value).appendTo(select3);
-                }*/
                 $('<option>').val(key).text(value).appendTo(select3);
             });
 
             // populate customer address list
             $.each(jsonResponse.consigneeAddressMap, function(key, value) {
-                //alert($("#consigneeAddress").val());
-
-                /*if($("#consigneeAddress").val() != ''){
-                 $('<option>').val(null).text("").appendTo(select4);
-                 $('<option>').val(key).text(value).appendTo(select4);
-                 }else{
-                 $('<option>').val(key).text(value).appendTo(select4);
-                 }*/
 
                 if($("#consigneeAddress").val() != ''){
                     if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER'){
@@ -1264,16 +1251,15 @@ $(document).ready(function(){
         localStorage.clear();
     });
 });
-    /*Mask input fields*/
-    $(document).ready(function(){
 
-        $("#contact_phone").mask("(999) 999-9999");
-        $("#contact_mobile").mask("(+63999)(999-9999)");
-        $("#contact_fax").mask("(999) 999-9999");
-        $("#consignee_phone").mask("(999) 999-9999");
-        $("#consignee_mobile").mask("(+63999)(999-9999)");
-        $("#consignee_fax").mask("(999) 999-9999");
-    });
-
+/*Mask input fields*/
+$(document).ready(function(){
+    $("#contact_phone").mask("(999) 999-9999");
+    $("#contact_mobile").mask("(+63999)(999-9999)");
+    $("#contact_fax").mask("(999) 999-9999");
+    $("#consignee_phone").mask("(999) 999-9999");
+    $("#consignee_mobile").mask("(+63999)(999-9999)");
+    $("#consignee_fax").mask("(999) 999-9999");
+});
 
 </script>

@@ -168,7 +168,7 @@ public class Orders implements java.io.Serializable {
         this.serviceMode = serviceMode;
     }
 
-    @Column(name = "notificationType", nullable = false, length = 25)
+    @Column(name = "notificationType", length = 25)
     public String getNotificationType() {
         return this.notificationType;
     }

@@ -4,7 +4,6 @@
 
 <div class="row">
     <div class="col-lg-12">
-
         <legend style="text-align: left;">
             <span >
                <h1><i class="fa fa-book"></i> Booking Module </h1>
@@ -38,13 +37,13 @@
 <div class="well">
     <fieldset class="inputs">
         <legend style="text-align: left;">
-                            <span >
-                                Basic Information
-                            </span>
+            <span >
+                Basic Information
+            </span>
         </legend>
         <s:form action="editOrder" theme="bootstrap">
         <%--<s:property value="%{order.orderId}"/>--%>
-        <s:hidden name="order.orderId" value="%{order.orderId}"/>
+        <s:hidden name="order.orderId" id="order_orderId" value="%{order.orderId}"/>
         <%--<s:property value="%{order.orderNumber}"/>--%>
         <s:hidden name="order.orderNumber" value="%{order.orderNumber}"/>
 
@@ -76,7 +75,7 @@
                 <s:hidden name="order.serviceRequirement" value="%{order.serviceRequirement}" />
                 <s:select cssClass="form-control"
                           style="margin-bottom: 15px !important;"
-                          name="order.serviceRequirement"
+                          name="order_serviceRequirement"
                           list="serviceRequirementList"
                           id="order.serviceRequirement"
                           listKey="key"
@@ -162,8 +161,7 @@
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.pickupDate}" />--%>
-        <%--<s:textfield type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;" />--%>
-            <s:textfield type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;" />
+        <s:textfield type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;" />
     </div>
 
     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date<span class="asterisk_red"></span></label>
@@ -198,10 +196,8 @@
         <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type<span class="asterisk_red"></span></label>
 
         <div class="col-lg-9" style="text-align:left !important;">
-            <s:property value="%{order.notifyBy}" />
-            <s:property value="%{notificationList}" />
-            <%--<s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                      name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" value="order.notifyBy"/>--%>
+            <%--<s:property value="%{order.notifyBy}" />
+            <s:property value="%{notificationList}" />--%>
             <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" value="%{notificationList}"/>
         </div>
 
@@ -211,15 +207,11 @@
         <label class="col-lg-3 control-label" style="margin-top: 5px;">Comments </label>
         <%--<s:property value="%{order.comments}" />--%>
         <div class="col-lg-9">
-            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" />
+            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="Comments"/>
         </div>
     </div>
 
 </div>
-
-    <%--<button id="activate-step-2" class="btn btn-primary pull-right" style="margin-bottom: 15px !important;">Next</button>--%>
-    <%--<s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Next" />
-    </s:form>--%>
 
 <div id="2ndPartOnLoad" style="clear:both;">
 
@@ -239,10 +231,6 @@
         </div>
 
         <div class="col-lg-2">
-                <%--<button type="button" class="btn btn-info pull-right"
-                        onclick="location.href='loadAddOrderPage'">
-                    Add Contact Person
-                </button>--%>
             <div class="pull-right">
                 <a data-toggle="modal" data-target="#createContact"  class="btn btn-info" id="idCustomer"> Add Contact Person</a>
             </div>
@@ -261,11 +249,6 @@
         </div>
 
         <div class="col-lg-2">
-
-                <%--<button type="button" class="btn btn-info pull-right"
-                        onclick="location.href='loadAddOrderPage'" style="width: 153px;">
-                    Add Address
-                </button>--%>
 
             <div class="pull-right">
                 <a data-toggle="modal" data-target="#createAddress" class="btn btn-info" id="idAddress" style="width: 151px !important;"> Add Address</a>
@@ -292,10 +275,6 @@
         </div>
 
         <div class="col-lg-2">
-                <%--<button type="button" class="btn btn-info pull-right"
-                        onclick="location.href='loadAddOrderPage'" style="width: 153px;">
-                    Add Consignee
-                </button>--%>
             <div class="pull-right">
                 <a data-toggle="modal" data-target="#createConsignee" class="btn btn-info" id="idConsignee" style="width: 151px !important;"> Add Consignee</a>
             </div>
@@ -361,7 +340,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
+                <%--<button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>--%>
+                <s:property value="order.orderId"/>
+                <s:url var="deleteOrderUrl" action="deleteOrder">
+                    <s:param name="orderIdParam" value="order.orderId"></s:param>
+                </s:url>
+                <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip">
+                    <button type="button" class="btn btn-primary">Yes</button>
+                </s:a>
             </div>
         </div>
     </div>
@@ -379,12 +365,10 @@
             <div class="modal-body">
                 <div class="panel-body">
 
-                    <s:form action="addCustomerContact" cssClass="form-horizontal" theme="bootstrap">
+                    <s:form action="addCustomerContactEditOrder" cssClass="form-horizontal" theme="bootstrap">
+                    <s:hidden name="orderIdParam" id="orderIdHolder"/>
                     <s:hidden name="contact.referenceId" id="custIdHolder"/>
-                        <%--<label>Contact Type.<span class="asterisk_red"></span></label>--%>
-                        <%--<s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"--%>
-                        <%--listKey="key" listValue="value" cssClass="form-control"--%>
-                    <div class="form-group">                         <%--value="contact.contactType" emptyOption="true"/>--%>
+                    <div class="form-group">
                         <label class="col-lg-3">Last name<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
@@ -413,8 +397,6 @@
                     <div class="form-group">
                         <label class="col-lg-3">Phone<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
-
-                            <s:property value="contact.phone" />
                             <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.phone"
                                          maxLength="14" required="true" id="contact_phone"
                                          title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
@@ -440,7 +422,7 @@
                         <label class="col-lg-3">Email<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="email" name="contact.email"
-                                         type="email" required="true"/>
+                                         id="contact_email" type="email" required="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -477,6 +459,7 @@
             <div class="modal-body">
                 <div class="panel-body">
                     <s:form action="addCustomerAddressEditOrder" cssClass="form-horizontal" theme="bootstrap">
+                    <s:hidden name="orderIdParam" id="orderIdHolder"/>
                     <s:hidden name="address.referenceId" id="custAddIdHolder"/>
                     <div class="form-group">
                         <label class="col-lg-2">Address Type<span class="asterisk_red"></span></label>
@@ -542,7 +525,8 @@
             <div class="modal-body">
                 <div class="panel-body">
                     <div class="form-group">
-                        <s:form action="addConsigneeBooking" cssClass="form-horizontal" theme="bootstrap">
+                        <s:form action="addConsigneeBookingEditOrder" cssClass="form-horizontal" theme="bootstrap">
+                        <s:hidden name="orderIdParam" id="orderIdHolder"/>
                         <s:hidden name="consignee.referenceId1" id="consigneeAddIdHolder"/>
                         <div class="form-group">
                             <label class="col-lg-3">First name<span class="asterisk_red"></span></label>
@@ -664,6 +648,13 @@
 $(document).ready(function() {
 
     $( window ).load(function() {
+        $("#contact_phone").val('');
+        $("#contact_mobile").val('');
+        $("#contact_fax").val('');
+        $("#contact_email").val('');
+
+        /*setThis();*/
+
         var custId = $("#customerName").val();
         /*alert(custId);*/
 
@@ -806,14 +797,6 @@ $(document).ready(function() {
                     $.each(jsonResponse.customerConsigneeMap, function(key, value) {
                         //alert($("#shipperConsignee").val());
 
-                        /*if($("#shipperConsignee").val() != ''){
-                            if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER' || $("#order_modeOfService").val() == 'PIER TO DOOR'){
-                                $('<option>').val(null).text("").appendTo(select3);
-                            }
-                            $('<option>').val(key).text(value).appendTo(select3);
-                        }else{
-                            $('<option>').val(key).text(value).appendTo(select3);
-                        }*/
                         $('<option>').val(null).text("").appendTo(select3);
                         $('<option>').val(key).text(value).appendTo(select3);
                     });
@@ -822,14 +805,6 @@ $(document).ready(function() {
                     $.each(jsonResponse.consigneeAddressMap, function(key, value) {
                         //alert($("#consigneeAddress").val());
 
-                        /*if($("#consigneeAddress").val() != ''){
-                            if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER' || $("#order_modeOfService").val() == 'PIER TO DOOR'){
-                                $('<option>').val(null).text("").appendTo(select4);
-                            }
-                            $('<option>').val(key).text(value).appendTo(select4);
-                        }else{
-                            $('<option>').val(key).text(value).appendTo(select4);
-                        }*/
                         $('<option>').val(null).text("").appendTo(select4);
                         $('<option>').val(key).text(value).appendTo(select4);
                     });
@@ -1185,73 +1160,64 @@ select2.onchange = function() {
     preventDuplicatePort.call(this, select1, this.selectedIndex);
 };
 
+//to get the customer id
+$(document).ready(function(){
+    $("#idCustomer").click(function(){
+        var custId = $("#customerName").val();
+        var orderId = $("#order_orderId").val();
+        alert(orderId);
+        /*getThis();*/
+        if (custId == "" || null ){
+            alert("Select a customer first");
+            $("#customerName").focus();
+            return false;
+        }
+        $("#custIdHolder").val(custId);
+        $("#orderIdHolder").val(orderId);
+    });
+});
+
 // to get customer id for add address
 $(document).ready(function(){
     $("#idAddress").click(function(){
         var custId1 = $("#customerName").val();
-        getThis();
+        var orderId = $("#order_orderId").val();
+        alert (custId1);
+        alert(orderId);
+        /*getThis();*/
         if (custId1 == "" || null ){
             alert("Select a customer first");
             $("#customerName").focus();
             return false;
         }
         $("#custAddIdHolder").val(custId1);
+        $("#orderIdHolder").val(orderId);
     });
 });
 // to get customer id for add consignee
 $(document).ready(function(){
     $("#idConsignee").click(function(){
         var custId2 = $("#customerName").val();
-        getThis();
+        var orderId = $("#order_orderId").val();
+        /*getThis();*/
         if (custId2 == "" || null ){
             alert("Select a customer first");
             $("#customerName").focus();
             return false;
         }
         $("#consigneeAddIdHolder").val(custId2);
+        $("#orderIdHolder").val(orderId);
     });
 });
 
-function getThis()
-{
-    var ServiceReqField = $("#order_serviceRequirement").val();
-    var ServiceModeField =$("#order_modeOfService").val();
-    var FreightTypeField = $("#order_freightType").val();
-    var PaymentModeField = $("#order_modeOfPayment").val();
-    var CustNameField = $("#customerName").val();
-    var Pickdatefield = $("#datepicker1").val();
-    var Deldatefield = $("#datepicker2").val();
-    var OriginPortField = $("#select1").val();
-    var DestinationPortField = $("#select2").val();
-    var NotificationField = $("#notification_type").val();
-    var CommentsField = $("#Comments").val();
-
-    localStorage.setItem("ServiceReqField",ServiceReqField);
-    localStorage.setItem("ServiceModeField",ServiceModeField);
-    localStorage.setItem("FreightTypeField",FreightTypeField);
-    localStorage.setItem("PaymentModeField",PaymentModeField);
-    localStorage.setItem("CustNameField", CustNameField);
-    localStorage.setItem("Pickdatefield",Pickdatefield);
-    localStorage.setItem("Deldatefield",Deldatefield);
-    localStorage.setItem("OriginPortField",OriginPortField);
-    localStorage.setItem("DestinationPortField",DestinationPortField);
-    localStorage.setItem("NotificationField",NotificationField);
-    localStorage.setItem("CommentsField",CommentsField);
-}
-
-function setThis()
-{
-    $("#order_serviceRequirement").val(localStorage.getItem("ServiceReqField"));
-    $("#order_modeOfService").val(localStorage.getItem("ServiceModeField"));
-    $("#order_freightType").val(localStorage.getItem("FreightTypeField"));
-    $("#order_modeOfPayment").val(localStorage.getItem("PaymentModeField"));
-    $("#customerName").val(localStorage.getItem("CustNameField"));
-    $("#datepicker1").val(localStorage.getItem("Pickdatefield"));
-    $("#datepicker2").val(localStorage.getItem("Deldatefield"));
-    $("#select1").val(localStorage.getItem("OriginPortField"));
-    $("#select2").val(localStorage.getItem("DestinationPortField"));
-    $("#notification_type").val(localStorage.getItem("NotificationField"));
-    $("#Comments").val(localStorage.getItem("CommentsField"));
-}
+/*Mask input fields*/
+$(document).ready(function(){
+    $("#contact_phone").mask("(999) 999-9999");
+    $("#contact_mobile").mask("(+63999)(999-9999)");
+    $("#contact_fax").mask("(999) 999-9999");
+    $("#consignee_phone").mask("(999) 999-9999");
+    $("#consignee_mobile").mask("(+63999)(999-9999)");
+    $("#consignee_fax").mask("(999) 999-9999");
+});
 
 </script>

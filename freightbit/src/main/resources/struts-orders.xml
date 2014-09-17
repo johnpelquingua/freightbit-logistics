@@ -84,7 +84,7 @@
                 method="addedItemsInTable">
             <result name="success" type="tiles">orders.add-booking-info.tiles</result>
         </action>
-
+        <!--Add Contacts in New Booking-->
         <action name="addCustomerContact" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addCustomerContact">
             <result name="success" type="redirect">AddCustomerContactsInBooking</result>
@@ -96,11 +96,19 @@
             <result name="success" type="tiles">orders.booking-new.tiles</result>
         </action>
 
+        <!--Add Contacts in Edit Booking-->
+        <action name="addCustomerContactEditOrder" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="addCustomerContact">
+            <result name="success" type="redirect">loadEditOrder</result>
+            <result name="input" type="tiles">orders.orderEdit.tiles</result>
+        </action>
+
         <!--<action name="loadAddCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"-->
                 <!--method="loadAddContactBooking">-->
             <!--<result name="success" type="redirect">AddCustomerContactsBooking</result>-->
         <!--</action>-->
 
+        <!--Add Address in New Booking-->
         <action name="addCustomerAddress" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addAddress">
             <result name="success" type="redirect">AddCustomerAddressInBooking</result>
@@ -110,17 +118,14 @@
                 method="reloadAddOrderPage">
             <result name="success" type="tiles">orders.booking-new.tiles</result>
         </action>
-
+        <!--Add Address in Edit Booking-->
         <action name="addCustomerAddressEditOrder" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addAddress">
-            <result name="success" type="redirect">AddCustomerAddressInBookingEdit</result>
+            <result name="success" type="redirect">loadEditOrder</result>
+            <result name="input" type="tiles">orders.orderEdit.tiles</result>
         </action>
 
-        <action name="AddCustomerAddressInBookingEdit" class="com.sr.apps.freightbit.order.action.OrderAction"
-                method="reloadAddOrderPage">
-            <result name="success" type="tiles">orders.orderEdit.tiles</result>
-        </action>
-
+        <!--Add Consignee in New Booking-->
         <action name="addConsigneeBooking" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addConsignee">
             <result name="success" type="redirect">AddConsigneeInBooking</result>
@@ -130,7 +135,12 @@
                 method="reloadAddOrderPage">
             <result name="success" type="tiles">orders.booking-new.tiles</result>
         </action>
-
+        <!--Add Consignee in Edit Booking-->
+        <action name="addConsigneeBookingEditOrder" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="addConsignee">
+            <result name="success" type="redirect">loadEditOrder</result>
+            <result name="input" type="tiles">orders.orderEdit.tiles</result>
+        </action>
 
     </package>
 
@@ -151,8 +161,6 @@
         <action name="itemAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="itemAction">
             <result type="json">/orders/orderAddInfo.jsp</result>
         </action>
-
-
 
     </package>
 </struts>
