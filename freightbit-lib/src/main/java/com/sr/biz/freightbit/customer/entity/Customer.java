@@ -25,10 +25,10 @@ public class Customer implements java.io.Serializable {
     private String mobile;
     private String fax;
     private String email;
-    private int dti;
-    private int mayorsPermit;
-    private int aaf;
-    private int signatureCard;
+    private String dti;
+    private String mayorsPermit;
+    private String aaf;
+    private String signatureCard;
     private Date createdTimestamp;
     private String createdBy;
     private Date modifiedTimestamp;
@@ -40,9 +40,9 @@ public class Customer implements java.io.Serializable {
     public Customer(Integer customerId, Client client, String customerCode,
                     String customerName, String customerType, String website,
                     String phone, String mobile, String fax, String email,
-                    int dti, int mayorsPermit, int aaf, int signatureCard,
-                    Date createdTimestamp, String createdBy, Date modifiedTimestamp,
-                    String modifiedBy) {
+                    String dti, String mayorsPermit, String aaf,
+                    String signatureCard, Date createdTimestamp,
+                    String createdBy, Date modifiedTimestamp, String modifiedBy) {
         this.customerId = customerId;
         this.client = client;
         this.customerCode = customerCode;
@@ -157,38 +157,38 @@ public class Customer implements java.io.Serializable {
     }
 
     @Column(name = "dti")
-    public int getDti() {
+    public String getDti() {
         return dti;
     }
 
-    public void setDti(int dti) {
+    public void setDti(String dti) {
         this.dti = dti;
     }
 
     @Column(name = "mayorsPermit")
-    public int getMayorsPermit() {
+    public String getMayorsPermit() {
         return mayorsPermit;
     }
 
-    public void setMayorsPermit(int mayorsPermit) {
+    public void setMayorsPermit(String mayorsPermit) {
         this.mayorsPermit = mayorsPermit;
     }
 
     @Column(name = "aaf")
-    public int getAaf() {
+    public String getAaf() {
         return aaf;
     }
 
-    public void setAaf(int aaf) {
+    public void setAaf(String aaf) {
         this.aaf = aaf;
     }
 
     @Column(name = "signatureCard")
-    public int getSignatureCard() {
+    public String getSignatureCard() {
         return signatureCard;
     }
 
-    public void setSignatureCard(int signatureCard) {
+    public void setSignatureCard(String signatureCard) {
         this.signatureCard = signatureCard;
     }
 
