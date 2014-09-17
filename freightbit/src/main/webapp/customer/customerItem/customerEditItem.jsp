@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Item Code<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.itemCode" id="item.itemCode" required="true" cssClass="form-control" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only" />
+                                <s:textfield name="item.itemCode" id="item_itemCode" required="true" cssClass="form-control" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Base Price (Php)<span class="asterisk_red"></span></label>
@@ -88,12 +88,12 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Description<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textarea name="item.description" id="item.description" required="true" resize="none" style="resize:none" rows="3" cssClass="form-control"  />
+                                <s:textarea name="item.description" id="item.description" required="true" resize="none" style="resize:none" rows="3" cssClass="form-control" maxlength="50" />
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Note<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textarea name="item.note" id="item.note" required="true" cssClass="form-control" style="resize:none" rows="3" />
+                                <s:textarea name="item.note" id="item.note" required="true" cssClass="form-control" style="resize:none" rows="3" maxlength="50" />
                             </div>
                         </div>
                 </div>
@@ -132,11 +132,26 @@
 
 </div>
 
-<%--<script type="text/javascript">--%>
-    <%--$(document).ready(function(){--%>
+<script type="text/javascript">
+//    $(document).ready(function(){
+//
+//        $("#item_basePrice").mask("999,999,999.00");
+//
+//    });
 
-        <%--$("#item_basePrice").mask("999,999,999.00");--%>
 
-    <%--});--%>
+    $("#item_itemCode").keyup(function(){
+        this.value=this.value.toUpperCase();
+    });
 
-<%--</script>--%>
+
+    function alphaKeyOnly(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if ((charCode > 32 && charCode < 57)||(charCode > 57 && charCode <65) || (charCode > 90 && charCode < 97) )
+            return false;
+
+        return true;
+    }
+
+</script>

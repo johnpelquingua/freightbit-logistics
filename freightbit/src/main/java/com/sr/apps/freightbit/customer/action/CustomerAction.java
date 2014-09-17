@@ -418,6 +418,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
             return INPUT;
         }
 
+
         clearErrorsAndMessages();
         addActionMessage("Success! New Customer has been added.");
         return SUCCESS;
@@ -428,6 +429,17 @@ public class CustomerAction extends ActionSupport implements Preparable {
         for (Customer customerElem : customerEntityList) {
             customers.add(transformToFormBean(customerElem));
         }
+        return SUCCESS;
+    }
+
+
+    public String loadAddCustomerList() {
+        List<Customer> customerEntityList = customerService.findAllCustomer();
+        for (Customer customerElem : customerEntityList) {
+            customers.add(transformToFormBean(customerElem));
+        }
+        clearErrorsAndMessages();
+        addActionMessage("Success! New Customer has been added.");
         return SUCCESS;
     }
 
@@ -469,34 +481,37 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setWebsite(entity.getWebsite());
         formBean.setFax(entity.getFax());
         formBean.setMobile(entity.getMobile());
-
-        /*Dti Checkbox*/
-        if (entity.getDti() == 1 ){
-            formBean.setDti(1);
-        }else {
-            formBean.setDti(0);
-        }
-
-        /*Mayor's Permit Checkbox*/
-        if (entity.getMayorsPermit() == 1 ){
-            formBean.setMayorsPermit(1);
-        }else {
-            formBean.setMayorsPermit(0);
-        }
-
-        /*Account Application Form Checkbox*/
-        if (entity.getAaf() == 1 ){
-            formBean.setAaf(1);
-        }else {
-            formBean.setAaf(0);
-        }
-
-        /*Signature Card Checkbox*/
-        if (entity.getSignatureCard() == 1 ){
-            formBean.setSignatureCard(1);
-        }else {
-            formBean.setSignatureCard(0);
-        }
+        formBean.setDti(entity.getDti());
+        formBean.setMayorsPermit(entity.getMayorsPermit());
+        formBean.setAaf(entity.getAaf());
+        formBean.setSignatureCard(entity.getSignatureCard());
+//        /*Dti Checkbox*/
+//        if (entity.getDti() == 1 ){
+//            formBean.setDti(1);
+//        }else {
+//            formBean.setDti(0);
+//        }
+//
+//        /*Mayor's Permit Checkbox*/
+//        if (entity.getMayorsPermit() == 1 ){
+//            formBean.setMayorsPermit(1);
+//        }else {
+//            formBean.setMayorsPermit(0);
+//        }
+//
+//        /*Account Application Form Checkbox*/
+//        if (entity.getAaf() == 1 ){
+//            formBean.setAaf(1);
+//        }else {
+//            formBean.setAaf(0);
+//        }
+//
+//        /*Signature Card Checkbox*/
+//        if (entity.getSignatureCard() == 1 ){
+//            formBean.setSignatureCard(1);
+//        }else {
+//            formBean.setSignatureCard(0);
+//        }
 
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
@@ -538,49 +553,55 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setMobile(formBean.getMobile());
         entity.setFax(formBean.getFax());
         entity.setEmail(formBean.getEmail());
-        /*Dti Checkbox*/
-        System.out.println("----------------------------------dti " + customer_dti + "" + formBean.getDti() + "-------------------------------------------");
+        entity.setDti(formBean.getDti());
+        entity.setMayorsPermit(formBean.getMayorsPermit());
+        entity.setAaf(formBean.getAaf());
+        entity.setSignatureCard(formBean.getSignatureCard());
 
-        if (customer_dti){
-            formBean.setDti(1);
-            entity.setDti(1);
-        }else {
-            formBean.setDti(0);
-            entity.setDti(0);
-        }
 
-        System.out.println("----------------------------------permit " + customer_mayorsPermit + "" + formBean.getMayorsPermit() + "-------------------------------------------");
-
-        /*Mayor's Permit Checkbox*/
-        if (customer_mayorsPermit ){
-            formBean.setMayorsPermit(1);
-            entity.setMayorsPermit(1);
-        }else {
-            formBean.setMayorsPermit(0);
-            entity.setMayorsPermit(0);
-        }
-
-        System.out.println("----------------------------------aaf " + customer_aaf + "" + formBean.getAaf() +"-------------------------------------------");
-
-        /*Account Application Form Checkbox*/
-        if (customer_aaf ){
-            formBean.setAaf(1);
-            entity.setAaf(1);
-        }else {
-            formBean.setAaf(0);
-            entity.setAaf(0);
-        }
-
-        System.out.println("----------------------------------card " + customer_signatureCard + "" + formBean.getSignatureCard() +"-------------------------------------------");
-
-        /*Signature Card Checkbox*/
-        if (customer_signatureCard){
-            formBean.setSignatureCard(1);
-            entity.setSignatureCard(1);
-        }else {
-            formBean.setSignatureCard(0);
-            entity.setSignatureCard(0);
-        }
+//        /*Dti Checkbox*/
+//        System.out.println("----------------------------------dti " + customer_dti + "" + formBean.getDti() + "-------------------------------------------");
+//
+//        if (customer_dti){
+//            formBean.setDti(1);
+//            entity.setDti(1);
+//        }else {
+//            formBean.setDti(0);
+//            entity.setDti(0);
+//        }
+//
+//        System.out.println("----------------------------------permit " + customer_mayorsPermit + "" + formBean.getMayorsPermit() + "-------------------------------------------");
+//
+//        /*Mayor's Permit Checkbox*/
+//        if (customer_mayorsPermit ){
+//            formBean.setMayorsPermit(1);
+//            entity.setMayorsPermit(1);
+//        }else {
+//            formBean.setMayorsPermit(0);
+//            entity.setMayorsPermit(0);
+//        }
+//
+//        System.out.println("----------------------------------aaf " + customer_aaf + "" + formBean.getAaf() +"-------------------------------------------");
+//
+//        /*Account Application Form Checkbox*/
+//        if (customer_aaf ){
+//            formBean.setAaf(1);
+//            entity.setAaf(1);
+//        }else {
+//            formBean.setAaf(0);
+//            entity.setAaf(0);
+//        }
+//
+//        System.out.println("----------------------------------card " + customer_signatureCard + "" + formBean.getSignatureCard() +"-------------------------------------------");
+//
+//        /*Signature Card Checkbox*/
+//        if (customer_signatureCard){
+//            formBean.setSignatureCard(1);
+//            entity.setSignatureCard(1);
+//        }else {
+//            formBean.setSignatureCard(0);
+//            entity.setSignatureCard(0);
+//        }
 
         entity.setCreatedBy(formBean.getCreatedBy());
         entity.setCreatedTimestamp(formBean.getCreatedTimestamp());

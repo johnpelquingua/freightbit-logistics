@@ -71,8 +71,9 @@
             </div>
             <div class="panel-footer">
                 <div class="" style="float: right;">
-                    <button class="btn btn-default" onclick="this.form.action='viewVendors'"/>
-                    Cancel</button>
+                    <%--<button class="btn btn-default" onclick="this.form.action='viewVendors'"/>--%>
+                    <%--Cancel</button>--%>
+                   <a href="viewVendors" class="btn btn-default" id ="groups-btn">Cancel</a>
                     <s:submit cssClass="btn btn-primary" value="Save" type="submit"/>
                 </div>
                 </s:form>

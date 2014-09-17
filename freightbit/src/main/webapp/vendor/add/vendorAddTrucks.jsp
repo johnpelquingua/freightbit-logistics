@@ -219,7 +219,7 @@
     $(document).ready(function(){
 
         $("#truck_motorVehicleNumber").mask("9999-99999999999");
-//        $("#truck_plateNumber").mask("AAA-999");
+        $("#truck_plateNumber").mask("AAA-999");
 //        $("#shipping_fax").mask("(999) 999-9999");
 
     });

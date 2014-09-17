@@ -44,150 +44,143 @@
                     <s:hidden name="consignee.referenceId1" value="%{consignee.referenceId1}" />
                     <s:hidden name="consignee.referenceId2" value="%{consignee.referenceId2}" />
 
-                    <div class="col-lg-12">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="consignee.firstName" class="col-lg-3 control-label" style="padding-top:0px;">First
-                                    Name<span class="asterisk_red"></span>
-                                </label>
+                    <div class="form-group">
+                        <label for="consignee.firstName" class="col-lg-2 control-label" style="padding-top:0px;">First
+                            Name<span class="asterisk_red"></span>
+                        </label>
 
-                                <div class="col-lg-9" >
+                        <div class="col-lg-10" >
 
-                                    <s:textfield name="consignee.firstName" cssClass="form-control" id="consignee.firstName"
-                                                 placeholder="First Name" maxLength="30" autofocus="true" required="true"
-                                                 pattern="[a-zA-Z\s]+"
-                                                 title="Name should not contain special characters and/or numbers."/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="consignee.middleName" class="col-lg-3 control-label" style="padding-top:0px;">Middle
-                                    Name
-                                </label>
-
-                                <div class="col-lg-9" >
-                                    <s:textfield name="consignee.middleName" cssClass="form-control"
-                                                 id="consignee.middleName"
-                                                 placeholder="Middle Name" maxLength="30" pattern="[a-zA-Z\s]+"
-                                                 title="Name should not contain special characters and/or numbers."/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="consignee.lastName" class="col-lg-3 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span>
-                                </label>
-
-                                <div class="col-lg-9" >
-                                    <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
-                                                 placeholder="Last Name" maxLength="30" required="true"
-                                                 pattern="[a-zA-Z\s]+"
-                                                 title="Name should not contain special characters and/or numbers."/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="consignee.phone" class="col-lg-3 control-label" style="padding-top:0px;">Phone<span class="asterisk_red"></span>
-                                </label>
-
-                                <div class="col-lg-9" >
-                                    <s:textfield name="consignee.phone" cssClass="form-control" id="consignee_phone"
-                                                 placeholder="(XXX) XXX-XXXX" maxLength="14" required="true"
-                                                  title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="consignee.mobile" class="col-lg-3 control-label" style="padding-top:0px;">Mobile<span class="asterisk_red"></span>
-                                </label>
-
-                                <div class="col-lg-9" >
-                                    <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee_mobile"
-                                                 placeholder="(+639XX) (XXX-XXXX)" maxLength="19" required="true"
-
-                                                 title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="consignee.email" class="col-lg-3 control-label" style="padding-top:0px;">Email<span class="asterisk_red"></span>
-                                    </label>
-
-                                <div class="col-lg-9" >
-                                    <s:textfield name="consignee.email" cssClass="form-control" id="consignee.email"
-                                                 placeholder="Email Address" type="email" required="true" maxLength="50"
-                                                />
-                                </div>
-                            </div>
+                            <s:textfield name="consignee.firstName" cssClass="form-control" id="consignee.firstName"
+                                         placeholder="First Name" maxLength="30" autofocus="true" required="true"
+                                         pattern="[a-zA-Z\s]+"
+                                         title="Name should not contain special characters and/or numbers."/>
                         </div>
-                        <div class="col-lg-6">
+                    </div>
 
-                            <div class="form-group">
-                                <label for="consignee.fax" class="col-lg-3 control-label" style="padding-top:0px;">Fax
-                                </label>
+                    <div class="form-group">
+                        <label for="consignee.middleName" class="col-lg-2 control-label" style="padding-top:0px;">Middle
+                            Name
+                        </label>
 
-                                <div class="col-lg-9" >
-                                    <s:textfield name="consignee.fax" cssClass="form-control" id="consignee_fax"
-                                                 placeholder="(XXX) XXX-XXXX" maxLength="14"
-                                                 title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
-                                </div>
-                            </div>
+                        <div class="col-lg-10" >
+                            <s:textfield name="consignee.middleName" cssClass="form-control"
+                                         id="consignee.middleName"
+                                         placeholder="Middle Name" maxLength="30" pattern="[a-zA-Z\s]+"
+                                         title="Name should not contain special characters and/or numbers."/>
+                        </div>
+                    </div>
 
-                            <div class="form-group">
-                                <label for="consignee.addressLine1" class="col-lg-3 control-label" style="padding-top:0px;">Address
-                                    Line 1<span class="asterisk_red"></span></label>
+                    <div class="form-group">
+                        <label for="consignee.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span>
+                        </label>
 
-                                <div class="col-lg-9" >
-                                    <s:textfield name="consignee.addressLine1" cssClass="form-control"
-                                                 id="consignee.addressLine1" placeholder="Address 1" required="true"
-                                                 maxLength="50"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="consignee.addressLine2" class="col-lg-3 control-label" style="padding-top:0px;">Address
-                                    Line 2</label>
+                        <div class="col-lg-10" >
+                            <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
+                                         placeholder="Last Name" maxLength="30" required="true"
+                                         pattern="[a-zA-Z\s]+"
+                                         title="Name should not contain special characters and/or numbers."/>
+                        </div>
+                    </div>
 
-                                <div class="col-lg-9" >
-                                    <s:textfield name="consignee.addressLine2" cssClass="form-control"
-                                                 id="consignee.addressLine2" placeholder="Address 2" maxLength="50"/>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <label for="consignee.phone" class="col-lg-2 control-label" style="padding-top:0px;">Phone<span class="asterisk_red"></span>
+                        </label>
 
-                            <div class="form-group">
-                                <label for="consignee.city" class="col-lg-3 control-label" style="padding-top:0px;">City<span class="asterisk_red"></span>
-                                </label>
+                        <div class="col-lg-10" >
+                            <s:textfield name="consignee.phone" cssClass="form-control" id="consignee_phone"
+                                         placeholder="(XXX) XXX-XXXX" maxLength="14" required="true"
+                                          title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                        </div>
+                    </div>
 
-                                <div class="col-lg-9" >
-                                    <s:textfield name="consignee.city" cssClass="form-control"
-                                                 id="consignee.city" placeholder="City" required="true"
-                                                 pattern="[a-zA-Z ]+" maxLength="50"
-                                                 title="City should not contain special characters and/or numbers."/>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <label for="consignee.mobile" class="col-lg-2 control-label" style="padding-top:0px;">Mobile<span class="asterisk_red"></span>
+                        </label>
 
-                            <div class="form-group">
-                                <label for="consignee.state" class="col-lg-3 control-label" style="padding-top:0px;">Region
-                                </label>
+                        <div class="col-lg-10" >
+                            <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee_mobile"
+                                         placeholder="(+639XX) (XXX-XXXX)" maxLength="19" required="true"
 
-                                <div class="col-lg-9" >
-                                    <s:textfield name="consignee.state" cssClass="form-control"
-                                                 id="consignee.state" placeholder="Region" maxLength="50" pattern="[a-zA-Z]+"
-                                                 title="State should not contain special characters and/or numbers."/>
-                                </div>
-                            </div>
+                                         title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                        </div>
+                    </div>
 
-                            <div class="form-group">
-                                <label for="consignee.zip" class="col-lg-3 control-label" style="padding-top:0px;">ZIP<span class="asterisk_red"></span>
-                                </label>
+                    <div class="form-group">
+                        <label for="consignee.email" class="col-lg-2 control-label" style="padding-top:0px;">Email<span class="asterisk_red"></span>
+                            </label>
 
-                                <div class="col-lg-9" >
+                        <div class="col-lg-10" >
+                            <s:textfield name="consignee.email" cssClass="form-control" id="consignee.email"
+                                         placeholder="Email Address" type="email" required="true" maxLength="50"
+                                        />
+                        </div>
+                    </div>
 
-                                    <s:textfield name="consignee.zip" cssClass="form-control"
-                                                 id="consignee.zip" placeholder="ZIP" required="true"
-                                                 pattern="[0-9]+" maxLength="4"
-                                                 title="ZIP should not contain special characters and/or letters."/>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <label for="consignee.fax" class="col-lg-2 control-label" style="padding-top:0px;">Fax
+                        </label>
 
+                        <div class="col-lg-10" >
+                            <s:textfield name="consignee.fax" cssClass="form-control" id="consignee_fax"
+                                         placeholder="(XXX) XXX-XXXX" maxLength="14"
+                                         title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consignee.addressLine1" class="col-lg-2 control-label" style="padding-top:0px;">Address
+                            Line 1<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-10" >
+                            <s:textfield name="consignee.addressLine1" cssClass="form-control"
+                                         id="consignee.addressLine1" placeholder="Address 1" required="true"
+                                         maxLength="50"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="consignee.addressLine2" class="col-lg-2 control-label" style="padding-top:0px;">Address
+                            Line 2</label>
+
+                        <div class="col-lg-10" >
+                            <s:textfield name="consignee.addressLine2" cssClass="form-control"
+                                         id="consignee.addressLine2" placeholder="Address 2" maxLength="50"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consignee.city" class="col-lg-2 control-label" style="padding-top:0px;">City<span class="asterisk_red"></span>
+                        </label>
+
+                        <div class="col-lg-10" >
+                            <s:textfield name="consignee.city" cssClass="form-control"
+                                         id="consignee.city" placeholder="City" required="true"
+                                         pattern="[a-zA-Z ]+" maxLength="50"
+                                         title="City should not contain special characters and/or numbers."/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consignee.state" class="col-lg-2 control-label" style="padding-top:0px;">Region
+                        </label>
+
+                        <div class="col-lg-10" >
+                            <s:textfield name="consignee.state" cssClass="form-control"
+                                         id="consignee.state" placeholder="Region" maxLength="50" pattern="[a-zA-Z]+"
+                                         title="State should not contain special characters and/or numbers."/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="consignee.zip" class="col-lg-2 control-label" style="padding-top:0px;">ZIP<span class="asterisk_red"></span>
+                        </label>
+
+                        <div class="col-lg-10" >
+
+                            <s:textfield name="consignee.zip" cssClass="form-control"
+                                         id="consignee.zip" placeholder="ZIP" required="true"
+                                         pattern="[0-9]+" maxLength="4"
+                                         title="ZIP should not contain special characters and/or letters."/>
                         </div>
                     </div>
             </div>

@@ -35,10 +35,10 @@
                 <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="addRates" theme="bootstrap">
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Origin</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Origin<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10" >
-                                <span class="asterisk_red"></span>
+
                                 <s:select name="rate.origin" cssClass="form-control" id="select1"
                                           list="portsList" listKey="key"
                                           listValue="value" placeholder="Origin"/>
@@ -46,10 +46,10 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label"
-                                   style="padding-top:0px;">Destination</label>
+                                   style="padding-top:0px;">Destination<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10" >
-                                <span class="asterisk_red"></span>
+
                                 <s:select name="rate.destination" cssClass="form-control" id="select2"
                                           list="portsList" listKey="key"
                                           listValue="value" placeholder="Destination"/>
@@ -83,7 +83,7 @@
             <div class="panel-footer">
                 <div class="pull-right">
                     <a href="viewRates" class="btn btn-default" id ="groups-btn">Cancel</a>
-                    <s:submit type="submit" value="Save" cssClass="btn btn-primary" id="strut" disabled="true"/>
+                    <s:submit type="submit" value="Save" cssClass="btn btn-primary" id="strut"/>
                 </div>
             </div>
             </s:form>
@@ -158,10 +158,10 @@
             if (Xrate == "" || null){
             alert("Rates Required");
                 ratesField.focus();
-                sa.disabled=true;
+//                sa.disabled=true;
             }
            else{
-                sa.disabled=false;
+//                sa.disabled=false;
             }
     }
     var ratesField2 = document.getElementById('rates.rate');
@@ -170,6 +170,9 @@
         validateRate();
 
     };
+
+    6
+
 
     function isNumberKey(evt)
     {

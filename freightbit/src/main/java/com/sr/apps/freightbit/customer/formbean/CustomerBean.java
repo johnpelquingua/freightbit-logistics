@@ -16,10 +16,10 @@ public class CustomerBean {
     private String mobile;
     private String fax;
     private String email;
-    private int dti;
-    private int mayorsPermit;
-    private int aaf;
-    private int signatureCard;
+    private String dti;
+    private String mayorsPermit;
+    private String aaf;
+    private String signatureCard;
     private Date createdTimestamp;
     private String createdBy;
     private Date modifiedTimestamp;
@@ -32,8 +32,7 @@ public class CustomerBean {
 
     }
 
-    public CustomerBean(String email, Integer customerId, String customerCode, String customerName, String customerType, String website, String phone, String mobile, String fax, int dti, int mayorsPermit, int aaf, int signatureCard, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String customerKeyword, String customerSearchCriteria) {
-        this.email = email;
+    public CustomerBean(Integer customerId, String customerCode, String customerName, String customerType, String website, String phone, String mobile, String fax, String email, String dti, String mayorsPermit, String aaf, String signatureCard, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String customerKeyword, String customerSearchCriteria) {
         this.customerId = customerId;
         this.customerCode = customerCode;
         this.customerName = customerName;
@@ -42,6 +41,7 @@ public class CustomerBean {
         this.phone = phone;
         this.mobile = mobile;
         this.fax = fax;
+        this.email = email;
         this.dti = dti;
         this.mayorsPermit = mayorsPermit;
         this.aaf = aaf;
@@ -126,35 +126,35 @@ public class CustomerBean {
         this.email = email;
     }
 
-    public int getDti() {
+    public String getDti() {
         return dti;
     }
 
-    public void setDti(int dti) {
+    public void setDti(String dti) {
         this.dti = dti;
     }
 
-    public int getMayorsPermit() {
+    public String getMayorsPermit() {
         return mayorsPermit;
     }
 
-    public void setMayorsPermit(int mayorsPermit) {
+    public void setMayorsPermit(String mayorsPermit) {
         this.mayorsPermit = mayorsPermit;
     }
 
-    public int getAaf() {
+    public String getAaf() {
         return aaf;
     }
 
-    public void setAaf(int aaf) {
+    public void setAaf(String aaf) {
         this.aaf = aaf;
     }
 
-    public int getSignatureCard() {
+    public String getSignatureCard() {
         return signatureCard;
     }
 
-    public void setSignatureCard(int signatureCard) {
+    public void setSignatureCard(String signatureCard) {
         this.signatureCard = signatureCard;
     }
 

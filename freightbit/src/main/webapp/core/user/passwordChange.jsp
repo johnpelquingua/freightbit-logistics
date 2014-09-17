@@ -45,27 +45,27 @@
                     
                     <s:if test="!hasActionMessages()">
                     <div class="form-group">
-                        <label for="uType" class="col-lg-3 control-label" id="users-add-label"> Current Password:</label>
+                        <label for="uType" class="col-lg-4 control-label" id="users-add-label">Current Password:</label>
 
-                        <div class="col-lg-9">
+                        <div class="col-lg-8">
                             <s:password required="true" name="passwordBean.currentPassword" cssClass="form-control" maxlength="25"
                                          pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces." placeholder="Current Password"/>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="uType" class="col-lg-3 control-label" id="users-add-label"> New Password:</label>
+                        <label for="uType" class="col-lg-4 control-label" id="users-add-label">New Password:</label>
 
-                        <div class="col-lg-9">
+                        <div class="col-lg-8">
                             <s:password required="true" name="passwordBean.newPassword" cssClass="form-control" maxlength="25"
                                         pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces." placeholder="New Password"/>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="uType" class="col-lg-3 control-label" id="users-add-label"> Re-type New Password:</label>
+                        <label for="uType" class="col-lg-4 control-label" id="users-add-label">Re-type New Password:</label>
 
-                        <div class="col-lg-9">
+                        <div class="col-lg-8">
                             <s:password required="true" name="passwordBean.retypeNewPassword" cssClass="form-control" maxlength="25"
                                         pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces."  placeholder="Re-type New Password"/>
                         </div>
@@ -74,11 +74,11 @@
             </div>
 
 			<s:if test="!hasActionMessages()">
-	            <div class="panel-footer">
+	            <%--<div class="panel-footer">--%>
 	                    <span class="pull-right">                           
 	                      <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
 	                    </span>
-	            </div>
+	            <%--</div>--%>
             </s:if>
             <s:if test="hasActionMessages()">
             	<s:a href="%{loadEditUserUrl}" class="btn btn-default" id="users-add-btn"><< Back</s:a>

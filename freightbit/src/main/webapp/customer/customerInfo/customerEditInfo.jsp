@@ -60,6 +60,23 @@
                                     placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                            <label class="col-lg-4  control-label" style="padding-top:0px;">Dti</label>
+                            <div class="col-lg-8" >
+                                <s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
+                                             placeholder="DTI" maxLength="30"/>
+                            </div>
+                            </div>
+
+
+                            <div class="form-group">
+                            <label class="col-lg-4  control-label" style="padding-top:0px;">Signature Card</label>
+                            <div class="col-lg-8" >
+                                <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Signature Card"/>
+                            </div>
+
+                            </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -90,68 +107,85 @@
                                     <s:textfield name="customer.website" cssClass="form-control" id="customer.website"/>
                                 </div>
                             </div>
-                        </div>
+                            <div class="form-group">
 
-                        <div class="col-lg-9 col-lg-offset-2">
-                            <div class="panel panel-info" >
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><i class="fa fa-file-text"></i> Documents</h3>
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Mayor's Permit Number</label>
+                                <div class="col-lg-8" >
+                                    <s:textfield name="customer.mayorsPermit" cssClass="form-control" id="customer_mayorsPermit" placeholder="Mayor's Permit"/>
                                 </div>
-                                <div class="form-group" >
-
-                                    <div class="col-lg-4 col-lg-offset-2">
-                                        <%--<s:property value="%{customer.dti}" />--%>
-                                        <%--<s:checkbox  name="%{customer.dti}" fieldValue="true" label="DTI"  />--%>
-
-                                        <s:if test="%{customer.dti == 1}">
-                                            <%--<s:checkbox  name="%{customer.dti}" fieldValue="true" label="DTI 1"  />--%>
-                                            <s:checkbox name="customer_dti" fieldValue="true" label="DTI" checked="checked" />
-                                        </s:if>
-                                        <s:else >
-                                            <s:checkbox name="customer_dti" fieldValue="true" label="DTI"  />
-                                        </s:else>
-
-                                    </div>
-                                    <div class="col-lg-4 col-lg-offset-1">
-                                        <%--<s:property value="%{customer.mayorsPermit}" />--%>
-                                        <%--<s:checkbox name="%{customer.mayorsPermit}" label="Mayor's Permit"  />--%>
-
-                                        <s:if test="%{customer.mayorsPermit == 1}">
-                                            <s:checkbox  name="customer_mayorsPermit" fieldValue="true" label="Mayor's Permit" checked="checked" />
-                                        </s:if>
-                                        <s:else >
-                                            <s:checkbox name="customer_mayorsPermit" fieldValue="true" label="Mayor's Permit"  />
-                                        </s:else>
-                                    </div>
-
-
-
-                                    <div class="col-lg-4 col-lg-offset-2" >
-                                        <%--<s:property value="%{customer.aaf}" />--%>
-                                        <%--<s:checkbox name="%{customer.aaf}" label="Account Application Form"  />--%>
-
-                                        <s:if test="%{customer.aaf == 1}">
-                                            <s:checkbox  name="customer_aaf" fieldValue="true" label="Account Application Form" checked="checked" />
-                                        </s:if>
-                                        <s:else >
-                                            <s:checkbox name="customer_aaf" fieldValue="true" label="Account Application Form"  />
-                                        </s:else>
-
-                                    </div>
-                                    <div class="col-lg-4 col-lg-offset-1">
-                                        <%--<s:property value="%{customer.signatureCard}" />--%>
-                                        <%--<s:checkbox name="%{customer.signatureCard}" label="Signature Card"  />--%>
-
-                                        <s:if test="%{customer.signatureCard == 1}">
-                                            <s:checkbox  name="customer_signatureCard" fieldValue="true" label="Signature Card" checked="checked" />
-                                        </s:if>
-                                        <s:else >
-                                            <s:checkbox name="customer_signatureCard" fieldValue="true" label="Signature Card"  />
-                                        </s:else>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 control-label" style="padding-top:0px;">Account Application Form</label>
+                                <div class="col-lg-8" >
+                                    <s:textfield name="customer.aaf" cssClass="form-control" id="customer_aaf" placeholder="Account Application Form"/>
                                 </div>
                             </div>
                         </div>
+
+
+
+
+
+                        <%--<div class="col-lg-9 col-lg-offset-2">--%>
+                            <%--<div class="panel panel-info" >--%>
+                                <%--<div class="panel-heading">--%>
+                                    <%--<h3 class="panel-title"><i class="fa fa-file-text"></i> Documents</h3>--%>
+                                <%--</div>--%>
+                                <%--<div class="form-group" >--%>
+
+                                    <%--<div class="col-lg-4 col-lg-offset-2">--%>
+                                        <%--&lt;%&ndash;<s:property value="%{customer.dti}" />&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;<s:checkbox  name="%{customer.dti}" fieldValue="true" label="DTI"  />&ndash;%&gt;--%>
+
+                                        <%--<s:if test="%{customer.dti == 1}">--%>
+                                            <%--&lt;%&ndash;<s:checkbox  name="%{customer.dti}" fieldValue="true" label="DTI 1"  />&ndash;%&gt;--%>
+                                            <%--<s:checkbox name="customer_dti" fieldValue="true" label="DTI" checked="checked" />--%>
+                                        <%--</s:if>--%>
+                                        <%--<s:else >--%>
+                                            <%--<s:checkbox name="customer_dti" fieldValue="true" label="DTI"  />--%>
+                                        <%--</s:else>--%>
+
+                                    <%--</div>--%>
+                                    <%--<div class="col-lg-4 col-lg-offset-1">--%>
+                                        <%--&lt;%&ndash;<s:property value="%{customer.mayorsPermit}" />&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;<s:checkbox name="%{customer.mayorsPermit}" label="Mayor's Permit"  />&ndash;%&gt;--%>
+
+                                        <%--<s:if test="%{customer.mayorsPermit == 1}">--%>
+                                            <%--<s:checkbox  name="customer_mayorsPermit" fieldValue="true" label="Mayor's Permit" checked="checked" />--%>
+                                        <%--</s:if>--%>
+                                        <%--<s:else >--%>
+                                            <%--<s:checkbox name="customer_mayorsPermit" fieldValue="true" label="Mayor's Permit"  />--%>
+                                        <%--</s:else>--%>
+                                    <%--</div>--%>
+
+
+
+                                    <%--<div class="col-lg-4 col-lg-offset-2" >--%>
+                                        <%--&lt;%&ndash;<s:property value="%{customer.aaf}" />&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;<s:checkbox name="%{customer.aaf}" label="Account Application Form"  />&ndash;%&gt;--%>
+
+                                        <%--<s:if test="%{customer.aaf == 1}">--%>
+                                            <%--<s:checkbox  name="customer_aaf" fieldValue="true" label="Account Application Form" checked="checked" />--%>
+                                        <%--</s:if>--%>
+                                        <%--<s:else >--%>
+                                            <%--<s:checkbox name="customer_aaf" fieldValue="true" label="Account Application Form"  />--%>
+                                        <%--</s:else>--%>
+
+                                    <%--</div>--%>
+                                    <%--<div class="col-lg-4 col-lg-offset-1">--%>
+                                        <%--&lt;%&ndash;<s:property value="%{customer.signatureCard}" />&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;<s:checkbox name="%{customer.signatureCard}" label="Signature Card"  />&ndash;%&gt;--%>
+
+                                        <%--<s:if test="%{customer.signatureCard == 1}">--%>
+                                            <%--<s:checkbox  name="customer_signatureCard" fieldValue="true" label="Signature Card" checked="checked" />--%>
+                                        <%--</s:if>--%>
+                                        <%--<s:else >--%>
+                                            <%--<s:checkbox name="customer_signatureCard" fieldValue="true" label="Signature Card"  />--%>
+                                        <%--</s:else>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
                     </div>
                 </div>
@@ -174,6 +208,8 @@
         $("#customer_phone").mask("(999) 999-9999");
         $("#customer_mobile").mask("(+63999)(999-9999)");
         $("#customer_fax").mask("(999) 999-9999");
+        $("#customer_dti").mask("99999999");
+        $("#customer_mayorsPermit").mask("99-999999");
 
     });
 

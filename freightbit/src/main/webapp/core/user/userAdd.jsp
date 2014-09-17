@@ -112,7 +112,7 @@
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.emailAddress" id="uEmailAddress" maxlength="50"
                              pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
-                                         cssClass="form-control" placeholder="Email Address"/>
+                                         cssClass="form-control" placeholder="E-mail"/>
                         </div>
                     </div>
 
@@ -121,8 +121,8 @@
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.contactNumber" id="uContactNumber"
-                                         cssClass="form-control" placeholder="Contact Number" maxLength="14" 
-                                     	 pattern="\([0-9]{2,3}\) ?[0-9]{3}-[0-9]{4}" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                         cssClass="form-control" placeholder="(XXX) XXX-XXXX" maxLength="14"
+                                     	  title="(XXX)XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                         </div>
                     </div>
 
@@ -158,3 +158,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#uContactNumber").mask("(999) 999-9999");
+
+
+    });
+
+</script>

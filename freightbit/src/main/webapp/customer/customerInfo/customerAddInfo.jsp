@@ -28,103 +28,133 @@
                 <div class="table-responsive list-table">
 
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addCustomer">
-                    <div class="col-lg-12">
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label" style="padding-top:0px !important; margin-top: 0px !important;">Company Name / Customer Name<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-8" >
 
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label" style="padding-top:0px !important; margin-top: 0px !important;">Company/Customer Name<span class="asterisk_red"></span></label>
+                                        <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-8" >
+
+                                        <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" onkeypress="return alphaKeyOnly(event)"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Customer Type<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-8" >
+                                        <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Phone Number<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-8" >
+                                        <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer_phone" maxLength="14"
+                                                     placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                    </div>
+                                    </div>
+
+                                <div class="form-group">
+                                <label class="col-lg-4  control-label" style="padding-top:0px;">Dti</label>
                                 <div class="col-lg-8" >
+                                    <s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
+                                                 placeholder="DTI" maxLength="30"/>
+                                </div>
+                                </div>
 
-                                    <s:textfield  required="true" name="customer.customerName"  cssClass="form-control" id="customer.customerName" />
+                                <div class="form-group">
+
+                                    <label class="col-lg-4  control-label" style="padding-top:0px;">Signature Card</label>
+                                    <div class="col-lg-8" >
+                                        <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Signature Card"/>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
-                                <div class="col-lg-8" >
-
-                                    <s:textfield required="true" maxLength="3" pattern="[A-Z]+" name="customer.customerCode" cssClass="form-control" id="customer_customerCode" onkeypress="return isNumberKey(event)"/>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Mobile Number<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-8" >
+                                        <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer_mobile" maxLength="19"
+                                                     placeholder="(+639XX)(XXX-XXXX)"
+                                                     title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label" style="padding-top:0px;">Customer Type<span class="asterisk_red"></span></label>
-                                <div class="col-lg-8" >
-                                    <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="form-control"/>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Fax  Number</label>
+                                    <div class="col-lg-8" >
+                                        <s:textfield   name="customer.fax" cssClass="form-control" id="customer_fax" maxLength="14"
+                                                       title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters." placeholder="(XXX) XXX-XXXX"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label" style="padding-top:0px;">Phone No.<span class="asterisk_red"></span></label>
-                                <div class="col-lg-8" >
-                                    <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer_phone" maxLength="14"
-                                    placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-8" >
+                                        <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email" maxLength="50"
+                                                     placeholder="E-mail" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
+                                    </div>
                                 </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label" style="padding-top:0px;">Mobile No.<span class="asterisk_red"></span></label>
-                                <div class="col-lg-8" >
-                                    <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer_mobile" maxLength="19"
-                                        placeholder="(+639XX) (XXX-XXXX)"
-                                    title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label" style="padding-top:0px;">Fax  No.</label>
-                                <div class="col-lg-8" >
-                                    <s:textfield  name="customer.fax" cssClass="form-control" id="customer_fax" maxLength="14"
-                                     placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
-                                <div class="col-lg-8" >
-                                    <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email"
-                                     placeholder="E-mail" maxLength="50" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-4 control-label" style="padding-top:0px;">Website</label>
-                                <div class="col-lg-8" >
-                                    <s:textfield name="customer.website" cssClass="form-control" id="customer.website"/>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                        <div class="col-lg-9 col-lg-offset-2">
-                            <div class="panel panel-info" >
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><i class="fa fa-file-text"></i> Documents</h3>
+                                <div class="form-group">
+                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Website</label>
+                                    <div class="col-lg-8" >
+                                        <s:textfield name="customer.website" cssClass="form-control" id="customer.website"/>
+                                    </div>
                                 </div>
                                 <div class="form-group">
 
-                                    <div class="col-lg-4 col-lg-offset-2" >
-                                        <s:checkbox name="customer_dti" fieldValue="true" label="DTI"/>
-                                        <s:if test = "customer_dti == true">
-                                            <s:hidden name="customer.dti" value="1" />
-                                        </s:if>
-                                        <s:else>
-                                            <s:hidden name="customer.dti" value="0" />
-                                        </s:else>
-                                    </div>
-                                    <div class="col-lg-4 col-lg-offset-1">
-                                        <s:checkbox name="customer_mayorsPermit" fieldValue="true" label="Mayor's Permit"/>
-                                    </div>
+                                        <label class="col-lg-4 control-label" style="padding-top:0px;">Mayor's Permit Number</label>
+                                        <div class="col-lg-8" >
+                                        <s:textfield name="customer.mayorsPermit" cssClass="form-control" id="customer_mayorsPermit" placeholder="Mayor's Permit"/>
+                                        </div>
 
-
-                                    <div class="col-lg-4 col-lg-offset-2" >
-                                        <s:checkbox name="customer_aaf" fieldValue="true" label="Account Application Form"/>
-                                    </div>
-                                    <div class="col-lg-4 col-lg-offset-1">
-                                        <s:checkbox name="customer_signatureCard" fieldValue="true" label="Signature Card"/>
-                                    </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-4  control-label" style="padding-top:0px;">Account Application Form</label>
+                                    <div class="col-lg-8" >
+                                        <s:textfield name="customer.aaf" cssClass="form-control" id="customer_aaf" placeholder="Account Application Form"/>
+                                    </div>
+                                    </div>
                             </div>
-                        </div>
+
+
+
+
+
+                        <%--<div class="col-lg-9 col-lg-offset-2">--%>
+                            <%--<div class="panel panel-info" >--%>
+                                <%--<div class="panel-heading">--%>
+                                    <%--<h3 class="panel-title"><i class="fa fa-file-text"></i> Documents</h3>--%>
+                                <%--</div>--%>
+                                <%--<div class="form-group">--%>
+
+                                    <%--<div class="col-lg-4 col-lg-offset-2" >--%>
+                                        <%--<s:checkbox name="customer_dti" fieldValue="true" label="DTI"/>--%>
+                                        <%--<s:if test = "customer_dti == true">--%>
+                                            <%--<s:hidden name="customer.dti" value="1" />--%>
+                                        <%--</s:if>--%>
+                                        <%--<s:else>--%>
+                                            <%--<s:hidden name="customer.dti" value="0" />--%>
+                                        <%--</s:else>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-lg-4 col-lg-offset-1">--%>
+                                        <%--<s:checkbox name="customer_mayorsPermit" fieldValue="true" label="Mayor's Permit"/>--%>
+                                    <%--</div>--%>
+
+
+                                    <%--<div class="col-lg-4 col-lg-offset-2" >--%>
+                                        <%--<s:checkbox name="customer_aaf" fieldValue="true" label="Account Application Form"/>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-lg-4 col-lg-offset-1">--%>
+                                        <%--<s:checkbox name="customer_signatureCard" fieldValue="true" label="Signature Card"/>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
                     </div>
                 </div>

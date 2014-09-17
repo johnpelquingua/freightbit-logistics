@@ -263,22 +263,34 @@ public class VendorAction extends ActionSupport implements Preparable {
         Pattern codePattern = Pattern.compile(code);
 
 
+////        Matcher matcher = namePattern.matcher(vendorBean.getVendorName());
+////        if (!matcher.matches()){
+////            addFieldError("vendor.vendorName", "Name must be letters only.");
+////        }
+////
+//
+////
+////        if (StringUtils.isBlank(vendorBean.getVendorName())) {
+////            addFieldError("vendor.vendorName", getText("err.vendorName.required"));
+////        }
+//        if
+
         Matcher matcher = namePattern.matcher(vendorBean.getVendorName());
-        if (!matcher.matches()){
+        if (StringUtils.isBlank(vendorBean.getVendorName())){
+            addFieldError("vendor.vendorName", getText("err.vendorName.required"));
+        }
+        else if(!matcher.matches()){
             addFieldError("vendor.vendorName", "Name must be letters only.");
         }
 
-        matcher = codePattern.matcher(vendorBean.getVendorCode());
-        if (!matcher.matches()){
+        Matcher matcher2 = codePattern.matcher(vendorBean.getVendorCode());
+        if (!matcher2.matches()){
             addFieldError("vendor.vendorCode", "Code must be capital letters only.");
-        }
 
-        if (StringUtils.isBlank(vendorBean.getVendorName())) {
-            addFieldError("vendor.vendorName", getText("err.vendorName.required"));
-        }
-        if (StringUtils.isBlank(vendorBean.getVendorCode())) {
+        }else if(StringUtils.isBlank(vendorBean.getVendorCode())) {
             addFieldError("vendor.vendorCode", getText("err.vendorCode.required"));
         }
+
 
 }
 
@@ -328,6 +340,9 @@ public class VendorAction extends ActionSupport implements Preparable {
         //load to form
         Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
         truck = transformToFormBeanTrucks(truckEntity);
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Truck has been deleted.");
         return SUCCESS;
     }
 
@@ -556,6 +571,22 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         clearErrorsAndMessages();
         addActionMessage("Success! Drivers has been updated.");
+
+        return SUCCESS;
+    }
+
+    public String loadSaveDeleteDrivers() {
+        List<Driver> driverEntityList = new ArrayList<Driver>();
+
+        Integer vendorId = getSessionVendorId();
+        driverEntityList = vendorService.findDriverByVendorId(vendorId);
+
+        for (Driver driverElem : driverEntityList) {
+            drivers.add(transformToFormBeanDriver(driverElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Drivers has been Deleted.");
 
         return SUCCESS;
     }
@@ -828,6 +859,19 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String loadSaveDeleteVessels() {
+        Integer vendorId = getSessionVendorId();
+        List<Vessel> vesselEntityList = vendorService.findVesselByVendorId(vendorId);
+        for (Vessel vesselElem : vesselEntityList) {
+            vessels.add(transformToFormBeanVessel(vesselElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Vessel(s) has been Deleted.");
+
+        return SUCCESS;
+    }
+
     private Vessel transformToEntityBeanVessels(VesselBean vesselBean) {
         Vessel entity = new Vessel();
         Client client = clientService.findClientById(getClientId().toString());
@@ -911,6 +955,20 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         clearErrorsAndMessages();
         addActionMessage("Success! Contact Persons has been updated.");
+
+        return SUCCESS;
+    }
+
+    public String loadSaveDeleteContacts() {
+        Integer vendorId = getSessionVendorId();
+        List<Contacts> contactEntityList = new ArrayList<Contacts>();
+        contactEntityList = vendorService.findContactByReferenceId(vendorId);
+        for (Contacts contactElem : contactEntityList) {
+            contacts.add(transformToFormBeanContacts(contactElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Contact Has been Deleted");
 
         return SUCCESS;
     }
@@ -1109,6 +1167,20 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         clearErrorsAndMessages();
         addActionMessage("Success! Address has been updated.");
+
+        return SUCCESS;
+    }
+
+    public String loadSaveDeleteAddress() {
+        Integer vendorId = getSessionVendorId();
+        List<Address> addressEntityList = new ArrayList<Address>();
+        addressEntityList = vendorService.findAllAddressByRefId(vendorId);
+        for (Address addressElem : addressEntityList) {
+            addresss.add(transformToFormBeanAddress(addressElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Address has been Deleted.");
 
         return SUCCESS;
     }

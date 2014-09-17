@@ -90,7 +90,14 @@
         </action>
 
         <action name="deleteTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteTrucks">
-            <result name="success" type="redirect">viewTrucks</result>
+            <result name="success" type="redirect">loadSaveDeleteTrucks</result>
+        </action>
+
+        <action name="loadSaveDeleteTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadSaveDeleteTrucks">
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteTrucks.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListTrucks.tiles</result>
+            <!--<result name="success" type="tiles">vendor.viewInfoTruck.tiles</result>-->
         </action>
 
         <action name="editTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editTrucks">
@@ -153,7 +160,12 @@
         </action>
 
         <action name="deleteVessels" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteVessels">
-            <result name="success" type="redirect">viewVessels</result>
+            <result name="success" type="redirect">loadSaveDeleteVessels</result>
+        </action>
+        <action name="loadSaveDeleteVessels" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadSaveDeleteVessels">
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteVessels.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListVessels.tiles</result>
         </action>
 
         <action name="viewVessels" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewVessels">
@@ -188,8 +200,15 @@
         </action>
 
         <action name="deleteDriver" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteDriver">
-            <result name="success" type="redirect">viewDrivers</result>
+            <result name="success" type="redirect">loadSaveDeleteDrivers</result>
         </action>
+
+        <action name="loadSaveDeleteDrivers" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadSaveDeleteDrivers">
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteDrivers.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListDrivers.tiles</result>
+        </action>
+
 
         <action name="viewDrivers" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewDrivers">
             <result name="success" type="tiles">vendor.vendorListDrivers.tiles</result>
@@ -226,8 +245,15 @@
 
         <action name="deleteTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="deleteContacts">
-            <result name="success" type="redirect">viewVendorTruckingContacts</result>
+            <result name="success" type="redirect">loadSaveDeleteTruckingContact</result>
 
+        </action>
+
+        <action name="loadSaveDeleteTruckingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadSaveDeleteContacts">
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteTruckingContacts.tiles</result>-->
+
+            <result name="success" type="tiles">vendor.vendorListTruckingContact.tiles</result>
         </action>
 
         <action name="viewVendorTruckingContacts" class="com.sr.apps.freightbit.vendor.action.VendorAction"
@@ -260,7 +286,13 @@
 
         <action name="deleteShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="deleteContacts">
-            <result name="success" type="redirect">viewVendorShippingContacts</result>
+            <result name="success" type="redirect">loadSaveDeleteShippingContact</result>
+        </action>
+
+        <action name="loadSaveDeleteShippingContact" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadSaveDeleteContacts">
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteShippingContacts.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListShippingContact.tiles</result>
         </action>
 
         <action name="viewVendorShippingContacts" class="com.sr.apps.freightbit.vendor.action.VendorAction"
@@ -306,13 +338,27 @@
 
         <action name="deleteTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="deleteAddress">
-            <result name="success" type="redirect">viewTruckingAddress</result>
+            <result name="success" type="redirect">loadSaveDeleteTruckingAddress</result>
         </action>
+
+        <action name="loadSaveDeleteTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadSaveDeleteAddress">
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteTruckingAddress.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListTruckingAddress.tiles</result>
+        </action>
+
 
         <action name="deleteShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="deleteAddress">
-            <result name="success" type="redirect">viewShippingAddress</result>
+            <result name="success" type="redirect">loadSaveDeleteShippingAddress</result>
         </action>
+
+        <action name="loadSaveDeleteShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadSaveDeleteAddress">
+            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteShippingAddress.tiles</result>-->
+            <result name="success" type="tiles">vendor.vendorListShippingAddress.tiles</result>
+        </action>
+
 
         <action name="loadAddShippingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadAddAddress">

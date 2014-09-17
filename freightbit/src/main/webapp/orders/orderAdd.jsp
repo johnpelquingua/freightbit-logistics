@@ -627,6 +627,28 @@
 </div>
 <%--END OF Third modal Consignee--%>
 
+<%--alert modals--%>
+
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+            </div>
+            <div class="modal-body">
+                <center><p>Select a Customer first</p></center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -1077,7 +1099,8 @@ $(document).ready(function(){
         var custId = $("#customerName").val();
         getThis();
         if (custId == "" || null ){
-            alert("Select a customer first");
+//            $("#
+            alert("Select Customer First");
             $("#customerName").focus();
            return false;
         }
@@ -1090,7 +1113,8 @@ $(document).ready(function(){
         var custId1 = $("#customerName").val();
         getThis();
         if (custId1 == "" || null ){
-            alert("Select a customer first");
+//            $("#alertModal").modal();
+            alert("Select Customer First");
             $("#customerName").focus();
             return false;
         }
@@ -1103,7 +1127,8 @@ $(document).ready(function(){
         var custId2 = $("#customerName").val();
         getThis();
         if (custId2 == "" || null ){
-            alert("Select a customer first");
+//            $("#alertModal").modal();
+            alert("Select Customer First");
             $("#customerName").focus();
             return false;
         }

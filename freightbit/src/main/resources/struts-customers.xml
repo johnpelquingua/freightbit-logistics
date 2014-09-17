@@ -87,7 +87,7 @@
         <action name="addCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="addCustomer">
             <result name="input" type="tiles">customer.customerAdd.tiles</result>
-            <result name="success" type="tiles">customer.customerInfo.tiles</result>
+            <result name="success" type="redirect">LoadaddcustomerList</result>
             <!--<result name="success" type="redirect">customerInfo</result>-->
         </action>
 
@@ -95,6 +95,10 @@
                 method="editCustomer">
             <result name="input" type="tiles">customer.loadEditCustomer.tiles</result>
             <result name="success" type="tiles">customer.customerInfo.tiles</result>
+        </action>
+
+        <action name="LoadaddcustomerList" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadAddCustomerList">
+            <result name="success" type="tiles">customer.customerList.tiles</result>
         </action>
 
         <!--items-->

@@ -115,6 +115,7 @@ public class UserAction extends ActionSupport implements Preparable {
 	        return SUCCESS;
         } catch (UserAlreadyExistsException e) {
             addFieldError("user.userName", getText("err.username.already.exists"));
+
             return INPUT;
         }
     }

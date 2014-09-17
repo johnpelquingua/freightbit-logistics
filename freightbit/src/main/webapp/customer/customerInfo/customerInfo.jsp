@@ -107,49 +107,59 @@
                                             <tr>
                                                 <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Documents</td>
                                                 <td>
-                                                    <s:hidden value="customer.dti" />
-                                                    <s:hidden value="customer.mayorsPermit" />
-                                                    <s:hidden value="customer.aaf" />
-                                                    <s:hidden value="customer.signatureCard" />
-                                                    <s:if test="%{customer.dti == 1}">
+                                                    <s:property value="customer.dti" />
+                                                    <%--<s:hidden value="customer.mayorsPermit" />--%>
+                                                    <%--<s:hidden value="customer.aaf" />--%>
+                                                    <%--<s:hidden value="customer.signatureCard" />--%>
+                                                    <%--<s:if test="%{customer.dti == 1}">--%>
                                                         <%--<s:checkbox name="customer_dti" fieldValue="true" label="DTI 1.5" checked="checked" disabled="true"/>--%>
-                                                        <i class="fa fa-check-square-o"></i> DTI
-                                                    </s:if>
-                                                    <s:else >
+                                                        <%--<i class="fa fa-check-square-o"></i> DTI--%>
+                                                    <%--</s:if>--%>
+                                                    <%--<s:else >--%>
                                                         <%--<s:checkbox name="customer_dti" fieldValue="true" label="DTI 2"  disabled="true"/>--%>
-                                                        <i class="fa fa-square-o"></i> DTI
-                                                    </s:else>
-                                                    <br />
-                                                    <br />
-                                                    <s:if test="%{customer.mayorsPermit == 1}">
+                                                        <%--<i class="fa fa-square-o"></i> DTI--%>
+                                                    <%--</s:else>--%>
+                                                    <%--<br />--%>
+                                                    <%--<br />--%>
+                                                    <%--<s:if test="%{customer.mayorsPermit == 1}">--%>
                                                         <%--<s:checkbox  name="customer_mayorsPermit" fieldValue="true" label="Permit 1" checked="checked" disabled="true"/>--%>
-                                                        <i class="fa fa-check-square-o"></i> Mayor's Permit
-                                                    </s:if>
-                                                    <s:else >
+                                                        <%--<i class="fa fa-check-square-o"></i> Mayor's Permit--%>
+                                                    <%--</s:if>--%>
+                                                    <%--<s:else >--%>
                                                         <%--<s:checkbox name="customer_mayorsPermit" fieldValue="true" label="Permit 2"  disabled="true"/>--%>
-                                                        <i class="fa fa-square-o"></i> Mayor's Permit
-                                                    </s:else>
-                                                    <br />
-                                                    <br />
-                                                    <s:if test="%{customer.aaf == 1}">
+                                                        <%--<i class="fa fa-square-o"></i> Mayor's Permit--%>
+                                                    <%--</s:else>--%>
+                                                    <%--<br />--%>
+                                                    <%--<br />--%>
+                                                    <%--<s:if test="%{customer.aaf == 1}">--%>
                                                         <%--<s:checkbox  name="customer_aaf" fieldValue="true" label="AAF 1" checked="checked" disabled="true"/>--%>
-                                                        <i class="fa fa-check-square-o"></i> Account Application Form
-                                                    </s:if>
-                                                    <s:else >
+                                                        <%--<i class="fa fa-check-square-o"></i> Account Application Form--%>
+                                                    <%--</s:if>--%>
+                                                    <%--<s:else >--%>
                                                         <%--<s:checkbox name="customer_aaf" fieldValue="true" label="AAF 2"  disabled="true"/>--%>
-                                                        <i class="fa fa-square-o"></i> Account Application Form
-                                                    </s:else>
-                                                    <br />
-                                                    <br />
-                                                    <s:if test="%{customer.signatureCard == 1}">
+                                                        <%--<i class="fa fa-square-o"></i> Account Application Form--%>
+                                                    <%--</s:else>--%>
+                                                    <%--<br />--%>
+                                                    <%--<br />--%>
+                                                    <%--<s:if test="%{customer.signatureCard == 1}">--%>
                                                         <%--<s:checkbox  name="customer_signatureCard" fieldValue="true" label="Card 1" checked="checked" disabled="true"/>--%>
-                                                        <i class="fa fa-check-square-o"></i> Signature Card
-                                                    </s:if>
-                                                    <s:else >
+                                                        <%--<i class="fa fa-check-square-o"></i> Signature Card--%>
+                                                    <%--</s:if>--%>
+                                                    <%--<s:else >--%>
                                                         <%--<s:checkbox name="customer_signatureCard" fieldValue="true" label="Card 2"  disabled="true"/>--%>
-                                                        <i class="fa fa-square-o"></i> Signature Card
-                                                    </s:else>
+                                                        <%--<i class="fa fa-square-o"></i> Signature Card--%>
+                                                    <%--</s:else>--%>
                                                 </td>
+
+                                            </tr>
+                                            <tr><td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Mayor's Permit</td>
+                                                <td><s:property value="customer.mayorsPermit" /><br><br></td>
+                                            </tr>
+                                            <tr> <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">AAF</td>
+                                                <td><s:property value="customer.aaf" /><br><br></td>
+                                            </tr>
+                                            <tr><td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Signature Card</td>
+                                                <td><s:property value="customer.signatureCard" /><br><br></td>
                                             </tr>
                                             </tbody>
                                             <s:set name="customerId" value="%{customer.customerId}" scope="session"/>
@@ -184,9 +194,9 @@
                                         <a href="viewItem" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list-ol fa-fw"></i> <br/>Items</a>
                                         </sec:authorize>
 
-                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">
-                                        <a href="viewRates" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-money fa-fw"></i> <br/>Rates</a>
-                                        </sec:authorize>
+                                        <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">--%>
+                                        <%--<a href="viewRates" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-money fa-fw"></i> <br/>Rates</a>--%>
+                                        <%--</sec:authorize>--%>
 
                                         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
                                         <a href="viewConsignees" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list fa-fw"></i> <br/>Consignee</a>
