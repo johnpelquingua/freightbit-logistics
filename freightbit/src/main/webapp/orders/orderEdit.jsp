@@ -47,11 +47,33 @@
         <s:hidden name="order.orderId" value="%{order.orderId}"/>
         <%--<s:property value="%{order.orderNumber}"/>--%>
         <s:hidden name="order.orderNumber" value="%{order.orderNumber}"/>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Freight Type<span class="asterisk_red"></span></label>
+
+            <div class="col-lg-10">
+                <%--<s:property value="%{order.freightType}" />--%>
+                <s:hidden name="order.freightType" value="%{order.freightType}" />
+                <s:select id="order.freightType"
+                          cssClass="form-control"
+                          style="margin-bottom: 15px !important;"
+                          name="order.freightType"
+                          list="freightTypeList"
+                          listKey="key"
+                          listValue="value"
+                          value="order.freightType"
+                          disabled="true"
+                        />
+
+            </div>
+        </div>
+
         <div class="form-group" style="margin-top: 15px;">
             <label class="col-lg-2 control-label">Service Requirement <span class="asterisk_red"></span></label>
 
             <div class="col-lg-10">
                 <%--<s:property value="%{order.serviceRequirement}" />--%>
+                <s:hidden name="order.serviceRequirement" value="%{order.serviceRequirement}" />
                 <s:select cssClass="form-control"
                           style="margin-bottom: 15px !important;"
                           name="order.serviceRequirement"
@@ -59,6 +81,7 @@
                           id="order.serviceRequirement"
                           listKey="key"
                           listValue="value"
+                          disabled="true"
                         />
 
             </div>
@@ -69,6 +92,7 @@
 
             <div class="col-lg-10">
                 <%--<s:property value="%{order.modeOfService}" />--%>
+                <s:hidden name="order.modeOfService" value="%{order.modeOfService}" />
                 <s:select id="order_modeOfService"
                           cssClass="form-control"
                           style="margin-bottom: 15px !important;"
@@ -77,24 +101,7 @@
                           listKey="key"
                           listValue="value"
                           value="order.modeOfService"
-                        />
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-lg-2 control-label">Freight Type<span class="asterisk_red"></span></label>
-
-            <div class="col-lg-10">
-                <%--<s:property value="%{order.freightType}" />--%>
-                <s:select id="order.freightType"
-                          cssClass="form-control"
-                          style="margin-bottom: 15px !important;"
-                          name="order.freightType"
-                          list="freightTypeList"
-                          listKey="key"
-                          listValue="value"
-                          value="order.freightType"
+                          disabled="true"
                         />
 
             </div>
@@ -105,6 +112,7 @@
 
             <div class="col-lg-10">
                 <%--<s:property value="%{order.modeOfPayment}" />--%>
+                <s:hidden name="order.modeOfPayment" value="%{order.modeOfPayment}" />
                 <s:select id="order.modeOfPayment"
                           cssClass="form-control step1"
                           style="margin-bottom: 15px !important;"
@@ -113,6 +121,7 @@
                           listKey="key"
                           listValue="value"
                           value="order.modeOfPayment"
+                          disabled="true"
                         />
 
             </div>
@@ -150,13 +159,14 @@
 
 <div class="form-group">
 
-    <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date and Time<span class="asterisk_red"></span></label>
+    <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.pickupDate}" />--%>
-        <s:textfield type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;" />
+        <%--<s:textfield type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;" />--%>
+            <s:textfield type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" value="%{order.pickupDate}" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;" />
     </div>
 
-    <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date and Time<span class="asterisk_red"></span></label>
+    <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date<span class="asterisk_red"></span></label>
     <div class="col-lg-3" >
         <%--<s:property value="%{order.deliveryDate}" />--%>
         <s:textfield type="text" class="to_date form-control" id="datepicker2" name="order.deliveryDate" value="%{order.deliveryDate}" required="true" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;" />
@@ -187,10 +197,12 @@
     <div class="form-group">
         <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type<span class="asterisk_red"></span></label>
 
-        <div class="col-lg-9">
-            <%--<s:property value="%{order.notifyBy}" />--%>
-            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                      name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" value="order.notifyBy"/>
+        <div class="col-lg-9" style="text-align:left !important;">
+            <s:property value="%{order.notifyBy}" />
+            <s:property value="%{notificationList}" />
+            <%--<s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
+                      name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" value="order.notifyBy"/>--%>
+            <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" value="%{notificationList}"/>
         </div>
 
     </div>
@@ -199,7 +211,7 @@
         <label class="col-lg-3 control-label" style="margin-top: 5px;">Comments </label>
         <%--<s:property value="%{order.comments}" />--%>
         <div class="col-lg-9">
-            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important;" />
+            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" />
         </div>
     </div>
 
@@ -220,19 +232,19 @@
     <div class="form-group">
         <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person<span class="asterisk_red"></span></label>
 
-        <div class="col-lg-8">
+        <div class="col-lg-7">
             <%--<s:property value="%{order.shipperContactId}" />--%>
             <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperContact" name="order.shipperContactId" value="order.shipperContactId"
                       list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
         </div>
 
-        <div class="col-lg-1">
+        <div class="col-lg-2">
                 <%--<button type="button" class="btn btn-info pull-right"
                         onclick="location.href='loadAddOrderPage'">
                     Add Contact Person
                 </button>--%>
             <div class="pull-right">
-                <a href="#" class="btn btn-info"><i class="fa fa-plus"></i></a>
+                <a data-toggle="modal" data-target="#createContact"  class="btn btn-info" id="idCustomer"> Add Contact Person</a>
             </div>
 
         </div>
@@ -242,13 +254,13 @@
     <div class="form-group" style="clear: both;">
         <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address<span class="asterisk_red"></span></label>
 
-        <div class="col-lg-8">
+        <div class="col-lg-7">
             <%--<s:property value="%{order.shipperAddressId}" />--%>
             <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId" value="order.shipperAddressId"
                       list="addressList" listKey="addressId" listValue="addressLine1 + ' ' + addressLine2" required="true"/>
         </div>
 
-        <div class="col-lg-1">
+        <div class="col-lg-2">
 
                 <%--<button type="button" class="btn btn-info pull-right"
                         onclick="location.href='loadAddOrderPage'" style="width: 153px;">
@@ -256,7 +268,7 @@
                 </button>--%>
 
             <div class="pull-right">
-                <a href="#" class="btn btn-info"><i class="fa fa-plus"></i></a>
+                <a data-toggle="modal" data-target="#createAddress" class="btn btn-info" id="idAddress" style="width: 151px !important;"> Add Address</a>
             </div>
 
         </div>
@@ -272,20 +284,20 @@
     <div class="form-group">
         <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name<span class="asterisk_red"></span></label>
 
-        <div class="col-lg-8">
+        <div class="col-lg-7">
             <%--<s:property value="%{order.consigneeContactId}" />--%>
             <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperConsignee" name="order.consigneeContactId" value="order.consigneeContactId"
                       list="consigneeList" listKey="contactId"
                       listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
         </div>
 
-        <div class="col-lg-1">
+        <div class="col-lg-2">
                 <%--<button type="button" class="btn btn-info pull-right"
                         onclick="location.href='loadAddOrderPage'" style="width: 153px;">
                     Add Consignee
                 </button>--%>
             <div class="pull-right">
-                <a href="#" class="btn btn-info"><i class="fa fa-plus"></i></a>
+                <a data-toggle="modal" data-target="#createConsignee" class="btn btn-info" id="idConsignee" style="width: 151px !important;"> Add Consignee</a>
             </div>
 
         </div>
@@ -295,7 +307,7 @@
     <div class="form-group" style="clear:both;">
         <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address<span class="asterisk_red"></span></label>
 
-        <div class="col-lg-8">
+        <div class="col-lg-7">
             <%--<s:property value="%{order.consigneeAddressId}" />--%>
             <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeAddress" name="order.consigneeAddressId" value="order.consigneeAddressId"
                       list="consigneeAddressList" listKey="addressId"
@@ -355,6 +367,297 @@
     </div>
 </div>
 
+<%--start add contact person--%>
+<div class="modal fade" id="createContact" role="form" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel1">Add Contact Person</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="panel-body">
+
+                    <s:form action="addCustomerContact" cssClass="form-horizontal" theme="bootstrap">
+                    <s:hidden name="contact.referenceId" id="custIdHolder"/>
+                        <%--<label>Contact Type.<span class="asterisk_red"></span></label>--%>
+                        <%--<s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"--%>
+                        <%--listKey="key" listValue="value" cssClass="form-control"--%>
+                    <div class="form-group">                         <%--value="contact.contactType" emptyOption="true"/>--%>
+                        <label class="col-lg-3">Last name<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
+                                         id="contact.lastName" required="true" maxLength="30" autofocus="true"
+                                         pattern="[a-zA-Z\s ]+"
+                                         title="Name should not contain special characters and/or numbers."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">First Name<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
+                                         id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                         title="Name should not contain special characters and/or numbers."
+                                         required="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Middle Name</label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
+                                         id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                         title="Name should not contain special characters and/or numbers."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Phone<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+
+                            <s:property value="contact.phone" />
+                            <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.phone"
+                                         maxLength="14" required="true" id="contact_phone"
+                                         title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Mobile<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
+                                         maxLength="19" required="true" id="contact_mobile"
+                                         title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Fax</label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.fax"
+                                         maxLength="14" id="contact_fax"
+                                         title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Email<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="email" name="contact.email"
+                                         type="email" required="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Position<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
+                                         type="text" required="true"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+            </div>
+            </s:form>
+        </div>
+    </div>
+</div>
+</div>
+<%--end add contact person---%>
+
+<%--START OF MODAL ADD ADDRESS--%>
+
+<div class="modal fade" id="createAddress" role="form" aria-labelledby="myModalLabel2" >
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel2">Add Address</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <s:form action="addCustomerAddressEditOrder" cssClass="form-horizontal" theme="bootstrap">
+                    <s:hidden name="address.referenceId" id="custAddIdHolder"/>
+                    <div class="form-group">
+                        <label class="col-lg-2">Address Type<span class="asterisk_red"></span></label>
+                        <div class="col-lg-8">
+                            <s:select name="address.addressType" list="addressTypeList" listValue="value"
+                                      listKey="key"
+                                      cssClass="form-control" id="address.addressType" emptyOption="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2">Address Line 1<span class="asterisk_red"></span></label>
+                        <div class="col-lg-8">
+                            <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control" required="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2">Address Line 2</label>
+                        <div class="col-lg-8">
+                            <s:textfield name="address.addressLine2" id="address.addressLine2" cssClass="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2">City<span class="asterisk_red"></span></label>
+                        <div class="col-lg-8">
+                            <s:textfield name="address.city" id="address.city" cssClass="form-control" required="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2">Region</label>
+                        <div class="col-lg-8">
+                            <s:textfield name="address.state" id="address.state" cssClass="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2">Zip<span class="asterisk_red"></span></label>
+                        <div class="col-lg-8">
+                            <s:textfield name="address.zip" id="address.zip" cssClass="form-control" required="true"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+                </s:form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--END OF MODAL ADD ADDRESS--%>
+
+<%--START OF Third modal Consignee--%>
+
+<div class="modal fade" id="createConsignee" role="form" aria-labelledby="myModalLabel3" >
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel3">Add Consignee</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <s:form action="addConsigneeBooking" cssClass="form-horizontal" theme="bootstrap">
+                        <s:hidden name="consignee.referenceId1" id="consigneeAddIdHolder"/>
+                        <div class="form-group">
+                            <label class="col-lg-3">First name<span class="asterisk_red"></span></label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.firstName" cssClass="form-control" id="consignee.firstName"
+                                             placeholder="First Name" maxLength="30" autofocus="true" required="true"
+                                             pattern="[a-zA-Z\s ]+"
+                                             title="Name should not contain special characters and/or numbers."/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">Middle Name</label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.middleName" cssClass="form-control"
+                                             id="consignee.middleName"
+                                             placeholder="Middle Name" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                             title="Name should not contain special characters and/or numbers."/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">Last Name<span class="asterisk_red"></span></label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
+                                             placeholder="Last Name" maxLength="30" required="true"
+                                             pattern="[a-zA-Z\s ]+"
+                                             title="Name should not contain special characters and/or numbers."/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">Phone<span class="asterisk_red"></span></label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.phone" cssClass="form-control" id="consignee_phone"
+                                             placeholder="(XXX) XXX-XXXX" maxLength="14" required="true"
+                                             title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">Mobile<span class="asterisk_red"></span></label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee_mobile"
+                                             placeholder="(+639XX) (XXX-XXXX)" maxLength="19" required="true"
+                                             title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">Email<span class="asterisk_red"></span></label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.email" cssClass="form-control" id="consignee.email"
+                                             placeholder="Email Address" type="email" required="true" maxLength="50"
+                                             pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">Fax</label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.fax" cssClass="form-control" id="consignee_fax"
+                                             placeholder="(XXX) XXX-XXXX" maxLength="14"
+                                             title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">Address<span class="asterisk_red"></span></label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.addressLine1" cssClass="form-control"
+                                             id="consignee.addressLine1" placeholder="Address 1" required="true"
+                                             maxLength="50"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">Address Line 2</label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.addressLine2" cssClass="form-control"
+                                             id="consignee.addressLine2" placeholder="Address 2" maxLength="50"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">City<span class="asterisk_red"></span></label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.city" cssClass="form-control"
+                                             id="consignee.city" placeholder="City" required="true"
+                                             pattern="[a-zA-Z ]+" maxLength="50"
+                                             title="City should not contain special characters and/or numbers."/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">Region</label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.state" cssClass="form-control"
+                                             id="consignee.state" placeholder="Region" maxLength="50" pattern="[a-zA-Z ]+"
+                                             title="State should not contain special characters and/or numbers."/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">Zip<span class="asterisk_red"></span></label>
+                            <div class="col-lg-8">
+                                <s:textfield name="consignee.zip" cssClass="form-control"
+                                             id="consignee.zip" placeholder="ZIP" required="true"
+                                             pattern="[0-9]+" maxLength="4"
+                                             title="ZIP should not contain special characters and/or letters."/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+            </div>
+            </s:form>
+        </div>
+    </div>
+</div>
+<%--END OF Third modal Consignee--%>
 
 <script type="text/javascript">
 
@@ -539,7 +842,7 @@ $(document).ready(function() {
     $('#shipperConsignee').change(function(event) {
         var custId = $("#customerName").val();
         var consignee_Id = $("#shipperConsignee").val();
-
+        alert("TEST");
         $.getJSON('consigneeAction', {
                     customerID : custId,
                     consigneeId : consignee_Id
@@ -610,7 +913,7 @@ $(document).ready(function() {
     var toDateDelivery = $('#datepicker2');
 
     //pick up date validation
-    fromDatePickUp.datetimepicker({
+    fromDatePickUp.datepicker({
 
         // on 5:00pm
         timeFormat: 'h:mm TT',
@@ -637,7 +940,7 @@ $(document).ready(function() {
     });
 
     // delivery date validation -jp
-    toDateDelivery.datetimepicker({
+    toDateDelivery.datepicker({
 
         // on 6:00pm
         timeFormat: 'h:mm TT',
@@ -740,7 +1043,7 @@ function dynamicDropdown(select, index) {
                     /*sType.options[i].selected = true;*/
                 }else{
                     sType.options[i].disabled = false;
-                    0
+
                 }
             }
         }
@@ -882,5 +1185,73 @@ select2.onchange = function() {
     preventDuplicatePort.call(this, select1, this.selectedIndex);
 };
 
+// to get customer id for add address
+$(document).ready(function(){
+    $("#idAddress").click(function(){
+        var custId1 = $("#customerName").val();
+        getThis();
+        if (custId1 == "" || null ){
+            alert("Select a customer first");
+            $("#customerName").focus();
+            return false;
+        }
+        $("#custAddIdHolder").val(custId1);
+    });
+});
+// to get customer id for add consignee
+$(document).ready(function(){
+    $("#idConsignee").click(function(){
+        var custId2 = $("#customerName").val();
+        getThis();
+        if (custId2 == "" || null ){
+            alert("Select a customer first");
+            $("#customerName").focus();
+            return false;
+        }
+        $("#consigneeAddIdHolder").val(custId2);
+    });
+});
+
+function getThis()
+{
+    var ServiceReqField = $("#order_serviceRequirement").val();
+    var ServiceModeField =$("#order_modeOfService").val();
+    var FreightTypeField = $("#order_freightType").val();
+    var PaymentModeField = $("#order_modeOfPayment").val();
+    var CustNameField = $("#customerName").val();
+    var Pickdatefield = $("#datepicker1").val();
+    var Deldatefield = $("#datepicker2").val();
+    var OriginPortField = $("#select1").val();
+    var DestinationPortField = $("#select2").val();
+    var NotificationField = $("#notification_type").val();
+    var CommentsField = $("#Comments").val();
+
+    localStorage.setItem("ServiceReqField",ServiceReqField);
+    localStorage.setItem("ServiceModeField",ServiceModeField);
+    localStorage.setItem("FreightTypeField",FreightTypeField);
+    localStorage.setItem("PaymentModeField",PaymentModeField);
+    localStorage.setItem("CustNameField", CustNameField);
+    localStorage.setItem("Pickdatefield",Pickdatefield);
+    localStorage.setItem("Deldatefield",Deldatefield);
+    localStorage.setItem("OriginPortField",OriginPortField);
+    localStorage.setItem("DestinationPortField",DestinationPortField);
+    localStorage.setItem("NotificationField",NotificationField);
+    localStorage.setItem("CommentsField",CommentsField);
+}
+
+function setThis()
+{
+    $("#order_serviceRequirement").val(localStorage.getItem("ServiceReqField"));
+    $("#order_modeOfService").val(localStorage.getItem("ServiceModeField"));
+    $("#order_freightType").val(localStorage.getItem("FreightTypeField"));
+    $("#order_modeOfPayment").val(localStorage.getItem("PaymentModeField"));
+    $("#customerName").val(localStorage.getItem("CustNameField"));
+    $("#datepicker1").val(localStorage.getItem("Pickdatefield"));
+    $("#datepicker2").val(localStorage.getItem("Deldatefield"));
+    $("#select1").val(localStorage.getItem("OriginPortField"));
+    $("#select2").val(localStorage.getItem("DestinationPortField"));
+    $("#notification_type").val(localStorage.getItem("NotificationField"));
+    $("#Comments").val(localStorage.getItem("CommentsField"));
+}
 
 </script>

@@ -168,8 +168,7 @@ public class Orders implements java.io.Serializable {
         this.serviceMode = serviceMode;
     }
 
-
-    @Column(name = "notificationType", nullable = false, length = 10)
+    @Column(name = "notificationType", nullable = false, length = 25)
     public String getNotificationType() {
         return this.notificationType;
     }
@@ -378,14 +377,14 @@ public class Orders implements java.io.Serializable {
         this.modifiedBy = modifiedBy;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "pickupDate")
     public Date getPickupDate() {
         return pickupDate;
     }
 
 
-    public void setPickupDate(Timestamp pickupDate) {
+    public void setPickupDate(Date pickupDate) {
         this.pickupDate = pickupDate;
     }
 
@@ -410,14 +409,14 @@ public class Orders implements java.io.Serializable {
         this.originationPort = originationPort;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "deliveryDate")
     public Date getDeliveryDate() {
         return deliveryDate;
     }
 
 
-    public void setDeliveryDate(Timestamp deliveryDate) {
+    public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 

@@ -84,7 +84,7 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
     public List<Orders> findAllOrders(){
         Log.debug("finding all drivers");
         try{
-            return getSessionFactory().getCurrentSession().createQuery("from Orders").list();
+            return getSessionFactory().getCurrentSession().createQuery("from Orders order by createdTimestamp desc").list();
         }catch (RuntimeException re){
             Log.error("find all failed", re);
             throw re;

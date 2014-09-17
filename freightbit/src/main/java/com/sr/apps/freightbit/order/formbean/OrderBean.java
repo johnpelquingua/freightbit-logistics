@@ -9,7 +9,7 @@ import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 
 public class OrderBean {
-	//
+
 	private Integer orderId;
 	private String customerName;
 	private Integer customerId;
@@ -72,7 +72,6 @@ public class OrderBean {
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}
-
     public String getCustomerName() {
 		return customerName;
 	}
@@ -115,13 +114,15 @@ public class OrderBean {
 	public void setModeOfPayment(String modeOfPayment) {
 		this.modeOfPayment = modeOfPayment;
 	}
+
 	public String getNotifyBy() {
-		return notifyBy;
-	}
-	public void setNotifyBy(String notifyBy) {
-		this.notifyBy = notifyBy;
-	}
-	public String getReferenceNo() {
+        return notifyBy;
+    }
+    public void setNotifyBy(String notifyBy) {
+        this.notifyBy = notifyBy;
+    }
+
+    public String getReferenceNo() {
 		return referenceNo;
 	}
 	public void setReferenceNo(String referenceNo) {

@@ -56,7 +56,7 @@
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="serviceRequirement" title="Service Requirement <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>

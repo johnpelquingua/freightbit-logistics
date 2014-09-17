@@ -1,7 +1,9 @@
 package com.sr.apps.freightbit.order.action;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.io.*;
 
 import com.sr.apps.freightbit.customer.formbean.ConsigneeBean;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
@@ -63,6 +65,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Items> customerItems = new ArrayList<Items>();
     private List<Parameters> contactTypeList = new ArrayList<Parameters>();
     private List<Parameters> addressTypeList = new ArrayList<Parameters>();
+    private String[] notificationList;
 
     private Integer orderIdParam;
     private Integer orderItemIdParam;
@@ -415,6 +418,10 @@ public class OrderAction extends ActionSupport implements Preparable {
     public String loadEditOrder() {
         //orderIdParam is Order ID passed from form
         Orders orderEntityForm = orderService.findOrdersById(orderIdParam);
+
+        notificationList = (orderEntityForm.getNotificationType().split("\\s*[,]\\s*"));
+        System.out.print("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" + notificationList);
+
         // Display Order Data to form
         order = transformToOrderFormBean(orderEntityForm);
 
@@ -450,9 +457,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
             // To get generated Order Id
             orderIdPass = orderEntity.getOrderId();
-
             Map sessionAttributes = ActionContext.getContext().getSession();
-
             sessionAttributes.put("orderIdPass", orderIdPass);
 
         } catch(OrderAlreadyExistsException e) {
@@ -714,6 +719,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setModeOfService(order.getServiceMode());
         orderBean.setServiceRequirement(order.getServiceRequirement());
         orderBean.setNotifyBy(order.getNotificationType());
+
         orderBean.setModeOfPayment(order.getPaymentMode());
         orderBean.setBookingDate(order.getOrderDate());
         orderBean.setOrderStatus(order.getOrderStatus());
@@ -785,7 +791,15 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setOrderNumber(order.getOrderNumber());
         orderBean.setFreightType(order.getServiceType());
         orderBean.setModeOfService(order.getServiceMode());
+        /*orderBean.setNotifyBy(order.getNotificationType());*/
+       /* String [] notificationList = new String[] {order.getNotificationType()};
+        List lister = (List) Arrays.asList(notificationList);
+        System.out.print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFFF" + order.getNotificationType());
+        System.out.print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + lister);*/
+
+
         orderBean.setNotifyBy(order.getNotificationType());
+
         orderBean.setOrderDate(order.getOrderDate());
         orderBean.setModeOfPayment(order.getPaymentMode());
         orderBean.setComments(order.getComments());
@@ -811,6 +825,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setCreatedBy(order.getCreatedBy());
         orderBean.setModifiedTimestamp(order.getModifiedTimestamp());
         orderBean.setModifiedBy(order.getModifiedBy());
+
+        /*SimpleDateFormat sdf = new SimpleDateFormat("MM:dd:yy");
+        Date pickupDate = sdf.format(order.getPickupDate());
+        System.out.print("11111111111111111111111111111111111111" + pickupDate);*/
         orderBean.setPickupDate(order.getPickupDate());
         orderBean.setOriginationPort(order.getOriginationPort());
         orderBean.setDeliveryDate(order.getDeliveryDate());
@@ -984,8 +1002,11 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setShipperContactId(formBean.getShipperContactId());
         entity.setConsigneeAddressId(formBean.getConsigneeAddressId());
         entity.setConsigneeContactId(formBean.getConsigneeContactId());
-        entity.setDeliveryDate(new Timestamp((formBean.getDeliveryDate()).getTime()));
-        entity.setPickupDate(new Timestamp((formBean.getPickupDate()).getTime()));
+        /*entity.setDeliveryDate(new Timestamp((formBean.getDeliveryDate()).getTime()));
+        entity.setPickupDate(new Timestamp((formBean.getPickupDate()).getTime()));*/
+        entity.setDeliveryDate(formBean.getDeliveryDate());
+        entity.setPickupDate(formBean.getPickupDate());
+
 
         return entity;
     }
@@ -1092,6 +1113,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         containerList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
         contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
         addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
+        /*serviceRequirementTruckingList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.SERVICE_REQUIREMENT_TRUCKING);
+        modeOfServiceTruckingList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.MODE_OF_SERVICE_TRUCKING);*/
 
         containerQuantity = new ArrayList<Integer>();
         containerQuantity.add(1);
@@ -1584,5 +1607,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setConsignee(ConsigneeBean consignee) {
         this.consignee = consignee;
+    }
+
+    public String[] getNotificationList() {
+        return notificationList;
+    }
+
+    public void setNotificationList(String[] notificationList) {
+        this.notificationList = notificationList;
     }
 }

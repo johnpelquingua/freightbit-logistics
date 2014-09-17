@@ -79,7 +79,7 @@ public class OrderServiceTest {
         orders.setOrderNumber("213");
         orders.setServiceType("FCL");
         orders.setServiceMode("D/D");
-        orders.setNotificationType("SMS");
+        orders.setNotificationType("PHONE");
         orders.setPaymentMode("on hand");
         orders.setComments("fragile");
         orders.setOrderStatus("Ready");
