@@ -28,6 +28,6 @@ public interface DriverDao {
 
     public List<Driver> findDriverByDriverCode(String driverCode);
 
-    public List<Driver> findDriverByDriverCodeAndId(String driverCode, Integer driverId);
+    public List<Driver> findDriverByLicenseAndId(String licenseNumber, Integer driverId);
 
 }

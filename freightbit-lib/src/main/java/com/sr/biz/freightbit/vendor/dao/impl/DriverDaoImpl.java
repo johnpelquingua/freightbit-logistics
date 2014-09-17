@@ -157,12 +157,12 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao {
         }
     }
 
-    public List<Driver> findDriverByDriverCodeAndId(String driverCode, Integer driverId) {
+    public List<Driver> findDriverByLicenseAndId(String licenseNumber, Integer driverId) {
         Log.debug("Finding Driver instance");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from Driver d where d.driverCode = :driverCode and d.driverId != :driverId");
-            query.setParameter("driverCode", driverCode);
+                    "from Driver d where d.licenseNumber = :licenseNumber and d.driverId != :driverId");
+            query.setParameter("licenseNumber", licenseNumber);
             query.setParameter("driverId", driverId);
             List<Driver> results = (List<Driver>) query.list();
             Log.debug("Find by driverCode successful, result size: " + results.size());

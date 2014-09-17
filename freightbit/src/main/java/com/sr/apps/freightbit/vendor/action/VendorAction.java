@@ -74,6 +74,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private Integer vendorIdParam;
     private String truckCodeParam;
     private String driverCodeParam;
+    private Integer driverIdParam;
     private Integer contactCodeParam;
     private String searchType;
     private String vendorKeyword;
@@ -592,7 +593,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             drivers.add(transformToFormBeanDriver(driverE1em));
         }
 
-        Driver driverEntity = vendorService.findDriverByDriverCode(driverCodeParam);
+        Driver driverEntity = vendorService.findDriverById(driverIdParam);
         driver = transformToFormBeanDriver(driverEntity);
 
         return SUCCESS;
@@ -638,7 +639,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
     public String deleteDriver() {
-        Driver driverEntity = vendorService.findDriverByDriverCode(driverCodeParam);
+        Driver driverEntity = vendorService.findDriverById(driverIdParam);
         vendorService.deleteDriver(driverEntity);
 
         clearErrorsAndMessages();
@@ -1465,5 +1466,13 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public void setVesselTypeList(List<Parameters> vesselTypeList) {
         this.vesselTypeList = vesselTypeList;
+    }
+
+    public Integer getDriverIdParam() {
+        return driverIdParam;
+    }
+
+    public void setDriverIdParam(Integer driverIdParam) {
+        this.driverIdParam = driverIdParam;
     }
 }

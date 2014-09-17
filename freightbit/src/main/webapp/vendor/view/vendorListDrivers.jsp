@@ -68,7 +68,7 @@
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">
                                                 <s:url var="editVendorDriverUrl" action="loadEditDriverPage">
-                                                    <s:param name="driverCodeParam" value="#attr.driver.driverCode"></s:param>
+                                                    <s:param name="driverIdParam" value="#attr.driver.driverId"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{editVendorDriverUrl}" rel="tooltip"
                                                      title="Edit this Driver">
@@ -77,7 +77,7 @@
                                                     <i class="fa fa-pencil"></i>
                                                 </s:a>
                                                 <s:url var="deleteVendorDriverUrl" action="deleteDriver">
-                                                    <s:param name="driverCodeParam" value="#attr.driver.driverCode"></s:param>
+                                                    <s:param name="driverIdParam" value="#attr.driver.driverId"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{deleteVendorDriverUrl}" rel="tooltip"
                                                      title="Delete this Driver"
