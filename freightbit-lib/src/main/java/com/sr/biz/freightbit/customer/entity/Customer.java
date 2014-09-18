@@ -37,12 +37,7 @@ public class Customer implements java.io.Serializable {
     public Customer() {
     }
 
-    public Customer(Integer customerId, Client client, String customerCode,
-                    String customerName, String customerType, String website,
-                    String phone, String mobile, String fax, String email,
-                    String dti, String mayorsPermit, String aaf,
-                    String signatureCard, Date createdTimestamp,
-                    String createdBy, Date modifiedTimestamp, String modifiedBy) {
+    public Customer(Integer customerId, Client client, String customerCode, String customerName, String customerType, String website, String phone, String mobile, String fax, String email, String dti, String mayorsPermit, String aaf, String signatureCard, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
         this.customerId = customerId;
         this.client = client;
         this.customerCode = customerCode;
@@ -157,38 +152,38 @@ public class Customer implements java.io.Serializable {
     }
 
     @Column(name = "dti")
-    public String getDti() {
+    public int getDti() {
         return dti;
     }
 
-    public void setDti(String dti) {
+    public void setDti(int dti) {
         this.dti = dti;
     }
 
     @Column(name = "mayorsPermit")
-    public String getMayorsPermit() {
+    public int getMayorsPermit() {
         return mayorsPermit;
     }
 
-    public void setMayorsPermit(String mayorsPermit) {
+    public void setMayorsPermit(int mayorsPermit) {
         this.mayorsPermit = mayorsPermit;
     }
 
     @Column(name = "aaf")
-    public String getAaf() {
+    public int getAaf() {
         return aaf;
     }
 
-    public void setAaf(String aaf) {
+    public void setAaf(int aaf) {
         this.aaf = aaf;
     }
 
     @Column(name = "signatureCard")
-    public String getSignatureCard() {
+    public int getSignatureCard() {
         return signatureCard;
     }
 
-    public void setSignatureCard(String signatureCard) {
+    public void setSignatureCard(int signatureCard) {
         this.signatureCard = signatureCard;
     }
 

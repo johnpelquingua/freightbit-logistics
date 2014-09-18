@@ -54,11 +54,11 @@
                                              cssClass="form-control" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
                             </div>
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Base Price (Php)<span class="asterisk_red"></span></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Weight (kg)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.basePrice" id="item.basePrice" required="true"
-                                             cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Price is not valid"/>
+                                <s:textfield name="item.weight" id="item.weight" required="true"
+                                             cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <%--<label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)</label>--%>
@@ -80,14 +80,14 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.srp" id="item.srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Quality is not valid"/>
+                                <s:textfield name="item.srp" id="item.srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Quality is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Length (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.length" id="item.length" required="true" cssClass="form-control"
-                                             style="150px" pattern="[0-9.]+" title="Special characters in length is not valid"/>
+                                             style="150px" pattern="[0-9.]+" title="Special characters in length is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
@@ -96,14 +96,14 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Width (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control"  pattern="[0-9.]+" title="Special characters in width is not valid"/>
+                                <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control"  pattern="[0-9.]+" title="Special characters in width is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Height (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.height" id="item.height" required="true"
-                                             cssClass="form-control" pattern="[0-9.]+" title="Special characters in height is not valid"/>
+                                             cssClass="form-control" pattern="[0-9.]+" title="Special characters in height is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
@@ -176,5 +176,15 @@
 
         return true;
     }
+
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57) || (charCode == 46 && $(this).val().indexOf('.') != -1))
+            return false;
+
+        return true;
+    }
+
 
 </script>

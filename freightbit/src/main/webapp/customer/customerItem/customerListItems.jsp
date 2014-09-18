@@ -76,7 +76,7 @@
                                         <%--<td><display:column property="criticalQuality" title="Critical Quality <i class='fa fa-sort' />"
                                                             class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>--%>
-                                        <td><display:column property="basePrice" title="Base Price (Php) <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="weight" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="note" title="Note <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>

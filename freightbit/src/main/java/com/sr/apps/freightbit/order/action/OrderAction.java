@@ -111,7 +111,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
             shipperItemCommodityMap.put(shipperItem.getDescription(), shipperItem.getDescription());
 
-            shipperItemValueMap.put(shipperItem.getBasePrice(), shipperItem.getBasePrice());
+            shipperItemValueMap.put(shipperItem.getWeight(), shipperItem.getWeight());
 
         return SUCCESS;
     }

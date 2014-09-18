@@ -30,7 +30,7 @@
 
                     <div class="col-lg-9">
                         <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Vendor Name"
-                                     name="vendor.vendorName"></s:textfield>
+                                     name="vendor.vendorName" maxlength="30"></s:textfield>
                     </div>
                 </div>
                 <div class="form-group">

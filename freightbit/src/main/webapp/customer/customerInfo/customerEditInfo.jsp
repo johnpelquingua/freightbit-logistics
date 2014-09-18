@@ -44,7 +44,8 @@
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
                                 <div class="col-lg-8" >
 
-                                    <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" onkeypress="return alphaKeyOnly(event)"/>
+                                    <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" onkeypress="return alphaKeyOnly(event)"
+                                            title="Company Code Must be 3 Capital Letters Only"/>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -51,7 +51,7 @@ public class ItemServiceTest {
         item.setLength(2.0);
         item.setSrp(2.00F);
         item.setCriticalQuality(2);
-        item.setBasePrice(2.00F);
+        item.setWeight(2.00F);
         item.setNote("Matigas");
         item.setDescription("HARD");
 

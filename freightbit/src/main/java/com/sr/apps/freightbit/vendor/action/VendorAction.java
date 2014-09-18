@@ -111,6 +111,25 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String LoadviewVendors() {
+        String column = getColumnFilter();
+        List<Vendor> vendorEntityList = new ArrayList<Vendor>();
+
+        if (StringUtils.isNotBlank(column)) {
+            vendorEntityList = vendorService.findVendorsByCriteria(column, vendor.getVendorKeyword(), getClientId());
+        } else {
+            vendorEntityList = vendorService.findAllVendorByClientId(getClientId());
+        }
+
+        for (Vendor vendorElem : vendorEntityList) {
+            vendors.add(transformToFormBean(vendorElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! New Vendor has been added.");
+        return SUCCESS;
+    }
+
 
     public String loadAddVendorPage() {
         return SUCCESS;
@@ -255,7 +274,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     public void validateOnSubmit(VendorBean vendorBean) {
         clearErrorsAndMessages();
 
-        String name = "^[a-zA-Z][a-zA-Z ]+$";
+        String name = "^[a-zA-Z][a-zA-Z, . - ]+$";
         String code = "[A-Z]+";
 
 
@@ -279,9 +298,9 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (StringUtils.isBlank(vendorBean.getVendorName())){
             addFieldError("vendor.vendorName", getText("err.vendorName.required"));
         }
-        else if(!matcher.matches()){
-            addFieldError("vendor.vendorName", "Name must be letters only.");
-        }
+//        else if(!matcher.matches()){
+//            addFieldError("vendor.vendorName", "Name must be letters only.");
+//        }
 
         Matcher matcher2 = codePattern.matcher(vendorBean.getVendorCode());
         if (!matcher2.matches()){
@@ -534,7 +553,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         matcher = alphaNumericPattern.matcher(truckBean.getEngineNumber());
         if (!matcher.matches()) {
-            addFieldError("truck.engineNumber", "Engine number must not contact special character");
+            addFieldError("truck.engineNumber", "Engine number must not contain special character");
         }
 
         if (StringUtils.isBlank(truckBean.getPlateNumber())) {
@@ -1093,6 +1112,9 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
         if (StringUtils.isBlank(contactBean.getEmail())) {
             addFieldError("contact.email", getText("err.email.required"));
+        }
+        if (StringUtils.isBlank(contactBean.getMobile())) {
+            addFieldError("contact.mobile", getText("err.mobileContact.required"));
         }
     }
 

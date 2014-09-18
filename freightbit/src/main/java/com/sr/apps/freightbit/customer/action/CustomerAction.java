@@ -168,7 +168,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
             addFieldError("item.itemName", getText("Special Characters in item name is not valid"));
         }
 
-        Matcher matcher2 = pattern2.matcher(itemBean.getBasePrice().toString());
+        Matcher matcher2 = pattern2.matcher(itemBean.getWeight().toString());
         if(!matcher2.matches()){
             addFieldError("item.basePrice", getText("Special Characters in base price is not valid"));
         }
@@ -221,7 +221,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         /*if (itemBean.getCriticalQuality() == null) {
             addFieldError("item.criticalQuality", getText("err.criticalQuality.required"));
         }*/
-        if (itemBean.getBasePrice() == null) {
+        if (itemBean.getWeight() == null) {
             addFieldError("item.basePrice", getText("err.basePrice.required"));
         }
         if (StringUtils.isBlank(itemBean.getDescription())) {
@@ -256,7 +256,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setLength(entity.getLength());
         formBean.setWidth(entity.getWidth());
         formBean.setHeight(entity.getHeight());
-        formBean.setBasePrice(entity.getBasePrice());
+        formBean.setWeight(entity.getWeight());
         formBean.setNote(entity.getNote());
         formBean.setDescription(entity.getDescription());
         formBean.setCreatedBy(entity.getCreatedBy());
@@ -283,7 +283,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setWidth(formBean.getWidth());
         entity.setHeight(formBean.getHeight());
         entity.setCriticalQuality(formBean.getCriticalQuality());
-        entity.setBasePrice(formBean.getBasePrice());
+        entity.setWeight(formBean.getWeight());
         entity.setNote(formBean.getNote());
         entity.setDescription(formBean.getDescription());
         System.out.println("----------------------" + formBean.getCreatedBy() + "-----------------------------");

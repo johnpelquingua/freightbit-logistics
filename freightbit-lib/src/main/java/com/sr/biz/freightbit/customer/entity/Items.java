@@ -25,7 +25,7 @@ public class Items implements java.io.Serializable {
     private Double height;
     private Float srp;
     private Integer criticalQuality;
-    private Float basePrice;
+    private Float weight;
     private String note;
     private String description;
     private Date createdTimeStamp;
@@ -37,7 +37,7 @@ public class Items implements java.io.Serializable {
 
     }
 
-    public Items(Integer customerItemsId, Client client, Integer customerId, String itemName, String itemCode, Double length, Double width, Double height, Float srp, Integer criticalQuality, Float basePrice, String note, String description, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
+    public Items(Integer customerItemsId, Client client, Integer customerId, String itemName, String itemCode, Double length, Double width, Double height, Float srp, Integer criticalQuality, Float weight, String note, String description, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
         this.customerItemsId = customerItemsId;
         this.client = client;
         this.customerId = customerId;
@@ -48,7 +48,7 @@ public class Items implements java.io.Serializable {
         this.height = height;
         this.srp = srp;
         this.criticalQuality = criticalQuality;
-        this.basePrice = basePrice;
+        this.weight = weight;
         this.note = note;
         this.description = description;
         this.createdTimeStamp = createdTimeStamp;
@@ -102,9 +102,9 @@ public class Items implements java.io.Serializable {
     public Integer getCriticalQuality() { return criticalQuality; }
     public void setCriticalQuality(Integer criticalQuality) { this.criticalQuality = criticalQuality; }
 
-    @Column(name = "basePrice")
-    public Float getBasePrice() { return basePrice; }
-    public void setBasePrice(Float basePrice) { this.basePrice = basePrice; }
+    @Column(name = "weight")
+    public Float getWeight() { return weight; }
+    public void setWeight(Float weight) { this.weight = weight; }
 
     @Column(name = "note")
     public String getNote() { return note; }

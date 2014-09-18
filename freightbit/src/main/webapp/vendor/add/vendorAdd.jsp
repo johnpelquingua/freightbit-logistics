@@ -43,14 +43,14 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
-                                         id="vendor.vendorName" />
+                                         id="vendor.vendorName" required="true"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" name="vendor.vendorCode" id="vendor_vendorCode"
+                            <s:textfield cssClass="form-control" name="vendor.vendorCode" id="vendor_vendorCode" required="true"
                                          placeholder="Code" maxLength="3" pattern="[A-Z]+" title="Must be letters only" onkeypress="return alphaKeyOnly(event)"/>
                         </div>
                     </div>
@@ -74,9 +74,7 @@
             </div>
             <div class="panel-footer">
                 <div class="pull-right">
-                    <button class="btn btn-default" onclick="this.form.action='viewVendors'">
-                        Cancel
-                    </button>
+                    <a href="viewVendors" class="btn btn-default" id ="groups-btn">Cancel</a>
                     <s:submit cssClass="btn btn-primary" value="Save" type="submit"/>
                 </div>
             </div>
@@ -87,6 +85,7 @@
 </div>
 
 <script type="text/javascript">
+
    $(document).ready(function(){
        $("#vendor_vendorCode").keyup(function(){
            this.value=this.value.toUpperCase();

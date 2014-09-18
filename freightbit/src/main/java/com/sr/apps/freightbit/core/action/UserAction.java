@@ -103,8 +103,10 @@ public class UserAction extends ActionSupport implements Preparable {
     public String addUser() throws Exception {
     	try {
 	        validateOnSubmit(user);
-	        if (hasFieldErrors())
-	            return INPUT;
+	        if (hasFieldErrors()) {
+                populatePermissionsList(-1);
+                return INPUT;
+            }
 	        Integer userId = userService.addUser(transformToEntityBean(user));
 	        addPermissionsToUser(userId);
 	        populatePermissionsList(userId);

@@ -50,7 +50,7 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
-                                             id="truck.truckCode" required="true"/>
+                                             id="truck.truckCode" required="true" maxlength="10"/>
                             </div>
 
                         </div>

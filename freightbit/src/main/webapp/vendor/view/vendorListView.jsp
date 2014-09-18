@@ -18,8 +18,8 @@
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <div class="alert alert-success" id="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
@@ -111,3 +111,22 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        /*color coding of rows*/
+        var tbl = document.getElementById("vendor");
+        if (tbl != null) {
+            for (var i = 0; i < tbl.rows.length; i++) {
+                if ($("#alert").length) {
+                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[1].cells[j].style.backgroundColor = "#dff0d8";
+                    }
+                }
+            }
+        }
+    });
+
+
+</script>

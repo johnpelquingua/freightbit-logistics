@@ -111,7 +111,7 @@
                         <div class="col-lg-10" >
 
                             <s:textfield name="consignee.email" cssClass="form-control" id="consignee.email"
-                                         placeholder="Email Address" type="email" required="true" maxLength="50"
+                                         placeholder="Email Address" type="email" required="true" maxLength="50" title="Must be a valid email"
                                         />
                         </div>
                     </div>
@@ -182,7 +182,8 @@
                             <s:textfield name="consignee.zip" cssClass="form-control"
                                          id="consignee.zip" placeholder="ZIP" required="true"
                                          pattern="[0-9]+" maxLength="4"
-                                         title="ZIP should not contain special characters and/or letters."/>
+                                         title="ZIP should not contain special characters and/or letters."
+                                         onkeypress="return isNumberKey(event)"/>
                         </div>
                     </div>
             </div>
@@ -232,5 +233,14 @@
         $("#consignee_fax").mask("(999) 999-9999");
 
     });
+
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
 
 </script>

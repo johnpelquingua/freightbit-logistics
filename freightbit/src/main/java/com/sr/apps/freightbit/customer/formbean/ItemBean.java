@@ -17,7 +17,7 @@ public class ItemBean {
     private Double height;
     private Float srp;
     private Integer criticalQuality;
-    private Float basePrice;
+    private Float weight;
     private String note;
     private String description;
     private Date createdTimeStamp;
@@ -33,7 +33,7 @@ public class ItemBean {
 
     public ItemBean(Integer customerItemsId, Integer customerId, String itemName,
                     String itemCode, Double length, Double width, Double height, Float srp, Integer criticalQuality,
-                    Float basePrice, String note, String description, Date createdTimeStamp, String createdBy,
+                    Float weight, String note, String description, Date createdTimeStamp, String createdBy,
                     Date modifiedTimeStamp, String modifiedBy) {
 
 
@@ -46,7 +46,7 @@ public class ItemBean {
         this.height = height;
         this.srp = srp;
         this.criticalQuality = criticalQuality;
-        this.basePrice = basePrice;
+        this.weight = weight;
         this.note = note;
         this.description = description;
         this.createdTimeStamp = createdTimeStamp;
@@ -128,12 +128,12 @@ public class ItemBean {
         this.criticalQuality = criticalQuality;
     }
 
-    public Float getBasePrice() {
-        return basePrice;
+    public Float getWeight() {
+        return weight;
     }
 
-    public void setBasePrice(Float basePrice) {
-        this.basePrice = basePrice;
+    public void setWeight(Float weight) {
+        this.weight = weight;
     }
 
     public String getNote() {

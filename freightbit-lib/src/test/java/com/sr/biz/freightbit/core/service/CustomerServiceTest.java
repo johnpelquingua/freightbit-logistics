@@ -96,10 +96,10 @@ public class CustomerServiceTest {
         customer.setMobile("23541");
         customer.setFax("efaefa1231f");
         customer.setEmail("tes@testing.com");
-        customer.setDti("1");
-        customer.setMayorsPermit("1");
-        customer.setAaf("1");
-        customer.setSignatureCard("1");
+        customer.setDti("");
+        customer.setMayorsPermit("");
+        customer.setAaf("");
+        customer.setSignatureCard("");
         customer.setCreatedTimestamp(new Date());
         customer.setCreatedBy("admin");
         customer.setModifiedTimestamp(new Date());

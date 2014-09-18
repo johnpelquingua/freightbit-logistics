@@ -50,7 +50,7 @@
 
                             <div class="col-lg-10">
                                 <s:textfield name="address.addressLine1" id="address.addressLine1"
-                                             cssClass="form-control" required="true"/>
+                                             cssClass="form-control" required="true" maxlength="50"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -58,14 +58,14 @@
 
                             <div class="col-lg-10">
                                 <s:textfield name="address.addressLine2" id="address.addressLine2"
-                                             cssClass="form-control"/>
+                                             cssClass="form-control" maxlength="50"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">City<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield name="address.city" id="address.city" cssClass="form-control" required="true"/>
+                                <s:textfield name="address.city" id="address.city" cssClass="form-control" required="true" maxlength="30"/>
                             </div>
                         </div>
 
@@ -73,14 +73,14 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Region</label>
 
                             <div class="col-lg-10">
-                                <s:textfield name="address.state" id="address.state" cssClass="form-control"/>
+                                <s:textfield name="address.state" id="address.state" cssClass="form-control" maxlength="30"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Zip Code<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield name="address.zip" id="address.zip" cssClass="form-control" pattern="[0-9]+"/>
+                                <s:textfield name="address.zip" id="address.zip" cssClass="form-control" pattern="[0-9]+" maxlength="4" requiredLabel="true"/>
                             </div>
                         </div>
                         <s:property value="%{vendorIdParam}"/>

@@ -53,7 +53,7 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
         log.debug("Finding all Vendors");
         try {
             return getSessionFactory().getCurrentSession()
-                    .createQuery("from Vendor").list();
+                    .createQuery("from Vendor vendor order by createdTimestamp desc ").list();
         } catch (RuntimeException re) {
             log.error("Find all failed", re);
             throw re;
@@ -77,7 +77,7 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
         log.debug("Finding Vendor instance by Client");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from Vendor where clientId = :clientId");
+                    "from Vendor where clientId = :clientId order by createdTimestamp desc");
             query.setParameter("clientId", clientId);
             List<Vendor> results = (List<Vendor>) query.list();
             log.debug("find vendor by client id successful, result size: "

@@ -43,10 +43,14 @@
         </action>
 
         <action name="addVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addVendor">
-            <result name="TRUCKING" type="tiles">vendor.vendorInfoTrucking.tiles</result>
-            <result name="SHIPPING" type="tiles">vendor.vendorInfoShipping.tiles</result>
+            <result name="TRUCKING" type="redirect">LoadviewVendors</result>
+            <result name="SHIPPING" type="redirect">LoadviewVendors</result>
             <!--<result name="success" type="redirect">viewInfoVendor</result>-->
             <result name="input" type="tiles">vendor.vendorAdd.tiles</result>
+        </action>
+
+        <action name="LoadviewVendors" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="LoadviewVendors">
+            <result name="success" type="tiles">vendor.vendorListView.tiles</result>
         </action>
 
         <action name="viewVendors" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewVendors">
