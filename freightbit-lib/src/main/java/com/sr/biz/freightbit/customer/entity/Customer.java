@@ -152,38 +152,38 @@ public class Customer implements java.io.Serializable {
     }
 
     @Column(name = "dti")
-    public int getDti() {
+    public String getDti() {
         return dti;
     }
 
-    public void setDti(int dti) {
+    public void setDti(String dti) {
         this.dti = dti;
     }
 
     @Column(name = "mayorsPermit")
-    public int getMayorsPermit() {
+    public String getMayorsPermit() {
         return mayorsPermit;
     }
 
-    public void setMayorsPermit(int mayorsPermit) {
+    public void setMayorsPermit(String mayorsPermit) {
         this.mayorsPermit = mayorsPermit;
     }
 
     @Column(name = "aaf")
-    public int getAaf() {
+    public String getAaf() {
         return aaf;
     }
 
-    public void setAaf(int aaf) {
+    public void setAaf(String aaf) {
         this.aaf = aaf;
     }
 
     @Column(name = "signatureCard")
-    public int getSignatureCard() {
+    public String getSignatureCard() {
         return signatureCard;
     }
 
-    public void setSignatureCard(int signatureCard) {
+    public void setSignatureCard(String signatureCard) {
         this.signatureCard = signatureCard;
     }
 
