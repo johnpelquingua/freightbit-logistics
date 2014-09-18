@@ -190,7 +190,7 @@
                         <div class="col-lg-9" style="text-align:left !important;">
                             <%--<s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
                                       name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>--%>
-                                <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy" />
+                            <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy" />
                         </div>
                     </div>
 
@@ -278,9 +278,15 @@
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-7">
+
+                            <%--<s:textfield cssClass="form-control"
+                                         name="order.consigneeAddressId"
+                                         id="order_consigneeAddressId_textfield"
+                                         disabled="true" />--%>
                             <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeAddress" name="order.consigneeAddressId"
                                       list="consigneeAddressList" listKey="addressId"
-                                      listValue="addressLine1 + ' ' + addressLine2" required="true"/>
+                                      listValue="addressLine1 + ' ' + addressLine2" required="true" />
+
                         </div>
 
                     </div>
@@ -685,7 +691,7 @@ $(document).ready(function() {
 
             select4.find('option').remove();
 
-            // populate customer consignee list
+            // populate customer contacts list
             $.each(jsonResponse.customerContactsMap, function(key, value) {
 
                 $('<option>').val(key).text(value).appendTo(select);
@@ -717,7 +723,7 @@ $(document).ready(function() {
                 $('<option>').val(key).text(value).appendTo(select3);
             });
 
-            // populate customer address list
+            // populate customer consignee address list
             $.each(jsonResponse.consigneeAddressMap, function(key, value) {
 
                 if($("#consigneeAddress").val() != ''){
@@ -728,6 +734,9 @@ $(document).ready(function() {
                 }else{
                     $('<option>').val(key).text(value).appendTo(select4);
                 }
+
+                var consignAdd = $("#consigneeAddress").val();
+                document.getElementById("order_consigneeAddressId_textfield").value = consignAdd;
 
             });
 
@@ -753,7 +762,7 @@ $(document).ready(function() {
         // populate consignee address
         $.each(jsonResponse.consigneeAddressMap, function(key, value) {
 
-            if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR') {
+            if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'PICKUP' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
 
                 if ($("#shipperConsignee").val() != '') {
                     $('<option>').val(key).text(value).appendTo(select4);

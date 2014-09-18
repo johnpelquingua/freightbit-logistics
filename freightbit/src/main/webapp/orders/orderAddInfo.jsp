@@ -28,7 +28,7 @@
 <div class="panel-heading">
     <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Booking Information</h3>
     <div class="btn-toolbar pull-right">
-        <a class="btn btn-info" title="Edit Booking" >Edit Booking</a>
+        <a class="btn btn-info" title="Edit Booking" href="<s:url action='loadEditOrderInBooking' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" >Edit Booking</a>
     </div>
 </div>
 
@@ -54,6 +54,11 @@
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important; border-top: none;">Booking Number</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.orderNumber"/></td>
                             </tr>
+
+                            <tr>
+                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Freight Type</td>
+                                <td style="text-align: left !important;"><s:property value="order.freightType"/></td>
+                            </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Service Mode</td>
                                 <td style="text-align: left !important;"><s:property value="order.modeOfService"/></td>
@@ -61,10 +66,6 @@
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Origin Port</td>
                                 <td style="text-align: left !important;"><s:property value="order.originationPort"/></td>
-                            </tr>
-                            <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Payment Mode</td>
-                                <td style="text-align: left !important;"><s:property value="order.modeOfPayment"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Notification Type</td>
@@ -88,6 +89,10 @@
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Service Requirement</td>
                                 <td style="text-align: left !important;"><s:property value="order.serviceRequirement"/></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Payment Mode</td>
+                                <td style="text-align: left !important;"><s:property value="order.modeOfPayment"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Destination Port</td>
@@ -195,10 +200,6 @@
                         <table class="table table-user-information">
 
                             <tbody>
-                            <%--<tr>
-                                <td style="font-weight: bold;">Consignee Name:</td>
-                                <td><s:property value="order.customerName"/></td>
-                            </tr>--%>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important; border-top: none;">Consignee Name</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.consigneeInfoContact.name"/></td>
@@ -357,7 +358,7 @@
                     <div class="form-group">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Weight (kg)<span class="asterisk_red">
+                            Weight (kg)<span class="asterisk_red" />
                         </label>
 
                         <div class="col-lg-3" >
@@ -408,7 +409,7 @@
                     <div class="form-group">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Rate (Php)<span class="asterisk_red">
+                            Rate (Php)<span class="asterisk_red" />
                         </label>
                         <div class="col-lg-3" >
                             <s:textfield cssClass="form-control"
@@ -468,7 +469,7 @@
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Declared Value (Php)<span class="asterisk_red">
+                            Declared Value (Php)<span class="asterisk_red" />
                         </label>
                         <div class="col-lg-3" >
 
@@ -619,7 +620,7 @@
 
             <div style="clear:both;">
                 <div class="col-lg-12" style="margin-top: 20px;">
-                    <div class="col-lg-2 col-lg-offset-7">
+                    <div class="col-lg-2 col-lg-offset-7" style="text-align: right; padding-right: 0px;">
                     Total Rate: Php
                     </div>
                     <div class="col-lg-2" id="totalRate">
@@ -637,12 +638,6 @@
 </div>
 
 <div style="text-align: center;">
-
-    <%--<button type="button" id="Cancel" class="btn btn-lg btn-primary">
-        Create Booking
-    </button>--%>
-
-    <%--<s:submit name="submit" cssClass="btn btn-primary btn-lg" value="Next" />--%>
 
 </div>
 

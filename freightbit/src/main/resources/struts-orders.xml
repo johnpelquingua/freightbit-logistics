@@ -141,6 +141,11 @@
             <result name="success" type="redirect">loadEditOrder</result>
             <result name="input" type="tiles">orders.orderEdit.tiles</result>
         </action>
+        <!--Editing of Booking on Info page-->
+        <action name="loadEditOrderInBooking" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="loadEditOrder">
+            <result name="success" type="tiles">orders.orderEdit.tiles</result>
+        </action>
 
     </package>
 

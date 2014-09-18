@@ -645,15 +645,22 @@
 
 <script type="text/javascript">
 
+    var ctr = "N";
+
 $(document).ready(function() {
 
     $( window ).load(function() {
+
+        /*alert((localStorage.getItem("ctr")));*/
+
         $("#contact_phone").val('');
         $("#contact_mobile").val('');
         $("#contact_fax").val('');
         $("#contact_email").val('');
 
-        /*setThis();*/
+        if((localStorage.getItem("ctr")) == "Y"){
+            setThis();
+        }
 
         var custId = $("#customerName").val();
         /*alert(custId);*/
@@ -682,7 +689,7 @@ $(document).ready(function() {
 
                     select4.find('option').remove();
 
-                    // populate customer consignee list
+                    // populate customer contacts list
                     $.each(jsonResponse.customerContactsMap, function(key, value) {
 
                         $('<option>').val(key).text(value).appendTo(select);
@@ -720,7 +727,7 @@ $(document).ready(function() {
                         }
                     });
 
-                    // populate customer address list
+                    // populate customer consignee address list
                     $.each(jsonResponse.consigneeAddressMap, function(key, value) {
                         //alert($("#consigneeAddress").val());
 
@@ -733,8 +740,12 @@ $(document).ready(function() {
                             $('<option>').val(key).text(value).appendTo(select4);
                         }
 
+                        var consignAdd = $("#consigneeAddress").val();
+                        document.getElementById("order_consigneeAddressId_textfield").value = consignAdd;
+
                     });
 
+                localStorage.clear();
         });
     });
 
@@ -1165,8 +1176,8 @@ $(document).ready(function(){
     $("#idCustomer").click(function(){
         var custId = $("#customerName").val();
         var orderId = $("#order_orderId").val();
-        alert(orderId);
-        /*getThis();*/
+        /*alert(orderId);*/
+        getThis();
         if (custId == "" || null ){
             alert("Select a customer first");
             $("#customerName").focus();
@@ -1174,6 +1185,9 @@ $(document).ready(function(){
         }
         $("#custIdHolder").val(custId);
         $("#orderIdHolder").val(orderId);
+        ctr = "Y";
+        localStorage.setItem("ctr",ctr);
+        alert(ctr);
     });
 });
 
@@ -1182,9 +1196,9 @@ $(document).ready(function(){
     $("#idAddress").click(function(){
         var custId1 = $("#customerName").val();
         var orderId = $("#order_orderId").val();
-        alert (custId1);
-        alert(orderId);
-        /*getThis();*/
+       /* alert (custId1);
+        alert(orderId);*/
+        getThis();
         if (custId1 == "" || null ){
             alert("Select a customer first");
             $("#customerName").focus();
@@ -1192,6 +1206,9 @@ $(document).ready(function(){
         }
         $("#custAddIdHolder").val(custId1);
         $("#orderIdHolder").val(orderId);
+        ctr = "Y";
+        localStorage.setItem("ctr",ctr);
+        alert(ctr);
     });
 });
 // to get customer id for add consignee
@@ -1199,7 +1216,7 @@ $(document).ready(function(){
     $("#idConsignee").click(function(){
         var custId2 = $("#customerName").val();
         var orderId = $("#order_orderId").val();
-        /*getThis();*/
+        getThis();
         if (custId2 == "" || null ){
             alert("Select a customer first");
             $("#customerName").focus();
@@ -1207,6 +1224,9 @@ $(document).ready(function(){
         }
         $("#consigneeAddIdHolder").val(custId2);
         $("#orderIdHolder").val(orderId);
+        ctr = "Y";
+        localStorage.setItem("ctr",ctr);
+        alert(ctr);
     });
 });
 
@@ -1219,5 +1239,30 @@ $(document).ready(function(){
     $("#consignee_mobile").mask("(+63999)(999-9999)");
     $("#consignee_fax").mask("(999) 999-9999");
 });
+
+function getThis(){
+    var Pickdatefield = $("#datepicker1").val();
+    var Deldatefield = $("#datepicker2").val();
+    var OriginPortField = $("#select1").val();
+    var DestinationPortField = $("#select2").val();
+    var NotificationField = $("#notification_type").val();
+    var CommentsField = $("#Comments").val();
+
+    localStorage.setItem("Pickdatefield",Pickdatefield);
+    localStorage.setItem("Deldatefield",Deldatefield);
+    localStorage.setItem("OriginPortField",OriginPortField);
+    localStorage.setItem("DestinationPortField",DestinationPortField);
+    localStorage.setItem("NotificationField",NotificationField);
+    localStorage.setItem("CommentsField",CommentsField);
+
+}
+function setThis(){
+    $("#datepicker1").val(localStorage.getItem("Pickdatefield"));
+    $("#datepicker2").val(localStorage.getItem("Deldatefield"));
+    $("#select1").val(localStorage.getItem("OriginPortField"));
+    $("#select2").val(localStorage.getItem("DestinationPortField"));
+    $("#notification_type").val(localStorage.getItem("NotificationField"));
+    $("#Comments").val(localStorage.getItem("CommentsField"));
+}
 
 </script>

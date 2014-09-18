@@ -22,7 +22,10 @@
 <div class="panel panel-primary">
 
     <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-info-circle"></i> Booking Information</h3>
+        <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Booking Information</h3>
+        <div class="btn-toolbar pull-right">
+            <a class="btn btn-info" title="Edit Booking" href="<s:url action='loadEditOrderInBooking' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" >Edit Booking</a>
+        </div>
     </div>
 
     <div class="panel-body">
@@ -43,18 +46,23 @@
                     <table class="table leftAlign table-user-information">
                         <th style="font-size: 20px; border-top: none; width: 300px;">
                             Booking Number
+                            <%--<s:property value="order.orderId"/>--%>
                         </th>
                         <th style="font-size: 20px; border-top: none; width: 300px;">
                             <s:property value="order.orderNumber"/>
                         </th>
                         <tbody>
                         <tr>
-                            <td style="color: gray !important;">Service Mode</td>
-                            <td><s:property value="order.modeOfService"/></td>
+                            <td style="color: gray !important;">Freight Type</td>
+                            <td><s:property value="order.freightType"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Origin Port</td>
-                            <td><s:property value="order.originationPort"/></td>
+                            <td style="color: gray !important;">Service Requirement</td>
+                            <td><s:property value="order.serviceRequirement"/></td>
+                        </tr>
+                        <tr>
+                            <td style="color: gray !important;">Service Mode</td>
+                            <td><s:property value="order.modeOfService"/></td>
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Payment Mode</td>
@@ -69,8 +77,8 @@
                             <td><s:property value="order.orderDate"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Service Requirement</td>
-                            <td><s:property value="order.serviceRequirement"/></td>
+                            <td style="color: gray !important;">Origin Port</td>
+                            <td><s:property value="order.originationPort"/></td>
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Destination Port</td>
@@ -149,10 +157,6 @@
 
                         <th style="font-size: 20px; border-top: none; width: 400px;">Consignee Information</th>
 
-                        <%--<tr>
-                            <td style="color: gray !important;">Consignee Name:</td>
-                            <td><s:property value="order.customerName"/></td>
-                        </tr>--%>
                         <tr>
                             <td style="color: gray !important;">Consignee Name</td>
                             <td><s:property value="order.consigneeInfoContact.name"/></td>
@@ -275,10 +279,26 @@
 
     <div class="panel-footer">
 
-        <div class="pull-right">
-            <button type="button" id="Cancel" class="btn" onclick="location.href='viewOrders'">
-                Back to Booking List
-            </button>
+        <div class="col-lg-12">
+
+            <div class="col-lg-2 col-lg-offset-6" style="margin-top: 5px;  font-size: 18px !important; text-align: right; padding-right: 0px;">
+                Total Rate: Php
+            </div>
+
+            <div class="col-lg-2" style="margin-top: 5px;  font-size: 18px !important; text-align: left; padding-right: 0px;" id="totalRate">
+
+            </div>
+
+            <div class="col-lg-2">
+
+                <div class="pull-right">
+                    <button type="button" id="Cancel" class="btn" onclick="location.href='viewOrders'">
+                        Back to Booking List
+                    </button>
+                </div>
+
+            </div>
+
         </div>
 
     </div>
@@ -287,4 +307,26 @@
 
 <!-- /.row -->
 
+<script type="text/javascript">
 
+    $(document).ready(function() {
+
+        // Adding of Rates and displaying it in Total Rates
+        var tbl = document.getElementById("orderItems");
+        if (tbl != null) {
+
+            var orderItemTotalRate = 0;
+
+            for (var i = 0; i < tbl.rows.length; i++){
+
+                var orderItemRate = parseInt(tbl.rows[i+1].cells[6].innerHTML);
+
+                orderItemTotalRate = orderItemTotalRate + orderItemRate;
+
+                document.getElementById("totalRate").innerHTML = orderItemTotalRate;
+            }
+        }
+
+    });
+
+</script>

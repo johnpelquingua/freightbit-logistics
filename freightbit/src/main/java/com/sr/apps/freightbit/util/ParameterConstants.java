@@ -60,8 +60,4 @@ public class ParameterConstants {
 
     public final static String VESSEL_TYPE = "VESSEL_TYPE";
 
-    public final static String SERVICE_REQUIREMENT_TRUCKING = "SERVICE REQUIREMENT TRUCKING";
-
-    public final static String MODE_OF_SERVICE_TRUCKING = "MODE OF SERVICE TRUCKING";
-
 }

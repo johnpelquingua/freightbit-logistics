@@ -150,6 +150,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         if (consigneeId != null) {
             Address consigneeAddress = customerService.findAddressByParameterMap(getClientId(), "CONSIGNEE", getClientId(), consigneeId);
             consigneeAddressMap.put(consigneeAddress.getAddressId(), consigneeAddress.getAddressLine1() + ' ' + consigneeAddress.getAddressLine2() + ' ' + consigneeAddress.getCity()  );
+
         }else{
             List <Address> consigneeAddresses = customerService.findAddressByCriteria("CONSIGNEE",customerID );
 
@@ -157,6 +158,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                 consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
             }
         }
+
         return SUCCESS;
     }
 
@@ -532,33 +534,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
         return SUCCESS;
     }
-
-    /*public String loadContactInfoList() {
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
-        Customer customerEntity = customerService.findCustomerById(ID);
-        // To get Customer Name from Customer ID
-        custName = customerEntity.getCustomerName();
-        // Put Customer Name in session
-        sessionAttributes.put("custName", custName );
-        // To get Customer Code from Customer ID
-        custCode = customerEntity.getCustomerCode();
-        // To get Order Number and show it to form
-        orderNum = orderService.findNextBookingNo(getClientId(), custCode);
-        // Put Order Number in session
-        sessionAttributes.put("orderNum", orderNum );
-        // To show Customer's contacts list
-        contactsList = customerService.findContactByParameterMap(ID, "shipper", getClientId());
-        // To show Customer's Pick-up Address list
-        addressList = customerService.findAddressByShipper("CONSIGNEE", ID);
-        // To show Customer's Consignee List
-        consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE", ID);
-        // To show Customer's Consignee's Addresses list
-        consigneeAddressList = customerService.findAddressByParameterMap(ID, "CONSIGNEE", getClientId() );
-
-        return SUCCESS;
-    }*/
 
 //    when adding customer contacts inside booking
 
@@ -1266,46 +1241,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     public void setClientService(ClientService clientService) {
         this.clientService = clientService;
     }
-
-    /*public Integer getID() {
-        return ID;
-    }
-
-    public void setID(Integer ID) {
-        this.ID = ID;
-    }
-
-    public String getREQ() {
-        return REQ;
-    }
-
-    public void setREQ(String REQ) {
-        this.REQ = REQ;
-    }
-
-    public String getMODE() {
-        return MODE;
-    }
-
-    public void setMODE(String MODE) {
-        this.MODE = MODE;
-    }
-
-    public String getTYPE() {
-        return TYPE;
-    }
-
-    public void setTYPE(String TYPE) {
-        this.TYPE = TYPE;
-    }
-
-    public String getPAY() {
-        return PAY;
-    }
-
-    public void setPAY(String PAY) {
-        this.PAY = PAY;
-    }*/
 
     public List<Contacts> getContactsList() {
         return contactsList;
