@@ -37,7 +37,7 @@
 
         <action name="deleteItem" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="customerDeleteItemExecute">
-            <result name="success" type="redirect">ViewItemList</result>
+            <result name="success" type="redirect">loadSuccessItemDelete</result>
         </action>
 
         <action name="addItem" class="com.sr.apps.freightbit.customer.action.CustomerAction"
@@ -81,7 +81,11 @@
 
         <action name="deleteCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="deleteCustomer">
-            <result name="success" type="redirect">customerList</result>
+            <result name="success" type="redirect">loadSuccessDeleteCustomer</result>
+        </action>
+
+        <action name="loadSuccessDeleteCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSuccessDeleteCustomer">
+            <result name="success" type="tiles">customer.customerList.tiles</result>
         </action>
 
         <action name="addCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction"
@@ -129,6 +133,12 @@
             <result name="success" type="tiles">customer.customerEditItem.tiles</result>
         </action>
 
+        <action name="loadSuccessItemDelete" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+                method="loadSuccessItemDelete">
+            <!--<result name="success" type="tiles">customer.customerSaveCompleteItems.tiles</result>-->
+            <result name="success" type="tiles">customer.customerViewItems.tiles</result>
+        </action>
+
         <action name="loadSaveCompleteItem" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="loadSaveCompleteItem">
             <!--<result name="success" type="tiles">customer.customerSaveCompleteItems.tiles</result>-->
@@ -148,7 +158,13 @@
 
         <action name="deleteAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="deleteAddress">
-            <result name="success" type="redirect">viewAddress</result>
+            <result name="success" type="redirect">loadSuccessDeleteAddress</result>
+        </action>
+
+        <action name="loadSuccessDeleteAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+                method="loadSuccessDeleteAddress">
+            <!--<result name="success" type="tiles">customer.customerSaveCompleteAddress.tiles</result>-->
+            <result name="success" type="tiles">customer.customerListAddress.tiles</result>
         </action>
 
         <action name="loadAddAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction"
@@ -231,7 +247,14 @@
 
         <action name="deleteCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="deleteContact">
-            <result name="success" type="redirect">viewCustomerContacts</result>
+            <result name="success" type="redirect">loadSuccessContactsDelete</result>
+        </action>
+
+        <action name="loadSuccessContactsDelete" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+                method="loadSuccessContactsDelete">
+            <!--<result name="success" type="tiles">customer.customerSaveCompleteContacts.tiles</result>-->
+            <result name="success" type="tiles">customer.customerListContact.tiles</result>
+
         </action>
 
         <action name="viewCustomerContacts" class="com.sr.apps.freightbit.customer.action.CustomerAction"
@@ -280,7 +303,13 @@
 
         <action name="deleteConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="deleteConsignee">
-            <result name="success" type="redirect">viewConsignees</result>
+            <result name="success" type="redirect">loadSuccessDeleteConsignee</result>
+        </action>
+
+        <action name="loadSuccessDeleteConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+                method="loadSuccessDeleteConsignee">
+            <!--<result name="success" type="tiles">customer.customerSaveCompleteConsignee.tiles</result>-->
+            <result name="success" type="tiles">customer.customerListConsignee.tiles</result>
         </action>
 
         <action name="loadSaveCompleteConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction"

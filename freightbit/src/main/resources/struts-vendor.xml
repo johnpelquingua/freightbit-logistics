@@ -58,7 +58,11 @@
         </action>
 
         <action name="deleteVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteVendor">
-            <result name="success" type="redirect">viewVendors</result>
+            <result name="success" type="redirect">loadSuccessDeleteVendor</result>
+        </action>
+
+        <action name="loadSuccessDeleteVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSuccessDeleteVendor">
+            <result name="success" type="tiles">vendor.vendorListView.tiles</result>
         </action>
 
         <action name="viewInfoVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewInfoVendor">
@@ -94,14 +98,14 @@
         </action>
 
         <action name="deleteTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteTrucks">
-            <result name="success" type="redirect">loadSaveDeleteTrucks</result>
+            <result name="success" type="redirect">loadSuccessDeleteTrucks</result>
         </action>
 
-        <action name="loadSaveDeleteTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction"
-                method="loadSaveDeleteTrucks">
-            <!--<result name="success" type="tiles">vendor.vendorSaveCompleteTrucks.tiles</result>-->
+        <action name="loadSuccessDeleteTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction"
+                method="loadSuccessDeleteTrucks">
+
             <result name="success" type="tiles">vendor.vendorListTrucks.tiles</result>
-            <!--<result name="success" type="tiles">vendor.viewInfoTruck.tiles</result>-->
+
         </action>
 
         <action name="editTrucks" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="editTrucks">
@@ -344,6 +348,7 @@
                 method="deleteAddress">
             <result name="success" type="redirect">loadSaveDeleteTruckingAddress</result>
         </action>
+
 
         <action name="loadSaveDeleteTruckingAddress" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadSaveDeleteAddress">

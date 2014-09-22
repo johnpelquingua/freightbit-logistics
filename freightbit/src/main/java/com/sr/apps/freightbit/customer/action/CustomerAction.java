@@ -235,6 +235,19 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String loadSuccessItemDelete() {
+        Integer customerId = getCustomerSessionId();
+        List<Items> itemEntityList = customerService.findItemByCustomerId(customerId);
+        for (Items itemsElem : itemEntityList) {
+            items.add(transformToFormBeanItem(itemsElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Items has been deleted.");
+
+        return SUCCESS;
+    }
+
     public String viewItems() {
         Integer customerId = getCustomerSessionId();
         List<Items> itemEntityList = customerService.findItemByCustomerId(customerId);
@@ -372,6 +385,19 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public String deleteCustomer() {
         Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
         customerService.deleteCustomer(customerEntity);
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Customer has been deleted.");
+        return SUCCESS;
+    }
+
+    public String loadSuccessDeleteCustomer() {
+        List<Customer> customerEntityList = customerService.findAllCustomer();
+        for (Customer customerElem : customerEntityList) {
+            customers.add(transformToFormBean(customerElem));
+        }
+        clearErrorsAndMessages();
+        addActionMessage("Success! Customer has been deleted.");
         return SUCCESS;
     }
 
@@ -641,6 +667,20 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public String deleteAddress() {
         Address addressEntity = customerService.findAddressById(addressIdParam);
         customerService.deleteAddress(addressEntity);
+        return SUCCESS;
+    }
+
+    public String loadSuccessDeleteAddress() {
+        Integer customerId = getCustomerSessionId();
+        List<Address> addressEntityList = new ArrayList<Address>();
+        addressEntityList = customerService.findAllAddressByRefId(customerId);
+        for (Address addressElem : addressEntityList) {
+            addresss.add(transformToFormBeanAddress(addressElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Address has been deleted.");
+
         return SUCCESS;
     }
 
@@ -960,6 +1000,20 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String loadSuccessContactsDelete() {
+        Integer customerId = getCustomerSessionId();
+        List<Contacts> contactEntityList = new ArrayList<Contacts>();
+        contactEntityList = customerService.findContactByReferenceId(customerId);
+        for (Contacts contactElem : contactEntityList) {
+            contacts.add(transformToFormBeanContacts(contactElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Contact Persons has been deleted.");
+
+        return SUCCESS;
+    }
+
 
     public String viewContacts() {
         Integer customerId = getCustomerSessionId();
@@ -1094,6 +1148,24 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Contacts contactEntity = customerService.findContactById(contactCodeParam);
         Address addressEntity = customerService.findAddressById(addressIdParam);
         customerService.deleteConsignee(contactEntity, addressEntity);
+        return SUCCESS;
+    }
+
+    public String loadSuccessDeleteConsignee() {
+        Integer customerId = getCustomerSessionId();
+        List<Address> addressList = new ArrayList<Address>();
+        List<Contacts> contactsList = new ArrayList<Contacts>();
+        addressList = customerService.findAddressByParameterMap(customerId, "CONSIGNEE", getClientId());
+        contactsList = customerService.findContactByParameterMap(customerId, "CONSIGNEE", getClientId());
+        if (contactsList != null && addressList != null) {
+            for (Integer i = 0; i < addressList.size() && i < contactsList.size(); i++) {
+                consignees.add(transformToFormBeanConsignee(addressList.get(i), contactsList.get(i)));
+            }
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Consignee List has been deleted.");
+
         return SUCCESS;
     }
 

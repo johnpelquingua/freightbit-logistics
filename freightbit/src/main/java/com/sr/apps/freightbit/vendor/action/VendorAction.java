@@ -228,6 +228,15 @@ public class VendorAction extends ActionSupport implements Preparable {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendorService.deleteVendor(vendorEntity);
 
+        return SUCCESS;
+    }
+
+    public String loadSuccessDeleteVendor() {
+        List<Vendor> vendorEntityList = vendorService.findAllVendors();
+        for (Vendor vendorElem : vendorEntityList) {
+            vendors.add(transformToFormBean(vendorElem));
+        }
+
         clearErrorsAndMessages();
         addActionMessage("Success! Vendor has been deleted.");
 
@@ -415,6 +424,19 @@ public class VendorAction extends ActionSupport implements Preparable {
         clearErrorsAndMessages();
         addActionMessage("Success! Truck has been deleted.");
 
+        return SUCCESS;
+    }
+
+    public String loadSuccessDeleteTrucks() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer vendorId = (Integer) sessionAttributes.get("vendorId");
+        List<Trucks> truckEntityList = vendorService.findTrucksByVendorId(vendorId);
+
+        for (Trucks truckElem : truckEntityList) {
+            trucks.add(transformToFormBeanTrucks(truckElem));
+        }
+        clearErrorsAndMessages();
+        addActionMessage("Success! Truck has been deleted.");
         return SUCCESS;
     }
 
@@ -1176,6 +1198,20 @@ public class VendorAction extends ActionSupport implements Preparable {
         for (Address addressElem : addressEntityList) {
             addresss.add(transformToFormBeanAddress(addressElem));
         }
+        return SUCCESS;
+    }
+
+    public String loadSuccessDeleteAddress() {
+        Integer vendorId = getSessionVendorId();
+        List<Address> addressEntityList = new ArrayList<Address>();
+        addressEntityList = vendorService.findAllAddressByRefId(vendorId);
+        for (Address addressElem : addressEntityList) {
+            addresss.add(transformToFormBeanAddress(addressElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Address has been deleted.");
+
         return SUCCESS;
     }
 

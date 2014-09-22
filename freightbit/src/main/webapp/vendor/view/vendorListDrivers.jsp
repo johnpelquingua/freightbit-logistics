@@ -77,7 +77,7 @@
                                                     <i class="fa fa-pencil"></i>
                                                 </s:a>
                                                 <s:url var="deleteVendorDriverUrl" action="deleteDriver">
-                                                    <s:param name="driverCodeParam" value="#attr.driver.driverCode"></s:param>
+                                                    <s:param name="driverIdParam" value="#attr.driver.driverId"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{deleteVendorDriverUrl}" rel="tooltip"
                                                      title="Delete this Driver"

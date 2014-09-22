@@ -32,7 +32,10 @@
     </div>
 </s:if>
 
-
+<style>
+    table { table-layout: fixed; }
+    table th, table td { overflow: hidden; }
+</style>
 
 <div class="row">
     <div class="col-lg-12">
@@ -76,7 +79,7 @@
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="fax" title="Fax <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="email" title="E-Mail <i class='fa fa-sort' />" class="tb-font-black"
+                                        <td><display:column property="email" title="E-Mail <i class='fa fa-sort' />" class="tb-font-black col-md-2"
                                                             style="text-align: center;"> </display:column></td>
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">
