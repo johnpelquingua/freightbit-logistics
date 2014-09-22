@@ -138,7 +138,7 @@
                     </div>
                     <div class=" col-md-9 col-lg-9 ">
                         <table class="table table-user-information">
-
+                            <s:hidden id="custIdHolder" value="order.customerId"/>
                             <tbody>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important; border-top: none;">Shipper Name</td>
@@ -264,9 +264,10 @@
                                 Item Information
                             </span>
                             <div class="pull-right">
-                                <button type="button" class="btn btn-info pull-right" onclick="location.href='#'">
+                                <%--<button type="button" class="btn btn-info pull-right" onclick="location.href='#'">
                                     Add New Item
-                                </button>
+                                </button>--%>
+                                <a data-toggle="modal" data-target="#createItem"  class="btn btn-info" id="idCustomer"> Add New Item</a>
                             </div>
                         </s:else>
                     </legend>
@@ -707,6 +708,130 @@
     </div>
 </div>
 
+<%--start add item--%>
+<div class="modal fade" id="createItem" role="form" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel1">Add New Item</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="panel-body">
+
+                    <div class="table-responsive list-table">
+                        <s:form theme="bootstrap" cssClass="form-horizontal" action="addItem">
+                        <s:hidden name="item.customerId" value="order.customerId"/>
+                        <s:property value="order.customerId" />
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Item Name<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                                <s:textfield name="item.itemName" id="item.itemName" required="true"
+                                         cssClass="form-control" pattern="[A-Za-z ]+" title="Must be letters only" maxlength="50"/>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Item Code<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                                <s:textfield name="item.itemCode" id="item_itemCode" required="true"
+                                         cssClass="form-control" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Weight (kg)<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                                <s:textfield name="item.weight" id="item.weight" required="true"
+                                         cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
+                            </div>
+
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                                <s:textfield name="item.srp" id="item.srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Quality is not valid" onkeypress="return isNumberKey(event)"/>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Length (m)<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                                <s:textfield name="item.length" id="item.length" required="true" cssClass="form-control"
+                                         style="150px" pattern="[0-9.]+" title="Special characters in length is not valid" onkeypress="return isNumberKey(event)"/>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Width (m)<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                                <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control"  pattern="[0-9.]+" title="Special characters in width is not valid" onkeypress="return isNumberKey(event)"/>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Height (m)<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                            <s:textfield name="item.height" id="item.height" required="true"
+                                         cssClass="form-control" pattern="[0-9.]+" title="Special characters in height is not valid" onkeypress="return isNumberKey(event)"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Description<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                                <s:textarea name="item.description" id="item.description" required="true" resize="none"
+                                        style="resize:none" rows="3" cssClass="form-control" maxlength="50"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Note<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                                <s:textarea name="item.note" id="item.note" required="true" cssClass="form-control"
+                                        style="resize:none" rows="3" maxlength="50"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+                    </s:form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<%--end add item--%>
+
 <script type="text/javascript">
 
     $(document).ready(function() {
@@ -955,5 +1080,28 @@
     sContainer.onchange = function () {
         dynamicDropdown.call(this, sContainer, this.selectedIndex);
     };
+
+    $("#item_itemCode").keyup(function(){
+        this.value=this.value.toUpperCase();
+    });
+
+
+    function alphaKeyOnly(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if ((charCode > 32 && charCode < 57)||(charCode > 57 && charCode <65) || (charCode > 90 && charCode < 97) )
+            return false;
+
+        return true;
+    }
+
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57) || (charCode == 46 && $(this).val().indexOf('.') != -1))
+            return false;
+
+        return true;
+    }
 
 </script>

@@ -455,40 +455,40 @@
                     <s:form action="addCustomerAddress" cssClass="form-horizontal" theme="bootstrap">
                     <s:hidden name="address.referenceId" id="custAddIdHolder"/>
                         <div class="form-group">
-                        <label class="col-lg-2">Address Type<span class="asterisk_red"></span></label>
-                            <div class="col-lg-8">
+                        <label class="col-lg-3">Address Type<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
                             <s:select name="address.addressType" list="addressTypeList" listValue="value"
                                       listKey="key"
                                       cssClass="form-control" id="address.addressType" emptyOption="true"/>
                             </div>
                             </div>
                         <div class="form-group">
-                        <label class="col-lg-2">Address Line 1<span class="asterisk_red"></span></label>
-                            <div class="col-lg-8">
+                        <label class="col-lg-3">Address Line 1<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
                             <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control" required="true"/>
                                 </div>
                             </div>
                         <div class="form-group">
-                        <label class="col-lg-2">Address Line 2</label>
-                            <div class="col-lg-8">
+                        <label class="col-lg-3">Address Line 2</label>
+                            <div class="col-lg-9">
                             <s:textfield name="address.addressLine2" id="address.addressLine2" cssClass="form-control"/>
                             </div>
                             </div>
                         <div class="form-group">
-                        <label class="col-lg-2">City<span class="asterisk_red"></span></label>
-                            <div class="col-lg-8">
+                        <label class="col-lg-3">City<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
                             <s:textfield name="address.city" id="address.city" cssClass="form-control" required="true"/>
                             </div>
                             </div>
                         <div class="form-group">
-                        <label class="col-lg-2">Region</label>
-                            <div class="col-lg-8">
+                        <label class="col-lg-3">Region</label>
+                            <div class="col-lg-9">
                             <s:textfield name="address.state" id="address.state" cssClass="form-control"/>
                             </div>
                             </div>
                         <div class="form-group">
-                        <label class="col-lg-2">Zip<span class="asterisk_red"></span></label>
-                            <div class="col-lg-8">
+                        <label class="col-lg-3">Zip<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
                             <s:textfield name="address.zip" id="address.zip" cssClass="form-control" required="true"/>
                         </div>
                             </div>
@@ -522,7 +522,7 @@
                     <s:hidden name="consignee.referenceId1" id="consigneeAddIdHolder"/>
                     <div class="form-group">
                     <label class="col-lg-3">First name<span class="asterisk_red"></span></label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                   <s:textfield name="consignee.firstName" cssClass="form-control" id="consignee.firstName"
                                  placeholder="First Name" maxLength="30" autofocus="true" required="true"
                                  pattern="[a-zA-Z\s ]+"
@@ -531,7 +531,7 @@
                         </div>
                     <div class="form-group">
                     <label class="col-lg-3">Middle Name</label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                   <s:textfield name="consignee.middleName" cssClass="form-control"
                                  id="consignee.middleName"
                                  placeholder="Middle Name" maxLength="30" pattern="[a-zA-Z\s ]+"
@@ -540,7 +540,7 @@
                         </div>
                     <div class="form-group">
                     <label class="col-lg-3">Last Name<span class="asterisk_red"></span></label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                   <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
                                  placeholder="Last Name" maxLength="30" required="true"
                                  pattern="[a-zA-Z\s ]+"
@@ -549,7 +549,7 @@
                         </div>
                     <div class="form-group">
                     <label class="col-lg-3">Phone<span class="asterisk_red"></span></label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                   <s:textfield name="consignee.phone" cssClass="form-control" id="consignee_phone"
                                  placeholder="(XXX) XXX-XXXX" maxLength="14" required="true"
                                   title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
@@ -557,7 +557,7 @@
                         </div>
                     <div class="form-group">
                     <label class="col-lg-3">Mobile<span class="asterisk_red"></span></label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                   <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee_mobile"
                                  placeholder="(+639XX) (XXX-XXXX)" maxLength="19" required="true"
                                  title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
@@ -565,7 +565,7 @@
                         </div>
                     <div class="form-group">
                     <label class="col-lg-3">Email<span class="asterisk_red"></span></label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                   <s:textfield name="consignee.email" cssClass="form-control" id="consignee.email"
                                  placeholder="Email Address" type="email" required="true" maxLength="50"
                                  pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
@@ -573,7 +573,7 @@
                         </div>
                     <div class="form-group">
                     <label class="col-lg-3">Fax</label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                     <s:textfield name="consignee.fax" cssClass="form-control" id="consignee_fax"
                                  placeholder="(XXX) XXX-XXXX" maxLength="14"
                                   title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
@@ -581,7 +581,7 @@
                         </div>
                     <div class="form-group">
                     <label class="col-lg-3">Address<span class="asterisk_red"></span></label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                     <s:textfield name="consignee.addressLine1" cssClass="form-control"
                                  id="consignee.addressLine1" placeholder="Address 1" required="true"
                                  maxLength="50"/>
@@ -589,14 +589,14 @@
                         </div>
                     <div class="form-group">
                     <label class="col-lg-3">Address Line 2</label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                     <s:textfield name="consignee.addressLine2" cssClass="form-control"
                                  id="consignee.addressLine2" placeholder="Address 2" maxLength="50"/>
                     </div>
                         </div>
                     <div class="form-group">
                     <label class="col-lg-3">City<span class="asterisk_red"></span></label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                     <s:textfield name="consignee.city" cssClass="form-control"
                                  id="consignee.city" placeholder="City" required="true"
                                  pattern="[a-zA-Z ]+" maxLength="50"
@@ -605,7 +605,7 @@
                         </div>
                     <div class="form-group">
                     <label class="col-lg-3">Region</label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                     <s:textfield name="consignee.state" cssClass="form-control"
                                  id="consignee.state" placeholder="Region" maxLength="50" pattern="[a-zA-Z ]+"
                                  title="State should not contain special characters and/or numbers."/>
@@ -613,7 +613,7 @@
                         </div>
                     <div class="form-group">
                     <label class="col-lg-3">Zip<span class="asterisk_red"></span></label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                     <s:textfield name="consignee.zip" cssClass="form-control"
                                  id="consignee.zip" placeholder="ZIP" required="true"
                                  pattern="[0-9]+" maxLength="4"
@@ -1096,7 +1096,6 @@ $(document).ready(function(){
         var custId = $("#customerName").val();
         getThis();
         if (custId == "" || null ){
-//            $("#
             alert("Select Customer First");
             $("#customerName").focus();
            return false;
@@ -1110,7 +1109,6 @@ $(document).ready(function(){
         var custId1 = $("#customerName").val();
         getThis();
         if (custId1 == "" || null ){
-//            $("#alertModal").modal();
             alert("Select Customer First");
             $("#customerName").focus();
             return false;
@@ -1124,7 +1122,6 @@ $(document).ready(function(){
         var custId2 = $("#customerName").val();
         getThis();
         if (custId2 == "" || null ){
-//            $("#alertModal").modal();
             alert("Select Customer First");
             $("#customerName").focus();
             return false;

@@ -147,6 +147,18 @@
             <result name="success" type="tiles">orders.orderEdit.tiles</result>
         </action>
 
+        <!--Add Item in New Booking-->
+        <action name="addItem" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="addItem">
+            <result name="success" type="redirect">AddItemInBooking</result>
+            <result name="input" type="tiles">orders.add-booking-info.tiles</result>
+        </action>
+
+        <action name="AddItemInBooking" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="reloadAddOrderPage">
+            <result name="success" type="tiles">orders.booking-new.tiles</result>
+        </action>
+
     </package>
 
     <package name="order" namespace="/orders" extends="json-default">

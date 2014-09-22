@@ -1,8 +1,12 @@
 package com.sr.apps.freightbit.order.action;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.sr.apps.freightbit.customer.formbean.ConsigneeBean;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
+import com.sr.apps.freightbit.customer.formbean.ItemBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
@@ -17,10 +21,12 @@ import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
+import com.sr.apps.freightbit.customer.formbean.ItemBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.customer.entity.Customer;
@@ -38,6 +44,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private OrderBean order = new OrderBean();
     private ContactBean contact = new ContactBean();
     private AddressBean address = new AddressBean();
+    private ItemBean item = new ItemBean();
     private ConsigneeBean consigneeBean = new ConsigneeBean();
     private List<Customer> customerList = new ArrayList<Customer>();
     private List<Parameters> serviceRequirementList = new ArrayList<Parameters>();
@@ -978,6 +985,12 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setDeliveryDate(formBean.getDeliveryDate());
         entity.setPickupDate(formBean.getPickupDate());
 
+        Contacts contactShipperName = customerService.findContactById(order.getShipperContactId());
+
+        Customer shipperName = customerService.findCustomerById(contactShipperName.getReferenceId());
+
+        entity.setCustomerId(shipperName.getCustomerId());
+
 
         return entity;
     }
@@ -1010,9 +1023,122 @@ public class OrderAction extends ActionSupport implements Preparable {
         return entity;
     }
 
-    public void validateOnSubmit(OrderItems orderItemBean) {
+    /*Add Item inside Booking*/
+    public String addItem() throws Exception {
+        validateOnSubmitItem(item);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+
+        Items itemEntity = transformToEntityBeanItem(item);
+        itemEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+        itemEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+        itemEntity.setCreatedTimeStamp(new Date());
+        customerService.addItem(itemEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        // Put Order Id to Order Id session
+        sessionAttributes.put("orderIdParam", orderIdParam);
+
+        return SUCCESS;
+    }
+
+    public Items transformToEntityBeanItem(ItemBean formBean) {
+
+        Items entity = new Items();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
+
+        if (formBean.getCustomerItemsId() != null)
+            entity.setCustomerItemsId(new Integer(formBean.getCustomerItemsId()));
+
+        entity.setItemName(formBean.getItemName());
+        entity.setItemCode(formBean.getItemCode());
+        entity.setCustomerId(formBean.getCustomerId());
+        entity.setSrp(formBean.getSrp());
+        entity.setLength(formBean.getLength());
+        entity.setWidth(formBean.getWidth());
+        entity.setHeight(formBean.getHeight());
+        entity.setCriticalQuality(formBean.getCriticalQuality());
+        entity.setWeight(formBean.getWeight());
+        entity.setNote(formBean.getNote());
+        entity.setDescription(formBean.getDescription());
+        entity.setCreatedBy(formBean.getCreatedBy());
+        entity.setCreatedTimeStamp(formBean.getCreatedTimeStamp());
+
+        return entity;
+    }
+
+    public void validateOnSubmitItem(ItemBean itemBean) {
         clearErrorsAndMessages();
 
+        String PATTERN = "[A-Za-z]+";
+        String PATTERN2 = "[0-9^.]+";
+        String PATTERN3 = "[A-Z]{3}+";
+        String PATTERN4 = "[A-Za-z0-9 ]+";
+        Pattern pattern1 = Pattern.compile(PATTERN);
+        Pattern pattern2 = Pattern.compile(PATTERN2);
+        Pattern pattern3 = Pattern.compile(PATTERN3);
+        Pattern pattern4 = Pattern.compile(PATTERN4);
+
+        Matcher matcher = pattern3.matcher(itemBean.getItemCode());
+
+        if (!matcher.matches()) {
+            addFieldError("item.itemCode", getText("err.regex.validation.itemcode"));
+        }
+
+        Matcher matcher1 = pattern4.matcher(itemBean.getItemName());
+        if(!matcher1.matches()){
+            addFieldError("item.itemName", getText("Special Characters in item name is not valid"));
+        }
+
+        Matcher matcher2 = pattern2.matcher(itemBean.getWeight().toString());
+        if(!matcher2.matches()){
+            addFieldError("item.basePrice", getText("Special Characters in base price is not valid"));
+        }
+
+        Matcher matcher4 = pattern2.matcher(itemBean.getWidth().toString());
+        if(!matcher4.matches()){
+            addFieldError("item.width", getText("Special Characters in width is not valid"));
+        }
+
+        Matcher matcher5 = pattern2.matcher(itemBean.getSrp().toString());
+        if(!matcher5.matches()){
+            addFieldError("item.srp", getText("Special Characters in SRP is not valid"));
+        }
+
+        Matcher matcher6 = pattern2.matcher(itemBean.getLength().toString());
+        if(!matcher6.matches()){
+            addFieldError("item.length", getText("Special Characters in length is not valid"));
+        }
+
+        Matcher matcher7 = pattern2.matcher(itemBean.getHeight().toString());
+        if(!matcher7.matches()){
+            addFieldError("item.height", getText("Special Characters in height is not valid"));
+        }
+
+        //null
+        if (StringUtils.isBlank(itemBean.getItemCode())) {
+            addFieldError("item.itemCode", getText("err.itemCode.required"));
+        }
+        if (StringUtils.isBlank(itemBean.getItemName())) {
+            addFieldError("item.itemName", getText("err.itemName.required"));
+        }
+        if (itemBean.getSrp() == null) {
+            addFieldError("item.srp", getText("err.srp.required"));
+        }
+        if (itemBean.getLength() == null) {
+            addFieldError("item.length", getText("err.length.required"));
+        }
+        if (itemBean.getWidth() == null) {
+            addFieldError("item.width", getText("err.width.required"));
+        }
+        if (itemBean.getWeight() == null) {
+            addFieldError("item.basePrice", getText("err.basePrice.required"));
+        }
+        if (StringUtils.isBlank(itemBean.getDescription())) {
+            addFieldError("item.description", getText("err.description.required"));
+        }
     }
 
     public List<Contacts> getShipperList() {
@@ -1544,5 +1670,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setNotificationList(String[] notificationList) {
         this.notificationList = notificationList;
+    }
+
+    public ItemBean getItem() {
+        return item;
+    }
+
+    public void setItem(ItemBean item) {
+        this.item = item;
     }
 }
