@@ -203,7 +203,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         Map sessionAttributes = ActionContext.getContext().getSession();
-        /*System.out.print("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" + vendorIdParam);*/
+
         sessionAttributes.put("vendorIdParam", vendorIdParam);
 
         Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
@@ -498,9 +498,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if (shipperName!=null) {
             formBean.setCustomerId(shipperName.getCustomerId());
             formBean.setCustomerName(shipperName.getCustomerName());
-        }else{
-            formBean.setCustomerId(0);
-            formBean.setCustomerName("NINJA TURTLES !!!");
         }
 
         //shipper contact info

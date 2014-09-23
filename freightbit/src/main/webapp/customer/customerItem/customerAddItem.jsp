@@ -109,17 +109,17 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Description<span class="asterisk_red"></span></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Description</label>
 
                             <div class="col-lg-3">
-                                <s:textarea name="item.description" id="item.description" required="true" resize="none"
+                                <s:textarea name="item.description" id="item.description" resize="none"
                                             style="resize:none" rows="3" cssClass="form-control" maxlength="50"/>
                             </div>
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Note<span class="asterisk_red"></span></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Note</label>
 
                             <div class="col-lg-3">
-                                <s:textarea name="item.note" id="item.note" required="true" cssClass="form-control"
+                                <s:textarea name="item.note" id="item.note" cssClass="form-control"
                                             style="resize:none" rows="3" maxlength="50"/>
                             </div>
                         </div>

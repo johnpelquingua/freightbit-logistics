@@ -21,12 +21,10 @@ import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
-import com.sr.apps.freightbit.customer.formbean.ItemBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
-import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.customer.entity.Customer;
@@ -1010,7 +1008,18 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setClassification(formBean.getClassification());
         entity.setDeclaredValue(formBean.getDeclaredValue());
         entity.setWeight(formBean.getWeight());
-        entity.setNameSize(formBean.getNameSize());
+
+        Pattern pattern = Pattern.compile("[A-Za-z]+");
+        Matcher matcher = pattern.matcher(formBean.getNameSize());
+
+        if(matcher.matches()){
+            entity.setNameSize(formBean.getNameSize());
+        }else{
+            Integer nameId = Integer.parseInt(formBean.getNameSize());
+            Items itemEntity = customerService.findItemByCustomerItemsId(nameId);
+            entity.setNameSize(itemEntity.getItemName());
+        }
+
         entity.setRate(formBean.getRate());
         entity.setComments(formBean.getRemarks());
         entity.setStatus("PLANNING 1");
@@ -1024,8 +1033,8 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     /*Add Item inside Booking*/
-    public String addItem() throws Exception {
-        validateOnSubmitItem(item);
+    public String addItemInBooking() {
+        /*validateOnSubmitItem(item);*/
         if (hasFieldErrors()) {
             return INPUT;
         }
@@ -1037,8 +1046,32 @@ public class OrderAction extends ActionSupport implements Preparable {
         customerService.addItem(itemEntity);
 
         Map sessionAttributes = ActionContext.getContext().getSession();
-        // Put Order Id to Order Id session
-        sessionAttributes.put("orderIdParam", orderIdParam);
+
+        sessionAttributes.get("orderIdPass");
+
+        return SUCCESS;
+    }
+
+    public String addedItemInBooking() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Orders orderEntityForm = orderService.findOrdersById((Integer)sessionAttributes.get("orderIdPass"));
+        // Display Order Data to form
+        order = transformToOrderFormBean(orderEntityForm);
+        // repopulate customer items
+        customerItems = customerService.findItemByCustomerId(orderEntityForm.getCustomerId());
+
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("orderIdPass"));
+
+        // display item listing in table
+        for (OrderItems orderItemElem : orderItemEntityList) {
+
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Item has been added to the customer.");
 
         return SUCCESS;
     }

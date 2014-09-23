@@ -138,7 +138,7 @@
                     </div>
                     <div class=" col-md-9 col-lg-9 ">
                         <table class="table table-user-information">
-                            <s:hidden id="custIdHolder" value="order.customerId"/>
+                            <s:hidden id="custIdHolder" value="%{order.customerId}"/>
                             <tbody>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important; border-top: none;">Shipper Name</td>
@@ -358,7 +358,7 @@
 
                     <div class="form-group">
 
-                        <label class="col-lg-3 control-label" style="padding-top: 0px;">
+                        <%--<label class="col-lg-3 control-label" style="padding-top: 0px;">
                             Weight (kg)<span class="asterisk_red" />
                         </label>
 
@@ -369,9 +369,22 @@
                                          type="number"
                                          min="1"
                             />
-                        </div>
+                        </div>--%>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
+                            Rate (Php)<span class="asterisk_red" />
+                        </label>
+                        <div class="col-lg-3" >
+                            <s:textfield cssClass="form-control"
+                                         id="orderItem.rate"
+                                         name="orderItem.rate"
+                                         required="true"
+                                         type="number"
+                                         min="1"
+                                    />
+                        </div>
+
+                        <%--<label class="col-lg-3 control-label" style="padding-top: 0px;">
                             Volume (cm&#179;)
                         </label>
                         <div class="col-lg-3" >
@@ -403,24 +416,7 @@
                                 />
                             </s:else>
 
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Rate (Php)<span class="asterisk_red" />
-                        </label>
-                        <div class="col-lg-3" >
-                            <s:textfield cssClass="form-control"
-                                         id="orderItem.rate"
-                                         name="orderItem.rate"
-                                         required="true"
-                                         type="number"
-                                         min="1"
-                                    />
-                        </div>
+                        </div>--%>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
                             Commodity
@@ -452,6 +448,101 @@
                             </s:else>
 
                         </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <%--<label class="col-lg-3 control-label" style="padding-top: 0px;">
+                            Rate (Php)<span class="asterisk_red" />
+                        </label>
+                        <div class="col-lg-3" >
+                            <s:textfield cssClass="form-control"
+                                         id="orderItem.rate"
+                                         name="orderItem.rate"
+                                         required="true"
+                                         type="number"
+                                         min="1"
+                                    />
+                        </div>--%>
+
+                        <label class="col-lg-3 control-label" style="padding-top: 0px;">
+                            Weight (kg)<span class="asterisk_red" />
+                        </label>
+
+                        <div class="col-lg-3" >
+                            <s:textfield cssClass="form-control"
+                                         name="orderItem.weight"
+                                         id="orderItem.weight"
+                                         type="number"
+                                         min="1"
+                                    />
+                        </div>
+
+                        <label class="col-lg-3 control-label" style="padding-top: 0px;">
+                            Volume (cm&#179;)
+                        </label>
+                        <div class="col-lg-3" >
+
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <s:textfield cssClass="form-control"
+                                             name="orderItem.volume"
+                                             id="orderItem.volume"
+                                             style="display:none"
+                                        />
+                                <s:textfield cssClass="form-control"
+                                             name="orderItem.volume"
+                                             id="orderItemVolume"
+                                             disabled="true"
+                                        />
+                            </s:if>
+                            <s:else>
+                                <s:select cssClass="form-control"
+                                          name="orderItem.volume"
+                                          id="orderItem_volume"
+                                          list="#{orderItem_volume}"
+                                          value="%{orderItem_volume}"
+                                          style="display:none"
+                                        />
+                                <s:textfield cssClass="form-control"
+                                             name="orderItem.volume"
+                                             id="orderItem_volume_textfield"
+                                             disabled="true"
+                                        />
+                            </s:else>
+
+                        </div>
+
+                        <%--<label class="col-lg-3 control-label" style="padding-top: 0px;">
+                            Commodity
+                        </label>
+
+                        <div class="col-lg-3" >
+
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <s:textfield cssClass="form-control"
+                                             name="orderItem.description"
+                                             id="orderItem.description"
+
+                                        />
+                            </s:if>
+                            <s:else>
+                                <s:select cssClass="form-control"
+                                          name="orderItem.description"
+                                          id="orderItem_description"
+                                          list="#{orderItem_description}"
+                                          value="%{orderItem_description}"
+                                          style="display:none"
+                                        />
+                                <s:textfield cssClass="form-control"
+                                             name="orderItem.description"
+                                             id="orderItem_description_textfield"
+                                             disabled="true"
+                                             required="true"
+                                        />
+                            </s:else>
+
+                        </div>--%>
 
                     </div>
 
@@ -721,9 +812,9 @@
                 <div class="panel-body">
 
                     <div class="table-responsive list-table">
-                        <s:form theme="bootstrap" cssClass="form-horizontal" action="addItem">
-                        <s:hidden name="item.customerId" value="order.customerId"/>
-                        <s:property value="order.customerId" />
+                        <s:form theme="bootstrap" cssClass="form-horizontal" action="addItemInBooking">
+                        <s:hidden name="item.customerId" id="customerIdHolder"/>
+
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-lg-3 control-label" style="padding-top:0px;">Item Name<span class="asterisk_red"></span></label>
@@ -798,19 +889,19 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label" style="padding-top:0px;">Description<span class="asterisk_red"></span></label>
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Description</label>
 
                             <div class="col-lg-9">
-                                <s:textarea name="item.description" id="item.description" required="true" resize="none"
+                                <s:textarea name="item.description" id="item.description" resize="none"
                                         style="resize:none" rows="3" cssClass="form-control" maxlength="50"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label" style="padding-top:0px;">Note<span class="asterisk_red"></span></label>
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Note</label>
 
                             <div class="col-lg-9">
-                                <s:textarea name="item.note" id="item.note" required="true" cssClass="form-control"
+                                <s:textarea name="item.note" id="item.note" cssClass="form-control"
                                         style="resize:none" rows="3" maxlength="50"/>
                             </div>
                         </div>
@@ -833,6 +924,19 @@
 <%--end add item--%>
 
 <script type="text/javascript">
+
+    $("#item_itemCode").keyup(function(){
+        this.value=this.value.toUpperCase();
+    });
+
+    //to get the customer id
+    $(document).ready(function(){
+        $("#idCustomer").click(function(){
+            var custId = $("#custIdHolder").val();
+            /*alert(custId);*/
+            $("#customerIdHolder").val(custId);
+        });
+    });
 
     $(document).ready(function() {
         // Anchor on successDiv on every add order item
@@ -1080,11 +1184,6 @@
     sContainer.onchange = function () {
         dynamicDropdown.call(this, sContainer, this.selectedIndex);
     };
-
-    $("#item_itemCode").keyup(function(){
-        this.value=this.value.toUpperCase();
-    });
-
 
     function alphaKeyOnly(evt)
     {
