@@ -1,17 +1,7 @@
 package com.sr.biz.freightbit.common.service.impl;
 
-import java.io.InputStream;
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.core.dao.UserDao;
-import com.sr.biz.freightbit.core.entity.User;
 //import javax.mail.MessagingException;
 
 
@@ -28,7 +18,7 @@ public class NotificationServiceImpl implements NotificationService {
 
 	@Override
 	public void sendEmailNotification(String username, String emailContent, String emailSubject) {
-		User user = userDao.findUserByUserName(username); 
+	/**	User user = userDao.findUserByUserName(username); 
 		String recipientEmail = user.getEmail();
 		if (recipientEmail != null && "".equals(recipientEmail)) {
 	      	  Properties props = new Properties();
@@ -63,7 +53,7 @@ public class NotificationServiceImpl implements NotificationService {
 		      }catch (Exception mex) {
 		         mex.printStackTrace();
 		      }
-		}
+		} **/
 		
 	}
 }

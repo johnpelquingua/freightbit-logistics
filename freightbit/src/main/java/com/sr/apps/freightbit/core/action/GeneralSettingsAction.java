@@ -36,7 +36,7 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 	private Map<String, String> vendorClassMap = new HashMap<String, String>();
 	
 	public String loadGeneralSettings() {
-		notificationService.sendEmailNotification("admin", "Test Subject", "Test");
+		//notificationService.sendEmailNotification("admin", "Test Subject", "Test");
 		return SUCCESS;
 	}
 	
