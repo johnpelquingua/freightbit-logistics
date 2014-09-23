@@ -129,6 +129,7 @@
         <action name="addConsigneeBooking" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addConsignee">
             <result name="success" type="redirect">AddConsigneeInBooking</result>
+            <result name="input" type="tiles">orders.booking-new.tiles</result>
         </action>
 
         <action name="AddConsigneeInBooking" class="com.sr.apps.freightbit.order.action.OrderAction"

@@ -107,6 +107,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Map<String, String> shipperItemCommodityMap = new HashMap<String, String>();
     private Map<Float, Float> shipperItemValueMap = new HashMap<Float, Float>();
     private Integer itemId;
+    Integer ctr = 0;
 
     public String itemAction() {
 
@@ -200,6 +201,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         for (Orders orderElem : orderEntityList) {
             orders.add(transformToOrderFormBean(orderElem));
         }
+        Map sessionAttributes = ActionContext.getContext().getSession();
+       ctr = (Integer) sessionAttributes.get(ctr);
         return SUCCESS;
     }
 
@@ -377,6 +380,9 @@ public class OrderAction extends ActionSupport implements Preparable {
         // Put Order Id to Order Id session
         sessionAttributes.put("orderIdPass", orderIdPass);
 
+        ctr = ctr + 1;
+        sessionAttributes.put("ctr", ctr);
+        System.out.println("sadasdassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss "+ctr);
         return SUCCESS;
     }
 
@@ -405,6 +411,9 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         sessionAttributes.put("customerItems", customerItems);
 
+
+        ctr = (Integer) sessionAttributes.get(ctr);
+        System.out.println("sadasdassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssyuyuyuyu "+ctr);
         return SUCCESS;
     }
 
@@ -1711,5 +1720,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setItem(ItemBean item) {
         this.item = item;
+    }
+
+    public Integer getCtr() {
+        return ctr;
+    }
+
+    public void setCtr(Integer ctr) {
+        this.ctr = ctr;
     }
 }

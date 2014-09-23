@@ -51,6 +51,7 @@
                         <table class="table table-user-information">
                             <tbody>
                             <tr>
+
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important; border-top: none;">Booking Number</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.orderNumber"/></td>
                             </tr>

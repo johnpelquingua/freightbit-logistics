@@ -90,6 +90,9 @@ public class VendorAction extends ActionSupport implements Preparable {
     private CommonUtils commonUtils;
 
 
+
+
+
     public String loadSearchVendorPage() {
         return SUCCESS;
     }
@@ -149,6 +152,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             vendorEntity.setCreatedTimeStamp(new Date());
             vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
             vendorService.addVendor(vendorEntity);
+
         } catch (VendorAlreadyExistsException e) {
             addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
             return INPUT;

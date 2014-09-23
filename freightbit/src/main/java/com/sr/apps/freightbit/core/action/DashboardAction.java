@@ -5,6 +5,7 @@ import com.sr.biz.freightbit.core.service.UserService;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
+import javax.persistence.criteria.Order;
 import java.util.Map;
 
 /**
@@ -18,6 +19,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
     private Map<String, Object> sessionAttributes = null;
 
     private UserService userService;
+
+
+
 
     public void setUserService(UserService userService) {
         this.userService = userService;

@@ -13,6 +13,86 @@
     </div>
 </div>
 <!-- /.row -->
+<%--for booking--%>
+<div class="col-lg-3 col-md-6">
+    <a href="/orders/viewOrders.action">
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-3">
+                <i class="fa fa-book fa-5x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+
+                <div class="huge">23</div>
+                <div>New Booking!</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+        </a>
+</div>
+
+<%--Customer--%>
+<div class="col-lg-3 col-md-6 ">
+    <a href="/customers/customerList.action">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-male fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">9</div>
+                    <div>New Customer</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </a>
+</div>
+
+<%--user--%>
+<div class="col-lg-3 col-md-6">
+    <a href="/core/viewUsers.action">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-user fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">0</div>
+                    <div>New User</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </a>
+</div>
+
+<%--vendor--%>
+<div class="col-lg-3 col-md-6">
+    <a href="/vendor/viewVendors.action">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-building fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">5</div>
+                    <div>New Vendor</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </a>
+</div>
 
 <div class="row">
     <div class="col-lg-12">

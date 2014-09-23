@@ -42,6 +42,7 @@
                             onclick="location.href='loadAddOrderPage'">
                         <i class="fa fa-book"></i> New Booking
                     </button>
+                            <s:property value="ctr"/>
                 </span>
             </div>
 
