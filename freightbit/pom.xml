@@ -205,6 +205,18 @@
             <artifactId>struts2-json-plugin</artifactId>
             <version>2.3.16</version>
         </dependency>
+        
+         <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring3</artifactId>
+            <version>2.1.2.RELEASE</version>
+            <exclusions>
+		        <exclusion>  <!-- declare the exclusion here -->
+		          <groupId>org.slf4j</groupId>
+		          <artifactId>slf4j-api</artifactId>
+		        </exclusion>
+           </exclusions> 
+        </dependency>
 
     </dependencies>
 
