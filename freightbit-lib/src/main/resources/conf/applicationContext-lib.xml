@@ -121,12 +121,19 @@
         <property name="operationsDao" ref="operationsDao"/>
     </bean>
 
+	<!--  Documents -->
     <bean id="documentsService" class="com.sr.biz.freightbit.documentation.service.impl.DocumentsServiceImpl">
         <property name="documentsDao" ref="documentsDao"/>
     </bean>
-
-    <bean id="calendarService" class=" com.sr.biz.freightbit.calendar.service.impl.CalendarServiceImpl">
+    
+    <bean id="releaseOrderReportService" class="com.sr.biz.freightbit.documentation.service.impl.ReleaseOrderReportServiceImpl"/>
+    
+    <bean id="calendarService" class="com.sr.biz.freightbit.calendar.service.impl.CalendarServiceImpl">
         <property name="orderDao" ref="orderDao"/>
+    </bean>
+    
+    <bean id="notificationService" class="com.sr.biz.freightbit.common.service.impl.NotificationServiceImpl">
+        <property name="userDao" ref="userDao"/>
     </bean>
     <!-- Services End -->
     <!-- DAOs -->

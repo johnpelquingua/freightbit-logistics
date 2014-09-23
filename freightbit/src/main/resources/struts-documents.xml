@@ -43,6 +43,26 @@
         <action name="viewReleaseOrder" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewReleaseOrder">
             <result name="success" type="tiles">documentation.releaseOrder.tiles</result>
         </action>
+                 
+        <action name="generateBookingRequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBookingRequestReport">
+            <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>
+            <result name="download" type="stream">
+			    <param name="contentDisposition">attachment;filename="${fileName}"</param>
+			    <param name="contentType">application/pdf</param>
+			    <param name="inputName">inputStream</param>
+			    <param name="bufferSize">4096</param>
+			</result> 
+        </action>
+        
+        <action name="generateReleaseOrderReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateReleaseOrderReport">
+            <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>
+            <result name="download" type="stream">
+			    <param name="contentDisposition">attachment;filename="${fileName}"</param>
+			    <param name="contentType">application/pdf</param>
+			    <param name="inputName">inputStream</param>
+			    <param name="bufferSize">4096</param>
+			</result> 
+        </action>
 
     </package>
 

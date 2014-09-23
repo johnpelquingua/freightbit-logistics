@@ -14,10 +14,12 @@ import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.exceptions.ParameterInUseException;
+import com.sr.biz.freightbit.common.service.NotificationService;
 
 public class GeneralSettingsAction extends ActionSupport implements Preparable {
 	
 	private ParameterService parameterService;
+	private NotificationService notificationService;
 	private CommonUtils commonUtils;
 	private List <Parameters> vendorClassParamList = new ArrayList<Parameters>();
 	private List <Parameters> customerTypeParamList = new ArrayList<Parameters>();
@@ -34,6 +36,7 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 	private Map<String, String> vendorClassMap = new HashMap<String, String>();
 	
 	public String loadGeneralSettings() {
+		notificationService.sendEmailNotification("admin", "Test Subject", "Test");
 		return SUCCESS;
 	}
 	
@@ -148,6 +151,11 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 		this.parameterService = parameterService;
 	}
 
+	
+	public void setNotificationService(NotificationService notificationService) {
+		this.notificationService = notificationService;
+	}
+
 	public void setCommonUtils(CommonUtils commonUtils) {
 		this.commonUtils = commonUtils;
 	}
@@ -216,6 +224,7 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 		this.vendorClassMap = vendorClassMap;
 	}
 
+	
 	
 
 }

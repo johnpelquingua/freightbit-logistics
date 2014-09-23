@@ -102,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <a href="viewReleaseOrder">
+            <a href="#" onclick="generateReleaseOrderReport();">
                 <div class="panel-footer">
                     <span class="pull-left">Create Release Order</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -255,13 +255,14 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="#" onclick="generateBookingRequestReport();">
                 <div class="panel-footer">
                     <span class="pull-left">Create Booking Request Form</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
             </a>
+            <!-- NOTE: For Booking Request Form, the orderId should be passed to the action method as a parameter              -->
         </div>
     </div>
 
@@ -364,6 +365,18 @@
     </div>
 
 </div>
+
+<script>
+function generateBookingRequestReport(){
+    var win = window.open('documentations/generateBookingRequestReport','bookingRequest','width=910,height=800');
+    win.onload = function() { this.document.title = "Booking Request"; }
+  }
+  
+function generateReleaseOrderReport(){
+    var win = window.open('documentations/generateReleaseOrderReport','bookingRequest','width=910,height=800');
+    win.onload = function() { this.document.title = "Release Order"; }
+  }
+</script>
 
 <%--Fourth Row--%>
 

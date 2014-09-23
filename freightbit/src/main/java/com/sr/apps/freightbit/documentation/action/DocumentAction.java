@@ -8,17 +8,32 @@ package com.sr.apps.freightbit.documentation.action;
  * To change this template use File | Settings | File Templates.
  */
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
+import org.pentaho.reporting.engine.classic.core.MasterReport;
+import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.PdfReportUtil;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.documentation.formbean.DocumentsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
+import com.sr.biz.freightbit.documentation.service.ReleaseOrderReportService;
 import com.sr.biz.freightbit.order.entity.Orders;
-import org.apache.log4j.Logger;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class DocumentAction extends ActionSupport implements Preparable{
@@ -31,7 +46,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private List<OrderBean> orders = new ArrayList<OrderBean>();
 
     private DocumentsService documentsService;
+    private ReleaseOrderReportService releaseOrderReportService;
 
+    private InputStream inputStream;
+    private long contentLength;
+    private String fileName;
+    private String orderId;
+    
     @Override
     public void prepare() {
 
@@ -77,6 +98,43 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
+    public String generateBookingRequestReport() {
+    	return "download";
+    }
+    
+    public String generateReleaseOrderReport() {
+        	String orderId = "10";
+        	String orderItemId = "4";
+        	Map<String, String> whereClauseParameters = new HashMap();
+        	whereClauseParameters.put("orderId", orderId);
+        	whereClauseParameters.put("orderItemId", orderItemId);
+        	
+        	try {
+    	       // Create an output filename
+    	        final File outputFile = new File("Release Order.pdf");
+    	        // Generate the report
+        		MasterReport report = releaseOrderReportService.generateReport(whereClauseParameters);
+        		
+        		HttpServletResponse response = ServletActionContext.getResponse();
+        		BufferedOutputStream responseOut = new BufferedOutputStream(response.getOutputStream());
+        		ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+         
+        		boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+        		byteArray.writeTo(responseOut);
+        		
+       		    inputStream = new ByteArrayInputStream(byteArray.toByteArray());
+    	        fileName = outputFile.getName();
+    	        contentLength = outputFile.length();
+        		
+    	        byteArray.close();
+        		responseOut.close();
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	} catch (Exception re) {
+    		re.printStackTrace();
+    	}
+    	return "download";
+    }
 
     public OrderBean transformOrdersToFormBean(Orders entity) {
         OrderBean formBean = new OrderBean();
@@ -108,7 +166,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
         this.documentsService = documentsService;
     }
 
-    public List<DocumentsBean> getDocuments() {
+    
+    public void setReleaseOrderReportService(ReleaseOrderReportService releaseOrderReportService) {
+		this.releaseOrderReportService = releaseOrderReportService;
+	}
+
+	public List<DocumentsBean> getDocuments() {
         return documents;
     }
 
@@ -123,4 +186,27 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public void setOrders(List<OrderBean> orders) {
         this.orders = orders;
     }
+    
+    public InputStream getInputStream() {
+        return inputStream;
+    } 
+    
+    public long getContentLength() {
+        return contentLength;
+    }
+ 
+    public String getFileName() {
+        return fileName;
+    }
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+    
+    
+ 
 }
