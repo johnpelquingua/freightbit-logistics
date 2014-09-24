@@ -244,7 +244,7 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addDriver(Driver driver) throws DriverAlreadyExistsException {
-        if (driverDao.findDriverByDriverCode(driver.getDriverCode()).size() > 0) {
+        if (driverDao.findDriverByLicense(driver.getLicenseNumber()).size() > 0) {
             throw new DriverAlreadyExistsException(driver.getDriverCode());
         } else {
             driver.setDateHired(new Date());

@@ -688,7 +688,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             driverEntity.setCreatedTimestamp(new Date());
             vendorService.addDriver(driverEntity);
         }catch (DriverAlreadyExistsException e) {
-            addFieldError("driver.driverCode", getText("err.driver.already.exists"));
+            addFieldError("driver.licenseNumber", getText("err.driver.already.exists"));
             return INPUT;
         }
         /*vendorService.addDriver(transformToEntityBeanDriver(driver));*/
