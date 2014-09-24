@@ -1,38 +1,37 @@
 package com.sr.apps.freightbit.order.action;
 
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.sr.apps.freightbit.customer.formbean.ConsigneeBean;
-import com.sr.apps.freightbit.customer.formbean.CustomerBean;
-import com.sr.apps.freightbit.customer.formbean.ItemBean;
-import com.sr.apps.freightbit.util.CommonUtils;
-import com.sr.biz.freightbit.core.entity.Client;
-import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
-import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
-import com.sr.biz.freightbit.customer.entity.Items;
-import org.apache.commons.lang3.StringUtils;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
+import com.sr.apps.freightbit.customer.formbean.ConsigneeBean;
+import com.sr.apps.freightbit.customer.formbean.CustomerBean;
+import com.sr.apps.freightbit.customer.formbean.ItemBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
+import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.entity.User;
+import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
+import com.sr.biz.freightbit.core.exceptions.OrderAlreadyExistsException;
+import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.customer.entity.Customer;
+import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
-import com.sr.biz.freightbit.core.service.ClientService;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class OrderAction extends ActionSupport implements Preparable {
 
@@ -202,7 +201,10 @@ public class OrderAction extends ActionSupport implements Preparable {
             orders.add(transformToOrderFormBean(orderElem));
         }
         Map sessionAttributes = ActionContext.getContext().getSession();
-       ctr = (Integer) sessionAttributes.get(ctr);
+
+        ctr = (Integer) sessionAttributes.get("ctr");
+        System.out.println("sadasdassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssthird "+ ctr);
+
         return SUCCESS;
     }
 
@@ -380,9 +382,18 @@ public class OrderAction extends ActionSupport implements Preparable {
         // Put Order Id to Order Id session
         sessionAttributes.put("orderIdPass", orderIdPass);
 
-        ctr = ctr + 1;
+        ctr = (Integer) sessionAttributes.get("ctr");
+
+        /*if(ctr == null){
+            ctr = ctr + 1;
+        }else{
+            ctr = (Integer) sessionAttributes.get("ctr") + 1;
+        }*/
+        System.out.println("sadasdassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssfirst "+ ctr);
         sessionAttributes.put("ctr", ctr);
-        System.out.println("sadasdassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss "+ctr);
+
+
+
         return SUCCESS;
     }
 
@@ -411,9 +422,9 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         sessionAttributes.put("customerItems", customerItems);
 
+        ctr = (Integer) sessionAttributes.get("ctr");
+        System.out.println("sadasdasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssecond "+ ctr);
 
-        ctr = (Integer) sessionAttributes.get(ctr);
-        System.out.println("sadasdassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssyuyuyuyu "+ctr);
         return SUCCESS;
     }
 
@@ -968,8 +979,9 @@ public class OrderAction extends ActionSupport implements Preparable {
             entity.setOrderNumber(orderNum);
         }
         // Order Id will get data on order edit
-        if (formBean.getOrderId() != null)
+        if (formBean.getOrderId() != null) {
             entity.setOrderId(new Integer(formBean.getOrderId()));
+        }
 
         entity.setServiceType(formBean.getFreightType());
         entity.setServiceMode(formBean.getModeOfService());
