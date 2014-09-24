@@ -21,9 +21,9 @@
 <!-- MAIN BOX -->
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-12">
 
-        <div class="panel booking panel-info">
+        <%--<div class="panel booking panel-info">
             <div class="booking panel-heading">
                 <img src="images/listofusers.png" class="box-icon">
                 <span class="booking panel-title">Pending Documents List</span>
@@ -102,8 +102,48 @@
                     </table>
                 </div>
             </div>
+        </div>--%>
 
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i>
+                    Pending Documents List
+                </h3>
+            </div>
 
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <display:table id="order" name="orders"
+                                   requestURI="viewPendingDocuments.action" pagesize="10"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                   style="margin-top: 15px;empty-cells: hide;">
+
+                        <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="serviceRequirement" title="Service Requirement <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="modeOfService" title="Service Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Action">
+                            <s:url var="viewDocumentsUrl" action="../documentation/viewOrderDocuments">
+                                <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{viewDocumentsUrl}" rel="tooltip" title="View Documents">
+                                <i class="fa fa-eye"></i>
+                            </s:a>
+                        </display:column></td>
+                    </display:table>
+                </div>
+            </div>
         </div>
 
     </div>

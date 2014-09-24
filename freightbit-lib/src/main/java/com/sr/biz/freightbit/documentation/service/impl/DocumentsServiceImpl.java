@@ -1,6 +1,6 @@
 package com.sr.biz.freightbit.documentation.service.impl;
 
-import com.sr.biz.freightbit.documentation.dao.impl.DocumentsDaoImpl;
+import com.sr.biz.freightbit.documentation.dao.DocumentsDao;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.order.entity.Orders;
@@ -12,13 +12,15 @@ import java.util.List;
  */
 public class DocumentsServiceImpl implements DocumentsService {
 
-    DocumentsDaoImpl documentsDao = new DocumentsDaoImpl();
+    /*DocumentsDaoImpl documentsDao = new DocumentsDaoImpl();*/
 
-    public DocumentsDaoImpl getDocumentsDao() {
+    /*public DocumentsDaoImpl getDocumentsDao() {
         return documentsDao;
-    }
+    }*/
 
-    public void setDocumentsDao(DocumentsDaoImpl documentsDao) {
+    private DocumentsDao documentsDao;
+
+    public void setDocumentsDao(DocumentsDao documentsDao) {
         this.documentsDao = documentsDao;
     }
 

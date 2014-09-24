@@ -8,13 +8,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Clarence C. Victoria on 8/8/14.
  */
+@Transactional
 public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDao {
     private static final Logger log = Logger.getLogger(DocumentsDaoImpl.class);
 
@@ -31,7 +32,7 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     @Override
     public List<Orders> findAllOrdersDocuments() {
 
-        List<String> statusList = new ArrayList<>();
+        /*List<String> statusList = new ArrayList<>();
         statusList.add("APPROVED");
         statusList.add("PENDING");
         statusList.add("DISAPPROVED");
@@ -50,6 +51,17 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
             return results;
         } catch (Exception e) {
             log.error("Finding orders failed");
+            throw e;
+        }*/
+
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders");
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Find failed.", e);
             throw e;
         }
     }

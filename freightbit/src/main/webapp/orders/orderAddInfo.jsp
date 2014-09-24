@@ -40,7 +40,7 @@
 
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-book"></i> Order Details
-                </h3>
+                </h3><s:property value="%{ctr}"/>
             </div>
 
             <div class="panel-body">

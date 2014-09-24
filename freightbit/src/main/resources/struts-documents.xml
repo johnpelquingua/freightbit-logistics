@@ -20,6 +20,10 @@
             <result name="success" type="tiles">documentation.viewPendingDocuments.tiles</result>
         </action>
 
+        <action name="viewOrderDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewOrderDocuments">
+            <result name="success" type="tiles">documentation.viewOrderDocuments.tiles</result>
+        </action>
+
         <action name="viewArchivedDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewArchivedDocuments">
             <result name="success" type="tiles">documentation.viewArchivedDocuments.tiles</result>
         </action>

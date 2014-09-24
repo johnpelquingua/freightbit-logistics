@@ -8,32 +8,29 @@ package com.sr.apps.freightbit.documentation.action;
  * To change this template use File | Settings | File Templates.
  */
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
+import com.sr.apps.freightbit.documentation.formbean.DocumentsBean;
+import com.sr.apps.freightbit.order.formbean.OrderBean;
+import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.customer.entity.Customer;
+import com.sr.biz.freightbit.customer.service.CustomerService;
+import com.sr.biz.freightbit.documentation.entity.Documents;
+import com.sr.biz.freightbit.documentation.service.DocumentsService;
+import com.sr.biz.freightbit.documentation.service.ReleaseOrderReportService;
+import com.sr.biz.freightbit.order.entity.Orders;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.PdfReportUtil;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.Preparable;
-import com.sr.apps.freightbit.documentation.formbean.DocumentsBean;
-import com.sr.apps.freightbit.order.formbean.OrderBean;
-import com.sr.biz.freightbit.documentation.entity.Documents;
-import com.sr.biz.freightbit.documentation.service.DocumentsService;
-import com.sr.biz.freightbit.documentation.service.ReleaseOrderReportService;
-import com.sr.biz.freightbit.order.entity.Orders;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class DocumentAction extends ActionSupport implements Preparable{
@@ -47,6 +44,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     private DocumentsService documentsService;
     private ReleaseOrderReportService releaseOrderReportService;
+    private CustomerService customerService;
 
     private InputStream inputStream;
     private long contentLength;
@@ -63,14 +61,18 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String viewPendingDocuments() {
-        /*List<Orders> orderEntityList = new ArrayList<Orders>();
+        List<Orders> orderEntityList = new ArrayList<Orders>();
 
         orderEntityList = documentsService.findAllOrdersDocumentation();
 
         for (Orders orderElem : orderEntityList) {
             orders.add(transformOrdersToFormBean(orderElem));
-        }*/
+        }
 
+        return SUCCESS;
+    }
+
+    public String viewOrderDocuments() {
         return SUCCESS;
     }
 
@@ -139,13 +141,35 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public OrderBean transformOrdersToFormBean(Orders entity) {
         OrderBean formBean = new OrderBean();
         formBean.setOrderNumber(entity.getOrderNumber());
-        formBean.setCustomerName(entity.getShipperCode());
+        /*formBean.setCustomerName(entity.getShipperCode());*/
+        //get shipper's name
+        Contacts shipperContactName = customerService.findContactById(entity.getShipperContactId());
+        Customer customerName = customerService.findCustomerById(shipperContactName.getReferenceId());
+        formBean.setCustomerName((customerName.getCustomerName()));
+        //get consignee name
+        Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
+        formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
+
         formBean.setOrderStatus(entity.getOrderStatus());
-        formBean.setServiceType(entity.getServiceType());
+        formBean.setFreightType(entity.getServiceType());
         formBean.setModeOfService(entity.getServiceMode());
-        formBean.setPickupDate(entity.getPickupDate());
-        formBean.setDeliveryDate(entity.getDeliveryDate());
+        formBean.setServiceRequirement(entity.getServiceRequirement());
+
         return formBean;
+    }
+
+    private String getFullName(String lastName, String firstName, String middleName) {
+        StringBuilder fullName = new StringBuilder("");
+        if (StringUtils.isNotBlank(lastName)) {
+            fullName.append(lastName + ", ");
+        }
+        if (StringUtils.isNotBlank(firstName)) {
+            fullName.append(firstName + " ");
+        }
+        if (StringUtils.isNotBlank(middleName)) {
+            fullName.append(middleName);
+        }
+        return fullName.toString();
     }
 
 //<---------------------------Getters and Setters--------------------------->
@@ -206,7 +230,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
-    
-    
- 
+
+    public CustomerService getCustomerService() {
+        return customerService;
+    }
+
+    public void setCustomerService(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 }

@@ -134,6 +134,11 @@
         <put-attribute name="body" value="/documentation/plain_docs/viewPlainDocuments.jsp"/>
     </definition>
 
+    <definition name="documentation.viewOrderDocuments.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Order Documents"/>
+        <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocuments.jsp"/>
+    </definition>
+
     <definition name="documentation.viewArchivedDocuments.tiles" extends="baseLayout">
         <put-attribute name="title" value="Archived Documents"/>
         <put-attribute name="body" value="/documentation/archived_docs/viewArchivedDocuments.jsp"/>
