@@ -165,3 +165,12 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#uContactNumber").mask("(999) 999-9999");
+
+
+    });
+
+</script>

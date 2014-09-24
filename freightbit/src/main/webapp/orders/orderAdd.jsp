@@ -710,6 +710,13 @@ $(document).ready(function() {
                 }else if ($("#order_modeOfService").val() == 'PIER TO PIER'){
                     $("#consigneeAddress").prop('disabled', true);
                     $("#shipperAddress").prop('disabled', true);
+                }else if ($("#order_modeOfService").val() == 'PICKUP') {
+                    $("#shipperAddress").prop('disabled', false);
+                    $("#consigneeAddress").prop('disabled', true);
+                    $('<option>').val(key).text(value).appendTo(select2);
+                }else if ($("#order_modeOfService").val() == 'DELIVERY'){
+                    $("#consigneeAddress").prop('disabled', false);
+                    $("#shipperAddress").prop('disabled', true);
                 }else{
                     $("#shipperAddress").prop('disabled', false);
                     $("#consigneeAddress").prop('disabled', false);
@@ -727,7 +734,7 @@ $(document).ready(function() {
             $.each(jsonResponse.consigneeAddressMap, function(key, value) {
 
                 if($("#consigneeAddress").val() != ''){
-                    if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER'){
+                    if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER' || $("#order_modeOfService").val() == 'DELIVERY'){
                         $('<option>').val(null).text("").appendTo(select4);
                     }
                     $('<option>').val(key).text(value).appendTo(select4);
@@ -916,6 +923,31 @@ $(document).ready(function() {
             $("#consigneeAddress").val('');
         }
 
+//        if Pickup was selected
+        if (select.options[index].value === 'PICKUP'){
+
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#shipperAddress").prop('disabled', false);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").val('');
+            $("#consigneeAddress").prop('disabled', true);
+        }else if (select.options[index].value === 'DELIVERY'){
+
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#shipperAddress").prop('disabled', true);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").prop('disabled', false);
+            $("#consigneeAddress").val('');
+
+        }
+
+
+
+
     // If Service Mode is Pier to Pier
     if (select.options[ index ].value === 'PIER TO PIER') {
 
@@ -1018,26 +1050,46 @@ $(document).ready(function() {
     var sType = select = document.getElementById('order_freightType');
     var sMode = select = document.getElementById('order_modeOfService');
 
+
     $( window ).load(function() {
+        //sets local storage data
+        setThis();
 
-        for (var i = 0; i < sMode.options.length; i++){
-
-            if(sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE"){
-                sMode.options[i].style.display = "none";
+        //prevents from loading different dropdown values if Trucking is selected as requirement
+        for (var i = 0; i < sMode.options.length; i++) {
+            if (document.getElementById('order_freightType').value != "TRUCKING") {
+                if (sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE") {
+                    sMode.options[i].style.display = "none";
+                } else {
+                    sMode.options[i].style.display = "block";
+                }
             }else{
-                sMode.options[i].style.display = "block";
+                if (sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE") {
+                    sMode.options[i].style.display = "block";
+                } else {
+                    sMode.options[i].style.display = "none";
+                }
+            }
+         }
+
+
+
+        for (var i = 0; i < sReq.options.length; i++) {
+            if (document.getElementById('order_freightType').value != "TRUCKING") {
+                if (sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD") {
+                    sReq.options[i].style.display = "none";
+                } else {
+                    sReq.options[i].style.display = "block";
+                }
+            }else{
+                if (sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD") {
+                    sReq.options[i].style.display = "block";
+                } else {
+                    sReq.options[i].style.display = "none";
+                }
+
             }
         }
-
-        for (var i = 0; i < sReq.options.length; i++){
-
-            if(sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD"){
-                sReq.options[i].style.display = "none";
-            }else{
-                sReq.options[i].style.display = "block";
-            }
-        }
-
     });
 
     sReq.onchange = function() {
@@ -1051,6 +1103,7 @@ $(document).ready(function() {
     sMode.onchange = function() {
         dynamicDropdown.call(this, sMode, this.selectedIndex);
     };
+
 
 // Avoid selecting duplicate ports
 
@@ -1174,7 +1227,7 @@ function setThis()
 $(document).ready(function(){
     $(window).load(function(){
 //        sets the form values
-        setThis();
+
 
         var custId = $("#customerName").val();
 
@@ -1221,6 +1274,13 @@ $(document).ready(function(){
                         }else if ($("#order_modeOfService").val() == 'PIER TO PIER'){
                             $("#consigneeAddress").prop('disabled', true);
                             $("#shipperAddress").prop('disabled', true);
+                        }else if ($("#order_modeOfService").val() == 'PICKUP') {
+                            $("#shipperAddress").prop('disabled', false);
+                            $("#consigneeAddress").prop('disabled', true);
+                            $('<option>').val(key).text(value).appendTo(select2);
+                        }else if ($("#order_modeOfService").val() == 'DELIVERY'){
+                            $("#consigneeAddress").prop('disabled', false);
+                            $("#shipperAddress").prop('disabled', true);
                         }else{
                             $("#shipperAddress").prop('disabled', false);
                             $("#consigneeAddress").prop('disabled', false);
@@ -1245,7 +1305,7 @@ $(document).ready(function(){
                         /*alert($("#consigneeAddress").val());*/
 
                         if($("#consigneeAddress").val() != ''){
-                            if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER'){
+                            if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER' ||  $("#order_modeOfService").val() == 'DELIVERY'){
                                 $('<option>').val(null).text("").appendTo(select4);
                             }
                             $('<option>').val(key).text(value).appendTo(select4);

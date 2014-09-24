@@ -73,6 +73,10 @@
                                 <td style="text-align: left !important;"><s:property value="order.notifyBy"/></td>
                             </tr>
                             <tr>
+                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Status</td>
+                                <td style="text-align: left !important;"><s:property value="order.orderStatus"/></td>
+                            </tr>
+                            <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Comments</td>
                                 <td style="text-align: left !important;"><s:property value="order.comments"/></td>
                             </tr>
@@ -104,8 +108,8 @@
                                 <td style="text-align: left !important;"><s:property value="order.rates"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Status</td>
-                                <td style="text-align: left !important;"><s:property value="order.orderStatus"/></td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Prepared By:</td>
+                                <td style="text-align: left !important;"><s:property value="order.accountRep"/></td>
                             </tr>
                             </tbody>
                         </table>

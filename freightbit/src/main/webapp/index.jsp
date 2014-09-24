@@ -24,7 +24,7 @@
             </div>
             <div class="col-xs-9 text-right">
 
-                <div class="huge">23</div>
+                <div class="huge-dashboard">23</div>
                 <div>New Booking!</div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                     <i class="fa fa-male fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                    <div class="huge">9</div>
+                    <div class="huge-dashboard">9</div>
                     <div>New Customer</div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                     <i class="fa fa-user fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                    <div class="huge">0</div>
+                    <div class="huge-dashboard">0</div>
                     <div>New User</div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                     <i class="fa fa-building fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                    <div class="huge">5</div>
+                    <div class="huge-dashboard">5</div>
                     <div>New Vendor</div>
                 </div>
             </div>

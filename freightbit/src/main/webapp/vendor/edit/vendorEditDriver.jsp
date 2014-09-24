@@ -41,7 +41,7 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="License Number"
-                                             name="driver.licenseNumber" id="driver.licenseNumber" pattern="[A-Za-z0-9]+" required="true"/>
+                                             name="driver.licenseNumber" id="driver_licenseNumber"  required="true"/>
                             </div>
 
                         </div>
@@ -85,7 +85,7 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"
-                                             id="driver.title" pattern="[A-Za-z]+" required="true"/>
+                                             id="driver.title" pattern="[A-Za-z .]+" required="true"/>
                             </div>
 
                         </div>
@@ -136,3 +136,13 @@
     </div>--%>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#driver_licenseNumber").mask("A99-99-9999999");
+//        $("#shipping_mobile").mask("(+63999)(999-9999)");
+//        $("#shipping_fax").mask("(999) 999-9999");
+
+    });
+</script>

@@ -89,7 +89,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax</label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="(XXX)XXX-XXXX" name="contact.fax" maxLength="14" required="true"
+                            <s:textfield cssClass="form-control" placeholder="(XXX)XXX-XXXX" name="contact.fax" maxLength="14"
                                         id="trucking_fax" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
                             </div>
                         </div>
