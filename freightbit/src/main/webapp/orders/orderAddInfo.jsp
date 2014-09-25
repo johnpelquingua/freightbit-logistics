@@ -108,7 +108,7 @@
                                 <td style="text-align: left !important;"><s:property value="order.rates"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Prepared By:</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Prepared By</td>
                                 <td style="text-align: left !important;"><s:property value="order.accountRep"/></td>
                             </tr>
                             </tbody>

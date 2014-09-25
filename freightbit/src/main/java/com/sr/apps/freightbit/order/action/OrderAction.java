@@ -607,7 +607,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         return entity;
     }
 
-
     //adding customer address in booking
     public String addAddress() throws Exception {
         if (hasFieldErrors()) {
