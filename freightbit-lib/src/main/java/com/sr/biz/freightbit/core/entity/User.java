@@ -28,7 +28,7 @@ public class User implements java.io.Serializable {
     private String userType;
     private String passwordResetToken;
     private Date passwordResetTime;
-    private String customerCode;
+    private Integer customerId;
 
     public User() {
     }
@@ -196,13 +196,13 @@ public class User implements java.io.Serializable {
 		this.passwordResetTime = passwordResetTime;
 	}
 
-	@Column(name="customerCode")
-	public String getCustomerCode() {
-		return customerCode;
+	@Column(name="customerId")
+	public Integer getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomerCode(String customerCode) {
-		this.customerCode = customerCode;
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 
 }

@@ -119,7 +119,7 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
         log.debug("finding customer by client");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from Customer c where c.clientId = :clientId");
+                    "from Customer where clientId = :clientId");
             query.setParameter("clientId", clientId);
             List<Customer> results = (List<Customer>) query.list();
             log.debug("find by client id successful, result size: "

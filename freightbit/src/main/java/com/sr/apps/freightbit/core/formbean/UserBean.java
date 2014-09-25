@@ -21,6 +21,8 @@ public class UserBean {
     private String userId;
     private String userSearchCriteria;
     private String userKeyword;
+    private Integer customerId;
+    private String customerName;
 
     public UserBean() {
 
@@ -172,4 +174,22 @@ public class UserBean {
     public void setUserKeyword(String userKeyword) {
         this.userKeyword = userKeyword;
     }
+
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+
 }

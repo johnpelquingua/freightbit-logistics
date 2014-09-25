@@ -26,6 +26,8 @@ import com.sr.biz.freightbit.core.exceptions.UserAlreadyExistsException;
 import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.core.service.PermissionService;
 import com.sr.biz.freightbit.core.service.UserService;
+import com.sr.biz.freightbit.customer.entity.Customer;
+import com.sr.biz.freightbit.customer.service.CustomerService;
 
 /**
  * UserAction includes view list of users, add, delete, edit, and view user info
@@ -42,6 +44,7 @@ public class UserAction extends ActionSupport implements Preparable {
     private List<Parameters> userTypeList = new ArrayList<Parameters>(); //User type drop down values
     private List<Parameters> statusList = new ArrayList<Parameters>(); //Status drop down values
     private List<Parameters> userSearchList = new ArrayList<Parameters>();
+    private List <Customer> customerList = new ArrayList<Customer>();
     private UserBean user = new UserBean(); //single user object
     private String userNameParam; //parameter used to identify which specific user is to be edited/deleted/viewed
     private Integer userIdParam; 
@@ -56,6 +59,7 @@ public class UserAction extends ActionSupport implements Preparable {
     private ClientService clientService;
     private ParameterService parameterService;
     private PermissionService permissionService;
+    private CustomerService customerService;
     private CommonUtils commonUtils;
 
     public String loadSearchUserPage() {
@@ -259,6 +263,7 @@ public class UserAction extends ActionSupport implements Preparable {
         userSearchList = parameterService.getParameterMap(ParameterConstants.USER, ParameterConstants.SEARCH_CRITERIA);
         userTypeList = parameterService.getParameterMap(ParameterConstants.USER_TYPE);
         statusList = parameterService.getParameterMap(ParameterConstants.STATUS);
+        customerList = customerService.findCustomerByClientId(commonUtils.getClientId());
     }
 
     public void validateOnSubmit(UserBean userBean) {
@@ -352,6 +357,8 @@ public class UserAction extends ActionSupport implements Preparable {
         entity.setStatus(formBean.getStatus());
         entity.setContactNo(formBean.getContactNumber());
         entity.setUserType(formBean.getUserType());
+        if ("CUSTOMER".equals(formBean.getUserType()))
+        	entity.setCustomerId(formBean.getCustomerId());
         
         return entity;
     }
@@ -371,6 +378,11 @@ public class UserAction extends ActionSupport implements Preparable {
         formBean.setEmailAddress(entity.getEmail());
         formBean.setContactNumber(entity.getContactNo());
         formBean.setStatus(entity.getStatus());
+        formBean.setCustomerId(entity.getCustomerId());
+        if (entity.getCustomerId() != null) {
+        	Customer customer = customerService.findCustomerById(entity.getCustomerId());
+        	formBean.setCustomerName(customer.getCustomerName());
+        }
         return formBean;
     }
 
@@ -433,7 +445,16 @@ public class UserAction extends ActionSupport implements Preparable {
     }
 
 
-    public UserBean getUser() {
+    
+    public List<Customer> getCustomerList() {
+		return customerList;
+	}
+
+	public void setCustomerList(List<Customer> customerList) {
+		this.customerList = customerList;
+	}
+
+	public UserBean getUser() {
         return user;
     }
 
@@ -515,5 +536,10 @@ public class UserAction extends ActionSupport implements Preparable {
 		this.commonUtils = commonUtils;
 	}
 
+	public void setCustomerService(CustomerService customerService) {
+		this.customerService = customerService;
+	}
+
+	
     
 }

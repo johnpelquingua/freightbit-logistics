@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <div class="row">
     <div class="col-lg-12">
@@ -48,7 +49,7 @@
                         <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;"> User Type<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
-                            <s:select name="user.userType" id="uType" list="userTypeList" listKey="key"
+                            <s:select name="user.userType" id="userTypeSelect" list="userTypeList" listKey="key"
                                       listValue="value" cssClass="form-control" value="user.userType"/>
                         </div>
                     </div>
@@ -143,6 +144,15 @@
                     </div>
                     
                     <div class="form-group">
+                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Customer<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-9">
+                            <s:select name="user.customerId" id="customerCodeTextBox" list="customerList" listKey="customerId"
+                                      listValue="customerName" cssClass="form-control" value="user.customerId" disabled="true" emptyOption="true"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
                         <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Permissions </label>
 
                         <div class="col-lg-9">
@@ -165,11 +175,30 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function(){
 
         $("#uContactNumber").mask("(999) 999-9999");
 
+        //if default value of User Type is 'CUSTOMER'
+        if ($('#userTypeSelect').val() == 'CUSTOMER') {
+            $("#customerCodeTextBox").prop("disabled", false);
+            $("#customerCodeTextBox").prop("required", true);
+        } else {
+            $("#customerCodeTextBox").prop("disabled", true);
+            $("#customerCodeTextBox").prop("required", false);
+        }
+        
+        $("#userTypeSelect").change(function() {
+            if (this.value == "CUSTOMER") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+            }
+        }).change();
 
     });
 

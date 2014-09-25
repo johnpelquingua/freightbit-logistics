@@ -18,7 +18,7 @@ public class NotificationServiceImpl implements NotificationService {
 
 	@Override
 	public void sendEmailNotification(String username, String emailContent, String emailSubject) {
-	/**	User user = userDao.findUserByUserName(username); 
+/*		User user = userDao.findUserByUserName(username); 
 		String recipientEmail = user.getEmail();
 		if (recipientEmail != null && "".equals(recipientEmail)) {
 	      	  Properties props = new Properties();
@@ -53,7 +53,7 @@ public class NotificationServiceImpl implements NotificationService {
 		      }catch (Exception mex) {
 		         mex.printStackTrace();
 		      }
-		} **/
+		} */
 		
 	}
 }

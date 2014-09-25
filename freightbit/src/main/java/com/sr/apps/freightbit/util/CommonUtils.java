@@ -24,5 +24,20 @@ public class CommonUtils {
         Integer clientId = (Integer) sessionAttributes.get("clientId");
         return clientId;
     }
+    
+    /**
+     * If commonUtils.getCustomerIdFromSession() != null, then the logged-in user is a customer
+     * Else, the logged-in user is not a customer
+     * 
+     * Example in OrderAction.viewOrders(), you should only display the orders for that customer if the logged-in user is a customer
+     * if (commonUtils.getCustomerIdFromSession() != null)
+     *    orderEntityList = orderService.findOrdersByCriteria("customerId", order.getCustomerId(), commonUtils.getClientId());
+     * @return
+     */
+    public Integer getCustomerIdFromSession() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        User user = (User) sessionAttributes.get("user");
+        return user.getCustomerId();
+    }
 
 }
