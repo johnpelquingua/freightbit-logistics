@@ -842,9 +842,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         if (shipperName!=null) {
             orderBean.setCustomerId(shipperName.getCustomerId());
             orderBean.setCustomerName(shipperName.getCustomerName());
-        }else{
-            orderBean.setCustomerId(0);
-            orderBean.setCustomerName("NINJA TURTLES !!!");
         }
 
         orderBean.setPickupDate(order.getPickupDate());
@@ -1010,6 +1007,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         entity.setCustomerId(shipperName.getCustomerId());
 
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("service_Req", formBean.getServiceRequirement());
 
         return entity;
     }
@@ -1030,10 +1029,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setDeclaredValue(formBean.getDeclaredValue());
         entity.setWeight(formBean.getWeight());
 
-        Pattern pattern = Pattern.compile("[A-Za-z]+");
-        Matcher matcher = pattern.matcher(formBean.getNameSize());
-
-        if(matcher.matches()){
+        if(sessionAttributes.get("service_Req").equals("FULL CARGO LOAD") ){
             entity.setNameSize(formBean.getNameSize());
         }else{
             Integer nameId = Integer.parseInt(formBean.getNameSize());
