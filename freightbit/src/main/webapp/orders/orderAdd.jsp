@@ -952,10 +952,13 @@ $(document).ready(function() {
     if (select.options[ index ].value === 'PIER TO PIER') {
 
         for (var i = 0; i < sType.options.length; i++){
-
-            if(sType.options[i].value != "SHIPPING"){
+            /*if(sType.options[i].value != "SHIPPING"){
                 sType.options[i].disabled = true;
             }else{
+                sType.options[i].disabled = false;
+                sType.options[i].selected = true;
+            }*/
+            if(sType.options[i].value == "SHIPPING"){
                 sType.options[i].disabled = false;
                 sType.options[i].selected = true;
             }
@@ -969,7 +972,21 @@ $(document).ready(function() {
         $("#consigneeAddress").prop('disabled', true);
         $("#consigneeAddress").val('');
 
+    }else{
+        for (var i = 0; i < sType.options.length; i++){
+            /*if(sType.options[i].value != "SHIPPING"){
+             sType.options[i].disabled = true;
+             }else{
+             sType.options[i].disabled = false;
+             sType.options[i].selected = true;
+             }*/
+            if(sType.options[i].value == "SHIPPING AND TRUCKING"){
+                sType.options[i].disabled = false;
+                sType.options[i].selected = true;
+            }
         }
+    }
+
     // If Service Type is Shipping
     if (select.options[ index ].value === 'SHIPPING'){
         $("#select1").val('');
@@ -1014,7 +1031,7 @@ $(document).ready(function() {
                     sReq.options[i].style.display = "none";
                 }else{
                     sReq.options[i].style.display = "block";
-                }
+                    }
             }
 
 

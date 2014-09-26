@@ -1007,7 +1007,9 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setCustomerId(shipperName.getCustomerId());
 
         Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("f_Type", formBean.getFreightType());
         sessionAttributes.put("service_Req", formBean.getServiceRequirement());
+        sessionAttributes.put("service_Mode", formBean.getModeOfService());
 
         return entity;
     }
@@ -1027,8 +1029,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setClassification(formBean.getClassification());
         entity.setDeclaredValue(formBean.getDeclaredValue());
         entity.setWeight(formBean.getWeight());
-
-        if(sessionAttributes.get("service_Req").equals("FULL CARGO LOAD") ){
+        // Condition in FCL and LCL
+        if(sessionAttributes.get("service_Req").equals("FULL CARGO LOAD")){
             entity.setNameSize(formBean.getNameSize());
         }else{
             Integer nameId = Integer.parseInt(formBean.getNameSize());
@@ -1038,7 +1040,15 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         entity.setRate(formBean.getRate());
         entity.setComments(formBean.getRemarks());
-        entity.setStatus("PLANNING 1");
+        // Trucking Freight Types will proceed to inland freight operations
+        if(sessionAttributes.get("f_Type").equals("TRUCKING") && sessionAttributes.get("service_Mode").equals("PICKUP")){
+            entity.setStatus("PLANNING 2");
+        }else if(sessionAttributes.get("f_Type").equals("TRUCKING") && sessionAttributes.get("service_Mode").equals("DELIVERY")){
+            entity.setStatus("PLANNING 3");
+        }else{
+            entity.setStatus("PLANNING 1");
+        }
+
         entity.setVolume(formBean.getVolume());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setModifiedBy(commonUtils.getUserNameFromSession());
