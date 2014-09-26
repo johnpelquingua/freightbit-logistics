@@ -16,7 +16,6 @@
 
 </div>
 
-
 <s:if test="hasActionErrors()">
     <div class="col-lg-7">
         <div class="alert alert-success">
@@ -68,7 +67,7 @@
                                     <div class="tab-pane fade in active" id="class">
                                         <br>
                                         <div class="form-group" id="vendorClassId">
-                                            <label for="vendorClass" class="col-lg-3 control-label" id="users-add-label">Vendor Class:</label>
+                                            <label class="col-lg-3 control-label" id="users-add-label">Vendor Class:</label>
                                             <div class="col-lg-9" id="vendorClassDiv">
                                                 <s:iterator value="vendorClassParamList" var="vendorClass">
                                                     <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('vendorClass', this, '%{parameterId}');"/>
@@ -85,7 +84,7 @@
                                     <div class="tab-pane fade" id="type">
                                         <div class="form-group" id="vendorTypeId">
                                             <br>
-                                            <label for="vendorType" class="col-lg-3 control-label" id="users-add-label">Vendor Type:</label>
+                                            <label class="col-lg-3 control-label" id="users-add-label">Vendor Type:</label>
                                             <div class="col-lg-9" id="vendorTypeDiv">
                                                 <s:iterator value="vendorTypeParamList" var="vendorType">
                                                     <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('vendorType', this, '%{parameterId}');"/>
@@ -105,7 +104,7 @@
                             <div class="tab-pane fade" id="customer">
                                 <br>
                                 <div class="form-group" id="customerTypeId">
-                                    <label for="customerType" class="col-lg-3 control-label" id="users-add-label">Customer Type:</label>
+                                    <label class="col-lg-3 control-label" id="users-add-label">Customer Type:</label>
                                     <div class="col-lg-9" id="customerTypeDiv">
                                         <s:iterator value="customerTypeParamList" var="customerType">
                                             <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('customerType', this, '%{parameterId}');"/>
@@ -123,7 +122,7 @@
                             <div class="tab-pane fade" id="contact">
                                 <br>
                                 <div class="form-group" id="contactTypeId">
-                                    <label for="contactType" class="col-lg-3 control-label" id="users-add-label">Contact Type:</label>
+                                    <label class="col-lg-3 control-label" id="users-add-label">Contact Type:</label>
                                     <div class="col-lg-9" id="contactTypeDiv">
                                         <s:iterator value="contactTypeParamList" var="contactType">
                                             <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('contactType', this, '%{parameterId}');"/>
@@ -140,7 +139,7 @@
                             <div class="tab-pane fade" id="address">
                                 <br>
                                 <div class="form-group" id="addressTypeId">
-                                    <label for="addressType" class="col-lg-3 control-label" id="users-add-label">Address Type:</label>
+                                    <label class="col-lg-3 control-label" id="users-add-label">Address Type:</label>
                                     <div class="col-lg-9" id="addressTypeDiv">
                                         <s:iterator value="addressTypeParamList" var="addressType">
                                             <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('addressType', this, '%{parameterId}');"/>
@@ -157,7 +156,7 @@
                             <div class="tab-pane fade" id="ports">
                                 <br>
                                 <div class="form-group" id="orderPortId">
-                                    <label for="orderPort" class="col-lg-3 control-label" id="users-add-label">Ports:</label>
+                                    <label class="col-lg-3 control-label" id="users-add-label">Ports:</label>
                                     <div class="col-lg-9" id="orderPortDiv">
                                         <s:iterator value="portsParamsList" var="orderPort">
                                              <s:textfield cssClass="form-control" name="value" id="%{key}"  onchange="trackTextFieldChanges('ports', this, '%{parameterId}');"/>

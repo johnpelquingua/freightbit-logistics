@@ -19,356 +19,74 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
-            <li class="active"> Plain Documents List</li>
+            <li class="active"><a href="<s:url action='../viewPendingDocuments' />"> Pending Documents List</a></li>
+            <li class="active"> Pending Documents of Booking Number 9999</li> <%--placeholder--%>
         </ol>
 
     </div>
 </div>
-<%--First Row--%>
-<div class="row">
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">House Waybill Origin</div>
-                    </div>
-                </div>
-            </div>
-            <a href="viewWayBillOrigin">
-                <div class="panel-footer">
-                    <span class="pull-left">Create Waybill Origin</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">House Waybill Destination</div>
-                    </div>
-                </div>
-            </div>
-            <a href="viewWayBillDestination">
-                <div class="panel-footer">
-                    <span class="pull-left">Create Waybill Destination</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">Acceptance Receipt</div>
-                    </div>
-                </div>
-            </div>
-            <a href="viewAcceptanceReceipt">
-                <div class="panel-footer">
-                    <span class="pull-left">Create Acceptance Receipt</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">Release Order</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#" onclick="generateReleaseOrderReport();">
-                <div class="panel-footer">
-                    <span class="pull-left">Create Release Order</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-</div>
-<%--End of First Row--%>
-
-<%--Second Row--%>
 
 <div class="row">
-
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-12">
         <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">House Bill of Lading</div>
-                    </div>
-                </div>
+
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-file-text"></i> Document Stages</h3>
             </div>
-            <a href="viewBillOfLading">
-                <div class="panel-footer">
-                    <span class="pull-left">Create House Bill of Lading</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
+
+            <div class="panel-body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#outbound" role="tab" data-toggle="tab">Outbound</a></li>
+                    <li><a href="#inbound" role="tab" data-toggle="tab">Inbound</a></li>
+                    <li><a href="#finalOutbound" role="tab" data-toggle="tab">Final Set Outbound</a></li>
+                    <li><a href="#finalInbound" role="tab" data-toggle="tab">Final Set Inbound</a></li>
+                    <li><a href="#archive" role="tab" data-toggle="tab">Archive</a></li>
+                    <li><a href="#billing" role="tab" data-toggle="tab">Billing</a></li>
+                </ul>
+
+
+                <div class="tab-content">
+                    <%--OUTBOUND DOCUMENTS BEGIN--%>
+                    <div class="tab-pane fade in active" id="outbound">
+
+                        OUTBOUND DOCUMENTS
+
+                    </div>
+                    <%--INBOUND DOCUMENTS BEGIN--%>
+                    <div class="tab-pane fade" id="inbound">
+
+                        INBOUND DOCUMENTS
+
+                    </div>
+                    <%--FINAL SET OUTBOUND DOCUMENTS BEGIN--%>
+                    <div class="tab-pane fade" id="finalOutbound">
+
+                        FINAL SET OUTBOUND DOCUMENTS
+
+                    </div>
+                    <%--FINAL SET INBOUND DOCUMENTS BEGIN--%>
+                    <div class="tab-pane fade" id="finalInbound">
+
+                        FINAL SET INBOUND DOCUMENTS
+
+                    </div>
+                    <%--ARCHIVE BEGIN--%>
+                    <div class="tab-pane fade" id="archive">
+
+                        ARCHIVE DOCUMENTS
+
+                    </div>
+                    <%--BILLING DOCUMENTS BEGIN--%>
+                    <div class="tab-pane fade" id="billing">
+
+                        BILLING DOCUMENTS
+
+                    </div>
                 </div>
-            </a>
+
+            </div>
+
         </div>
     </div>
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">Proforma Bill of Lading</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">Create Proforma Bill of Lading</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">Load Manifest</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">Create Load Manifest</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">Authority to Load</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">Create Authority to Load</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-</div>
-
-<%--End of Second Row--%>
-
-<%--Third Row--%>
-
-<div class="row">
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">Authority to Withdraw</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">Create Authority to Withdraw</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">Booking Request Form</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#" onclick="generateBookingRequestReport();">
-                <div class="panel-footer">
-                    <span class="pull-left">Create Booking Request Form</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-            <!-- NOTE: For Booking Request Form, the orderId should be passed to the action method as a parameter              -->
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">Sales Invoice</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">Create Sales Invoice</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">Trip Report</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">Create Trip Report</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-</div>
-
-<%--End of Third Row--%>
-
-<div class="row">
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">Equipment Interchange Receipt 1</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">Create EIR 1</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading" style="background: #428bca !important;">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <br />
-                        <div class="huge">Equipment Interchange Receipt 2</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">Create EIR 2</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-
 </div>

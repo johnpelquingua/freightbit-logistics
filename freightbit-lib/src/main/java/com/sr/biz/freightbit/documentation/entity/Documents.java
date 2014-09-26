@@ -24,8 +24,6 @@ public class Documents implements Serializable {
     public Documents() {
     }
 
-    
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "documentId", unique = true)

@@ -14,4 +14,6 @@ public interface DocumentsService {
 
     public List<Orders> findAllOrdersDocumentation();
 
+    public void addDocuments(Documents documents);
+
 }

@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,15 +33,15 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     @Override
     public List<Orders> findAllOrdersDocuments() {
 
-        /*List<String> statusList = new ArrayList<>();
-        statusList.add("APPROVED");
+        List<String> statusList = new ArrayList<>();
+
         statusList.add("PENDING");
         statusList.add("DISAPPROVED");
-        statusList.add("BOOKING ON PROCESS");
+        /*statusList.add("APPROVED");
         statusList.add("PLANNING 1");
         statusList.add("PLANNING 2");
         statusList.add("PLANNING 3");
-        statusList.add("SERVICE ACCOMPLISHED");
+        statusList.add("SERVICE ACCOMPLISHED");*/
 
         log.debug("Finding orders with filter");
         try {
@@ -52,17 +53,20 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
         } catch (Exception e) {
             log.error("Finding orders failed");
             throw e;
-        }*/
+        }
 
-        log.debug("Find initiated.");
-        try {
-            log.debug("Find succeeded.");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders");
-            List<Orders> results = (List<Orders>) query.list();
-            return results;
-        } catch (Exception e) {
-            log.error("Find failed.", e);
-            throw e;
+    }
+
+    @Override
+    public void addDocuments(Documents documents) {
+        log.debug("Add Documents");
+        try{
+            Session session = getSessionFactory().getCurrentSession();
+            session.save(documents);
+            log.debug("Booking added successfully");
+        }catch(RuntimeException re){
+            log.error("add booking failed", re);
+            throw re;
         }
     }
 }

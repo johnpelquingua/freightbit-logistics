@@ -13,4 +13,6 @@ public interface DocumentsDao {
     public List<Documents> findDocumentationByCriteria(String column, String value);
 
     public List<Orders> findAllOrdersDocuments();
+
+    public void addDocuments(Documents documents);
 }

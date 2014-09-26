@@ -4,6 +4,8 @@ import com.sr.biz.freightbit.documentation.dao.DocumentsDao;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.order.entity.Orders;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,5 +34,11 @@ public class DocumentsServiceImpl implements DocumentsService {
     @Override
     public List<Orders> findAllOrdersDocumentation() {
         return documentsDao.findAllOrdersDocuments();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addDocuments(Documents documents){
+        documentsDao.addDocuments(documents);
     }
 }

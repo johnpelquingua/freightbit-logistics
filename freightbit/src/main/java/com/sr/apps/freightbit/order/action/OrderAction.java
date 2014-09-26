@@ -8,6 +8,7 @@ import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.customer.formbean.ConsigneeBean;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.customer.formbean.ItemBean;
+import com.sr.apps.freightbit.documentation.formbean.DocumentsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
@@ -24,6 +25,8 @@ import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.service.CustomerService;
+import com.sr.biz.freightbit.documentation.entity.Documents;
+import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
@@ -42,6 +45,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private ContactBean contact = new ContactBean();
     private AddressBean address = new AddressBean();
     private ItemBean item = new ItemBean();
+    private DocumentsBean document = new DocumentsBean();
     private ConsigneeBean consigneeBean = new ConsigneeBean();
     private List<Customer> customerList = new ArrayList<Customer>();
     private List<Parameters> serviceRequirementList = new ArrayList<Parameters>();
@@ -71,6 +75,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private OrderService orderService;
     private CustomerService customerService;
     private ParameterService parameterService;
+    private DocumentsService documentsService;
 
     private ClientService clientService;
     private ConsigneeBean consignee = new ConsigneeBean();
@@ -200,10 +205,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         for (Orders orderElem : orderEntityList) {
             orders.add(transformToOrderFormBean(orderElem));
         }
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
-        ctr = (Integer) sessionAttributes.get("ctr");
-        System.out.println("sadasdassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssthird "+ ctr);
 
         return SUCCESS;
     }
@@ -375,23 +376,23 @@ public class OrderAction extends ActionSupport implements Preparable {
         Orders orderEntity = transformToOrderEntityBean(order);
 
         orderService.addOrder(orderEntity);
+
+        Documents documentEntity = new Documents();
+
+        documentEntity.setClientId(commonUtils.getClientId());
+        documentEntity.setDocumentType("OUTBOUND");
+        documentEntity.setDocumentName("BOOKING REQUEST FORM");
+        documentEntity.setReferenceId(orderEntity.getOrderId());
+        documentEntity.setReferenceTable("ORDERS");
+        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+        documentEntity.setCreatedDate(new Date());
+        documentsService.addDocuments(documentEntity);
         // To get generated Order Id
         orderIdPass = orderEntity.getOrderId();
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         // Put Order Id to Order Id session
         sessionAttributes.put("orderIdPass", orderIdPass);
-
-        ctr = (Integer) sessionAttributes.get("ctr");
-
-        /*if(ctr == null){
-            ctr = ctr + 1;
-        }else{
-            ctr = (Integer) sessionAttributes.get("ctr") + 1;
-        }*/
-        System.out.println("sadasdassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssfirst "+ ctr);
-        sessionAttributes.put("ctr", ctr);
-
 
 
         return SUCCESS;
@@ -421,9 +422,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         sessionAttributes.put("customerItems", customerItems);
-
-        ctr = (Integer) sessionAttributes.get("ctr");
-        System.out.println("sadasdasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssecond "+ ctr);
 
         return SUCCESS;
     }
@@ -1128,6 +1126,21 @@ public class OrderAction extends ActionSupport implements Preparable {
         return entity;
     }
 
+    /*public Documents transformToDocumentEntityBean (DocumentsBean formBean) {
+
+        Documents entity = new Documents();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClientId(commonUtils.getClientId());
+        entity.setDocumentName("BOOKING REQUEST FORM");
+        entity.setDocumentType("OUTBOUND");
+        entity.setReferenceId();
+        entity.setReferenceTable("ORDERS");
+        entity.setCreatedDate(new Date());
+        entity.setOrderNumber();
+
+        return entity;
+    }*/
+
     public void validateOnSubmitItem(ItemBean itemBean) {
         clearErrorsAndMessages();
 
@@ -1745,5 +1758,21 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setCtr(Integer ctr) {
         this.ctr = ctr;
+    }
+
+    public DocumentsService getDocumentsService() {
+        return documentsService;
+    }
+
+    public void setDocumentsService(DocumentsService documentsService) {
+        this.documentsService = documentsService;
+    }
+
+    public DocumentsBean getDocument() {
+        return document;
+    }
+
+    public void setDocument(DocumentsBean document) {
+        this.document = document;
     }
 }
