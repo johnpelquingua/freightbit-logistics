@@ -982,7 +982,7 @@ $(document).ready(function() {
              }*/
             if(sType.options[i].value == "SHIPPING AND TRUCKING"){
                 sType.options[i].disabled = false;
-                sType.options[i].selected = true;
+//                sType.options[i].selected = true;
             }
         }
     }
