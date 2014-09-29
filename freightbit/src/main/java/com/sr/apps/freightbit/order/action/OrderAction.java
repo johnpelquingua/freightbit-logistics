@@ -1,5 +1,16 @@
 package com.sr.apps.freightbit.order.action;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
@@ -12,6 +23,7 @@ import com.sr.apps.freightbit.documentation.formbean.DocumentsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
+import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
@@ -30,11 +42,6 @@ import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class OrderAction extends ActionSupport implements Preparable {
 
@@ -380,8 +387,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         Documents documentEntity = new Documents();
 
         documentEntity.setClientId(commonUtils.getClientId());
-        documentEntity.setDocumentType("OUTBOUND");
-        documentEntity.setDocumentName("BOOKING REQUEST FORM");
+        documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+        documentEntity.setDocumentName(DocumentsConstants.BOOKING_REQUEST_FORM);
         documentEntity.setReferenceId(orderEntity.getOrderId());
         documentEntity.setReferenceTable("ORDERS");
         documentEntity.setOrderNumber(orderEntity.getOrderNumber());
