@@ -15,4 +15,6 @@ public interface DocumentsDao {
     public List<Orders> findAllOrdersDocuments();
 
     public void addDocuments(Documents documents);
+
+    public List<Documents> findOrderDocumentations();
 }

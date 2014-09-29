@@ -73,6 +73,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String viewOrderDocuments() {
+        List<Documents> documentsEntityList = new ArrayList<Documents>();
+
+        documentsEntityList = documentsService.findOrderDocumentation();
+
+        for (Documents documentElem : documentsEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
         return SUCCESS;
     }
 
@@ -154,6 +162,15 @@ public class DocumentAction extends ActionSupport implements Preparable{
         formBean.setFreightType(entity.getServiceType());
         formBean.setModeOfService(entity.getServiceMode());
         formBean.setServiceRequirement(entity.getServiceRequirement());
+
+        return formBean;
+    }
+
+    public DocumentsBean transformDocumentsToFormBean(Documents entity) {
+        DocumentsBean formBean = new DocumentsBean();
+
+        formBean.setDocumentName(entity.getDocumentName());
+        formBean.setOrderNumber(entity.getOrderNumber());
 
         return formBean;
     }

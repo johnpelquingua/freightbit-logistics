@@ -41,4 +41,9 @@ public class DocumentsServiceImpl implements DocumentsService {
     public void addDocuments(Documents documents){
         documentsDao.addDocuments(documents);
     }
+
+    @Override
+    public List<Documents> findOrderDocumentation() {
+        return documentsDao.findOrderDocumentations();
+    }
 }

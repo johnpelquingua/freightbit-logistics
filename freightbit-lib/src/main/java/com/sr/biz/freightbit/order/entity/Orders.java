@@ -5,7 +5,6 @@ package com.sr.biz.freightbit.order.entity;
 import com.sr.biz.freightbit.core.entity.Client;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

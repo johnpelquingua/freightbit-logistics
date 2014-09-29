@@ -50,7 +50,27 @@
                     <%--OUTBOUND DOCUMENTS BEGIN--%>
                     <div class="tab-pane fade in active" id="outbound">
 
-                        OUTBOUND DOCUMENTS
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <display:table id="document" name="documents" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
+                                               style="margin-top: 15px;">
+
+                                    <td><display:column property="documentName" title="Document Name" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>
+
+                                    <td><display:column property="orderNumber" title="Reference Number" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>
+
+                                    <td><display:column title="Status" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>
+
+                                    <td><display:column title="Action" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>
+
+
+                                </display:table>
+                            </div>
+                        </div>
 
                     </div>
                     <%--INBOUND DOCUMENTS BEGIN--%>

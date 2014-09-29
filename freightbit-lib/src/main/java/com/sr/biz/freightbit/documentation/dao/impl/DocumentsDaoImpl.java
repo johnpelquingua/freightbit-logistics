@@ -46,7 +46,7 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
         log.debug("Finding orders with filter");
         try {
             log.debug("Finding orders succeeded");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderStatus not in(:statusList)");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderStatus not in(:statusList) order by createdTimestamp desc");
             query.setParameterList("statusList", statusList);
             List<Orders> results = (List<Orders>) query.list();
             return results;
@@ -67,6 +67,21 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
         }catch(RuntimeException re){
             log.error("add booking failed", re);
             throw re;
+        }
+    }
+
+    @Override
+    public List<Documents> findOrderDocumentations() {
+
+        log.debug("Finding all documents in order");
+        try{
+            log.debug("Finding order documents succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents order by createdDate desc");
+            List<Documents> results = (List<Documents>) query.list();
+            return results;
+        }catch(Exception e){
+            log.error("Finding documents failed");
+            throw e;
         }
     }
 }
