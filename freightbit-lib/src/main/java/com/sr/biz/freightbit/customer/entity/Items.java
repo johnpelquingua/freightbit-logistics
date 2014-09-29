@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Items implements java.io.Serializable {
 
     private Integer customerItemsId;
-    private Client client;
+    private Integer clientId;
     private Integer customerId;
     private String itemName;
     private String itemCode;
@@ -37,9 +37,8 @@ public class Items implements java.io.Serializable {
 
     }
 
-    public Items(Integer customerItemsId, Client client, Integer customerId, String itemName, String itemCode, Double length, Double width, Double height, Float srp, Integer criticalQuality, Float weight, String note, String description, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
+    public Items(Integer customerItemsId, Integer customerId, String itemName, String itemCode, Double length, Double width, Double height, Float srp, Integer criticalQuality, Float weight, String note, String description, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy) {
         this.customerItemsId = customerItemsId;
-        this.client = client;
         this.customerId = customerId;
         this.itemName = itemName;
         this.itemCode = itemCode;
@@ -63,10 +62,9 @@ public class Items implements java.io.Serializable {
     public Integer getCustomerItemsId() { return customerItemsId; }
     public void setCustomerItemsId(Integer customerItemsId) { this.customerItemsId = customerItemsId; }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "clientId", nullable = false)
-    public Client getClient() { return client; }
-    public void setClient(Client client) { this.client = client; }
+    @Column(name = "clientId")
+    public Integer getClientId() { return clientId; }
+    public void setClientId(Integer clientId) { this.clientId = clientId; }
 
 
     @Column(name = "customerId")

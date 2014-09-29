@@ -750,7 +750,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         //shipper contact info
         Contacts contacts = customerService.findContactById(order.getShipperContactId());
         contact = new ContactBean();
-        contact.setName(getFullName(contacts.getLastName(), contacts.getFirstName(), contacts.getMiddleName()));
+        contact.setName(getFullName(contacts));
         contact.setPhone(contacts.getPhone());
         contact.setEmail(contacts.getEmail());
         contact.setFax(contacts.getFax());
@@ -765,7 +765,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         //consignee Info
         Contacts consigneeContact = customerService.findContactById(order.getConsigneeContactId());
         contact = new ContactBean();
-        contact.setName(getFullName(consigneeContact.getLastName(), consigneeContact.getFirstName(), consigneeContact.getMiddleName()));
+        contact.setName(getFullName(consigneeContact));
         contact.setPhone(consigneeContact.getPhone());
         contact.setEmail(consigneeContact.getEmail());
         contact.setFax(consigneeContact.getFax());
@@ -813,12 +813,12 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setShipperContactId(order.getShipperContactId());
         // get Customer name
         Contacts shipperContactName = customerService.findContactById(order.getShipperContactId());
-        orderBean.setShipperContactName(getFullName(shipperContactName.getLastName(), shipperContactName.getFirstName(), shipperContactName.getMiddleName()));
+        orderBean.setShipperContactName(getFullName(shipperContactName));
         /*orderBean.setConsigneeCode(order.getConsigneeCode());*/
         orderBean.setConsigneeAddressId(order.getConsigneeAddressId());
         orderBean.setConsigneeContactId(order.getConsigneeContactId());
         Contacts consigneeContactName = customerService.findContactById(order.getConsigneeContactId());
-        orderBean.setConsigneeName(getFullName(consigneeContactName.getLastName(), consigneeContactName.getFirstName(), consigneeContactName.getMiddleName()));
+        orderBean.setConsigneeName(getFullName(consigneeContactName));
         orderBean.setAccountRep(order.getAccountRep());
         orderBean.setCreatedTimestamp(order.getCreatedTimestamp());
         orderBean.setCreatedBy(order.getCreatedBy());
@@ -847,7 +847,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         //shipper contact info
         Contacts contacts = customerService.findContactById(order.getShipperContactId());
             contact = new ContactBean();
-            contact.setName(getFullName(contacts.getLastName(), contacts.getFirstName(), contacts.getMiddleName()));
+            contact.setName(getFullName(contacts));
             contact.setPhone(contacts.getPhone());
             contact.setEmail(contacts.getEmail());
             contact.setFax(contacts.getFax());
@@ -870,7 +870,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Contacts consigneeContact = customerService.findContactById(order.getConsigneeContactId());
 
             contact = new ContactBean();
-            contact.setName(getFullName(consigneeContact.getLastName(), consigneeContact.getFirstName(), consigneeContact.getMiddleName()));
+            contact.setName(getFullName(consigneeContact));
             contact.setPhone(consigneeContact.getPhone());
             contact.setEmail(consigneeContact.getEmail());
             contact.setFax(consigneeContact.getFax());
@@ -1103,8 +1103,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     public Items transformToEntityBeanItem(ItemBean formBean) {
 
         Items entity = new Items();
-        Client client = clientService.findClientById(getClientId().toString());
-        entity.setClient(client);
+        entity.setClientId(commonUtils.getClientId());
 
         if (formBean.getCustomerItemsId() != null)
             entity.setCustomerItemsId(new Integer(formBean.getCustomerItemsId()));
@@ -1240,18 +1239,24 @@ public class OrderAction extends ActionSupport implements Preparable {
         return (User) sessionAttributes.get("clientId");
     }
 
-    private String getFullName(String lastName, String firstName, String middleName) {
-        StringBuilder fullName = new StringBuilder("");
-        if (StringUtils.isNotBlank(lastName)) {
-            fullName.append(lastName + ", ");
-        }
-        if (StringUtils.isNotBlank(firstName)) {
-            fullName.append(firstName + " ");
-        }
-        if (StringUtils.isNotBlank(middleName)) {
-            fullName.append(middleName);
-        }
-        return fullName.toString();
+    private String getFullName(Contacts contactName) {
+    	if (contactName != null) {
+    		String lastName = contactName.getLastName();
+    		String firstName = contactName.getFirstName();
+    		String middleName = contactName.getMiddleName();
+	        StringBuilder fullName = new StringBuilder("");
+	        if (StringUtils.isNotBlank(lastName)) {
+	            fullName.append(lastName + ", ");
+	        }
+	        if (StringUtils.isNotBlank(firstName)) {
+	            fullName.append(firstName + " ");
+	        }
+	        if (StringUtils.isNotBlank(middleName)) {
+	            fullName.append(middleName);
+	        }
+	        return fullName.toString();
+    	}
+    	return "";
     }
 
     private String getAddress(Address address) {

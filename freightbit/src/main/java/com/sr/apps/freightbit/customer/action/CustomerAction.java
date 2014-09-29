@@ -282,8 +282,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public Items transformToEntityBeanItem(ItemBean formBean) {
 
         Items entity = new Items();
-        Client client = clientService.findClientById(getClientId().toString());
-        entity.setClient(client);
+        entity.setClientId(commonUtils.getClientId());
 
         if (formBean.getCustomerItemsId() != null)
             entity.setCustomerItemsId(new Integer(formBean.getCustomerItemsId()));
