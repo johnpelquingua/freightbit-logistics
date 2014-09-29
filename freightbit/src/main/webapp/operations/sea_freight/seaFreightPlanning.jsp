@@ -80,275 +80,686 @@
 
     </div>
 
-        <div class="panel panel-primary">
 
-            <div class="panel-heading">
-                <i class="fa fa-anchor"></i>
-                <span class="panel-title">Sea Operation</span>
-            </div>
+    <s:if test="order.freightType=='SHIPPING'">
+        <s:if test="order.modeOfService=='PIER TO PIER'">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-anchor"></i>
+                    <span class="panel-title">Sea Operation</span>
+                </div>
+                <div class="panel-body">
+                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
+                        <c:out value="${sessionScope.vendorIdPass}" />
+                        <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
+                        <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
+                        <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
+                        <s:hidden name="operationsBean.orderId" value="%{order.orderId}" />
+                        <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
+                        <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
+                        <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
+                        <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
+                        <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
+                        <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
+                        <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
+                        <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
+                        <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
+                        <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
+                        <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
+                        <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
+                        <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
+                        <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
 
-            <div class="panel-body">
-
-                <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
-
-                    <%--<c:out value="${sessionScope.orderItemIdParam}" />
-                    <c:out value="${sessionScope.orderIdParam}" />--%>
-                    <c:out value="${sessionScope.vendorIdPass}" />
-                    <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
-                    <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
-                    <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
-                    <s:hidden name="operationsBean.orderId" value="%{order.orderId}" />
-                    <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
-                    <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
-                    <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
-                    <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
-                    <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
-                    <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
-                    <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
-                    <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
-                    <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
-                    <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
-                    <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
-                    <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
-
-                    <div class="form-group">
-
-                        <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
-                        </s:if>
-                        <s:else>
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
-                        </s:else>
-
-                        <div class="col-lg-10">
-                            <div class="form-control">
-                                <c:out value="${sessionScope.nameSizeParam}"/>
+                        <div class="form-group">
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                            </s:if>
+                            <s:else>
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                            </s:else>
+                            <div class="col-lg-10">
+                                <div class="form-control">
+                                    <c:out value="${sessionScope.nameSizeParam}"/>
+                                </div>
                             </div>
                         </div>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-
-                        <div class="col-lg-4">
-                            <div>
-                                <s:select list="vendorShippingList" name="operationsBean.vendorList"
-                                          id="operationsBean_vendorList"
-                                          listKey="vendorId" listValue="vendorCode" cssClass="form-control"
-                                          emptyOption="true"
-                                        ></s:select>
+                        <div class="form-group">
+                            <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                            <div class="col-lg-4">
+                                <div>
+                                    <s:select list="vendorShippingList" name="operationsBean.vendorList"
+                                              id="operationsBean_vendorList"
+                                              listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                              emptyOption="true"
+                                            ></s:select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a href="#" style="width: 135px;">
+                                        <s:submit cssClass="btn btn-primary" name="submit" value="Search Schedule"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
+                                        Add Vendor
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a data-toggle="modal" data-target="#addSchedule" id="createSchedule" class="btn btn-info" style="width: 135px;">
+                                        Add Schedule
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-2" style="text-align: center;">
-                            <div>
-                                <a href="#" style="width: 135px;">
-                                    <s:submit cssClass="btn btn-primary" name="submit" value="Search Schedule"/>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-2" style="text-align: center;">
-                            <div>
-                                <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
-                                    Add Vendor
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-2" style="text-align: center;">
-                            <div>
-                                <a data-toggle="modal" data-target="#addSchedule" id="createSchedule" class="btn btn-info" style="width: 135px;">
-                                    Add Schedule
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </s:form>
-
-                <div class="form-group" style="padding-top: 50px;">
-
-                    <hr>
+                    </s:form>
+                    <div class="form-group" style="padding-top: 50px;">
+                        <hr>
                         <h4 style="text-align:center;">List of Schedules</h4>
-                    <hr>
-
+                        <hr>
+                    </div>
+                    <s:if test="hasActionMessages()">
+                        <div class="col-lg-12" id="successDiv">
+                            <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+                            </div>
+                        </div>
+                    </s:if>
+                    <display:table id="vesselSchedule" name="vesselSchedules"
+                                   requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                   style="margin-top: 15px;">
+                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="originPort" title="Origin" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Action">
+                            <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                <s:param name="vesselScheduleIdParam"
+                                         value="#attr.vesselSchedule.vesselScheduleId">
+                                </s:param>
+                                <s:param name="vendorIdParam"
+                                         value="#attr.vesselSchedule.vendorId">
+                                </s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
+                                 title="Update Status">
+                                Choose this vessel...
+                            </s:a>
+                        </display:column></td>
+                    </display:table>
                 </div>
+            </div>
+        </s:if>
+    </s:if>
 
-                <%--alert on every schedule load--%>
-                <s:if test="hasActionMessages()">
-                    <div class="col-lg-12" id="successDiv">
-                        <div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+    <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
+        <s:if test="order.modeOfService=='DOOR TO DOOR'">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-anchor"></i>
+                    <span class="panel-title">Sea Operation</span>
+                </div>
+                <div class="panel-body">
+                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
+                        <c:out value="${sessionScope.vendorIdPass}" />
+                        <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
+                        <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
+                        <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
+                        <s:hidden name="operationsBean.orderId" value="%{order.orderId}" />
+                        <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
+                        <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
+                        <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
+                        <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
+                        <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
+                        <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
+                        <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
+                        <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
+                        <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
+                        <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
+                        <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
+                        <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
+                        <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
+                        <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
+
+                        <div class="form-group">
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                            </s:if>
+                            <s:else>
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                            </s:else>
+                            <div class="col-lg-10">
+                                <div class="form-control">
+                                    <c:out value="${sessionScope.nameSizeParam}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                            <div class="col-lg-4">
+                                <div>
+                                    <s:select list="vendorShippingList" name="operationsBean.vendorList"
+                                              id="operationsBean_vendorList"
+                                              listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                              emptyOption="true"
+                                            ></s:select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a href="#" style="width: 135px;">
+                                        <s:submit cssClass="btn btn-primary" name="submit" value="Search Schedule"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
+                                        Add Vendor
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a data-toggle="modal" data-target="#addSchedule" id="createSchedule" class="btn btn-info" style="width: 135px;">
+                                        Add Schedule
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </s:form>
+                    <div class="form-group" style="padding-top: 50px;">
+                        <hr>
+                        <h4 style="text-align:center;">List of Schedules</h4>
+                        <hr>
+                    </div>
+                    <s:if test="hasActionMessages()">
+                        <div class="col-lg-12" id="successDiv">
+                            <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+                            </div>
+                        </div>
+                    </s:if>
+                    <display:table id="vesselSchedule" name="vesselSchedules"
+                                   requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                   style="margin-top: 15px;">
+                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="originPort" title="Origin" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Action">
+                            <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                <s:param name="vesselScheduleIdParam"
+                                         value="#attr.vesselSchedule.vesselScheduleId">
+                                </s:param>
+                                <s:param name="vendorIdParam"
+                                         value="#attr.vesselSchedule.vendorId">
+                                </s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
+                                 title="Update Status">
+                                Choose this vessel...
+                            </s:a>
+                        </display:column></td>
+                    </display:table>
+                </div>
+            </div>
+
+            <%--Origin--%>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-truck"></i>
+                    <span class="panel-title">Inland Operation : Origin</span>
+                </div>
+                <div class="panel-body form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
                         </div>
                     </div>
-                </s:if>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
+                        </div>
+                    </div>
 
-                <display:table id="vesselSchedule" name="vesselSchedules"
-                               requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                               class="table table-striped table-hover table-bordered text-center tablesorter"
-                               style="margin-top: 15px;">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
+            <%--Destination--%>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-truck"></i>
+                    <span class="panel-title">Inland Operation : Destination</span>
+                </div>
+                <div class="panel-body form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
+                        </div>
+                    </div>
+                </div>
 
-                    <td><display:column property="originPort" title="Origin" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-
-                    <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-
-                    <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-
-                    <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-
-                    <td><display:column title="Action">
-                        <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
-                            <s:param name="vesselScheduleIdParam"
-                                     value="#attr.vesselSchedule.vesselScheduleId">
-                            </s:param>
-                            <s:param name="vendorIdParam"
-                                     value="#attr.vesselSchedule.vendorId">
-                            </s:param>
+                <div class="panel-footer">
+                    <div class="pull-right">
+                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>
                         </s:url>
-                        <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
+                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                              title="Update Status">
-                            Choose this vessel...
+
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <button type="button" class="btn">
+                                    Back to Sea Freight Planning : Containers
+                                </button>
+                            </s:if>
+                            <s:else>
+                                <button type="button" class="btn">
+                                    Back to Sea Freight Planning : Items
+                                </button>
+                            </s:else>
+
                         </s:a>
-
-                    </display:column></td>
-                </display:table>
-
-            </div>
-
-        </div>
-
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <i class="fa fa-truck"></i>
-                <span class="panel-title">Inland Operation : Origin</span>
-            </div>
-            <div class="panel-body form-horizontal">
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
                     </div>
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <i class="fa fa-truck"></i>
-                <span class="panel-title">Inland Operation : Destination</span>
-            </div>
-            <div class="panel-body form-horizontal">
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
-                    </div>
-
                 </div>
             </div>
-
-            <div class="panel-footer">
-
-                <div class="pull-right">
-                    <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                        <s:param name="orderIdParam"
-                                 value="#attr.order.orderId"></s:param>
-                        <s:param name="orderNoParam"
-                                 value="#attr.order.orderNo"></s:param>
-                    </s:url>
-                    <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                         title="Update Status">
-
-                        <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                            <button type="button" class="btn">
-                                Back to Sea Freight Planning : Containers
-                            </button>
-                        </s:if>
-                        <s:else>
-                            <button type="button" class="btn">
-                                Back to Sea Freight Planning : Items
-                            </button>
-                        </s:else>
-
-                    </s:a>
+        </s:if>
+        <s:elseif test="order.modeOfService=='DOOR TO PIER'">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-anchor"></i>
+                    <span class="panel-title">Sea Operation</span>
                 </div>
+                <div class="panel-body">
+                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
+                        <c:out value="${sessionScope.vendorIdPass}" />
+                        <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
+                        <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
+                        <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
+                        <s:hidden name="operationsBean.orderId" value="%{order.orderId}" />
+                        <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
+                        <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
+                        <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
+                        <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
+                        <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
+                        <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
+                        <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
+                        <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
+                        <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
+                        <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
+                        <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
+                        <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
+                        <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
+                        <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
 
+                        <div class="form-group">
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                            </s:if>
+                            <s:else>
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                            </s:else>
+                            <div class="col-lg-10">
+                                <div class="form-control">
+                                    <c:out value="${sessionScope.nameSizeParam}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                            <div class="col-lg-4">
+                                <div>
+                                    <s:select list="vendorShippingList" name="operationsBean.vendorList"
+                                              id="operationsBean_vendorList"
+                                              listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                              emptyOption="true"
+                                            ></s:select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a href="#" style="width: 135px;">
+                                        <s:submit cssClass="btn btn-primary" name="submit" value="Search Schedule"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
+                                        Add Vendor
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a data-toggle="modal" data-target="#addSchedule" id="createSchedule" class="btn btn-info" style="width: 135px;">
+                                        Add Schedule
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </s:form>
+                    <div class="form-group" style="padding-top: 50px;">
+                        <hr>
+                        <h4 style="text-align:center;">List of Schedules</h4>
+                        <hr>
+                    </div>
+                    <s:if test="hasActionMessages()">
+                        <div class="col-lg-12" id="successDiv">
+                            <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+                            </div>
+                        </div>
+                    </s:if>
+                    <display:table id="vesselSchedule" name="vesselSchedules"
+                                   requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                   style="margin-top: 15px;">
+                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="originPort" title="Origin" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Action">
+                            <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                <s:param name="vesselScheduleIdParam"
+                                         value="#attr.vesselSchedule.vesselScheduleId">
+                                </s:param>
+                                <s:param name="vendorIdParam"
+                                         value="#attr.vesselSchedule.vendorId">
+                                </s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
+                                 title="Update Status">
+                                Choose this vessel...
+                            </s:a>
+                        </display:column></td>
+                    </display:table>
+                </div>
             </div>
 
-        </div>
+            <%--Origin--%>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-truck"></i>
+                    <span class="panel-title">Inland Operation : Origin</span>
+                </div>
+                <div class="panel-body form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </s:elseif>
+        <s:elseif test="order.modeOfService=='PIER TO DOOR'">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-anchor"></i>
+                    <span class="panel-title">Sea Operation</span>
+                </div>
+                <div class="panel-body">
+                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
+                        <c:out value="${sessionScope.vendorIdPass}" />
+                        <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
+                        <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
+                        <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
+                        <s:hidden name="operationsBean.orderId" value="%{order.orderId}" />
+                        <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
+                        <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
+                        <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
+                        <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
+                        <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
+                        <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
+                        <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
+                        <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
+                        <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
+                        <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
+                        <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
+                        <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
+                        <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
+                        <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
+                        <div class="form-group">
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                            </s:if>
+                            <s:else>
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                            </s:else>
+                            <div class="col-lg-10">
+                                <div class="form-control">
+                                    <c:out value="${sessionScope.nameSizeParam}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                            <div class="col-lg-4">
+                                <div>
+                                    <s:select list="vendorShippingList" name="operationsBean.vendorList"
+                                              id="operationsBean_vendorList"
+                                              listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                              emptyOption="true"
+                                            ></s:select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a href="#" style="width: 135px;">
+                                        <s:submit cssClass="btn btn-primary" name="submit" value="Search Schedule"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
+                                        Add Vendor
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a data-toggle="modal" data-target="#addSchedule" id="createSchedule" class="btn btn-info" style="width: 135px;">
+                                        Add Schedule
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </s:form>
+                    <div class="form-group" style="padding-top: 50px;">
+                        <hr>
+                        <h4 style="text-align:center;">List of Schedules</h4>
+                        <hr>
+                    </div>
+                    <s:if test="hasActionMessages()">
+                        <div class="col-lg-12" id="successDiv">
+                            <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+                            </div>
+                        </div>
+                    </s:if>
+                    <display:table id="vesselSchedule" name="vesselSchedules"
+                                   requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                   style="margin-top: 15px;">
+                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="originPort" title="Origin" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Action">
+                            <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                <s:param name="vesselScheduleIdParam"
+                                         value="#attr.vesselSchedule.vesselScheduleId">
+                                </s:param>
+                                <s:param name="vendorIdParam"
+                                         value="#attr.vesselSchedule.vendorId">
+                                </s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
+                                 title="Update Status">
+                                Choose this vessel...
+                            </s:a>
+                        </display:column></td>
+                    </display:table>
+                </div>
+            </div>
+
+            <%--Destination--%>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-truck"></i>
+                    <span class="panel-title">Inland Operation : Destination</span>
+                </div>
+                <div class="panel-body form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <div class="pull-right">
+                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                             title="Update Status">
+
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <button type="button" class="btn">
+                                    Back to Sea Freight Planning : Containers
+                                </button>
+                            </s:if>
+                            <s:else>
+                                <button type="button" class="btn">
+                                    Back to Sea Freight Planning : Items
+                                </button>
+                            </s:else>
+
+                        </s:a>
+                    </div>
+                </div>
+            </div>
+        </s:elseif>
+    </s:if>
+
+
+
+
+
     </div>
 </div>
 

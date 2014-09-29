@@ -42,6 +42,9 @@ public class OperationsBean {
     private String truckOrigin;
     private String truckDestination;
 
+    private String modeOfService;
+    private String freightType;
+
     private String vesselScheduleId;
 
     public String getVendorOrigin() {
@@ -306,5 +309,21 @@ public class OperationsBean {
 
     public void setVesselScheduleId(String vesselScheduleId) {
         this.vesselScheduleId = vesselScheduleId;
+    }
+
+    public String getModeOfService() {
+        return modeOfService;
+    }
+
+    public void setModeOfService(String modeOfService) {
+        this.modeOfService = modeOfService;
+    }
+
+    public String getFreightType() {
+        return freightType;
+    }
+
+    public void setFreightType(String freightType) {
+        this.freightType = freightType;
     }
 }

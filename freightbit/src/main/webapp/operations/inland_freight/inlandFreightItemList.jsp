@@ -104,32 +104,47 @@
                                                 style="text-align: center;"> </display:column></td>
 
                             <td><display:column title="Action">
+                                <s:if test="#attr.orderItem.status=='ON GOING'">
+                                    <s:url var="viewInfoUrl" action="viewInlandFreightInfo">
+                                        <s:param name="orderItemIdParam"
+                                                 value="#attr.orderItem.orderItemId">
+                                        </s:param>
+                                        <s:param name="orderNoParam"
+                                                 value="orderNoParam">
+                                        </s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
+                                         title="Show Information">
+                                        <i class="fa fa-info-circle"></i>
+                                    </s:a>
+                                </s:if>
+                                <s:else>
+                                    <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
+                                        <s:param name="orderItemIdParam"
+                                                 value="#attr.orderItem.orderItemId">
+                                        </s:param>
+                                        <s:param name="orderNoParam"
+                                                 value="orderNoParam">
+                                        </s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
+                                         title="Update Status">
+                                        <i class="fa fa-edit"></i>
+                                    </s:a>
 
-                                <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
-                                    <s:param name="orderItemIdParam"
-                                             value="#attr.orderItem.orderItemId">
-                                            </s:param>
-                                    <s:param name="orderNoParam"
-                                             value="orderNoParam">
-                                             </s:param>
-                                </s:url>
-                                <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
-                                     title="Update Status">
-                                    <i class="fa fa-edit"></i>
-                                </s:a>
-
-                                <s:url var="viewInfoUrl" action="viewInlandFreightInfo">
-                                    <s:param name="orderItemIdParam"
-                                             value="#attr.orderItem.orderItemId">
-                                    </s:param>
-                                    <s:param name="orderNoParam"
-                                             value="orderNoParam">
-                                    </s:param>
-                                </s:url>
-                                <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
-                                     title="Show Information">
-                                    <i class="fa fa-info-circle"></i>
-                                </s:a>
+                                    <s:url var="viewInfoUrl" action="viewInlandFreightInfo">
+                                        <s:param name="orderItemIdParam"
+                                                 value="#attr.orderItem.orderItemId">
+                                        </s:param>
+                                        <s:param name="orderNoParam"
+                                                 value="orderNoParam">
+                                        </s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
+                                         title="Show Information">
+                                        <i class="fa fa-info-circle"></i>
+                                    </s:a>
+                                </s:else>
                             </display:column></td>
                         </display:table>
                     </div>
@@ -167,6 +182,7 @@
                         tbl.rows[i].cells[j].style.backgroundColor = "#dff0d8";
                     }
                 }
+
             }
         }
 
