@@ -1,19 +1,5 @@
 package com.sr.apps.freightbit.order.action;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-//import com.sr.biz.freightbit.common.entity.Notification;
-//import com.sr.biz.freightbit.common.service.NotificationService;
-import com.sr.biz.freightbit.order.entity.Counter;
-import org.apache.commons.lang3.StringUtils;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
@@ -42,9 +28,18 @@ import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
+import com.sr.biz.freightbit.order.entity.Counter;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+//import com.sr.biz.freightbit.common.entity.Notification;
+//import com.sr.biz.freightbit.common.service.NotificationService;
 
 public class OrderAction extends ActionSupport implements Preparable {
 
@@ -418,7 +413,9 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setReferenceTable("ORDERS");
         documentEntity.setOrderNumber(orderEntity.getOrderNumber());
         documentEntity.setCreatedDate(new Date());
+        documentEntity.setDocumentStatus("FOR PRINTING");
         documentsService.addDocuments(documentEntity);
+        // To get generated Order Id
         // To get generated Order Id
         orderIdPass = orderEntity.getOrderId();
 

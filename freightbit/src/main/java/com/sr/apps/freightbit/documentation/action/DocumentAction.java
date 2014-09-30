@@ -109,6 +109,22 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String generateBookingRequestReport() {
+        Integer orderId = 26;
+        Map<String,Integer> whereClauseParameters = new HashMap();
+        whereClauseParameters.put("orderId",orderId);
+
+        /*try{
+            // Create an output filename
+            final File outputFile = new File("Booking Request Form.pdf");
+            // Generate the report
+            MasterReport report = re
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }catch(Exception re){
+            re.printStackTrace();
+        }*/
+
     	return "download";
     }
     
@@ -171,6 +187,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         formBean.setDocumentName(entity.getDocumentName());
         formBean.setOrderNumber(entity.getOrderNumber());
+        formBean.setDocumentStatus(entity.getDocumentStatus());
 
         return formBean;
     }
