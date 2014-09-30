@@ -224,9 +224,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
         if (itemBean.getWeight() == null) {
             addFieldError("item.basePrice", getText("err.basePrice.required"));
         }
-        if (StringUtils.isBlank(itemBean.getDescription())) {
-            addFieldError("item.description", getText("err.description.required"));
-        }
+//        if (StringUtils.isBlank(itemBean.getDescription())) {
+//            addFieldError("item.description", getText("err.description.required"));
+//        }
     }
 
     public String deleteItem() {
