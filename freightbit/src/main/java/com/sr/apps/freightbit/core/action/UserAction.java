@@ -246,15 +246,24 @@ public class UserAction extends ActionSupport implements Preparable {
         }
 
         //add newly selected permissions
-    	String[] permissionIdArray = permissionsSelected.split("\\s*[,]");
-        for (String permissionId : permissionIdArray) {
+//        String[] permissionId = permissionsSelected.split("\\s*[,]");
+
+        if (permissionsSelected == null) {
+            System.out.print("Permission ID is NULL");
+        } else {
+            String permissionId = permissionsSelected.trim();
+//        for (String permissionId : permissionIdArray) {
             permissionUserGroup = new PermissionUserGroup();
             permissionUserGroup.setClientId(getClientId());
             permissionUserGroup.setGroupId(getClientId());
             permissionUserGroup.setUserId(userId);
-            permissionUserGroup.setPermissionId(Integer.parseInt(permissionId.trim()));
+            permissionUserGroup.setPermissionId(Integer.parseInt(permissionId));
             permissionService.addPermissionToUser(permissionUserGroup);
+//        }
         }
+
+
+
     }
 
  

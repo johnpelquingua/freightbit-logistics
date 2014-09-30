@@ -48,17 +48,15 @@
 </div>
 <!-- /.row -->
 
-
-<s:form action="editGroup" method="post" cssClass="form-horizontal" theme="bootstrap">
-
-    <s:if test="hasActionMessages()">
-        <div class="col-lg-7">
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
-            </div>
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
-    </s:if>
+    </div>
+</s:if>
+
 
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
@@ -69,7 +67,7 @@
                 </div>
 
                 <div class="panel-body">
-
+                    <s:form action="editGroup" method="post" cssClass="form-horizontal" theme="bootstrap">
                     <div class="form-group">
                         <label for="code" class="col-lg-2 control-label" style="width:20%;">Code:</label>
 
