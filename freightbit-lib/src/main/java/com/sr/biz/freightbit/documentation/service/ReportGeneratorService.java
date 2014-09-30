@@ -51,8 +51,7 @@ public abstract class ReportGeneratorService
    */
   public ReportGeneratorService()
   {
-    // Initialize the reporting engine
-    ClassicEngineBoot.getInstance().start();
+
   }
 
   /**
@@ -89,6 +88,9 @@ public abstract class ReportGeneratorService
    */
   public MasterReport generateReport(Map<String, String> whereClauseParameters)
   {
+    // Initialize the reporting engine
+    ClassicEngineBoot.getInstance().start();
+	    
 	  final MasterReport report = getReportDefinition();
 	  final DataFactory dataFactory = getDataFactory(whereClauseParameters);
 
