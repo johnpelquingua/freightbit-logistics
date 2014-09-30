@@ -115,15 +115,15 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String generateReleaseOrderReport() {
         	String orderId = "10";
         	String orderItemId = "4";
-        	Map<String, String> whereClauseParameters = new HashMap();
-        	whereClauseParameters.put("orderId", orderId);
-        	whereClauseParameters.put("orderItemId", orderItemId);
+        	Map<String, String> params = new HashMap();
+        	params.put("orderId", orderId);
+        	params.put("orderItemId", orderItemId);
         	
         	try {
     	       // Create an output filename
     	        final File outputFile = new File("Release Order.pdf");
     	        // Generate the report
-        		MasterReport report = releaseOrderReportService.generateReport(whereClauseParameters);
+        		MasterReport report = releaseOrderReportService.generateReport(params);
         		
         		HttpServletResponse response = ServletActionContext.getResponse();
         		BufferedOutputStream responseOut = new BufferedOutputStream(response.getOutputStream());

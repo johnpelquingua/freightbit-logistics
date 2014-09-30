@@ -78,7 +78,7 @@ public abstract class ReportGeneratorService
    * @return the set of report parameters to be used by the report generation process, or <code>null</code> if no
    *         parameters are required.
    */
-  public abstract Map<String, Object> getReportParameters();
+  public abstract Map<String, Object> getReportParameters(Map<String, String> params);
 
   /**
    * Generates the report in the specified <code>outputType</code> and writes it into the specified
@@ -86,13 +86,13 @@ public abstract class ReportGeneratorService
    *
    * @param whereClauseParamaeters filter to the sql query
    */
-  public MasterReport generateReport(Map<String, String> whereClauseParameters)
+  public MasterReport generateReport(Map<String, String> params)
   {
     // Initialize the reporting engine
     ClassicEngineBoot.getInstance().start();
 	    
 	  final MasterReport report = getReportDefinition();
-	  final DataFactory dataFactory = getDataFactory(whereClauseParameters);
+	  final DataFactory dataFactory = getDataFactory(params);
 
 	    // Set the data factory for the report
 	  if (dataFactory != null)
@@ -101,7 +101,7 @@ public abstract class ReportGeneratorService
 	  }
 
 	  // Add any parameters to the report
-	  final Map<String, Object> reportParameters = getReportParameters();
+	  final Map<String, Object> reportParameters = getReportParameters(params);
 	  if (null != reportParameters)
 	  {
 	     for (String key : reportParameters.keySet())
