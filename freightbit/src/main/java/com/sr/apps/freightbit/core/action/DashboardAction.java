@@ -2,10 +2,12 @@ package com.sr.apps.freightbit.core.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.sr.biz.freightbit.core.service.UserService;
+import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
 import javax.persistence.criteria.Order;
+import java.math.BigInteger;
 import java.util.Map;
 
 /**
@@ -19,15 +21,26 @@ public class DashboardAction extends ActionSupport implements SessionAware {
     private Map<String, Object> sessionAttributes = null;
 
     private UserService userService;
+    private OrderService orderService;
+    BigInteger test;
 
 
 
+    public OrderService getOrderService() {
+        return orderService;
+    }
+
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
     public String home() {
+        test = orderService.CountAll();
+        System.out.println("AAaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAs;ohfoisdhgfjkshgdfkjsgdjhfgskdfgjkhdsgkfA"+test);
         return SUCCESS;
     }
 
@@ -52,4 +65,11 @@ public class DashboardAction extends ActionSupport implements SessionAware {
         this.sessionAttributes = sessionAttributes;
     }
 
+    public BigInteger getTest() {
+        return test;
+    }
+
+    public void setTest(BigInteger test) {
+        this.test = test;
+    }
 }

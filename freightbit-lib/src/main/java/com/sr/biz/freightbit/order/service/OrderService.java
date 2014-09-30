@@ -7,9 +7,11 @@ import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
+import com.sr.biz.freightbit.order.entity.Counter;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -92,6 +94,10 @@ public interface OrderService {
     public List<OrderItems> findAllItemByOrderId(Integer orderId);
 
     public String findNextBookingNo(Integer clientId, String companyCode);
+
+    public void addCounterType(Counter counter);
+
+    public BigInteger CountAll();
 
 }
 

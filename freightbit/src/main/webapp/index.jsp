@@ -24,7 +24,7 @@
             </div>
             <div class="col-xs-9 text-right">
 
-                <div class="huge-dashboard">0</div>
+                <div class="huge-dashboard"><s:property value="%{test}"></s:property></div>
                 <div>New Booking!</div>
             </div>
         </div>

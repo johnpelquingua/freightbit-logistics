@@ -134,6 +134,7 @@
     
     <bean id="notificationService" class="com.sr.biz.freightbit.common.service.impl.NotificationServiceImpl">
         <property name="userDao" ref="userDao"/>
+        <property name="notificationDao" ref="notificationDao"/>
     </bean>
     <!-- Services End -->
     <!-- DAOs -->
@@ -227,6 +228,10 @@
     </bean>
 
     <bean id="addressDao" class="com.sr.biz.freightbit.common.dao.impl.AddressDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="notificationDao" class="com.sr.biz.freightbit.common.dao.impl.NotificationDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 

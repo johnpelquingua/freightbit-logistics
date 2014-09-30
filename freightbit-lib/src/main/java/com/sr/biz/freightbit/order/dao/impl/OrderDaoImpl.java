@@ -1,6 +1,9 @@
 package com.sr.biz.freightbit.order.dao.impl;
 
+import java.math.BigInteger;
 import java.util.List;
+
+import com.sr.biz.freightbit.order.entity.Counter;
 import org.hibernate.criterion.Restrictions;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -176,4 +179,29 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
      }
      return 0;
     }
+
+
+    @Override
+    public void addCounterType(Counter counter) {
+        Log.debug("Add type");
+        try{
+            Session session = getSessionFactory().getCurrentSession();
+            session.save(counter);
+            Log.debug("Type added successfully");
+        }catch(RuntimeException re){
+            Log.error("add type failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+    public BigInteger CountAll(){
+        String sql = "SELECT count(addedType) from freightbit.countertable where addedType = 'BOOKING' ";
+        Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
+        BigInteger temp = (BigInteger)query.uniqueResult();
+        System.out.println("ahaha "+temp);
+        return temp;
+
+    }
+
 }

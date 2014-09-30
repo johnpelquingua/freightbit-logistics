@@ -1,7 +1,9 @@
 package com.sr.biz.freightbit.order.dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
+import com.sr.biz.freightbit.order.entity.Counter;
 import com.sr.biz.freightbit.order.entity.Orders;
 /**
  * Created by JMXPSX on 5/27/14.
@@ -27,4 +29,8 @@ public interface OrderDao {
     public Integer findNextBookingNo(Integer clientId, String companyCode);
 
     List <Orders> findDuplicateOrderByOrderCode(String orderNumber, Integer orderId);
+
+    public void addCounterType(Counter counter);
+
+    public BigInteger CountAll();
 }

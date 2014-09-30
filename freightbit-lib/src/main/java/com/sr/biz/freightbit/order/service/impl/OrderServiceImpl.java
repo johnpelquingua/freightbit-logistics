@@ -14,6 +14,7 @@ import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
 import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.dao.OrderItemsDao;
+import com.sr.biz.freightbit.order.entity.Counter;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
@@ -21,6 +22,7 @@ import com.sr.biz.freightbit.order.entity.OrderItems;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class OrderServiceImpl implements OrderService {
     private ContactsDao contactsDao;
     private AddressDao addressDao;
     private ItemsDao itemsDao;
+
 
     public void setOrderItemsDao(OrderItemsDao orderItemsDao) {
         this.orderItemsDao = orderItemsDao;
@@ -64,8 +67,8 @@ public class OrderServiceImpl implements OrderService {
     // Orders
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addOrder(Orders orders) {
+     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+     public void addOrder(Orders orders) {
 /*        if (orderDao.findOrdersByOrderNumber(orders.getOrderNumber())!=null)
             throw new OrderAlreadyExistsException(orders.getOrderNumber());
         else*/
@@ -360,4 +363,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
 // End Items
+
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addCounterType(Counter counter) {
+        orderDao.addCounterType(counter);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public BigInteger CountAll(){
+        return orderDao.CountAll();
+
+    }
+
 }

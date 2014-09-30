@@ -1,12 +1,17 @@
 package com.sr.biz.freightbit.common.service.impl;
 
+import com.sr.biz.freightbit.common.dao.impl.NotificationDao;
+import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.core.dao.UserDao;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 //import javax.mail.MessagingException;
 
 
 public class NotificationServiceImpl implements NotificationService {
 	private UserDao userDao;
+    private NotificationDao notificationDao;
 	
 	public UserDao getUserDao() {
 		return userDao;
@@ -16,7 +21,15 @@ public class NotificationServiceImpl implements NotificationService {
 		this.userDao = userDao;
 	}
 
-	@Override
+    public NotificationDao getNotificationDao() {
+        return notificationDao;
+    }
+
+    public void setNotificationDao(NotificationDao notificationDao) {
+        this.notificationDao = notificationDao;
+    }
+
+    @Override
 	public void sendEmailNotification(String username, String emailContent, String emailSubject) {
 /*		User user = userDao.findUserByUserName(username); 
 		String recipientEmail = user.getEmail();
@@ -56,4 +69,10 @@ public class NotificationServiceImpl implements NotificationService {
 		} */
 		
 	}
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addNotification(Notification notification){
+        notificationDao.addNotification(notification);
+    }
 }
