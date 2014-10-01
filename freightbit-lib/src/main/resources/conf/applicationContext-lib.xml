@@ -128,6 +128,8 @@
     
     <bean id="releaseOrderReportService" class="com.sr.biz.freightbit.documentation.service.impl.ReleaseOrderReportServiceImpl"/>
     
+    <bean id="bookingRequestReportService" class="com.sr.biz.freightbit.documentation.service.impl.BookingRequestReportServiceImpl"/>
+    
     <bean id="calendarService" class="com.sr.biz.freightbit.calendar.service.impl.CalendarServiceImpl">
         <property name="orderDao" ref="orderDao"/>
     </bean>

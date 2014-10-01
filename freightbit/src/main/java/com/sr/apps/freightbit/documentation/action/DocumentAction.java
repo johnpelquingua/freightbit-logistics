@@ -16,6 +16,7 @@ import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
+import com.sr.biz.freightbit.documentation.service.BookingRequestReportService;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.documentation.service.ReleaseOrderReportService;
 import com.sr.biz.freightbit.order.entity.Orders;
@@ -46,6 +47,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     private DocumentsService documentsService;
     private ReleaseOrderReportService releaseOrderReportService;
+    private BookingRequestReportService bookingRequestReportService;
     private CustomerService customerService;
 
     private InputStream inputStream;
@@ -111,23 +113,36 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String generateBookingRequestReport() {
-        Integer orderId = 26;
-        Map<String,Integer> whereClauseParameters = new HashMap();
-        whereClauseParameters.put("orderId",orderId);
-
-        /*try{
-            // Create an output filename
-            final File outputFile = new File("Booking Request Form.pdf");
-            // Generate the report
-            MasterReport report = re
-
-        }catch(IOException e){
-            e.printStackTrace();
-        }catch(Exception re){
-            re.printStackTrace();
-        }*/
-
-    	return "download";
+    	String orderId = "10";
+    	String orderItemId = "4";
+    	Map<String, String> params = new HashMap();
+    	params.put("orderId", orderId);
+    	params.put("orderItemId", orderItemId);
+    	
+    	ByteArrayOutputStream byteArray = null;
+    	BufferedOutputStream responseOut = null;
+    	
+    	try {
+	       // Create an output filename
+	        final File outputFile = new File("Booking Request Form.pdf");
+	        // Generate the report
+    		MasterReport report = bookingRequestReportService.generateReport(params);
+    		
+    		HttpServletResponse response = ServletActionContext.getResponse();
+    		responseOut = new BufferedOutputStream(response.getOutputStream());
+    		byteArray = new ByteArrayOutputStream();
+     
+    		boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+    		byteArray.writeTo(responseOut);
+    		
+    		byteArray.close();
+    		responseOut.close();
+	        
+	} catch (Exception re) {
+		re.printStackTrace();
+	}
+		
+	return null;
     }
     
     public String generateReleaseOrderReport() throws IOException {
@@ -152,13 +167,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
          
         		boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
         		byteArray.writeTo(responseOut);
+        		
+        		byteArray.close();
+        		responseOut.close();
     	        
     	} catch (Exception re) {
     		re.printStackTrace();
-    	} finally {
-    		byteArray.close();
-    		responseOut.close();
     	}
+    		
     	return null;
     }
 
@@ -272,4 +288,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
     }
+
+	public void setBookingRequestReportService(
+			BookingRequestReportService bookingRequestReportService) {
+		this.bookingRequestReportService = bookingRequestReportService;
+	}
+    
+    
 }

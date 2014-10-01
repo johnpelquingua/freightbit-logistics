@@ -39,9 +39,9 @@ public class BookingRequestReportServiceImpl extends ReportGeneratorService  imp
   {
 	    try
 	    {
-	      // Using the classloader, get the URL to the reportDefinition file
-	      final ClassLoader classloader = this.getClass().getClassLoader();
-	      final URL reportDefinitionURL = classloader.getResource("/reports/Booking_Request_Form.prpt");
+	      // Get the URL to the reportDefinition file
+	      final Class classVar = this.getClass();
+	      final URL reportDefinitionURL = classVar.getResource("/reports/Booking_Request_Form.prpt");
 	
 	      // Parse the report file
 	      final ResourceManager resourceManager = new ResourceManager();
