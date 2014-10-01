@@ -31,6 +31,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
     private List<Parameters> orderStatusList = new ArrayList<Parameters>();
+    private List<Parameters> updateStatusList = new ArrayList<Parameters>();
 
     private CommonUtils commonUtils = new CommonUtils();
 
@@ -47,6 +48,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     @Override
     public void prepare() {
         orderStatusList = parameterService.getParameterMap(ParameterConstants.ORDER_STATUS);
+        updateStatusList = parameterService.getParameterMap(ParameterConstants.UPDATE_STATUS, ParameterConstants.UPDATE_STATUS);
     }
 
     public String viewStatusList() {
@@ -236,5 +238,13 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public ParameterService getParameterService() {
         return parameterService;
+    }
+
+    public List<Parameters> getUpdateStatusList() {
+        return updateStatusList;
+    }
+
+    public void setUpdateStatusList(List<Parameters> updateStatusList) {
+        this.updateStatusList = updateStatusList;
     }
 }

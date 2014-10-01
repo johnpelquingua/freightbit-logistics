@@ -60,15 +60,6 @@
                 </div>
             </div>
 
-            <div class="panel-footer">
-                <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="booking2.html">2</a></li>
-                    <li><a href="booking2.html">&raquo;</a></li>
-                </ul>
-            </div>
-
         </div>
     </div>
 </div>

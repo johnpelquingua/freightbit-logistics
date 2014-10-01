@@ -63,6 +63,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Parameters> vendorTypeList = new ArrayList<Parameters>();
     private List<Parameters> vendorClassList = new ArrayList<Parameters>();
     private List<Parameters> statusList = new ArrayList<Parameters>();
+    private List<Parameters> updateStatusList = new ArrayList<Parameters>();
     private List<Driver> listDrivers = new ArrayList<Driver>();
     private List<VendorBean> vendors = new ArrayList<VendorBean>();
     private List<Parameters> portsList = new ArrayList<Parameters>();
@@ -95,6 +96,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         vendorTypeList = parameterService.getParameterMap(ParameterConstants.VENDOR_TYPE);
         vendorClassList = parameterService.getParameterMap(ParameterConstants.VENDOR_CLASS);
         statusList = parameterService.getParameterMap(ParameterConstants.STATUS);
+//        updateStatusList = parameterService.getParameterMap(ParameterConstants.UPDATE_STATUS);
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
     }
 
@@ -230,8 +232,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String editOrderItemsDestination() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
         try {
             OrderItems entity = transformOrderItemToEntityBeanDestination(operationsBean);
+
+//            orderService.findOrdersById(Integer.parseInt(sessionAttributes.get("orderId").toString()));
+
+
             operationsService.updateOrderItem(entity);
         } catch (Exception e) {
             log.error("Update Orderitem failed", e);
@@ -240,6 +247,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
+
+//    public Orders transformOrderToEntityBean (OperationsBean formBean) {
+//        Orders entity = new Orders();
+//
+//
+//    }
 
     public String addVesselSchedule(){
         /*validateOnSubmit(vesselSchedule);
@@ -1070,5 +1083,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setVendorIdParam(Integer vendorIdParam) {
         this.vendorIdParam = vendorIdParam;
+    }
+
+    public List<Parameters> getUpdateStatusList() {
+        return updateStatusList;
+    }
+
+    public void setUpdateStatusList(List<Parameters> updateStatusList) {
+        this.updateStatusList = updateStatusList;
     }
 }

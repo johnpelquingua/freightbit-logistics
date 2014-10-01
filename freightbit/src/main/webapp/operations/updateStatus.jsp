@@ -65,7 +65,7 @@
                         <label for="orderItem.status" class="col-sm-2 control-label"> Status</label>
 
                         <div class="col-sm-10">
-                            <s:select list="orderStatusList" listValue="value" listKey="key"
+                            <s:select list="updateStatusList" listValue="value" listKey="key"
                                       name="orderItem.status" id="orderItem.status"
                                       value="orderItem.status"
                                       cssClass="form-control" emptyOption="true"></s:select>

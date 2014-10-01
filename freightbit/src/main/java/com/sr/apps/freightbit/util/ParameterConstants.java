@@ -6,6 +6,8 @@ public class ParameterConstants {
 
     public final static String STATUS = "STATUS";
 
+    public final static String UPDATE_STATUS = "UPDATE_STATUS";
+
     public final static String USER = "USER";
     
     public final static String CUSTOMERS = "CUSTOMERS";
