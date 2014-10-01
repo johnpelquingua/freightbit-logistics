@@ -105,7 +105,7 @@
 
                             <td><display:column title="Action">
                                 <s:if test="#attr.orderItem.status=='ON GOING'">
-                                    <s:url var="viewInfoUrl" action="viewInlandFreightInfo">
+                                    <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                         <s:param name="orderItemIdParam"
                                                  value="#attr.orderItem.orderItemId">
                                         </s:param>
@@ -123,16 +123,16 @@
                                         <s:param name="orderItemIdParam"
                                                  value="#attr.orderItem.orderItemId">
                                         </s:param>
-                                        <s:param name="orderNoParam"
-                                                 value="orderNoParam">
+                                        <s:param name="nameSizeParam"
+                                                 value="#attr.orderItem.nameSizeParam">
                                         </s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
-                                         title="Update Status">
+                                         title="Update Status" >
                                         <i class="fa fa-edit"></i>
                                     </s:a>
 
-                                    <s:url var="viewInfoUrl" action="viewInlandFreightInfo">
+                                    <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                         <s:param name="orderItemIdParam"
                                                  value="#attr.orderItem.orderItemId">
                                         </s:param>
@@ -145,6 +145,26 @@
                                         <i class="fa fa-info-circle"></i>
                                     </s:a>
                                 </s:else>
+                            </display:column></td>
+
+                            <td><display:column title="Notification">
+
+                                <s:if test="#attr.orderItem.status=='PLANNING 1'">
+                                        <span>
+                                            <p>No Sea Freight Vendor set yet</p>
+                                        </span>
+                                </s:if>
+                                <s:if test="#attr.orderItem.status=='PLANNING 2'">
+                                        <span>
+                                            <p>Planning will be redirected to Inland Freight Origin</p>
+                                        </span>
+                                </s:if>
+                                <s:if test="#attr.orderItem.status=='PLANNING 3'">
+                                        <span>
+                                            <p>Planning will be redirected to Inland Freight Destination</p>
+                                        </span>
+                                </s:if>
+
                             </display:column></td>
                         </display:table>
                     </div>
