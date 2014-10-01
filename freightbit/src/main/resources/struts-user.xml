@@ -25,6 +25,10 @@
             <result name="success" type="tiles">core.userListView.tiles</result>
         </action>
 
+        <action name="LoadviewUsers" class="com.sr.apps.freightbit.core.action.UserAction" method="LoadviewUsers">
+            <result name="success" type="tiles">core.userListView.tiles</result>
+        </action>
+
         <action name="loadAddUserPage" class="com.sr.apps.freightbit.core.action.UserAction" method="loadAddUserPage">
             <result name="success" type="tiles">core.userAdd.tiles</result>
         </action>
@@ -50,7 +54,7 @@
         </action>
 
         <action name="deleteUser" class="com.sr.apps.freightbit.core.action.UserAction" method="deleteUser">
-            <result name="success" type="redirect">viewUsers</result>
+            <result name="success" type="redirect">LoadviewUsers</result>
         </action>
         
         <action name="loadChangePassword" class="com.sr.apps.freightbit.core.action.UserAction" method="loadChangePassword">

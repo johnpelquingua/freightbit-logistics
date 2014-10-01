@@ -83,6 +83,22 @@ public class UserAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String LoadviewUsers() {
+        String column = getColumnFilter();
+        List<User> userEntityList = new ArrayList<User>();
+        if (StringUtils.isNotBlank(column)) {
+            userEntityList = userService.findUsersByCriteria(column, user.getUserKeyword(), getClientId());
+        } else {
+            userEntityList = userService.findAllUsers(getClientId());
+        }
+        for (User userElem : userEntityList) {
+            users.add(transformToFormBean(userElem));
+        }
+        clearErrorsAndMessages();
+        addActionMessage("Success! A User has been Deleted.");
+        return SUCCESS;
+    }
+//used to view list with deletion of new entries in Notification Database
     public String viewUsersNew() {
         String column = getColumnFilter();
         List<User> userEntityList = new ArrayList<User>();
@@ -97,6 +113,8 @@ public class UserAction extends ActionSupport implements Preparable {
         }
         return SUCCESS;
     }
+
+
 
     private String getColumnFilter() {
         String column = "";
@@ -189,6 +207,7 @@ public class UserAction extends ActionSupport implements Preparable {
         	addActionMessage("Current logged-in user cannot be deleted.");
         else 
         	userService.deleteUser(userEntity);
+
         return SUCCESS;
     }
 

@@ -226,6 +226,24 @@ public class OrderAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String viewOrdersInbooking() {
+
+        String column = getColumnFilter();
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+        notificationService.clearNewBooking();
+        if (StringUtils.isNotBlank(column)) {
+            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+        } else {
+            orderEntityList = orderService.findAllOrders();
+        }
+
+        for (Orders orderElem : orderEntityList) {
+            orders.add(transformToOrderFormBean(orderElem));
+        }
+
+        return SUCCESS;
+    }
+
     public String getColumnFilter() {
 
         String column = "";
@@ -396,22 +414,22 @@ public class OrderAction extends ActionSupport implements Preparable {
 
 
         //        fill the addedtype column in counterTable
-        Counter counterEntity = new Counter();
-        counterEntity.setAddedType("BOOKING");
-        orderService.addCounterType(counterEntity);
+//        Counter counterEntity = new Counter();
+//        counterEntity.setAddedType("BOOKING");
+//        orderService.addCounterType(counterEntity);
 
 
 
 
-//        Notification notificationEntity = new Notification();
-//        notificationEntity.setDescription("BOOKING");
-//        notificationEntity.setNotificationId(1);
-//        notificationEntity.setNotificationType("Email");
-//        notificationEntity.setReferenceId(1);
-//        notificationEntity.setReferenceTable("Order");
-//        notificationEntity.setUserId(1);
-//
-//        notificationService.addNotification(notificationEntity);
+        Notification notificationEntity = new Notification();
+        notificationEntity.setDescription("BOOKING");
+        notificationEntity.setNotificationId(1);
+        notificationEntity.setNotificationType("Email");
+        notificationEntity.setReferenceId(1);
+        notificationEntity.setReferenceTable("Order");
+        notificationEntity.setUserId(1);
+
+        notificationService.addNotification(notificationEntity);
 
 
 
@@ -1820,11 +1838,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         this.document = document;
     }
 
-//    public NotificationService getNotificationService() {
-//        return notificationService;
-//    }
-//
-//    public void setNotificationService(NotificationService notificationService) {
-//        this.notificationService = notificationService;
-//    }
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
 }
