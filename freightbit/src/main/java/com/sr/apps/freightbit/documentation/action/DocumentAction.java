@@ -19,6 +19,7 @@ import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.documentation.service.ReleaseOrderReportService;
 import com.sr.biz.freightbit.order.entity.Orders;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -26,6 +27,7 @@ import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.PdfReportUtil;
 
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -128,12 +130,15 @@ public class DocumentAction extends ActionSupport implements Preparable{
     	return "download";
     }
     
-    public String generateReleaseOrderReport() {
+    public String generateReleaseOrderReport() throws IOException {
         	String orderId = "10";
         	String orderItemId = "4";
         	Map<String, String> params = new HashMap();
         	params.put("orderId", orderId);
         	params.put("orderItemId", orderItemId);
+        	
+        	ByteArrayOutputStream byteArray = null;
+        	BufferedOutputStream responseOut = null;
         	
         	try {
     	       // Create an output filename
@@ -142,24 +147,19 @@ public class DocumentAction extends ActionSupport implements Preparable{
         		MasterReport report = releaseOrderReportService.generateReport(params);
         		
         		HttpServletResponse response = ServletActionContext.getResponse();
-        		BufferedOutputStream responseOut = new BufferedOutputStream(response.getOutputStream());
-        		ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+        		responseOut = new BufferedOutputStream(response.getOutputStream());
+        		byteArray = new ByteArrayOutputStream();
          
         		boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
         		byteArray.writeTo(responseOut);
-        		
-       		    inputStream = new ByteArrayInputStream(byteArray.toByteArray());
-    	        fileName = outputFile.getName();
-    	        contentLength = outputFile.length();
-        		
-    	        byteArray.close();
-        		responseOut.close();
-    	} catch (IOException e) {
-    		e.printStackTrace();
+    	        
     	} catch (Exception re) {
     		re.printStackTrace();
+    	} finally {
+    		byteArray.close();
+    		responseOut.close();
     	}
-    	return "download";
+    	return null;
     }
 
     public OrderBean transformOrdersToFormBean(Orders entity) {

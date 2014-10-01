@@ -49,7 +49,8 @@
         </action>
                  
         <action name="generateBookingRequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBookingRequestReport">
-            <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>
+            <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->
+            <result name="success" type="redirect">viewPlainDocuments</result>
             <result name="download" type="stream">
 			    <param name="contentDisposition">attachment;filename="${fileName}"</param>
 			    <param name="contentType">application/pdf</param>
