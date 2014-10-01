@@ -122,12 +122,12 @@
                                                       <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Status</td>
                                                       <td><s:property value="user.status"/></td>
                                                  </tr>
-                                                 <tr>
+                                                 <%--<tr>
                                                      <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Permissions</td>
                                                      <td><table><s:iterator value="preSelectedPermissionNames" var="permName">
                                                         <tr><td><i class="fa fa-check-square-o"></i><s:property value="permName"/></td></tr>
                                                     </s:iterator></table></td>
-                                                 </tr>
+                                                 </tr>--%>
                                                  </tbody>
                                              </table>
                                          </div>
