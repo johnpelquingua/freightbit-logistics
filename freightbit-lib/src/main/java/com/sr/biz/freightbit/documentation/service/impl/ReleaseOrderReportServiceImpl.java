@@ -81,7 +81,7 @@ public class ReleaseOrderReportServiceImpl extends ReportGeneratorService  imple
    *
    * @return the data factory used with the report generator
    */
-  public DataFactory getDataFactory(Map<String, String> whereClauseParameters)
+  public DataFactory getDataFactory(Map<String, String> params)
   {
 	Properties prop = new Properties();
 	String propFileName = "jdbc.properties";
@@ -100,8 +100,8 @@ public class ReleaseOrderReportServiceImpl extends ReportGeneratorService  imple
     sampleDriverConnectionProvider.setProperty("user", prop.getProperty("jdbc.username"));
     sampleDriverConnectionProvider.setProperty("password", prop.getProperty("jdbc.password"));
 
-    String orderId = whereClauseParameters.get("orderId");
-    String orderItemId = whereClauseParameters.get("orderItemId");
+    String orderId = params.get("orderId");
+    String orderItemId = params.get("orderItemId");
     String query = "SELECT o.createdTimeStamp as dateOfBooking, o.orderNumber as orderNumber, "
     		+ "o.destinationPort as destinationPort, o.originationPort as originPort, "
     		+ "o.serviceMode as serviceMode, "
@@ -133,7 +133,7 @@ public class ReleaseOrderReportServiceImpl extends ReportGeneratorService  imple
    *
    * @return <code>null</code> indicating the report generator does not use any report parameters
    */
-  public Map<String, Object> getReportParameters()
+  public Map<String, Object> getReportParameters(Map<String, String> params)
   {
     return null;
   }

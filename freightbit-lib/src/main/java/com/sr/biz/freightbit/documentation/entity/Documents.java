@@ -20,6 +20,7 @@ public class Documents implements Serializable {
     private String referenceTable;
     private String orderNumber;
     private Date createdDate;
+    private String documentStatus;
 
     public Documents() {
     }
@@ -97,5 +98,13 @@ public class Documents implements Serializable {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-  
+
+    @Column(name = "documentStatus")
+    public String getDocumentStatus() {
+        return documentStatus;
+    }
+
+    public void setDocumentStatus(String documentStatus) {
+        this.documentStatus = documentStatus;
+    }
 }

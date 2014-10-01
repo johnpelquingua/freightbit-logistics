@@ -16,9 +16,11 @@ import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
+import com.sr.biz.freightbit.documentation.service.BookingRequestReportService;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.documentation.service.ReleaseOrderReportService;
 import com.sr.biz.freightbit.order.entity.Orders;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -26,6 +28,7 @@ import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.PdfReportUtil;
 
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +47,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     private DocumentsService documentsService;
     private ReleaseOrderReportService releaseOrderReportService;
+    private BookingRequestReportService bookingRequestReportService;
     private CustomerService customerService;
 
     private InputStream inputStream;
@@ -109,41 +113,69 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String generateBookingRequestReport() {
-    	return "download";
+    	String orderId = "10";
+    	String orderItemId = "4";
+    	Map<String, String> params = new HashMap();
+    	params.put("orderId", orderId);
+    	params.put("orderItemId", orderItemId);
+    	
+    	ByteArrayOutputStream byteArray = null;
+    	BufferedOutputStream responseOut = null;
+    	
+    	try {
+	       // Create an output filename
+	        final File outputFile = new File("Booking Request Form.pdf");
+	        // Generate the report
+    		MasterReport report = bookingRequestReportService.generateReport(params);
+    		
+    		HttpServletResponse response = ServletActionContext.getResponse();
+    		responseOut = new BufferedOutputStream(response.getOutputStream());
+    		byteArray = new ByteArrayOutputStream();
+     
+    		boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+    		byteArray.writeTo(responseOut);
+    		
+    		byteArray.close();
+    		responseOut.close();
+	        
+	} catch (Exception re) {
+		re.printStackTrace();
+	}
+		
+	return null;
     }
     
-    public String generateReleaseOrderReport() {
+    public String generateReleaseOrderReport() throws IOException {
         	String orderId = "10";
         	String orderItemId = "4";
-        	Map<String, String> whereClauseParameters = new HashMap();
-        	whereClauseParameters.put("orderId", orderId);
-        	whereClauseParameters.put("orderItemId", orderItemId);
+        	Map<String, String> params = new HashMap();
+        	params.put("orderId", orderId);
+        	params.put("orderItemId", orderItemId);
+        	
+        	ByteArrayOutputStream byteArray = null;
+        	BufferedOutputStream responseOut = null;
         	
         	try {
     	       // Create an output filename
     	        final File outputFile = new File("Release Order.pdf");
     	        // Generate the report
-        		MasterReport report = releaseOrderReportService.generateReport(whereClauseParameters);
+        		MasterReport report = releaseOrderReportService.generateReport(params);
         		
         		HttpServletResponse response = ServletActionContext.getResponse();
-        		BufferedOutputStream responseOut = new BufferedOutputStream(response.getOutputStream());
-        		ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+        		responseOut = new BufferedOutputStream(response.getOutputStream());
+        		byteArray = new ByteArrayOutputStream();
          
         		boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
         		byteArray.writeTo(responseOut);
         		
-       		    inputStream = new ByteArrayInputStream(byteArray.toByteArray());
-    	        fileName = outputFile.getName();
-    	        contentLength = outputFile.length();
-        		
-    	        byteArray.close();
+        		byteArray.close();
         		responseOut.close();
-    	} catch (IOException e) {
-    		e.printStackTrace();
+    	        
     	} catch (Exception re) {
     		re.printStackTrace();
     	}
-    	return "download";
+    		
+    	return null;
     }
 
     public OrderBean transformOrdersToFormBean(Orders entity) {
@@ -171,6 +203,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         formBean.setDocumentName(entity.getDocumentName());
         formBean.setOrderNumber(entity.getOrderNumber());
+        formBean.setDocumentStatus(entity.getDocumentStatus());
 
         return formBean;
     }
@@ -255,4 +288,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
     }
+
+	public void setBookingRequestReportService(
+			BookingRequestReportService bookingRequestReportService) {
+		this.bookingRequestReportService = bookingRequestReportService;
+	}
+    
+    
 }

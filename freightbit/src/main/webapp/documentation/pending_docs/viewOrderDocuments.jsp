@@ -20,7 +20,7 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />">  Dashboard </a></li>
             <li class="active"><a href="<s:url action='../viewPendingDocuments' />"> Pending Documents List</a></li>
-            <li class="active"> Pending Documents of Booking Number 9999</li> <%--placeholder--%>
+            <li class="active"> Pending Documents of Booking Number <s:property /></li> <%--placeholder--%>
         </ol>
 
     </div>
@@ -61,11 +61,16 @@
                                     <td><display:column property="orderNumber" title="Reference Number" class="tb-font-black"
                                                         style="text-align: center;" > </i></display:column></td>
 
-                                    <td><display:column title="Status" class="tb-font-black"
+                                    <td><display:column property="documentStatus" title="Status" class="tb-font-black"
                                                         style="text-align: center;" > </i></display:column></td>
 
-                                    <td><display:column title="Action" class="tb-font-black"
-                                                        style="text-align: center;" > </i></display:column></td>
+                                    <td>
+                                        <display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
+                                            <a href="#" onclick="generateBookingRequestReport();">
+                                                <i class="fa fa-file-o"></i>
+                                            </a>
+                                        </display:column>
+                                    </td>
 
 
                                 </display:table>
@@ -110,3 +115,15 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function generateBookingRequestReport(){
+        var win = window.open('documentations/generateBookingRequestReport','bookingRequest','width=910,height=800');
+        win.onload = function() { this.document.title = "Booking Request"; }
+    }
+    function generateReleaseOrderReport(){
+        var win = window.open('documentations/generateReleaseOrderReport','bookingRequest','width=910,height=800');
+        win.onload = function() { this.document.title = "Release Order"; }
+    }
+</script>

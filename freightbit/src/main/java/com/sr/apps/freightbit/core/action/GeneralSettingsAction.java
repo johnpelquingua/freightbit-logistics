@@ -62,6 +62,8 @@ public class GeneralSettingsAction extends ActionSupport implements Preparable {
 			addActionError("Error updating fields");
 			return INPUT;
 		}
+		clearErrorsAndMessages();
+	    addActionMessage("Success! Parameters have been updated.");
 		return SUCCESS;
 	}
 	

@@ -45,6 +45,12 @@ import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class OrderAction extends ActionSupport implements Preparable {
 
@@ -207,25 +213,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
-
-        if (StringUtils.isNotBlank(column)) {
-            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
-        } else {
-            orderEntityList = orderService.findAllOrders();
-        }
-
-        for (Orders orderElem : orderEntityList) {
-            orders.add(transformToOrderFormBean(orderElem));
-        }
-
-        return SUCCESS;
-    }
-
-    public String viewOrdersInbooking() {
-
-        String column = getColumnFilter();
-        List<Orders> orderEntityList = new ArrayList<Orders>();
-        notificationService.clearNewBooking();
         if (StringUtils.isNotBlank(column)) {
             orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
         } else {
@@ -409,22 +396,22 @@ public class OrderAction extends ActionSupport implements Preparable {
 
 
         //        fill the addedtype column in counterTable
-//        Counter counterEntity = new Counter();
-//        counterEntity.setAddedType("BOOKING");
-//        orderService.addCounterType(counterEntity);
+        Counter counterEntity = new Counter();
+        counterEntity.setAddedType("BOOKING");
+        orderService.addCounterType(counterEntity);
 
 
 
 
-        Notification notificationEntity = new Notification();
-        notificationEntity.setDescription("BOOKING");
-        notificationEntity.setNotificationId(1);
-        notificationEntity.setNotificationType("Email");
-        notificationEntity.setReferenceId(1);
-        notificationEntity.setReferenceTable("Order");
-        notificationEntity.setUserId(1);
-
-        notificationService.addNotification(notificationEntity);
+//        Notification notificationEntity = new Notification();
+//        notificationEntity.setDescription("BOOKING");
+//        notificationEntity.setNotificationId(1);
+//        notificationEntity.setNotificationType("Email");
+//        notificationEntity.setReferenceId(1);
+//        notificationEntity.setReferenceTable("Order");
+//        notificationEntity.setUserId(1);
+//
+//        notificationService.addNotification(notificationEntity);
 
 
 
@@ -437,6 +424,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setReferenceTable("ORDERS");
         documentEntity.setOrderNumber(orderEntity.getOrderNumber());
         documentEntity.setCreatedDate(new Date());
+        documentEntity.setDocumentStatus("FOR PRINTING");
         documentsService.addDocuments(documentEntity);
         // To get generated Order Id
         orderIdPass = orderEntity.getOrderId();
@@ -1832,8 +1820,11 @@ public class OrderAction extends ActionSupport implements Preparable {
         this.document = document;
     }
 
-
-    public void setNotificationService(NotificationService notificationService) {
-        this.notificationService = notificationService;
-    }
+//    public NotificationService getNotificationService() {
+//        return notificationService;
+//    }
+//
+//    public void setNotificationService(NotificationService notificationService) {
+//        this.notificationService = notificationService;
+//    }
 }

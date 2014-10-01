@@ -100,8 +100,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String updateCompleteInlandPlanning() {
         Map sessionAttributes = ActionContext.getContext().getSession();
-
         Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
+
+        // Display basic order data
+        Orders orderEntity = orderService.findOrdersById(orderId);
+
+        order = transformToOrderFormBean(orderEntity);
 
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
@@ -113,6 +117,29 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         clearErrorsAndMessages();
         addActionMessage("Success! Items has been updated.");
+
+        return SUCCESS;
+    }
+
+    public String updateCompleteSeaPlanning() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
+
+        // Display basic order data
+        Orders orderEntity = orderService.findOrdersById(orderId);
+
+        order = transformToOrderFormBean(orderEntity);
+        // displays order items under orders
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderId);
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Items has been updated and moved to Inland Freight Planning.");
 
         return SUCCESS;
     }
@@ -167,29 +194,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer clientId = (Integer) sessionAttributes.get("clientId");
         return clientId;
-    }
-
-    public String updateCompleteSeaPlanning() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
-
-        // Display basic order data
-        Orders orderEntity = orderService.findOrdersById(orderId);
-
-        order = transformToOrderFormBean(orderEntity);
-        // displays order items under orders
-        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
-
-        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderId);
-
-        for(OrderItems orderItemsElem : orderItemsList) {
-            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
-        }
-
-        clearErrorsAndMessages();
-        addActionMessage("Success! Items has been updated and moved to Inland Freight Planning.");
-
-        return SUCCESS;
     }
 
     public String editOrderItemsSea() {

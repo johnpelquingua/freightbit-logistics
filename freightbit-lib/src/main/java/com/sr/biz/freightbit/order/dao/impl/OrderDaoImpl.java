@@ -150,7 +150,7 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         Session session = getSessionFactory().getCurrentSession();
         List<Orders> orders = session.createCriteria(Orders.class)
                 .add(Restrictions.like(column, value))
-                .add(Restrictions.eq("clientId", clientId))
+                //.add(Restrictions.eq("clientId", clientId))
                 .list();
         return orders;
     }

@@ -136,7 +136,7 @@ public class ParameterServiceImpl implements ParameterService {
     						} else if ("ORDER".equals(referenceTable) && "PORTS".equals(referenceColumn)) {
     							List <Orders> orderList = orderDao.findOrdersByCriteria("destinationPort", key, clientId);
     							if (orderList != null && orderList.size() > 0) {
-    								throw new ParameterInUseException("PORTS");
+    								throw new ParameterInUseException("Cannot update Ports. A booking with Origin Port or Destination Port '" + value + "' exists.");
     							}
     							orderList = orderDao.findOrdersByCriteria("originationPort", key, clientId);
     							if (orderList != null && orderList.size() > 0) {

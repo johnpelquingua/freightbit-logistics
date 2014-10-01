@@ -17,23 +17,23 @@
     <intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <intercept-url pattern="/includes/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <intercept-url pattern="/struts/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-    <intercept-url pattern="/core/viewUserProfile**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST" />
-    <intercept-url pattern="/core/editUserProfile**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST" />
-    <intercept-url pattern="/core/loadEditUserProfile**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST" />
-    <intercept-url pattern="/core/loadChangePassword**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST" />
-    <intercept-url pattern="/core/changePassword**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST" />
+    <intercept-url pattern="/core/viewUserProfile**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+    <intercept-url pattern="/core/editUserProfile**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+    <intercept-url pattern="/core/loadEditUserProfile**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+    <intercept-url pattern="/core/loadChangePassword**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+    <intercept-url pattern="/core/changePassword**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIS, ROLE_FREIGHT_OPERATIONS_MANAGER" />
     <intercept-url pattern="/core/**" access="ROLE_ADMIN" />
     <intercept-url pattern="/vendor/**" access="ROLE_ADMIN" />
     <intercept-url pattern="/documentation/**" access="ROLE_ADMIN" />
     
-    <intercept-url pattern="/customers/loadAddCustomerPage" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES" />
-    <intercept-url pattern="/customers/deleteCustomer**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES" />
+    <intercept-url pattern="/customers/loadAddCustomerPage" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+    <intercept-url pattern="/customers/deleteCustomer**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
     <intercept-url pattern="/customers/loadEditCustomerPage**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES" />
     <intercept-url pattern="/customers/loadSearchCustomerPage" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST" />
-    <intercept-url pattern="/customers/customerInfo**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST" />
+    <intercept-url pattern="/customers/customerInfo**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST, ROLE_FREIGHT_OPERATIONS_MANAGER" />
 
-    <intercept-url pattern="/orders/**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_INLAND_FREIGHT, ROLE_SEA_FREIGHT, ROLE_SALES" />
-    <intercept-url pattern="/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST" />
+    <intercept-url pattern="/orders/**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_INLAND_FREIGHT, ROLE_FREIGHT_OPERATIONS_OFFICER, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+    <intercept-url pattern="/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FINANCE, ROLE_DOC_SPECIALIST, ROLE_FREIGHT_OPERATIONS_MANAGER, ROLE_FREIGHT_OPERATIONS_SPECIALIST, ROLE_FREIGHT_OPERATIONS_OFFICER, ROLE_INLAND_FREIGHT" />
     <form-login login-page='/login.jsp'
                 default-target-url='/login.action'
                 username-parameter='username'
