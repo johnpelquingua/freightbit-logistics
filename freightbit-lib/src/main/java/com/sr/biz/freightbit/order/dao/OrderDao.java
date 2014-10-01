@@ -32,5 +32,5 @@ public interface OrderDao {
 
     public void addCounterType(Counter counter);
 
-    public BigInteger CountAll();
+//    public BigInteger CountAll();
 }

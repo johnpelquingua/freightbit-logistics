@@ -371,11 +371,11 @@ public class OrderServiceImpl implements OrderService {
         orderDao.addCounterType(counter);
     }
 
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public BigInteger CountAll(){
-        return orderDao.CountAll();
-
-    }
+//    @Override
+//    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+//    public BigInteger CountAll(){
+//        return orderDao.CountAll();
+//
+//    }
 
 }

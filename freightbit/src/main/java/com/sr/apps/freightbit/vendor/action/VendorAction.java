@@ -13,7 +13,9 @@ import com.sr.apps.freightbit.vendor.formbean.VendorBean;
 import com.sr.apps.freightbit.vendor.formbean.VesselBean;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
@@ -87,6 +89,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private UserService userService;
     private VendorService trucksService;
     private DriverService driverService;
+    private NotificationService notificationService;
     private CommonUtils commonUtils;
 
 
@@ -114,6 +117,24 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    //used to view the list with deleting of notif in dashboard
+    public String viewVendorsNew() {
+        String column = getColumnFilter();
+        List<Vendor> vendorEntityList = new ArrayList<Vendor>();
+        notificationService.clearNewVendor();
+        if (StringUtils.isNotBlank(column)) {
+            vendorEntityList = vendorService.findVendorsByCriteria(column, vendor.getVendorKeyword(), getClientId());
+        } else {
+            vendorEntityList = vendorService.findAllVendorByClientId(getClientId());
+        }
+
+        for (Vendor vendorElem : vendorEntityList) {
+            vendors.add(transformToFormBean(vendorElem));
+        }
+        return SUCCESS;
+    }
+
+    // used to view the list with Action Message
     public String LoadviewVendors() {
         String column = getColumnFilter();
         List<Vendor> vendorEntityList = new ArrayList<Vendor>();
@@ -152,6 +173,16 @@ public class VendorAction extends ActionSupport implements Preparable {
             vendorEntity.setCreatedTimeStamp(new Date());
             vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
             vendorService.addVendor(vendorEntity);
+
+            Notification notificationEntity = new Notification();
+            notificationEntity.setDescription("VENDOR");
+            notificationEntity.setNotificationId(1);
+            notificationEntity.setNotificationType("Email");
+            notificationEntity.setReferenceId(1);
+            notificationEntity.setReferenceTable("Vendor");
+            notificationEntity.setUserId(1);
+
+            notificationService.addNotification(notificationEntity);
 
         } catch (VendorAlreadyExistsException e) {
             addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
@@ -1608,5 +1639,9 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public void setDriverIdParam(Integer driverIdParam) {
         this.driverIdParam = driverIdParam;
+    }
+
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 }

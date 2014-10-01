@@ -1,10 +1,12 @@
 package com.sr.apps.freightbit.core.action;
 
+import java.math.BigInteger;
 import java.security.Principal;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.sr.biz.freightbit.common.service.NotificationService;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
@@ -24,6 +26,16 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private Map<String, Object> sessionAttributes = null;
 
     private UserService userService;
+    private NotificationService notificationService;
+    public BigInteger Booking, Customer , User , Vendor;
+
+    public NotificationService getNotificationService() {
+        return notificationService;
+    }
+
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
 
     public void setUserService(UserService userService) {
         this.userService = userService;
@@ -45,6 +57,14 @@ public class LoginAction extends ActionSupport implements SessionAware {
             sessionAttributes.put("clientId", userEntity.getClient().getClientId());
             sessionAttributes.put("user", userEntity);
             sessionAttributes.put("loggedinUser", userEntity.getFirstName() + " " + userEntity.getLastName());
+            Booking = notificationService.CountAll();
+            Customer = notificationService.CountAllCustomer();
+            User = notificationService.CountAllUser();
+            Vendor = notificationService.CountAllVendor();
+            System.out.println("The number of  new booking is "+Booking);
+            System.out.println("The number of  new Customer is "+Customer);
+            System.out.println("The number of  new User is "+User);
+            System.out.println("The number of  new Vendor is "+Vendor);
             return SUCCESS;
         } else {
             log.debug("clearing errors and messages...");
@@ -86,4 +106,35 @@ public class LoginAction extends ActionSupport implements SessionAware {
         this.sessionAttributes = sessionAttributes;
     }
 
+    public BigInteger getBooking() {
+        return Booking;
+    }
+
+    public void setBooking(BigInteger booking) {
+        Booking = booking;
+    }
+
+    public BigInteger getCustomer() {
+        return Customer;
+    }
+
+    public void setCustomer(BigInteger customer) {
+        Customer = customer;
+    }
+
+    public BigInteger getUser() {
+        return User;
+    }
+
+    public void setUser(BigInteger user) {
+        User = user;
+    }
+
+    public BigInteger getVendor() {
+        return Vendor;
+    }
+
+    public void setVendor(BigInteger vendor) {
+        Vendor = vendor;
+    }
 }

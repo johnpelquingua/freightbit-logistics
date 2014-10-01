@@ -105,6 +105,10 @@
             <result name="success" type="tiles">customer.customerList.tiles</result>
         </action>
 
+        <action name="customerListNew" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="customerListNew">
+            <result name="success" type="tiles">customer.customerList.tiles</result>
+        </action>
+
         <!--items-->
 
         <action name="editItem" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="editItem">

@@ -1,6 +1,7 @@
 package com.sr.apps.freightbit.core.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.log4j.Logger;
@@ -22,9 +23,17 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
     private UserService userService;
     private OrderService orderService;
-    BigInteger test;
+    private NotificationService notificationService;
+    BigInteger Booking , Customer,User,Vendor ;
 
 
+    public NotificationService getNotificationService() {
+        return notificationService;
+    }
+
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
 
     public OrderService getOrderService() {
         return orderService;
@@ -39,10 +48,17 @@ public class DashboardAction extends ActionSupport implements SessionAware {
     }
 
     public String home() {
-        test = orderService.CountAll();
-        System.out.println("AAaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAs;ohfoisdhgfjkshgdfkjsgdjhfgskdfgjkhdsgkfA"+test);
+        Booking = notificationService.CountAll();
+        Customer = notificationService.CountAllCustomer();
+        User = notificationService.CountAllUser();
+        Vendor = notificationService.CountAllVendor();
+        System.out.println("The number of  new booking is "+Booking);
+        System.out.println("The number of  new Customer is "+Customer);
+        System.out.println("The number of  new User is "+User);
+        System.out.println("The number of  new Vendor is "+Vendor);
         return SUCCESS;
     }
+
 
     public String getUsername() {
         return username;
@@ -65,11 +81,35 @@ public class DashboardAction extends ActionSupport implements SessionAware {
         this.sessionAttributes = sessionAttributes;
     }
 
-    public BigInteger getTest() {
-        return test;
+    public BigInteger getBooking() {
+        return Booking;
     }
 
-    public void setTest(BigInteger test) {
-        this.test = test;
+    public void setBooking(BigInteger Booking) {
+        this.Booking = Booking;
+    }
+
+    public BigInteger getCustomer() {
+        return Customer;
+    }
+
+    public void setCustomer(BigInteger customer) {
+        Customer = customer;
+    }
+
+    public BigInteger getUser() {
+        return User;
+    }
+
+    public void setUser(BigInteger user) {
+        User = user;
+    }
+
+    public BigInteger getVendor() {
+        return Vendor;
+    }
+
+    public void setVendor(BigInteger vendor) {
+        Vendor = vendor;
     }
 }

@@ -1,10 +1,16 @@
 package com.sr.biz.freightbit.common.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by user on 9/29/2014.
  */
+
+@Entity
+@Table(name = "notification"
+        , catalog = "freightbit")
+
 public class Notification implements Serializable {
     private Integer notificationId;
     private String description;
@@ -26,6 +32,10 @@ public class Notification implements Serializable {
         this.userId = userId;
     }
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "notificationId", unique = true, nullable = false)
     public Integer getNotificationId() {
         return notificationId;
     }
@@ -34,6 +44,7 @@ public class Notification implements Serializable {
         this.notificationId = notificationId;
     }
 
+    @Column(name = "description", nullable = false)
     public String getDescription() {
         return description;
     }
@@ -42,6 +53,7 @@ public class Notification implements Serializable {
         this.description = description;
     }
 
+    @Column(name = "notificationType", nullable = false)
     public String getNotificationType() {
         return notificationType;
     }
@@ -50,6 +62,7 @@ public class Notification implements Serializable {
         this.notificationType = notificationType;
     }
 
+    @Column(name = "referenceId", nullable = true)
     public Integer getReferenceId() {
         return referenceId;
     }
@@ -58,6 +71,7 @@ public class Notification implements Serializable {
         this.referenceId = referenceId;
     }
 
+    @Column(name = "referenceTable", nullable = false)
     public String getReferenceTable() {
         return referenceTable;
     }
@@ -66,6 +80,7 @@ public class Notification implements Serializable {
         this.referenceTable = referenceTable;
     }
 
+    @Column(name = "userId", nullable = false)
     public Integer getUserId() {
         return userId;
     }

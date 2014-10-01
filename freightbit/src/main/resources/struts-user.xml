@@ -21,6 +21,10 @@
             <result name="success" type="tiles">core.userListView.tiles</result>
         </action>
 
+        <action name="viewUsersNew" class="com.sr.apps.freightbit.core.action.UserAction" method="viewUsersNew">
+            <result name="success" type="tiles">core.userListView.tiles</result>
+        </action>
+
         <action name="loadAddUserPage" class="com.sr.apps.freightbit.core.action.UserAction" method="loadAddUserPage">
             <result name="success" type="tiles">core.userAdd.tiles</result>
         </action>

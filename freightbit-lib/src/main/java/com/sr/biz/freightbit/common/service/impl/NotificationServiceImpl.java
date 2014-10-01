@@ -6,6 +6,8 @@ import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.core.dao.UserDao;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigInteger;
 //import javax.mail.MessagingException;
 
 
@@ -73,6 +75,80 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addNotification(Notification notification){
+
         notificationDao.addNotification(notification);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addNotificationCustomer(Notification notification){
+
+         notificationDao.addNotificationCustomer(notification);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addNotificationUser(Notification notification){
+
+        notificationDao.addNotificationUser(notification);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void addNotificationVendor(Notification notification){
+
+        notificationDao.addNotificationVendor(notification);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public BigInteger CountAll(){
+        return notificationDao.CountAll();
+
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public BigInteger CountAllCustomer(){
+        return notificationDao.CountAllCustomer();
+
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public BigInteger CountAllUser(){
+        return notificationDao.CountAllUser();
+
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public BigInteger CountAllVendor(){
+        return notificationDao.CountAllVendor();
+
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public Integer clearNewBooking(){
+        return notificationDao.clearNewBooking();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public Integer clearNewCustomer(){
+        return notificationDao.clearNewCustomer();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public Integer clearNewUser(){
+        return notificationDao.clearNewUser();
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public Integer clearNewVendor(){
+        return notificationDao.clearNewVendor();
     }
 }

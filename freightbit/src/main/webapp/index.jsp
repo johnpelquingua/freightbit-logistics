@@ -15,7 +15,8 @@
 <!-- /.row -->
 <%--for booking--%>
 <div class="col-lg-3 col-md-6">
-    <a href="/orders/viewOrders.action">
+    <%--<a href="<s:url action='viewOrderss'/>">--%>
+        <a href="/orders/viewOrdersInbooking.action">
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">
@@ -24,7 +25,7 @@
             </div>
             <div class="col-xs-9 text-right">
 
-                <div class="huge-dashboard"><s:property value="%{test}"></s:property></div>
+                <div class="huge-dashboard"><s:property value="%{Booking}"></s:property></div>
                 <div>New Booking!</div>
             </div>
         </div>
@@ -36,7 +37,7 @@
 
 <%--Customer--%>
 <div class="col-lg-3 col-md-6 ">
-    <a href="/customers/customerList.action">
+    <a href="/customers/customerListNew.action">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="row">
@@ -44,7 +45,7 @@
                     <i class="fa fa-male fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                    <div class="huge-dashboard">0</div>
+                    <div class="huge-dashboard"><s:property value="%{Customer}"></s:property></div>
                     <div>New Customer</div>
                 </div>
             </div>
@@ -56,7 +57,7 @@
 
 <%--user--%>
 <div class="col-lg-3 col-md-6">
-    <a href="/core/viewUsers.action">
+    <a href="/core/viewUsersNew.action">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="row">
@@ -64,7 +65,7 @@
                     <i class="fa fa-user fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                    <div class="huge-dashboard">0</div>
+                    <div class="huge-dashboard"><s:property value="%{User}"></s:property></div>
                     <div>New User</div>
                 </div>
             </div>
@@ -76,7 +77,7 @@
 
 <%--vendor--%>
 <div class="col-lg-3 col-md-6">
-    <a href="/vendor/viewVendors.action">
+    <a href="/vendor/viewVendorsNew.action">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <div class="row">
@@ -84,7 +85,7 @@
                     <i class="fa fa-building fa-5x"></i>
                 </div>
                 <div class="col-xs-9 text-right">
-                    <div class="huge-dashboard">0</div>
+                    <div class="huge-dashboard"><s:property value="%{Vendor}"></s:property></div>
                     <div>New Vendor</div>
                 </div>
             </div>

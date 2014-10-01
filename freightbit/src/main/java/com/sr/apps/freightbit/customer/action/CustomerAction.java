@@ -13,7 +13,9 @@ import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
@@ -82,6 +84,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private CustomerService customerService;
     private ClientService clientService;
     private ParameterService parameterService;
+    private NotificationService notificationService;
     private CommonUtils commonUtils;
 
     // customer module checkboxes values
@@ -438,6 +441,17 @@ public class CustomerAction extends ActionSupport implements Preparable {
             customerEntity.setCreatedTimestamp(new Date());
             customerEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             customerService.addCustomer(customerEntity);
+
+            Notification notificationEntity = new Notification();
+            notificationEntity.setDescription("CUSTOMER");
+            notificationEntity.setNotificationId(1);
+            notificationEntity.setNotificationType("Email");
+            notificationEntity.setReferenceId(1);
+            notificationEntity.setReferenceTable("Customer");
+            notificationEntity.setUserId(1);
+
+            notificationService.addNotification(notificationEntity);
+
         }catch(CustomerAlreadyExistsException e) {
             addFieldError("customer.customerCode", getText("err.customer.already.exist"));
             return INPUT;
@@ -449,6 +463,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+
     public String customerList() {
         List<Customer> customerEntityList = customerService.findAllCustomer();
         for (Customer customerElem : customerEntityList) {
@@ -456,8 +471,17 @@ public class CustomerAction extends ActionSupport implements Preparable {
         }
         return SUCCESS;
     }
+    // used to display the list Deleting the Notification on dashboard
+    public String customerListNew() {
+        List<Customer> customerEntityList = customerService.findAllCustomer();
+        notificationService.clearNewCustomer();
+        for (Customer customerElem : customerEntityList) {
+            customers.add(transformToFormBean(customerElem));
 
-
+        }
+        return SUCCESS;
+    }
+    // used to display the list with ActionMessage
     public String loadAddCustomerList() {
         List<Customer> customerEntityList = customerService.findAllCustomer();
         for (Customer customerElem : customerEntityList) {
@@ -1595,5 +1619,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         this.portsList = portsList;
     }
 
-
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
 }

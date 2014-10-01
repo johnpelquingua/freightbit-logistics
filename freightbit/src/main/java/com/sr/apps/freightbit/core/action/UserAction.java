@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.sr.biz.freightbit.common.entity.Notification;
+import com.sr.biz.freightbit.common.service.NotificationService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -60,6 +62,7 @@ public class UserAction extends ActionSupport implements Preparable {
     private ParameterService parameterService;
     private PermissionService permissionService;
     private CustomerService customerService;
+    private NotificationService notificationService;
     private CommonUtils commonUtils;
 
     public String loadSearchUserPage() {
@@ -69,6 +72,21 @@ public class UserAction extends ActionSupport implements Preparable {
     public String viewUsers() {
         String column = getColumnFilter();
         List<User> userEntityList = new ArrayList<User>();
+        if (StringUtils.isNotBlank(column)) {
+            userEntityList = userService.findUsersByCriteria(column, user.getUserKeyword(), getClientId());
+        } else {
+            userEntityList = userService.findAllUsers(getClientId());
+        }
+        for (User userElem : userEntityList) {
+            users.add(transformToFormBean(userElem));
+        }
+        return SUCCESS;
+    }
+
+    public String viewUsersNew() {
+        String column = getColumnFilter();
+        List<User> userEntityList = new ArrayList<User>();
+        notificationService.clearNewUser();
         if (StringUtils.isNotBlank(column)) {
             userEntityList = userService.findUsersByCriteria(column, user.getUserKeyword(), getClientId());
         } else {
@@ -114,7 +132,17 @@ public class UserAction extends ActionSupport implements Preparable {
 	        Integer userId = userService.addUser(transformToEntityBean(user));
 	        addPermissionsToUser(userId);
 	        populatePermissionsList(userId);
-	        
+
+            Notification notificationEntity = new Notification();
+            notificationEntity.setDescription("USER");
+            notificationEntity.setNotificationId(1);
+            notificationEntity.setNotificationType("Email");
+            notificationEntity.setReferenceId(1);
+            notificationEntity.setReferenceTable("User");
+            notificationEntity.setUserId(1);
+
+            notificationService.addNotification(notificationEntity);
+
 	        clearErrorsAndMessages();
 	        addActionMessage("Success! A New User has been added.");
 	
@@ -549,6 +577,7 @@ public class UserAction extends ActionSupport implements Preparable {
 		this.customerService = customerService;
 	}
 
-	
-    
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
 }

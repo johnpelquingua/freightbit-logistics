@@ -194,14 +194,14 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         }
     }
 
-    @Override
-    public BigInteger CountAll(){
-        String sql = "SELECT count(addedType) from freightbit.countertable where addedType = 'BOOKING' ";
-        Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
-        BigInteger temp = (BigInteger)query.uniqueResult();
-        System.out.println("ahaha "+temp);
-        return temp;
-
-    }
+//    @Override
+//    public BigInteger CountAll(){
+//        String sql = "SELECT count(addedType) from freightbit.countertable where addedType = 'BOOKING' ";
+//        Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
+//        BigInteger temp = (BigInteger)query.uniqueResult();
+//        System.out.println("ahaha "+temp);
+//        return temp;
+//
+//    }
 
 }

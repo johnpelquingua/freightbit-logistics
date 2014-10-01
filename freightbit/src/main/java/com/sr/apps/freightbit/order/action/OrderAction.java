@@ -9,9 +9,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//import com.sr.biz.freightbit.common.entity.Notification;
-//import com.sr.biz.freightbit.common.service.NotificationService;
-import com.sr.biz.freightbit.order.entity.Counter;
+import com.sr.biz.freightbit.common.entity.Notification;
+import com.sr.biz.freightbit.common.service.NotificationService;
+//import com.sr.biz.freightbit.order.entity.Counter;
 import org.apache.commons.lang3.StringUtils;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -86,7 +86,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private CustomerService customerService;
     private ParameterService parameterService;
     private DocumentsService documentsService;
-//    private NotificationService notificationService;
+    private NotificationService notificationService;
 
     private ClientService clientService;
     private ConsigneeBean consignee = new ConsigneeBean();
@@ -207,6 +207,25 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
+
+        if (StringUtils.isNotBlank(column)) {
+            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+        } else {
+            orderEntityList = orderService.findAllOrders();
+        }
+
+        for (Orders orderElem : orderEntityList) {
+            orders.add(transformToOrderFormBean(orderElem));
+        }
+
+        return SUCCESS;
+    }
+
+    public String viewOrdersInbooking() {
+
+        String column = getColumnFilter();
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+        notificationService.clearNewBooking();
         if (StringUtils.isNotBlank(column)) {
             orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
         } else {
@@ -390,22 +409,22 @@ public class OrderAction extends ActionSupport implements Preparable {
 
 
         //        fill the addedtype column in counterTable
-        Counter counterEntity = new Counter();
-        counterEntity.setAddedType("BOOKING");
-        orderService.addCounterType(counterEntity);
+//        Counter counterEntity = new Counter();
+//        counterEntity.setAddedType("BOOKING");
+//        orderService.addCounterType(counterEntity);
 
 
 
 
-//        Notification notificationEntity = new Notification();
-//        notificationEntity.setDescription("BOOKING");
-//        notificationEntity.setNotificationId(1);
-//        notificationEntity.setNotificationType("Email");
-//        notificationEntity.setReferenceId(1);
-//        notificationEntity.setReferenceTable("Order");
-//        notificationEntity.setUserId(1);
-//
-//        notificationService.addNotification(notificationEntity);
+        Notification notificationEntity = new Notification();
+        notificationEntity.setDescription("BOOKING");
+        notificationEntity.setNotificationId(1);
+        notificationEntity.setNotificationType("Email");
+        notificationEntity.setReferenceId(1);
+        notificationEntity.setReferenceTable("Order");
+        notificationEntity.setUserId(1);
+
+        notificationService.addNotification(notificationEntity);
 
 
 
@@ -1813,11 +1832,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         this.document = document;
     }
 
-//    public NotificationService getNotificationService() {
-//        return notificationService;
-//    }
-//
-//    public void setNotificationService(NotificationService notificationService) {
-//        this.notificationService = notificationService;
-//    }
+
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
 }

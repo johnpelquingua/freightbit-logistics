@@ -33,6 +33,7 @@
                 <value>com.sr.biz.freightbit.vesselSchedule.entity</value>
                 <value>com.sr.biz.freightbit.operations.entity</value>
                 <value>com.sr.biz.freightbit.documentation.entity</value>
+                <value>com.sr.biz.freightbit.common.entity</value>
             </array>
         </property>
         <property name="hibernateProperties">
@@ -133,8 +134,9 @@
     </bean>
     
     <bean id="notificationService" class="com.sr.biz.freightbit.common.service.impl.NotificationServiceImpl">
-        <property name="userDao" ref="userDao"/>
         <property name="notificationDao" ref="notificationDao"/>
+        <property name="userDao" ref="userDao"/>
+
     </bean>
     <!-- Services End -->
     <!-- DAOs -->

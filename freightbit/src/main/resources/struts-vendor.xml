@@ -58,6 +58,10 @@
             <result name="success" type="tiles">vendor.vendorListView.tiles</result>
         </action>
 
+        <action name="viewVendorsNew" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewVendorsNew">
+            <result name="success" type="tiles">vendor.vendorListView.tiles</result>
+        </action>
+
         <action name="deleteVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteVendor">
             <result name="success" type="redirect">loadSuccessDeleteVendor</result>
         </action>
