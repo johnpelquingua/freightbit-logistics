@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 import com.sr.biz.freightbit.order.entity.Counter;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
@@ -149,7 +150,7 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         Log.debug("Find vendor by criteria ");
         Session session = getSessionFactory().getCurrentSession();
         List<Orders> orders = session.createCriteria(Orders.class)
-                .add(Restrictions.like(column, value))
+                .add(Restrictions.like(column, value, MatchMode.ANYWHERE))
                 //.add(Restrictions.eq("clientId", clientId))
                 .list();
         return orders;

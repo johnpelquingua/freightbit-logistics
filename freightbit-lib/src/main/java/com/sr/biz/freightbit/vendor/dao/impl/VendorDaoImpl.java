@@ -10,6 +10,7 @@ import com.sr.biz.freightbit.vendor.entity.Vendor;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
@@ -94,7 +95,7 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
         log.debug("Find vendor by criteria ");
         Session session = getSessionFactory().getCurrentSession();
         List<Vendor> vendors = session.createCriteria(Vendor.class)
-                .add(Restrictions.like(column, value))
+                .add(Restrictions.like(column, value, MatchMode.ANYWHERE))
                 .add(Restrictions.eq("client.clientId", clientId))
                 .list();
         return vendors;
