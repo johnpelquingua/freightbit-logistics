@@ -72,10 +72,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Phone<span class="asterisk_red"></span></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Telephone<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="(XXX)XXX-XXXX" name="contact.phone" maxLength="14"
-                                        id="shipping_phone" title="(XXX)XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                        id="shipping_phone" title="(XXX)XXX-XXXX Telephone Number should not contain special characters and/or letters."/>
                             </div>
                         </div>
 

@@ -25,7 +25,7 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         log.debug("Find initiated.");
         try {
             log.debug("Find succeeded.");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders order by createdTimestamp desc");
             List<Orders> results = (List<Orders>) query.list();
             return results;
         } catch (Exception e) {

@@ -40,7 +40,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">License<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="License Number"
+                                <s:textfield cssClass="form-control" placeholder="AXX-XX-XXXXXXX"
                                              name="driver.licenseNumber" id="driver_licenseNumber"  required="true"/>
                             </div>
 

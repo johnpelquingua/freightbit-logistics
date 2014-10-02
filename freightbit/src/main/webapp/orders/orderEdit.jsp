@@ -340,14 +340,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <%--<button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>--%>
-                <s:property value="order.orderId"/>
-                <s:url var="deleteOrderUrl" action="deleteOrder">
-                    <s:param name="orderIdParam" value="order.orderId"></s:param>
-                </s:url>
-                <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip">
-                    <button type="button" class="btn btn-primary">Yes</button>
-                </s:a>
+                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
+                <%--<s:property value="order.orderId"/>--%>
+                <%--<s:url var="deleteOrderUrl" action="deleteOrder">--%>
+                    <%--<s:param name="orderIdParam" value="order.orderId"></s:param>--%>
+                <%--</s:url>--%>
+                <%--<s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip">--%>
+                    <%--<button type="button" class="btn btn-primary">Yes</button>--%>
+                <%--</s:a>--%>
             </div>
         </div>
     </div>

@@ -573,7 +573,7 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         String alpha = "[0-9]+";
         String plate = "[A-Z][A-Z][A-Z]+[-]\\d\\d\\d";
-        String alphaNumeric = "[A-Za-z0-9]+";
+        String alphaNumeric = "[A-Za-z0-9 ]+";
         String year = "[0-9]{4}";
         String weight = "[0-9]+";
 
