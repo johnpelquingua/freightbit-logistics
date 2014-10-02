@@ -84,7 +84,7 @@ public abstract class ReportGeneratorService
    * Generates the report in the specified <code>outputType</code> and writes it into the specified
    * <code>outputFile</code>.
    *
-   * @param whereClauseParamaeters filter to the sql query
+   * @param whereClauseParameters filter to the sql query
    */
   public MasterReport generateReport(Map<String, String> params)
   {

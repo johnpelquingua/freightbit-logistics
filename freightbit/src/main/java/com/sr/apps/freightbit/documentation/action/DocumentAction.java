@@ -65,6 +65,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String viewPendingDocuments() {
+
         List<Orders> orderEntityList = new ArrayList<Orders>();
 
         orderEntityList = documentsService.findAllOrdersDocumentation();
@@ -113,41 +114,41 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String generateBookingRequestReport() {
-    	String orderId = "10";
-    	String orderItemId = "4";
-    	Map<String, String> params = new HashMap();
-    	params.put("orderId", orderId);
-    	params.put("orderItemId", orderItemId);
-    	
-    	ByteArrayOutputStream byteArray = null;
-    	BufferedOutputStream responseOut = null;
-    	
-    	try {
-	       // Create an output filename
-	        final File outputFile = new File("Booking Request Form.pdf");
-	        // Generate the report
-    		MasterReport report = bookingRequestReportService.generateReport(params);
-    		
-    		HttpServletResponse response = ServletActionContext.getResponse();
-    		responseOut = new BufferedOutputStream(response.getOutputStream());
-    		byteArray = new ByteArrayOutputStream();
-     
-    		boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
-    		byteArray.writeTo(responseOut);
-    		
-    		byteArray.close();
-    		responseOut.close();
-	        
-	} catch (Exception re) {
-		re.printStackTrace();
-	}
-		
-	return null;
+        String orderId = "26";
+        String orderItemId = "1";
+        Map<String, String> params = new HashMap();
+        params.put("orderId", orderId);
+        params.put("orderItemId", orderItemId);
+
+        ByteArrayOutputStream byteArray = null;
+        BufferedOutputStream responseOut = null;
+
+        try {
+            // Create an output filename
+            final File outputFile = new File("Booking Request Form.pdf");
+            // Generate the report
+            MasterReport report = bookingRequestReportService.generateReport(params);
+
+            HttpServletResponse response = ServletActionContext.getResponse();
+            responseOut = new BufferedOutputStream(response.getOutputStream());
+            byteArray = new ByteArrayOutputStream();
+
+            boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+            byteArray.writeTo(responseOut);
+
+            byteArray.close();
+            responseOut.close();
+
+        } catch (Exception re) {
+            re.printStackTrace();
+        }
+
+        return null;
     }
     
     public String generateReleaseOrderReport() throws IOException {
-        	String orderId = "10";
-        	String orderItemId = "4";
+        	String orderId = "26";
+        	String orderItemId = "1";
         	Map<String, String> params = new HashMap();
         	params.put("orderId", orderId);
         	params.put("orderItemId", orderItemId);
@@ -240,7 +241,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
         this.documentsService = documentsService;
     }
 
-    
+    public void setBookingRequestReportService(BookingRequestReportService bookingRequestReportService) {
+        this.bookingRequestReportService = bookingRequestReportService;
+    }
+
     public void setReleaseOrderReportService(ReleaseOrderReportService releaseOrderReportService) {
 		this.releaseOrderReportService = releaseOrderReportService;
 	}
@@ -288,11 +292,5 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
     }
-
-	public void setBookingRequestReportService(
-			BookingRequestReportService bookingRequestReportService) {
-		this.bookingRequestReportService = bookingRequestReportService;
-	}
-    
     
 }

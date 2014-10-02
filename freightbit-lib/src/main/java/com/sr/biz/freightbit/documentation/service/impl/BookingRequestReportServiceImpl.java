@@ -17,18 +17,17 @@
 
 package com.sr.biz.freightbit.documentation.service.impl;
 
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.sr.biz.freightbit.documentation.service.BookingRequestReportService;
+import com.sr.biz.freightbit.documentation.service.ReportGeneratorService;
 import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.libraries.resourceloader.Resource;
 import org.pentaho.reporting.libraries.resourceloader.ResourceException;
 import org.pentaho.reporting.libraries.resourceloader.ResourceManager;
 
-import com.sr.biz.freightbit.documentation.service.BookingRequestReportService;
-import com.sr.biz.freightbit.documentation.service.ReportGeneratorService;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class BookingRequestReportServiceImpl extends ReportGeneratorService  implements BookingRequestReportService
@@ -39,18 +38,19 @@ public class BookingRequestReportServiceImpl extends ReportGeneratorService  imp
   {
 	    try
 	    {
-	      // Get the URL to the reportDefinition file
-	      final Class classVar = this.getClass();
-	      final URL reportDefinitionURL = classVar.getResource("/reports/Booking_Request_Form.prpt");
+            // Get the URL to the reportDefinition file
+            final Class classVar = this.getClass();
+            final URL reportDefinitionURL = classVar.getResource("/reports/Booking_Request_Form.prpt");
 	
 	      // Parse the report file
-	      final ResourceManager resourceManager = new ResourceManager();
-	      final Resource directly = resourceManager.createDirectly(reportDefinitionURL, MasterReport.class);
-	      return (MasterReport) directly.getResource();
+	        final ResourceManager resourceManager = new ResourceManager();
+	        final Resource directly = resourceManager.createDirectly(reportDefinitionURL, MasterReport.class);
+
+	        return (MasterReport) directly.getResource();
 	    }
 	    catch (ResourceException e)
 	    {
-	      e.printStackTrace();
+	        e.printStackTrace();
 	    }
 	    return null;
  
