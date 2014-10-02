@@ -46,4 +46,11 @@ public class DocumentsServiceImpl implements DocumentsService {
     public List<Documents> findOrderDocumentation() {
         return documentsDao.findOrderDocumentations();
     }
+
+    @Override
+    public List<Documents> findDocumentsByOrderId(Integer orderId) { return documentsDao.findDocumentsByOrderId(orderId); }
+
+    @Override
+    public Documents findDocumentById(Integer documentId) { return documentsDao.findDocumentById(documentId); }
+
 }

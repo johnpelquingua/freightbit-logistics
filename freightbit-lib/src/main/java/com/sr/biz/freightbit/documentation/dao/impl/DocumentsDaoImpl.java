@@ -84,4 +84,38 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
             throw e;
         }
     }
+
+    @Override
+    public List<Documents> findDocumentsByOrderId(Integer orderId) {
+        log.debug("getting Documents instance by order id:"  + orderId);
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.referenceId = :orderId");
+            query.setParameter("orderId", orderId);
+            List<Documents> results = (List<Documents>) query.list();
+            log.debug("find by order id successful, result size:" + results.size());
+            return results;
+        }catch (RuntimeException re){
+            log.error("get failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+    public Documents findDocumentById(Integer documentId) {
+        log.debug("getting Documents instance by document id:"  + documentId);
+        try{
+            Documents instance = (Documents) getSessionFactory().getCurrentSession().get(Documents.class, documentId);
+            if(instance == null) {
+                log.debug("get successful, no instance found");
+            }else {
+                log.debug("get successful, instance found");
+            }
+            return instance;
+        }catch (RuntimeException re){
+            log.error("get failed", re);
+            throw re;
+        }
+    }
+
+
 }

@@ -66,9 +66,10 @@
 
                                     <td>
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
-                                            <a href="#" onclick="generateBookingRequestReport();">
+                                            <a href="#" onclick="generateBookingRequestReport('${document.documentId}');">
                                                 <i class="fa fa-file-o"></i>
                                             </a>
+                                            <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
                                         </display:column>
                                     </td>
 
@@ -118,8 +119,9 @@
 
 
 <script>
-    function generateBookingRequestReport(){
-        var win = window.open('documentations/generateBookingRequestReport','bookingRequest','width=910,height=800');
+    function generateBookingRequestReport(documentId){
+        alert(documentId);
+        var win = window.open('documentations/generateBookingRequestReport?documentIdParam='+documentId,'bookingRequest','width=910,height=800');
         win.onload = function() { this.document.title = "Booking Request"; }
     }
     function generateReleaseOrderReport(){

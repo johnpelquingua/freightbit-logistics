@@ -18,4 +18,8 @@ public interface DocumentsService {
 
     public List<Documents> findOrderDocumentation();
 
+    public List<Documents> findDocumentsByOrderId(Integer orderId);
+
+    public Documents findDocumentById(Integer documentId);
+
 }

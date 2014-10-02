@@ -19,6 +19,7 @@ import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.BookingRequestReportService;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.documentation.service.ReleaseOrderReportService;
+import com.sr.biz.freightbit.order.service.OrderService;
 import com.sr.biz.freightbit.order.entity.Orders;
 
 import org.apache.commons.lang3.StringUtils;
@@ -35,7 +36,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class DocumentAction extends ActionSupport implements Preparable{
 
     private static final long serialVersionUID = 1L;
@@ -49,7 +49,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private ReleaseOrderReportService releaseOrderReportService;
     private BookingRequestReportService bookingRequestReportService;
     private CustomerService customerService;
+    private OrderService orderService;
 
+    private Integer orderIdParam;
+    private Integer documentIdParam;
     private InputStream inputStream;
     private long contentLength;
     private String fileName;
@@ -78,9 +81,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String viewOrderDocuments() {
-        List<Documents> documentsEntityList = new ArrayList<Documents>();
+        System.out.print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + orderIdParam);
 
-        documentsEntityList = documentsService.findOrderDocumentation();
+        List<Documents> documentsEntityList = documentsService.findDocumentsByOrderId(orderIdParam);
 
         for (Documents documentElem : documentsEntityList){
             documents.add(transformDocumentsToFormBean(documentElem));
@@ -114,11 +117,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String generateBookingRequestReport() {
-        String orderId = "26";
-        String orderItemId = "1";
+        System.out.print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + documentIdParam);
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        String orderId = (documentEntity.getReferenceId()).toString();
+        System.out.print("ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" + orderId);
         Map<String, String> params = new HashMap();
         params.put("orderId", orderId);
-        params.put("orderItemId", orderItemId);
 
         ByteArrayOutputStream byteArray = null;
         BufferedOutputStream responseOut = null;
@@ -181,6 +185,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public OrderBean transformOrdersToFormBean(Orders entity) {
         OrderBean formBean = new OrderBean();
+        formBean.setOrderId(entity.getOrderId());
         formBean.setOrderNumber(entity.getOrderNumber());
         /*formBean.setCustomerName(entity.getShipperCode());*/
         //get shipper's name
@@ -202,6 +207,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public DocumentsBean transformDocumentsToFormBean(Documents entity) {
         DocumentsBean formBean = new DocumentsBean();
 
+        formBean.setDocumentId(entity.getDocumentId());
         formBean.setDocumentName(entity.getDocumentName());
         formBean.setOrderNumber(entity.getOrderNumber());
         formBean.setDocumentStatus(entity.getDocumentStatus());
@@ -292,5 +298,24 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
     }
-    
+
+    public Integer getOrderIdParam() {
+        return orderIdParam;
+    }
+
+    public void setOrderIdParam(Integer orderIdParam) {
+        this.orderIdParam = orderIdParam;
+    }
+
+    public Integer getDocumentIdParam() {
+        return documentIdParam;
+    }
+
+    public void setDocumentIdParam(Integer documentIdParam) {
+        this.documentIdParam = documentIdParam;
+    }
+
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
 }

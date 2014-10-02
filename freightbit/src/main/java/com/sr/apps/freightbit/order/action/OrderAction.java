@@ -1,19 +1,5 @@
 package com.sr.apps.freightbit.order.action;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.sr.biz.freightbit.common.entity.Notification;
-import com.sr.biz.freightbit.common.service.NotificationService;
-//import com.sr.biz.freightbit.order.entity.Counter;
-import org.apache.commons.lang3.StringUtils;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
@@ -30,7 +16,9 @@ import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.entity.User;
@@ -51,6 +39,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//import com.sr.biz.freightbit.order.entity.Counter;
 
 public class OrderAction extends ActionSupport implements Preparable {
 
@@ -412,14 +401,10 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         orderService.addOrder(orderEntity);
 
-
         //        fill the addedtype column in counterTable
 //        Counter counterEntity = new Counter();
 //        counterEntity.setAddedType("BOOKING");
 //        orderService.addCounterType(counterEntity);
-
-
-
 
         Notification notificationEntity = new Notification();
         notificationEntity.setDescription("BOOKING");
@@ -428,11 +413,9 @@ public class OrderAction extends ActionSupport implements Preparable {
         notificationEntity.setReferenceId(1);
         notificationEntity.setReferenceTable("Order");
         notificationEntity.setUserId(1);
-
+        // Adds notification upon order creation
         notificationService.addNotification(notificationEntity);
-
-
-
+        // Activate Booking Request Form in Documents Module
         Documents documentEntity = new Documents();
 
         documentEntity.setClientId(commonUtils.getClientId());
@@ -443,6 +426,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setOrderNumber(orderEntity.getOrderNumber());
         documentEntity.setCreatedDate(new Date());
         documentEntity.setDocumentStatus("FOR PRINTING");
+
         documentsService.addDocuments(documentEntity);
         // To get generated Order Id
         orderIdPass = orderEntity.getOrderId();
@@ -450,7 +434,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         // Put Order Id to Order Id session
         sessionAttributes.put("orderIdPass", orderIdPass);
-
 
         return SUCCESS;
     }
@@ -512,7 +495,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE",shipperName.getCustomerId());
         // displays customer consignee address list
         consigneeAddressList = customerService.findAddressByCriteria("CONSIGNEE",shipperName.getCustomerId());
-
         // put value of orderIdPass into session
         sessionAttributes.put("orderIdPass", orderIdParam);
 
@@ -1181,21 +1163,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         return entity;
     }
-
-    /*public Documents transformToDocumentEntityBean (DocumentsBean formBean) {
-
-        Documents entity = new Documents();
-        Client client = clientService.findClientById(getClientId().toString());
-        entity.setClientId(commonUtils.getClientId());
-        entity.setDocumentName("BOOKING REQUEST FORM");
-        entity.setDocumentType("OUTBOUND");
-        entity.setReferenceId();
-        entity.setReferenceTable("ORDERS");
-        entity.setCreatedDate(new Date());
-        entity.setOrderNumber();
-
-        return entity;
-    }*/
 
     public void validateOnSubmitItem(ItemBean itemBean) {
         clearErrorsAndMessages();
