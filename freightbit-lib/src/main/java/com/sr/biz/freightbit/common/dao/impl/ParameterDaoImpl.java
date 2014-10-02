@@ -140,7 +140,8 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
         log.debug("updating a Parameter");
         try {
     		Session session = getSessionFactory().getCurrentSession();
-    		Query query = session.createQuery("Update Parameters set value = :value, label = :label where parameterId = :parameterId");
+    		Query query = session.createQuery("Update Parameters set key = :key, value = :value, label = :label where parameterId = :parameterId");
+    		query.setParameter("key", param.getValue().toUpperCase());
     		query.setParameter("value", param.getValue());
     		query.setParameter("label", param.getValue());
     		query.setParameter("parameterId", param.getParameterId());
