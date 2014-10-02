@@ -112,11 +112,9 @@
                 <div class="panel-body">
 
                     <div class="table-responsive list-table">
-
                         <tbody>
                         <table>
                             <tr>
-
                                 <display:table id="user" name="users" requestURI="/loadEditGroupPage.action"
                                                pagesize="5"
                                                class="table table-striped table-hover table-bordered text-center tablesorter"
@@ -144,20 +142,14 @@
                                             </s:url>
                                             <s:a href="%{addUserToGroupUrl}" class="icon-action-link"
                                                  title="Add this user"><img src="../includes/images/plus-16.png"> </s:a>
-
-
                                         </display:column>
                                     </td>
                                 </display:table>
-
                             </tr>
                         </table>
                         </tbody>
-
                     </div>
-
                 </div>
-
             </div>
         </div>
         <div class="col-lg-6">

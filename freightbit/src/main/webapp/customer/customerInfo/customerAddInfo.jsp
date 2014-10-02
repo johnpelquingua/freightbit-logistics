@@ -61,7 +61,7 @@
                                     </div>
 
                                 <div class="form-group">
-                                <label class="col-lg-4  control-label" style="padding-top:0px;">Dti</label>
+                                <label class="col-lg-4  control-label" style="padding-top:0px;">DTI</label>
                                 <div class="col-lg-8" >
                                     <s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
                                                  placeholder="DTI" maxLength="30"/>

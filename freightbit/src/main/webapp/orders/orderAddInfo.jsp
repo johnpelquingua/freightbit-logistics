@@ -166,7 +166,7 @@
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.fax"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">E-Mail</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">E-mail</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.email"/></td>
                             </tr>
                             <tr>
@@ -222,7 +222,7 @@
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.fax"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">E-Mail</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">E-mail</td>
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.email"/></td>
                             </tr>
                             <tr>

@@ -135,7 +135,7 @@
                             <td><s:property value="order.shipperInfoContact.fax"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">E-Mail</td>
+                            <td style="color: gray !important;">E-mail</td>
                             <td><s:property value="order.shipperInfoContact.email"/></td>
                         </tr>
                         <tr>
@@ -174,7 +174,7 @@
                             <td><s:property value="order.consigneeInfoContact.fax"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">E-Mail</td>
+                            <td style="color: gray !important;">E-mail</td>
                             <td><s:property value="order.consigneeInfoContact.email"/></td>
                         </tr>
                         <tr>

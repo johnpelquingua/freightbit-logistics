@@ -32,7 +32,7 @@
                             <th class="tb-font-black">Phone</th>
                             <th class="tb-font-black">Mobile</th>
                             <th class="tb-font-black">Fax</th>
-                            <th class="tb-font-black">E-Mail</th>
+                            <th class="tb-font-black">E-mail</th>
                             <th class="tb-font-black">Action</th>
                         </tr>
                         </thead>

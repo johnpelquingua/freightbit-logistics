@@ -33,8 +33,12 @@
 </s:if>
 
 <style>
-    table { table-layout: fixed; }
+   /* table { table-layout: fixed; }
     table th, table td { overflow: hidden; }
+*/
+
+
+
 </style>
 
 <div class="row">
@@ -67,10 +71,10 @@
                                                    pagesize="10"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
-                                        <td><display:column property="lastName" title="Last Name <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
                                         <td><display:column property="firstName" title="First Name <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="lastName" title="Last Name <i class='fa fa-sort' />" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
                                         <td><display:column property="middleName" title="Middle Name <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="phone" title="Phone <i class='fa fa-sort' />" class="tb-font-black"
@@ -79,7 +83,7 @@
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="fax" title="Fax <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="email" title="E-Mail <i class='fa fa-sort' />" class="tb-font-black col-md-2"
+                                        <td><display:column property="email" title="E-mail <i class='fa fa-sort' />" class="tb-font-black col-md-2"
                                                             style="text-align: center;"> </display:column></td>
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">
@@ -184,3 +188,11 @@
     </div>--%>
 
 </div>
+
+
+<script>
+
+
+
+
+</script>

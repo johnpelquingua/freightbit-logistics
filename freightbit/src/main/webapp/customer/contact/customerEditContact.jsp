@@ -101,9 +101,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="contact.email" class="col-lg-2 control-label" style="padding-top:0px;">E-Mail<span class="asterisk_red"></span></label>
+                        <label for="contact.email" class="col-lg-2 control-label" style="padding-top:0px;">E-mail<span class="asterisk_red"></span></label>
                         <div class="col-lg-10" >
-                            <s:textfield cssClass="form-control" placeholder="E-Mail" name="contact.email"
+                            <s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email"
                                          type="email" required="true"/>
                         </div>
                     </div>

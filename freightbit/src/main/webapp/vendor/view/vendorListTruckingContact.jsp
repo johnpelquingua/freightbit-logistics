@@ -35,7 +35,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Contact Person List</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Contact Person Lists</h3>
                 <span class="pull-right">
                 <s:url var="loadAddContactUrl" action="loadAddTruckingContact">
                     <s:param name="vendorIdParam" value="vendorIdParam"> </s:param>
