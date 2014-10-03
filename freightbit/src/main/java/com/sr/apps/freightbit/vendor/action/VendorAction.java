@@ -308,7 +308,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             column = "vendorName";
         } else if ("VENDOR TYPE".equals(vendor.getVendorSearchCriteria())) {
             column = "vendorType";
-        }else if ("VENDOR CLASS".equals(vendor.getVendorSearchCriteria())){
+        }else if ("CLASS".equals(vendor.getVendorSearchCriteria())){
             column ="vendorClass";
         }
 
