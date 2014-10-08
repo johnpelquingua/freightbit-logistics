@@ -65,6 +65,42 @@
                 </div>
             </div>
 
+            <%--<div class="panel-body">
+                <div class="table-responsive">
+                    <display:table id="order" name="orders"
+                                   requestURI="viewPendingDocuments.action" pagesize="10"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                   style="margin-top: 15px;empty-cells: hide;">
+
+                        <td><display:column title="Booking Date <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Ernest Reference # <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Date of Docs Returned <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Consignee <i class='fa fa-sort' />"
+                                            class="tb-font-black" style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Invoice DR No. <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Master Waybill <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Date forwarded to acct.<i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column title="Action">
+                            <s:url var="viewDocumentsUrl" action="../documentation/viewOrderDocuments">
+                                <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{viewDocumentsUrl}" rel="tooltip" title="View Documents">
+                                <i class="fa fa-eye"></i>
+                            </s:a>
+                        </display:column></td>
+
+                    </display:table>
+                </div>
+            </div>--%>
+
         </div>
 
     </div>

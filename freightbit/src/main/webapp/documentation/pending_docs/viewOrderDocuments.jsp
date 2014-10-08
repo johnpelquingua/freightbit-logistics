@@ -9,6 +9,12 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<style>
+    .pagebanner, .pagelinks {
+        display: none;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12">
 
@@ -120,7 +126,7 @@
 
 <script>
     function generateBookingRequestReport(documentId){
-        alert(documentId);
+        /*alert(documentId);*/
         var win = window.open('documentations/generateBookingRequestReport?documentIdParam='+documentId,'bookingRequest','width=910,height=800');
         win.onload = function() { this.document.title = "Booking Request"; }
     }

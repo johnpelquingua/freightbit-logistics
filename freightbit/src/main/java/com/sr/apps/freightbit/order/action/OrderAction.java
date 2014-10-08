@@ -1,19 +1,5 @@
 package com.sr.apps.freightbit.order.action;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.sr.biz.freightbit.common.entity.Notification;
-import com.sr.biz.freightbit.common.service.NotificationService;
-//import com.sr.biz.freightbit.order.entity.Counter;
-import org.apache.commons.lang3.StringUtils;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
@@ -30,7 +16,9 @@ import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.entity.User;
@@ -50,6 +38,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+//import com.sr.biz.freightbit.order.entity.Counter;
 
 
 public class OrderAction extends ActionSupport implements Preparable {
@@ -411,16 +401,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Orders orderEntity = transformToOrderEntityBean(order);
 
         orderService.addOrder(orderEntity);
-
-
-        //        fill the addedtype column in counterTable
-//        Counter counterEntity = new Counter();
-//        counterEntity.setAddedType("BOOKING");
-//        orderService.addCounterType(counterEntity);
-
-
-
-
+       // Add Notification for user that booking was created
         Notification notificationEntity = new Notification();
         notificationEntity.setDescription("BOOKING");
         notificationEntity.setNotificationId(1);
@@ -428,13 +409,9 @@ public class OrderAction extends ActionSupport implements Preparable {
         notificationEntity.setReferenceId(1);
         notificationEntity.setReferenceTable("Order");
         notificationEntity.setUserId(1);
-
         notificationService.addNotification(notificationEntity);
-
-
-
+        // Booking Request Form will be activated under pending documents
         Documents documentEntity = new Documents();
-
         documentEntity.setClientId(commonUtils.getClientId());
         documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
         documentEntity.setDocumentName(DocumentsConstants.BOOKING_REQUEST_FORM);

@@ -81,7 +81,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String viewOrderDocuments() {
-        System.out.print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + orderIdParam);
 
         List<Documents> documentsEntityList = documentsService.findDocumentsByOrderId(orderIdParam);
 
@@ -117,10 +116,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String generateBookingRequestReport() {
-        System.out.print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + documentIdParam);
+
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         String orderId = (documentEntity.getReferenceId()).toString();
-        System.out.print("ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" + orderId);
+
         Map<String, String> params = new HashMap();
         params.put("orderId", orderId);
 

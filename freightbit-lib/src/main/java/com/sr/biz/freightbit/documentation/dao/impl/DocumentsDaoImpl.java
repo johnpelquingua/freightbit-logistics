@@ -35,10 +35,10 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
 
         List<String> statusList = new ArrayList<>();
 
-        statusList.add("PENDING");
-        statusList.add("DISAPPROVED");
-        /*statusList.add("APPROVED");
-        statusList.add("PLANNING 1");
+        /*statusList.add("PENDING");
+        statusList.add("DISAPPROVED");*/
+        statusList.add("APPROVED");
+        /*statusList.add("PLANNING 1");
         statusList.add("PLANNING 2");
         statusList.add("PLANNING 3");
         statusList.add("SERVICE ACCOMPLISHED");*/
@@ -46,7 +46,7 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
         log.debug("Finding orders with filter");
         try {
             log.debug("Finding orders succeeded");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderStatus not in(:statusList) order by createdTimestamp desc");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderStatus in(:statusList) order by createdTimestamp desc");
             query.setParameterList("statusList", statusList);
             List<Orders> results = (List<Orders>) query.list();
             return results;

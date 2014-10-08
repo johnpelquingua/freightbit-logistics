@@ -36,7 +36,7 @@
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Booking List</h3>
                 <span class="pull-right">
                     <button type="button" class="btn btn-success new-booking" onclick="location.href='bookingSearch'">
-                        <i class="fa fa-search"></i> Search Booking s
+                        <i class="fa fa-search"></i> Search Booking
                     </button>
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='loadAddOrderPage'">
