@@ -45,9 +45,17 @@
             <result name="success" type="tiles">orders.booking-list.tiles</result>
         </action>
 
+        <action name="getNotifications" method="refresher" class="com.sr.apps.freightbit.core.action.DashboardAction">
+            <result type="stream">
+                <!--<param name="contentType">text/html</param>-->
+                <!--<param name="inputName">inputStream</param>-->
+            </result>
+        </action>
+
 
 
     </package>
+
 
     <!-- Add addition packages and configuration here. -->
 </struts>

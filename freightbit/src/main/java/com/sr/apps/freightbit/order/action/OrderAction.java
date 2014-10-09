@@ -158,7 +158,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         for(int i = 0; i < consigneeAddresses.size(); i++ ) {
             consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
         }
-
+        dummyMsg = "AJAX TRIGGER";
         return SUCCESS;
     }
 

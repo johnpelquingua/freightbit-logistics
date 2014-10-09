@@ -66,7 +66,7 @@
                             <label class="col-lg-4  control-label" style="padding-top:0px;">DTI</label>
                             <div class="col-lg-8" >
                                 <s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
-                                             placeholder="DTI" maxLength="30"/>
+                                             placeholder="XXXXXXXX" maxLength="8"/>
                             </div>
                             </div>
 
@@ -112,7 +112,7 @@
 
                                 <label class="col-lg-4 control-label" style="padding-top:0px;">Mayor's Permit Number</label>
                                 <div class="col-lg-8" >
-                                    <s:textfield name="customer.mayorsPermit" cssClass="form-control" id="customer_mayorsPermit" placeholder="Mayor's Permit"/>
+                                    <s:textfield name="customer.mayorsPermit" cssClass="form-control" id="customer_mayorsPermit" placeholder="XX-XXXXXX"/>
                                 </div>
                             </div>
                             <div class="form-group">

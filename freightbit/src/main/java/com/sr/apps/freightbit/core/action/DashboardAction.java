@@ -59,6 +59,20 @@ public class DashboardAction extends ActionSupport implements SessionAware {
         return SUCCESS;
     }
 
+public void refresher(){
+
+    Booking = notificationService.CountAll();
+    Customer = notificationService.CountAllCustomer();
+    User = notificationService.CountAllUser();
+    Vendor = notificationService.CountAllVendor();
+    System.out.println("The number of  new booking is "+Booking);
+    System.out.println("The number of  new Customer is "+Customer);
+    System.out.println("The number of  new User is "+User);
+    System.out.println("The number of  new Vendor is "+Vendor);
+
+
+}
+
 
     public String getUsername() {
         return username;
@@ -112,4 +126,6 @@ public class DashboardAction extends ActionSupport implements SessionAware {
     public void setVendor(BigInteger vendor) {
         Vendor = vendor;
     }
+
+
 }

@@ -64,7 +64,7 @@
                                 <label class="col-lg-4  control-label" style="padding-top:0px;">DTI</label>
                                 <div class="col-lg-8" >
                                     <s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
-                                                 placeholder="DTI" maxLength="30"/>
+                                                 placeholder="XXXXXXXX" maxLength="8"/>
                                 </div>
                                 </div>
 
@@ -179,6 +179,9 @@
         $("#customer_phone").mask("(999) 999-9999");
         $("#customer_mobile").mask("(+63999)(999-9999)");
         $("#customer_fax").mask("(999) 999-9999");
+        $("#customer_dti").mask("99999999");
+        $("#customer_mayorsPermit").mask("99-999999");
+
 
     });
 

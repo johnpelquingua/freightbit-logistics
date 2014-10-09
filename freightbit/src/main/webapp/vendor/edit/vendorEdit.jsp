@@ -59,15 +59,15 @@
                                   name="vendor.vendorClass"/>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="vendor.vendorStatus" class="col-lg-2 control-label" style="padding-top:0px;">Status<span class="asterisk_red"></span></label>
+                <%--<div class="form-group">--%>
+                    <%--<label for="vendor.vendorStatus" class="col-lg-2 control-label" style="padding-top:0px;">Status<span class="asterisk_red"></span></label>--%>
 
-                    <div class="col-lg-9">
-                        <s:select cssClass="form-control" id="vendor.vendorStatus" list="statusList"
-                                  listKey="key" listValue="value"
-                                  name="vendor.vendorStatus"/>
-                    </div>
-                </div>
+                    <%--<div class="col-lg-9">--%>
+                        <%--<s:select cssClass="form-control" id="vendor.vendorStatus" list="statusList"--%>
+                                  <%--listKey="key" listValue="value"--%>
+                                  <%--name="vendor.vendorStatus"/>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
             </div>
             <div class="panel-footer">
                 <div class="" style="float: right;">

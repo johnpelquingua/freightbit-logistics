@@ -89,10 +89,10 @@
                                                 <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Classification</td>
                                                 <td><s:property value="vendor.vendorClass"/></td>
                                             </tr>
-                                            <tr>
-                                                <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Status</td>
-                                                <td><s:property value="vendor.vendorStatus"/></td>
-                                            </tr>
+                                            <%--<tr>--%>
+                                                <%--<td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Status</td>--%>
+                                                <%--<td><s:property value="vendor.vendorStatus"/></td>--%>
+                                            <%--</tr>--%>
 
                                             </tbody>
                                         </table>
