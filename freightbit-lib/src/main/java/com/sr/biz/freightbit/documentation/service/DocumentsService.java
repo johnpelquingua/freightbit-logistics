@@ -22,4 +22,6 @@ public interface DocumentsService {
 
     public Documents findDocumentById(Integer documentId);
 
+    public void updateDocument(Documents documents);
+
 }

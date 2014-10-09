@@ -47,6 +47,18 @@
         <action name="viewReleaseOrder" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewReleaseOrder">
             <result name="success" type="tiles">documentation.releaseOrder.tiles</result>
         </action>
+
+        <action name="editDocumentInfo" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="editDocumentInfo">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
+        <action name="checkDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="checkDocument">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
+        <action name="unCheckDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="unCheckDocument">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
                  
         <action name="generateBookingRequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBookingRequestReport">
             <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->

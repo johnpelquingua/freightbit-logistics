@@ -117,5 +117,36 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
         }
     }
 
+    @Override
+    public List <Documents> findDuplicateDocumentByDocumentName(String documentName, Integer documentId){
+        log.debug("Finding duplicate document by document Name");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Documents d where d.documentName= :documentName and d.documentId != :documentId");
+            query.setParameter("documentName", documentName);
+            query.setParameter("documentId", documentId);
+            List<Documents> results = (List<Documents>) query.list();
+            log.debug("Find Document by Document Name successful, result size " + results.size());
+            return results;
+        }catch(RuntimeException re) {
+            log.error("Find Document by Document Name failed", re);
+            throw re;
+        }
 
+    }
+
+    @Override
+    public void updateDocument(Documents documents) {
+        log.debug("Update Documents");
+        try{
+            Session session = getSessionFactory().getCurrentSession();
+            session.saveOrUpdate(documents);
+            log.debug("update Document successful");
+
+        }catch(RuntimeException re){
+            log.error("update failed", re);
+            throw re;
+        }
+
+    }
 }

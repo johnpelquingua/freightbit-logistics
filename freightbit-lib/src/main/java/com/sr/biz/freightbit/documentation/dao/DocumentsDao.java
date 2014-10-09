@@ -21,4 +21,8 @@ public interface DocumentsDao {
     public List<Documents> findDocumentsByOrderId(Integer orderId);
 
     public Documents findDocumentById(Integer documentId);
+
+    public List <Documents> findDuplicateDocumentByDocumentName(String documentName, Integer documentId);
+
+    public void updateDocument(Documents documents);
 }

@@ -36,8 +36,8 @@
                                    requestURI="viewPendingDocuments.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;empty-cells: hide;">
-                        <td><display:column property="orderId" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                        <%--<td><display:column property="orderId" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>--%>
                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"

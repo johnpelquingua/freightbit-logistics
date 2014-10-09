@@ -19,6 +19,8 @@ public class DocumentsBean {
     private String orderNumber;
     private Date createdDate;
     private String documentStatus;
+    private Integer documentProcessed;
+    private String referenceNumber;
 
     private Integer documentIdParam;
     private Integer orderIdParam;
@@ -26,7 +28,7 @@ public class DocumentsBean {
     public DocumentsBean() {
     }
 
-    public DocumentsBean(Integer documentId, String documentType, Integer clientId, String documentName, Integer referenceId, String referenceTable, String orderNumber, Date createdDate, String documentStatus, Integer documentIdParam, Integer orderIdParam) {
+    public DocumentsBean(Integer documentId, String documentType, Integer clientId, String documentName, Integer referenceId, String referenceTable, String orderNumber, Date createdDate, String documentStatus, Integer documentProcessed, String referenceNumber, Integer documentIdParam, Integer orderIdParam) {
         this.documentId = documentId;
         this.documentType = documentType;
         this.clientId = clientId;
@@ -36,6 +38,8 @@ public class DocumentsBean {
         this.orderNumber = orderNumber;
         this.createdDate = createdDate;
         this.documentStatus = documentStatus;
+        this.documentProcessed = documentProcessed;
+        this.referenceNumber = referenceNumber;
         this.documentIdParam = documentIdParam;
         this.orderIdParam = orderIdParam;
     }
@@ -126,5 +130,21 @@ public class DocumentsBean {
 
     public void setDocumentStatus(String documentStatus) {
         this.documentStatus = documentStatus;
+    }
+
+    public Integer getDocumentProcessed() {
+        return documentProcessed;
+    }
+
+    public void setDocumentProcessed(Integer documentProcessed) {
+        this.documentProcessed = documentProcessed;
+    }
+
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 }

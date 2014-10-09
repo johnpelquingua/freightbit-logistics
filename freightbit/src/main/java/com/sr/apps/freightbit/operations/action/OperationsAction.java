@@ -10,12 +10,15 @@ import com.sr.apps.freightbit.operations.formbean.VesselScheduleBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
+import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.apps.freightbit.vendor.formbean.VendorBean;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.documentation.entity.Documents;
+import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
@@ -83,6 +86,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private ParameterService parameterService;
     private ClientService clientService;
     private CommonUtils commonUtils;
+    private DocumentsService documentsService;
 
     private Map<String, String> driverMap = new LinkedHashMap<String, String>();
     private Map<String, String> trucksMap = new HashMap<String, String>();
@@ -203,6 +207,26 @@ public class OperationsAction extends ActionSupport implements Preparable {
             OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
             entity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
             operationsService.updateOrderItem(entity);
+
+            // Proforma Bill of Lading will be activated under pending documents
+            Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
+
+            Documents documentEntity = new Documents();
+            /*documentEntity.setClientId(commonUtils.getClientId());*/
+            Client client = clientService.findClientById(getClientId().toString());
+            documentEntity.setClient(client);
+            documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+            documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+            documentEntity.setReferenceId(orderEntity.getOrderId());
+            documentEntity.setReferenceTable("ORDERS");
+            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+            documentEntity.setCreatedDate(new Date());
+            documentEntity.setDocumentStatus("PENDING");
+            documentEntity.setDocumentProcessed(0);
+
+            documentsService.addDocuments(documentEntity);
+            // End of Activation of Proforma Bill of Lading under pending documents
+
         } catch (Exception e) {
             log.error("Update Orderitem failed", e);
             return INPUT;
@@ -1091,5 +1115,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setUpdateStatusList(List<Parameters> updateStatusList) {
         this.updateStatusList = updateStatusList;
+    }
+
+    public void setDocumentsService(DocumentsService documentsService) {
+        this.documentsService = documentsService;
     }
 }

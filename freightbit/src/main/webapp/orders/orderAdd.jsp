@@ -14,7 +14,7 @@
             <li class="active"><a href="<s:url action='viewOrders' />"> Booking List </a></li>
             <li class="active"> New Booking</li>
         </ol>
-
+        <div id="ajaxResponse"></div>
     </div>
 </div>
 <%--<div id="ajaxResponse"></div>--%>
@@ -671,7 +671,7 @@ $(document).ready(function() {
             customerID : custId
         },
             function(jsonResponse) {
-                /*alert(jsonResponse.dummyMsg);*/
+               /* alert(jsonResponse.dummyMsg);*/
 
             $('#ajaxResponse').text(jsonResponse.dummyMsg);
 

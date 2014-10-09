@@ -158,7 +158,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         for(int i = 0; i < consigneeAddresses.size(); i++ ) {
             consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
         }
-        dummyMsg = "AJAX TRIGGER";
+        dummyMsg = "Ajax action Triggered";
         return SUCCESS;
     }
 
@@ -410,17 +410,22 @@ public class OrderAction extends ActionSupport implements Preparable {
         notificationEntity.setReferenceTable("Order");
         notificationEntity.setUserId(1);
         notificationService.addNotification(notificationEntity);
+        // End of Add Notification
         // Booking Request Form will be activated under pending documents
         Documents documentEntity = new Documents();
-        documentEntity.setClientId(commonUtils.getClientId());
+        Client client = clientService.findClientById(getClientId().toString());
+        documentEntity.setClient(client);
         documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
         documentEntity.setDocumentName(DocumentsConstants.BOOKING_REQUEST_FORM);
         documentEntity.setReferenceId(orderEntity.getOrderId());
         documentEntity.setReferenceTable("ORDERS");
         documentEntity.setOrderNumber(orderEntity.getOrderNumber());
         documentEntity.setCreatedDate(new Date());
-        documentEntity.setDocumentStatus("FOR PRINTING");
+        documentEntity.setDocumentStatus("PENDING");
+        documentEntity.setDocumentProcessed(0);
+        documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
         documentsService.addDocuments(documentEntity);
+        // End of Activation of Booking Request
         // To get generated Order Id
         orderIdPass = orderEntity.getOrderId();
 

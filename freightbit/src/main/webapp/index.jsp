@@ -118,6 +118,7 @@
 
 
 <script type="text/javascript">
+
     $(document).ready(function(){
         $(window).load(function(){
             localStorage.clear();

@@ -3,6 +3,8 @@ package com.sr.biz.freightbit.documentation.service.impl;
 import com.sr.biz.freightbit.documentation.dao.DocumentsDao;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
+import com.sr.biz.freightbit.core.exceptions.DocumentAlreadyExistsException;
+
 import com.sr.biz.freightbit.order.entity.Orders;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,5 +54,15 @@ public class DocumentsServiceImpl implements DocumentsService {
 
     @Override
     public Documents findDocumentById(Integer documentId) { return documentsDao.findDocumentById(documentId); }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateDocument(Documents documents) {
+        if(documentsDao.findDuplicateDocumentByDocumentName(documents.getDocumentName(), documents.getDocumentId()).size() > 0){
+            throw new DocumentAlreadyExistsException(documents.getDocumentName());
+        }else{
+            documentsDao.updateDocument(documents);
+        }
+    }
 
 }

@@ -1,5 +1,7 @@
 package com.sr.biz.freightbit.documentation.entity;
 
+import com.sr.biz.freightbit.core.entity.Client;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -14,13 +16,16 @@ public class Documents implements Serializable {
 
     private Integer documentId;
     private String documentType;
-    private Integer clientId;
+    /*private Integer clientId;*/
+    private Client client;
     private String documentName;
     private Integer referenceId;
     private String referenceTable;
     private String orderNumber;
     private Date createdDate;
     private String documentStatus;
+    private Integer documentProcessed;
+    private String referenceNumber;
 
     public Documents() {
     }
@@ -45,13 +50,23 @@ public class Documents implements Serializable {
         this.documentType = documentType;
     }
 
-    @Column(name = "clientId")
+    /*@Column(name = "clientId")
     public Integer getClientId() {
         return clientId;
     }
 
     public void setClientId(Integer clientId) {
         this.clientId = clientId;
+    }*/
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "clientId")
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Column(name = "documentName")
@@ -106,5 +121,23 @@ public class Documents implements Serializable {
 
     public void setDocumentStatus(String documentStatus) {
         this.documentStatus = documentStatus;
+    }
+
+    @Column(name = "documentProcessed")
+    public Integer getDocumentProcessed() {
+        return documentProcessed;
+    }
+
+    public void setDocumentProcessed(Integer documentProcessed) {
+        this.documentProcessed = documentProcessed;
+    }
+
+    @Column(name = "referenceNumber")
+    public String getReferenceNumber() {
+        return referenceNumber;
+    }
+
+    public void setReferenceNumber(String referenceNumber) {
+        this.referenceNumber = referenceNumber;
     }
 }

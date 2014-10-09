@@ -7,7 +7,6 @@ import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
-import javax.persistence.criteria.Order;
 import java.math.BigInteger;
 import java.util.Map;
 
@@ -126,6 +125,4 @@ public void refresher(){
     public void setVendor(BigInteger vendor) {
         Vendor = vendor;
     }
-
-
 }
