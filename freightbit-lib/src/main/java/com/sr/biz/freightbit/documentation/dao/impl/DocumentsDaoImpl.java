@@ -10,6 +10,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sr.biz.freightbit.documentation.entity.Documents;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,4 +151,22 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
         }
 
     }
+
+    @Override
+    public List<Documents> findDocumentByStageAndID(String documentType, Integer referenceId) {
+
+        log.debug("Finding Documents with filter");
+        try{
+            log.debug("Finding documents succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentType = :documentType and d.referenceId = :referenceId");
+            query.setParameter("documentType", documentType);
+            query.setParameter("referenceId", referenceId);
+            List<Documents> results = (List<Documents>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
 }

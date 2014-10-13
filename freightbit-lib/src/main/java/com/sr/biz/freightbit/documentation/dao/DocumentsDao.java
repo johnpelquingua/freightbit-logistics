@@ -25,4 +25,6 @@ public interface DocumentsDao {
     public List <Documents> findDuplicateDocumentByDocumentName(String documentName, Integer documentId);
 
     public void updateDocument(Documents documents);
+
+    public List<Documents> findDocumentByStageAndID(String documentType, Integer referenceId);
 }

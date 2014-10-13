@@ -64,4 +64,9 @@ public class DocumentsServiceImpl implements DocumentsService {
         }
     }
 
+    @Override
+    public List<Documents> findDocumentByStageAndID (String documentType, Integer referenceId) {
+        return documentsDao.findDocumentByStageAndID(documentType, referenceId);
+    }
+
 }

@@ -68,6 +68,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private String fileName;
     private String orderId;
     private String bookingNumber;
+
+    private List<Documents> outboundEntityList = new ArrayList<Documents>();
+    private List<Documents> inboundEntityList = new ArrayList<Documents>();
+    private List<Documents> finalOutboundEntityList = new ArrayList<Documents>();
+    private List<Documents> finalInboundEntityList = new ArrayList<Documents>();
+    private List<Documents> archiveEntityList = new ArrayList<Documents>();
+    private List<Documents> billingEntityList = new ArrayList<Documents>();
+
     
     @Override
     public void prepare() {
@@ -99,14 +107,56 @@ public class DocumentAction extends ActionSupport implements Preparable{
             orderIdParam = (Integer)sessionAttributes.get("orderIdParam");
         }
 
-        List<Documents> documentsEntityList = documentsService.findDocumentsByOrderId(orderIdParam);
         // Display correct Order Number in breadcrumb
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         bookingNumber = orderEntity.getOrderNumber();
-
         order = transformToOrderFormBean(orderEntity);
 
+        /*List<Documents> documentsEntityList = documentsService.findDocumentsByOrderId(orderIdParam);
+
         for (Documents documentElem : documentsEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }*/
+
+        /*OUTBOUND DOCUMENTS*/
+        outboundEntityList = documentsService.findDocumentByStageAndID("OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : outboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*INBOUND DOCUMENTS*/
+        inboundEntityList = documentsService.findDocumentByStageAndID("INBOUND", orderIdParam);
+
+        for (Documents documentElem : inboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL OUTBOUND DOCUMENTS*/
+        finalOutboundEntityList = documentsService.findDocumentByStageAndID("FINAL OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : finalOutboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL INBOUND DOCUMENTS*/
+        finalInboundEntityList = documentsService.findDocumentByStageAndID("FINAL INBOUND", orderIdParam);
+
+        for (Documents documentElem : finalInboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*ARCHIVE DOCUMENTS*/
+        archiveEntityList = documentsService.findDocumentByStageAndID("ARCHIVE", orderIdParam);
+
+        for (Documents documentElem : archiveEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*BILLING DOCUMENTS*/
+        billingEntityList = documentsService.findDocumentByStageAndID("BILLING", orderIdParam);
+
+        for (Documents documentElem : billingEntityList){
             documents.add(transformDocumentsToFormBean(documentElem));
         }
 
@@ -548,5 +598,57 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setClientService(ClientService clientService) {
         this.clientService = clientService;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public List<Documents> getBillingEntityList() {
+        return billingEntityList;
+    }
+
+    public void setBillingEntityList(List<Documents> billingEntityList) {
+        this.billingEntityList = billingEntityList;
+    }
+
+    public List<Documents> getArchiveEntityList() {
+        return archiveEntityList;
+    }
+
+    public void setArchiveEntityList(List<Documents> archiveEntityList) {
+        this.archiveEntityList = archiveEntityList;
+    }
+
+    public List<Documents> getFinalInboundEntityList() {
+        return finalInboundEntityList;
+    }
+
+    public void setFinalInboundEntityList(List<Documents> finalInboundEntityList) {
+        this.finalInboundEntityList = finalInboundEntityList;
+    }
+
+    public List<Documents> getFinalOutboundEntityList() {
+        return finalOutboundEntityList;
+    }
+
+    public void setFinalOutboundEntityList(List<Documents> finalOutboundEntityList) {
+        this.finalOutboundEntityList = finalOutboundEntityList;
+    }
+
+    public List<Documents> getInboundEntityList() {
+        return inboundEntityList;
+    }
+
+    public void setInboundEntityList(List<Documents> inboundEntityList) {
+        this.inboundEntityList = inboundEntityList;
+    }
+
+    public List<Documents> getOutboundEntityList() {
+        return outboundEntityList;
+    }
+
+    public void setOutboundEntityList(List<Documents> outboundEntityList) {
+        this.outboundEntityList = outboundEntityList;
     }
 }
