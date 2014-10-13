@@ -82,42 +82,78 @@
                 </div>
 
                 <div class="well">
-                    <fieldset class="inputs">
                         <legend style="text-align: left;">
                             <span >
-                                Input
+                               Progress
                             </span>
                         </legend>
 
-                            <s:form action="editDocumentInfo" theme="bootstrap">
-
-                                <div class="form-group">
-
-                                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Proforma Bill of Lading Number</label>
-                                    <div class="col-lg-3" >
-                                        <input type="text" class="form-control" id="proformaBillofLadingNumber" name="document.referenceNumber" style="margin-bottom: 15px !important;">
-                                    </div>
-
-                                </div>
+                    <div class="container">
 
 
+                        <div class="row bs-wizard" style="border-bottom:0;">
 
-                                <div class="pull-right">
-                                    <s:submit name="submit" cssClass="btn btn-primary" value="Save" />
-                                </div>
-                            </s:form>
+                            <div class="col-xs-2 bs-wizard-step active">
+                                <div class="text-center bs-wizard-stepnum">Outbound</div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                                <a href="#outbound" class="bs-wizard-dot" data-toggle="tab" onclick="OutboundProgress()"></a>
+                                <%--<div class="bs-wizard-info text-center">Lorem ipsum dolor sit amet.</div>--%>
+                            </div>
 
-                    </fieldset>
+                            <div class="col-xs-2 bs-wizard-step disabled"><!-- complete -->
+                                <div class="text-center bs-wizard-stepnum">Inbound</div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                                <a href="#inbound" class="bs-wizard-dot" data-toggle="tab" onclick="InboundProgress()"></a>
+                                <%--<div class="bs-wizard-info text-center">Nam mollis tristique erat vel tristique. Aliquam erat volutpat. Mauris et vestibulum nisi. Duis molestie nisl sed scelerisque vestibulum. Nam placerat tristique placerat</div>--%>
+                            </div>
+
+                            <div class="col-xs-2 bs-wizard-step disabled"><!-- complete -->
+                                <div class="text-center bs-wizard-stepnum">Final Set Outbound</div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                                <a href="#finalOutbound" class="bs-wizard-dot" data-toggle="tab" onclick="finalOutboundProgress()"></a>
+                                <%--<div class="bs-wizard-info text-center">Integer semper dolor ac auctor rutrum. Duis porta ipsum vitae mi bibendum bibendum</div>--%>
+                            </div>
+
+                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                                <div class="text-center bs-wizard-stepnum">Final set Inbound</div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                                <a href="#finalInbound" class="bs-wizard-dot" data-toggle="tab" onclick="finalInboundProgress()"></a>
+                                <%--<div class="bs-wizard-info text-center"></div>--%>
+                            </div>
+
+                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                                <div class="text-center bs-wizard-stepnum">Archive</div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                                <a href="#archive" class="bs-wizard-dot" data-toggle="tab" onclick="archiveProgress()"></a>
+                                <%--<div class="bs-wizard-info text-center"></div>--%>
+                            </div>
+
+                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                                <div class="text-center bs-wizard-stepnum">Billing</div>
+                                <div class="progress"><div class="progress-bar" data-toggle="tab" onclick="BillingProgress"></div></div>
+                                <a href="#billing" class="bs-wizard-dot"></a>
+                                <%--<div class="bs-wizard-info text-center"></div>--%>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+
                 </div>
 
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#outbound" role="tab" data-toggle="tab">Outbound</a></li>
-                    <li><a href="#inbound" role="tab" data-toggle="tab">Inbound</a></li>
-                    <li><a href="#finalOutbound" role="tab" data-toggle="tab">Final Set Outbound</a></li>
-                    <li><a href="#finalInbound" role="tab" data-toggle="tab">Final Set Inbound</a></li>
-                    <li><a href="#archive" role="tab" data-toggle="tab">Archive</a></li>
-                    <li><a href="#billing" role="tab" data-toggle="tab">Billing</a></li>
+                    <li class="active" id="out"><a href="#outbound" role="tab" data-toggle="tab">Outbound</a></li>
+                    <li id="in"><a href="#inbound" role="tab" data-toggle="tab">Inbound</a></li>
+                    <li id="fiOut"><a href="#finalOutbound" role="tab" data-toggle="tab">Final Set Outbound</a></li>
+                    <li id="fiIn"><a href="#finalInbound" role="tab" data-toggle="tab">Final Set Inbound</a></li>
+                    <li id="arch"><a href="#archive" role="tab" data-toggle="tab">Archive</a></li>
+                    <li id="bill"><a href="#billing" role="tab" data-toggle="tab">Billing</a></li>
                 </ul>
 
 
@@ -187,7 +223,66 @@
                     <%--INBOUND DOCUMENTS BEGIN--%>
                     <div class="tab-pane fade" id="inbound">
 
-                        INBOUND DOCUMENTS
+
+
+                            <div class="panel-body">
+
+
+                                <div class="table-responsive">
+                                    <display:table id="InboundDocument" name="documents" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
+                                                   style="margin-top: 15px;">
+
+                                        <td>
+                                            <display:column title="" class="tb-font-black" style="text-align: center;" >
+                                                <s:if test="#attr.document.documentProcessed == 0">
+                                                    <s:url var="checkDocumentUrl" action="checkDocument">
+                                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                    </s:url>
+                                                    <s:a class="icon-action-link" href="%{checkDocumentUrl}" rel="tooltip" title ="Edit Booking">
+                                                        <i class="fa fa-square-o"></i>
+                                                    </s:a>
+                                                </s:if>
+
+                                                <s:else>
+                                                    <s:url var="uncheckDocumentUrl" action="unCheckDocument">
+                                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                    </s:url>
+                                                    <s:a class="icon-action-link" href="%{uncheckDocumentUrl}" rel="tooltip" title ="Edit Booking">
+                                                        <i class="fa fa-check-square-o"></i>
+                                                    </s:a>
+                                                </s:else>
+                                                <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
+                                                <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
+
+                                            </display:column>
+                                        </td>
+
+                                        <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
+
+                                        <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
+
+                                        <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                            style="text-align: center;" > </i></display:column></td>--%>
+
+                                        <td>
+                                            <display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
+                                                <a href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                    <i class="fa fa-print"></i>
+                                                </a>
+                                                <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
+                                                <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
+                                            </display:column>
+                                        </td>
+
+
+                                    </display:table>
+                                </div>
+                            </div>
+
 
                     </div>
                     <%--FINAL SET OUTBOUND DOCUMENTS BEGIN--%>
@@ -236,6 +331,7 @@ $(document).ready(function() {
         }
     }
 
+
     /*var tbl = document.getElementById("document");
     if (tbl != null) {
         for (var i = 0; i < tbl.rows.length; i++) {
@@ -262,5 +358,60 @@ $(document).ready(function() {
         win.onload = function() { this.document.title = "Release Order"; }
 
     }
+
+    function InboundProgress(){
+        document.getElementById("in").className='active';
+        document.getElementById("out").className='';
+        document.getElementById("arch").className='';
+        document.getElementById("bill").className='';
+        document.getElementById("fiOut").className='';
+        document.getElementById("fiIn").className='';
+    }
+
+    function OutboundProgress(){
+    document.getElementById("out").className='active';
+    document.getElementById("in").className='';
+        document.getElementById("arch").className='';
+        document.getElementById("bill").className='';
+        document.getElementById("fiOut").className='';
+        document.getElementById("fiIn").className='';
+    }
+
+    function finalOutboundProgress(){
+    document.getElementById("out").className='';
+    document.getElementById("in").className='';
+        document.getElementById("arch").className='';
+        document.getElementById("bill").className='';
+        document.getElementById("fiOut").className='active';
+        document.getElementById("fiIn").className='';
+    }
+
+function finalInboundProgress() {
+    document.getElementById("out").className = '';
+    document.getElementById("in").className = '';
+    document.getElementById("arch").className = '';
+    document.getElementById("bill").className = '';
+    document.getElementById("fiOut").className = '';
+    document.getElementById("fiIn").className = 'active';
+}
+
+function    archiveProgress() {
+    document.getElementById("out").className = '';
+    document.getElementById("in").className = '';
+    document.getElementById("arch").className = 'active';
+    document.getElementById("bill").className = '';
+    document.getElementById("fiOut").className = '';
+    document.getElementById("fiIn").className = '';
+}
+
+function BillingProgress() {
+    document.getElementById("out").className = '';
+    document.getElementById("in").className = '';
+    document.getElementById("arch").className = '';
+    document.getElementById("bill").className = 'active';
+    document.getElementById("fiOut").className = '';
+    document.getElementById("fiIn").className = '';
+}
+
 
 </script>
