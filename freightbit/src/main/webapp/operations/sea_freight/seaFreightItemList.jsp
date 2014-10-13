@@ -90,10 +90,15 @@
                         </div>
 
                         <div class="table-responsive">
+
+
                             <display:table id="orderItem" name="orderItems"
                                            requestURI="/viewSeaFreightItemList.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;">
+                                <td><display:column title="<input type='checkbox' />">
+                                        <s:checkbox name="check" value="%{#attr.orderItem.orderItemId}" />
+                                    </display:column></td>
 
                                 <td><display:column property="nameSize" title="Name <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>

@@ -91,6 +91,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Map<String, String> driverMap = new LinkedHashMap<String, String>();
     private Map<String, String> trucksMap = new HashMap<String, String>();
 
+    private String[] check = new String[100];
+
     Map paramMap = new HashMap();
 
     @Override
@@ -381,6 +383,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         orderItem = transformToOrderItemFormBean(entity);
         Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
         order = transformToOrderFormBean(orderEntity);
+
+        for (String i : check) {
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAA:" + i);
+        }
 
         return SUCCESS;
     }
@@ -1119,5 +1125,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setDocumentsService(DocumentsService documentsService) {
         this.documentsService = documentsService;
+    }
+
+    public String[] getCheck() {
+        return check;
+    }
+
+    public void setCheck(String[] check) {
+        this.check = check;
     }
 }
