@@ -1,10 +1,9 @@
 package com.sr.biz.freightbit.documentation.service.impl;
 
+import com.sr.biz.freightbit.core.exceptions.DocumentAlreadyExistsException;
 import com.sr.biz.freightbit.documentation.dao.DocumentsDao;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
-import com.sr.biz.freightbit.core.exceptions.DocumentAlreadyExistsException;
-
 import com.sr.biz.freightbit.order.entity.Orders;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

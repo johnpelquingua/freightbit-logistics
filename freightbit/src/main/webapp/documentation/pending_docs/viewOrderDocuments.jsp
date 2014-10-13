@@ -55,15 +55,21 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Mode</label>
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Freight Type</label>
                             <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num" disabled="true"></s:textfield>
+                                <s:textfield cssClass="form-control" value="%{order.freightType}" name="book-num" disabled="true"></s:textfield>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Type</label>
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Requirement</label>
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" value="%{order.serviceRequirement}" name="book-num" disabled="true"></s:textfield>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Mode</label>
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num" disabled="true"></s:textfield>
                             </div>
                         </div>
                         <div class="form-group">
@@ -84,11 +90,11 @@
                 <div class="well">
                         <legend style="text-align: left;">
                             <span >
-                               Progress
+                                Input
                             </span>
                         </legend>
 
-                    <div class="container">
+                            <s:form action="editDocumentInfo" theme="bootstrap">
 
 
                         <div class="row bs-wizard" style="border-bottom:0;">
@@ -114,12 +120,10 @@
                                 <%--<div class="bs-wizard-info text-center">Integer semper dolor ac auctor rutrum. Duis porta ipsum vitae mi bibendum bibendum</div>--%>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
-                                <div class="text-center bs-wizard-stepnum">Final set Inbound</div>
-                                <div class="progress"><div class="progress-bar"></div></div>
-                                <a href="#finalInbound" class="bs-wizard-dot" data-toggle="tab" onclick="finalInboundProgress()"></a>
-                                <%--<div class="bs-wizard-info text-center"></div>--%>
-                            </div>
+                                <div class="pull-right">
+                                    <s:submit name="submit" cssClass="btn btn-primary" value="Save" />
+                                </div>
+                            </s:form>
 
                             <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
                                 <div class="text-center bs-wizard-stepnum">Archive</div>

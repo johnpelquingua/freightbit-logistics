@@ -18,6 +18,7 @@ import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.entity.Client;
+import com.sr.biz.freightbit.core.exceptions.DocumentAlreadyExistsException;
 import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
@@ -25,10 +26,8 @@ import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.BookingRequestReportService;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.documentation.service.ReleaseOrderReportService;
-import com.sr.biz.freightbit.order.service.OrderService;
 import com.sr.biz.freightbit.order.entity.Orders;
-import com.sr.biz.freightbit.core.exceptions.DocumentAlreadyExistsException;
-
+import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
@@ -36,9 +35,11 @@ import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.PdfReportUtil;
 
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DocumentAction extends ActionSupport implements Preparable{
 
@@ -196,7 +197,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         formBean.setOriginationPort(entity.getOriginationPort());
         formBean.setModeOfPayment(entity.getPaymentMode());
         formBean.setNotifyBy(entity.getNotificationType());
-        formBean.setOrderDate(entity.getOrderDate());
+        formBean.setBookingDate(entity.getOrderDate());
         formBean.setDestinationPort(entity.getDestinationPort());
         formBean.setRates(entity.getRates());
         formBean.setComments(entity.getComments());
@@ -369,6 +370,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public OrderBean transformOrdersToFormBean(Orders entity) {
         OrderBean formBean = new OrderBean();
         formBean.setOrderId(entity.getOrderId());
+        formBean.setOrderDate(entity.getOrderDate());
         formBean.setOrderNumber(entity.getOrderNumber());
         /*formBean.setCustomerName(entity.getShipperCode());*/
         //get shipper's name

@@ -13,4 +13,5 @@ public class DocumentsConstants {
 	  //Document Names
 	  public final static String BOOKING_REQUEST_FORM = "BOOKING REQUEST FORM";
       public final static String PROFORMA_BILL_OF_LADING = "PROFORMA BILL OF LADING";
+      public final static String HOUSE_BILL_OF_LADING = "HOUSE BILL OF LADING";
 }
