@@ -17,7 +17,7 @@
         <div id="ajaxResponse"></div>
     </div>
 </div>
-<%--<div id="ajaxResponse"></div>--%>
+
 <div class="row">
 <div class="col-lg-12">
 <div class="panel panel-primary">
@@ -1254,7 +1254,7 @@ $(document).ready(function(){
                 function(jsonResponse) {
                     /*alert(jsonResponse.dummyMsg);*/
 
-                    $('#ajaxResponse').text(jsonResponse.dummyMsg);
+//                    $('#ajaxResponse').text(jsonResponse.dummyMsg);
 
                     var select = $('#shipperContact');
 

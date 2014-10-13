@@ -67,12 +67,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Mode</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num" disabled="true"></s:textfield>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer Name</label>
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" value="%{order.customerName}" name="book-num" disabled="true"></s:textfield>
@@ -88,52 +82,54 @@
                 </div>
 
                 <div class="well">
-                        <legend style="text-align: left;">
-                            <span >
-                                Input
-                            </span>
-                        </legend>
+                        <%--<legend style="text-align: left;">--%>
+                            <%--<span >--%>
+                               <%--Progress--%>
+                            <%--</span>--%>
+                        <%--</legend>--%>
 
-                            <s:form action="editDocumentInfo" theme="bootstrap">
+                    <div class="container">
 
 
                         <div class="row bs-wizard" style="border-bottom:0;">
 
                             <div class="col-xs-2 bs-wizard-step active">
-                                <div class="text-center bs-wizard-stepnum">Outbound</div>
+                                <div class="text-center bs-wizard-stepnum">OUTBOUND 1</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#outbound" class="bs-wizard-dot" data-toggle="tab" onclick="OutboundProgress()"></a>
                                 <%--<div class="bs-wizard-info text-center">Lorem ipsum dolor sit amet.</div>--%>
                             </div>
 
                             <div class="col-xs-2 bs-wizard-step disabled"><!-- complete -->
-                                <div class="text-center bs-wizard-stepnum">Inbound</div>
+                                <div class="text-center bs-wizard-stepnum">INBOUND 1</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#inbound" class="bs-wizard-dot" data-toggle="tab" onclick="InboundProgress()"></a>
                                 <%--<div class="bs-wizard-info text-center">Nam mollis tristique erat vel tristique. Aliquam erat volutpat. Mauris et vestibulum nisi. Duis molestie nisl sed scelerisque vestibulum. Nam placerat tristique placerat</div>--%>
                             </div>
 
                             <div class="col-xs-2 bs-wizard-step disabled"><!-- complete -->
-                                <div class="text-center bs-wizard-stepnum">Final Set Outbound</div>
+                                <div class="text-center bs-wizard-stepnum">OUTBOUND 2</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#finalOutbound" class="bs-wizard-dot" data-toggle="tab" onclick="finalOutboundProgress()"></a>
                                 <%--<div class="bs-wizard-info text-center">Integer semper dolor ac auctor rutrum. Duis porta ipsum vitae mi bibendum bibendum</div>--%>
                             </div>
 
-                                <div class="pull-right">
-                                    <s:submit name="submit" cssClass="btn btn-primary" value="Save" />
-                                </div>
-                            </s:form>
+                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                                <div class="text-center bs-wizard-stepnum">INBOUND 2</div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                                <a href="#finalInbound" class="bs-wizard-dot" data-toggle="tab" onclick="finalInboundProgress()"></a>
+                                <%--<div class="bs-wizard-info text-center"></div>--%>
+                            </div>
 
                             <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
-                                <div class="text-center bs-wizard-stepnum">Archive</div>
+                                <div class="text-center bs-wizard-stepnum">ARCHIVE</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#archive" class="bs-wizard-dot" data-toggle="tab" onclick="archiveProgress()"></a>
                                 <%--<div class="bs-wizard-info text-center"></div>--%>
                             </div>
 
                             <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
-                                <div class="text-center bs-wizard-stepnum">Billing</div>
+                                <div class="text-center bs-wizard-stepnum">BILLING</div>
                                 <div class="progress"><div class="progress-bar" data-toggle="tab" onclick="BillingProgress"></div></div>
                                 <a href="#billing" class="bs-wizard-dot"></a>
                                 <%--<div class="bs-wizard-info text-center"></div>--%>
