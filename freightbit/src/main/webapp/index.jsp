@@ -147,7 +147,7 @@
         xmlhttpObject = getXMLHTTPObject();
         if (xmlhttpObject != null)
         {
-            var URL = "getNotifications.action";
+            var URL = "home.action";
             xmlhttpObject.open("POST", URL, true);
             xmlhttpObject.onreadystatechange = handleServerResponse;
             xmlhttpObject.send(null);
@@ -179,6 +179,13 @@
     {
 //        alert(xmlhttpObject.responseText);
         document.getElementById('booking').innerHTML = <s:property value="%{Booking}"></s:property>;
+        <%--alert("booking is " +  <s:property value="%{Booking}"></s:property>);--%>
+        document.getElementById('customer').innerHTML = <s:property value="%{Customer}"></s:property>;
+        <%--alert("customer is " +  <s:property value="%{Customer}"></s:property>);--%>
+        document.getElementById('user').innerHTML = <s:property value="%{User}"></s:property>;
+        <%--alert("user is " +  <s:property value="%{User}"></s:property>);--%>
+        document.getElementById('vendor').innerHTML = <s:property value="%{Vendor}"></s:property>;
+        <%--alert("vendor is " +  <s:property value="%{Vendor}"></s:property>);--%>
     }
 
     //Get XMLHTTP Object

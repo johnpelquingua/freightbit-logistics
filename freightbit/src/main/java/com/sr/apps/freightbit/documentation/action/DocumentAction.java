@@ -182,8 +182,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String checkDocument(){
 
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        documentEntity.setDocumentType("INBOUND");
+        documentEntity.setDocumentStatus("FROM OUTBOUND");
         documentEntity.setDocumentProcessed(1);
         documentsService.updateDocument(documentEntity);
+
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());

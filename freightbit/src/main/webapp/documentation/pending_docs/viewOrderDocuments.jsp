@@ -67,6 +67,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Mode</label>
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num" disabled="true"></s:textfield>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer Name</label>
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" value="%{order.customerName}" name="book-num" disabled="true"></s:textfield>
@@ -92,14 +98,14 @@
 
                         <div class="row bs-wizard" style="border-bottom:0;">
 
-                            <div class="col-xs-2 bs-wizard-step active">
+                            <div class="col-xs-2 bs-wizard-step active" id="first">
                                 <div class="text-center bs-wizard-stepnum">OUTBOUND 1</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#outbound" class="bs-wizard-dot" data-toggle="tab" onclick="OutboundProgress()"></a>
                                 <%--<div class="bs-wizard-info text-center">Lorem ipsum dolor sit amet.</div>--%>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled"><!-- complete -->
+                            <div class="col-xs-2 bs-wizard-step disabled" id="second"><!-- complete -->
                                 <div class="text-center bs-wizard-stepnum">INBOUND 1</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#inbound" class="bs-wizard-dot" data-toggle="tab" onclick="InboundProgress()"></a>
@@ -249,6 +255,10 @@
                                         </display:column>
                                         </td>
 
+                                        <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
+
                                         <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
@@ -306,6 +316,10 @@
                                     </td>
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
+                                    </display:column>
+                                    </td>
+
+                                    <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
                                     </display:column>
                                     </td>
 
@@ -369,6 +383,10 @@
                                     </display:column>
                                     </td>
 
+                                    <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
+                                    </display:column>
+                                    </td>
+
                                     <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
                                     </display:column>
                                     </td>
@@ -426,6 +444,10 @@
                                     </td>
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
+                                    </display:column>
+                                    </td>
+
+                                    <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
                                     </display:column>
                                     </td>
 
@@ -490,8 +512,12 @@
                                     </td>
 
                                     <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
+                                </display:column>
+                                </td>
+
+                                <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
                                     </display:column>
-                                    </td>
+                                 </td>
 
                                     <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
                                                         style="text-align: center;" > </i></display:column></td>--%>
@@ -532,6 +558,12 @@ $(document).ready(function() {
             }
         }
     }
+
+if (tbl==null){
+    $("#first").toggleClass('active complete');
+    $("#second").toggleClass('disabled active');
+
+}
 
     /*var tbl = document.getElementById("document");
     if (tbl != null) {

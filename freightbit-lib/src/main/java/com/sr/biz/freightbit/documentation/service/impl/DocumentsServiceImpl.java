@@ -57,11 +57,11 @@ public class DocumentsServiceImpl implements DocumentsService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateDocument(Documents documents) {
-        if(documentsDao.findDuplicateDocumentByDocumentName(documents.getDocumentName(), documents.getDocumentId()).size() > 0){
-            throw new DocumentAlreadyExistsException(documents.getDocumentName());
-        }else{
+//        if(documentsDao.findDuplicateDocumentByDocumentName(documents.getDocumentName(), documents.getDocumentId()).size() > 0){
+//            throw new DocumentAlreadyExistsException(documents.getDocumentName());
+//        }else{
             documentsDao.updateDocument(documents);
-        }
+//        }
     }
 
     @Override
