@@ -168,14 +168,14 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
             	return (List<Parameters>) query.list();
             }
             if ("PIER TO DOOR".equals(serviceMode)) {
-            	Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTMONITORING' "
+            	Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTLOGS' "
                 		+ "and p.referenceColumn = 'ACTIVITY' "
                 		+ "and p.parameterId > :currentParameterId "
                 		+ "and p.key like 'SC%'");
             	query.setParameter("currentParameterId", currentParameterId);
             	return (List<Parameters>) query.list();
             }
-            Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTMONITORING' "
+            Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTLOGS' "
             		+ "and p.referenceColumn = 'ACTIVITY' "
             		+ "and p.parameterId > :currentParameterId;");
             query.setParameter("currentParameterId", currentParameterId);
