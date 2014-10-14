@@ -122,6 +122,10 @@
         <property name="operationsDao" ref="operationsDao"/>
     </bean>
 
+    <bean id="shipmentLogsService" class="com.sr.biz.freightbit.operations.service.impl.ShipmentLogsServiceImpl">
+        <property name="shipmentLogsDao" ref="shipmentLogsDao"/>
+    </bean>
+
 	<!--  Documents -->
     <bean id="documentsService" class="com.sr.biz.freightbit.documentation.service.impl.DocumentsServiceImpl">
         <property name="documentsDao" ref="documentsDao"/>
@@ -236,6 +240,10 @@
     </bean>
 
     <bean id="notificationDao" class="com.sr.biz.freightbit.common.dao.impl.NotificationDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="shipmentLogsDao" class="com.sr.biz.freightbit.operations.dao.impl.ShipmentLogsDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
