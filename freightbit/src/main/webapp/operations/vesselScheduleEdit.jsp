@@ -48,11 +48,24 @@
                             <label for="vesselSchedule.vendorId" class="col-lg-2 control-label" style="padding-top:0px;"> Vendor<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                                <s:select emptyOption="true" id="vesselSchedule.vendorId"
+                                <s:select emptyOption="true" id="vendorId"
                                           value="vesselSchedule.vendorId"
                                           name="vesselSchedule.vendorId"
                                           list="vendorList" listValue="vendorName" listKey="vendorId"
                                           cssClass="form-control"/>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vesselSchedule.vesselName" class="col-sm-2 control-label">Vessel Name:<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                                <s:select list="listVessel" name="vesselSchedule.vesselName"
+                                          id="vesselList"
+                                          listKey="vesselName" listValue="vesselName" cssClass="form-control"
+                                          emptyOption="true" value="%{vesselSchedule.vesselName}"
+                                        ></s:select>
                             </div>
 
                         </div>
@@ -273,6 +286,29 @@
     select2.onchange = function() {
         preventDuplicatePort.call(this, select1, this.selectedIndex);
     };
+
+    $(document).ready(function() {
+        $('#vendorId').change(function(event) {
+            var vendorId = $("#vendorId").val();
+
+            $.getJSON('listVesselName', {
+                        vendorId : vendorId
+                    },
+
+                    function(jsonResponse) {
+
+                        var vessel = $('#vesselList');
+
+                        vessel.find('option').remove();
+
+                        $.each(jsonResponse.vesselMap, function(key, value) {
+                            $('<option>').val(key).text(value).appendTo(vessel);
+                        });
+
+
+                    });
+        });
+    });
 
 
 </script>

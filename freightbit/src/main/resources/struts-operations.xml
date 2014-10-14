@@ -194,6 +194,10 @@
         <action name="listVendorDriverAndTrucks" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="listVendorDriverAndTrucks">
             <result type="json">/operations/sea_freight/seaFreightPlanning.jsp</result>
         </action>
+
+        <action name="listVesselName" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction" method="listVesselName">
+            <result type="json">/operations/vesselScheduleAdd.jsp</result>
+        </action>
     </package>
 
 </struts>

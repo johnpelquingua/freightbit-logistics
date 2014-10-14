@@ -24,14 +24,14 @@ public class VesselScheduleBean {
     private String vesselScheduleKeyword;
     private String vesselScheduleCriteria;
     private String vendorCode;
-
+    private String vesselName;
 
 
     public VesselScheduleBean() {
 
     }
 
-    public VesselScheduleBean(Integer vesselScheduleId, String voyageNumber, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String destinationPort, String arrivalDate, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword, String vesselScheduleCriteria) {
+    public VesselScheduleBean(Integer vesselScheduleId, String voyageNumber, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String destinationPort, String arrivalDate, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword, String vesselScheduleCriteria, String vendorCode, String vesselName) {
         this.vesselScheduleId = vesselScheduleId;
         this.voyageNumber = voyageNumber;
         this.clientId = clientId;
@@ -48,6 +48,8 @@ public class VesselScheduleBean {
         this.modifiedBy = modifiedBy;
         this.vesselScheduleKeyword = vesselScheduleKeyword;
         this.vesselScheduleCriteria = vesselScheduleCriteria;
+        this.vendorCode = vendorCode;
+        this.vesselName = vesselName;
     }
 
     public String getVendorCode() {
@@ -184,5 +186,13 @@ public class VesselScheduleBean {
 
     public void setVesselScheduleCriteria(String vesselScheduleCriteria) {
         this.vesselScheduleCriteria = vesselScheduleCriteria;
+    }
+
+    public String getVesselName() {
+        return vesselName;
+    }
+
+    public void setVesselName(String vesselName) {
+        this.vesselName = vesselName;
     }
 }

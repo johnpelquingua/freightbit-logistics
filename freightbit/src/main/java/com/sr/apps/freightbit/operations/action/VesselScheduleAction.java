@@ -11,6 +11,7 @@ import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
+import com.sr.biz.freightbit.vendor.entity.Vessel;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
@@ -18,10 +19,7 @@ import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Clarence C. Victoria on 7/23/14.
@@ -34,14 +32,18 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
     private List<VesselScheduleBean> vesselSchedules = new ArrayList<VesselScheduleBean>();
     private VesselSchedulesService vesselSchedulesService;
 
+    private Integer vendorId;
+
     private List<Parameters> vesselScheduleSearch = new ArrayList<Parameters>();
     private List<Parameters> portsList = new ArrayList<Parameters>();
     private List<Vendor> vendorList = new ArrayList<Vendor>();
-
+    private List<Vessel> listVessel = new ArrayList<Vessel>();
     private ParameterService parameterService;
     private ClientService clientService;
     private VendorService vendorService;
     private CommonUtils commonUtils;
+
+    private Map<String, String> vesselMap = new LinkedHashMap<String, String>();
 
     private Integer vesselScheduleIdParam;
 
@@ -50,6 +52,16 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         vesselScheduleSearch = parameterService.getParameterMap(ParameterConstants.VESSEL_SCHEDULE_SEARCH );
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
         vendorList = vendorService.findAllShippingVendor();
+    }
+
+    public String listVesselName() {
+        List<Vessel> vesselList = vendorService.findVesselByVendorId(vendorId);
+
+        for (int i = 0; i < vesselList.size(); i++) {
+            vesselMap.put(vesselList.get(i).getVesselName(), vesselList.get(i).getVesselName());
+        }
+
+        return SUCCESS;
     }
 
     public String addVesselSchedule(){
@@ -146,6 +158,7 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         formBean.setModifiedBy(entity.getModifiedBy());
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
         formBean.setVoyageNumber(entity.getVoyageNumber());
+        formBean.setVesselName(entity.getVesselName());
         // get Vendor Name
         Vendor vendorName = vendorService.findVendorById(entity.getVendorId());
         if (vendorName!=null){
@@ -176,6 +189,7 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         entity.setDepartureTime(formBean.getDepartureTime());
         entity.setDepartureDate(formBean.getDepartureDate());
         entity.setVendorCode(vendorService.findVendorById(formBean.getVendorId()).getVendorCode());
+        entity.setVesselName(formBean.getVesselName());
 
         return entity;
     }
@@ -315,5 +329,27 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         this.vesselScheduleIdParam = vesselScheduleIdParam;
     }
 
+    public Integer getVendorId() {
+        return vendorId;
+    }
 
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
+    }
+
+    public Map<String, String> getVesselMap() {
+        return vesselMap;
+    }
+
+    public void setVesselMap(Map<String, String> vesselMap) {
+        this.vesselMap = vesselMap;
+    }
+
+    public List<Vessel> getListVessel() {
+        return listVessel;
+    }
+
+    public void setListVessel(List<Vessel> listVessel) {
+        this.listVessel = listVessel;
+    }
 }
