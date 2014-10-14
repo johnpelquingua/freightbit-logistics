@@ -160,5 +160,20 @@ public class ParameterServiceImpl implements ParameterService {
     			return "ERROR";
     	}*/
     }
+    
+    /**
+     * @param currentStatus is the current shipment monitoring activity/status
+     */
+    @Override
+    public List<Parameters> findShipmentAcitivityParameters(String freightType,
+			String serviceMode, String currentStatus) {
+
+    	List <Parameters>  parameterList = parameterDao.findParametersByCriteria("key", currentStatus);
+    	Integer currentParameterId = null;
+    	if (parameterList != null && parameterList.size() > 0) 
+    		currentParameterId = parameterList.get(0).getParameterId();
+    	
+    	return parameterDao.findShipmentAcitivityParameters(freightType, serviceMode, currentParameterId);
+    }
 
 }

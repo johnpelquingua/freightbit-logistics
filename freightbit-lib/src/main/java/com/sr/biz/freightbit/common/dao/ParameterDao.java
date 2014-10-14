@@ -24,4 +24,9 @@ public interface ParameterDao {
 	public void updateParameter(Parameters param);
 
 	public Parameters findParameterById(Integer parameterId);
+
+	public List<Parameters> findShipmentAcitivityParameters(String freightType,
+			String serviceMode, Integer currentParameterId);
+
+	public List<Parameters> findParametersByCriteria(String column, String value);
 }

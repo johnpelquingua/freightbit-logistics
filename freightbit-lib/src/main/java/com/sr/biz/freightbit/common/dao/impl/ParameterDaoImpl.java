@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -152,5 +153,48 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
             throw re;
         }
     }
+    
+    @Override
+    public List<Parameters> findShipmentAcitivityParameters(String freightType, String serviceMode, Integer currentParameterId) {
+        log.debug("Finding parameter for shipment activities");
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            if ("SHIPPING".equals(freightType)) {
+            	Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTMONITORING' "
+                		+ "and p.referenceColumn = 'ACTIVITY' "
+                		+ "and p.parameterId > :currentParameterId "
+                		+ "and p.key like 'SC%'");
+            	query.setParameter("currentParameterId", currentParameterId);
+            	return (List<Parameters>) query.list();
+            }
+            if ("PIER TO DOOR".equals(serviceMode)) {
+            	Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTMONITORING' "
+                		+ "and p.referenceColumn = 'ACTIVITY' "
+                		+ "and p.parameterId > :currentParameterId "
+                		+ "and p.key like 'SC%'");
+            	query.setParameter("currentParameterId", currentParameterId);
+            	return (List<Parameters>) query.list();
+            }
+            Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTMONITORING' "
+            		+ "and p.referenceColumn = 'ACTIVITY' "
+            		+ "and p.parameterId > :currentParameterId;");
+            query.setParameter("currentParameterId", currentParameterId);
+            return (List<Parameters>) query.list();
+        } catch (ObjectNotFoundException onfe) {
+            log.error("Finding parameter for shipment activities");
+            throw onfe;
+        }
+    }
+    
+    @Override
+    public List<Parameters> findParametersByCriteria(String column, String value) {
+        log.debug("Find params by criteria ");
+        Session session = getSessionFactory().getCurrentSession();
+        List<Parameters> parameters = session.createCriteria(Parameters.class)
+                .add(Restrictions.like(column, value))
+                .list();
+        return parameters;
+    }
+    
 
 }
