@@ -3,44 +3,18 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <style>
-    /*table#order {
-        width: 100%;
-    }
-    div.TableContainer {
-        width: 100%;
-        height: 100%;
-        overflow-x:scroll;
-        overflow-y:auto;
-        overflow:scroll;
-    }*/
-    /*#scroller {
-        width: 1500px;
-        overflow-x: scroll;
-    }
-    #scroller table {
-        *//* just a quick hack to make the table overflow the containing div
-           your method may differ *//*
-        width: 3000px;
-    }
+/*Style for scrollable table*/
 
-    #scroller .table.fixedCol {
-        width: auto;
-        position: absolute;
-        *//* below styles are specific for borderd Bootstrap tables
-           to remove rounded corners on cloned table *//*
-        -webkit-border-top-right-radius: 0px;
-        -webkit-border-bottom-right-radius: 0px;
-        -moz-border-radius-topright: 0px;
-        -moz-border-radius-bottomright: 0px;
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
-    }
-    .table.fixedCol th,
-    .table.fixedCol td {
-        *//* background is set to white to hide underlaying column
-           of original table *//*
-        background: white;
-    }*/
+html,body{width:100%;height:100%;}
+div.horizontal{display:block;width:100%;height:100%;overflow:hidden;position:static}
+div.scroller{display:block;width:100%;height:100%;overflow:hidden;position:static}
+.table{display:table;width:150%;height:100%}
+.table > section{width:3600px;height:100%;display:table-cell;background:#e3e3e3;vertical-align:middle;text-align:center}
+.TableContainer{overflow:scroll;overflow-x: overlay;}
+article{width:800px;height:400px;display:table-cell;background:#e3e3e3;vertical-align:middle;text-align:center}
+article:nth-child(2n+2){background:#d1d1d1}
+.table-bordered > thead > tr > th{padding: 10px;}
+
 </style>
 
 <div class="row">
@@ -73,12 +47,16 @@
 
             <div class="panel-body horizontal">
                 <div class="table-responsive TableContainer">
-                    <div id="scroller">
+                    <section>
+                        <div id="scroller horizontal">
+
                     <display:table id="order" name="orders"
                                    requestURI="viewPendingDocuments.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;empty-cells: hide;">
                         <%--Booking Date--%>
+
+
                         <td><display:column property="orderDate" title="Booking Date <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <%--Booking Number--%>
@@ -99,27 +77,27 @@
                         <%--Service Mode--%>
                         <td><display:column property="modeOfService" title="Service Mode <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <%--Date of Documents Returned (INBOUND)
+                       <%-- Date of Documents Returned (INBOUND)--%>
                         <td><display:column title="Date of Documents Returned (INBOUND) <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        &lt;%&ndash;Sales Invoice / Delivery Receipt Number&ndash;%&gt;
+                        <%--Sales Invoice / Delivery Receipt Number--%>
                         <td><display:column title="Sales Invoice / Delivery Receipt Number <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        &lt;%&ndash;Date of Documents Sent (OUTBOUND)&ndash;%&gt;
+                        <%--Date of Documents Sent (OUTBOUND)--%>
                         <td><display:column title="Date of Documents Sent (OUTBOUND) <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        &lt;%&ndash;LBC Reference Number&ndash;%&gt;
+                        <%--LBC Reference Number--%>
                         <td><display:column title="LBC Reference Number <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        &lt;%&ndash;Date of Documents Returned (FINAL INBOUND)&ndash;%&gt;
+                        <%--Date of Documents Returned (FINAL INBOUND)--%>
                         <td><display:column title="Date of Documents Returned (FINAL INBOUND) <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        &lt;%&ndash;Received By&ndash;%&gt;
+                        <%--Received By--%>
                         <td><display:column title="Received By <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        &lt;%&ndash;Date of Documents forwarded to Accounting&ndash;%&gt;
+                        <%--Date of Documents forwarded to Accounting--%>
                         <td><display:column title="Date of Documents forwarded to Accounting (BILLING) <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>--%>
+                                            style="text-align: center;"> </display:column></td>
                         <td><display:column title="Action">
                             <s:url var="viewDocumentsUrl" action="../documentation/viewOrderDocuments">
                                 <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
@@ -128,8 +106,10 @@
                                 <i class="fa fa-eye"></i>
                             </s:a>
                         </display:column></td>
+
                     </display:table>
                     </div>
+                    </section>
                 </div>
             </div>
 
@@ -176,30 +156,17 @@
 
 <script>
 
-    /*$('#scroller table').each(function(){
-        var table = $(this),
-                fixedCol = table.clone(true),
-                fixedWidth = table.find('th').eq(0).width(),
-                tablePos = table.position();
+    /*Optional query for scrolling*/
 
-        // Remove all but the first column from the cloned table
-        fixedCol.find('th').not(':eq(0)').remove();
-        fixedCol.find('tbody tr').each(function(){
-            $(this).find('td').not(':eq(0)').remove();
-        });
+    $(window).load(function() {
+        var vWidth = $(window).width();
+        var vHeight = $(window).height();
+        $('.table > section').css('width', vWidth).css('height', vHeight);
+    });
 
-        // Set positioning so that cloned table overlays
-        // first column of original table
-        fixedCol.addClass('fixedCol');
-        fixedCol.css({
-            left: tablePos.left,
-            top: tablePos.top
-        });
-
-        // Match column width with that of original table
-        fixedCol.find('th,td').css('width',fixedWidth+'px');
-
-        $('#scroller').append(fixedCol);
-    });*/
-
+    $(window).resize(function() {
+        var vWidth = $(window).width();
+        var vHeight = $(window).height();
+        $('.table > section').css('width', vWidth).css('height', vHeight);
+    });
 </script>
