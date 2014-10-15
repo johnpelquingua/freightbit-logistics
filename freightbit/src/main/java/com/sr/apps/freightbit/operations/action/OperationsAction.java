@@ -91,9 +91,31 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Map<String, String> driverMap = new LinkedHashMap<String, String>();
     private Map<String, String> trucksMap = new HashMap<String, String>();
 
-    private String[] check = new String[100];
+    private String[] check;
 
     Map paramMap = new HashMap();
+
+    public String editBulkItems() {
+        try {
+            for (String value : check) {
+                OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
+                entity.setOrderItemId(Integer.parseInt(value));
+                entity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
+                operationsService.updateOrderItem(entity);
+            }
+
+        } catch (Exception e) {
+            log.error("Update Orderitem failed", e);
+            return INPUT;
+        }
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        sessionAttributes.put("vendorIdParam", vendorIdParam);
+
+        Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
+        return SUCCESS;
+    }
 
     @Override
     public void prepare() {
@@ -151,6 +173,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
+
+
 
     public String addVendor(){
         /*validateOnSubmit(vesselSchedule);
@@ -384,11 +408,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
         order = transformToOrderFormBean(orderEntity);
 
-        for (String i : check) {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAA:" + i);
-        }
-
         return SUCCESS;
+    }
+
+    public String viewSeaFreightPlanningBulk() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        order = transformToOrderFormBean(orderEntity);
+
+        return "PLANNING 2";
     }
 
     public String viewFreightPlanning(){

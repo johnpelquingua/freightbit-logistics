@@ -86,6 +86,10 @@
         <!--Status ends here-->
 
         <!--Operations starts here-->
+        <action name="viewSeaFreightPlanningBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewSeaFreightPlanningBulk">
+            <result name="PLANNING 2" type="tiles">operations.seaFreightPlanning.tiles</result>
+        </action>
+        
         <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
             <result name="PLANNING1" type="tiles">operations.seaFreightPlanning.tiles</result>
             <result name="PLANNING2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>

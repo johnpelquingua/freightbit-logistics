@@ -90,14 +90,18 @@
                         </div>
 
                         <div class="table-responsive">
+                            <button onClick='CheckAll(document.myform.check)' class="btn btn-default">Select All</button>
+                            <button onClick='UnCheckAll(document.myform.check)' class="btn btn-default">Deselect All</button>
 
-
+                            <s:form name="myform" action="viewSeaFreightPlanningBulk">
                             <display:table id="orderItem" name="orderItems"
                                            requestURI="/viewSeaFreightItemList.action" pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
-                                           style="margin-top: 15px;">
-                                <td><display:column title="<input type='checkbox' />">
-                                        <s:checkbox name="check" value="%{#attr.orderItem.orderItemId}" />
+                                           class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple"
+                                           style="margin-top: 15px; empty-cells:hide !important;"
+                                            >
+                                <tr>
+                                <td><display:column>
+                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
                                     </display:column></td>
 
                                 <td><display:column property="nameSize" title="Name <i class='fa fa-sort' />" class="tb-font-black"
@@ -122,6 +126,7 @@
                                         </s:a>
                                     </s:if>
                                     <s:else>
+                                        <s:if test="#attr.orderItem.status=='PLANNING 2'">
                                         <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
@@ -147,6 +152,21 @@
                                              title="Show Information">
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
+                                        </s:if>
+                                        <s:else>
+                                            <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
+                                                <s:param name="orderItemIdParam"
+                                                         value="#attr.orderItem.orderItemId">
+                                                </s:param>
+                                                <s:param name="orderNoParam"
+                                                         value="orderNoParam">
+                                                </s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
+                                                 title="Show Information">
+                                                <i class="fa fa-info-circle"></i>
+                                            </s:a>
+                                        </s:else>
                                     </s:else>
                                 </display:column></td>
 
@@ -169,7 +189,11 @@
                                     </s:if>
 
                                 </display:column></td>
+                                </tr>
                             </display:table>
+
+                                <s:submit value="Set Vendor"></s:submit>
+                            </s:form>
                         </div>
                     </div>
 
@@ -223,6 +247,18 @@
         }
 
     });
+
+    function CheckAll(check)
+    {
+        for (i = 0; i < check.length; i++)
+            check[i].checked = true ;
+    }
+
+    function UnCheckAll(check)
+    {
+        for (i = 0; i < check.length; i++)
+            check[i].checked = false ;
+    }
 
 </script>
 
