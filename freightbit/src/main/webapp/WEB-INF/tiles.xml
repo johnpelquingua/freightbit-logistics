@@ -95,6 +95,11 @@
         <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanning.jsp"/>
     </definition>
 
+    <definition name="operations.seaFreightPlanningBulk.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Sea Freight Planning"/>
+        <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanningBulk.jsp"/>
+    </definition>
+
     <definition name="operations.viewInfo.tiles" extends="baseLayout">
         <put-attribute name="title" value="Sea Freight Planning"/>
         <put-attribute name="body" value="/operations/planningInfo.jsp"/>
