@@ -7,6 +7,7 @@ import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.operations.formbean.OperationsBean;
 import com.sr.apps.freightbit.operations.formbean.VesselScheduleBean;
+import com.sr.apps.freightbit.order.action.OrderAction;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
@@ -32,7 +33,9 @@ import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
+
 import org.apache.commons.lang3.StringUtils;
+
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.service.ClientService;
 
@@ -97,11 +100,37 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String editBulkItems() {
         try {
+        	List<Integer> planning1 = new ArrayList();
+        	List<Integer> planning2 = new ArrayList();
+        	List<Integer> planning3 = new ArrayList();
+        	
+        	for (int i =0; i<check.length; i++) {
+        		Integer orderItemId = Integer.parseInt(check[i]);
+        		OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
+        		if ("PLANNING 1".equals(entity.getStatus())) {
+        			planning1.add(orderItemId);
+        			if (planning2.size() > 0 || planning3.size() > 0) {
+        				return INPUT;
+        			}
+        		} else if ("PLANNING 2".equals(entity.getStatus())) {
+        			planning2.add(orderItemId);
+        			if (planning1.size() > 0 || planning3.size() > 0) {
+        				return INPUT;
+        			}
+        		} else if  ("PLANNING 3".equals(entity.getStatus())) {
+        			planning3.add(orderItemId);
+        			if (planning1.size() > 0 || planning2.size() > 0) {
+        				return INPUT;
+        			}
+        		}
+        	}
+        	
             for (String value : check) {
-                OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
-                entity.setOrderItemId(Integer.parseInt(value));
-                entity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
-                operationsService.updateOrderItem(entity);
+            	Integer orderItemId = Integer.parseInt(value);
+            	OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemId);
+                orderItemEntity.setStatus(????);
+            	// entity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
+                operationsService.updateOrderItem(orderItemEntity);
             }
 
         } catch (Exception e) {
