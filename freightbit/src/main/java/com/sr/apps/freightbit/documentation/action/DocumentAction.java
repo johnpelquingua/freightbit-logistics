@@ -24,6 +24,8 @@ import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.BookingRequestReportService;
+import com.sr.biz.freightbit.documentation.service.HouseBillofLadingReportService;
+import com.sr.biz.freightbit.documentation.service.HouseWayBillService;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.documentation.service.ReleaseOrderReportService;
 import com.sr.biz.freightbit.order.entity.Orders;
@@ -57,6 +59,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private DocumentsService documentsService;
     private ReleaseOrderReportService releaseOrderReportService;
     private BookingRequestReportService bookingRequestReportService;
+    private HouseBillofLadingReportService houseBillofLadingReportService;
+    private HouseWayBillService houseWayBillService;
     private CustomerService customerService;
     private OrderService orderService;
     private ClientService clientService;
@@ -386,6 +390,74 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         return null;
     }
+
+    public String generateBillofLadingReport() {
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        String orderId = (documentEntity.getReferenceId()).toString();
+
+        Map<String, String> params = new HashMap();
+        params.put("orderId", orderId);
+
+        ByteArrayOutputStream byteArray = null;
+        BufferedOutputStream responseOut = null;
+
+        try {
+            // Create an output filename
+            final File outputFile = new File("Bill of Lading.pdf");
+            // Generate the report
+            MasterReport report = houseBillofLadingReportService.generateReport(params);
+
+            HttpServletResponse response = ServletActionContext.getResponse();
+            responseOut = new BufferedOutputStream(response.getOutputStream());
+            byteArray = new ByteArrayOutputStream();
+
+            boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+            byteArray.writeTo(responseOut);
+
+            byteArray.close();
+            responseOut.close();
+
+        } catch (Exception re) {
+            re.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public String generateHouseWayBillReport() {
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        String orderId = (documentEntity.getReferenceId()).toString();
+
+        Map<String, String> params = new HashMap();
+        params.put("orderId", orderId);
+
+        ByteArrayOutputStream byteArray = null;
+        BufferedOutputStream responseOut = null;
+
+        try {
+            // Create an output filename
+            final File outputFile = new File("Way Bill.pdf");
+            // Generate the report
+            MasterReport report = houseWayBillService.generateReport(params);
+
+            HttpServletResponse response = ServletActionContext.getResponse();
+            responseOut = new BufferedOutputStream(response.getOutputStream());
+            byteArray = new ByteArrayOutputStream();
+
+            boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+            byteArray.writeTo(responseOut);
+
+            byteArray.close();
+            responseOut.close();
+
+        } catch (Exception re) {
+            re.printStackTrace();
+        }
+
+        return null;
+    }
     
     public String generateReleaseOrderReport() throws IOException {
         	String orderId = "26";
@@ -489,6 +561,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setBookingRequestReportService(BookingRequestReportService bookingRequestReportService) {
         this.bookingRequestReportService = bookingRequestReportService;
+    }
+
+    public void setHouseBillofLadingReportService(HouseBillofLadingReportService houseBillofLadingReportService) {
+        this.houseBillofLadingReportService = houseBillofLadingReportService;
+    }
+
+    public void setHouseWayBillService(HouseWayBillService houseWayBillService) {
+        this.houseWayBillService = houseWayBillService;
     }
 
     public void setReleaseOrderReportService(ReleaseOrderReportService releaseOrderReportService) {
@@ -654,4 +734,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public void setOutboundEntityList(List<Documents> outboundEntityList) {
         this.outboundEntityList = outboundEntityList;
     }
+
+
 }

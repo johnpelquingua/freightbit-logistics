@@ -576,12 +576,24 @@ if (tbl==null){
 
 });
 
-    function generateReport(documentId,documentName){
-        if(documentName == "BOOKING REQUEST FORM"){
-            var win = window.open('documentations/generateBookingRequestReport?documentIdParam='+documentId,'bookingRequest','width=910,height=800');
-            win.onload = function() { this.document.title = "Booking Request Form"; }
-        }else if (documentName == "PROFORMA BILL OF LADING"){
-            alert("BOL");
+    function generateReport(documentId,documentName) {
+        if (documentName == "BOOKING REQUEST FORM") {
+            var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
+            win.onload = function () {
+                this.document.title = "Booking Request Form";
+            }
+        }
+        else if (documentName == "HOUSE BILL OF LADING") {
+            var win = window.open('documentations/generateBillofLadingReport?documentIdParam=' + documentId, 'HouseBillofLading', 'width=910,height=800');
+            win.onload = function () {
+                this.document.title = " House Bill of Lading";
+            }
+        }
+        else if (documentName == "HOUSE WAYBILL ORIGIN") {
+            var win = window.open('documentations/generateHouseWayBillReport?documentIdParam=' + documentId, 'HouseWayBillOrigin', 'width=910,height=800');
+            win.onload = function () {
+                this.document.title = " House Way Bill";
+            }
         }
     }
 
