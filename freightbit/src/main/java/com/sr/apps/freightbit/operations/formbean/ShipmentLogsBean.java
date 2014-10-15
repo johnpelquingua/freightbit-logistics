@@ -11,6 +11,7 @@ public class ShipmentLogsBean {
     private String activity;
     private Date createdDate;
     private Integer orderId;
+    private String createdBy;
 
     public Integer getShipmentLogId() {
         return shipmentLogId;
@@ -42,5 +43,13 @@ public class ShipmentLogsBean {
 
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 }

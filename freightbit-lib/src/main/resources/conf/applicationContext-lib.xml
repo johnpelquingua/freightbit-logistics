@@ -137,7 +137,7 @@
 
     <bean id="houseBillofLadingReportService" class="com.sr.biz.freightbit.documentation.service.impl.HouseBillofLadingReportServiceImpl"/>
 
-    <bean id="houseWaybillService" class="com.sr.biz.freightbit.documentation.service.impl.HouseWaybillServiceImpl"/>
+    <bean id="houseWayBillService" class="com.sr.biz.freightbit.documentation.service.impl.HouseWaybillServiceImpl"/>
 
     <bean id="calendarService" class="com.sr.biz.freightbit.calendar.service.impl.CalendarServiceImpl">
         <property name="orderDao" ref="orderDao"/>

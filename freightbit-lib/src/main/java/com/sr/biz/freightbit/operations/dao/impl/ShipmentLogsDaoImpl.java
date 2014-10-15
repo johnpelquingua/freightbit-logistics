@@ -51,4 +51,16 @@ public class ShipmentLogsDaoImpl extends HibernateDaoSupport implements Shipment
         }
     }
 
+    @Override
+    public List<ShipmentLogs> findAllShipmentLogs() {
+        log.debug("Finding all Shipment Logs");
+        try{
+            return getSessionFactory().getCurrentSession().createQuery("from ShipmentLogs shipmentLogs order by createdDate desc").list();
+        }catch(RuntimeException re) {
+            log.error("find all Shipment Logs failed", re);
+            throw re;
+        }
+
+    }
+
 }

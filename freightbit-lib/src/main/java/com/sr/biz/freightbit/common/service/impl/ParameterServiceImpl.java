@@ -1,11 +1,5 @@
 package com.sr.biz.freightbit.common.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.transaction.annotation.Transactional;
-
 import com.sr.biz.freightbit.common.dao.AddressDao;
 import com.sr.biz.freightbit.common.dao.ContactsDao;
 import com.sr.biz.freightbit.common.dao.ParameterDao;
@@ -20,6 +14,11 @@ import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.vendor.dao.VendorDao;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Transactional
 public class ParameterServiceImpl implements ParameterService {
@@ -165,7 +164,7 @@ public class ParameterServiceImpl implements ParameterService {
      * @param currentStatus is the current shipment monitoring activity/status
      */
     @Override
-    public List<Parameters> findShipmentAcitivityParameters(String freightType,
+    public List<Parameters> findShipmentActivityParameters(String freightType,
 			String serviceMode, String currentStatus) {
 
     	List <Parameters>  parameterList = parameterDao.findParametersByCriteria("key", currentStatus);
@@ -173,7 +172,7 @@ public class ParameterServiceImpl implements ParameterService {
     	if (parameterList != null && parameterList.size() > 0) 
     		currentParameterId = parameterList.get(0).getParameterId();
     	
-    	return parameterDao.findShipmentAcitivityParameters(freightType, serviceMode, currentParameterId);
+    	return parameterDao.findShipmentActivityParameters(freightType, serviceMode, currentParameterId);
     }
 
 }

@@ -6,9 +6,12 @@ import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
+import com.sr.apps.freightbit.operations.formbean.ShipmentLogsBean;
 import com.sr.biz.freightbit.operations.service.ShipmentLogsService;
 import org.apache.commons.lang3.StringUtils;
 import com.sr.biz.freightbit.customer.service.CustomerService;
+import com.sr.biz.freightbit.operations.entity.ShipmentLogs;
+import com.sr.biz.freightbit.common.service.ParameterService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +23,12 @@ public class ShipmentLogsAction extends ActionSupport implements Preparable {
 
     private OrderBean order = new OrderBean();
     private List<OrderBean> orders = new ArrayList<OrderBean>();
+    private List<ShipmentLogsBean> shipmentLogss = new ArrayList<ShipmentLogsBean>();
     private ShipmentLogsService shipmentLogsService;
     private CustomerService customerService;
+    private ParameterService parameterService;
+
+    private List<ShipmentLogs> shipmentLogsEntityList = new ArrayList<ShipmentLogs>();
 
     @Override
     public void prepare() {
@@ -42,6 +49,14 @@ public class ShipmentLogsAction extends ActionSupport implements Preparable {
     }
 
     public String viewShipmentStatus() {
+
+        shipmentLogsEntityList = shipmentLogsService.findAllShipmentLogs();
+
+        for (ShipmentLogs shipmentLogsElem : shipmentLogsEntityList) {
+            shipmentLogss.add(transformShipmentLogsToFormBean(shipmentLogsElem));
+        }
+
+        /*shipmentActivityList = parameterService.findShipmentActivityParameters("","","");*/
 
         return SUCCESS;
     }
@@ -66,6 +81,17 @@ public class ShipmentLogsAction extends ActionSupport implements Preparable {
         formBean.setFreightType(entity.getServiceType());
         formBean.setModeOfService(entity.getServiceMode());
         formBean.setServiceRequirement(entity.getServiceRequirement());
+
+        return formBean;
+    }
+
+    public ShipmentLogsBean transformShipmentLogsToFormBean(ShipmentLogs entity) {
+        ShipmentLogsBean formBean = new ShipmentLogsBean();
+        formBean.setShipmentLogId(entity.getShipmentLogId());
+        formBean.setActivity(entity.getActivity());
+        formBean.setOrderId(entity.getOrderId());
+        formBean.setCreatedDate(entity.getCreatedDate());
+        formBean.setCreatedBy(entity.getCreatedBy());
 
         return formBean;
     }
@@ -106,5 +132,25 @@ public class ShipmentLogsAction extends ActionSupport implements Preparable {
 
     public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
+    }
+
+    public List<ShipmentLogsBean> getShipmentLogss() {
+        return shipmentLogss;
+    }
+
+    public void setShipmentLogss(List<ShipmentLogsBean> shipmentLogss) {
+        this.shipmentLogss = shipmentLogss;
+    }
+
+    public List<ShipmentLogs> getShipmentLogsEntityList() {
+        return shipmentLogsEntityList;
+    }
+
+    public void setShipmentLogsEntityList(List<ShipmentLogs> shipmentLogsEntityList) {
+        this.shipmentLogsEntityList = shipmentLogsEntityList;
+    }
+
+    public void setParameterService(ParameterService parameterService) {
+        this.parameterService = parameterService;
     }
 }

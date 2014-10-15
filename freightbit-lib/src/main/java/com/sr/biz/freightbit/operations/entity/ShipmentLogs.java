@@ -1,30 +1,36 @@
 package com.sr.biz.freightbit.operations.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by JMXPSX on 10/14/2014.
  */
+
+@Entity
+@Table(name = "shipmentlogs"
+        , catalog = "freightbit"
+        , uniqueConstraints = @UniqueConstraint(columnNames = "orderId")
+)
+
 public class ShipmentLogs implements Serializable {
     private Integer shipmentLogId;
     private String activity;
     private Date createdDate;
     private Integer orderId;
+    private String createdBy;
 
     public ShipmentLogs(){
 
     }
 
-    public ShipmentLogs(Integer shipmentLogId, String activity, Date createdDate, Integer orderId) {
+    public ShipmentLogs(Integer shipmentLogId, String activity, Date createdDate, Integer orderId, String createdBy) {
         this.shipmentLogId = shipmentLogId;
         this.activity = activity;
         this.createdDate = createdDate;
         this.orderId = orderId;
+        this.createdBy = createdBy;
     }
 
     @Id
@@ -63,6 +69,15 @@ public class ShipmentLogs implements Serializable {
 
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
+    }
+
+    @Column(name = "createdBy")
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 }
 

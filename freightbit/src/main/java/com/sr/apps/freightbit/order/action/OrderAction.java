@@ -304,7 +304,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             }
 
         }else{
-            if(orderItemQuantityGrandTotal > 10){
+            if(orderItemQuantityGrandTotal > 150){
                 String messageFlag = "OTHERS_LIMIT";
                 sessionAttributes.put("messageFlag", messageFlag);
             }else{
@@ -351,7 +351,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         }else if(messageFlagPass == "OTHERS_LIMIT") {
             //error add item
             clearErrorsAndMessages();
-            addActionMessage("Sorry you can not exceed 10 items.");
+            addActionMessage("Sorry you can not exceed 150 items.");
         }else{
             // Success Add item
             clearErrorsAndMessages();

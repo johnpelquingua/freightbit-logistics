@@ -155,7 +155,7 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
     }
     
     @Override
-    public List<Parameters> findShipmentAcitivityParameters(String freightType, String serviceMode, Integer currentParameterId) {
+    public List<Parameters> findShipmentActivityParameters(String freightType, String serviceMode, Integer currentParameterId) {
         log.debug("Finding parameter for shipment activities");
         try {
             Session session = getSessionFactory().getCurrentSession();
@@ -177,7 +177,7 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
             }
             Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTLOGS' "
             		+ "and p.referenceColumn = 'ACTIVITY' "
-            		+ "and p.parameterId > :currentParameterId;");
+            		+ "and p.parameterId > :currentParameterId");
             query.setParameter("currentParameterId", currentParameterId);
             return (List<Parameters>) query.list();
         } catch (ObjectNotFoundException onfe) {

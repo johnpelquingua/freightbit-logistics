@@ -30,4 +30,9 @@ public class ShipmentLogsServiceImpl implements ShipmentLogsService {
     public List<Orders> findAllOrders() {
         return shipmentLogsDao.findAllOrders();
     }
+
+    @Override
+    public List<ShipmentLogs> findAllShipmentLogs() {
+        return shipmentLogsDao.findAllShipmentLogs();
+    }
 }

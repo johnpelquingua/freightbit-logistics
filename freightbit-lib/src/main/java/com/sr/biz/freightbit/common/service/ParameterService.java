@@ -20,6 +20,6 @@ public interface ParameterService {
 	public String updateParameters(List<Parameters> paramList, String referenceTable,
 			String referenceColumn) throws Exception;
 
-	public List<Parameters> findShipmentAcitivityParameters(String freightType,
+	public List<Parameters> findShipmentActivityParameters(String freightType,
 			String serviceMode, String currentStatus);
 }

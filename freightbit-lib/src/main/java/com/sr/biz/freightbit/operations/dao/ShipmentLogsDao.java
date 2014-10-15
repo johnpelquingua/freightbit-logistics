@@ -13,4 +13,6 @@ public interface ShipmentLogsDao {
     public void addShipmentLog(ShipmentLogs shipmentLogs);
 
     public List<Orders> findAllOrders();
+
+    public List<ShipmentLogs> findAllShipmentLogs();
 }
