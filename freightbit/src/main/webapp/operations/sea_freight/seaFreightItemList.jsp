@@ -93,7 +93,7 @@
                             <button onClick='CheckAll(document.myform.check)' class="btn btn-default">Select All</button>
                             <button onClick='UnCheckAll(document.myform.check)' class="btn btn-default">Deselect All</button>
 
-                            <s:form name="myform" action="viewSeaFreightPlanningBulk">
+                            <s:form name="myform" action="checkItemStatus">
                             <display:table id="orderItem" name="orderItems"
                                            requestURI="/viewSeaFreightItemList.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple"
@@ -126,7 +126,6 @@
                                         </s:a>
                                     </s:if>
                                     <s:else>
-                                        <s:if test="#attr.orderItem.status=='PLANNING 2'">
                                         <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
@@ -152,21 +151,7 @@
                                              title="Show Information">
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
-                                        </s:if>
-                                        <s:else>
-                                            <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
-                                                <s:param name="orderItemIdParam"
-                                                         value="#attr.orderItem.orderItemId">
-                                                </s:param>
-                                                <s:param name="orderNoParam"
-                                                         value="orderNoParam">
-                                                </s:param>
-                                            </s:url>
-                                            <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
-                                                 title="Show Information">
-                                                <i class="fa fa-info-circle"></i>
-                                            </s:a>
-                                        </s:else>
+
                                     </s:else>
                                 </display:column></td>
 

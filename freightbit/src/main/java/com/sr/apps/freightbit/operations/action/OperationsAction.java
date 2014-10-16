@@ -153,8 +153,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-
-
     public String addVendor(){
         /*validateOnSubmit(vesselSchedule);
         if (hasFieldErrors()) {
@@ -207,43 +205,58 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return clientId;
     }
 
+    public String checkItemStatus() {
+        List<Integer> planning1 = new ArrayList();
+        List<Integer> planning2 = new ArrayList();
+        List<Integer> planning3 = new ArrayList();
+        System.out.println("-------------------" + check.length);
+        for (int i =0; i<check.length; i++) {
+            Integer orderItemId = Integer.parseInt(check[i]);
+            OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
+            if ("PLANNING 1".equals(entity.getStatus())) {
+                planning1.add(orderItemId);
+                if (planning2.size() > 0 || planning3.size() > 0) {
+                    return INPUT;
+                }
+            }
+            else if ("PLANNING 2".equals(entity.getStatus())) {
+                planning2.add(orderItemId);
+                if (planning1.size() > 0 || planning3.size() > 0) {
+                    return INPUT;
+                }
+            }
+            else if  ("PLANNING 3".equals(entity.getStatus())) {
+                planning3.add(orderItemId);
+                if (planning1.size() > 0 || planning2.size() > 0) {
+                    return INPUT;
+                }
+            }
+        }
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        sessionAttributes.put("checkedItemsInSession", check);
+        order = transformToOrderFormBean(orderEntity);
+
+        if (planning1.size() > 0) {
+            return "PLANNING 1";
+        } else if (planning2.size() > 0) {
+            return "PLANNING 2";
+        } else if (planning3.size() > 0) {
+            return "PLANNING 3";
+        }
+
+        return INPUT;
+    }
+
     public String editBulkItems() {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         try {
-//            List<Integer> planning1 = new ArrayList();
-//            List<Integer> planning2 = new ArrayList();
-//            List<Integer> planning3 = new ArrayList();
-//
-//            for (int i =0; i<check.length; i++) {
-//                Integer orderItemId = Integer.parseInt(check[i]);
-//                OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
-//                if ("PLANNING 1".equals(entity.getStatus())) {
-//                    planning1.add(orderItemId);
-//                    if (planning2.size() > 0 || planning3.size() > 0) {
-//                        return INPUT;
-//                    }
-//                } else if ("PLANNING 2".equals(entity.getStatus())) {
-//                    planning2.add(orderItemId);
-//                    if (planning1.size() > 0 || planning3.size() > 0) {
-//                        return INPUT;
-//                    }
-//                } else if  ("PLANNING 3".equals(entity.getStatus())) {
-//                    planning3.add(orderItemId);
-//                    if (planning1.size() > 0 || planning2.size() > 0) {
-//                        return INPUT;
-//                    }
-//                }
-//            }
 
             String[] checkedItemsInSession = (String[]) sessionAttributes.get("checkedItemsInSession");
 
-//            for (String value : checkedItemsInSession) {
-//                System.out.println(value);
-//            }
-
             for (String value : checkedItemsInSession) {
-//                OrderItems entity = transformOrderItemToEntityBeanBulk(operationsBean);
 
                 String modeOfService = sessionAttributes.get("modeOfService").toString();
                 String freightType = sessionAttributes.get("freightType").toString();
@@ -269,6 +282,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 }
 
                 operationsService.updateOrderItem(orderItemEntity);
+
+
             }
 
         } catch (Exception e) {
@@ -279,6 +294,178 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("vendorIdParam", vendorIdParam);
 
         Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
+
+        // Proforma Bill of Lading will be activated under pending documents
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        Documents documentEntity = new Documents();
+            /*documentEntity.setClientId(commonUtils.getClientId());*/
+        Client client = clientService.findClientById(getClientId().toString());
+        documentEntity.setClient(client);
+        documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+
+        documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+        documentEntity.setReferenceId(orderEntity.getOrderId());
+        documentEntity.setReferenceTable("ORDERS");
+        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+        documentEntity.setCreatedDate(new Date());
+        documentEntity.setDocumentStatus("PENDING");
+        documentEntity.setDocumentProcessed(0);
+
+        documentsService.addDocuments(documentEntity);
+        // End of Activation of Proforma Bill of Lading under pending documents
+
+        // Proforma Bill of Lading will be activated under pending documents
+        Documents documentEntity2 = new Documents();
+
+        documentEntity2.setClient(client);
+        documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);
+
+        documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
+        documentEntity2.setReferenceId(orderEntity.getOrderId());
+        documentEntity2.setReferenceTable("ORDERS");
+        documentEntity2.setOrderNumber(orderEntity.getOrderNumber());
+        documentEntity2.setCreatedDate(new Date());
+        documentEntity2.setDocumentStatus("PENDING");
+        documentEntity2.setDocumentProcessed(0);
+
+        documentsService.addDocuments(documentEntity2);
+        // End of Activation of Proforma Bill of Lading under pending documents
+        return SUCCESS;
+    }
+
+    public String editBulkItemsInlandOrigin() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        try {
+
+            String[] checkedItemsInSession = (String[]) sessionAttributes.get("checkedItemsInSession");
+
+            for (String value : checkedItemsInSession) {
+
+                String modeOfService = sessionAttributes.get("modeOfService").toString();
+                String freightType = sessionAttributes.get("freightType").toString();
+
+                Integer orderItemId = Integer.parseInt(value);
+                OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemId);
+                orderItemEntity.setOrderItemId(orderItemId);
+                orderItemEntity.setVendorOrigin(operationsBean.getVendorListOrigin().toString());
+                orderItemEntity.setDriverOrigin(operationsBean.getDriverOrigin());
+                orderItemEntity.setTruckOrigin(operationsBean.getTruckOrigin());
+                orderItemEntity.setFinalPickupDate(operationsBean.getPickupDate());
+                orderItemEntity.setClientId(1);
+
+                if("SHIPPING AND TRUCKING".equals(freightType)) {
+                    if ("DOOR TO DOOR".equals(modeOfService)) {
+                        orderItemEntity.setStatus("PLANNING 3");
+                    } else {
+                        orderItemEntity.setStatus("ON GOING");
+                    }
+                }
+
+                if ("TRUCKING".equals(freightType)) {
+                    orderItemEntity.setStatus("ON GOING");
+                }
+
+                operationsService.updateOrderItem(orderItemEntity);
+            }
+
+        } catch (Exception e) {
+            log.error("Update Orderitem failed", e);
+            return INPUT;
+        }
+
+        sessionAttributes.put("vendorIdParam", vendorIdParam);
+
+        Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
+
+        // Proforma Bill of Lading will be activated under pending documents
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        Documents documentEntity = new Documents();
+            /*documentEntity.setClientId(commonUtils.getClientId());*/
+        Client client = clientService.findClientById(getClientId().toString());
+        documentEntity.setClient(client);
+        documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+
+        documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+        documentEntity.setReferenceId(orderEntity.getOrderId());
+        documentEntity.setReferenceTable("ORDERS");
+        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+        documentEntity.setCreatedDate(new Date());
+        documentEntity.setDocumentStatus("PENDING");
+        documentEntity.setDocumentProcessed(0);
+
+        documentsService.addDocuments(documentEntity);
+        // End of Activation of Proforma Bill of Lading under pending documents
+        return SUCCESS;
+    }
+
+    public String editBulkItemsInlandDestination() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        try {
+
+            String[] checkedItemsInSession = (String[]) sessionAttributes.get("checkedItemsInSession");
+
+            for (String value : checkedItemsInSession) {
+
+                String modeOfService = sessionAttributes.get("modeOfService").toString();
+                String freightType = sessionAttributes.get("freightType").toString();
+
+                Integer orderItemId = Integer.parseInt(value);
+                OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemId);
+                orderItemEntity.setOrderItemId(orderItemId);
+                orderItemEntity.setVendorDestination(operationsBean.getVendorListDestination().toString());
+                orderItemEntity.setDriverDestination(operationsBean.getDriverDestination());
+                orderItemEntity.setTruckDestination(operationsBean.getTruckDestination());
+                orderItemEntity.setFinalDeliveryDate(operationsBean.getDeliveryDate());
+                orderItemEntity.setClientId(1);
+
+                if("SHIPPING AND TRUCKING".equals(freightType)) {
+                    if ("DOOR TO DOOR".equals(modeOfService)) {
+                        orderItemEntity.setStatus("ON GOING");
+                    } else {
+                        orderItemEntity.setStatus("ON GOING");
+                    }
+                }
+
+                if ("TRUCKING".equals(freightType)) {
+                    orderItemEntity.setStatus("ON GOING");
+                }
+
+                operationsService.updateOrderItem(orderItemEntity);
+
+
+            }
+
+        } catch (Exception e) {
+            log.error("Update Orderitem failed", e);
+            return INPUT;
+        }
+
+        sessionAttributes.put("vendorIdParam", vendorIdParam);
+
+        Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
+
+        // Proforma Bill of Lading will be activated under pending documents
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        Documents documentEntity = new Documents();
+            /*documentEntity.setClientId(commonUtils.getClientId());*/
+        Client client = clientService.findClientById(getClientId().toString());
+        documentEntity.setClient(client);
+        documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+
+        documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+        documentEntity.setReferenceId(orderEntity.getOrderId());
+        documentEntity.setReferenceTable("ORDERS");
+        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+        documentEntity.setCreatedDate(new Date());
+        documentEntity.setDocumentStatus("PENDING");
+        documentEntity.setDocumentProcessed(0);
+
+        documentsService.addDocuments(documentEntity);
+        // End of Activation of Proforma Bill of Lading under pending documents
         return SUCCESS;
     }
 
@@ -298,6 +485,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
 
             documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+
             documentEntity.setReferenceId(orderEntity.getOrderId());
             documentEntity.setReferenceTable("ORDERS");
             documentEntity.setOrderNumber(orderEntity.getOrderNumber());
@@ -306,6 +494,23 @@ public class OperationsAction extends ActionSupport implements Preparable {
             documentEntity.setDocumentProcessed(0);
 
             documentsService.addDocuments(documentEntity);
+            // End of Activation of Proforma Bill of Lading under pending documents
+
+            // Proforma Bill of Lading will be activated under pending documents
+            Documents documentEntity2 = new Documents();
+
+            documentEntity2.setClient(client);
+            documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);
+
+            documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
+            documentEntity2.setReferenceId(orderEntity.getOrderId());
+            documentEntity2.setReferenceTable("ORDERS");
+            documentEntity2.setOrderNumber(orderEntity.getOrderNumber());
+            documentEntity2.setCreatedDate(new Date());
+            documentEntity2.setDocumentStatus("PENDING");
+            documentEntity2.setDocumentProcessed(0);
+
+            documentsService.addDocuments(documentEntity2);
             // End of Activation of Proforma Bill of Lading under pending documents
 
         } catch (Exception e) {
@@ -328,6 +533,25 @@ public class OperationsAction extends ActionSupport implements Preparable {
             OrderItems entity = transformOrderItemToEntityBeanOrigin(operationsBean);
             operationsService.updateOrderItem(entity);
 
+            Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
+
+            Documents documentEntity = new Documents();
+            /*documentEntity.setClientId(commonUtils.getClientId());*/
+            Client client = clientService.findClientById(getClientId().toString());
+            documentEntity.setClient(client);
+            documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+
+            documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_ORIGIN);
+            documentEntity.setReferenceId(orderEntity.getOrderId());
+            documentEntity.setReferenceTable("ORDERS");
+            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+            documentEntity.setCreatedDate(new Date());
+            documentEntity.setDocumentStatus("PENDING");
+            documentEntity.setDocumentProcessed(0);
+
+            documentsService.addDocuments(documentEntity);
+            // End of Activation of Proforma Bill of Lading under pending documents
+
         } catch (Exception e) {
             log.error( "update failed", e);
             return INPUT;
@@ -341,7 +565,24 @@ public class OperationsAction extends ActionSupport implements Preparable {
         try {
             OrderItems entity = transformOrderItemToEntityBeanDestination(operationsBean);
 
-//            orderService.findOrdersById(Integer.parseInt(sessionAttributes.get("orderId").toString()));
+            Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
+
+            Documents documentEntity = new Documents();
+            /*documentEntity.setClientId(commonUtils.getClientId());*/
+            Client client = clientService.findClientById(getClientId().toString());
+            documentEntity.setClient(client);
+            documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+
+            documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_DESTINATION);
+            documentEntity.setReferenceId(orderEntity.getOrderId());
+            documentEntity.setReferenceTable("ORDERS");
+            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+            documentEntity.setCreatedDate(new Date());
+            documentEntity.setDocumentStatus("PENDING");
+            documentEntity.setDocumentProcessed(0);
+
+            documentsService.addDocuments(documentEntity);
+            // End of Activation of Proforma Bill of Lading under pending documents
 
 
             operationsService.updateOrderItem(entity);
@@ -596,6 +837,33 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderIdParam", orderIdParam);
+        sessionAttributes.put("modeOfService", orderEntity.getServiceMode());
+        sessionAttributes.put("freightType", orderEntity.getServiceType());
+
+        System.out.println("AAAAAA" + orderEntity.getServiceMode());
+        System.out.println("AAAAAA" + orderEntity.getServiceType());
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+        return SUCCESS;
+    }
+
+    public String viewFreightItemListError() {
+        clearErrorsAndMessages();
+        addActionMessage("Status must be the same");
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
+
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParamSession);
+        order = transformToOrderFormBean(orderEntity);
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParamSession);
+
 
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));

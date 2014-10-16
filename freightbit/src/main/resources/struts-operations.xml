@@ -86,9 +86,9 @@
         <!--Status ends here-->
 
         <!--Operations starts here-->
-        <action name="viewSeaFreightPlanningBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewSeaFreightPlanningBulk">
-            <result name="PLANNING 2" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
-        </action>
+        <!--<action name="viewSeaFreightPlanningBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewSeaFreightPlanningBulk">-->
+            <!--<result name="PLANNING 2" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
+        <!--</action>-->
         
         <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
             <result name="PLANNING1" type="tiles">operations.seaFreightPlanning.tiles</result>
@@ -96,9 +96,23 @@
             <result name="PLANNING3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
         </action>
 
+        <action name="checkItemStatus" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkItemStatus">
+            <result name="PLANNING 1" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
+            <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
+            <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>
+            <result name="input" type="redirect">viewSeaFreightItemListError</result>
+        </action>
+
         <action name="editBulkItems" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkItems">
             <result name="success" type="redirect">updateCompleteSeaPlanning</result>
-            <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+        </action>
+
+        <action name="editBulkItemsInlandOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkItemsInlandOrigin">
+            <result name="success" type="redirect">updateCompleteInlandPlanning</result>
+        </action>
+
+        <action name="editBulkItemsInlandDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkItemsInlandDestination">
+            <result name="success" type="redirect">updateCompleteInlandPlanning</result>
         </action>
 
         <action name="editOrderItemsSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsSea">
@@ -133,6 +147,10 @@
         </action>
 
         <action name="viewSeaFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
+            <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
+        </action>
+
+        <action name="viewSeaFreightItemListError" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListError">
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
 

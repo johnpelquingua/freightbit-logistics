@@ -14,4 +14,6 @@ public class DocumentsConstants {
 	  public final static String BOOKING_REQUEST_FORM = "BOOKING REQUEST FORM";
       public final static String PROFORMA_BILL_OF_LADING = "PROFORMA BILL OF LADING";
       public final static String HOUSE_BILL_OF_LADING = "HOUSE BILL OF LADING";
+        public final static String HOUSE_WAYBILL_ORIGIN = "HOUSE WAYBILL ORIGIN";
+        public final static String HOUSE_WAYBILL_DESTINATION = "HOUSE WAYBILL DESTINATION";
 }

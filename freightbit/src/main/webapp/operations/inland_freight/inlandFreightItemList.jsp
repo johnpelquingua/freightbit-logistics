@@ -92,10 +92,19 @@
 
                     <s:hidden value="%{orderNoParam}" />
                     <div class="table-responsive">
+
+                        <button onClick='CheckAll(document.myform.check)' class="btn btn-default">Select All</button>
+                        <button onClick='UnCheckAll(document.myform.check)' class="btn btn-default">Deselect All</button>
+
+                        <s:form name="myform" action="checkItemStatus">
                         <display:table id="orderItem" name="orderItems"
                                        requestURI="/viewSeaFreightItemList.action" pagesize="10"
                                        class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                        style="margin-top: 15px;">
+
+                            <td><display:column>
+                                <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
+                            </display:column></td>
 
                             <td><display:column property="nameSize" title="Name <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
@@ -167,6 +176,8 @@
 
                             </display:column></td>
                         </display:table>
+                            <s:submit value="Set Vendor"></s:submit>
+                        </s:form>
                     </div>
                 </div>
             </div>
@@ -207,5 +218,17 @@
         }
 
     });
+
+    function CheckAll(check)
+    {
+        for (i = 0; i < check.length; i++)
+            check[i].checked = true ;
+    }
+
+    function UnCheckAll(check)
+    {
+        for (i = 0; i < check.length; i++)
+            check[i].checked = false ;
+    }
 
 </script>
