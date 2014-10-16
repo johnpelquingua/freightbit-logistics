@@ -97,8 +97,7 @@
                             <display:table id="orderItem" name="orderItems"
                                            requestURI="/viewSeaFreightItemList.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple"
-                                           style="margin-top: 15px; empty-cells:hide !important;"
-                                            >
+                                           style="margin-top: 15px; empty-cells:hide !important;" >
                                 <tr>
                                 <td><display:column>
                                         <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>

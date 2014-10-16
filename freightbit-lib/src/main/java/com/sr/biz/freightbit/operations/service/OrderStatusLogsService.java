@@ -19,7 +19,9 @@ public interface OrderStatusLogsService {
 
     public List<Orders> findAllOrders();
 
-    public List<OrderItems> findAllItemsByOrderId(Integer orderId);
+    /*public List<OrderItems> findAllItemsByOrderId(Integer orderId);*/
+
+    public List<OrderStatusLogs> findAllItemsByOrderId(Integer orderId);
 
     public OrderItems findOrderItemById(Integer orderItemId);
 }

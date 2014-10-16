@@ -39,7 +39,7 @@
 
         <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-anchor"></i> Shipment Monitoring Module </h1>
+               <h1><i class="fa fa-anchor"></i> Shipment Monitoring </h1>
             </span>
         </legend>
         <ol class="breadcrumb">

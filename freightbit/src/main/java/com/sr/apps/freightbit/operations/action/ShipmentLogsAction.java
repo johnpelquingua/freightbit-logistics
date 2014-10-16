@@ -29,6 +29,7 @@ public class ShipmentLogsAction extends ActionSupport implements Preparable {
     private ParameterService parameterService;
 
     private List<ShipmentLogs> shipmentLogsEntityList = new ArrayList<ShipmentLogs>();
+    private List<ShipmentLogsBean> shipmentLogsBeanList = new ArrayList<ShipmentLogsBean>();
 
     @Override
     public void prepare() {
@@ -36,7 +37,6 @@ public class ShipmentLogsAction extends ActionSupport implements Preparable {
     }
 
     public String viewShipmentMonitoringList() {
-
         List<Orders> orderEntityList = new ArrayList<Orders>();
 
         orderEntityList = shipmentLogsService.findAllOrders();
@@ -91,6 +91,7 @@ public class ShipmentLogsAction extends ActionSupport implements Preparable {
         formBean.setActivity(entity.getActivity());
         formBean.setOrderId(entity.getOrderId());
         formBean.setCreatedDate(entity.getCreatedDate());
+        formBean.setCreatedTime(entity.getCreatedDate());
         formBean.setCreatedBy(entity.getCreatedBy());
 
         return formBean;
@@ -152,5 +153,13 @@ public class ShipmentLogsAction extends ActionSupport implements Preparable {
 
     public void setParameterService(ParameterService parameterService) {
         this.parameterService = parameterService;
+    }
+
+    public List<ShipmentLogsBean> getShipmentLogsBeanList() {
+        return shipmentLogsBeanList;
+    }
+
+    public void setShipmentLogsBeanList(List<ShipmentLogsBean> shipmentLogsBeanList) {
+        this.shipmentLogsBeanList = shipmentLogsBeanList;
     }
 }

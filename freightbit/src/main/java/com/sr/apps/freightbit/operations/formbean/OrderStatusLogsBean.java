@@ -11,7 +11,8 @@ public class OrderStatusLogsBean {
     private Integer orderId;
     private String status;
     private String createdBy;
-    private Date createdTimestamp;
+    private Date createdDate;
+    private Date createdTime;
     private String nameSize;
     private Integer orderItemId;
 
@@ -47,15 +48,6 @@ public class OrderStatusLogsBean {
         this.createdBy = createdBy;
     }
 
-    public Date getCreatedTimestamp() {
-        return createdTimestamp;
-    }
-
-    public void setCreatedTimestamp(Date createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
-    }
-
-
     public String getNameSize() {
         return nameSize;
     }
@@ -70,5 +62,21 @@ public class OrderStatusLogsBean {
 
     public void setOrderItemId(Integer orderItemId) {
         this.orderItemId = orderItemId;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 }

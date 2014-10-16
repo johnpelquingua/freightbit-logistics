@@ -10,6 +10,7 @@ public class ShipmentLogsBean {
     private Integer shipmentLogId;
     private String activity;
     private Date createdDate;
+    private Date createdTime;
     private Integer orderId;
     private String createdBy;
 
@@ -35,6 +36,14 @@ public class ShipmentLogsBean {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
     }
 
     public Integer getOrderId() {

@@ -1328,23 +1328,14 @@ public class OrderAction extends ActionSupport implements Preparable {
         addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
 
         containerQuantity = new ArrayList<Integer>();
-        containerQuantity.add(1);
-        containerQuantity.add(2);
-        containerQuantity.add(3);
-        containerQuantity.add(4);
-        containerQuantity.add(5);
+        for (int i=1; i <=5; i++) {
+            containerQuantity.add(i);
+        }
 
         itemQuantity = new ArrayList<Integer>();
-        itemQuantity.add(1);
-        itemQuantity.add(2);
-        itemQuantity.add(3);
-        itemQuantity.add(4);
-        itemQuantity.add(5);
-        itemQuantity.add(6);
-        itemQuantity.add(7);
-        itemQuantity.add(8);
-        itemQuantity.add(9);
-        itemQuantity.add(10);
+        for (int i=1; i <=150; i++) {
+            itemQuantity.add(i);
+        }
 
     }
 
