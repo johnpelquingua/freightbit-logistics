@@ -103,6 +103,18 @@
             <result name="input" type="redirect">viewSeaFreightItemListError</result>
         </action>
 
+        <action name="viewEditSeaFreight" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewEditSeaFreight">
+            <result name="success" type="tiles">operations.seaFreightPlanning.tiles</result>
+        </action>
+
+        <action name="viewEditInlandFreightOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewEditInlandFreightOrigin">
+            <result name="success" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+        </action>
+
+        <action name="viewEditInlandFreightDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewEditInlandFreightDestination">
+            <result name="success" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+        </action>
+
         <action name="editBulkItems" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkItems">
             <result name="success" type="redirect">updateCompleteSeaPlanning</result>
         </action>

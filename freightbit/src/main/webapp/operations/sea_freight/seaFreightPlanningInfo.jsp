@@ -83,6 +83,26 @@
     <div class="panel-heading">
         <i class="fa fa-anchor"></i>
         <span class="panel-title">Sea Operation</span>
+        <%--<span class="pull-right">--%>
+            <%--<a class="btn btn-primary new-booking" onclick="location.href='loadAddDriverPage'">--%>
+                <%--<i class="fa fa-pencil"></i> Edit--%>
+            <%--</a>--%>
+        <%--</span>--%>
+
+        <s:url var="viewFreightPlanningUrl" action="viewEditSeaFreight">
+            <s:param name="orderItemIdParam"
+                     value="#attr.orderItem.orderItemId">
+            </s:param>
+            <s:param name="nameSizeParam"
+                     value="#attr.orderItem.nameSizeParam">
+            </s:param>
+        </s:url>
+        <span class="pull-right">
+        <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
+             title="Update Status" >
+            <i class="fa fa-edit">Edit</i>
+        </s:a>
+        </span>
     </div>
     <div class="panel-body form-horizontal">
         <div class="form-group">
@@ -108,6 +128,20 @@
                 <div class="panel-heading">
                     <i class="fa fa-truck"></i>
                     <span class="panel-title">Inland Operation : Origin</span>
+                    <s:url var="viewFreightPlanningUrl" action="viewEditInlandFreightOrigin">
+                        <s:param name="orderItemIdParam"
+                                 value="#attr.orderItem.orderItemId">
+                        </s:param>
+                        <s:param name="nameSizeParam"
+                                 value="#attr.orderItem.nameSizeParam">
+                        </s:param>
+                    </s:url>
+                    <span class="pull-right">
+                    <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
+                         title="Update Status" >
+                        <i class="fa fa-edit">Edit</i>
+                    </s:a>
+                    </span>
                 </div>
                 <div class="panel-body form-horizontal">
                     <div class="form-group">
@@ -157,6 +191,20 @@
                 <div class="panel-heading">
                     <i class="fa fa-truck"></i>
                     <span class="panel-title">Inland Operation : Destination</span>
+                    <s:url var="viewFreightPlanningUrl" action="viewEditInlandFreightDestination">
+                        <s:param name="orderItemIdParam"
+                                 value="#attr.orderItem.orderItemId">
+                        </s:param>
+                        <s:param name="nameSizeParam"
+                                 value="#attr.orderItem.nameSizeParam">
+                        </s:param>
+                    </s:url>
+                    <span class="pull-right">
+                    <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
+                         title="Update Status" >
+                        <i class="fa fa-edit">Edit</i>
+                    </s:a>
+                    </span>
                 </div>
                 <div class="panel-body form-horizontal">
 

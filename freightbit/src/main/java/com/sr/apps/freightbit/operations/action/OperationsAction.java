@@ -762,6 +762,54 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return "PLANNING 2";
     }
 
+    public String viewEditSeaFreight() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        OrderItems entity = operationsService.findOrderItemById(orderItemIdParam);
+
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        order = transformToOrderFormBean(orderEntity);
+
+        sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
+        sessionAttributes.put("nameSizeParam", entity.getNameSize());
+
+        return SUCCESS;
+    }
+
+    public String viewEditInlandFreightOrigin() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        OrderItems entity = operationsService.findOrderItemById(orderItemIdParam);
+
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        order = transformToOrderFormBean(orderEntity);
+
+        sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
+        sessionAttributes.put("nameSizeParam", entity.getNameSize());
+
+        return SUCCESS;
+    }
+
+    public String viewEditInlandFreightDestination() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        OrderItems entity = operationsService.findOrderItemById(orderItemIdParam);
+
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        order = transformToOrderFormBean(orderEntity);
+
+        sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
+        sessionAttributes.put("nameSizeParam", entity.getNameSize());
+
+        return SUCCESS;
+    }
+
     public String viewFreightPlanning(){
 
         Map sessionAttributes = ActionContext.getContext().getSession();

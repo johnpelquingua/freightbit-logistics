@@ -77,6 +77,11 @@
     <div class="panel-heading">
         <i class="fa fa-anchor"></i>
         <span class="panel-title">Sea Operation</span>
+        <span class="pull-right">
+                    <button type="button" class="btn btn-primary new-booking" onclick="location.href='loadAddDriverPage'">
+                        <i class="fa fa-group"></i> New Driver
+                    </button>
+                </span>
     </div>
     <div class="panel-body">
         <div class="form-group">
