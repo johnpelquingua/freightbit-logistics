@@ -21,5 +21,5 @@ public interface ParameterService {
 			String referenceColumn) throws Exception;
 
 	public List<Parameters> findShipmentActivityParameters(String freightType,
-			String serviceMode, String currentStatus);
+			String serviceMode, String serviceReq, String currentStatus);
 }

@@ -1,8 +1,8 @@
 package com.sr.biz.freightbit.common.dao.impl;
 
-import com.sr.biz.freightbit.common.dao.ParameterDao;
-import com.sr.biz.freightbit.common.entity.Parameters;
-import com.sr.biz.freightbit.core.entity.User;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.hibernate.ObjectNotFoundException;
@@ -12,8 +12,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Map;
+import com.sr.biz.freightbit.common.dao.ParameterDao;
+import com.sr.biz.freightbit.common.entity.Parameters;
+
 
 @Transactional
 public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDao {
@@ -155,31 +156,80 @@ public class ParameterDaoImpl extends HibernateDaoSupport implements ParameterDa
     }
     
     @Override
-    public List<Parameters> findShipmentActivityParameters(String freightType, String serviceMode, Integer currentParameterId) {
+    public List<Parameters> findShipmentActivityParameters(String freightType, String serviceMode, String serviceReq, Integer currentParameterId) {
         log.debug("Finding parameter for shipment activities");
         try {
             Session session = getSessionFactory().getCurrentSession();
+            List<Parameters> parameterList = null;
             if ("SHIPPING".equals(freightType)) {
-            	Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTMONITORING' "
-                		+ "and p.referenceColumn = 'ACTIVITY' "
-                		+ "and p.parameterId > :currentParameterId "
-                		+ "and p.key like 'SC%'");
-            	query.setParameter("currentParameterId", currentParameterId);
-            	return (List<Parameters>) query.list();
-            }
-            if ("PIER TO DOOR".equals(serviceMode)) {
             	Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTLOGS' "
                 		+ "and p.referenceColumn = 'ACTIVITY' "
                 		+ "and p.parameterId > :currentParameterId "
-                		+ "and p.key like 'SC%'");
+                		+ "and p.key like 'SC%' or p.key like 'MISC%' or p.key like 'DEC%' or p.key like 'CON%'");
             	query.setParameter("currentParameterId", currentParameterId);
-            	return (List<Parameters>) query.list();
+            	parameterList = (List<Parameters>) query.list();
+            }   else if ("TRUCKING".equals(freightType)) {
+            	Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTLOGS' "
+                		+ "and p.referenceColumn = 'ACTIVITY' "
+                		+ "and p.parameterId > :currentParameterId "
+                		+ "and p.key not like 'SC%'");
+            	query.setParameter("currentParameterId", currentParameterId);
+            	parameterList = (List<Parameters>) query.list();
+            } else { // if Shipping and Trucking, return all parameters
+                Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTLOGS' "
+                		+ "and p.referenceColumn = 'ACTIVITY' "
+                		+ "and p.parameterId > :currentParameterId;");
+                query.setParameter("currentParameterId", currentParameterId);
+                parameterList = (List<Parameters>) query.list();
             }
-            Query query = session.createQuery(" from Parameters p where p.referenceTable = 'SHIPMENTLOGS' "
-            		+ "and p.referenceColumn = 'ACTIVITY' "
-            		+ "and p.parameterId > :currentParameterId");
-            query.setParameter("currentParameterId", currentParameterId);
-            return (List<Parameters>) query.list();
+            
+            //Status to remove for Pier to Door, Pier to Pier, Door to Pier; If Door to Door, nothing to remove
+            if ("PIER TO DOOR".equals(serviceMode) || "PIER TO PIER".equals(serviceMode)) { //remove params with IFO
+                for (Iterator<Parameters> iter = parameterList.listIterator(); iter.hasNext(); ) {
+                	Parameters param = iter.next();
+                	if (param.getKey().startsWith("IFO")) {
+                		iter.remove();
+                	}
+                }
+            } else if ("DOOR TO PIER".equals(serviceMode))  { //remove params with IFD
+                for (Iterator<Parameters> iter = parameterList.listIterator(); iter.hasNext(); ) {
+                	Parameters param = iter.next();
+                	if (param.getKey().startsWith("IFD")) {
+                		iter.remove();
+                	}
+                }
+            }
+
+            //Status to remove for FCL and LCL
+            if ("FULL CONTAINER LOAD".equals(serviceReq)) { //remove params with DC_ and CON_ prefix
+                for (Iterator<Parameters> iter = parameterList.listIterator(); iter.hasNext(); ) {
+                	Parameters param = iter.next();
+                	if (param.getKey().startsWith("DEC") || param.getKey().startsWith("CON")) {
+                		iter.remove();
+                	}
+                	if ("TRUCKING".equals(freightType)) {
+                		if (param.getKey().equals("IFO_TRUCK FOR WITHDRAWAL OF EMPTY VAN") 
+            			|| param.getKey().equals("IFO_TRUCK AT PORT FOR TURNOVER OF LADEN") 
+            			|| param.getKey().equals("IFD_TRUCK AT PORT FOR WITHDRAWAL OF LADEN VAN") 
+            			|| param.getKey().equals("IFD_TRUCK IN TRANSIT FOR WITHDRAWAL OF LADEN VAN")) {
+                			iter.remove();
+                		}
+                	}
+                }
+            } else {
+                for (Iterator<Parameters> iter = parameterList.listIterator(); iter.hasNext(); ) {
+                	Parameters param = iter.next();
+            		if (param.getKey().equals("IFO_TRUCK FOR WITHDRAWAL OF EMPTY VAN") 
+        			|| param.getKey().equals("IFO_TRUCK AT PORT FOR TURNOVER OF LADEN") 
+        			|| param.getKey().equals("IFD_TRUCK AT PORT FOR WITHDRAWAL OF LADEN VAN") 
+        			|| param.getKey().equals("IFD_TRUCK IN TRANSIT FOR WITHDRAWAL OF LADEN VAN")) {
+            			iter.remove();
+            		}
+                }
+            }
+            
+            return parameterList;
+            
         } catch (ObjectNotFoundException onfe) {
             log.error("Finding parameter for shipment activities");
             throw onfe;

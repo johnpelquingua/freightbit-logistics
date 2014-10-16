@@ -165,14 +165,14 @@ public class ParameterServiceImpl implements ParameterService {
      */
     @Override
     public List<Parameters> findShipmentActivityParameters(String freightType,
-			String serviceMode, String currentStatus) {
+			String serviceMode, String serviceReq, String currentStatus) {
 
     	List <Parameters>  parameterList = parameterDao.findParametersByCriteria("key", currentStatus);
     	Integer currentParameterId = null;
     	if (parameterList != null && parameterList.size() > 0) 
     		currentParameterId = parameterList.get(0).getParameterId();
     	
-    	return parameterDao.findShipmentActivityParameters(freightType, serviceMode, currentParameterId);
+    	return parameterDao.findShipmentActivityParameters(freightType, serviceMode, serviceReq, currentParameterId);
     }
 
 }
