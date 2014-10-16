@@ -69,6 +69,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderNoParam", orderNoParam);
+        sessionAttributes.put("orderIdParam", orderIdParam);
 
         for (OrderItems orderItemsElem : orderItemEntityList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
