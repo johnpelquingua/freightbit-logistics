@@ -24,6 +24,10 @@
             <result name="success" type="tiles">documentation.viewOrderDocuments.tiles</result>
         </action>
 
+        <action name="orderDocumentsInput" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInput">
+            <result name="success" type="tiles">documentation.orderDocumentsInput.tiles</result>
+        </action>
+
         <action name="viewArchivedDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewArchivedDocuments">
             <result name="success" type="tiles">documentation.viewArchivedDocuments.tiles</result>
         </action>
@@ -57,6 +61,10 @@
         </action>
 
         <action name="unCheckDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="unCheckDocument">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
+        <action name="addReferenceNumber" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addReferenceNumber">
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
                  

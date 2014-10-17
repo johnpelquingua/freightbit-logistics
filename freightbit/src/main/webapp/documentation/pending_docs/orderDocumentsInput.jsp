@@ -145,6 +145,29 @@
                     </div>
                 </div>
 
+                <div class="well">
+                    <div class="container">
+                        <s:form action="addReferenceNumber" theme="bootstrap">
+                            <label class="col-lg-2">Reference Number<span class="asterisk_red"></span></label>
+                            <div class="col-lg-8">
+                                <s:property value="%{document.documentId}" />
+                                <s:property value="%{document.documentName}" />
+                                <s:property value="%{document.documentType}" />
+                                <s:property value="%{document.referenceId}" />
+                                <s:hidden name="document.documentId" value="%{document.documentId}" />
+                                <s:hidden name="document.documentName" value="%{document.documentName}" />
+                                <s:hidden name="document.documentType" value="%{document.documentType}" />
+                                <s:hidden name="document.referenceId" value="%{document.referenceId}" />
+                                <s:textfield cssClass="form-control" placeholder="Reference Number" name="document.referenceNumber"
+                                             id="document.referenceNumber" required="true" maxLength="30" autofocus="true"
+                                             pattern="[a-zA-Z\s ]+"
+                                             title="Name should not contain special characters and/or numbers."/>
+                            </div>
+                            <s:submit name="submit" cssClass="btn btn-primary" value="Save" />
+                        </s:form>
+                    </div>
+                </div>
+
                 </div>
 
                 <!-- Nav tabs -->
@@ -215,8 +238,7 @@
                                                 <%--<a data-toggle="modal" data-target="#addReferenceNumber" >
                                                     <i class="fa fa-edit"></i>
                                                 </a>--%>
-                                                <s:url var="addReferenceNumberUrl" action="orderDocumentsInput">
-                                                    <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
+                                                <s:url var="addReferenceNumberUrl" action="addReferenceNumber">
                                                     <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                 </s:url>
                                                 <s:a id="edit-icon" class="icon-action-link" href="%{addReferenceNumberUrl}" rel="tooltip" title ="Add Reference Number">

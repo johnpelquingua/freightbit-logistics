@@ -1,13 +1,5 @@
 package com.sr.apps.freightbit.documentation.action;
 
-/**
- * Created with IntelliJ IDEA.
- * User: johnpel
- * Date: 8/8/14
- * Time: 10:19 AM
- * To change this template use File | Settings | File Templates.
- */
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
@@ -34,10 +26,7 @@ import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.Pdf
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DocumentAction extends ActionSupport implements Preparable{
 
@@ -77,7 +66,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private List<Documents> finalInboundEntityList = new ArrayList<Documents>();
     private List<Documents> archiveEntityList = new ArrayList<Documents>();
     private List<Documents> billingEntityList = new ArrayList<Documents>();
-
     
     @Override
     public void prepare() {
@@ -177,7 +165,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             return INPUT;
         }
 
-
         return SUCCESS;
     }
 
@@ -188,7 +175,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         documentEntity.setDocumentStatus("FROM OUTBOUND");
         documentEntity.setDocumentProcessed(1);
         documentsService.updateDocument(documentEntity);
-
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());
@@ -214,13 +200,122 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     }
 
+    public String orderDocumentsInput() {
+
+        /*Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        documentEntity.setReferenceNumber("A1");
+        documentEntity.setDocumentProcessed(1);
+        documentsService.updateDocument(documentEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());*/
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        if(orderIdParam == null){
+            orderIdParam = (Integer)sessionAttributes.get("orderIdParam");
+        }
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        bookingNumber = orderEntity.getOrderNumber();
+        order = transformToOrderFormBean(orderEntity);
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        document = transformDocumentsToFormBean(documentEntity);
+
+        /*List<Documents> documentsEntityList = documentsService.findDocumentsByOrderId(orderIdParam);
+
+        for (Documents documentElem : documentsEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }*/
+
+        /*OUTBOUND DOCUMENTS*/
+        outboundEntityList = documentsService.findDocumentByStageAndID("OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : outboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*INBOUND DOCUMENTS*/
+        inboundEntityList = documentsService.findDocumentByStageAndID("INBOUND", orderIdParam);
+
+        for (Documents documentElem : inboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL OUTBOUND DOCUMENTS*/
+        finalOutboundEntityList = documentsService.findDocumentByStageAndID("FINAL OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : finalOutboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL INBOUND DOCUMENTS*/
+        finalInboundEntityList = documentsService.findDocumentByStageAndID("FINAL INBOUND", orderIdParam);
+
+        for (Documents documentElem : finalInboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*ARCHIVE DOCUMENTS*/
+        archiveEntityList = documentsService.findDocumentByStageAndID("ARCHIVE", orderIdParam);
+
+        for (Documents documentElem : archiveEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*BILLING DOCUMENTS*/
+        billingEntityList = documentsService.findDocumentByStageAndID("BILLING", orderIdParam);
+
+        for (Documents documentElem : billingEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        return SUCCESS;
+    }
+
+    public String addReferenceNumber() {
+
+        Documents documentsEntity = transformToDocumentEntityBean(document);
+
+        documentsService.updateDocument(documentsEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", documentsEntity.getReferenceId());
+
+        return SUCCESS;
+    }
+
+    /*private Documents inputReferenceNumber(DocumentsBean formBean) {
+
+        Documents entity = new Documents();
+
+        Client client = clientService.findClientById(getClientId().toString());
+
+        entity.setClient(client);
+        entity.setReferenceNumber(formBean.getReferenceNumber());
+        entity.setCreatedDate(new Date());
+
+        return entity;
+    }*/
+
     private Documents transformToDocumentEntityBean(DocumentsBean formBean) {
 
         Documents entity = new Documents();
 
         Client client = clientService.findClientById(getClientId().toString());
         entity.setClient(client);
+
+        if(formBean.getDocumentId() != null) {
+            entity.setDocumentId(new Integer(formBean.getDocumentId()));
+        }
         entity.setReferenceNumber(formBean.getReferenceNumber());
+        entity.setCreatedDate(new Date());
+        entity.setDocumentName(formBean.getDocumentName());
+        entity.setDocumentType(formBean.getDocumentType());
+        entity.setReferenceId(formBean.getReferenceId());
+        entity.setDocumentStatus("ENTERED REFERENCE NUMBER");
 
         return entity;
     }
@@ -571,7 +666,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
         //get consignee name
         Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
         formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
-
+        formBean.setOriginationPort(entity.getOriginationPort());
+        formBean.setDestinationPort(entity.getDestinationPort());
         formBean.setOrderStatus(entity.getOrderStatus());
         formBean.setFreightType(entity.getServiceType());
         formBean.setModeOfService(entity.getServiceMode());
@@ -589,6 +685,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
         formBean.setDocumentStatus(entity.getDocumentStatus());
         formBean.setDocumentProcessed(entity.getDocumentProcessed());
         formBean.setReferenceNumber(entity.getReferenceNumber());
+        formBean.setDocumentType(entity.getDocumentType());
+        formBean.setReferenceId(entity.getReferenceId());
 
         return formBean;
     }
@@ -808,6 +906,5 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public void setOutboundEntityList(List<Documents> outboundEntityList) {
         this.outboundEntityList = outboundEntityList;
     }
-
 
 }

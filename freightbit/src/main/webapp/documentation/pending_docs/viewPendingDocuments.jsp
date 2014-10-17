@@ -8,7 +8,7 @@
 html,body{width:100%;height:100%;}
 div.horizontal{display:block;width:100%;height:100%;overflow:hidden;position:static}
 div.scroller{display:block;width:100%;height:100%;overflow:hidden;position:static}
-.table{display:table;width:500% !important;height:100%}
+.table{display:table;width:150%;max-width:150%;height:100%}
 .table > section{width:3600px;height:100%;display:table-cell;background:#e3e3e3;vertical-align:middle;text-align:center}
 .TableContainer{overflow:scroll;overflow-x: overlay;}
 article{width:800px;height:400px;display:table-cell;background:#e3e3e3;vertical-align:middle;text-align:center}
@@ -66,6 +66,10 @@ article:nth-child(2n+2){background:#d1d1d1}
                                 <%--Consignee Name--%>
                                 <td><display:column property="consigneeCode" title="Consignee Name <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+                                <td><display:column property="originationPort" title="Origin <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="destinationPort" title="Destination <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
                                 <%--Freight Type--%>
                                 <td><display:column property="freightType" title="Freight Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
@@ -75,27 +79,27 @@ article:nth-child(2n+2){background:#d1d1d1}
                                 <%--Service Mode--%>
                                 <td><display:column property="modeOfService" title="Service Mode <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                               <%-- Date of Documents Returned (INBOUND)--%>
+                                <%--&lt;%&ndash; Date of Documents Returned (INBOUND)&ndash;%&gt;
                                 <td><display:column title="Date of Documents Returned (INBOUND) <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <%--Sales Invoice / Delivery Receipt Number--%>
+                                &lt;%&ndash;Sales Invoice / Delivery Receipt Number&ndash;%&gt;
                                 <td><display:column title="Sales Invoice / Delivery Receipt Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <%--Date of Documents Sent (OUTBOUND)--%>
+                                &lt;%&ndash;Date of Documents Sent (OUTBOUND)&ndash;%&gt;
                                 <td><display:column title="Date of Documents Sent (OUTBOUND) <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <%--LBC Reference Number--%>
+                                &lt;%&ndash;LBC Reference Number&ndash;%&gt;
                                 <td><display:column title="LBC Reference Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <%--Date of Documents Returned (FINAL INBOUND)--%>
+                                &lt;%&ndash;Date of Documents Returned (FINAL INBOUND)&ndash;%&gt;
                                 <td><display:column title="Date of Documents Returned (FINAL INBOUND) <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <%--Received By--%>
+                                &lt;%&ndash;Received By&ndash;%&gt;
                                 <td><display:column title="Received By <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <%--Date of Documents forwarded to Accounting--%>
+                                &lt;%&ndash;Date of Documents forwarded to Accounting&ndash;%&gt;
                                 <td><display:column title="Date of Documents forwarded to Accounting (BILLING) <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
+                                                    style="text-align: center;"> </display:column></td>--%>
                                 <td><display:column title="Action">
                                     <s:url var="viewDocumentsUrl" action="../documentation/viewOrderDocuments">
                                         <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
