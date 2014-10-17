@@ -23,11 +23,7 @@ import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
-import com.sr.biz.freightbit.documentation.service.BookingRequestReportService;
-import com.sr.biz.freightbit.documentation.service.HouseBillofLadingReportService;
-import com.sr.biz.freightbit.documentation.service.HouseWayBillService;
-import com.sr.biz.freightbit.documentation.service.DocumentsService;
-import com.sr.biz.freightbit.documentation.service.ReleaseOrderReportService;
+import com.sr.biz.freightbit.documentation.service.*;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.commons.lang3.StringUtils;
@@ -61,6 +57,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private BookingRequestReportService bookingRequestReportService;
     private HouseBillofLadingReportService houseBillofLadingReportService;
     private HouseWayBillService houseWayBillService;
+    private AcceptanceReceiptReportService acceptanceReceiptReportService;
+    private HouseWayBillDestinationReportService houseWayBillDestinationReportService;
     private CustomerService customerService;
     private OrderService orderService;
     private ClientService clientService;
@@ -458,7 +456,75 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         return null;
     }
-    
+
+    public String generateHouseWayBillDestinationReport() {
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        String orderId = (documentEntity.getReferenceId()).toString();
+
+        Map<String, String> params = new HashMap();
+        params.put("orderId", orderId);
+
+        ByteArrayOutputStream byteArray = null;
+        BufferedOutputStream responseOut = null;
+
+        try {
+            // Create an output filename
+            final File outputFile = new File("Way Bill Destination.pdf");
+            // Generate the report
+            MasterReport report = houseWayBillDestinationReportService.generateReport(params);
+
+            HttpServletResponse response = ServletActionContext.getResponse();
+            responseOut = new BufferedOutputStream(response.getOutputStream());
+            byteArray = new ByteArrayOutputStream();
+
+            boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+            byteArray.writeTo(responseOut);
+
+            byteArray.close();
+            responseOut.close();
+
+        } catch (Exception re) {
+            re.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public String generateAcceptanceReceiptReport() {
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        String orderId = (documentEntity.getReferenceId()).toString();
+
+        Map<String, String> params = new HashMap();
+        params.put("orderId", orderId);
+
+        ByteArrayOutputStream byteArray = null;
+        BufferedOutputStream responseOut = null;
+
+        try {
+            // Create an output filename
+            final File outputFile = new File("Acceptance Receipt.pdf");
+            // Generate the report
+            MasterReport report = acceptanceReceiptReportService.generateReport(params);
+
+            HttpServletResponse response = ServletActionContext.getResponse();
+            responseOut = new BufferedOutputStream(response.getOutputStream());
+            byteArray = new ByteArrayOutputStream();
+
+            boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+            byteArray.writeTo(responseOut);
+
+            byteArray.close();
+            responseOut.close();
+
+        } catch (Exception re) {
+            re.printStackTrace();
+        }
+
+        return null;
+    }
+
     public String generateReleaseOrderReport() throws IOException {
         	String orderId = "26";
         	String orderItemId = "1";
@@ -561,6 +627,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setBookingRequestReportService(BookingRequestReportService bookingRequestReportService) {
         this.bookingRequestReportService = bookingRequestReportService;
+    }
+
+    public void setAcceptanceReceiptReportService(AcceptanceReceiptReportService acceptanceReceiptReportService) {
+        this.acceptanceReceiptReportService = acceptanceReceiptReportService;
+    }
+
+    public void setHouseWayBillDestinationReportService(HouseWayBillDestinationReportService houseWayBillDestinationReportService) {
+        this.houseWayBillDestinationReportService = houseWayBillDestinationReportService;
     }
 
     public void setHouseBillofLadingReportService(HouseBillofLadingReportService houseBillofLadingReportService) {

@@ -595,6 +595,18 @@ if (tbl==null){
                 this.document.title = " House Way Bill";
             }
         }
+        else if (documentName == "HOUSE WAYBILL DESTINATION") {
+            var win = window.open('documentations/generateHouseWayBillDestinationReport?documentIdParam=' + documentId, 'HouseWayBillDestination', 'width=910,height=800');
+            win.onload = function () {
+                this.document.title = " House Way Bill Destination";
+            }
+        }
+        else if (documentName == "ACCEPTANCE RECEIPT") {
+            var win = window.open('documentations/generateAcceptanceReceiptReport?documentIdParam=' + documentId, 'Acceptance Receipt', 'width=910,height=800');
+            win.onload = function () {
+                this.document.title = " Acceptance Receipt";
+            }
+        }
     }
 
     function generateReleaseOrderReport(){
