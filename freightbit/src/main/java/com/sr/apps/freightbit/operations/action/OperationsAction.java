@@ -209,29 +209,35 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Integer> planning1 = new ArrayList();
         List<Integer> planning2 = new ArrayList();
         List<Integer> planning3 = new ArrayList();
-        System.out.println("-------------------" + check.length);
-        for (int i =0; i<check.length; i++) {
-            Integer orderItemId = Integer.parseInt(check[i]);
-            OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
-            if ("PLANNING 1".equals(entity.getStatus())) {
-                planning1.add(orderItemId);
-                if (planning2.size() > 0 || planning3.size() > 0) {
-                    return INPUT;
+//        System.out.println("-------------------" + check.length);
+        if (check == null) {
+            return INPUT;
+
+        } else {
+            for (int i =0; i<check.length; i++) {
+                Integer orderItemId = Integer.parseInt(check[i]);
+                OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
+                if ("PLANNING 1".equals(entity.getStatus())) {
+                    planning1.add(orderItemId);
+                    if (planning2.size() > 0 || planning3.size() > 0) {
+                        return INPUT;
+                    }
                 }
-            }
-            else if ("PLANNING 2".equals(entity.getStatus())) {
-                planning2.add(orderItemId);
-                if (planning1.size() > 0 || planning3.size() > 0) {
-                    return INPUT;
+                else if ("PLANNING 2".equals(entity.getStatus())) {
+                    planning2.add(orderItemId);
+                    if (planning1.size() > 0 || planning3.size() > 0) {
+                        return INPUT;
+                    }
                 }
-            }
-            else if  ("PLANNING 3".equals(entity.getStatus())) {
-                planning3.add(orderItemId);
-                if (planning1.size() > 0 || planning2.size() > 0) {
-                    return INPUT;
+                else if  ("PLANNING 3".equals(entity.getStatus())) {
+                    planning3.add(orderItemId);
+                    if (planning1.size() > 0 || planning2.size() > 0) {
+                        return INPUT;
+                    }
                 }
             }
         }
+
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
@@ -244,9 +250,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             return "PLANNING 2";
         } else if (planning3.size() > 0) {
             return "PLANNING 3";
+        } else {
+            return INPUT;
         }
-
-        return INPUT;
     }
 
     public String editBulkItems() {
