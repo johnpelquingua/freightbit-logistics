@@ -49,7 +49,12 @@ public class OrderStatusLogsServiceImpl implements OrderStatusLogsService {
         return orderStatusLogsDao.findAllItemsByOrderId(orderId);
     }*/
 
-    public List<OrderStatusLogs> findAllItemsByOrderId(Integer orderId) {
+    @Override
+    public List<OrderStatusLogs> findAllShipmentLogs(Integer orderItemId) {
+        return orderStatusLogsDao.findAllShipmentLogs(orderItemId);
+    }
+
+    public List<OrderItems> findAllItemsByOrderId(Integer orderId) {
         return orderStatusLogsDao.findAllItemsByOrderId(orderId);
     }
 

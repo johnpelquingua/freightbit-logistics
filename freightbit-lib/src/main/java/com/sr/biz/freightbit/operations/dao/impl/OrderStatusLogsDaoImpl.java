@@ -103,13 +103,30 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
     }*/
 
     @Override
-    public List<OrderStatusLogs> findAllItemsByOrderId(Integer orderId) {
+    public List<OrderStatusLogs> findAllShipmentLogs(Integer orderItemId) {
+        log.debug("Finding all Shipment Logs");
+        try{
+            /*return getSessionFactory().getCurrentSession().createQuery("from OrderStatusLogs orderStatusLogs order by createdTimestamp desc").list();*/
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderStatusLogs o where o.orderItemId = :orderItemId");
+            query.setParameter("orderItemId", orderItemId);
+            List<OrderStatusLogs> results = (List<OrderStatusLogs>) query.list();
+            log.debug("find by client id successful, result size:" + results.size());
+            return results;
+        }catch(RuntimeException re) {
+            log.error("find all Shipment Logs failed", re);
+            throw re;
+        }
+    }
+
+
+    @Override
+    public List<OrderItems> findAllItemsByOrderId(Integer orderId) {
         log.debug("Finding orderItems via orderId");
         try {
             log.debug("Finding orderItems succeed");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderStatusLogs o where o.orderId = :orderId");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderItems o where o.orderId = :orderId");
             query.setParameter("orderId", orderId);
-            List<OrderStatusLogs> results = (List<OrderStatusLogs>) query.list();
+            List<OrderItems> results = (List<OrderItems>) query.list();
             return results;
         } catch (Exception e) {
             log.error("Finding orderItems failed");

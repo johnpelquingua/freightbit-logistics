@@ -105,7 +105,7 @@
                     <button onClick='UnCheckAll(document.myform.check)' class="btn btn-default">Deselect All</button>
 
                     <s:form name="myform" action="viewSeaFreightPlanningBulk">
-                    <display:table id="orderStatusLogs" name="orderStatusLogss"
+                    <display:table id="orderItem" name="orderItems"
                                    requestURI="viewStatusListItems.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter tabled-condesed"
                                    style="margin-top: 15px;">
@@ -117,12 +117,12 @@
                         </td>
 
                         <td>
-                            <display:column property="createdDate" title="Date <i class='fa fa-sort' />" class="tb-font-black"
+                            <display:column property="createdTimeStamp" title="Date <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column>
                         </td>
 
                         <td>
-                            <display:column property="createdTime" title="Time <i class='fa fa-sort' />" class="tb-font-black"
+                            <display:column property="createdTimeStamp" title="Date <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column>
                         </td>
 
@@ -147,21 +147,39 @@
                                             style="text-align: center;"> </display:column>
                         </td>
 
+                        <td>
+                            <display:column property="orderItemId" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column>
+                        </td>
+
                         <%--<td>
                             <display:column property="orderItemId" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column>
                         </td>--%>
 
+                        <%--<td>
+                            <display:column title="Action">
+                                <s:url var="loadUpdateStatusUrl" action="loadUpdateStatus">
+                                    <s:param name="orderItemIdParam"
+                                             value="#attr.orderStatusLogs.orderItemId">
+                                    </s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip"
+                                     title="Update Status">
+                                    <i class="fa fa-info-circle"></i>
+                                </s:a>
+                            </display:column>
+                        </td>--%>
+
                         <td>
                             <display:column title="Action">
-                            <s:url var="loadUpdateStatusUrl" action="loadUpdateStatus">
-                                <s:param name="orderItemIdParam"
-                                         value="#attr.orderStatusLogs.orderItemId"></s:param>
-                            </s:url>
-                            <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip"
-                                 title="Update Status">
-                                <i class="fa fa-info-circle"></i>
-                            </s:a>
+                                <s:url var="loadItemShipmentHistoryUrl" action="loadItemShipmentHistory">
+                                    <s:param name="orderItemIdParam" value="#attr.orderItem.orderItemId">
+                                    </s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{loadItemShipmentHistoryUrl}" rel="tooltip" title="View Shipment History">
+                                    <i class="fa fa-info-circle"></i>
+                                </s:a>
                             </display:column>
                         </td>
 

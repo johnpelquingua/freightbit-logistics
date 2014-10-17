@@ -13,6 +13,7 @@
     .pagebanner, .pagelinks {
         display: none;
     }
+
 </style>
 
 <div class="row">
@@ -166,7 +167,7 @@
                                 <display:table id="document" name="outboundEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">
 
-                                    <td>
+                                    <%--<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
                                                 <s:url var="checkDocumentUrl" action="checkDocument">
@@ -185,11 +186,11 @@
                                                     <i class="fa fa-check-square-o"></i>
                                                 </s:a>
                                             </s:else>
-                                            <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
+                                            &lt;%&ndash;<s:property value="%{#attr.document.documentProcessed}"/>&ndash;%&gt;
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
                                         </display:column>
-                                    </td>
+                                    </td>--%>
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                         </display:column>
@@ -199,16 +200,31 @@
                                         </display:column>
                                     </td>
 
-                                    <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                        style="text-align: center;" > </i></display:column></td>--%>
+                                    <td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                        style="text-align: center;" > </display:column></td>
 
                                     <td>
-                                        <display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
-                                            <a href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
-                                                <i class="fa fa-print"></i>
-                                            </a>
+                                        <display:column title="Action" class="tb-font-black" style="text-align: center;" >
                                             <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
                                             <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
+
+                                            <s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING' || #attr.document.documentName=='ACCEPTANCE RECEIPT'">
+                                                <a id="edit-icon" href="#" onclick="">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </s:if>
+                                            <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' ">
+                                                <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                    <i class="fa fa-print"></i>
+                                                </a>
+                                            </s:if>
+                                                <s:url var="checkDocumentUrl" action="checkDocument">
+                                                    <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                </s:url>
+                                                <s:a id="check-icon" class="icon-action-link" href="%{checkDocumentUrl}" rel="tooltip" title ="Edit Booking">
+                                                    <i class="fa fa-check"></i>
+                                                </s:a>
+
                                         </display:column>
                                     </td>
 
@@ -549,20 +565,26 @@
 <script>
 
 $(document).ready(function() {
-
-    var tbl = document.getElementById("document");
+    /*Disables the edit icon on house documents*/
+    /*var tbl = document.getElementById("document");
     if (tbl != null) {
         for (var i = 0; i < tbl.rows.length; i++) {
-            if (tbl.rows[i].cells[1].innerHTML == "PROFORMA BILL OF LADING") {
-                tbl.rows[i].cells[3].innerHTML= "<i class='fa fa-ban'></i>";
+
+            if (tbl.rows[i].cells[0].innerHTML == "HOUSE BILL OF LADING") {
+                *//*tbl.rows[i].cells[3].innerHTML= "<i class='fa fa-ban'></i>";*//*
+                tbl.rows[i].cells[3].getElementById("edit-icon").style.display="none";
+                *//*$("#edit-icon").css("display", "none");*//*
+
+                *//*var test = tbl.rows[i].cells[3].getElementById("edit-icon");
+                alert(test);*//*
             }
+
         }
-    }
+    }*/
 
 if (tbl==null){
     $("#first").toggleClass('active complete');
     $("#second").toggleClass('disabled active');
-
 }
 
     /*var tbl = document.getElementById("document");
@@ -609,38 +631,38 @@ if (tbl==null){
         }
     }
 
-    function generateReleaseOrderReport(){
+    /*function generateReleaseOrderReport(){
 
         var win = window.open('documentations/generateReleaseOrderReport','bookingRequest','width=910,height=800');
         win.onload = function() { this.document.title = "Release Order"; }
 
     }
+*/
+function InboundProgress(){
+    document.getElementById("in").className='active';
+    document.getElementById("out").className='';
+    document.getElementById("arch").className='';
+    document.getElementById("bill").className='';
+    document.getElementById("fiOut").className='';
+    document.getElementById("fiIn").className='';
+}
 
-    function InboundProgress(){
-        document.getElementById("in").className='active';
-        document.getElementById("out").className='';
-        document.getElementById("arch").className='';
-        document.getElementById("bill").className='';
-        document.getElementById("fiOut").className='';
-        document.getElementById("fiIn").className='';
-    }
-
-    function OutboundProgress(){
+function OutboundProgress(){
     document.getElementById("out").className='active';
     document.getElementById("in").className='';
-        document.getElementById("arch").className='';
-        document.getElementById("bill").className='';
-        document.getElementById("fiOut").className='';
-        document.getElementById("fiIn").className='';
+    document.getElementById("arch").className='';
+    document.getElementById("bill").className='';
+    document.getElementById("fiOut").className='';
+    document.getElementById("fiIn").className='';
     }
 
-    function finalOutboundProgress(){
+function finalOutboundProgress(){
     document.getElementById("out").className='';
     document.getElementById("in").className='';
-        document.getElementById("arch").className='';
-        document.getElementById("bill").className='';
-        document.getElementById("fiOut").className='active';
-        document.getElementById("fiIn").className='';
+    document.getElementById("arch").className='';
+    document.getElementById("bill").className='';
+    document.getElementById("fiOut").className='active';
+    document.getElementById("fiIn").className='';
     }
 
 function finalInboundProgress() {
@@ -652,7 +674,7 @@ function finalInboundProgress() {
     document.getElementById("fiIn").className = 'active';
 }
 
-function    archiveProgress() {
+function archiveProgress() {
     document.getElementById("out").className = '';
     document.getElementById("in").className = '';
     document.getElementById("arch").className = 'active';

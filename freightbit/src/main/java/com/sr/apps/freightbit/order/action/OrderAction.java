@@ -401,6 +401,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Orders orderEntity = transformToOrderEntityBean(order);
 
         orderService.addOrder(orderEntity);
+
        // Add Notification for user that booking was created
         Notification notificationEntity = new Notification();
         notificationEntity.setDescription("BOOKING");
@@ -411,7 +412,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         notificationEntity.setUserId(1);
         notificationService.addNotification(notificationEntity);
         // End of Add Notification
-        // Booking Request Form will be activated under pending documents
+
+        // Booking Request Form will be created under pending documents
         Documents documentEntity = new Documents();
         Client client = clientService.findClientById(getClientId().toString());
         documentEntity.setClient(client);
@@ -421,11 +423,11 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setReferenceTable("ORDERS");
         documentEntity.setOrderNumber(orderEntity.getOrderNumber());
         documentEntity.setCreatedDate(new Date());
-        documentEntity.setDocumentStatus("PENDING");
+        documentEntity.setDocumentStatus("FOR PRINTING");
         documentEntity.setDocumentProcessed(0);
         documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
         documentsService.addDocuments(documentEntity);
-        // End of Activation of Booking Request
+
         // To get generated Order Id
         orderIdPass = orderEntity.getOrderId();
 

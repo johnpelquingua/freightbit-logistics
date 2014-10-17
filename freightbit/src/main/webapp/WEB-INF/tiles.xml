@@ -143,7 +143,12 @@
 
     <definition name="operations.shipmentStatus.tiles" extends="baseLayout">
         <put-attribute name="title" value="Shipment Status"/>
-        <put-attribute name="body" value="/operations/shipment_logs/shipmentStatus.jsp"/>
+        <put-attribute name="body" value="/operations/shipmentHistory.jsp"/>
+    </definition>
+
+    <definition name="operations.itemShipmentHistory.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Shipment History"/>
+        <put-attribute name="body" value="/operations/shipmentHistory.jsp"/>
     </definition>
 
     <!--OPERATION module ends-->

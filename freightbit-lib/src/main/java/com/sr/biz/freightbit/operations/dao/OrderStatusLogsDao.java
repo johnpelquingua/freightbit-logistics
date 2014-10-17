@@ -19,7 +19,9 @@ public interface OrderStatusLogsDao {
 
     /*public List<OrderItems> findAllItemsByOrderId(Integer orderId);*/
 
-    public List<OrderStatusLogs> findAllItemsByOrderId(Integer orderId);
+    public List<OrderStatusLogs> findAllShipmentLogs(Integer orderItemId);
+
+    public List<OrderItems> findAllItemsByOrderId(Integer orderId);
 
     public OrderItems findOrderItemById(Integer orderItemId);
 

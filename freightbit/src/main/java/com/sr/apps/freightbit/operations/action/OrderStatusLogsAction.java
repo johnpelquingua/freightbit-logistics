@@ -1,5 +1,4 @@
 package com.sr.apps.freightbit.operations.action;
-//
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -72,14 +71,13 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String viewStatusListItems() {
-        /*List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();*/
+        List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
 
-        /*orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParam);*/
+        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParam);
 
-        List<OrderStatusLogs> orderStatusLogsEntityList = new ArrayList<OrderStatusLogs>();
-        /*sessionAttributes.put("orderIdParam", orderIdParam);*/
+        /*List<OrderStatusLogs> orderStatusLogsEntityList = new ArrayList<OrderStatusLogs>();
 
-        orderStatusLogsEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParam);
+        orderStatusLogsEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParam);*/
 
         /*Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderNoParam", orderNoParam);*/
@@ -90,8 +88,29 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         order = transformToOrderFormBean(orderEntity);
 
         /*for (OrderItems orderItemsElem : orderItemEntityList) {
-            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+            orderItems.add(v(orderItemsElem));
         }*/
+
+        for (OrderItems orderItemsElem : orderItemEntityList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        return SUCCESS;
+    }
+
+    public String loadItemShipmentHistory() {
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById(orderItemIdParam).getOrderId());
+        bookingNumber = orderEntity.getOrderNumber();
+        order = transformToOrderFormBean(orderEntity);
+
+        OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(orderItemIdParam);
+        orderItem = transformToOrderItemFormBean(orderItemEntity);
+
+        List<OrderStatusLogs> orderStatusLogsEntityList = new ArrayList<OrderStatusLogs>();
+
+        orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs(orderItemIdParam);
 
         for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
             orderStatusLogss.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
@@ -112,18 +131,18 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
 
-        /*List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();*/
+        List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
 
-        List<OrderStatusLogs> orderStatusLogsEntityList = new ArrayList<OrderStatusLogs>();
+        /*List<OrderStatusLogs> orderStatusLogsEntityList = new ArrayList<OrderStatusLogs>();*/
 
-        orderStatusLogsEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParamSession);
+        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParamSession);
 
         /*for (OrderItems orderItemsElem : orderStatusLogsEntityList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }*/
 
-        for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
-            orderStatusLogss.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
+        for (OrderItems orderItemsElem : orderItemEntityList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
 
         clearErrorsAndMessages();
@@ -207,9 +226,11 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public OrderItemsBean transformToOrderItemFormBean(OrderItems entity) {
 
         OrderItemsBean formBean = new OrderItemsBean();
+        formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
         formBean.setNameSize(entity.getNameSize());
         formBean.setStatus(entity.getStatus());
         formBean.setOrderItemId(entity.getOrderItemId());
+        formBean.setCreatedBy(entity.getCreatedBy());
 
         return formBean;
     }
