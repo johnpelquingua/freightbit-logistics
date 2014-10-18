@@ -1244,8 +1244,6 @@ function setThis()
 $(document).ready(function(){
     $(window).load(function(){
 //        sets the form values
-
-
         var custId = $("#customerName").val();
 
         $.getJSON('customerAction', {

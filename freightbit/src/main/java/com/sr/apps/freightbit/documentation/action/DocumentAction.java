@@ -66,6 +66,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private List<Documents> finalInboundEntityList = new ArrayList<Documents>();
     private List<Documents> archiveEntityList = new ArrayList<Documents>();
     private List<Documents> billingEntityList = new ArrayList<Documents>();
+
+    private Integer documentflag;
+    private String documentTab;
     
     @Override
     public void prepare() {
@@ -90,7 +93,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String viewOrderDocuments() {
-
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         if(orderIdParam == null){
@@ -149,6 +151,119 @@ public class DocumentAction extends ActionSupport implements Preparable{
         for (Documents documentElem : billingEntityList){
             documents.add(transformDocumentsToFormBean(documentElem));
         }
+        /*Document flag determines message */
+        documentflag = (Integer)sessionAttributes.get("documentflag");
+        if(documentflag == null){
+            clearErrorsAndMessages();
+        }else if(documentflag == 1){
+            clearErrorsAndMessages();
+            addActionMessage("You must enter a reference number");
+        }else if(documentflag == 2){
+            clearErrorsAndMessages();
+            addActionMessage("Entered reference number successfully!");
+        }else if(documentflag == 3){
+            clearErrorsAndMessages();
+            addActionMessage("Document successfully moved!");
+        }else if(documentflag == 4) {
+            clearErrorsAndMessages();
+            addActionMessage("Check document first before moving to next stage");
+        }else if(documentflag == 5) {
+            clearErrorsAndMessages();
+            addActionMessage("Document checked!");
+        }else{
+            clearErrorsAndMessages();
+        }
+        //reset document flag
+        documentflag = 0;
+        sessionAttributes.put("documentflag", documentflag);
+
+        return SUCCESS;
+    }
+
+    public String viewOrderDocumentsInbound() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        if(orderIdParam == null){
+            orderIdParam = (Integer)sessionAttributes.get("orderIdParam");
+        }
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        bookingNumber = orderEntity.getOrderNumber();
+        order = transformToOrderFormBean(orderEntity);
+
+        /*OUTBOUND DOCUMENTS*/
+        outboundEntityList = documentsService.findDocumentByStageAndID("OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : outboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*INBOUND DOCUMENTS*/
+        inboundEntityList = documentsService.findDocumentByStageAndID("INBOUND", orderIdParam);
+
+        for (Documents documentElem : inboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL OUTBOUND DOCUMENTS*/
+        finalOutboundEntityList = documentsService.findDocumentByStageAndID("FINAL OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : finalOutboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL INBOUND DOCUMENTS*/
+        finalInboundEntityList = documentsService.findDocumentByStageAndID("FINAL INBOUND", orderIdParam);
+
+        for (Documents documentElem : finalInboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*ARCHIVE DOCUMENTS*/
+        archiveEntityList = documentsService.findDocumentByStageAndID("ARCHIVE", orderIdParam);
+
+        for (Documents documentElem : archiveEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*BILLING DOCUMENTS*/
+        billingEntityList = documentsService.findDocumentByStageAndID("BILLING", orderIdParam);
+
+        for (Documents documentElem : billingEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*Document flag determines message */
+        documentflag = (Integer)sessionAttributes.get("documentflag");
+        if(documentflag == null){
+            clearErrorsAndMessages();
+        }else if(documentflag == 1){
+            clearErrorsAndMessages();
+            addActionMessage("You must enter a reference number");
+        }else if(documentflag == 2){
+            clearErrorsAndMessages();
+            addActionMessage("Entered reference number successfully!");
+        }else if(documentflag == 3){
+            clearErrorsAndMessages();
+            addActionMessage("Document successfully moved!");
+        }else if(documentflag == 4) {
+            clearErrorsAndMessages();
+            addActionMessage("Check document first before moving to next stage");
+        }else if(documentflag == 5) {
+            clearErrorsAndMessages();
+            addActionMessage("Document checked!");
+        }else{
+            clearErrorsAndMessages();
+        }
+
+        //reset document flag
+        documentflag = 0;
+        sessionAttributes.put("documentflag", documentflag);
+
+        //set document tab to anchor page on load
+        documentTab = "INBOUND";
 
         return SUCCESS;
     }
@@ -168,36 +283,232 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
-    public String checkDocument(){
-
-        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
-        documentEntity.setDocumentType("INBOUND");
-        documentEntity.setDocumentStatus("FROM OUTBOUND");
-        documentEntity.setDocumentProcessed(1);
-        documentsService.updateDocument(documentEntity);
+    public String moveDocument(){
 
         Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+
+        if(documentEntity.getDocumentProcessed().equals(1)) {
+            documentEntity.setDocumentType("INBOUND");
+            documentEntity.setDocumentStatus("FROM OUTBOUND");
+
+            if (documentEntity.getDocumentName().equals("BOOKING REQUEST FORM")) {
+                documentEntity.setDocumentName("BOOKING REQUEST FORM WITH SIGNATURE");
+                documentEntity.setDocumentProcessed(0);
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            }
+            if (documentEntity.getDocumentName().equals("PROFORMA BILL OF LADING")) {
+                if ("".equals(documentEntity.getReferenceNumber())) {
+                    /*Pass flag to view order documents*/
+                    documentflag = 1;
+                    sessionAttributes.put("documentflag", documentflag);
+
+                    documentEntity.setDocumentType("OUTBOUND");
+                    documentEntity.setDocumentName("PROFORMA BILL OF LADING");
+                    documentEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
+                    documentEntity.setDocumentProcessed(0);
+                } else {
+                    documentEntity.setDocumentName("MASTER BILL OF LADING");
+                    documentEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
+                    documentEntity.setDocumentProcessed(0);
+                    /*Pass flag to view order documents*/
+                    documentflag = 3;
+                    sessionAttributes.put("documentflag", documentflag);
+                }
+            }
+            if (documentEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN")) {
+                documentEntity.setDocumentName("HOUSE WAYBILL ORIGIN WITH SIGNATURE");
+                documentEntity.setDocumentProcessed(0);
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            }
+            if (documentEntity.getDocumentName().equals("HOUSE WAYBILL DESTINATION")) {
+                documentEntity.setDocumentType("FINAL OUTBOUND");
+                documentEntity.setDocumentStatus("FROM OUTBOUND");
+                documentEntity.setDocumentProcessed(0);
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            }
+            if (documentEntity.getDocumentName().equals("ACCEPTANCE RECEIPT")) {
+                documentEntity.setDocumentType("ARCHIVE");
+                documentEntity.setDocumentStatus("FROM OUTBOUND");
+                documentEntity.setDocumentProcessed(0);
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            } else {
+                documentEntity.setDocumentProcessed(0);
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            }
+
+            documentsService.updateDocument(documentEntity);
+
+        }else {
+            documentflag = 4;
+            sessionAttributes.put("documentflag", documentflag);
+        }
+
         sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());
 
-       /* clearErrorsAndMessages();
-        addActionMessage("Booking successfully Approved!");*/
         return SUCCESS;
 
     }
 
-    public String unCheckDocument(){
-
-        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
-        documentEntity.setDocumentProcessed(0);
-        documentsService.updateDocument(documentEntity);
+    public String moveDocumentInbound(){
 
         Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+
+        if(documentEntity.getDocumentProcessed().equals(1)){
+            documentEntity.setDocumentType("FINAL OUTBOUND");
+            documentEntity.setDocumentStatus("FROM INBOUND");
+
+            if (documentEntity.getDocumentName().equals("BOOKING REQUEST FORM WITH SIGNATURE")) {
+                documentEntity.setDocumentName("BOOKING REQUEST FORM WITH SIGNATURE");
+                documentEntity.setDocumentProcessed(0);
+                documentEntity.setDocumentType("ARCHIVE");
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            }
+            if (documentEntity.getDocumentName().equals("MASTER BILL OF LADING")) {
+                if ("".equals(documentEntity.getReferenceNumber())) {
+                    /*Pass flag to view order documents*/
+                    documentflag = 1;
+                    sessionAttributes.put("documentflag", documentflag);
+
+                    documentEntity.setDocumentType("INBOUND");
+                    documentEntity.setDocumentName("MASTER BILL OF LADING");
+                    documentEntity.setDocumentProcessed(0);
+                } else {
+                    documentEntity.setDocumentName("MASTER BILL OF LADING");
+                    documentEntity.setDocumentStatus("FROM INBOUND");
+                    documentEntity.setDocumentProcessed(0);
+                    /*Pass flag to view order documents*/
+                    documentflag = 3;
+                    sessionAttributes.put("documentflag", documentflag);
+                }
+            }
+            if (documentEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN WITH SIGNATURE")) {
+                documentEntity.setDocumentName("HOUSE WAYBILL ORIGIN WITH SIGNATURE");
+                documentEntity.setDocumentProcessed(0);
+                documentEntity.setDocumentType("ARCHIVE");
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            }
+            if(documentEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
+                documentEntity.setDocumentName("MASTER WAYBILL ORIGIN");
+                documentEntity.setDocumentProcessed(0);
+                documentEntity.setDocumentType("ARCHIVE");
+
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            }
+            else {
+                documentEntity.setDocumentProcessed(0);
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            }
+
+            documentsService.updateDocument(documentEntity);
+        }else{
+            documentflag = 4;
+            sessionAttributes.put("documentflag", documentflag);
+        }
+
         sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());
 
-       /* clearErrorsAndMessages();
-        addActionMessage("Booking successfully Approved!");*/
+        return SUCCESS;
+    }
+
+    public String checkDocument(){
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+
+        if(documentEntity.getDocumentName().equals("PROFORMA BILL OF LADING") && "".equals(documentEntity.getReferenceNumber())){
+
+            documentEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
+            documentEntity.setDocumentProcessed(0);
+            /*Pass flag to view order documents*/
+            documentflag = 1;
+            sessionAttributes.put("documentflag", documentflag);
+
+        }else if(documentEntity.getDocumentName().equals("PROFORMA BILL OF LADING") && documentEntity.getReferenceNumber() != null) {
+            documentEntity.setDocumentStatus("ENTERED REFERENCE NUMBER");
+            documentEntity.setDocumentProcessed(1);
+
+            /*Pass flag to view order documents*/
+            documentflag = 2;
+            sessionAttributes.put("documentflag", documentflag);
+        }else {
+            documentEntity.setDocumentStatus("PRINTED");
+            documentEntity.setDocumentProcessed(1);
+            /*Pass flag to view order documents*/
+            documentflag = 5;
+            sessionAttributes.put("documentflag", documentflag);
+        }
+
+        documentsService.updateDocument(documentEntity);
+
+        sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());
+
         return SUCCESS;
 
+    }
+
+    public String checkDocumentInbound(){
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+
+        if(( documentEntity.getDocumentName().equals("MASTER BILL OF LADING") && "".equals(documentEntity.getReferenceNumber() ) || ( documentEntity.getDocumentName().equals("SALES INVOICE / DELIVERY RECEIPT") && "".equals(documentEntity.getReferenceNumber())) || ( documentEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && "".equals(documentEntity.getReferenceNumber())) ) ){
+
+            documentEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
+            documentEntity.setDocumentProcessed(0);
+            /*Pass flag to view order documents*/
+            documentflag = 1;
+            sessionAttributes.put("documentflag", documentflag);
+
+        }else if( documentEntity.getDocumentName().equals("MASTER BILL OF LADING") && documentEntity.getReferenceNumber() != null ) {
+            documentEntity.setDocumentStatus("FAXED / COPIED");
+            documentEntity.setDocumentProcessed(1);
+            /*Pass flag to view order documents*/
+            documentflag = 5;
+            sessionAttributes.put("documentflag", documentflag);
+        }else if(( documentEntity.getDocumentName().equals("SALES INVOICE / DELIVERY RECEIPT") && documentEntity.getReferenceNumber() != null) || ( documentEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && documentEntity.getReferenceNumber() != null )) {
+            documentEntity.setDocumentStatus("ENTERED REFERENCE NUMBER");
+            documentEntity.setDocumentProcessed(1);
+            /*Pass flag to view order documents*/
+            documentflag = 5;
+            sessionAttributes.put("documentflag", documentflag);
+        }else if(documentEntity.getDocumentName().equals("HOUSE BILL OF LADING")){
+            documentEntity.setDocumentProcessed(1);
+            /*Pass flag to view order documents*/
+            documentflag = 5;
+            sessionAttributes.put("documentflag", documentflag);
+        }else{
+            documentEntity.setDocumentStatus("SIGNED");
+            documentEntity.setDocumentProcessed(1);
+            /*Pass flag to view order documents*/
+            documentflag = 5;
+            sessionAttributes.put("documentflag", documentflag);
+        }
+
+        documentsService.updateDocument(documentEntity);
+
+        sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());
+
+        return SUCCESS;
     }
 
     public String orderDocumentsInput() {
@@ -284,6 +595,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderIdParam", documentsEntity.getReferenceId());
 
+        /*Pass flag to view order documents*/
+        documentflag = 2;
+        sessionAttributes.put("documentflag", documentflag);
+
         return SUCCESS;
     }
 
@@ -315,7 +630,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
         entity.setDocumentName(formBean.getDocumentName());
         entity.setDocumentType(formBean.getDocumentType());
         entity.setReferenceId(formBean.getReferenceId());
+        entity.setReferenceTable(formBean.getReferenceTable());
+        entity.setOrderNumber(formBean.getOrderNumber());
         entity.setDocumentStatus("ENTERED REFERENCE NUMBER");
+        entity.setDocumentProcessed(1);
 
         return entity;
     }
@@ -681,6 +999,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         formBean.setDocumentId(entity.getDocumentId());
         formBean.setDocumentName(entity.getDocumentName());
+        formBean.setReferenceTable(entity.getReferenceTable());
         formBean.setOrderNumber(entity.getOrderNumber());
         formBean.setDocumentStatus(entity.getDocumentStatus());
         formBean.setDocumentProcessed(entity.getDocumentProcessed());
@@ -907,4 +1226,19 @@ public class DocumentAction extends ActionSupport implements Preparable{
         this.outboundEntityList = outboundEntityList;
     }
 
+    public Integer getDocumentflag() {
+        return documentflag;
+    }
+
+    public void setDocumentflag(Integer documentflag) {
+        this.documentflag = documentflag;
+    }
+
+    public String getDocumentTab() {
+        return documentTab;
+    }
+
+    public void setDocumentTab(String documentTab) {
+        this.documentTab = documentTab;
+    }
 }

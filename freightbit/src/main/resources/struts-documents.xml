@@ -24,8 +24,16 @@
             <result name="success" type="tiles">documentation.viewOrderDocuments.tiles</result>
         </action>
 
+        <action name="viewOrderDocumentsInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewOrderDocumentsInbound">
+            <result name="success" type="tiles">documentation.viewOrderDocumentsInbound.tiles</result>
+        </action>
+
         <action name="orderDocumentsInput" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInput">
             <result name="success" type="tiles">documentation.orderDocumentsInput.tiles</result>
+        </action>
+
+        <action name="orderDocumentsInboundInput" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInboundInput">
+            <result name="success" type="tiles">documentation.orderDocumentsInboundInput.tiles</result>
         </action>
 
         <action name="viewArchivedDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewArchivedDocuments">
@@ -56,18 +64,30 @@
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
+        <action name="moveDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="moveDocument">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
+        <action name="moveDocumentInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="moveDocumentInbound">
+            <result name="success" type="redirect">viewOrderDocumentsInbound</result>
+        </action>
+
         <action name="checkDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="checkDocument">
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
-        <action name="unCheckDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="unCheckDocument">
-            <result name="success" type="redirect">viewOrderDocuments</result>
+        <action name="checkDocumentInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="checkDocumentInbound">
+            <result name="success" type="redirect">viewOrderDocumentsInbound</result>
         </action>
 
         <action name="addReferenceNumber" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addReferenceNumber">
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
-                 
+
+        <action name="addReferenceNumberInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addReferenceNumberInbound">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
         <action name="generateBookingRequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBookingRequestReport">
             <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->
             <result name="success" type="redirect">viewPlainDocuments</result>

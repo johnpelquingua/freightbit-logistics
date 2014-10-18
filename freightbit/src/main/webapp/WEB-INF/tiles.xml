@@ -169,9 +169,19 @@
         <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocuments.jsp"/>
     </definition>
 
+    <definition name="documentation.viewOrderDocumentsInbound.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Order Documents"/>
+        <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsInbound.jsp"/>
+    </definition>
+
     <definition name="documentation.orderDocumentsInput.tiles" extends="baseLayout">
         <put-attribute name="title" value="Input Number"/>
         <put-attribute name="body" value="/documentation/pending_docs/orderDocumentsInput.jsp"/>
+    </definition>
+
+    <definition name="documentation.orderDocumentsInboundInput.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Input Number"/>
+        <put-attribute name="body" value="/documentation/pending_docs/orderDocumentsInboundInput.jsp"/>
     </definition>
 
     <definition name="documentation.viewArchivedDocuments.tiles" extends="baseLayout">
