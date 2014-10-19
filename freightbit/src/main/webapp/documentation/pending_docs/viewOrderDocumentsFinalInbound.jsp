@@ -157,9 +157,9 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li id="out"><a href="#outbound" role="tab" data-toggle="tab">Outbound</a></li>
                     <li id="in"><a href="#inbound" role="tab" data-toggle="tab">Inbound</a></li>
-                    <li class="active" id="fiOut"><a href="#finalOutbound" role="tab" data-toggle="tab">Final Set Outbound</a></li>
-                    <%--<li id="fiIn"><a href="#finalInbound" role="tab" data-toggle="tab">Final Set Inbound</a></li>--%>
-                    <li>
+                    <li id="fiOut"><a href="#finalOutbound" role="tab" data-toggle="tab">Final Set Outbound</a></li>
+                    <li class="active" id="fiIn"><a href="#finalInbound" role="tab" data-toggle="tab">Final Set Inbound</a></li>
+                    <%--<li class="active">
                         <s:url var="finalInboundStageUrl" action="viewOrderDocumentsFinalInbound">
                             <s:param name="orderIdParam"
                                      value="#attr.order.orderId"></s:param>
@@ -167,7 +167,7 @@
                         <s:a class="icon-action-link" href="%{finalInboundStageUrl}">
                             Final Inbound
                         </s:a>
-                    </li>
+                    </li>--%>
                     <li id="arch"><a href="#archive" role="tab" data-toggle="tab">Archive</a></li>
                     <li id="bill"><a href="#billing" role="tab" data-toggle="tab">Billing</a></li>
                 </ul>
@@ -351,13 +351,13 @@
 
                     </div>
                     <%--FINAL SET OUTBOUND DOCUMENTS BEGIN--%>
-                    <div class="tab-pane fade in active" id="finalOutbound">
+                    <div class="tab-pane fade" id="finalOutbound">
 
                         <div class="panel-body">
 
                             <div class="table-responsive">
                                 <display:table id="document" name="finalOutboundEntityList" requestURI="viewOrderDocumentsFinalOutbound.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
-                                               style="margin-top: 15px;">
+                                               style="margin-top: 15px; visibility:hidden;" >
 
                                     <td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
@@ -449,13 +449,13 @@
 
                     </div>
                     <%--FINAL SET INBOUND DOCUMENTS BEGIN--%>
-                    <div class="tab-pane fade" id="finalInbound">
+                    <div class="tab-pane fade in active" id="finalInbound">
 
                         <div class="panel-body">
 
                             <div class="table-responsive">
                                 <display:table id="document" name="finalInboundEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
-                                               style="margin-top: 15px; visibility:hidden;">
+                                               style="margin-top: 15px;">
 
                                     <%--<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
@@ -656,8 +656,8 @@ $(document).ready(function() {
         window.location.href = '#successDiv';
     }
     /*Anchor on inbound tab click*/
-    var final_outbound_tab = $("#documentTab").val();
-    if (final_outbound_tab == "FINAL OUTBOUND"){
+    var final_inbound_tab = $("#documentTab").val();
+    if (final_inbound_tab == "FINAL INBOUND"){
         window.location.href = '#documentTab';
     }
 /*Disables the edit icon on house documents*/

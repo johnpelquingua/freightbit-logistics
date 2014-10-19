@@ -95,8 +95,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String viewOrderDocuments() {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        if(orderIdParam == null){
-            orderIdParam = (Integer)sessionAttributes.get("orderIdParam");
+        if (orderIdParam == null) {
+            orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
         }
 
         // Display correct Order Number in breadcrumb
@@ -113,63 +113,66 @@ public class DocumentAction extends ActionSupport implements Preparable{
         /*OUTBOUND DOCUMENTS*/
         outboundEntityList = documentsService.findDocumentByStageAndID("OUTBOUND", orderIdParam);
 
-        for (Documents documentElem : outboundEntityList){
+        for (Documents documentElem : outboundEntityList) {
             documents.add(transformDocumentsToFormBean(documentElem));
         }
 
         /*INBOUND DOCUMENTS*/
         inboundEntityList = documentsService.findDocumentByStageAndID("INBOUND", orderIdParam);
 
-        for (Documents documentElem : inboundEntityList){
+        for (Documents documentElem : inboundEntityList) {
             documents.add(transformDocumentsToFormBean(documentElem));
         }
 
         /*FINAL OUTBOUND DOCUMENTS*/
         finalOutboundEntityList = documentsService.findDocumentByStageAndID("FINAL OUTBOUND", orderIdParam);
 
-        for (Documents documentElem : finalOutboundEntityList){
+        for (Documents documentElem : finalOutboundEntityList) {
             documents.add(transformDocumentsToFormBean(documentElem));
         }
 
         /*FINAL INBOUND DOCUMENTS*/
         finalInboundEntityList = documentsService.findDocumentByStageAndID("FINAL INBOUND", orderIdParam);
 
-        for (Documents documentElem : finalInboundEntityList){
+        for (Documents documentElem : finalInboundEntityList) {
             documents.add(transformDocumentsToFormBean(documentElem));
         }
 
         /*ARCHIVE DOCUMENTS*/
         archiveEntityList = documentsService.findDocumentByStageAndID("ARCHIVE", orderIdParam);
 
-        for (Documents documentElem : archiveEntityList){
+        for (Documents documentElem : archiveEntityList) {
             documents.add(transformDocumentsToFormBean(documentElem));
         }
 
         /*BILLING DOCUMENTS*/
         billingEntityList = documentsService.findDocumentByStageAndID("BILLING", orderIdParam);
 
-        for (Documents documentElem : billingEntityList){
+        for (Documents documentElem : billingEntityList) {
             documents.add(transformDocumentsToFormBean(documentElem));
         }
         /*Document flag determines message */
-        documentflag = (Integer)sessionAttributes.get("documentflag");
-        if(documentflag == null){
+        documentflag = (Integer) sessionAttributes.get("documentflag");
+        if (documentflag == null) {
             clearErrorsAndMessages();
-        }else if(documentflag == 1){
+        } else if (documentflag == 1) {
             clearErrorsAndMessages();
             addActionMessage("You must enter a reference number");
-        }else if(documentflag == 2){
+        } else if (documentflag == 2) {
             clearErrorsAndMessages();
             addActionMessage("Entered reference number successfully!");
-        }else if(documentflag == 3){
+        } else if (documentflag == 3) {
             clearErrorsAndMessages();
             addActionMessage("Document successfully moved!");
-        }else if(documentflag == 4) {
+        } else if (documentflag == 4) {
             clearErrorsAndMessages();
             addActionMessage("Check document first before moving to next stage");
         }else if(documentflag == 5) {
             clearErrorsAndMessages();
             addActionMessage("Document checked!");
+        }else if(documentflag == 6){
+            clearErrorsAndMessages();
+            addActionMessage("Notified Destination office of faxed document");
         }else{
             clearErrorsAndMessages();
         }
@@ -254,6 +257,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }else if(documentflag == 5) {
             clearErrorsAndMessages();
             addActionMessage("Document checked!");
+        }else if(documentflag == 6){
+            clearErrorsAndMessages();
+            addActionMessage("Notified Destination office of faxed document");
         }else{
             clearErrorsAndMessages();
         }
@@ -293,6 +299,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
         inboundEntityList = documentsService.findDocumentByStageAndID("INBOUND", orderIdParam);
 
         for (Documents documentElem : inboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL OUTBOUND DOCUMENTS*/
+        finalOutboundEntityList = documentsService.findDocumentByStageAndID("FINAL OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : finalOutboundEntityList){
             documents.add(transformDocumentsToFormBean(documentElem));
         }
 
@@ -336,6 +349,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }else if(documentflag == 5) {
             clearErrorsAndMessages();
             addActionMessage("Document checked!");
+        }else if(documentflag == 6){
+            clearErrorsAndMessages();
+            addActionMessage("Notified Destination office of faxed document");
         }else{
             clearErrorsAndMessages();
         }
@@ -346,6 +362,97 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         //set document tab to anchor page on load
         documentTab = "FINAL OUTBOUND";
+
+        return SUCCESS;
+    }
+    /*FINAL INBOUND DOCUMENTS VIEW*/
+    public String viewOrderDocumentsFinalInbound() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        if(orderIdParam == null){
+            orderIdParam = (Integer)sessionAttributes.get("orderIdParam");
+        }
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        bookingNumber = orderEntity.getOrderNumber();
+        order = transformToOrderFormBean(orderEntity);
+
+        /*OUTBOUND DOCUMENTS*/
+        outboundEntityList = documentsService.findDocumentByStageAndID("OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : outboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*INBOUND DOCUMENTS*/
+        inboundEntityList = documentsService.findDocumentByStageAndID("INBOUND", orderIdParam);
+
+        for (Documents documentElem : inboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL OUTBOUND DOCUMENTS*/
+        finalOutboundEntityList = documentsService.findDocumentByStageAndID("FINAL OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : finalOutboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL INBOUND DOCUMENTS*/
+        finalInboundEntityList = documentsService.findDocumentByStageAndID("FINAL INBOUND", orderIdParam);
+
+        for (Documents documentElem : finalInboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*ARCHIVE DOCUMENTS*/
+        archiveEntityList = documentsService.findDocumentByStageAndID("ARCHIVE", orderIdParam);
+
+        for (Documents documentElem : archiveEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*BILLING DOCUMENTS*/
+        billingEntityList = documentsService.findDocumentByStageAndID("BILLING", orderIdParam);
+
+        for (Documents documentElem : billingEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*Document flag determines message */
+        documentflag = (Integer)sessionAttributes.get("documentflag");
+        if(documentflag == null){
+            clearErrorsAndMessages();
+        }else if(documentflag == 1){
+            clearErrorsAndMessages();
+            addActionMessage("You must enter a reference number");
+        }else if(documentflag == 2){
+            clearErrorsAndMessages();
+            addActionMessage("Entered reference number successfully!");
+        }else if(documentflag == 3){
+            clearErrorsAndMessages();
+            addActionMessage("Document successfully moved!");
+        }else if(documentflag == 4) {
+            clearErrorsAndMessages();
+            addActionMessage("Check document first before moving to next stage");
+        }else if(documentflag == 5) {
+            clearErrorsAndMessages();
+            addActionMessage("Document checked!");
+        }else if(documentflag == 6){
+            clearErrorsAndMessages();
+            addActionMessage("Notified Destination office of faxed document");
+        }else{
+            clearErrorsAndMessages();
+        }
+
+        //reset document flag
+        documentflag = 0;
+        sessionAttributes.put("documentflag", documentflag);
+
+        //set document tab to anchor page on load
+        documentTab = "FINAL INBOUND";
 
         return SUCCESS;
     }
@@ -514,6 +621,64 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
+    public String moveDocumentFinalOutbound(){
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+
+        if(documentEntity.getDocumentProcessed().equals(1)){
+
+            if(documentEntity.getDocumentName().equals("MASTER BILL OF LADING")) {
+                documentEntity.setDocumentType("ARCHIVE");
+                documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
+                documentEntity.setDocumentProcessed(0);
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+
+            } else if (documentEntity.getDocumentName().equals("HOUSE WAYBILL DESTINATION")) {
+                documentEntity.setDocumentName("HOUSE WAYBILL DESTINATION WITH SIGNATURE");
+                documentEntity.setDocumentProcessed(0);
+                documentEntity.setDocumentType("FINAL INBOUND");
+                documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            }else if(documentEntity.getDocumentName().equals("SALES INVOICE / DELIVERY RECEIPT")) {
+                documentEntity.setDocumentName("SALES INVOICE / DELIVERY RECEIPT WITH SIGNATURE");
+                documentEntity.setDocumentProcessed(0);
+                documentEntity.setDocumentType("FINAL INBOUND");
+                documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            }else if(documentEntity.getDocumentName().equals("AUTHORIZATION TO WITHDRAW")) {
+                documentEntity.setDocumentProcessed(0);
+                documentEntity.setDocumentType("ARCHIVE");
+                documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            } else {
+                documentEntity.setDocumentType("FINAL INBOUND");
+                documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
+                documentEntity.setDocumentProcessed(0);
+                /*Pass flag to view order documents*/
+                documentflag = 3;
+                sessionAttributes.put("documentflag", documentflag);
+            }
+            documentsService.updateDocument(documentEntity);
+        }else{
+            documentflag = 4;
+            sessionAttributes.put("documentflag", documentflag);
+        }
+
+        sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());
+
+        return SUCCESS;
+    }
+
     public String checkDocument(){
         Map sessionAttributes = ActionContext.getContext().getSession();
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
@@ -609,6 +774,23 @@ public class DocumentAction extends ActionSupport implements Preparable{
             sessionAttributes.put("documentflag", documentflag);
 
         }
+
+        documentsService.updateDocument(documentEntity);
+
+        sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());
+
+        return SUCCESS;
+    }
+
+    public String checkDocumentFinalOutbound(){
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        /*Change Document Status to faxed or copied*/
+        documentEntity.setDocumentStatus("FAXED / COPIED");
+        documentEntity.setDocumentProcessed(1);
+            /*Pass flag to view order documents*/
+        documentflag = 5;
+        sessionAttributes.put("documentflag", documentflag);
 
         documentsService.updateDocument(documentEntity);
 
@@ -779,6 +961,30 @@ public class DocumentAction extends ActionSupport implements Preparable{
         /*Pass flag to view order documents*/
         documentflag = 2;
         sessionAttributes.put("documentflag", documentflag);
+
+        return SUCCESS;
+    }
+
+    public String notifyByFaxFinalOutbound() {
+
+        /*-------------------- BEGIN NOTIFY FREIGHT OPERATION DEPARTMENT IN DESTINATION SOURCE CODE !!!! -------------------------*/
+
+        /*-------------------- END NOTIFY FREIGHT OPERATION DEPARTMENT IN DESTINATION SOURCE CODE !!!! -------------------------*/
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+
+        if (documentEntity.getDocumentName().equals("MASTER BILL OF LADING") || documentEntity.getDocumentName().equals("SALES INVOICE / DELIVERY RECEIPT") ) {
+            documentEntity.setDocumentStatus("DOCUMENT FAXED TO DESTINATION OFFICE");
+            documentEntity.setDocumentProcessed(0);
+            /*Pass flag to view order documents*/
+            documentflag = 6;
+            sessionAttributes.put("documentflag", documentflag);
+        }
+
+        documentsService.updateDocument(documentEntity);
+
+        sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());
 
         return SUCCESS;
     }

@@ -32,6 +32,10 @@
             <result name="success" type="tiles">documentation.viewOrderDocumentsFinalOutbound.tiles</result>
         </action>
 
+        <action name="viewOrderDocumentsFinalInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewOrderDocumentsFinalInbound">
+            <result name="success" type="tiles">documentation.viewOrderDocumentsFinalInbound.tiles</result>
+        </action>
+
         <action name="orderDocumentsInput" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInput">
             <result name="success" type="tiles">documentation.orderDocumentsInput.tiles</result>
         </action>
@@ -76,6 +80,10 @@
             <result name="success" type="redirect">viewOrderDocumentsInbound</result>
         </action>
 
+        <action name="moveDocumentFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="moveDocumentFinalOutbound">
+            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
+        </action>
+
         <action name="checkDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="checkDocument">
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
@@ -84,12 +92,20 @@
             <result name="success" type="redirect">viewOrderDocumentsInbound</result>
         </action>
 
+        <action name="checkDocumentFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="checkDocumentFinalOutbound">
+            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
+        </action>
+
         <action name="addReferenceNumber" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addReferenceNumber">
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="addReferenceNumberInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addReferenceNumberInbound">
             <result name="success" type="redirect">viewOrderDocumentsInbound</result>
+        </action>
+
+        <action name="notifyByFaxFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="notifyByFaxFinalOutbound">
+            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
         </action>
 
         <action name="generateBookingRequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBookingRequestReport">

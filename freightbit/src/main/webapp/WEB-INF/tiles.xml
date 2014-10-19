@@ -178,6 +178,11 @@
         <put-attribute name="title" value="Order Documents"/>
         <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsFinalOutbound.jsp"/>
     </definition>
+    <!--FINAL INBOUND DOCUMENT VIEW-->
+    <definition name="documentation.viewOrderDocumentsFinalInbound.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Order Documents"/>
+        <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsFinalInbound.jsp"/>
+    </definition>
     <!--OUTBOUND DOCUMENT INPUT VIEW-->
     <definition name="documentation.orderDocumentsInput.tiles" extends="baseLayout">
         <put-attribute name="title" value="Input Number"/>
