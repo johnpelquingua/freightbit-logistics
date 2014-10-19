@@ -96,6 +96,10 @@
             <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
         </action>
 
+        <action name="checkDocumentFinalInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="checkDocumentFinalInbound">
+            <result name="success" type="redirect">viewOrderDocumentsFinalInbound</result>
+        </action>
+
         <action name="addReferenceNumber" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addReferenceNumber">
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>

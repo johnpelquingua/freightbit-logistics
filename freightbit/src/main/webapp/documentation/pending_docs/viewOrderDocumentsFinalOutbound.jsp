@@ -155,10 +155,41 @@
 
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li id="out"><a href="#outbound" role="tab" data-toggle="tab">Outbound</a></li>
-                    <li id="in"><a href="#inbound" role="tab" data-toggle="tab">Inbound</a></li>
-                    <li class="active" id="fiOut"><a href="#finalOutbound" role="tab" data-toggle="tab">Final Set Outbound</a></li>
-                    <%--<li id="fiIn"><a href="#finalInbound" role="tab" data-toggle="tab">Final Set Inbound</a></li>--%>
+                    <%--Redirects to Outbound Stage--%>
+                    <li>
+                        <s:url var="outboundStageUrl" action="viewOrderDocuments">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <%--<s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>--%>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{outboundStageUrl}">
+                            Outbound
+                        </s:a>
+                    </li>
+                    <%--Redirects to Inbound Stage--%>
+                    <li>
+                        <s:url var="inboundStageUrl" action="viewOrderDocumentsInbound">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <%--<s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>--%>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{inboundStageUrl}">
+                            Inbound
+                        </s:a>
+                    </li>
+                    <%--Redirects to Final Outbound Stage--%>
+                    <li class="active">
+                        <s:url var="finalOutboundStageUrl" action="viewOrderDocumentsFinalOutbound">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{finalOutboundStageUrl}">
+                            Final Outbound
+                        </s:a>
+                    </li>
+                    <%--Redirects to Final Inbound Stage--%>
                     <li>
                         <s:url var="finalInboundStageUrl" action="viewOrderDocumentsFinalInbound">
                             <s:param name="orderIdParam"

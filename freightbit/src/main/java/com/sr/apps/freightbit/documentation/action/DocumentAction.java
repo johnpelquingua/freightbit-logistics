@@ -799,6 +799,49 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
+    public String checkDocumentFinalInbound() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+
+        if(documentEntity.getDocumentName().equals("HOUSE BILL OF LADING")){
+            documentEntity.setDocumentProcessed(1);
+            /*Pass flag to view order documents*/
+            documentflag = 5;
+            sessionAttributes.put("documentflag", documentflag);
+        }else if(documentEntity.getDocumentName().equals("HOUSE WAYBILL DESTINATION WITH SIGNATURE") || documentEntity.getDocumentName().equals("SALES INVOICE / DELIVERY RECEIPT WITH SIGNATURE")){
+            documentEntity.setDocumentStatus("SIGNED");
+            documentEntity.setDocumentProcessed(1);
+            /*Pass flag to view order documents*/
+            documentflag = 5;
+            sessionAttributes.put("documentflag", documentflag);
+        }else if(documentEntity.getDocumentName().equals("MASTER WAYBILL DESTINATION") ){
+            if(("".equals(documentEntity.getReferenceNumber()) || documentEntity.getReferenceNumber() == null)){
+                /*Pass flag to view order documents*/
+                documentflag = 1;
+                sessionAttributes.put("documentflag", documentflag);
+            }else{
+                documentEntity.setDocumentStatus("ENTERED REFERENCE NUMBER");
+                documentEntity.setDocumentProcessed(1);
+                /*Pass flag to view order documents*/
+                documentflag = 5;
+                sessionAttributes.put("documentflag", documentflag);
+            }
+        }else{
+            documentEntity.setDocumentStatus("PRINTED");
+            documentEntity.setDocumentProcessed(1);
+            /*Pass flag to view order documents*/
+            documentflag = 5;
+            sessionAttributes.put("documentflag", documentflag);
+        }
+
+        documentsService.updateDocument(documentEntity);
+
+        sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());
+
+        return SUCCESS;
+    }
+
+
     public String orderDocumentsInput() {
 
         Map sessionAttributes = ActionContext.getContext().getSession();

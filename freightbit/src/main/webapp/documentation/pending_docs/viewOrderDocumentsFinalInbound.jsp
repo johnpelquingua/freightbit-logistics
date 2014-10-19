@@ -155,11 +155,42 @@
 
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li id="out"><a href="#outbound" role="tab" data-toggle="tab">Outbound</a></li>
-                    <li id="in"><a href="#inbound" role="tab" data-toggle="tab">Inbound</a></li>
-                    <li id="fiOut"><a href="#finalOutbound" role="tab" data-toggle="tab">Final Set Outbound</a></li>
-                    <li class="active" id="fiIn"><a href="#finalInbound" role="tab" data-toggle="tab">Final Set Inbound</a></li>
-                    <%--<li class="active">
+                    <%--Redirects to Outbound Stage--%>
+                    <li>
+                        <s:url var="outboundStageUrl" action="viewOrderDocuments">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <%--<s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>--%>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{outboundStageUrl}">
+                            Outbound
+                        </s:a>
+                    </li>
+                    <%--Redirects to Inbound Stage--%>
+                    <li>
+                        <s:url var="inboundStageUrl" action="viewOrderDocumentsInbound">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <%--<s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>--%>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{inboundStageUrl}">
+                            Inbound
+                        </s:a>
+                    </li>
+                    <%--Redirects to Final Outbound Stage--%>
+                    <li>
+                        <s:url var="finalOutboundStageUrl" action="viewOrderDocumentsFinalOutbound">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{finalOutboundStageUrl}">
+                            Final Outbound
+                        </s:a>
+                    </li>
+                    <%--Redirects to Final Inbound Stage--%>
+                    <li class="active">
                         <s:url var="finalInboundStageUrl" action="viewOrderDocumentsFinalInbound">
                             <s:param name="orderIdParam"
                                      value="#attr.order.orderId"></s:param>
@@ -167,7 +198,7 @@
                         <s:a class="icon-action-link" href="%{finalInboundStageUrl}">
                             Final Inbound
                         </s:a>
-                    </li>--%>
+                    </li>
                     <li id="arch"><a href="#archive" role="tab" data-toggle="tab">Archive</a></li>
                     <li id="bill"><a href="#billing" role="tab" data-toggle="tab">Billing</a></li>
                 </ul>
@@ -457,30 +488,31 @@
                                 <display:table id="document" name="finalInboundEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">
 
-                                    <%--<td>
+                                    <td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
-                                                <s:url var="checkDocumentUrl" action="checkDocument">
+                                                <s:url var="checkDocumentFinalInboundUrl" action="checkDocumentFinalInbound">
                                                     <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                 </s:url>
-                                                <s:a class="icon-action-link" href="%{checkDocumentUrl}" rel="tooltip" title ="Edit Booking">
+                                                <s:a class="icon-action-link" href="%{checkDocumentFinalInboundUrl}" rel="tooltip" title ="Edit Booking">
                                                     <i class="fa fa-square-o"></i>
                                                 </s:a>
                                             </s:if>
 
                                             <s:else>
-                                                <s:url var="uncheckDocumentUrl" action="unCheckDocument">
+                                                <%--<s:url var="uncheckDocumentUrl" action="unCheckDocument">
                                                     <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{uncheckDocumentUrl}" rel="tooltip" title ="Edit Booking">
                                                     <i class="fa fa-check-square-o"></i>
-                                                </s:a>
+                                                </s:a>--%>
+                                                <i class="fa fa-check-square-o"></i>
                                             </s:else>
-                                            &lt;%&ndash;<s:property value="%{#attr.document.documentProcessed}"/>&ndash;%&gt;
+                                            <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
                                         </display:column>
-                                    </td>--%>
+                                    </td>
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                     </display:column>
@@ -498,12 +530,45 @@
                                                         style="text-align: center;" > </i></display:column></td>--%>
 
                                     <td>
-                                        <display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
+                                        <%--<display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
                                             <a href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                 <i class="fa fa-print"></i>
                                             </a>
                                             <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
                                             <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
+                                        </display:column>--%>
+                                        <display:column title="Action" class="tb-font-black" style="text-align: center;" >
+
+                                            <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
+                                            <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
+
+                                            <%--Input Reference ID--%>
+                                            <s:if test="#attr.document.documentName=='MASTER BILL OF LADING' || #attr.document.documentName=='SALES INVOICE / DELIVERY RECEIPT WITH SIGNATURE' || #attr.document.documentName=='MASTER WAYBILL DESTINATION' ">
+                                                <%--<a data-toggle="modal" data-target="#addReferenceNumber" >
+                                                    <i class="fa fa-edit"></i>
+                                                </a>--%>
+                                                <s:url var="addReferenceNumberFinalInboundUrl" action="addReferenceNumberFinalInbound">
+                                                    <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
+                                                    <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                </s:url>
+                                                <s:a id="edit-icon" class="icon-action-link" href="%{addReferenceNumberFinalInboundUrl}" rel="tooltip" title ="Add Reference Number">
+                                                    <i class="fa fa-edit"></i>
+                                                </s:a>
+                                            </s:if>
+                                            <%--Print Document--%>
+                                            <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION WITH SIGNATURE' ">
+                                                <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                    <i class="fa fa-print"></i>
+                                                </a>
+                                            </s:if>
+                                            <%--Move Document--%>
+                                            <s:url var="moveDocumentFinalOutboundUrl" action="moveDocumentFinalOutbound">
+                                                <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                            </s:url>
+                                            <s:a id="check-icon" class="icon-action-link" href="%{moveDocumentFinalOutboundUrl}" rel="tooltip" title ="moveDocumentFinalOutboundUrl ">
+                                                <i class="fa fa-hand-o-right"></i>
+                                            </s:a>
+
                                         </display:column>
                                     </td>
 
@@ -716,7 +781,7 @@ function generateReport(documentId,documentName) {
             this.document.title = " House Way Bill Origin";
         }
     }
-    else if (documentName == "HOUSE WAYBILL DESTINATION") {
+    else if (documentName == "HOUSE WAYBILL DESTINATION" || documentName == "HOUSE WAYBILL DESTINATION WITH SIGNATURE" ) {
         var win = window.open('documentations/generateHouseWayBillDestinationReport?documentIdParam=' + documentId, 'HouseWayBillDestination', 'width=910,height=800');
         win.onload = function () {
             this.document.title = " House Way Bill Destination";
