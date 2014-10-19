@@ -5,8 +5,8 @@ public class DocumentsConstants {
 	  //Document Types
 	  public final static String OUTBOUND = "OUTBOUND";
 	  public final static String INBOUND = "INBOUND";
-	  public final static String FINAL_SET_OUTBOUND = "FINAL SET OUTBOUND";
-	  public final static String FINAL_SET_INBOUND = "FINAL SET INBOUND";
+	  public final static String FINAL_OUTBOUND = "FINAL OUTBOUND";
+	  public final static String FINAL_INBOUND = "FINAL INBOUND";
 	  public final static String ARCHIVE = "ARCHIVE";
 	  public final static String BILLING = "BILLING";
 	  

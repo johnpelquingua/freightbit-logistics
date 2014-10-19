@@ -163,22 +163,27 @@
         <put-attribute name="title" value="Plain Documents"/>
         <put-attribute name="body" value="/documentation/plain_docs/viewPlainDocuments.jsp"/>
     </definition>
-
+    <!--OUTBOUND DOCUMENT VIEW-->
     <definition name="documentation.viewOrderDocuments.tiles" extends="baseLayout">
         <put-attribute name="title" value="Order Documents"/>
         <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocuments.jsp"/>
     </definition>
-
+    <!--INBOUND DOCUMENT VIEW-->
     <definition name="documentation.viewOrderDocumentsInbound.tiles" extends="baseLayout">
         <put-attribute name="title" value="Order Documents"/>
         <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsInbound.jsp"/>
     </definition>
-
+    <!--FINAL OUTBOUND DOCUMENT VIEW-->
+    <definition name="documentation.viewOrderDocumentsFinalOutbound.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Order Documents"/>
+        <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsFinalOutbound.jsp"/>
+    </definition>
+    <!--OUTBOUND DOCUMENT INPUT VIEW-->
     <definition name="documentation.orderDocumentsInput.tiles" extends="baseLayout">
         <put-attribute name="title" value="Input Number"/>
         <put-attribute name="body" value="/documentation/pending_docs/orderDocumentsInput.jsp"/>
     </definition>
-
+    <!--INBOUND DOCUMENT INPUT VIEW-->
     <definition name="documentation.orderDocumentsInboundInput.tiles" extends="baseLayout">
         <put-attribute name="title" value="Input Number"/>
         <put-attribute name="body" value="/documentation/pending_docs/orderDocumentsInboundInput.jsp"/>

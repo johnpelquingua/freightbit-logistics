@@ -91,7 +91,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         return SUCCESS;
     }
-
+    /*OUTBOUND DOCUMENTS VIEW*/
     public String viewOrderDocuments() {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
@@ -179,7 +179,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         return SUCCESS;
     }
-
+    /*INBOUND DOCUMENTS VIEW*/
     public String viewOrderDocumentsInbound() {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -264,6 +264,88 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         //set document tab to anchor page on load
         documentTab = "INBOUND";
+
+        return SUCCESS;
+    }
+
+    /*FINAL OUTBOUND DOCUMENTS VIEW*/
+    public String viewOrderDocumentsFinalOutbound() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        if(orderIdParam == null){
+            orderIdParam = (Integer)sessionAttributes.get("orderIdParam");
+        }
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        bookingNumber = orderEntity.getOrderNumber();
+        order = transformToOrderFormBean(orderEntity);
+
+        /*OUTBOUND DOCUMENTS*/
+        outboundEntityList = documentsService.findDocumentByStageAndID("OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : outboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*INBOUND DOCUMENTS*/
+        inboundEntityList = documentsService.findDocumentByStageAndID("INBOUND", orderIdParam);
+
+        for (Documents documentElem : inboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL INBOUND DOCUMENTS*/
+        finalInboundEntityList = documentsService.findDocumentByStageAndID("FINAL INBOUND", orderIdParam);
+
+        for (Documents documentElem : finalInboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*ARCHIVE DOCUMENTS*/
+        archiveEntityList = documentsService.findDocumentByStageAndID("ARCHIVE", orderIdParam);
+
+        for (Documents documentElem : archiveEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*BILLING DOCUMENTS*/
+        billingEntityList = documentsService.findDocumentByStageAndID("BILLING", orderIdParam);
+
+        for (Documents documentElem : billingEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*Document flag determines message */
+        documentflag = (Integer)sessionAttributes.get("documentflag");
+        if(documentflag == null){
+            clearErrorsAndMessages();
+        }else if(documentflag == 1){
+            clearErrorsAndMessages();
+            addActionMessage("You must enter a reference number");
+        }else if(documentflag == 2){
+            clearErrorsAndMessages();
+            addActionMessage("Entered reference number successfully!");
+        }else if(documentflag == 3){
+            clearErrorsAndMessages();
+            addActionMessage("Document successfully moved!");
+        }else if(documentflag == 4) {
+            clearErrorsAndMessages();
+            addActionMessage("Check document first before moving to next stage");
+        }else if(documentflag == 5) {
+            clearErrorsAndMessages();
+            addActionMessage("Document checked!");
+        }else{
+            clearErrorsAndMessages();
+        }
+
+        //reset document flag
+        documentflag = 0;
+        sessionAttributes.put("documentflag", documentflag);
+
+        //set document tab to anchor page on load
+        documentTab = "FINAL OUTBOUND";
 
         return SUCCESS;
     }
@@ -471,7 +553,23 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Map sessionAttributes = ActionContext.getContext().getSession();
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
 
-        if(( documentEntity.getDocumentName().equals("MASTER BILL OF LADING") && "".equals(documentEntity.getReferenceNumber() ) || ( documentEntity.getDocumentName().equals("SALES INVOICE / DELIVERY RECEIPT") && "".equals(documentEntity.getReferenceNumber())) || ( documentEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && "".equals(documentEntity.getReferenceNumber())) ) ){
+        if (documentEntity.getDocumentName().equals("MASTER BILL OF LADING") && "".equals(documentEntity.getReferenceNumber()) || documentEntity.getDocumentName().equals("MASTER BILL OF LADING") && documentEntity.getReferenceNumber() == null ) {
+
+            documentEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
+            documentEntity.setDocumentProcessed(0);
+            /*Pass flag to view order documents*/
+            documentflag = 1;
+            sessionAttributes.put("documentflag", documentflag);
+
+        }else if(documentEntity.getDocumentName().equals("SALES INVOICE / DELIVERY RECEIPT") && "".equals(documentEntity.getReferenceNumber()) || documentEntity.getDocumentName().equals("SALES INVOICE / DELIVERY RECEIPT") && documentEntity.getReferenceNumber() == null ) {
+
+            documentEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
+            documentEntity.setDocumentProcessed(0);
+            /*Pass flag to view order documents*/
+            documentflag = 1;
+            sessionAttributes.put("documentflag", documentflag);
+
+        }else if(documentEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && "".equals(documentEntity.getReferenceNumber()) || documentEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && documentEntity.getReferenceNumber() == null) {
 
             documentEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
             documentEntity.setDocumentProcessed(0);
@@ -480,28 +578,36 @@ public class DocumentAction extends ActionSupport implements Preparable{
             sessionAttributes.put("documentflag", documentflag);
 
         }else if( documentEntity.getDocumentName().equals("MASTER BILL OF LADING") && documentEntity.getReferenceNumber() != null ) {
+
             documentEntity.setDocumentStatus("FAXED / COPIED");
             documentEntity.setDocumentProcessed(1);
             /*Pass flag to view order documents*/
             documentflag = 5;
             sessionAttributes.put("documentflag", documentflag);
+
         }else if(( documentEntity.getDocumentName().equals("SALES INVOICE / DELIVERY RECEIPT") && documentEntity.getReferenceNumber() != null) || ( documentEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && documentEntity.getReferenceNumber() != null )) {
+
             documentEntity.setDocumentStatus("ENTERED REFERENCE NUMBER");
             documentEntity.setDocumentProcessed(1);
             /*Pass flag to view order documents*/
             documentflag = 5;
             sessionAttributes.put("documentflag", documentflag);
+
         }else if(documentEntity.getDocumentName().equals("HOUSE BILL OF LADING")){
+
             documentEntity.setDocumentProcessed(1);
             /*Pass flag to view order documents*/
             documentflag = 5;
             sessionAttributes.put("documentflag", documentflag);
+
         }else{
+
             documentEntity.setDocumentStatus("SIGNED");
             documentEntity.setDocumentProcessed(1);
             /*Pass flag to view order documents*/
             documentflag = 5;
             sessionAttributes.put("documentflag", documentflag);
+
         }
 
         documentsService.updateDocument(documentEntity);
@@ -513,13 +619,72 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public String orderDocumentsInput() {
 
-        /*Documents documentEntity = documentsService.findDocumentById(documentIdParam);
-        documentEntity.setReferenceNumber("A1");
-        documentEntity.setDocumentProcessed(1);
-        documentsService.updateDocument(documentEntity);
-
         Map sessionAttributes = ActionContext.getContext().getSession();
-        sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());*/
+
+        if(orderIdParam == null){
+            orderIdParam = (Integer)sessionAttributes.get("orderIdParam");
+        }
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        bookingNumber = orderEntity.getOrderNumber();
+        order = transformToOrderFormBean(orderEntity);
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        document = transformDocumentsToFormBean(documentEntity);
+
+        /*List<Documents> documentsEntityList = documentsService.findDocumentsByOrderId(orderIdParam);
+
+        for (Documents documentElem : documentsEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }*/
+
+        /*OUTBOUND DOCUMENTS*/
+        outboundEntityList = documentsService.findDocumentByStageAndID("OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : outboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*INBOUND DOCUMENTS*/
+        inboundEntityList = documentsService.findDocumentByStageAndID("INBOUND", orderIdParam);
+
+        for (Documents documentElem : inboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL OUTBOUND DOCUMENTS*/
+        finalOutboundEntityList = documentsService.findDocumentByStageAndID("FINAL OUTBOUND", orderIdParam);
+
+        for (Documents documentElem : finalOutboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*FINAL INBOUND DOCUMENTS*/
+        finalInboundEntityList = documentsService.findDocumentByStageAndID("FINAL INBOUND", orderIdParam);
+
+        for (Documents documentElem : finalInboundEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*ARCHIVE DOCUMENTS*/
+        archiveEntityList = documentsService.findDocumentByStageAndID("ARCHIVE", orderIdParam);
+
+        for (Documents documentElem : archiveEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        /*BILLING DOCUMENTS*/
+        billingEntityList = documentsService.findDocumentByStageAndID("BILLING", orderIdParam);
+
+        for (Documents documentElem : billingEntityList){
+            documents.add(transformDocumentsToFormBean(documentElem));
+        }
+
+        return SUCCESS;
+    }
+
+    public String orderDocumentsInboundInput() {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
@@ -602,18 +767,21 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
-    /*private Documents inputReferenceNumber(DocumentsBean formBean) {
+    public String addReferenceNumberInbound() {
 
-        Documents entity = new Documents();
+        Documents documentsEntity = transformToDocumentEntityBean(document);
 
-        Client client = clientService.findClientById(getClientId().toString());
+        documentsService.updateDocument(documentsEntity);
 
-        entity.setClient(client);
-        entity.setReferenceNumber(formBean.getReferenceNumber());
-        entity.setCreatedDate(new Date());
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", documentsEntity.getReferenceId());
 
-        return entity;
-    }*/
+        /*Pass flag to view order documents*/
+        documentflag = 2;
+        sessionAttributes.put("documentflag", documentflag);
+
+        return SUCCESS;
+    }
 
     private Documents transformToDocumentEntityBean(DocumentsBean formBean) {
 

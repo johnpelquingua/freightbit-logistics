@@ -327,15 +327,15 @@
                                                         style="text-align: center;" > </display:column></td>--%>
 
                                         <td>
-                                            <display:column title="Action" class="tb-font-black" style="text-align: center;" >
+                                            <%--<display:column title="Action" class="tb-font-black" style="text-align: center;" >
                                                 <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
                                                 <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
 
-                                                <%--Input Reference ID--%>
+                                                &lt;%&ndash;Input Reference ID&ndash;%&gt;
                                                 <s:if test="#attr.document.documentName=='MASTER BILL OF LADING' || #attr.document.documentName=='SALES INVOICE / DELIVERY RECEIPT' || #attr.document.documentName=='MASTER WAYBILL ORIGIN' ">
-                                                    <%--<a data-toggle="modal" data-target="#addReferenceNumber" >
+                                                    &lt;%&ndash;<a data-toggle="modal" data-target="#addReferenceNumber" >
                                                         <i class="fa fa-edit"></i>
-                                                    </a>--%>
+                                                    </a>&ndash;%&gt;
                                                     <s:url var="addReferenceNumberInboundUrl" action="orderDocumentsInboundInput">
                                                         <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
                                                         <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
@@ -344,13 +344,13 @@
                                                         <i class="fa fa-edit"></i>
                                                     </s:a>
                                                 </s:if>
-                                                <%--Print Document--%>
+                                                &lt;%&ndash;Print Document&ndash;%&gt;
                                                 <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM WITH SIGNATURE' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN WITH SIGNATURE' ">
                                                     <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                         <i class="fa fa-print"></i>
                                                     </a>
                                                 </s:if>
-                                                <%--Move Document--%>
+                                                &lt;%&ndash;Move Document&ndash;%&gt;
                                                 <s:url var="moveDocumentUrl" action="moveDocument">
                                                     <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                 </s:url>
@@ -358,6 +358,9 @@
                                                     <i class="fa fa-hand-o-right"></i>
                                                 </s:a>
 
+                                            </display:column>--%>
+                                            <display:column title="Action" class="tb-font-black" style="text-align: center;" >
+                                                <i class="fa fa-ban"></i>
                                             </display:column>
                                         </td>
 

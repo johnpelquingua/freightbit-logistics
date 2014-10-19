@@ -361,7 +361,7 @@
 
                             <div class="table-responsive">
                                 <display:table id="document" name="finalOutboundEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter final_outbound_table"
-                                               style="margin-top: 15px; visibility:hidden;">
+                                               style="margin-top: 15px; ">
 
                                     <%--<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >

@@ -28,6 +28,10 @@
             <result name="success" type="tiles">documentation.viewOrderDocumentsInbound.tiles</result>
         </action>
 
+        <action name="viewOrderDocumentsFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewOrderDocumentsFinalOutbound">
+            <result name="success" type="tiles">documentation.viewOrderDocumentsFinalOutbound.tiles</result>
+        </action>
+
         <action name="orderDocumentsInput" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInput">
             <result name="success" type="tiles">documentation.orderDocumentsInput.tiles</result>
         </action>
@@ -85,7 +89,7 @@
         </action>
 
         <action name="addReferenceNumberInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addReferenceNumberInbound">
-            <result name="success" type="redirect">viewOrderDocuments</result>
+            <result name="success" type="redirect">viewOrderDocumentsInbound</result>
         </action>
 
         <action name="generateBookingRequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBookingRequestReport">
