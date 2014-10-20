@@ -131,16 +131,6 @@
       win.onload = function() { this.document.title = "Booking Calendar"; }
     }
 
-
-    <%--function Load_database_content()--%>
-    <%--{--%>
-        <%--&lt;%&ndash;window.location="${pageContext.request.contextPath}/home";&ndash;%&gt;--%>
-        <%----%>
-    <%--}--%>
-
-
-
-
     //will go to URL /getNotifications.action defined in struts config file
     function doAjaxCall()
     {
@@ -154,20 +144,11 @@
         }
     }
 
-
     function handleServerResponse() {
         if (xmlhttpObject.readyState == 4) {
             if (xmlhttpObject.status == 200) {
                 //xmlhttpObject.responseText contains the count (See NotificationAction.java)
-
                 setAjaxOutput();
-                <%--document.getElementById('booking').innerHTML="<s:property value="%{Booking}"></s:property>"--%>
-                <%--document.getElementById('customer').innerHTML="<s:property value="%{Customer}"></s:property>";--%>
-//                $("#booking").load('number.jsp').fadeIn("slow");
-                <%--$("#customer").html(<s:property value="%{Customer}"></s:property>);--%>
-                <%--$("#user").html(<s:property value="%{User}"></s:property>);--%>
-                <%--$("#vendor").html(<s:property value="%{Vendor}"></s:property>);--%>
-                //Alternatively, you can change the value of an element (with id="countDiv") by calling setAjaxOutput()
             } else {
                 alert("Error during AJAX call. Please try again");
             }
@@ -177,7 +158,7 @@
     // Change the value of the outputText field
     function setAjaxOutput()
     {
-//        alert(xmlhttpObject.responseText);
+        //alert(xmlhttpObject.responseText);
         document.getElementById('booking').innerHTML = <s:property value="%{Booking}"></s:property>;
         <%--alert("booking is " +  <s:property value="%{Booking}"></s:property>);--%>
         document.getElementById('customer').innerHTML = <s:property value="%{Customer}"></s:property>;
@@ -211,14 +192,5 @@
         // Mandatory Statement returning the ajax object created
         return xmlhttpObject;
     }
-
-    setInterval('doAjaxCall();', 5000);
-
-
-
-
+    /*setInterval('doAjaxCall();', 5000);*/
 </script>
-
-
-
-view
