@@ -88,6 +88,11 @@
                 method="loadUpdateStatusComplete">
             <result name="success" type="tiles">operations.statusListItems.tiles</result>
         </action>
+
+        <action name="setItemStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
+                method="setItemStatus">
+            <result name="success" type="tiles">operations.setItemStatus.tiles</result>
+        </action>
         <!--Status ends here-->
 
         <!--Operations starts here-->
@@ -230,6 +235,10 @@
 
         <action name="viewShipmentMonitoringList" class="com.sr.apps.freightbit.operations.action.ShipmentLogsAction" method="viewShipmentMonitoringList">
             <result name="success" type="tiles">operations.shipmentMonitoringList.tiles</result>
+        </action>
+
+        <action name="viewShipmentStatus" class="com.sr.apps.freightbit.operations.action.ShipmentLogsAction" method="viewShipmentStatus">
+            <result name="success" type="tiles">operations.shipmentStatus.tiles</result>
         </action>
 
         <action name="viewShipmentStatus" class="com.sr.apps.freightbit.operations.action.ShipmentLogsAction" method="viewShipmentStatus">

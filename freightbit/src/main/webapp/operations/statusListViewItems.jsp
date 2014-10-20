@@ -104,7 +104,7 @@
                     <button onClick='CheckAll(document.myform.check)' class="btn btn-default">Select All</button>
                     <button onClick='UnCheckAll(document.myform.check)' class="btn btn-default">Deselect All</button>
 
-                    <s:form name="myform" action="viewSeaFreightPlanningBulk">
+                    <s:form name="myform" action="setItemStatus">
                     <display:table id="orderItem" name="orderItems"
                                    requestURI="viewStatusListItems.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter tabled-condesed"

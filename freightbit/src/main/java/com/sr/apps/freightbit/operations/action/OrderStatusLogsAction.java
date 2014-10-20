@@ -98,6 +98,11 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String setItemStatus() {
+
+        return SUCCESS;
+    }
+
     public String loadItemShipmentHistory() {
 
         // Display correct Order Number in breadcrumb

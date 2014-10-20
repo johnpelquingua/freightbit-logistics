@@ -155,6 +155,11 @@
         <put-attribute name="body" value="/operations/shipmentHistory.jsp"/>
     </definition>
 
+    <definition name="operations.setItemStatus.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Set Status"/>
+        <put-attribute name="body" value="/operations/setShipmentStatus.jsp"/>
+    </definition>
+
     <!--OPERATION module ends-->
 
     <!-- DOCUMENTATION module begin -->

@@ -113,16 +113,48 @@
             <div class="panel-footer">
 
                 <div class="pull-right">
-                    <button type="button" id="Cancel" class="btn" onclick="location.href='viewSeaFreightList'">
-                        Back to Sea Freight Planning : Orders
+                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                        <%--<li class="active"> Booking <s:property value="bookingNumber"/> Container List</li>--%>
+                        <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
+                            <s:param name="orderIdParam"
+                                     value="order.orderId"></s:param>
+                            <s:param name="orderNoParam"
+                                     value="order.orderNo"></s:param>
+                        </s:url>
+
+                        <s:a href="%{viewStatusListItemsUrl}" rel="tooltip" title="Update Status">
+                            <button type="button" id="Cancel" class="btn">
+                                Back to Sea Freight Planning : Orders
+                            </button>
+                        </s:a>
+
+                    </s:if>
+                    <s:else>
+                        <%--<li class="active"> Booking <s:property value="bookingNumber"/>Item List</li>--%>
+                        <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
+                            <s:param name="orderIdParam"
+                                     value="order.orderId"></s:param>
+                            <s:param name="orderNoParam"
+                                     value="order.orderNo"></s:param>
+                        </s:url>
+
+                        <s:a href="%{viewStatusListItemsUrl}" rel="tooltip" title="Update Status">
+                            <button type="button" id="Cancel" class="btn">
+                                Back to Sea Freight Planning : Orders
+                            </button>
+                        </s:a>
+
+                    </s:else>
+
+                    <button type="button" id="" class="btn" onclick="location.href='setItemStatus'">
+                        Set Status
                     </button>
+
                 </div>
 
-            </div>\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+            </div>
 
         </div>
-
-
 
     </div>
 </div>
