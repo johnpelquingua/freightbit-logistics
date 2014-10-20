@@ -755,11 +755,6 @@
             </div>
         </s:elseif>
     </s:if>
-
-
-
-
-
     </div>
 </div>
 
@@ -776,8 +771,6 @@
             <div class="modal-body">
                 <div class="panel-body">
 
-                    <%--<s:property  value="%{orderItem.orderItemId}"/>--%>
-                    <%--<s:textfield id="itemIdHolder"  value="%{orderItem.orderItemId}"/>--%>
                             <s:form action="addVendor" cssClass="form-horizontal" theme="bootstrap">
                             <label>Name<span class="asterisk_red"></span></label>
 

@@ -54,6 +54,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private String orderNoParam;
     private Integer vesselScheduleIdParam;
     private Integer vendorIdParam;
+    private String editParam;
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
@@ -209,50 +210,97 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Integer> planning1 = new ArrayList();
         List<Integer> planning2 = new ArrayList();
         List<Integer> planning3 = new ArrayList();
-//        System.out.println("-------------------" + check.length);
-        if (check == null) {
-            return INPUT;
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderItem.getEditItem());
+        if ("".equals(orderItem.getEditItem())) {
 
-        } else {
-            for (int i =0; i<check.length; i++) {
-                Integer orderItemId = Integer.parseInt(check[i]);
-                OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
-                if ("PLANNING 1".equals(entity.getStatus())) {
-                    planning1.add(orderItemId);
-                    if (planning2.size() > 0 || planning3.size() > 0) {
-                        return INPUT;
+            if (check == null) {
+                return INPUT;
+
+            } else {
+                for (int i =0; i<check.length; i++) {
+                    Integer orderItemId = Integer.parseInt(check[i]);
+                    OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
+                    if ("PLANNING 1".equals(entity.getStatus())) {
+                        planning1.add(orderItemId);
+                        if (planning2.size() > 0 || planning3.size() > 0) {
+                            return INPUT;
+                        }
                     }
-                }
-                else if ("PLANNING 2".equals(entity.getStatus())) {
-                    planning2.add(orderItemId);
-                    if (planning1.size() > 0 || planning3.size() > 0) {
-                        return INPUT;
+                    else if ("PLANNING 2".equals(entity.getStatus())) {
+                        planning2.add(orderItemId);
+                        if (planning1.size() > 0 || planning3.size() > 0) {
+                            return INPUT;
+                        }
                     }
-                }
-                else if  ("PLANNING 3".equals(entity.getStatus())) {
-                    planning3.add(orderItemId);
-                    if (planning1.size() > 0 || planning2.size() > 0) {
-                        return INPUT;
+                    else if  ("PLANNING 3".equals(entity.getStatus())) {
+                        planning3.add(orderItemId);
+                        if (planning1.size() > 0 || planning2.size() > 0) {
+                            return INPUT;
+                        }
                     }
                 }
             }
-        }
+
+            System.out.println(planning1.size());
+            System.out.println(planning2.size());
+            System.out.println(planning3.size());
 
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
-        sessionAttributes.put("checkedItemsInSession", check);
-        order = transformToOrderFormBean(orderEntity);
+            Map sessionAttributes = ActionContext.getContext().getSession();
+            Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+            sessionAttributes.put("checkedItemsInSession", check);
+            order = transformToOrderFormBean(orderEntity);
 
-        if (planning1.size() > 0) {
-            return "PLANNING 1";
-        } else if (planning2.size() > 0) {
-            return "PLANNING 2";
-        } else if (planning3.size() > 0) {
-            return "PLANNING 3";
+            if (planning1.size() > 0) {
+                return "PLANNING 1";
+            } else if (planning2.size() > 0) {
+                return "PLANNING 2";
+            } else if (planning3.size() > 0) {
+                return "PLANNING 3";
+            } else {
+                return INPUT;
+            }
+
         } else {
-            return INPUT;
+
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderItem.getEditItem());
+
+            orderItem.setEditItem("");
+
+            if (check == null) {
+                return INPUT;
+            } else {
+                for (int i =0; i<check.length; i++) {
+                    Integer orderItemId = Integer.parseInt(check[i]);
+                    OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
+                    if ("PLANNING 1".equals(entity.getStatus())) {
+                        planning1.add(orderItemId);
+                        if (planning2.size() > 0 || planning3.size() > 0) {
+                            return INPUT;
+                        }
+                    }
+                    else if ("PLANNING 2".equals(entity.getStatus())) {
+                        planning2.add(orderItemId);
+                        if (planning1.size() > 0 || planning3.size() > 0) {
+                            return INPUT;
+                        }
+                    }
+                    else if  ("PLANNING 3".equals(entity.getStatus())) {
+                        planning3.add(orderItemId);
+                        if (planning1.size() > 0 || planning2.size() > 0) {
+                            return INPUT;
+                        }
+                    }
+                }
+
+                Map sessionAttributes = ActionContext.getContext().getSession();
+                Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+                sessionAttributes.put("checkedItemsInSession", check);
+                order = transformToOrderFormBean(orderEntity);
+                return "EDIT";
+            }
         }
+
     }
 
     public String editBulkItems() {
@@ -1602,5 +1650,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setCheck(String[] check) {
         this.check = check;
+    }
+
+    public String getEditParam() {
+        return editParam;
+    }
+
+    public void setEditParam(String editParam) {
+        this.editParam = editParam;
     }
 }

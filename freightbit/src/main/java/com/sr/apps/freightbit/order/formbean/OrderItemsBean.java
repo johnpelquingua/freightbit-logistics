@@ -35,6 +35,8 @@ public class OrderItemsBean {
     private String truckDestination;
     private String vesselScheduleId;
 
+    private String editItem;
+
     public OrderItemsBean(){
 
     }
@@ -312,5 +314,13 @@ public class OrderItemsBean {
 
     public void setFinalDeliveryDate(String finalDeliveryDate) {
         this.finalDeliveryDate = finalDeliveryDate;
+    }
+
+    public String getEditItem() {
+        return editItem;
+    }
+
+    public void setEditItem(String editItem) {
+        this.editItem = editItem;
     }
 }

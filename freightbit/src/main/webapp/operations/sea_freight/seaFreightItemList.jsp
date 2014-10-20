@@ -94,6 +94,11 @@
                             <button onClick='UnCheckAll(document.myform.check)' class="btn btn-default">Deselect All</button>
 
                             <s:form name="myform" action="checkItemStatus">
+                                <s:submit cssClass="btn btn-default" value="Set Vendor" onclick="deleteText()"></s:submit>
+                                <s:submit cssClass="btn btn-default" value="Edit Vendor" onclick="addText()"></s:submit>
+                                <s:textfield type="hidden" name="orderItem.editItem" id="edit"></s:textfield>
+
+                            <s:form name="myform" action="checkItemStatus">
                             <display:table id="orderItem" name="orderItems"
                                            requestURI="/viewSeaFreightItemList.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple"
@@ -175,8 +180,6 @@
                                 </display:column></td>
                                 </tr>
                             </display:table>
-
-                                <s:submit value="Set Vendor"></s:submit>
                             </s:form>
                         </div>
                     </div>
@@ -242,6 +245,14 @@
     {
         for (i = 0; i < check.length; i++)
             check[i].checked = false ;
+    }
+
+    function addText() {
+        document.getElementById("edit").value = "edit";
+    }
+
+    function deleteText() {
+        document.getElementById("edit").value = "";
     }
 
 </script>

@@ -110,6 +110,11 @@
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightPlanningDestinationBulk.jsp"/>
     </definition>
 
+    <definition name="operations.freightBulkEdit.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Edit Freight Planning"/>
+        <put-attribute name="body" value="/operations/freightBulkEdit.jsp"/>
+    </definition>
+
     <definition name="operations.viewInfo.tiles" extends="baseLayout">
         <put-attribute name="title" value="Sea Freight Planning"/>
         <put-attribute name="body" value="/operations/planningInfo.jsp"/>
