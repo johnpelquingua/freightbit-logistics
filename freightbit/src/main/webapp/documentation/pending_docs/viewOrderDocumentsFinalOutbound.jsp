@@ -738,28 +738,36 @@ function generateReport(documentId,documentName) {
     else if (documentName == "HOUSE BILL OF LADING") {
         var win = window.open('documentations/generateBillofLadingReport?documentIdParam=' + documentId, 'HouseBillofLading', 'width=910,height=800');
         win.onload = function () {
-            this.document.title = " House Bill of Lading";
+            this.document.title = "House Bill of Lading";
         }
     }
     else if (documentName == "HOUSE WAYBILL ORIGIN" || documentName == "HOUSE WAYBILL ORIGIN WITH SIGNATURE")  {
         var win = window.open('documentations/generateHouseWayBillReport?documentIdParam=' + documentId, 'HouseWayBillOrigin', 'width=910,height=800');
         win.onload = function () {
-            this.document.title = " House Way Bill Origin";
+            this.document.title = "House Way Bill Origin";
         }
     }
     else if (documentName == "HOUSE WAYBILL DESTINATION") {
         var win = window.open('documentations/generateHouseWayBillDestinationReport?documentIdParam=' + documentId, 'HouseWayBillDestination', 'width=910,height=800');
         win.onload = function () {
-            this.document.title = " House Way Bill Destination";
+            this.document.title = "House Way Bill Destination";
         }
     }
     else if (documentName == "ACCEPTANCE RECEIPT") {
         var win = window.open('documentations/generateAcceptanceReceiptReport?documentIdParam=' + documentId, 'Acceptance Receipt', 'width=910,height=800');
         win.onload = function () {
-            this.document.title = " Acceptance Receipt";
+            this.document.title = "Acceptance Receipt";
+        }
+    }
+    else if (documentName == "AUTHORIZATION TO WITHDRAW") {
+        var win = window.open('documentations/generateAuthorizationToWithdrawReport?documentIdParam=' + documentId, 'Authorization to Withdraw', 'width=910,height=800');
+        win.onload = function () {
+            this.document.title = "Authorization to Withdraw";
         }
     }
 }
+
+
 
     /*function generateReleaseOrderReport(){
 

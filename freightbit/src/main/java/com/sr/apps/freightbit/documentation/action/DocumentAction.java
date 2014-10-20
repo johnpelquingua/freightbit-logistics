@@ -48,6 +48,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private HouseWayBillService houseWayBillService;
     private AcceptanceReceiptReportService acceptanceReceiptReportService;
     private HouseWayBillDestinationReportService houseWayBillDestinationReportService;
+    private AuthorizationToWithdrawReportService authorizationToWithdrawReportService;
     private CustomerService customerService;
     private OrderService orderService;
     private ClientService clientService;
@@ -1388,6 +1389,41 @@ public class DocumentAction extends ActionSupport implements Preparable{
     	return null;
     }
 
+    public String generateAuthorizationToWithdrawReport() {
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        String orderId = (documentEntity.getReferenceId()).toString();
+
+        Map<String, String> params = new HashMap();
+        params.put("orderId", orderId);
+
+        ByteArrayOutputStream byteArray = null;
+        BufferedOutputStream responseOut = null;
+
+        try{
+            // Create an output filename
+            final File outputFile = new File("Authorization to Withdraw.pdf");
+            // Generate the report
+            MasterReport report = authorizationToWithdrawReportService.generateReport(params);
+
+            HttpServletResponse response = ServletActionContext.getResponse();
+            responseOut = new BufferedOutputStream(response.getOutputStream());
+            byteArray = new ByteArrayOutputStream();
+
+            boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+            byteArray.writeTo(responseOut);
+
+            byteArray.close();
+            responseOut.close();
+
+        }catch (Exception re) {
+            re.printStackTrace();
+        }
+
+        return null;
+
+    }
+
     public OrderBean transformOrdersToFormBean(Orders entity) {
         OrderBean formBean = new OrderBean();
         formBean.setOrderId(entity.getOrderId());
@@ -1483,7 +1519,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
 		this.releaseOrderReportService = releaseOrderReportService;
 	}
 
-	public List<DocumentsBean> getDocuments() {
+    public void setAuthorizationToWithdrawReportService(AuthorizationToWithdrawReportService authorizationToWithdrawReportService) {
+        this.authorizationToWithdrawReportService = authorizationToWithdrawReportService;
+    }
+
+    public List<DocumentsBean> getDocuments() {
         return documents;
     }
 

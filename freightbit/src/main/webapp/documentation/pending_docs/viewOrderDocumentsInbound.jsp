@@ -648,6 +648,7 @@
 <script>
 
 $(document).ready(function() {
+
     /*Anchor on message*/
     if ($('#successDiv').length !== 0){
         window.location.href = '#successDiv';
@@ -657,6 +658,7 @@ $(document).ready(function() {
     if (inbound_tab == "INBOUND"){
         window.location.href = '#documentTab';
     }
+
 /*Disables the edit icon on house documents*/
 /*var tbl = document.getElementById("document");
 if (tbl != null) {
