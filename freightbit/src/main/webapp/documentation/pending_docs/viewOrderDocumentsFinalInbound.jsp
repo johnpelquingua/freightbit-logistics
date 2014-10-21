@@ -108,28 +108,28 @@
                                 <%--<div class="bs-wizard-info text-center">Nam mollis tristique erat vel tristique. Aliquam erat volutpat. Mauris et vestibulum nisi. Duis molestie nisl sed scelerisque vestibulum. Nam placerat tristique placerat</div>--%>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled"><!-- complete -->
+                            <div class="col-xs-2 bs-wizard-step disabled" id="third"><!-- complete -->
                                 <div class="text-center bs-wizard-stepnum">FINAL OUTBOUND</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#finalOutbound" class="bs-wizard-dot" data-toggle="tab" onclick="finalOutboundProgress()"></a>
                                 <%--<div class="bs-wizard-info text-center">Integer semper dolor ac auctor rutrum. Duis porta ipsum vitae mi bibendum bibendum</div>--%>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                            <div class="col-xs-2 bs-wizard-step disabled" id="fourth"><!-- active -->
                                 <div class="text-center bs-wizard-stepnum">FINAL INBOUND</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#finalInbound" class="bs-wizard-dot" data-toggle="tab" onclick="finalInboundProgress()"></a>
                                 <%--<div class="bs-wizard-info text-center"></div>--%>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                            <div class="col-xs-2 bs-wizard-step disabled" id="fifth"><!-- active -->
                                 <div class="text-center bs-wizard-stepnum">ARCHIVE</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#archive" class="bs-wizard-dot" data-toggle="tab" onclick="archiveProgress()"></a>
                                 <%--<div class="bs-wizard-info text-center"></div>--%>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                            <div class="col-xs-2 bs-wizard-step disabled" id="sixth"><!-- active -->
                                 <div class="text-center bs-wizard-stepnum">BILLING</div>
                                 <div class="progress"><div class="progress-bar" data-toggle="tab" onclick="BillingProgress"></div></div>
                                 <a href="#billing" class="bs-wizard-dot"></a>
@@ -156,7 +156,7 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <%--Redirects to Outbound Stage--%>
-                    <li>
+                    <li id="out">
                         <s:url var="outboundStageUrl" action="viewOrderDocuments">
                             <s:param name="orderIdParam"
                                      value="#attr.order.orderId"></s:param>
@@ -168,7 +168,7 @@
                         </s:a>
                     </li>
                     <%--Redirects to Inbound Stage--%>
-                    <li>
+                    <li id="in">
                         <s:url var="inboundStageUrl" action="viewOrderDocumentsInbound">
                             <s:param name="orderIdParam"
                                      value="#attr.order.orderId"></s:param>
@@ -180,7 +180,7 @@
                         </s:a>
                     </li>
                     <%--Redirects to Final Outbound Stage--%>
-                    <li>
+                    <li id="fiOut">
                         <s:url var="finalOutboundStageUrl" action="viewOrderDocumentsFinalOutbound">
                             <s:param name="orderIdParam"
                                      value="#attr.order.orderId"></s:param>
@@ -190,7 +190,7 @@
                         </s:a>
                     </li>
                     <%--Redirects to Final Inbound Stage--%>
-                    <li class="active">
+                    <li class="active" id="fiIn">
                         <s:url var="finalInboundStageUrl" action="viewOrderDocumentsFinalInbound">
                             <s:param name="orderIdParam"
                                      value="#attr.order.orderId"></s:param>
@@ -713,9 +713,50 @@
     </div>
 </div>
 
+<s:textfield value="%{outboundCount}" id="outboundCount" hidden="hidden" />
+<s:textfield value="%{inboundCount}" id="inboundCount" hidden="hidden" />
+<s:textfield value="%{finalOutboundCount}" id="finalOutboundCount" hidden="hidden" />
+<s:textfield value="%{finalInboundCount}" id="finalInboundCount" hidden="hidden" />
+
 <script>
 
 $(document).ready(function() {
+    $( window ).load(function() {
+
+        var outbound_count = $('#outboundCount').val();
+        var inbound_count = $('#inboundCount').val();
+        var final_outbound_count =$('#finalOutboundCount').val();
+        var final_inbound_count =$('#finalInboundCount').val();
+
+        if (outbound_count == 0 && inbound_count == 0 && final_outbound_count== 0 && final_inbound_count == 0) {
+            $("#first").toggleClass('active complete');
+            $("#second").toggleClass('disabled complete');
+            $("#third").toggleClass('disabled complete');
+            $("#fourth").toggleClass('disabled complete');
+            $("#fifth").toggleClass('disabled active');
+        }
+
+       else if (outbound_count == 0 && inbound_count == 0 && final_outbound_count==0) {
+            $("#first").toggleClass('active complete');
+            $("#second").toggleClass('disabled complete');
+            $("#third").toggleClass('disabled complete');
+            $("#fourth").toggleClass('disabled active');
+        }
+        else if (outbound_count == 0 && inbound_count == 0) {
+            $("#first").toggleClass('active complete');
+            $("#second").toggleClass('disabled complete');
+            $("#third").toggleClass('disabled active');
+        }
+        else if (outbound_count == 0) {
+
+            $("#first").toggleClass('active complete');
+            $("#second").toggleClass('disabled active');
+        }
+
+
+    });
+
+
     /*Anchor on message*/
     if ($('#successDiv').length !== 0){
         window.location.href = '#successDiv';
@@ -747,10 +788,6 @@ if ($('#successDiv').length !== 0){
     window.location.href = '#successDiv';
 }*/
 
-if (tbl==null){
-    $("#first").toggleClass('active complete');
-    $("#second").toggleClass('disabled active');}
-
     /*var tbl = document.getElementById("document");
     if (tbl != null) {
         for (var i = 0; i < tbl.rows.length; i++) {
@@ -775,13 +812,13 @@ function generateReport(documentId,documentName) {
             this.document.title = " House Bill of Lading";
         }
     }
-    else if (documentName == "HOUSE WAYBILL ORIGIN" || documentName == "HOUSE WAYBILL ORIGIN WITH SIGNATURE")  {
+    else if (documentName == "HOUSE WAYBILL ORIGIN" || documentName == "HOUSE WAYBILL ORIGIN WITH SIGNATURE") {
         var win = window.open('documentations/generateHouseWayBillReport?documentIdParam=' + documentId, 'HouseWayBillOrigin', 'width=910,height=800');
         win.onload = function () {
             this.document.title = " House Way Bill Origin";
         }
     }
-    else if (documentName == "HOUSE WAYBILL DESTINATION" || documentName == "HOUSE WAYBILL DESTINATION WITH SIGNATURE" ) {
+    else if (documentName == "HOUSE WAYBILL DESTINATION" || documentName == "HOUSE WAYBILL DESTINATION WITH SIGNATURE") {
         var win = window.open('documentations/generateHouseWayBillDestinationReport?documentIdParam=' + documentId, 'HouseWayBillDestination', 'width=910,height=800');
         win.onload = function () {
             this.document.title = " House Way Bill Destination";
@@ -793,8 +830,12 @@ function generateReport(documentId,documentName) {
             this.document.title = " Acceptance Receipt";
         }
     }
-}
-
+    else if (documentName == "HOUSE RELEASE ORDER") {
+        var win = window.open('documentations/generateReleaseOrderReport?documentIdParam=' + documentId, 'Release Order', 'width=910,height=800');
+        win.onload = function () {
+            this.document.title = " Release Order";
+        }
+    }
     /*function generateReleaseOrderReport(){
 
         var win = window.open('documentations/generateReleaseOrderReport','bookingRequest','width=910,height=800');
@@ -802,58 +843,62 @@ function generateReport(documentId,documentName) {
 
     }
 */
-function OutboundProgress(){
-    document.getElementById("out").className='active';
-    document.getElementById("in").className='';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='';
-    document.getElementById("fiOut").className='';
-    document.getElementById("fiIn").className='';
-}
-
-function InboundProgress(){
-    document.getElementById("in").className='active';
-    document.getElementById("out").className='';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='';
-    document.getElementById("fiOut").className='';
-    document.getElementById("fiIn").className='';
-}
-
-function finalOutboundProgress(){
-    document.getElementById("out").className='';
-    document.getElementById("in").className='';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='';
-    document.getElementById("fiOut").className='active';
-    document.getElementById("fiIn").className='';
     }
 
-function finalInboundProgress() {
-    document.getElementById("out").className = '';
-    document.getElementById("in").className = '';
-    document.getElementById("arch").className = '';
-    document.getElementById("bill").className = '';
-    document.getElementById("fiOut").className = '';
-    document.getElementById("fiIn").className = 'active';
+    function OutboundProgress(){
+        document.getElementById("out").className= 'active';
+        document.getElementById("in").className= '';
+        document.getElementById("arch").className= '';
+        document.getElementById("bill").className= '';
+        document.getElementById("fiOut").className= '';
+        document.getElementById("fiIn").className= '';
 }
 
-function archiveProgress() {
-    document.getElementById("out").className = '';
-    document.getElementById("in").className = '';
-    document.getElementById("arch").className = 'active';
-    document.getElementById("bill").className = '';
-    document.getElementById("fiOut").className = '';
-    document.getElementById("fiIn").className = '';
+    function InboundProgress(){
+        document.getElementById("in").className= 'active';
+        document.getElementById("out").className='';
+        document.getElementById("arch").className='';
+        document.getElementById("bill").className='';
+        document.getElementById("fiOut").className='';
+        document.getElementById("fiIn").className='';
 }
 
-function BillingProgress() {
-    document.getElementById("out").className = '';
-    document.getElementById("in").className = '';
-    document.getElementById("arch").className = '';
-    document.getElementById("bill").className = 'active';
-    document.getElementById("fiOut").className = '';
-    document.getElementById("fiIn").className = '';
+    function finalOutboundProgress(){
+        document.
+                getElementById("out").className='';
+        document.getElementById("in").className='';
+        document.getElementById("arch").className='';
+        document.getElementById("bill").className='';
+        document.getElementById("fiOut").className= 'active';
+    document
+            .getElementById("fiIn").className='';
+    }
+
+    function finalInboundProgress() {
+        document.getElementById("out").className = '';
+        document.getElementById("in").className = '';
+        document.getElementById("arch").className = '';
+        document.getElementById("bill").className = '';
+        document.getElementById("fiOut").className = '';
+        document.getElementById("fiIn").className = 'active';
+}
+
+    function archiveProgress() {
+        document.getElementById("out").className = '';
+        document.getElementById("in").className = '';
+        document.getElementById("arch").className = 'active';
+        document.getElementById("bill").className = '';
+        document.getElementById("fiOut").className = '';
+        document.getElementById("fiIn").className = '';
+}
+
+    function BillingProgress() {
+        document.getElementById("out").className = '';
+        document.getElementById("in").className = '';
+        document.getElementById("arch").className = '';
+        document.getElementById("bill").className = 'active';
+        document.getElementById("fiOut").className = '';
+        document.getElementById("fiIn").className = '';
 }
 
 </script>

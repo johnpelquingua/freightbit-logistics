@@ -15,6 +15,7 @@
     }
 </style>
 
+
 <div class="row">
     <div class="col-lg-12">
 
@@ -112,28 +113,28 @@
                                 <%--<div class="bs-wizard-info text-center">Nam mollis tristique erat vel tristique. Aliquam erat volutpat. Mauris et vestibulum nisi. Duis molestie nisl sed scelerisque vestibulum. Nam placerat tristique placerat</div>--%>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled"><!-- complete -->
+                            <div class="col-xs-2 bs-wizard-step disabled" id="third"><!-- complete -->
                                 <div class="text-center bs-wizard-stepnum">FINAL OUTBOUND</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#finalOutbound" class="bs-wizard-dot" data-toggle="tab" onclick="finalOutboundProgress()"></a>
                                 <%--<div class="bs-wizard-info text-center">Integer semper dolor ac auctor rutrum. Duis porta ipsum vitae mi bibendum bibendum</div>--%>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                            <div class="col-xs-2 bs-wizard-step disabled" id="fourth"><!-- active -->
                                 <div class="text-center bs-wizard-stepnum">FINAL INBOUND</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#finalInbound" class="bs-wizard-dot" data-toggle="tab" onclick="finalInboundProgress()"></a>
                                 <%--<div class="bs-wizard-info text-center"></div>--%>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                            <div class="col-xs-2 bs-wizard-step disabled" id="fifth"><!-- active -->
                                 <div class="text-center bs-wizard-stepnum">ARCHIVE</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#archive" class="bs-wizard-dot" data-toggle="tab" onclick="archiveProgress()"></a>
                                 <%--<div class="bs-wizard-info text-center"></div>--%>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                            <div class="col-xs-2 bs-wizard-step disabled" id="sixth"><!-- active -->
                                 <div class="text-center bs-wizard-stepnum">BILLING</div>
                                 <div class="progress"><div class="progress-bar" data-toggle="tab" onclick="BillingProgress"></div></div>
                                 <a href="#billing" class="bs-wizard-dot"></a>
@@ -145,6 +146,8 @@
                 </div>
 
                 </div>
+            <%--Anchor on tab click--%>
+            <s:textfield value="%{documentTab}" id="documentTab" style="visibility:hidden;" />
 
                 <s:if test="hasActionMessages()">
                     <div class="col-lg-12" id="successDiv">
@@ -158,7 +161,7 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <%--Redirects to Outbound Stage--%>
-                    <li class="active">
+                    <li class="active" id="out">
                         <s:url var="outboundStageUrl" action="viewOrderDocuments">
                             <s:param name="orderIdParam"
                                      value="#attr.order.orderId"></s:param>
@@ -170,7 +173,7 @@
                         </s:a>
                     </li>
                     <%--Redirects to Inbound Stage--%>
-                    <li>
+                    <li id="in">
                         <s:url var="inboundStageUrl" action="viewOrderDocumentsInbound">
                             <s:param name="orderIdParam"
                                      value="#attr.order.orderId"></s:param>
@@ -182,7 +185,7 @@
                         </s:a>
                     </li>
                     <%--Redirects to Final Outbound Stage--%>
-                    <li>
+                    <li id="fiOut">
                         <s:url var="finalOutboundStageUrl" action="viewOrderDocumentsFinalOutbound">
                             <s:param name="orderIdParam"
                                      value="#attr.order.orderId"></s:param>
@@ -192,7 +195,7 @@
                         </s:a>
                     </li>
                     <%--Redirects to Final Inbound Stage--%>
-                    <li>
+                    <li id="fiIn">
                         <s:url var="finalInboundStageUrl" action="viewOrderDocumentsFinalInbound">
                             <s:param name="orderIdParam"
                                      value="#attr.order.orderId"></s:param>
@@ -212,7 +215,7 @@
                         <div class="panel-body">
 
                             <div class="table-responsive">
-                                <display:table id="document" name="outboundEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter outbound_table"
+                                <display:table id="document" name="outboundEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="outbound_table table table-striped table-hover table-bordered text-center tablesorter "
                                                style="margin-top: 15px;">
 
                                     <td>
@@ -301,7 +304,7 @@
                             <div class="panel-body">
 
                                 <div class="table-responsive">
-                                    <display:table id="document" name="inboundEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter inbound_table"
+                                    <display:table id="document" name="inboundEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="inbound_table table table-striped table-hover table-bordered text-center tablesorter "
                                                    style="margin-top: 15px; visibility:hidden;">
 
                                         <%--<td>
@@ -516,10 +519,10 @@
                         <div class="panel-body">
 
                             <div class="table-responsive">
-                                <display:table id="InboundDocument" name="archiveEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter archive_table"
-                                               style="margin-top: 15px; visibility:hidden;">
+                                <display:table id="document" name="archiveEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter archive_table"
+                                               style="margin-top: 15px;">
 
-                                    <%--<td>
+                                    <td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
                                                 <s:url var="checkDocumentUrl" action="checkDocument">
@@ -556,8 +559,8 @@
                                     </display:column>
                                     </td>
 
-                                    <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                        style="text-align: center;" > </i></display:column></td>--%>
+                                    <td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>
 
                                     <td>
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
@@ -580,7 +583,7 @@
                         <div class="panel-body">
 
                             <div class="table-responsive">
-                                <display:table id="InboundDocument" name="billingEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter billing_table"
+                                <display:table id="document" name="billingEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter billing_table"
                                                style="margin-top: 15px; visibility:hidden;">
 
                                     <%--<td>
@@ -645,7 +648,10 @@
         </div>
     </div>
 </div>
-
+<s:textfield value="%{outboundCount}" id="outboundCount" hidden="hidden" />
+<s:textfield value="%{inboundCount}" id="inboundCount" hidden="hidden" />
+<s:textfield value="%{finalOutboundCount}" id="finalOutboundCount" hidden="hidden" />
+<s:textfield value="%{finalInboundCount}" id="finalInboundCount" hidden="hidden" />
 <script>
 
 $(document).ready(function() {
@@ -653,6 +659,54 @@ $(document).ready(function() {
     if ($('#successDiv').length !== 0){
         window.location.href = '#successDiv';
     }
+
+
+    $( window ).load(function() {
+
+        /*Anchor on inbound tab click*/
+        var outbound_tab = $("#documentTab").val();
+        if (outbound_tab == "OUTBOUND") {
+            window.location.href = '#documentTab';
+        }
+
+        var outbound_count = $('#outboundCount').val();
+        var inbound_count = $('#inboundCount').val();
+        var final_outbound_count =$('#finalOutboundCount').val();
+        var final_inbound_count =$('#finalInboundCount').val();
+
+        if (outbound_count == 0 && inbound_count == 0 && final_outbound_count== 0 && final_inbound_count == 0) {
+            $("#first").toggleClass('active complete');
+            $("#second").toggleClass('disabled complete');
+            $("#third").toggleClass('disabled complete');
+            $("#fourth").toggleClass('disabled complete');
+            $("#fifth").toggleClass('disabled active');
+        }
+
+       else if (outbound_count == 0 && inbound_count == 0 && final_outbound_count==0) {
+            $("#first").toggleClass('active complete');
+            $("#second").toggleClass('disabled complete');
+            $("#third").toggleClass('disabled complete');
+            $("#fourth").toggleClass('disabled active')
+        }
+        else if (outbound_count == 0 && inbound_count == 0) {
+            $("#first").toggleClass('active complete');
+            $("#second").toggleClass('disabled complete');
+            $("#third").toggleClass('disabled active');
+        }
+        else if (outbound_count == 0) {
+
+            $("#first").toggleClass('active complete');
+            $("#second").toggleClass('disabled active');
+        }
+
+
+
+
+    });
+
+
+
+
 
     /*DONT DELETE, FOR TESTING TABLE READABILITY EVEN IF HIDDEN*/
     /*$(window).load(function(){
@@ -692,9 +746,7 @@ if ($('#successDiv').length !== 0){
     window.location.href = '#successDiv';
 }*/
 
-if (tbl==null){
-    $("#first").toggleClass('active complete');
-    $("#second").toggleClass('disabled active');}
+
 
     /*var tbl = document.getElementById("document");
     if (tbl != null) {
