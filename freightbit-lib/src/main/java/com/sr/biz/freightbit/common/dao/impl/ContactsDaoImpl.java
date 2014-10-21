@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -156,7 +157,7 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao 
 
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from Contacts c where c.referenceId = :referenceId ");
+                    "from Contacts c where c.referenceId = :referenceId and c.contactType != 'CONSIGNEE' ");
             query.setParameter("referenceId", referenceId);
             List<Contacts> results = (List<Contacts>) query.list();
             log.debug("Find by vendorId successful, result size: " + results.size());
@@ -165,6 +166,28 @@ public class ContactsDaoImpl extends HibernateDaoSupport implements ContactsDao 
             log.error("Get failed", re);
             throw re;
         }
+
+        /*List<String> typeList = new ArrayList<>();
+
+        typeList.add("shipper");
+        typeList.add("billTo");
+        typeList.add("solicitor");
+
+        log.debug("Finding contacts with filter");
+
+        try{
+           log.debug("Finding contacts succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Contacts c where c.contactType in(:typeListList) and c.referenceId = :referenceId order by createdTimestamp desc");
+            query.setParameterList("typeList", typeList);
+            query.setParameter("referenceId", referenceId);
+            List<Contacts> results = (List<Contacts>) query.list();
+            return results;
+
+        } catch (Exception e) {
+            log.error("Finding contacts failed");
+            throw e;
+        }*/
+
     }
 
     @Override
