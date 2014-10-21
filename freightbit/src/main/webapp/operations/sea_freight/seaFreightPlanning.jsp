@@ -142,11 +142,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-2" style="text-align: center;">
-                                <div>
-                                    <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
-                                        Add Vendor
-                                    </a>
-                                </div>
+                               c
                             </div>
                             <div class="col-lg-2" style="text-align: center;">
                                 <div>
@@ -481,9 +477,10 @@
                             </div>
                             <div class="col-lg-2" style="text-align: center;">
                                 <div>
-                                    <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
+                                    <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" id="createVendor" style="width: 135px;">
                                         Add Vendor
                                     </a>
+                                </div>
                                 </div>
                             </div>
                             <div class="col-lg-2" style="text-align: center;">
@@ -759,6 +756,9 @@
 </div>
 
 <%--Start Add Vendor Modal--%>
+
+
+
 
 <div class="modal fade" id="createVendor" role="form" aria-labelledby="myModalLabel1">
     <div class="modal-dialog modal-form">

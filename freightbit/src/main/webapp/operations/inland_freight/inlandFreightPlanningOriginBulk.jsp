@@ -124,7 +124,7 @@
                         </div>
                         <div class="col-lg-2">
                             <div>
-                                <a href="#.html" class="btn btn-info">
+                                <a data-toggle="modal" data-target="#createVendor" class="btn btn-info">
                                         <%--<i class="fa fa-plus"></i>--%>
                                     Add Vendor
                                 </a>
@@ -144,7 +144,7 @@
                         </div>
                         <div class="col-lg-2">
                             <div>
-                                <a href="#.html" class="btn btn-info" style="width:100px !important;">
+                                <a data-toggle="modal" data-target="#createDriver" class="btn btn-info" style="width:100px !important;">
                                         <%--<i class="fa fa-plus"></i>--%>
                                     Add Driver
                                 </a>
@@ -165,7 +165,7 @@
                         </div>
                         <div class="col-lg-2">
                             <div>
-                                <a href="#.html" class="btn btn-info" style="width:100px !important;">
+                                <a data-toggle="modal" data-target="#createTruck" class="btn btn-info" style="width:100px !important;">
                                         <%--<i class="fa fa-plus"></i>--%>
                                     Add Truck
                                 </a>
@@ -190,41 +190,92 @@
 
 <%--Start Add Vendor Modal--%>
 
-<div class="modal fade" id="createVendor" role="form" aria-labelledby="myModalLabel1">
+<div class="modal fade" id="createDriver" role="form" aria-labelledby="myModalLabel1">
     <div class="modal-dialog modal-form">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" id="myModalLabel1">Add Vendor</h4>
+                <h4 class="modal-title" id="myModalLabel1">Add Driver</h4>
             </div>
 
             <div class="modal-body">
                 <div class="panel-body">
 
-                    <%--<s:property  value="%{orderItem.orderItemId}"/>--%>
-                    <%--<s:textfield id="itemIdHolder"  value="%{orderItem.orderItemId}"/>--%>
-                    <s:form action="addVendor" cssClass="form-horizontal" theme="bootstrap">
-                    <label>Name<span class="asterisk_red"></span></label>
+                    <s:form cssClass="form-horizontal" action="addDriver" theme="bootstrap">
 
-                    <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Vendor Name"
-                                 name="vendor.vendorName"></s:textfield>
 
-                    <label>Code<span class="asterisk_red"></span></label>
+                    <div class="form-group">
 
-                    <s:textfield cssClass="form-control" id="vendor.vendorCode" placeholder="Vendor Code"
-                                 name="vendor.vendorCode" maxLength="3" pattern="[A-Z]+" title="Must be letters only and CAPS."></s:textfield>
+                        <label for="driver.licenseNumber" class="col-lg-2 control-label" style="padding-top:0px;">License<span class="asterisk_red"></span></label>
 
-                    <label>Class Name<span class="asterisk_red"></span></label>
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="AXX-XX-XXXXXXX"
+                                         name="driver.licenseNumber" id="driver_licenseNumber" required="true"/>
+                        </div>
 
-                    <s:select cssClass="form-control" id="vendor.vendorClass" list="vendorClassList" listKey="key"
-                              listValue="value"
-                              name="vendor.vendorClass"/>
+                    </div>
 
-                    <label>Status<span class="asterisk_red"></span></label>
+                    <div class="form-group">
 
-                    <s:select cssClass="form-control" id="vendor.vendorStatus" list="statusList"
-                              listKey="key" listValue="value"
-                              name="vendor.vendorStatus"/>
+                        <label for="driver.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName"
+                                         id="driver.lastName" required="true"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="driver.firstName" class="col-lg-2 control-label" style="padding-top:0px;">First Name<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName"
+                                         id="driver.firstName" required="true"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="driver.middleName" class="col-lg-2 control-label" style="padding-top:0px;">Middle Name</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName"
+                                         id="driver.middleName" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="driver.title" class="col-lg-2 control-label" style="padding-top:0px;">Title<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"
+                                         id="driver.title" required="true"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" for="driver.status" style="padding-top:0px;">Status</label>
+
+                        <div class="col-lg-10">
+                            <s:select list="statusList" listKey="key" listValue="value" name="driver.status"
+                                      cssClass="form-control"/>
+                        </div>
+
+                    </div>
+
+                        <%--<div class="pull-right">
+
+                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
+                        </div>
+
+                    </s:form>--%>
 
                 </div>
             </div>
@@ -238,76 +289,197 @@
     </div>
 </div>
 
-<%--End Add Vendor Modal--%>
-
-<%--Start Add Schedule--%>
-
-<div class="modal fade" id="addSchedule" role="form" aria-labelledby="myModalLabel2">
+<div class="modal fade" id="createVendor" role="form" aria-labelledby="myModalLabel1">
     <div class="modal-dialog modal-form">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" id="myModalLabel2">Add Schedule</h4>
+                <h4 class="modal-title" id="myModalLabel1">Add Vendor</h4>
             </div>
 
             <div class="modal-body">
                 <div class="panel-body">
 
-                    <s:form cssClass="form-horizontal" theme="bootstrap" action="addVesselScheduleInPlanning">
+                    <s:form cssClass="form-horizontal" action="addVendor" method="POST" theme="bootstrap">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Type<span class="asterisk_red"></span></label>
 
-                    <label>Voyage Number<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9"></span>
+                            <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
+                                      listKey="key" listValue="value" cssClass="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Company<span class="asterisk_red"></span></label>
 
-                    <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber"/>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
+                                         id="vendor.vendorName" required="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></span></label>
 
-                    <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" name="vendor.vendorCode" id="vendor_vendorCode" required="true"
+                                         placeholder="Code" maxLength="3" pattern="[A-Z]+" title="Must be letters only" onkeypress="return alphaKeyOnly(event)"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Class<span class="asterisk_red"></span></label>
 
-                    <label> Departure Date<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:select list="vendorClassList" listKey="key" listValue="value" cssClass="form-control"
+                                      id="vendor.vendorClass" name="vendor.vendorClass"/>
+                        </div>
+                    </div>
 
-                    <s:textfield cssClass="form-control" id="departureDate"
-                                 name="vesselSchedule.departureDate"/>
-
-                    <label> Departure Time<span class="asterisk_red"></span></label>
-
-                    <s:textfield cssClass="form-control" id="departureTime"
-                                 name="vesselSchedule.departureTime" readonly="true"/>
-
-                    <label>Arrival Date<span class="asterisk_red"></span></label>
-
-                    <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true"/>
-
-                    <label> Arrival Time<span class="asterisk_red"></span></label>
-
-                    <s:textfield cssClass="form-control" id="arrivalTime"
-                                 name="vesselSchedule.arrivalTime"/>
-
-                    <label>Origin Pier<span class="asterisk_red"></span></label>
-
-                    <s:select emptyOption="true" id="vesselSchedule_originPort"
-                              value="vesselSchedule.originPort"
-                              name="vesselSchedule.originPort"
-                              list="portsList" listValue="value" listKey="key"
-                              cssClass="form-control"/>
-
-                    <label>Destination Pier<span class="asterisk_red"></span></label>
-
-                    <s:select emptyOption="true" id="vesselSchedule_destinationPort"
-                              value="vesselSchedule.destinationPort"
-                              name="vesselSchedule.destinationPort"
-                              list="portsList" listValue="value" listKey="key"
-                              cssClass="form-control"/>
 
                 </div>
             </div>
-
             <div class="modal-footer">
                 <div>
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
-                    </s:form>
+                    <s:submit cssClass="btn btn-primary" value="Save" type="submit"/>
                 </div>
             </div>
+            </s:form>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="createTruck" role="form" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel1">Add Trucks</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <s:form cssClass="form-horizontal" action="addTrucks" method="post" theme="bootstrap">
+                    <%--Plate Number = plateNumber--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="e.g. ABC-123, XYZ-7890, etc." name="truck.plateNumber"
+                                     id="truck_plateNumber" required="true" />
+                    </div>
+                </div>
+                    <%--LTO Certificate Number = code--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">LTO Certificate Number<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
+                                     id="truck.truckCode" required="true" maxlength="10"/>
+                    </div>
+                </div>
+                    <%--MV File Number--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">MV File Number<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="MV File Number" name="truck.motorVehicleNumber"
+                                     id="truck_motorVehicleNumber" required="true" />
+                    </div>
+                </div>
+                    <%--Model = modelNumber--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">Model<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="e.g. 4Runner, Yukon, Silverado, etc." name="truck.modelNumber"
+                                     id="truck.modelNumber" required="true"/>
+                    </div>
+                </div>
+                    <%--Owner's Name = ownerName--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">Owner's Name<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="Owner's Name" name="truck.ownerName"
+                                     id="truck.ownerName" required="true"/>
+                    </div>
+                </div>
+                    <%--Owner's Address = ownerAddress--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0;">Owner's Address<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="Owner's Address" name="truck.ownerAddress"
+                                     id="truck.ownerAddress" required="true"/>
+                    </div>
+                </div>
+                    <%--O.R. Number = officialReceipt--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">O.R. Number<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt"
+                                     id="truck.officialReceipt" required="true"/>
+                    </div>
+                </div>
+                    <%--CR Date of Issue--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0;">CR Date of Issue<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="CR Date of Issue" name="truck.issueDate" id="issueDate" required="true"/>
+                    </div>
+                </div>
+                    <%--Make = engineNumber--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">Make<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="e.g. Toyota, GMC, Chevrolet, etc."
+                                     name="truck.engineNumber"
+                                     id="truck.engineNumber" required="true"/>
+                    </div>
+                </div>
+                    <%--Type of Body = truckType--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">Type of Body<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:select list="truckTypeList" name="truck.truckType" listKey="key" listValue="value"
+                                  cssClass="form-control"/>
+                    </div>
+                </div>
+                    <%--Year Model = modelYear--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">Year Model<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder=" e.g. 1999, 2012, etc." name="truck.modelYear"
+                                     id="truck.modelYear" required="true" maxLength="4"/>
+                    </div>
+                </div>
+                    <%--Gross Weight = grossWeight--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">Gross Weight (kg.)<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
+                                     id="truck.grossWeight" required="true"/>
+                    </div>
+                </div>
+                    <%--Net Weight = netWeight--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">Net Weight (kg.)<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="Net Weight" name="truck.netWeight"
+                                     id="truck.netWeight" required="true"/>
+                    </div>
+                </div>
+                    <%--Net Capacity = netCapacity--%>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label" style="padding-top:0px;">Net Capacity<span class="asterisk_red"></span></label>
+                    <div class="col-lg-8">
+                        <s:textfield cssClass="form-control" placeholder="Net Capacity" name="truck.netCapacity"
+                                     id="truck.netCapacity" required="true"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </s:form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 <%--End Add Schedule--%>
 

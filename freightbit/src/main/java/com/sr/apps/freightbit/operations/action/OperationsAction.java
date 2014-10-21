@@ -37,6 +37,7 @@ import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+
 import java.util.*;
 
 /**
@@ -55,6 +56,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Integer vesselScheduleIdParam;
     private Integer vendorIdParam;
     private String editParam;
+
+    private List<Parameters> truckTypeList = new ArrayList<Parameters>();
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
@@ -106,6 +109,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         statusList = parameterService.getParameterMap(ParameterConstants.STATUS);
 //        updateStatusList = parameterService.getParameterMap(ParameterConstants.UPDATE_STATUS);
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
+        truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
+
     }
 
     public String updateCompleteInlandPlanning() {
@@ -896,11 +901,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 
         if ("PLANNING 1".equals(entity.getStatus())) {
-            return "PLANNING1";
+            return "PLANNING 1";
         } else if ("PLANNING 2".equals(entity.getStatus())) {
-            return "PLANNING2";
+            return "PLANNING 2";
         } else {
-            return "PLANNING3";
+            return "PLANNING 3";
         }
     }
 
@@ -1658,5 +1663,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setEditParam(String editParam) {
         this.editParam = editParam;
+    }
+
+    public List<Parameters> getTruckTypeList() {
+        return truckTypeList;
+    }
+
+    public void setTruckTypeList(List<Parameters> truckTypeList) {
+        this.truckTypeList = truckTypeList;
     }
 }

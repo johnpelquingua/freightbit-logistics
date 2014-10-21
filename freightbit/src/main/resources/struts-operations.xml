@@ -101,9 +101,9 @@
         <!--</action>-->
         
         <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
-            <result name="PLANNING1" type="tiles">operations.seaFreightPlanning.tiles</result>
-            <result name="PLANNING2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
-            <result name="PLANNING3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+            <result name="PLANNING 1" type="tiles">operations.seaFreightPlanning.tiles</result>
+            <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+            <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
         </action>
 
         <action name="checkItemStatus" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkItemStatus">
@@ -245,6 +245,12 @@
             <result name="success" type="tiles">operations.shipmentStatus.tiles</result>
         </action>
 
+        <!--Modal-->
+
+        <action name="addDriver" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addDriver">
+            <result name="success" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
+
+        </action>
         <!--SHIPMENT MONITORING END-->
         <!--YardLogs START-->
         <action name="viewYardLogs" class="com.sr.apps.freightbit.operations.action.YardLogsAction" method="viewYardList">
