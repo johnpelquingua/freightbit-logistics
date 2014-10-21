@@ -53,6 +53,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private Integer orderItemIdParam;
     private String bookingNumber;
 
+    private String[] check;
+
     @Override
     public void prepare() {
         orderStatusList = parameterService.getParameterMap(ParameterConstants.ORDER_STATUS);
@@ -94,11 +96,17 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         for (OrderItems orderItemsElem : orderItemEntityList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
-
         return SUCCESS;
     }
 
     public String setItemStatus() {
+
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderItem.getEditItem());
+        System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ" + check);
+
+        for (int i =0; i<check.length; i++) {
+            System.out.println("--------------------------------------" + check[i]);
+        }
 
         return SUCCESS;
     }
@@ -394,5 +402,13 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setOrderStatusLogss(List<OrderStatusLogsBean> orderStatusLogss) {
         this.orderStatusLogss = orderStatusLogss;
+    }
+
+    public String[] getCheck() {
+        return check;
+    }
+
+    public void setCheck(String[] check) {
+        this.check = check;
     }
 }

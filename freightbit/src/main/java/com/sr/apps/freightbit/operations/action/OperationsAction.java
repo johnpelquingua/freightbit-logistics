@@ -215,6 +215,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Integer> planning1 = new ArrayList();
         List<Integer> planning2 = new ArrayList();
         List<Integer> planning3 = new ArrayList();
+
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderItem.getEditItem());
         if ("".equals(orderItem.getEditItem())) {
 

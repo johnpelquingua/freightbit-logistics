@@ -99,15 +99,18 @@
             </div>
 
             <div class="panel-body">
-
+`
                 <div class="table-responsive">
                     <button onClick='CheckAll(document.myform.check)' class="btn btn-default">Select All</button>
                     <button onClick='UnCheckAll(document.myform.check)' class="btn btn-default">Deselect All</button>
 
                     <s:form name="myform" action="setItemStatus">
+                    <s:submit cssClass="btn btn-default" value="Set Status" onclick="deleteText()"></s:submit>
+                    <s:submit cssClass="btn btn-default" value="Edit Status" onclick="addText()"></s:submit>
+                    <s:textfield  name="orderItem.editItem" id="edit"></s:textfield>
                     <display:table id="orderItem" name="orderItems"
                                    requestURI="viewStatusListItems.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter tabled-condesed"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
                                    style="margin-top: 15px;">
 
                         <td>
@@ -122,7 +125,7 @@
                         </td>
 
                         <td>
-                            <display:column property="createdTimeStamp" title="Date <i class='fa fa-sort' />" class="tb-font-black"
+                            <display:column property="createdTimeStamp" title="Time <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column>
                         </td>
 
@@ -147,10 +150,10 @@
                                             style="text-align: center;"> </display:column>
                         </td>
 
-                        <td>
+                        <%--<td>
                             <display:column property="orderItemId" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column>
-                        </td>
+                        </td>--%>
 
                         <%--<td>
                             <display:column property="orderItemId" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
@@ -185,7 +188,7 @@
 
                     </display:table>
 
-                    <s:submit value="Set Status"></s:submit>
+                    <%--<s:submit value="Set Status"></s:submit>--%>
                     </s:form>
 
                 </div>
@@ -215,6 +218,14 @@
     {
         for (i = 0; i < check.length; i++)
             check[i].checked = false ;
+    }
+
+    function addText() {
+        document.getElementById("edit").value = "edit";
+    }
+
+    function deleteText() {
+        document.getElementById("edit").value = "";
     }
 
 </script>
