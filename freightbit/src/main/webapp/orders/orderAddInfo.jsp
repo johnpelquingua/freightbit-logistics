@@ -648,7 +648,7 @@
                 </s:if>
                 <s:else>
                             <h4>
-                                Item Listing <small>(Maximum of 10 Items)</small>
+                                Item Listing <small>(Maximum of 250 Items)</small>
                             </h4>
                 </s:else>
             </legend>
@@ -1167,7 +1167,7 @@
             }
         }
 
-        if (select.options[ index ].value === '40 FOOTER') {
+        if (select.options[ index ].value === '40 STD FOOTER') {
 
             var containerQuantity = document.getElementById("orderItem.quantity").value;
 
@@ -1178,6 +1178,22 @@
             }else {
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 56;
+                document.getElementById("orderItem.volume").value = containerVolume;
+                document.getElementById("orderItemVolume").value = containerVolume;
+            }
+        }
+
+        if (select.options[ index ].value === '40 HC FOOTER') {
+
+            var containerQuantity = document.getElementById("orderItem.quantity").value;
+
+            if(containerQuantity == '') {
+                document.getElementById("orderItem.quantity").value = 1;
+                document.getElementById("orderItem.volume").value = "78";
+                document.getElementById("orderItemVolume").value = "78";
+            }else {
+                var containerQuantity = document.getElementById("orderItem.quantity").value;
+                var containerVolume = containerQuantity * 78;
                 document.getElementById("orderItem.volume").value = containerVolume;
                 document.getElementById("orderItemVolume").value = containerVolume;
             }

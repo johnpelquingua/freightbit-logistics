@@ -14,7 +14,7 @@
             <li class="active"><a href="<s:url action='viewOrders' />"> Booking List </a></li>
             <li class="active"> New Booking</li>
         </ol>
-        <div id="ajaxResponse"></div>
+        <%--<div id="ajaxResponse"></div>--%>
     </div>
 </div>
 
@@ -734,7 +734,7 @@ $(document).ready(function() {
             $.each(jsonResponse.consigneeAddressMap, function(key, value) {
 
                 if($("#consigneeAddress").val() != ''){
-                    if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER' || $("#order_modeOfService").val() == 'DELIVERY'){
+                    if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER' || $("#order_modeOfService").val() == 'PICKUP'){
                         $('<option>').val(null).text("").appendTo(select4);
                     }
                     $('<option>').val(key).text(value).appendTo(select4);
@@ -928,6 +928,7 @@ $(document).ready(function() {
 
             $("#customerName").val('');
             $("#shipperContact").val('');
+            $("#datepicker2").prop('disabled', true);
             $("#shipperAddress").prop('disabled', false);
             $("#shipperAddress").val('');
             $("#shipperConsignee").val('');
@@ -937,6 +938,7 @@ $(document).ready(function() {
 
             $("#customerName").val('');
             $("#shipperContact").val('');
+            $("#datepicker1").prop('disabled', true);
             $("#shipperAddress").prop('disabled', true);
             $("#shipperAddress").val('');
             $("#shipperConsignee").val('');
@@ -944,9 +946,6 @@ $(document).ready(function() {
             $("#consigneeAddress").val('');
 
         }
-
-
-
 
     // If Service Mode is Pier to Pier
     if (select.options[ index ].value === 'PIER TO PIER') {
@@ -1034,13 +1033,11 @@ $(document).ready(function() {
                     }
             }
 
-
-
         }
     // If Service Type is Trucking
     if (select.options[ index ].value === 'TRUCKING'){
-        $("#select1").val('');
-        $("#select2").val('');
+        $("#select1").prop('disabled', true);
+        $("#select2").prop('disabled', true);
         for (var i = 0; i < sMode.options.length; i++){
             $("#order_modeOfService").val('');
             if(sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE"){
@@ -1088,8 +1085,6 @@ $(document).ready(function() {
                 }
             }
          }
-
-
 
         for (var i = 0; i < sReq.options.length; i++) {
             if (document.getElementById('order_freightType').value != "TRUCKING") {

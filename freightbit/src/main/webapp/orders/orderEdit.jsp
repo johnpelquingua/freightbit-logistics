@@ -91,7 +91,7 @@
 
             <div class="col-lg-10">
                 <%--<s:property value="%{order.modeOfService}" />--%>
-                <s:hidden name="order.modeOfService" value="%{order.modeOfService}" />
+                <%--<s:hidden name="order.modeOfService" value="%{order.modeOfService}" />--%>
                 <s:select id="order_modeOfService"
                           cssClass="form-control"
                           style="margin-bottom: 15px !important;"
@@ -100,7 +100,6 @@
                           listKey="key"
                           listValue="value"
                           value="order.modeOfService"
-                          disabled="true"
                         />
 
             </div>
@@ -111,7 +110,7 @@
 
             <div class="col-lg-10">
                 <%--<s:property value="%{order.modeOfPayment}" />--%>
-                <s:hidden name="order.modeOfPayment" value="%{order.modeOfPayment}" />
+                <%--<s:hidden name="order.modeOfPayment" value="%{order.modeOfPayment}" />--%>
                 <s:select id="order.modeOfPayment"
                           cssClass="form-control step1"
                           style="margin-bottom: 15px !important;"
@@ -120,7 +119,6 @@
                           listKey="key"
                           listValue="value"
                           value="order.modeOfPayment"
-                          disabled="true"
                         />
 
             </div>
@@ -747,6 +745,94 @@ $(document).ready(function() {
 
                 localStorage.clear();
         });
+
+        /* BEGIN EDIT WIP ------------------------------------------------------------------------*/
+
+        /*Filters Service Mode Dropdown on page load for edit*/
+
+        var order_freightType = $("#editOrder_order_freightType").val();
+        var sReq = select = document.getElementById('order_serviceRequirement');
+        var sType = select = document.getElementById('order_freightType');
+        var sMode = select = document.getElementById('order_modeOfService');
+        var sModeValue = $("#order_modeOfService").val();
+
+        if(order_freightType == 'SHIPPING AND TRUCKING') {
+
+            /*$("#select1").val('');
+            $("#select2").val('');*/
+            $("#order_modeOfService").val('');
+            for (var i = 0; i < sMode.options.length; i++) {
+                /*$("#order_modeOfService").val('');*/
+                if(sMode != '') {
+                    sMode.value = sModeValue;
+                    if (sMode.options[i].value == "DOOR TO DOOR" || sMode.options[i].value == "DOOR TO PIER" || sMode.options[i].value == "PIER TO DOOR") {
+                        sMode.options[i].style.display = "block";
+                    } else {
+                        sMode.options[i].style.display = "none";
+                    }
+                }else{
+
+                }
+            }
+
+            for (var i = 0; i < sReq.options.length; i++){
+                $("#order_serviceRequirement").val('');
+                if(sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD"){
+                    sReq.options[i].style.display = "none";
+                }else{
+                    sReq.options[i].style.display = "block";
+                }
+            }
+
+        } else if (order_freightType == 'SHIPPING'){
+
+            /*$("#select1").val('');
+            $("#select2").val('');*/
+            for (var i = 0; i < sMode.options.length; i++){
+                /*$("#order_modeOfService").val('');*/
+                if(sMode.options[i].value == "PIER TO PIER"){
+                    sMode.options[i].style.display = "block";
+                    sMode.options[i].selected = true;
+                }else{
+                    sMode.options[i].style.display = "none";
+                }
+            }
+
+            for (var i = 0; i < sReq.options.length; i++){
+                $("#order_serviceRequirement").val('');
+                if(sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD"){
+                    sReq.options[i].style.display = "none";
+                }else{
+                    sReq.options[i].style.display = "block";
+                }
+            }
+
+        }else {
+        /*For Trucking*/
+            $("#select1").prop('disabled', true);
+            $("#select2").prop('disabled', true);
+            for (var i = 0; i < sMode.options.length; i++){
+                /*$("#order_modeOfService").val('');*/
+                if(sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE"){
+                    sMode.options[i].style.display = "block";
+                }else{
+                    sMode.options[i].style.display = "none";
+                }
+            }
+
+            for (var i = 0; i < sReq.options.length; i++){
+                $("#order_serviceRequirement").val('');
+                if(sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD"){
+                    sReq.options[i].style.display = "block";
+                }else{
+                    sReq.options[i].style.display = "none";
+                }
+            }
+
+        }
+
+        /* END EDIT WIP --------------------------------------------------------------------------*/
+
     });
 
     // Customer Dropdown
@@ -847,9 +933,9 @@ $(document).ready(function() {
                             if ($("#shipperConsignee").val() != '') {
                                 $('<option>').val(key).text(value).appendTo(select4);
                             } else {
-                                if ($("#consigneeAddress").val() != '') {
+                                /*if ($("#consigneeAddress").val() != '') {
                                     $('<option>').val(null).text("").appendTo(select4);
-                                }
+                                }*/
                                 $('<option>').val(key).text(value).appendTo(select4);
                             }
 
@@ -1036,32 +1122,31 @@ function dynamicDropdown(select, index) {
 
         if (select.options[ index ].value === 'DOOR TO PIER'){
 
-            $("#customerName").val('');
-            $("#shipperContact").val('');
+            /*$("#customerName").val('');
+            $("#shipperContact").val('');*/
             $("#shipperAddress").prop('disabled', false);
-            $("#shipperAddress").val('');
-            $("#shipperConsignee").val('');
+            /*$("#shipperAddress").val('');*/
+            /*$("#shipperConsignee").val('');*/
             $("#consigneeAddress").prop('disabled', true);
             $("#consigneeAddress").val('');
         }else if (select.options[ index ].value === 'PIER TO DOOR'){
 
-            $("#customerName").val('');
-            $("#shipperContact").val('');
+            /*$("#customerName").val('');
+            $("#shipperContact").val('');*/
             $("#shipperAddress").prop('disabled', true);
             $("#shipperAddress").val('');
-            $("#shipperConsignee").val('');
+            /*$("#shipperConsignee").val('');*/
             $("#consigneeAddress").prop('disabled', false);
-            $("#consigneeAddress").val('');
+            /*$("#consigneeAddress").val('');*/
 
-        }else {
-
-            $("#customerName").val('');
-            $("#shipperContact").val('');
+        }else{
+            /*  $("#customerName").val('');
+             $("#shipperContact").val('');*/
             $("#shipperAddress").prop('disabled', false);
-            $("#shipperAddress").val('');
-            $("#shipperConsignee").val('');
+            /* $("#shipperAddress").val('');
+             $("#shipperConsignee").val('');*/
             $("#consigneeAddress").prop('disabled', false);
-            $("#consigneeAddress").val('');
+            /*$("#consigneeAddress").val('');*/
         }
 
     }
@@ -1079,11 +1164,11 @@ function dynamicDropdown(select, index) {
             }
         }
 
-        $("#customerName").val('');
-        $("#shipperContact").val('');
+        /*$("#customerName").val('');
+        $("#shipperContact").val('');*/
         $("#shipperAddress").prop('disabled', true);
         $("#shipperAddress").val('');
-        $("#shipperConsignee").val('');
+        /*$("#shipperConsignee").val('');*/
         $("#consigneeAddress").prop('disabled', true);
         $("#consigneeAddress").val('');
 
@@ -1121,6 +1206,35 @@ function dynamicDropdown(select, index) {
         }
 
     }
+
+    if(select.options[index].value === 'PICKUP'){
+        $("#datepicker1").prop('disabled', false);
+        $("#datepicker2").prop('disabled', true);
+        $("#datepicker2").val('');
+        $("#shipperAddress").prop('disabled', false);
+        $("#consigneeAddress").prop('disabled', true);
+        $("#consigneeAddress").val('');
+        $("#select1").val('');
+        $("#select2").val('');
+    }else if(select.options[index].value === 'DELIVERY'){
+        $("#datepicker1").prop('disabled', true);
+        $("#datepicker1").val('');
+        $("#datepicker2").prop('disabled', false);
+        $("#shipperAddress").prop('disabled', true);
+        $("#consigneeAddress").prop('disabled', false);
+        $("#shipperAddress").val('');
+        $("#select1").val('');
+        $("#select2").val('');
+    }else if(select.options[index].value === 'INTER-WAREHOUSE'){
+        $("#datepicker1").prop('disabled', false);
+        $("#datepicker2").prop('disabled', false);
+        $("#select1").val('');
+        $("#select2").val('');
+        $("#shipperAddress").prop('disabled', false);
+        $("#consigneeAddress").prop('disabled', false);
+    }
+
+
 }
 
 var sReq = select = document.getElementById('order.serviceRequirement');

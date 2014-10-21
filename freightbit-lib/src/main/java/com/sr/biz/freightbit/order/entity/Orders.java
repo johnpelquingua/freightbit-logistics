@@ -187,7 +187,7 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    @Column(name = "paymentMode", nullable = false, length = 10)
+    @Column(name = "paymentMode", nullable = false)
     public String getPaymentMode() {
         return this.paymentMode;
     }

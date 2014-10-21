@@ -158,7 +158,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         for(int i = 0; i < consigneeAddresses.size(); i++ ) {
             consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
         }
-        dummyMsg = "Ajax action Triggered";
+        /*dummyMsg = "Ajax action Triggered";*/
         return SUCCESS;
     }
 
@@ -304,7 +304,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             }
 
         }else{
-            if(orderItemQuantityGrandTotal > 150){
+            if(orderItemQuantityGrandTotal > 250){
                 String messageFlag = "OTHERS_LIMIT";
                 sessionAttributes.put("messageFlag", messageFlag);
             }else{
@@ -351,7 +351,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         }else if(messageFlagPass == "OTHERS_LIMIT") {
             //error add item
             clearErrorsAndMessages();
-            addActionMessage("Sorry you can not exceed 150 items.");
+            addActionMessage("Sorry you can not exceed 250 items.");
         }else{
             // Success Add item
             clearErrorsAndMessages();
@@ -1021,6 +1021,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setServiceType(formBean.getFreightType());
         entity.setServiceMode(formBean.getModeOfService());
         entity.setNotificationType(formBean.getNotifyBy());
+        System.out.print("payment mode ------------------------------" + formBean.getModeOfPayment());
         entity.setPaymentMode(formBean.getModeOfPayment());
         entity.setOriginationPort(formBean.getOriginationPort());
         entity.setDestinationPort(formBean.getDestinationPort());
@@ -1113,6 +1114,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         sessionAttributes.get("orderIdPass");
+
+        // repopulate customer items
+        customerItems = customerService.findItemByCustomerId(itemEntity.getCustomerId());
+        sessionAttributes.put("customerItems", customerItems);
 
         return SUCCESS;
     }
@@ -1335,7 +1340,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         itemQuantity = new ArrayList<Integer>();
-        for (int i=1; i <=150; i++) {
+        for (int i=1; i <=250; i++) {
             itemQuantity.add(i);
         }
 
