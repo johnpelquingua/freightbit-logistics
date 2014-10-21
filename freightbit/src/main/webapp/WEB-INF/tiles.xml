@@ -160,6 +160,11 @@
         <put-attribute name="body" value="/operations/setShipmentStatus.jsp"/>
     </definition>
 
+    <definition name="operations.viewYardLogs.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Yard Logs"/>
+        <put-attribute name="body" value="/operations/yard_logs/yardList.jsp"/>
+    </definition>
+
     <!--OPERATION module ends-->
 
     <!-- DOCUMENTATION module begin -->

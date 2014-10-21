@@ -24,17 +24,17 @@
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan">
-            <array>
-                <value>com.sr.biz.freightbit.core.entity</value>
-                <value>com.sr.biz.freightbit.vendor.entity</value>
-                <value>com.sr.biz.freightbit.common.entity</value>
-                <value>com.sr.biz.freightbit.customer.entity</value>
-                <value>com.sr.biz.freightbit.order.entity</value>
-                <value>com.sr.biz.freightbit.vesselSchedule.entity</value>
-                <value>com.sr.biz.freightbit.operations.entity</value>
-                <value>com.sr.biz.freightbit.documentation.entity</value>
-                <value>com.sr.biz.freightbit.common.entity</value>
-            </array>
+                <array>
+                    <value>com.sr.biz.freightbit.core.entity</value>
+                    <value>com.sr.biz.freightbit.vendor.entity</value>
+                    <value>com.sr.biz.freightbit.common.entity</value>
+                    <value>com.sr.biz.freightbit.customer.entity</value>
+                    <value>com.sr.biz.freightbit.order.entity</value>
+                    <value>com.sr.biz.freightbit.vesselSchedule.entity</value>
+                    <value>com.sr.biz.freightbit.operations.entity</value>
+                    <value>com.sr.biz.freightbit.documentation.entity</value>
+                    <value>com.sr.biz.freightbit.common.entity</value>
+                </array>
         </property>
         <property name="hibernateProperties">
             <props>
@@ -124,6 +124,10 @@
 
     <bean id="shipmentLogsService" class="com.sr.biz.freightbit.operations.service.impl.ShipmentLogsServiceImpl">
         <property name="shipmentLogsDao" ref="shipmentLogsDao"/>
+    </bean>
+
+    <bean id="yardLogsService" class="com.sr.biz.freightbit.operations.service.impl.YardLogsServiceImpl">
+        <property name="yardLogsDao" ref="yardLogsDao"/>
     </bean>
 
 	<!--  Documents -->
@@ -229,6 +233,10 @@
     </bean>
 
     <bean id="driverDao" class="com.sr.biz.freightbit.vendor.dao.impl.DriverDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="yardLogsDao" class="com.sr.biz.freightbit.operations.dao.impl.YardLogsDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 

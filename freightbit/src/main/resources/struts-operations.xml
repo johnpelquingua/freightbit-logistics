@@ -246,6 +246,11 @@
         </action>
 
         <!--SHIPMENT MONITORING END-->
+        <!--YardLogs START-->
+        <action name="viewYardLogs" class="com.sr.apps.freightbit.operations.action.YardLogsAction" method="viewYardList">
+            <result name="success" type="tiles">operations.viewYardLogs.tiles</result>
+        </action>
+
     </package>
 
     <package name="operation" namespace="/operations" extends="json-default">
@@ -257,5 +262,9 @@
             <result type="json">/operations/vesselScheduleAdd.jsp</result>
         </action>
     </package>
+
+
+
+
 
 </struts>
