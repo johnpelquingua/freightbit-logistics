@@ -362,7 +362,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             /*documentEntity.setClientId(commonUtils.getClientId());*/
         Client client = clientService.findClientById(getClientId().toString());
         documentEntity.setClient(client);
-        documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+        /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
         documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
         documentEntity.setReferenceId(orderEntity.getOrderId());
@@ -379,7 +379,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Documents documentEntity2 = new Documents();
 
         documentEntity2.setClient(client);
-        documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);
+        /*documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
         documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
         documentEntity2.setReferenceId(orderEntity.getOrderId());
@@ -445,7 +445,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             /*documentEntity.setClientId(commonUtils.getClientId());*/
         Client client = clientService.findClientById(getClientId().toString());
         documentEntity.setClient(client);
-        documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+        /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
         documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
         documentEntity.setReferenceId(orderEntity.getOrderId());
@@ -514,7 +514,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             /*documentEntity.setClientId(commonUtils.getClientId());*/
         Client client = clientService.findClientById(getClientId().toString());
         documentEntity.setClient(client);
-        documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+        /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
         documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
         documentEntity.setReferenceId(orderEntity.getOrderId());
@@ -542,7 +542,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             /*documentEntity.setClientId(commonUtils.getClientId());*/
             Client client = clientService.findClientById(getClientId().toString());
             documentEntity.setClient(client);
-            documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+            /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
             documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
 
@@ -559,7 +559,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             Documents documentEntity2 = new Documents();
 
             documentEntity2.setClient(client);
-            documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);
+            /*documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
             documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
             documentEntity2.setReferenceId(orderEntity.getOrderId());
@@ -577,7 +577,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 Documents documentEntity3 = new Documents();
 
                 documentEntity3.setClient(client);
-                documentEntity3.setDocumentType(DocumentsConstants.OUTBOUND);
+                /*documentEntity3.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
                 documentEntity3.setDocumentName(DocumentsConstants.ACCEPTANCE_RECEIPT);
                 documentEntity3.setReferenceId(orderEntity.getOrderId());
@@ -616,7 +616,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             /*documentEntity.setClientId(commonUtils.getClientId());*/
             Client client = clientService.findClientById(getClientId().toString());
             documentEntity.setClient(client);
-            documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+            /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
             documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_ORIGIN);
             documentEntity.setReferenceId(orderEntity.getOrderId());
@@ -648,7 +648,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             /*documentEntity.setClientId(commonUtils.getClientId());*/
             Client client = clientService.findClientById(getClientId().toString());
             documentEntity.setClient(client);
-            documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+            /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
             documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_DESTINATION);
             documentEntity.setReferenceId(orderEntity.getOrderId());

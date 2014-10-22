@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class DocumentsBean {
     private Integer documentId;
-    private String documentType;
+    /*private String documentType;*/
     private Integer clientId;
     private String documentName;
     private Integer referenceId;
@@ -21,6 +21,19 @@ public class DocumentsBean {
     private String documentStatus;
     private Integer documentProcessed;
     private String referenceNumber;
+    private Integer outboundStage;
+    private Integer inboundStage;
+    private Integer finalOutboundStage;
+    private Integer finalInboundStage;
+    private Integer archiveStage;
+    private Integer billingStage;
+    private Date inboundReturned;
+    private Date finalOutboundSent;
+    private Date finalInboundReturned;
+    private String finalOutboundLbc;
+    private String finalInboundReceivedBy;
+    private String createdBy;
+    private String documentComments;
 
     private Integer documentIdParam;
     private Integer orderIdParam;
@@ -28,21 +41,7 @@ public class DocumentsBean {
     public DocumentsBean() {
     }
 
-    public DocumentsBean(Integer documentId, String documentType, Integer clientId, String documentName, Integer referenceId, String referenceTable, String orderNumber, Date createdDate, String documentStatus, Integer documentProcessed, String referenceNumber, Integer documentIdParam, Integer orderIdParam) {
-        this.documentId = documentId;
-        this.documentType = documentType;
-        this.clientId = clientId;
-        this.documentName = documentName;
-        this.referenceId = referenceId;
-        this.referenceTable = referenceTable;
-        this.orderNumber = orderNumber;
-        this.createdDate = createdDate;
-        this.documentStatus = documentStatus;
-        this.documentProcessed = documentProcessed;
-        this.referenceNumber = referenceNumber;
-        this.documentIdParam = documentIdParam;
-        this.orderIdParam = orderIdParam;
-    }
+
 
     public Integer getDocumentId() {
         return documentId;
@@ -50,14 +49,6 @@ public class DocumentsBean {
 
     public void setDocumentId(Integer documentId) {
         this.documentId = documentId;
-    }
-
-    public String getDocumentType() {
-        return documentType;
-    }
-
-    public void setDocumentType(String documentType) {
-        this.documentType = documentType;
     }
 
     public Integer getClientId() {
@@ -146,5 +137,109 @@ public class DocumentsBean {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    public Integer getOutboundStage() {
+        return outboundStage;
+    }
+
+    public void setOutboundStage(Integer outboundStage) {
+        this.outboundStage = outboundStage;
+    }
+
+    public Integer getInboundStage() {
+        return inboundStage;
+    }
+
+    public void setInboundStage(Integer inboundStage) {
+        this.inboundStage = inboundStage;
+    }
+
+    public Integer getFinalOutboundStage() {
+        return finalOutboundStage;
+    }
+
+    public void setFinalOutboundStage(Integer finalOutboundStage) {
+        this.finalOutboundStage = finalOutboundStage;
+    }
+
+    public Integer getFinalInboundStage() {
+        return finalInboundStage;
+    }
+
+    public void setFinalInboundStage(Integer finalInboundStage) {
+        this.finalInboundStage = finalInboundStage;
+    }
+
+    public Integer getArchiveStage() {
+        return archiveStage;
+    }
+
+    public void setArchiveStage(Integer archiveStage) {
+        this.archiveStage = archiveStage;
+    }
+
+    public Integer getBillingStage() {
+        return billingStage;
+    }
+
+    public void setBillingStage(Integer billingStage) {
+        this.billingStage = billingStage;
+    }
+
+    public Date getInboundReturned() {
+        return inboundReturned;
+    }
+
+    public void setInboundReturned(Date inboundReturned) {
+        this.inboundReturned = inboundReturned;
+    }
+
+    public Date getFinalOutboundSent() {
+        return finalOutboundSent;
+    }
+
+    public void setFinalOutboundSent(Date finalOutboundSent) {
+        this.finalOutboundSent = finalOutboundSent;
+    }
+
+    public Date getFinalInboundReturned() {
+        return finalInboundReturned;
+    }
+
+    public void setFinalInboundReturned(Date finalInboundReturned) {
+        this.finalInboundReturned = finalInboundReturned;
+    }
+
+    public String getFinalOutboundLbc() {
+        return finalOutboundLbc;
+    }
+
+    public void setFinalOutboundLbc(String finalOutboundLbc) {
+        this.finalOutboundLbc = finalOutboundLbc;
+    }
+
+    public String getFinalInboundReceivedBy() {
+        return finalInboundReceivedBy;
+    }
+
+    public void setFinalInboundReceivedBy(String finalInboundReceivedBy) {
+        this.finalInboundReceivedBy = finalInboundReceivedBy;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getDocumentComments() {
+        return documentComments;
+    }
+
+    public void setDocumentComments(String documentComments) {
+        this.documentComments = documentComments;
     }
 }

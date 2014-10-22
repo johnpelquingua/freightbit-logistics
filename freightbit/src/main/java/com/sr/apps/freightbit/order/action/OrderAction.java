@@ -417,7 +417,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Documents documentEntity = new Documents();
         Client client = clientService.findClientById(getClientId().toString());
         documentEntity.setClient(client);
-        documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);
+        /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
         documentEntity.setDocumentName(DocumentsConstants.BOOKING_REQUEST_FORM);
         documentEntity.setReferenceId(orderEntity.getOrderId());
         documentEntity.setReferenceTable("ORDERS");

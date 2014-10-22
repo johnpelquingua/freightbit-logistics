@@ -15,7 +15,7 @@ import java.util.Date;
 public class Documents implements Serializable {
 
     private Integer documentId;
-    private String documentType;
+    /*private String documentType;*/
     /*private Integer clientId;*/
     private Client client;
     private String documentName;
@@ -26,6 +26,19 @@ public class Documents implements Serializable {
     private String documentStatus;
     private Integer documentProcessed;
     private String referenceNumber;
+    private Integer outboundStage;
+    private Integer inboundStage;
+    private Integer finalOutboundStage;
+    private Integer finalInboundStage;
+    private Integer archiveStage;
+    private Integer billingStage;
+    private Date inboundReturned;
+    private Date finalOutboundSent;
+    private Date finalInboundReturned;
+    private String finalOutboundLbc;
+    private String finalInboundReceivedBy;
+    private String createdBy;
+    private String documentComments;
 
     public Documents() {
     }
@@ -41,14 +54,14 @@ public class Documents implements Serializable {
         this.documentId = documentId;
     }
 
-    @Column(name = "documentType")
+    /*@Column(name = "documentType")
     public String getDocumentType() {
         return documentType;
     }
 
     public void setDocumentType(String documentType) {
         this.documentType = documentType;
-    }
+    }*/
 
     /*@Column(name = "clientId")
     public Integer getClientId() {
@@ -139,5 +152,122 @@ public class Documents implements Serializable {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    @Column(name = "outboundStage")
+    public Integer getOutboundStage() {
+        return outboundStage;
+    }
+
+    public void setOutboundStage(Integer outboundStage) {
+        this.outboundStage = outboundStage;
+    }
+
+    @Column(name = "inboundStage")
+    public Integer getInboundStage() {
+        return inboundStage;
+    }
+
+    public void setInboundStage(Integer inboundStage) {
+        this.inboundStage = inboundStage;
+    }
+
+    @Column(name = "finalOutboundStage")
+    public Integer getFinalOutboundStage() {
+        return finalOutboundStage;
+    }
+
+    public void setFinalOutboundStage(Integer finalOutboundStage) {
+        this.finalOutboundStage = finalOutboundStage;
+    }
+
+    @Column(name = "finalInboundStage")
+    public Integer getFinalInboundStage() {
+        return finalInboundStage;
+    }
+
+    public void setFinalInboundStage(Integer finalInboundStage) {
+        this.finalInboundStage = finalInboundStage;
+    }
+
+    @Column(name = "archiveStage")
+    public Integer getArchiveStage() {
+        return archiveStage;
+    }
+
+    public void setArchiveStage(Integer archiveStage) {
+        this.archiveStage = archiveStage;
+    }
+
+    @Column(name = "billingStage")
+    public Integer getBillingStage() {
+        return billingStage;
+    }
+
+    public void setBillingStage(Integer billingStage) {
+        this.billingStage = billingStage;
+    }
+
+    @Column(name = "inboundReturned")
+    public Date getInboundReturned() {
+        return inboundReturned;
+    }
+
+    public void setInboundReturned(Date inboundReturned) {
+        this.inboundReturned = inboundReturned;
+    }
+
+    @Column(name = "finalOutboundSent")
+    public Date getFinalOutboundSent() {
+        return finalOutboundSent;
+    }
+
+    public void setFinalOutboundSent(Date finalOutboundSent) {
+        this.finalOutboundSent = finalOutboundSent;
+    }
+
+    @Column(name = "finalInboundReturned")
+    public Date getFinalInboundReturned() {
+        return finalInboundReturned;
+    }
+
+    public void setFinalInboundReturned(Date finalInboundReturned) {
+        this.finalInboundReturned = finalInboundReturned;
+    }
+
+    @Column(name = "finalOutboundLbc")
+    public String getFinalOutboundLbc() {
+        return finalOutboundLbc;
+    }
+
+    public void setFinalOutboundLbc(String finalOutboundLbc) {
+        this.finalOutboundLbc = finalOutboundLbc;
+    }
+
+    @Column(name = "finalInboundReceivedBy")
+    public String getFinalInboundReceivedBy() {
+        return finalInboundReceivedBy;
+    }
+
+    public void setFinalInboundReceivedBy(String finalInboundReceivedBy) {
+        this.finalInboundReceivedBy = finalInboundReceivedBy;
+    }
+
+    @Column(name = "createdBy")
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    @Column(name = "documentComments")
+    public String getDocumentComments() {
+        return documentComments;
+    }
+
+    public void setDocumentComments(String documentComments) {
+        this.documentComments = documentComments;
     }
 }

@@ -550,7 +550,7 @@
 
                             <div class="table-responsive">
                                 <display:table id="document" name="archiveEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="archive_table table table-striped table-hover table-bordered text-center tablesorter"
-                                               style="margin-top: 15px; visibility:hidden;">
+                                               style="margin-top: 15px; ">
 
                                     <%--<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >

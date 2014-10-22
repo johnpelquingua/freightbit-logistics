@@ -3,7 +3,6 @@ package com.sr.biz.freightbit.documentation.dao;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.order.entity.Orders;
 
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -27,7 +26,16 @@ public interface DocumentsDao {
 
     public void updateDocument(Documents documents);
 
-    public List<Documents> findDocumentByStageAndID(String documentType, Integer referenceId);
+    public List<Documents> findDocumentByOutboundStageAndID(Integer outboundStage, Integer referenceId);
 
+    public List<Documents> findDocumentByInboundStageAndID(Integer inboundStage, Integer referenceId);
+
+    public List<Documents> findDocumentByFinalOutboundStageAndID(Integer finalOutboundStage, Integer referenceId);
+
+    public List<Documents> findDocumentByFinalInboundStageAndID(Integer finalInboundStage, Integer referenceId);
+
+    public List<Documents> findDocumentByArchiveStageAndID(Integer archiveStage, Integer referenceId);
+
+    public List<Documents> findDocumentByBillingStageAndID(Integer billingStage, Integer referenceId);
 
 }

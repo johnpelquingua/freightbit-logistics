@@ -183,7 +183,7 @@
                 <param name="contentDisposition">attachment;filename="${fileName}"</param>
                 <param name="contentType">application/pdf</param>
                 <param name="inputName">inputStream</param>
-                <param name="bufferSize">4096</param>
+                <param name="bufferSize">4096</param>viewOrderDocuments
             </result>
         </action>
 

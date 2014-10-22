@@ -24,6 +24,6 @@ public interface DocumentsService {
 
     public void updateDocument(Documents documents);
 
-    public List<Documents> findDocumentByStageAndID (String documentType, Integer referenceId);
+    public List<Documents> findDocumentByOutboundStageAndID (Integer outboundStage, Integer referenceId);
 
 }

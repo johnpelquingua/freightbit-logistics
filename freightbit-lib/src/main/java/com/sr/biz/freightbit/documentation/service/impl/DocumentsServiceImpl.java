@@ -1,6 +1,5 @@
 package com.sr.biz.freightbit.documentation.service.impl;
 
-import com.sr.biz.freightbit.core.exceptions.DocumentAlreadyExistsException;
 import com.sr.biz.freightbit.documentation.dao.DocumentsDao;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
@@ -65,8 +64,8 @@ public class DocumentsServiceImpl implements DocumentsService {
     }
 
     @Override
-    public List<Documents> findDocumentByStageAndID (String documentType, Integer referenceId) {
-        return documentsDao.findDocumentByStageAndID(documentType, referenceId);
+    public List<Documents> findDocumentByOutboundStageAndID (Integer outboundStage, Integer referenceId) {
+        return documentsDao.findDocumentByOutboundStageAndID(outboundStage, referenceId);
     }
 
 }

@@ -153,13 +153,13 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
-    public List<Documents> findDocumentByStageAndID(String documentType, Integer referenceId) {
+    public List<Documents> findDocumentByOutboundStageAndID(Integer outboundStage, Integer referenceId) {
 
         log.debug("Finding Documents with filter");
         try{
             log.debug("Finding documents succeeded");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentType = :documentType and d.referenceId = :referenceId");
-            query.setParameter("documentType", documentType);
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.outboundStage = :outboundStage and d.referenceId = :referenceId");
+            query.setParameter("outboundStage", outboundStage);
             query.setParameter("referenceId", referenceId);
             List<Documents> results = (List<Documents>) query.list();
             return results;
@@ -168,5 +168,91 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
             throw e;
         }
     }
+
+    @Override
+    public List<Documents> findDocumentByInboundStageAndID(Integer inboundStage, Integer referenceId) {
+
+        log.debug("Finding Documents with filter");
+        try{
+            log.debug("Finding documents succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.inboundStage = :inboundStage and d.referenceId = :referenceId");
+            query.setParameter("inboundStage", inboundStage);
+            query.setParameter("referenceId", referenceId);
+            List<Documents> results = (List<Documents>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
+    @Override
+    public List<Documents> findDocumentByFinalOutboundStageAndID(Integer finalOutboundStage, Integer referenceId) {
+
+        log.debug("Finding Documents with filter");
+        try{
+            log.debug("Finding documents succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.finalOutboundStage = :finalOutboundStage and d.referenceId = :referenceId");
+            query.setParameter("finalOutboundStage", finalOutboundStage);
+            query.setParameter("referenceId", referenceId);
+            List<Documents> results = (List<Documents>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
+    @Override
+    public List<Documents> findDocumentByFinalInboundStageAndID(Integer finalInboundStage, Integer referenceId) {
+
+        log.debug("Finding Documents with filter");
+        try{
+            log.debug("Finding documents succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.finalInboundStage = :finalInboundStage and d.referenceId = :referenceId");
+            query.setParameter("finalInboundStage", finalInboundStage);
+            query.setParameter("referenceId", referenceId);
+            List<Documents> results = (List<Documents>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
+    @Override
+    public List<Documents> findDocumentByArchiveStageAndID(Integer archiveStage, Integer referenceId) {
+
+        log.debug("Finding Documents with filter");
+        try{
+            log.debug("Finding documents succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.archiveStage = :archiveStage and d.referenceId = :referenceId");
+            query.setParameter("archiveStage", archiveStage);
+            query.setParameter("referenceId", referenceId);
+            List<Documents> results = (List<Documents>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
+    @Override
+    public List<Documents> findDocumentByBillingStageAndID(Integer billingStage, Integer referenceId) {
+
+        log.debug("Finding Documents with filter");
+        try{
+            log.debug("Finding documents succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.billingStage = :billingStage and d.referenceId = :referenceId");
+            query.setParameter("billingStage", billingStage);
+            query.setParameter("referenceId", referenceId);
+            List<Documents> results = (List<Documents>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
 
 }
