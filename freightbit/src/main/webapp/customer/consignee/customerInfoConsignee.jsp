@@ -30,9 +30,20 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Consignee Profile</h3>
                 <span class="pull-right">
-                    <button type="button" class="btn btn-success" onclick="location.href=''">
-                        <i class="fa fa-pencil"></i> Edit Consignee
-                    </button>
+                        <s:url var="editConsginee" action="loadEditConsignee">
+                            <s:param name="contactCodeParam"
+                                     value="#attr.consignee.contactId"></s:param>
+                        </s:url>
+                        <sec:authorize
+                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                            <s:a href="%{editConsignee}" cssClass="btn btn-success new-booking" rel="tooltip"
+                                 title="Edit this Customer">
+                                <%--<img src="../includes/images/edit-user.png"
+                                     class="icon-action circ-icon"> --%>
+                                <i class="fa fa-pencil"></i> Edit Consignee
+                            </s:a>
+                        </sec:authorize>
+
                 </span>
             </div>
 
@@ -139,9 +150,9 @@
                                             <a href="viewItem" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list-ol fa-fw"></i> <br/>Items</a>
                                         </sec:authorize>
 
-                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">
-                                            <a href="viewRates" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-money fa-fw"></i> <br/>Rates</a>
-                                        </sec:authorize>
+                                        <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">--%>
+                                            <%--<a href="viewRates" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-money fa-fw"></i> <br/>Rates</a>--%>
+                                        <%--</sec:authorize>--%>
 
                                         <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
                                             <a href="viewConsignees" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list fa-fw"></i> <br/>Consignee</a>
