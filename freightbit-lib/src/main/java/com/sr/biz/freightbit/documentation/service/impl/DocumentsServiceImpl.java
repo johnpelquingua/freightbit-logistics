@@ -68,4 +68,19 @@ public class DocumentsServiceImpl implements DocumentsService {
         return documentsDao.findDocumentByOutboundStageAndID(outboundStage, referenceId);
     }
 
+    @Override
+    public Documents findDocumentByNameAndVendorCode(String documentName, String vendorCode) {
+        return documentsDao.findDocumentByNameAndVendorCode(documentName, vendorCode);
+    }
+
+    @Override
+    public Documents findDocumentNameAndId(String documentName, Integer orderItemId){
+        return documentsDao.findDocumentNameAndId(documentName, orderItemId);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void deleteDocument(Documents documents){
+        documentsDao.deleteDocument(documents);
+    }
 }

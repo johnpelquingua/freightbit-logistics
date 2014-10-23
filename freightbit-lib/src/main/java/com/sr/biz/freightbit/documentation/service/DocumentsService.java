@@ -26,4 +26,10 @@ public interface DocumentsService {
 
     public List<Documents> findDocumentByOutboundStageAndID (Integer outboundStage, Integer referenceId);
 
+    public Documents findDocumentByNameAndVendorCode(String documentName, String vendorCode);
+
+    public Documents findDocumentNameAndId(String documentName, Integer orderItemId);
+
+    public void deleteDocument(Documents documents);
+
 }

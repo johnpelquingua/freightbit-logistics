@@ -39,6 +39,8 @@ public class Documents implements Serializable {
     private String finalInboundReceivedBy;
     private String createdBy;
     private String documentComments;
+    private String vendorCode;
+    private String orderItemId;
 
     public Documents() {
     }
@@ -269,5 +271,23 @@ public class Documents implements Serializable {
 
     public void setDocumentComments(String documentComments) {
         this.documentComments = documentComments;
+    }
+
+    @Column(name = "vendorCode")
+    public String getVendorCode() {
+        return vendorCode;
+    }
+
+    public void setVendorCode(String vendorCode) {
+        this.vendorCode = vendorCode;
+    }
+
+    @Column(name = "orderItemId")
+    public String getOrderItemId() {
+        return orderItemId;
+    }
+
+    public void setOrderItemId(String orderItemId) {
+        this.orderItemId = orderItemId;
     }
 }

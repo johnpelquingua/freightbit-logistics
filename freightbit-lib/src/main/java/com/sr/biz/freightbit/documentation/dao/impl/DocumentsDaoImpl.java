@@ -254,5 +254,52 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
         }
     }
 
+    @Override
+    public Documents findDocumentByNameAndVendorCode(String documentName, String vendorCode) {
+
+        log.debug("Finding Document . .. . ");
+        try {
+            log.debug("Finding Documents succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentName = :documentName and d.vendorCode = :vendorCode");
+            query.setParameter("documentName", documentName);
+            query.setParameter("vendorCode", vendorCode);
+            Documents results = (Documents) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
+    @Override
+    public Documents findDocumentNameAndId(String documentName, Integer orderItemId) {
+
+        log.debug("Finding Document ....");
+        try {
+            log.debug("Finding Document");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentName = :documentName and d.orderItemId = :orderItemId");
+            query.setParameter("documentName", documentName);
+            query.setParameter("documentId", orderItemId);
+            Documents results = (Documents) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
+
+    @Override
+    public void deleteDocument(Documents documents){
+        log.debug("Delete document");
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            session.delete(documents);
+            log.debug("Document has been deleted successfully");
+        } catch (Exception e) {
+            log.error("delete document failed", e);
+            throw e;
+        }
+    }
 
 }
