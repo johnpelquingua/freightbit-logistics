@@ -1044,6 +1044,7 @@ $(document).ready(function() {
 
 function dynamicDropdown(select, index) {
 
+
     var opt = select.options,
             lent = opt.length;
 
@@ -1236,6 +1237,7 @@ function dynamicDropdown(select, index) {
 
 
 }
+
 
 var sReq = select = document.getElementById('order.serviceRequirement');
 var sType = select = document.getElementById('order.freightType');

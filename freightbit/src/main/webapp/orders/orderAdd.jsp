@@ -159,7 +159,7 @@
 
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
-                        <input type="text" class="to_date form-control step2" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Deliver date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="to_date form-control step2" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;">
                     </div>
 
                 </div>
@@ -823,15 +823,17 @@ $(document).ready(function() {
     // Date Time Picker
     var fromDatePickUp = $('#datepicker1');
     var toDateDelivery = $('#datepicker2');
-
+    var ServiceValue= $('#order_modeOfService');
     //pick up date validation
     fromDatePickUp.datepicker({
 
         // on 5:00pm
         timeFormat: 'h:mm TT',
         minDate: 0,
-        onClose: function(dateText, inst) {
 
+
+        onClose: function(dateText, inst) {
+            if(ServiceValue.val() !='PICKUP'){
             if (toDateDelivery.val() != '') {
                 var testStartDate = fromDatePickUp.datetimepicker('getDate');
                 var testEndDate = toDateDelivery.datetimepicker('getDate');
@@ -844,7 +846,7 @@ $(document).ready(function() {
             else {
                 toDateDelivery.val(dateText);
                 }
-            },
+            } },
 
         onSelect: function (selectedDateTime){
             toDateDelivery.datetimepicker('option', 'minDate', fromDatePickUp.datetimepicker('getDate') );
@@ -859,7 +861,7 @@ $(document).ready(function() {
         timeFormat: 'h:mm TT',
         minDate: 0,
         onClose: function(dateText, inst) {
-
+            if(ServiceValue.val() !='DELIVERY'){
             if (fromDatePickUp.val() != '') {
                 var testStartDate = fromDatePickUp.datetimepicker('getDate');
                 var testEndDate = toDateDelivery.datetimepicker('getDate');
@@ -872,7 +874,7 @@ $(document).ready(function() {
             else {
                 fromDatePickUp.val(dateText);
                 }
-            },
+            }},
 
         onSelect: function (selectedDateTime){
             fromDatePickUp.datetimepicker('option', 'maxDate', toDateDelivery.datetimepicker('getDate') );
@@ -929,6 +931,9 @@ $(document).ready(function() {
             $("#customerName").val('');
             $("#shipperContact").val('');
             $("#datepicker2").prop('disabled', true);
+            $("#datepicker1").prop('disabled', false);
+            $("#datepicker2").val('');
+            $("#datepicker1").val('');
             $("#shipperAddress").prop('disabled', false);
             $("#shipperAddress").val('');
             $("#shipperConsignee").val('');
@@ -939,11 +944,23 @@ $(document).ready(function() {
             $("#customerName").val('');
             $("#shipperContact").val('');
             $("#datepicker1").prop('disabled', true);
+            $("#datepicker2").prop('disabled', false);
+            $("#datepicker2").val('');
+            $("#datepicker1").val('');
             $("#shipperAddress").prop('disabled', true);
             $("#shipperAddress").val('');
             $("#shipperConsignee").val('');
             $("#consigneeAddress").prop('disabled', false);
             $("#consigneeAddress").val('');
+
+        }else if (select.options[index].value === 'INTER-WAREHOUSE'){
+
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#datepicker1").prop('disabled', false);
+            $("#datepicker2").prop('disabled', false);
+            $("#datepicker2").val('');
+            $("#datepicker1").val('');
 
         }
 
@@ -990,6 +1007,12 @@ $(document).ready(function() {
     if (select.options[ index ].value === 'SHIPPING'){
         $("#select1").val('');
         $("#select2").val('');
+        $('#datepicker1').val('');
+        $('#datepicker2').val('');
+        $('#datepicker1').prop('disabled' , false);
+        $('#datepicker2').prop('disabled' , false);
+        $('#select1').prop('disabled',false);
+        $('#select2').prop('disabled',false);
         for (var i = 0; i < sMode.options.length; i++){
             /*$("#order_modeOfService").val('');*/
             if(sMode.options[i].value == "PIER TO PIER"){
@@ -1015,6 +1038,12 @@ $(document).ready(function() {
         $("#select1").val('');
         $("#select2").val('');
         $("#order_modeOfService").val('');
+        $('#datepicker1').val('');
+        $('#datepicker2').val('');
+        $('#datepicker1').prop('disabled' , false);
+        $('#datepicker2').prop('disabled' , false);
+        $('#select1').prop('disabled',false);
+        $('#select2').prop('disabled',false);
             for (var i = 0; i < sMode.options.length; i++) {
                 $("#order_modeOfService").val('');
                 if(sMode.options[i].value == "DOOR TO DOOR" || sMode.options[i].value == "DOOR TO PIER" || sMode.options[i].value == "PIER TO DOOR"){
@@ -1038,6 +1067,10 @@ $(document).ready(function() {
     if (select.options[ index ].value === 'TRUCKING'){
         $("#select1").prop('disabled', true);
         $("#select2").prop('disabled', true);
+        $('#datepicker1').val('');
+        $('#datepicker2').val('');
+        $('#datepicker1').prop('disabled' , false);
+        $('#datepicker2').prop('disabled' , false);
         for (var i = 0; i < sMode.options.length; i++){
             $("#order_modeOfService").val('');
             if(sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE"){
