@@ -66,7 +66,7 @@
                             <%--</div>--%>
                             <label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield  name="item.srp" id="item.srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in SRP is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield  name="item.srp" id="item_srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in SRP is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Length (m)<span class="asterisk_red"></span></label>
@@ -133,6 +133,9 @@
 </div>
 
 <script type="text/javascript">
+    $(document).ready(function() {
+        $("#item_srp").maskMoney();
+    });
 
     $("#item_itemCode").keyup(function(){
         this.value=this.value.toUpperCase();

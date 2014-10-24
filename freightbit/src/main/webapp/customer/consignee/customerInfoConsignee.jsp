@@ -30,16 +30,16 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Consignee Profile</h3>
                 <span class="pull-right">
-                        <s:url var="editConsginee" action="loadEditConsignee">
+                        <s:url var="loadEditConsginee" action="loadEditConsignee">
                             <s:param name="contactCodeParam"
                                      value="#attr.consignee.contactId"></s:param>
+                            <s:param name="addressIdParam"
+                                     value="%{#attr.consignee.addressId}"></s:param>
                         </s:url>
                         <sec:authorize
                                 access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                            <s:a href="%{editConsignee}" cssClass="btn btn-success new-booking" rel="tooltip"
+                            <s:a href="%{loadEditConsginee}" cssClass="btn btn-success new-booking" rel="tooltip"
                                  title="Edit this Customer">
-                                <%--<img src="../includes/images/edit-user.png"
-                                     class="icon-action circ-icon"> --%>
                                 <i class="fa fa-pencil"></i> Edit Consignee
                             </s:a>
                         </sec:authorize>

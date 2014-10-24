@@ -381,11 +381,10 @@
                         </label>
                         <div class="col-lg-3" >
                             <s:textfield cssClass="form-control"
-                                         id="orderItem.rate"
+                                         id="orderItem_rate"
                                          name="orderItem.rate"
                                          required="true"
-                                         type="number"
-                                         min="1"
+
                                     />
                         </div>
 
@@ -573,9 +572,8 @@
                             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.declaredValue"
-                                             id="orderItem.declaredValue"
-                                             type="number"
-                                             min="1"
+                                             id="orderItem_declaredValues"
+
 
                                         />
                             </s:if>
@@ -858,7 +856,7 @@
                             <label class="col-lg-3 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                                <s:textfield name="item.srp" id="item.srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Quality is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.srp" id="item_srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Quality is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                         </div>
@@ -929,6 +927,12 @@
 <%--end add item--%>
 
 <script type="text/javascript">
+
+$(document).ready(function() {
+    $("#orderItem_rate").maskMoney();
+    $("#orderItem_declaredValues").maskMoney();
+    $("#item_srp").maskMoney();
+});
 
     $("#item_itemCode").keyup(function(){
         this.value=this.value.toUpperCase();
@@ -1223,5 +1227,6 @@
 
         return true;
     }
+
 
 </script>

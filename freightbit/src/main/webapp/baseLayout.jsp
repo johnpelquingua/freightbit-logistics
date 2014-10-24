@@ -94,5 +94,6 @@
 <script src="../includes/js/jquery.tablesorter.js"></script>
 <script src="../includes/js/tables.js"></script>
 <script src="../includes/js/mask.js"></script>
+<script src="../includes/js/jquery.maskMoney.js"></script>
 </body>
 </html>
