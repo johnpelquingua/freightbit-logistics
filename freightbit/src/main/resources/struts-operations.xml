@@ -252,6 +252,11 @@
             <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
         </action>
 
+        <action name="addVendorInlandDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
+            <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+        </action>
+
         <action name="addVesselScheduleInPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction"
                 method="addVesselSchedule">
             <result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>
@@ -263,17 +268,19 @@
             <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
         </action>
 
+        <action name="addDriverInlandDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addDriver">
+            <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+        </action>
+
         <action name="addTruckInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addTrucks">
             <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
             <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
         </action>
 
-        <action name="addDriver" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addDriver">
+        <action name="addTruckDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addTrucks">
             <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
-        </action>
-
-        <action name="addTrucks" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addTrucks">
-            <result name="success" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
         </action>
 
         <!---->

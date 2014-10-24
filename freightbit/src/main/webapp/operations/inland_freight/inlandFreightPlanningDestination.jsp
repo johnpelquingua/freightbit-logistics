@@ -149,7 +149,7 @@
                                         ></s:select>
                             </div>
                             <div style="width:5%;float:left;">
-                                <a data-target="#createDriver" data-toggle="modal" class="btn btn-info">
+                                <a data-target="#createDriver" data-toggle="modal" id="createDriverButton" class="btn btn-info">
                                         <%--<i class="fa fa-plus"></i>--%>
                                     Add Driver
                                 </a>
@@ -168,7 +168,7 @@
                                         ></s:select>
                             </div>
                             <div style="width:5%;float:left;">
-                                <a data-target="#createTruck" data-toggle="modal" class="btn btn-info">
+                                <a data-target="#createTruck" data-toggle="modal" id="createTruckButton" class="btn btn-info">
                                         <%--<i class="fa fa-plus"></i>--%>
                                     Add Truck
                                 </a>
@@ -324,7 +324,7 @@
                                     ></s:select>
                         </div>
                         <div style="width:5%;float:left;">
-                            <a data-target="#createDriver" data-toggle="modal" class="btn btn-info">
+                            <a data-target="#createDriver" data-toggle="modal" id="createDriverButton" class="btn btn-info">
                                     <%--<i class="fa fa-plus"></i>--%>
                                 Add Driver
                             </a>
@@ -343,7 +343,7 @@
                                     ></s:select>
                         </div>
                         <div style="width:5%;float:left;">
-                            <a data-target="#createTruck" data-toggle="modal" class="btn btn-info">
+                            <a data-target="#createTruck" data-toggle="modal" id="createTruckButton" class="btn btn-info">
                                     <%--<i class="fa fa-plus"></i>--%>
                                 Add Truck
                             </a>
@@ -457,7 +457,7 @@
                                     ></s:select>
                         </div>
                         <div style="width:5%;float:left;">
-                            <a data-target="#createDriver" data-toggle="modal" class="btn btn-info">
+                            <a data-target="#createDriver" data-toggle="modal" id="createDriverButton" class="btn btn-info">
                                     <%--<i class="fa fa-plus"></i>--%>
                                 Add Driver
                             </a>
@@ -476,7 +476,7 @@
                                     ></s:select>
                         </div>
                         <div style="width:5%;float:left;">
-                            <a data-target="#createTruck" data-toggle="modal" class="btn btn-info">
+                            <a data-target="#createTruck" data-toggle="modal" id="createTruckButton" class="btn btn-info">
                                     <%--<i class="fa fa-plus"></i>--%>
                                 Add Truck
                             </a>
@@ -515,8 +515,8 @@
             <div class="modal-body">
                 <div class="panel-body">
 
-                    <s:form cssClass="form-horizontal" action="addDriver" theme="bootstrap">
-
+                    <s:form cssClass="form-horizontal" action="addDriverInlandDestination" theme="bootstrap">
+                        <s:hidden name = "driver.vendorId" id="vendorId" ></s:hidden>
 
                     <div class="form-group">
 
@@ -620,7 +620,7 @@
             <div class="modal-body">
                 <div class="panel-body">
 
-                    <s:form cssClass="form-horizontal" action="addVendor" method="POST" theme="bootstrap">
+                    <s:form cssClass="form-horizontal" action="addVendorInlandDestination" method="POST" theme="bootstrap">
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Type<span
                                 class="asterisk_red"></span></label>
@@ -683,8 +683,9 @@
 
             <div class="modal-body">
 
-                <s:form cssClass="form-horizontal" action="addTrucks" method="post" theme="bootstrap">
+                <s:form cssClass="form-horizontal" action="addTruckDestination" method="post" theme="bootstrap">
                     <%--Plate Number = plateNumber--%>
+                    <s:hidden name="truck.vendorId" id="vendorIdTruck" ></s:hidden>
                 <div class="form-group">
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number<span
                             class="asterisk_red"></span></label>
@@ -933,7 +934,7 @@
 
     $(document).ready(function () {
         $("#createDriverButton").click(function () {
-            var vendorId = $("#vendorListOrigin").val();
+            var vendorId = $("#vendorListDestination").val();
             if (vendorId == "" || null) {
                 alert("Select a vendor first");
                 return false;
@@ -944,7 +945,7 @@
 
     $(document).ready(function () {
         $("#createTruckButton").click(function () {
-            var vendorId = $("#vendorListOrigin").val();
+            var vendorId = $("#vendorListDestination").val();
             if (vendorId == "" || null) {
                 alert("Select a vendor first");
                 return false;
