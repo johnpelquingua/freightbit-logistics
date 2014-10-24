@@ -47,6 +47,8 @@ public class OrderItems implements java.io.Serializable {
     private String truckDestination;
 //
 
+    private Integer documentId;
+
     public OrderItems() {
     }
 

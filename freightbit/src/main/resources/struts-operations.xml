@@ -189,14 +189,14 @@
             <result name="success" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
         </action>
 
-        <action name="addVendor" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
-            <result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>
-            <result name="success" type="redirect">addSeaFreightVendorInPlanning</result>
-        </action>
-
         <action name="addSeaFreightVendorInPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadSeaFreightPlanning">
             <result name="success" type="tiles">operations.seaFreightPlanning.tiles</result>
+        </action>
 
+        <action name="addInlandFreightVendorInPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadInlandFreightPlanning">
+            <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+            <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+            <result name="ON GOING" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
         </action>
 
         <action name="viewInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfo">
@@ -219,11 +219,6 @@
             <result name="success" type="tiles">operations.viewInfoOrderSea.tiles</result>
         </action>
         <!--When adding Vessel Schedule while in planning module-->
-        <action name="addVesselScheduleInPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction"
-                method="addVesselSchedule">
-            <result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>
-            <result name="success" type="redirect">addSeaFreightVendorInPlanning</result>
-        </action>
         <!--Operations ends here-->
 
         <action name="checkStatus" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkStatus">
@@ -247,10 +242,41 @@
 
         <!--Modal-->
 
-        <action name="addDriver" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="addDriver">
-            <result name="success" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
-
+        <action name="addVendorSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
+            <result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>
+            <result name="success" type="redirect">addSeaFreightVendorInPlanning</result>
         </action>
+
+        <action name="addVendorInlandOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
+            <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+        </action>
+
+        <action name="addVesselScheduleInPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction"
+                method="addVesselSchedule">
+            <result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>
+            <result name="success" type="redirect">addSeaFreightVendorInPlanning</result>
+        </action>
+
+        <action name="addDriverInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addDriver">
+            <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+        </action>
+
+        <action name="addTruckInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addTrucks">
+            <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+        </action>
+
+        <action name="addDriver" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addDriver">
+            <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
+        </action>
+
+        <action name="addTrucks" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addTrucks">
+            <result name="success" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
+        </action>
+
+        <!---->
         <!--SHIPMENT MONITORING END-->
         <!--YardLogs START-->
         <action name="viewYardLogs" class="com.sr.apps.freightbit.operations.action.YardLogsAction" method="viewYardList">
@@ -262,6 +288,7 @@
     <package name="operation" namespace="/operations" extends="json-default">
         <action name="listVendorDriverAndTrucks" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="listVendorDriverAndTrucks">
             <result type="json">/operations/sea_freight/seaFreightPlanning.jsp</result>
+            <result type="json">/operations/freightBulkEdit.jsp</result>
         </action>
 
         <action name="listVesselName" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction" method="listVesselName">

@@ -16,6 +16,7 @@ public class DriverBean {
     private String createdBy;
     private Date modifiedTimeStamp;
     private String modifiedBy;
+    private Integer vendorId;
 
     public DriverBean() {
     }
@@ -129,5 +130,13 @@ public class DriverBean {
 
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
+    }
+
+    public Integer getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
     }
 }

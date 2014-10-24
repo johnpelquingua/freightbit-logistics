@@ -12,6 +12,8 @@ import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.apps.freightbit.util.ParameterConstants;
+import com.sr.apps.freightbit.vendor.formbean.DriverBean;
+import com.sr.apps.freightbit.vendor.formbean.TruckBean;
 import com.sr.apps.freightbit.vendor.formbean.VendorBean;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
@@ -30,13 +32,14 @@ import com.sr.biz.freightbit.order.service.OrderService;
 import com.sr.biz.freightbit.vendor.entity.Driver;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
+import com.sr.biz.freightbit.vendor.exceptions.DriverAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-
 
 import java.util.*;
 
@@ -80,6 +83,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private ContactBean contact = new ContactBean();
     private AddressBean address = new AddressBean();
     private VendorBean vendor = new VendorBean();
+    private DriverBean driver = new DriverBean();
+    private TruckBean truck = new TruckBean();
 
     private OperationsService operationsService;
     private VendorService vendorService;
@@ -159,16 +164,39 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String addVendor(){
-        /*validateOnSubmit(vesselSchedule);
-        if (hasFieldErrors()) {
+    public String addDriver() {
+        try {
+            Driver driverEntity = transformToEntityBeanDriver(driver);
+            driverEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            driverEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            driverEntity.setCreatedTimestamp(new Date());
+            vendorService.addDriver(driverEntity);
+        }catch (DriverAlreadyExistsException e) {
+            addFieldError("driver.licenseNumber", getText("err.driver.already.exists"));
             return INPUT;
-        }*/
+        }
+        /*vendorService.addDriver(transformToEntityBeanDriver(driver));*/
+        return SUCCESS;
+    }
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
+    public String addTrucks() {
+        try {
+            Trucks truckEntity = transformToEntityBeanTrucks(truck);
+            truckEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            truckEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            truckEntity.setCreatedTimestamp(new Date());
+            vendorService.addTrucks(truckEntity);
+        }catch (TrucksAlreadyExistsException e) {
+            addFieldError("truck.truckCode", getText("err.truck.already.exists"));
+            return INPUT;
+        }
+        return SUCCESS;
+    }
+
+    public String addVendor(){
 
         try {
-            Vendor vendorEntity = transformToEntityBean(vendor);
+            Vendor vendorEntity = transformVendorToEntityBean(vendor);
             vendorEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             vendorEntity.setCreatedTimeStamp(new Date());
             vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
@@ -178,13 +206,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
             return INPUT;
         }
 
-        sessionAttributes.put("orderItemIdParam", sessionAttributes.get("orderItemIdParam"));
-        sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
-
        return SUCCESS;
     }
 
-    private Vendor transformToEntityBean(VendorBean vendorBean) {
+    private Vendor transformVendorToEntityBean(VendorBean vendorBean) {
         Vendor entity = new Vendor();
         Client client = clientService.findClientById(getClientId().toString());
         entity.setClient(client);
@@ -196,10 +221,82 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setVendorCode(vendorBean.getVendorCode());
         entity.setVendorClass(vendorBean.getVendorClass());
         entity.setVendorName(vendorBean.getVendorName());
-        entity.setVendorStatus(vendorBean.getVendorStatus());
-        entity.setVendorType("SHIPPING");
-        entity.setCreatedBy(vendorBean.getCreatedBy());
-        entity.setCreatedTimeStamp(vendorBean.getCreatedTimeStamp());
+        entity.setVendorType(vendorBean.getVendorType());
+        entity.setCreatedBy(commonUtils.getUserNameFromSession());
+        entity.setCreatedTimeStamp(new Date());
+        entity.setVendorStatus("ACTIVE");
+
+        return entity;
+    }
+
+    public Driver transformToEntityBeanDriver(DriverBean driverBean) {
+        Driver entity = new Driver();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
+
+        if (driverBean.getDriverId() != null) {
+            entity.setDriverId(driverBean.getDriverId());
+        }
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        entity.setVendorId(driverBean.getVendorId());
+
+//        entity.setDriverCode(driverBean.getDriverCode());
+        entity.setLicenseNumber(driverBean.getLicenseNumber());
+        entity.setLastName(driverBean.getLastName());
+        entity.setFirstName(driverBean.getFirstName());
+        entity.setMiddleName(driverBean.getMiddleName());
+        entity.setTitle(driverBean.getTitle());
+        entity.setStatus(driverBean.getStatus());
+        entity.setCreatedBy(driverBean.getCreatedBy());
+        entity.setCreatedTimestamp(driverBean.getCreatedTimeStamp());
+
+        return entity;
+
+    }
+
+    private Trucks transformToEntityBeanTrucks(TruckBean truckBean) {
+        Trucks entity = new Trucks();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
+
+        if (truckBean.getTruckId() != null) {
+            entity.setTruckId(truckBean.getTruckId());
+        }
+
+        entity.setVendorId(truckBean.getVendorId());
+        entity.setTruckType(truckBean.getTruckType());
+        entity.setPlateNumber(truckBean.getPlateNumber());
+        entity.setModelNumber(truckBean.getModelNumber());
+        entity.setModelYear(truckBean.getModelYear());
+        entity.setEngineNumber(truckBean.getEngineNumber());
+        entity.setTruckCode(truckBean.getTruckCode());
+        entity.setGrossWeight(truckBean.getGrossWeight());
+        entity.setCreatedBy(commonUtils.getUserNameFromSession());
+        entity.setCreatedTimestamp(new Date());
+        entity.setMotorVehicleNumber(truckBean.getMotorVehicleNumber());
+        entity.setIssueDate(truckBean.getIssueDate());
+        entity.setNetWeight(truckBean.getNetWeight());
+        entity.setNetCapacity(truckBean.getNetCapacity());
+        entity.setOwnerName(truckBean.getOwnerName());
+        entity.setOwnerAddress(truckBean.getOwnerAddress());
+        entity.setOfficialReceipt(truckBean.getOfficialReceipt());
+
+        System.out.println(truckBean.getVendorId());
+        System.out.println(truckBean.getTruckType());
+        System.out.println(truckBean.getPlateNumber());
+        System.out.println(truckBean.getModelNumber());
+        System.out.println(truckBean.getModelYear());
+        System.out.println(truckBean.getEngineNumber());
+        System.out.println(truckBean.getGrossWeight());
+        System.out.println(commonUtils.getUserNameFromSession());
+        System.out.println(new Date());
+        System.out.println(truckBean.getMotorVehicleNumber());
+        System.out.println(truckBean.getIssueDate());
+        System.out.println(truckBean.getNetWeight());
+        System.out.println(truckBean.getNetCapacity());
+        System.out.println(truckBean.getOwnerAddress());
+        System.out.println(truckBean.getOfficialReceipt());
 
         return entity;
     }
@@ -530,23 +627,27 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String editOrderItemsSea() {
+        Client client = clientService.findClientById(getClientId().toString());
+
         try {
             OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
             entity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
             operationsService.updateOrderItem(entity);
-
-            // Proforma Bill of Lading will be created under pending documents
             Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
 
+
+            //MAHIRAP TO PROMISE LALO NA KAPAG EDIT NG DOCUMENT AT DELETE
             Documents documentEntity = new Documents();
             /*documentEntity.setClientId(commonUtils.getClientId());*/
-            Client client = clientService.findClientById(getClientId().toString());
+
             documentEntity.setClient(client);
             /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
             documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
 
             documentEntity.setReferenceId(orderEntity.getOrderId());
+            documentEntity.setVendorCode(entity.getVendorSea());
+
             documentEntity.setReferenceTable("ORDERS");
             documentEntity.setOrderNumber(orderEntity.getOrderNumber());
             documentEntity.setCreatedDate(new Date());
@@ -559,10 +660,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
             Documents documentEntity2 = new Documents();
 
             documentEntity2.setClient(client);
-            /*documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);*/
+        /*documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
             documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
             documentEntity2.setReferenceId(orderEntity.getOrderId());
+            documentEntity2.setVendorCode(entity.getVendorSea());
+
             documentEntity2.setReferenceTable("ORDERS");
             documentEntity2.setOrderNumber(orderEntity.getOrderNumber());
             documentEntity2.setCreatedDate(new Date());
@@ -570,6 +673,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             documentEntity2.setDocumentProcessed(0);
 
             documentsService.addDocuments(documentEntity2);
+
 
             if (orderEntity.getServiceMode().equals("PIER TO PIER") && orderEntity.getServiceMode().equals("PIER TO DOOR") ){
 
@@ -907,6 +1011,34 @@ public class OperationsAction extends ActionSupport implements Preparable {
             return "PLANNING 2";
         } else {
             return "PLANNING 3";
+        }
+    }
+
+    public String reloadInlandFreightPlanning() {
+
+        System.out.println("___________________reloadInlandFreightPlanning");
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        OrderItems entity = operationsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
+
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        order = transformToOrderFormBean(orderEntity);
+
+        // should put vendor id
+
+        clearErrorsAndMessages();
+        addActionMessage("Vendor Added Successfully!");
+
+        if ("PLANNING 2".equals(entity.getStatus())) {
+            return "PLANNING 2";
+        } else if ("PLANNING 3".equals(entity.getStatus())) {
+            return "PLANNING 3";
+        } else {
+            return "ON GOING";
         }
     }
 
@@ -1672,5 +1804,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setTruckTypeList(List<Parameters> truckTypeList) {
         this.truckTypeList = truckTypeList;
+    }
+
+    public DriverBean getDriver() {
+        return driver;
+    }
+
+    public void setDriver(DriverBean driver) {
+        this.driver = driver;
+    }
+
+    public TruckBean getTruck() {
+        return truck;
+    }
+
+    public void setTruck(TruckBean truck) {
+        this.truck = truck;
     }
 }

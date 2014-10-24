@@ -210,4 +210,7 @@ public class TruckBean {
     public void setOfficialReceipt(String officialReceipt) {
         this.officialReceipt = officialReceipt;
     }
+
+
+
 }

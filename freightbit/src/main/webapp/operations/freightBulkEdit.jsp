@@ -1318,4 +1318,93 @@
         preventDuplicatePort.call(this, select1, this.selectedIndex);
     };
 
+    $(document).ready(function() {
+        $('#vendorListOrigin').change(function(event) {
+            var vendorId = $("#vendorListOrigin").val();
+
+            $.getJSON('listVendorDriverAndTrucks', {
+                        vendorId : vendorId
+                    },
+
+                    function(jsonResponse) {
+
+                        var driver = $('#driverList');
+
+                        driver.find('option').remove();
+
+                        var truck = $('#trucksList');
+
+                        truck.find('option').remove();
+
+                        $.each(jsonResponse.driverMap, function(key, value) {
+                            $('<option>').val(key).text(value).appendTo(driver);
+                        });
+
+                        $.each(jsonResponse.trucksMap, function(key, value) {
+                            $('<option>').val(key).text(value).appendTo(truck);
+                        });
+                    });
+        });
+    });
+
+    var pickup = $('#pickup');
+    var dropoff = $('#dropoff');
+
+    //pick up date validation
+    pickup.datepicker({
+
+        // on 5:00pm
+//            timeFormat: 'h:mm TT',
+        dateFormat: 'yy-mm-dd',
+        minDate: 0,
+        onClose: function(dateText, inst) {
+
+            if (dropoff.val() != '') {
+                var testStartDate = pickup.datepicker('getDate');
+                var testEndDate = dropoff.datepicker('getDate');
+
+                if (testStartDate > testEndDate)
+                    dropoff.datepicker('setDate', testStartDate);
+
+            }
+
+            else {
+                dropoff.val(dateText);
+            }
+        },
+
+        onSelect: function (selectedDateTime){
+            dropoff.datetimepicker('option', 'minDate', pickup.datetimepicker('getDate') );
+        }
+
+    });
+
+    // delivery date validation -jp
+    dropoff.datetimepicker({
+
+        // on 6:00pm
+        timeFormat: 'h:mm TT',
+        minDate: 0,
+        onClose: function(dateText, inst) {
+
+            if (pickup.val() != '') {
+                var testStartDate = pickup.datetimepicker('getDate');
+                var testEndDate = dropoff.datetimepicker('getDate');
+
+                if (testStartDate > testEndDate)
+                    pickup.datetimepicker('setDate', testEndDate);
+
+            }
+
+            else {
+                pickup.val(dateText);
+            }
+        },
+
+        onSelect: function (selectedDateTime){
+            pickup.datetimepicker('option', 'maxDate', dropoff.datetimepicker('getDate') );
+        }
+
+    });
+
 </script>

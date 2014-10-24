@@ -771,28 +771,45 @@
             <div class="modal-body">
                 <div class="panel-body">
 
-                            <s:form action="addVendor" cssClass="form-horizontal" theme="bootstrap">
-                            <label>Name<span class="asterisk_red"></span></label>
+                            <s:form action="addVendorSea" cssClass="form-horizontal" theme="bootstrap">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" style="padding-top:0px;">Type<span
+                                            class="asterisk_red"></span></label>
 
-                                <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Vendor Name"
-                                             name="vendor.vendorName"></s:textfield>
+                                    <div class="col-lg-9"></span>
+                                        <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
+                                                  listKey="key" listValue="value" cssClass="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" style="padding-top:0px;">Company<span
+                                            class="asterisk_red"></span></label>
 
-                            <label>Code<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-9">
+                                        <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
+                                                     id="vendor.vendorName" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span
+                                            class="asterisk_red"></span></label>
 
-                                <s:textfield cssClass="form-control" id="vendor.vendorCode" placeholder="Vendor Code"
-                                             name="vendor.vendorCode" maxLength="3" pattern="[A-Z]+" title="Must be letters only and CAPS."></s:textfield>
+                                    <div class="col-lg-9">
+                                        <s:textfield cssClass="form-control" name="vendor.vendorCode" id="vendor_vendorCode"
+                                                     required="true"
+                                                     placeholder="Code" maxLength="3" pattern="[A-Z]+" title="Must be letters only"
+                                                     onkeypress="return alphaKeyOnly(event)"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" style="padding-top:0px;">Class<span
+                                            class="asterisk_red"></span></label>
 
-                            <label>Class Name<span class="asterisk_red"></span></label>
-
-                                <s:select cssClass="form-control" id="vendor.vendorClass" list="vendorClassList" listKey="key"
-                                          listValue="value"
-                                          name="vendor.vendorClass"/>
-
-                            <label>Status<span class="asterisk_red"></span></label>
-
-                                <s:select cssClass="form-control" id="vendor.vendorStatus" list="statusList"
-                                          listKey="key" listValue="value"
-                                          name="vendor.vendorStatus"/>
+                                    <div class="col-lg-9">
+                                        <s:select list="vendorClassList" listKey="key" listValue="value" cssClass="form-control"
+                                                  id="vendor.vendorClass" name="vendor.vendorClass"/>
+                                    </div>
+                                </div>
 
                 </div>
             </div>
