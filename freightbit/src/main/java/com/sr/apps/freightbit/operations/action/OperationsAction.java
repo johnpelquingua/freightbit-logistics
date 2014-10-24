@@ -1072,6 +1072,28 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String reloadSeaFreightPlanningBulk() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        order = transformToOrderFormBean(orderEntity);
+
+        // should put vendor id
+
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByVendorId((Integer)sessionAttributes.get("vendorIdPass"));
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Vendor Added Successfully!");
+
+        return SUCCESS;
+    }
+
     public String viewFreightList() {
         List<Orders> ordersList = new ArrayList<Orders>();
 

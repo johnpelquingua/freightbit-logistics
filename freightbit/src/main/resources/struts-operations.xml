@@ -193,6 +193,10 @@
             <result name="success" type="tiles">operations.seaFreightPlanning.tiles</result>
         </action>
 
+        <action name="addSeaFreightVendorInPlanningBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadSeaFreightPlanningBulk">
+            <result name="success" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
+        </action>
+
         <action name="addInlandFreightVendorInPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadInlandFreightPlanning">
             <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
@@ -247,6 +251,11 @@
             <result name="success" type="redirect">addSeaFreightVendorInPlanning</result>
         </action>
 
+        <action name="addVendorSeaBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
+            <result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>
+            <result name="success" type="redirect">addSeaFreightVendorInPlanningBulk</result>
+        </action>
+
         <action name="addVendorInlandOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
             <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
             <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
@@ -255,6 +264,12 @@
         <action name="addVendorInlandDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
             <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
             <result name="input" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+        </action>
+
+        <action name="addVesselScheduleInPlanningBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction"
+                method="addVesselSchedule">
+            <result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>
+            <result name="success" type="redirect">addSeaFreightVendorInPlanningBulk</result>
         </action>
 
         <action name="addVesselScheduleInPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction"
