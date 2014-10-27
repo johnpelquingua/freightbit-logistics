@@ -259,9 +259,9 @@
                 <fieldset class="inputs">
 
                     <legend style="text-align: left;">
-                        <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                             <span>
-                                Cargo Information
+                                Container Information
                             </span>
                         </s:if>
                         <s:else>
@@ -280,7 +280,7 @@
                     <div class="form-group" style="padding-top: 25px;">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <span>
                                     Container Quantity<span class="asterisk_red">
                                 </span>
@@ -293,7 +293,7 @@
                         </label>
 
                         <div class="col-lg-3" >
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                             <span>
                                 <s:select cssClass="form-control"
                                           id="orderItem.quantity"
@@ -319,7 +319,7 @@
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <span>
                                     Container Size<span class="asterisk_red">
                                 </span>
@@ -333,7 +333,7 @@
 
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <span>
                                     <s:select cssClass="form-control"
                                               id="orderItem.nameSize"
@@ -428,7 +428,7 @@
 
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem.description"
@@ -488,7 +488,7 @@
                         </label>
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.volume"
                                              id="orderItem.volume"
@@ -569,7 +569,7 @@
                         </label>
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValues"
@@ -599,9 +599,9 @@
                     <legend />
 
                     <div style="clear:both; margin-top: 20px;" class="pull-right">
-                        <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                             <span>
-                                <s:submit name="submit" cssClass="btn btn-primary" id="submit_button" value="Add Cargo to List" />
+                                <s:submit name="submit" cssClass="btn btn-primary" id="submit_button" value="Add Container to List" />
                             </span>
                         </s:if>
                         <s:else>
@@ -639,9 +639,9 @@
         <fieldset>
 
             <legend style="text-align: left;">
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                             <h4>
-                                Cargo Listing <small>(Maximum of 5 Containers)</small>
+                                Container Listing <small>(Maximum of 5 Containers)</small>
                             </h4>
                 </s:if>
                 <s:else>
@@ -658,7 +658,7 @@
                         <thead>
                         <tr class="header_center" style="background-color: #fff;">
                             <th class="tb-font-black">Quantity</th>
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                             <span>
                                 <th class="tb-font-black">Size</th>
                             </span>

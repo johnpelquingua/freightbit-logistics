@@ -398,6 +398,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         if (hasFieldErrors()) {
             return INPUT;
         }*/
+
         Orders orderEntity = transformToOrderEntityBean(order);
 
         orderService.addOrder(orderEntity);
@@ -426,6 +427,9 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setDocumentStatus("FOR PRINTING");
         documentEntity.setDocumentProcessed(0);
         documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
+        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+        documentEntity.setOutboundStage(1);
+        /*entity.setCreatedBy(commonUtils.getUserNameFromSession());*/
         documentsService.addDocuments(documentEntity);
 
         // To get generated Order Id
@@ -434,7 +438,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         // Put Order Id to Order Id session
         sessionAttributes.put("orderIdPass", orderIdPass);
-
 
         return SUCCESS;
     }
@@ -1070,7 +1073,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setDeclaredValue(formBean.getDeclaredValue());
         entity.setWeight(formBean.getWeight());
         // Condition in FCL and LCL
-        if(sessionAttributes.get("service_Req").equals("FULL CARGO LOAD")){
+        if(sessionAttributes.get("service_Req").equals("FULL CONTAINER LOAD")){
             entity.setNameSize(formBean.getNameSize());
         }else{
             Integer nameId = Integer.parseInt(formBean.getNameSize());

@@ -67,6 +67,11 @@ public class VesselSchedulesServiceImpl implements VesselSchedulesService {
     }
 
     @Override
+    public VesselSchedules findVesselSchedulesByIdVoyageNumber(String voyageNumber) {
+        return vesselSchedulesDao.findVesselScheduleByIdVoyageNumber(voyageNumber);
+    }
+
+    @Override
     public List<VesselSchedules> findVesselScheduleByVoyageNumber(String voyageNumber) {
         return vesselSchedulesDao.findVesselScheduleByVoyageNumber(voyageNumber);
     }

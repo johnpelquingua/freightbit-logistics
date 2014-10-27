@@ -88,6 +88,65 @@
                     </div>
                 </div>
 
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-list-ol"></i> Cargo Details</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive list-table">
+
+                            <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
+                                <thead>
+                                <tr class="header_center" style="background-color: #fff;">
+                                    <th class="tb-font-black">Inland Origin</th>
+                                    <th class="tb-font-black">Sea Freight</th>
+                                    <th class="tb-font-black">Inland Destination</th>
+                                    <th class="tb-font-black">Quantity</th>
+                                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <span>
+                                    <th class="tb-font-black">Size</th>
+                                </span>
+                                    </s:if>
+                                    <s:else>
+                                <span>
+                                    <th class="tb-font-black">Name</th>
+                                </span>
+                                    </s:else>
+                                    <th class="tb-font-black">Weight <br /> (kg) </th>
+                                    <th class="tb-font-black">Volume <br /> (cm&#179;) </th>
+                                    <th class="tb-font-black">Commodity</th>
+                                    <%--<th class="tb-font-black">Value <br /> (Php) </th>
+                                    <th class="tb-font-black">Rate <br /> (Php) </th>
+                                    <th class="tb-font-black">Comment</th>--%>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <s:iterator value="orderItems" var="orderItem">
+                                    <tr>
+                                        <td class="tb-font-black"><s:property value="vendorOrigin"/></td>
+                                        <td class="tb-font-black"><s:property value="vendorSea"/></td>
+                                        <td class="tb-font-black"><s:property value="vendorDestination"/></td>
+                                        <td class="tb-font-black"><s:property value="quantity"/></td>
+                                        <td class="tb-font-black"><s:property value="nameSize"/></td>
+                                        <td class="tb-font-black"><s:property value="weight"/></td>
+                                        <td class="tb-font-black"><s:property value="volume"/></td>
+                                        <td class="tb-font-black"><s:property value="description"/></td>
+                                            <%--<td class="tb-font-black"><s:property value="declaredValue"/></td>
+                                            <td class="tb-font-black"><s:property value="rate"/></td>
+                                            <td class="tb-font-black"><s:property value="remarks"/></td>--%>
+                                    </tr>
+                                </s:iterator>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
                 <div class="well">
 
                     <div class="container">
@@ -155,6 +214,9 @@
                                 <s:hidden name="document.referenceId" value="%{document.referenceId}" />
                                 <s:hidden name="document.referenceTable" value="%{document.referenceTable}" />
                                 <s:hidden name="document.orderNumber" value="%{document.orderNumber}" />
+                                <s:hidden name="document.outboundStage" value="%{document.outboundStage}" />
+                                <s:hidden name="document.createdBy" value="%{document.createdBy}" />
+                                <s:hidden name="document.orderItemId" value="%{document.orderItemId}" />
                                 <s:textfield cssClass="form-control" placeholder="Reference Number" name="document.referenceNumber"
                                              id="document.referenceNumber" required="true" maxLength="30" autofocus="true"
                                              pattern="[a-zA-Z\s ]+"
@@ -224,27 +286,29 @@
                         <div class="panel-body">
 
                             <div class="table-responsive">
-                                <display:table id="document" name="outboundEntityList" requestURI="orderDocumentsInput.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
+                                <display:table id="document" name="outboundDocuments" requestURI="orderDocumentsInput.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">
 
                                     <td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
-                                                <s:url var="checkDocumentUrl" action="checkDocument">
+                                                <%--<s:url var="checkDocumentUrl" action="checkDocument">
                                                     <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{checkDocumentUrl}" rel="tooltip" title ="Edit Booking">
                                                     <i class="fa fa-square-o"></i>
-                                                </s:a>
+                                                </s:a>--%>
+                                                <i class="fa fa-square-o"></i>
                                             </s:if>
 
                                             <s:else>
-                                                <s:url var="uncheckDocumentUrl" action="unCheckDocument">
+                                                <%--<s:url var="uncheckDocumentUrl" action="unCheckDocument">
                                                     <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{uncheckDocumentUrl}" rel="tooltip" title ="Edit Booking">
                                                     <i class="fa fa-check-square-o"></i>
-                                                </s:a>
+                                                </s:a>--%>
+                                                <i class="fa fa-check-square-o"></i>
                                             </s:else>
                                             <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
@@ -252,12 +316,20 @@
                                         </display:column>
                                     </td>
 
+                                    <%--<td><display:column property="nameSize" title="Container / Item" class="tb-font-black" style="text-align: center;">
+                                    </display:column>
+                                    </td>--%>
+
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                     </td>
 
                                     <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
                                         </display:column>
+                                    </td>
+
+                                    <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
+                                    </display:column>
                                     </td>
 
                                     <td><display:column property="documentStatus" title="Status" class="tb-font-black"
@@ -304,11 +376,16 @@
 
                                 </display:table>
                             </div>
+
+                            <button type="button" id="Cancel" class="pull-right btn" disabled>
+                                Process Documents
+                            </button>
+
                         </div>
 
                     </div>
                     <%--INBOUND DOCUMENTS BEGIN--%>
-                    <div class="tab-pane fade" id="inbound">
+                    <%--<div class="tab-pane fade" id="inbound">
 
                             <div class="panel-body">
 
@@ -316,7 +393,7 @@
                                     <display:table id="InboundDocument" name="inboundEntityList" requestURI="orderDocumentsInput.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px; visibility:hidden;">
 
-                                        <%--<td>
+                                        &lt;%&ndash;<td>
                                             <display:column title="" class="tb-font-black" style="text-align: center;" >
                                                 <s:if test="#attr.document.documentProcessed == 0">
                                                     <s:url var="checkDocumentUrl" action="checkDocument">
@@ -339,7 +416,7 @@
                                                 <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
                                             </display:column>
-                                        </td>--%>
+                                        </td>&ndash;%&gt;
 
                                         <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                         </display:column>
@@ -353,17 +430,17 @@
                                         </display:column>
                                         </td>
 
-                                        <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                            style="text-align: center;" > </i></display:column></td>--%>
+                                        &lt;%&ndash;<td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                            style="text-align: center;" > </i></display:column></td>&ndash;%&gt;
 
                                         <td>
-                                            <%--<display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
+                                            &lt;%&ndash;<display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
                                                 <a href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                     <i class="fa fa-print"></i>
                                                 </a>
                                                 <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
                                                 <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
-                                            </display:column>--%>
+                                            </display:column>&ndash;%&gt;
                                             <display:column title="Action" class="tb-font-black" style="text-align: center;" >
                                                 <i class="fa fa-ban"></i>
                                             </display:column>
@@ -373,9 +450,9 @@
                                 </div>
                             </div>
 
-                    </div>
+                    </div>--%>
                     <%--FINAL SET OUTBOUND DOCUMENTS BEGIN--%>
-                    <div class="tab-pane fade" id="finalOutbound">
+                    <%--<div class="tab-pane fade" id="finalOutbound">
 
                         <div class="panel-body">
 
@@ -384,7 +461,7 @@
                                                style="margin-top: 15px; visibility:hidden;">
 
                                     <td>
-                                        <%--<display:column title="" class="tb-font-black" style="text-align: center;" >
+                                        &lt;%&ndash;<display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
                                                 <s:url var="checkDocumentUrl" action="checkDocument">
                                                     <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
@@ -405,7 +482,7 @@
                                             &lt;%&ndash;<s:property value="%{#attr.document.documentProcessed}"/>&ndash;%&gt;
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
-                                        </display:column>--%>
+                                        </display:column>&ndash;%&gt;
                                     </td>
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
@@ -420,17 +497,17 @@
                                     </display:column>
                                     </td>
 
-                                    <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                        style="text-align: center;" > </i></display:column></td>--%>
+                                    &lt;%&ndash;<td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>&ndash;%&gt;
 
                                     <td>
-                                        <%--<display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
+                                        &lt;%&ndash;<display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
                                             <a href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                 <i class="fa fa-print"></i>
                                             </a>
                                             <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
                                             <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
-                                        </display:column>--%>
+                                        </display:column>&ndash;%&gt;
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" >
                                             <i class="fa fa-ban"></i>
                                         </display:column>
@@ -440,9 +517,9 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>--%>
                     <%--FINAL SET INBOUND DOCUMENTS BEGIN--%>
-                    <div class="tab-pane fade" id="finalInbound">
+                    <%--<div class="tab-pane fade" id="finalInbound">
 
                         <div class="panel-body">
 
@@ -450,7 +527,7 @@
                                 <display:table id="InboundDocument" name="finalInboundEntityList" requestURI="orderDocumentsInput.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px; visibility:hidden;">
 
-                                    <%--<td>
+                                    &lt;%&ndash;<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
                                                 <s:url var="checkDocumentUrl" action="checkDocument">
@@ -473,7 +550,7 @@
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
                                         </display:column>
-                                    </td>--%>
+                                    </td>&ndash;%&gt;
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                     </display:column>
@@ -487,17 +564,17 @@
                                     </display:column>
                                     </td>
 
-                                    <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                        style="text-align: center;" > </i></display:column></td>--%>
+                                    &lt;%&ndash;<td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>&ndash;%&gt;
 
                                     <td>
-                                        <%--<display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
+                                        &lt;%&ndash;<display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
                                             <a href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                 <i class="fa fa-print"></i>
                                             </a>
                                             <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
                                             <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
-                                        </display:column>--%>
+                                        </display:column>&ndash;%&gt;
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" >
                                             <i class="fa fa-ban"></i>
                                         </display:column>
@@ -507,9 +584,9 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>--%>
                     <%--ARCHIVE BEGIN--%>
-                    <div class="tab-pane fade" id="archive">
+                    <%--<div class="tab-pane fade" id="archive">
 
                         <div class="panel-body">
 
@@ -517,7 +594,7 @@
                                 <display:table id="InboundDocument" name="archiveEntityList" requestURI="orderDocumentsInput.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px; visibility:hidden;">
 
-                                    <%--<td>
+                                    &lt;%&ndash;<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
                                                 <s:url var="checkDocumentUrl" action="checkDocument">
@@ -540,7 +617,7 @@
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
                                         </display:column>
-                                    </td>--%>
+                                    </td>&ndash;%&gt;
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                     </display:column>
@@ -554,17 +631,17 @@
                                     </display:column>
                                     </td>
 
-                                    <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                        style="text-align: center;" > </i></display:column></td>--%>
+                                    &lt;%&ndash;<td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>&ndash;%&gt;
 
                                     <td>
-                                        <%--<display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
+                                        &lt;%&ndash;<display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
                                             <a href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                 <i class="fa fa-print"></i>
                                             </a>
                                             <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
                                             <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
-                                        </display:column>--%>
+                                        </display:column>&ndash;%&gt;
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" >
                                             <i class="fa fa-ban"></i>
                                         </display:column>
@@ -574,9 +651,9 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>--%>
                     <%--BILLING DOCUMENTS BEGIN--%>
-                    <div class="tab-pane fade" id="billing">
+                    <%--<div class="tab-pane fade" id="billing">
 
                         <div class="panel-body">
 
@@ -584,7 +661,7 @@
                                 <display:table id="InboundDocument" name="billingEntityList" requestURI="orderDocumentsInput.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px; visibility:hidden;">
 
-                                    <%--<td>
+                                    &lt;%&ndash;<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
                                                 <s:url var="checkDocumentUrl" action="checkDocument">
@@ -607,7 +684,7 @@
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
                                         </display:column>
-                                    </td>--%>
+                                    </td>&ndash;%&gt;
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                     </display:column>
@@ -621,17 +698,17 @@
                                     </display:column>
                                  </td>
 
-                                    <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                        style="text-align: center;" > </i></display:column></td>--%>
+                                    &lt;%&ndash;<td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>&ndash;%&gt;
 
                                     <td>
-                                        <%--<display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
+                                        &lt;%&ndash;<display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
                                             <a href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                 <i class="fa fa-print"></i>
                                             </a>
                                             <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
                                             <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
-                                        </display:column>--%>
+                                        </display:column>&ndash;%&gt;
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" >
                                             <i class="fa fa-ban"></i>
                                         </display:column>
@@ -641,7 +718,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>--%>
                 </div>
 
             </div>

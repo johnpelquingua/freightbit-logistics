@@ -1,5 +1,7 @@
 package com.sr.biz.freightbit.vesselSchedule.dao.impl;
 
+import com.sr.biz.freightbit.order.entity.Orders;
+import com.sr.biz.freightbit.vendor.entity.Vessel;
 import com.sr.biz.freightbit.vesselSchedule.dao.VesselSchedulesDao;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import org.apache.log4j.Logger;
@@ -72,7 +74,7 @@ public class VesselSchedulesDaoImpl extends HibernateDaoSupport implements Vesse
     }
 
     @Override
-    public VesselSchedules findVesselScheduleById(Integer vesselScheduleId) {
+     public VesselSchedules findVesselScheduleById(Integer vesselScheduleId) {
         log.debug("Finding Vessel Schedule by Id");
         try {
 
@@ -88,6 +90,34 @@ public class VesselSchedulesDaoImpl extends HibernateDaoSupport implements Vesse
         } catch (Exception e) {
             log.error("Finding Vessel Schedule failed");
             throw e;
+        }
+    }
+
+    @Override
+    public VesselSchedules findVesselScheduleByIdVoyageNumber(String voyageNumber) {
+        log.debug("Finding Vessel Schedule by Voyage Number");
+        try {
+
+            /*VesselSchedules instance = (VesselSchedules) getSessionFactory().getCurrentSession().get(VesselSchedules.class, voyageNumber);
+            if (instance == null) {
+                log.debug("get successful, no instance found");
+            } else {
+                log.debug("get successful, instance found");
+            }
+            return instance;*/
+
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from VesselSchedules v where v.voyageNumber = :voyageNumber");
+            query.setParameter("voyageNumber", voyageNumber);
+            List<VesselSchedules> results = (List<VesselSchedules>) query.list();
+            if (results != null && results.size() > 0) {
+                return results.get(0);
+            }
+            return null;
+
+        } catch (RuntimeException re) {
+            log.error("Finding Vessel Schedule failed");
+            throw re;
         }
     }
 

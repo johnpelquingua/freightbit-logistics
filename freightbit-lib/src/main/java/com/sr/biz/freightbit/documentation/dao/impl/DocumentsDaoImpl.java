@@ -39,7 +39,7 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
 
         /*statusList.add("PENDING");
         statusList.add("DISAPPROVED");*/
-        statusList.add("APPROVED");
+        statusList.add("ON GOING");
         /*statusList.add("PLANNING 1");
         statusList.add("PLANNING 2");
         statusList.add("PLANNING 3");

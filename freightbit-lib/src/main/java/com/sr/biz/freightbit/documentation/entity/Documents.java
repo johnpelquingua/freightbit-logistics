@@ -40,7 +40,7 @@ public class Documents implements Serializable {
     private String createdBy;
     private String documentComments;
     private String vendorCode;
-    private String orderItemId;
+    private Integer orderItemId;
 
     public Documents() {
     }
@@ -283,11 +283,11 @@ public class Documents implements Serializable {
     }
 
     @Column(name = "orderItemId")
-    public String getOrderItemId() {
+    public Integer getOrderItemId() {
         return orderItemId;
     }
 
-    public void setOrderItemId(String orderItemId) {
+    public void setOrderItemId(Integer orderItemId) {
         this.orderItemId = orderItemId;
     }
 }

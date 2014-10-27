@@ -10,7 +10,15 @@
             <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
         </result-types>
 
-        <default-action-ref name="Documents"/>
+        <default-action-ref name="Documentation"/>
+
+        <!--<action name="processDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocuments">
+            <result name="input" type="redirect">viewOrderDocuments</result>
+        </action>-->
+
+        <action name="processDocumentsTotal" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsTotal">
+            <result name="success" type="tiles">documentation.viewOrderDocuments.tiles</result>
+        </action>
 
         <action name="viewPlainDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewPlainDocuments">
             <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>
@@ -72,7 +80,8 @@
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
-        <action name="moveDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="moveDocument">
+        <action name="moveDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="moveDocuments">
+            <result name="input" type="redirect">viewOrderDocuments</result>
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
@@ -111,6 +120,8 @@
         <action name="notifyByFaxFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="notifyByFaxFinalOutbound">
             <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
         </action>
+
+
 
         <action name="generateBookingRequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBookingRequestReport">
             <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->

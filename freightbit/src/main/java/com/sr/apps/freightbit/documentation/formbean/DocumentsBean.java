@@ -34,14 +34,16 @@ public class DocumentsBean {
     private String finalInboundReceivedBy;
     private String createdBy;
     private String documentComments;
+    private String vendorCode;
+    private String nameSize;
+    private Integer orderItemId;
 
     private Integer documentIdParam;
     private Integer orderIdParam;
+    private String documentItem;
 
     public DocumentsBean() {
     }
-
-
 
     public Integer getDocumentId() {
         return documentId;
@@ -241,5 +243,37 @@ public class DocumentsBean {
 
     public void setDocumentComments(String documentComments) {
         this.documentComments = documentComments;
+    }
+
+    public String getDocumentItem() {
+        return documentItem;
+    }
+
+    public void setDocumentItem(String documentItem) {
+        this.documentItem = documentItem;
+    }
+
+    public String getVendorCode() {
+        return vendorCode;
+    }
+
+    public void setVendorCode(String vendorCode) {
+        this.vendorCode = vendorCode;
+    }
+
+    public String getNameSize() {
+        return nameSize;
+    }
+
+    public void setNameSize(String nameSize) {
+        this.nameSize = nameSize;
+    }
+
+    public Integer getOrderItemId() {
+        return orderItemId;
+    }
+
+    public void setOrderItemId(Integer orderItemId) {
+        this.orderItemId = orderItemId;
     }
 }
