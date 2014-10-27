@@ -1042,6 +1042,36 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
     }
 
+    public String reloadInlandFreightPlanningBulk() {
+
+        System.out.println("___________________reloadInlandFreightPlanning");
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        String[] check = (String[]) sessionAttributes.get("checkedItemsInSession");
+
+        OrderItems entity = operationsService.findOrderItemById(Integer.parseInt(check[0]));
+
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        order = transformToOrderFormBean(orderEntity);
+
+        // should put vendor id
+
+        clearErrorsAndMessages();
+        addActionMessage("Vendor Added Successfully!");
+
+        if ("PLANNING 2".equals(entity.getStatus())) {
+            return "PLANNING 2";
+        } else if ("PLANNING 3".equals(entity.getStatus())) {
+            return "PLANNING 3";
+        } else {
+            return "ON GOING";
+        }
+    }
+
     public String reloadSeaFreightPlanning() {
 
         Map sessionAttributes = ActionContext.getContext().getSession();

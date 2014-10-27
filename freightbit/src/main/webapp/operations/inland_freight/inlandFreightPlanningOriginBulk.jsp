@@ -300,7 +300,7 @@
             <div class="modal-body">
                 <div class="panel-body">
 
-                    <s:form cssClass="form-horizontal" action="addVendor" method="POST" theme="bootstrap">
+                    <s:form cssClass="form-horizontal" action="addVendorInlandOriginBulk" method="POST" theme="bootstrap">
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Type<span class="asterisk_red"></span></label>
 

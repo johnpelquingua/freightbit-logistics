@@ -203,6 +203,12 @@
             <result name="ON GOING" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
         </action>
 
+        <action name="addInlandFreightVendorInPlanningBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadInlandFreightPlanningBulk">
+            <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
+            <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>
+            <result name="ON GOING" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+        </action>
+
         <action name="viewInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfo">
             <result name="success" type="tiles">operations.viewInfo.tiles</result>
         </action>
@@ -261,6 +267,16 @@
             <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
         </action>
 
+        <action name="addVendorInlandOriginBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
+            <result name="success" type="redirect">addInlandFreightVendorInPlanningBulk</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
+        </action>
+
+        <action name="addVendorInlandDestinationBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
+            <result name="success" type="redirect">addInlandFreightVendorInPlanningBulk</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>
+        </action>
+
         <action name="addVendorInlandDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
             <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
             <result name="input" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
@@ -288,6 +304,11 @@
             <result name="input" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
         </action>
 
+        <action name="addDriverInlandDestinationBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addDriver">
+            <result name="success" type="redirect">addInlandFreightVendorInPlanningBulk</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>
+        </action>
+
         <action name="addTruckInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addTrucks">
             <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
             <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
@@ -296,6 +317,11 @@
         <action name="addTruckDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addTrucks">
             <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
             <result name="input" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
+        </action>
+
+        <action name="addTruckDestinationBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addTrucks">
+            <result name="success" type="redirect">addInlandFreightVendorInPlanningBulk</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>
         </action>
 
         <!---->

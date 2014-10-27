@@ -125,22 +125,23 @@
                     <s:hidden name="operationsBean.freightType" value="%{order.freightType}"/>
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-
                         <div class="col-lg-8">
-                            <div>
+
+                            <div style="width:90%;float:left;padding-right:10px;">
                                 <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
                                           id="vendorListOrigin"
                                           listKey="vendorId" listValue="vendorCode" cssClass="form-control"
                                           emptyOption="true" value="%{orderItem.vendorDestination}"
                                         ></s:select>
                             </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <div>
-                                <a data-target="#createVendor" id="createVendorButton" data-toggle="modal" class="btn btn-info">
-                                        <%--<i class="fa fa-plus"></i>--%>
-                                    Add Vendor
-                                </a>
+
+                            <div class="col-lg-2">
+                                <div>
+                                    <a data-target="#createVendor" id="createVendorButton" data-toggle="modal" class="btn btn-info">
+                                            <%--<i class="fa fa-plus"></i>--%>
+                                        Add Vendor
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
