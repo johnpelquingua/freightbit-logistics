@@ -33,8 +33,11 @@ import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.internal.CriteriaImpl;
 
+import java.math.BigInteger;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -101,6 +104,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Float orderItemRateParam;
     private Double orderItemDeclaredValueParam;
     private String orderItemRemarksParam;
+    BigInteger Booking;
 
     private Map<Integer, String> customerContactsMap = new LinkedHashMap<Integer, String>();
     private String dummyMsg;
@@ -201,6 +205,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String viewOrders() {
 
+
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
@@ -212,6 +217,13 @@ public class OrderAction extends ActionSupport implements Preparable {
         for (Orders orderElem : orderEntityList) {
             orders.add(transformToOrderFormBean(orderElem));
         }
+
+        Booking = notificationService.CountAll();
+        System.out.println("The number of  new booking is "+Booking);
+
+
+
+
 
         return SUCCESS;
     }
@@ -230,6 +242,9 @@ public class OrderAction extends ActionSupport implements Preparable {
         for (Orders orderElem : orderEntityList) {
             orders.add(transformToOrderFormBean(orderElem));
         }
+
+        Booking = notificationService.CountAll();
+        System.out.println("The number of  new booking is "+Booking);
 
         return SUCCESS;
     }
@@ -285,6 +300,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
+        //Changes the order Status to pending
+        orderEntityForm.setOrderStatus("PENDING");
+        orderService.updateOrder(orderEntityForm);
+
         //get quantity of item from form
         Integer orderItemEntityQuantity = orderItemEntity.getQuantity();
         //count quantity of item from form and from database
@@ -403,7 +422,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         orderService.addOrder(orderEntity);
 
-       // Add Notification for user that booking was created
+        // Add Notification for user that booking was created
         Notification notificationEntity = new Notification();
         notificationEntity.setDescription("BOOKING");
         notificationEntity.setNotificationId(1);
@@ -441,6 +460,9 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
+
+
+
 
     public String addOrderInfo() {
 
@@ -571,11 +593,37 @@ public class OrderAction extends ActionSupport implements Preparable {
     public String approveOrder(){
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+
+        if(orderEntity.getOrderStatus().equals("EMPTY")){
+            String column = getColumnFilter();
+            List<Orders> orderEntityList = new ArrayList<Orders>();
+            if (StringUtils.isNotBlank(column)) {
+                orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+            } else {
+                orderEntityList = orderService.findAllOrders();
+            }
+
+            for (Orders orderElem : orderEntityList) {
+                orders.add(transformToOrderFormBean(orderElem));
+            }
+
+            Booking = notificationService.CountAll();
+            System.out.println("The number of  new booking is "+Booking);
+            addActionMessage("Booking must have at least 1 item");
+            return INPUT;
+        }
         orderEntity.setOrderStatus("APPROVED");
         orderService.updateOrder(orderEntity);
         clearErrorsAndMessages();
         addActionMessage("Booking successfully Approved!");
+
+
         return SUCCESS;
+
+
 
     }
 
@@ -1029,7 +1077,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setOriginationPort(formBean.getOriginationPort());
         entity.setDestinationPort(formBean.getDestinationPort());
         entity.setComments(formBean.getComments());
-        entity.setOrderStatus("PENDING");  // still to be updated
+        entity.setOrderStatus("EMPTY");  // still to be updated
         entity.setRates(99.99); // still to be updated
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setAccountRep(commonUtils.getUserNameFromSession());
@@ -1823,5 +1871,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setNotificationService(NotificationService notificationService) {
         this.notificationService = notificationService;
+    }
+
+    public BigInteger getBooking() {
+        return Booking;
+    }
+
+    public void setBooking(BigInteger booking) {
+        Booking = booking;
     }
 }

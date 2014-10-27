@@ -96,6 +96,8 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
     }
 
 
+
+
     @Override
     public List<Orders> findAllOrdersByClientId (Integer clientId) {
         Log.debug("finding Orders by client");

@@ -20,7 +20,7 @@
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
@@ -33,7 +33,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Booking List</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Booking List </h3>
                 <span class="pull-right">
                     <button type="button" class="btn btn-success new-booking" onclick="location.href='bookingSearch'">
                         <i class="fa fa-search"></i> Search Booking
@@ -132,8 +132,7 @@
 </div>
 
 <script>
-
-$(document).ready(function() {
+    $(document).ready(function() {
     /*color coding of rows*/
     var tbl = document.getElementById("order");
     if (tbl != null) {
@@ -163,6 +162,23 @@ $(document).ready(function() {
     }
 
 });
+
+    $(document).ready(function() {
+        /*color coding of new booking*/
+
+        var tbl = document.getElementById("order");
+        var ctr = <s:property value="%{Booking}"/>;
+
+        if (tbl != null) {
+            for (var i =1; i <= ctr; i++) {
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[j].style.backgroundColor=("#dff0d8") ;
+
+                }
+            }
+        }
+    });
+
 
 </script>
 

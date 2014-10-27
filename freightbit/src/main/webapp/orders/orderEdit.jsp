@@ -983,7 +983,7 @@ $(document).ready(function() {
     // Date Time Picker
     var fromDatePickUp = $('#datepicker1');
     var toDateDelivery = $('#datepicker2');
-
+    var ServiceValue= $('#order_modeOfService');
     //pick up date validation
     fromDatePickUp.datepicker({
 
@@ -991,7 +991,7 @@ $(document).ready(function() {
         timeFormat: 'h:mm TT',
         minDate: 0,
         onClose: function(dateText, inst) {
-
+            if(ServiceValue.val() !='PICKUP'){
             if (toDateDelivery.val() != '') {
                 var testStartDate = fromDatePickUp.datetimepicker('getDate');
                 var testEndDate = toDateDelivery.datetimepicker('getDate');
@@ -1003,7 +1003,7 @@ $(document).ready(function() {
             else {
                 toDateDelivery.val(dateText);
             }
-        },
+        }},
 
         onSelect: function (selectedDateTime){
             toDateDelivery.datetimepicker('option', 'minDate', fromDatePickUp.datetimepicker('getDate') );
@@ -1018,7 +1018,7 @@ $(document).ready(function() {
         timeFormat: 'h:mm TT',
         minDate: 0,
         onClose: function(dateText, inst) {
-
+            if(ServiceValue.val() !='DELIVERY'){
             if (fromDatePickUp.val() != '') {
                 var testStartDate = fromDatePickUp.datetimepicker('getDate');
                 var testEndDate = toDateDelivery.datetimepicker('getDate');
@@ -1030,7 +1030,7 @@ $(document).ready(function() {
             else {
                 fromDatePickUp.val(dateText);
             }
-        },
+        }},
 
         onSelect: function (selectedDateTime){
             fromDatePickUp.datetimepicker('option', 'maxDate', toDateDelivery.datetimepicker('getDate') );
@@ -1380,5 +1380,45 @@ function setThis(){
     $("#notification_type").val(localStorage.getItem("NotificationField"));
     $("#Comments").val(localStorage.getItem("CommentsField"));
 }
+
+    $(window).load(function(){
+        $("#select1").val('');
+        $("#select2").val('');
+
+        if ($("#order_modeOfService").val() === 'PICKUP'){
+
+
+            $("#datepicker2").prop('disabled', true);
+            $("#datepicker1").prop('disabled', false);
+            $("#datepicker2").val('');
+            $("#datepicker1").val('');
+            $("#shipperAddress").prop('disabled', false);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").val('');
+            $("#consigneeAddress").prop('disabled', true);
+        }else if ($("#order_modeOfService").val()  === 'DELIVERY'){
+
+
+
+            $("#datepicker1").prop('disabled', true);
+            $("#datepicker2").prop('disabled', false);
+            $("#datepicker2").val('');
+            $("#datepicker1").val('');
+            $("#shipperAddress").prop('disabled', true);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").prop('disabled', false);
+            $("#consigneeAddress").val('');
+
+        }else if ($("#order_modeOfService").val()  === 'INTER-WAREHOUSE'){
+
+            $("#datepicker1").prop('disabled', false);
+            $("#datepicker2").prop('disabled', false);
+            $("#datepicker2").val('');
+            $("#datepicker1").val('');
+
+        }
+    });
 
 </script>
