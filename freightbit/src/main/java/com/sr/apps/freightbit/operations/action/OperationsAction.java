@@ -248,7 +248,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setMiddleName(driverBean.getMiddleName());
         entity.setTitle(driverBean.getTitle());
         entity.setStatus(driverBean.getStatus());
-        entity.setCreatedBy(driverBean.getCreatedBy());
+        entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimestamp(driverBean.getCreatedTimeStamp());
 
         return entity;
@@ -403,7 +403,22 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 return "EDIT";
             }
         }
+    }
 
+    public String reloadEditPage() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        order = transformToOrderFormBean(orderEntity);
+
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByVendorId((Integer)sessionAttributes.get("vendorIdPass"));
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
+
+        return SUCCESS;
     }
 
     public String editBulkItems() {

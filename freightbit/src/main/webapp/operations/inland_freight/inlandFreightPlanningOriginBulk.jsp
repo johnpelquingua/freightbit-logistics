@@ -201,9 +201,9 @@
             <div class="modal-body">
                 <div class="panel-body">
 
-                    <s:form cssClass="form-horizontal" action="addDriver" theme="bootstrap">
+                    <s:form cssClass="form-horizontal" action="addDriverInlandBulk" theme="bootstrap">
 
-
+                        <s:hidden name = "driver.vendorId" id="vendorId" ></s:hidden>
                     <div class="form-group">
 
                         <label for="driver.licenseNumber" class="col-lg-2 control-label" style="padding-top:0px;">License<span class="asterisk_red"></span></label>
@@ -357,8 +357,8 @@
 
             <div class="modal-body">
 
-                <s:form cssClass="form-horizontal" action="addTrucks" method="post" theme="bootstrap">
-                    <%--Plate Number = plateNumber--%>
+                <s:form cssClass="form-horizontal" action="addTruckInlandBulk" method="post" theme="bootstrap">
+                    <s:hidden name="truck.vendorId" id="vendorIdTruck" ></s:hidden>
                 <div class="form-group">
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
@@ -574,6 +574,75 @@
             pickup.datetimepicker('option', 'maxDate', dropoff.datetimepicker('getDate') );
         }
 
+    });
+
+    $(document).ready(function(){
+        $("#createDriverButton").click(function(){
+            var vendorId = $("#vendorListOrigin").val();
+            if (vendorId == "" || null) {
+                alert("Select a vendor first");
+                return false;
+            }
+            $("#vendorId").val(vendorId);
+        })
+    });
+
+    $(document).ready(function(){
+        $("#createTruckButton").click(function(){
+            var vendorId = $("#vendorListOrigin").val();
+            if (vendorId == "" || null) {
+                alert("Select a vendor first");
+                return false;
+            }
+            $("#vendorIdTruck").val(vendorId);
+        })
+    });
+
+    $(document).ready(function(){
+
+        $("#driver_licenseNumber").mask("A99-99-9999999");
+//        $("#shipping_mobile").mask("(+63999)(999-9999)");
+//        $("#shipping_fax").mask("(999) 999-9999");
+
+    });
+
+    $(document).ready(function(){
+
+        $("#truck_motorVehicleNumber").mask("9999-99999999999");
+        $("#truck_plateNumber").mask("AAA-999");
+//        $("#shipping_fax").mask("(999) 999-9999");
+
+    });
+
+    var issueDate = $('#issueDate');
+
+    issueDate.datepicker({
+
+        dateFormat: 'mm/dd/yy',
+        startDate: 2
+
+    });
+
+    $(document).ready(function(){
+        $("#createDriverButton").click(function(){
+            var vendorId = $("#vendorListDestination").val();
+            if (vendorId == "" || null) {
+                alert("Select a vendor first");
+                return false;
+            }
+            $("#vendorId").val(vendorId);
+        })
+    });
+
+    $(document).ready(function(){
+        $("#createTruckButton").click(function(){
+            var vendorId = $("#vendorListDestination").val();
+            if (vendorId == "" || null) {
+                alert("Select a vendor first");
+                return false;
+            }
+            $("#vendorIdTruck").val(vendorId);
+        })
     });
 
 </script>
