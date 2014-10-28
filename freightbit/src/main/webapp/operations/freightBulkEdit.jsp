@@ -1665,25 +1665,25 @@
         },
 
         onSelect: function (selectedDateTime){
-            dropoff.datetimepicker('option', 'minDate', pickup.datetimepicker('getDate') );
+            dropoff.datepicker('option', 'minDate', pickup.datepicker('getDate') );
         }
 
     });
 
     // delivery date validation -jp
-    dropoff.datetimepicker({
+    dropoff.datepicker({
 
         // on 6:00pm
-        timeFormat: 'h:mm TT',
+        dateFormat: 'yy-mm-dd',
         minDate: 0,
         onClose: function(dateText, inst) {
 
             if (pickup.val() != '') {
-                var testStartDate = pickup.datetimepicker('getDate');
-                var testEndDate = dropoff.datetimepicker('getDate');
+                var testStartDate = pickup.datepicker('getDate');
+                var testEndDate = dropoff.datepicker('getDate');
 
                 if (testStartDate > testEndDate)
-                    pickup.datetimepicker('setDate', testEndDate);
+                    pickup.datepicker('setDate', testEndDate);
 
             }
 
@@ -1693,7 +1693,7 @@
         },
 
         onSelect: function (selectedDateTime){
-            pickup.datetimepicker('option', 'maxDate', dropoff.datetimepicker('getDate') );
+            pickup.datepicker('option', 'maxDate', dropoff.datepicker('getDate') );
         }
 
     });
