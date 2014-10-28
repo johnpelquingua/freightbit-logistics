@@ -1,15 +1,5 @@
 package com.sr.apps.freightbit.core.action;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import com.sr.biz.freightbit.common.entity.Notification;
-import com.sr.biz.freightbit.common.service.NotificationService;
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
@@ -18,7 +8,9 @@ import com.sr.apps.freightbit.core.formbean.PermissionBean;
 import com.sr.apps.freightbit.core.formbean.UserBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
+import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.entity.Permission;
@@ -30,6 +22,13 @@ import com.sr.biz.freightbit.core.service.PermissionService;
 import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * UserAction includes view list of users, add, delete, edit, and view user info
@@ -369,7 +368,7 @@ public class UserAction extends ActionSupport implements Preparable {
             permissionsList.add(transformToPermissionsFormBean(permission));
         }
         //Integer userId = -1;
-        if (userId.equals(-1)) { 
+        if (userId.equals(1)) {
         	User user = userService.findUserByUserName(userNameParam);
         	if (user!=null)
         		userId = user.getUserId();
@@ -379,16 +378,17 @@ public class UserAction extends ActionSupport implements Preparable {
 
 	private void findCurrentUserPermissions(Integer userId) {
 		List<Permission> selectedPermissionsList = (List<Permission>) permissionService.findPermissionByUser(getClientId(), userId);
-        if (selectedPermissionsList != null) {
+        if (null != selectedPermissionsList) {
         	preSelectedPermissions = new String[selectedPermissionsList.size()];
-        	preSelectedPermissionNames = new String[selectedPermissionsList.size()];
+        	/*preSelectedPermissionNames = new String[selectedPermissionsList.size()];*/
         }
 
         for (int i=0; i<selectedPermissionsList.size(); i++) {
-        	String permissionId=selectedPermissionsList.get(i).getPermissionId().toString();
-        	preSelectedPermissions[i] = permissionId;      	
-        	String permissionName=selectedPermissionsList.get(i).getDescription();
-        	preSelectedPermissionNames[i] = permissionName;
+        	String permissionId;
+            permissionId = selectedPermissionsList.get(i).getPermissionId().toString();
+            preSelectedPermissions[i] = permissionId;
+        	/*String permissionName=selectedPermissionsList.get(i).getDescription();
+        	preSelectedPermissionNames[i] = permissionName;*/
         }
 	}
     
