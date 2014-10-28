@@ -88,6 +88,65 @@
                     </div>
                 </div>
 
+                <div class="panel panel-primary">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-list-ol"></i> Cargo Details</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="table-responsive list-table">
+
+                            <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
+                                <thead>
+                                <tr class="header_center" style="background-color: #fff;">
+                                    <th class="tb-font-black">Inland Origin</th>
+                                    <th class="tb-font-black">Sea Freight</th>
+                                    <th class="tb-font-black">Inland Destination</th>
+                                    <th class="tb-font-black">Quantity</th>
+                                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <span>
+                                    <th class="tb-font-black">Size</th>
+                                </span>
+                                    </s:if>
+                                    <s:else>
+                                <span>
+                                    <th class="tb-font-black">Name</th>
+                                </span>
+                                    </s:else>
+                                    <th class="tb-font-black">Weight <br /> (kg) </th>
+                                    <th class="tb-font-black">Volume <br /> (cm&#179;) </th>
+                                    <th class="tb-font-black">Commodity</th>
+                                    <%--<th class="tb-font-black">Value <br /> (Php) </th>
+                                    <th class="tb-font-black">Rate <br /> (Php) </th>
+                                    <th class="tb-font-black">Comment</th>--%>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <s:iterator value="orderItems" var="orderItem">
+                                    <tr>
+                                        <td class="tb-font-black"><s:property value="vendorOrigin"/></td>
+                                        <td class="tb-font-black"><s:property value="vendorSea"/></td>
+                                        <td class="tb-font-black"><s:property value="vendorDestination"/></td>
+                                        <td class="tb-font-black"><s:property value="quantity"/></td>
+                                        <td class="tb-font-black"><s:property value="nameSize"/></td>
+                                        <td class="tb-font-black"><s:property value="weight"/></td>
+                                        <td class="tb-font-black"><s:property value="volume"/></td>
+                                        <td class="tb-font-black"><s:property value="description"/></td>
+                                            <%--<td class="tb-font-black"><s:property value="declaredValue"/></td>
+                                            <td class="tb-font-black"><s:property value="rate"/></td>
+                                            <td class="tb-font-black"><s:property value="remarks"/></td>--%>
+                                    </tr>
+                                </s:iterator>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
                 <div class="well">
 
                     <div class="container">
@@ -140,9 +199,11 @@
                     </div>
                 </div>
 
-                </div>
+
                 <%--Anchor on tab click--%>
-                <s:textfield value="%{documentTab}" id="documentTab" style="visibility:hidden;" />
+
+                <s:textfield value="%{documentTab}" id="documentTab"  />
+                <s:textfield value="%{documentTabInbound}" id="documentTabInbound"  />
 
                 <s:if test="hasActionMessages()">
                     <div class="col-lg-12" id="successDiv">
@@ -153,30 +214,63 @@
                     </div>
                 </s:if>
 
-                <div class="well">
-                    <div class="container">
-                        <s:form action="addReferenceNumberInbound" theme="bootstrap">
-                            <label class="col-lg-2">Reference Number<span class="asterisk_red"></span></label>
-                            <div class="col-lg-8">
-                                <s:property value="%{document.documentId}" />
-                                <s:property value="%{document.documentName}" />
-                                <s:property value="%{document.documentType}" />
-                                <s:property value="%{document.referenceId}" />
-                                <s:hidden name="document.documentId" value="%{document.documentId}" />
-                                <s:hidden name="document.documentName" value="%{document.documentName}" />
-                                <s:hidden name="document.documentType" value="%{document.documentType}" />
-                                <s:hidden name="document.referenceId" value="%{document.referenceId}" />
-                                <s:hidden name="document.referenceTable" value="%{document.referenceTable}" />
-                                <s:hidden name="document.orderNumber" value="%{document.orderNumber}" />
-                                <s:textfield cssClass="form-control" placeholder="Reference Number" name="document.referenceNumber"
-                                             id="document.referenceNumber" required="true" maxLength="30" autofocus="true"
-                                             pattern="[a-zA-Z\s ]+"
-                                             title="Name should not contain special characters and/or numbers."/>
+                <s:if test=" documentTabInbound == 'NO_INBOUND_DATE' || documentTabInbound == 'INBOUND' ">
+
+                    <div class="well">
+
+                        <div class="container">
+
+                            <div class="form-group">
+                                <s:form action="dateReceivedInboundInput" theme="bootstrap">
+
+                                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Date Received</label>
+                                    <div class="col-lg-4">
+                                        <s:textfield type="hidden" name="document.referenceId" id="document_Id"></s:textfield>
+                                        <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
+                                        <s:textfield type="text" class="form-control" id="datepicker" value="%{document.inboundReturned}" name="document.inboundReturned"  placeholder="Select Returned date" contenteditable="false" style="margin-bottom: 15px !important;" ></s:textfield>
+                                    </div>
+                                    <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Comments</label>
+                                    <div class="col-lg-4">
+                                        <s:textarea cssClass="form-control" value="%{document.documentComments}" name="document.documentComments" cssStyle="resize: none;" ></s:textarea>
+                                    </div>
+                                    <s:submit name="submit" cssClass="btn btn-primary pull-right" value="Save" onclick="addOrderId()"/>
+                                </s:form>
                             </div>
-                            <s:submit name="submit" cssClass="btn btn-primary" value="Save" />
-                        </s:form>
+
+                        </div>
+
                     </div>
-                </div>
+
+                </s:if>
+
+                <s:if test=" documentTabInbound == 'INBOUND' ">
+
+                    <div class="well">
+                        <div class="container">
+                            <s:form action="addReferenceNumberInbound" theme="bootstrap">
+                                <label class="col-lg-2">Reference Number<span class="asterisk_red"></span></label>
+                                <div class="col-lg-8">
+                                    <s:property value="%{document.documentId}" />
+                                    <s:property value="%{document.documentName}" />
+                                    <s:property value="%{document.documentType}" />
+                                    <s:property value="%{document.referenceId}" />
+                                    <s:hidden name="document.documentId" value="%{document.documentId}" />
+                                    <s:hidden name="document.documentName" value="%{document.documentName}" />
+                                    <s:hidden name="document.documentType" value="%{document.documentType}" />
+                                    <s:hidden name="document.referenceId" value="%{document.referenceId}" />
+                                    <s:hidden name="document.referenceTable" value="%{document.referenceTable}" />
+                                    <s:hidden name="document.orderNumber" value="%{document.orderNumber}" />
+                                    <s:textfield cssClass="form-control" placeholder="Reference Number" name="document.referenceNumber"
+                                                 id="document.referenceNumber" required="true" maxLength="30" autofocus="true"
+                                                 pattern="[a-zA-Z\s ]+"
+                                                 title="Name should not contain special characters and/or numbers."/>
+                                </div>
+                                <s:submit name="submit" cssClass="btn btn-primary" value="Save" />
+                            </s:form>
+                        </div>
+                    </div>
+
+                </s:if>
 
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
@@ -230,7 +324,7 @@
 
                 <div class="tab-content">
                     <%--OUTBOUND DOCUMENTS BEGIN--%>
-                    <div class="tab-pane fade" id="outbound">
+                   <%-- <div class="tab-pane fade" id="outbound">
 
                         <div class="panel-body">
 
@@ -238,7 +332,7 @@
                                 <display:table id="document" name="outboundEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px; visibility:hidden;">
 
-                                    <%--<td>
+                                    &lt;%&ndash;<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
                                                 <s:url var="checkDocumentUrl" action="checkDocument">
@@ -261,7 +355,7 @@
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
                                         </display:column>
-                                    </td>--%>
+                                    </td>&ndash;%&gt;
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                         </display:column>
@@ -274,18 +368,18 @@
                                     <td><display:column property="documentStatus" title="Status" class="tb-font-black"
                                                         style="text-align: center;" > </display:column></td>
 
-                                    <%--<td><display:column property="documentId" title="ID" class="tb-font-black"
-                                                        style="text-align: center;" > </display:column></td>--%>
+                                    &lt;%&ndash;<td><display:column property="documentId" title="ID" class="tb-font-black"
+                                                        style="text-align: center;" > </display:column></td>&ndash;%&gt;
 
                                     <td>
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" >
                                             <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
                                             <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
-                                            <%--Input Reference ID--%>
+                                            &lt;%&ndash;Input Reference ID&ndash;%&gt;
                                             <s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">
-                                                <%--<a data-toggle="modal" data-target="#addReferenceNumber" >
+                                                &lt;%&ndash;<a data-toggle="modal" data-target="#addReferenceNumber" >
                                                     <i class="fa fa-edit"></i>
-                                                </a>--%>
+                                                </a>&ndash;%&gt;
                                                 <s:url var="addReferenceNumberUrl" action="orderDocumentsInput">
                                                     <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
                                                     <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
@@ -294,13 +388,13 @@
                                                     <i class="fa fa-edit"></i>
                                                 </s:a>
                                             </s:if>
-                                            <%--Print Document--%>
+                                            &lt;%&ndash;Print Document&ndash;%&gt;
                                             <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='ACCEPTANCE RECEIPT' ">
                                                 <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                     <i class="fa fa-print"></i>
                                                 </a>
                                             </s:if>
-                                            <%--Move Document--%>
+                                            &lt;%&ndash;Move Document&ndash;%&gt;
                                             <s:url var="checkDocumentUrl" action="checkDocument">
                                                 <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                             </s:url>
@@ -315,36 +409,40 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>--%>
                     <%--INBOUND DOCUMENTS BEGIN--%>
                     <div class="tab-pane fade in active" id="inbound">
 
                             <div class="panel-body">
 
                                 <div class="table-responsive">
-                                    <display:table id="document" name="inboundEntityList" requestURI="viewOrderDocumentsInbound.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocumentsInbound.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
                                             <display:column title="" class="tb-font-black" style="text-align: center;" >
-                                                <s:if test="#attr.document.documentProcessed == 0">
-                                                    <s:url var="checkDocumentInboundUrl" action="checkDocumentInbound">
+
+                                                <s:if test=" documentTabInbound == 'INBOUND' ">
+
+                                                    <%--<s:url var="checkDocumentInboundUrl" action="checkDocumentInbound">
                                                         <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                     </s:url>
-                                                    <s:a class="icon-action-link" href="%{checkDocumentInboundUrl}">
+                                                    <s:a class="icon-action-link" href="%{checkDocumentInboundUrl}" rel="tooltip" title ="Check Document">
                                                         <i class="fa fa-square-o"></i>
-                                                    </s:a>
+                                                    </s:a>--%>
+                                                    <s:if test="#attr.document.documentProcessed == 1">
+                                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                    </s:if>
+                                                    <s:else>
+                                                        <i class="fa fa-check-square-o"></i>
+                                                    </s:else>
                                                 </s:if>
 
-                                                <s:else>
-                                                    <%--<s:url var="uncheckDocumentUrl" action="unCheckDocument">
-                                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                                    </s:url>
-                                                    <s:a class="icon-action-link" href="%{uncheckDocumentUrl}" rel="tooltip" title ="Edit Booking">
-                                                        <i class="fa fa-check-square-o"></i>
-                                                    </s:a>--%>
-                                                    <i class="fa fa-check-square-o"></i>
-                                                </s:else>
+                                                <s:if test=" documentTabInbound == 'NO_INBOUND_DATE' ">
+
+                                                    <i class="fa fa-square-o"></i>
+
+                                                </s:if>
                                                 <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
                                                 <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
@@ -355,11 +453,15 @@
                                         </display:column>
                                         </td>
 
-                                        <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
+                                        <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
 
-                                        <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
+                                        <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
+
+                                        <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
 
@@ -406,11 +508,14 @@
 
                                     </display:table>
                                 </div>
+                                <button type="button" id="Cancel" class="pull-right btn" disabled>
+                                    Check Document(s)
+                                </button>
                             </div>
 
                     </div>
                     <%--FINAL SET OUTBOUND DOCUMENTS BEGIN--%>
-                    <div class="tab-pane fade" id="finalOutbound">
+                    <%--<div class="tab-pane fade" id="finalOutbound">
 
                         <div class="panel-body">
 
@@ -418,7 +523,7 @@
                                 <display:table id="InboundDocument" name="finalOutboundEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px; visibility:hidden;">
 
-                                    <%--<td>
+                                    &lt;%&ndash;<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
                                                 <s:url var="checkDocumentUrl" action="checkDocument">
@@ -441,7 +546,7 @@
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
                                         </display:column>
-                                    </td>--%>
+                                    </td>&ndash;%&gt;
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                     </display:column>
@@ -455,8 +560,8 @@
                                     </display:column>
                                     </td>
 
-                                    <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                        style="text-align: center;" > </i></display:column></td>--%>
+                                    &lt;%&ndash;<td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>&ndash;%&gt;
 
                                     <td>
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
@@ -472,9 +577,9 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>--%>
                     <%--FINAL SET INBOUND DOCUMENTS BEGIN--%>
-                    <div class="tab-pane fade" id="finalInbound">
+                    <%--<div class="tab-pane fade" id="finalInbound">
 
                         <div class="panel-body">
 
@@ -482,7 +587,7 @@
                                 <display:table id="InboundDocument" name="finalInboundEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px; visibility:hidden;">
 
-                                    <%--<td>
+                                    &lt;%&ndash;<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
                                                 <s:url var="checkDocumentUrl" action="checkDocument">
@@ -505,7 +610,7 @@
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
                                         </display:column>
-                                    </td>--%>
+                                    </td>&ndash;%&gt;
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                     </display:column>
@@ -519,8 +624,8 @@
                                     </display:column>
                                     </td>
 
-                                    <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                        style="text-align: center;" > </i></display:column></td>--%>
+                                    &lt;%&ndash;<td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>&ndash;%&gt;
 
                                     <td>
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
@@ -536,9 +641,9 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>--%>
                     <%--ARCHIVE BEGIN--%>
-                    <div class="tab-pane fade" id="archive">
+                    <%--<div class="tab-pane fade" id="archive">
 
                         <div class="panel-body">
 
@@ -546,7 +651,7 @@
                                 <display:table id="InboundDocument" name="archiveEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px; visibility:hidden;">
 
-                                    <%--<td>
+                                    &lt;%&ndash;<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
                                                 <s:url var="checkDocumentUrl" action="checkDocument">
@@ -569,7 +674,7 @@
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
                                         </display:column>
-                                    </td>--%>
+                                    </td>&ndash;%&gt;
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                     </display:column>
@@ -583,8 +688,8 @@
                                     </display:column>
                                     </td>
 
-                                    <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                        style="text-align: center;" > </i></display:column></td>--%>
+                                    &lt;%&ndash;<td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>&ndash;%&gt;
 
                                     <td>
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
@@ -600,9 +705,9 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>--%>
                     <%--BILLING DOCUMENTS BEGIN--%>
-                    <div class="tab-pane fade" id="billing">
+                    <%--<div class="tab-pane fade" id="billing">
 
                         <div class="panel-body">
 
@@ -610,7 +715,7 @@
                                 <display:table id="InboundDocument" name="billingEntityList" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px; visibility:hidden;">
 
-                                    <%--<td>
+                                    &lt;%&ndash;<td>
                                         <display:column title="" class="tb-font-black" style="text-align: center;" >
                                             <s:if test="#attr.document.documentProcessed == 0">
                                                 <s:url var="checkDocumentUrl" action="checkDocument">
@@ -633,7 +738,7 @@
                                             <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
                                         </display:column>
-                                    </td>--%>
+                                    </td>&ndash;%&gt;
 
                                     <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                         </display:column>
@@ -647,8 +752,8 @@
                                         </display:column>
                                     </td>
 
-                                    <%--<td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                        style="text-align: center;" > </i></display:column></td>--%>
+                                    &lt;%&ndash;<td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                        style="text-align: center;" > </i></display:column></td>&ndash;%&gt;
 
                                     <td>
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" > </i>
@@ -664,7 +769,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div>--%>
                 </div>
 
             </div>
@@ -676,6 +781,14 @@
 <script>
 
 $(document).ready(function() {
+    $( window ).load(function() {
+        var outbound_tab = $("#documentTab").val();
+
+        if(outbound_tab == "OUTBOUND_COMPLETE"){
+            $("#first").toggleClass('active complete');
+            $("#second").toggleClass('disabled active');
+        }
+    });
     /*Anchor on message*/
     if ($('#successDiv').length !== 0){
         window.location.href = '#successDiv';
@@ -707,9 +820,9 @@ if ($('#successDiv').length !== 0){
     window.location.href = '#successDiv';
 }*/
 
-if (tbl==null){
+/*if (tbl==null){
     $("#first").toggleClass('active complete');
-    $("#second").toggleClass('disabled active');}
+    $("#second").toggleClass('disabled active');}*/
 
     /*var tbl = document.getElementById("document");
     if (tbl != null) {
@@ -814,6 +927,24 @@ function BillingProgress() {
     document.getElementById("bill").className = 'active';
     document.getElementById("fiOut").className = '';
     document.getElementById("fiIn").className = '';
+}
+
+// Date Time Picker
+var returnedDate = $('#datepicker');
+
+//pick up date validation
+returnedDate.datepicker({
+
+    // on 5:00pm
+    timeFormat: 'h:mm TT',
+    minDate: 0
+
+});
+
+function addOrderId() {
+    /*var order_Id = document.getElementById("order_Id").value;
+    document.getElementById("document_Id").value = order_Id;*/
+    document.getElementById("documentItem").value = "save";
 }
 
 </script>

@@ -9,6 +9,27 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<script>
+
+    $(document).ready(function() {
+
+        $( window ).load(function() {
+
+            var outbound_tab = $("#documentTab").val();
+
+            if(outbound_tab == "OUTBOUND_COMPLETE"){
+
+                $("#first").toggleClass('active complete');
+                $("#second").toggleClass('disabled active');
+            }
+
+
+        });
+
+    });
+
+</script>
+
 <style>
     .pagebanner, .pagelinks {
         display: none;
@@ -95,6 +116,19 @@
                     </div>
 
                     <div class="panel-body">
+
+                        <%--<div class="form-group">
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Mode</label>
+                            <div class="col-lg-4">
+                                <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num" disabled="true"></s:textfield>
+                            </div>
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Mode</label>
+                            <div class="col-lg-4">
+                                <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num" disabled="true"></s:textfield>
+                            </div>
+                        </div>--%>
+
+
                         <div class="table-responsive list-table">
 
                             <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
@@ -268,11 +302,10 @@
 
                         <div class="panel-body">
 
-
-
                             <div class="table-responsive">
-                                <%--<s:form name="documentform" action="processDocuments">--%>
-                                <s:textfield  type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
+                                <s:form name="myform" action="processDocuments">
+                                <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
+
                                 <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="outbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">
 
@@ -285,12 +318,13 @@
                                             <s:if test=" documentTab == 'OUTBOUND' ">
 
                                                 <s:if test="#attr.document.documentProcessed == 0">
-                                                    <s:url var="checkDocumentUrl" action="checkDocument">
+                                                    <%--<s:url var="checkDocumentUrl" action="checkDocument">
                                                         <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                     </s:url>
                                                     <s:a class="icon-action-link" href="%{checkDocumentUrl}" rel="tooltip" title ="Check Document">
                                                         <i class="fa fa-square-o"></i>
-                                                    </s:a>
+                                                    </s:a>--%>
+                                                    <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
                                                 </s:if>
 
                                                 <s:else>
@@ -303,13 +337,13 @@
                                                     <i class="fa fa-check-square-o"></i>
                                                 </s:else>
                                                 <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
-                                                <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
+                                                <%--<input  id="documentProcess" value="${document.documentId}" name="documentNameParam"/>--%>
 
                                             </s:if>
 
                                             <s:else>
 
-                                                WALA
+                                                <i class="fa fa-check-square-o"></i>
 
                                             </s:else>
 
@@ -345,8 +379,8 @@
 
                                             <s:if test=" documentTab == 'OUTBOUND' ">
 
-                                                <input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
-                                                <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>
+                                                <%--<input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
+                                                <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>--%>
 
                                                 <%--Input Reference ID--%>
                                                 <s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">
@@ -362,7 +396,7 @@
                                                     </s:a>
                                                 </s:if>
                                                 <%--Print Document--%>
-                                                <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='BOOKING REQUEST FORM WITH SIGNATURE' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='ACCEPTANCE RECEIPT' ">
+                                                <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='BOOKING REQUEST FORM WITH SIGNATURE' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN WITH SIGNATURE' || #attr.document.documentName=='ACCEPTANCE RECEIPT' ">
                                                     <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                         <i class="fa fa-print"></i>
                                                     </a>
@@ -388,30 +422,34 @@
 
                                 </display:table>
                                 <%--<s:submit cssClass="btn btn-default" value="Process Documents" onclick="addTextSet()"></s:submit>--%>
-                            <%--</s:form>--%>
+
                             </div>
 
-                                <s:if test=" inboundCount == 0 ">
+                                <s:if test=" documentTab == 'OUTBOUND' ">
 
-                                    <s:url var="processDocumentsUrl" action="moveDocuments">
+                                    <%--<s:url var="processDocumentsUrl" action="moveDocuments">
                                         <s:param name="orderIdParam"
                                                  value="#attr.order.orderId"></s:param>
-                                        <%--<s:property value="%{#attr.order.orderId}"/>--%>
+                                        &lt;%&ndash;<s:property value="%{#attr.order.orderId}"/>&ndash;%&gt;
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{processDocumentsUrl}">
                                         <button type="button" id="Cancel" class="pull-right btn">
                                             Process Documents
                                         </button>
-                                    </s:a>
+                                    </s:a>--%>
+
+                                    <s:submit cssClass="btn btn-default pull-right" value="Check Document(s)" onclick="addCheckText()"></s:submit>
 
                                 </s:if>
 
                                 <s:else>
                                     <button type="button" id="Cancel" class="pull-right btn" disabled>
-                                        Process Documents
+                                        Check Document(s)
                                     </button>
+                                    <%--<s:submit cssClass="btn btn-default pull-right" value="Process Documents" onclick="addMoveText()"></s:submit>--%>
                                 </s:else>
 
+                            </s:form>
                         </div>
 
                     </div>
@@ -765,35 +803,38 @@
         </div>
     </div>
 </div>
-<s:textfield value="%{outboundCount}" id="outboundCount"  />
-<s:textfield value="%{inboundCount}" id="inboundCount"  />
-<s:textfield value="%{finalOutboundCount}" id="finalOutboundCount"  />
-<s:textfield value="%{finalInboundCount}" id="finalInboundCount"  />
+<s:textfield value="%{outboundCount}" id="outboundCount" type="hidden" />
+<s:textfield value="%{inboundCount}" id="inboundCount" type="hidden" />
+<s:textfield value="%{finalOutboundCount}" id="finalOutboundCount" type="hidden" />
+<s:textfield value="%{finalInboundCount}" id="finalInboundCount" type="hidden" />
 <script>
 
 $(document).ready(function() {
-
+    var outbound_tab = $("#documentTab").val();
     if ($('#successDiv').length !== 0){
         window.location.href = '#successDiv';
     }
 
+    /*if(outbound_tab == "OUTBOUND_COMPLETE"){
+        alert(2);
+        $("#first").toggleClass('active complete');
+        $("#second").toggleClass('disabled active');
+    }*/
+
     $( window ).load(function() {
 
         /*Anchor on inbound tab click*/
-        var outbound_tab = $("#documentTab").val();
-        if (outbound_tab == "OUTBOUND") {
+
+        if (outbound_tab == "OUTBOUND" || outbound_tab == "OUTBOUND_COMPLETE") {
             window.location.href = '#documentTab';
         }
 
-        var outbound_count = $('#outboundCount').val();
+
+
+        /*var outbound_count = $('#outboundCount').val();
         var inbound_count = $('#inboundCount').val();
         var final_outbound_count =$('#finalOutboundCount').val();
-        var final_inbound_count =$('#finalInboundCount').val();
-
-        if(outbound_tab == "OUTBOUND_COMPLETE"){
-            $("#first").toggleClass('active complete');
-            $("#second").toggleClass('disabled active');
-        }
+        var final_inbound_count =$('#finalInboundCount').val();*/
 
         /*if (outbound_count == 0 && inbound_count == 0 && final_outbound_count== 0 && final_inbound_count == 0) {
             $("#first").toggleClass('active complete');
@@ -967,7 +1008,7 @@ function BillingProgress() {
     document.getElementById("fiIn").className = '';
 }
 
-function CheckAll(check)
+/*function CheckAll(check)
 {
     for (i = 0; i < check.length; i++)
         check[i].checked = true ;
@@ -977,10 +1018,14 @@ function UnCheckAll(check)
 {
     for (i = 0; i < check.length; i++)
         check[i].checked = false ;
+}*/
+
+function addCheckText() {
+    document.getElementById("documentItem").value = "check";
 }
 
-function addTextSet() {
-    document.getElementById("documentItem").value = "set";
+function addMoveText() {
+    document.getElementById("documentItem").value = "move";
 }
 
 </script>

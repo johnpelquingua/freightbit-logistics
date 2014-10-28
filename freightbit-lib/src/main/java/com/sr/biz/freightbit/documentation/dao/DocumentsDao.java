@@ -40,7 +40,7 @@ public interface DocumentsDao {
 
     public Documents findDocumentByNameAndVendorCode(String documentName, String vendorCode);
 
-    public Documents findDocumentNameAndId(String documentName, Integer orderItemId);
+    public Documents findDocumentNameAndId(String documentName, Integer referenceId);
 
     public void deleteDocument(Documents documents);
 

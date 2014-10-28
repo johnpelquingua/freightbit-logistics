@@ -17,4 +17,6 @@ public class DocumentsConstants {
       public final static String HOUSE_WAYBILL_ORIGIN = "HOUSE WAYBILL ORIGIN";
       public final static String HOUSE_WAYBILL_DESTINATION = "HOUSE WAYBILL DESTINATION";
       public final static String ACCEPTANCE_RECEIPT = "ACCEPTANCE RECEIPT";
+      public final static String MASTER_BILL_OF_LADING = "MASTER BILL OF LADING";
+      public final static String MASTER_WAYBILL_ORIGIN = "MASTER WAYBILL ORIGIN";
 }

@@ -272,14 +272,14 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
-    public Documents findDocumentNameAndId(String documentName, Integer orderItemId) {
+    public Documents findDocumentNameAndId(String documentName, Integer referenceId) {
 
         log.debug("Finding Document ....");
         try {
             log.debug("Finding Document");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentName = :documentName and d.orderItemId = :orderItemId");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentName = :documentName and d.referenceId = :referenceId");
             query.setParameter("documentName", documentName);
-            query.setParameter("documentId", orderItemId);
+            query.setParameter("referenceId", referenceId);
             Documents results = (Documents) query.list();
             return results;
         } catch (Exception e) {

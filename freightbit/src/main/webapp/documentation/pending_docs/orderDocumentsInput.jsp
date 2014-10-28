@@ -378,7 +378,7 @@
                             </div>
 
                             <button type="button" id="Cancel" class="pull-right btn" disabled>
-                                Process Documents
+                                Check Document(s)
                             </button>
 
                         </div>

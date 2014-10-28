@@ -12,12 +12,17 @@
 
         <default-action-ref name="Documentation"/>
 
-        <!--<action name="processDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocuments">
+        <action name="processDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocuments">
             <result name="input" type="redirect">viewOrderDocuments</result>
-        </action>-->
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
 
-        <action name="processDocumentsTotal" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsTotal">
-            <result name="success" type="tiles">documentation.viewOrderDocuments.tiles</result>
+        <action name="dateReceivedInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedInbound">
+            <result name="success" type="tiles">documentation.orderDocumentsInboundInput.tiles</result>
+        </action>
+
+        <action name="dateReceivedInboundInput" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedInboundInput">
+            <result name="success" type="redirect">viewOrderDocumentsInbound</result>
         </action>
 
         <action name="viewPlainDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewPlainDocuments">
