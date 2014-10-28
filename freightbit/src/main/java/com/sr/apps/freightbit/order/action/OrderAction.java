@@ -562,7 +562,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
 
-        if (orderEntity.getOrderStatus().equals("PENDING") || orderEntity.getOrderStatus().equals("CANCELLED")) {
+        if (orderEntity.getOrderStatus().equals("PENDING") || orderEntity.getOrderStatus().equals("CANCELLED") ||  orderEntity.getOrderStatus().equals("INCOMPLETE")) {
             orderService.deleteOrder(orderEntity);
 
             List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(orderIdParam);
@@ -597,7 +597,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
 
-        if(orderEntity.getOrderStatus().equals("EMPTY")){
+        if(orderEntity.getOrderStatus().equals("INCOMPLETE")){
             String column = getColumnFilter();
             List<Orders> orderEntityList = new ArrayList<Orders>();
             if (StringUtils.isNotBlank(column)) {
@@ -1077,7 +1077,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setOriginationPort(formBean.getOriginationPort());
         entity.setDestinationPort(formBean.getDestinationPort());
         entity.setComments(formBean.getComments());
-        entity.setOrderStatus("EMPTY");  // still to be updated
+        entity.setOrderStatus("INCOMPLETE");  // still to be updated
         entity.setRates(99.99); // still to be updated
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setAccountRep(commonUtils.getUserNameFromSession());

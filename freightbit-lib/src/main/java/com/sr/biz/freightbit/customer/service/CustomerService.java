@@ -95,6 +95,8 @@ public interface CustomerService {
 
     public Customer findCustomerByCustomerCode(String customerCode);
 
+
+
     //Items
 
     public void addItem(Items items) throws ItemAlreadyExistsException;

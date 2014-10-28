@@ -33,4 +33,6 @@ public interface CustomerDao {
     public List<Customer> findCustomerByCustomerCode(String customerCode);
 
     public List<Customer> findDuplicateCustomerByCodeAndId(String customerCode, Integer customerId);
+
+
 }

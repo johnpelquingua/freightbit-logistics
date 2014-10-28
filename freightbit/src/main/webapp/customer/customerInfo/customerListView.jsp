@@ -82,9 +82,12 @@
                                             </s:a>
                                         </sec:authorize>
 
-                                        <s:url var="deleteCustomerUrl" action="deleteCustomer">
+                                        <s:url var="deleteCustomerUrl" action="deleteCustomer"><s:property value="#attr.customer.customerId"></s:property>
                                             <s:param name="customerCodeParam"
                                                      value="#attr.customer.customerCode"></s:param>
+                                            <s:param name="customerIdParam"
+                                                     value="#attr.customer.customerId"></s:param>
+
                                         </s:url>
                                         <sec:authorize
                                                 access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">

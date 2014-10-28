@@ -208,7 +208,7 @@
 
                     <legend style="text-align: left;">
                             <span >
-                                Shipper Information
+                                Customer Information
                             </span>
                     </legend>
 
@@ -362,6 +362,26 @@
 
                     <s:form action="addCustomerContact" cssClass="form-horizontal" theme="bootstrap">
                     <s:hidden name="contact.referenceId" id="custIdHolder"/>
+
+                        <div class="form-group">
+                            <label class="col-lg-3">First Name<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
+                                <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
+                                             id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                             title="Name should not contain special characters and/or numbers."
+                                             required="true"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3">Middle Name</label>
+                            <div class="col-lg-9">
+                                <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
+                                             id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                             title="Name should not contain special characters and/or numbers."/>
+                            </div>
+                        </div>
+
                       <div class="form-group">
                         <label class="col-lg-3">Last name<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
@@ -371,23 +391,8 @@
                                  title="Name should not contain special characters and/or numbers."/>
                         </div>
                       </div>
-                       <div class="form-group">
-                        <label class="col-lg-3">First Name<span class="asterisk_red"></span></label>
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                     id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s ]+"
-                                     title="Name should not contain special characters and/or numbers."
-                                     required="true"/>
-                            </div>
-                       </div>
-                     <div class="form-group">
-                        <label class="col-lg-3">Middle Name</label>
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                                     id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s ]+"
-                                     title="Name should not contain special characters and/or numbers."/>
-                            </div>
-                     </div>
+
+
                         <div class="form-group">
                         <label class="col-lg-3">Phone<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">

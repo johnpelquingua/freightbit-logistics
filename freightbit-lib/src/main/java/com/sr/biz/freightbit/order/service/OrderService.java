@@ -11,6 +11,7 @@ import com.sr.biz.freightbit.order.entity.Counter;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 
+import javax.persistence.criteria.Order;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -97,7 +98,7 @@ public interface OrderService {
 
     public void addCounterType(Counter counter);
 
-//    public BigInteger CountAll();
+    public List<Orders> findCustomerWithBooking (Integer customerId);
 
 }
 

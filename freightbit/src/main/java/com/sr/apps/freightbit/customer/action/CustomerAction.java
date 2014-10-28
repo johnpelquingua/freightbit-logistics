@@ -26,6 +26,8 @@ import com.sr.biz.freightbit.customer.entity.Rates;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.customer.service.ItemService;
+import com.sr.biz.freightbit.order.entity.Orders;
+import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -84,6 +86,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private ParameterService parameterService;
     private NotificationService notificationService;
     private CommonUtils commonUtils;
+    private OrderService orderService;
 
     // customer module checkboxes values
     private boolean customer_dti;
@@ -383,6 +386,12 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String deleteCustomer() {
+        List<Orders> orderEntityList = orderService.findCustomerWithBooking(customerIdParam);
+        if(orderEntityList.size()>0){
+            clearErrorsAndMessages();
+            addActionMessage("You cannot delete a Customer associated with Booking");
+            return INPUT;
+        }
         Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
         customerService.deleteCustomer(customerEntity);
 
@@ -398,6 +407,16 @@ public class CustomerAction extends ActionSupport implements Preparable {
         }
         clearErrorsAndMessages();
         addActionMessage("Success! Customer has been deleted.");
+        return SUCCESS;
+    }
+
+    public String loadFailedDeleteCustomer() {
+        List<Customer> customerEntityList = customerService.findAllCustomer();
+        for (Customer customerElem : customerEntityList) {
+            customers.add(transformToFormBean(customerElem));
+        }
+        clearErrorsAndMessages();
+        addActionMessage("You cannot delete a Customer with an on-going booking");
         return SUCCESS;
     }
 
@@ -1619,5 +1638,17 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void setNotificationService(NotificationService notificationService) {
         this.notificationService = notificationService;
+    }
+
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
+    public Integer getCustomerIdParam() {
+        return customerIdParam;
+    }
+
+    public void setCustomerIdParam(Integer customerIdParam) {
+        this.customerIdParam = customerIdParam;
     }
 }

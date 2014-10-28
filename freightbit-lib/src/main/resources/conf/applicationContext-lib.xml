@@ -84,11 +84,13 @@
     </bean>
 
     <bean id="customerService" class="com.sr.biz.freightbit.customer.service.impl.CustomerServiceImpl">
+        <property name="orderDao" ref="orderDao"/>
         <property name="customerDao" ref="customerDao"/>
         <property name="addressDao" ref="addressDao"/>
         <property name="ratesDao" ref="ratesDao"/>
         <property name="contactsDao" ref="contactsDao"/>
         <property name="itemsDao" ref="itemsDao"/>
+
     </bean>
 
     <bean id="vendorService" class="com.sr.biz.freightbit.vendor.service.impl.VendorServiceImpl">

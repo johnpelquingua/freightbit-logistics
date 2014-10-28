@@ -81,10 +81,14 @@
 
         <action name="deleteCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="deleteCustomer">
+            <result name="input" type="redirect">loadFailedDeleteCustomer</result>
             <result name="success" type="redirect">loadSuccessDeleteCustomer</result>
         </action>
 
         <action name="loadSuccessDeleteCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSuccessDeleteCustomer">
+            <result name="success" type="tiles">customer.customerList.tiles</result>
+        </action>
+        <action name="loadFailedDeleteCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadFailedDeleteCustomer">
             <result name="success" type="tiles">customer.customerList.tiles</result>
         </action>
 

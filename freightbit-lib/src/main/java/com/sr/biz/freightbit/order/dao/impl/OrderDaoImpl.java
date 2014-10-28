@@ -3,6 +3,7 @@ package com.sr.biz.freightbit.order.dao.impl;
 import java.math.BigInteger;
 import java.util.List;
 
+import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.order.entity.Counter;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -14,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.entity.Orders;
+
+import javax.persistence.criteria.Order;
 
 /**
  * Created by JMXPSX on 5/27/14.
@@ -197,14 +200,20 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         }
     }
 
-//    @Override
-//    public BigInteger CountAll(){
-//        String sql = "SELECT count(addedType) from freightbit.countertable where addedType = 'BOOKING' ";
-//        Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
-//        BigInteger temp = (BigInteger)query.uniqueResult();
-//        System.out.println("ahaha "+temp);
-//        return temp;
-//
-//    }
+    @Override
+    public List<Orders> findCustomerWithBooking(Integer customerId) {
+        Log.debug("Find customer with Booking.");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Orders d where d.customerId = :customerId");
+            query.setParameter("customerId", customerId);
+            List<Orders> results = (List<Orders>) query.list();
+            Log.debug("Find by driverCode successful, result size: " + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            Log.error("Find by customer Failed", re);
+            throw re;
+        }
+    }
 
 }

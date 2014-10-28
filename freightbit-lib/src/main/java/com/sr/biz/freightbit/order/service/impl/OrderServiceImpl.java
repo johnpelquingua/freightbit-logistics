@@ -371,11 +371,9 @@ public class OrderServiceImpl implements OrderService {
         orderDao.addCounterType(counter);
     }
 
-//    @Override
-//    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-//    public BigInteger CountAll(){
-//        return orderDao.CountAll();
-//
-//    }
-
+    @Override
+    public List<Orders> findCustomerWithBooking(Integer customerId) {
+        List<Orders> result=orderDao.findCustomerWithBooking(customerId);
+        return result;
+    }
 }

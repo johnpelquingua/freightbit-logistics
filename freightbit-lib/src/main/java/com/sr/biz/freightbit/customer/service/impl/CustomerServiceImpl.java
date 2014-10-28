@@ -14,6 +14,7 @@ import com.sr.biz.freightbit.customer.entity.Rates;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
 import com.sr.biz.freightbit.customer.service.CustomerService;
+import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
     private AddressDao addressDao;
     private RatesDao ratesDao;
     private ContactsDao contactsDao;
+    private OrderDao orderDao;
 
 
     public void setCustomerDao(CustomerDao customerDao) {
@@ -55,7 +57,9 @@ public class CustomerServiceImpl implements CustomerService {
         this.contactsDao = contactsDao;
     }
 
-
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
     //Consignee
 
     @Override
@@ -420,6 +424,9 @@ public class CustomerServiceImpl implements CustomerService {
             return result.get(0);
         return null;
     }
+
+
+
     //End Of Customer
 
 }
