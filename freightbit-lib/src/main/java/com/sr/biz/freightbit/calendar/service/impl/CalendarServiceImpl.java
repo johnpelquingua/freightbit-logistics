@@ -20,8 +20,16 @@ public class CalendarServiceImpl implements CalendarService {
 			CalendarDetailsDTO detail = new CalendarDetailsDTO();
 			detail.setOrderId(order.getOrderId());
 			detail.setOrderDetails(order.getOrderNumber() + ": " + order.getOriginationPort() + "-" + order.getDestinationPort());
-			detail.setDeliveryDate(order.getDeliveryDate());
-			detail.setPickUpDate(order.getPickupDate());
+			if (order.getDeliveryDate() == null)
+				detail.setDeliveryDate(order.getPickupDate());
+			else
+				detail.setDeliveryDate(order.getDeliveryDate());
+			
+			if (order.getPickupDate() == null)
+				detail.setPickUpDate(order.getDeliveryDate());
+			else
+				detail.setPickUpDate(order.getPickupDate());
+			
 			calDetails.add(detail);
 		}
 		return calDetails;
