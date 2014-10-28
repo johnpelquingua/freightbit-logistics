@@ -488,20 +488,20 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // End of Activation of Proforma Bill of Lading under pending documents
 
         // Proforma Bill of Lading will be activated under pending documents
-        Documents documentEntity2 = new Documents();
-
-        documentEntity2.setClient(client);
-        /*documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);*/
-
-        documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
-        documentEntity2.setReferenceId(orderEntity.getOrderId());
-        documentEntity2.setReferenceTable("ORDERS");
-        documentEntity2.setOrderNumber(orderEntity.getOrderNumber());
-        documentEntity2.setCreatedDate(new Date());
-        documentEntity2.setDocumentStatus("PENDING");
-        documentEntity2.setDocumentProcessed(0);
-
-        documentsService.addDocuments(documentEntity2);
+//        Documents documentEntity2 = new Documents();
+//
+//        documentEntity2.setClient(client);
+//        /*documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);*/
+//
+//        documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
+//        documentEntity2.setReferenceId(orderEntity.getOrderId());
+//        documentEntity2.setReferenceTable("ORDERS");
+//        documentEntity2.setOrderNumber(orderEntity.getOrderNumber());
+//        documentEntity2.setCreatedDate(new Date());
+//        documentEntity2.setDocumentStatus("PENDING");
+//        documentEntity2.setDocumentProcessed(0);
+//
+//        documentsService.addDocuments(documentEntity2);
         // End of Activation of Proforma Bill of Lading under pending documents
         return SUCCESS;
     }
@@ -552,23 +552,23 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
 
         // Proforma Bill of Lading will be activated under pending documents
-        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
-        Documents documentEntity = new Documents();
-            /*documentEntity.setClientId(commonUtils.getClientId());*/
-        Client client = clientService.findClientById(getClientId().toString());
-        documentEntity.setClient(client);
-        /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
-
-        documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
-        documentEntity.setReferenceId(orderEntity.getOrderId());
-        documentEntity.setReferenceTable("ORDERS");
-        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-        documentEntity.setCreatedDate(new Date());
-        documentEntity.setDocumentStatus("PENDING");
-        documentEntity.setDocumentProcessed(0);
-
-        documentsService.addDocuments(documentEntity);
-        // End of Activation of Proforma Bill of Lading under pending documents
+//        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+//        Documents documentEntity = new Documents();
+//            /*documentEntity.setClientId(commonUtils.getClientId());*/
+//        Client client = clientService.findClientById(getClientId().toString());
+//        documentEntity.setClient(client);
+//        /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
+//
+//        documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+//        documentEntity.setReferenceId(orderEntity.getOrderId());
+//        documentEntity.setReferenceTable("ORDERS");
+//        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+//        documentEntity.setCreatedDate(new Date());
+//        documentEntity.setDocumentStatus("PENDING");
+//        documentEntity.setDocumentProcessed(0);
+//
+//        documentsService.addDocuments(documentEntity);
+//        // End of Activation of Proforma Bill of Lading under pending documents
         return SUCCESS;
     }
 
@@ -622,21 +622,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // Proforma Bill of Lading will be activated under pending documents
         Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
 
-        Documents documentEntity = new Documents();
-            /*documentEntity.setClientId(commonUtils.getClientId());*/
-        Client client = clientService.findClientById(getClientId().toString());
-        documentEntity.setClient(client);
-        /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
-
-        documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
-        documentEntity.setReferenceId(orderEntity.getOrderId());
-        documentEntity.setReferenceTable("ORDERS");
-        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-        documentEntity.setCreatedDate(new Date());
-        documentEntity.setDocumentStatus("PENDING");
-        documentEntity.setDocumentProcessed(0);
-
-        documentsService.addDocuments(documentEntity);
+//        Documents documentEntity = new Documents();
+//            /*documentEntity.setClientId(commonUtils.getClientId());*/
+//        Client client = clientService.findClientById(getClientId().toString());
+//        documentEntity.setClient(client);
+//        /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
+//
+//        documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+//        documentEntity.setReferenceId(orderEntity.getOrderId());
+//        documentEntity.setReferenceTable("ORDERS");
+//        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+//        documentEntity.setCreatedDate(new Date());
+//        documentEntity.setDocumentStatus("PENDING");
+//        documentEntity.setDocumentProcessed(0);
+//
+//        documentsService.addDocuments(documentEntity);
         // End of Activation of Proforma Bill of Lading under pending documents
         return SUCCESS;
     }
@@ -651,63 +651,63 @@ public class OperationsAction extends ActionSupport implements Preparable {
             Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
 
 
-            //MAHIRAP TO PROMISE LALO NA KAPAG EDIT NG DOCUMENT AT DELETE
-            Documents documentEntity = new Documents();
-            /*documentEntity.setClientId(commonUtils.getClientId());*/
+//            //MAHIRAP TO PROMISE LALO NA KAPAG EDIT NG DOCUMENT AT DELETE
+//            Documents documentEntity = new Documents();
+//            /*documentEntity.setClientId(commonUtils.getClientId());*/
+//
+//            documentEntity.setClient(client);
+//            /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
+//
+//            documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+//
+//            documentEntity.setReferenceId(orderEntity.getOrderId());
+//            documentEntity.setVendorCode(entity.getVendorSea());
+//
+//            documentEntity.setReferenceTable("ORDERS");
+//            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+//            documentEntity.setCreatedDate(new Date());
+//            documentEntity.setDocumentStatus("INPUT #");
+//            documentEntity.setDocumentProcessed(0);
+//
+//            documentsService.addDocuments(documentEntity);
+//
+//            // House Bill of Lading will be created under pending documents
+//            Documents documentEntity2 = new Documents();
+//
+//            documentEntity2.setClient(client);
+//        /*documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);*/
+//
+//            documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
+//            documentEntity2.setReferenceId(orderEntity.getOrderId());
+//            documentEntity2.setVendorCode(entity.getVendorSea());
+//
+//            documentEntity2.setReferenceTable("ORDERS");
+//            documentEntity2.setOrderNumber(orderEntity.getOrderNumber());
+//            documentEntity2.setCreatedDate(new Date());
+//            documentEntity2.setDocumentStatus("FOR PRINTING");
+//            documentEntity2.setDocumentProcessed(0);
+//
+//            documentsService.addDocuments(documentEntity2);
 
-            documentEntity.setClient(client);
-            /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
 
-            documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
-
-            documentEntity.setReferenceId(orderEntity.getOrderId());
-            documentEntity.setVendorCode(entity.getVendorSea());
-
-            documentEntity.setReferenceTable("ORDERS");
-            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-            documentEntity.setCreatedDate(new Date());
-            documentEntity.setDocumentStatus("INPUT #");
-            documentEntity.setDocumentProcessed(0);
-
-            documentsService.addDocuments(documentEntity);
-
-            // House Bill of Lading will be created under pending documents
-            Documents documentEntity2 = new Documents();
-
-            documentEntity2.setClient(client);
-        /*documentEntity2.setDocumentType(DocumentsConstants.OUTBOUND);*/
-
-            documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
-            documentEntity2.setReferenceId(orderEntity.getOrderId());
-            documentEntity2.setVendorCode(entity.getVendorSea());
-
-            documentEntity2.setReferenceTable("ORDERS");
-            documentEntity2.setOrderNumber(orderEntity.getOrderNumber());
-            documentEntity2.setCreatedDate(new Date());
-            documentEntity2.setDocumentStatus("FOR PRINTING");
-            documentEntity2.setDocumentProcessed(0);
-
-            documentsService.addDocuments(documentEntity2);
-
-
-            if (orderEntity.getServiceMode().equals("PIER TO PIER") && orderEntity.getServiceMode().equals("PIER TO DOOR") ){
-
-                // Acceptance Receipt will be created under pending documents
-                Documents documentEntity3 = new Documents();
-
-                documentEntity3.setClient(client);
-                /*documentEntity3.setDocumentType(DocumentsConstants.OUTBOUND);*/
-
-                documentEntity3.setDocumentName(DocumentsConstants.ACCEPTANCE_RECEIPT);
-                documentEntity3.setReferenceId(orderEntity.getOrderId());
-                documentEntity3.setReferenceTable("ORDERS");
-                documentEntity3.setOrderNumber(orderEntity.getOrderNumber());
-                documentEntity3.setCreatedDate(new Date());
-                documentEntity3.setDocumentStatus("FOR PRINTING");
-                documentEntity3.setDocumentProcessed(0);
-
-                documentsService.addDocuments(documentEntity3);
-            }
+//            if (orderEntity.getServiceMode().equals("PIER TO PIER") && orderEntity.getServiceMode().equals("PIER TO DOOR") ){
+//
+//                // Acceptance Receipt will be created under pending documents
+//                Documents documentEntity3 = new Documents();
+//
+//                documentEntity3.setClient(client);
+//                /*documentEntity3.setDocumentType(DocumentsConstants.OUTBOUND);*/
+//
+//                documentEntity3.setDocumentName(DocumentsConstants.ACCEPTANCE_RECEIPT);
+//                documentEntity3.setReferenceId(orderEntity.getOrderId());
+//                documentEntity3.setReferenceTable("ORDERS");
+//                documentEntity3.setOrderNumber(orderEntity.getOrderNumber());
+//                documentEntity3.setCreatedDate(new Date());
+//                documentEntity3.setDocumentStatus("FOR PRINTING");
+//                documentEntity3.setDocumentProcessed(0);
+//
+//                documentsService.addDocuments(documentEntity3);
+//            }
 
         } catch (Exception e) {
             log.error("Update Orderitem failed", e);
@@ -731,22 +731,22 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
 
-            Documents documentEntity = new Documents();
-            /*documentEntity.setClientId(commonUtils.getClientId());*/
-            Client client = clientService.findClientById(getClientId().toString());
-            documentEntity.setClient(client);
-            /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
-
-            documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_ORIGIN);
-            documentEntity.setReferenceId(orderEntity.getOrderId());
-            documentEntity.setReferenceTable("ORDERS");
-            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-            documentEntity.setCreatedDate(new Date());
-            documentEntity.setDocumentStatus("FOR PRINTING");
-            documentEntity.setDocumentProcessed(0);
-
-            documentsService.addDocuments(documentEntity);
-            // End of Activation of Proforma Bill of Lading under pending documents
+//            Documents documentEntity = new Documents();
+//            /*documentEntity.setClientId(commonUtils.getClientId());*/
+//            Client client = clientService.findClientById(getClientId().toString());
+//            documentEntity.setClient(client);
+//            /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
+//
+//            documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_ORIGIN);
+//            documentEntity.setReferenceId(orderEntity.getOrderId());
+//            documentEntity.setReferenceTable("ORDERS");
+//            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+//            documentEntity.setCreatedDate(new Date());
+//            documentEntity.setDocumentStatus("FOR PRINTING");
+//            documentEntity.setDocumentProcessed(0);
+//
+//            documentsService.addDocuments(documentEntity);
+//            // End of Activation of Proforma Bill of Lading under pending documents
 
         } catch (Exception e) {
             log.error( "update failed", e);
@@ -763,22 +763,22 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
 
-            Documents documentEntity = new Documents();
-            /*documentEntity.setClientId(commonUtils.getClientId());*/
-            Client client = clientService.findClientById(getClientId().toString());
-            documentEntity.setClient(client);
-            /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
-
-            documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_DESTINATION);
-            documentEntity.setReferenceId(orderEntity.getOrderId());
-            documentEntity.setReferenceTable("ORDERS");
-            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-            documentEntity.setCreatedDate(new Date());
-            documentEntity.setDocumentStatus("FOR PRINTING");
-            documentEntity.setDocumentProcessed(0);
-
-            documentsService.addDocuments(documentEntity);
-            // End of Activation of Proforma Bill of Lading under pending documents
+//            Documents documentEntity = new Documents();
+//            /*documentEntity.setClientId(commonUtils.getClientId());*/
+//            Client client = clientService.findClientById(getClientId().toString());
+//            documentEntity.setClient(client);
+//            /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
+//
+//            documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_DESTINATION);
+//            documentEntity.setReferenceId(orderEntity.getOrderId());
+//            documentEntity.setReferenceTable("ORDERS");
+//            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+//            documentEntity.setCreatedDate(new Date());
+//            documentEntity.setDocumentStatus("FOR PRINTING");
+//            documentEntity.setDocumentProcessed(0);
+//
+//            documentsService.addDocuments(documentEntity);
+//            // End of Activation of Proforma Bill of Lading under pending documents
 
 
             operationsService.updateOrderItem(entity);
