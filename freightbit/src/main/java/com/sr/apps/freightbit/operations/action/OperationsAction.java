@@ -124,6 +124,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         // Display basic order data
         Orders orderEntity = orderService.findOrdersById(orderId);
+        //change order status to on going
+        orderEntity.setOrderStatus("ON GOING");
+        orderService.updateOrder(orderEntity);
 
         order = transformToOrderFormBean(orderEntity);
 
@@ -134,6 +137,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
+
+
 
         clearErrorsAndMessages();
         addActionMessage("Success! Items has been updated.");
@@ -147,6 +152,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         // Display basic order data
         Orders orderEntity = orderService.findOrdersById(orderId);
+        //change order status to on going
+        orderEntity.setOrderStatus("ON GOING");
+        orderService.updateOrder(orderEntity);
 
         order = transformToOrderFormBean(orderEntity);
         // displays order items under orders
@@ -157,6 +165,27 @@ public class OperationsAction extends ActionSupport implements Preparable {
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
+
+        // Proforma Bill of Lading will be created under pending documents begin
+//        Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
+
+        Documents documentEntity = new Documents();
+
+        Client client = clientService.findClientById(getClientId().toString());
+        documentEntity.setClient(client);
+
+        documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+        documentEntity.setReferenceId(orderEntity.getOrderId());
+        documentEntity.setReferenceTable("ORDERS");
+        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+        documentEntity.setCreatedDate(new Date());
+        documentEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
+        documentEntity.setOutboundStage(1);
+        documentEntity.setDocumentProcessed(0);
+
+        documentsService.addDocuments(documentEntity);
+
+        // Proforma Bill of Lading will be created under pending documents end
 
         clearErrorsAndMessages();
         addActionMessage("Success! Items has been updated and moved to Inland Freight Planning.");
@@ -468,23 +497,23 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
 
         // Proforma Bill of Lading will be activated under pending documents
-        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
-
-        Documents documentEntity = new Documents();
-            /*documentEntity.setClientId(commonUtils.getClientId());*/
-        Client client = clientService.findClientById(getClientId().toString());
-        documentEntity.setClient(client);
-        /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
-
-        documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
-        documentEntity.setReferenceId(orderEntity.getOrderId());
-        documentEntity.setReferenceTable("ORDERS");
-        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-        documentEntity.setCreatedDate(new Date());
-        documentEntity.setDocumentStatus("PENDING");
-        documentEntity.setDocumentProcessed(0);
-
-        documentsService.addDocuments(documentEntity);
+//        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+//
+//        Documents documentEntity = new Documents();
+//            /*documentEntity.setClientId(commonUtils.getClientId());*/
+//        Client client = clientService.findClientById(getClientId().toString());
+//        documentEntity.setClient(client);
+//        /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
+//
+//        documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+//        documentEntity.setReferenceId(orderEntity.getOrderId());
+//        documentEntity.setReferenceTable("ORDERS");
+//        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+//        documentEntity.setCreatedDate(new Date());
+//        documentEntity.setDocumentStatus("PENDING");
+//        documentEntity.setDocumentProcessed(0);
+//
+//        documentsService.addDocuments(documentEntity);
         // End of Activation of Proforma Bill of Lading under pending documents
 
         // Proforma Bill of Lading will be activated under pending documents
@@ -731,6 +760,29 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
 
+            // House Way Bill Origin will be created under pending documents begin
+//        Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
+
+            Documents documentEntity = new Documents();
+
+            Client client = clientService.findClientById(getClientId().toString());
+            documentEntity.setClient(client);
+
+            documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_ORIGIN);
+            documentEntity.setReferenceId(orderEntity.getOrderId());
+            documentEntity.setReferenceTable("ORDERS");
+            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+            documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
+            documentEntity.setCreatedDate(new Date());
+            documentEntity.setDocumentStatus("FOR PRINTING");
+            documentEntity.setOutboundStage(1);
+            documentEntity.setDocumentProcessed(0);
+            documentEntity.setOrderItemId(entity.getOrderItemId());
+
+            documentsService.addDocuments(documentEntity);
+
+            // House Way Bill Origin will be created under pending documents end
+
 //            Documents documentEntity = new Documents();
 //            /*documentEntity.setClientId(commonUtils.getClientId());*/
 //            Client client = clientService.findClientById(getClientId().toString());
@@ -762,6 +814,29 @@ public class OperationsAction extends ActionSupport implements Preparable {
             OrderItems entity = transformOrderItemToEntityBeanDestination(operationsBean);
 
             Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
+
+            // House Way Bill Destination will be created under pending documents begin
+//        Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
+
+            Documents documentEntity = new Documents();
+
+            Client client = clientService.findClientById(getClientId().toString());
+            documentEntity.setClient(client);
+
+            documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_DESTINATION);
+            documentEntity.setReferenceId(orderEntity.getOrderId());
+            documentEntity.setReferenceTable("ORDERS");
+            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+            documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
+            documentEntity.setCreatedDate(new Date());
+            documentEntity.setDocumentStatus("FOR PRINTING");
+            documentEntity.setFinalOutboundStage(1);
+            documentEntity.setDocumentProcessed(0);
+            documentEntity.setOrderItemId(entity.getOrderItemId());
+
+            documentsService.addDocuments(documentEntity);
+
+            // House Way Bill Destination will be created under pending documents end
 
 //            Documents documentEntity = new Documents();
 //            /*documentEntity.setClientId(commonUtils.getClientId());*/

@@ -17,8 +17,13 @@
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
+        <action name="processDocumentsInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsInbound">
+            <result name="input" type="redirect">viewOrderDocumentsInbound</result>
+            <result name="success" type="redirect">viewOrderDocumentsInbound</result>
+        </action>
+
         <action name="dateReceivedInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedInbound">
-            <result name="success" type="tiles">documentation.orderDocumentsInboundInput.tiles</result>
+            <result name="success" type="tiles">documentation.dateReceivedInbound.tiles</result>
         </action>
 
         <action name="dateReceivedInboundInput" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedInboundInput">

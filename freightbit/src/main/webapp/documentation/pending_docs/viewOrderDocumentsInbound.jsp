@@ -9,6 +9,27 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<script>
+
+    $(document).ready(function() {
+
+        $( window ).load(function() {
+
+            var inbound_tab = $("#documentTabInbound").val();
+
+            if(inbound_tab == "INBOUND_COMPLETE"){
+
+                $("#second").toggleClass('active complete');
+                $("#third").toggleClass('disabled active');
+            }
+
+
+        });
+
+    });
+
+</script>
+
 <style>
     .pagebanner, .pagelinks {
         display: none;
@@ -48,7 +69,7 @@
                         <i class="fa fa-book"></i>
                         <span class="panel-title">Booking Information</span>
                     </div>
-                    <s:textfield cssClass="form-control" value="%{order.orderId}" id="order_Id" name="book-num" disabled="true"></s:textfield>
+                    <%--<s:textfield cssClass="form-control" value="%{order.orderId}" id="order_Id" name="book-num" disabled="true"></s:textfield>--%>
                     <div class="panel-body form-horizontal">
                         <div class="form-group">
                             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking Number</label>
@@ -212,7 +233,7 @@
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Date Received</label>
                                 <div class="col-lg-4">
                                     <s:textfield type="hidden" name="document.referenceId" id="document_Id"></s:textfield>
-                                    <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
+                                    <%--<s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>--%>
                                     <s:textfield type="text" class="form-control" id="datepicker" value="%{document.inboundReturned}" name="document.inboundReturned" required="true" placeholder="Select Returned date" contenteditable="false" style="margin-bottom: 15px !important;" disabled="true"></s:textfield>
                                 </div>
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Comments</label>
@@ -232,8 +253,8 @@
                 </div>
                 <%--Anchor on tab click--%>
                 <%--<s:textfield value="%{documentTab}" id="documentTab" style="visibility:hidden;" />--%>
-                <s:textfield value="%{documentTab}" id="documentTab"  />
-                <s:textfield value="%{documentTabInbound}" id="documentTabInbound"  />
+                <s:textfield cssStyle="visibility: hidden;" value="%{documentTab}" id="documentTab"  />
+                <s:textfield cssStyle="visibility: hidden;" value="%{documentTabInbound}" id="documentTabInbound"  />
 
                 <s:if test="hasActionMessages()">
                     <div class="col-lg-12" id="successDiv">
@@ -388,7 +409,7 @@
                             <div class="panel-body">
 
                                 <div class="table-responsive">
-                                    <s:form name="myform" action="processDocuments">
+                                    <s:form name="myform" action="processDocumentsInbound">
                                         <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
 
                                         <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocumentsInbound.action" pagesize="10" class="inbound_table table table-striped table-hover table-bordered text-center tablesorter"
@@ -407,6 +428,22 @@
                                                         </s:a>--%>
                                                         <s:if test="#attr.document.documentProcessed == 1">
                                                             <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                        </s:if>
+                                                        <s:else>
+                                                            <i class="fa fa-check-square-o"></i>
+                                                        </s:else>
+                                                    </s:if>
+
+                                                    <s:if test=" documentTabInbound == 'INBOUND_COMPLETE' ">
+
+                                                        <%--<s:url var="checkDocumentInboundUrl" action="checkDocumentInbound">
+                                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                        </s:url>
+                                                        <s:a class="icon-action-link" href="%{checkDocumentInboundUrl}" rel="tooltip" title ="Check Document">
+                                                            <i class="fa fa-square-o"></i>
+                                                        </s:a>--%>
+                                                        <s:if test="#attr.document.documentProcessed == 1">
+                                                            <i class="fa fa-square-o"></i>
                                                         </s:if>
                                                         <s:else>
                                                             <i class="fa fa-check-square-o"></i>
@@ -506,7 +543,7 @@
 
                                                     </s:if>
 
-                                                    <s:if test=" documentTabInbound == 'NO_INBOUND_DATE' || documentTabInbound == 'OUTBOUND_DOCUMENTS_INCOMPLETE' ">
+                                                    <s:if test=" documentTabInbound == 'NO_INBOUND_DATE' || documentTabInbound == 'OUTBOUND_DOCUMENTS_INCOMPLETE' || documentTabInbound == 'INBOUND_COMPLETE' ">
 
                                                         <i class="fa fa-ban"></i>
 
@@ -1014,10 +1051,10 @@ returnedDate.datepicker({
 
 });
 
-function addOrderId() {
+function addCheckText() {
     /*var order_Id = document.getElementById("order_Id").value;
     document.getElementById("document_Id").value = order_Id;*/
-    document.getElementById("documentItem").value = "set";
+    document.getElementById("documentItem").value = "check";
 }
 
 </script>

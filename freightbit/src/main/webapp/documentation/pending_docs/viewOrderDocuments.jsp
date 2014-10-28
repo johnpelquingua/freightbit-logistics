@@ -24,6 +24,14 @@
             }
 
 
+            var inbound_tab = $("#documentTabInbound").val();
+
+            if(inbound_tab == "INBOUND_COMPLETE"){
+
+                $("#second").toggleClass('active complete');
+                $("#third").toggleClass('disabled active');
+            }
+
         });
 
     });
@@ -235,7 +243,8 @@
 
                 </div>
             <%--Anchor on tab click--%>
-            <s:textfield value="%{documentTab}" id="documentTab"  />
+            <s:textfield cssStyle="visibility: hidden;" value="%{documentTab}" id="documentTab"  />
+            <s:textfield  cssStyle="visibility: hidden;" value="%{documentTabInbound}" id="documentTabInbound"  />
 
                 <s:if test="hasActionMessages()">
                     <div class="col-lg-12" id="successDiv">

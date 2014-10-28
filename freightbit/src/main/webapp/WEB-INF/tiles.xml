@@ -208,6 +208,11 @@
         <put-attribute name="title" value="Input Number"/>
         <put-attribute name="body" value="/documentation/pending_docs/orderDocumentsInboundInput.jsp"/>
     </definition>
+    <!--INBOUND DOCUMENT DATE RECEIVED INPUT VIEW ONLY-->
+    <definition name="documentation.dateReceivedInbound.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Input Number"/>
+        <put-attribute name="body" value="/documentation/pending_docs/dateReceivedInbound.jsp"/>
+    </definition>
 
     <definition name="documentation.viewArchivedDocuments.tiles" extends="baseLayout">
         <put-attribute name="title" value="Archived Documents"/>

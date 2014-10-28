@@ -202,8 +202,8 @@
 
                 <%--Anchor on tab click--%>
 
-                <s:textfield value="%{documentTab}" id="documentTab"  />
-                <s:textfield value="%{documentTabInbound}" id="documentTabInbound"  />
+                <s:textfield cssStyle="visibility: hidden;" value="%{documentTab}" id="documentTab"  />
+                <s:textfield cssStyle="visibility: hidden;" value="%{documentTabInbound}" id="documentTabInbound"  />
 
                 <s:if test="hasActionMessages()">
                     <div class="col-lg-12" id="successDiv">
@@ -227,13 +227,13 @@
                                     <div class="col-lg-4">
                                         <s:textfield type="hidden" name="document.referenceId" id="document_Id"></s:textfield>
                                         <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
-                                        <s:textfield type="text" class="form-control" id="datepicker" value="%{document.inboundReturned}" name="document.inboundReturned"  placeholder="Select Returned date" contenteditable="false" style="margin-bottom: 15px !important;" ></s:textfield>
+                                        <s:textfield type="text" class="form-control" id="datepicker" value="%{document.inboundReturned}" name="document.inboundReturned"  placeholder="Select Returned date" contenteditable="false" style="margin-bottom: 15px !important;" disabled="true"></s:textfield>
                                     </div>
                                     <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Comments</label>
                                     <div class="col-lg-4">
-                                        <s:textarea cssClass="form-control" value="%{document.documentComments}" name="document.documentComments" cssStyle="resize: none;" ></s:textarea>
+                                        <s:textarea cssClass="form-control" value="%{document.documentComments}" name="document.documentComments" cssStyle="resize: none;" disabled="true"></s:textarea>
                                     </div>
-                                    <s:submit name="submit" cssClass="btn btn-primary pull-right" value="Save" onclick="addOrderId()"/>
+                                    <s:submit name="submit" cssClass="btn btn-primary pull-right" value="Set" onclick="addOrderId()" disabled="true"/>
                                 </s:form>
                             </div>
 
@@ -250,16 +250,21 @@
                             <s:form action="addReferenceNumberInbound" theme="bootstrap">
                                 <label class="col-lg-2">Reference Number<span class="asterisk_red"></span></label>
                                 <div class="col-lg-8">
-                                    <s:property value="%{document.documentId}" />
+                                    <%--<s:property value="%{document.documentId}" />--%>
                                     <s:property value="%{document.documentName}" />
-                                    <s:property value="%{document.documentType}" />
-                                    <s:property value="%{document.referenceId}" />
+                                   <%-- <s:property value="%{document.outboundStage}" />
+                                    <s:property value="%{document.inboundStage}" />
+                                    <s:property value="%{document.referenceId}" />--%>
                                     <s:hidden name="document.documentId" value="%{document.documentId}" />
                                     <s:hidden name="document.documentName" value="%{document.documentName}" />
-                                    <s:hidden name="document.documentType" value="%{document.documentType}" />
+                                    <s:hidden name="document.outboundStage" value="%{document.outboundStage}" />
+                                    <s:hidden name="document.inboundStage" value="%{document.inboundStage}" />
                                     <s:hidden name="document.referenceId" value="%{document.referenceId}" />
                                     <s:hidden name="document.referenceTable" value="%{document.referenceTable}" />
                                     <s:hidden name="document.orderNumber" value="%{document.orderNumber}" />
+                                    <s:hidden name="document.inboundReturned" value="%{document.inboundReturned}" />
+                                    <s:hidden name="document.documentComments" value="%{document.documentComments}" />
+                                    <s:hidden name="document.orderItemId" value="%{document.orderItemId}" />
                                     <s:textfield cssClass="form-control" placeholder="Reference Number" name="document.referenceNumber"
                                                  id="document.referenceNumber" required="true" maxLength="30" autofocus="true"
                                                  pattern="[a-zA-Z\s ]+"
@@ -430,19 +435,21 @@
                                                     <s:a class="icon-action-link" href="%{checkDocumentInboundUrl}" rel="tooltip" title ="Check Document">
                                                         <i class="fa fa-square-o"></i>
                                                     </s:a>--%>
-                                                    <s:if test="#attr.document.documentProcessed == 1">
-                                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                    <s:if test="#attr.document.documentProcessed == 2">
+                                                        <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
+                                                        <i class="fa fa-check-square-o"></i>
                                                     </s:if>
                                                     <s:else>
-                                                        <i class="fa fa-check-square-o"></i>
+                                                        <i class="fa fa-square-o"></i>
                                                     </s:else>
+                                                    <%--<i class="fa fa-check-square-o"></i>--%>
                                                 </s:if>
 
-                                                <s:if test=" documentTabInbound == 'NO_INBOUND_DATE' ">
+                                                <%--<s:if test=" documentTabInbound == 'NO_INBOUND_DATE' ">
 
                                                     <i class="fa fa-square-o"></i>
 
-                                                </s:if>
+                                                </s:if>--%>
                                                 <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
                                                 <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
