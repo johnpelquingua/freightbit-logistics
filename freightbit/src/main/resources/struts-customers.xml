@@ -236,6 +236,16 @@
             <result name="success" type="tiles">customer.customerAddContact.tiles</result>
         </action>
 
+        <action name="loadConsigneeAddContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+                method="loadConsigneeAddContact">
+            <result name="success" type="tiles">customer.consigneeAddContact.tiles</result>
+        </action>
+
+        <action name="loadEditConsigneeContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+                method="loadEditConsigneeContact">
+            <result name="success" type="tiles">customer.consigneeEditContact.tiles</result>
+        </action>
+
         <action name="loadEditCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="loadEditContact">
             <result name="success" type="tiles">customer.customerEditContact.tiles</result>
@@ -247,6 +257,18 @@
             <result name="input" type="tiles">customer.customerAddContact.tiles</result>
         </action>
 
+        <action name="addConsigneeContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+                method="addConsigneeContact">
+            <result name="success" type="redirect">consigneeInfo</result>
+            <result name="input" type="tiles">customer.consigneeAddContact.tiles</result>
+        </action>
+
+        <action name="editConsigneeContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+                method="editConsigneeContact">
+            <result name="success" type="redirect">consigneeInfo</result>
+            <result name="input" type="tiles">customer.consigneeEditContact.tiles</result>
+        </action>
+
         <action name="editCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="editContact">
             <result name="success" type="redirect">loadSaveCompleteContact</result>
@@ -256,6 +278,11 @@
         <action name="deleteCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="deleteContact">
             <result name="success" type="redirect">loadSuccessContactsDelete</result>
+        </action>
+
+        <action name="deleteConsigneeContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
+                method="deleteConsigneeContact">
+            <result name="success" type="redirect">consigneeInfo</result>
         </action>
 
         <action name="loadSuccessContactsDelete" class="com.sr.apps.freightbit.customer.action.CustomerAction"

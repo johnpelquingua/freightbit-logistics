@@ -816,9 +816,42 @@
 <s:textfield value="%{inboundCount}" id="inboundCount" type="hidden" />
 <s:textfield value="%{finalOutboundCount}" id="finalOutboundCount" type="hidden" />
 <s:textfield value="%{finalInboundCount}" id="finalInboundCount" type="hidden" />
+
+
+<div id="leftDiv">
+
+</div>
+
+<div>
+    <a href="#" id="idAnchor">Partial Refresh</a>
+</div>
+
+
+
 <script>
 
 $(document).ready(function() {
+
+    $('#idAnchor').click(function(){
+
+        $.ajax({
+            url: 'getResultAction', // action to be perform
+            type: 'POST',       //type of posting the data
+            data: { name: 'Jeetu', age: '24' }, // data to set to Action Class
+            dataType: 'html',
+            success: function (html) {
+                ('#leftDiv').html(html); //set result.jsp output to leftDiv
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+    });
+
+
+
+
+
     var outbound_tab = $("#documentTab").val();
     if ($('#successDiv').length !== 0){
         window.location.href = '#successDiv';

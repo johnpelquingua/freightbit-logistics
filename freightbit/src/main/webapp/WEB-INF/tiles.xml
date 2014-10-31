@@ -583,6 +583,14 @@
         <put-attribute name="title" value="Customer Info Consignee"/>
         <put-attribute name="body" value="/customer/consignee/customerInfoConsignee.jsp"/>
     </definition>
+    <definition name="customer.consigneeAddContact.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Consignee Add Contact"/>
+        <put-attribute name="body" value="/customer/consignee/consigneeAddContact.jsp"/>
+    </definition>
+    <definition name="customer.consigneeEditContact.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Consignee Edit Contact"/>
+        <put-attribute name="body" value="/customer/consignee/consigneeEditContact.jsp"/>
+    </definition>
 
     <!-- CUSTOMER module tiles END -->
 

@@ -37,6 +37,19 @@
 
                 <s:form cssClass="form-horizontal" action="addConsignee" theme="bootstrap">
                     <div class="form-group">
+                        <label for="consignee.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span>
+                        </label>
+
+                        <div class="col-lg-10" >
+
+                            <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
+                                         placeholder="Last Name" maxLength="30" required="true"
+                                         pattern="[a-zA-Z\s]+"
+                                         title="Name should not contain special characters and/or numbers."/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
 
                         <label for="consignee.firstName" class="col-lg-2 control-label " style="padding-top:0px;">First
                             Name<span class="asterisk_red"></span>
@@ -67,19 +80,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span>
-                        </label>
-
-                        <div class="col-lg-10" >
-
-                            <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
-                                         placeholder="Last Name" maxLength="30" required="true"
-                                         pattern="[a-zA-Z\s]+"
-                                         title="Name should not contain special characters and/or numbers."/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label for="consignee.phone" class="col-lg-2 control-label" style="padding-top:0px;">Phone<span class="asterisk_red"></span>
                         </label>
 
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.email" class="col-lg-2 control-label" style="padding-top:0px;">Email<span class="asterisk_red"></span>
+                        <label for="consignee.email" class="col-lg-2 control-label" style="padding-top:0px;">Email Address <span class="asterisk_red"></span>
                             </label>
 
                         <div class="col-lg-10" >

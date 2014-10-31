@@ -46,7 +46,7 @@ public interface CustomerService {
 
     public List<Contacts> findContactByParameterMap(Integer referenceId, String contactType, Integer clientId);
 
-
+    public List<Contacts> findContactByConsignee(Integer referenceId, String contactType, Integer clientId);
     //Address
 
     public void addAddress(Address address);

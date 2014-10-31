@@ -60,7 +60,7 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="customerType" title="Customer Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="email" title="E-mail Address <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="email" title="Email Address <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="website" title="Website <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
@@ -76,13 +76,12 @@
                                                 access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
                                             <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip"
                                                  title="Edit this Customer">
-                                                <%--<img src="../includes/images/edit-user.png"
-                                                     class="icon-action circ-icon"> --%>
                                                 <i class="fa fa-pencil"></i>
                                             </s:a>
                                         </sec:authorize>
 
-                                        <s:url var="deleteCustomerUrl" action="deleteCustomer"><s:property value="#attr.customer.customerId"></s:property>
+                                        <s:url var="deleteCustomerUrl" action="deleteCustomer">
+                                            <%--<s:property value="#attr.customer.customerId"></s:property>--%>
                                             <s:param name="customerCodeParam"
                                                      value="#attr.customer.customerCode"></s:param>
                                             <s:param name="customerIdParam"
@@ -94,7 +93,6 @@
                                             <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip"
                                                  title="Delete this Customer"
                                                  onclick="return confirm('Do you really want to delete?');">
-                                                <%--<img src="../includes/images/remove-user.png" class="icon-action circ-icon">--%>
                                                 <i class="fa fa-trash-o"></i>
                                             </s:a>
                                         </sec:authorize>
@@ -106,7 +104,6 @@
                                         <sec:authorize
                                                 access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">
                                             <s:a class="icon-action-link" href="%{customerInfoUrl}" rel="tooltip">
-                                                <%--<img src="../includes/images/info-b.png" class="icon-action circ-icon">--%>
                                                 <i class="fa fa-info-circle"></i>
                                             </s:a>
                                         </sec:authorize>
@@ -139,6 +136,7 @@
 </div>
 
 <script type="text/javascript">
+
     $(document).ready(function() {
         /*color coding of rows*/
         var tbl = document.getElementById("customer");
@@ -153,6 +151,5 @@
             }
         }
     });
-
 
 </script>

@@ -71,6 +71,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private Integer ratesIdParam;
     private Integer contactCodeParam;
     private Integer customerIdParam;
+    private Integer consigneeContactCodeParam;
 
     private CustomerBean customer = new CustomerBean();
     private ItemBean item = new ItemBean();
@@ -78,6 +79,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private RatesBean rate = new RatesBean();
     private ContactBean contact = new ContactBean();
     private ConsigneeBean consignee = new ConsigneeBean();
+    private ContactBean consigneeContact = new ContactBean();
 
     private CustomerService itemService;
     private ItemService itemServices;
@@ -731,7 +733,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public String loadSaveCompleteAddress() {
         Integer customerId = getCustomerSessionId();
         List<Address> addressEntityList = new ArrayList<Address>();
-        addressEntityList = customerService.findAllAddressByRefId(customerId);
+        /*addressEntityList = customerService.findAllAddressByRefId(customerId);*/
+        addressEntityList = customerService.findAddressByShipper("CONSIGNEE",customerId);
         for (Address addressElem : addressEntityList) {
             addresss.add(transformToFormBeanAddress(addressElem));
         }
@@ -751,7 +754,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public String viewAddress() {
         Integer customerId = getCustomerSessionId();
         List<Address> addressEntityList = new ArrayList<Address>();
-        addressEntityList = customerService.findAllAddressByRefId(customerId);
+        addressEntityList = customerService.findAddressByShipper("CONSIGNEE", customerId);
         for (Address addressElem : addressEntityList) {
             addresss.add(transformToFormBeanAddress(addressElem));
         }
@@ -986,12 +989,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-//    public String loadAddContactBooking() {
-//        System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj" + customerIdParam);
-//
-//        return SUCCESS;
-//    }
-
     public String loadEditContact() {
         Contacts contactEntity = customerService.findContactById(contactCodeParam);
         contact = transformToFormBeanContacts(contactEntity);
@@ -1040,6 +1037,18 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String deleteConsigneeContact(){
+
+        Contacts contactEntity = customerService.findContactById(consigneeContactCodeParam);
+        customerService.deleteContact(contactEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("contactCodeParam", contactCodeParam);
+        sessionAttributes.put("addressIdParam", addressIdParam);
+
+        return SUCCESS;
+    }
+
     public String loadSuccessContactsDelete() {
         Integer customerId = getCustomerSessionId();
         List<Contacts> contactEntityList = new ArrayList<Contacts>();
@@ -1079,6 +1088,109 @@ public class CustomerAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String loadConsigneeAddContact() {
+
+        Contacts contactEntity = customerService.findContactById(contactCodeParam);
+        Address addressEntity = customerService.findAddressById(addressIdParam);
+        consignee = transformToFormBeanConsignee(addressEntity, contactEntity);
+
+        sessionAttributes.put("contactCodeParam", contactCodeParam);
+        sessionAttributes.put("addressIdParam", addressIdParam);
+        return SUCCESS;
+    }
+
+    public String addConsigneeContact() throws Exception{
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        validateOnSubmitContact(consigneeContact);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+
+        try {
+            Contacts contactEntity = transformToEntityBeanConsigneeContacts(consigneeContact);
+            contactEntity.setReferenceId((Integer) sessionAttributes.get("contactCodeParam"));
+            contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            contactEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            contactEntity.setCreatedTimestamp(new Date());
+            customerService.addContact(contactEntity);
+        } catch (ContactAlreadyExistsException e) {
+            addFieldError("contact.lastName", getText("err.contact.already.exists"));
+            return INPUT;
+        }
+
+        sessionAttributes.put("contactCodeParam", sessionAttributes.get("contactCodeParam"));
+        sessionAttributes.put("addressIdParam", sessionAttributes.get("addressIdParam"));
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! New Contact Person for Consignee has been created.");
+
+        return SUCCESS;
+    }
+
+    public String loadEditConsigneeContact() {
+
+        Contacts contactEntity = customerService.findContactById(contactCodeParam);
+        Address addressEntity = customerService.findAddressById(addressIdParam);
+        consignee = transformToFormBeanConsignee(addressEntity, contactEntity);
+
+        System.out.println("========================================================= " + consigneeContactCodeParam);
+
+        Contacts consigneeContactEntity = customerService.findContactById(consigneeContactCodeParam);
+        consigneeContact = transformToFormBeanContacts(consigneeContactEntity);
+
+        sessionAttributes.put("contactCodeParam", contactCodeParam);
+        sessionAttributes.put("addressIdParam", addressIdParam);
+
+        return SUCCESS;
+    }
+
+    public String editConsigneeContact(){
+        validateOnSubmitContact(consigneeContact);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+
+        try {
+            Contacts contactEntity = transformToEntityBeanConsigneeContacts(consigneeContact);
+            contactEntity.setReferenceId((Integer) sessionAttributes.get("contactCodeParam"));
+            contactEntity.setModifiedTimestamp(new Date());
+            contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            customerService.updateContact(contactEntity);
+        } catch (ContactAlreadyExistsException e) {
+            addFieldError("contact.lastName", getText("err.contact.already.exists"));
+            return INPUT;
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Contact Person for Consignee has been successfully edited.");
+
+        return SUCCESS;
+    }
+
+    private Contacts transformToEntityBeanConsigneeContacts(ContactBean consigneeContact) {
+        Contacts entity = new Contacts();
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
+        if (consigneeContact.getContactId() != null) {
+            entity.setContactId(consigneeContact.getContactId());
+        }
+        System.out.println(commonUtils.getUserNameFromSession());
+        Integer customerId = getCustomerSessionId();
+        entity.setReferenceTable("CONTACTS");
+        entity.setContactType("C_CONTACT");
+        entity.setFirstName(consigneeContact.getFirstName());
+        entity.setMiddleName(consigneeContact.getMiddleName());
+        entity.setLastName(consigneeContact.getLastName());
+        entity.setPhone(consigneeContact.getPhone());
+        entity.setMobile(consigneeContact.getMobile());
+        entity.setFax(consigneeContact.getFax());
+        entity.setEmail(consigneeContact.getEmail());
+        entity.setCreatedBy(consigneeContact.getCreatedBy());
+        entity.setCreatedTimestamp(consigneeContact.getCreatedTimestamp());
+        entity.setPosition(consigneeContact.getPosition());
+        return entity;
+    }
+
     private Contacts transformToEntityBeanContacts(ContactBean contactBean) {
         Contacts entity = new Contacts();
         Client client = clientService.findClientById(getClientId().toString());
@@ -1103,7 +1215,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setPosition(contactBean.getPosition());
         return entity;
     }
-
 
     private ContactBean transformToFormBeanContacts(Contacts entity) {
         ContactBean formBean = new ContactBean();
@@ -1253,11 +1364,21 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String consigneeInfo() {
+        if(sessionAttributes.get("contactCodeParam") != null && sessionAttributes.get("addressIdParam") != null){
+            contactCodeParam = (Integer) sessionAttributes.get("contactCodeParam");
+            addressIdParam = (Integer) sessionAttributes.get("addressIdParam");
+        }
         Contacts contactEntity = customerService.findContactById(contactCodeParam);
         Address addressEntity = customerService.findAddressById(addressIdParam);
         consignee = transformToFormBeanConsignee(addressEntity, contactEntity);
-        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"+ contactEntity.getReferenceId());
+
         sessionAttributes.put("customerId", contactEntity.getReferenceId());
+        // Shows contacts table under consignee
+        List<Contacts> contactEntityList = new ArrayList<Contacts>();
+        contactEntityList = customerService.findContactByConsignee(contactEntity.getContactId(), "C_CONTACT", getClientId());
+        for (Contacts contactElem : contactEntityList) {
+            contacts.add(transformToFormBeanContacts(contactElem));
+        }
 
         return SUCCESS;
     }
@@ -1650,5 +1771,21 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void setCustomerIdParam(Integer customerIdParam) {
         this.customerIdParam = customerIdParam;
+    }
+
+    public Integer getConsigneeContactCodeParam() {
+        return consigneeContactCodeParam;
+    }
+
+    public void setConsigneeContactCodeParam(Integer consigneeContactCodeParam) {
+        this.consigneeContactCodeParam = consigneeContactCodeParam;
+    }
+
+    public ContactBean getConsigneeContact() {
+        return consigneeContact;
+    }
+
+    public void setConsigneeContact(ContactBean consigneeContact) {
+        this.consigneeContact = consigneeContact;
     }
 }

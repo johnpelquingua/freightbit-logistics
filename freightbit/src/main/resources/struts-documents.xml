@@ -12,6 +12,10 @@
 
         <default-action-ref name="Documentation"/>
 
+        <action name="getResultAction"  method="getInfo" class="com.sr.apps.freightbit.documentation.action.DocumentAction">
+            <result name="success">/pages/result.jsp</result>
+        </action>
+
         <action name="processDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocuments">
             <result name="input" type="redirect">viewOrderDocuments</result>
             <result name="success" type="redirect">viewOrderDocuments</result>

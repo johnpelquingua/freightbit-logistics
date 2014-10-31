@@ -15,7 +15,6 @@ import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.exceptions.ItemAlreadyExistsException;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.order.dao.OrderDao;
-import com.sr.biz.freightbit.order.entity.OrderItems;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -142,6 +141,18 @@ public class CustomerServiceImpl implements CustomerService {
         List<Contacts> contacts = new ArrayList<Contacts>();
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("referenceTable", "CUSTOMERS");
+        paramMap.put("referenceId", referenceId);
+        paramMap.put("contactType", contactType);
+        paramMap.put("clientId", clientId);
+        contacts = contactsDao.findContactsByParameterMap(paramMap, "Contacts");
+        return contacts;
+    }
+
+    @Override
+    public List<Contacts> findContactByConsignee(Integer referenceId, String contactType, Integer clientId) {
+        List<Contacts> contacts = new ArrayList<Contacts>();
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put("referenceTable", "CONTACTS");
         paramMap.put("referenceId", referenceId);
         paramMap.put("contactType", contactType);
         paramMap.put("clientId", clientId);

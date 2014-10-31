@@ -83,7 +83,7 @@
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="fax" title="Fax <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="email" title="E-mail <i class='fa fa-sort' />" class="tb-font-black col-md-2"
+                                        <td><display:column property="email" title="Email Address <i class='fa fa-sort' />" class="tb-font-black col-md-2"
                                                             style="text-align: center;"> </display:column></td>
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">

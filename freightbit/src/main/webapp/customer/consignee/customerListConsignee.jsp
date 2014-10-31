@@ -73,7 +73,7 @@
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="mobile" title="Mobile <i class='fa fa-sort'" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
-                                        <td><display:column property="email" title="E-mail <i class='fa fa-sort'" class="tb-font-black"
+                                        <td><display:column property="email" title="Email Address <i class='fa fa-sort'" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">

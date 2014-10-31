@@ -80,7 +80,7 @@
                                         <table class="table table-user-information profile" style="margin-top: 10px;">
                                             <tbody>
                                             <tr>
-                                                <td class="header" style="font-weight:Bold; font-size: 12px; border-top: none; text-align: left !important;">Name</td>
+                                                <td class="header" style="font-weight:Bold; font-size: 12px; border-top: none; text-align: left !important;">Company / Customer Name</td>
                                                 <td style="border-top: none;"><s:property value="customer.customerName"/></td>
                                             </tr>
                                             <tr>
@@ -92,7 +92,7 @@
                                                 <td><s:property value="customer.customerType"/></td>
                                             </tr>
                                             <tr>
-                                                <td class="header"style="font-weight:Bold; font-size: 12px; text-align: left !important;">Email</td>
+                                                <td class="header"style="font-weight:Bold; font-size: 12px; text-align: left !important;">Email Address</td>
                                                 <td><s:property value="customer.email"/></td>
                                             </tr>
                                             <tr>
@@ -101,11 +101,16 @@
                                                     <i class="fa fa-phone"></i> <s:property value="customer.phone"/> <br><br>
                                                     <i class="fa fa-mobile-phone"></i> <s:property value="customer.mobile"/> <br><br>
                                                     <i class="fa fa-fax"></i> <s:property value="customer.fax"/>
-
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Documents</td>
+                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Website</td>
+                                                <td>
+                                                    <s:property value="customer.website"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">DTI / SEC</td>
                                                 <td>
                                                     <s:property value="customer.dti" />
                                                     <%--<s:hidden value="customer.mayorsPermit" />--%>
@@ -152,13 +157,13 @@
                                                 </td>
 
                                             </tr>
-                                            <tr><td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Mayor's Permit</td>
+                                            <tr><td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Mayor's Permit Number</td>
                                                 <td><s:property value="customer.mayorsPermit" /><br><br></td>
                                             </tr>
-                                            <tr> <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">AAF</td>
+                                            <tr> <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Account Application Form</td>
                                                 <td><s:property value="customer.aaf" /><br><br></td>
                                             </tr>
-                                            <tr><td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Signature Card</td>
+                                            <tr><td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Customer Information Sheet</td>
                                                 <td><s:property value="customer.signatureCard" /><br><br></td>
                                             </tr>
                                             </tbody>

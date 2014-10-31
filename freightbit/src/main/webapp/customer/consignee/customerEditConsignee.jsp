@@ -45,6 +45,18 @@
                     <s:hidden name="consignee.referenceId2" value="%{consignee.referenceId2}" />
 
                     <div class="form-group">
+                        <label for="consignee.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span>
+                        </label>
+
+                        <div class="col-lg-10" >
+                            <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
+                                         placeholder="Last Name" maxLength="30" required="true"
+                                         pattern="[a-zA-Z\s]+"
+                                         title="Name should not contain special characters and/or numbers."/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="consignee.firstName" class="col-lg-2 control-label" style="padding-top:0px;">First
                             Name<span class="asterisk_red"></span>
                         </label>
@@ -67,18 +79,6 @@
                             <s:textfield name="consignee.middleName" cssClass="form-control"
                                          id="consignee.middleName"
                                          placeholder="Middle Name" maxLength="30" pattern="[a-zA-Z\s]+"
-                                         title="Name should not contain special characters and/or numbers."/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="consignee.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span>
-                        </label>
-
-                        <div class="col-lg-10" >
-                            <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
-                                         placeholder="Last Name" maxLength="30" required="true"
-                                         pattern="[a-zA-Z\s]+"
                                          title="Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.email" class="col-lg-2 control-label" style="padding-top:0px;">Email<span class="asterisk_red"></span>
+                        <label for="consignee.email" class="col-lg-2 control-label" style="padding-top:0px;">Email Address <span class="asterisk_red"></span>
                             </label>
 
                         <div class="col-lg-10" >

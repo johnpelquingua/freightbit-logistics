@@ -3,7 +3,7 @@
     <h1 class="page-header">Vendor Module</h1>
 
     <div class="row alert alert-success alert-dismissable" style="margin-left: -40px !important;  width: 101%;">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
         <strong>Success!</strong> The data has been successfully saved.
     </div>
 
