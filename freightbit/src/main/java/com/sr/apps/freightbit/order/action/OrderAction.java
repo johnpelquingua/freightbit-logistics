@@ -33,9 +33,7 @@ import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.internal.CriteriaImpl;
 
 import java.math.BigInteger;
 import java.util.*;
@@ -78,6 +76,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Parameters> contactTypeList = new ArrayList<Parameters>();
     private List<Parameters> addressTypeList = new ArrayList<Parameters>();
     private String[] notificationList;
+    private CustomerBean customer = new CustomerBean();
 
     private Integer orderIdParam;
     private Integer orderItemIdParam;
@@ -113,10 +112,17 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Map<Integer, String> customerAddressMap = new HashMap<Integer, String>();
     // map customer consignee on dropdown
     private Map<Integer, String> customerConsigneeMap = new HashMap<Integer, String>();
-    // map customer cosignee address on dropdown
+    // map customer consignee address on dropdown
     private Map<Integer, String> consigneeAddressMap = new HashMap<Integer, String>();
     private Integer consigneeId;
     private Integer addressId;
+    // map customer contact details
+    private Map<String, String> customerPhoneMap = new HashMap<String, String>();
+    private Map<String, String> customerMobileMap = new HashMap<String, String>();
+    private Map<String, String> customerEmailMap = new HashMap<String, String>();
+    private Map<String, String> customerFaxMap = new HashMap<String, String>();
+    // map consignee contact person
+    private Map<Integer, String> consigneeContactMap = new HashMap<Integer, String>();
 
     private Map<Double, Double> shipperItemVolumeMap = new HashMap<Double, Double>();
     private Map<String, String> shipperItemCommodityMap = new HashMap<String, String>();
@@ -157,20 +163,43 @@ public class OrderAction extends ActionSupport implements Preparable {
             customerConsigneeMap.put(shipperConsignee.get(i).getContactId(), shipperConsignee.get(i).getFirstName() + ' ' + shipperConsignee.get(i).getMiddleName() + ' ' + shipperConsignee.get(i).getLastName()  );
         }
 
-        List <Address> consigneeAddresses = customerService.findAddressByCriteria("CONSIGNEE",customerID );
+        /*List <Address> consigneeAddresses = customerService.findAddressByCriteria("CONSIGNEE",customerID );
 
         for(int i = 0; i < consigneeAddresses.size(); i++ ) {
             consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
-        }
+        }*/
+        Address consigneeAddresses = customerService.findAddressByParameterMap(customerID, "CONSIGNEE", getClientId(),shipperConsignee.get(0).getContactId());
+        consigneeAddressMap.put(consigneeAddresses.getAddressId(), consigneeAddresses.getAddressLine1() + ' ' + consigneeAddresses.getAddressLine2() + ' ' + consigneeAddresses.getCity());
         /*dummyMsg = "Ajax action Triggered";*/
+
+        Customer customerContactInfo = customerService.findCustomerById(customerID);
+
+        customerPhoneMap.put(customerContactInfo.getPhone(),customerContactInfo.getPhone());
+        customerMobileMap.put(customerContactInfo.getMobile(),customerContactInfo.getMobile());
+        customerEmailMap.put(customerContactInfo.getEmail(),customerContactInfo.getEmail());
+        customerFaxMap.put(customerContactInfo.getFax(),customerContactInfo.getFax());
+
+        List <Contacts> consigneeContacts = customerService.findContactByConsignee(shipperConsignee.get(0).getContactId(),"C_CONTACT",getClientId());
+
+        for(int i = 0; i < consigneeContacts.size(); i++ ){
+            consigneeContactMap.put(consigneeContacts.get(i).getContactId(), consigneeContacts.get(i).getFirstName() + ' ' + consigneeContacts.get(i).getMiddleName() + ' ' + consigneeContacts.get(i).getLastName());
+        }
+
         return SUCCESS;
     }
 
     public String consigneeAction() {
 
         if (consigneeId != null) {
-            Address consigneeAddress = customerService.findAddressByParameterMap(getClientId(), "CONSIGNEE", getClientId(), consigneeId);
-            consigneeAddressMap.put(consigneeAddress.getAddressId(), consigneeAddress.getAddressLine1() + ' ' + consigneeAddress.getAddressLine2() + ' ' + consigneeAddress.getCity()  );
+            Address consigneeAddress = customerService.findAddressByParameterMap(customerID, "CONSIGNEE", getClientId(), consigneeId);
+
+            consigneeAddressMap.put(consigneeAddress.getAddressId(), consigneeAddress.getAddressLine1() + ' ' + consigneeAddress.getAddressLine2() + ' ' + consigneeAddress.getCity());
+
+            List <Contacts> consigneeContacts = customerService.findContactByConsignee(consigneeId,"C_CONTACT",getClientId());
+
+            for(int i = 0; i < consigneeContacts.size(); i++ ){
+                consigneeContactMap.put(consigneeContacts.get(i).getContactId(), consigneeContacts.get(i).getFirstName() + ' ' + consigneeContacts.get(i).getMiddleName() + ' ' + consigneeContacts.get(i).getLastName());
+            }
 
         }else{
             List <Address> consigneeAddresses = customerService.findAddressByCriteria("CONSIGNEE",customerID );
@@ -178,6 +207,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             for(int i = 0; i < consigneeAddresses.size(); i++ ) {
                 consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
             }
+
         }
 
         return SUCCESS;
@@ -205,7 +235,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String viewOrders() {
 
-
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
         if (StringUtils.isNotBlank(column)) {
@@ -220,10 +249,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         Booking = notificationService.CountAll();
         System.out.println("The number of  new booking is "+Booking);
-
-
-
-
 
         return SUCCESS;
     }
@@ -275,6 +300,53 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String loadAddOrderPage() {return SUCCESS; }
+
+    public String editCustomerContactInfo() {
+
+        Customer customerEntity = customerService.findCustomerById(customer.getCustomerId());
+
+        Customer entity = new Customer();
+        entity.setCustomerId(customerEntity.getCustomerId());
+        entity.setClient(customerEntity.getClient());
+        entity.setCustomerCode(customerEntity.getCustomerCode());
+        entity.setCustomerName(customerEntity.getCustomerName());
+        entity.setCustomerType(customerEntity.getCustomerType());
+        entity.setWebsite(customerEntity.getWebsite());
+        entity.setPhone(customer.getPhone());
+        entity.setMobile(customer.getMobile());
+        entity.setEmail(customer.getEmail());
+        entity.setFax(customer.getFax());
+        entity.setDti(customerEntity.getDti());
+        entity.setMayorsPermit(customerEntity.getMayorsPermit());
+        entity.setAaf(customerEntity.getAaf());
+        entity.setSignatureCard(customerEntity.getSignatureCard());
+        entity.setCreatedBy(customerEntity.getCreatedBy());
+        entity.setCreatedTimestamp(customerEntity.getCreatedTimestamp());
+        entity.setModifiedBy(commonUtils.getUserNameFromSession());
+        entity.setModifiedTimestamp(new Date());
+
+        customerService.updateCustomer(entity);
+
+        return SUCCESS;
+    }
+
+    public String addConsigneeContact(){
+
+        try {
+            Contacts contactEntity = transformToEntityBeanContacts(contact);
+            contactEntity.setReferenceTable("CONTACTS");
+            contactEntity.setContactType("C_CONTACT");
+            contactEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            contactEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            contactEntity.setCreatedTimestamp(new Date());
+            customerService.addContact(contactEntity);
+        } catch (ContactAlreadyExistsException e) {
+            addFieldError("contact.lastName", getText("err.contact.already.exists"));
+            return INPUT;
+        }
+
+        return SUCCESS;
+    }
 
     public String reloadAddOrderPage(){return SUCCESS; }
 
@@ -462,8 +534,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
 
-
-
     public String addOrderInfo() {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -620,11 +690,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         clearErrorsAndMessages();
         addActionMessage("Booking successfully Approved!");
 
-
         return SUCCESS;
-
-
-
     }
 
     public String cancelOrder(){
@@ -888,8 +954,24 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         orderBean.setOrderId(order.getOrderId());
         orderBean.setOrderNumber(order.getOrderNumber());
-        orderBean.setFreightType(order.getServiceType());
-        orderBean.setModeOfService(order.getServiceMode());
+        /*orderBean.setFreightType(order.getServiceType());*/
+        if(order.getServiceType().equals("SHIPPING AND TRUCKING")){
+            orderBean.setFreightType("SHIP & TRUCK");
+        }else if(order.getServiceType().equals("SHIPPING")){
+            orderBean.setFreightType("SHIP");
+        }else{
+            orderBean.setFreightType("TRUCK");
+        }
+        /*orderBean.setModeOfService(order.getServiceMode());*/
+        if(order.getServiceMode().equals("DOOR TO DOOR")){
+            orderBean.setModeOfService("DD");
+        }else if(order.getServiceMode().equals("DOOR TO PIER")){
+            orderBean.setModeOfService("DP");
+        }else if(order.getServiceMode().equals("PIER TO DOOR")){
+            orderBean.setModeOfService("PD");
+        }else{
+            orderBean.setModeOfService("PP");
+        }
         orderBean.setNotifyBy(order.getNotificationType());
         orderBean.setOrderDate(order.getOrderDate());
         orderBean.setModeOfPayment(order.getPaymentMode());
@@ -921,8 +1003,17 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setDeliveryDate(order.getDeliveryDate());
         orderBean.setDestinationPort(order.getDestinationPort());
         orderBean.setRates(order.getRates());
-        orderBean.setServiceRequirement(order.getServiceRequirement());
-        orderBean.setModeOfService(order.getServiceMode());
+        orderBean.setConsigneeContactPersonId(order.getConsigneeContactPersonId());
+        /*orderBean.setServiceRequirement(order.getServiceRequirement());*/
+        if(order.getServiceRequirement().equals("FULL CONTAINER LOAD")){
+            orderBean.setServiceRequirement("FCL");
+        }else if(order.getServiceRequirement().equals("LESS CONTAINER LOAD")){
+            orderBean.setServiceRequirement("LCL");
+        }else if(order.getServiceRequirement().equals("LOOSE CARGO LOAD")){
+            orderBean.setServiceRequirement("LCU");
+        }else{
+            orderBean.setServiceRequirement("RCU");
+        }
 
         Contacts contactShipperName = customerService.findContactById(order.getShipperContactId());
 
@@ -1051,6 +1142,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setClient(client);
         entity.setOrderDate(new Date()); // Booking Date
         entity.setServiceRequirement(formBean.getServiceRequirement());
+
         Customer customerEntity = customerService.findCustomerById(formBean.getCustomerId());
         // To get Customer Name from Customer ID
         custName = customerEntity.getCustomerName();
@@ -1070,15 +1162,29 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         entity.setServiceType(formBean.getFreightType());
-        entity.setServiceMode(formBean.getModeOfService());
+
+        /*entity.setServiceMode(formBean.getModeOfService());*/
+        if(formBean.getModeOfService().equals("DD") || formBean.getModeOfService().equals("DOOR TO DOOR")){
+            entity.setServiceMode("DOOR TO DOOR");
+        }else if(formBean.getModeOfService().equals("DP") || formBean.getModeOfService().equals("DOOR TO PIER")){
+            entity.setServiceMode("DOOR TO PIER");
+        }else if(formBean.getModeOfService().equals("PD") || formBean.getModeOfService().equals("PIER TO DOOR")){
+            entity.setServiceMode("PIER TO DOOR");
+        }else{
+            entity.setServiceMode("PIER TO PIER");
+        }
         entity.setNotificationType(formBean.getNotifyBy());
-        System.out.print("payment mode ------------------------------" + formBean.getModeOfPayment());
         entity.setPaymentMode(formBean.getModeOfPayment());
         entity.setOriginationPort(formBean.getOriginationPort());
         entity.setDestinationPort(formBean.getDestinationPort());
         entity.setComments(formBean.getComments());
-        entity.setOrderStatus("INCOMPLETE");  // still to be updated
-        entity.setRates(99.99); // still to be updated
+        /*entity.setOrderStatus(formBean.getOrderStatus());*/  // still to be updated
+        if(formBean.getOrderStatus() != null){
+            entity.setOrderStatus(formBean.getOrderStatus());
+        }else{
+            entity.setOrderStatus("INCOMPLETE");
+        }
+        entity.setRates(00.00); // still to be updated
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setAccountRep(commonUtils.getUserNameFromSession());
         entity.setModifiedBy(commonUtils.getUserNameFromSession());
@@ -1090,6 +1196,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setConsigneeContactId(formBean.getConsigneeContactId());
         entity.setDeliveryDate(formBean.getDeliveryDate());
         entity.setPickupDate(formBean.getPickupDate());
+        entity.setConsigneeContactPersonId(formBean.getConsigneeContactPersonId());
 
         Contacts contactShipperName = customerService.findContactById(order.getShipperContactId());
 
@@ -1879,5 +1986,53 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setBooking(BigInteger booking) {
         Booking = booking;
+    }
+
+    public Map<String, String> getCustomerFaxMap() {
+        return customerFaxMap;
+    }
+
+    public void setCustomerFaxMap(Map<String, String> customerFaxMap) {
+        this.customerFaxMap = customerFaxMap;
+    }
+
+    public Map<String, String> getCustomerEmailMap() {
+        return customerEmailMap;
+    }
+
+    public void setCustomerEmailMap(Map<String, String> customerEmailMap) {
+        this.customerEmailMap = customerEmailMap;
+    }
+
+    public Map<String, String> getCustomerMobileMap() {
+        return customerMobileMap;
+    }
+
+    public void setCustomerMobileMap(Map<String, String> customerMobileMap) {
+        this.customerMobileMap = customerMobileMap;
+    }
+
+    public Map<String, String> getCustomerPhoneMap() {
+        return customerPhoneMap;
+    }
+
+    public void setCustomerPhoneMap(Map<String, String> customerPhoneMap) {
+        this.customerPhoneMap = customerPhoneMap;
+    }
+
+    public Map<Integer, String> getConsigneeContactMap() {
+        return consigneeContactMap;
+    }
+
+    public void setConsigneeContactMap(Map<Integer, String> consigneeContactMap) {
+        this.consigneeContactMap = consigneeContactMap;
+    }
+
+    public CustomerBean getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerBean customer) {
+        this.customer = customer;
     }
 }

@@ -1,12 +1,11 @@
 package com.sr.apps.freightbit.order.formbean;
 
-import java.util.Date;
-import java.util.List;
-import java.sql.Timestamp;
-
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.customer.formbean.CustomerBean;
+
+import java.util.Date;
+import java.util.List;
 
 public class OrderBean {
 
@@ -57,6 +56,7 @@ public class OrderBean {
     private Date modifiedTimestamp;
     private String modifiedBy;
     private String vendorCode;
+    private Integer consigneeContactPersonId;
 
 	private AddressBean shipperInfoAddress;
 	private ContactBean shipperInfoContact;
@@ -436,5 +436,13 @@ public class OrderBean {
 
     public void setConsigneeName(String consigneeName) {
         this.consigneeName = consigneeName;
+    }
+
+    public Integer getConsigneeContactPersonId() {
+        return consigneeContactPersonId;
+    }
+
+    public void setConsigneeContactPersonId(Integer consigneeContactPersonId) {
+        this.consigneeContactPersonId = consigneeContactPersonId;
     }
 }

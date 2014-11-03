@@ -29,6 +29,17 @@
             <result name="success" type="tiles">orders.booking-new.tiles</result>
         </action>
 
+        <action name="editCustomerContactInfo" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="editCustomerContactInfo">
+            <result name="success" type="tiles">orders.booking-new.tiles</result>
+        </action>
+
+        <action name="addConsigneeContact" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="addConsigneeContact">
+            <result name="input" type="tiles">orders.booking-new.tiles</result>
+            <result name="success" type="tiles">orders.booking-new.tiles</result>
+        </action>
+
         <action name="loadEditOrder" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="loadEditOrder">
             <result name="success" type="tiles">orders.orderEdit.tiles</result>

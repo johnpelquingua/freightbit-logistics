@@ -2,6 +2,19 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 
+<style>
+    label {
+        display: inline-block !important;
+    }
+    .checkbox{
+        width: 15%;
+
+    }
+    label.checkbox {
+        margin: 0 !important;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -153,13 +166,13 @@
 
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
-                        <input type="text" class="from_date form-control step2" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pick-up date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;">
 
                     </div>
 
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
-                        <input type="text" class="to_date form-control step2" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;">
                     </div>
 
                 </div>
@@ -184,25 +197,30 @@
 
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type<span class="asterisk_red"></span></label>
+                </div>
 
-                        <div class="col-lg-9" style="text-align:left !important;">
-                            <%--<s:select cssClass="form-control step2" style="margin-bottom: 15px !important;"
-                                      name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>--%>
-                            <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy" />
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type</label>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Comments </label>
+                    <div class="col-lg-9" style="text-align:left !important;">
+                        <%--<s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                  name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>--%>
+                        <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy" />
 
-                        <div class="col-lg-9">
-                            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="Comments" />
-                        </div>
                     </div>
 
                 </div>
+
+                <div class="form-group">
+
+                    <label class="col-lg-3 control-label" style="margin-top: 5px; clear:both;">Comments </label>
+
+                    <div class="col-lg-9">
+                        <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="Comments" />
+                    </div>
+
+                </div>
+
 
                 <div id="2ndPartOnLoad" style="clear:both;">
 
@@ -217,7 +235,7 @@
 
                         <div class="col-lg-7">
 
-                                <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperContact" name="order.shipperContactId"
+                                <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperContact" name="order.shipperContactId"
                                           list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
                         </div>
 
@@ -235,7 +253,7 @@
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-7">
-                            <s:select cssClass="form-control step2" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
                                       list="addressList" listKey="addressId" listValue="addressLine1 + ' ' + addressLine2" required="true"/>
                         </div>
 
@@ -247,6 +265,82 @@
 
                         </div>
 
+                    </div>
+
+                    <div class="form-group" style="clear: both;">
+                        <div class="col-lg-2 col-lg-offset-10">
+                            <div class="pull-right">
+                                <a data-toggle="modal" data-target="#editContactInfo" class="btn btn-info" id="id_Customer" style="width: 151px !important; margin-bottom: 5px;"> Edit Contact</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <legend style="text-align: left;">
+                        <span>
+                        </span>
+                    </legend>
+
+                    <div class="form-group" style="clear: both;">
+
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Phone</label>
+                        <div class="col-lg-3" >
+
+                            <s:select cssClass="form-control"
+                                      id="customerPhone"
+                                      list="#{customerPhone}"
+                                      value="%{customerPhone}"
+                                      style="display:none"
+                                    />
+                            <s:textfield cssClass="form-control"
+                                         id="customerPhone_textfield"
+                                         disabled="true"
+                                    />
+                        </div>
+
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Mobile</label>
+                        <div class="col-lg-3" >
+                            <s:select cssClass="form-control"
+                                      id="customerMobile"
+                                      list="#{customerMobile}"
+                                      value="%{customerMobile}"
+                                      style="display:none"
+                                    />
+                            <s:textfield cssClass="form-control"
+                                         id="customerMobile_textfield"
+                                         disabled="true"
+                                    />
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="padding-top: 25px; clear: both;">
+
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Email Address</label>
+                        <div class="col-lg-3" >
+                            <s:select cssClass="form-control"
+                                      id="customerEmail"
+                                      list="#{customerEmail}"
+                                      value="%{customerEmail}"
+                                      style="display:none"
+                                    />
+                            <s:textfield cssClass="form-control"
+                                         id="customerEmail_textfield"
+                                         disabled="true"
+                                    />
+                        </div>
+
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Fax</label>
+                        <div class="col-lg-3" >
+                            <s:select cssClass="form-control"
+                                      id="customerFax"
+                                      list="#{customerFax}"
+                                      value="%{customerFax}"
+                                      style="display:none"
+                                    />
+                            <s:textfield cssClass="form-control"
+                                         id="customerFax_textfield"
+                                         disabled="true"
+                                    />
+                        </div>
                     </div>
 
                     <legend style="text-align: left;">
@@ -279,13 +373,28 @@
 
                         <div class="col-lg-7">
 
-                            <%--<s:textfield cssClass="form-control"
-                                         name="order.consigneeAddressId"
-                                         id="order_consigneeAddressId_textfield"
-                                         disabled="true" />--%>
                             <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeAddress" name="order.consigneeAddressId"
                                       list="consigneeAddressList" listKey="addressId"
                                       listValue="addressLine1 + ' ' + addressLine2" required="true" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Contact Person<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-7">
+
+                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeContact" name="order.consigneeContactPersonId"
+                                      list="consigneeList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
+                        </div>
+
+                        <div class="col-lg-2">
+
+                            <div class="pull-right">
+                                <a data-toggle="modal" data-target="#createConsigneeContact"  class="btn btn-info" id="id_Consignee"> Add Contact Person</a>
+                            </div>
 
                         </div>
 
@@ -364,6 +473,22 @@
                     <s:hidden name="contact.referenceId" id="custIdHolder"/>
 
                         <div class="form-group">
+                            <label class="col-lg-3">Position<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
+                                <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
+                                             type="text" required="true"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3">Last name<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
+                                <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
+                                             id="contact.lastName" required="true" maxLength="30" autofocus="true"
+                                             pattern="[a-zA-Z\s ]+"
+                                             title="Name should not contain special characters and/or numbers."/>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-lg-3">First Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
@@ -372,7 +497,6 @@
                                              required="true"/>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-lg-3">Middle Name</label>
                             <div class="col-lg-9">
@@ -381,56 +505,39 @@
                                              title="Name should not contain special characters and/or numbers."/>
                             </div>
                         </div>
-
-                      <div class="form-group">
-                        <label class="col-lg-3">Last name<span class="asterisk_red"></span></label>
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
-                                 id="contact.lastName" required="true" maxLength="30" autofocus="true"
-                                 pattern="[a-zA-Z\s ]+"
-                                 title="Name should not contain special characters and/or numbers."/>
+                        <div class="form-group">
+                            <label class="col-lg-3">Phone<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
+                                <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.phone"
+                                         maxLength="14" required="true" id="contact_phone"
+                                         title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                            </div>
                         </div>
-                      </div>
-
-
                         <div class="form-group">
-                        <label class="col-lg-3">Phone<span class="asterisk_red"></span></label>
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.phone"
-                                     maxLength="14" required="true" id="contact_phone"
-                                     title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                            <label class="col-lg-3">Mobile<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
+                                <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
+                                         maxLength="19" required="true" id="contact_mobile"
+                                         title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                             </div>
-                            </div>
+                        </div>
                         <div class="form-group">
-                        <label class="col-lg-3">Mobile<span class="asterisk_red"></span></label>
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
-                                     maxLength="19" required="true" id="contact_mobile"
-                                     title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                            <label class="col-lg-3">Email Address<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
+                                <s:textfield cssClass="form-control" placeholder="Email Address" name="contact.email"
+                                             type="email" required="true"/>
                             </div>
-                            </div>
+                        </div>
                         <div class="form-group">
-                        <label class="col-lg-3">Fax</label>
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.fax"
+                            <label class="col-lg-3">Fax</label>
+                            <div class="col-lg-9">
+                                <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.fax"
                                      maxLength="14" id="contact_fax"
                                      title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
                             </div>
-                            </div>
-                        <div class="form-group">
-                        <label class="col-lg-3">Email<span class="asterisk_red"></span></label>
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="email" name="contact.email"
-                                     type="email" required="true"/>
-                            </div>
-                          </div>
-                        <div class="form-group">
-                        <label class="col-lg-3">Position<span class="asterisk_red"></span></label>
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
-                                     type="text" required="true"/>
-                            </div>
                         </div>
+
+
                 </div>
             </div>
 
@@ -460,40 +567,40 @@
                     <s:form action="addCustomerAddress" cssClass="form-horizontal" theme="bootstrap">
                     <s:hidden name="address.referenceId" id="custAddIdHolder"/>
                         <div class="form-group">
-                        <label class="col-lg-3">Address Type<span class="asterisk_red"></span></label>
-                            <div class="col-lg-9">
+                        <label class="col-lg-3" style="width: 26%;">Address Type<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9" style="width: 74%;">
                             <s:select name="address.addressType" list="addressTypeList" listValue="value"
                                       listKey="key"
                                       cssClass="form-control" id="address.addressType" emptyOption="true"/>
                             </div>
                             </div>
                         <div class="form-group">
-                        <label class="col-lg-3">Address Line 1<span class="asterisk_red"></span></label>
-                            <div class="col-lg-9">
+                        <label class="col-lg-3" style="width: 26%;">Address Line 1<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control" required="true"/>
                                 </div>
                             </div>
                         <div class="form-group">
-                        <label class="col-lg-3">Address Line 2</label>
-                            <div class="col-lg-9">
+                        <label class="col-lg-3" style="width: 26%;">Address Line 2</label>
+                            <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.addressLine2" id="address.addressLine2" cssClass="form-control"/>
                             </div>
                             </div>
                         <div class="form-group">
-                        <label class="col-lg-3">City<span class="asterisk_red"></span></label>
-                            <div class="col-lg-9">
+                        <label class="col-lg-3" style="width: 26%;">City<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.city" id="address.city" cssClass="form-control" required="true"/>
                             </div>
                             </div>
                         <div class="form-group">
-                        <label class="col-lg-3">Region</label>
-                            <div class="col-lg-9">
+                        <label class="col-lg-3" style="width: 26%;">Region</label>
+                            <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.state" id="address.state" cssClass="form-control"/>
                             </div>
                             </div>
                         <div class="form-group">
-                        <label class="col-lg-3">Zip<span class="asterisk_red"></span></label>
-                            <div class="col-lg-9">
+                        <label class="col-lg-3" style="width: 26%;">Zip<span class="asterisk_red"></span></label>
+                            <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.zip" id="address.zip" cssClass="form-control" required="true"/>
                         </div>
                             </div>
@@ -526,8 +633,8 @@
                 <s:form action="addConsigneeBooking" cssClass="form-horizontal" theme="bootstrap">
                     <s:hidden name="consignee.referenceId1" id="consigneeAddIdHolder"/>
                     <div class="form-group">
-                    <label class="col-lg-3">First name<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">First name<span class="asterisk_red"></span></label>
+                    <div class="col-lg-9" style="width: 74%;">
                   <s:textfield name="consignee.firstName" cssClass="form-control" id="consignee.firstName"
                                  placeholder="First Name" maxLength="30" autofocus="true" required="true"
                                  pattern="[a-zA-Z\s ]+"
@@ -535,8 +642,8 @@
                     </div>
                         </div>
                     <div class="form-group">
-                    <label class="col-lg-3">Middle Name</label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">Middle Name</label>
+                    <div class="col-lg-9" style="width: 74%;">
                   <s:textfield name="consignee.middleName" cssClass="form-control"
                                  id="consignee.middleName"
                                  placeholder="Middle Name" maxLength="30" pattern="[a-zA-Z\s ]+"
@@ -544,8 +651,8 @@
                         </div>
                         </div>
                     <div class="form-group">
-                    <label class="col-lg-3">Last Name<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">Last Name<span class="asterisk_red"></span></label>
+                    <div class="col-lg-9" style="width: 74%;">
                   <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
                                  placeholder="Last Name" maxLength="30" required="true"
                                  pattern="[a-zA-Z\s ]+"
@@ -553,55 +660,55 @@
                     </div>
                         </div>
                     <div class="form-group">
-                    <label class="col-lg-3">Phone<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">Phone<span class="asterisk_red"></span></label>
+                    <div class="col-lg-9" style="width: 74%;">
                   <s:textfield name="consignee.phone" cssClass="form-control" id="consignee_phone"
                                  placeholder="(XXX) XXX-XXXX" maxLength="14" required="true"
                                   title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                     </div>
                         </div>
                     <div class="form-group">
-                    <label class="col-lg-3">Mobile<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">Mobile<span class="asterisk_red"></span></label>
+                    <div class="col-lg-9" style="width: 74%;">
                   <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee_mobile"
                                  placeholder="(+639XX) (XXX-XXXX)" maxLength="19" required="true"
                                  title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                     </div>
                         </div>
                     <div class="form-group">
-                    <label class="col-lg-3">Email<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">Email Address<span class="asterisk_red"></span></label>
+                    <div class="col-lg-9" style="width: 74%;">
                   <s:textfield name="consignee.email" cssClass="form-control" id="consignee.email"
                                  placeholder="Email Address" type="email" required="true" maxLength="50"
                                  pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
                     </div>
                         </div>
                     <div class="form-group">
-                    <label class="col-lg-3">Fax</label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">Fax</label>
+                    <div class="col-lg-9" style="width: 74%;">
                     <s:textfield name="consignee.fax" cssClass="form-control" id="consignee_fax"
                                  placeholder="(XXX) XXX-XXXX" maxLength="14"
                                   title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
                     </div>
                         </div>
                     <div class="form-group">
-                    <label class="col-lg-3">Address<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">Address Line 1<span class="asterisk_red"></span></label>
+                    <div class="col-lg-9" style="width: 74%;">
                     <s:textfield name="consignee.addressLine1" cssClass="form-control"
-                                 id="consignee.addressLine1" placeholder="Address 1" required="true"
+                                 id="consignee.addressLine1" placeholder="Address Line 1" required="true"
                                  maxLength="50"/>
                     </div>
                         </div>
                     <div class="form-group">
-                    <label class="col-lg-3">Address Line 2</label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">Address Line 2</label>
+                    <div class="col-lg-9" style="width: 74%;">
                     <s:textfield name="consignee.addressLine2" cssClass="form-control"
-                                 id="consignee.addressLine2" placeholder="Address 2" maxLength="50"/>
+                                 id="consignee.addressLine2" placeholder="Address Line 2" maxLength="50"/>
                     </div>
                         </div>
                     <div class="form-group">
-                    <label class="col-lg-3">City<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">City<span class="asterisk_red"></span></label>
+                    <div class="col-lg-9" style="width: 74%;">
                     <s:textfield name="consignee.city" cssClass="form-control"
                                  id="consignee.city" placeholder="City" required="true"
                                  pattern="[a-zA-Z ]+" maxLength="50"
@@ -609,18 +716,18 @@
                     </div>
                         </div>
                     <div class="form-group">
-                    <label class="col-lg-3">Region</label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">Region</label>
+                    <div class="col-lg-9" style="width: 74%;">
                     <s:textfield name="consignee.state" cssClass="form-control"
                                  id="consignee.state" placeholder="Region" maxLength="50" pattern="[a-zA-Z ]+"
                                  title="State should not contain special characters and/or numbers."/>
                     </div>
                         </div>
                     <div class="form-group">
-                    <label class="col-lg-3">Zip<span class="asterisk_red"></span></label>
-                    <div class="col-lg-9">
+                    <label class="col-lg-3" style="width: 26%;">Zip<span class="asterisk_red"></span></label>
+                    <div class="col-lg-9" style="width: 74%;">
                     <s:textfield name="consignee.zip" cssClass="form-control"
-                                 id="consignee.zip" placeholder="ZIP" required="true"
+                                 id="consignee.zip" placeholder="Zip" required="true"
                                  pattern="[0-9]+" maxLength="4"
                                  title="ZIP should not contain special characters and/or letters."/>
                     </div>
@@ -639,6 +746,159 @@
     </div>
 </div>
 <%--END OF Third modal Consignee--%>
+
+<%--START OF EDIT CUSTOMER CONTACT INFO--%>
+
+<div class="modal fade" id="editContactInfo" role="form" aria-labelledby="myModalLabel4" >
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel4">Edit Contact Information</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="panel-body">
+                    <s:form action="editCustomerContactInfo" cssClass="form-horizontal" theme="bootstrap">
+                    <s:hidden name="customer.customerId" id="customerIdHolder"/>
+                    <div class="form-group">
+                        <label class="col-lg-3">Phone</label>
+                        <div class="col-lg-9">
+                            <s:textfield name="customer.phone" id="customer_phone" cssClass="form-control" required="true"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3">Mobile</label>
+                        <div class="col-lg-9">
+                            <s:textfield name="customer.mobile" id="customer_mobile" cssClass="form-control" required="true"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3">Email Address</label>
+                        <div class="col-lg-9">
+                            <s:textfield name="customer.email" id="customer_email" cssClass="form-control" required="true"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3">Fax</label>
+                        <div class="col-lg-9">
+                            <s:textfield name="customer.fax" id="customer_fax" cssClass="form-control" required="true"/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+                </s:form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<%--END OF EDIT CUSTOMER CONTACT INFO--%>
+
+<%--START OF ADD CONSIGNEE CONTACT PERSON--%>
+
+<div class="modal fade" id="createConsigneeContact" role="form" aria-labelledby="myModalLabel5" >
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel5">Add Consignee Contact Person</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="panel-body">
+                <s:form action="addConsigneeContact" cssClass="form-horizontal" theme="bootstrap">
+                <s:hidden name="contact.referenceId" id="consigneeIdHolder"/>
+
+                    <div class="form-group">
+                        <label class="col-lg-3">Position<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
+                                         type="text" required="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Last name<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
+                                         id="consignee_contact_lastName" required="true" maxLength="30" autofocus="true"
+                                         pattern="[a-zA-Z\s ]+"
+                                         title="Name should not contain special characters and/or numbers."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">First Name<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
+                                         id="consignee_contact_firstName" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                         title="Name should not contain special characters and/or numbers."
+                                         required="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Middle Name</label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
+                                         id="consignee_contact_middleName" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                         title="Name should not contain special characters and/or numbers."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Phone<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.phone"
+                                         maxLength="14" required="true" id="consignee_contact_phone"
+                                         title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Mobile<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
+                                         maxLength="19" required="true" id="consignee_contact_mobile"
+                                         title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Email Address<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="Email Address" name="contact.email"
+                                         type="email" required="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Fax</label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.fax"
+                                         maxLength="14" id="consignee_contact_fax"
+                                         title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                </div>
+                </s:form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<%--END OF ADD CONSIGNEE CONTACT PERSON--%>
 
 <%--alert modals--%>
 
@@ -696,6 +956,26 @@ $(document).ready(function() {
 
             select4.find('option').remove();
 
+            var select5 = $('#customerPhone');
+
+            select5.find('option').remove();
+
+            var select6 = $('#customerMobile');
+
+            select6.find('option').remove();
+
+            var select7 = $('#customerEmail');
+
+            select7.find('option').remove();
+
+            var select8 = $('#customerFax');
+
+            select8.find('option').remove();
+
+            var select9 = $('#consigneeContact');
+
+            select9.find('option').remove();
+
             // populate customer contacts list
             $.each(jsonResponse.customerContactsMap, function(key, value) {
 
@@ -747,11 +1027,40 @@ $(document).ready(function() {
                     $('<option>').val(key).text(value).appendTo(select4);
                 }
 
-                var consignAdd = $("#consigneeAddress").val();
-                document.getElementById("order_consigneeAddressId_textfield").value = consignAdd;
-
             });
 
+            // populate customer phone
+            $.each(jsonResponse.customerPhoneMap, function(key, value) {
+                $('<option>').val(key).text(value).appendTo(select5);
+                var customerPhone = $("#customerPhone").val();
+                document.getElementById("customerPhone_textfield").value = customerPhone;
+            });
+
+            // populate customer mobile
+            $.each(jsonResponse.customerMobileMap, function(key, value) {
+                $('<option>').val(key).text(value).appendTo(select6);
+                var customerMobile = $("#customerMobile").val();
+                document.getElementById("customerMobile_textfield").value = customerMobile;
+            });
+
+            // populate customer email
+            $.each(jsonResponse.customerEmailMap, function(key, value) {
+                $('<option>').val(key).text(value).appendTo(select7);
+                var customerEmail = $("#customerEmail").val();
+                document.getElementById("customerEmail_textfield").value = customerEmail;
+            });
+
+            // populate customer fax
+            $.each(jsonResponse.customerFaxMap, function(key, value) {
+                $('<option>').val(key).text(value).appendTo(select8);
+                var customerFax = $("#customerFax").val();
+                document.getElementById("customerFax_textfield").value = customerFax;
+            });
+
+            // populate consignee contacts
+            $.each(jsonResponse.consigneeContactMap, function(key, value) {
+                $('<option>').val(key).text(value).appendTo(select9);
+            });
         });
 
     });
@@ -760,16 +1069,22 @@ $(document).ready(function() {
     $('#shipperConsignee').change(function(event) {
         var custId = $("#customerName").val();
         var consignee_Id = $("#shipperConsignee").val();
+        /*alert(custId);
+        alert(consignee_Id);*/
 
         $.getJSON('consigneeAction', {
             customerID : custId,
             consigneeId : consignee_Id
         },
         function(jsonResponse) {
-            /*alert(consignee_Id);*/
+        /*alert(consignee_Id);*/
         var select4 = $('#consigneeAddress');
 
         select4.find('option').remove();
+
+        var select9 = $('#consigneeContact');
+
+        select9.find('option').remove();
 
         // populate consignee address
         $.each(jsonResponse.consigneeAddressMap, function(key, value) {
@@ -785,7 +1100,16 @@ $(document).ready(function() {
                     $('<option>').val(key).text(value).appendTo(select4);
                 }
 
+            }else{
+                $('<option>').val(key).text(value).appendTo(select4);
             }
+
+
+        });
+
+        // populate consignee contacts
+        $.each(jsonResponse.consigneeContactMap, function(key, value) {
+            $('<option>').val(key).text(value).appendTo(select9);
         });
 
         });
@@ -1070,6 +1394,8 @@ $(document).ready(function() {
         }
     // If Service Type is Trucking
     if (select.options[ index ].value === 'TRUCKING'){
+        $('#select1').val('');
+        $('#select2').val('');
         $("#select1").prop('disabled', true);
         $("#select2").prop('disabled', true);
         $('#datepicker1').val('');
@@ -1193,7 +1519,7 @@ $(document).ready(function() {
         preventDuplicatePort.call(this, select1, this.selectedIndex);
     };
 
-//to get the customer id
+//to get the customer id for adding new contact person
 $(document).ready(function(){
     $("#idCustomer").click(function(){
         var custId = $("#customerName").val();
@@ -1206,7 +1532,7 @@ $(document).ready(function(){
       $("#custIdHolder").val(custId);
     });
 });
-
+// to get customer id for adding new address
 $(document).ready(function(){
     $("#idAddress").click(function(){
         var custId1 = $("#customerName").val();
@@ -1219,7 +1545,7 @@ $(document).ready(function(){
         $("#custAddIdHolder").val(custId1);
     });
 });
-
+// to get customer id for adding new consignee
 $(document).ready(function(){
     $("#idConsignee").click(function(){
         var custId2 = $("#customerName").val();
@@ -1232,7 +1558,42 @@ $(document).ready(function(){
         $("#consigneeAddIdHolder").val(custId2);
     });
 });
+// to get customer id for editing contact number information
+$(document).ready(function(){
+    $("#id_Customer").click(function() {
+        var custId3 = $("#customerName").val();
+        var custPhone = $("#customerPhone").val();
+        var custMobile = $("#customerMobile").val();
+        var custEmail = $("#customerEmail").val();
+        var custFax = $("#customerFax").val();
+        getThis();
+        if (custId3 == "" || null ){
+            alert("Select Customer First");
+            $("#customerName").focus();
+            return false;
+        }
+        $("#customerIdHolder").val(custId3);
+        $("#customer_phone").val(custPhone);
+        $("#customer_mobile").val(custMobile);
+        $("#customer_email").val(custEmail);
+        $("#customer_fax").val(custFax);
+    });
+});
+//to get consignee id for adding consignee contact
+$(document).ready(function(){
 
+    $("#id_Consignee").click(function() {
+        var consigneeId = $("#shipperConsignee").val();
+        getThis();
+        if (consigneeId == null ){
+            alert("Select Consignee First");
+            /*$("#shipperConsignee").focus();*/
+            return false;
+        }
+        $("#consigneeIdHolder").val(consigneeId);
+    });
+
+});
 function getThis(){
     var ServiceReqField = $("#order_serviceRequirement").val();
     var ServiceModeField =$("#order_modeOfService").val();
@@ -1245,6 +1606,10 @@ function getThis(){
     var DestinationPortField = $("#select2").val();
     var NotificationField = $("#notification_type").val();
     var CommentsField = $("#Comments").val();
+    var PhoneField = $("#customerPhone_textfield").val();
+    var Mobilefield = $("#customerMobile_textfield").val();
+    var EmailField = $("#customerEmail_textfield").val();
+    var FaxField = $("#customerFax_textfield").val();
 
     localStorage.setItem("ServiceReqField",ServiceReqField);
     localStorage.setItem("ServiceModeField",ServiceModeField);
@@ -1257,6 +1622,10 @@ function getThis(){
     localStorage.setItem("DestinationPortField",DestinationPortField);
     localStorage.setItem("NotificationField",NotificationField);
     localStorage.setItem("CommentsField",CommentsField);
+    localStorage.setItem("PhoneField",PhoneField);
+    localStorage.setItem("Mobilefield",Mobilefield);
+    localStorage.setItem("EmailField",EmailField);
+    localStorage.setItem("FaxField",FaxField);
 
 }
 function setThis()
@@ -1272,6 +1641,10 @@ function setThis()
     $("#select2").val(localStorage.getItem("DestinationPortField"));
     $("#notification_type").val(localStorage.getItem("NotificationField"));
     $("#Comments").val(localStorage.getItem("CommentsField"));
+    $("#customerPhone_textfield").val(localStorage.getItem("PhoneField"));
+    $("#customerMobile_textfield").val(localStorage.getItem("Mobilefield"));
+    $("#customerEmail_textfield").val(localStorage.getItem("EmailField"));
+    $("#customerFax_textfield").val(localStorage.getItem("FaxField"));
 }
 
 $(document).ready(function(){
@@ -1302,6 +1675,26 @@ $(document).ready(function(){
                     var select4 = $('#consigneeAddress');
 
                     select4.find('option').remove();
+
+                    var select5 = $('#customerPhone');
+
+                    select5.find('option').remove();
+
+                    var select6 = $('#customerMobile');
+
+                    select6.find('option').remove();
+
+                    var select7 = $('#customerEmail');
+
+                    select7.find('option').remove();
+
+                    var select8 = $('#customerFax');
+
+                    select8.find('option').remove();
+
+                    var select9 = $('#consigneeContact');
+
+                    select9.find('option').remove();
 
                     // populate customer consignee list
                     $.each(jsonResponse.customerContactsMap, function(key, value) {
@@ -1340,12 +1733,13 @@ $(document).ready(function(){
                     $.each(jsonResponse.customerConsigneeMap, function(key, value) {
                         //alert($("#shipperConsignee").val());
 
-                        if($("#shipperConsignee").val() != ''){
+                        /*if($("#shipperConsignee").val() != ''){
                             //$('<option>').val(null).text("").appendTo(select3);
                             $('<option>').val(key).text(value).appendTo(select3);
                         }else{
                             $('<option>').val(key).text(value).appendTo(select3);
-                        }
+                        }*/
+                        $('<option>').val(key).text(value).appendTo(select3);
                     });
 
                     // populate customer address list
@@ -1361,6 +1755,40 @@ $(document).ready(function(){
                             $('<option>').val(key).text(value).appendTo(select4);
                         }
                     });
+
+                    // populate customer phone
+                    $.each(jsonResponse.customerPhoneMap, function(key, value) {
+                        $('<option>').val(key).text(value).appendTo(select5);
+                        var customerPhone = $("#customerPhone").val();
+                        document.getElementById("customerPhone_textfield").value = customerPhone;
+                    });
+
+                    // populate customer mobile
+                    $.each(jsonResponse.customerMobileMap, function(key, value) {
+                        $('<option>').val(key).text(value).appendTo(select6);
+                        var customerMobile = $("#customerMobile").val();
+                        document.getElementById("customerMobile_textfield").value = customerMobile;
+                    });
+
+                    // populate customer email
+                    $.each(jsonResponse.customerEmailMap, function(key, value) {
+                        $('<option>').val(key).text(value).appendTo(select7);
+                        var customerEmail = $("#customerEmail").val();
+                        document.getElementById("customerEmail_textfield").value = customerEmail;
+                    });
+
+                    // populate customer fax
+                    $.each(jsonResponse.customerFaxMap, function(key, value) {
+                        $('<option>').val(key).text(value).appendTo(select8);
+                        var customerFax = $("#customerFax").val();
+                        document.getElementById("customerFax_textfield").value = customerFax;
+                    });
+
+                    // populate consignee contacts
+                    $.each(jsonResponse.consigneeContactMap, function(key, value) {
+                        $('<option>').val(key).text(value).appendTo(select9);
+                    });
+
                 });
 
         localStorage.clear();
@@ -1370,11 +1798,17 @@ $(document).ready(function(){
 /*Mask input fields*/
 $(document).ready(function(){
     $("#contact_phone").mask("(999) 999-9999");
+    $("#customer_phone").mask("(999) 999-9999");
     $("#contact_mobile").mask("(+63999)(999-9999)");
+    $("#customer_mobile").mask("(+63999)(999-9999)");
     $("#contact_fax").mask("(999) 999-9999");
     $("#consignee_phone").mask("(999) 999-9999");
     $("#consignee_mobile").mask("(+63999)(999-9999)");
     $("#consignee_fax").mask("(999) 999-9999");
+    $("#customer_fax").mask("(999) 999-9999");
+    $("#consignee_contact_phone").mask("(999) 999-9999");
+    $("#consignee_contact_mobile").mask("(+63999)(999-9999)");
+    $("#consignee_contact_fax").mask("(999) 999-9999");
 });
 
 </script>

@@ -55,19 +55,19 @@ public class Orders implements java.io.Serializable {
     private Double rates;
     private List<OrderItems> orderItems = new ArrayList<OrderItems>();
     private Integer customerId;
-
+    private Integer consigneeContactPersonId;
 
     public Orders() {
     }
 
 
-    public Orders(Integer orderId, Client client, String orderNumber, String serviceRequirement, String serviceType, String serviceMode, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Date pickupDate, String originationPort, Date deliveryDate, String destinationPort, Double rates, List<OrderItems> orderItems, Integer customerId) {
+    public Orders(String serviceMode, Integer orderId, Client client, String orderNumber, String serviceRequirement, String serviceType, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Date pickupDate, String originationPort, Date deliveryDate, String destinationPort, Double rates, List<OrderItems> orderItems, Integer customerId, Integer consigneeContactPersonId) {
+        this.serviceMode = serviceMode;
         this.orderId = orderId;
         this.client = client;
         this.orderNumber = orderNumber;
         this.serviceRequirement = serviceRequirement;
         this.serviceType = serviceType;
-        this.serviceMode = serviceMode;
         this.notificationType = notificationType;
         this.orderDate = orderDate;
         this.paymentMode = paymentMode;
@@ -96,8 +96,8 @@ public class Orders implements java.io.Serializable {
         this.rates = rates;
         this.orderItems = orderItems;
         this.customerId = customerId;
+        this.consigneeContactPersonId = consigneeContactPersonId;
     }
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -468,6 +468,15 @@ public class Orders implements java.io.Serializable {
 
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
+    }
+
+    @Column(name = "consigneeContactPersonId")
+    public Integer getConsigneeContactPersonId() {
+        return consigneeContactPersonId;
+    }
+
+    public void setConsigneeContactPersonId(Integer consigneeContactPersonId) {
+        this.consigneeContactPersonId = consigneeContactPersonId;
     }
 }
 

@@ -99,10 +99,10 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
     }
 
     @Override
-    public Customer findCustomerById(Integer id) {
+    public Customer findCustomerById(Integer customerId) {
         log.debug("finding customer by id");
         try {
-            Customer instance = (Customer) getSessionFactory().getCurrentSession().get(Customer.class, id);
+            Customer instance = (Customer) getSessionFactory().getCurrentSession().get(Customer.class, customerId);
             if (instance == null) {
                 log.debug("no id exists");
             } else {

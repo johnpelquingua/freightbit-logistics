@@ -395,8 +395,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer findCustomerById(Integer id) {
-        return customerDao.findCustomerById(id);
+    public Customer findCustomerById(Integer customerId) {
+        return customerDao.findCustomerById(customerId);
     }
 
     @Override

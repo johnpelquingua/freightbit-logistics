@@ -18,7 +18,7 @@ public interface CustomerDao {
 
     public List<Customer> findAllCustomer();
 
-    public Customer findCustomerById(Integer id);
+    public Customer findCustomerById(Integer customerId);
 
     public List<Customer> findCustomerByClientId(Integer clientId);
 

@@ -138,43 +138,43 @@
             <div class="panel-body">
 
                 <div class="row">
-                    <div class="col-md-3 col-lg-3 " align="center">
+                    <%--<div class="col-md-3 col-lg-3 " align="center">
                         <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
-                    </div>
-                    <div class=" col-md-9 col-lg-9 ">
+                    </div>--%>
+                    <div class=" col-md-12 col-lg-12 ">
                         <table class="table table-user-information">
                             <s:hidden id="custIdHolder" value="%{order.customerId}"/>
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important; border-top: none;">Shipper Name</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Shipper Name</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.customerName"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Contact Person</td>
-                                <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.name"/></td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Person</td>
+                                <td style="text-align: left !important;"><s:property value="order.ConsigneeContactPersonId"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Contact Number</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Number</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.phone"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Mobile</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Mobile</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.mobile"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Fax</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Fax</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.fax"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">E-mail</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Email Address</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.email"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Pick-up Date</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Pickup Date</td>
                                 <td style="text-align: left !important;"><s:property value="order.pickupDate"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Pick-up Address</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Pickup Address</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoAddress.address"/></td>
                             </tr>
                             </tbody>
@@ -198,39 +198,43 @@
             <div class="panel-body">
 
                 <div class="row">
-                    <div class="col-md-3 col-lg-3 " align="center">
+                    <%--<div class="col-md-3 col-lg-3 " align="center">
                         <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
-                    </div>
-                    <div class=" col-md-9 col-lg-9 ">
+                    </div>--%>
+                    <div class=" col-md-12 col-lg-12 ">
                         <table class="table table-user-information">
 
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important; border-top: none;">Consignee Name</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Consignee Name</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.consigneeInfoContact.name"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Contact Number</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Person</td>
+                                <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.name"/></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Number</td>
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.phone"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Mobile</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Mobile</td>
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.mobile"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Fax</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Fax</td>
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.fax"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">E-mail</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Email Address</td>
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.email"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Delivery Date</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Delivery Date</td>
                                 <td style="text-align: left !important;"><s:property value="order.deliveryDate"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Delivery Address</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Delivery Address</td>
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoAddress.address"/></td>
                             </tr>
                             </tbody>
@@ -259,7 +263,7 @@
                 <fieldset class="inputs">
 
                     <legend style="text-align: left;">
-                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                             <span>
                                 Container Information
                             </span>
@@ -280,7 +284,7 @@
                     <div class="form-group" style="padding-top: 25px;">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                                 <span>
                                     Container Quantity<span class="asterisk_red">
                                 </span>
@@ -293,7 +297,7 @@
                         </label>
 
                         <div class="col-lg-3" >
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
                             <span>
                                 <s:select cssClass="form-control"
                                           id="orderItem.quantity"
@@ -319,7 +323,7 @@
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
                                 <span>
                                     Container Size<span class="asterisk_red">
                                 </span>
@@ -333,7 +337,7 @@
 
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
                                 <span>
                                     <s:select cssClass="form-control"
                                               id="orderItem.nameSize"
@@ -428,7 +432,7 @@
 
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem.description"
@@ -488,7 +492,7 @@
                         </label>
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.volume"
                                              id="orderItem.volume"
@@ -569,7 +573,7 @@
                         </label>
                         <div class="col-lg-3" >
 
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValues"
@@ -599,7 +603,7 @@
                     <legend />
 
                     <div style="clear:both; margin-top: 20px;" class="pull-right">
-                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                             <span>
                                 <s:submit name="submit" cssClass="btn btn-primary" id="submit_button" value="Add Container to List" />
                             </span>
@@ -639,7 +643,7 @@
         <fieldset>
 
             <legend style="text-align: left;">
-                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                             <h4>
                                 Container Listing <small>(Maximum of 5 Containers)</small>
                             </h4>
@@ -658,7 +662,7 @@
                         <thead>
                         <tr class="header_center" style="background-color: #fff;">
                             <th class="tb-font-black">Quantity</th>
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
                             <span>
                                 <th class="tb-font-black">Size</th>
                             </span>

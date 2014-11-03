@@ -46,7 +46,7 @@
         <s:hidden name="order.orderId" id="order_orderId" value="%{order.orderId}"/>
         <%--<s:property value="%{order.orderNumber}"/>--%>
         <s:hidden name="order.orderNumber" value="%{order.orderNumber}"/>
-
+        <s:hidden name="order.orderStatus" value="%{order.orderStatus}"/>
         <div class="form-group">
             <label class="col-lg-2 control-label">Freight Type<span class="asterisk_red"></span></label>
 
