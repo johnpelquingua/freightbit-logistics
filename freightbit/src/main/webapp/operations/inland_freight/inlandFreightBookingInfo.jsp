@@ -7,12 +7,12 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-                <h1><i class="fa fa-truck"></i> Inland Freight Planning : Orders</h1>
+                <h1><i class="fa fa-truck"></i> Dispatch Plan : Orders</h1>
             </span>
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Inland Freight Planning : Orders  </a></li>
+            <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Dispatch Plan : Orders  </a></li>
             <li class="active"> Booking Information</li>
         </ol>
     </div>
@@ -248,7 +248,7 @@
 
         <div class="pull-right">
             <button type="button" id="Cancel" class="btn" onclick="location.href='viewInlandFreightList'">
-                Back to Inland Freight Planning : Orders
+                Back to Dispatch Plan : Orders
             </button>
         </div>
 

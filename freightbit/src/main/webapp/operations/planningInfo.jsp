@@ -11,7 +11,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Orders </a></li>
+            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
             <li class="active">
                 <%--<a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Containers / Items </a>--%>
                 <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
@@ -22,7 +22,7 @@
                 </s:url>
                 <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                      title="Update Status">
-                    Sea Freight Planning : Containers / Items
+                    Freight Plan : Containers / Items
                 </s:a>
             </li>
             <li class="active"> View Planning Information</li>
@@ -76,7 +76,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-anchor"></i>
-        <span class="panel-title">Sea Operation</span>
+        <span class="panel-title">Freight Plan</span>
         <span class="pull-right">
                     <button type="button" class="btn btn-primary new-booking" onclick="location.href='loadAddDriverPage'">
                         <i class="fa fa-group"></i> New Driver
@@ -104,7 +104,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-truck"></i>
-        <span class="panel-title">Inland Operation : Origin</span>
+        <span class="panel-title"> Dispatch Plan : Origin</span>
     </div>
     <div class="panel-body">
         <div class="form-group">
@@ -149,10 +149,9 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-truck"></i>
-            <span class="panel-title">Inland Operation : Destination</span>
+            <span class="panel-title"> Dispatch Plan : Destination</span>
         </div>
         <div class="panel-body">
-
 
             <div class="form-group">
 

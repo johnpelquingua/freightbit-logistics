@@ -6,22 +6,22 @@
         <legend style="text-align: left;">
             <span>
                 <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                    <h1><i class="fa fa-anchor"></i> Sea Freight Planning : Containers</h1>
+                    <h1><i class="fa fa-anchor"></i> Freight Plan : Containers</h1>
                 </s:if>
                 <s:else>
-                    <h1><i class="fa fa-anchor"></i> Sea Freight Planning : Items</h1>
+                    <h1><i class="fa fa-anchor"></i> Freight Plan : Items</h1>
                 </s:else>
             </span>
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Orders </a></li>
+            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
 
             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                <li class="active"> Sea Freight Planning : Containers</li>
+                <li class="active"> Freight Plan : Containers</li>
             </s:if>
             <s:else>
-                <li class="active"> Sea Freight Planning : Items</li>
+                <li class="active"> Freight Plan : Items</li>
             </s:else>
         </ol>
     </div>
@@ -43,7 +43,7 @@
 
 <div class="panel-heading">
     <h3 class="panel-title">
-        <i class="fa fa-list"></i> Sea Freight Operations
+        <i class="fa fa-list"></i> Freight Plan
     </h3>
 </div>
 
@@ -178,12 +178,12 @@
                     </s:if>
                     <s:if test="#attr.orderItem.status=='PLANNING 2'">
                                         <span>
-                                            <p>Planning will be redirected to Inland Freight Origin</p>
+                                            <p>Planning will be redirected to Dispatch Plan Origin</p>
                                         </span>
                     </s:if>
                     <s:if test="#attr.orderItem.status=='PLANNING 3'">
                                         <span>
-                                            <p>Planning will be redirected to Inland Freight Destination</p>
+                                            <p>Planning will be redirected to Dispatch Plan Destination</p>
                                         </span>
                     </s:if>
 
@@ -200,7 +200,7 @@
 
     <div class="pull-right">
     <button type="button" id="Cancel" class="btn" onclick="location.href='viewSeaFreightList'">
-    Back to Sea Freight Planning : Orders
+    Back to Freight Plan : Orders
     </button>
     </div>
 

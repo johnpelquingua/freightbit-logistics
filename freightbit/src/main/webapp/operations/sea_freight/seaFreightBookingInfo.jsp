@@ -7,12 +7,12 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-                <h1><i class="fa fa-anchor"></i> Sea Freight Planning : Orders</h1>
+                <h1><i class="fa fa-anchor"></i> Freight Plan : Orders</h1>
             </span>
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Orders </a></li>
+            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
             <li class="active"> Booking Information</li>
         </ol>
     </div>
@@ -248,7 +248,7 @@
 
         <div class="pull-right">
             <button type="button" id="Cancel" class="btn" onclick="location.href='viewSeaFreightList'">
-                Back to Sea Freight Planning : Orders
+                Back to Freight Plan
             </button>
         </div>
 

@@ -5,12 +5,12 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-                <h1><i class="fa fa-truck"></i> Inland Freight Planning : Orders </h1>
+                <h1><i class="fa fa-truck"></i> Dispatch Plan : Orders </h1>
                 </span>
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> Inland Freight Planning : Orders </li>
+            <li class="active"> Dispatch Plan : Orders </li>
         </ol>
     </div>
 </div>
@@ -20,7 +20,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <i class="fa fa-list"></i> Inland Freight Operations List
+                    <i class="fa fa-list"></i> Dispatch Plan List
                 </h3>
             </div>
 

@@ -7,22 +7,22 @@
             <span >
 
                 <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                    <h1><i class="fa fa-truck"></i> Inland Freight Planning : Containers</h1>
+                    <h1><i class="fa fa-truck"></i> Dispatch Plan : Containers</h1>
                 </s:if>
                 <s:else>
-                    <h1><i class="fa fa-truck"></i> Inland Freight Planning : Items</h1>
+                    <h1><i class="fa fa-truck"></i> Dispatch Plan : Items</h1>
                 </s:else>
             </span>
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Inland Freight Planning : Orders  </a></li>
+            <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Dispatch Plan : Orders  </a></li>
             <%--<li class="active"> Inland Freight Planning : Containers / Items</li>--%>
             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                <li class="active"> Inland Freight Planning : Containers </li>
+                <li class="active"> Dispatch Plan : Containers </li>
             </s:if>
             <s:else>
-                <li class="active"> Inland Freight Planning : Items</li>
+                <li class="active"> Dispatch Plan : Items</li>
             </s:else>
         </ol>
     </div>
@@ -44,7 +44,7 @@
 
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <i class="fa fa-list"></i> Inland Freight Operations
+                    <i class="fa fa-list"></i> Dispatch Plan
                 </h3>
             </div>
 
@@ -168,12 +168,12 @@
                                 </s:if>
                                 <s:if test="#attr.orderItem.status=='PLANNING 2'">
                                         <span>
-                                            <p>Planning will be redirected to Inland Freight Origin</p>
+                                            <p>Planning will be redirected to Dispatch Plan Origin</p>
                                         </span>
                                 </s:if>
                                 <s:if test="#attr.orderItem.status=='PLANNING 3'">
                                         <span>
-                                            <p>Planning will be redirected to Inland Freight Destination</p>
+                                            <p>Planning will be redirected to Dispatch Plan Destination</p>
                                         </span>
                                 </s:if>
 

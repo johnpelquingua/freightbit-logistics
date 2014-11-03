@@ -8,12 +8,12 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-                <h1><i class="fa fa-anchor"></i> Sea Freight Planning </h1>
+                <h1><i class="fa fa-anchor"></i> Freight Plan </h1>
             </span>
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Orders </a></li>
+            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
             <li class="active">
                 <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
                     <s:param name="orderIdParam"
@@ -24,14 +24,14 @@
                 <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                      title="Update Status">
                     <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                        Sea Freight Planning : Containers
+                        Freight Plan : Containers
                     </s:if>
                     <s:else>
-                        Sea Freight Planning : Items
+                        Freight Plan : Items
                     </s:else>
                 </s:a>
             </li>
-            <li class="active"> Sea Freight Planning</li>
+            <li class="active"> Freight Plan</li>
         </ol>
 
     </div>

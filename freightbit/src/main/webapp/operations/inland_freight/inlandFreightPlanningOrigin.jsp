@@ -6,12 +6,12 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span>
-                <h1><i class="fa fa-truck"></i> Inland Freight Planning : Origin</h1>
+                <h1><i class="fa fa-truck"></i> Dispatch Plan : Origin</h1>
             </span>
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Inland Freight Planning : Orders </a>
+            <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Dispatch Plan : Orders </a>
             </li>
             <li class="active">
                 <%--<a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Containers / Items </a>--%>
@@ -25,14 +25,14 @@
                      title="Update Status">
 
                     <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                        Inland Freight Planning : Containers
+                        Dispatch Plan : Containers
                     </s:if>
                     <s:else>
-                        Inland Freight Planning : Items
+                        Dispatch Plan : Items
                     </s:else>
                 </s:a>
             </li>
-            <li class="active"> Inland Freight Planning : Origin</li>
+            <li class="active"> Dispatch Plan : Origin</li>
         </ol>
     </div>
 </div>
@@ -95,7 +95,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-truck"></i>
-                <span class="panel-title">Inland Operation : Origin</span>
+                <span class="panel-title"> Dispatch Plan : Origin</span>
             </div>
             <div class="panel-body">
                 <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsOrigin">
@@ -212,7 +212,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-anchor"></i>
-        <span class="panel-title">Sea Operation</span>
+        <span class="panel-title">Freight Plan</span>
     </div>
     <div class="panel-body form-horizontal">
         <div class="form-group">
@@ -238,7 +238,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-truck"></i>
-        <span class="panel-title">Inland Operation : Origin</span>
+        <span class="panel-title"> Dispatch Plan : Origin</span>
     </div>
     <div class="panel-body">
         <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsOrigin">
@@ -352,7 +352,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-truck"></i>
-        <span class="panel-title">Inland Operation : Destination</span>
+        <span class="panel-title"> Dispatch Plan : Destination</span>
     </div>
     <div class="panel-body form-horizontal">
 
@@ -412,12 +412,12 @@
 
                 <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                     <button type="button" class="btn">
-                        Inland Freight Planning : Containers
+                        Dispatch Plan : Containers
                     </button>
                 </s:if>
                 <s:else>
                     <button type="button" class="btn">
-                        Inland Freight Planning : Items
+                        Dispatch Plan : Items
                     </button>
                 </s:else>
             </s:a>
@@ -429,7 +429,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-anchor"></i>
-            <span class="panel-title">Sea Operation</span>
+            <span class="panel-title">Freight Plan</span>
         </div>
         <div class="panel-body form-horizontal">
             <div class="form-group">
@@ -455,7 +455,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-truck"></i>
-            <span class="panel-title">Inland Operation : Origin</span>
+            <span class="panel-title"> Dispatch Plan : Origin</span>
         </div>
         <div class="panel-body">
             <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsOrigin">

@@ -11,7 +11,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Inland Freight Planning : Orders </a></li>
+            <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Dispatch Plan : Orders </a></li>
             <li class="active">
                 <%--<a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Containers / Items </a>--%>
                 <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
@@ -24,10 +24,10 @@
                      title="Update Status">
 
                     <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                        Inland Freight Planning : Containers
+                        Dispatch Plan : Containers
                     </s:if>
                     <s:else>
-                        Inland Freight Planning : Items
+                        Dispatch Plan : Items
                     </s:else>
                 </s:a>
             </li>
@@ -82,7 +82,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-anchor"></i>
-        <span class="panel-title">Sea Operation</span>
+        <span class="panel-title">Freight Plan</span>
         <s:url var="viewFreightPlanningUrl" action="viewEditSeaFreight">
             <s:param name="orderItemIdParam"
                      value="#attr.orderItem.orderItemId">
@@ -121,7 +121,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-truck"></i>
-                    <span class="panel-title">Inland Operation : Origin</span>
+                    <span class="panel-title">Dispatch Plan : Origin</span>
                     <s:url var="viewFreightPlanningUrl" action="viewEditInlandFreightOrigin">
                         <s:param name="orderItemIdParam"
                                  value="#attr.orderItem.orderItemId">
@@ -184,7 +184,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-truck"></i>
-                    <span class="panel-title">Inland Operation : Destination</span>
+                    <span class="panel-title">Dispatch Plan : Destination</span>
                     <s:url var="viewFreightPlanningUrl" action="viewEditInlandFreightDestination">
                         <s:param name="orderItemIdParam"
                                  value="#attr.orderItem.orderItemId">
@@ -259,12 +259,12 @@
 
             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                 <button type="button" class="btn btn-default">
-                    Back to Sea Freight Planning : Containers
+                    Back to Freight Plan : Containers
                 </button>
             </s:if>
             <s:else>
                 <button type="button" class="btn btn-default">
-                    Back to Sea Freight Planning : Items
+                    Back to Freight Plan : Items
                 </button>
             </s:else>
 
