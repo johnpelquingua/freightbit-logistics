@@ -159,6 +159,19 @@
             <result name="success" type="redirect">loadEditOrder</result>
             <result name="input" type="tiles">orders.orderEdit.tiles</result>
         </action>
+        <!--Edit Contact Information in Edit Booking-->
+        <action name="editCustomerContactInfoEditOrder" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="editCustomerContactInfo">
+            <result name="success" type="redirect">loadEditOrder</result>
+            <result name="input" type="tiles">orders.orderEdit.tiles</result>
+        </action>
+        <!--Add Consignee Contact in Edit Booking-->
+        <action name="addConsigneeContactEditOrder" class="com.sr.apps.freightbit.order.action.OrderAction"
+                method="addConsigneeContact">
+            <result name="success" type="redirect">loadEditOrder</result>
+            <result name="input" type="tiles">orders.orderEdit.tiles</result>
+        </action>
+
         <!--Editing of Booking on Info page-->
         <action name="loadEditOrderInBooking" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="loadEditOrder">

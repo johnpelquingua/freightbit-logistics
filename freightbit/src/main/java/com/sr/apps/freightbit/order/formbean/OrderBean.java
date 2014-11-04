@@ -57,6 +57,7 @@ public class OrderBean {
     private String modifiedBy;
     private String vendorCode;
     private Integer consigneeContactPersonId;
+    private String consigneeContactName;
 
 	private AddressBean shipperInfoAddress;
 	private ContactBean shipperInfoContact;
@@ -64,7 +65,6 @@ public class OrderBean {
 	private ContactBean consigneeInfoContact;
 	private List <OrderItemsBean> orderItemsBean;
     private List <CustomerBean> customerBean;
-
 
     public Integer getOrderId() {
 		return orderId;
@@ -444,5 +444,13 @@ public class OrderBean {
 
     public void setConsigneeContactPersonId(Integer consigneeContactPersonId) {
         this.consigneeContactPersonId = consigneeContactPersonId;
+    }
+
+    public String getConsigneeContactName() {
+        return consigneeContactName;
+    }
+
+    public void setConsigneeContactName(String consigneeContactName) {
+        this.consigneeContactName = consigneeContactName;
     }
 }

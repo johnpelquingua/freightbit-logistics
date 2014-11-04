@@ -105,7 +105,8 @@
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Total Rate</td>
-                                <td style="text-align: left !important;"><s:property value="order.rates"/></td>
+                                <%--<td style="text-align: left !important;"><s:property value="order.rates"/></td>--%>
+                                <td style="text-align: left !important;">"N/A"</td>
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Prepared By</td>
@@ -151,7 +152,7 @@
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Person</td>
-                                <td style="text-align: left !important;"><s:property value="order.ConsigneeContactPersonId"/></td>
+                                <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.name"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Number</td>
@@ -211,7 +212,7 @@
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Person</td>
-                                <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.name"/></td>
+                                <td style="text-align: left !important;"><s:property value="order.ConsigneeContactName"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Number</td>
@@ -441,7 +442,6 @@
                             </s:if>
                             <s:else>
                                 <s:select cssClass="form-control"
-                                          name="orderItem.description"
                                           id="orderItem_description"
                                           list="#{orderItem_description}"
                                           value="%{orderItem_description}"
@@ -450,7 +450,6 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem_description_textfield"
-                                             disabled="true"
                                              required="true"
                                         />
                             </s:else>
@@ -494,19 +493,16 @@
 
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                                 <s:textfield cssClass="form-control"
-                                             name="orderItem.volume"
                                              id="orderItem.volume"
                                              style="display:none"
                                         />
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.volume"
                                              id="orderItemVolume"
-                                             disabled="true"
                                         />
                             </s:if>
                             <s:else>
                                 <s:select cssClass="form-control"
-                                          name="orderItem.volume"
                                           id="orderItem_volume"
                                           list="#{orderItem_volume}"
                                           value="%{orderItem_volume}"
@@ -515,42 +511,10 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.volume"
                                              id="orderItem_volume_textfield"
-                                             disabled="true"
                                         />
                             </s:else>
 
                         </div>
-
-                        <%--<label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Commodity
-                        </label>
-
-                        <div class="col-lg-3" >
-
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                                <s:textfield cssClass="form-control"
-                                             name="orderItem.description"
-                                             id="orderItem.description"
-
-                                        />
-                            </s:if>
-                            <s:else>
-                                <s:select cssClass="form-control"
-                                          name="orderItem.description"
-                                          id="orderItem_description"
-                                          list="#{orderItem_description}"
-                                          value="%{orderItem_description}"
-                                          style="display:none"
-                                        />
-                                <s:textfield cssClass="form-control"
-                                             name="orderItem.description"
-                                             id="orderItem_description_textfield"
-                                             disabled="true"
-                                             required="true"
-                                        />
-                            </s:else>
-
-                        </div>--%>
 
                     </div>
 
@@ -583,7 +547,7 @@
                             </s:if>
                             <s:else>
                                 <s:select cssClass="form-control"
-                                          name="orderItem.declaredValue"
+
                                           id="orderItem_declaredValue"
                                           list="#{orderItem_declaredValue}"
                                           value="%{orderItem_declaredValue}"
@@ -592,7 +556,6 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValue_textfield"
-                                             disabled="true"
                                         />
                             </s:else>
 
@@ -761,52 +724,8 @@
 </div>
 </div>
 
-<!-- Save Booking Modal -->
-<div class="modal fade" id="saveBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
-                <h4 class="modal-title" id="myModalLabel">Save Booking</h4>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to save booking now?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <%--<button type="button" class="btn btn-primary" href="#"><a style="color: #fff; text-decoration: none;" href="<s:url action='../orders/viewOrders' />">Yes</a></button>--%>
-                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
-        </div>
-    </div>
-</div>
-
-<!-- Cancel Booking Modal -->
-<div class="modal fade" id="cancelBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
-                <h4 class="modal-title" id="myModalLabel">Cancel Booking</h4>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to cancel the booking?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <%--<s:property value="order.orderId"/>--%>
-                <s:url var="deleteOrderUrl" action="deleteOrder">
-                    <s:param name="orderIdParam" value="order.orderId"></s:param>
-                </s:url>
-                <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip">
-                     <button type="button" class="btn btn-primary">Yes</button>
-                </s:a>
-            </div>
-        </div>
-    </div>
-</div>
-
 <%--start add item--%>
-<div class="modal fade" id="createItem" role="form" aria-labelledby="myModalLabel1">
+<div class="modal fade" id="createItem" role="dialog" aria-labelledby="myModalLabel3">
     <div class="modal-dialog modal-form">
         <div class="modal-content">
             <div class="modal-header">
@@ -827,7 +746,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield name="item.itemName" id="item.itemName" required="true"
-                                         cssClass="form-control" pattern="[A-Za-z ]+" title="Must be letters only" maxlength="50"/>
+                                             cssClass="form-control" pattern="[A-Za-z ]+" title="Must be letters only" maxlength="50"/>
                             </div>
                         </div>
 
@@ -837,7 +756,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield name="item.itemCode" id="item_itemCode" required="true"
-                                         cssClass="form-control" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
+                                             cssClass="form-control" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
                             </div>
 
                         </div>
@@ -848,7 +767,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield name="item.weight" id="item.weight" required="true"
-                                         cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
+                                             cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                         </div>
@@ -870,7 +789,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield name="item.length" id="item.length" required="true" cssClass="form-control"
-                                         style="150px" pattern="[0-9.]+" title="Special characters in length is not valid" onkeypress="return isNumberKey(event)"/>
+                                             style="150px" pattern="[0-9.]+" title="Special characters in length is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
@@ -889,8 +808,8 @@
                             <label class="col-lg-3 control-label" style="padding-top:0px;">Height (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                            <s:textfield name="item.height" id="item.height" required="true"
-                                         cssClass="form-control" pattern="[0-9.]+" title="Special characters in height is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.height" id="item.height" required="true"
+                                             cssClass="form-control" pattern="[0-9.]+" title="Special characters in height is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
@@ -899,7 +818,7 @@
 
                             <div class="col-lg-9">
                                 <s:textarea name="item.description" id="item.description" resize="none"
-                                        style="resize:none" rows="3" cssClass="form-control" maxlength="50"/>
+                                            style="resize:none" rows="3" cssClass="form-control" maxlength="50"/>
                             </div>
                         </div>
 
@@ -908,7 +827,7 @@
 
                             <div class="col-lg-9">
                                 <s:textarea name="item.note" id="item.note" cssClass="form-control"
-                                        style="resize:none" rows="3" maxlength="50"/>
+                                            style="resize:none" rows="3" maxlength="50"/>
                             </div>
                         </div>
 
@@ -921,13 +840,280 @@
                 <div>
                     <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                 </div>
-                    </s:form>
+                </s:form>
             </div>
 
         </div>
     </div>
 </div>
 <%--end add item--%>
+
+<!-- Cancel Booking Modal -->
+<div class="modal fade" id="cancelBooking" role="dialog" aria-labelledby="myModalLabel2" >
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
+                <h4 class="modal-title" id="myModalLabel">Cancel Booking</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to cancel the booking?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <%--<s:property value="order.orderId"/>--%>
+                <s:url var="deleteOrderUrl" action="deleteOrder">
+                    <s:param name="orderIdParam" value="order.orderId"></s:param>
+                </s:url>
+                <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip">
+                    <button type="button" class="btn btn-primary">Yes</button>
+                </s:a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Save Booking Modal -->
+<div class="modal fade" id="saveBooking" role="dialog" aria-labelledby="myModalLabel1" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
+                <h4 class="modal-title" id="myModalLabel">Save Booking ?</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="panel-body">
+
+                    <div class="col-lg-12">
+
+                        <div class="col-lg-6">
+
+                            <div class="panel panel-info ">
+
+                                <%--<div align="center" style="margin-top: 15px;">
+                                    <img alt="User Pic" src="../includes/images/photo.png" style="height: 200px; width: 200px;"
+                                         class="img-circle">
+                                </div>--%>
+
+                                <br/>
+
+                                <table class="table leftAlign table-user-information">
+                                    <th style="font-size: 20px; border-top: none; width: 300px;">
+                                        Booking Number
+                                        <%--<s:property value="order.orderId"/>--%>
+                                    </th>
+                                    <th style="font-size: 20px; border-top: none; width: 300px;">
+                                        <s:property value="order.orderNumber"/>
+                                    </th>
+                                    <tbody>
+                                    <tr>
+                                        <td style="color: gray !important;">Freight Type</td>
+                                        <td><s:property value="order.freightType"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Service Requirement</td>
+                                        <td><s:property value="order.serviceRequirement"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Service Mode</td>
+                                        <td><s:property value="order.modeOfService"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Payment Mode</td>
+                                        <td><s:property value="order.modeOfPayment"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Notification Type</td>
+                                        <td><s:property value="order.notifyBy"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Booking Date</td>
+                                        <td><s:property value="order.orderDate"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Origin Port</td>
+                                        <td><s:property value="order.originationPort"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Destination Port</td>
+                                        <td><s:property value="order.destinationPort"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Total Rate</td>
+                                        <%--<td><s:property value="order.rates"/></td>--%>
+                                        <td>"N/A"</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Status</td>
+                                        <td><s:property value="order.orderStatus"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Comments</td>
+                                        <td><s:property value="order.comments"/></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6">
+
+                            <div class="panel panel-info ">
+
+                                <table class="table leftAlign table-user-information">
+
+                                    <th style="font-size: 20px; border-top: none; width: 300px;">Shipper Information</th>
+
+                                    <tbody>
+
+                                    <tr>
+                                        <td style="color: gray !important;">Shipper Name</td>
+                                        <td><s:property value="order.customerName"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Contact Person</td>
+                                        <td><s:property value="order.shipperInfoContact.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Phone</td>
+                                        <td><s:property value="order.shipperInfoContact.phone"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Mobile</td>
+                                        <td><s:property value="order.shipperInfoContact.mobile"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Fax</td>
+                                        <td><s:property value="order.shipperInfoContact.fax"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Email Address</td>
+                                        <td><s:property value="order.shipperInfoContact.email"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Pickup Date</td>
+                                        <td><s:property value="order.pickupDate"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Pickup Address</td>
+                                        <td><s:property value="order.shipperInfoAddress.address"/></td>
+                                    </tr>
+
+                                </table>
+
+                            </div>
+
+                            <div class="panel panel-info ">
+
+                                <table class="table leftAlign table-user-information">
+
+                                    <th style="font-size: 20px; border-top: none; width: 300px;">Consignee Information</th>
+
+                                    <tr>
+                                        <td style="color: gray !important;">Consignee Name</td>
+                                        <td><s:property value="order.consigneeInfoContact.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Contact Person</td>
+                                        <td><s:property value="order.ConsigneeContactName"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Phone</td>
+                                        <td><s:property value="order.consigneeInfoContact.phone"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Mobile</td>
+                                        <td><s:property value="order.consigneeInfoContact.mobile"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Fax</td>
+                                        <td><s:property value="order.consigneeInfoContact.fax"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Email Address</td>
+                                        <td><s:property value="order.consigneeInfoContact.email"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Delivery Date</td>
+                                        <td><s:property value="order.deliveryDate"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: gray !important;">Delivery Address</td>
+                                        <td><s:property value="order.consigneeInfoAddress.address"/></td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel-heading">
+                    <h3 class="panel-title"> Cargo Details</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="table-responsive list-table">
+
+                        <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
+                            <thead>
+                            <tr class="header_center" style="background-color: #fff;">
+                                <th class="tb-font-black">Quantity</th>
+                                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <span>
+                                <th class="tb-font-black">Size</th>
+                            </span>
+                                </s:if>
+                                <s:else>
+                            <span>
+                                <th class="tb-font-black">Name</th>
+                            </span>
+                                </s:else>
+                                <th class="tb-font-black">Weight <br /> (kg) </th>
+                                <th class="tb-font-black">Volume <br /> (cm&#179;) </th>
+                                <th class="tb-font-black">Commodity</th>
+                                <th class="tb-font-black">Value <br /> (Php) </th>
+                                <th class="tb-font-black">Rate <br /> (Php) </th>
+                                <th class="tb-font-black">Comment</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <s:iterator value="orderItems" var="orderItem">
+                                <tr>
+                                    <td class="tb-font-black"><s:property value="quantity"/></td>
+                                    <td class="tb-font-black"><s:property value="nameSize"/></td>
+                                    <td class="tb-font-black"><s:property value="weight"/></td>
+                                    <td class="tb-font-black"><s:property value="volume"/></td>
+                                    <td class="tb-font-black"><s:property value="description"/></td>
+                                    <td class="tb-font-black"><s:property value="declaredValue"/></td>
+                                    <td class="tb-font-black"><s:property value="rate"/></td>
+                                    <td class="tb-font-black"><s:property value="remarks"/></td>
+                                </tr>
+                            </s:iterator>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <%--<button type="button" class="btn btn-primary" href="#"><a style="color: #fff; text-decoration: none;" href="<s:url action='../orders/viewOrders' />">Yes</a></button>--%>
+                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript">
 

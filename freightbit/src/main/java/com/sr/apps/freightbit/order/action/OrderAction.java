@@ -68,6 +68,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Parameters> containerList = new ArrayList<Parameters>();
     private List<Integer> itemQuantity;
     private List<Contacts> contactsList = new ArrayList<Contacts>();
+    private List<Contacts> consigneeContactsList = new ArrayList<Contacts>();
     private List<Address> addressList = new ArrayList<Address>();
     private List<Address> consigneeAddressList = new ArrayList<Address>();
     private List<Parameters> portsList = new ArrayList<Parameters>();
@@ -93,6 +94,10 @@ public class OrderAction extends ActionSupport implements Preparable {
     private String custCode; // get customer code from ID
     private String orderNum; // get the order number
     private Integer orderIdPass;
+    private String customerPhone;
+    private String customerMobile;
+    private String customerEmail;
+    private String customerFax;
 
     private Integer orderItemQuantityParam;
     private String orderItemNameSizeParam;
@@ -327,6 +332,10 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         customerService.updateCustomer(entity);
 
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        // Put Order Id to Order Id session
+        sessionAttributes.put("orderIdParam", orderIdParam);
+
         return SUCCESS;
     }
 
@@ -344,6 +353,10 @@ public class OrderAction extends ActionSupport implements Preparable {
             addFieldError("contact.lastName", getText("err.contact.already.exists"));
             return INPUT;
         }
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        // Put Order Id to Order Id session
+        sessionAttributes.put("orderIdParam", orderIdParam);
 
         return SUCCESS;
     }
@@ -373,7 +386,12 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
         //Changes the order Status to pending
-        orderEntityForm.setOrderStatus("PENDING");
+        /*orderEntityForm.setOrderStatus("PENDING");*/
+        if(orderEntityForm.getOrderStatus().equals("PENDING")){
+            orderEntityForm.setOrderStatus("PENDING");
+        }else{
+            orderEntityForm.setOrderStatus(orderEntityForm.getOrderStatus());
+        }
         orderService.updateOrder(orderEntityForm);
 
         //get quantity of item from form
@@ -382,7 +400,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Integer orderItemQuantityGrandTotal = orderItemQuantityTotal + orderItemEntityQuantity;
 
         // Condition where it will only allow to add 5 containers and 10 items only
-        if(orderLimit.equals("FULL CARGO LOAD")){
+        if(orderLimit.equals("FULL CONTAINER LOAD")){
             if(orderItemQuantityGrandTotal > 5){
                 String messageFlag = "FCL_LIMIT";
                 sessionAttributes.put("messageFlag", messageFlag);
@@ -591,6 +609,13 @@ public class OrderAction extends ActionSupport implements Preparable {
         consigneeList = customerService.findContactByRefIdAndType("CONSIGNEE",shipperName.getCustomerId());
         // displays customer consignee address list
         consigneeAddressList = customerService.findAddressByCriteria("CONSIGNEE",shipperName.getCustomerId());
+        // displays contacts list under consignee
+        consigneeContactsList = customerService.findContactByConsignee(orderEntityForm.getConsigneeContactId(),"C_CONTACT",getClientId());
+
+        customerPhone = shipperName.getPhone();
+        customerEmail = shipperName.getEmail();
+        customerMobile = shipperName.getMobile();
+        customerFax = shipperName.getFax();
 
         // put value of orderIdPass into session
         sessionAttributes.put("orderIdPass", orderIdParam);
@@ -954,16 +979,16 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         orderBean.setOrderId(order.getOrderId());
         orderBean.setOrderNumber(order.getOrderNumber());
-        /*orderBean.setFreightType(order.getServiceType());*/
-        if(order.getServiceType().equals("SHIPPING AND TRUCKING")){
+        orderBean.setFreightType(order.getServiceType());
+        /*if(order.getServiceType().equals("SHIPPING AND TRUCKING")){
             orderBean.setFreightType("SHIP & TRUCK");
         }else if(order.getServiceType().equals("SHIPPING")){
             orderBean.setFreightType("SHIP");
         }else{
             orderBean.setFreightType("TRUCK");
-        }
-        /*orderBean.setModeOfService(order.getServiceMode());*/
-        if(order.getServiceMode().equals("DOOR TO DOOR")){
+        }*/
+        orderBean.setModeOfService(order.getServiceMode());
+        /*if(order.getServiceMode().equals("DOOR TO DOOR")){
             orderBean.setModeOfService("DD");
         }else if(order.getServiceMode().equals("DOOR TO PIER")){
             orderBean.setModeOfService("DP");
@@ -971,7 +996,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             orderBean.setModeOfService("PD");
         }else{
             orderBean.setModeOfService("PP");
-        }
+        }*/
         orderBean.setNotifyBy(order.getNotificationType());
         orderBean.setOrderDate(order.getOrderDate());
         orderBean.setModeOfPayment(order.getPaymentMode());
@@ -1003,9 +1028,9 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setDeliveryDate(order.getDeliveryDate());
         orderBean.setDestinationPort(order.getDestinationPort());
         orderBean.setRates(order.getRates());
-        orderBean.setConsigneeContactPersonId(order.getConsigneeContactPersonId());
-        /*orderBean.setServiceRequirement(order.getServiceRequirement());*/
-        if(order.getServiceRequirement().equals("FULL CONTAINER LOAD")){
+
+        orderBean.setServiceRequirement(order.getServiceRequirement());
+        /*if(order.getServiceRequirement().equals("FULL CONTAINER LOAD")){
             orderBean.setServiceRequirement("FCL");
         }else if(order.getServiceRequirement().equals("LESS CONTAINER LOAD")){
             orderBean.setServiceRequirement("LCL");
@@ -1013,7 +1038,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             orderBean.setServiceRequirement("LCU");
         }else{
             orderBean.setServiceRequirement("RCU");
-        }
+        }*/
 
         Contacts contactShipperName = customerService.findContactById(order.getShipperContactId());
 
@@ -1070,6 +1095,12 @@ public class OrderAction extends ActionSupport implements Preparable {
             address = new AddressBean();
             address.setAddress("NONE");
             orderBean.setConsigneeInfoAddress(address);
+        }
+
+        orderBean.setConsigneeContactPersonId(order.getConsigneeContactPersonId());
+        if(order.getConsigneeContactPersonId() != null){
+            Contacts contactElem = customerService.findContactById(order.getConsigneeContactPersonId());
+            orderBean.setConsigneeContactName(contactElem.getFirstName() +" "+ contactElem.getMiddleName() +" "+ contactElem.getLastName());
         }
 
         return orderBean;
@@ -1163,8 +1194,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         entity.setServiceType(formBean.getFreightType());
 
-        /*entity.setServiceMode(formBean.getModeOfService());*/
-        if(formBean.getModeOfService().equals("DD") || formBean.getModeOfService().equals("DOOR TO DOOR")){
+        entity.setServiceMode(formBean.getModeOfService());
+        /*if(formBean.getModeOfService().equals("DD") || formBean.getModeOfService().equals("DOOR TO DOOR")){
             entity.setServiceMode("DOOR TO DOOR");
         }else if(formBean.getModeOfService().equals("DP") || formBean.getModeOfService().equals("DOOR TO PIER")){
             entity.setServiceMode("DOOR TO PIER");
@@ -1172,7 +1203,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             entity.setServiceMode("PIER TO DOOR");
         }else{
             entity.setServiceMode("PIER TO PIER");
-        }
+        }*/
         entity.setNotificationType(formBean.getNotifyBy());
         entity.setPaymentMode(formBean.getModeOfPayment());
         entity.setOriginationPort(formBean.getOriginationPort());
@@ -1328,21 +1359,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         return entity;
     }
-
-    /*public Documents transformToDocumentEntityBean (DocumentsBean formBean) {
-
-        Documents entity = new Documents();
-        Client client = clientService.findClientById(getClientId().toString());
-        entity.setClientId(commonUtils.getClientId());
-        entity.setDocumentName("BOOKING REQUEST FORM");
-        entity.setDocumentType("OUTBOUND");
-        entity.setReferenceId();
-        entity.setReferenceTable("ORDERS");
-        entity.setCreatedDate(new Date());
-        entity.setOrderNumber();
-
-        return entity;
-    }*/
 
     public void validateOnSubmitItem(ItemBean itemBean) {
         clearErrorsAndMessages();
@@ -2034,5 +2050,45 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setCustomer(CustomerBean customer) {
         this.customer = customer;
+    }
+
+    public List<Contacts> getConsigneeContactsList() {
+        return consigneeContactsList;
+    }
+
+    public void setConsigneeContactsList(List<Contacts> consigneeContactsList) {
+        this.consigneeContactsList = consigneeContactsList;
+    }
+
+    public String getCustomerFax() {
+        return customerFax;
+    }
+
+    public void setCustomerFax(String customerFax) {
+        this.customerFax = customerFax;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+    }
+
+    public String getCustomerMobile() {
+        return customerMobile;
+    }
+
+    public void setCustomerMobile(String customerMobile) {
+        this.customerMobile = customerMobile;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
     }
 }

@@ -130,7 +130,7 @@
 
             <div class="panel-footer">
                 <span class="pull-left">
-                    <label>LEGEND:</label> <i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete <i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled <i class="fa fa-stop" style="color: #428bca;"></i> On Going <i class="fa fa-stop" style="color: #5cb85c;"></i> Approved
+                    <label>LEGEND:</label> <i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled <i class="fa fa-stop" style="color: #428bca;"></i> On Going <i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete <i class="fa fa-stop" style="color: #5cb85c;"></i> Approved / Newly Added
                 </span>
                 <%--<span class="pull-right">
                     <button type="button" class="btn btn-success new-booking" onclick="location.href='bookingSearch'">
