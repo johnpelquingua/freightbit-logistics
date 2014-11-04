@@ -40,10 +40,10 @@
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="serviceRequirement" title="Service Requirement <i class='fa fa-sort' />"
+                        <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
                                             class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="modeOfService" title="Service Mode <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -71,6 +71,21 @@
                 </div>
             </div>
 
+            <div class="panel-footer">
+                <span class="pull-left">
+                    <label>LEGEND:</label> <i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete <i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled <i class="fa fa-stop" style="color: #428bca;"></i> On Going <i class="fa fa-stop" style="color: #5cb85c;"></i> Approved <i class='fa fa-anchor'></i> Shipping <i class='fa fa-truck' ></i> Trucking
+                </span>
+                <%--<span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking" onclick="location.href='bookingSearch'">
+                        <i class="fa fa-search"></i> Search Booking
+                    </button>
+                    <button type="button" class="btn btn-primary new-booking"
+                            onclick="location.href='loadAddOrderPage'">
+                        <i class="fa fa-book"></i> New Booking
+                    </button>
+                </span>--%>
+            </div>
+
         </div>
     </div>
 
@@ -81,34 +96,181 @@
     $(document).ready(function() {
         /*color coding of rows*/
         var tbl = document.getElementById("order");
-
         if (tbl != null) {
             for (var i = 0; i < tbl.rows.length; i++) {
 
-                if (tbl.rows[i].cells[6].innerHTML == "PENDING") {
-                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+                if (tbl.rows[i].cells[6].innerHTML == "PENDING" || tbl.rows[i].cells[6].innerHTML == "INCOMPLETE" ) {
+
                     for (var j = 0; j < tbl.rows[i].cells.length; j++) {
                         tbl.rows[i].cells[j].style.backgroundColor = "#fcf8e3";
-                        tbl.rows[i].cells[7].innerHTML= "<i class='fa fa-ban'></i>";
                     }
                 }
+
                 if (tbl.rows[i].cells[6].innerHTML == "DISAPPROVED" || tbl.rows[i].cells[6].innerHTML == "CANCELLED") {
-                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+
                     for (var j = 0; j < tbl.rows[i].cells.length; j++) {
                         tbl.rows[i].cells[j].style.backgroundColor = "#f2dede";
-                        tbl.rows[i].cells[7].innerHTML= "<i class='fa fa-ban'></i>";
                     }
                 }
 
                 if (tbl.rows[i].cells[6].innerHTML == "APPROVED" || tbl.rows[i].cells[6].innerHTML == "SERVICE ACCOMPLISHED") {
-                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
+
                     for (var j = 0; j < tbl.rows[i].cells.length; j++) {
                         tbl.rows[i].cells[j].style.backgroundColor = "#dff0d8";
+                    }
+                }
+
+                if (tbl.rows[i].cells[6].innerHTML == "ON GOING") {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[j].style.backgroundColor = "#bce8f1";
                     }
                 }
             }
         }
 
+    });
+
+//    TYPE
+    $(document).ready(function() {
+        /*color coding of rows*/
+        var tbl = document.getElementById("order");
+        if (tbl != null) {
+            for (var i = 0; i < tbl.rows.length; i++) {
+
+                if (tbl.rows[i].cells[3].innerHTML == "SHIPPING AND TRUCKING" || tbl.rows[i].cells[3].innerHTML == "SHIP AND TRUCK" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[3].innerHTML = "<i class='fa fa-anchor' /> <i class='fa fa-truck' />";
+                    }
+                }
+
+                if (tbl.rows[i].cells[3].innerHTML == "SHIPPING"  ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[3].innerHTML = "<i class='fa fa-anchor' />";
+                    }
+                }
+
+                if (tbl.rows[i].cells[3].innerHTML == "TRUCKING"  ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[3].innerHTML = "<i class='fa fa-truck' />";
+                    }
+                }
+            }
+        }
+
+    });
+
+//    RQT
+
+    $(document).ready(function() {
+        /*color coding of rows*/
+        var tbl = document.getElementById("order");
+        if (tbl != null) {
+            for (var i = 0; i < tbl.rows.length; i++) {
+                if (tbl.rows[i].cells[4].innerHTML == "FULL CARGO LOAD" || tbl.rows[i].cells[4].innerHTML == "FULL CONTAINER LOAD") {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[4].innerHTML = "FCL";
+                    }
+                }
+
+                if (tbl.rows[i].cells[4].innerHTML == "FULL TRUCK LOAD" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[4].innerHTML = "FTL";
+                    }
+                }
+
+                if (tbl.rows[i].cells[4].innerHTML == "LESS TRUCK LOAD" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[4].innerHTML = "LTL";
+                    }
+                }
+
+                if (tbl.rows[i].cells[4].innerHTML == "LESS CARGO LOAD" || tbl.rows[i].cells[4].innerHTML == "LESS CONTAINER LOAD") {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[4].innerHTML = "LCL";
+                    }
+                }
+
+                if (tbl.rows[i].cells[4].innerHTML == "LOOSE CARGO LOAD" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[4].innerHTML = "LCU";
+                    }
+                }
+
+                if (tbl.rows[i].cells[4].innerHTML == "ROLLING CARGO LOAD" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[4].innerHTML = "CU";
+                    }
+                }
+            }
+        }
+    });
+
+//    MODE
+    $(document).ready(function() {
+        /*color coding of rows*/
+        var tbl = document.getElementById("order");
+        if (tbl != null) {
+            for (var i = 0; i < tbl.rows.length; i++) {
+                if (tbl.rows[i].cells[5].innerHTML == "DOOR TO DOOR" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[5].innerHTML = "DD";
+                    }
+                }
+
+                if (tbl.rows[i].cells[5].innerHTML == "DOOR TO PIER" || tbl.rows[i].cells[5].innerHTML == "DOOR TO PORT" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[5].innerHTML = "DP";
+                    }
+                }
+
+                if (tbl.rows[i].cells[5].innerHTML == "PIER TO DOOR" || tbl.rows[i].cells[5].innerHTML == "PORT TO DOOR" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[5].innerHTML = "PD";
+                    }
+                }
+
+                if (tbl.rows[i].cells[5].innerHTML == "PIER TO PIER" || tbl.rows[i].cells[5].innerHTML == "PORT TO PORT" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[5].innerHTML = "PP";
+                    }
+                }
+
+                if (tbl.rows[i].cells[5].innerHTML == "PICKUP" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[5].innerHTML = "P";
+                    }
+                }
+
+                if (tbl.rows[i].cells[5].innerHTML == "DELIVERY" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[5].innerHTML = "D";
+                    }
+                }
+
+                if (tbl.rows[i].cells[5].innerHTML == "INTER-WAREHOUSE" ) {
+
+                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                        tbl.rows[i].cells[5].innerHTML = "IW";
+                    }
+                }
+            }
+        }
     });
 
 </script>
