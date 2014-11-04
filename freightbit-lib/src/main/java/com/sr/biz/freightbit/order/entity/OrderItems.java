@@ -45,6 +45,7 @@ public class OrderItems implements java.io.Serializable {
     private String driverDestination;
     private String truckOrigin;
     private String truckDestination;
+    private Integer containerId;
 //
 
     private Integer documentId;
@@ -352,6 +353,15 @@ public class OrderItems implements java.io.Serializable {
 
     public void setTruckDestination(String truckDestination) {
         this.truckDestination = truckDestination;
+    }
+
+    @Column(name = "containerId")
+    public Integer getContainerId() {
+        return containerId;
+    }
+
+    public void setContainerId(Integer containerId) {
+        this.containerId = containerId;
     }
 }
 

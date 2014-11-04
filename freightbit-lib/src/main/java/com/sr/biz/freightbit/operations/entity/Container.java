@@ -28,6 +28,8 @@ public class Container implements Serializable{
     private String createdTimestamp;
     private String modifiedBy;
     private String modifiedTimestamp;
+    private String containerNumber;
+    private String containerSize;
 
     public Container() {
     }
@@ -195,5 +197,23 @@ public class Container implements Serializable{
 
     public void setModifiedTimestamp(String modifiedTimestamp) {
         this.modifiedTimestamp = modifiedTimestamp;
+    }
+
+    @Column(name = "containerNumber")
+    public String getContainerNumber() {
+        return containerNumber;
+    }
+
+    public void setContainerNumber(String containerNumber) {
+        this.containerNumber = containerNumber;
+    }
+
+    @Column(name = "containerSize")
+    public String getContainerSize() {
+        return containerSize;
+    }
+
+    public void setContainerSize(String containerSize) {
+        this.containerSize = containerSize;
     }
 }
