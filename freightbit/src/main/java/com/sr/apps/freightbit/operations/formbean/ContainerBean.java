@@ -1,16 +1,11 @@
-package com.sr.biz.freightbit.operations.entity;
+package com.sr.apps.freightbit.operations.formbean;
 
-/**
- * Created by Clarence C. Victoria on 11/3/2014.
- */
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
-@Entity
-@Table(name = "container", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "containerId"))
-public class Container implements Serializable{
+/**
+ * Created by Clarence C. Victoria on 11/4/2014.
+ */
+public class ContainerBean {
 
     private Integer containerId;
     private String eirNumber;
@@ -31,33 +26,6 @@ public class Container implements Serializable{
     private String containerNumber;
     private String containerSize;
 
-    public Container() {
-    }
-
-    public Container(Integer containerId, String eirNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize) {
-        this.containerId = containerId;
-        this.eirNumber = eirNumber;
-        this.dateTime = dateTime;
-        this.shipping = shipping;
-        this.trucking = trucking;
-        this.plateNumber = plateNumber;
-        this.vanNumber = vanNumber;
-        this.driver = driver;
-        this.orderNumber = orderNumber;
-        this.remarks = remarks;
-        this.vanTo = vanTo;
-        this.vanFrom = vanFrom;
-        this.createdBy = createdBy;
-        this.createdTimestamp = createdTimestamp;
-        this.modifiedBy = modifiedBy;
-        this.modifiedTimestamp = modifiedTimestamp;
-        this.containerNumber = containerNumber;
-        this.containerSize = containerSize;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "containerId")
     public Integer getContainerId() {
         return containerId;
     }
@@ -66,7 +34,6 @@ public class Container implements Serializable{
         this.containerId = containerId;
     }
 
-    @Column(name = "eirNumber")
     public String getEirNumber() {
         return eirNumber;
     }
@@ -75,7 +42,6 @@ public class Container implements Serializable{
         this.eirNumber = eirNumber;
     }
 
-    @Column(name = "dateTime")
     public Date getDateTime() {
         return dateTime;
     }
@@ -84,7 +50,6 @@ public class Container implements Serializable{
         this.dateTime = dateTime;
     }
 
-    @Column(name = "shipping")
     public String getShipping() {
         return shipping;
     }
@@ -93,7 +58,6 @@ public class Container implements Serializable{
         this.shipping = shipping;
     }
 
-    @Column(name = "trucking")
     public String getTrucking() {
         return trucking;
     }
@@ -102,7 +66,6 @@ public class Container implements Serializable{
         this.trucking = trucking;
     }
 
-    @Column(name = "plateNumber")
     public String getPlateNumber() {
         return plateNumber;
     }
@@ -111,7 +74,6 @@ public class Container implements Serializable{
         this.plateNumber = plateNumber;
     }
 
-    @Column(name = "vanNumber")
     public String getVanNumber() {
         return vanNumber;
     }
@@ -120,7 +82,6 @@ public class Container implements Serializable{
         this.vanNumber = vanNumber;
     }
 
-    @Column(name = "driver")
     public String getDriver() {
         return driver;
     }
@@ -129,7 +90,6 @@ public class Container implements Serializable{
         this.driver = driver;
     }
 
-    @Column(name = "orderNumber")
     public String getOrderNumber() {
         return orderNumber;
     }
@@ -138,7 +98,6 @@ public class Container implements Serializable{
         this.orderNumber = orderNumber;
     }
 
-    @Column(name = "remarks")
     public String getRemarks() {
         return remarks;
     }
@@ -147,7 +106,6 @@ public class Container implements Serializable{
         this.remarks = remarks;
     }
 
-    @Column(name = "vanTo")
     public String getVanTo() {
         return vanTo;
     }
@@ -156,7 +114,6 @@ public class Container implements Serializable{
         this.vanTo = vanTo;
     }
 
-    @Column(name = "vanFrom")
     public String getVanFrom() {
         return vanFrom;
     }
@@ -165,7 +122,6 @@ public class Container implements Serializable{
         this.vanFrom = vanFrom;
     }
 
-    @Column(name = "createdBy")
     public String getCreatedBy() {
         return createdBy;
     }
@@ -174,7 +130,6 @@ public class Container implements Serializable{
         this.createdBy = createdBy;
     }
 
-    @Column(name = "createdTimestamp")
     public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
@@ -183,7 +138,6 @@ public class Container implements Serializable{
         this.createdTimestamp = createdTimestamp;
     }
 
-    @Column(name = "modifiedBy")
     public String getModifiedBy() {
         return modifiedBy;
     }
@@ -192,7 +146,6 @@ public class Container implements Serializable{
         this.modifiedBy = modifiedBy;
     }
 
-    @Column(name = "modifiedTimestamp")
     public Date getModifiedTimestamp() {
         return modifiedTimestamp;
     }
@@ -201,7 +154,6 @@ public class Container implements Serializable{
         this.modifiedTimestamp = modifiedTimestamp;
     }
 
-    @Column(name = "containerNumber")
     public String getContainerNumber() {
         return containerNumber;
     }
@@ -210,7 +162,6 @@ public class Container implements Serializable{
         this.containerNumber = containerNumber;
     }
 
-    @Column(name = "containerSize")
     public String getContainerSize() {
         return containerSize;
     }

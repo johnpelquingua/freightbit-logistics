@@ -143,7 +143,7 @@
         if (tbl != null) {
             for (var i = 0; i < tbl.rows.length; i++) {
 
-                if (tbl.rows[i].cells[3].innerHTML == "SHIPPING AND TRUCKING" || tbl.rows[i].cells[3].innerHTML == "SHIP AND TRUCK" ) {
+                if (tbl.rows[i].cells[3].innerHTML == "SHIPPING AND TRUCKING" ) {
 
                     for (var j = 0; j < tbl.rows[i].cells.length; j++) {
                         tbl.rows[i].cells[3].innerHTML = "<i class='fa fa-anchor' /> <i class='fa fa-truck' />";

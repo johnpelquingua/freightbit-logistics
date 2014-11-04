@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
+import com.sr.apps.freightbit.operations.formbean.ContainerBean;
 import com.sr.apps.freightbit.operations.formbean.OperationsBean;
 import com.sr.apps.freightbit.operations.formbean.VesselScheduleBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
@@ -25,6 +26,8 @@ import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
+import com.sr.biz.freightbit.operations.entity.Container;
+import com.sr.biz.freightbit.operations.service.ContainerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
@@ -66,6 +69,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
     private VesselScheduleBean vesselSchedule = new VesselScheduleBean();
     private List<VesselScheduleBean> vesselSchedules = new ArrayList<VesselScheduleBean>();
+    private List<ContainerBean> containers = new ArrayList<ContainerBean>();
 
     private List<Vendor> vendorShippingList = new ArrayList<Vendor>();
     private List<Vendor> vendorTruckingList = new ArrayList<Vendor>();
@@ -95,6 +99,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private ClientService clientService;
     private CommonUtils commonUtils;
     private DocumentsService documentsService;
+    private ContainerService containerService;
 
     private Map<String, String> driverMap = new LinkedHashMap<String, String>();
     private Map<String, String> trucksMap = new HashMap<String, String>();
@@ -1587,6 +1592,40 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return formBean;
     }
 
+//    -----------------CONSOLIDATION MODULE-------------------------
+
+    public String viewContainerList() {
+        List<Container> containerList;
+        containerList = containerService.findAllContainer();
+
+        for (Container containerElem : containerList) {
+            containers.add(transformContainerToFormBean(containerElem));
+        }
+        return SUCCESS;
+    }
+
+    public ContainerBean transformContainerToFormBean(Container entity) {
+        ContainerBean formBean = new ContainerBean();
+
+        formBean.setContainerId(entity.getContainerId());
+        formBean.setEirNumber(entity.getEirNumber());
+        formBean.setDateTime(entity.getDateTime());
+        formBean.setShipping(entity.getShipping());
+        formBean.setTrucking(entity.getTrucking());
+        formBean.setPlateNumber(entity.getPlateNumber());
+        formBean.setVanNumber(entity.getVanNumber());
+        formBean.setDriver(entity.getDriver());
+        formBean.setOrderNumber(entity.getOrderNumber());
+        formBean.setRemarks(entity.getRemarks());
+        formBean.setVanTo(entity.getVanTo());
+        formBean.setVanFrom(entity.getVanFrom());
+        formBean.setContainerNumber(entity.getContainerNumber());
+        formBean.setContainerSize(entity.getContainerSize());
+
+        return formBean;
+    }
+
+//    -----------------CONSOLIDATION MODULE-------------------------
     private String getFullName(String lastName, String firstName, String middleName) {
         StringBuilder fullName = new StringBuilder("");
         if (StringUtils.isNotBlank(lastName)) {
@@ -1962,5 +2001,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setTruck(TruckBean truck) {
         this.truck = truck;
+    }
+
+    public void setContainerService(ContainerService containerService) {
+        this.containerService = containerService;
     }
 }

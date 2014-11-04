@@ -61,52 +61,52 @@
     </definition>
 
     <definition name="operations.inlandFreightList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Inland Freight List"/>
+        <put-attribute name="title" value="Dispatch List"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightList.jsp"/>
     </definition>
 
     <definition name="operations.inlandFreightItemList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Inland Freight Item List"/>
+        <put-attribute name="title" value="Dispatch Item List"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightItemList.jsp"/>
     </definition>
 
     <definition name="operations.inlandFreightPlanningOrigin.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Inland Freight Planning"/>
+        <put-attribute name="title" value="Dispatch Plan"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightPlanningOrigin.jsp"/>
     </definition>
 
     <definition name="operations.inlandFreightPlanningDestination.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Inland Freight Planning"/>
+        <put-attribute name="title" value="Dispatch Plan"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightPlanningDestination.jsp"/>
     </definition>
 
     <definition name="operations.seaFreightList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Sea Freight List"/>
+        <put-attribute name="title" value="Freight List"/>
         <put-attribute name="body" value="/operations/sea_freight/seaFreightList.jsp"/>
     </definition>
 
     <definition name="operations.seaFreightItemList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Sea Freight Item List"/>
+        <put-attribute name="title" value="Freight Item List"/>
         <put-attribute name="body" value="/operations/sea_freight/seaFreightItemList.jsp"/>
     </definition>
 
     <definition name="operations.seaFreightPlanning.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Sea Freight Planning"/>
+        <put-attribute name="title" value="Freight Plan"/>
         <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanning.jsp"/>
     </definition>
 
     <definition name="operations.seaFreightPlanningBulk.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Sea Freight Planning"/>
+        <put-attribute name="title" value="Freight Plan"/>
         <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanningBulk.jsp"/>
     </definition>
 
     <definition name="operations.inlandFreightPlanningOriginBulk.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Inland Freight Planning"/>
+        <put-attribute name="title" value="Dispatch Plan"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightPlanningOriginBulk.jsp"/>
     </definition>
 
     <definition name="operations.inlandFreightPlanningDestinationBulk.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Inland Freight Planning"/>
+        <put-attribute name="title" value="Dispatch Plan"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightPlanningDestinationBulk.jsp"/>
     </definition>
 
@@ -116,17 +116,17 @@
     </definition>
 
     <definition name="operations.viewInfo.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Sea Freight Planning"/>
+        <put-attribute name="title" value="Freight Info"/>
         <put-attribute name="body" value="/operations/planningInfo.jsp"/>
     </definition>
 
     <definition name="operations.viewSeaFreightInfo.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Sea Freight Planning"/>
+        <put-attribute name="title" value="Freight Info"/>
         <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanningInfo.jsp"/>
     </definition>
 
     <definition name="operations.viewInlandFreightInfo.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Inland Freight Planning"/>
+        <put-attribute name="title" value="Dispatch Plan"/>
         <put-attribute name="body" value="/operations/inland_freight/inlandFreightPlanningInfo.jsp"/>
     </definition>
 
@@ -163,6 +163,11 @@
     <definition name="operations.viewYardLogs.tiles" extends="baseLayout">
         <put-attribute name="title" value="Yard Logs"/>
         <put-attribute name="body" value="/operations/yard_logs/yardList.jsp"/>
+    </definition>
+
+    <definition name="operations.viewContainerList.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Container Management"/>
+        <put-attribute name="body" value="/operations/container/containerList.jsp"/>
     </definition>
 
     <!--OPERATION module ends-->
