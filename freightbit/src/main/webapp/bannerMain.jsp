@@ -46,15 +46,15 @@
     </li>
 
     <li class="dropdown messages-dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Notifications
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i> Notifications
         <b class="caret"></b></a>
-    <ul class="dropdown-menu" style="min-width: 190px;">
+    <ul class="dropdown-menu" style="min-width: 150px;">
 
         <li class="message-preview">
             <a href="#">
-                <span class="avatar"><img alt="User Pic" src="includes/images/photo.png" class="img-circle" style="width:40px; "></span>
-                <span class="name">Jan Ernest:</span>
-                <span class="message">3 New Bookings</span>
+                <%--<span class="avatar"><img alt="User Pic" src="includes/images/photo.png" class="img-circle" style="width:40px; "></span>--%>
+                <%--<span class="name">Jan Ernest:</span>--%>
+                <span class="message" style="text-align: center;" ><a href="/home"><i class="fa fa-exclamation-circle"></i> 999 Notifications</a></span>
             </a>
         </li>
 
