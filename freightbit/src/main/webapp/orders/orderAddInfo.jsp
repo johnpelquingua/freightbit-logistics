@@ -1056,9 +1056,9 @@
                     </div>
                 </div>
 
-                <div class="panel-heading">
+                <%--<div class="panel-heading">
                     <h3 class="panel-title"> Cargo Details</h3>
-                </div>
+                </div>--%>
 
                 <div class="panel-body">
                     <div class="table-responsive list-table">

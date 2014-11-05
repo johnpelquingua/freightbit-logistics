@@ -1100,9 +1100,10 @@ $(document).ready(function() {
                     $('<option>').val(key).text(value).appendTo(select4);
                 }
 
-            }else{
-                $('<option>').val(key).text(value).appendTo(select4);
             }
+            /*else{
+                $('<option>').val(key).text(value).appendTo(select4);
+            }*/
 
 
         });

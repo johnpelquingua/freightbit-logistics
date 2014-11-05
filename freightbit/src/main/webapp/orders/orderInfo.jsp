@@ -20,11 +20,13 @@
 </div>
 
 <div class="panel panel-primary">
-
+    <%--<td><s:property value="order.documentId"/></td>--%>
     <div class="panel-heading">
         <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Booking Information</h3>
-        <div class="btn-toolbar pull-right">
-            <a class="btn btn-info" title="Edit Booking" href="<s:url action='loadEditOrderInBooking' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" >Edit Booking</a>
+        <div class="btn-toolbar btn-group pull-right">
+            <a class="btn btn-info" title="Edit Booking" href="<s:url action='loadEditOrderInBooking' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" > <i class="fa fa-edit"></i> Edit Booking</a>
+
+            <a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM')"> <i class="fa fa-print"></i> Print Booking</a>
         </div>
     </div>
 
@@ -333,5 +335,12 @@
         }
 
     });
+
+    function generateReport(documentId,documentName) {
+        var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
+        win.onload = function () {
+            this.document.title = "Booking Request Form";
+        }
+    }
 
 </script>

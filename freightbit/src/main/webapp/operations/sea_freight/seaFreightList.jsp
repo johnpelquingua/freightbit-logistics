@@ -40,7 +40,7 @@
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
+                        <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />"
                                             class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
@@ -73,7 +73,7 @@
 
             <div class="panel-footer">
                 <span class="pull-left">
-                    <label>LEGEND:</label> <i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete <i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled <i class="fa fa-stop" style="color: #428bca;"></i> On Going <i class="fa fa-stop" style="color: #5cb85c;"></i> Approved <i class='fa fa-anchor'></i> Shipping <i class='fa fa-truck' ></i> Trucking
+                    <label>LEGEND:</label> <i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled <i class="fa fa-stop" style="color: #428bca;"></i> On Going <i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete <i class="fa fa-stop" style="color: #5cb85c;"></i> Approved / Newly Added <i class='fa fa-anchor'></i> Shipping <i class='fa fa-truck' ></i> Trucking
                 </span>
                 <%--<span class="pull-right">
                     <button type="button" class="btn btn-success new-booking" onclick="location.href='bookingSearch'">
@@ -208,7 +208,7 @@
                 if (tbl.rows[i].cells[4].innerHTML == "ROLLING CARGO LOAD" ) {
 
                     for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[4].innerHTML = "CU";
+                        tbl.rows[i].cells[4].innerHTML = "RCU";
                     }
                 }
             }

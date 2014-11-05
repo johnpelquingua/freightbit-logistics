@@ -63,7 +63,7 @@
                                 </display:column>
                             </td>
 
-                            <td><display:column property="serviceRequirement" title="Requirement <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
@@ -99,6 +99,14 @@
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
 
+                                    <s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">
+
+                                        <a id="print-icon" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM');">
+                                            <i class="fa fa-print"></i>
+                                        </a>
+
+                                    </s:if>
+
                                     | <%--separator--%>
                                     <%--approve booking--%>
                                     <%--<s:property value="%{#attr.order.orderId}"/>--%>
@@ -123,6 +131,9 @@
                                 </display:column>
                             </td>
 
+                            <%--<td><display:column property="documentId" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"
+                                                style="text-align: center;"> </display:column></td>--%>
+
                         </display:table >
 
                 </div>
@@ -130,7 +141,20 @@
 
             <div class="panel-footer">
                 <span class="pull-left">
-                    <label>LEGEND:</label> <i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled <i class="fa fa-stop" style="color: #428bca;"></i> On Going <i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete <i class="fa fa-stop" style="color: #5cb85c;"></i> Approved / Newly Added
+                    <label>LEGEND:</label> <i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled <i class="fa fa-stop" style="color: #428bca;"></i> On Going <i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete <i class="fa fa-stop" style="color: #5cb85c;"></i> Approved / Newly Added <i class='fa fa-anchor'></i> Shipping <i class='fa fa-truck' ></i> Trucking
+                    <%--<div class="table-responsive">
+                        <table class="col-lg-12" >
+                            <tr>
+                                <td><label>LEGEND:</label></td>
+                                <td><i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled</td>
+                                <td><i class="fa fa-stop" style="color: #428bca;"></i> On Going</td>
+                                <td><i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete</td>
+                                <td><i class="fa fa-stop" style="color: #5cb85c;"></i> Approved / Newly Added</td>
+                                <td><i class='fa fa-anchor'></i> Shipping</td>
+                                <td><i class='fa fa-truck' ></i> Trucking</td>
+                            </tr>
+                        </table>
+                    </div>--%>
                 </span>
                 <%--<span class="pull-right">
                     <button type="button" class="btn btn-success new-booking" onclick="location.href='bookingSearch'">
@@ -154,6 +178,118 @@
     var tbl = document.getElementById("order");
     if (tbl != null) {
         for (var i = 0; i < tbl.rows.length; i++) {
+
+            if (tbl.rows[i].cells[4].innerHTML == "SHIPPING AND TRUCKING" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "<i class='fa fa-anchor' /> <i class='fa fa-truck' />";
+                }
+            }
+
+            if (tbl.rows[i].cells[4].innerHTML == "SHIPPING"  ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "<i class='fa fa-anchor' />";
+                }
+            }
+
+            if (tbl.rows[i].cells[4].innerHTML == "TRUCKING"  ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "<i class='fa fa-truck' />";
+                }
+            }
+
+            if (tbl.rows[i].cells[5].innerHTML == "FULL CARGO LOAD" || tbl.rows[i].cells[5].innerHTML == "FULL CONTAINER LOAD") {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "FCL";
+                }
+            }
+
+            if (tbl.rows[i].cells[5].innerHTML == "FULL TRUCK LOAD" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "FTL";
+                }
+            }
+
+            if (tbl.rows[i].cells[5].innerHTML == "LESS TRUCK LOAD" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "LTL";
+                }
+            }
+
+            if (tbl.rows[i].cells[5].innerHTML == "LESS CARGO LOAD" || tbl.rows[i].cells[5].innerHTML == "LESS CONTAINER LOAD") {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "LCL";
+                }
+            }
+
+            if (tbl.rows[i].cells[5].innerHTML == "LOOSE CARGO LOAD" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "LCU";
+                }
+            }
+
+            if (tbl.rows[i].cells[5].innerHTML == "ROLLING CARGO LOAD" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "RCU";
+                }
+            }
+
+            if (tbl.rows[i].cells[6].innerHTML == "DOOR TO DOOR" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[6].innerHTML = "DD";
+                }
+            }
+
+            if (tbl.rows[i].cells[6].innerHTML == "DOOR TO PIER" || tbl.rows[i].cells[6].innerHTML == "DOOR TO PORT" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[6].innerHTML = "DP";
+                }
+            }
+
+            if (tbl.rows[i].cells[6].innerHTML == "PIER TO DOOR" || tbl.rows[i].cells[6].innerHTML == "PORT TO DOOR" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[6].innerHTML = "PD";
+                }
+            }
+
+            if (tbl.rows[i].cells[6].innerHTML == "PIER TO PIER" || tbl.rows[i].cells[6].innerHTML == "PORT TO PORT" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[6].innerHTML = "PP";
+                }
+            }
+
+            if (tbl.rows[i].cells[6].innerHTML == "PICKUP" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[6].innerHTML = "P";
+                }
+            }
+
+            if (tbl.rows[i].cells[6].innerHTML == "DELIVERY" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[6].innerHTML = "D";
+                }
+            }
+
+            if (tbl.rows[i].cells[6].innerHTML == "INTER-WAREHOUSE" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[6].innerHTML = "IW";
+                }
+            }
 
             if (tbl.rows[i].cells[7].innerHTML == "PENDING" || tbl.rows[i].cells[7].innerHTML == "INCOMPLETE" ) {
 
@@ -203,6 +339,12 @@
         }
     });
 
+    function generateReport(documentId,documentName) {
+        var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
+        win.onload = function () {
+            this.document.title = "Booking Request Form";
+        }
+    }
 
 </script>
 

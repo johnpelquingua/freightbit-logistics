@@ -58,6 +58,8 @@ public class OrderBean {
     private String vendorCode;
     private Integer consigneeContactPersonId;
     private String consigneeContactName;
+    private String documentCheck;
+    private Integer documentId;
 
 	private AddressBean shipperInfoAddress;
 	private ContactBean shipperInfoContact;
@@ -452,5 +454,21 @@ public class OrderBean {
 
     public void setConsigneeContactName(String consigneeContactName) {
         this.consigneeContactName = consigneeContactName;
+    }
+
+    public String getDocumentCheck() {
+        return documentCheck;
+    }
+
+    public void setDocumentCheck(String documentCheck) {
+        this.documentCheck = documentCheck;
+    }
+
+    public Integer getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(Integer documentId) {
+        this.documentId = documentId;
     }
 }

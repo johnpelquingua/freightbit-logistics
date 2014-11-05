@@ -78,6 +78,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Parameters> addressTypeList = new ArrayList<Parameters>();
     private String[] notificationList;
     private CustomerBean customer = new CustomerBean();
+    private List<Documents> outboundEntityList = new ArrayList<Documents>();
 
     private Integer orderIdParam;
     private Integer orderItemIdParam;
@@ -387,7 +388,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
         //Changes the order Status to pending
         /*orderEntityForm.setOrderStatus("PENDING");*/
-        if(orderEntityForm.getOrderStatus().equals("PENDING")){
+        if(orderEntityForm.getOrderStatus().equals("PENDING") || orderEntityForm.getOrderStatus().equals("INCOMPLETE")){
             orderEntityForm.setOrderStatus("PENDING");
         }else{
             orderEntityForm.setOrderStatus(orderEntityForm.getOrderStatus());
@@ -1096,11 +1097,24 @@ public class OrderAction extends ActionSupport implements Preparable {
             address.setAddress("NONE");
             orderBean.setConsigneeInfoAddress(address);
         }
-
+        // for consignee contact person
         orderBean.setConsigneeContactPersonId(order.getConsigneeContactPersonId());
         if(order.getConsigneeContactPersonId() != null){
             Contacts contactElem = customerService.findContactById(order.getConsigneeContactPersonId());
             orderBean.setConsigneeContactName(contactElem.getFirstName() +" "+ contactElem.getMiddleName() +" "+ contactElem.getLastName());
+        }
+
+        /*OUTBOUND DOCUMENTS*/
+        outboundEntityList = documentsService.findDocumentByOutboundStageAndID(1, order.getOrderId());
+
+        Integer outboundCount = outboundEntityList.size();
+        System.out.println("Outbound count here ! " + outboundCount );
+
+        for (Documents documentElem : outboundEntityList) {
+            if(documentElem.getDocumentName().equals("BOOKING REQUEST FORM")){
+                orderBean.setDocumentCheck("AVAILABLE");
+                orderBean.setDocumentId(documentElem.getDocumentId());
+            }
         }
 
         return orderBean;
@@ -2090,5 +2104,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
+    }
+
+    public List<Documents> getOutboundEntityList() {
+        return outboundEntityList;
+    }
+
+    public void setOutboundEntityList(List<Documents> outboundEntityList) {
+        this.outboundEntityList = outboundEntityList;
     }
 }
