@@ -236,8 +236,31 @@
         </div>
 
         <div class="pull-right">
-            <a href="#" class="btn btn-primary">Create Documents</a>
-            <a href="#" class="btn btn-default">Go to Documents page</a>
+
+            <s:url var="createdDocumentsUrl" action="createdDocuments">
+                <s:param name="orderIdParam"
+                         value="#attr.order.orderId"></s:param>
+                <s:param name="orderNoParam"
+                         value="#attr.order.orderNo"></s:param>
+            </s:url>
+            <s:a cssClass="btn btn-primary" href="%{createdDocumentsUrl}" rel="tooltip"
+                 title="Create Documents">
+                Create Documents
+            </s:a>
+
+
+            <s:url var="viewDocumentListUrl" action="viewDocumentList">
+                <s:param name="orderIdParam"
+                         value="#attr.orderItem.orderId">
+                </s:param>
+
+            </s:url>
+            <s:a cssClass="btn btn-default" href="%{viewDocumentListUrl}" rel="tooltip"
+                 title="Go to Documents Page">
+                Go to Documents page
+            </s:a>
+
+            <%--<a href="#" class="btn btn-default">Go to Documents page</a>--%>
         </div>
     </div>
 </div>

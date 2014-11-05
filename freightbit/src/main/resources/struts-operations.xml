@@ -376,6 +376,17 @@
         </action>
 
         <!--CONTAINER-->
+
+        <!--DOCUMENTS PAGE-->
+        <action name="viewDocumentList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewDocumentList">
+            <result name="success" type="tiles">operations.documentsList.tiles</result>
+        </action>
+
+        <action name="createdDocuments" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="createdDocuments">
+            <result name="FREIGHT" type="tiles">operations.seaFreightItemList.tiles</result>
+
+        </action>
+        <!--DOCUMENTS PAGE-->
     </package>
 
     <package name="operation" namespace="/operations" extends="json-default">

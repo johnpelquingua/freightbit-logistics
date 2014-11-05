@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
+import com.sr.apps.freightbit.documentation.formbean.DocumentsBean;
 import com.sr.apps.freightbit.operations.formbean.ContainerBean;
 import com.sr.apps.freightbit.operations.formbean.OperationsBean;
 import com.sr.apps.freightbit.operations.formbean.VesselScheduleBean;
@@ -70,6 +71,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private VesselScheduleBean vesselSchedule = new VesselScheduleBean();
     private List<VesselScheduleBean> vesselSchedules = new ArrayList<VesselScheduleBean>();
     private List<ContainerBean> containers = new ArrayList<ContainerBean>();
+    private List<DocumentsBean> documents = new ArrayList<DocumentsBean>();
 
     private List<Vendor> vendorShippingList = new ArrayList<Vendor>();
     private List<Vendor> vendorTruckingList = new ArrayList<Vendor>();
@@ -347,7 +349,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Integer> planning2 = new ArrayList();
         List<Integer> planning3 = new ArrayList();
 
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderItem.getEditItem());
         if ("".equals(orderItem.getEditItem())) {
 
             if (check == null) {
@@ -378,11 +379,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 }
             }
 
-            System.out.println(planning1.size());
-            System.out.println(planning2.size());
-            System.out.println(planning3.size());
-
-
             Map sessionAttributes = ActionContext.getContext().getSession();
             Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
             sessionAttributes.put("checkedItemsInSession", check);
@@ -399,8 +395,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
 
         } else {
-
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderItem.getEditItem());
 
             orderItem.setEditItem("");
 
@@ -1244,9 +1238,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("modeOfService", orderEntity.getServiceMode());
         sessionAttributes.put("freightType", orderEntity.getServiceType());
 
-        System.out.println("AAAAAA" + orderEntity.getServiceMode());
-        System.out.println("AAAAAA" + orderEntity.getServiceType());
-
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
@@ -1595,7 +1586,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 //    -----------------CONSOLIDATION MODULE-------------------------
 
     public String viewContainerList() {
-        List<Container> containerList;
+        List<Container> containerList = new ArrayList<Container>();
         containerList = containerService.findAllContainer();
 
         for (Container containerElem : containerList) {
@@ -1626,6 +1617,79 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
 //    -----------------CONSOLIDATION MODULE-------------------------
+
+//    -----------------DOCUMENTS PAGE-------------------------
+
+    public String viewDocumentList() {
+        List<Documents> documentsList = new ArrayList<Documents>();
+
+        documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
+
+        for (Documents documentElem : documentsList) {
+            documents.add(transformDocumentToFormBean(documentElem));
+        }
+
+        return SUCCESS;
+    }
+
+    public String createdDocuments() {
+        List<Documents> documentsList = new ArrayList<Documents>();
+        List<String> vendorCodeDocument = new ArrayList<String>();
+
+        documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
+
+        if (documentsList.size() > 0) {
+            for (Documents documentElem : documentsList) {
+
+                if ("PROFORMA BILL OF LADING".equals(documentElem.getDocumentName())) {
+
+                    if (vendorCodeDocument.isEmpty()) {
+                        vendorCodeDocument.add(documentElem.getVendorCode());
+                        System.out.println("ADD:" + documentElem.getVendorCode());
+                    } else {
+                        if (!vendorCodeDocument.contains(documentElem.getVendorCode())) {
+                            vendorCodeDocument.add(documentElem.getVendorCode());
+                        }
+                    }
+                }
+            }
+        } else {
+            clearErrorsAndMessages();
+            addActionMessage("ERROR! Document Not Found");
+            return INPUT;
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("SUCCESS! Documents has been created");
+
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+        return "FREIGHT";
+    }
+
+    public DocumentsBean transformDocumentToFormBean(Documents entity) {
+        DocumentsBean formBean = new DocumentsBean();
+
+        formBean.setDocumentName(entity.getDocumentName());
+        formBean.setReferenceNumber(entity.getReferenceNumber());
+        formBean.setVendorCode(entity.getVendorCode());
+        formBean.setDocumentStatus(entity.getDocumentStatus());
+        formBean.setCreatedDate(entity.getCreatedDate());
+        return formBean;
+    }
+
+//    -----------------DOCUMENTS PAGE-------------------------
+
+
     private String getFullName(String lastName, String firstName, String middleName) {
         StringBuilder fullName = new StringBuilder("");
         if (StringUtils.isNotBlank(lastName)) {
@@ -2005,5 +2069,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setContainerService(ContainerService containerService) {
         this.containerService = containerService;
+    }
+
+    public List<ContainerBean> getContainers() {
+        return containers;
+    }
+
+    public void setContainers(List<ContainerBean> containers) {
+        this.containers = containers;
+    }
+
+    public List<DocumentsBean> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<DocumentsBean> documents) {
+        this.documents = documents;
     }
 }

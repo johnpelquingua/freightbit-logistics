@@ -170,6 +170,11 @@
         <put-attribute name="body" value="/operations/container/containerList.jsp"/>
     </definition>
 
+    <definition name="operations.documentsList.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Available Documents"/>
+        <put-attribute name="body" value="/operations/documentsList.jsp"/>
+    </definition>
+
     <!--OPERATION module ends-->
 
     <!-- DOCUMENTATION module begin -->
