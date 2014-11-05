@@ -9,9 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 8/8/14.
- */
 public class DocumentsServiceImpl implements DocumentsService {
 
     /*DocumentsDaoImpl documentsDao = new DocumentsDaoImpl();*/
@@ -71,6 +68,16 @@ public class DocumentsServiceImpl implements DocumentsService {
     @Override
     public List<Documents> findDocumentByInboundStageAndID (Integer inboundStage, Integer referenceId) {
         return documentsDao.findDocumentByInboundStageAndID(inboundStage, referenceId);
+    }
+
+    @Override
+    public List<Documents> findDocumentByFinalOutboundStageAndID (Integer finalOutboundStage, Integer referenceId) {
+        return documentsDao.findDocumentByFinalOutboundStageAndID(finalOutboundStage, referenceId);
+    }
+
+    @Override
+    public List<Documents> findDocumentByFinalInboundStageAndID (Integer finalInboundStage, Integer referenceId) {
+        return documentsDao.findDocumentByFinalInboundStageAndID(finalInboundStage, referenceId);
     }
 
     @Override

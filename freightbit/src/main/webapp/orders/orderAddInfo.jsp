@@ -318,6 +318,7 @@
                                           list="itemQuantity"
                                           emptyOption="true"
                                           required="true"
+
                                         />
                             </span>
                             </s:else>
@@ -360,7 +361,9 @@
                                           listValue="ItemName"
                                           emptyOption="true"
                                           required="true"
+
                                         />
+
                             </s:else>
                         </div>
 
@@ -480,9 +483,8 @@
                         <div class="col-lg-3" >
                             <s:textfield cssClass="form-control"
                                          name="orderItem.weight"
-                                         id="orderItem.weight"
-                                         type="number"
-                                         min="1"
+                                         id="orderItem_weight"
+
                                     />
                         </div>
 
@@ -499,6 +501,7 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.volume"
                                              id="orderItemVolume"
+                                             disabled="true"
                                         />
                             </s:if>
                             <s:else>
@@ -527,7 +530,7 @@
                             <s:textarea cssClass="form-control"
                                         name="orderItem.remarks"
                                         id="orderItem.remarks"
-                                        cssStyle="resize: none;"
+                                        cssStyle="resize: none; height: 150px;"
 
                                     />
                         </div>
@@ -1110,6 +1113,7 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                 <%--<button type="button" class="btn btn-primary" href="#"><a style="color: #fff; text-decoration: none;" href="<s:url action='../orders/viewOrders' />">Yes</a></button>--%>
                 <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
+            </div>
         </div>
     </div>
 </div>
@@ -1121,6 +1125,12 @@ $(document).ready(function() {
     $("#orderItem_rate").maskMoney();
     $("#orderItem_declaredValues").maskMoney();
     $("#item_srp").maskMoney();
+    $("#orderItem_rate").maskMoney();
+    $("#orderItem_weight").mask('9,999,999');
+    $("#orderItemVolume").mask('9,999,999');
+    $("#orderItem_volume_textfield").mask('9,999,999');
+    $("#orderItem_declaredValues").maskMoney();
+    $("#orderItem_declaredValue_textfield").maskMoney();
 });
 
     $("#item_itemCode").keyup(function(){

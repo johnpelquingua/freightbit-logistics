@@ -10,14 +10,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.documentation.entity.Documents;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 8/8/14.
- */
 @Transactional
 public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDao {
     private static final Logger log = Logger.getLogger(DocumentsDaoImpl.class);
@@ -37,13 +32,7 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
 
         List<String> statusList = new ArrayList<>();
 
-        /*statusList.add("PENDING");
-        statusList.add("DISAPPROVED");*/
         statusList.add("ON GOING");
-        /*statusList.add("PLANNING 1");
-        statusList.add("PLANNING 2");
-        statusList.add("PLANNING 3");
-        statusList.add("SERVICE ACCOMPLISHED");*/
 
         log.debug("Finding orders with filter");
         try {

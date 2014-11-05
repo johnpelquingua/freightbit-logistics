@@ -5,7 +5,7 @@
 <style>
 /*Style for scrollable table*/
 
-html,body{width:100%;height:100%;}
+/*html,body{width:100%;height:100%;}
 div.horizontal{display:block;width:100%;height:100%;overflow:hidden;position:static}
 div.scroller{display:block;width:100%;height:100%;overflow:hidden;position:static}
 .table{display:table;width:150%;max-width:150%;height:100%}
@@ -13,7 +13,7 @@ div.scroller{display:block;width:100%;height:100%;overflow:hidden;position:stati
 .TableContainer{overflow:scroll;overflow-x: overlay;}
 article{width:800px;height:400px;display:table-cell;background:#e3e3e3;vertical-align:middle;text-align:center}
 article:nth-child(2n+2){background:#d1d1d1}
-.table-bordered > thead > tr > th{padding: 10px;}
+.table-bordered > thead > tr > th{padding: 10px;}*/
 
 </style>
 
@@ -46,38 +46,38 @@ article:nth-child(2n+2){background:#d1d1d1}
             </div>
 
             <div class="panel-body horizontal">
-                <div class="table-responsive TableContainer">
-                    <section>
-                        <div id="scroller horizontal">
+                <div class="table-responsive">
+                    <%--<section>
+                        <div id="scroller horizontal">--%>
 
                             <display:table id="order" name="orders"
                                            requestURI="viewPendingDocuments.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
                                 <%--Booking Date--%>
-                                <td><display:column property="orderDate" title="Booking Date <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="orderDate" title="Order Date <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--Booking Number--%>
-                                <td><display:column property="orderNumber" title="Ernest Reference Number <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--Customer Name--%>
-                                <td><display:column property="customerName" title="Customer Name <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--Consignee Name--%>
-                                <td><display:column property="consigneeCode" title="Consignee Name <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="originationPort" title="Origin <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="destinationPort" title="Destination <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--Freight Type--%>
-                                <td><display:column property="freightType" title="Freight Type <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--Service Requirement--%>
-                                <td><display:column property="serviceRequirement" title="Freight Type <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--Service Mode--%>
-                                <td><display:column property="modeOfService" title="Service Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--&lt;%&ndash; Date of Documents Returned (INBOUND)&ndash;%&gt;
                                 <td><display:column title="Date of Documents Returned (INBOUND) <i class='fa fa-sort' />" class="tb-font-black"
@@ -111,11 +111,16 @@ article:nth-child(2n+2){background:#d1d1d1}
 
                             </display:table>
 
-                        </div>
-                    </section>
+                        <%--</div>
+                    </section>--%>
                 </div>
             </div>
 
+            <div class="panel-footer">
+                <span class="pull-left">
+                    <label>LEGEND:</label> <i class='fa fa-anchor'></i> Shipping <i class='fa fa-truck' ></i> Trucking
+                </span>
+            </div>
             <%--<div class="panel-body">
                 <div class="table-responsive">
                     <display:table id="order" name="orders"
@@ -158,9 +163,126 @@ article:nth-child(2n+2){background:#d1d1d1}
 </div>
 
 <script>
+    var tbl = document.getElementById("order");
+    if (tbl != null) {
+        for (var i = 0; i < tbl.rows.length; i++) {
+
+            if (tbl.rows[i].cells[6].innerHTML == "SHIPPING AND TRUCKING" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[6].innerHTML = "<i class='fa fa-anchor' /> <i class='fa fa-truck' />";
+                }
+            }
+
+            if (tbl.rows[i].cells[6].innerHTML == "SHIPPING"  ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[6].innerHTML = "<i class='fa fa-anchor' />";
+                }
+            }
+
+            if (tbl.rows[i].cells[6].innerHTML == "TRUCKING"  ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[6].innerHTML = "<i class='fa fa-truck' />";
+                }
+            }
+
+            if (tbl.rows[i].cells[7].innerHTML == "FULL CARGO LOAD" || tbl.rows[i].cells[7].innerHTML == "FULL CONTAINER LOAD") {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[7].innerHTML = "FCL";
+                }
+            }
+
+            if (tbl.rows[i].cells[7].innerHTML == "FULL TRUCK LOAD" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[7].innerHTML = "FTL";
+                }
+            }
+
+            if (tbl.rows[i].cells[7].innerHTML == "LESS TRUCK LOAD" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[7].innerHTML = "LTL";
+                }
+            }
+
+            if (tbl.rows[i].cells[7].innerHTML == "LESS CARGO LOAD" || tbl.rows[i].cells[7].innerHTML == "LESS CONTAINER LOAD") {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[7].innerHTML = "LCL";
+                }
+            }
+
+            if (tbl.rows[i].cells[7].innerHTML == "LOOSE CARGO LOAD" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[7].innerHTML = "LCU";
+                }
+            }
+
+            if (tbl.rows[i].cells[7].innerHTML == "ROLLING CARGO LOAD" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[7].innerHTML = "RCU";
+                }
+            }
+
+            if (tbl.rows[i].cells[8].innerHTML == "DOOR TO DOOR" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[6].innerHTML = "DD";
+                }
+            }
+
+            if (tbl.rows[i].cells[8].innerHTML == "DOOR TO PIER" || tbl.rows[i].cells[8].innerHTML == "DOOR TO PORT" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[8].innerHTML = "DP";
+                }
+            }
+
+            if (tbl.rows[i].cells[8].innerHTML == "PIER TO DOOR" || tbl.rows[i].cells[8].innerHTML == "PORT TO DOOR" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[8].innerHTML = "PD";
+                }
+            }
+
+            if (tbl.rows[i].cells[8].innerHTML == "PIER TO PIER" || tbl.rows[i].cells[8].innerHTML == "PORT TO PORT" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[8].innerHTML = "PP";
+                }
+            }
+
+            if (tbl.rows[i].cells[8].innerHTML == "PICKUP" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[8].innerHTML = "P";
+                }
+            }
+
+            if (tbl.rows[i].cells[8].innerHTML == "DELIVERY" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[8].innerHTML = "D";
+                }
+            }
+
+            if (tbl.rows[i].cells[8].innerHTML == "INTER-WAREHOUSE" ) {
+
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[8].innerHTML = "IW";
+                }
+            }
+        }
+    }
     /*Optional query for scrolling*/
 
-    $(window).load(function() {
+    /*$(window).load(function() {
         var vWidth = $(window).width();
         var vHeight = $(window).height();
         $('.table > section').css('width', vWidth).css('height', vHeight);
@@ -170,5 +292,5 @@ article:nth-child(2n+2){background:#d1d1d1}
         var vWidth = $(window).width();
         var vHeight = $(window).height();
         $('.table > section').css('width', vWidth).css('height', vHeight);
-    });
+    });*/
 </script>

@@ -12,10 +12,6 @@
 
         <default-action-ref name="Documentation"/>
 
-        <action name="getResultAction"  method="getInfo" class="com.sr.apps.freightbit.documentation.action.DocumentAction">
-            <result name="success">/pages/result.jsp</result>
-        </action>
-
         <action name="processDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocuments">
             <result name="input" type="redirect">viewOrderDocuments</result>
             <result name="success" type="redirect">viewOrderDocuments</result>
@@ -44,6 +40,14 @@
 
         <action name="viewOrderDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewOrderDocuments">
             <result name="success" type="tiles">documentation.viewOrderDocuments.tiles</result>
+        </action>
+
+        <action name="getResultAction" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="getResultAction">
+            <result name="success">/documentation/result.jsp</result>
+        </action>
+
+        <action name="getInputFieldAction" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInput">
+            <result name="success">/documentation/pending_docs/orderDocumentsInput.jsp</result>
         </action>
 
         <action name="viewOrderDocumentsInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewOrderDocumentsInbound">

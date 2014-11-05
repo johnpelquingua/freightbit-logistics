@@ -28,6 +28,10 @@ public interface DocumentsService {
 
     public List<Documents> findDocumentByInboundStageAndID (Integer inboundStage, Integer referenceId);
 
+    public List<Documents> findDocumentByFinalOutboundStageAndID (Integer finalOutboundStage, Integer referenceId);
+
+    public List<Documents> findDocumentByFinalInboundStageAndID (Integer finalInboundStage, Integer referenceId);
+
     public Documents findDocumentByNameAndVendorCode(String documentName, String vendorCode);
 
     public Documents findDocumentNameAndId(String documentName, Integer referenceId);
