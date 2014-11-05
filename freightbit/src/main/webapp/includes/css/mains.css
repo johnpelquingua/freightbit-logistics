@@ -939,3 +939,17 @@ span.pagelinks {
  article{width:800px;height:400px;display:table-cell;background:#e3e3e3;vertical-align:middle;text-align:center}
  article:nth-child(2n+2){background:#d1d1d1}
  .table-bordered > thead > tr > th{padding: 10px;}
+
+ .notification_bubble {
+     position:absolute;
+     top: -8px;
+     right:-6px;
+     padding-right:2px;
+     background-color:red;
+     color:white;
+     font-weight:bold;
+     font-size:0.80em;
+
+     border-radius:2px;
+     box-shadow:1px 1px 1px gray;
+ }

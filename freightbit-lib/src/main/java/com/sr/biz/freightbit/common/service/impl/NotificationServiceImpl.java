@@ -130,6 +130,13 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public BigInteger CountAllNotification(){
+        return notificationDao.CountAllNotification();
+
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public Integer clearNewBooking(){
         return notificationDao.clearNewBooking();
     }
@@ -151,4 +158,6 @@ public class NotificationServiceImpl implements NotificationService {
     public Integer clearNewVendor(){
         return notificationDao.clearNewVendor();
     }
+
+
 }

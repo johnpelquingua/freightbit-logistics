@@ -27,7 +27,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     private UserService userService;
     private NotificationService notificationService;
-    public BigInteger Booking, Customer , User , Vendor;
+    public BigInteger Booking, Customer , User , Vendor , AllNotification;
 
     public NotificationService getNotificationService() {
         return notificationService;
@@ -61,10 +61,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
             Customer = notificationService.CountAllCustomer();
             User = notificationService.CountAllUser();
             Vendor = notificationService.CountAllVendor();
+            AllNotification = notificationService.CountAllNotification();
             System.out.println("The number of  new booking is "+Booking);
             System.out.println("The number of  new Customer is "+Customer);
             System.out.println("The number of  new User is "+User);
             System.out.println("The number of  new Vendor is "+Vendor);
+            System.out.println("The Number of all Notification is "+AllNotification);
             return SUCCESS;
         } else {
             log.debug("clearing errors and messages...");
@@ -136,5 +138,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
     public void setVendor(BigInteger vendor) {
         Vendor = vendor;
+    }
+
+    public BigInteger getAllNotification() {
+        return AllNotification;
+    }
+
+    public void setAllNotification(BigInteger allNotification) {
+        AllNotification = allNotification;
     }
 }

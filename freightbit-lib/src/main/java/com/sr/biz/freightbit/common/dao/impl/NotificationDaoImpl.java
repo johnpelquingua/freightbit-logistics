@@ -78,7 +78,6 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
         String sql = "SELECT count(description) from freightbit.notification where description = 'BOOKING' ";
         Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
         BigInteger temp = (BigInteger)query.uniqueResult();
-        System.out.println("Dadaodadoadoaod "+temp);
         return temp;
 
     }
@@ -88,7 +87,6 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
         String sql = "SELECT count(description) from freightbit.notification where description = 'CUSTOMER' ";
         Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
         BigInteger AllCust = (BigInteger)query.uniqueResult();
-        System.out.println("Dadaodadoadoaod "+AllCust);
         return AllCust;
 
     }
@@ -98,7 +96,6 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
         String sql = "SELECT count(description) from freightbit.notification where description = 'USER' ";
         Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
         BigInteger AllUser = (BigInteger)query.uniqueResult();
-        System.out.println("Dadaodadoadoaod "+AllUser);
         return AllUser;
 
     }
@@ -108,9 +105,17 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
         String sql = "SELECT count(description) from freightbit.notification where description = 'VENDOR' ";
         Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
         BigInteger AllVendor = (BigInteger)query.uniqueResult();
-        System.out.println("Dadaodadoadoaod "+AllVendor);
         return AllVendor;
 
+    }
+
+    @Override
+    public BigInteger CountAllNotification(){
+        String sql = "SELECT count(*) from freightbit.notification ";
+        Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
+        BigInteger AllNotification = (BigInteger)query.uniqueResult();
+        System.out.println("Number Of Notifications: "+AllNotification);
+        return AllNotification;
     }
 
 
@@ -146,4 +151,11 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
         query.executeUpdate();
         return 0;
     }
+
+
+
+
+
+
 }
+

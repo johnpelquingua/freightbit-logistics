@@ -25,6 +25,8 @@ public interface NotificationDao {
 
     public BigInteger CountAllVendor();
 
+    public BigInteger CountAllNotification();
+
     public Integer clearNewBooking();
 
     public Integer clearNewCustomer();

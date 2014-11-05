@@ -23,7 +23,7 @@ public class DashboardAction extends ActionSupport implements SessionAware {
     private UserService userService;
     private OrderService orderService;
     private NotificationService notificationService;
-    BigInteger Booking , Customer,User,Vendor ;
+    BigInteger Booking , Customer,User,Vendor, AllNotification ;
 
 
     public NotificationService getNotificationService() {
@@ -51,10 +51,12 @@ public class DashboardAction extends ActionSupport implements SessionAware {
         Customer = notificationService.CountAllCustomer();
         User = notificationService.CountAllUser();
         Vendor = notificationService.CountAllVendor();
+        AllNotification = notificationService.CountAllNotification();
         System.out.println("The number of  new booking is "+Booking);
         System.out.println("The number of  new Customer is "+Customer);
         System.out.println("The number of  new User is "+User);
         System.out.println("The number of  new Vendor is "+Vendor);
+        System.out.println("The Number of all Notification is "+AllNotification);
         return SUCCESS;
     }
 
@@ -112,5 +114,13 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
     public void setVendor(BigInteger vendor) {
         Vendor = vendor;
+    }
+
+    public BigInteger getAllNotification() {
+        return AllNotification;
+    }
+
+    public void setAllNotification(BigInteger allNotification) {
+        AllNotification = allNotification;
     }
 }

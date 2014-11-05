@@ -1,6 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="true" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid">
@@ -46,7 +47,7 @@
     </li>
 
     <li class="dropdown messages-dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i> Notifications
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="notifs"><i class="fa fa-exclamation-circle"></i> Notifications
         <b class="caret"></b></a>
     <ul class="dropdown-menu" style="min-width: 150px;">
 
@@ -54,7 +55,7 @@
             <a href="#">
                 <%--<span class="avatar"><img alt="User Pic" src="includes/images/photo.png" class="img-circle" style="width:40px; "></span>--%>
                 <%--<span class="name">Jan Ernest:</span>--%>
-                <span class="message" style="text-align: center;" ><a href="/home"><i class="fa fa-exclamation-circle"></i> 999 Notifications</a></span>
+                <span class="message" style="text-align: center;" ><a href="/home"><i class="fa fa-exclamation-circle"></i> <s:property value="%{AllNotification}"></s:property> Notifications</a></span>
             </a>
         </li>
 
@@ -74,3 +75,24 @@
     </li>
 
 </ul>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(window).load(function() {
+            var test = document.getElementById("notifs");
+            var notifcount = <s:property value="%{AllNotification}"></s:property>
+
+            if (notifcount == 0){
+
+                test.css({'-webkit-box-shadow':'0 0 20px blue'},
+            {'-moz-box-shadow':' 0 0 20px blue'},
+            {'box-shadow':'0 0 20px blue'})
+
+            }
+
+        });
+
+    });
+
+</script>

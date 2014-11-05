@@ -694,3 +694,17 @@ span.pagebanner {
 span.pagelinks {
     margin-left: 15px;
 }
+
+ .notification_bubble {
+     position:absolute;
+     top: -8px;
+     right:-6px;
+     padding-right:2px;
+     background-color:red;
+     color:white;
+     font-weight:bold;
+     font-size:0.80em;
+
+     border-radius:2px;
+     box-shadow:1px 1px 1px gray;
+ }
