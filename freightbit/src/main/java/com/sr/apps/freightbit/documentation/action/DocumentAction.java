@@ -180,7 +180,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Entered reference number successfully!");
         } else if (documentflag == 3) {
             clearErrorsAndMessages();
-            addActionMessage("Document successfully moved!");
+            addActionMessage("Document successfully updated!");
         } else if (documentflag == 4) {
             clearErrorsAndMessages();
             addActionMessage("Check all documents first before moving to next stage");
@@ -192,7 +192,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Notified Destination office of faxed document");
         } else if(documentflag == 7){
             clearErrorsAndMessages();
-            addActionMessage("All Documents must be checked before processing");
+            addActionMessage("Document(s) must be checked before processing");
         }else if(documentflag == 8){
             clearErrorsAndMessages();
             addActionMessage("All Documents processed!");
@@ -695,9 +695,20 @@ public class DocumentAction extends ActionSupport implements Preparable{
         orderItemBean.setRate(orderItem.getRate());
         orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
         orderItemBean.setRemarks(orderItem.getComments());
-        orderItemBean.setVendorSea(orderItem.getVendorSea());
-        orderItemBean.setVendorOrigin(orderItem.getVendorOrigin());
-        orderItemBean.setVendorDestination(orderItem.getVendorDestination());
+        // To fetch sea vendor name from vendor ID
+        /*orderItemBean.setVendorSea(orderItem.getVendorSea());*/
+        Vendor seaVendor = vendorService.findVendorById(Integer.parseInt(orderItem.getVendorSea()));
+        orderItemBean.setVendorSea(seaVendor.getVendorName());
+
+        // To fetch origin vendor name from vendor ID
+        /*orderItemBean.setVendorOrigin(orderItem.getVendorOrigin());*/
+        Vendor originVendor = vendorService.findVendorById(Integer.parseInt(orderItem.getVendorOrigin()));
+        orderItemBean.setVendorOrigin(originVendor.getVendorName());
+
+        // To fetch destination vendor name from vendor ID
+        /*orderItemBean.setVendorDestination(orderItem.getVendorDestination());*/
+        Vendor destinationVendor = vendorService.findVendorById(Integer.parseInt(orderItem.getVendorDestination()));
+        orderItemBean.setVendorDestination(destinationVendor.getVendorName());
 
         return orderItemBean;
     }
@@ -728,7 +739,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             documentEntity.setDocumentStatus("FROM INBOUND");
 
             if (documentEntity.getDocumentName().equals("BOOKING REQUEST FORM WITH SIGNATURE")) {
-                documentEntity.setDocumentName("BOOKING REQUEST FORM WITH SIGNATURE");
                 documentEntity.setDocumentProcessed(0);
                 /*documentEntity.setDocumentType("ARCHIVE");*/
                 /*Pass flag to view order documents*/
@@ -740,7 +750,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     /*Pass flag to view order documents*/
                     documentflag = 1;
                     sessionAttributes.put("documentflag", documentflag);
-
                     /*documentEntity.setDocumentType("INBOUND");*/
                     documentEntity.setDocumentName("MASTER BILL OF LADING");
                     documentEntity.setDocumentProcessed(0);
@@ -754,7 +763,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 }
             }
             if (documentEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN WITH SIGNATURE")) {
-                documentEntity.setDocumentName("HOUSE WAYBILL ORIGIN WITH SIGNATURE");
                 documentEntity.setDocumentProcessed(0);
                 /*documentEntity.setDocumentType("ARCHIVE");*/
                 /*Pass flag to view order documents*/
@@ -762,7 +770,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 sessionAttributes.put("documentflag", documentflag);
             }
             if(documentEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
-                documentEntity.setDocumentName("MASTER WAYBILL ORIGIN");
                 documentEntity.setDocumentProcessed(0);
                 /*documentEntity.setDocumentType("ARCHIVE");*/
 
@@ -805,7 +812,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 sessionAttributes.put("documentflag", documentflag);
 
             } else if (documentEntity.getDocumentName().equals("HOUSE WAYBILL DESTINATION")) {
-                documentEntity.setDocumentName("HOUSE WAYBILL DESTINATION WITH SIGNATURE");
                 documentEntity.setDocumentProcessed(0);
                 /*documentEntity.setDocumentType("FINAL INBOUND");*/
                 documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
@@ -813,7 +819,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 documentflag = 3;
                 sessionAttributes.put("documentflag", documentflag);
             }else if(documentEntity.getDocumentName().equals("SALES INVOICE / DELIVERY RECEIPT")) {
-                documentEntity.setDocumentName("SALES INVOICE / DELIVERY RECEIPT WITH SIGNATURE");
                 documentEntity.setDocumentProcessed(0);
                 /*documentEntity.setDocumentType("FINAL INBOUND");*/
                 documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
@@ -886,6 +891,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentflag = 2; // shows reference number entered successfully
                         sessionAttributes.put("documentflag", documentflag);
 
+                        /*-------------------------------------------------------------------------------------------------------------------------*/
                         // Master Bill of Lading will be created under pending documents begin
                         Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
 
@@ -906,6 +912,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentsService.addDocuments(documentEntity);
 
                         // Master Bill of Lading will be created under pending documents end
+                        /*-------------------------------------------------------------------------------------------------------------------------*/
+
                     // Triggers if Document is House Bill of Lading
                     } else if (documentIdEntity.getDocumentName().equals("HOUSE BILL OF LADING")) {
                         documentIdEntity.setDocumentProcessed(1);
@@ -1020,9 +1028,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
+
                         // House Way Bill Destination will be created under pending documents begin
 
-                        Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
+                        /*Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
 
                         if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")) {
 
@@ -1043,7 +1052,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                             documentsService.addDocuments(documentEntity);
                         }
-
+*/
                         // House Way Bill Destination will be created under pending documents end
 
                     }else if(documentIdEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && documentIdEntity.getReferenceNumber() == null){
@@ -1378,7 +1387,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Notified Destination office of faxed document");
         }else if(documentflag == 7){
             clearErrorsAndMessages();
-            addActionMessage("All Documents must be checked before processing");
+            addActionMessage("Document(s) must be checked before processing");
         }else if(documentflag == 8){
             clearErrorsAndMessages();
             addActionMessage("All Documents processed!");
@@ -1472,8 +1481,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
         sessionAttributes.put("orderIdParam", documentsEntity.getReferenceId());
 
         /*Pass flag to view order documents*/
-        documentflag = 2;
-        sessionAttributes.put("documentflag", documentflag);
+
+        if (documentsEntity.getDocumentName().equals("BOOKING REQUEST FORM") || documentsEntity.getDocumentName().equals("HOUSE BILL OF LADING") || documentsEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN") ){
+            documentflag = 3; // document successfully updated
+            sessionAttributes.put("documentflag", documentflag);
+        }else {
+            documentflag = 2; // entered reference number successfully
+            sessionAttributes.put("documentflag", documentflag);
+        }
 
         return SUCCESS;
     }
@@ -1546,12 +1561,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
             for (Documents documentElem : outboundEntityList) {
                 documentElem.setDocumentStatus("FROM OUTBOUND");
                 if(documentElem.getDocumentName().equals("BOOKING REQUEST FORM")){
-                    documentElem.setDocumentName("BOOKING REQUEST FORM WITH SIGNATURE");
                     documentElem.setInboundStage(1);
                 }else if(documentElem.getDocumentName().equals("PROFORMA BILL OF LADING")){
                     documentElem.setArchiveStage(1);
                 }else if(documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN")){
-                    documentElem.setDocumentName("HOUSE WAYBILL ORIGIN WITH SIGNATURE");
                     documentElem.setInboundStage(1);
                 }else{
                     documentElem.setInboundStage(1);
@@ -1668,7 +1681,15 @@ public class DocumentAction extends ActionSupport implements Preparable{
         if(formBean.getDocumentId() != null) {
             entity.setDocumentId(new Integer(formBean.getDocumentId()));
         }
-        entity.setReferenceNumber(formBean.getReferenceNumber());
+
+        Documents subEntity = documentsService.findDocumentById(formBean.getDocumentId());
+
+        if(subEntity.getDocumentName().equals("BOOKING REQUEST FORM") || subEntity.getDocumentName().equals("HOUSE BILL OF LADING") || subEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN")){
+            entity.setReferenceNumber(subEntity.getReferenceNumber());
+        }else{
+            entity.setReferenceNumber(formBean.getReferenceNumber());
+        }
+
         entity.setCreatedDate(new Date());
         entity.setDocumentName(formBean.getDocumentName());
         entity.setOutboundStage(formBean.getOutboundStage());

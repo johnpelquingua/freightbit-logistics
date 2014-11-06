@@ -139,9 +139,7 @@
             <div class="panel-body">
 
                 <div class="row">
-                    <%--<div class="col-md-3 col-lg-3 " align="center">
-                        <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
-                    </div>--%>
+
                     <div class=" col-md-12 col-lg-12 ">
                         <table class="table table-user-information">
                             <s:hidden id="custIdHolder" value="%{order.customerId}"/>
@@ -199,9 +197,7 @@
             <div class="panel-body">
 
                 <div class="row">
-                    <%--<div class="col-md-3 col-lg-3 " align="center">
-                        <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
-                    </div>--%>
+
                     <div class=" col-md-12 col-lg-12 ">
                         <table class="table table-user-information">
 
@@ -274,9 +270,7 @@
                                 Item Information
                             </span>
                             <div class="pull-right">
-                                <%--<button type="button" class="btn btn-info pull-right" onclick="location.href='#'">
-                                    Add New Item
-                                </button>--%>
+
                                 <a data-toggle="modal" data-target="#createItem"  class="btn btn-info" id="idCustomer"> Add New Item</a>
                             </div>
                         </s:else>
@@ -371,19 +365,6 @@
 
                     <div class="form-group">
 
-                        <%--<label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Weight (kg)<span class="asterisk_red" />
-                        </label>
-
-                        <div class="col-lg-3" >
-                            <s:textfield cssClass="form-control"
-                                         name="orderItem.weight"
-                                         id="orderItem.weight"
-                                         type="number"
-                                         min="1"
-                            />
-                        </div>--%>
-
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
                             Rate (Php)<span class="asterisk_red" />
                         </label>
@@ -395,40 +376,6 @@
 
                                     />
                         </div>
-
-                        <%--<label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Volume (cm&#179;)
-                        </label>
-                        <div class="col-lg-3" >
-
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                                <s:textfield cssClass="form-control"
-                                          name="orderItem.volume"
-                                          id="orderItem.volume"
-                                          style="display:none"
-                                />
-                                <s:textfield cssClass="form-control"
-                                          name="orderItem.volume"
-                                          id="orderItemVolume"
-                                          disabled="true"
-                                />
-                            </s:if>
-                            <s:else>
-                                <s:select cssClass="form-control"
-                                          name="orderItem.volume"
-                                          id="orderItem_volume"
-                                          list="#{orderItem_volume}"
-                                          value="%{orderItem_volume}"
-                                          style="display:none"
-                                />
-                                <s:textfield cssClass="form-control"
-                                             name="orderItem.volume"
-                                             id="orderItem_volume_textfield"
-                                             disabled="true"
-                                />
-                            </s:else>
-
-                        </div>--%>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
                             Commodity
@@ -463,29 +410,21 @@
 
                     <div class="form-group">
 
-                        <%--<label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Rate (Php)<span class="asterisk_red" />
-                        </label>
-                        <div class="col-lg-3" >
-                            <s:textfield cssClass="form-control"
-                                         id="orderItem.rate"
-                                         name="orderItem.rate"
-                                         required="true"
-                                         type="number"
-                                         min="1"
-                                    />
-                        </div>--%>
-
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Weight (kg)<span class="asterisk_red" />
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                                Weight (tons)<span class="asterisk_red" />
+                            </s:if>
+                            <s:else>
+                                Weight (kg)<span class="asterisk_red" />
+                            </s:else>
                         </label>
 
                         <div class="col-lg-3" >
-                            <s:textfield cssClass="form-control"
-                                         name="orderItem.weight"
-                                         id="orderItem_weight"
 
-                                    />
+                                <s:textfield cssClass="form-control"
+                                             name="orderItem.weight"
+                                             id="orderItem_weight" />
+
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
@@ -495,14 +434,14 @@
 
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                                 <s:textfield cssClass="form-control"
-                                             id="orderItem.volume"
-                                             style="display:none"
+                                             id="orderItem-volume"
+                                             name="orderItem.volume"
                                         />
-                                <s:textfield cssClass="form-control"
+                                <%--<s:textfield cssClass="form-control"
                                              name="orderItem.volume"
                                              id="orderItemVolume"
                                              disabled="true"
-                                        />
+                                        />--%>
                             </s:if>
                             <s:else>
                                 <s:select cssClass="form-control"
@@ -631,14 +570,16 @@
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
                             <span>
                                 <th class="tb-font-black">Size</th>
+                                <th class="tb-font-black">Weight <br /> (tons) </th>
                             </span>
                             </s:if>
                             <s:else>
                             <span>
                                 <th class="tb-font-black">Name</th>
+                                <th class="tb-font-black">Weight <br /> (kg) </th>
                             </span>
                             </s:else>
-                            <th class="tb-font-black">Weight <br /> (kg) </th>
+
                             <th class="tb-font-black">Volume <br /> (cm&#179;) </th>
                             <th class="tb-font-black">Commodity</th>
                             <th class="tb-font-black">Value <br /> (Php) </th>
@@ -1061,10 +1002,6 @@
                         </div>
                 </div>
 
-                <%--<div class="panel-heading">
-                    <h3 class="panel-title"> Cargo Details</h3>
-                </div>--%>
-
                 <div class="panel-body">
                     <div class="table-responsive list-table">
 
@@ -1129,6 +1066,7 @@ $(document).ready(function() {
     $("#item_srp").maskMoney();
     $("#orderItem_rate").maskMoney();
     $("#orderItem_weight").mask('9,999,999');
+    $("#orderItem-volume").mask('9,999,999');
     $("#orderItemVolume").mask('9,999,999');
     $("#orderItem_volume_textfield").mask('9,999,999');
     $("#orderItem_declaredValues").maskMoney();
@@ -1332,11 +1270,38 @@ $(document).ready(function() {
         while (lent--) {
             opt[ lent ].disabled = false;
         }
-        //alert(select.options[ index ].value);
+        /*To compute for total tons and weight for FCL*/
+        if (sContainer.value != ''){
+            if(sContainer.value === '10 FOOTER'){
+                var totalVolume = sQuantity.value * 14; /*cmb*/
+                var totalWeight = sQuantity.value * 9; /*tons*/
+                document.getElementById("orderItem-volume").value = totalVolume;
+                document.getElementById("orderItem_weight").value = totalWeight;
+            }
+            if(sContainer.value === '20 FOOTER'){
+                var totalVolume = sQuantity.value * 28; /*cmb*/
+                var totalWeight = sQuantity.value * 18; /*tons*/
+                document.getElementById("orderItem-volume").value = totalVolume;
+                document.getElementById("orderItem_weight").value = totalWeight;
+            }
+            if(sContainer.value === '40 STD FOOTER'){
+                var totalVolume = sQuantity.value * 56; /*cmb*/
+                var totalWeight = sQuantity.value * 20; /*tons*/
+                document.getElementById("orderItem-volume").value = totalVolume;
+                document.getElementById("orderItem_weight").value = totalWeight;
+            }
+            if(sContainer.value === '40 HC FOOTER'){
+                var totalVolume = sQuantity.value * 78; /*cmb*/
+                var totalWeight = sQuantity.value * 22; /*tons*/
+                document.getElementById("orderItem-volume").value = totalVolume;
+                document.getElementById("orderItem_weight").value = totalWeight;
+            }
+        }
+
 
         if (select.options[ index ].value === '') {
 
-            document.getElementById("orderItem.volume").value = "";
+            document.getElementById("orderItem-volume").value = "";
             document.getElementById("orderItemVolume").value = "";
         }
 
@@ -1345,13 +1310,15 @@ $(document).ready(function() {
             var containerQuantityNull = document.getElementById("orderItem.quantity").value;
 
             if(containerQuantityNull == '') {
+                document.getElementById("orderItem_weight").value = 9;
                 document.getElementById("orderItem.quantity").value = 1;
-                document.getElementById("orderItem.volume").value = "14";
+                document.getElementById("orderItem-volume").value = "14";
                 document.getElementById("orderItemVolume").value = "14";
             }else{
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 14;
-                document.getElementById("orderItem.volume").value = containerVolume;
+                document.getElementById("orderItem_weight").value = 9;
+                document.getElementById("orderItem-volume").value = containerVolume;
                 document.getElementById("orderItemVolume").value = containerVolume;
             }
         }
@@ -1361,13 +1328,15 @@ $(document).ready(function() {
             var containerQuantityNull = document.getElementById("orderItem.quantity").value;
 
             if(containerQuantityNull == '') {
+                document.getElementById("orderItem_weight").value = 18;
                 document.getElementById("orderItem.quantity").value = 1;
-                document.getElementById("orderItem.volume").value = "28";
+                document.getElementById("orderItem-volume").value = "28";
                 document.getElementById("orderItemVolume").value = "28";
             }else {
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 28;
-                document.getElementById("orderItem.volume").value = containerVolume;
+                document.getElementById("orderItem_weight").value = 18;
+                document.getElementById("orderItem-volume").value = containerVolume;
                 document.getElementById("orderItemVolume").value = containerVolume;
             }
         }
@@ -1377,13 +1346,15 @@ $(document).ready(function() {
             var containerQuantity = document.getElementById("orderItem.quantity").value;
 
             if(containerQuantity == '') {
+                document.getElementById("orderItem_weight").value = 20;
                 document.getElementById("orderItem.quantity").value = 1;
-                document.getElementById("orderItem.volume").value = "56";
+                document.getElementById("orderItem-volume").value = "56";
                 document.getElementById("orderItemVolume").value = "56";
             }else {
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 56;
-                document.getElementById("orderItem.volume").value = containerVolume;
+                document.getElementById("orderItem_weight").value = 20;
+                document.getElementById("orderItem-volume").value = containerVolume;
                 document.getElementById("orderItemVolume").value = containerVolume;
             }
         }
@@ -1393,22 +1364,29 @@ $(document).ready(function() {
             var containerQuantity = document.getElementById("orderItem.quantity").value;
 
             if(containerQuantity == '') {
+                document.getElementById("orderItem_weight").value = 22;
                 document.getElementById("orderItem.quantity").value = 1;
-                document.getElementById("orderItem.volume").value = "78";
+                document.getElementById("orderItem-volume").value = "78";
                 document.getElementById("orderItemVolume").value = "78";
             }else {
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 78;
-                document.getElementById("orderItem.volume").value = containerVolume;
+                document.getElementById("orderItem_weight").value = 22;
+                document.getElementById("orderItem-volume").value = containerVolume;
                 document.getElementById("orderItemVolume").value = containerVolume;
             }
         }
     }
 
     var sContainer = select = document.getElementById('orderItem.nameSize');
+    var sQuantity = select = document.getElementById('orderItem.quantity');
 
     sContainer.onchange = function () {
         dynamicDropdown.call(this, sContainer, this.selectedIndex);
+    };
+
+    sQuantity.onchange = function () {
+        dynamicDropdown.call(this, sQuantity, this.selectedIndex);
     };
 
     function alphaKeyOnly(evt)

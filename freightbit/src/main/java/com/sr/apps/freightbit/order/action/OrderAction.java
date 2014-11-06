@@ -42,7 +42,6 @@ import java.util.regex.Pattern;
 
 //import com.sr.biz.freightbit.order.entity.Counter;
 
-
 public class OrderAction extends ActionSupport implements Preparable {
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
@@ -243,27 +242,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         String column = getColumnFilter();
         List<Orders> orderEntityList = new ArrayList<Orders>();
-        if (StringUtils.isNotBlank(column)) {
-            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
-        } else {
-            orderEntityList = orderService.findAllOrders();
-        }
-
-        for (Orders orderElem : orderEntityList) {
-            orders.add(transformToOrderFormBean(orderElem));
-        }
-
-        Booking = notificationService.CountAll();
-        System.out.println("The number of  new booking is "+Booking);
-
-        return SUCCESS;
-    }
-
-    public String viewOrdersInbooking() {
-
-        String column = getColumnFilter();
-        List<Orders> orderEntityList = new ArrayList<Orders>();
-        notificationService.clearNewBooking();
         if (StringUtils.isNotBlank(column)) {
             orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
         } else {
@@ -524,11 +502,11 @@ public class OrderAction extends ActionSupport implements Preparable {
         notificationService.addNotification(notificationEntity);
         // End of Add Notification
 
-        // Booking Request Form will be created under pending documents
+        // Booking Request Form will be created under pending documents start
+
         Documents documentEntity = new Documents();
         Client client = clientService.findClientById(getClientId().toString());
         documentEntity.setClient(client);
-        /*documentEntity.setDocumentType(DocumentsConstants.OUTBOUND);*/
         documentEntity.setDocumentName(DocumentsConstants.BOOKING_REQUEST_FORM);
         documentEntity.setReferenceId(orderEntity.getOrderId());
         documentEntity.setReferenceTable("ORDERS");
@@ -539,8 +517,28 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
         documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
         documentEntity.setOutboundStage(1);
-        /*entity.setCreatedBy(commonUtils.getUserNameFromSession());*/
         documentsService.addDocuments(documentEntity);
+
+        // Booking Request Form will be created under pending documents end
+
+        // House Bill of Lading will be created under pending documents start
+
+        Documents documentEntity2 = new Documents();
+        Client client2 = clientService.findClientById(getClientId().toString());
+        documentEntity2.setClient(client2);
+        documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
+        documentEntity2.setReferenceId(orderEntity.getOrderId());
+        documentEntity2.setReferenceTable("ORDERS");
+        documentEntity2.setOrderNumber(orderEntity.getOrderNumber());
+        documentEntity2.setCreatedDate(new Date());
+        documentEntity2.setDocumentStatus("FOR REFERENCE");
+        documentEntity2.setDocumentProcessed(0);
+        documentEntity2.setReferenceNumber(orderEntity.getOrderNumber());
+        documentEntity2.setCreatedBy(commonUtils.getUserNameFromSession());
+        documentEntity2.setOutboundStage(1);
+        documentsService.addDocuments(documentEntity2);
+
+        // House Bill of Lading will be created under pending documents end
 
         // To get generated Order Id
         orderIdPass = orderEntity.getOrderId();
@@ -691,7 +689,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
 
         Map sessionAttributes = ActionContext.getContext().getSession();
-
 
         if(orderEntity.getOrderStatus().equals("INCOMPLETE")){
             String column = getColumnFilter();
@@ -981,23 +978,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setOrderId(order.getOrderId());
         orderBean.setOrderNumber(order.getOrderNumber());
         orderBean.setFreightType(order.getServiceType());
-        /*if(order.getServiceType().equals("SHIPPING AND TRUCKING")){
-            orderBean.setFreightType("SHIP & TRUCK");
-        }else if(order.getServiceType().equals("SHIPPING")){
-            orderBean.setFreightType("SHIP");
-        }else{
-            orderBean.setFreightType("TRUCK");
-        }*/
         orderBean.setModeOfService(order.getServiceMode());
-        /*if(order.getServiceMode().equals("DOOR TO DOOR")){
-            orderBean.setModeOfService("DD");
-        }else if(order.getServiceMode().equals("DOOR TO PIER")){
-            orderBean.setModeOfService("DP");
-        }else if(order.getServiceMode().equals("PIER TO DOOR")){
-            orderBean.setModeOfService("PD");
-        }else{
-            orderBean.setModeOfService("PP");
-        }*/
         orderBean.setNotifyBy(order.getNotificationType());
         orderBean.setOrderDate(order.getOrderDate());
         orderBean.setModeOfPayment(order.getPaymentMode());
@@ -1031,15 +1012,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderBean.setRates(order.getRates());
 
         orderBean.setServiceRequirement(order.getServiceRequirement());
-        /*if(order.getServiceRequirement().equals("FULL CONTAINER LOAD")){
-            orderBean.setServiceRequirement("FCL");
-        }else if(order.getServiceRequirement().equals("LESS CONTAINER LOAD")){
-            orderBean.setServiceRequirement("LCL");
-        }else if(order.getServiceRequirement().equals("LOOSE CARGO LOAD")){
-            orderBean.setServiceRequirement("LCU");
-        }else{
-            orderBean.setServiceRequirement("RCU");
-        }*/
 
         Contacts contactShipperName = customerService.findContactById(order.getShipperContactId());
 
@@ -1209,15 +1181,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setServiceType(formBean.getFreightType());
 
         entity.setServiceMode(formBean.getModeOfService());
-        /*if(formBean.getModeOfService().equals("DD") || formBean.getModeOfService().equals("DOOR TO DOOR")){
-            entity.setServiceMode("DOOR TO DOOR");
-        }else if(formBean.getModeOfService().equals("DP") || formBean.getModeOfService().equals("DOOR TO PIER")){
-            entity.setServiceMode("DOOR TO PIER");
-        }else if(formBean.getModeOfService().equals("PD") || formBean.getModeOfService().equals("PIER TO DOOR")){
-            entity.setServiceMode("PIER TO DOOR");
-        }else{
-            entity.setServiceMode("PIER TO PIER");
-        }*/
         entity.setNotificationType(formBean.getNotifyBy());
         entity.setPaymentMode(formBean.getModeOfPayment());
         entity.setOriginationPort(formBean.getOriginationPort());

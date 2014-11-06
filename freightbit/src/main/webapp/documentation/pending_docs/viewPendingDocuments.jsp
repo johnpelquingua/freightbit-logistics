@@ -79,27 +79,6 @@ article:nth-child(2n+2){background:#d1d1d1}
                                 <%--Service Mode--%>
                                 <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <%--&lt;%&ndash; Date of Documents Returned (INBOUND)&ndash;%&gt;
-                                <td><display:column title="Date of Documents Returned (INBOUND) <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                &lt;%&ndash;Sales Invoice / Delivery Receipt Number&ndash;%&gt;
-                                <td><display:column title="Sales Invoice / Delivery Receipt Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                &lt;%&ndash;Date of Documents Sent (OUTBOUND)&ndash;%&gt;
-                                <td><display:column title="Date of Documents Sent (OUTBOUND) <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                &lt;%&ndash;LBC Reference Number&ndash;%&gt;
-                                <td><display:column title="LBC Reference Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                &lt;%&ndash;Date of Documents Returned (FINAL INBOUND)&ndash;%&gt;
-                                <td><display:column title="Date of Documents Returned (FINAL INBOUND) <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                &lt;%&ndash;Received By&ndash;%&gt;
-                                <td><display:column title="Received By <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                &lt;%&ndash;Date of Documents forwarded to Accounting&ndash;%&gt;
-                                <td><display:column title="Date of Documents forwarded to Accounting (BILLING) <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>--%>
                                 <td><display:column title="Action">
                                     <s:url var="viewDocumentsUrl" action="../documentation/viewOrderDocuments">
                                         <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
@@ -233,7 +212,7 @@ article:nth-child(2n+2){background:#d1d1d1}
             if (tbl.rows[i].cells[8].innerHTML == "DOOR TO DOOR" ) {
 
                 for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[6].innerHTML = "DD";
+                    tbl.rows[i].cells[8].innerHTML = "DD";
                 }
             }
 
@@ -280,6 +259,7 @@ article:nth-child(2n+2){background:#d1d1d1}
             }
         }
     }
+
     /*Optional query for scrolling*/
 
     /*$(window).load(function() {
@@ -293,4 +273,5 @@ article:nth-child(2n+2){background:#d1d1d1}
         var vHeight = $(window).height();
         $('.table > section').css('width', vWidth).css('height', vHeight);
     });*/
+
 </script>

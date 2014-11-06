@@ -123,21 +123,23 @@
                             <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
                                 <thead>
                                 <tr class="header_center" style="background-color: #fff;">
-                                    <th class="tb-font-black">Inland Origin</th>
-                                    <th class="tb-font-black">Sea Freight</th>
-                                    <th class="tb-font-black">Inland Destination</th>
+                                    <th class="tb-font-black">Vendor Origin</th>
+                                    <th class="tb-font-black">Vendor Sea</th>
+                                    <th class="tb-font-black">Vendor Destination</th>
                                     <th class="tb-font-black">Quantity</th>
                                     <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <span>
                                     <th class="tb-font-black">Size</th>
+                                    <th class="tb-font-black">Weight <br /> (tons) </th>
                                 </span>
                                     </s:if>
                                     <s:else>
                                 <span>
                                     <th class="tb-font-black">Name</th>
+                                    <th class="tb-font-black">Weight <br /> (kg) </th>
                                 </span>
                                     </s:else>
-                                    <th class="tb-font-black">Weight <br /> (kg) </th>
+
                                     <th class="tb-font-black">Volume <br /> (cm&#179;) </th>
                                     <th class="tb-font-black">Commodity</th>
                                 </tr>
@@ -374,7 +376,7 @@
                                                 <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>--%>
 
                                                 <%--Input Reference ID--%>
-                                                <s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">
+                                                <%--<s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">--%>
                                                     <%--<a data-toggle="modal" data-target="#addReferenceNumber" >
                                                         <i class="fa fa-edit"></i>
                                                     </a>--%>
@@ -388,7 +390,7 @@
                                                     <a id="edit-icon" href="#" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                </s:if>
+                                                <%--</s:if>--%>
                                                 <%--Print Document--%>
                                                 <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='BOOKING REQUEST FORM WITH SIGNATURE' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN WITH SIGNATURE' || #attr.document.documentName=='ACCEPTANCE RECEIPT' ">
                                                     <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
@@ -502,22 +504,6 @@ $( window ).load(function() {
 
 });
 
-    /*DONT DELETE, FOR TESTING TABLE READABILITY EVEN IF HIDDEN*/
-    /*$(window).load(function(){
-        var outbound_table = $(".outbound_table").val();
-        alert("outbound_table");
-        var inbound_table = $(".inbound_table").val();
-        alert("inbound_table");
-        var final_inbound_table = $(".final_inbound_table").val();
-        alert("final_inbound_table");
-        var final_outbound_table = $(".final_outbound_table").val();
-        alert("final_outbound_table");
-        var archive_table = $(".archive_table").val();
-        alert("archive_table");
-        var billing_table = $(".billing_table").val();
-        alert("billing_table");
-    });*/
-
 });
 
 /*Script that will trigger input area*/
@@ -531,7 +517,7 @@ function showInputFields(referenceId,documentId) {
         dataType: 'html',
         success: function (html) {
             $('#inputDiv').html(html);
-            window.location.href = '#inputDiv';
+            window.location.href = '#sixth';
         },
         error: function(xhr, ajaxOptions, thrownError){
             alert('An error occurred! ' + thrownError);
@@ -638,8 +624,5 @@ function addCheckText() {
     document.getElementById("documentItem").value = "check";
 }
 
-/*function addMoveText() {
-    document.getElementById("documentItem").value = "move";
-}*/
 
 </script>
