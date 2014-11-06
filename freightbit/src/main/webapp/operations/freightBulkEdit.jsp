@@ -76,8 +76,38 @@
                         <s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num" disabled="true"></s:textfield>
                     </div>
                 </div>
-            </div>
 
+				<div class="form-group" style="padding-top: 0px;">
+					<hr><h4 style="text-align:center;">Summary of Freight Plan</h4><hr>
+				</div>
+
+				<display:table id="vesselSchedule" name="vesselSchedules"
+							   requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+							   class="table table-striped table-hover table-bordered text-center tablesorter"
+							   style="margin-top: 15px;">
+            <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+								style="text-align: center;"> </display:column></td>
+            <td><display:column property="originPort" title="Origin" class="tb-font-black"
+								style="text-align: center;"> </display:column></td>
+            <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
+								style="text-align: center;"> </display:column></td>
+            <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+								style="text-align: center;"> </display:column></td>
+            <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+								style="text-align: center;"> </display:column></td>
+            <td><display:column title="Action">
+                <s:url var="editBulkItemsUrl" action="editBulkItems">
+                    <s:param name="vesselScheduleIdParam"
+							 value="#attr.vesselSchedule.vesselScheduleId">
+                    </s:param>
+                    <s:param name="vendorIdParam"
+							 value="#attr.vesselSchedule.vendorId">
+                    </s:param>
+                </s:url>
+            </display:column></td>
+        </display:table>
+
+            </div>
         </div>
 
         <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
@@ -310,7 +340,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Destination</span>
+                        <span class="panel-title">Dispatch Plan : Destinationss</span>
                     </div>
                     <div class="panel-body">
                         <s:form cssClass="form-horizontal" theme="bootstrap" action="editBulkItemsInlandDestination">
