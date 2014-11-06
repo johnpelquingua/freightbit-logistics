@@ -40,6 +40,7 @@
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
                         <%--Booking Date--%>
+
                         <td><display:column property="documentName" title="Document <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <%--Order Number--%>
@@ -56,9 +57,28 @@
                                             style="text-align: center;"> </display:column></td>
                         <td>
                                 <display:column title="Action" class="tb-font-black" style="text-align: center;" >
+                                    <s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING' || #attr.document.documentName=='BOOKING REQUEST FORM'">
+                                        <i class="fa fa-ban"></i>
+                                        <s:url var="deleteDocumentUrl" action="deleteDocument">
+                                            <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
+                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
+                                            <i class="fa fa-trash-o"></i>
+                                        </s:a>
+                                    </s:if>
+                                    <s:else>
                                     <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                         <i class="fa fa-print"></i>
+                                        <s:url var="deleteDocumentUrl" action="deleteDocument">
+                                            <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
+                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
+                                            <i class="fa fa-trash-o"></i>
+                                        </s:a>
                                     </a>
+                                    </s:else>
                                 </display:column></td>
                     </display:table>
                 </div>
@@ -100,4 +120,5 @@
             }
         }
     }
+
 </script>

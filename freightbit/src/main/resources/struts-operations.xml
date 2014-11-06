@@ -384,9 +384,35 @@
 
         <action name="createdDocumentsSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="createdDocumentsSea">
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
+            <result name="input" type="tiles">operations.seaFreightItemList.tiles</result>
+        </action>
 
+        <action name="deleteDocument" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="deleteDocument">
+            <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
         <!--DOCUMENTS PAGE-->
+
+        <action name="generateHouseWayBillReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateHouseWayBillReport">
+            <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->
+            <result name="success" type="redirect">viewPlainDocuments</result>
+            <result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
+
+        <action name="generateHouseWayBillDestinationReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateHouseWayBillDestinationReport">
+            <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->
+            <result name="success" type="redirect">viewPlainDocuments</result>
+            <result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
     </package>
 
     <package name="operation" namespace="/operations" extends="json-default">

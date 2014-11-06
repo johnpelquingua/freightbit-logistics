@@ -63,6 +63,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Integer vesselScheduleIdParam;
     private Integer vendorIdParam;
     private String editParam;
+    private Integer documentIdParam;
 
     private List<Parameters> truckTypeList = new ArrayList<Parameters>();
 
@@ -1641,9 +1642,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         order = transformToOrderFormBean(orderEntity);
         orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
 
-//        documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
-//
-        List<Documents> proforma = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING", orderIdParam);
 
         for (OrderItems everyItem : orderItemsList) {
             if (vendorCodeDocument.isEmpty()) {
@@ -1655,9 +1653,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
         }
 
-
+        List<Documents> proforma = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING", orderIdParam);
         for (String itemVendor : vendorCodeDocument) {
-            System.out.println("VENDOR SEA: " + itemVendor);
             if (proforma.size() == 0) {
                 Documents documentEntity = new Documents();
 
@@ -1675,37 +1672,38 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 documentEntity.setDocumentProcessed(0);
 
                 documentsService.addDocuments(documentEntity);
+            } else {
+                clearErrorsAndMessages();
+                addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+                for(OrderItems orderItemsElem : orderItemsList) {
+                    orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                }
+                return INPUT;
             }
 
         }
-
-//        if (documentsList.size() > 0) {
-//            for (Documents documentElem : documentsList) {
-//                if (proforma == null) {
-//                    if (vendorCodeDocument.isEmpty()) {
-//                        vendorCodeDocument.add(documentElem.getVendorCode());
-//                        System.out.println("ADD:" + documentElem.getVendorCode());
-//                    } else {
-//                        if (!vendorCodeDocument.contains(documentElem.getVendorCode())) {
-//                            vendorCodeDocument.add(documentElem.getVendorCode());
-//                        }
-//                    }
-//                }
-//
-//                if ("PROFORMA BILL OF LADING".equals(documentElem.getDocumentName())) {
-//
-//
-//                }
-//            }
-//        } else {
-//            System.out.println("DOCUMENT FOUND");
-//        }
 
         clearErrorsAndMessages();
         addActionMessage("SUCCESS! Documents has been created");
 
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+        return SUCCESS;
+    }
+
+
+
+    public String deleteDocument() {
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        documentsService.deleteDocument(documentEntity);
+
+        List<Documents> documentsList = new ArrayList<Documents>();
+
+        documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
+
+        for (Documents documentElem : documentsList) {
+            documents.add(transformDocumentToFormBean(documentElem));
         }
         return SUCCESS;
     }
@@ -1718,6 +1716,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setVendorCode(entity.getVendorCode());
         formBean.setDocumentStatus(entity.getDocumentStatus());
         formBean.setCreatedDate(entity.getCreatedDate());
+        formBean.setDocumentId(entity.getDocumentId());
         return formBean;
     }
 
@@ -2119,5 +2118,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setDocuments(List<DocumentsBean> documents) {
         this.documents = documents;
+    }
+
+    public Integer getDocumentIdParam() {
+        return documentIdParam;
+    }
+
+    public void setDocumentIdParam(Integer documentIdParam) {
+        this.documentIdParam = documentIdParam;
     }
 }
