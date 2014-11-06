@@ -97,10 +97,7 @@
             <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
 								style="text-align: center;"> </display:column></td>
         </display:table>
-
-
     </div>
-
 </div>
 
 <div class="panel panel-primary">

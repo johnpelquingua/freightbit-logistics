@@ -326,12 +326,12 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-                                <div class="col-lg-10">
+                                <div class="col-lg-8">
                                     <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalPickupdate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                                 </div>
                             </div>
-                            <div style="float: right;">
-                                <button class="btn btn-primary" >Save</button>
+                            <div style="float: right; margin: -65px 50px 5px 0px;">
+                                <button class="btn btn-primary"  style=" padding: 7px 32px; ">Save</button>
                             </div>
                         </s:form>
                     </div>
@@ -340,7 +340,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Destinationss</span>
+                        <span class="panel-title">Dispatch Plan : Destinations</span>
                     </div>
                     <div class="panel-body">
                         <s:form cssClass="form-horizontal" theme="bootstrap" action="editBulkItemsInlandDestination">
@@ -371,7 +371,7 @@
                             <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
                             <div class="form-group">
                                 <label for="operationsBean.vendorListDestination" class="col-sm-2 control-label">Vendor:</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-9">
                                     <div style="width:90%;float:left;padding-right:10px;">
                                         <s:select list="vendorTruckingList" name="operationsBean.vendorListDestination"
                                                   id="vendorListDestination"
@@ -379,7 +379,7 @@
                                                   emptyOption="true" value="%{orderItem.vendorDestination}"
                                                 ></s:select>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-1">
                                         <div>
                                             <a data-toggle="modal" data-target="#createVendor" class="btn btn-info">
                                                     <%--<i class="fa fa-plus"></i>--%>
@@ -391,7 +391,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="operationsBean.driverDestination" class="col-sm-2 control-label">Driver:</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-9">
                                     <div style="width:90%;float:left;padding-right:10px;">
                                         <s:select list="listDrivers" name="operationsBean.driverDestination"
                                                   id="driverListDestination"
@@ -399,7 +399,7 @@
                                                   emptyOption="true" value="%{orderItem.driverDestination}"
                                                 ></s:select>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-1">
                                         <div>
                                             <a data-toggle="modal" data-target="#createDriver" class="btn btn-info" id="createDriverButton" style="width:100px !important;">
                                                     <%--<i class="fa fa-plus"></i>--%>
@@ -411,7 +411,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="operationsBean.truckDestination" class="col-sm-2 control-label">Truck:</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-9">
                                     <div style="width:90%;float:left;padding-right:10px;">
                                         <s:select list="listDrivers" name="operationsBean.truckDestination"
                                                   id="trucksListDestination"
@@ -419,7 +419,7 @@
                                                   emptyOption="true" value="%{orderItem.truckDestination}"
                                                 ></s:select>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-1">
                                         <div>
                                             <a data-toggle="modal" data-target="#createTruck" id="createTruckButton" class="btn btn-info" style="width:100px !important;">
                                                     <%--<i class="fa fa-plus"></i>--%>
@@ -431,12 +431,12 @@
                             </div>
                             <div class="form-group" style="margin-bottom: 0px !important;">
                                 <label for="dropoff" class="col-sm-2 control-label">Drop off Date:</label>
-                                <div class="col-sm-10" style="padding: 0px; width: 75.5% !important; position: relative; left: 15px;">
+                                <div class="col-sm-8" style="padding: 0px; width: 64.5% !important; position: relative; left: 15px;">
                                     <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                                 </div>
                             </div>
-                            <div style="float: right;">
-                                <button class="btn btn-primary" style="position: relative; left: -50px;">Save</button>
+                            <div style="float: right; margin: -50px 50px 5px 0px;">
+                                <button class="btn btn-primary"  style=" padding: 7px 32px; ">Save</button>
                             </div>
                         </s:form>
                     </div>
@@ -997,12 +997,12 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-                                <div class="col-lg-10">
+                                <div class="col-lg-8">
                                     <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalPickupdate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                                 </div>
                             </div>
-                            <div style="float: right;">
-                                <button class="btn btn-primary" >Save</button>
+                            <div style="float: right; margin: -65px 50px 5px 0px;">
+                                <button class="btn btn-primary" style=" padding: 7px 32px; " >Save</button>
                             </div>
                         </s:form>
                     </div>
@@ -1106,12 +1106,12 @@
                             </div>
                             <div class="form-group" style="margin-bottom: 0px !important;">
                                 <label for="dropoff" class="col-sm-2 control-label">Drop off Date:</label>
-                                <div class="col-sm-10" style="padding: 0px; width: 75.5% !important; position: relative; left: 15px;">
+                                <div class="col-sm-8" style="padding: 0px; width: 64.5% !important; position: relative; left: 15px;">
                                     <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                                 </div>
                             </div>
-                            <div style="float: right;">
-                                <button class="btn btn-primary" style="position: relative; left: -50px;">Save</button>
+                            <div style="float: right; margin: -50px 50px 5px 0px;">
+                                <button class="btn btn-primary"  style=" padding: 7px 32px; ">Save</button>
                             </div>
                         </s:form>
                     </div>
