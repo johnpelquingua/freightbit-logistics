@@ -206,8 +206,38 @@
             </div>
         </div>
         <div class="pull-right">
-        <a href="#" class="btn btn-primary">Create Documents</a>
-        <a href="#" class="btn btn-default">Go to Documents page</a>
+            <s:url var="createdDocumentOriginUrl" action="createdDocumentOrigin">
+                <s:param name="orderIdParam"
+                         value="%{orderIdParam}"></s:param>
+
+            </s:url>
+            <s:a cssClass="btn btn-primary" href="%{createdDocumentOriginUrl}" rel="tooltip"
+                 title="Create Documents">
+                Create Bill of Lading Origin
+            </s:a>
+
+            <s:url var="createdDocumentDestinationUrl" action="createdDocumentDestination">
+                <s:param name="orderIdParam"
+                         value="%{orderIdParam}"></s:param>
+
+            </s:url>
+            <s:a cssClass="btn btn-primary" href="%{createdDocumentDestinationUrl}" rel="tooltip"
+                 title="Create Documents">
+                Create Bill of Lading Destination
+            </s:a>
+
+
+
+            <s:url var="viewDocumentListUrl" action="viewDocumentList">
+                <s:param name="orderIdParam"
+                         value="%{orderIdParam}">
+                </s:param>
+
+            </s:url>
+            <s:a cssClass="btn btn-default" href="%{viewDocumentListUrl}" rel="tooltip"
+                 title="Go to Documents Page">
+                Go to Documents page
+            </s:a>
         </div>
     </div>
 </div>

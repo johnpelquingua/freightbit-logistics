@@ -1692,6 +1692,126 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String createdDocumentOrigin() {
+        List<Documents> documentsList = new ArrayList<Documents>();
+        List<String> vendorCodeDocument = new ArrayList<String>();
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+
+
+        for (OrderItems everyItem : orderItemsList) {
+            if (vendorCodeDocument.isEmpty()) {
+                vendorCodeDocument.add(everyItem.getVendorOrigin());
+            } else {
+                if (!vendorCodeDocument.contains(everyItem.getVendorOrigin())) {
+                    vendorCodeDocument.add(everyItem.getVendorOrigin());
+                }
+            }
+        }
+
+        List<Documents> proforma = documentsService.findDocumentNameAndId("HOUSE WAYBILL ORIGIN", orderIdParam);
+        for (String itemVendor : vendorCodeDocument) {
+            if (proforma.size() == 0) {
+                Documents documentEntity = new Documents();
+
+                Client client = clientService.findClientById(getClientId().toString());
+                documentEntity.setClient(client);
+
+                documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_ORIGIN);
+                documentEntity.setReferenceId(orderEntity.getOrderId());
+                documentEntity.setReferenceTable("ORDERS");
+                documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+                documentEntity.setCreatedDate(new Date());
+                documentEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
+                documentEntity.setVendorCode(itemVendor);
+                documentEntity.setOutboundStage(1);
+                documentEntity.setReferenceNumber(orderIdParam.toString());
+                documentEntity.setDocumentProcessed(0);
+
+                documentsService.addDocuments(documentEntity);
+            } else {
+                clearErrorsAndMessages();
+                addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+                for(OrderItems orderItemsElem : orderItemsList) {
+                    orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                }
+                return INPUT;
+            }
+
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("SUCCESS! Documents has been created");
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+        return SUCCESS;
+    }
+
+    public String createdDocumentDestination() {
+        List<Documents> documentsList = new ArrayList<Documents>();
+        List<String> vendorCodeDocument = new ArrayList<String>();
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+
+
+        for (OrderItems everyItem : orderItemsList) {
+            if (vendorCodeDocument.isEmpty()) {
+                vendorCodeDocument.add(everyItem.getVendorDestination());
+            } else {
+                if (!vendorCodeDocument.contains(everyItem.getVendorDestination())) {
+                    vendorCodeDocument.add(everyItem.getVendorDestination());
+                }
+            }
+        }
+
+        List<Documents> proforma = documentsService.findDocumentNameAndId("HOUSE WAYBILL DESTINATION", orderIdParam);
+        for (String itemVendor : vendorCodeDocument) {
+            if (proforma.size() == 0) {
+                Documents documentEntity = new Documents();
+
+                Client client = clientService.findClientById(getClientId().toString());
+                documentEntity.setClient(client);
+
+                documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_DESTINATION);
+                documentEntity.setReferenceId(orderEntity.getOrderId());
+                documentEntity.setReferenceTable("ORDERS");
+                documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+                documentEntity.setCreatedDate(new Date());
+                documentEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
+                documentEntity.setVendorCode(itemVendor);
+                documentEntity.setReferenceNumber(orderIdParam.toString());
+                documentEntity.setOutboundStage(1);
+                documentEntity.setDocumentProcessed(0);
+
+                documentsService.addDocuments(documentEntity);
+            } else {
+                clearErrorsAndMessages();
+                addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+                for(OrderItems orderItemsElem : orderItemsList) {
+                    orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                }
+                return INPUT;
+            }
+
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("SUCCESS! Documents has been created");
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+        return SUCCESS;
+    }
+
 
 
     public String deleteDocument() {
