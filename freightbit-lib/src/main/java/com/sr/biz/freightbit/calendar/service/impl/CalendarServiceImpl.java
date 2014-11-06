@@ -1,18 +1,18 @@
 package com.sr.biz.freightbit.calendar.service.impl;
 
+import com.sr.biz.freightbit.calendar.dto.CalendarDetailsDTO;
+import com.sr.biz.freightbit.calendar.service.CalendarService;
+import com.sr.biz.freightbit.order.dao.OrderDao;
+import com.sr.biz.freightbit.order.entity.Orders;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sr.biz.freightbit.calendar.dto.CalendarDetailsDTO;
-import com.sr.biz.freightbit.order.dao.OrderDao;
-import com.sr.biz.freightbit.order.entity.Orders;
-import com.sr.biz.freightbit.calendar.service.CalendarService;
-
 public class CalendarServiceImpl implements CalendarService {
 
-    private OrderDao orderDao;
-    
-    @Override
+	private OrderDao orderDao;
+
+	@Override
 	public List<CalendarDetailsDTO> getEvents(Integer clientId) {
 		List <Orders> orderList = orderDao.findAllOrders();
 		List <CalendarDetailsDTO> calDetails = new ArrayList<CalendarDetailsDTO>();
@@ -24,12 +24,12 @@ public class CalendarServiceImpl implements CalendarService {
 				detail.setDeliveryDate(order.getPickupDate());
 			else
 				detail.setDeliveryDate(order.getDeliveryDate());
-			
+
 			if (order.getPickupDate() == null)
 				detail.setPickUpDate(order.getDeliveryDate());
 			else
 				detail.setPickUpDate(order.getPickupDate());
-			
+
 			calDetails.add(detail);
 		}
 		return calDetails;
@@ -38,6 +38,6 @@ public class CalendarServiceImpl implements CalendarService {
 	public void setOrderDao(OrderDao orderDao) {
 		this.orderDao = orderDao;
 	}
-	
-	
+
+
 }

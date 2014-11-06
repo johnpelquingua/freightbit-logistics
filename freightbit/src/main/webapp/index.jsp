@@ -104,11 +104,11 @@
                 <h3 class="panel-title"><i class="fa fa-book"></i> Booking Calendar</h3>
             </div>
             <div class="panel-body" align="center">
-                <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_INLAND_FREIGHT', 'ROLE_SEA_FREIGHT', 'ROLE_SALES')">--%>
-	                <%--<div class="text-right">--%>
-	                <%--<a href="#" onclick="openCalendar();">View Calendar <i class="fa fa-arrow-circle-right"></i></a>--%>
-	                <%--</div>--%>
-                <%--</sec:authorize>--%>
+              <%--  <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_INLAND_FREIGHT', 'ROLE_SEA_FREIGHT', 'ROLE_SALES')">
+	                <div class="text-right">
+	                <a href="#" onclick="loadCalendar();">View Calendar <i class="fa fa-arrow-circle-right"></i></a>
+	                </div>
+                </sec:authorize>--%>
                 <iframe height="500" width="925" name="sample" seamless="seamless"></iframe>
             </div>
         </div>
@@ -120,77 +120,76 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-        $(window).load(function(){
-            localStorage.clear();
-            openCalendar();
-        });
-    });
+		$(window).load(function(){
+			localStorage.clear(); loadCalendar();
+		});
+	});
 
-    function openCalendar(){
-      var win = window.open('calendar/loadCalendar','sample','width=1500,height=800');
-      win.onload = function() { this.document.title = "Booking Calendar"; }
-    }
+	function loadCalendar(){
+		var win = window.open('calendar/loadCalendar','sample','width=1500,height=800');
+		win.onload = function() { this.document.title = "Booking Calendar"; }
+	}
 
-    //will go to URL /getNotifications.action defined in struts config file
-    function doAjaxCall()
-    {
-        xmlhttpObject = getXMLHTTPObject();
-        if (xmlhttpObject != null)
-        {
-            var URL = "home.action";
-            xmlhttpObject.open("POST", URL, true);
-            xmlhttpObject.onreadystatechange = handleServerResponse;
-            xmlhttpObject.send(null);
-        }
-    }
+	//will go to URL /getNotifications.action defined in struts config file
+	function doAjaxCall()
+	{
+		xmlhttpObject = getXMLHTTPObject();
+		if (xmlhttpObject != null)
+		{
+			var URL = "home.action";
+			xmlhttpObject.open("POST", URL, true);
+			xmlhttpObject.onreadystatechange = handleServerResponse;
+			xmlhttpObject.send(null);
+		}
+	}
 
-    function handleServerResponse() {
-        if (xmlhttpObject.readyState == 4) {
-            if (xmlhttpObject.status == 200) {
-                //xmlhttpObject.responseText contains the count (See NotificationAction.java)
-                setAjaxOutput();
-            } else {
-                alert("Error during AJAX call. Please try again");
-            }
-        }
-    }
+	function handleServerResponse() {
+		if (xmlhttpObject.readyState == 4) {
+			if (xmlhttpObject.status == 200) {
+				//xmlhttpObject.responseText contains the count (See NotificationAction.java)
+				setAjaxOutput();
+			} else {
+				alert("Error during AJAX call. Please try again");
+			}
+		}
+	}
 
-    // Change the value of the outputText field
-    function setAjaxOutput()
-    {
-        //alert(xmlhttpObject.responseText);
-        document.getElementById('booking').innerHTML = <s:property value="%{Booking}"></s:property>;
-        <%--alert("booking is " +  <s:property value="%{Booking}"></s:property>);--%>
-        document.getElementById('customer').innerHTML = <s:property value="%{Customer}"></s:property>;
-        <%--alert("customer is " +  <s:property value="%{Customer}"></s:property>);--%>
-        document.getElementById('user').innerHTML = <s:property value="%{User}"></s:property>;
-        <%--alert("user is " +  <s:property value="%{User}"></s:property>);--%>
-        document.getElementById('vendor').innerHTML = <s:property value="%{Vendor}"></s:property>;
-        <%--alert("vendor is " +  <s:property value="%{Vendor}"></s:property>);--%>
-    }
+	// Change the value of the outputText field
+	function setAjaxOutput()
+	{
+		//alert(xmlhttpObject.responseText);
+		document.getElementById('booking').innerHTML = <s:property value="%{Booking}"></s:property>;
+		<%--alert("booking is " +  <s:property value="%{Booking}"></s:property>);--%>
+		document.getElementById('customer').innerHTML = <s:property value="%{Customer}"></s:property>;
+		<%--alert("customer is " +  <s:property value="%{Customer}"></s:property>);--%>
+		document.getElementById('user').innerHTML = <s:property value="%{User}"></s:property>;
+		<%--alert("user is " +  <s:property value="%{User}"></s:property>);--%>
+		document.getElementById('vendor').innerHTML = <s:property value="%{Vendor}"></s:property>;
+		<%--alert("vendor is " +  <s:property value="%{Vendor}"></s:property>);--%>
+	}
 
-    //Get XMLHTTP Object
-    function getXMLHTTPObject() {
-        var xmlhttpObject = null;
-        try {
-            // For Old Microsoft Browsers
-            xmlhttpObject = new ActiveXObject("Msxml2.XMLHTTP");
-        } catch (e) {
-            try {
-                // For Microsoft IE 6.0+
-                xmlhttpObject = new ActiveXObject("Microsoft.XMLHTTP");
-            } catch (e1) {
-                // No Browser accepts the XMLHTTP Object then false
-                xmlhttpObject = false;
-            }
-        }
+	//Get XMLHTTP Object
+	function getXMLHTTPObject() {
+		var xmlhttpObject = null;
+		try {
+			// For Old Microsoft Browsers
+			xmlhttpObject = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				// For Microsoft IE 6.0+
+				xmlhttpObject = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e1) {
+				// No Browser accepts the XMLHTTP Object then false
+				xmlhttpObject = false;
+			}
+		}
 
-        if (!xmlhttpObject && typeof XMLHttpRequest != 'undefined') {
-            //For Mozilla, Opera Browsers
-             xmlhttpObject = new XMLHttpRequest();
-        }
-        // Mandatory Statement returning the ajax object created
-        return xmlhttpObject;
-    }
-    /*setInterval('doAjaxCall();', 5000);*/
+		if (!xmlhttpObject && typeof XMLHttpRequest != 'undefined') {
+			//For Mozilla, Opera Browsers
+			xmlhttpObject = new XMLHttpRequest();
+		}
+		// Mandatory Statement returning the ajax object created
+		return xmlhttpObject;
+	}
+	/*setInterval('doAjaxCall();', 5000);*/
 </script>

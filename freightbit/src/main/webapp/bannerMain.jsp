@@ -77,22 +77,17 @@
 </ul>
 
 
+<%--
 <script type="text/javascript">
     $(document).ready(function() {
         $(window).load(function() {
             var test = document.getElementById("notifs");
             var notifcount = <s:property value="%{AllNotification}"></s:property>
 
-            if (notifcount == 0){
-
-                test.css({'-webkit-box-shadow':'0 0 20px blue'},
+            if (notifcount == 0){test.css({'-webkit-box-shadow':'0 0 20px blue'},
             {'-moz-box-shadow':' 0 0 20px blue'},
             {'box-shadow':'0 0 20px blue'})
-
             }
-
         });
-
     });
-
-</script>
+</script>--%>
