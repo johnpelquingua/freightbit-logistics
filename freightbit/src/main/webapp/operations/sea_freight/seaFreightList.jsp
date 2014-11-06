@@ -48,23 +48,28 @@
                         <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column title="Action">
-                            <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                <s:param name="orderIdParam"
-                                         value="#attr.order.orderId"></s:param>
-                                <s:param name="orderNoParam"
-                                         value="#attr.order.orderNo"></s:param>
-                            </s:url>
-                            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                 title="Update Status">
-                                <i class="fa fa-edit" id="status"></i>
-                            </s:a>
+                            <s:if test="#attr.order.orderStatus=='PENDING'">
+                                <i class="fa fa-ban"></i>
+                            </s:if>
+                            <s:else>
+                                <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                                    <s:param name="orderIdParam"
+                                             value="#attr.order.orderId"></s:param>
+                                    <s:param name="orderNoParam"
+                                             value="#attr.order.orderNo"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                                     title="Update Status">
+                                    <i class="fa fa-edit" id="status"></i>
+                                </s:a>
 
-                            <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
-                                <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                            </s:url>
-                            <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
-                                <i class="fa fa-info-circle"></i>
-                            </s:a>
+                                <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
+                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
+                                    <i class="fa fa-info-circle"></i>
+                                </s:a>
+                            </s:else>
                         </display:column></td>
 
                     </display:table>

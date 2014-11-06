@@ -34,7 +34,7 @@ public interface DocumentsService {
 
     public Documents findDocumentByNameAndVendorCode(String documentName, String vendorCode);
 
-    public Documents findDocumentNameAndId(String documentName, Integer referenceId);
+    public List<Documents> findDocumentNameAndId(String documentName, Integer referenceId);
 
     public void deleteDocument(Documents documents);
 

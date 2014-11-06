@@ -86,7 +86,7 @@ public class DocumentsServiceImpl implements DocumentsService {
     }
 
     @Override
-    public Documents findDocumentNameAndId(String documentName, Integer referenceId){
+    public List<Documents> findDocumentNameAndId(String documentName, Integer referenceId){
         return documentsDao.findDocumentNameAndId(documentName, referenceId);
     }
 

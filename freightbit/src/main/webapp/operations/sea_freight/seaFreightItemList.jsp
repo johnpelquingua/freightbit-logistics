@@ -237,13 +237,13 @@
 
         <div class="pull-right">
 
-            <s:url var="createdDocumentsUrl" action="createdDocuments">
+            <s:url var="createdDocumentsSeaUrl" action="createdDocumentsSea">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId"></s:param>
                 <s:param name="orderNoParam"
                          value="#attr.order.orderNo"></s:param>
             </s:url>
-            <s:a cssClass="btn btn-primary" href="%{createdDocumentsUrl}" rel="tooltip"
+            <s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"
                  title="Create Documents">
                 Create Documents
             </s:a>

@@ -35,9 +35,11 @@ public interface DocumentsDao {
 
     public List<Documents> findDocumentByBillingStageAndID(Integer billingStage, Integer referenceId);
 
+    public Documents findDocumentByOrderNoVendorCodeAndName(String referenceNumber, String vendorCode, String documentName);
+
     public Documents findDocumentByNameAndVendorCode(String documentName, String vendorCode);
 
-    public Documents findDocumentNameAndId(String documentName, Integer referenceId);
+    public List<Documents> findDocumentNameAndId(String documentName, Integer orderItemId);
 
     public void deleteDocument(Documents documents);
 

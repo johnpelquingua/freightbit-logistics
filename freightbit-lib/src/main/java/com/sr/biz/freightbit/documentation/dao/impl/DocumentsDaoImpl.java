@@ -28,6 +28,23 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
+    public Documents findDocumentByNameAndVendorCode(String documentName, String vendorCode) {
+
+        log.debug("Finding Document . .. . ");
+        try {
+            log.debug("Finding Documents succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentName = :documentName and d.vendorCode = :vendorCode");
+            query.setParameter("documentName", documentName);
+            query.setParameter("vendorCode", vendorCode);
+            Documents results = (Documents) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
+    @Override
     public List<Orders> findAllOrdersDocuments() {
 
         List<String> statusList = new ArrayList<>();
@@ -244,14 +261,15 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
-    public Documents findDocumentByNameAndVendorCode(String documentName, String vendorCode) {
+    public Documents findDocumentByOrderNoVendorCodeAndName(String referenceNumber, String vendorCode, String documentName) {
 
         log.debug("Finding Document . .. . ");
         try {
             log.debug("Finding Documents succeeded");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentName = :documentName and d.vendorCode = :vendorCode");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentName = :documentName and d.vendorCode = :vendorCode and d.referenceNumber = :referenceNumber");
             query.setParameter("documentName", documentName);
             query.setParameter("vendorCode", vendorCode);
+            query.setParameter("referenceNumber", referenceNumber);
             Documents results = (Documents) query.list();
             return results;
         } catch (Exception e) {
@@ -261,7 +279,7 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
-    public Documents findDocumentNameAndId(String documentName, Integer referenceId) {
+    public List<Documents> findDocumentNameAndId(String documentName, Integer referenceId) {
 
         log.debug("Finding Document ....");
         try {
@@ -269,7 +287,7 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
             Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentName = :documentName and d.referenceId = :referenceId");
             query.setParameter("documentName", documentName);
             query.setParameter("referenceId", referenceId);
-            Documents results = (Documents) query.list();
+            List<Documents> results = (List<Documents>) query.list();
             return results;
         } catch (Exception e) {
             log.error("Finding documents failed");

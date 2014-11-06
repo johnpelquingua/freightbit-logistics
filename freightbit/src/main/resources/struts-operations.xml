@@ -382,8 +382,8 @@
             <result name="success" type="tiles">operations.documentsList.tiles</result>
         </action>
 
-        <action name="createdDocuments" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="createdDocuments">
-            <result name="FREIGHT" type="tiles">operations.seaFreightItemList.tiles</result>
+        <action name="createdDocumentsSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="createdDocumentsSea">
+            <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
 
         </action>
         <!--DOCUMENTS PAGE-->

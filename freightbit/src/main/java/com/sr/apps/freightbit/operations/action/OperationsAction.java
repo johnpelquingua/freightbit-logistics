@@ -1632,48 +1632,82 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String createdDocuments() {
+    public String createdDocumentsSea() {
         List<Documents> documentsList = new ArrayList<Documents>();
         List<String> vendorCodeDocument = new ArrayList<String>();
-
-        documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
-
-        if (documentsList.size() > 0) {
-            for (Documents documentElem : documentsList) {
-
-                if ("PROFORMA BILL OF LADING".equals(documentElem.getDocumentName())) {
-
-                    if (vendorCodeDocument.isEmpty()) {
-                        vendorCodeDocument.add(documentElem.getVendorCode());
-                        System.out.println("ADD:" + documentElem.getVendorCode());
-                    } else {
-                        if (!vendorCodeDocument.contains(documentElem.getVendorCode())) {
-                            vendorCodeDocument.add(documentElem.getVendorCode());
-                        }
-                    }
-                }
-            }
-        } else {
-            clearErrorsAndMessages();
-            addActionMessage("ERROR! Document Not Found");
-            return INPUT;
-        }
-
-        clearErrorsAndMessages();
-        addActionMessage("SUCCESS! Documents has been created");
-
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         order = transformToOrderFormBean(orderEntity);
-
         orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
 
+//        documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
+//
+        List<Documents> proforma = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING", orderIdParam);
+
+        for (OrderItems everyItem : orderItemsList) {
+            if (vendorCodeDocument.isEmpty()) {
+                vendorCodeDocument.add(everyItem.getVendorSea());
+            } else {
+                if (!vendorCodeDocument.contains(everyItem.getVendorSea())) {
+                    vendorCodeDocument.add(everyItem.getVendorSea());
+                }
+            }
+        }
+
+
+        for (String itemVendor : vendorCodeDocument) {
+            System.out.println("VENDOR SEA: " + itemVendor);
+            if (proforma.size() == 0) {
+                Documents documentEntity = new Documents();
+
+                Client client = clientService.findClientById(getClientId().toString());
+                documentEntity.setClient(client);
+
+                documentEntity.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+                documentEntity.setReferenceId(orderEntity.getOrderId());
+                documentEntity.setReferenceTable("ORDERS");
+                documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+                documentEntity.setCreatedDate(new Date());
+                documentEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
+                documentEntity.setVendorCode(itemVendor);
+                documentEntity.setOutboundStage(1);
+                documentEntity.setDocumentProcessed(0);
+
+                documentsService.addDocuments(documentEntity);
+            }
+
+        }
+
+//        if (documentsList.size() > 0) {
+//            for (Documents documentElem : documentsList) {
+//                if (proforma == null) {
+//                    if (vendorCodeDocument.isEmpty()) {
+//                        vendorCodeDocument.add(documentElem.getVendorCode());
+//                        System.out.println("ADD:" + documentElem.getVendorCode());
+//                    } else {
+//                        if (!vendorCodeDocument.contains(documentElem.getVendorCode())) {
+//                            vendorCodeDocument.add(documentElem.getVendorCode());
+//                        }
+//                    }
+//                }
+//
+//                if ("PROFORMA BILL OF LADING".equals(documentElem.getDocumentName())) {
+//
+//
+//                }
+//            }
+//        } else {
+//            System.out.println("DOCUMENT FOUND");
+//        }
+
+        clearErrorsAndMessages();
+        addActionMessage("SUCCESS! Documents has been created");
 
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
-        return "FREIGHT";
+        return SUCCESS;
     }
 
     public DocumentsBean transformDocumentToFormBean(Documents entity) {
