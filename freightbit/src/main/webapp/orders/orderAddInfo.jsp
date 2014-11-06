@@ -890,7 +890,7 @@
 
                     <div class="col-lg-12">
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
 
                             <div class="panel panel-info ">
 
@@ -969,7 +969,7 @@
 
                                 <table class="table leftAlign table-user-information">
 
-                                    <th style="font-size: 20px; border-top: none; width: 300px;">Shipper Information</th>
+                                    <th style="font-size: 18px; border-top: none; width: 300px;">Shipper Information</th>
 
                                     <tbody>
 
@@ -1008,13 +1008,17 @@
 
                                 </table>
 
-                            </div>
+                        </div>
 
+
+
+                    </div>
+						<div class="col-lg-6">
                             <div class="panel panel-info ">
 
                                 <table class="table leftAlign table-user-information">
 
-                                    <th style="font-size: 20px; border-top: none; width: 300px;">Consignee Information</th>
+                                    <th style="font-size: 18px; border-top: none; width: 300px;">Consignee Information</th>
 
                                     <tr>
                                         <td style="color: gray !important;">Consignee Name</td>
@@ -1048,15 +1052,13 @@
                                         <td style="color: gray !important;">Delivery Address</td>
                                         <td><s:property value="order.consigneeInfoAddress.address"/></td>
                                     </tr>
-                                    </tbody>
+									</tbody>
 
                                 </table>
 
                             </div>
 
                         </div>
-
-                    </div>
                 </div>
 
                 <%--<div class="panel-heading">

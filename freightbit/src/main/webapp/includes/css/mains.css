@@ -953,3 +953,6 @@ span.pagelinks {
      border-radius:2px;
      box-shadow:1px 1px 1px gray;
  }
+
+ table.table.leftAlign.table-user-information tbody:nth-child(2) tr td:nth-child(1){font-weight: bold;}
+ table.table.leftAlign.table-user-information tbody:nth-child(1) tr td:nth-child(1){font-weight: bold;}
