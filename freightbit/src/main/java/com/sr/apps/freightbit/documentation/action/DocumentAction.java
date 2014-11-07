@@ -8,6 +8,7 @@ import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.documentation.formbean.DocumentsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
+import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.entity.Client;
@@ -28,6 +29,7 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.PdfReportUtil;
+import com.sr.biz.freightbit.operations.service.OperationsService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -50,6 +52,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private AddressBean address = new AddressBean();
     private DocumentsBean document = new DocumentsBean();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
+    private List<Integer> documentQuantity = new ArrayList<Integer>();
 
     private VesselSchedulesService vesselSchedulesService;
     private VendorService vendorService;
@@ -64,6 +67,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private CustomerService customerService;
     private OrderService orderService;
     private ClientService clientService;
+    private OperationsService operationsService;
 
     private Integer orderIdParam;
     private Integer documentIdParam;
@@ -88,10 +92,15 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private String documentTab;
     private String documentTabInbound;
     private String[] check;
+    private Date dateReturnedInbound; // variable to capture return date of inbound documents
+    private Integer quantitySI_DR; // variable to capture quantity of sales invoice and delivery receipt documents
     
     @Override
-    public void prepare() {
-
+    public void prepare() throws Exception{
+        documentQuantity = new ArrayList<Integer>();
+        for (int i=1; i <=99; i++) {
+            documentQuantity.add(i);
+        }
     }
 
     public String viewArchivedDocuments() {
@@ -397,7 +406,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Document checked!");
         }else if(documentflag == 6){
             clearErrorsAndMessages();
-            addActionMessage("Notified Destination office of faxed document");
+            addActionMessage("One of more Proforma Bill of Lading does not exist");
         }else if(documentflag == 7){
             clearErrorsAndMessages();
             addActionMessage("All Documents must be checked before processing");
@@ -407,6 +416,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }else if(documentflag == 9){
             clearErrorsAndMessages();
             addActionMessage("Return Date of Inbound documents saved");
+        }else if(documentflag == 10){
+            clearErrorsAndMessages();
+            addActionMessage("One or more House WayBill Origin does not exist");
         }else{
             clearErrorsAndMessages();
         }
@@ -1594,72 +1606,173 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String dateReceivedInbound(){
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + document.getReferenceId());
-        System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb " + document.getInboundReturned());
-        System.out.println("cccccccccccccccccccccccccccccccccccccccccccc " + document.getDocumentComments());
-        System.out.println("dddddddddddddddddddddddddddddddddddddddddddd " + document.getDocumentItem());
 
-        /*if(document.getDocumentItem() == "save"){
-            for (Documents documentElem : inboundEntityList) {
-            documentElem.setInboundReturned(document.getInboundReturned());
-            documentElem.setDocumentComments(document.getDocumentComments());
-            // data will be saved per document
-            documentsService.updateDocument(documentElem);
-            }
-            System.out.println("77777777777777777777777777777777777777777777777777777777777");
-        }*/
+        System.out.println("----------------------------------------date" + dateReturnedInbound);
 
-        // Display correct Order Number in breadcrumb
-        Orders orderEntity = orderService.findOrdersById(document.getReferenceId());
-        bookingNumber = orderEntity.getOrderNumber();
-        order = transformToOrderFormBean(orderEntity);
+        System.out.println("----------------------------------------quantity" + quantitySI_DR );
 
-        // Display Order items under documents view page
-        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(document.getReferenceId());
-        // display item listing in table
-        for (OrderItems orderItemElem : orderItemEntityList) {
-            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
-        }
+        System.out.println("---------------------------------------=====" + orderIdParam);
 
-        outboundEntityList = documentsService.findDocumentByOutboundStageAndID(1, document.getReferenceId());
+        outboundEntityList = documentsService.findDocumentByOutboundStageAndID(1, orderIdParam);
 
         outboundCount = outboundEntityList.size();
 
-        inboundEntityList = documentsService.findDocumentByInboundStageAndID(1, document.getReferenceId());
-        //List all inbound stage documents in table
-        for (Documents documentElem : inboundEntityList) {
-            inboundDocuments.add(transformDocumentsToFormBean(documentElem));
-            // show date and comments on page
-            Documents documentEntity = documentsService.findDocumentById(documentElem.getDocumentId());
-            document = transformDocumentsToFormBean(documentEntity);
-        }
-        // Count the number of inbound stage documents
-        inboundCount = inboundEntityList.size();
-        // Loop will save inbound date and document comments to all inbound staged documents
+        inboundEntityList = documentsService.findDocumentByInboundStageAndID(1, orderIdParam);
 
-        //Loop will count if all documents have inbound returned date
-        Integer docsReturnedInbound = 0;
-        for (Documents documentElem : inboundEntityList) {
-            if(documentElem.getInboundReturned() != null){
-                docsReturnedInbound = docsReturnedInbound + 1;
+        inboundCount = inboundEntityList.size();
+
+        // updates all existing inbound documents at this point and adds return date to them
+        for (Documents documentInboundElem : inboundEntityList) {
+            documentInboundElem.setInboundReturned(dateReturnedInbound);
+
+            documentsService.updateDocument(documentInboundElem);
+        }
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        List<String> vendorSeaCodeList = new ArrayList<String>(); // placeholder for sea vendor codes
+        List<String> vendorOriginCodeList = new ArrayList<String>(); // placeholder for origin vendor codes
+        /*List<String> vendorDestinationCodeList = new ArrayList<String>(); // placeholder for destination vendor codes*/
+        List<OrderItems> orderItemList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        // order item list under order id
+        orderItemList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+        // sea vendor codes will be stored in vendorSeaCodeList
+        for(OrderItems orderItem : orderItemList){
+            if(vendorSeaCodeList.isEmpty()){
+                vendorSeaCodeList.add(orderItem.getVendorSea());
+            }else{
+                if(!vendorSeaCodeList.contains(orderItem.getVendorSea())) {
+                    vendorSeaCodeList.add(orderItem.getVendorSea());
+                }
+            }
+
+        }
+        // origin vendor codes will be stored in vendorOriginCodeList
+        for(OrderItems orderItem : orderItemList) {
+            if(vendorOriginCodeList.isEmpty()){
+                vendorOriginCodeList.add(orderItem.getVendorOrigin());
+            }else{
+                if(!vendorOriginCodeList.contains(orderItem.getVendorOrigin())){
+                    vendorOriginCodeList.add(orderItem.getVendorOrigin());
+                }
             }
         }
-        // number of returned date documents must match all inbound staged documents to throw inbound message flag
-        if(inboundCount == docsReturnedInbound){
-            documentflag = 9; // Return Date of Inbound documents saved
-            sessionAttributes.put("documentflag", documentflag);
-            documentTabInbound = "INBOUND"; // Set document flag to pass
-            //sessionAttributes.put("documentTabInbound", documentTabInbound);
-        }else{
-            documentTabInbound = "NO_INBOUND_DATE"; // Set document flag to pass
-            //sessionAttributes.put("documentTabInbound", documentTabInbound);
+        // destination vendor codes will be stored in vendorDestinationCodeList
+        /*for(OrderItems orderItem : orderItemList){
+            if(vendorDestinationCodeList.isEmpty()){
+                vendorDestinationCodeList.add(orderItem.getVendorDestination());
+            }else{
+                if(!vendorDestinationCodeList.contains(orderItem.getVendorDestination())){
+                    vendorDestinationCodeList.add(orderItem.getVendorDestination());
+                }
+            }
+        }*/
+
+        List<Documents> proformaBillOfLading = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING", orderIdParam);
+        List<Documents> houseWaybillOrigin = documentsService.findDocumentNameAndId("HOUSE WAYBILL ORIGIN", orderIdParam);
+
+        // Master Bill of Lading will be created based on Proforma Bill of Lading quantity
+        for (String seaVendor : vendorSeaCodeList) {
+            if (proformaBillOfLading.size() != 0) {
+                // will check if there is already and existing master bill of lading under the same vendor
+                List<Documents> documentMBL = documentsService.findDocumentNameAndId("MASTER BILL OF LADING",orderIdParam);
+
+                if(documentMBL.size() == 0) { // will create master bill of lading if there are no master bill of lading created yet.
+
+                    for (Documents documentElem : proformaBillOfLading) {
+                        Documents documentEntity = new Documents();
+
+                        Client client = clientService.findClientById(getClientId().toString());
+                        documentEntity.setClient(client);
+
+                        documentEntity.setDocumentName(DocumentsConstants.MASTER_BILL_OF_LADING);
+                        documentEntity.setReferenceId(orderEntity.getOrderId());
+                        documentEntity.setReferenceTable("ORDERS");
+                        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+                        documentEntity.setCreatedDate(new Date());
+                        documentEntity.setDocumentStatus("PENDING");
+                        documentEntity.setVendorCode(seaVendor);
+                        documentEntity.setInboundStage(1);
+                        documentEntity.setDocumentProcessed(1);
+                        documentEntity.setInboundReturned(dateReturnedInbound);
+
+                        documentsService.addDocuments(documentEntity);
+                    }
+
+                } // else will not do anything
+
+            } else {
+                documentflag = 6; // Proforma Bill of Lading does not exist
+                sessionAttributes.put("documentflag", documentflag);
+                sessionAttributes.put("orderIdParam", orderIdParam);
+
+                return INPUT;
+            }
         }
 
-        documentTab = "OUTBOUND_COMPLETE";
-        //sessionAttributes.put("documentTab", documentTab); // document tab outbound complete pass
+        for (String originVendor : vendorOriginCodeList) {
+            if(houseWaybillOrigin.size() != 0){
 
-        sessionAttributes.put("orderIdParam", document.getReferenceId()); // Order ID pass
+                // will check if there is already and existing master waybill origin under the same vendor
+                List<Documents> documentMWO = documentsService.findDocumentNameAndId("MASTER WAYBILL ORIGIN",orderIdParam);
+
+                if(documentMWO.size() == 0) { // will create master waybill origin if there are no master waybill origin created yet.
+
+                    for (Documents documentElem : houseWaybillOrigin) {
+                        Documents documentEntity = new Documents();
+
+                        Client client = clientService.findClientById(getClientId().toString());
+                        documentEntity.setClient(client);
+
+                        documentEntity.setDocumentName(DocumentsConstants.MASTER_WAYBILL_ORIGIN);
+                        documentEntity.setReferenceId(orderEntity.getOrderId());
+                        documentEntity.setReferenceTable("ORDERS");
+                        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+                        documentEntity.setCreatedDate(new Date());
+                        documentEntity.setDocumentStatus("PENDING");
+                        documentEntity.setVendorCode(originVendor);
+                        documentEntity.setInboundStage(1);
+                        documentEntity.setDocumentProcessed(1);
+                        documentEntity.setInboundReturned(dateReturnedInbound);
+
+                        documentsService.addDocuments(documentEntity);
+                    }
+
+                }// else will not create a document
+
+            }else{
+                documentflag = 10; // One or more House WayBill Origin does not exist
+                sessionAttributes.put("documentflag", documentflag);
+                sessionAttributes.put("orderIdParam", orderIdParam);
+
+                return INPUT;
+            }
+        }
+        // To create Sales Invoice / Delivery Receipt by quantity specified
+        for (int i=0; i <= quantitySI_DR; i++) {
+            Documents documentEntity = new Documents();
+
+            Client client = clientService.findClientById(getClientId().toString());
+            documentEntity.setClient(client);
+
+            documentEntity.setDocumentName(DocumentsConstants.SALES_INVOICE);
+            documentEntity.setReferenceId(orderEntity.getOrderId());
+            documentEntity.setReferenceTable("ORDERS");
+            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+            documentEntity.setCreatedDate(new Date());
+            documentEntity.setDocumentStatus("PENDING");
+            documentEntity.setInboundStage(1);
+            documentEntity.setDocumentProcessed(1);
+            documentEntity.setInboundReturned(dateReturnedInbound);
+
+            documentsService.addDocuments(documentEntity);
+        }
+
+        documentflag = 9; // Return Date of Inbound documents saved
+        sessionAttributes.put("documentflag", documentflag);
+        sessionAttributes.put("orderIdParam", orderIdParam);
 
         return SUCCESS;
     }
@@ -2157,8 +2270,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
             }
 
         }else if (entity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
-            Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemEntity.getVendorOrigin());
-            formBean.setVendorCode(vendorEntity.getVendorName());
+            List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
+
+            for (OrderItems orderItemElem : orderItemsEntity) {
+                Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorOrigin());
+                formBean.setVendorCode(vendorEntity.getVendorName());
+            }
+
+            /**/
         }else{
             formBean.setVendorCode("Ernest Logistics Corp.");
         }
@@ -2537,5 +2656,33 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setDocumentTabInbound(String documentTabInbound) {
         this.documentTabInbound = documentTabInbound;
+    }
+
+    public Integer getQuantitySI_DR() {
+        return quantitySI_DR;
+    }
+
+    public void setQuantitySI_DR(Integer quantitySI_DR) {
+        this.quantitySI_DR = quantitySI_DR;
+    }
+
+    public Date getDateReturnedInbound() {
+        return dateReturnedInbound;
+    }
+
+    public void setDateReturnedInbound(Date dateReturnedInbound) {
+        this.dateReturnedInbound = dateReturnedInbound;
+    }
+
+    public List<Integer> getDocumentQuantity() {
+        return documentQuantity;
+    }
+
+    public void setDocumentQuantity(List<Integer> documentQuantity) {
+        this.documentQuantity = documentQuantity;
+    }
+
+    public void setOperationsService(OperationsService operationsService) {
+        this.operationsService = operationsService;
     }
 }

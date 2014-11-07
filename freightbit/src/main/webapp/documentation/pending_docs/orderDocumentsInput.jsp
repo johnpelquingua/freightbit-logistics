@@ -54,7 +54,6 @@
                         </s:a>
                         <s:submit name="submit" cssClass="btn btn-primary" value="Save" />
                     </div>
-
             </s:form>
         </div>
     </div>

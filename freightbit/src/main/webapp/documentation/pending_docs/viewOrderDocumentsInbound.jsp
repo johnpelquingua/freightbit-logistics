@@ -62,7 +62,7 @@
                         <i class="fa fa-book"></i>
                         <span class="panel-title">Booking Information</span>
                     </div>
-                    <%--<s:textfield cssClass="form-control" value="%{order.orderId}" id="order_Id" name="book-num" disabled="true"></s:textfield>--%>
+                    <s:textfield cssClass="form-control" value="%{order.orderId}" id="order_Id" name="book-num" disabled="true"></s:textfield>
                     <div class="panel-body form-horizontal">
                         <div class="form-group">
                             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking Number</label>
@@ -210,26 +210,26 @@
                     </div>
                 </div>
 
-                <s:if test=" documentTabInbound == 'NO_INBOUND_DATE' || documentTabInbound == 'INBOUND' ">
+                <s:if test=" documentTabInbound == 'NO_INBOUND_DATE' ">
 
                     <div class="well">
 
                         <div class="container">
 
-                            <div class="form-group">
+                            <div class="form-group" style="margin-bottom: 0px !important;">
                                 <s:form action="dateReceivedInbound" theme="bootstrap">
-
-                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Date Received</label>
-                                <div class="col-lg-4">
-                                    <s:textfield type="hidden" name="document.referenceId" id="document_Id"></s:textfield>
-                                    <%--<s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>--%>
-                                    <s:textfield type="text" class="form-control" id="datepicker" value="%{document.inboundReturned}" name="document.inboundReturned" required="true" placeholder="Select Returned date" contenteditable="false" style="margin-bottom: 15px !important;" disabled="true"></s:textfield>
-                                </div>
-                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Comments</label>
-                                <div class="col-lg-4">
-                                    <s:textarea cssClass="form-control" value="%{document.documentComments}" name="document.documentComments" cssStyle="resize: none;" disabled="true"></s:textarea>
-                                </div>
-                                <s:submit name="submit" cssClass="btn btn-primary pull-right" value="Set" onclick="addOrderId()"/>
+                                    <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
+                                    <label class="col-lg-3 control-label" >Date Received</label>
+                                    <div class="col-lg-3">
+                                        <s:textfield type="text" cssClass="form-control" id="datepicker" name="dateReturnedInbound" required="true" placeholder="Select Returned date"></s:textfield>
+                                    </div>
+                                    <label class="col-lg-3 control-label" style="padding-top:0px;">No. of SI / DR documents returned</label>
+                                    <div class="col-lg-3">
+                                        <s:select cssClass="form-control" name="quantitySI_DR" cssStyle="margin-bottom: 15px !important; resize: none;" list="documentQuantity" emptyOption="true" required="true" />
+                                    </div>
+                                    <div class="col-lg-3 col-lg-offset-5">
+                                        <s:submit name="submit" cssClass="btn btn-primary" value="Activate Inbound Documents" onclick="addOrderId()" />
+                                    </div>
                                 </s:form>
                             </div>
 
@@ -490,10 +490,11 @@
         </div>
     </div>
 </div>
-<s:textfield value="%{outboundCount}" id="outboundCount" type="hidden" />
-<s:textfield value="%{inboundCount}" id="inboundCount" type="hidden" />
-<s:textfield value="%{finalOutboundCount}" id="finalOutboundCount" type="hidden" />
-<s:textfield value="%{finalInboundCount}" id="finalInboundCount" type="hidden" />
+
+<s:textfield value="%{outboundCount}" id="outboundCount" type="hidden"/>
+<s:textfield value="%{inboundCount}" id="inboundCount"  type="hidden"/>
+<s:textfield value="%{finalOutboundCount}" id="finalOutboundCount" type="hidden"/>
+<s:textfield value="%{finalInboundCount}" id="finalInboundCount" type="hidden"/>
 
 <script>
 
@@ -631,6 +632,11 @@ returnedDate.datepicker({
 
 function addCheckText() {
     document.getElementById("documentItem").value = "check";
+}
+
+function addOrderId() {
+    var orderIdGet = document.getElementById("order_Id").value;
+    document.getElementById("order-Id").value = orderIdGet;
 }
 
 </script>
