@@ -694,20 +694,31 @@ public class DocumentAction extends ActionSupport implements Preparable{
         orderItemBean.setRate(orderItem.getRate());
         orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
         orderItemBean.setRemarks(orderItem.getComments());
+
         // To fetch sea vendor name from vendor ID
-        /*orderItemBean.setVendorSea(orderItem.getVendorSea());*/
-        Vendor seaVendor = vendorService.findVendorById(Integer.parseInt(orderItem.getVendorSea()));
-        orderItemBean.setVendorSea(seaVendor.getVendorName());
+
+        if(orderItem.getVendorSea() != null){
+            Vendor seaVendor = vendorService.findVendorByVendorCode(orderItem.getVendorSea());
+            orderItemBean.setVendorSea(seaVendor.getVendorName());
+        }else{
+            orderItemBean.setVendorSea("NONE");
+        }
 
         // To fetch origin vendor name from vendor ID
-        /*orderItemBean.setVendorOrigin(orderItem.getVendorOrigin());*/
-        Vendor originVendor = vendorService.findVendorById(Integer.parseInt(orderItem.getVendorOrigin()));
-        orderItemBean.setVendorOrigin(originVendor.getVendorName());
+        if(orderItem.getVendorOrigin() != null){
+            Vendor originVendor = vendorService.findVendorByVendorCode(orderItem.getVendorOrigin());
+            orderItemBean.setVendorOrigin(originVendor.getVendorName());
+        }else{
+            orderItemBean.setVendorOrigin("NONE");
+        }
 
         // To fetch destination vendor name from vendor ID
-        /*orderItemBean.setVendorDestination(orderItem.getVendorDestination());*/
-        Vendor destinationVendor = vendorService.findVendorById(Integer.parseInt(orderItem.getVendorDestination()));
-        orderItemBean.setVendorDestination(destinationVendor.getVendorName());
+        if(orderItem.getVendorDestination() != null){
+            Vendor destinationVendor = vendorService.findVendorByVendorCode(orderItem.getVendorDestination());
+            orderItemBean.setVendorDestination(destinationVendor.getVendorName());
+        }else{
+            orderItemBean.setVendorDestination("NONE");
+        }
 
         return orderItemBean;
     }
@@ -2140,12 +2151,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             for (OrderItems orderItemElem : orderItemsEntity) {
 
-                /*Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorSea());*/
-                Vendor vendorEntity = vendorService.findVendorById(Integer.parseInt(orderItemElem.getVendorSea()));
+                Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorSea());
+                /*Vendor vendorEntity = vendorService.findVendorById(Integer.parseInt(orderItemElem.getVendorSea()));*/
 
                 formBean.setVendorCode(vendorEntity.getVendorName());
             }
-
 
         }else if (entity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
             Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemEntity.getVendorOrigin());
