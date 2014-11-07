@@ -47,11 +47,11 @@ public class DashboardAction extends ActionSupport implements SessionAware {
     }
 
     public String home() {
-        Booking = notificationService.CountAll();
-        Customer = notificationService.CountAllCustomer();
-        User = notificationService.CountAllUser();
-        Vendor = notificationService.CountAllVendor();
-        AllNotification = notificationService.CountAllNotification();
+        Booking = notificationService.countAll();
+        Customer = notificationService.countAllCustomer();
+        User = notificationService.countAllUser();
+        Vendor = notificationService.countAllVendor();
+        AllNotification = notificationService.countAllNotification();
         System.out.println("The number of  new booking is "+Booking);
         System.out.println("The number of  new Customer is "+Customer);
         System.out.println("The number of  new User is "+User);
@@ -59,9 +59,6 @@ public class DashboardAction extends ActionSupport implements SessionAware {
         System.out.println("The Number of all Notification is "+AllNotification);
         return SUCCESS;
     }
-
-
-
 
     public String getUsername() {
         return username;

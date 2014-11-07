@@ -16,7 +16,7 @@
 <!-- /.row -->
 <%--for booking--%>
 <div class="col-lg-3 col-md-6">
-        <a href="orders/viewOrdersInbooking.action">
+        <a href="orders/viewOrdersBookingList.action">
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="row">

@@ -44,6 +44,8 @@ import java.util.regex.Pattern;
 
 public class OrderAction extends ActionSupport implements Preparable {
 
+    BigInteger Booking;
+    Integer ctr = 0;
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private OrderItemsBean orderItem = new OrderItemsBean();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
@@ -78,7 +80,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     private String[] notificationList;
     private CustomerBean customer = new CustomerBean();
     private List<Documents> outboundEntityList = new ArrayList<Documents>();
-
     private Integer orderIdParam;
     private Integer orderItemIdParam;
     private OrderService orderService;
@@ -86,10 +87,8 @@ public class OrderAction extends ActionSupport implements Preparable {
     private ParameterService parameterService;
     private DocumentsService documentsService;
     private NotificationService notificationService;
-
     private ClientService clientService;
     private ConsigneeBean consignee = new ConsigneeBean();
-
     private String custName; // get the customer name from ID
     private String custCode; // get customer code from ID
     private String orderNum; // get the order number
@@ -98,7 +97,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     private String customerMobile;
     private String customerEmail;
     private String customerFax;
-
     private Integer orderItemQuantityParam;
     private String orderItemNameSizeParam;
     private Double orderItemWeightParam;
@@ -108,8 +106,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Float orderItemRateParam;
     private Double orderItemDeclaredValueParam;
     private String orderItemRemarksParam;
-    BigInteger Booking;
-
     private Map<Integer, String> customerContactsMap = new LinkedHashMap<Integer, String>();
     private String dummyMsg;
     private Integer customerID;
@@ -128,12 +124,10 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Map<String, String> customerFaxMap = new HashMap<String, String>();
     // map consignee contact person
     private Map<Integer, String> consigneeContactMap = new HashMap<Integer, String>();
-
     private Map<Double, Double> shipperItemVolumeMap = new HashMap<Double, Double>();
     private Map<String, String> shipperItemCommodityMap = new HashMap<String, String>();
     private Map<Float, Float> shipperItemValueMap = new HashMap<Float, Float>();
     private Integer itemId;
-    Integer ctr = 0;
 
     public String itemAction() {
 
@@ -252,13 +246,35 @@ public class OrderAction extends ActionSupport implements Preparable {
             orders.add(transformToOrderFormBean(orderElem));
         }
 
-        Booking = notificationService.CountAll();
+        Booking = notificationService.countAll();
         System.out.println("The number of  new booking is "+Booking);
 
         return SUCCESS;
     }
 
-    public String getColumnFilter() {
+	public String viewOrdersBookingList() {
+
+		//get columns filter
+		String column = getColumnFilter();
+		// list orderentitylist via arraylist
+		List<Orders> orderEntityList = new ArrayList<Orders>();
+
+		notificationService.clearNewBooking();
+
+		if (StringUtils.isNotBlank(column)) {
+			orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+		} else {
+			orderEntityList = orderService.findAllOrders();
+		}
+
+		for (Orders orderElem : orderEntityList) {
+			orders.add(transformToOrderFormBean(orderElem));
+		}
+
+		return SUCCESS;
+	}
+
+	public String getColumnFilter() {
 
         String column = "";
         if (order == null) {
@@ -550,7 +566,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-
     public String addOrderInfo() {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -578,7 +593,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
-
 
     public String loadEditOrder() {
 
@@ -703,7 +717,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                 orders.add(transformToOrderFormBean(orderElem));
             }
 
-            Booking = notificationService.CountAll();
+            Booking = notificationService.countAll();
             System.out.println("The number of  new booking is "+Booking);
             addActionMessage("Booking must have at least 1 item");
             return INPUT;
@@ -1897,12 +1911,12 @@ public class OrderAction extends ActionSupport implements Preparable {
         this.orderItemIdParam = orderItemIdParam;
     }
 
-    public void setContactTypeList(List<Parameters> contactTypeList) {
-        this.contactTypeList = contactTypeList;
-    }
-
     public List<Parameters> getContactTypeList() {
         return contactTypeList;
+    }
+
+    public void setContactTypeList(List<Parameters> contactTypeList) {
+        this.contactTypeList = contactTypeList;
     }
 
     public List<Parameters> getAddressTypeList() {

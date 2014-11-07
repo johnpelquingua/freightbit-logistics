@@ -24,7 +24,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
     private static final Logger log = Logger.getLogger(UserDaoImpl.class);
 
-
     @Override
     public Integer addUser(User user) {
         log.debug("adding a new User");
@@ -39,7 +38,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         }
     }
 
-
     @Override
     public void deleteUser(User user) {
         log.debug("deleting a User");
@@ -53,7 +51,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         }
     }
 
-
     @Override
     public List<User> findAllUsers(Integer clientId) {
         log.debug("finding all User");
@@ -66,7 +63,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
             throw re;
         }
     }
-
 
     @Override
     public List<User> findAllUsersByClientId(Long clientId) {
@@ -84,7 +80,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
             throw re;
         }
     }
-
 
     @Override
     public User findUserById(Integer id) {
@@ -104,7 +99,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         }
     }
 
-
     @Override
     public User findUserByUserName(String username) {
         log.debug("finding User instance by example");
@@ -115,7 +109,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
             List<User> results = (List<User>) query.list();
             if (results != null && results.size() > 0) {
             	return results.get(0);
-            } 
+            }
             return null;
         } catch (RuntimeException re) {
             log.error("find by username failed", re);
@@ -153,7 +147,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
                 .list();
         return users;
     }
-    
+
     @Override
     public List<User> findDuplicateUserByUserName(String userName, Integer userId) {
         log.debug("Finding duplicate user by user name");

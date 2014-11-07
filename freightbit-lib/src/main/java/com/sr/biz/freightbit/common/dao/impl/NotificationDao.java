@@ -17,15 +17,15 @@ public interface NotificationDao {
 
     public void addNotificationVendor(Notification notification);
 
-    public BigInteger CountAll();
+    public BigInteger countAll();
 
-    public BigInteger CountAllCustomer();
+    public BigInteger countAllCustomer();
 
-    public BigInteger CountAllUser();
+    public BigInteger countAllUser();
 
-    public BigInteger CountAllVendor();
+    public BigInteger countAllVendor();
 
-    public BigInteger CountAllNotification();
+    public BigInteger countAllNotification();
 
     public Integer clearNewBooking();
 

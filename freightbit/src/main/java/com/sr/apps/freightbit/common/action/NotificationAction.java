@@ -12,8 +12,8 @@ public class NotificationAction extends ActionSupport {
 	private NotificationService notificationService;
 	
     public String getNotifications() {
-    	notificationService.CountAll();
-        BigInteger count = notificationService.CountAll();
+    	notificationService.countAll();
+        BigInteger count = notificationService.countAll();
         System.out.println("getNotifications() is called");
         byte[] bArray;
 

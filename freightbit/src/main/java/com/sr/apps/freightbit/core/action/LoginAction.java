@@ -57,11 +57,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
             sessionAttributes.put("clientId", userEntity.getClient().getClientId());
             sessionAttributes.put("user", userEntity);
             sessionAttributes.put("loggedinUser", userEntity.getFirstName() + " " + userEntity.getLastName());
-            Booking = notificationService.CountAll();
-            Customer = notificationService.CountAllCustomer();
-            User = notificationService.CountAllUser();
-            Vendor = notificationService.CountAllVendor();
-            AllNotification = notificationService.CountAllNotification();
+            Booking = notificationService.countAll();
+            Customer = notificationService.countAllCustomer();
+            User = notificationService.countAllUser();
+            Vendor = notificationService.countAllVendor();
+            AllNotification = notificationService.countAllNotification();
             System.out.println("The number of  new booking is "+Booking);
             System.out.println("The number of  new Customer is "+Customer);
             System.out.println("The number of  new User is "+User);

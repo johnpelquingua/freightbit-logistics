@@ -17,6 +17,7 @@ import java.math.BigInteger;
 public class NotificationDaoImpl extends HibernateDaoSupport implements NotificationDao {
 
     private static final Logger Log = Logger.getLogger(NotificationDaoImpl.class);
+
     @Override
     public void addNotification(Notification notification) {
         Log.debug("Add notification");
@@ -74,7 +75,7 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
     }
 
     @Override
-    public BigInteger CountAll(){
+    public BigInteger countAll(){
         String sql = "SELECT count(description) from freightbit.notification where description = 'BOOKING' ";
         Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
         BigInteger temp = (BigInteger)query.uniqueResult();
@@ -83,7 +84,7 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
     }
 
     @Override
-    public BigInteger CountAllCustomer(){
+    public BigInteger countAllCustomer(){
         String sql = "SELECT count(description) from freightbit.notification where description = 'CUSTOMER' ";
         Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
         BigInteger AllCust = (BigInteger)query.uniqueResult();
@@ -92,7 +93,7 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
     }
 
     @Override
-    public BigInteger CountAllUser(){
+    public BigInteger countAllUser(){
         String sql = "SELECT count(description) from freightbit.notification where description = 'USER' ";
         Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
         BigInteger AllUser = (BigInteger)query.uniqueResult();
@@ -101,7 +102,7 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
     }
 
     @Override
-    public BigInteger CountAllVendor(){
+    public BigInteger countAllVendor(){
         String sql = "SELECT count(description) from freightbit.notification where description = 'VENDOR' ";
         Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
         BigInteger AllVendor = (BigInteger)query.uniqueResult();
@@ -110,7 +111,7 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
     }
 
     @Override
-    public BigInteger CountAllNotification(){
+    public BigInteger countAllNotification(){
         String sql = "SELECT count(*) from freightbit.notification ";
         Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
         BigInteger AllNotification = (BigInteger)query.uniqueResult();
@@ -118,12 +119,11 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
         return AllNotification;
     }
 
-
     @Override
     public Integer clearNewBooking(){
         String sql = "DELETE from freightbit.notification where description = 'BOOKING' ";
         Query query = getSessionFactory().getCurrentSession().createSQLQuery(sql);
-       query.executeUpdate();
+       	query.executeUpdate();
         return 0;
     }
 
@@ -151,11 +151,4 @@ public class NotificationDaoImpl extends HibernateDaoSupport implements Notifica
         query.executeUpdate();
         return 0;
     }
-
-
-
-
-
-
 }
-

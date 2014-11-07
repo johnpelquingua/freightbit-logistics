@@ -15,36 +15,7 @@ import static javax.persistence.GenerationType.IDENTITY;
         , catalog = "freightbit"
 )
 public class Client implements java.io.Serializable {
-
-
     private Integer clientId;
-    private String clientName;
-    private String addressLine1;
-    private String addressLine2;
-    private String city;
-    private String state;
-    private String zip;
-    private String phone;
-    private String mobile;
-    private String fax;
-    private String email;
-    private String website;
-    private Date createdTimestamp;
-    private String createdBy;
-    private Date modifiedTimestamp;
-    private String modifiedBy;
-
-    public Client() {
-    }
-
-
-    public Client(String clientName, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
-        this.clientName = clientName;
-        this.createdTimestamp = createdTimestamp;
-        this.createdBy = createdBy;
-        this.modifiedTimestamp = modifiedTimestamp;
-        this.modifiedBy = modifiedBy;
-    }
     
     /*public Client(String clientName, String addressLine1, String addressLine2, String city, String state, String zip, String phone, String mobile, String fax, String email, String website, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
        this.clientName = clientName;
@@ -70,162 +41,166 @@ public class Client implements java.io.Serializable {
     public Integer getClientId() {
         return this.clientId;
     }
-
     public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
+    private String clientName;
 
 
     @Column(name = "clientName", nullable = false, length = 50)
     public String getClientName() {
         return this.clientName;
     }
-
     public void setClientName(String clientName) {
         this.clientName = clientName;
     }
+    private String addressLine1;
 
 
     @Column(name = "addressLine1", length = 50)
     public String getAddressLine1() {
         return this.addressLine1;
     }
-
     public void setAddressLine1(String addressLine1) {
         this.addressLine1 = addressLine1;
     }
+    private String addressLine2;
 
 
     @Column(name = "addressLine2")
     public String getAddressLine2() {
         return this.addressLine2;
     }
-
     public void setAddressLine2(String addressLine2) {
         this.addressLine2 = addressLine2;
     }
+    private String city;
 
 
     @Column(name = "city", length = 50)
     public String getCity() {
         return this.city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
+    private String state;
 
 
     @Column(name = "state", length = 50)
     public String getState() {
         return this.state;
     }
-
     public void setState(String state) {
         this.state = state;
     }
+    private String zip;
 
 
     @Column(name = "zip", length = 50)
     public String getZip() {
         return this.zip;
     }
-
     public void setZip(String zip) {
         this.zip = zip;
     }
+    private String phone;
 
 
     @Column(name = "phone", length = 30)
     public String getPhone() {
         return this.phone;
     }
-
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    private String mobile;
 
 
     @Column(name = "mobile", length = 30)
     public String getMobile() {
         return this.mobile;
     }
-
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+    private String fax;
 
 
     @Column(name = "fax", length = 30)
     public String getFax() {
         return this.fax;
     }
-
     public void setFax(String fax) {
         this.fax = fax;
     }
+    private String email;
 
 
     @Column(name = "email", length = 50)
     public String getEmail() {
         return this.email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
+    private String website;
 
 
     @Column(name = "website", length = 50)
     public String getWebsite() {
         return this.website;
     }
-
     public void setWebsite(String website) {
         this.website = website;
     }
+    private Date createdTimestamp;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createdTimestamp", nullable = false, length = 19)
     public Date getCreatedTimestamp() {
         return this.createdTimestamp;
     }
-
     public void setCreatedTimestamp(Date createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
+    private String createdBy;
 
 
     @Column(name = "createdBy", nullable = false, length = 10)
     public String getCreatedBy() {
         return this.createdBy;
     }
-
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
+    private Date modifiedTimestamp;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modifiedTimestamp", nullable = false, length = 19)
     public Date getModifiedTimestamp() {
         return this.modifiedTimestamp;
     }
-
     public void setModifiedTimestamp(Date modifiedTimestamp) {
         this.modifiedTimestamp = modifiedTimestamp;
     }
+    private String modifiedBy;
 
 
     @Column(name = "modifiedBy", nullable = false, length = 10)
     public String getModifiedBy() {
         return this.modifiedBy;
     }
-
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
-
-
+    public Client() {
+    }
+    public Client(String clientName, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy) {
+        this.clientName = clientName;
+        this.createdTimestamp = createdTimestamp;
+        this.createdBy = createdBy;
+        this.modifiedTimestamp = modifiedTimestamp;
+        this.modifiedBy = modifiedBy;
+    }
 }
-
-

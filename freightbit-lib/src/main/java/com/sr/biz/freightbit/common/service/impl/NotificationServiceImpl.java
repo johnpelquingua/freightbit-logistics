@@ -79,6 +79,8 @@ public class NotificationServiceImpl implements NotificationService {
         notificationDao.addNotification(notification);
     }
 
+
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addNotificationCustomer(Notification notification){
@@ -102,36 +104,36 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public BigInteger CountAll(){
-        return notificationDao.CountAll();
+    public BigInteger countAll(){
+        return notificationDao.countAll();
 
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public BigInteger CountAllCustomer(){
-        return notificationDao.CountAllCustomer();
+    public BigInteger countAllCustomer(){
+        return notificationDao.countAllCustomer();
 
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public BigInteger CountAllUser(){
-        return notificationDao.CountAllUser();
+    public BigInteger countAllUser(){
+        return notificationDao.countAllUser();
 
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public BigInteger CountAllVendor(){
-        return notificationDao.CountAllVendor();
+    public BigInteger countAllVendor(){
+        return notificationDao.countAllVendor();
 
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public BigInteger CountAllNotification(){
-        return notificationDao.CountAllNotification();
+    public BigInteger countAllNotification(){
+        return notificationDao.countAllNotification();
 
     }
 
