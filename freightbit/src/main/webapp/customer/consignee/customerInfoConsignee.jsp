@@ -130,39 +130,6 @@
                         </div>
                     </div>
 
-                    <%--<div class="col-lg-2 col-lg-offset-2">
-                        <div class="panel panel-info" >
-                            &lt;%&ndash;<div class="panel-heading">&ndash;%&gt;
-                                &lt;%&ndash;<h3 class="panel-title"><i class="fa fa-navicon"></i> Shortcuts</h3>&ndash;%&gt;
-                            &lt;%&ndash;</div>&ndash;%&gt;
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-12" style="text-align: center;">
-
-                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                                            <a href="customerInfo" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-info-circle fa-fw"></i> <br/>Profile</a>
-                                            <a href="viewAddress" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-home fa-fw"></i> <br/>Address</a>
-                                            <a href="viewCustomerContacts" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-group fa-fw"></i> <br/>Contacts</a>
-
-
-                                            <a href="viewItem" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list-ol fa-fw"></i> <br/>Items</a>
-                                        </sec:authorize>
-
-                                        &lt;%&ndash;<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER',  'ROLE_DOC_SPECIALIST', 'ROLE_FINANCE')">&ndash;%&gt;
-                                            &lt;%&ndash;<a href="viewRates" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-money fa-fw"></i> <br/>Rates</a>&ndash;%&gt;
-                                        &lt;%&ndash;</sec:authorize>&ndash;%&gt;
-
-                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                                            <a href="viewConsignees" class="btn btn-default" role="button" style="width:120px; margin-bottom: 10px;"><i class="fa fa-list fa-fw"></i> <br/>Consignee</a>
-                                        </sec:authorize>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>--%>
-
                 </div>
 
                 <s:if test="hasActionMessages()">
@@ -248,6 +215,33 @@
                                                 </table>
                                             </tbody>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel-footer">
+
+                                <span class="pull-right">
+                                    <s:url var="loadConsigneeAddContactUrl" action="loadConsigneeAddContact">
+                                        <s:param name="contactCodeParam" value="contactCodeParam"> </s:param>
+                                        <s:param name="addressIdParam" value="addressIdParam"> </s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{loadConsigneeAddContactUrl}" rel="tooltip" title="Add Contact">
+                                        <button type="button" class="btn btn-primary">
+                                            <i class="fa fa-group"> </i> New Contact Person
+                                        </button>
+                                    </s:a>
+                                </span>
+                                <div class="table-responsive" >
+                                    <div class="col-lg-12" style="position:relative;margin-top: -28px;">
+                                        <table class="col-lg-6">
+                                            <tr>
+                                                <td><label>Legend:</label></td>
+                                                <td><i class="fa fa-pencil"></i> Edit</td>
+                                                <td><i class="fa fa-trash-o"></i> Delete</td>
+                                                <td><i class="fa fa-info-circle"></i> Information</td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
