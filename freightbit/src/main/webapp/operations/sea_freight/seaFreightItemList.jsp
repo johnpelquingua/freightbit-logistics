@@ -239,18 +239,18 @@
 
             <s:url var="createdDocumentsSeaUrl" action="createdDocumentsSea">
                 <s:param name="orderIdParam"
-                         value="%{orderIdParam}"></s:param>
+                         value="#attr.order.orderId"></s:param>
 
             </s:url>
             <s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"
                  title="Create Documents">
-                Create Proforma
+                Create Proforma and House Bill of Lading
             </s:a>
 
 
             <s:url var="viewDocumentListUrl" action="viewDocumentList">
                 <s:param name="orderIdParam"
-                         value="%{orderIdParam}">
+                         value="#attr.order.orderId">
                 </s:param>
 
             </s:url>

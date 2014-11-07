@@ -57,7 +57,7 @@
                                             style="text-align: center;"> </display:column></td>
                         <td>
                                 <display:column title="Action" class="tb-font-black" style="text-align: center;" >
-                                    <s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING' || #attr.document.documentName=='BOOKING REQUEST FORM'">
+                                    <s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">
                                         <i class="fa fa-ban"></i>
                                         <s:url var="deleteDocumentUrl" action="deleteDocument">
                                             <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
@@ -67,6 +67,9 @@
                                             <i class="fa fa-trash-o"></i>
                                         </s:a>
                                     </s:if>
+                                    <s:elseif test="#attr.document.documentName=='BOOKING REQUEST FORM'">
+                                        <i class="fa fa-ban"></i>
+                                    </s:elseif>
                                     <s:else>
                                     <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                         <i class="fa fa-print"></i>

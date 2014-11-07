@@ -208,7 +208,7 @@
         <div class="pull-right">
             <s:url var="createdDocumentOriginUrl" action="createdDocumentOrigin">
                 <s:param name="orderIdParam"
-                         value="%{orderIdParam}"></s:param>
+                         value="#attr.order.orderId"></s:param>
 
             </s:url>
             <s:a cssClass="btn btn-primary" href="%{createdDocumentOriginUrl}" rel="tooltip"
@@ -218,7 +218,7 @@
 
             <s:url var="createdDocumentDestinationUrl" action="createdDocumentDestination">
                 <s:param name="orderIdParam"
-                         value="%{orderIdParam}"></s:param>
+                         value="#attr.order.orderId"></s:param>
 
             </s:url>
             <s:a cssClass="btn btn-primary" href="%{createdDocumentDestinationUrl}" rel="tooltip"

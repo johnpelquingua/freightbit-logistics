@@ -423,6 +423,17 @@
                 <param name="bufferSize">4096</param>
             </result>
         </action>
+
+        <action name="generateBillofLadingReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBillofLadingReport">
+            <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->
+            <result name="success" type="redirect">viewPlainDocuments</result>
+            <result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
     </package>
 
     <package name="operation" namespace="/operations" extends="json-default">
