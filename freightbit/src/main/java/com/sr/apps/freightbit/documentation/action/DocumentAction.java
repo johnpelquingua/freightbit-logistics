@@ -8,7 +8,6 @@ import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.documentation.formbean.DocumentsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
-import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.entity.Client;
@@ -893,7 +892,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                         /*-------------------------------------------------------------------------------------------------------------------------*/
                         // Master Bill of Lading will be created under pending documents begin
-                        Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
+                        /*Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
 
                         Documents documentEntity = new Documents();
 
@@ -910,7 +909,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentEntity.setDocumentProcessed(1);
 
                         documentsService.addDocuments(documentEntity);
-
+*/
                         // Master Bill of Lading will be created under pending documents end
                         /*-------------------------------------------------------------------------------------------------------------------------*/
 
@@ -936,7 +935,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                         // Master Way Bill Origin will be created under pending documents begin
 
-                        Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
+                        /*Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
 
                         Documents documentEntity = new Documents();
 
@@ -953,7 +952,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentEntity.setDocumentProcessed(1);
                         documentEntity.setOrderItemId(documentIdEntity.getOrderItemId());
 
-                        documentsService.addDocuments(documentEntity);
+                        documentsService.addDocuments(documentEntity);*/
 
                         // Master Way Bill Origin will be created under pending documents end
 
