@@ -179,13 +179,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Entered reference number successfully!");
         } else if (documentflag == 3) {
             clearErrorsAndMessages();
-            addActionMessage("Document successfully updated!");
+            addActionMessage("Document(s) successfully updated!");
         } else if (documentflag == 4) {
             clearErrorsAndMessages();
             addActionMessage("Check all documents first before moving to next stage");
         } else if(documentflag == 5) {
             clearErrorsAndMessages();
-            addActionMessage("Document checked!");
+            addActionMessage("Document(s) checked!");
         } else if(documentflag == 6){
             clearErrorsAndMessages();
             addActionMessage("Notified Destination office of faxed document");
@@ -314,7 +314,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         outboundEntityList = documentsService.findDocumentByOutboundStageAndID(1, orderIdParam);
 
         outboundCount = outboundEntityList.size();
-        System.out.println("Outbound count here ! " + outboundCount );
 
         /*INBOUND DOCUMENTS*/
         //inboundEntityList = documentsService.findDocumentByStageAndID("INBOUND", orderIdParam);
@@ -326,7 +325,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         inboundEntityList = documentsService.findDocumentByInboundStageAndID(1, orderIdParam);
 
         inboundCount = inboundEntityList.size();
-        System.out.println("Inbound count here ! " + inboundCount );
+
         // check for documents that has values for inbound returned
         Integer checkReturnedInboundDateDocs = 0;
 
@@ -459,11 +458,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     checkDocsInbound = checkDocsInbound + 1;
                 }
             }
-            System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"+outboundCount);
-            System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"+checkDocs);
-            System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"+inboundCount);
-            System.out.println("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"+checkReturnedInboundDateDocs);
-            System.out.println("cccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"+checkDocsInbound);
+            System.out.println("OUTBOUND DOCUMENTS COUNT "+ outboundCount);
+            System.out.println("PROCESSED DOCUMENTS IN OUTBOUND STAGE "+ checkDocs);
+            System.out.println("INBOUND DOCUMENT COUNT "+ inboundCount);
+            System.out.println("INBOUND DOCUMENTS WITH RETURNED DATES " + checkReturnedInboundDateDocs);
+            System.out.println("PROCESSED DOCUMENTS IN INBOUND STAGE " + checkDocsInbound);
             // Checked documents must be equal to total documents before being processed for outbound stage
             if(outboundCount != checkDocs) {
                 documentTabInbound = "OUTBOUND_DOCUMENTS_INCOMPLETE";
