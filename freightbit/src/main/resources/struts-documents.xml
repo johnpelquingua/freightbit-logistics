@@ -22,8 +22,12 @@
             <result name="success" type="redirect">viewOrderDocumentsInbound</result>
         </action>
 
+        <action name="processDocumentsFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsFinalOutbound">
+            <result name="input" type="redirect">viewOrderDocumentsFinalOutbound</result>
+            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
+        </action>
+
         <action name="dateReceivedInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedInbound">
-            <!--<result name="success" type="tiles">documentation.dateReceivedInbound.tiles</result>-->
             <result name="success" type="redirect">viewOrderDocumentsInbound</result>
             <result name="input" type="redirect">viewOrderDocumentsInbound</result>
         </action>
@@ -48,8 +52,24 @@
             <result name="success">/documentation/result.jsp</result>
         </action>
 
+        <action name="activateFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="activateFinalOutbound">
+            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
+        </action>
+
+        <action name="finalOutboundSent" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="finalOutboundSent">
+            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
+        </action>
+
         <action name="getInputFieldAction" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInput">
             <result name="success">/documentation/pending_docs/orderDocumentsInput.jsp</result>
+        </action>
+
+        <action name="getInputFieldActionInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInboundInput">
+            <result name="success">/documentation/pending_docs/orderDocumentsInboundInput.jsp</result>
+        </action>
+
+        <action name="getInputFieldActionFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsFinalOutboundInput">
+            <result name="success">/documentation/pending_docs/orderDocumentsFinalOutboundInput.jsp</result>
         </action>
 
         <action name="viewOrderDocumentsInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewOrderDocumentsInbound">
@@ -137,11 +157,9 @@
             <result name="success" type="redirect">viewOrderDocumentsInbound</result>
         </action>
 
-        <action name="notifyByFaxFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="notifyByFaxFinalOutbound">
+        <action name="addReferenceNumberFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addReferenceNumberFinalOutbound">
             <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
         </action>
-
-
 
         <action name="generateBookingRequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBookingRequestReport">
             <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->

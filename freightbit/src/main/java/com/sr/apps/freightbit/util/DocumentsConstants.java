@@ -20,5 +20,5 @@ public class DocumentsConstants {
     public final static String MASTER_BILL_OF_LADING = "MASTER BILL OF LADING";
     public final static String MASTER_WAYBILL_ORIGIN = "MASTER WAYBILL ORIGIN";
     public final static String SALES_INVOICE = "SALES INVOICE";
-
+    public final static String AUTHORIZATION_TO_WITHDRAW = "AUTHORIZATION TO WITHDRAW";
 }

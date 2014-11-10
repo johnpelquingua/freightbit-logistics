@@ -62,7 +62,7 @@
                         <i class="fa fa-book"></i>
                         <span class="panel-title">Booking Information</span>
                     </div>
-                    <s:textfield cssClass="form-control" value="%{order.orderId}" id="order_Id" name="book-num" disabled="true"></s:textfield>
+                    <%--<s:textfield cssClass="form-control" value="%{order.orderId}" id="order_Id" name="book-num" disabled="true"></s:textfield>--%>
                     <div class="panel-body form-horizontal">
                         <div class="form-group">
                             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking Number</label>
@@ -199,7 +199,7 @@
                                 <%--<div class="bs-wizard-info text-center"></div>--%>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled"><!-- active -->
+                            <div class="col-xs-2 bs-wizard-step disabled" id="sixth"><!-- active -->
                                 <div class="text-center bs-wizard-stepnum">BILLING</div>
                                 <div class="progress"><div class="progress-bar" data-toggle="tab" onclick="BillingProgress"></div></div>
                                 <a href="#billing" class="bs-wizard-dot"></a>
@@ -240,8 +240,11 @@
                 </s:if>
 
                 </div>
+
+                <div id="inputDiv"> <%--Area where input fields will appear--%>
+                </div>
+
                 <%--Anchor on tab click--%>
-                <%--<s:textfield value="%{documentTab}" id="documentTab" style="visibility:hidden;" />--%>
                 <s:textfield cssStyle="visibility: hidden;" value="%{documentTab}" id="documentTab"  />
                 <s:textfield cssStyle="visibility: hidden;" value="%{documentTabInbound}" id="documentTabInbound"  />
 
@@ -305,6 +308,15 @@
                 </ul>
 
                 <div class="tab-content">
+
+                    <s:if test=" documentTabInbound == 'INBOUND' || documentTabInbound == 'INBOUND_COMPLETE' ">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label" >Date Received</label>
+                            <div class="col-lg-3">
+                                <s:textfield type="text" cssClass="form-control" name = "dateReturnedInbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>
+                            </div>
+                        </div>
+                    </s:if>
 
                     <%--INBOUND DOCUMENTS BEGIN--%>
                     <div class="tab-pane fade in active" id="inbound">
@@ -413,26 +425,29 @@
                                             <td>
                                                 <display:column title="Action" class="tb-font-black" style="text-align: center;" >
 
-                                                    <s:if test=" documentTabInbound == 'INBOUND' ">
+                                                    <%--<s:if test=" documentTabInbound == 'INBOUND' ">--%>
 
                                                         <%--<input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
                                                         <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>--%>
 
                                                         <%--Input Reference ID--%>
-                                                        <s:if test="#attr.document.documentName=='MASTER BILL OF LADING' || #attr.document.documentName=='SALES INVOICE / DELIVERY RECEIPT' || #attr.document.documentName=='MASTER WAYBILL ORIGIN' ">
+                                                        <%--<s:if test="#attr.document.documentName=='MASTER BILL OF LADING' || #attr.document.documentName=='SALES INVOICE' || #attr.document.documentName=='MASTER WAYBILL ORIGIN' ">--%>
                                                             <%--<a data-toggle="modal" data-target="#addReferenceNumber" >
                                                                 <i class="fa fa-edit"></i>
                                                             </a>--%>
-                                                            <s:url var="addReferenceNumberInboundUrl" action="orderDocumentsInboundInput">
+                                                            <%--<s:url var="addReferenceNumberInboundUrl" action="orderDocumentsInboundInput">
                                                                 <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
                                                                 <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                             </s:url>
                                                             <s:a id="edit-icon" class="icon-action-link" href="%{addReferenceNumberInboundUrl}" rel="tooltip" title ="Add Reference Number">
                                                                 <i class="fa fa-edit"></i>
-                                                            </s:a>
-                                                        </s:if>
+                                                            </s:a>--%>
+                                                            <a id="edit-icon" href="#" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>
+                                                        <%--</s:if>--%>
                                                         <%--Print Document--%>
-                                                        <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM WITH SIGNATURE' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN WITH SIGNATURE' ">
+                                                        <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' ">
                                                             <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                                 <i class="fa fa-print"></i>
                                                             </a>
@@ -445,13 +460,13 @@
                                                             <i class="fa fa-hand-o-right"></i>
                                                         </s:a>--%>
 
-                                                    </s:if>
+                                                    <%--</s:if>--%>
 
-                                                    <s:if test=" documentTabInbound == 'NO_INBOUND_DATE' || documentTabInbound == 'OUTBOUND_DOCUMENTS_INCOMPLETE' || documentTabInbound == 'INBOUND_COMPLETE' ">
+                                                    <%--<s:if test=" documentTabInbound == 'NO_INBOUND_DATE' || documentTabInbound == 'OUTBOUND_DOCUMENTS_INCOMPLETE' || documentTabInbound == 'INBOUND_COMPLETE' ">
 
                                                         <i class="fa fa-ban"></i>
 
-                                                    </s:if>
+                                                    </s:if>--%>
 
                                                     <%--<s:else>
 
@@ -477,7 +492,7 @@
                                     <%--<s:submit cssClass="btn btn-default pull-right" value="Process Documents" onclick="addMoveText()"></s:submit>--%>
                                 </s:else>
 
-                                    </s:form>
+                                </s:form>
 
                             </div>
 
@@ -523,6 +538,26 @@ $(document).ready(function() {
 
 
 });
+
+/*Script that will trigger input area*/
+
+function showInputFields(referenceId,documentId) {
+
+    $.ajax({
+        url: 'getInputFieldActionInbound',
+        type: 'POST',
+        data: { orderIdParam: referenceId , documentIdParam: documentId },
+        dataType: 'html',
+        success: function (html) {
+            $('#inputDiv').html(html);
+            window.location.href = '#sixth';
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            alert('An error occurred! ' + thrownError);
+        }
+    });
+
+}
 
 function generateReport(documentId,documentName) {
     if (documentName == "BOOKING REQUEST FORM" || documentName == "BOOKING REQUEST FORM WITH SIGNATURE") {
