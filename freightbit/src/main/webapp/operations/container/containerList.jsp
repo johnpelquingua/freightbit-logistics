@@ -16,7 +16,8 @@
             </span>
         </legend>
         <ol class="breadcrumb">
-            <li class="active"><a href="<s:url action='home' />"> Dashboard </a></li>
+            <%--<li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>--%>
+            <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"> Container List </li>
         </ol>
 
@@ -28,7 +29,12 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> Container List</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Container List</h3>
+                <span class="pull-right">
+                    <button type="button" class="btn btn-success" onclick="location.href='loadAddContainerPage'">
+                        <i class="fa fa-plus"></i> Create new container
+                    </button>
+                </span>
             </div>
 
             <div class="panel-body">
