@@ -143,7 +143,7 @@
                     <div class=" col-md-12 col-lg-12 ">
                         <table class="table table-user-information">
                             <s:hidden id="custIdHolder" value="%{order.customerId}"/>
-                            <s:property value="%{order.customerId}"/>
+                            <%--<s:property value="%{order.customerId}"/>--%>
                             <tbody>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Shipper Name</td>
@@ -677,7 +677,7 @@
                     <div class="table-responsive list-table">
                         <s:form theme="bootstrap" cssClass="form-horizontal" action="addItemInBooking">
                         <s:hidden name="item.customerId" id="customerIdHolder"/>
-                        <s:property value="%{item.customerId}" />
+                        <%--<s:property value="%{item.customerId}" />--%>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-lg-3 control-label" style="padding-top:0px;">Item Name<span class="asterisk_red"></span></label>
@@ -1131,7 +1131,7 @@ $(document).ready(function() {
     $(document).ready(function(){
         $("#idCustomer").click(function(){
             var custId = $("#custIdHolder").val();
-            alert(custId);
+            /*alert(custId);*/
             getThis();
             $("#customerIdHolder").val(custId);
         });
@@ -1324,31 +1324,30 @@ $(document).ready(function() {
         /*To compute for total tons and weight for FCL*/
         if (sContainer.value != ''){
             if(sContainer.value === '10 FOOTER'){
-                var totalVolume = sQuantity.value * 14; cmb
-                var totalWeight = sQuantity.value * 9; tons
+                var totalVolume = sQuantity.value * 14; /*cmb*/
+                var totalWeight = sQuantity.value * 9; /*tons*/
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
             if(sContainer.value === '20 FOOTER'){
-                var totalVolume = sQuantity.value * 28; cmb
-                var totalWeight = sQuantity.value * 18; tons
+                var totalVolume = sQuantity.value * 28; /*cmb*/
+                var totalWeight = sQuantity.value * 18; /*tons*/
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
             if(sContainer.value === '40 STD FOOTER'){
-                var totalVolume = sQuantity.value * 56; cmb
-                var totalWeight = sQuantity.value * 20; tons
+                var totalVolume = sQuantity.value * 56; /*cmb*/
+                var totalWeight = sQuantity.value * 20; /*tons*/
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
             if(sContainer.value === '40 HC FOOTER'){
-                var totalVolume = sQuantity.value * 78; cmb
-                var totalWeight = sQuantity.value * 22; tons
+                var totalVolume = sQuantity.value * 78; /*cmb*/
+                var totalWeight = sQuantity.value * 22; /*tons*/
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
         }
-
 
         if (select.options[ index ].value === '') {
 
