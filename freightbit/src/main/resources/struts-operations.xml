@@ -382,6 +382,14 @@
 
         <!--CONTAINER-->
 
+        <!--CONSOLIDATION-->
+
+        <action name="viewConsolidationContainerList" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="viewConsolidationContainerList">
+            <result name="success" type="tiles">operations.consolidationContainerList.tiles</result>
+        </action>
+
+        <!--CONSOLIDATION-->
+
         <!--DOCUMENTS PAGE-->
         <action name="viewDocumentList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewDocumentList">
             <result name="success" type="tiles">operations.documentsList.tiles</result>
