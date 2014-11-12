@@ -136,6 +136,10 @@
         <property name="yardLogsDao" ref="yardLogsDao"/>
     </bean>
 
+	<bean id="consolidationService" class="com.sr.biz.freightbit.operations.service.impl.ConsolidationServiceImpl">
+		<property name="consolidationDao" ref="consolidationDao"/>
+	</bean>
+
 	<!--  Documents -->
     <bean id="documentsService" class="com.sr.biz.freightbit.documentation.service.impl.DocumentsServiceImpl">
         <property name="documentsDao" ref="documentsDao"/>
@@ -274,6 +278,10 @@
     <bean id="containerDao" class="com.sr.biz.freightbit.operations.dao.impl.ContainerDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+	<bean id="consolidationDao" class="com.sr.biz.freightbit.operations.dao.impl.ConsolidationDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 
     <tx:annotation-driven/>
     <bean id="transactionManager"

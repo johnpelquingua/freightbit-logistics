@@ -222,5 +222,9 @@
             <result type="json">/orders/orderAddInfo.jsp</result>
         </action>
 
+		<!-- consolidations -->
+
+
+
     </package>
 </struts>

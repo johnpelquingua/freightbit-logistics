@@ -14,7 +14,6 @@ import java.util.Date;
 )
 public class OrderItems implements java.io.Serializable {
 
-
     private Integer orderItemId;
     private Integer clientId;
     //private Orders order;
@@ -33,7 +32,6 @@ public class OrderItems implements java.io.Serializable {
     private String nameSize;
     private String status;
     private Float volume;
-
 //    for planning
     private String vendorOrigin;
     private String vendorSea;
@@ -47,7 +45,6 @@ public class OrderItems implements java.io.Serializable {
     private String truckDestination;
     private Integer containerId;
 //
-
     private Integer documentId;
 
     public OrderItems() {
@@ -91,7 +88,10 @@ public class OrderItems implements java.io.Serializable {
         this.truckDestination = truckDestination;
     }
 
-    @Id
+	public OrderItems(int i) {}
+
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "orderItemId", unique = true)
     public Integer getOrderItemId() {
@@ -101,7 +101,6 @@ public class OrderItems implements java.io.Serializable {
     public void setOrderItemId(Integer orderItemId) {
         this.orderItemId = orderItemId;
     }
-
 
     @Column(name = "clientId")
     public Integer getClientId() {
@@ -140,7 +139,6 @@ public class OrderItems implements java.io.Serializable {
         this.quantity = quantity;
     }
 
-
     @Column(name = "classification")
     public String getClassification() {
         return this.classification;
@@ -150,7 +148,6 @@ public class OrderItems implements java.io.Serializable {
         this.classification = classification;
     }
 
-
     @Column(name = "commodity")
     public String getCommodity() {
         return this.commodity;
@@ -159,7 +156,6 @@ public class OrderItems implements java.io.Serializable {
     public void setCommodity(String commodity) {
         this.commodity = commodity;
     }
-
 
     /*@Column(name = "declaredValue", nullable = false, precision = 12, scale = 0)*/
     @Column(name = "declaredValue")
@@ -199,7 +195,6 @@ public class OrderItems implements java.io.Serializable {
         this.createdTimestamp = createdTimestamp;
     }
 
-
     @Column(name = "createdBy")
     public String getCreatedBy() {
         return this.createdBy;
@@ -218,7 +213,6 @@ public class OrderItems implements java.io.Serializable {
     public void setModifiedTimestamp(Date modifiedTimestamp) {
         this.modifiedTimestamp = modifiedTimestamp;
     }
-
 
     @Column(name = "modifiedBy")
     public String getModifiedBy() {
