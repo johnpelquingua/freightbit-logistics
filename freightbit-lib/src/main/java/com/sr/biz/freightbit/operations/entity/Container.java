@@ -35,11 +35,12 @@ public class Container implements Serializable{
     private String sealNumber;
     private String vanLocation;
     private String ladenEmpty;
+	private String containerStatus;
 
     public Container() {
     }
 
-    public Container(Integer containerId, String eirNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize) {
+    public Container(Integer containerId, String eirNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus) {
         this.containerId = containerId;
         this.eirNumber = eirNumber;
         this.dateTime = dateTime;
@@ -58,6 +59,7 @@ public class Container implements Serializable{
         this.modifiedTimestamp = modifiedTimestamp;
         this.containerNumber = containerNumber;
         this.containerSize = containerSize;
+		this.containerStatus = containerStatus;
     }
 
     @Id
@@ -268,4 +270,18 @@ public class Container implements Serializable{
     public void setLadenEmpty(String ladenEmpty) {
         this.ladenEmpty = ladenEmpty;
     }
+
+	@Column(name="containerStatus")
+	public String getContainerStatus() {
+		return containerStatus;
+	}
+
+	public void setContainerStatus(String containerStatus) {
+		this.containerStatus = containerStatus;
+	}
+
+
+
+
+
 }

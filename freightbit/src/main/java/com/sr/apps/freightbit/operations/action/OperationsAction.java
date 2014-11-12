@@ -113,8 +113,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     Map paramMap = new HashMap();
 
-
-
     @Override
     public void prepare() {
         vendorShippingList = vendorService.findVendorsByCriteria("vendorType", "SHIPPING", 1);
@@ -122,7 +120,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         vendorTypeList = parameterService.getParameterMap(ParameterConstants.VENDOR_TYPE);
         vendorClassList = parameterService.getParameterMap(ParameterConstants.VENDOR_CLASS);
         statusList = parameterService.getParameterMap(ParameterConstants.STATUS);
-//        updateStatusList = parameterService.getParameterMap(ParameterConstants.UPDATE_STATUS);
+//      updateStatusList = parameterService.getParameterMap(ParameterConstants.UPDATE_STATUS);
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
         truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
 
@@ -147,8 +145,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
-
-
 
         clearErrorsAndMessages();
         addActionMessage("Success! Items has been updated.");
@@ -1340,7 +1336,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return formBean;
     }
 
-//    -----------------CONTAINER MODULE-------------------------
+//    -----------------CONSOLIDATION MODULE-------------------------
 
     public String viewContainerList() {
         List<Container> containerList = new ArrayList<Container>();
@@ -1403,7 +1399,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return formBean;
     }
 
-//    -----------------CONTAINER MODULE-------------------------
+//    -----------------CONSOLIDATION MODULE-------------------------
 
 //    -----------------DOCUMENTS PAGE-------------------------
 

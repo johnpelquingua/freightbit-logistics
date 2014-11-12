@@ -257,8 +257,6 @@
             <result name="success" type="redirect">addSeaFreightVendorInPlanning</result>
         </action>
 
-
-
         <action name="addVendorSeaBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
             <result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>
             <result name="success" type="redirect">addSeaFreightVendorInPlanningBulk</result>
@@ -336,7 +334,6 @@
             <result name="input" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>
         </action>
 
-        <!---->
         <!--SHIPMENT MONITORING END-->
 
         <action name="reloadEditPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadEditPage">
@@ -408,6 +405,7 @@
         <action name="deleteDocument" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="deleteDocument">
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
+
         <!--DOCUMENTS PAGE-->
 
         <action name="generateHouseWayBillReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateHouseWayBillReport">
@@ -442,6 +440,14 @@
                 <param name="bufferSize">4096</param>
             </result>
         </action>
+
+		<!-- CONSOLIDATION -->
+
+		<action name="updateStatusOfContainers" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="updateStatusOfContainers">
+			<result name="success" type="tiles">operations.contaierList.tiles</result>
+		</action>
+
+
     </package>
 
     <package name="operation" namespace="/operations" extends="json-default">
@@ -454,9 +460,4 @@
             <result type="json">/operations/vesselScheduleAdd.jsp</result>
         </action>
     </package>
-
-
-
-
-
 </struts>
