@@ -143,6 +143,7 @@
                     <div class=" col-md-12 col-lg-12 ">
                         <table class="table table-user-information">
                             <s:hidden id="custIdHolder" value="%{order.customerId}"/>
+                            <s:property value="%{order.customerId}"/>
                             <tbody>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Shipper Name</td>
@@ -245,8 +246,6 @@
         </div>
     </div>
 </div>
-
-
 
 <div class="row">
 
@@ -437,11 +436,6 @@
                                              id="orderItem-volume"
                                              name="orderItem.volume"
                                         />
-                                <%--<s:textfield cssClass="form-control"
-                                             name="orderItem.volume"
-                                             id="orderItemVolume"
-                                             disabled="true"
-                                        />--%>
                             </s:if>
                             <s:else>
                                 <s:select cssClass="form-control"
@@ -468,7 +462,7 @@
                         <div class="col-lg-3" >
                             <s:textarea cssClass="form-control"
                                         name="orderItem.remarks"
-                                        id="orderItem.remarks"
+                                        id="orderItem_remarks"
                                         cssStyle="resize: none; height: 150px;"
 
                                     />
@@ -683,7 +677,7 @@
                     <div class="table-responsive list-table">
                         <s:form theme="bootstrap" cssClass="form-horizontal" action="addItemInBooking">
                         <s:hidden name="item.customerId" id="customerIdHolder"/>
-
+                        <s:property value="%{item.customerId}" />
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-lg-3 control-label" style="padding-top:0px;">Item Name<span class="asterisk_red"></span></label>
@@ -1056,9 +1050,65 @@
         </div>
     </div>
 </div>
-
+</div>
 
 <script type="text/javascript">
+
+function getThis(){
+    var itemQuantityField = $("#orderItem_quantity").val();
+    var itemNameField = $("#itemName").val();
+    var itemRateField = $("#orderItem_rate").val();
+    var itemDescriptionField = $("#orderItem_description_textfield").val();
+    var itemWeightField = $("#orderItem_weight").val();
+    var itemVolumeField = $("#orderItem_volume_textfield").val();
+    var itemRemarksField = $("#orderItem_remarks").val();
+    var itemValueField = $("#orderItem_declaredValue_textfield").val();
+
+    localStorage.setItem("itemQuantityField",itemQuantityField);
+    localStorage.setItem("itemNameField",itemNameField);
+    localStorage.setItem("itemRateField",itemRateField);
+    localStorage.setItem("itemDescriptionField",itemDescriptionField);
+    localStorage.setItem("itemWeightField", itemWeightField);
+    localStorage.setItem("itemVolumeField",itemVolumeField);
+    localStorage.setItem("itemRemarksField",itemRemarksField);
+    localStorage.setItem("itemValueField",itemValueField);
+}
+
+function setThis(){
+    $("#orderItem_quantity").val(localStorage.getItem("itemQuantityField"));
+    $("#itemName").val(localStorage.getItem("itemNameField"));
+    $("#orderItem_rate").val(localStorage.getItem("itemRateField"));
+    $("#orderItem_description_textfield").val(localStorage.getItem("itemDescriptionField"));
+    $("#orderItem_weight").val(localStorage.getItem("itemWeightField"));
+    $("#orderItem_volume_textfield").val(localStorage.getItem("itemVolumeField"));
+    $("#orderItem_remarks").val(localStorage.getItem("itemRemarksField"));
+    $("#orderItem_declaredValue_textfield").val(localStorage.getItem("itemValueField"));
+}
+
+$( window ).load(function() {
+
+    setThis();
+
+    localStorage.clear();
+});
+
+function alphaKeyOnly(evt)
+{
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if ((charCode > 32 && charCode < 57)||(charCode > 57 && charCode <65) || (charCode > 90 && charCode < 97) )
+        return false;
+
+    return true;
+}
+
+function isNumberKey(evt)
+{
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57) || (charCode == 46 && $(this).val().indexOf('.') != -1))
+        return false;
+
+    return true;
+}
 
 $(document).ready(function() {
     $("#orderItem_rate").maskMoney();
@@ -1081,7 +1131,8 @@ $(document).ready(function() {
     $(document).ready(function(){
         $("#idCustomer").click(function(){
             var custId = $("#custIdHolder").val();
-            /*alert(custId);*/
+            alert(custId);
+            getThis();
             $("#customerIdHolder").val(custId);
         });
     });
@@ -1273,26 +1324,26 @@ $(document).ready(function() {
         /*To compute for total tons and weight for FCL*/
         if (sContainer.value != ''){
             if(sContainer.value === '10 FOOTER'){
-                var totalVolume = sQuantity.value * 14; /*cmb*/
-                var totalWeight = sQuantity.value * 9; /*tons*/
+                var totalVolume = sQuantity.value * 14; cmb
+                var totalWeight = sQuantity.value * 9; tons
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
             if(sContainer.value === '20 FOOTER'){
-                var totalVolume = sQuantity.value * 28; /*cmb*/
-                var totalWeight = sQuantity.value * 18; /*tons*/
+                var totalVolume = sQuantity.value * 28; cmb
+                var totalWeight = sQuantity.value * 18; tons
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
             if(sContainer.value === '40 STD FOOTER'){
-                var totalVolume = sQuantity.value * 56; /*cmb*/
-                var totalWeight = sQuantity.value * 20; /*tons*/
+                var totalVolume = sQuantity.value * 56; cmb
+                var totalWeight = sQuantity.value * 20; tons
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
             if(sContainer.value === '40 HC FOOTER'){
-                var totalVolume = sQuantity.value * 78; /*cmb*/
-                var totalWeight = sQuantity.value * 22; /*tons*/
+                var totalVolume = sQuantity.value * 78; cmb
+                var totalWeight = sQuantity.value * 22; tons
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
@@ -1388,24 +1439,5 @@ $(document).ready(function() {
     sQuantity.onchange = function () {
         dynamicDropdown.call(this, sQuantity, this.selectedIndex);
     };
-
-    function alphaKeyOnly(evt)
-    {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if ((charCode > 32 && charCode < 57)||(charCode > 57 && charCode <65) || (charCode > 90 && charCode < 97) )
-            return false;
-
-        return true;
-    }
-
-    function isNumberKey(evt)
-    {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57) || (charCode == 46 && $(this).val().indexOf('.') != -1))
-            return false;
-
-        return true;
-    }
-
 
 </script>

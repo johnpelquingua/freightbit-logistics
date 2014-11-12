@@ -1101,10 +1101,6 @@ $(document).ready(function() {
                 }
 
             }
-            /*else{
-                $('<option>').val(key).text(value).appendTo(select4);
-            }*/
-
 
         });
 
@@ -1298,12 +1294,6 @@ $(document).ready(function() {
     if (select.options[ index ].value === 'PIER TO PIER') {
 
         for (var i = 0; i < sType.options.length; i++){
-            /*if(sType.options[i].value != "SHIPPING"){
-                sType.options[i].disabled = true;
-            }else{
-                sType.options[i].disabled = false;
-                sType.options[i].selected = true;
-            }*/
             if(sType.options[i].value == "SHIPPING"){
                 sType.options[i].disabled = false;
                 sType.options[i].selected = true;
@@ -1320,12 +1310,6 @@ $(document).ready(function() {
 
     }else{
         for (var i = 0; i < sType.options.length; i++){
-            /*if(sType.options[i].value != "SHIPPING"){
-             sType.options[i].disabled = true;
-             }else{
-             sType.options[i].disabled = false;
-             sType.options[i].selected = true;
-             }*/
             if(sType.options[i].value == "SHIPPING AND TRUCKING"){
                 sType.options[i].disabled = false;
 //                sType.options[i].selected = true;
@@ -1344,7 +1328,7 @@ $(document).ready(function() {
         $('#select1').prop('disabled',false);
         $('#select2').prop('disabled',false);
         for (var i = 0; i < sMode.options.length; i++){
-            /*$("#order_modeOfService").val('');*/
+
             if(sMode.options[i].value == "PIER TO PIER"){
                 sMode.options[i].style.display = "block";
                 sMode.options[i].selected = true;
@@ -1428,7 +1412,6 @@ $(document).ready(function() {
     var sReq = select = document.getElementById('order_serviceRequirement');
     var sType = select = document.getElementById('order_freightType');
     var sMode = select = document.getElementById('order_modeOfService');
-
 
     $( window ).load(function() {
         //sets local storage data
