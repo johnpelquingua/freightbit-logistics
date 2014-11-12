@@ -1106,7 +1106,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setShipperInfoContact(contact);
 
         //get shipper address
-        if (order.getShipperAddressId()!=null) {
+        if (entity.getShipperAddressId()!=null) {
             Address addresses = customerService.findAddressById(entity.getShipperAddressId());
             address = new AddressBean();
             address.setAddress(getAddress(addresses));
@@ -1129,7 +1129,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setConsigneeInfoContact(contact);
 
         // consignee address
-        if (order.getConsigneeAddressId()!=null) {
+        if (entity.getConsigneeAddressId()!=null) {
             Address consigneeAddress = customerService.findAddressById(entity.getConsigneeAddressId());
             address = new AddressBean();
             address.setAddress(getAddress(consigneeAddress));

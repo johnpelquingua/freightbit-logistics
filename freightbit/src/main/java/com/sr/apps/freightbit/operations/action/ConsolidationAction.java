@@ -90,4 +90,224 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
 		return formBean;
 	}
+
+    public String viewConsolidationContainerList() {
+        List<Container> containerList = new ArrayList<Container>();
+        containerList = containerService.findAllContainer();
+
+        for (Container containerElem : containerList) {
+            containers.add(transformContainerToFormBean(containerElem));
+        }
+        return SUCCESS;
+    }
+
+    public ContainerBean transformContainerToFormBean(Container entity) {
+        ContainerBean formBean = new ContainerBean();
+
+        formBean.setContainerId(entity.getContainerId());
+        formBean.setEirNumber(entity.getEirNumber());
+        formBean.setDateTime(entity.getDateTime());
+        formBean.setShipping(entity.getShipping());
+        formBean.setTrucking(entity.getTrucking());
+        formBean.setPlateNumber(entity.getPlateNumber());
+        formBean.setVanNumber(entity.getVanNumber());
+        formBean.setDriver(entity.getDriver());
+        formBean.setOrderNumber(entity.getOrderNumber());
+        formBean.setRemarks(entity.getRemarks());
+        formBean.setVanTo(entity.getVanTo());
+        formBean.setVanFrom(entity.getVanFrom());
+        formBean.setContainerNumber(entity.getContainerNumber());
+        formBean.setContainerSize(entity.getContainerSize());
+        formBean.setContainerType(entity.getContainerType());
+        formBean.setEirNumber2(entity.getEirNumber2());
+        formBean.setSealNumber(entity.getSealNumber());
+        formBean.setVanLocation(entity.getVanLocation());
+        formBean.setLadenEmpty(entity.getLadenEmpty());
+
+        return formBean;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public static Logger getLog() {
+        return Log;
+    }
+
+    public Map getParamMap() {
+        return paramMap;
+    }
+
+    public void setParamMap(Map paramMap) {
+        this.paramMap = paramMap;
+    }
+
+    public String getOrderNoParam() {
+        return orderNoParam;
+    }
+
+    public void setOrderNoParam(String orderNoParam) {
+        this.orderNoParam = orderNoParam;
+    }
+
+    public String getEditParam() {
+        return editParam;
+    }
+
+    public void setEditParam(String editParam) {
+        this.editParam = editParam;
+    }
+
+    public Integer getOrderIdParam() {
+        return orderIdParam;
+    }
+
+    public void setOrderIdParam(Integer orderIdParam) {
+        this.orderIdParam = orderIdParam;
+    }
+
+    public Integer getOrderItemIdParam() {
+        return orderItemIdParam;
+    }
+
+    public void setOrderItemIdParam(Integer orderItemIdParam) {
+        this.orderItemIdParam = orderItemIdParam;
+    }
+
+    public Integer getContainerIdParam() {
+        return containerIdParam;
+    }
+
+    public void setContainerIdParam(Integer containerIdParam) {
+        this.containerIdParam = containerIdParam;
+    }
+
+    public Integer getNameSizeParam() {
+        return nameSizeParam;
+    }
+
+    public void setNameSizeParam(Integer nameSizeParam) {
+        this.nameSizeParam = nameSizeParam;
+    }
+
+    public Integer getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
+    }
+
+    public List<OrderBean> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderBean> orders) {
+        this.orders = orders;
+    }
+
+    public List<ContainerBean> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<ContainerBean> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public List<ContainerBean> getContainers() {
+        return containers;
+    }
+
+    public void setContainers(List<ContainerBean> containers) {
+        this.containers = containers;
+    }
+
+    public List<Parameters> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<Parameters> statusList) {
+        this.statusList = statusList;
+    }
+
+    public List<Parameters> getUpdateStatusList() {
+        return updateStatusList;
+    }
+
+    public void setUpdateStatusList(List<Parameters> updateStatusList) {
+        this.updateStatusList = updateStatusList;
+    }
+
+    public OrderItemsBean getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(OrderItemsBean orderItem) {
+        this.orderItem = orderItem;
+    }
+
+    public OperationsBean getOperationsBean() {
+        return operationsBean;
+    }
+
+    public void setOperationsBean(OperationsBean operationsBean) {
+        this.operationsBean = operationsBean;
+    }
+
+    public OrderBean getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderBean order) {
+        this.order = order;
+    }
+
+    public ContainerBean getContainer() {
+        return container;
+    }
+
+    public void setContainer(ContainerBean container) {
+        this.container = container;
+    }
+
+    public OperationsService getOperationsService() {
+        return operationsService;
+    }
+
+    public void setOperationsService(OperationsService operationsService) {
+        this.operationsService = operationsService;
+    }
+
+    public OrderService getOrderService() {
+        return orderService;
+    }
+
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
+    public ParameterService getParameterService() {
+        return parameterService;
+    }
+
+    public void setParameterService(ParameterService parameterService) {
+        this.parameterService = parameterService;
+    }
+
+    public CommonUtils getCommonUtils() {
+        return commonUtils;
+    }
+
+    public void setCommonUtils(CommonUtils commonUtils) {
+        this.commonUtils = commonUtils;
+    }
+
+    public ContainerService getContainerService() {
+        return containerService;
+    }
+
+    public void setContainerService(ContainerService containerService) {
+        this.containerService = containerService;
+    }
 }

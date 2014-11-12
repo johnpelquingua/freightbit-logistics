@@ -57,8 +57,10 @@
                                 </s:url>
                                 <s:a href="%{viewContainerInfoUrl}" title="Conatiner Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
 
-
-                                <s:a><i class="fa fa-trash-o"></i></s:a>
+                                <s:url var="deleteContainerUrl" action="deleteContainer">
+                                    <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
+                                </s:url>
+                                <s:a href="%{deleteContainerUrl}" title="Delete Container" onclick="return confirm('Do you really want to delete?');" rel="tooltip"><i class="fa fa-trash-o"></i></s:a>
                             </display:column>
                         </td>
                     </display:table>
