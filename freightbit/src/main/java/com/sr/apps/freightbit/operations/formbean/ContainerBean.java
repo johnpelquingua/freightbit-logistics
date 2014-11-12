@@ -25,6 +25,11 @@ public class ContainerBean {
     private Date modifiedTimestamp;
     private String containerNumber;
     private String containerSize;
+    private String containerType;
+    private String eirNumber2;
+    private String sealNumber;
+    private String vanLocation;
+    private String ladenEmpty;
 
     public Integer getContainerId() {
         return containerId;
@@ -168,5 +173,45 @@ public class ContainerBean {
 
     public void setContainerSize(String containerSize) {
         this.containerSize = containerSize;
+    }
+
+    public String getContainerType() {
+        return containerType;
+    }
+
+    public void setContainerType(String containerType) {
+        this.containerType = containerType;
+    }
+
+    public String getEirNumber2() {
+        return eirNumber2;
+    }
+
+    public void setEirNumber2(String eirNumber2) {
+        this.eirNumber2 = eirNumber2;
+    }
+
+    public String getSealNumber() {
+        return sealNumber;
+    }
+
+    public void setSealNumber(String sealNumber) {
+        this.sealNumber = sealNumber;
+    }
+
+    public String getVanLocation() {
+        return vanLocation;
+    }
+
+    public void setVanLocation(String vanLocation) {
+        this.vanLocation = vanLocation;
+    }
+
+    public String getLadenEmpty() {
+        return ladenEmpty;
+    }
+
+    public void setLadenEmpty(String ladenEmpty) {
+        this.ladenEmpty = ladenEmpty;
     }
 }

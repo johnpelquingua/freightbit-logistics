@@ -63,4 +63,10 @@ public class ContainerServiceImpl implements ContainerService {
         List<Container> containers = containerDao.findContainerByEIRNumber(eirNumber);
         return containers;
     }
+
+    @Override
+    public Container findContainerById(Integer containerId) {
+        Container container = containerDao.findContainerById(containerId);
+        return container;
+    }
 }

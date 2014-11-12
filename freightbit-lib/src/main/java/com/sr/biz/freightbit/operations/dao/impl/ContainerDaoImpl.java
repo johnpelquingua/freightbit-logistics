@@ -98,4 +98,21 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
             throw e;
         }
     }
+
+    @Override
+    public Container findContainerById(Integer containerId) {
+        Log.debug("Finding Container By Id");
+        try {
+            Container instance = (Container) getSessionFactory().getCurrentSession().get(Container.class, containerId);
+            if (instance == null) {
+                Log.debug("Container Found!");
+            } else {
+                Log.debug("Container Not Found!");
+            }
+            return instance;
+        }  catch (Exception e) {
+            Log.error("Get Failed", e);
+            throw e;
+        }
+    }
 }

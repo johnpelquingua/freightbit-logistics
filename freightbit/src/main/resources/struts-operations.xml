@@ -375,6 +375,10 @@
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
+        <action name="viewContainerInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewContainerInfo">
+            <result name="success" type="tiles">operations.viewContainerInfo.tiles</result>
+        </action>
+
         <!--CONTAINER-->
 
         <!--DOCUMENTS PAGE-->

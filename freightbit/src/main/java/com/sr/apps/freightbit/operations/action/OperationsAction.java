@@ -64,6 +64,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Integer vendorIdParam;
     private String editParam;
     private Integer documentIdParam;
+    private Integer containerIdParam;
 
     private List<Parameters> truckTypeList = new ArrayList<Parameters>();
 
@@ -92,6 +93,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private VendorBean vendor = new VendorBean();
     private DriverBean driver = new DriverBean();
     private TruckBean truck = new TruckBean();
+    private ContainerBean container = new ContainerBean();
 
     private OperationsService operationsService;
     private VendorService vendorService;
@@ -1338,7 +1340,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return formBean;
     }
 
-//    -----------------CONSOLIDATION MODULE-------------------------
+//    -----------------CONTAINER MODULE-------------------------
 
     public String viewContainerList() {
         List<Container> containerList = new ArrayList<Container>();
@@ -1347,6 +1349,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
         for (Container containerElem : containerList) {
             containers.add(transformContainerToFormBean(containerElem));
         }
+        return SUCCESS;
+    }
+
+    public String viewContainerInfo() {
+        Container containerEntity = new Container();
+        containerEntity = containerService.findContainerById(containerIdParam);
+        container = transformContainerToFormBean(containerEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("containerId", container.getContainerId());
+
         return SUCCESS;
     }
 
@@ -1367,11 +1380,16 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setVanFrom(entity.getVanFrom());
         formBean.setContainerNumber(entity.getContainerNumber());
         formBean.setContainerSize(entity.getContainerSize());
+        formBean.setContainerType(entity.getContainerType());
+        formBean.setEirNumber2(entity.getEirNumber2());
+        formBean.setSealNumber(entity.getSealNumber());
+        formBean.setVanLocation(entity.getVanLocation());
+        formBean.setLadenEmpty(entity.getLadenEmpty());
 
         return formBean;
     }
 
-//    -----------------CONSOLIDATION MODULE-------------------------
+//    -----------------CONTAINER MODULE-------------------------
 
 //    -----------------DOCUMENTS PAGE-------------------------
 
@@ -2028,5 +2046,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setDocumentIdParam(Integer documentIdParam) {
         this.documentIdParam = documentIdParam;
+    }
+
+    public Integer getContainerIdParam() {
+        return containerIdParam;
+    }
+
+    public void setContainerIdParam(Integer containerIdParam) {
+        this.containerIdParam = containerIdParam;
+    }
+
+    public ContainerBean getContainer() {
+        return container;
+    }
+
+    public void setContainer(ContainerBean container) {
+        this.container = container;
     }
 }

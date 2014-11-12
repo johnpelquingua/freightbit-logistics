@@ -20,4 +20,6 @@ public interface ContainerDao {
     public List<Container> findContainerByOrderNumber(String orderNumber);
 
     public List<Container> findContainerByEIRNumber(String eirNumber);
+
+    public Container findContainerById(Integer containerId);
 }

@@ -39,28 +39,23 @@
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
                         <%--Booking Date--%>
+                        <td><display:column property="containerNumber" title="Number <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="containerSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
                         <td><display:column property="eirNumber" title="EIR <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <%--Order Number--%>
                         <td><display:column property="dateTime" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="containerNumber" title="Number <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="containerSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td>
-                            <display:column title="Action">
-                                <s:url var="viewContainerInfoUrl" action="viewContainerInfo">
-                                    <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
-                                </s:url>
-                                <s:a href="%{viewContainerInfoUrl}" title="Conatiner Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
+                        <td><display:column title="Action">
+                            <s:a>Info</s:a>
+                            <s:a>Consolidate</s:a>
+                            <s:a>Print</s:a>
+                        </display:column></td>
 
 
-                                <s:a><i class="fa fa-trash-o"></i></s:a>
-                            </display:column>
-                        </td>
                     </display:table>
                 </div>
             </div>
