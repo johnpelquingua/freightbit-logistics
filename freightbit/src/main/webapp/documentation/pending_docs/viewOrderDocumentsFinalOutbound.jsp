@@ -16,6 +16,14 @@
                 $("#third").toggleClass('disabled active');
             }
 
+            var final_outbound_tab = $("#documentTabFinalOutbound").val();
+
+            if(final_outbound_tab == "FINAL_OUTBOUND_SENT"){
+
+                $("#third").toggleClass('active complete');
+                $("#fourth").toggleClass('disabled active');
+            }
+
 
         });
 
@@ -162,7 +170,7 @@
                 <%--Anchor on tab click--%>
                 <s:textfield cssStyle="visibility: hidden;" value="%{documentTab}" id="documentTab"  />
                 <s:textfield cssStyle="visibility: hidden;" value="%{documentTabInbound}" id="documentTabInbound"  />
-                <s:textfield  value="%{documentTabFinalOutbound}" id="documentTabFinalOutbound"  />
+                <s:textfield cssStyle="visibility: hidden;" value="%{documentTabFinalOutbound}" id="documentTabFinalOutbound"  />
 
                 <s:if test="hasActionMessages()">
                     <div class="col-lg-12" id="successDiv">
@@ -244,6 +252,21 @@
                         </div>
                     </s:if>
 
+                    <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND_SENT' ">
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" >Date Sent</label>
+                            <div class="col-lg-3">
+                                <s:textfield type="text" cssClass="form-control" name = "dateSentFinalOutbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>
+                            </div>
+                            <label class="col-lg-2 control-label" >Tracking Number</label>
+                            <div class="col-lg-3">
+                                <s:textfield type="text" cssClass="form-control" name = "finalOutboundTrackingNumber" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>
+                            </div>
+                        </div>
+
+                    </s:if>
+
                     <%--FINAL SET OUTBOUND DOCUMENTS BEGIN--%>
                     <div class="tab-pane fade in active" id="finalOutbound">
 
@@ -259,7 +282,7 @@
                                     </s:a>
                             </s:if>
 
-                            <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND' || documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE'">
+                            <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND' || documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE' || documentTabFinalOutbound == 'FINAL_OUTBOUND_SENT'">
                                 <div class="table-responsive">
                                     <s:form name="myform" action="processDocumentsFinalOutbound">
                                         <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
@@ -305,7 +328,7 @@
                                                         <i class="fa fa-square-o"></i>
                                                     </s:if>
 
-                                                    <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE' ">
+                                                    <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE' || documentTabFinalOutbound == 'FINAL_OUTBOUND_SENT' ">
                                                         <i class="fa fa-check-square-o"></i>
                                                     </s:if>
 
@@ -433,9 +456,9 @@ $(document).ready(function() {
     if ($('#successDiv').length !== 0){
         window.location.href = '#successDiv';
     }
-    /*Anchor on inbound tab click*/
+    /*Anchor on final outbound tab click*/
     var final_outbound_tab = $("#documentTabFinalOutbound").val();
-    if (final_outbound_tab == "FINAL_OUTBOUND" || final_outbound_tab == "NO_FINAL_OUTBOUND_DOCUMENTS" || final_outbound_tab == "FINAL_OUTBOUND_COMPLETE" ){
+    if (final_outbound_tab == "FINAL_OUTBOUND" || final_outbound_tab == "NO_FINAL_OUTBOUND_DOCUMENTS" || final_outbound_tab == "FINAL_OUTBOUND_COMPLETE" || final_outbound_tab == "FINAL_OUTBOUND_SENT" ){
         window.location.href = '#documentTabFinalOutbound';
     }
 

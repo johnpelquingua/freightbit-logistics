@@ -16,13 +16,20 @@
                 $("#second").toggleClass('disabled active');
             }
 
-
             var inbound_tab = $("#documentTabInbound").val();
 
             if(inbound_tab == "INBOUND_COMPLETE"){
 
                 $("#second").toggleClass('active complete');
                 $("#third").toggleClass('disabled active');
+            }
+
+            var final_outbound_tab = $("#documentTabFinalOutbound").val();
+
+            if(final_outbound_tab == "FINAL_OUTBOUND_SENT"){
+
+                $("#third").toggleClass('active complete');
+                $("#fourth").toggleClass('disabled active');
             }
 
         });
@@ -234,7 +241,8 @@
 
             <%--Anchor on tab click--%>
             <s:textfield cssStyle="visibility: hidden;" value="%{documentTab}" id="documentTab"  />
-            <s:textfield  cssStyle="visibility: hidden;" value="%{documentTabInbound}" id="documentTabInbound"  />
+            <s:textfield cssStyle="visibility: hidden;" value="%{documentTabInbound}" id="documentTabInbound"  />
+            <s:textfield cssStyle="visibility: hidden;" value="%{documentTabFinalOutbound}" id="documentTabFinalOutbound"  />
 
                 <s:if test="hasActionMessages()">
                     <div class="col-lg-12" id="successDiv">

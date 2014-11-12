@@ -6,6 +6,7 @@
 
     <div class="well">
         <div class="container">
+
             <s:form action="addReferenceNumberInbound" theme="bootstrap">
                 <div class="form-group">
                     <label class="col-lg-2 control-label" style="text-align: right;">Document Name</label>
