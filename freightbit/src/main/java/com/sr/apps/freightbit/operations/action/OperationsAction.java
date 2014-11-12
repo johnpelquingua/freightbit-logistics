@@ -1352,6 +1352,20 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String deleteContainer() {
+        Container containerEntity = containerService.findContainerById(containerIdParam);
+        containerService.deleteContainer(containerEntity);
+
+        List<Container> containerList = new ArrayList<Container>();
+        containerList = containerService.findAllContainer();
+
+        for (Container containerElem : containerList) {
+            containers.add(transformContainerToFormBean(containerElem));
+        }
+
+        return SUCCESS;
+    }
+
     public String viewContainerInfo() {
         Container containerEntity = new Container();
         containerEntity = containerService.findContainerById(containerIdParam);
