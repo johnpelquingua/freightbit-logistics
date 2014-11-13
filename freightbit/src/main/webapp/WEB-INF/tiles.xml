@@ -165,14 +165,19 @@
         <put-attribute name="body" value="/operations/yard_logs/yardList.jsp"/>
     </definition>
 
+    <!--    <definition name="operations.viewContainerInfo.tiles" extends="baseLayout">
+            <put-attribute name="title" value="Container Management"/>
+            <put-attribute name="body" value="/operations/container/containerInfo.jsp"/>
+        </definition>
+        -->
+    <definition name="operations.viewContainerListTest.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Container Management"/>
+        <put-attribute name="body" value="/operations/container/containerInfo.jsp"/>
+    </definition>
+
     <definition name="operations.viewContainerList.tiles" extends="baseLayout">
         <put-attribute name="title" value="Container Management"/>
         <put-attribute name="body" value="/operations/container/containerList.jsp"/>
-    </definition>
-
-    <definition name="operations.viewContainerInfo.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Container Management"/>
-        <put-attribute name="body" value="/operations/container/containerInfo.jsp"/>
     </definition>
 
     <definition name="operations.documentsList.tiles" extends="baseLayout">
@@ -335,8 +340,8 @@
         <put-attribute name="title" value="General Settings"/>
         <put-attribute name="body" value="/core/settings/generalSettings.jsp"/>
     </definition>
-    
-    
+
+
 
     <!-- CORE module tiles End-->
 
@@ -690,10 +695,10 @@
         <put-attribute name="body" value="/finance/edit_finance.jsp"/>
     </definition>
 
-	<definition name="operations.contaierList.tiles" extends="baseLayout">
-		<put-attribute name="title" value="Dispatch Item List"/>
-		<put-attribute name="body" value="/operations/inland_freight/inlandFreightItemList.jsp"/>
-	</definition>
+    <definition name="operations.contaierList.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Dispatch Item List"/>
+        <put-attribute name="body" value="/operations/inland_freight/inlandFreightItemList.jsp"/>
+    </definition>
 
     <!-- FINANCE module tiles End-->
 

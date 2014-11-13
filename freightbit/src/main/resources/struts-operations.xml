@@ -97,9 +97,9 @@
 
         <!--Operations starts here-->
         <!--<action name="viewSeaFreightPlanningBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewSeaFreightPlanningBulk">-->
-            <!--<result name="PLANNING 2" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
+        <!--<result name="PLANNING 2" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
         <!--</action>-->
-        
+
         <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
             <result name="PLANNING 1" type="tiles">operations.seaFreightPlanning.tiles</result>
             <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
@@ -372,12 +372,32 @@
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
+
         <action name="viewContainerInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewContainerInfo">
             <result name="success" type="tiles">operations.viewContainerInfo.tiles</result>
+        </action>
+        <action name="viewContainerListTest" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewContainerListTest">
+            <result name="success" type="tiles">operations.viewContainerListTest.tiles</result>
         </action>
 
         <action name="deleteContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="deleteContainer">
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
+        </action>
+
+        <action name="containerAdd" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="containerAdd">
+            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
+        </action>
+
+        <action name="loadSearchFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSearchFormPage">
+            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
+        </action>
+
+        <action name="loadAddFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadAddFormPage">
+            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
+        </action>
+
+        <action name="save" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="save">
+            <result type="redirectAction" name="list" />
         </action>
 
         <!--CONTAINER-->
@@ -449,11 +469,11 @@
             </result>
         </action>
 
-		<!-- CONSOLIDATION -->
+        <!-- CONSOLIDATION -->
 
-		<action name="updateStatusOfContainers" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="updateStatusOfContainers">
-			<result name="success" type="tiles">operations.contaierList.tiles</result>
-		</action>
+        <action name="updateStatusOfContainers" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="updateStatusOfContainers">
+            <result name="success" type="tiles">operations.contaierList.tiles</result>
+        </action>
 
 
     </package>

@@ -9,12 +9,14 @@ public class ContainerBean {
 
     private Integer containerId;
     private String eirNumber;
+    private String receiptNumber;
     private Date dateTime;
     private String shipping;
     private String trucking;
     private String plateNumber;
     private String vanNumber;
     private String driver;
+    private String bookingNum;
     private String orderNumber;
     private String remarks;
     private String vanTo;
@@ -26,10 +28,13 @@ public class ContainerBean {
     private String containerNumber;
     private String containerSize;
     private String containerType;
+    private String containerStatus;
     private String eirNumber2;
     private String sealNumber;
     private String vanLocation;
     private String ladenEmpty;
+    private String forkliftOperator;
+    private String operationsDept;
 
     public Integer getContainerId() {
         return containerId;
@@ -45,6 +50,14 @@ public class ContainerBean {
 
     public void setEirNumber(String eirNumber) {
         this.eirNumber = eirNumber;
+    }
+
+    public String getReceiptNumber() {
+        return receiptNumber;
+    }
+
+    public void setReceiptNumber(String receiptNumber) {
+        this.receiptNumber = receiptNumber;
     }
 
     public Date getDateTime() {
@@ -187,6 +200,14 @@ public class ContainerBean {
         return eirNumber2;
     }
 
+    public String getContainerStatus() {
+        return containerStatus;
+    }
+
+    public void setContainerStatus(String containerStatus) {
+        this.containerStatus = containerStatus;
+    }
+
     public void setEirNumber2(String eirNumber2) {
         this.eirNumber2 = eirNumber2;
     }
@@ -213,5 +234,29 @@ public class ContainerBean {
 
     public void setLadenEmpty(String ladenEmpty) {
         this.ladenEmpty = ladenEmpty;
+    }
+
+    public String getBookingNum() {
+        return bookingNum;
+    }
+
+    public void setBookingNum(String bookingNum) {
+        this.bookingNum = bookingNum;
+    }
+
+    public String getForkliftOperator() {
+        return forkliftOperator;
+    }
+
+    public void setForkliftOperator(String forkliftOperator) {
+        this.forkliftOperator = forkliftOperator;
+    }
+
+    public String getOperationsDept() {
+        return operationsDept;
+    }
+
+    public void setOperationsDept(String operationsDept) {
+        this.operationsDept = operationsDept;
     }
 }

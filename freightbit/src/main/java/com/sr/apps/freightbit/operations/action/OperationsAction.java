@@ -42,9 +42,9 @@ import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
+import com.sun.net.httpserver.Authenticator;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-
 import java.util.*;
 
 /**
@@ -216,7 +216,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             return INPUT;
         }
 
-       return SUCCESS;
+        return SUCCESS;
     }
 
     private Vendor transformVendorToEntityBean(VendorBean vendorBean) {
@@ -330,10 +330,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             } else {
                 for (int i =0; i<check.length; i++) {
-                    // if no checkbox are selected
-                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){
-                        return INPUT;
-                    }
                     Integer orderItemId = Integer.parseInt(check[i]);
                     OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
                     if ("PLANNING 1".equals(entity.getStatus())) {
@@ -380,10 +376,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 return INPUT;
             } else {
                 for (int i =0; i<check.length; i++) {
-                    // if no checkbox are selected
-                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){
-                        return INPUT;
-                    }
                     Integer orderItemId = Integer.parseInt(check[i]);
                     OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
                     if ("PLANNING 1".equals(entity.getStatus())) {
@@ -1148,13 +1140,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
             formBean.setConsigneeInfoAddress(address);
         }
 
-        // for consignee contact person
-        formBean.setConsigneeContactPersonId(entity.getConsigneeContactPersonId());
-        if(entity.getConsigneeContactPersonId() != null){
-            Contacts contactElem = customerService.findContactById(entity.getConsigneeContactPersonId());
-            formBean.setConsigneeContactName(contactElem.getFirstName() +" "+ contactElem.getMiddleName() +" "+ contactElem.getLastName());
-        }
-
         return formBean;
     }
 
@@ -1178,30 +1163,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModifiedTimeStamp(entity.getModifiedTimestamp());
         formBean.setStatus(entity.getStatus());
         formBean.setWeight(entity.getWeight());
+        formBean.setVendorSea(entity.getVendorSea());
+        formBean.setVendorOrigin(entity.getVendorOrigin());
+        formBean.setVendorDestination(entity.getVendorDestination());
         /*formBean.setVendorSea(entity.getVendorSea());*/
-        if(entity.getVendorSea() == null || "".equals(entity.getVendorSea())){
-            formBean.setVendorSea("NONE");
-        }else{
-            formBean.setVendorSea(entity.getVendorSea());
-        }
-        /*formBean.setVendorOrigin(entity.getVendorOrigin());*/
-        if(entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin())){
-            formBean.setVendorOrigin("NONE");
-        }else{
-            formBean.setVendorOrigin(entity.getVendorOrigin());
-        }
-        /*formBean.setVendorDestination(entity.getVendorDestination());*/
-        if(entity.getVendorDestination() == null || "".equals(entity.getVendorDestination())){
-            formBean.setVendorDestination("NONE");
-        }else{
-            formBean.setVendorDestination(entity.getVendorDestination());
-        }
-        formBean.setVolume(entity.getVolume());
-        formBean.setDescription(entity.getCommodity());
-        formBean.setRemarks(entity.getComments());
 
         if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId())) {
-            formBean.setVesselScheduleId("NONE");
+            formBean.setVesselScheduleId("");
         } else {
             formBean.setVesselScheduleId(entity.getVesselScheduleId());
         }
@@ -1380,6 +1348,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+
     public String deleteContainer() {
         Container containerEntity = containerService.findContainerById(containerIdParam);
         containerService.deleteContainer(containerEntity);
@@ -1391,6 +1360,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
             containers.add(transformContainerToFormBean(containerElem));
         }
 
+        return SUCCESS;
+    }
+
+    /* test view container list*/
+
+    public String viewContainerListTest(){
         return SUCCESS;
     }
 
@@ -1712,6 +1687,54 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if (StringUtils.isNotBlank(address.getZip()))
             fullAddress.append(address.getZip());
         return fullAddress.toString();
+    }
+
+    public String containerAdd(){
+
+        Container containerEntity  = transformContainerToEntityBean(container);
+        containerService.addContainer(containerEntity);
+        return SUCCESS;
+    }
+
+    private Container transformContainerToEntityBean(ContainerBean formBean){
+
+        Container entity = new Container();
+        entity.setEirNumber(formBean.getEirNumber());
+        entity.setReceiptNumber(formBean.getReceiptNumber());
+        entity.setDateTime(formBean.getDateTime());
+        entity.setShipping(formBean.getShipping());
+        entity.setVanNumber(formBean.getVanNumber());
+        entity.setEirNumber2(formBean.getEirNumber2());
+        entity.setVanLocation(formBean.getVanLocation());
+        entity.setTrucking(formBean.getTrucking());
+        entity.setPlateNumber(formBean.getPlateNumber());
+        entity.setDriver(formBean.getDriver());
+        entity.setBookingNum(formBean.getBookingNum());
+        entity.setSealNumber(formBean.getSealNumber());
+        entity.setOrderNumber(formBean.getOrderNumber());
+        entity.setRemarks(formBean.getRemarks());
+        entity.setLadenEmpty(formBean.getLadenEmpty());
+        entity.setVanTo(formBean.getVanTo());
+        entity.setVanFrom(formBean.getVanFrom());
+        entity.setForkliftOperator(formBean.getForkliftOperator());
+        entity.setOperationsDept(formBean.getOperationsDept());
+        entity.setContainerNumber(formBean.getContainerNumber());
+        entity.setContainerSize(formBean.getContainerSize());
+        entity.setContainerType(formBean.getContainerType());
+
+        entity.setSealNumber(formBean.getSealNumber());
+
+        entity.setLadenEmpty(formBean.getLadenEmpty());
+        return entity;
+    }
+    public String save() {
+        return SUCCESS;
+    }
+    public String loadSearchFormPage() {
+        return SUCCESS;
+    }
+    public String loadAddFormPage() {
+        return SUCCESS;
     }
 
     public Integer getOrderIdParam() {

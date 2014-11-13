@@ -14,12 +14,14 @@ public class Container implements Serializable{
 
     private Integer containerId;
     private String eirNumber;
+    private String receiptNumber;
     private Date dateTime;
     private String shipping;
     private String trucking;
     private String plateNumber;
     private String vanNumber;
     private String driver;
+    private String bookingNum;
     private String orderNumber;
     private String remarks;
     private String vanTo;
@@ -35,20 +37,24 @@ public class Container implements Serializable{
     private String sealNumber;
     private String vanLocation;
     private String ladenEmpty;
-	private String containerStatus;
+    private String containerStatus;
+    private String forkliftOperator;
+    private String operationsDept;
 
     public Container() {
     }
 
-    public Container(Integer containerId, String eirNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus) {
+    public Container(Integer containerId, String eirNumber, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String bookingNum, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept) {
         this.containerId = containerId;
         this.eirNumber = eirNumber;
+        this.receiptNumber = receiptNumber;
         this.dateTime = dateTime;
         this.shipping = shipping;
         this.trucking = trucking;
         this.plateNumber = plateNumber;
         this.vanNumber = vanNumber;
         this.driver = driver;
+        this.bookingNum = bookingNum;
         this.orderNumber = orderNumber;
         this.remarks = remarks;
         this.vanTo = vanTo;
@@ -59,7 +65,9 @@ public class Container implements Serializable{
         this.modifiedTimestamp = modifiedTimestamp;
         this.containerNumber = containerNumber;
         this.containerSize = containerSize;
-		this.containerStatus = containerStatus;
+        this.containerStatus = containerStatus;
+        this.forkliftOperator = forkliftOperator;
+        this.operationsDept = operationsDept;
     }
 
     @Id
@@ -80,6 +88,15 @@ public class Container implements Serializable{
 
     public void setEirNumber(String eirNumber) {
         this.eirNumber = eirNumber;
+    }
+
+    @Column(name = "receiptNumber")
+    public String getReceiptNumber() {
+        return receiptNumber;
+    }
+
+    public void setReceiptNumber(String receiptNumber) {
+        this.receiptNumber = receiptNumber;
     }
 
     @Column(name = "dateTime")
@@ -134,6 +151,15 @@ public class Container implements Serializable{
 
     public void setDriver(String driver) {
         this.driver = driver;
+    }
+
+    @Column(name = "bookingNum")
+    public String getBookingNum() {
+        return bookingNum;
+    }
+
+    public void setBookingNum(String bookingNum) {
+        this.bookingNum = bookingNum;
     }
 
     @Column(name = "orderNumber")
@@ -271,17 +297,31 @@ public class Container implements Serializable{
         this.ladenEmpty = ladenEmpty;
     }
 
-	@Column(name="containerStatus")
-	public String getContainerStatus() {
-		return containerStatus;
-	}
+    @Column(name="containerStatus")
+    public String getContainerStatus() {
+        return containerStatus;
+    }
 
-	public void setContainerStatus(String containerStatus) {
-		this.containerStatus = containerStatus;
-	}
+    public void setContainerStatus(String containerStatus) {
+        this.containerStatus = containerStatus;
+    }
 
+    @Column(name = "forkliftOperator")
+    public String getForkliftOperator() {
+        return forkliftOperator;
+    }
 
+    public void setForkliftOperator(String forkliftOperator) {
+        this.forkliftOperator = forkliftOperator;
+    }
 
+    @Column(name = "operationsDept")
+    public String getOperationsDept() {
+        return operationsDept;
+    }
 
+    public void setOperationsDept(String operationsDept) {
+        this.operationsDept = operationsDept;
+    }
 
 }

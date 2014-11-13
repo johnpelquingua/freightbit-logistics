@@ -46,6 +46,26 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
     }
 
     @Override
+    public List<Container> findContainerByContainerNumber(String containerNumber) {
+        return null;
+    }
+
+    @Override
+    public List<Container> findContainerByContainerSize(String containerSize) {
+        return null;
+    }
+
+    @Override
+    public List<Container> findContainerByContainerType(String containerType) {
+        return null;
+    }
+
+    @Override
+    public List<Container> findContainerByContainerStatus(String containerStatus) {
+        return null;
+    }
+
+    @Override
     public void deleteContainer(Container container) {
         Log.debug("Deleting a Container");
         try {
@@ -89,12 +109,235 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
         Log.debug("Finding Container via eirNumber");
         try {
             Query query = getSessionFactory().getCurrentSession().createQuery("from Container where eirNumber = :eirNumber");
-            query.setParameter("eirNuumber", eirNumber);
+            query.setParameter("eirNumber", eirNumber);
             List<Container> results = (List<Container>) query.list();
             Log.debug("Find Container by eirNumber successful, result size: " + results.size());
             return results;
         } catch (Exception e) {
             Log.error("Find Contatiner by eirNnumber failed", e);
+            throw e;
+        }
+    }
+    public List<Container> findContainerByReceiptNumber(String receiptNumber) {
+        Log.debug("Finding Container via receiptNumber");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where receiptNumber = :receiptNumber");
+            query.setParameter("receiptNumber", receiptNumber);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by receiptNumber successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by receiptNumber failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByShipping(String shipping) {
+        Log.debug("Finding Container via shipping");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where shipping = :shipping");
+            query.setParameter("shipping", shipping);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by shipping successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by shipping failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByVanNumber(String vanNumber) {
+        Log.debug("Finding Container via vanNumber");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where vanNumber = :vanNumber");
+            query.setParameter("vanNumber", vanNumber);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by vanNumber successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by vanNumber failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByEIRNumber2(String eirNumber2) {
+        Log.debug("Finding Container via eirNumber2");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where eirNumber2 = :eirNumber2");
+            query.setParameter("eirNumber2", eirNumber2);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by eirNumber2 successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by eirNumber2 failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByVanLocation(String vanLocation) {
+        Log.debug("Finding Container via vanLocation");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where vanLocation = :vanLocation");
+            query.setParameter("vanLocation", vanLocation);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by vanLocation successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Contatine by vanLocation failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByTrucking(String trucking) {
+        Log.debug("Finding Container via trucking");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where trucking = :trucking");
+            query.setParameter("trucking", trucking);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by trucking successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by trucking failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByPlateNumber(String plateNumber) {
+        Log.debug("Finding Container via plateNumber");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where plateNumber = :plateNumber");
+            query.setParameter("plateNumber", plateNumber);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by plateNumber successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by plateNumber failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByDriver(String driver) {
+        Log.debug("Finding Container via driver");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where driver = :driver");
+            query.setParameter("driver", driver);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by driver successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by driver failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByBookingNum(String bookingNum) {
+        Log.debug("Finding Container via bookingNum");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where bookingNum = :bookingNum");
+            query.setParameter("bookingNum", bookingNum);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by bookingNum successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by bookingNum failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerBySealNumber(String sealNumber) {
+        Log.debug("Finding Container via eirNumber");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where sealNumber = :sealNumber");
+            query.setParameter("sealNumber", sealNumber);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by sealNumber successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by sealNumber failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByRemarks(String remarks) {
+        Log.debug("Finding Container via eirNumber");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where remarks = :remarks");
+            query.setParameter("remarks", remarks);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by remarks successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by remarks failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByLadenEmpty(String ladenEmpty) {
+        Log.debug("Finding Container via ladenEmpty");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where ladenEmpty = :ladenEmpty");
+            query.setParameter("ladenEmpty", ladenEmpty);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by ladenEmpty successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by ladenEmpty failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByVanTo(String vanTo) {
+        Log.debug("Finding Container via vanTo");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where vanTo = :vanTo");
+            query.setParameter("vanTo", vanTo);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by vanTo successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by vanTo failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByVanFrom(String vanFrom) {
+        Log.debug("Finding Container via vanFrom");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where vanFrom = :vanFrom");
+            query.setParameter("vanFrom", vanFrom);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by vanFrom successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by vanFrom failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByForkliftOperator(String forkliftOperator) {
+        Log.debug("Finding Container via forkliftOperator");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where forkliftOperator = :forkliftOperator");
+            query.setParameter("forkliftOperator", forkliftOperator);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by forkliftOperator successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by forkliftOperator failed", e);
+            throw e;
+        }
+    }
+
+    public List<Container> findContainerByOperationsDept(String operationsDept) {
+        Log.debug("Finding Container via operationsDept");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where operationsDept = :operationsDept");
+            query.setParameter("operationsDept", operationsDept);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by operationsDept successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by operationsDept failed", e);
             throw e;
         }
     }
