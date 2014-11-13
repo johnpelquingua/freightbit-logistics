@@ -16,7 +16,6 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
-
             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                 <li class="active"> Freight Plan : Containers</li>
             </s:if>
@@ -59,46 +58,71 @@
                             <div class="form-group">
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking
                                     Number</label>
-
-                                <div class="col-lg-10">
+                                <div class="col-lg-4">
                                     <s:textfield cssClass="form-control" value="%{order.orderNumber}" name="book-num"
                                                  disabled="true"></s:textfield>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
-                                    Mode</label>
-
-                                <div class="col-lg-10">
-                                    <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num"
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Freight Type</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.freightType}" name="book-num"
                                                  disabled="true"></s:textfield>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
-                                    Type</label>
-
-                                <div class="col-lg-10">
+                                    Req't</label>
+                                <div class="col-lg-4">
                                     <s:textfield cssClass="form-control" value="%{order.serviceRequirement}"
                                                  name="book-num"
                                                  disabled="true"></s:textfield>
                                 </div>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
+                                    Mode</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num"
+                                                 disabled="true"></s:textfield>
+                                </div>
+
                             </div>
+
                             <div class="form-group">
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer
                                     Name</label>
-
-                                <div class="col-lg-10">
+                                <div class="col-lg-4">
                                     <s:textfield cssClass="form-control" value="%{order.customerName}" name="book-num"
                                                  disabled="true"></s:textfield>
                                 </div>
-                            </div>
-                            <div class="form-group">
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Consignee
                                     Name</label>
-
-                                <div class="col-lg-10">
+                                <div class="col-lg-4">
                                     <s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.originationPort}" name="book-num"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination Port</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.destinationPort}" name="book-num"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Address</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.shipperInfoAddress.address}" name="book-num"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination Address</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.consigneeInfoAddress.address}" name="book-num"
                                                  disabled="true"></s:textfield>
                                 </div>
                             </div>

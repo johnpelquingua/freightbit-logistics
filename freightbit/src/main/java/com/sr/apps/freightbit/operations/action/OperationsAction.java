@@ -330,6 +330,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             } else {
                 for (int i =0; i<check.length; i++) {
+                    // if no checkbox are selected
+                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){
+                        return INPUT;
+                    }
                     Integer orderItemId = Integer.parseInt(check[i]);
                     OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
                     if ("PLANNING 1".equals(entity.getStatus())) {
@@ -376,6 +380,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 return INPUT;
             } else {
                 for (int i =0; i<check.length; i++) {
+                    // if no checkbox are selected
+                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){
+                        return INPUT;
+                    }
                     Integer orderItemId = Integer.parseInt(check[i]);
                     OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
                     if ("PLANNING 1".equals(entity.getStatus())) {
@@ -1140,6 +1148,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
             formBean.setConsigneeInfoAddress(address);
         }
 
+        // for consignee contact person
+        formBean.setConsigneeContactPersonId(entity.getConsigneeContactPersonId());
+        if(entity.getConsigneeContactPersonId() != null){
+            Contacts contactElem = customerService.findContactById(entity.getConsigneeContactPersonId());
+            formBean.setConsigneeContactName(contactElem.getFirstName() +" "+ contactElem.getMiddleName() +" "+ contactElem.getLastName());
+        }
+
         return formBean;
     }
 
@@ -1163,13 +1178,30 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModifiedTimeStamp(entity.getModifiedTimestamp());
         formBean.setStatus(entity.getStatus());
         formBean.setWeight(entity.getWeight());
-        formBean.setVendorSea(entity.getVendorSea());
-        formBean.setVendorOrigin(entity.getVendorOrigin());
-        formBean.setVendorDestination(entity.getVendorDestination());
         /*formBean.setVendorSea(entity.getVendorSea());*/
+        if(entity.getVendorSea() == null || "".equals(entity.getVendorSea())){
+            formBean.setVendorSea("NONE");
+        }else{
+            formBean.setVendorSea(entity.getVendorSea());
+        }
+        /*formBean.setVendorOrigin(entity.getVendorOrigin());*/
+        if(entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin())){
+            formBean.setVendorOrigin("NONE");
+        }else{
+            formBean.setVendorOrigin(entity.getVendorOrigin());
+        }
+        /*formBean.setVendorDestination(entity.getVendorDestination());*/
+        if(entity.getVendorDestination() == null || "".equals(entity.getVendorDestination())){
+            formBean.setVendorDestination("NONE");
+        }else{
+            formBean.setVendorDestination(entity.getVendorDestination());
+        }
+        formBean.setVolume(entity.getVolume());
+        formBean.setDescription(entity.getCommodity());
+        formBean.setRemarks(entity.getComments());
 
         if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId())) {
-            formBean.setVesselScheduleId("");
+            formBean.setVesselScheduleId("NONE");
         } else {
             formBean.setVesselScheduleId(entity.getVesselScheduleId());
         }

@@ -32,10 +32,10 @@
 
                 <div class="panel panel-info ">
 
-                    <div align="center" style="margin-top: 15px;">
+                    <%--<div align="center" style="margin-top: 15px;">
                         <img alt="User Pic" src="../includes/images/photo.png" style="height: 200px; width: 200px;"
                              class="img-circle">
-                    </div>
+                    </div>--%>
 
                     <br/>
 
@@ -48,12 +48,16 @@
                         </th>
                         <tbody>
                         <tr>
-                            <td style="color: gray !important;">Service Mode</td>
-                            <td><s:property value="order.modeOfService"/></td>
+                            <td style="color: gray !important;">Freight Type</td>
+                            <td><s:property value="order.freightType"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Origin Port</td>
-                            <td><s:property value="order.originationPort"/></td>
+                            <td style="color: gray !important;">Service Requirement</td>
+                            <td><s:property value="order.serviceRequirement"/></td>
+                        </tr>
+                        <tr>
+                            <td style="color: gray !important;">Service Mode</td>
+                            <td><s:property value="order.modeOfService"/></td>
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Payment Mode</td>
@@ -68,8 +72,8 @@
                             <td><s:property value="order.orderDate"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Service Requirement</td>
-                            <td><s:property value="order.serviceRequirement"/></td>
+                            <td style="color: gray !important;">Origin Port</td>
+                            <td><s:property value="order.originationPort"/></td>
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Destination Port</td>
@@ -77,7 +81,8 @@
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Total Rate</td>
-                            <td><s:property value="order.rates"/></td>
+                            <%--<td><s:property value="order.rates"/></td>--%>
+                            <td>"N/A"</td>
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Status</td>
@@ -146,18 +151,18 @@
 
                     <table class="table leftAlign table-user-information">
 
-                        <th style="font-size: 20px; border-top: none; width: 400px;">Consignee Information</th>
+                        <th style="font-size: 20px; border-top: none; width: 300px;">Consignee Information</th>
 
-                        <%--<tr>
-                            <td style="color: gray !important;">Consignee Name:</td>
-                            <td><s:property value="order.customerName"/></td>
-                        </tr>--%>
                         <tr>
                             <td style="color: gray !important;">Consignee Name</td>
                             <td><s:property value="order.consigneeInfoContact.name"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">Contact Number</td>
+                            <td style="color: gray !important;">Contact Person</td>
+                            <td><s:property value="order.ConsigneeContactName"/></td>
+                        </tr>
+                        <tr>
+                            <td style="color: gray !important;">Phone</td>
                             <td><s:property value="order.consigneeInfoContact.phone"/></td>
                         </tr>
                         <tr>
@@ -169,7 +174,7 @@
                             <td><s:property value="order.consigneeInfoContact.fax"/></td>
                         </tr>
                         <tr>
-                            <td style="color: gray !important;">E-mail</td>
+                            <td style="color: gray !important;">Email Address</td>
                             <td><s:property value="order.consigneeInfoContact.email"/></td>
                         </tr>
                         <tr>

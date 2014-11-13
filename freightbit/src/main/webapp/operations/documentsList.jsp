@@ -17,8 +17,27 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='home' />"> Dashboard </a></li>
-            <li class="active"> Available Documents</li>
+            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
+            <li class="active">
+                <%--<a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Containers / Items </a>--%>
+                <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                    <s:param name="orderIdParam"
+                             value="#attr.order.orderId"></s:param>
+                    <s:param name="orderNoParam"
+                             value="#attr.order.orderNo"></s:param>
+                </s:url>
+                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                     title="Update Status">
 
+                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                        Freight Plan : Containers
+                    </s:if>
+                    <s:else>
+                        Freight Plan : Items
+                    </s:else>
+                </s:a>
+            </li>
+            <li class="active"> Available Documents</li>
         </ol>
 
     </div>
