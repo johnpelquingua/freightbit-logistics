@@ -3,7 +3,6 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -346,8 +345,8 @@
                                 </span>
                             </s:if>
                             <s:else>
-                                <s:select cssClass="form-control"
-                                          id="itemName"
+                                <%--<s:select cssClass="form-control"
+                                          id="item_Name"
                                           name="orderItem.nameSize"
                                           list="customerItems"
                                           listKey="customerItemsId"
@@ -355,7 +354,22 @@
                                           emptyOption="true"
                                           required="true"
 
-                                        />
+                                        />--%>
+
+                                <%--<input list="items" id="itemName" class="form-control" />
+                                <datalist id="items">
+                                    <s:iterator status="stat" value="customerItems">
+                                        <option value=<s:property value="%{customerItemsId}" /> />
+                                    </s:iterator>
+                                </datalist>--%>
+
+                                <input list="items" id="itemName" class="form-control"/>
+                                <datalist id="items">
+                                    <s:iterator value="customerItems">
+                                        <%--<option value=<s:property value="%{customerItemsId}" /> ><s:property value="%{itemName}" /> </option>--%>
+                                        <option id=<s:property value="%{customerItemsId}" /> value=<s:property value="%{itemName}" /> />
+                                    </s:iterator>
+                                </datalist>
 
                             </s:else>
                         </div>
@@ -1090,6 +1104,7 @@ $( window ).load(function() {
     setThis();
 
     localStorage.clear();
+
 });
 
 function alphaKeyOnly(evt)
@@ -1144,10 +1159,16 @@ $(document).ready(function() {
         }
 
         // On click event of Item name change
-        $('#itemName').change(function(event) {
-
-            var item_Id = $("#itemName").val();
+        //$('#itemName').click(function(event) {
+        $("#itemName").bind('input', function () {
+            var x = $('#itemName').val();
+            var z = $('#items');
+            var val = $(z).find('option[value="' + x + '"]');
+            var item_Id = val.attr('id');
             //alert(item_Id);
+
+            /*var item_Id = $("#itemName").val();
+            alert(item_Id);*/
 
             if(item_Id == '') {
                 document.getElementById("orderItem_volume_textfield").value = '';
@@ -1224,8 +1245,12 @@ $(document).ready(function() {
 
         // On click event of Item Quantity change
         $('#orderItem_quantity').change(function(event) {
+            var x = $('#itemName').val();
+            var z = $('#items');
+            var val = $(z).find('option[value="' + x + '"]');
+            var item_Id = val.attr('id');
 
-            var item_Id = $("#itemName").val();
+            //var item_Id = $("#itemName").val();
             //alert(item_Id);
 
             if(item_Id == '') {
@@ -1438,5 +1463,6 @@ $(document).ready(function() {
     sQuantity.onchange = function () {
         dynamicDropdown.call(this, sQuantity, this.selectedIndex);
     };
+
 
 </script>

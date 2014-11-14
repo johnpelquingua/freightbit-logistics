@@ -111,8 +111,6 @@
             <result name="success" type="tiles">orders.booking-new.tiles</result>
         </action>
 
-
-
         <!--Add Contacts in Edit Booking-->
         <action name="addCustomerContactEditOrder" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addCustomerContact">
@@ -218,13 +216,13 @@
             <result type="json">/orders/orderAdd.jsp</result>
         </action>
 
-        <action name="itemAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="itemAction">
+        <action name="searchAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="searchAction">
             <result type="json">/orders/orderAddInfo.jsp</result>
         </action>
 
-		<!-- consolidations -->
-
-
+        <action name="itemAction" class="com.sr.apps.freightbit.order.action.OrderAction" method="itemAction">
+            <result type="json">/orders/orderAddInfo.jsp</result>
+        </action>
 
     </package>
 </struts>

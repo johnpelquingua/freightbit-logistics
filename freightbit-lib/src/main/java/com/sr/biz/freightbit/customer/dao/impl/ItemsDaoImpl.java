@@ -10,11 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by Solutions Resource on 5/26/14.
- */
-
-
 @Transactional
 public class ItemsDaoImpl extends HibernateDaoSupport implements ItemsDao {
     private static final Logger log = Logger.getLogger(ItemsDaoImpl.class);
@@ -74,6 +69,24 @@ public class ItemsDaoImpl extends HibernateDaoSupport implements ItemsDao {
             log.error("find all failed", re);
             throw re;
         }
+    }
+
+    @Override
+    public Items findIItemDetailsByItemName(String itemName) {
+        log.debug("finding Items Details");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Items i where i.itemName = :itemName");
+            query.setParameter("itemName", itemName);
+            List<Items> results = (List<Items>) query.list();
+            if (results != null && results.size() > 0) {
+                return results.get(0);
+            }
+            return null;
+        }catch(RuntimeException re){
+            log.error("find by username failed", re);
+            throw re;
+        }
+
     }
 
     @Override

@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="../includes/css/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="../includes/css/jquery-ui.theme.css">
     <link rel="stylesheet" href="../includes/css/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="../includes/css/jquery.autocomplete.css">
 
     <!--Javascript here -->
     <%--<script type='text/javascript' src='../includes/js/jquery-1.11.1.js'></script>--%>
@@ -38,11 +39,10 @@
 
     <script type='text/javascript' src='../includes/js/jquery-ui.js'></script>
     <script type='text/javascript' src='../includes/js/jquery-ui-timepicker-addon.js'></script>
+    <script type='text/javascript' src='../includes/js/jquery.autocomplete.js'></script>
 
     <%--<script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>--%>
     <%--<script type='text/javascript' src='includes/js/bootstrap-datetimepicker.min.js'></script>--%>
-
-
 
 </head>
 

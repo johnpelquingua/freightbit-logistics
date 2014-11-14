@@ -23,9 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by ADMIN on 5/13/14.
- */
 public class CustomerServiceImpl implements CustomerService {
 
     private CustomerDao customerDao;
@@ -34,7 +31,6 @@ public class CustomerServiceImpl implements CustomerService {
     private RatesDao ratesDao;
     private ContactsDao contactsDao;
     private OrderDao orderDao;
-
 
     public void setCustomerDao(CustomerDao customerDao) {
         this.customerDao = customerDao;
@@ -134,7 +130,6 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Contacts> findContactByRefIdAndType(String contactType, Integer customerId) {
         return contactsDao.findContactByRefTableAndIdAndType("CUSTOMERS", customerId, contactType);
     }
-
 
     @Override
     public List<Contacts> findContactByParameterMap(Integer referenceId, String contactType, Integer clientId) {
@@ -347,6 +342,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Items findItemDetailsByItemName(String itemName) {
+        return itemsDao.findIItemDetailsByItemName(itemName);
+    }
+
+    @Override
     public List<Items> findItemByCustomerId(Integer customerId) {
         List<Items> result = itemsDao.findItemByCustomerId(customerId);
         return result;
@@ -435,8 +435,6 @@ public class CustomerServiceImpl implements CustomerService {
             return result.get(0);
         return null;
     }
-
-
 
     //End Of Customer
 

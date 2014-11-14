@@ -257,6 +257,213 @@ article:nth-child(2n+2){background:#d1d1d1}
                     tbl.rows[i].cells[8].innerHTML = "IW";
                 }
             }
+
+            /*FOR REGION ABBREVIATION*/
+
+            if(tbl.rows[i].cells[4].innerHTML == "MANILA"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "MNL";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "MANILA"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "MNL";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "BACOLOD"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "BAC";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "BACOLOD"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "BAC";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "BUTUAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "BXU";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "BUTUAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "BXU";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "CAGAYAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "CGY";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "CAGAYAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "CGY";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "COTABATO"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "CBO";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "COTABATO"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "CBO";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "DAVAO"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "DVO";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "DAVAO"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "DVO";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "DUMAGUETE"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "DGT";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "DUMAGUETE"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "DGT";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "DIPOLOG"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "DPG";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "DIPOLOG"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "DPG";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "GEN. SANTOS"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "GES";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "GEN. SANTOS"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "GES";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "ILIGAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "ILI";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "ILIGAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "ILI";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "ILOILO"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "ILO";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "ILOILO"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "ILO";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "OZAMIS"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "OZA";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "OZAMIS"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "OZA";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "PALAWAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "PPS";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "PALAWAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "PPS";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "ROXAS"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "RXS";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "ROXAS"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "RXS";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "TAGBILARAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "TAG";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "TAGBILARAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "TAG";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "TACLOBAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "TAC";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "TACLOBAN"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "TAC";
+                }
+            }
+
+            if(tbl.rows[i].cells[4].innerHTML == "ZAMBOANGA"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[4].innerHTML = "ZAM";
+                }
+            }
+
+            if(tbl.rows[i].cells[5].innerHTML == "ZAMBOANGA"){
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[5].innerHTML = "ZAM";
+                }
+            }
+
         }
     }
 

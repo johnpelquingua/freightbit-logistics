@@ -1,9 +1,5 @@
 package com.sr.biz.freightbit.customer.service;
 
-/**
- * Created by ADMIN on 5/13/14.
- */
-
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
@@ -24,7 +20,6 @@ public interface CustomerService {
     public void deleteConsignee(Contacts contact, Address address);
 
     public void updateConsignee(Contacts contact, Address address);
-
 
     //Contacts Table
 
@@ -95,8 +90,6 @@ public interface CustomerService {
 
     public Customer findCustomerByCustomerCode(String customerCode);
 
-
-
     //Items
 
     public void addItem(Items items) throws ItemAlreadyExistsException;
@@ -108,6 +101,8 @@ public interface CustomerService {
     public List<Items> findUserByItemName(String itemName);
 
     public Items findItemByCustomerItemsId(Integer customerItemsId);
+
+    public Items findItemDetailsByItemName(String itemName);
 
     public void updateItems(Items items);
 

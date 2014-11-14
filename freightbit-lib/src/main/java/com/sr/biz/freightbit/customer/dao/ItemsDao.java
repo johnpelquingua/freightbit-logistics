@@ -1,9 +1,5 @@
 package com.sr.biz.freightbit.customer.dao;
 
-/**
- * Created by Solutions Resource on 5/26/14.
- */
-
 import com.sr.biz.freightbit.customer.entity.Items;
 
 import java.util.List;
@@ -17,6 +13,8 @@ public interface ItemsDao {
     public Items findItemByCustomerItemsId(Integer customerItemsId);
 
     public List<Items> findAllItems(Integer customerItemsId);
+
+    public Items findIItemDetailsByItemName(String itemName);
 
     public List<Items> findUserByItemName(String itemName);
 
