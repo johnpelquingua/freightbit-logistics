@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Shipping Line: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.shippinge" cssClass="form-control" id="container.shipping" />
+                                <s:textfield required="true" name="container.shipping" cssClass="form-control" id="container.shipping" />
                             </div>
                         </div>
 
@@ -167,10 +167,9 @@
         <div class="panel-footer">
             <div class="pull-right">
                 <a href="http://localhost:8080/freightbit/operations/viewContainerListTest.action" class="btn btn-default" id ="groups-btn">Cancel</a>
-                <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" action="save" value="Submit"></s:submit>
-                </s:form>
+                <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" action="save" value="Submit"/>
             </div>
         </div>
+        </s:form>
     </div>
-</div>
 </div>

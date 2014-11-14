@@ -1366,6 +1366,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
     /* test view container list*/
 
     public String viewContainerListTest(){
+        List<Container> containerList = containerService.findAllContainer();
+        for (Container containerElem : containerList) {
+            containers.add(transformContainerToFormBean(containerElem));
+        }
         return SUCCESS;
     }
 
@@ -1693,6 +1697,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         Container containerEntity  = transformContainerToEntityBean(container);
         containerService.addContainer(containerEntity);
+        addActionMessage("Success! New Form has been added.");
         return SUCCESS;
     }
 
@@ -1721,19 +1726,19 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setContainerNumber(formBean.getContainerNumber());
         entity.setContainerSize(formBean.getContainerSize());
         entity.setContainerType(formBean.getContainerType());
-
         entity.setSealNumber(formBean.getSealNumber());
-
         entity.setLadenEmpty(formBean.getLadenEmpty());
         return entity;
     }
-    public String save() {
-        return SUCCESS;
-    }
+    public String save() { return SUCCESS; }
     public String loadSearchFormPage() {
         return SUCCESS;
     }
-    public String loadAddFormPage() {
+    public String loadEditFormPage() {
+        Container containerEntity = containerService.findContainerById(containerIdParam);
+        container = transformContainerToFormBean(containerEntity);
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("containerId", container.getContainerId());
         return SUCCESS;
     }
 

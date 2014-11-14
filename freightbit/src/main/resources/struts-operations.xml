@@ -385,15 +385,15 @@
         </action>
 
         <action name="containerAdd" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="containerAdd">
-            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
+            <result name="success" type="redirect">viewContainerListTest</result>
         </action>
 
         <action name="loadSearchFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSearchFormPage">
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
-        <action name="loadAddFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadAddFormPage">
-            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
+        <action name="loadEditFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadEditFormPage">
+            <result name="success" type="tiles">operations.viewContainerListTest.tiles</result>
         </action>
 
         <action name="save" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="save">
