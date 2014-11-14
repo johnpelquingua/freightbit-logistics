@@ -51,7 +51,10 @@
 
                         <td><display:column title="Action">
                             <s:a>Info</s:a>
-                            <s:a>Consolidate</s:a>
+                            <s:url var="viewConsolidationItemListUrl" action="viewConsolidationItemList">
+                                <%--<s:param name="containerIdParam" value="#attr.container.containerId"></s:param>--%>
+                            </s:url>
+                            <s:a href="%{viewConsolidationItemListUrl}">Consolidate</s:a>
                             <s:a>Print</s:a>
                         </display:column></td>
 

@@ -1,13 +1,12 @@
 package com.sr.biz.freightbit.order.dao.impl;
 
-import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.order.dao.OrderItemsDao;
 import com.sr.biz.freightbit.order.entity.OrderItems;
-import com.sr.biz.freightbit.order.entity.Orders;
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.apache.log4j.Logger;
+
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -58,7 +57,6 @@ public class OrderItemsDaoImpl extends HibernateDaoSupport implements OrderItems
     }
 
     @Override
-
     public OrderItems findOrderItemByOrderItemId(Integer orderItemId){
         Log.debug("getting Item instance with id: " + orderItemId);
 
@@ -78,5 +76,16 @@ public class OrderItemsDaoImpl extends HibernateDaoSupport implements OrderItems
         }
 
     }
-}
 
+    @Override
+    public List<OrderItems> findAllOrderItemLCL() {
+        Log.debug("Finding all orderItems");
+        try {
+            return getSessionFactory().getCurrentSession()
+                    .createQuery("from OrderItems where serviceRequirement = 'LESS CONTAINER LOAD'").list();
+        } catch (RuntimeException re) {
+            Log.error("Find all failed", re);
+            throw re;
+        }
+    }
+}

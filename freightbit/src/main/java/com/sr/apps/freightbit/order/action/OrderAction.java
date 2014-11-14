@@ -387,6 +387,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         }else{
             orderEntityForm.setOrderStatus(orderEntityForm.getOrderStatus());
         }
+
         orderService.updateOrder(orderEntityForm);
 
         //get quantity of item from form
@@ -1108,6 +1109,10 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {
 
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        // Put Order Id to Order Id session
+        sessionAttributes.get("orderIdPass");
+
         OrderItemsBean orderItemBean = new OrderItemsBean();
 
         orderItemBean.setOrderItemId(orderItem.getOrderItemId());
@@ -1256,6 +1261,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             Integer nameId = Integer.parseInt(formBean.getNameSize());
             Items itemEntity = customerService.findItemByCustomerItemsId(nameId);
             entity.setNameSize(itemEntity.getItemName());
+            entity.setServiceRequirement("LESS CONTAINER LOAD");
         }
 
         entity.setRate(formBean.getRate());

@@ -6,12 +6,14 @@ import java.util.List;
 
 public interface OrderItemsDao {
 
-public List<OrderItems> findAllItemByOrderId(Integer orderId);
+    public List<OrderItems> findAllItemByOrderId(Integer orderId);
 
-public void addItems(OrderItems orderItems);
+    public void addItems(OrderItems orderItems);
 
-public void deleteItem(OrderItems orderItems);
+    public void deleteItem(OrderItems orderItems);
 
-public OrderItems findOrderItemByOrderItemId(Integer orderItemId);
+    public OrderItems findOrderItemByOrderItemId(Integer orderItemId);
+
+    public List<OrderItems> findAllOrderItemLCL();
 
 }

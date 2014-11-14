@@ -35,7 +35,12 @@ public class OrderItemsBean {
     private String truckDestination;
     private String vesselScheduleId;
 
+    private String orderNum;
+
     private String editItem;
+    private String port;
+
+    private String serviceRequirement;
 
     public OrderItemsBean(){
 
@@ -322,5 +327,29 @@ public class OrderItemsBean {
 
     public void setEditItem(String editItem) {
         this.editItem = editItem;
+    }
+
+    public String getServiceRequirement() {
+        return serviceRequirement;
+    }
+
+    public void setServiceRequirement(String serviceRequirement) {
+        this.serviceRequirement = serviceRequirement;
+    }
+
+    public String getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(String orderNum) {
+        this.orderNum = orderNum;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
     }
 }

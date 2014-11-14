@@ -408,6 +408,10 @@
             <result name="success" type="tiles">operations.consolidationContainerList.tiles</result>
         </action>
 
+        <action name="viewConsolidationItemList" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="viewConsolidationItemList">
+            <result name="success" type="tiles">operations.consolidationItemList.tiles</result>
+        </action>
+
         <!--CONSOLIDATION-->
 
         <!--DOCUMENTS PAGE-->

@@ -47,6 +47,8 @@ public class OrderItems implements java.io.Serializable {
 //
     private Integer documentId;
 
+    private String serviceRequirement;
+
     public OrderItems() {
     }
 
@@ -356,6 +358,15 @@ public class OrderItems implements java.io.Serializable {
 
     public void setContainerId(Integer containerId) {
         this.containerId = containerId;
+    }
+
+    @Column(name = "serviceRequirement")
+    public String getServiceRequirement() {
+        return serviceRequirement;
+    }
+
+    public void setServiceRequirement(String serviceRequirement) {
+        this.serviceRequirement = serviceRequirement;
     }
 }
 

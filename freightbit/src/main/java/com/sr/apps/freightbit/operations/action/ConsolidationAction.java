@@ -7,15 +7,21 @@ import com.sr.apps.freightbit.operations.formbean.ContainerBean;
 import com.sr.apps.freightbit.operations.formbean.OperationsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
-import com.sr.apps.freightbit.util.CommonUtils;import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.apps.freightbit.util.CommonUtils;
+import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.operations.entity.Container;
 import com.sr.biz.freightbit.operations.service.ContainerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
+import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.service.OrderService;
+import com.sr.biz.freightbit.vendor.service.VendorService;
 import org.apache.log4j.Logger;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ConsolidationAction extends ActionSupport implements Preparable {
 
@@ -33,8 +39,8 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	private Integer vendorId;
 
 	private List<OrderBean> orders = new ArrayList<OrderBean>();
+    private List<OrderItemsBean> orderItemsBeans = new ArrayList<OrderItemsBean>();
 	private List<ContainerBean> orderItems = new ArrayList<ContainerBean>();
-
 	private List<ContainerBean> containers = new ArrayList<ContainerBean>();
 
 	private List<Parameters> statusList = new ArrayList<Parameters>();
@@ -44,14 +50,18 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	private OperationsBean operationsBean = new OperationsBean();
 	private OrderBean order = new OrderBean();
 	private ContainerBean container = new ContainerBean();
+
 	private OperationsService operationsService;
 	private OrderService orderService;
 	private ParameterService parameterService;
 	private CommonUtils commonUtils;
 	private ContainerService containerService;
+    private VendorService vendorService;
 
 	@Override
-	public void prepare() throws Exception {}
+	public void prepare() throws Exception {
+
+    }
 
 	public String updateStatusOfContainers() {
 
@@ -80,9 +90,6 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 		return SUCCESS;
 	}
 
-
-
-
 	public ContainerBean transformToContainerFormBean(Container entity) {
 
 		ContainerBean formBean = new ContainerBean();
@@ -99,6 +106,60 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
             containers.add(transformContainerToFormBean(containerElem));
         }
         return SUCCESS;
+    }
+
+    public String viewConsolidationItemList() {
+        List<OrderItems> orderItems = new ArrayList<OrderItems>();
+        orderItems = orderService.findAllOrderItemLCL();
+
+        for (OrderItems orderItemElem : orderItems) {
+            orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+            System.out.println(orderItemElem.getNameSize());
+        }
+        return SUCCESS;
+    }
+
+    public OrderItemsBean transformToOrderItemFormBean(OrderItems entity) {
+        OrderItemsBean formBean = new OrderItemsBean();
+        formBean.setNameSize(entity.getNameSize());
+        formBean.setStatus(entity.getStatus());
+        formBean.setOrderItemId(entity.getOrderItemId());
+        formBean.setClientId(entity.getClientId());
+        formBean.setNameSize(entity.getNameSize());
+        formBean.setOrderId(entity.getOrderId());
+        formBean.setQuantity(entity.getQuantity());
+        formBean.setClassification(entity.getClassification());
+        formBean.setCommodity(entity.getCommodity());
+        formBean.setDeclaredValue(entity.getDeclaredValue());
+        formBean.setComments(entity.getComments());
+        formBean.setRate(entity.getRate());
+        formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setModifiedBy(entity.getModifiedBy());
+        formBean.setModifiedTimeStamp(entity.getModifiedTimestamp());
+        formBean.setStatus(entity.getStatus());
+        formBean.setWeight(entity.getWeight());
+        formBean.setVendorSea(entity.getVendorSea());
+        formBean.setVendorOrigin(entity.getVendorOrigin());
+        formBean.setVendorDestination(entity.getVendorDestination());
+        /*formBean.setVendorSea(entity.getVendorSea());*/
+        formBean.setOrderNum(orderService.findOrdersById(entity.getOrderId()).getOrderNumber());
+        formBean.setPort(orderService.findOrdersById(entity.getOrderId()).getDestinationPort());
+
+        if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId())) {
+            formBean.setVesselScheduleId("");
+        } else {
+            formBean.setVesselScheduleId(entity.getVesselScheduleId());
+        }
+
+        formBean.setFinalPickupDate(entity.getFinalPickupDate());
+        formBean.setFinalDeliveryDate(entity.getFinalDeliveryDate());
+        formBean.setDriverOrigin(entity.getDriverOrigin());
+        formBean.setDriverDestination(entity.getDriverDestination());
+        formBean.setTruckOrigin(entity.getTruckOrigin());
+        formBean.setTruckDestination(entity.getTruckDestination());
+
+        return formBean;
     }
 
     public ContainerBean transformContainerToFormBean(Container entity) {
@@ -125,6 +186,12 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setLadenEmpty(entity.getLadenEmpty());
 
         return formBean;
+    }
+
+    private Integer getClientId() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer clientId = (Integer) sessionAttributes.get("clientId");
+        return clientId;
     }
 
     public static long getSerialVersionUID() {
@@ -309,5 +376,21 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
     public void setContainerService(ContainerService containerService) {
         this.containerService = containerService;
+    }
+
+    public void setVendorService(VendorService vendorService) {
+        this.vendorService = vendorService;
+    }
+
+    public List<OrderItemsBean> getOrderItemsBeans() {
+        return orderItemsBeans;
+    }
+
+    public void setOrderItemsBeans(List<OrderItemsBean> orderItemsBeans) {
+        this.orderItemsBeans = orderItemsBeans;
+    }
+
+    public VendorService getVendorService() {
+        return vendorService;
     }
 }
