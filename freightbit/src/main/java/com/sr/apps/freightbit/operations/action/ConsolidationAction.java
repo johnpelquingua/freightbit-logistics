@@ -180,7 +180,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setContainerNumber(entity.getContainerNumber());
         formBean.setContainerSize(entity.getContainerSize());
         formBean.setContainerType(entity.getContainerType());
-        formBean.setEirNumber2(entity.getEirNumber2());
+        formBean.setEirType(entity.getEirType());
         formBean.setSealNumber(entity.getSealNumber());
         formBean.setVanLocation(entity.getVanLocation());
         formBean.setLadenEmpty(entity.getLadenEmpty());

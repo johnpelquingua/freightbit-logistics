@@ -33,13 +33,14 @@ public class Container implements Serializable{
     private String containerNumber;
     private String containerSize;
     private String containerType;
-    private String eirNumber2;
+
     private String sealNumber;
     private String vanLocation;
     private String ladenEmpty;
     private String containerStatus;
     private String forkliftOperator;
     private String operationsDept;
+    private String eirType;
 
     public Container() {
     }
@@ -261,15 +262,6 @@ public class Container implements Serializable{
         this.containerType = containerType;
     }
 
-    @Column(name="eirNumber2")
-    public String getEirNumber2() {
-        return eirNumber2;
-    }
-
-    public void setEirNumber2(String eirNumber2) {
-        this.eirNumber2 = eirNumber2;
-    }
-
     @Column(name="sealNumber")
     public String getSealNumber() {
         return sealNumber;
@@ -324,4 +316,12 @@ public class Container implements Serializable{
         this.operationsDept = operationsDept;
     }
 
+    @Column(name = "eirType")
+    public String getEirType() {
+        return eirType;
+    }
+
+    public void setEirType(String eirType) {
+        this.eirType = eirType;
+    }
 }

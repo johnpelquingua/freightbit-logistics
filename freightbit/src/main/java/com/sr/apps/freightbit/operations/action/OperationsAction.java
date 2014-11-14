@@ -1398,7 +1398,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setContainerNumber(entity.getContainerNumber());
         formBean.setContainerSize(entity.getContainerSize());
         formBean.setContainerType(entity.getContainerType());
-        formBean.setEirNumber2(entity.getEirNumber2());
+        formBean.setEirType(entity.getEirType());
         formBean.setSealNumber(entity.getSealNumber());
         formBean.setVanLocation(entity.getVanLocation());
         formBean.setLadenEmpty(entity.getLadenEmpty());
@@ -1704,7 +1704,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setDateTime(formBean.getDateTime());
         entity.setShipping(formBean.getShipping());
         entity.setVanNumber(formBean.getVanNumber());
-        entity.setEirNumber2(formBean.getEirNumber2());
+        entity.setEirType(formBean.getEirType());
         entity.setVanLocation(formBean.getVanLocation());
         entity.setTrucking(formBean.getTrucking());
         entity.setPlateNumber(formBean.getPlateNumber());

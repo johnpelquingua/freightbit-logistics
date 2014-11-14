@@ -29,12 +29,14 @@ public class ContainerBean {
     private String containerSize;
     private String containerType;
     private String containerStatus;
-    private String eirNumber2;
+
     private String sealNumber;
     private String vanLocation;
     private String ladenEmpty;
     private String forkliftOperator;
     private String operationsDept;
+
+    private String eirType;
 
     public Integer getContainerId() {
         return containerId;
@@ -196,20 +198,12 @@ public class ContainerBean {
         this.containerType = containerType;
     }
 
-    public String getEirNumber2() {
-        return eirNumber2;
-    }
-
     public String getContainerStatus() {
         return containerStatus;
     }
 
     public void setContainerStatus(String containerStatus) {
         this.containerStatus = containerStatus;
-    }
-
-    public void setEirNumber2(String eirNumber2) {
-        this.eirNumber2 = eirNumber2;
     }
 
     public String getSealNumber() {
@@ -260,5 +254,11 @@ public class ContainerBean {
         this.operationsDept = operationsDept;
     }
 
+    public String getEirType() {
+        return eirType;
+    }
 
+    public void setEirType(String eirType) {
+        this.eirType = eirType;
+    }
 }
