@@ -13,6 +13,7 @@ import java.util.Date;
 public class Container implements Serializable{
 
     private Integer containerId;
+    private String eirType;
     private String eirNumber;
     private String receiptNumber;
     private Date dateTime;
@@ -33,20 +34,19 @@ public class Container implements Serializable{
     private String containerNumber;
     private String containerSize;
     private String containerType;
-
     private String sealNumber;
     private String vanLocation;
     private String ladenEmpty;
     private String containerStatus;
     private String forkliftOperator;
     private String operationsDept;
-    private String eirType;
 
     public Container() {
     }
 
-    public Container(Integer containerId, String eirNumber, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String bookingNum, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept) {
+    public Container(Integer containerId, String eirType, String eirNumber, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String bookingNum, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept, String sealNumber, String vanLocation, String ladenEmpty, String containerType) {
         this.containerId = containerId;
+        this.eirType = eirType;
         this.eirNumber = eirNumber;
         this.receiptNumber = receiptNumber;
         this.dateTime = dateTime;
@@ -69,6 +69,10 @@ public class Container implements Serializable{
         this.containerStatus = containerStatus;
         this.forkliftOperator = forkliftOperator;
         this.operationsDept = operationsDept;
+        this.containerSize = containerType;
+        this.containerSize = sealNumber;
+        this.containerSize = vanLocation;
+        this.containerSize = ladenEmpty;
     }
 
     @Id

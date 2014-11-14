@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Type: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <select name="container.eirNumber" id="container.eirNumber" cssClass="form-control" required="true">
+                                <select name="container.eirType" id="container.eirNumber" cssClass="form-control" required="true">
                                     <option value="1">EIR 1</option>
                                     <option value="2">EIR 2</option>
                                 </select>
@@ -68,7 +68,7 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.eirNumber2" cssClass="form-control" id="container.eirNumber2" />
+                                <s:textfield required="true" name="container.eirNumber" cssClass="form-control" id="container.eirNumber" />
                             </div>
                         </div>
 

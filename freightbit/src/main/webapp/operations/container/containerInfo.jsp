@@ -51,7 +51,7 @@
                                            pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
-                                <td><display:column property="eirNumber" title="EIR Type <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="eirType" title="EIR Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="receiptNumber" title="Receipt Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
@@ -59,7 +59,7 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="vanNumber" title="Van Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="eirNumber2" title="EIR Number <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="eirNumber" title="EIR Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="vanLocation" title="Van Location <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
