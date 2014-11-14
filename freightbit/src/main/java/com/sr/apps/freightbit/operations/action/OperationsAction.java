@@ -42,9 +42,9 @@ import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
-import com.sun.net.httpserver.Authenticator;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+
 import java.util.*;
 
 /**
@@ -438,7 +438,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 Integer orderItemId = Integer.parseInt(value);
                 OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemId);
                 orderItemEntity.setOrderItemId(orderItemId);
-                orderItemEntity.setVendorSea(vendorIdParam.toString());
+                orderItemEntity.setVendorSea(vendorService.findVendorById(vendorIdParam).getVendorCode());
                 orderItemEntity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
 
                 if("SHIPPING AND TRUCKING".equals(freightType)) {
@@ -499,7 +499,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 Integer orderItemId = Integer.parseInt(value);
                 OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemId);
                 orderItemEntity.setOrderItemId(orderItemId);
-                orderItemEntity.setVendorOrigin(operationsBean.getVendorListOrigin().toString());
+                orderItemEntity.setVendorOrigin(vendorService.findVendorById(operationsBean.getVendorListOrigin()).getVendorCode());
                 orderItemEntity.setDriverOrigin(operationsBean.getDriverOrigin());
                 orderItemEntity.setTruckOrigin(operationsBean.getTruckOrigin());
                 orderItemEntity.setFinalPickupDate(operationsBean.getPickupDate());
@@ -549,7 +549,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 Integer orderItemId = Integer.parseInt(value);
                 OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemId);
                 orderItemEntity.setOrderItemId(orderItemId);
-                orderItemEntity.setVendorDestination(operationsBean.getVendorListDestination().toString());
+                orderItemEntity.setVendorDestination(vendorService.findVendorById(operationsBean.getVendorListDestination()).getVendorCode());
                 orderItemEntity.setDriverDestination(operationsBean.getDriverDestination());
                 orderItemEntity.setTruckDestination(operationsBean.getTruckDestination());
                 orderItemEntity.setFinalDeliveryDate(operationsBean.getDeliveryDate());
