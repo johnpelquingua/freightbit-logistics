@@ -7,7 +7,7 @@
 
         <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-male"></i> EIR Form </h1>
+               <h1><i class="fa fa-male"></i> Container Management </h1>
             </span>
         </legend>
         <ol class="breadcrumb">
@@ -117,7 +117,11 @@
             <div class="panel-footer">
 
                 <span class="pull-right">
+
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchContainerPage'">
+                        <i class="fa fa-search"></i> Search Container
+                    </button>
                     <button type="button" class="btn btn-primary new-booking"
                             onclick="location.href='viewContainerList'">
                         <i class="fa fa-male"></i> Create New EIR Form

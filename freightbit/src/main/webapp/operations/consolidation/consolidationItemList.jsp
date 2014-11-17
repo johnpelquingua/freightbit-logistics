@@ -12,7 +12,7 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-exchange"></i> Container Management </h1>
+               <h1><i class="fa fa-exchange"></i> Consolidation </h1>
             </span>
         </legend>
         <ol class="breadcrumb">
@@ -62,12 +62,13 @@
             </div>
         </div>
 
-        <div style="box-shadow: 3px 3px 3px #888888; position: fixed; background-color: #ECF0F1; border-radius: 5px; padding: 15px; width: 40em; margin-top: 15em; z-index: 100;">
+        <div style="box-shadow: 3px 3px 3px #888888; position: fixed; background-color: #ECF0F1; border-radius: 5px; padding: 15px; width: 80%; margin-top: 12%; z-index: 100;">
             Total weight (kg) : <b><p id="result" style="display: inline">0</p></b> / <p style="display: inline" id="maxWt"></p> kg<br/>
             Total volume (cbm) : <b><p id="result-vol" style="display: inline">0</p></b> / <p style="display: inline" id="maxVol"></p> cbm
             <div style="float: right; margin-top: -1.2em;">
                 <button class="btn btn-success" id="submitBtn">Save</button>
                 <button class="btn btn-danger" onclick="resetBox()">Reset</button>
+                <button class="btn btn-primary" >Final</button>
             </div>
         </div>
     </div>

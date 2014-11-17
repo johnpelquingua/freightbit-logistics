@@ -14,7 +14,7 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-book"></i> Container Management </h1>
+               <h1><i class="fa fa-book"></i> Search Containers </h1>
             </span>
         </legend>
         <ol class="breadcrumb">
