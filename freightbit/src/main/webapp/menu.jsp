@@ -28,7 +28,7 @@
             <ul class="dropdown-menu">
 
                 <li><a href="<s:url action='../operations/viewStatusList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>
-                <li><a href="<s:url action='../operations/viewContainerListTest' />"> <i class="fa fa-caret-right fa-fw"></i> Container Management</a></li>
+                <li><a href="<s:url action='../operations/viewContainerList' />"> <i class="fa fa-caret-right fa-fw"></i> Container Management</a></li>
                 <li><a href="<s:url action='../operations/viewConsolidationContainerList' />"> <i class="fa fa-caret-right fa-fw"></i> Consolidation</a></li>
 
             </ul>

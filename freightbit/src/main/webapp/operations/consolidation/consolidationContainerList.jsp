@@ -39,7 +39,7 @@
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
                         <%--Booking Date--%>
-                        <td><display:column property="containerNumber" title="Number <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="vanNumber" title="Number <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="containerSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -50,12 +50,12 @@
                                             style="text-align: center;"> </display:column></td>
 
                         <td><display:column title="Action">
-                            <s:a>Info</s:a>
+                            <s:a><i class="fa fa-info-circle"></i></s:a>
                             <s:url var="viewConsolidationItemListUrl" action="viewConsolidationItemList">
                                 <%--<s:param name="containerIdParam" value="#attr.container.containerId"></s:param>--%>
                             </s:url>
-                            <s:a href="%{viewConsolidationItemListUrl}">Consolidate</s:a>
-                            <s:a>Print</s:a>
+                            <s:a href="%{viewConsolidationItemListUrl}"><i class="fa fa-dropbox"></i></s:a>
+                            <s:a><i class="fa fa-print"></i></s:a>
                         </display:column></td>
 
 
