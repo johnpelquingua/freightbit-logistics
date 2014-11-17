@@ -67,6 +67,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Integer containerIdParam;
 
     private List<Parameters> truckTypeList = new ArrayList<Parameters>();
+    private List<Parameters> containerSearchList = new ArrayList<Parameters>();
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
@@ -123,7 +124,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 //      updateStatusList = parameterService.getParameterMap(ParameterConstants.UPDATE_STATUS);
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
         truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
-
+        containerSearchList = parameterService.getParameterMap("CONTAINERS", "CONTAINER_SEARCH");
     }
 
     public String updateCompleteInlandPlanning() {
@@ -1342,10 +1343,18 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String viewContainerList() {
-        List<Container> containerList = new ArrayList<Container>();
-        containerList = containerService.findAllContainer();
+    public String loadSearchContainerPage(){ return SUCCESS; }
 
+    public String viewContainerList() {
+        String column = getColumnFilter();
+
+        List<Container> containerList = new ArrayList<Container>();
+
+        if (StringUtils.isNotBlank(column)) {
+            containerList = containerService.findContainerByCriteria(column, container.getContainerKeyword());
+        } else {
+            containerList = containerService.findAllContainer();
+        }
         for (Container containerElem : containerList) {
             containers.add(transformContainerToFormBean(containerElem));
         }
@@ -1367,15 +1376,18 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    /* test view container list*/
+    public String getColumnFilter() {
+        String column = "";
+        if ("CONTAINER NUMBER".equals(container.getContainerSearchCriteria())) {
+            column = "containerNumber";
+        } else if ("SIZE".equals(container.getContainerSearchCriteria())) {
+            column = "containerSize";
+        } else if ("STATUS".equals(container.getContainerSearchCriteria())) {
+            column = "containerSTATUS";
+        }
 
-//    public String viewContainerListTest(){
-//        List<Container> containerList = containerService.findAllContainer();
-//        for (Container containerElem : containerList) {
-//            containers.add(transformContainerToFormBean(containerElem));
-//        }
-//        return SUCCESS;
-//    }
+        return column;
+    }
 
     public String viewContainerInfo() {
         Container containerEntity = new Container();
@@ -2151,5 +2163,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setContainer(ContainerBean container) {
         this.container = container;
+    }
+
+    public List<Parameters> getContainerSearchList() {
+        return containerSearchList;
+    }
+
+    public void setContainerSearchList(List<Parameters> containerSearchList) {
+        this.containerSearchList = containerSearchList;
     }
 }

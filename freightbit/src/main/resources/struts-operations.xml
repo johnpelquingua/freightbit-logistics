@@ -396,6 +396,10 @@
             <result name="success" type="tiles">operations.containerAdd.tiles</result>
         </action>
 
+        <action name="loadSearchContainerPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSearchContainerPage">
+            <result name="success" type="tiles">operations.containerSearch.tiles</result>
+        </action>
+
         <action name="loadEditFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadEditFormPage">
             <result name="success" type="tiles">operations.viewContainerListTest.tiles</result>
         </action>

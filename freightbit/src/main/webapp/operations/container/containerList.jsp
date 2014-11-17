@@ -35,10 +35,9 @@
                 </h3>
                 <span class="pull-right">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                    <%--<button type="button" class="btn btn-primary new-booking">--%>
-                    <%--<input type=button onClick="parent.location='http://localhost:8080/freightbit/operations/viewContainerList.action'">--%>
-                    <%--<i class="fa fa-male"></i> Create New EIR Form--%>
-                    <%--</button>--%>
+                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchContainerPage'">
+                        <i class="fa fa-search"></i> Search Container
+                    </button>
                     <s:url var="loadAddFormPageUrl" action="loadAddFormPage">
                     </s:url>
                     <s:a class="icon-action-link" href="%{loadAddFormPageUrl}" rel="tooltip" title="New Container">

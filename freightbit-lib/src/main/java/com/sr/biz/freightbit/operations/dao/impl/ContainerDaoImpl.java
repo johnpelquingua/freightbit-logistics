@@ -5,6 +5,8 @@ import com.sr.biz.freightbit.operations.entity.Container;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -357,5 +359,15 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
             Log.error("Get Failed", e);
             throw e;
         }
+    }
+
+    @Override
+    public List<Container> findContainerByCriteria(String column, String value) {
+        Log.debug("Find vendor by criteria ");
+        Session session = getSessionFactory().getCurrentSession();
+        List<Container> vendors = session.createCriteria(Container.class)
+                .add(Restrictions.like(column, value, MatchMode.ANYWHERE))
+                .list();
+        return vendors;
     }
 }
