@@ -66,7 +66,7 @@
             Total weight (kg) : <b><p id="result" style="display: inline">0</p></b> / <p style="display: inline" id="maxWt"></p> kg<br/>
             Total volume (cbm) : <b><p id="result-vol" style="display: inline">0</p></b> / <p style="display: inline" id="maxVol"></p> cbm
             <div style="float: right; margin-top: -1.2em;">
-                <button class="btn btn-success">Save</button>
+                <button class="btn btn-success" id="submitBtn">Save</button>
                 <button class="btn btn-danger" onclick="resetBox()">Reset</button>
             </div>
         </div>
@@ -82,7 +82,8 @@
                 child5 = $('.mainTable tbody tr td:nth-child(5)'),
                 weight = $('#result'),
                 volume = $('#result-vol'),
-                container = $('#containerType');
+                container = $('#containerType'),
+                submitBtn = $('#submitBtn');
 
         // this automatically measures the dimension of the table
         // and appends id(for the 4th and 5th td) and value(for the checkbox)
@@ -108,16 +109,13 @@
         if(container.val() == '10 FOOTER'){
             maxWt = 9000;
             maxVol = 14;
-        }
-        else if(container.val() == '20 FOOTER'){
+        }else if(container.val() == '20 FOOTER'){
             maxWt = 18000;
             maxVol = 28;
-        }
-        else if(container.val() == '40 STD FOOTER'){
+        }else if(container.val() == '40 STD FOOTER'){
             maxWt = 20000;
             maxVol = 56;
-        }
-        else if(container.val() == '40 HC FOOTER'){
+        }else if(container.val() == '40 HC FOOTER'){
             maxWt = 22000;
             maxVol = 78;
         }
@@ -132,18 +130,21 @@
                 if(this.checked){
                     wt = parseInt(weight.text())+parseInt($('#'+this.value).text());
                     vol = parseInt(volume.text())+parseInt($('#'+this.value+'-vol').text());
-                }
-                else{
+                }else{
                     wt = parseInt(weight.text())-parseInt($('#'+this.value).text());
                     vol = parseInt(volume.text())-parseInt($('#'+this.value+'-vol').text());
                 }
             }
 
-            if(wt > maxWt)
-                wt = '<font style="color: red;">'+test+'</font>';
+            if(wt > maxWt){
+                wt = '<font style="color: red;">'+wt+'</font>';
+                submitBtn.prop('disabled', true);
+            }else{ submitBtn.prop('disabled', false); }
 
-            if(vol > maxVol)
+            if(vol > maxVol){
                 vol = '<font style="color: red;">'+vol+'</font>';
+                submitBtn.prop('disabled', true);
+            }else{ submitBtn.prop('disabled', false); }
 
             weight.empty().append(wt);
             volume.empty().append(vol);
