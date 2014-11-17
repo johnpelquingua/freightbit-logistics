@@ -1271,10 +1271,12 @@ public class OrderAction extends ActionSupport implements Preparable {
         // Condition in FCL and LCL
         if (sessionAttributes.get("service_Req").equals("FULL CONTAINER LOAD")) {
             entity.setNameSize(formBean.getNameSize());
+            entity.setServiceRequirement("FULL CONTAINER LOAD");
         } else {
-            Integer nameId = Integer.parseInt(formBean.getNameSize());
+            /*Integer nameId = Integer.parseInt(formBean.getNameSize());
             Items itemEntity = customerService.findItemByCustomerItemsId(nameId);
-            entity.setNameSize(itemEntity.getItemName());
+            entity.setNameSize(itemEntity.getItemName());*/
+            entity.setNameSize(formBean.getNameSize());
             entity.setServiceRequirement("LESS CONTAINER LOAD");
         }
 

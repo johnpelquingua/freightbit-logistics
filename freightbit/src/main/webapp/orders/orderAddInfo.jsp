@@ -363,7 +363,7 @@
                                     </s:iterator>
                                 </datalist>--%>
 
-                                <input list="items" id="itemName" class="form-control"/>
+                                <input list="items" id="itemName" name="orderItem.nameSize" class="form-control"/>
                                 <datalist id="items">
                                     <s:iterator value="customerItems">
                                         <%--<option value=<s:property value="%{customerItemsId}" /> ><s:property value="%{itemName}" /> </option>--%>
@@ -441,7 +441,7 @@
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Volume (cm&#179;)
+                            Volume (m&#179;)
                         </label>
                         <div class="col-lg-3" >
 
@@ -588,7 +588,7 @@
                             </span>
                             </s:else>
 
-                            <th class="tb-font-black">Volume <br /> (cm&#179;) </th>
+                            <th class="tb-font-black">Volume <br /> (m&#179;) </th>
                             <th class="tb-font-black">Commodity</th>
                             <th class="tb-font-black">Value <br /> (Php) </th>
                             <th class="tb-font-black">Rate <br /> (Php) </th>
