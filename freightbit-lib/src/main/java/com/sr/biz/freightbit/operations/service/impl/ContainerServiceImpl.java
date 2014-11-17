@@ -171,4 +171,9 @@ public class ContainerServiceImpl implements ContainerService {
         Container container = containerDao.findContainerById(containerId);
         return container;
     }
+
+    @Override
+    public List<Container> findContainerByCriteria(String column, String value){
+        return containerDao.findContainerByCriteria(column, value);
+    }
 }

@@ -22,4 +22,6 @@ public interface ContainerService {
     public List<Container> findContainerByEIRNumber(String eirNumber);
 
     public Container findContainerById(Integer containerId);
+
+    public List<Container> findContainerByCriteria(String column, String value);
 }

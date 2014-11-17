@@ -15,7 +15,7 @@ public interface ContainerDao {
 
     public void deleteContainer(Container container);
 
-    public List<Container> findAllContainer();
+    public List findAllContainer();
 
     public List<Container> findContainerByOrderNumber(String orderNumber);
 
@@ -62,4 +62,6 @@ public interface ContainerDao {
     public List<Container> findContainerByOperationsDept(String operationsDept);
 
     public Container findContainerById(Integer containerId);
+
+    public List<Container> findContainerByCriteria(String column, String value);
 }

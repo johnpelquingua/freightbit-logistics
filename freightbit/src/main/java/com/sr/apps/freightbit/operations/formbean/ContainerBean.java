@@ -36,6 +36,9 @@ public class ContainerBean {
     private String forkliftOperator;
     private String operationsDept;
 
+    private String containerSearchCriteria;
+    private String containerKeyword;
+
     private String eirType;
 
     public Integer getContainerId() {
@@ -260,5 +263,21 @@ public class ContainerBean {
 
     public void setEirType(String eirType) {
         this.eirType = eirType;
+    }
+
+    public String getContainerSearchCriteria() {
+        return containerSearchCriteria;
+    }
+
+    public void setContainerSearchCriteria(String containerSearchCriteria) {
+        this.containerSearchCriteria = containerSearchCriteria;
+    }
+
+    public String getContainerKeyword() {
+        return containerKeyword;
+    }
+
+    public void setContainerKeyword(String containerKeyword) {
+        this.containerKeyword = containerKeyword;
     }
 }
