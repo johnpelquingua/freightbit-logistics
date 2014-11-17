@@ -36,7 +36,7 @@
                 <div class="table-responsive">
                     <display:table id="orderItems" name="orderItemsBeans"
                                    requestURI="viewConsolidationItemList.action"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                   class="mainTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
                         <%--Booking Date--%>
                         <td>
@@ -60,5 +60,53 @@
                 </div>
             </div>
         </div>
+
+        <div style="position: fixed; background-color: #ECF0F1; border-radius: 5px; padding: 15px; width: 40em; margin-top: 15em;">
+            Total weight (kg) : <b><p id="result" style="display: inline">0</p></b><br/>
+            Total volume (cbm) : <b><p id="result" style="display: inline">0</p></b>
+            <div style="float: right;">
+                <button class="btn btn-success">Save</button>
+                <button class="btn btn-danger">Reset</button>
+            </div>
+        </div>
     </div>
 </div>
+
+<script>
+    // AUTHORED BY Jan Sarmiento -- START
+    $(document).ready(function(){
+        // alert($('.mainTable tbody tr').size());
+        var control, row = ($('tbody td').length/$('tbody tr').length), checkBox = $('.mainTable tbody td input[type="checkbox"]');
+        for(var i = 0; i < $('.mainTable tbody tr').size(); i++){
+            $('.mainTable tbody tr td:nth-child(4)').eq(i).attr('id', 'val'+(i+1)).append(Math.floor((Math.random() * 15) + 1));
+            checkBox.eq(i).attr('value', 'val'+(i+1));
+            if(checkBox.eq(i).is(':checked'))
+            {
+                control = parseInt($('#result').text())+parseInt($('.mainTable tbody tr td:nth-child(4)').eq(i).text());
+                $('#result').empty().append(control);
+            }
+        }
+    })
+
+    $('.mainTable tbody input[type="checkbox"]').change(function(){
+        var test;
+        if($.isNumeric($('#'+this.value).text())){
+            if(this.checked)
+                test = parseInt($('#result').text())+parseInt($('#'+this.value).text());
+            else
+                test = parseInt($('#result').text())-parseInt($('#'+this.value).text());
+
+            if(test > 30){
+                test = '<font style="color: #C0392B;">'+test+'</font>';
+                $('#submitBtn').prop('disabled', true);
+            }
+            else
+                $('#submitBtn').prop('disabled', false);
+        }
+        else
+            test = '<font style="color: red;">Content is a non numeric value</font>';
+
+        $('#result').empty().append(test);
+    });
+    // AUTHORED BY Jan Sarmiento -- END
+</script>
