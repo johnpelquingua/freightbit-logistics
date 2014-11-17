@@ -105,7 +105,7 @@
             40 High-Capacity = 78 cubic meter / 22 Tons
         */
 
-        if(container.val() == '10'){
+        if(container.val() == '10 FOOTER'){
             maxWt = 9000;
             maxVol = 14;
         }
