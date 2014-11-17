@@ -52,7 +52,8 @@
                         <td><display:column title="Action">
                             <s:a><i class="fa fa-info-circle"></i></s:a>
                             <s:url var="viewConsolidationItemListUrl" action="viewConsolidationItemList">
-                                <%--<s:param name="containerIdParam" value="#attr.container.containerId"></s:param>--%>
+                                <s:param name="containerIdParam" value="%{#attr.container.containerId}"></s:param>
+                                <s:param name="containerSizeParam" value="%{#attr.container.containerSize}"></s:param>
                             </s:url>
                             <s:a href="%{viewConsolidationItemListUrl}"><i class="fa fa-dropbox"></i></s:a>
                             <s:a><i class="fa fa-print"></i></s:a>

@@ -30,6 +30,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
 	Map paramMap = new HashMap();
 
+	private String containerSizeParam;
 	private String orderNoParam;
 	private String editParam;
 	private Integer orderIdParam;
@@ -158,6 +159,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setDriverDestination(entity.getDriverDestination());
         formBean.setTruckOrigin(entity.getTruckOrigin());
         formBean.setTruckDestination(entity.getTruckDestination());
+        formBean.setVolume(entity.getVolume());
 
         return formBean;
     }
@@ -392,5 +394,13 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
     public VendorService getVendorService() {
         return vendorService;
+    }
+
+    public String getContainerSizeParam() {
+        return containerSizeParam;
+    }
+
+    public void setContainerSizeParam(String containerSizeParam) {
+        this.containerSizeParam = containerSizeParam;
     }
 }

@@ -57,16 +57,17 @@
                                             style="text-align: center;"> </display:column></td>
 
                     </display:table>
+                    <s:hidden id="containerType" value="%{containerSizeParam}"></s:hidden>
                 </div>
             </div>
         </div>
 
-        <div style="position: fixed; background-color: #ECF0F1; border-radius: 5px; padding: 15px; width: 40em; margin-top: 15em;">
-            Total weight (kg) : <b><p id="result" style="display: inline">0</p></b><br/>
-            Total volume (cbm) : <b><p id="result" style="display: inline">0</p></b>
-            <div style="float: right;">
+        <div style="box-shadow: 3px 3px 3px #888888; position: fixed; background-color: #ECF0F1; border-radius: 5px; padding: 15px; width: 40em; margin-top: 15em; z-index: 100;">
+            Total weight (kg) : <b><p id="result" style="display: inline">0</p></b> / <p style="display: inline" id="maxWt"></p> kg<br/>
+            Total volume (cbm) : <b><p id="result-vol" style="display: inline">0</p></b> / <p style="display: inline" id="maxVol"></p> cbm
+            <div style="float: right; margin-top: -1.2em;">
                 <button class="btn btn-success">Save</button>
-                <button class="btn btn-danger">Reset</button>
+                <button class="btn btn-danger" onclick="resetBox()">Reset</button>
             </div>
         </div>
     </div>
@@ -75,38 +76,84 @@
 <script>
     // AUTHORED BY Jan Sarmiento -- START
     $(document).ready(function(){
-        // alert($('.mainTable tbody tr').size());
-        var control, row = ($('tbody td').length/$('tbody tr').length), checkBox = $('.mainTable tbody td input[type="checkbox"]');
+        var conVol, conWt, maxWt, maxVol,
+                checkBox = $('.mainTable tbody td input[type="checkbox"]'),
+                child4 = $('.mainTable tbody tr td:nth-child(4)'),
+                child5 = $('.mainTable tbody tr td:nth-child(5)'),
+                weight = $('#result'),
+                volume = $('#result-vol'),
+                container = $('#containerType');
+
+        // this automatically measures the dimension of the table
+        // and appends id(for the 4th and 5th td) and value(for the checkbox)
         for(var i = 0; i < $('.mainTable tbody tr').size(); i++){
-            $('.mainTable tbody tr td:nth-child(4)').eq(i).attr('id', 'val'+(i+1)).append(Math.floor((Math.random() * 15) + 1));
+            child4.eq(i).attr('id', 'val'+(i+1));
+            child5.eq(i).attr('id', 'val'+(i+1)+'-vol');
             checkBox.eq(i).attr('value', 'val'+(i+1));
-            if(checkBox.eq(i).is(':checked'))
-            {
-                control = parseInt($('#result').text())+parseInt($('.mainTable tbody tr td:nth-child(4)').eq(i).text());
-                $('#result').empty().append(control);
+            if(checkBox.eq(i).is(':checked')){
+                conWt = parseInt(weight.text())+parseInt(child4.eq(i).text());
+                conVol = parseInt(volume.text())+parseInt(child5.eq(i).text());
+                weight.empty().append(conWt);
+                volume.empty().append(conVol);
             }
         }
+
+        /*
+            10 Footer = 14 cubic meter / 9 Tons
+            20 Footer = 28 cubic meter / 18 Tons
+            40 Standard Footer = 56 cubic meter / 20 Tons
+            40 High-Capacity = 78 cubic meter / 22 Tons
+        */
+
+        if(container.val() == '10'){
+            maxWt = 9000;
+            maxVol = 14;
+        }
+        else if(container.val() == '20 FOOTER'){
+            maxWt = 18000;
+            maxVol = 28;
+        }
+        else if(container.val() == '40 STD FOOTER'){
+            maxWt = 20000;
+            maxVol = 56;
+        }
+        else if(container.val() == '40 HC FOOTER'){
+            maxWt = 22000;
+            maxVol = 78;
+        }
+
+        $('#maxVol').empty().append(maxVol);
+        $('#maxWt').empty().append(maxWt);
+
+        // This function listens for change of the checkboxes within the tbody of the mainTable class
+        checkBox.change(function(){
+            var wt, vol;
+            if($.isNumeric($('#'+this.value).text()) && $.isNumeric($('#'+this.value+'-vol').text())){
+                if(this.checked){
+                    wt = parseInt(weight.text())+parseInt($('#'+this.value).text());
+                    vol = parseInt(volume.text())+parseInt($('#'+this.value+'-vol').text());
+                }
+                else{
+                    wt = parseInt(weight.text())-parseInt($('#'+this.value).text());
+                    vol = parseInt(volume.text())-parseInt($('#'+this.value+'-vol').text());
+                }
+            }
+
+            if(wt > maxWt)
+                wt = '<font style="color: red;">'+test+'</font>';
+
+            if(vol > maxVol)
+                vol = '<font style="color: red;">'+vol+'</font>';
+
+            weight.empty().append(wt);
+            volume.empty().append(vol);
+        });
     })
 
-    $('.mainTable tbody input[type="checkbox"]').change(function(){
-        var test;
-        if($.isNumeric($('#'+this.value).text())){
-            if(this.checked)
-                test = parseInt($('#result').text())+parseInt($('#'+this.value).text());
-            else
-                test = parseInt($('#result').text())-parseInt($('#'+this.value).text());
-
-            if(test > 30){
-                test = '<font style="color: #C0392B;">'+test+'</font>';
-                $('#submitBtn').prop('disabled', true);
-            }
-            else
-                $('#submitBtn').prop('disabled', false);
-        }
-        else
-            test = '<font style="color: red;">Content is a non numeric value</font>';
-
-        $('#result').empty().append(test);
-    });
+    function resetBox(){
+        $('.mainTable tbody td input[type="checkbox"]').removeAttr('checked');
+        $('#result').empty().append(0);
+        $('#result-vol').empty().append(0);
+    }
     // AUTHORED BY Jan Sarmiento -- END
 </script>
