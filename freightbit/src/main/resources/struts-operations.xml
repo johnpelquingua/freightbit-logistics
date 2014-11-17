@@ -372,24 +372,28 @@
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
-
         <action name="viewContainerInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewContainerInfo">
             <result name="success" type="tiles">operations.viewContainerInfo.tiles</result>
         </action>
-        <action name="viewContainerListTest" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewContainerListTest">
-            <result name="success" type="tiles">operations.viewContainerListTest.tiles</result>
-        </action>
+
+        <!--<action name="viewContainerListTest" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewContainerListTest">-->
+            <!--<result name="success" type="tiles">operations.viewContainerListTest.tiles</result>-->
+        <!--</action>-->
 
         <action name="deleteContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="deleteContainer">
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
         <action name="containerAdd" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="containerAdd">
-            <result name="success" type="redirect">viewContainerListTest</result>
+            <result name="success" type="redirect">viewContainerList</result>
         </action>
 
         <action name="loadSearchFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSearchFormPage">
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
+        </action>
+
+        <action name="loadAddFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadAddFormPage">
+            <result name="success" type="tiles">operations.containerAdd.tiles</result>
         </action>
 
         <action name="loadEditFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadEditFormPage">

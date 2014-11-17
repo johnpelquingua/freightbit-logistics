@@ -1338,6 +1338,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
 //    -----------------CONSOLIDATION MODULE-------------------------
 
+    public String loadAddFormPage() {
+        return SUCCESS;
+    }
+
     public String viewContainerList() {
         List<Container> containerList = new ArrayList<Container>();
         containerList = containerService.findAllContainer();
@@ -1365,13 +1369,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     /* test view container list*/
 
-    public String viewContainerListTest(){
-        List<Container> containerList = containerService.findAllContainer();
-        for (Container containerElem : containerList) {
-            containers.add(transformContainerToFormBean(containerElem));
-        }
-        return SUCCESS;
-    }
+//    public String viewContainerListTest(){
+//        List<Container> containerList = containerService.findAllContainer();
+//        for (Container containerElem : containerList) {
+//            containers.add(transformContainerToFormBean(containerElem));
+//        }
+//        return SUCCESS;
+//    }
 
     public String viewContainerInfo() {
         Container containerEntity = new Container();
@@ -1406,8 +1410,48 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setSealNumber(entity.getSealNumber());
         formBean.setVanLocation(entity.getVanLocation());
         formBean.setLadenEmpty(entity.getLadenEmpty());
+        formBean.setBookingNum(entity.getBookingNum());
+        formBean.setReceiptNumber(entity.getReceiptNumber());
+        formBean.setLadenEmpty(entity.getLadenEmpty());
+        formBean.setForkliftOperator(entity.getForkliftOperator());
+        formBean.setOperationsDept(entity.getOperationsDept());
 
         return formBean;
+    }
+
+    private Container transformContainerToEntityBean(ContainerBean formBean){
+
+        Container entity = new Container();
+
+        if(formBean.getContainerId() != null) {
+            entity.setContainerId(new Integer(formBean.getContainerId()));
+        }
+
+        entity.setEirNumber(formBean.getEirNumber());
+        entity.setReceiptNumber(formBean.getReceiptNumber());
+        entity.setDateTime(formBean.getDateTime());
+        entity.setShipping(formBean.getShipping());
+        entity.setVanNumber(formBean.getVanNumber());
+        entity.setEirType(formBean.getEirType());
+        entity.setVanLocation(formBean.getVanLocation());
+        entity.setTrucking(formBean.getTrucking());
+        entity.setPlateNumber(formBean.getPlateNumber());
+        entity.setDriver(formBean.getDriver());
+        entity.setBookingNum(formBean.getBookingNum());
+        entity.setSealNumber(formBean.getSealNumber());
+        entity.setOrderNumber(formBean.getOrderNumber());
+        entity.setRemarks(formBean.getRemarks());
+        entity.setLadenEmpty(formBean.getLadenEmpty());
+        entity.setVanTo(formBean.getVanTo());
+        entity.setVanFrom(formBean.getVanFrom());
+        entity.setForkliftOperator(formBean.getForkliftOperator());
+        entity.setOperationsDept(formBean.getOperationsDept());
+        entity.setContainerNumber(formBean.getContainerNumber());
+        entity.setContainerSize(formBean.getContainerSize());
+        entity.setContainerType(formBean.getContainerType());
+        entity.setSealNumber(formBean.getSealNumber());
+        entity.setLadenEmpty(formBean.getLadenEmpty());
+        return entity;
     }
 
 //    -----------------CONSOLIDATION MODULE-------------------------
@@ -1701,39 +1745,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    private Container transformContainerToEntityBean(ContainerBean formBean){
 
-        Container entity = new Container();
-        entity.setEirNumber(formBean.getEirNumber());
-        entity.setReceiptNumber(formBean.getReceiptNumber());
-        entity.setDateTime(formBean.getDateTime());
-        entity.setShipping(formBean.getShipping());
-        entity.setVanNumber(formBean.getVanNumber());
-        entity.setEirType(formBean.getEirType());
-        entity.setVanLocation(formBean.getVanLocation());
-        entity.setTrucking(formBean.getTrucking());
-        entity.setPlateNumber(formBean.getPlateNumber());
-        entity.setDriver(formBean.getDriver());
-        entity.setBookingNum(formBean.getBookingNum());
-        entity.setSealNumber(formBean.getSealNumber());
-        entity.setOrderNumber(formBean.getOrderNumber());
-        entity.setRemarks(formBean.getRemarks());
-        entity.setLadenEmpty(formBean.getLadenEmpty());
-        entity.setVanTo(formBean.getVanTo());
-        entity.setVanFrom(formBean.getVanFrom());
-        entity.setForkliftOperator(formBean.getForkliftOperator());
-        entity.setOperationsDept(formBean.getOperationsDept());
-        entity.setContainerNumber(formBean.getContainerNumber());
-        entity.setContainerSize(formBean.getContainerSize());
-        entity.setContainerType(formBean.getContainerType());
-        entity.setSealNumber(formBean.getSealNumber());
-        entity.setLadenEmpty(formBean.getLadenEmpty());
-        return entity;
+    public String save() {
+        return SUCCESS;
     }
-    public String save() { return SUCCESS; }
     public String loadSearchFormPage() {
         return SUCCESS;
     }
+
     public String loadEditFormPage() {
         Container containerEntity = containerService.findContainerById(containerIdParam);
         container = transformContainerToFormBean(containerEntity);

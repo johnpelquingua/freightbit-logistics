@@ -165,19 +165,24 @@
         <put-attribute name="body" value="/operations/yard_logs/yardList.jsp"/>
     </definition>
 
-    <!--    <definition name="operations.viewContainerInfo.tiles" extends="baseLayout">
-            <put-attribute name="title" value="Container Management"/>
-            <put-attribute name="body" value="/operations/container/containerInfo.jsp"/>
-        </definition>
-        -->
-    <definition name="operations.viewContainerListTest.tiles" extends="baseLayout">
+    <definition name="operations.viewContainerInfo.tiles" extends="baseLayout">
         <put-attribute name="title" value="Container Management"/>
         <put-attribute name="body" value="/operations/container/containerInfo.jsp"/>
     </definition>
 
+    <!--<definition name="operations.viewContainerListTest.tiles" extends="baseLayout">-->
+        <!--<put-attribute name="title" value="Container Management"/>-->
+        <!--<put-attribute name="body" value="/operations/container/containerInfo.jsp"/>-->
+    <!--</definition>-->
+
     <definition name="operations.viewContainerList.tiles" extends="baseLayout">
         <put-attribute name="title" value="Container Management"/>
         <put-attribute name="body" value="/operations/container/containerList.jsp"/>
+    </definition>
+
+    <definition name="operations.containerAdd.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Container Management"/>
+        <put-attribute name="body" value="/operations/container/containerAdd.jsp"/>
     </definition>
 
     <definition name="operations.documentsList.tiles" extends="baseLayout">

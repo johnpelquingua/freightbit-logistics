@@ -31,126 +31,104 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> EIR Forms
+                <h3 class="panel-title"><i class="fa fa-list"></i> Container: <s:property value="container.vanNumber"></s:property>
                 </h3>
-                <span class="pull-right">
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                    <button type="button" class="btn btn-primary new-booking"
-                    <input type=button onClick="parent.location='http://localhost:8080/freightbit/operations/viewContainerList.action'">
-                    <i class="fa fa-male"></i> Create New EIR Form
-                    </button>
-                </sec:authorize>
-                </span>
             </div>
             <div class="panel-body">
-                <div class="table-responsive list-table">
-                    <tbody>
-                    <table>
-                        <tr>
-                            <display:table id="container" name="containers" requestURI="viewContainerListTest.action"
-                                           pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter"
-                                           style="margin-top: 15px;">
-                                <td><display:column property="eirType" title="EIR Type <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="receiptNumber" title="Receipt Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="shipping" title="Shipping Line <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vanNumber" title="Van Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="eirNumber" title="EIR Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vanLocation" title="Van Location <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="trucking" title="Trucking <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="plateNumber" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="bookingNum" title="Booking No. <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="sealNumber" title="Seal Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="ladenEmpty" title="Laden / Empty <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vanTo" title="Van To <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vanFrom" title="Van From <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td>
-                                <display:column title="Action">
-                                    <s:url var="editContainerUrl" action="loadEditCustomerPage">
-                                        <s:param name="customerCodeParam"
-                                                 value="#attr.customer.customerCode"></s:param>
-                                    </s:url>
-                                    <sec:authorize
-                                            access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                                        <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip"
-                                             title="Edit this Customer">
-                                            <i class="fa fa-pencil"></i>
-                                        </s:a>
-                                    </sec:authorize>
-                                    <s:url var="viewContainerInfoUrl" action="viewContainerInfo">
-                                        <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
-                                    </s:url>
-                                    <s:a href="%{viewContainerInfoUrl}" title="Container Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-2">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-lg-3">
+                                    <div align="center" style="margin-top: 10px;">
+                                        <div align="center" style="margin-top: 10px;">
+                                            <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
+                                        </div>
+                                    </div>
+                                </div>
 
-                                    <s:url var="deleteContainerUrl" action="deleteContainer">
-                                        <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
-                                    </s:url>
-                                    <s:a href="%{deleteContainerUrl}" title="Delete Container" onclick="return confirm('Do you really want to delete?');" rel="tooltip"><i class="fa fa-trash-o"></i></s:a>
-                                </display:column>
-                                </td>
-                            </display:table>
-                        </tr>
-                    </table>
-                    </tbody>
+                                <div class="col-lg-9">
+                                    <table class="table table-user-information profile" style="margin-top: 10px;">
+                                        <tbody>
+                                        <tr>
+                                            <td class="header">EIR Type:</td>
+                                            <td><s:property value="container.eirType"></s:property></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Receipt Number:</td>
+                                            <td><s:property value="container.receiptNumber"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Shipping Line:</td>
+                                            <td><s:property value="container.shipping"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Van Number:</td>
+                                            <td><s:property value="container.vanNumber"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">EIR Number:</td>
+                                            <td><s:property value="container.eirNumber"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Van Location:</td>
+                                            <td><s:property value="container.vanLocation"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Trucking:</td>
+                                            <td><s:property value="container.trucking"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Plate Number:</td>
+                                            <td><s:property value="container.plateNumber"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Driver:</td>
+                                            <td><s:property value="container.driver"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Booking Number:</td>
+                                            <td><s:property value="container.bookingNum"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Seal Number:</td>
+                                            <td><s:property value="container.sealNumber"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Remarks:</td>
+                                            <td><s:property value="container.remarks"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Laden / Empty:</td>
+                                            <td><s:property value="container.ladenEmpty"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Van To:</td>
+                                            <td><s:property value="container.vanTo"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Van From:</td>
+                                            <td><s:property value="container.vanFrom"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Forklift Operator:</td>
+                                            <td><s:property value="container.forkliftOperator"></s:property> </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="header">Operations Dept.:</td>
+                                            <td><s:property value="container.operationsDept"></s:property> </td>
+                                        </tr>
+                                        </tbody>
 
-                </div>
-            </div>
-            <div class="panel-footer">
-
-                <span class="pull-right">
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                    <button type="button" class="btn btn-primary new-booking"
-                            onclick="location.href='viewContainerList'">
-                        <i class="fa fa-male"></i> Create New EIR Form
-                    </button>
-                </sec:authorize>
-                </span>
-
-                <div class="table-responsive" >
-                    <div class="col-lg-12" style="position:relative;margin-top: -28px;">
-                        <table class="col-lg-6">
-                            <tr>
-                                <td><label>Legend:</label></td>
-                                <td><i class="fa fa-pencil"></i> Edit</td>
-                                <td><i class="fa fa-trash-o"></i> Delete</td>
-                                <td><i class="fa fa-info-circle"></i> Information</td>
-                            </tr>
-                        </table>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-
-    $(document).ready(function() {
-        /*color coding of rows*/
-        var tbl = document.getElementById("container");
-        if (tbl != null) {
-            for (var i = 0; i < tbl.rows.length; i++) {
-                if ($("#alert").length) {
-                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[1].cells[j].style.backgroundColor = "#dff0d8";
-                    }
-                }
-            }
-        }
-    });
-
-</script>
