@@ -18,7 +18,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> <a href="<s:url action='../containerInfo' />"> Container Management </a></li>
+            <li class="active"> <a href="<s:url action='../viewContainerList' />"> Container Management </a></li>
             <li class="active"> Container Lists </li>
         </ol>
     </div>
@@ -89,30 +89,48 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Receipt Number: </label>
                             <div class="col-lg-8" >
                                 <s:textfield name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Date: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Date: </label>
                             <div class="col-lg-8" >
-                                <%--<s:textfield name="container.dateTime" cssClass="form-control" id="container.dateTime" />--%>
+                                <s:textfield name="container.dateTime" cssClass="form-control" id="dateTime" />
                             </div>
+                            <script type="text/javascript">
+                                $(function () {
+                                    var fromDatePickUp = $('#dateTime');
+                                    fromDatePickUp.datetimepicker({
+                                        timeFormat: 'h:mm TT',
+                                        minDate: 0
+                                    });
+                                });
+                            </script>
+                            <%--<script type="text/javascript">
+                                $(function() {
+                                    var fromDatePickUp = $('#dateTime');
+                                    fromDatePickUp.datepicker({
+                                        timeFormat: 'h:mm TT',
+                                        minDate: 0
+                                    });
+                                });
+                            </script>--%>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Number: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Number: </label>
                             <div class="col-lg-8" >
                                 <s:textfield name="container.eirNumber" cssClass="form-control" id="container.eirNumber" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Van Location: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Van Location: </label>
                             <div class="col-lg-8" >
                                 <s:textfield name="container.vanLocation" cssClass="form-control" id="container.vanLocation" />
                             </div>
@@ -120,7 +138,7 @@
 
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Trucking: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Trucking: </label>
                             <div class="col-lg-8" >
                                 <s:textfield name="container.trucking" cssClass="form-control" id="container.trucking" />
                             </div>
@@ -128,7 +146,7 @@
 
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number: </label>
                             <div class="col-lg-8" >
                                 <s:textfield name="container.plateNumber" cssClass="form-control" id="container.plateNumber" />
                             </div>
@@ -143,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>\
             <div class="panel-footer">
                 <div class="pull-right">
                     <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Cancel</a>
@@ -151,8 +169,6 @@
                 </div>
             </div>
         </div>
-
-
         </s:form>
     </div>
 </div>

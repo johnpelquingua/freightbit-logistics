@@ -394,6 +394,11 @@
             <result name="success" type="redirect">viewContainerList</result>
         </action>
 
+        <action name="searchContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="searchContainer">
+            <result name="input" type="tiles">operations.containerSearch.tiles</result>
+            <result name="success" type="redirect">viewContainerList</result>
+        </action>
+
         <action name="loadSearchFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSearchFormPage">
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
@@ -408,6 +413,10 @@
 
         <action name="loadEditFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadEditFormPage">
             <result name="success" type="tiles">operations.loadEditForm.tiles</result>
+        </action>
+
+        <action name="loadPrintFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadPrintFormPage">
+            <result name="success" type="tiles">operations.loadPrintForm.tiles</result>
         </action>
 
         <action name="save" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="save">

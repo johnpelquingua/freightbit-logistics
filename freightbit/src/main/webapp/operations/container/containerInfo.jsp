@@ -6,7 +6,7 @@
 
         <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-male"></i> Customer Module</h1>
+               <h1><i class="fa fa-male"></i> Container Information</h1>
             </span>
         </legend>
         <ol class="breadcrumb">
@@ -40,66 +40,78 @@
                         <s:param name="containerIdParam"
                                  value="#attr.container.containerId"></s:param>
                     </s:url>
-                        <sec:authorize
-                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                            <s:a href="%{editContainerUrl}" cssClass="btn btn-success new-booking" rel="tooltip"
-                                 title="Edit this EIR Form">
-                                <i class="fa fa-pencil"></i> Edit EIR Form
-                            </s:a>
-                        </sec:authorize>
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                    <%--<s:a class="icon-action-link" href="%{loadEditFormPageUrl}" rel="tooltip" title="Edit Form">
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa fa-home"> </i> Edit EIR Form
+                        </button>--%>
+                        <s:a href="%{editContainerUrl}" cssClass="btn btn-success new-booking" rel="tooltip"
+                             title="Edit this EIR Form">
+                            <i class="fa fa-pencil"></i> Edit EIR Form
+                    </s:a>
+                    </sec:authorize>
+                    <s:url var="loadPrintFormPageUrl" action="loadPrintFormPage">
+                    </s:url>
+                    <s:a class="icon-action-link" href="%{loadPrintFormPageUrl}" rel="tooltip" title="Print Form">
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa fa-home"> </i> Print EIR Form
+                        </button>
+                    </s:a>
+
                 </span>
             </div>
 
             <div class="panel-body">
 
                 <div class="row">
+                        <div class="col-lg-6 col-lg-offset-2">
 
-                    <div class="col-lg-6 col-lg-offset-2">
+                            <div class="panel panel-info ">
 
-                        <div class="panel panel-info ">
+                                <div class="row">
+                                    <div class="col-lg-12">
 
-                            <div class="row">
-                                <div class="col-lg-12">
-
-                                    <div class="col-lg-3">
-                                        <div align="center" style="margin-top: 10px;">
+                                        <div class="col-lg-3">
                                             <div align="center" style="margin-top: 10px;">
-                                                <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
+                                                <div align="center" style="margin-top: 10px;">
+                                                    <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-lg-9">
+                                        <div class="col-lg-9">
 
-                                        <table class="table table-user-information profile" style="margin-top: 10px;">
-                                            <tbody>
-                                            <tr>
-                                                <td class="header" style="font-weight:Bold; font-size: 12px; border-top: none; text-align: left !important;">EIR Type</td>
-                                                <td style="border-top: none;"><s:property value="container.eirType"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Container Number</td>
-                                                <td style="text-transform:uppercase"><s:property value="container.containerNumber" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">ContainerSize</td>
-                                                <td><s:property value="container.containerSize"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Container Status</td>
-                                                <td><s:property value="container.containerStatus"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Shipping Line</td>
-                                                <td><s:property value="container.shipping"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Port Code</td>
-                                                <td><s:property value="container.portCode"/></td>
-                                            </tr>
-                                            </tbody>
-                                            <s:set name="containerId" value="%{container.containerId}" scope="session"/>
-                                        </table>
+                                            <table class="table table-user-information profile" style="margin-top: 10px;">
+                                                <tbody>
+                                                <tr>
+                                                    <td class="header" style="font-weight:Bold; font-size: 12px; border-top: none; text-align: left !important;">EIR Type</td>
+                                                    <td style="border-top: none;"><s:property value="container.eirType"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Container Number</td>
+                                                    <td style="text-transform:uppercase"><s:property value="container.containerNumber" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">ContainerSize</td>
+                                                    <td><s:property value="container.containerSize"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Container Status</td>
+                                                    <td><s:property value="container.containerStatus"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Shipping Line</td>
+                                                    <td><s:property value="container.shipping"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Port Code</td>
+                                                    <td><s:property value="container.portCode"/></td>
+                                                </tr>
+                                                </tbody>
+                                                <s:set name="containerId" value="%{container.containerId}" scope="session"/>
+                                            </table>
+
+                                        </div>
 
                                     </div>
 
@@ -108,26 +120,13 @@
                             </div>
 
                         </div>
-
-                    </div>
-
-                    <div class="col-lg-2 col-lg-offset-2">
-                        <div class="panel panel-info" >
-                            <div class="panel-footer">
-                                <div class="pull-right">
-                                    <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Back To Container List</a>
-                                </div>
-                            </div>
-
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-
+                <div class="panel-footer">
+                <span class="pull-right">
+                    <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Return to Container Lists</a>
+                </span>
+                </div>
             </div>
-
         </div>
     </div>
-
 </div>
