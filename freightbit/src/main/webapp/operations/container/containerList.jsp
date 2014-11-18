@@ -59,52 +59,41 @@
                                            style="margin-top: 15px;">
                                 <td><display:column property="eirType" title="EIR Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="receiptNumber" title="Receipt Number <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="containerNumber" title="Container Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="containerSize" title="Container Size <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="containerStatus" title="Container Status <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="shipping" title="Shipping Line <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vanNumber" title="Van Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="eirNumber" title="EIR Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vanLocation" title="Van Location <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="trucking" title="Trucking <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="plateNumber" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="bookingNum" title="Booking No. <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="sealNumber" title="Seal Number <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="ladenEmpty" title="Laden / Empty <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vanTo" title="Van To <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vanFrom" title="Van From <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="portCode" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td>
                                     <display:column title="Action">
-                                        <s:url var="editContainerUrl" action="loadEditCustomerPage">
-                                            <s:param name="customerCodeParam"
-                                                     value="#attr.customer.customerCode"></s:param>
+                                        <s:url var="editContainerUrl" action="loadEditFormPage">
+                                            <s:param name="containerIdParam"
+                                                     value="#attr.container.containerId"></s:param>
                                         </s:url>
                                         <sec:authorize
                                                 access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                                            <s:a href="%{editCustomerUrl}" class="icon-action-link" rel="tooltip"
-                                                 title="Edit this Customer">
+                                            <s:a href="%{editContainerUrl}" class="icon-action-link" rel="tooltip"
+                                                 title="Edit this EIR Form">
                                                 <i class="fa fa-pencil"></i>
                                             </s:a>
                                         </sec:authorize>
-                                        <s:url var="viewContainerInfoUrl" action="viewContainerInfo">
-                                            <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
-                                        </s:url>
-                                        <s:a href="%{viewContainerInfoUrl}" title="Container Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
 
                                         <s:url var="deleteContainerUrl" action="deleteContainer">
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
                                         </s:url>
                                         <s:a href="%{deleteContainerUrl}" title="Delete Container" onclick="return confirm('Do you really want to delete?');" rel="tooltip"><i class="fa fa-trash-o"></i></s:a>
+
+                                        <s:url var="viewContainerInfoUrl" action="viewContainerInfo">
+                                            <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
+                                        </s:url>
+                                        <s:a href="%{viewContainerInfoUrl}" title="Container Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
+
+
                                     </display:column>
                                 </td>
                             </display:table>
@@ -118,14 +107,15 @@
 
                 <span class="pull-right">
 
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchContainerPage'">
-                        <i class="fa fa-search"></i> Search Container
-                    </button>
-                    <button type="button" class="btn btn-primary new-booking"
-                            onclick="location.href='viewContainerList'">
-                        <i class="fa fa-male"></i> Create New EIR Form
-                    </button>
+                
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                    <s:url var="loadAddFormPageUrl" action="loadAddFormPage">
+                    </s:url>
+                    <s:a class="icon-action-link" href="%{loadAddFormPageUrl}" rel="tooltip" title="New Container">
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa fa-home"> </i> Create New EIR Form
+                        </button>
+                    </s:a>
                 </sec:authorize>
                 </span>
 

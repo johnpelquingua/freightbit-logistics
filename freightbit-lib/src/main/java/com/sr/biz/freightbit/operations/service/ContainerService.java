@@ -23,5 +23,7 @@ public interface ContainerService {
 
     public Container findContainerById(Integer containerId);
 
+    public List<Container> findContainerByPortCode(String portCode);
+
     public List<Container> findContainerByCriteria(String column, String value);
 }

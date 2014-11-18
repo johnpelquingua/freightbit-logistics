@@ -2,6 +2,7 @@ package com.sr.biz.freightbit.operations.dao.impl;
 
 import com.sr.biz.freightbit.operations.dao.ContainerDao;
 import com.sr.biz.freightbit.operations.entity.Container;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,7 +23,7 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
     private static final Logger Log = Logger.getLogger(ContainerDaoImpl.class);
 
     @Override
-    public void addContainer(Container container){
+    public void addContainer(Container container) {
         Log.debug("Adding new Container");
         try {
             Session session = getSessionFactory().getCurrentSession();
@@ -68,7 +69,7 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
     }
 
     @Override
-    public void deleteContainer(Container container) {
+    public void deleteContainer(Container container){
         Log.debug("Deleting a Container");
         try {
             Session session = getSessionFactory().getCurrentSession();
@@ -120,6 +121,22 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
             throw e;
         }
     }
+
+    @Override
+    public List<Container> findContainerByPortCode(String portCode) {
+        Log.debug("Finding Container via portCode");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where portCode = :portCode");
+            query.setParameter("portCode", portCode);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by orderNumber successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by orderNumber failed", e);
+            throw e;
+        }
+    }
+
     public List<Container> findContainerByReceiptNumber(String receiptNumber) {
         Log.debug("Finding Container via receiptNumber");
         try {
@@ -158,20 +175,6 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
             return results;
         } catch (Exception e) {
             Log.error("Find Container by vanNumber failed", e);
-            throw e;
-        }
-    }
-
-    public List<Container> findContainerByEIRNumber2(String eirNumber2) {
-        Log.debug("Finding Container via eirNumber2");
-        try {
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where eirNumber2 = :eirNumber2");
-            query.setParameter("eirNumber2", eirNumber2);
-            List<Container> results = (List<Container>) query.list();
-            Log.debug("Find Container by eirNumber2 successful, result size: " + results.size());
-            return results;
-        } catch (Exception e) {
-            Log.error("Find Container by eirNumber2 failed", e);
             throw e;
         }
     }
@@ -218,6 +221,7 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
         }
     }
 
+    @Override
     public List<Container> findContainerByDriver(String driver) {
         Log.debug("Finding Container via driver");
         try {
@@ -229,6 +233,7 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
         } catch (Exception e) {
             Log.error("Find Container by driver failed", e);
             throw e;
+
         }
     }
 

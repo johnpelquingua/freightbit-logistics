@@ -1401,10 +1401,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public ContainerBean transformContainerToFormBean(Container entity) {
-        ContainerBean formBean = new ContainerBean();
 
+        ContainerBean formBean = new ContainerBean();
         formBean.setContainerId(entity.getContainerId());
         formBean.setEirNumber(entity.getEirNumber());
+        //formBean.setPortCode(entity.getPortCode());
         formBean.setDateTime(entity.getDateTime());
         formBean.setShipping(entity.getShipping());
         formBean.setTrucking(entity.getTrucking());
@@ -1445,6 +1446,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setShipping(formBean.getShipping());
         entity.setVanNumber(formBean.getVanNumber());
         entity.setEirType(formBean.getEirType());
+        //entity.setPortCode(formBean.getPortCode();
         entity.setVanLocation(formBean.getVanLocation());
         entity.setTrucking(formBean.getTrucking());
         entity.setPlateNumber(formBean.getPlateNumber());
@@ -1757,6 +1759,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String editContainer() throws Exception {
+
+        Container containerEntity  = transformContainerToEntityBean(container);
+        containerService.updateContainer(containerEntity);
+        addActionMessage("Success! New Form has been edited.");
+        return SUCCESS;
+    }
 
     public String save() {
         return SUCCESS;

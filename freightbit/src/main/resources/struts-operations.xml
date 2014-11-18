@@ -385,6 +385,12 @@
         </action>
 
         <action name="containerAdd" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="containerAdd">
+            <result name="input" type="tiles">operations.containerAdd.tiles</result>
+            <result name="success" type="redirect">viewContainerList</result>
+        </action>
+
+        <action name="editContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editContainer">
+            <result name="input" type="tiles">operations.loadEditForm.tiles</result>
             <result name="success" type="redirect">viewContainerList</result>
         </action>
 
@@ -401,7 +407,7 @@
         </action>
 
         <action name="loadEditFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadEditFormPage">
-            <result name="success" type="tiles">operations.viewContainerListTest.tiles</result>
+            <result name="success" type="tiles">operations.loadEditForm.tiles</result>
         </action>
 
         <action name="save" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="save">

@@ -22,8 +22,8 @@ public class ContainerServiceImpl implements ContainerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void addContainer(Container container) {
-/*        if (containerDao.findContainerByEIRNumber(container.getEirNumber()).size() > 0) {
+    public void addContainer(Container container) throws Exception {
+ /*       if (containerDao.findContainerByEIRNumber(container.getEirNumber()).size() > 0) {
             throw new ContainerAlreadyExistsException(container.getEirNumber());
         } else {
 
@@ -34,11 +34,12 @@ public class ContainerServiceImpl implements ContainerService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateContainer(Container container) {
-        if (containerDao.findContainerByEIRNumber(container.getEirNumber()).size() > 0) {
+/*        if (containerDao.findContainerByEIRNumber(container.getEirNumber()).size() > 0) {
             throw new ContainerAlreadyExistsException(container.getEirNumber());
         } else {
-            containerDao.updateContainer(container);
-        }
+
+        }*/
+        containerDao.updateContainer(container);
     }
 
     @Override
@@ -66,8 +67,8 @@ public class ContainerServiceImpl implements ContainerService {
     }
 
 
-    public List<Container> findContainerByEIRNumber2(String eirNumber2){
-        List<Container> containers = containerDao.findContainerByEIRNumber2(eirNumber2);
+    public List<Container> findContainerByPortCode(String portCode) {
+        List<Container> containers = containerDao.findContainerByPortCode(portCode);
         return containers;
     }
 
