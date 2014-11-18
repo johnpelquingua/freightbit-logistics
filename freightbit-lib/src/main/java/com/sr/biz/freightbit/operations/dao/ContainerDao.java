@@ -27,14 +27,6 @@ public interface ContainerDao {
 
     public List<Container> findContainerBySealNumber(String sealNumber);
 
-    public List<Container> findContainerByContainerNumber(String containerNumber);
-
-    public List<Container> findContainerByContainerSize(String containerSize);
-
-    public List<Container> findContainerByContainerType(String containerType);
-
-    public List<Container> findContainerByContainerStatus(String containerStatus);
-
     public List<Container> findContainerByShipping(String shipping);
 
     public List<Container> findContainerByTrucking(String trucking);

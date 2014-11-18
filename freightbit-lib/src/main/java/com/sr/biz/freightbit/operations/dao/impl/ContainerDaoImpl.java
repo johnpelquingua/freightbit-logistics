@@ -49,26 +49,6 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
     }
 
     @Override
-    public List<Container> findContainerByContainerNumber(String containerNumber) {
-        return null;
-    }
-
-    @Override
-    public List<Container> findContainerByContainerSize(String containerSize) {
-        return null;
-    }
-
-    @Override
-    public List<Container> findContainerByContainerType(String containerType) {
-        return null;
-    }
-
-    @Override
-    public List<Container> findContainerByContainerStatus(String containerStatus) {
-        return null;
-    }
-
-    @Override
     public void deleteContainer(Container container){
         Log.debug("Deleting a Container");
         try {

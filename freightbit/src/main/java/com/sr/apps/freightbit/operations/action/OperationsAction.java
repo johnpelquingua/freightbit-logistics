@@ -1754,7 +1754,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String containerAdd(){
 
         Container containerEntity  = transformContainerToEntityBean(container);
-        containerService.addContainer(containerEntity);
+        try {
+            containerService.addContainer(containerEntity);
+        } catch (Exception e) {
+            return INPUT;
+        }
+
         addActionMessage("Success! New Form has been added.");
         return SUCCESS;
     }
