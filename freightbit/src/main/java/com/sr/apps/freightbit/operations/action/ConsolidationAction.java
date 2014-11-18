@@ -16,6 +16,7 @@ import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.service.OrderService;
 import com.sr.biz.freightbit.vendor.service.VendorService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -59,10 +60,12 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	private ContainerService containerService;
     private VendorService vendorService;
 
+    private List<Parameters> containerSearchList = new ArrayList<Parameters>();
+
     private String[] check;
 	@Override
 	public void prepare() throws Exception {
-
+        containerSearchList = parameterService.getParameterMap("CONTAINERS", "CONTAINER_SEARCH");
     }
 
 	public String updateStatusOfContainers() {
@@ -132,13 +135,32 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	}
 
     public String viewConsolidationContainerList() {
-        List<Container> containerList = new ArrayList<Container>();
-        containerList = containerService.findAllContainer();
+        String column = getColumnFilter();
 
+        List<Container> containerList = new ArrayList<Container>();
+
+        if (StringUtils.isNotBlank(column)) {
+            containerList = containerService.findContainerByCriteria(column, container.getContainerKeyword());
+        } else {
+            containerList = containerService.findAllContainer();
+        }
         for (Container containerElem : containerList) {
             containers.add(transformContainerToFormBean(containerElem));
         }
         return SUCCESS;
+    }
+
+    public String getColumnFilter() {
+        String column = "";
+        if ("CONTAINER NUMBER".equals(container.getContainerSearchCriteria())) {
+            column = "containerNumber";
+        } else if ("SIZE".equals(container.getContainerSearchCriteria())) {
+            column = "containerSize";
+        } else if ("STATUS".equals(container.getContainerSearchCriteria())) {
+            column = "containerSTATUS";
+        }
+
+        return column;
     }
 
     public String viewConsolidationItemList() {
@@ -153,6 +175,10 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
             orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
             System.out.println(orderItemElem.getNameSize());
         }
+        return SUCCESS;
+    }
+
+    public String loadConsolidationContainerSearch() {
         return SUCCESS;
     }
 
@@ -446,5 +472,13 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
     public void setCheck(String[] check) {
         this.check = check;
+    }
+
+    public List<Parameters> getContainerSearchList() {
+        return containerSearchList;
+    }
+
+    public void setContainerSearchList(List<Parameters> containerSearchList) {
+        this.containerSearchList = containerSearchList;
     }
 }

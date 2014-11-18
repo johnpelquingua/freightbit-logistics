@@ -112,6 +112,9 @@
                     <s:url var="loadAddFormPageUrl" action="loadAddFormPage">
                     </s:url>
                     <s:a class="icon-action-link" href="%{loadAddFormPageUrl}" rel="tooltip" title="New Container">
+                        <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchContainerPage'">
+                            <i class="fa fa-search"></i> Search Container
+                        </button>
                         <button type="button" class="btn btn-primary">
                             <i class="fa fa-home"> </i> Create New EIR Form
                         </button>

@@ -12,7 +12,7 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-exchange"></i> Container Management </h1>
+               <h1><i class="fa fa-exchange"></i> Consolidation </h1>
             </span>
         </legend>
         <ol class="breadcrumb">
@@ -28,7 +28,12 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> Container List</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Consolidation Container List</h3>
+                <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadConsolidationContainerSearch'">
+                        <i class="fa fa-search"></i> Search Container
+                    </button>
+                </span>
             </div>
 
             <div class="panel-body">
@@ -62,6 +67,13 @@
 
                     </display:table>
                 </div>
+            </div>
+            <div class="panel-footer">
+                <span class="pull-right">
+                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadConsolidationContainerSearch'">
+                        <i class="fa fa-search"></i> Search Container
+                    </button>
+                </span>
             </div>
         </div>
     </div>
