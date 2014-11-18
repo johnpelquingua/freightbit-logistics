@@ -59,6 +59,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	private ContainerService containerService;
     private VendorService vendorService;
 
+    private String[] check;
 	@Override
 	public void prepare() throws Exception {
 
@@ -67,29 +68,60 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	public String updateStatusOfContainers() {
 
 		Map sessionAttributes = ActionContext.getContext().getSession();
+
 		Integer containerId = (Integer) sessionAttributes.get("containerIdParam");
 
-		//shows container id
-		Container containerEntity = containerService.findContainerById(containerId);
+        List<Integer> itemId = new ArrayList<Integer>();
 
-		//change status to FULL LOAD
-		containerEntity.setContainerStatus("FULL LOAD");
-		containerService.updateContainer(containerEntity);
+        if (check == null) {
 
-		container = transformToContainerFormBean(containerEntity);
-		// displays order items under orders
-		List<Container> containerList = new ArrayList<Container>();
+            return INPUT;
+        } else {
 
-		containerList = (List<Container>) containerService.findContainerById(containerId);
+            for (String everyItemId : check) {
+                itemId.add(Integer.parseInt(everyItemId));
+            }
 
-		for(Container containerItemsLst : containerList) {
-			orderItems.add(transformToContainerFormBean(containerItemsLst));
-		}
+            //shows container id
+            Container containerEntity = containerService.findContainerById(containerId);
+
+            //change status to FULL LOAD
+            containerEntity.setContainerStatus("CONSOLIDATED");
+            containerService.updateContainer(containerEntity);
+
+            for (Integer id : itemId) {
+                OrderItems updateItem = orderService.findOrderItemByOrderItemId(id);
+                updateItem.setContainerId(containerId);
+                operationsService.updateOrderItem(updateItem);
+            }
+
+            List<Container> containerList = new ArrayList<Container>();
+            containerList = containerService.findAllContainer();
+
+            for (Container containerElem : containerList) {
+                containers.add(transformContainerToFormBean(containerElem));
+            }
+        }
+
 		clearErrorsAndMessages();
 		addActionMessage("Success");
 
 		return SUCCESS;
 	}
+
+    public String updateStatusOfContainersError() {
+        clearErrorsAndMessages();
+        addActionMessage("Please choose an Item to consolidate");
+
+        List<OrderItems> orderItems = new ArrayList<OrderItems>();
+        orderItems = orderService.findAllOrderItemLCL();
+
+        for (OrderItems orderItemElem : orderItems) {
+            orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+            System.out.println(orderItemElem.getNameSize());
+        }
+        return SUCCESS;
+    }
 
 	public ContainerBean transformToContainerFormBean(Container entity) {
 
@@ -112,6 +144,10 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
     public String viewConsolidationItemList() {
         List<OrderItems> orderItems = new ArrayList<OrderItems>();
         orderItems = orderService.findAllOrderItemLCL();
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("containerSizeParam", containerSizeParam);
+        sessionAttributes.put("containerIdParam", containerIdParam);
 
         for (OrderItems orderItemElem : orderItems) {
             orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
@@ -402,5 +438,13 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
     public void setContainerSizeParam(String containerSizeParam) {
         this.containerSizeParam = containerSizeParam;
+    }
+
+    public String[] getCheck() {
+        return check;
+    }
+
+    public void setCheck(String[] check) {
+        this.check = check;
     }
 }

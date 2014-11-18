@@ -201,12 +201,12 @@
     </definition>
 
     <definition name="operations.consolidationContainerList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Available Documents"/>
+        <put-attribute name="title" value="Consolidation"/>
         <put-attribute name="body" value="/operations/consolidation/consolidationContainerList.jsp"/>
     </definition>
 
     <definition name="operations.consolidationItemList.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Available Documents"/>
+        <put-attribute name="title" value="Consolidation"/>
         <put-attribute name="body" value="/operations/consolidation/consolidationItemList.jsp"/>
     </definition>
 
