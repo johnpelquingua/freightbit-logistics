@@ -51,14 +51,13 @@
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.itemCode" id="item_itemCode" required="true"
-                                             cssClass="form-control" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
+                                             cssClass="form-control" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only"/>
                             </div>
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Weight (kg)<span class="asterisk_red"></span></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.weight" id="item.weight" required="true"
-                                             cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.srp" id="item_srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Quality is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <%--<label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)</label>--%>
@@ -77,11 +76,12 @@
                                              cssClass="form-control"/>
                             </div>--%>
 
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Weight (kg)<span class="asterisk_red"></span></label>
 
-                            <div class="col-lg-3">
-                                <s:textfield name="item.srp" id="item_srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Quality is not valid" onkeypress="return isNumberKey(event)"/>
-                            </div>
+                                <div class="col-lg-3">
+                                    <s:textfield name="item.weight" id="item.weight" required="true"
+                                                 cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
+                                </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Length (m)<span class="asterisk_red"></span></label>
 
@@ -166,19 +166,15 @@
         $("#item_srp").maskMoney();
     });
 
-    $("#item_itemCode").keyup(function(){
+    $('#item_itemCode').bind('keypress', function (event) {
         this.value=this.value.toUpperCase();
-    });
-
-
-    function alphaKeyOnly(evt)
-    {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if ((charCode > 32 && charCode < 57)||(charCode > 57 && charCode <65) || (charCode > 90 && charCode < 97) )
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            event.preventDefault();
             return false;
-
-        return true;
-    }
+        }
+    });
 
     function isNumberKey(evt)
     {

@@ -12,7 +12,7 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-exchange"></i> Consolidation </h1>
+               <h1><i class="fa fa-exchange"></i> Container Management </h1>
             </span>
         </legend>
         <ol class="breadcrumb">
@@ -62,13 +62,12 @@
             </div>
         </div>
 
-        <div style="box-shadow: 3px 3px 3px #888888; position: fixed; background-color: #ECF0F1; border-radius: 5px; padding: 15px; width: 80%; margin-top: 12%; z-index: 100;">
+        <div style="box-shadow: 3px 3px 3px #888888; position: fixed; background-color: #ECF0F1; border-radius: 5px; padding: 15px; width: 40em; margin-top: 15em; z-index: 100;">
             Total weight (kg) : <b><p id="result" style="display: inline">0</p></b> / <p style="display: inline" id="maxWt"></p> kg<br/>
             Total volume (cbm) : <b><p id="result-vol" style="display: inline">0</p></b> / <p style="display: inline" id="maxVol"></p> cbm
             <div style="float: right; margin-top: -1.2em;">
                 <button class="btn btn-success" id="submitBtn">Save</button>
                 <button class="btn btn-danger" onclick="resetBox()">Reset</button>
-                <button class="btn btn-primary" >Final</button>
             </div>
         </div>
     </div>
@@ -93,8 +92,8 @@
             child5.eq(i).attr('id', 'val'+(i+1)+'-vol');
             checkBox.eq(i).attr('value', 'val'+(i+1));
             if(checkBox.eq(i).is(':checked')){
-                conWt = parseInt(weight.text())+parseInt(child4.eq(i).text());
-                conVol = parseInt(volume.text())+parseInt(child5.eq(i).text());
+                conWt = parseFloat(weight.text())+parseFloat(child4.eq(i).text());
+                conVol = parseFloat(volume.text())+parseFloat(child5.eq(i).text());
                 weight.empty().append(conWt);
                 volume.empty().append(conVol);
             }
@@ -107,7 +106,7 @@
             40 High-Capacity = 78 cubic meter / 22 Tons
         */
 
-        if(container.val() == '10 FOOTER'){
+        if(container.val() == '10'){
             maxWt = 9000;
             maxVol = 14;
         }else if(container.val() == '20 FOOTER'){
@@ -129,11 +128,11 @@
             var wt, vol;
             if($.isNumeric($('#'+this.value).text()) && $.isNumeric($('#'+this.value+'-vol').text())){
                 if(this.checked){
-                    wt = parseInt(weight.text())+parseInt($('#'+this.value).text());
-                    vol = parseInt(volume.text())+parseInt($('#'+this.value+'-vol').text());
+                    wt = parseFloat(weight.text())+parseFloat($('#'+this.value).text());
+                    vol = parseFloat(volume.text())+parseFloat($('#'+this.value+'-vol').text());
                 }else{
-                    wt = parseInt(weight.text())-parseInt($('#'+this.value).text());
-                    vol = parseInt(volume.text())-parseInt($('#'+this.value+'-vol').text());
+                    wt = parseFloat(weight.text())-parseFloat($('#'+this.value).text());
+                    vol = parseFloat(volume.text())-parseFloat($('#'+this.value+'-vol').text());
                 }
             }
 

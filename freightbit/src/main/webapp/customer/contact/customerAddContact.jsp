@@ -81,6 +81,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="contact.email" class="col-lg-2 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
+                        <div class="col-lg-10" >
+                            <s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email"
+                                         type="email" required="true"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="contact.phone" class="col-lg-2 control-label" style="padding-top:0px;">Phone<span class="asterisk_red"></span></label>
                         <div class="col-lg-10" >
                             <s:textfield cssClass="form-control" placeholder="(XXX)XXX-XXXX" name="contact.phone"
@@ -96,14 +104,6 @@
                                          maxLength="19" required="true" id="contact_mobile"
 
                                          title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact.email" class="col-lg-2 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
-                        <div class="col-lg-10" >
-                            <s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email"
-                                         type="email" required="true"/>
                         </div>
                     </div>
 
