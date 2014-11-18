@@ -56,7 +56,12 @@
                                 <s:param name="containerSizeParam" value="%{#attr.container.containerSize}"></s:param>
                             </s:url>
                             <s:a href="%{viewConsolidationItemListUrl}"><i class="fa fa-dropbox"></i></s:a>
-                            <s:a><i class="fa fa-print"></i></s:a>
+
+                            <a href="#" onclick="generateReport(${document.documentId}, 'EIR 2')"><i class="fa fa-print"></i></a> <%--for EIR 1--%>
+                            <a href="#" onclick="generateReport(${document.documentId}, 'EIR 1')"><i class="fa fa-print"></i></a> <%--for EIR 2--%>
+                            <%--<s:a href="#" onclick="generateReport(%{container.containerId},'${container.documentName}');"><i class="fa fa-print"></i>--%>
+                            <%--</s:a>--%>
+
                         </display:column></td>
 
 
@@ -66,3 +71,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    function generateReport(id, name){
+        var win;
+        if(name == 'EIR 1'){
+            win = window.open('documentations/generateEIR1?documentIdParam=' + id, 'EIR 1', 'width2=910,height=800');
+        }else if(name == 'EIR 2'){
+            win = window.open('documentations/generateEIR2?documentIdParam=' + id, 'EIR 2', 'width2=910,height=800');
+        }
+        win.onload = function(){
+            this.document.title = name;
+        }
+    }
+</script>
