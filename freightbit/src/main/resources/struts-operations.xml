@@ -385,6 +385,12 @@
         </action>
 
         <action name="containerAdd" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="containerAdd">
+            <result name="input" type="tiles">operations.containerAdd.tiles</result>
+            <result name="success" type="redirect">viewContainerList</result>
+        </action>
+
+        <action name="editContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editContainer">
+            <result name="input" type="tiles">operations.loadEditForm.tiles</result>
             <result name="success" type="redirect">viewContainerList</result>
         </action>
 
@@ -401,7 +407,7 @@
         </action>
 
         <action name="loadEditFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadEditFormPage">
-            <result name="success" type="tiles">operations.viewContainerListTest.tiles</result>
+            <result name="success" type="tiles">operations.loadEditForm.tiles</result>
         </action>
 
         <action name="save" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="save">
@@ -417,6 +423,19 @@
         </action>
 
         <action name="viewConsolidationItemList" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="viewConsolidationItemList">
+            <result name="success" type="tiles">operations.consolidationItemList.tiles</result>
+        </action>
+
+        <action name="loadConsolidationContainerSearch" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="loadConsolidationContainerSearch">
+            <result name="success" type="tiles">operations.consolidationContainerSearch.tiles</result>
+        </action>
+
+        <action name="updateStatusOfContainers" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="updateStatusOfContainers">
+            <result name="success" type="tiles">operations.consolidationContainerList.tiles</result>
+            <result name="input" type="redirect">updateStatusOfContainersError</result>
+        </action>
+
+        <action name="updateStatusOfContainersError" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="updateStatusOfContainersError">
             <result name="success" type="tiles">operations.consolidationItemList.tiles</result>
         </action>
 
@@ -480,13 +499,6 @@
                 <param name="bufferSize">4096</param>
             </result>
         </action>
-
-        <!-- CONSOLIDATION -->
-
-        <action name="updateStatusOfContainers" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="updateStatusOfContainers">
-            <result name="success" type="tiles">operations.contaierList.tiles</result>
-        </action>
-
 
     </package>
 

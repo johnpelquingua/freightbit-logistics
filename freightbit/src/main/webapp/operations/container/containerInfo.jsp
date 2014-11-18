@@ -1,5 +1,4 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="row">
@@ -7,128 +6,128 @@
 
         <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-male"></i> EIR Form </h1>
+               <h1><i class="fa fa-male"></i> Customer Module</h1>
             </span>
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> Container Management </li>
+            <li class="active"> Customer</li>
+            <li class="active"><a href="<s:url action='viewContainerList' />"> Container List </a>
+            </li>
+            <li class="active"> EIR Form Information</li>
         </ol>
+
     </div>
 </div>
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
-        <div class="alert alert-success" id="alert">
+        <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
 </s:if>
 
-
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
+
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> Container: <s:property value="container.vanNumber"></s:property>
-                </h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> EIR Form</h3>
+                <span class="pull-right">
+                    <s:url var="editContainerUrl" action="loadEditFormPage">
+                        <s:param name="containerIdParam"
+                                 value="#attr.container.containerId"></s:param>
+                    </s:url>
+                        <sec:authorize
+                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                            <s:a href="%{editContainerUrl}" cssClass="btn btn-success new-booking" rel="tooltip"
+                                 title="Edit this EIR Form">
+                                <i class="fa fa-pencil"></i> Edit EIR Form
+                            </s:a>
+                        </sec:authorize>
+                </span>
             </div>
+
             <div class="panel-body">
+
                 <div class="row">
+
                     <div class="col-lg-6 col-lg-offset-2">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="col-lg-3">
-                                    <div align="center" style="margin-top: 10px;">
+
+                        <div class="panel panel-info ">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <div class="col-lg-3">
                                         <div align="center" style="margin-top: 10px;">
-                                            <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
+                                            <div align="center" style="margin-top: 10px;">
+                                                <img alt="User Pic" src="../includes/images/photo.png" class="img-circle">
+                                            </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-9">
+
+                                        <table class="table table-user-information profile" style="margin-top: 10px;">
+                                            <tbody>
+                                            <tr>
+                                                <td class="header" style="font-weight:Bold; font-size: 12px; border-top: none; text-align: left !important;">EIR Type</td>
+                                                <td style="border-top: none;"><s:property value="container.eirType"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Container Number</td>
+                                                <td style="text-transform:uppercase"><s:property value="container.containerNumber" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">ContainerSize</td>
+                                                <td><s:property value="container.containerSize"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Container Status</td>
+                                                <td><s:property value="container.containerStatus"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Shipping Line</td>
+                                                <td><s:property value="container.shipping"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Port Code</td>
+                                                <td><s:property value="container.portCode"/></td>
+                                            </tr>
+                                            </tbody>
+                                            <s:set name="containerId" value="%{container.containerId}" scope="session"/>
+                                        </table>
+
+                                    </div>
+
                                 </div>
 
-                                <div class="col-lg-9">
-                                    <table class="table table-user-information profile" style="margin-top: 10px;">
-                                        <tbody>
-                                        <tr>
-                                            <td class="header">EIR Type:</td>
-                                            <td><s:property value="container.eirType"></s:property></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Receipt Number:</td>
-                                            <td><s:property value="container.receiptNumber"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Shipping Line:</td>
-                                            <td><s:property value="container.shipping"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Van Number:</td>
-                                            <td><s:property value="container.vanNumber"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">EIR Number:</td>
-                                            <td><s:property value="container.eirNumber"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Van Location:</td>
-                                            <td><s:property value="container.vanLocation"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Trucking:</td>
-                                            <td><s:property value="container.trucking"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Plate Number:</td>
-                                            <td><s:property value="container.plateNumber"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Driver:</td>
-                                            <td><s:property value="container.driver"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Booking Number:</td>
-                                            <td><s:property value="container.bookingNum"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Seal Number:</td>
-                                            <td><s:property value="container.sealNumber"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Remarks:</td>
-                                            <td><s:property value="container.remarks"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Laden / Empty:</td>
-                                            <td><s:property value="container.ladenEmpty"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Van To:</td>
-                                            <td><s:property value="container.vanTo"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Van From:</td>
-                                            <td><s:property value="container.vanFrom"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Forklift Operator:</td>
-                                            <td><s:property value="container.forkliftOperator"></s:property> </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="header">Operations Dept.:</td>
-                                            <td><s:property value="container.operationsDept"></s:property> </td>
-                                        </tr>
-                                        </tbody>
+                            </div>
 
-                                    </table>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-2 col-lg-offset-2">
+                        <div class="panel panel-info" >
+                            <div class="panel-footer">
+                                <div class="pull-right">
+                                    <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Back To Container List</a>
                                 </div>
+                            </div>
+
                             </div>
                         </div>
                     </div>
+
                 </div>
 
             </div>
 
         </div>
     </div>
+
 </div>

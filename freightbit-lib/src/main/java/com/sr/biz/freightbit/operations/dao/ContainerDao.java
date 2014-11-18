@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ContainerDao {
 
-    public void addContainer(Container container);
+    public void addContainer(Container container) throws Exception;
 
     public void updateContainer(Container container);
 
@@ -21,19 +21,11 @@ public interface ContainerDao {
 
     public List<Container> findContainerByEIRNumber(String eirNumber);
 
-    public List<Container> findContainerByEIRNumber2(String eirNumber2);
+    public List<Container> findContainerByPortCode(String portCode);
 
     public List<Container> findContainerByReceiptNumber(String receiptNumber);
 
     public List<Container> findContainerBySealNumber(String sealNumber);
-
-    public List<Container> findContainerByContainerNumber(String containerNumber);
-
-    public List<Container> findContainerByContainerSize(String containerSize);
-
-    public List<Container> findContainerByContainerType(String containerType);
-
-    public List<Container> findContainerByContainerStatus(String containerStatus);
 
     public List<Container> findContainerByShipping(String shipping);
 

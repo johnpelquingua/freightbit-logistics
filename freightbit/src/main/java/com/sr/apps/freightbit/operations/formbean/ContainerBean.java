@@ -40,6 +40,7 @@ public class ContainerBean {
     private String containerKeyword;
 
     private String eirType;
+    private String portCode;
 
     public Integer getContainerId() {
         return containerId;
@@ -279,5 +280,13 @@ public class ContainerBean {
 
     public void setContainerKeyword(String containerKeyword) {
         this.containerKeyword = containerKeyword;
+    }
+
+    public String getPortCode() {
+        return portCode;
+    }
+
+    public void setPortCode(String portCode) {
+        this.portCode = portCode;
     }
 }

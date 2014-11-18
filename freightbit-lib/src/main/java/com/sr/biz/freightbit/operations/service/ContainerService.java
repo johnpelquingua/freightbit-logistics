@@ -9,17 +9,13 @@ import java.util.List;
  */
 public interface ContainerService {
 
-    public void addContainer(Container container);
+    public void addContainer(Container container) throws Exception;
 
     public void updateContainer(Container container);
 
     public void deleteContainer(Container container);
 
     public List<Container> findAllContainer();
-
-    public List<Container> findContainerByOrderNumber(String orderNumber);
-
-    public List<Container> findContainerByEIRNumber(String eirNumber);
 
     public Container findContainerById(Integer containerId);
 

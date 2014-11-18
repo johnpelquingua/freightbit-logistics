@@ -16,6 +16,7 @@ import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.service.OrderService;
 import com.sr.biz.freightbit.vendor.service.VendorService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -59,37 +60,71 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	private ContainerService containerService;
     private VendorService vendorService;
 
+    private List<Parameters> containerSearchList = new ArrayList<Parameters>();
+
+    private String[] check;
 	@Override
 	public void prepare() throws Exception {
-
+        containerSearchList = parameterService.getParameterMap("CONTAINERS", "CONTAINER_SEARCH");
     }
 
 	public String updateStatusOfContainers() {
 
 		Map sessionAttributes = ActionContext.getContext().getSession();
+
 		Integer containerId = (Integer) sessionAttributes.get("containerIdParam");
 
-		//shows container id
-		Container containerEntity = containerService.findContainerById(containerId);
+        List<Integer> itemId = new ArrayList<Integer>();
 
-		//change status to FULL LOAD
-		containerEntity.setContainerStatus("FULL LOAD");
-		containerService.updateContainer(containerEntity);
+        if (check == null) {
 
-		container = transformToContainerFormBean(containerEntity);
-		// displays order items under orders
-		List<Container> containerList = new ArrayList<Container>();
+            return INPUT;
+        } else {
 
-		containerList = (List<Container>) containerService.findContainerById(containerId);
+            for (String everyItemId : check) {
+                itemId.add(Integer.parseInt(everyItemId));
+            }
 
-		for(Container containerItemsLst : containerList) {
-			orderItems.add(transformToContainerFormBean(containerItemsLst));
-		}
+            //shows container id
+            Container containerEntity = containerService.findContainerById(containerId);
+
+            //change status to FULL LOAD
+            containerEntity.setContainerStatus("CONSOLIDATED");
+            containerService.updateContainer(containerEntity);
+
+            for (Integer id : itemId) {
+                OrderItems updateItem = orderService.findOrderItemByOrderItemId(id);
+                updateItem.setContainerId(containerId);
+                operationsService.updateOrderItem(updateItem);
+            }
+
+            List<Container> containerList = new ArrayList<Container>();
+            containerList = containerService.findAllContainer();
+
+            for (Container containerElem : containerList) {
+                containers.add(transformContainerToFormBean(containerElem));
+            }
+        }
+
 		clearErrorsAndMessages();
 		addActionMessage("Success");
 
 		return SUCCESS;
 	}
+
+    public String updateStatusOfContainersError() {
+        clearErrorsAndMessages();
+        addActionMessage("Please choose an Item to consolidate");
+
+        List<OrderItems> orderItems = new ArrayList<OrderItems>();
+        orderItems = orderService.findAllOrderItemLCL();
+
+        for (OrderItems orderItemElem : orderItems) {
+            orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+            System.out.println(orderItemElem.getNameSize());
+        }
+        return SUCCESS;
+    }
 
 	public ContainerBean transformToContainerFormBean(Container entity) {
 
@@ -100,23 +135,50 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	}
 
     public String viewConsolidationContainerList() {
-        List<Container> containerList = new ArrayList<Container>();
-        containerList = containerService.findAllContainer();
+        String column = getColumnFilter();
 
+        List<Container> containerList = new ArrayList<Container>();
+
+        if (StringUtils.isNotBlank(column)) {
+            containerList = containerService.findContainerByCriteria(column, container.getContainerKeyword());
+        } else {
+            containerList = containerService.findAllContainer();
+        }
         for (Container containerElem : containerList) {
             containers.add(transformContainerToFormBean(containerElem));
         }
         return SUCCESS;
     }
 
+    public String getColumnFilter() {
+        String column = "";
+        if ("CONTAINER NUMBER".equals(container.getContainerSearchCriteria())) {
+            column = "containerNumber";
+        } else if ("SIZE".equals(container.getContainerSearchCriteria())) {
+            column = "containerSize";
+        } else if ("STATUS".equals(container.getContainerSearchCriteria())) {
+            column = "containerSTATUS";
+        }
+
+        return column;
+    }
+
     public String viewConsolidationItemList() {
         List<OrderItems> orderItems = new ArrayList<OrderItems>();
         orderItems = orderService.findAllOrderItemLCL();
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("containerSizeParam", containerSizeParam);
+        sessionAttributes.put("containerIdParam", containerIdParam);
 
         for (OrderItems orderItemElem : orderItems) {
             orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
             System.out.println(orderItemElem.getNameSize());
         }
+        return SUCCESS;
+    }
+
+    public String loadConsolidationContainerSearch() {
         return SUCCESS;
     }
 
@@ -402,5 +464,21 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
     public void setContainerSizeParam(String containerSizeParam) {
         this.containerSizeParam = containerSizeParam;
+    }
+
+    public String[] getCheck() {
+        return check;
+    }
+
+    public void setCheck(String[] check) {
+        this.check = check;
+    }
+
+    public List<Parameters> getContainerSearchList() {
+        return containerSearchList;
+    }
+
+    public void setContainerSearchList(List<Parameters> containerSearchList) {
+        this.containerSearchList = containerSearchList;
     }
 }

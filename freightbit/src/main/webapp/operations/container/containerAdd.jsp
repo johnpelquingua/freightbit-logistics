@@ -37,19 +37,43 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Type: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <select name="container.eirType" id="container.eirNumber" class="form-control" required="true">
-                                    <option value="1">EIR 1</option>
-                                    <option value="2">EIR 2</option>
+                                <select name="container.eirType" id="container.eirType" class="form-control" required="true">
+                                    <option value="EIR 1">EIR 1</option>
+                                    <option value="EIR 2">EIR 2</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Container Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" />
+                                <s:textfield required="true" name="container.containerNumber" cssClass="form-control" id="container.containerNumber" />
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Container Size: <span class="asterisk_red"></span></label>
+                            <div class="col-lg-8" >
+                                <select name="container.containerSize" id="container.containerSize" class="form-control" required="true">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="40 Regular">40 Regular</option>
+                                    <option value="40 Heavy Duty">40 Heavy Duty</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+<%--                        <div class="form-group">
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Container Status: <span class="asterisk_red"></span></label>
+                            <div class="col-lg-8" >
+                                <select name="container.containerStatus" id="container.containerStatus" class="form-control" required="true">
+                                    <option value="Direct Load">Direct Load</option>
+                                    <option value="Consolidated">Consolidated</option>
+                                </select>
+                            </div>
+                        </div>--%>
+
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Shipping Line: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
@@ -58,23 +82,39 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Van Number: <span class="asterisk_red"></span></label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Port Code: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.vanNumber" cssClass="form-control" id="container.vanNumber" />
+                                <s:textfield required="true" name="container.portCode" cssClass="form-control" id="container.portCode" />
                             </div>
                         </div>
 
                         <div class="form-group">
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>
+                            <div class="col-lg-8" >
+                                <s:textfield name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Date: <span class="asterisk_red"></span></label>
+                            <div class="col-lg-8" >
+                                <%--<s:textfield name="container.dateTime" cssClass="form-control" id="container.dateTime" />--%>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.eirNumber" cssClass="form-control" id="container.eirNumber" />
+                                <s:textfield name="container.eirNumber" cssClass="form-control" id="container.eirNumber" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Van Location: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.vanLocation" cssClass="form-control" id="container.vanLocation" />
+                                <s:textfield name="container.vanLocation" cssClass="form-control" id="container.vanLocation" />
                             </div>
                         </div>
 
@@ -82,7 +122,7 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Trucking: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.trucking" cssClass="form-control" id="container.trucking" />
+                                <s:textfield name="container.trucking" cssClass="form-control" id="container.trucking" />
                             </div>
                         </div>
 
@@ -90,7 +130,7 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.plateNumber" cssClass="form-control" id="container.plateNumber" />
+                                <s:textfield name="container.plateNumber" cssClass="form-control" id="container.plateNumber" />
                             </div>
 
                         </div>
@@ -102,68 +142,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Booking No.: <span class="asterisk_red"></span></label>
-                            <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.bookingNum" cssClass="form-control" id="container.bookingNum" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Seal Number: <span class="asterisk_red"></span></label>
-                            <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.sealNumber" cssClass="form-control" id="container.sealNumber" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Remarks: </label>
-                            <div class="col-lg-8" >
-                                <s:textfield name="container.remarks" cssClass="form-control" id="container.remarks" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Laden / Empty: <span class="asterisk_red"></span></label>
-                            <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.ladenEmpty" cssClass="form-control" id="container.ladenEmpty" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Van To: <span class="asterisk_red"></span></label>
-                            <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.vanTo" cssClass="form-control" id="container.vanTo" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Van From: <span class="asterisk_red"></span></label>
-                            <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.vanFrom" cssClass="form-control" id="container.vanFrom" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Forklift Operator: </label>
-                            <div class="col-lg-8" >
-                                <s:textfield name="container.forkliftOperator" cssClass="form-control" id="container.forkliftOperator" />
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Operations Department:</label>
-                            <div class="col-lg-8" >
-                                <s:textfield name="container.operationsDept" cssClass="form-control" id="container.operationsDept" />
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="panel-footer">
                 <div class="pull-right">
-                    <a href="http://localhost:8080/freightbit/operations/viewContainerListTest.action" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Cancel</a>
                     <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" action="save" value="Save"/>
                 </div>
             </div>
