@@ -1461,6 +1461,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setForkliftOperator(entity.getForkliftOperator());
         formBean.setOperationsDept(entity.getOperationsDept());
         formBean.setContainerStatus(entity.getContainerStatus());
+        formBean.setSealNumber(entity.getSealNumber());
 
         return formBean;
     }
@@ -1501,6 +1502,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setContainerType(formBean.getContainerType());
         entity.setSealNumber(formBean.getSealNumber());
         entity.setLadenEmpty(formBean.getLadenEmpty());
+        entity.setSealNumber(formBean.getSealNumber());
 
         if ("CONSOLIDATED".equals(formBean.getContainerStatus())) {
             entity.setContainerStatus("CONSOLIDATED");
@@ -1535,6 +1537,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String loadPrintFormPage() {
         return SUCCESS;
     }
+
+    public String loadCheckoutFormPage() {
+        Container containerEntity = containerService.findContainerById(containerIdParam);
+        container = transformContainerToFormBean(containerEntity);
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("containerId", container.getContainerId());
+        return SUCCESS;
+    }
+
 
 //    -----------------CONSOLIDATION MODULE-------------------------
 

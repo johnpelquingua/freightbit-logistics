@@ -195,6 +195,11 @@
         <put-attribute name="body" value="/operations/container/containerList.jsp"/>
     </definition>
 
+    <definition name="operations.loadCheckoutForm.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Container Management"/>
+        <put-attribute name="body" value="/operations/container/checkoutForm.jsp"/>
+    </definition>
+
     <definition name="operations.containerSearch.tiles" extends="baseLayout">
         <put-attribute name="title" value="Container Management"/>
         <put-attribute name="body" value="/operations/container/containerSearch.jsp"/>

@@ -46,6 +46,7 @@
       </div>
       <div class="panel-footer">
         <div class= "pull-right">
+          <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Back to Container List</a>
           <s:submit name="submit" cssClass="btn btn-primary" value="Search"/>
         </div>
       </div>

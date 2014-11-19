@@ -59,7 +59,7 @@
                                            style="margin-top: 15px;">
                                 <td><display:column property="eirType" title="EIR Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="containerNumber" title="Container Type <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="containerNumber" title="Container Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="containerSize" title="Container Size <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
@@ -93,6 +93,10 @@
                                         </s:url>
                                         <s:a href="%{viewContainerInfoUrl}" title="Container Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
 
+                                        <s:url var="checkoutFormUrl" action="loadCheckoutFormPage">
+                                            <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
+                                        </s:url>
+                                        <s:a href="%{checkoutFormUrl}" title="Checkout Form" rel="tooltip" ><i class="fa fa-search"></i></s:a>
 
                                     </display:column>
                                 </td>
