@@ -62,4 +62,9 @@ public class ParameterConstants {
 
     public final static String VESSEL_TYPE = "VESSEL_TYPE";
 
+    public final static String EIR_TYPE = "EIR_TYPE";
+
+    public final static String CONTAINER_STATUS = "CONTAINER_STATUS";
+
+
 }
