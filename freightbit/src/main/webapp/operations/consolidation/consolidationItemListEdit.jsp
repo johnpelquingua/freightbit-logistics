@@ -31,38 +31,6 @@
         </div>
     </div>
 </s:if>
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> Container Items</h3>
-            </div>
-
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <display:table id="orderItemsUnderContainer" name="orderItemsBeansUnderContainer"requestURI="viewConsolidationItemList.action"
-                                   class="mainTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
-                                   style="margin-top: 15px;">
-                        <td><display:column property="nameSize" title="Item Name <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="orderNum" title="Order Number <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="weight" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="volume" title="Volume (cbm) <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="port" title="Port <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                   </display:table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
@@ -76,6 +44,15 @@
                 <div class="table-responsive">
 
                     <s:form action="updateStatusOfContainers" theme="bootstrap">
+                    <div style="box-shadow: 3px 3px 3px #888888; position: fixed; background-color: #ECF0F1; border-radius: 5px; padding: 15px; width: 80%; margin-top: 26em; margin-left: -1.2em; z-index: 100;">
+                        Total weight (kg) : <b><p id="result" style="display: inline">0</p></b> / <p style="display: inline" id="maxWt"></p> kg<br/>
+                        Total volume (cbm) : <b><p id="result-vol" style="display: inline">0</p></b> / <p style="display: inline" id="maxVol"></p> cbm
+                        <div style="float: right; margin-top: -1.2em;">
+                            <button class="btn btn-success" id="submitBtn">Save</button>
+                            <button class="btn btn-danger" onclick="resetBox()">Reset</button>
+                            <button class="btn btn-primary" >Final</button>
+                        </div>
+                    </div>
                     <display:table id="orderItems" name="orderItemsBeans"
                                    requestURI="viewConsolidationItemList.action"
                                    class="mainTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
@@ -104,17 +81,37 @@
                 </div>
             </div>
         </div>
+        </s:form>
+    </div>
+</div>
 
-        <div style="box-shadow: 3px 3px 3px #888888; position: fixed; background-color: #ECF0F1; border-radius: 5px; padding: 15px; width: 80%; margin-top: 150px; z-index: 100;">
-            Total weight (kg) : <b><p id="result" style="display: inline">0</p></b> / <p style="display: inline" id="maxWt"></p> kg<br/>
-            Total volume (cbm) : <b><p id="result-vol" style="display: inline">0</p></b> / <p style="display: inline" id="maxVol"></p> cbm
-            <div style="float: right; margin-top: -1.2em;">
-                <button class="btn btn-success" id="submitBtn">Save</button>
-                <button class="btn btn-danger" onclick="resetBox()">Reset</button>
-                <button class="btn btn-primary" >Final</button>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i> Container Items</h3>
+            </div>
+
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <display:table id="orderItemsUnderContainer" name="orderItemsBeansUnderContainer"requestURI="viewConsolidationItemList.action"
+                                   class="mainTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                   style="margin-top: 15px;">
+                        <td><display:column property="nameSize" title="Item Name <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="orderNum" title="Order Number <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="weight" title="Weight (kg) <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="volume" title="Volume (cbm) <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="port" title="Port <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                    </display:table>
+                </div>
             </div>
         </div>
-        </s:form>
     </div>
 </div>
 

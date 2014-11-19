@@ -47,7 +47,7 @@
 
             <div class="panel-body">
                 <div class="table-responsive">
-                        <display:table id="order" name="orders" requestURI="viewOrders.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
+                        <display:table id="order" name="orders" requestURI="viewOrders.action" pagesize="10" class="table table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
 
                             <td><display:column property="orderDate" title="Order Date <i class='fa fa-sort' />" class="tb-font-black"
@@ -168,158 +168,9 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-    /*color coding of rows*/
-    var tbl = document.getElementById("order");
-    if (tbl != null) {
-        for (var i = 0; i < tbl.rows.length; i++) {
-
-            if (tbl.rows[i].cells[4].innerHTML == "SHIPPING AND TRUCKING" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[4].innerHTML = "<i class='fa fa-anchor' /> <i class='fa fa-truck' />";
-                }
-            }
-
-            if (tbl.rows[i].cells[4].innerHTML == "SHIPPING"  ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[4].innerHTML = "<i class='fa fa-anchor' />";
-                }
-            }
-
-            if (tbl.rows[i].cells[4].innerHTML == "TRUCKING"  ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[4].innerHTML = "<i class='fa fa-truck' />";
-                }
-            }
-
-            if (tbl.rows[i].cells[5].innerHTML == "FULL CARGO LOAD" || tbl.rows[i].cells[5].innerHTML == "FULL CONTAINER LOAD") {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[5].innerHTML = "FCL";
-                }
-            }
-
-            if (tbl.rows[i].cells[5].innerHTML == "FULL TRUCK LOAD" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[5].innerHTML = "FTL";
-                }
-            }
-
-            if (tbl.rows[i].cells[5].innerHTML == "LESS TRUCK LOAD" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[5].innerHTML = "LTL";
-                }
-            }
-
-            if (tbl.rows[i].cells[5].innerHTML == "LESS CARGO LOAD" || tbl.rows[i].cells[5].innerHTML == "LESS CONTAINER LOAD") {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[5].innerHTML = "LCL";
-                }
-            }
-
-            if (tbl.rows[i].cells[5].innerHTML == "LOOSE CARGO LOAD" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[5].innerHTML = "LCU";
-                }
-            }
-
-            if (tbl.rows[i].cells[5].innerHTML == "ROLLING CARGO LOAD" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[5].innerHTML = "RCU";
-                }
-            }
-
-            if (tbl.rows[i].cells[6].innerHTML == "DOOR TO DOOR" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[6].innerHTML = "DD";
-                }
-            }
-
-            if (tbl.rows[i].cells[6].innerHTML == "DOOR TO PIER" || tbl.rows[i].cells[6].innerHTML == "DOOR TO PORT" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[6].innerHTML = "DP";
-                }
-            }
-
-            if (tbl.rows[i].cells[6].innerHTML == "PIER TO DOOR" || tbl.rows[i].cells[6].innerHTML == "PORT TO DOOR" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[6].innerHTML = "PD";
-                }
-            }
-
-            if (tbl.rows[i].cells[6].innerHTML == "PIER TO PIER" || tbl.rows[i].cells[6].innerHTML == "PORT TO PORT" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[6].innerHTML = "PP";
-                }
-            }
-
-            if (tbl.rows[i].cells[6].innerHTML == "PICKUP" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[6].innerHTML = "P";
-                }
-            }
-
-            if (tbl.rows[i].cells[6].innerHTML == "DELIVERY" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[6].innerHTML = "D";
-                }
-            }
-
-            if (tbl.rows[i].cells[6].innerHTML == "INTER-WAREHOUSE" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[6].innerHTML = "IW";
-                }
-            }
-
-            if (tbl.rows[i].cells[7].innerHTML == "PENDING" || tbl.rows[i].cells[7].innerHTML == "INCOMPLETE" ) {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[j].style.backgroundColor = "#fcf8e3";
-                }
-            }
-
-            if (tbl.rows[i].cells[7].innerHTML == "DISAPPROVED" || tbl.rows[i].cells[7].innerHTML == "CANCELLED") {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[j].style.backgroundColor = "#f2dede";
-                }
-            }
-
-            if (tbl.rows[i].cells[7].innerHTML == "APPROVED" || tbl.rows[i].cells[7].innerHTML == "SERVICE ACCOMPLISHED") {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[j].style.backgroundColor = "#dff0d8";
-                }
-            }
-
-            if (tbl.rows[i].cells[7].innerHTML == "ON GOING") {
-
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[j].style.backgroundColor = "#bce8f1";
-                }
-            }
-        }
-    }
-
-});
 
     $(document).ready(function() {
-        /*color coding of new booking*/
+        tableProp('NONE', 'order', 8, 5, 6, 7);
 
         var tbl = document.getElementById("order");
         var ctr = <s:property value="%{Booking}"/>;
