@@ -39,9 +39,11 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	private Integer containerIdParam;
 	private Integer nameSizeParam;
 	private Integer vendorId;
+    private String containerStatusParam;
 
 	private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItemsBeans = new ArrayList<OrderItemsBean>();
+    private List<OrderItemsBean> orderItemsBeansUnderContainer = new ArrayList<OrderItemsBean>();
 	private List<ContainerBean> orderItems = new ArrayList<ContainerBean>();
 	private List<ContainerBean> containers = new ArrayList<ContainerBean>();
 
@@ -164,18 +166,37 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
     }
 
     public String viewConsolidationItemList() {
-        List<OrderItems> orderItems = new ArrayList<OrderItems>();
-        orderItems = orderService.findAllOrderItemLCL();
-
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("containerSizeParam", containerSizeParam);
         sessionAttributes.put("containerIdParam", containerIdParam);
+        sessionAttributes.put("containerStatusParam", containerStatusParam);
 
-        for (OrderItems orderItemElem : orderItems) {
-            orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
-            System.out.println(orderItemElem.getNameSize());
+        List<OrderItems> orderItems = new ArrayList<OrderItems>();
+        List<OrderItems> orderItemsUnderContainer = new ArrayList<OrderItems>();
+
+        orderItems = orderService.findAllOrderItemLCL();
+        orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));
+
+        if ("CONSOLIDATED".equals(sessionAttributes.get("containerStatusParam"))) {
+            for (OrderItems orderItemElem : orderItems) {
+                orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                System.out.println(orderItemElem.getNameSize());
+            }
+
+            for (OrderItems orderItemsUnderContainerElem : orderItemsUnderContainer) {
+                orderItemsBeansUnderContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
+                System.out.println(orderItemsUnderContainerElem.getNameSize());
+            }
+
+            return "CONSOLIDATED";
+        } else {
+            for (OrderItems orderItemElem : orderItems) {
+                orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+                System.out.println(orderItemElem.getNameSize());
+            }
+            return SUCCESS;
         }
-        return SUCCESS;
+
     }
 
     public String loadConsolidationContainerSearch() {
@@ -487,5 +508,21 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
     public void setContainerSearchList(List<Parameters> containerSearchList) {
         this.containerSearchList = containerSearchList;
+    }
+
+    public String getContainerStatusParam() {
+        return containerStatusParam;
+    }
+
+    public void setContainerStatusParam(String containerStatusParam) {
+        this.containerStatusParam = containerStatusParam;
+    }
+
+    public List<OrderItemsBean> getOrderItemsBeansUnderContainer() {
+        return orderItemsBeansUnderContainer;
+    }
+
+    public void setOrderItemsBeansUnderContainer(List<OrderItemsBean> orderItemsBeansUnderContainer) {
+        this.orderItemsBeansUnderContainer = orderItemsBeansUnderContainer;
     }
 }

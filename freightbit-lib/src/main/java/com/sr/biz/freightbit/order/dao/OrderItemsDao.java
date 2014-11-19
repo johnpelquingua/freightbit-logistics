@@ -16,4 +16,6 @@ public interface OrderItemsDao {
 
     public List<OrderItems> findAllOrderItemLCL();
 
+    public List<OrderItems> findAllOrderItemsByContainerId(Integer containerId);
+
 }

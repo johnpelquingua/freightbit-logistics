@@ -55,12 +55,16 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Container Size: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <select name="container.containerSize" id="container.containerSize" class="form-control" required="true">
-                                    <option value="10 FOOTER">10 FOOTER</option>
-                                    <option value="20 FOOTER">20 FOOTER</option>
-                                    <option value="40 Regular">40 Regular</option>
-                                    <option value="40 Heavy Duty">40 Heavy Duty</option>
-                                </select>
+
+                                    <s:select cssClass="form-control"
+                                              id="container.containerSize"
+                                              name="container.containerSize"
+                                              list="containerList"
+                                              listKey="key"
+                                              listValue="value"
+                                              emptyOption="true"
+                                              required="true"
+                                            />
                             </div>
                         </div>
 

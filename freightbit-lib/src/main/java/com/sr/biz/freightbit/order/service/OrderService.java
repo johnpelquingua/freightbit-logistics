@@ -98,5 +98,7 @@ public interface OrderService {
     public List<Orders> findCustomerWithBooking (Integer customerId);
 
     public List<OrderItems> findAllOrderItemLCL();
+
+    public List<OrderItems> findAllOrderItemsByContainerId(Integer containerId);
 }
 

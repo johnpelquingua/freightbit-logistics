@@ -62,13 +62,13 @@
                             <s:url var="viewConsolidationItemListUrl" action="viewConsolidationItemList">
                                 <s:param name="containerIdParam" value="%{#attr.container.containerId}"></s:param>
                                 <s:param name="containerSizeParam" value="%{#attr.container.containerSize}"></s:param>
+                                <s:param name="containerStatusParam" value="%{#attr.container.containerStatus}"></s:param>
                             </s:url>
                             <s:a href="%{viewConsolidationItemListUrl}"><i class="fa fa-dropbox"></i></s:a>
 
                             <a href="#" onclick="generateReport(${document.documentId}, 'EIR 2')"><i class="fa fa-print"></i></a> <%--for EIR 1--%>
                             <a href="#" onclick="generateReport(${document.documentId}, 'EIR 1')"><i class="fa fa-print"></i></a> <%--for EIR 2--%>
-                            <%--<s:a href="#" onclick="generateReport(%{container.containerId},'${container.documentName}');"><i class="fa fa-print"></i>--%>
-                            <%--</s:a>--%>
+
 
                         </display:column></td>
 

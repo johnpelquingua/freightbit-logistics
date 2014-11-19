@@ -89,4 +89,19 @@ public class OrderItemsDaoImpl extends HibernateDaoSupport implements OrderItems
         }
     }
 
+    @Override
+    public List<OrderItems> findAllOrderItemsByContainerId(Integer containerId) {
+        Log.debug("Finding all orderItems");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderItems o where o.containerId = :containerId");
+            query.setParameter("containerId", containerId);
+            List<OrderItems> results = (List<OrderItems>) query.list();
+            Log.debug("find by items successful, result size:" + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            Log.error("Find all failed", re);
+            throw re;
+        }
+    }
+
 }

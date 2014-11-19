@@ -1367,7 +1367,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String viewContainerList() {
-        /*String column = getColumnFilter();
+        String column = getColumnFilter();
 
         List<Container> containerList = new ArrayList<Container>();
 
@@ -1376,13 +1376,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         } else {
             containerList = containerService.findAllContainer();
         }
-        for (Container containerElem : containerList) {
-            containers.add(transformContainerToFormBean(containerElem));
-        }
-        return SUCCESS;*/
-        List<Container> containerList = new ArrayList<Container>();
-        containerList = containerService.findAllContainer();
-
         for (Container containerElem : containerList) {
             containers.add(transformContainerToFormBean(containerElem));
         }
@@ -1467,9 +1460,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if(formBean.getContainerId() != null) {
             entity.setContainerId(new Integer(formBean.getContainerId()));
         }
-
-        System.out.println(entity.getEirType());
-        System.out.println(entity.getContainerStatus());
 
         entity.setEirType(formBean.getEirType());
         entity.setEirNumber(formBean.getEirNumber());

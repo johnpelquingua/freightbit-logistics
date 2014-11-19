@@ -425,6 +425,7 @@
 
         <action name="viewConsolidationItemList" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="viewConsolidationItemList">
             <result name="success" type="tiles">operations.consolidationItemList.tiles</result>
+            <result name="CONSOLIDATED" type="tiles">operations.consolidationItemListEdit.tiles</result>
         </action>
 
         <action name="loadConsolidationContainerSearch" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="loadConsolidationContainerSearch">

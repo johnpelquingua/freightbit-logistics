@@ -215,6 +215,11 @@
         <put-attribute name="body" value="/operations/consolidation/consolidationItemList.jsp"/>
     </definition>
 
+    <definition name="operations.consolidationItemListEdit.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Consolidation"/>
+        <put-attribute name="body" value="/operations/consolidation/consolidationItemListEdit.jsp"/>
+    </definition>
+
     <definition name="operations.consolidationContainerSearch.tiles" extends="baseLayout">
         <put-attribute name="title" value="Consolidation Container Search"/>
         <put-attribute name="body" value="/operations/consolidation/consolidationContainerSearch.jsp"/>

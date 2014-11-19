@@ -347,6 +347,12 @@ public class OrderServiceImpl implements OrderService {
         return orderItemsDao.findAllOrderItemLCL();
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<OrderItems> findAllOrderItemsByContainerId(Integer containerId) {
+        return orderItemsDao.findAllOrderItemsByContainerId(containerId);
+    }
+
     /**
      * @param clientId
      * @companyCode companyCode 3-character companyCode (eg., NTY, MTY)
