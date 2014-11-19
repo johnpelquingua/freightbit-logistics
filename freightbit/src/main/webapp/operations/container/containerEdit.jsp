@@ -18,7 +18,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active" ><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> <a href="<s:url action='../viewContainerList' />"> Container Management </a></li>
+            <li class="active"> <a href="<s:url action='../containerInfo' />"> Container Management </a></li>
             <li class="active"> Container Lists </li>
         </ol>
     </div>
@@ -28,19 +28,20 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-pencil"></i> Create EIR Form</h3>
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit EIR Form</h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <s:form cssClass="form-horizontal" theme="bootstrap" action="containerAdd">
+                    <s:form cssClass="form-horizontal" theme="bootstrap" action="editContainer">
+
+                    <s:hidden name="container.containerId" value="%{container.containerId}"></s:hidden>
+                    <s:hidden name="container.eirType" value="%{container.eirType}"></s:hidden>
+                    <s:hidden name="container.containerStatus" value="%{container.containerStatus}"></s:hidden>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Type: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <select name="container.eirType" id="container.eirType" class="form-control" required="true">
-                                    <option value="EIR 1">EIR 1</option>
-                                    <option value="EIR 2">EIR 2</option>
-                                </select>
+                                <s:textfield required="true" name="container.eirType" cssClass="form-control" id="container.eirType" disabled="true" />
                             </div>
                         </div>
 
@@ -55,11 +56,10 @@
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Container Size: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
                                 <select name="container.containerSize" id="container.containerSize" class="form-control" required="true">
-                                    <option value="10 FOOTER">10</option>
-                                    <option value="20 FOOTER">20</option>
+                                    <option value="10 FOOTER">10 FOOTER</option>
+                                    <option value="20 FOOTER">20 FOOTER</option>
                                     <option value="40 Regular">40 Regular</option>
                                     <option value="40 Heavy Duty">40 Heavy Duty</option>
-
                                 </select>
                             </div>
                         </div>
@@ -89,48 +89,30 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Receipt Number: </label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
                                 <s:textfield name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Date: </label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Date: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
                                 <s:textfield name="container.dateTime" cssClass="form-control" id="dateTime" />
                             </div>
-                            <script type="text/javascript">
-                                $(function () {
-                                    var fromDatePickUp = $('#dateTime');
-                                    fromDatePickUp.datetimepicker({
-                                        timeFormat: 'h:mm TT',
-                                        minDate: 0
-                                    });
-                                });
-                            </script>
-                            <%--<script type="text/javascript">
-                                $(function() {
-                                    var fromDatePickUp = $('#dateTime');
-                                    fromDatePickUp.datepicker({
-                                        timeFormat: 'h:mm TT',
-                                        minDate: 0
-                                    });
-                                });
-                            </script>--%>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Number: </label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
                                 <s:textfield name="container.eirNumber" cssClass="form-control" id="container.eirNumber" />
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Van Location: </label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Van Location: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
                                 <s:textfield name="container.vanLocation" cssClass="form-control" id="container.vanLocation" />
                             </div>
@@ -138,7 +120,7 @@
 
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Trucking: </label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Trucking: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
                                 <s:textfield name="container.trucking" cssClass="form-control" id="container.trucking" />
                             </div>
@@ -146,7 +128,7 @@
 
 
                         <div class="form-group">
-                            <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number: </label>
+                            <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
                                 <s:textfield name="container.plateNumber" cssClass="form-control" id="container.plateNumber" />
                             </div>
@@ -161,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-            </div>\
+            </div>
             <div class="panel-footer">
                 <div class="pull-right">
                     <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Cancel</a>
@@ -169,6 +151,8 @@
                 </div>
             </div>
         </div>
+
+
         </s:form>
     </div>
 </div>

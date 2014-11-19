@@ -187,7 +187,7 @@
 
     <definition name="operations.loadEditForm.tiles" extends="baseLayout">
         <put-attribute name="title" value="Container Management"/>
-        <put-attribute name="body" value="/operations/container/containerEditInfo.jsp"/>
+        <put-attribute name="body" value="/operations/container/containerEdit.jsp"/>
     </definition>
 
     <definition name="operations.loadPrintForm.tiles" extends="baseLayout">
