@@ -66,7 +66,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Contacts> consigneeList = new ArrayList<Contacts>();
     private List<CustomerBean> customerBean = new ArrayList<CustomerBean>();
     private List<Integer> containerQuantity;
-    private List<Parameters> containerList = new ArrayList<Parameters>();
     private List<Integer> itemQuantity;
     private List<Contacts> contactsList = new ArrayList<Contacts>();
     private List<Contacts> consigneeContactsList = new ArrayList<Contacts>();
@@ -1517,7 +1516,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         notifyByList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.NOTIFY_BY);
         orderSearchList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.ORDER_SEARCH);
         portsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS);
-        containerList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
         contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
         addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
 
@@ -1640,14 +1638,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setContact(ContactBean contact) {
         this.contact = contact;
-    }
-
-    public List<Parameters> getContainerList() {
-        return containerList;
-    }
-
-    public void setContainerList(List<Parameters> containerList) {
-        this.containerList = containerList;
     }
 
     public List<Integer> getContainerQuantity() {

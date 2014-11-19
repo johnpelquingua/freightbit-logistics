@@ -37,10 +37,15 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Type: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <select name="container.eirType" id="container.eirType" class="form-control" required="true">
-                                    <option value="EIR 1">EIR 1</option>
-                                    <option value="EIR 2">EIR 2</option>
-                                </select>
+                                <s:select cssClass="form-control"
+                                          id="container.eirType"
+                                          name="container.eirType"
+                                          list="containerEirTypeList"
+                                          listKey="key"
+                                          listValue="value"
+                                          emptyOption="true"
+                                          required="true"
+                                        />
                             </div>
                         </div>
                         <s:hidden name="container.containerId" value="%{container.containerId}" />
@@ -63,7 +68,7 @@
                                     <s:select cssClass="form-control"
                                               id="container.containerSize"
                                               name="container.containerSize"
-                                              list="containerList"
+                                              list="containerSizeList"
                                               listKey="key"
                                               listValue="value"
                                               emptyOption="true"

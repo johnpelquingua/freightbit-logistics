@@ -85,7 +85,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Driver> listDrivers = new ArrayList<Driver>();
     private List<VendorBean> vendors = new ArrayList<VendorBean>();
     private List<Parameters> portsList = new ArrayList<Parameters>();
-    private List<Parameters> containerList = new ArrayList<Parameters>();
+    private List<Parameters> containerSizeList = new ArrayList<Parameters>();
+    private List<Parameters> containerEirTypeList = new ArrayList<Parameters>();
+    private List<Parameters> containerStatusList = new ArrayList<Parameters>();
 
 
     private OrderItemsBean orderItem = new OrderItemsBean();
@@ -127,7 +129,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
         truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
         containerSearchList = parameterService.getParameterMap("CONTAINERS", "CONTAINER_SEARCH");
-        containerList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
+        containerSizeList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
+        containerEirTypeList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.EIR_TYPE);
+        containerStatusList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_STATUS);
+
     }
 
     public String updateCompleteInlandPlanning() {
@@ -1367,7 +1372,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String viewContainerList() {
-        String column = getColumnFilter();
+        /*String column = getColumnFilter();
 
         List<Container> containerList = new ArrayList<Container>();
 
@@ -1376,6 +1381,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         } else {
             containerList = containerService.findAllContainer();
         }
+        for (Container containerElem : containerList) {
+            containers.add(transformContainerToFormBean(containerElem));
+        }
+        return SUCCESS;*/
+        List<Container> containerList = new ArrayList<Container>();
+        containerList = containerService.findAllContainer();
+
         for (Container containerElem : containerList) {
             containers.add(transformContainerToFormBean(containerElem));
         }
@@ -1460,6 +1472,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if(formBean.getContainerId() != null) {
             entity.setContainerId(new Integer(formBean.getContainerId()));
         }
+
+        System.out.println(entity.getEirType());
+        System.out.println(entity.getContainerStatus());
 
         entity.setEirType(formBean.getEirType());
         entity.setEirNumber(formBean.getEirNumber());
@@ -2212,11 +2227,27 @@ public class OperationsAction extends ActionSupport implements Preparable {
         this.containerSearchList = containerSearchList;
     }
 
-    public List<Parameters> getContainerList() {
-        return containerList;
+    public List<Parameters> getContainerSizeList() {
+        return containerSizeList;
     }
 
-    public void setContainerList(List<Parameters> containerList) {
-        this.containerList = containerList;
+    public void setContainerSizeList(List<Parameters> containerSizeList) {
+        this.containerSizeList = containerSizeList;
+    }
+
+    public List<Parameters> getContainerEirTypeList() {
+        return containerEirTypeList;
+    }
+
+    public void setContainerEirTypeList(List<Parameters> containerEirTypeList) {
+        this.containerEirTypeList = containerEirTypeList;
+    }
+
+    public List<Parameters> getContainerStatusList() {
+        return containerStatusList;
+    }
+
+    public void setContainerStatusList(List<Parameters> containerStatusList) {
+        this.containerStatusList = containerStatusList;
     }
 }
