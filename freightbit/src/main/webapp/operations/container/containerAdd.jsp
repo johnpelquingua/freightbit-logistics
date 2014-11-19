@@ -43,6 +43,7 @@
                                 </select>
                             </div>
                         </div>
+                        <s:hidden name="container.containerId" value="%{container.containerId}" />
 
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Container Number: <span class="asterisk_red"></span></label>
@@ -54,13 +55,20 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Container Size: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <select name="container.containerSize" id="container.containerSize" class="form-control" required="true">
+                                <%--<select name="container.containerSize" id="container.containerSize" class="form-control" required="true">
                                     <option value="10 FOOTER">10</option>
                                     <option value="20 FOOTER">20</option>
                                     <option value="40 Regular">40 Regular</option>
-                                    <option value="40 Heavy Duty">40 Heavy Duty</option>
-
-                                </select>
+                                    <option value="40 Heavy Duty">40 Heavy Duty</option>--%>
+                                    <s:select cssClass="form-control"
+                                              id="container.containerSize"
+                                              name="container.containerSize"
+                                              list="containerList"
+                                              listKey="key"
+                                              listValue="value"
+                                              emptyOption="true"
+                                              required="true"
+                                            />
                             </div>
                         </div>
 

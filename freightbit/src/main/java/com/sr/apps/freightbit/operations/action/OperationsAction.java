@@ -85,6 +85,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Driver> listDrivers = new ArrayList<Driver>();
     private List<VendorBean> vendors = new ArrayList<VendorBean>();
     private List<Parameters> portsList = new ArrayList<Parameters>();
+    private List<Parameters> containerList = new ArrayList<Parameters>();
+
 
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OperationsBean operationsBean = new OperationsBean();
@@ -125,6 +127,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
         truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
         containerSearchList = parameterService.getParameterMap("CONTAINERS", "CONTAINER_SEARCH");
+        containerList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
     }
 
     public String updateCompleteInlandPlanning() {
@@ -1345,8 +1348,26 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String loadSearchContainerPage(){ return SUCCESS; }
 
-    public String viewContainerList() {
+    public String searchContainer() {
         String column = getColumnFilter();
+        List<Container> containerList = new ArrayList<Container>();
+
+        if (StringUtils.isNotBlank(column)) {
+            containerList = containerService.findContainerByCriteria(column, container.getContainerKeyword());
+
+        } else {
+            containerList = containerService.findAllContainer();
+        }
+
+        for (Container containerElem : containerList) {
+            containers.add(transformContainerToFormBean(containerElem));
+        }
+
+        return SUCCESS;
+    }
+
+    public String viewContainerList() {
+        /*String column = getColumnFilter();
 
         List<Container> containerList = new ArrayList<Container>();
 
@@ -1355,6 +1376,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         } else {
             containerList = containerService.findAllContainer();
         }
+        for (Container containerElem : containerList) {
+            containers.add(transformContainerToFormBean(containerElem));
+        }
+        return SUCCESS;*/
+        List<Container> containerList = new ArrayList<Container>();
+        containerList = containerService.findAllContainer();
+
         for (Container containerElem : containerList) {
             containers.add(transformContainerToFormBean(containerElem));
         }
@@ -1484,6 +1512,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         containerService.updateContainer(containerEntity);
         addActionMessage("Success! New Form has been edited.");
         return SUCCESS;
+
     }
 
     public String loadSearchFormPage() {
@@ -1495,6 +1524,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         container = transformContainerToFormBean(containerEntity);
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("containerId", container.getContainerId());
+        return SUCCESS;
+    }
+
+    public String loadPrintFormPage() {
         return SUCCESS;
     }
 
@@ -1781,15 +1814,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return fullAddress.toString();
     }
 
-    public String containerAdd(){
+    public String containerAdd() throws Exception {
 
         Container containerEntity  = transformContainerToEntityBean(container);
-        try {
-            containerService.addContainer(containerEntity);
-        } catch (Exception e) {
-            return INPUT;
-        }
-
+        containerService.addContainer(containerEntity);
         addActionMessage("Success! New Form has been added.");
         return SUCCESS;
     }
@@ -2192,5 +2220,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setContainerSearchList(List<Parameters> containerSearchList) {
         this.containerSearchList = containerSearchList;
+    }
+
+    public List<Parameters> getContainerList() {
+        return containerList;
+    }
+
+    public void setContainerList(List<Parameters> containerList) {
+        this.containerList = containerList;
     }
 }

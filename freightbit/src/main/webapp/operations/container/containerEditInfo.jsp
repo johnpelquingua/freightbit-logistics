@@ -59,7 +59,7 @@
                   <option value="10">10</option>
                   <option value="20">20</option>
                   <option value="40 Regular">40 Regular</option>
-                  <option value="40 Heavy Duty">40 Heavy Duty</option>
+                  <option value="40 Heavy Duty">40 HC FOOTER</option>
 
                 </select>--%>
                   <s:select cssClass="form-control"

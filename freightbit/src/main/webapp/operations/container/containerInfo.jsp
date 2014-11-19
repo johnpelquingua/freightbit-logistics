@@ -6,7 +6,7 @@
 
         <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-male"></i> Customer Module</h1>
+               <h1><i class="fa fa-male"></i> Container Information</h1>
             </span>
         </legend>
         <ol class="breadcrumb">
@@ -40,20 +40,30 @@
                         <s:param name="containerIdParam"
                                  value="#attr.container.containerId"></s:param>
                     </s:url>
-                        <sec:authorize
-                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                            <s:a href="%{editContainerUrl}" cssClass="btn btn-success new-booking" rel="tooltip"
-                                 title="Edit this EIR Form">
-                                <i class="fa fa-pencil"></i> Edit EIR Form
-                            </s:a>
-                        </sec:authorize>
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                        <%--<s:a class="icon-action-link" href="%{loadEditFormPageUrl}" rel="tooltip" title="Edit Form">
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa fa-home"> </i> Edit EIR Form
+                            </button>--%>
+                        <s:a href="%{editContainerUrl}" cssClass="btn btn-success new-booking" rel="tooltip"
+                             title="Edit this EIR Form">
+                            <i class="fa fa-pencil"></i> Edit EIR Form
+                        </s:a>
+                    </sec:authorize>
+                    <s:url var="loadPrintFormPageUrl" action="loadPrintFormPage">
+                    </s:url>
+                    <s:a class="icon-action-link" href="%{loadPrintFormPageUrl}" rel="tooltip" title="Print Form">
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa fa-home"> </i> Print EIR Form
+                        </button>
+                    </s:a>
+
                 </span>
             </div>
 
             <div class="panel-body">
 
                 <div class="row">
-
                     <div class="col-lg-6 col-lg-offset-2">
 
                         <div class="panel panel-info ">
@@ -110,18 +120,13 @@
                         </div>
 
                     </div>
-
                 </div>
-
-            </div>
-
-            <div class="panel-footer">
-                <div class="pull-right">
-                    <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Back To Container List</a>
+                <div class="panel-footer">
+                <span class="pull-right">
+                    <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Return to Container Lists</a>
+                </span>
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>
