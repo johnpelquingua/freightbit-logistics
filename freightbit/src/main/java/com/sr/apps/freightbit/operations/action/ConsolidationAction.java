@@ -231,6 +231,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
         formBean.setContainerId(entity.getContainerId());
         formBean.setEirNumber(entity.getEirNumber());
+        formBean.setPortCode(entity.getPortCode());
         formBean.setDateTime(entity.getDateTime());
         formBean.setShipping(entity.getShipping());
         formBean.setTrucking(entity.getTrucking());
@@ -248,6 +249,12 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setSealNumber(entity.getSealNumber());
         formBean.setVanLocation(entity.getVanLocation());
         formBean.setLadenEmpty(entity.getLadenEmpty());
+        formBean.setBookingNum(entity.getBookingNum());
+        formBean.setReceiptNumber(entity.getReceiptNumber());
+        formBean.setLadenEmpty(entity.getLadenEmpty());
+        formBean.setForkliftOperator(entity.getForkliftOperator());
+        formBean.setOperationsDept(entity.getOperationsDept());
+        formBean.setContainerStatus(entity.getContainerStatus());
 
         return formBean;
     }

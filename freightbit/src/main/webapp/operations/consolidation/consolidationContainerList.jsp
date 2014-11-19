@@ -44,12 +44,15 @@
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
                         <%--Booking Date--%>
-                        <td><display:column property="vanNumber" title="Number <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="eirNumber" title="EIR <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="containerNumber" title="Number <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="containerSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="eirNumber" title="EIR <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="containerStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
+
                         <%--Order Number--%>
                         <td><display:column property="dateTime" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>

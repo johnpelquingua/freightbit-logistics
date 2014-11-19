@@ -82,10 +82,11 @@ public class OrderItemsDaoImpl extends HibernateDaoSupport implements OrderItems
         Log.debug("Finding all orderItems");
         try {
             return getSessionFactory().getCurrentSession()
-                    .createQuery("from OrderItems where serviceRequirement = 'LESS CONTAINER LOAD'").list();
+                    .createQuery("from OrderItems where serviceRequirement = 'LESS CONTAINER LOAD' and containerId is null").list();
         } catch (RuntimeException re) {
             Log.error("Find all failed", re);
             throw re;
         }
     }
+
 }
