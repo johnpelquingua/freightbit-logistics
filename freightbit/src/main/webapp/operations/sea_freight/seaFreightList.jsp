@@ -103,65 +103,6 @@
 
 <script>
     $(document).ready(function(){
-        var tableTr = $('#order tbody tr');
-        for(var i = 0; i < tableTr.size(); i++){
-            var statusColumn = $('#order tbody tr td:nth-child(7)').eq(i).text(),
-                    typeColumn = $('#order tbody tr td:nth-child(4)').eq(i),
-                    reqColumn = $('#order tbody tr td:nth-child(5)').eq(i),
-                    modeColumn = $('#order tbody tr td:nth-child(6)').eq(i);
-
-            // ROW COLORS
-            if(statusColumn == 'PENDING' || statusColumn == 'INCOMPLETE'){
-                tableTr.eq(i).css('background-color', '#fcf8e3');
-            }else if(statusColumn == 'DISAPPROVED' || statusColumn == 'CANCELLED'){
-                tableTr.eq(i).css('background-color', '#f2dede');
-            }else if(statusColumn == 'APPROVED' || statusColumn == 'SERVICE ACCOMPLISHED'){
-                tableTr.eq(i).css('background-color', '#dff0d8');
-            }else if(statusColumn == 'ON GOING'){
-                tableTr.eq(i).css('background-color', '#bce8f1');
-            }
-
-            // TYPE ICONS
-            if(typeColumn.text() == 'SHIPPING AND TRUCKING'){
-                typeColumn.empty().append("<i class='fa fa-anchor' /> <i class='fa fa-truck' />");
-            }else if(typeColumn.text() == 'SHIPPING'){
-                typeColumn.empty().append("<i class='fa fa-anchor' />");
-            }else if(typeColumn.text() == 'TRUCKING'){
-                typeColumn.empty().append("<i class='fa fa-truck' />");
-            }
-
-            // REQT COLUMN
-            if(reqColumn.text() == 'FULL CARGO LOAD' || reqColumn.text() == 'FULL CONTAINER LOAD'){
-                reqColumn.empty().append('FCL');
-            }else if(reqColumn.text() == 'FULL TRUCK LOAD'){
-                reqColumn.empty().append('FTL');
-            }else if(reqColumn.text() == 'LESS TRUCK LOAD'){
-                reqColumn.empty().append('LTL');
-            }else if(reqColumn.text() == 'LESS CARGO LOAD' || reqColumn.text() == 'LESS CONTAINER LOAD'){
-                reqColumn.empty().append('LCL');
-            }else if(reqColumn.text() == 'LOOSE CARGO LOAD'){
-                reqColumn.empty().append('LCU');
-            }else if(reqColumn.text() == 'ROLLING CARGO LOAD'){
-                reqColumn.empty().append('RCU');
-            }
-
-            // MODE COLUMN
-            if(modeColumn.text() == 'DOOR TO DOOR'){
-                modeColumn.empty().append('DD');
-            }else if(modeColumn.text() == 'DOOR TO PIER' || modeColumn.text() == 'DOOR TO PORT'){
-                modeColumn.empty().append('DP');
-            }else if(modeColumn.text() == 'PIER TO DOOR' || modeColumn.text() == 'PORT TO DOOR'){
-                modeColumn.empty().append('PD');
-            }else if(modeColumn.text() == 'PIER TO PIER' || modeColumn.text() == 'PORT TO PORT'){
-                modeColumn.empty().append('PP')
-            }else if(modeColumn.text() == 'PICKUP'){
-                modeColumn.empty().append('P')
-            }else if(modeColumn.text() == 'DELIVERY'){
-                modeColumn.empty().append('D')
-            }else if(modeColumn.text() == 'INTER-WAREHOUSE'){
-                modeColumn.empty().append('IW')
-            }
-        }
-    });
+        tableProp('','order', 7, 4, 5, 6);
+    })
 </script>
-
