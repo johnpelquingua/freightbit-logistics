@@ -108,10 +108,28 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
             }
         }
 
-		clearErrorsAndMessages();
-		addActionMessage("Success");
+        List<OrderItems> orderItems = new ArrayList<OrderItems>();
+        List<OrderItems> orderItemsUnderContainer = new ArrayList<OrderItems>();
 
-		return SUCCESS;
+        orderItems = orderService.findAllOrderItemLCL();
+        orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));
+
+        if ("CONSOLIDATED".equals(sessionAttributes.get("containerStatusParam"))) {
+            for (OrderItems orderItemElem : orderItems) {
+                orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+            }
+
+            for (OrderItems orderItemsUnderContainerElem : orderItemsUnderContainer) {
+                orderItemsBeansUnderContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
+            }
+
+            return "CONSOLIDATED";
+        } else {
+            for (OrderItems orderItemElem : orderItems) {
+                orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+            }
+            return SUCCESS;
+        }
 	}
 
     public String updateStatusOfContainersError() {
@@ -152,6 +170,39 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String removeItemOnContainer() {
+        OrderItems orderItemEntity = new OrderItems();
+        orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemIdParam);
+        orderItemEntity.setContainerId(null);
+        operationsService.updateOrderItem(orderItemEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        List<OrderItems> orderItems = new ArrayList<OrderItems>();
+        List<OrderItems> orderItemsUnderContainer = new ArrayList<OrderItems>();
+
+        orderItems = orderService.findAllOrderItemLCL();
+        orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));
+
+        if ("CONSOLIDATED".equals(sessionAttributes.get("containerStatusParam"))) {
+            for (OrderItems orderItemElem : orderItems) {
+                orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+            }
+
+            for (OrderItems orderItemsUnderContainerElem : orderItemsUnderContainer) {
+                orderItemsBeansUnderContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
+            }
+
+            return "CONSOLIDATED";
+        } else {
+            for (OrderItems orderItemElem : orderItems) {
+                orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
+            }
+            return SUCCESS;
+        }
+//        return SUCCESS;
+    }
+
     public String getColumnFilter() {
         String column = "";
         if ("CONTAINER NUMBER".equals(container.getContainerSearchCriteria())) {
@@ -180,19 +231,16 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         if ("CONSOLIDATED".equals(sessionAttributes.get("containerStatusParam"))) {
             for (OrderItems orderItemElem : orderItems) {
                 orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
-                System.out.println(orderItemElem.getNameSize());
             }
 
             for (OrderItems orderItemsUnderContainerElem : orderItemsUnderContainer) {
                 orderItemsBeansUnderContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
-                System.out.println(orderItemsUnderContainerElem.getNameSize());
             }
 
             return "CONSOLIDATED";
         } else {
             for (OrderItems orderItemElem : orderItems) {
                 orderItemsBeans.add(transformToOrderItemFormBean(orderItemElem));
-                System.out.println(orderItemElem.getNameSize());
             }
             return SUCCESS;
         }

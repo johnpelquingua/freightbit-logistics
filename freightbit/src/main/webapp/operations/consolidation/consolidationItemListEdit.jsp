@@ -94,8 +94,8 @@
 
             <div class="panel-body">
                 <div class="table-responsive">
-                    <display:table id="orderItemsUnderContainer" name="orderItemsBeansUnderContainer"requestURI="viewConsolidationItemList.action"
-                                   class="containerItems table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                    <display:table id="orderItemsUnderContainer" name="orderItemsBeansUnderContainer" requestURI="viewConsolidationItemList.action"
+                                   class="mainTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
                         <td><display:column property="nameSize" title="Item Name <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -108,6 +108,17 @@
                         <td><display:column property="port" title="Port <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
+                        <td><display:column title="Action">
+                            <s:url var="removeItemOnContainerUrl" action="removeItemOnContainer">
+                                <s:param name="containerIdParam" value="containerIdParam"></s:param>
+                                <s:param name="containerSizeParam" value="containerSizeParam"></s:param>
+                                <s:param name="containerStatusParam" value="containerStatusParam"></s:param>
+                                <s:param name="orderItemIdParam" value="%{#attr.orderItemsUnderContainer.orderItemId}"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{removeItemOnContainerUrl}" rel="tooltip" title ="Edit Booking" onclick="return confirm('Do you really want to delete?');">
+                                <i class="fa fa-pencil"></i>
+                            </s:a>
+                        </display:column></td>
                     </display:table>
                 </div>
             </div>
