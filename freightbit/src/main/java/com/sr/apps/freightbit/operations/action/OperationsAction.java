@@ -1476,8 +1476,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
             entity.setContainerId(new Integer(formBean.getContainerId()));
         }
 
-        System.out.println(entity.getEirType());
-        System.out.println(entity.getContainerStatus());
+        /*System.out.println(entity.getEirType());
+        System.out.println(entity.getContainerStatus());*/
 
         entity.setEirType(formBean.getEirType());
         entity.setEirNumber(formBean.getEirNumber());
@@ -1505,12 +1505,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setSealNumber(formBean.getSealNumber());
         entity.setLadenEmpty(formBean.getLadenEmpty());
         entity.setSealNumber(formBean.getSealNumber());
-
-        if ("CONSOLIDATED".equals(formBean.getContainerStatus())) {
+        entity.setContainerStatus(formBean.getContainerStatus());
+        /*if ("CONSOLIDATED".equals(formBean.getContainerStatus())) {
             entity.setContainerStatus("CONSOLIDATED");
         } else {
             entity.setContainerStatus("OPEN");
-        }
+        }*/
 
         return entity;
     }
