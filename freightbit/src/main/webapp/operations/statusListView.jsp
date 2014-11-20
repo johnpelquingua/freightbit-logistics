@@ -82,3 +82,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    tableProp('DESTI_ORIG','order',0 ,7, 8, 9, 5, 6);
+</script>

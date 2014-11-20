@@ -120,3 +120,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    tableProp('DESTI_ORIG', 'vesselSchedule', 0, 0, 0, 0, 2,3);
+</script>
