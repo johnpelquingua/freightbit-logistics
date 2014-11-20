@@ -58,7 +58,11 @@
                                             style="text-align: center;"> </display:column></td>
 
                         <td><display:column title="Action">
-                            <s:a><i class="fa fa-info-circle"></i></s:a>
+                            <s:url var="viewConsolidationContainerInfoUrl" action="viewConsolidationContainerInfo">
+                                <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
+                            </s:url>
+                            <s:a href="%{viewConsolidationContainerInfoUrl}" title="Container Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
+
                             <s:url var="viewConsolidationItemListUrl" action="viewConsolidationItemList">
                                 <s:param name="containerIdParam" value="%{#attr.container.containerId}"></s:param>
                                 <s:param name="containerSizeParam" value="%{#attr.container.containerSize}"></s:param>

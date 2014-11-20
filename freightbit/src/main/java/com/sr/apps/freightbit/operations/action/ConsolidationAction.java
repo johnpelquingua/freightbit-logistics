@@ -70,6 +70,26 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         containerSearchList = parameterService.getParameterMap("CONTAINERS", "CONTAINER_SEARCH");
     }
 
+    public String viewConsolidationContainerInfo() {
+        Container containerEntity = new Container();
+        containerEntity = containerService.findContainerById(containerIdParam);
+        container = transformContainerToFormBean(containerEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("containerSizeParam", containerSizeParam);
+        sessionAttributes.put("containerIdParam", containerIdParam);
+        sessionAttributes.put("containerStatusParam", containerStatusParam);
+
+        List<OrderItems> orderItemsUnderContainer = new ArrayList<OrderItems>();
+        orderItemsUnderContainer = orderService.findAllOrderItemsByContainerId((Integer) sessionAttributes.get("containerIdParam"));
+
+        for (OrderItems orderItemsUnderContainerElem : orderItemsUnderContainer) {
+            orderItemsBeansUnderContainer.add(transformToOrderItemFormBean(orderItemsUnderContainerElem));
+        }
+
+        return SUCCESS;
+    }
+
 	public String updateStatusOfContainers() {
 
 		Map sessionAttributes = ActionContext.getContext().getSession();

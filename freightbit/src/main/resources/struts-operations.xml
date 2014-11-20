@@ -451,6 +451,10 @@
             <result name="CONSOLIDATED" type="tiles">operations.consolidationItemListEdit.tiles</result>
         </action>
 
+        <action name="viewConsolidationContainerInfo" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="viewConsolidationContainerInfo">
+            <result name="success" type="tiles">operations.consolidationContainerInfo.tiles</result>
+        </action>
+
         <!--CONSOLIDATION-->
 
         <!--DOCUMENTS PAGE-->

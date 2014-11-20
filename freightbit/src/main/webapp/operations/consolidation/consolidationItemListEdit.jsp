@@ -116,7 +116,7 @@
                                 <s:param name="orderItemIdParam" value="%{#attr.orderItemsUnderContainer.orderItemId}"></s:param>
                             </s:url>
                             <s:a class="icon-action-link" href="%{removeItemOnContainerUrl}" rel="tooltip" title ="Edit Booking" onclick="return confirm('Do you really want to delete?');">
-                                <i class="fa fa-pencil"></i>
+                                <i class="fa fa-times"></i> Remove
                             </s:a>
                         </display:column></td>
                     </display:table>
