@@ -99,8 +99,7 @@
                 weight = $('#result'),
                 volume = $('#result-vol'),
                 container = $('#containerType'),
-                submitBtn = $('#submitBtn'),
-                finalBtn = $('finalBtn');
+                submitBtn = $('#submitBtn');
 
         // this automatically measures the dimension of the table
         // and appends id(for the 4th and 5th td) and value(for the checkbox)
@@ -155,10 +154,10 @@
 
             if(wt > maxWt || vol > maxVol){
                 submitBtn.prop('disabled',true);
-                finalBtn.prop('disabled',true);
+                $('#finalBtn').prop('disabled',true);
             }else{
                 submitBtn.prop('disabled',false);
-                finalBtn.prop('disabled',false);
+                $('#finalBtn').prop('disabled',false);
             }
 
             if(wt > maxWt){ wt = '<font color="red">'+wt+'</font>'; }
