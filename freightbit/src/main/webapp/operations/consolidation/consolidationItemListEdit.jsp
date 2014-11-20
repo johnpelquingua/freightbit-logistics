@@ -95,7 +95,7 @@
             <div class="panel-body">
                 <div class="table-responsive">
                     <display:table id="orderItemsUnderContainer" name="orderItemsBeansUnderContainer"requestURI="viewConsolidationItemList.action"
-                                   class="mainTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                   class="containerItems table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
                         <td><display:column property="nameSize" title="Item Name <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -125,7 +125,11 @@
                 weight = $('#result'),
                 volume = $('#result-vol'),
                 container = $('#containerType'),
-                submitBtn = $('#submitBtn');
+                submitBtn = $('#submitBtn'),
+                containedWt = $('.containerItems tbody tr td:nth-child(3)'),
+                containedVol = $('.containerItems tbody tr td:nth-child(4)'),
+                volContainer,
+                wtContainer;
 
         // this automatically measures the dimension of the table
         // and appends id(for the 4th and 5th td) and value(for the checkbox)
@@ -139,6 +143,14 @@
                 weight.empty().append(conWt);
                 volume.empty().append(conVol);
             }
+        }
+
+        for(var x=0; x < $('.containerItems tbody tr').size(); x++){
+            volContainer = parseFloat(containedVol.eq(x).text())+parseFloat($('#result-vol').text());
+            wtContainer = parseFloat(containedWt.eq(x).text())+parseFloat($('#result').text());
+
+            $('#result').empty().append(wtContainer);
+            $('#result-vol').empty().append(volContainer);
         }
 
         /*
@@ -191,7 +203,7 @@
             weight.empty().append(wt);
             volume.empty().append(vol);
         });
-    })
+    });
 
     function resetBox(){
         $('.mainTable tbody td input[type="checkbox"]').removeAttr('checked');

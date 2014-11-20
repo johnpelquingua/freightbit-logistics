@@ -173,7 +173,7 @@
         tableProp('NONE', 'order', 8, 5, 6, 7);
 
         var tbl = document.getElementById("order");
-        var ctr = <s:property value="%{Booking}"/>;
+        <%--var ctr = <s:property value="%{Booking}"/>;--%>
 
         if (tbl != null) {
             for (var i =1; i <= ctr; i++) {

@@ -53,7 +53,7 @@
                             <div style="float: right; margin-top: -1.2em;">
                                 <button class="btn btn-success" id="submitBtn">Save</button>
                                 <button class="btn btn-danger" onclick="resetBox()">Reset</button>
-                                <button class="btn btn-primary" >Final</button>
+                                <button class="btn btn-primary" id="finalBtn">Final</button>
                             </div>
                         </div>
 
@@ -99,7 +99,8 @@
                 weight = $('#result'),
                 volume = $('#result-vol'),
                 container = $('#containerType'),
-                submitBtn = $('#submitBtn');
+                submitBtn = $('#submitBtn'),
+                finalBtn = $('finalBtn');
 
         // this automatically measures the dimension of the table
         // and appends id(for the 4th and 5th td) and value(for the checkbox)
@@ -108,8 +109,8 @@
             child5.eq(i).attr('id', 'val'+(i+1)+'-vol');
             checkBox.eq(i).attr('class', 'val'+(i+1));
             if(checkBox.eq(i).is(':checked')){
-                conWt = parseInt(weight.text())+parseInt(child4.eq(i).text());
-                conVol = parseInt(volume.text())+parseInt(child5.eq(i).text());
+                conWt = parseFloat(weight.text())+parseFloat(child4.eq(i).text());
+                conVol = parseFloat(volume.text())+parseFloat(child5.eq(i).text());
                 weight.empty().append(conWt);
                 volume.empty().append(conVol);
             }
@@ -144,23 +145,24 @@
             var wt, vol;
             if($.isNumeric($('#'+this.className).text()) && $.isNumeric($('#'+this.className+'-vol').text())){
                 if(this.checked){
-                    wt = parseInt(weight.text())+parseInt($('#'+this.className).text());
-                    vol = parseInt(volume.text())+parseInt($('#'+this.className+'-vol').text());
+                    wt = parseFloat(weight.text())+parseFloat($('#'+this.className).text());
+                    vol = parseFloat(volume.text())+parseFloat($('#'+this.className+'-vol').text());
                 }else{
-                    wt = parseInt(weight.text())-parseInt($('#'+this.className).text());
-                    vol = parseInt(volume.text())-parseInt($('#'+this.className+'-vol').text());
+                    wt = parseFloat(weight.text())-parseFloat($('#'+this.className).text());
+                    vol = parseFloat(volume.text())-parseFloat($('#'+this.className+'-vol').text());
                 }
             }
 
-            if(wt > maxWt){
-                wt = '<font style="color: red;">'+wt+'</font>';
-                submitBtn.prop('disabled', true);
-            }else{ submitBtn.prop('disabled', false); }
+            if(wt > maxWt || vol > maxVol){
+                submitBtn.prop('disabled',true);
+                finalBtn.prop('disabled',true);
+            }else{
+                submitBtn.prop('disabled',false);
+                finalBtn.prop('disabled',false);
+            }
 
-            if(vol > maxVol){
-                vol = '<font style="color: red;">'+vol+'</font>';
-                submitBtn.prop('disabled', true);
-            }else{ submitBtn.prop('disabled', false); }
+            if(wt > maxWt){ wt = '<font color="red">'+wt+'</font>'; }
+            if(vol > maxVol){ vol = '<font color="red">'+vol+'</font>'; }
 
             weight.empty().append(wt);
             volume.empty().append(vol);
