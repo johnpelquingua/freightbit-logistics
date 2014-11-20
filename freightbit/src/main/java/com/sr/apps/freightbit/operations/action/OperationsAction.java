@@ -1410,12 +1410,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String getColumnFilter() {
         String column = "";
-        if ("CONTAINER NUMBER".equals(container.getContainerSearchCriteria())) {
+        if ("Container Number".equals(container.getContainerSearchCriteria())) {
             column = "containerNumber";
-        } else if ("SIZE".equals(container.getContainerSearchCriteria())) {
-            column = "containerSize";
-        } else if ("STATUS".equals(container.getContainerSearchCriteria())) {
-            column = "containerSTATUS";
+        } else if ("EIR Number".equals(container.getContainerSearchCriteria())) {
+            column = "eirNumber";
+        } else if ("Shipping Line".equals(container.getContainerSearchCriteria())) {
+            column = "shipping";
+        } else if ("Port Code".equals(container.getContainerSearchCriteria())) {
+            column = "portCode";
         }
 
         return column;
@@ -1518,6 +1520,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Container containerEntity  = transformContainerToEntityBean(container);
         containerService.updateContainer(containerEntity);
         addActionMessage("Success! New Form has been edited.");
+        return SUCCESS;
+
+    }
+
+    public String checkoutContainer() throws Exception {
+
+        Container containerEntity  = transformContainerToEntityBean(container);
+        containerService.updateContainer(containerEntity);
+        addActionMessage("Success! EIR Form has been checkout.");
         return SUCCESS;
 
     }

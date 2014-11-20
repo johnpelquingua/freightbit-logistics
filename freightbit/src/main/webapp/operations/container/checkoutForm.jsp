@@ -32,7 +32,7 @@
       </div>
       <div class="panel-body">
         <div class="table-responsive list-table">
-          <s:form cssClass="form-horizontal" theme="bootstrap" action="editContainer">
+          <s:form cssClass="form-horizontal" theme="bootstrap" action="checkoutContainer">
           <div class="col-lg-6">
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Type: <span class="asterisk_red"></span></label>
@@ -44,7 +44,6 @@
                           listKey="key"
                           listValue="value"
                           emptyOption="true"
-                          required="false"
                         />
               </div>
             </div>
@@ -53,13 +52,17 @@
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Container Number: </label>
               <div class="col-lg-8" >
-                <s:textfield name="container.containerNumber" cssClass="form-control" id="container.containerNumber" disabled="true" />
+                  <%--The "readonly=true" is equivalent to "disabled=true" but it retrieves the value it gets from the existing values inputted.
+                  This attribute works only for textfields.--%>
+                <s:textfield name="container.containerNumber" cssClass="form-control" id="container.containerNumber" readonly="true" />
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Container Size: </label>
               <div class="col-lg-8" >
+                  <%--The code "onfocus" below disabled the dropdown menus in the same way as how "disabled="true"" works
+                  but this attribute still retrieves the value it gets from the existing value inputted. This attribute works only in "select"--%>
                 <s:select cssClass="form-control"
                           id="container.containerSize"
                           name="container.containerSize"
@@ -68,7 +71,10 @@
                           listValue="value"
                           emptyOption="true"
                           required="false"
-                          disabled="true"
+                          headerKey="0"
+                          headerValue="container.containerSize"
+                          onfocus="this.defaultIndex=this.selectedIndex;"
+                          onchange="this.selectedIndex=this.defaultIndex;"
                         />
               </div>
             </div>
@@ -76,6 +82,7 @@
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Container Status: </label>
               <div class="col-lg-8" >
+                <%--<s:property value="%{container.containerStatus}" />--%>
                 <s:select cssClass="form-control"
                           id="container.containerStatus"
                           name="container.containerStatus"
@@ -84,7 +91,10 @@
                           listValue="value"
                           emptyOption="true"
                           required="false"
-                          disabled="true"
+                          headerKey="0"
+                          headerValue="container.containerStatus"
+                          onfocus="this.defaultIndex=this.selectedIndex;"
+                          onchange="this.selectedIndex=this.defaultIndex;"
                         />
               </div>
             </div>
@@ -92,21 +102,21 @@
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Shipping Line: </label>
               <div class="col-lg-8" >
-                <s:textfield name="container.shipping" cssClass="form-control" id="container.shipping" disabled="true" />
+                <s:textfield name="container.shipping" cssClass="form-control" id="container.shipping" readonly="true" />
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Port Code: </label>
               <div class="col-lg-8" >
-                <s:textfield name="container.portCode" cssClass="form-control" id="container.portCode" disabled="true" />
+                <s:textfield name="container.portCode" cssClass="form-control" id="container.portCode" readonly="true" />
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Receipt Number: </label>
               <div class="col-lg-8" >
-                <s:textfield name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" disabled="true" />
+                <s:textfield name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" readonly="true" />
               </div>
             </div>
 
@@ -131,14 +141,14 @@
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Number: </label>
               <div class="col-lg-8" >
-                <s:textfield name="container.eirNumber" cssClass="form-control" id="container.eirNumber" disabled="true" />
+                <s:textfield name="container.eirNumber" cssClass="form-control" id="container.eirNumber" readonly="true" />
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Van Location:</label>
               <div class="col-lg-8" >
-                <s:textfield name="container.vanLocation" cssClass="form-control" id="container.vanLocation" disabled="true" />
+                <s:textfield name="container.vanLocation" cssClass="form-control" id="container.vanLocation" readonly="true" />
               </div>
             </div>
 
@@ -146,7 +156,7 @@
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Trucking: </label>
               <div class="col-lg-8" >
-                <s:textfield name="container.trucking" cssClass="form-control" id="container.trucking" disabled="true" />
+                <s:textfield name="container.trucking" cssClass="form-control" id="container.trucking" readonly="true" />
               </div>
             </div>
 
@@ -154,7 +164,7 @@
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number: </label>
               <div class="col-lg-8" >
-                <s:textfield name="container.plateNumber" cssClass="form-control" id="container.plateNumber" disabled="true" />
+                <s:textfield name="container.plateNumber" cssClass="form-control" id="container.plateNumber" readonly="true" />
               </div>
 
             </div>
@@ -162,7 +172,7 @@
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Driver: </label>
               <div class="col-lg-8" >
-                <s:textfield name="container.driver" cssClass="form-control" id="container.driver" disabled="true" />
+                <s:textfield name="container.driver" cssClass="form-control" id="container.driver" readonly="true" />
               </div>
             </div>
             <div class="form-group">

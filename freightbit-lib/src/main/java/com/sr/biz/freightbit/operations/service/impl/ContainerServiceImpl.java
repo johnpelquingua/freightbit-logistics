@@ -23,11 +23,12 @@ public class ContainerServiceImpl implements ContainerService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addContainer(Container container) throws Exception {
-        if (containerDao.findContainerByEIRNumber(container.getEirNumber()).size() > 0) {
+/*        if (containerDao.findContainerByEIRNumber(container.getEirNumber()).size() > 0) {
             throw new ContainerAlreadyExistsException(container.getEirNumber());
         } else {
-            containerDao.addContainer(container);
-        }
+
+        }*/
+        containerDao.addContainer(container);
 
     }
 

@@ -399,6 +399,11 @@
             <result name="success" type="redirect">viewContainerList</result>
         </action>
 
+        <action name="checkoutContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editContainer">
+            <result name="input" type="tiles">operations.loadCheckoutForm.tiles</result>
+            <result name="success" type="redirect">viewContainerList</result>
+        </action>
+
         <action name="loadSearchFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSearchFormPage">
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
