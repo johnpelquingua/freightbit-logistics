@@ -455,6 +455,11 @@
             <result name="success" type="tiles">operations.consolidationContainerInfo.tiles</result>
         </action>
 
+        <action name="finalizeContainer" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="finalizeContainer">
+            <result name="success" type="redirect">viewConsolidationContainerList</result>
+        </action>
+
+
         <!--CONSOLIDATION-->
 
         <!--DOCUMENTS PAGE-->

@@ -53,7 +53,13 @@
                             <div style="float: right; margin-top: -1.2em;">
                                 <button class="btn btn-success" id="submitBtn" disabled>Save</button>
                                 <button type="button" class="btn btn-danger" onclick="resetBox()">Reset</button>
-                                <button class="btn btn-primary" id="finalBtn" disabled>Final</button>
+
+                                <s:url var="finalizeContainerUrl" action="finalizeContainer">
+                                    <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
+                                </s:url>
+                                <s:a cssClass="btn btn-primary" href="%{finalizeContainerUrl}" title="Container Info" rel="tooltip" >Final</s:a>
+
+                                <%--<button class="btn btn-primary" id="finalBtn" disabled>Final</button>--%>
                             </div>
                         </div>
 

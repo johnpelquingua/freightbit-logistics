@@ -90,6 +90,20 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String finalizeContainer() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Integer containerId = (Integer) sessionAttributes.get("containerIdParam");
+
+        Container containerEntity = containerService.findContainerById(containerId);
+
+        //change status to FULL LOAD
+        containerEntity.setContainerStatus("FINAL");
+        containerService.updateContainer(containerEntity);
+
+        return SUCCESS;
+    }
+
 	public String updateStatusOfContainers() {
 
 		Map sessionAttributes = ActionContext.getContext().getSession();
