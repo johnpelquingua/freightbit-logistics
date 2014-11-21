@@ -94,6 +94,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private String documentTabInbound;
     private String documentTabFinalOutbound;
     private String documentTabFinalInbound;
+    private String documentItem;
     private String[] check;
     private Date dateReturnedInbound; // variable to capture return date of inbound documents
     private Integer quantitySI_DR; // variable to capture quantity of sales invoice and delivery receipt documents
@@ -126,10 +127,45 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
+    public String documentFlag(){
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        /*Document flag determines message */
+        documentflag = (Integer) sessionAttributes.get("documentflag");
+        if (documentflag == null) {
+            clearErrorsAndMessages();
+        } else if (documentflag == 1) {
+            clearErrorsAndMessages();
+            addActionMessage("Reference Number must be entered");
+        } else if (documentflag == 2) {
+            clearErrorsAndMessages();
+            addActionMessage("Entered reference number successfully!");
+        } else if (documentflag == 3) {
+            clearErrorsAndMessages();
+            addActionMessage("Document(s) successfully updated!");
+        } else if (documentflag == 4) {
+            clearErrorsAndMessages();
+            addActionMessage("Document(s) must be checked before processing");
+        } else if(documentflag == 5) {
+            clearErrorsAndMessages();
+            addActionMessage("Document(s) checked!");
+        } else if(documentflag == 6){
+            clearErrorsAndMessages();
+            addActionMessage("All Documents processed!");
+        }else if(documentflag == 7){
+            clearErrorsAndMessages();
+            addActionMessage("No Documents checked");
+        }else{
+            clearErrorsAndMessages();
+        }
+
+        return SUCCESS;
+    }
+
     /*OUTBOUND DOCUMENTS VIEW*/
     public String viewOrderDocuments() {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
+        // Order ID param pass value
         if (orderIdParam == null) {
             orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
         }
@@ -162,60 +198,132 @@ public class DocumentAction extends ActionSupport implements Preparable{
         finalInboundEntityList = documentsService.findDocumentByFinalInboundStageAndID(1, orderIdParam);
         /*FINAL INBOUND DOCUMENTS LIST COUNT*/
         finalInboundCount = finalInboundEntityList.size();
+        /*ALL DOCUMENTS LIST*/
+        documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
 
-        sessionAttributes.put("outboundCount", outboundCount); // Puts outbound count in session before forwarding to transformDocumentsToFormBean
+        List<String> documentListString = new ArrayList<String>();
 
+        for (Documents documentAdd : documentsList ){
+            documentListString.add(documentAdd.getDocumentName());
+        }
+
+        System.out.println("ggggggggggggggggggggggggggggggggggggggggggg" + documentListString);
+
+        if(!documentListString.contains("PROFORMA BILL OF LADING")){
+            clearErrorsAndMessages();
+            addActionMessage("PROFORMA BILL OF LADING(S) MISSING!");
+            documentTab = "OUTBOUND_MISSING";
+
+        }else if(!documentListString.contains("HOUSE WAYBILL ORIGIN")){
+            clearErrorsAndMessages();
+            addActionMessage("HOUSE WAYBILL ORIGIN(S) MISSING!");
+            documentTab = "OUTBOUND_MISSING";
+
+        }else if(!documentListString.contains("HOUSE WAYBILL DESTINATION")){
+            clearErrorsAndMessages();
+            addActionMessage("HOUSE WAYBILL DESTINATION(S) MISSING!");
+            documentTab = "OUTBOUND_MISSING";
+
+        }
+
+        // System will check if service type required document is created
+        if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")){
+
+            for (OrderItems orderItemCheck : orderItemEntityList) { // check order items under the booking number
+
+                for (Documents documentCheck : documentsList) { // will check all documents inside outbound stage
+
+                        /*if (documentCheck.getVendorCode() != null && !documentCheck.getDocumentName().equals("BOOKING REQUEST FORM") || documentCheck.getVendorCode() != null && !documentCheck.getDocumentName().equals("HOUSE BILL OF LADING") ) { // will check if there are vendor codes*/
+                            // Will check if any documents assigned to the shipping vendor
+                            if (documentCheck.getDocumentName().equals("PROFORMA BILL OF LADING")) {
+                                /*if (!documentCheck.getVendorCode().equals(orderItemCheck.getVendorSea())) {
+                                    clearErrorsAndMessages();
+                                    addActionMessage("PROFORMA BILL OF LADING(S) MISSING!");
+                                    documentTab = "OUTBOUND_MISSING";
+                                }*/
+                                if (documentCheck.getVendorCode() != null ){
+                                    if (!documentCheck.getVendorCode().equals(orderItemCheck.getVendorSea())) {
+                                        clearErrorsAndMessages();
+                                        addActionMessage("PROFORMA BILL OF LADING NOT YET CREATED!");
+                                        documentTab = "OUTBOUND_MISSING";
+                                        break;
+                                    }
+                                }
+                            }
+
+                            else if (orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")) {
+                                // will check if any documents assigned to the origin vendor
+
+                                if (documentCheck.getDocumentName().equals("HOUSE WAYBILL ORIGIN")) {
+
+                                    if (documentCheck.getVendorCode() != null) {
+                                        if (!documentCheck.getVendorCode().equals(orderItemCheck.getVendorOrigin())) {
+                                            clearErrorsAndMessages();
+                                            addActionMessage("HOUSE WAYBILL(S) ORIGIN MISSING!");
+                                            documentTab = "OUTBOUND_MISSING";
+                                            break;
+                                        }
+                                    }
+
+                                }
+
+                            }
+
+                            else if (orderEntity.getServiceMode().equals("PIER TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO DOOR")) {
+                                // will check if any documents assigned to the destination vendor
+                                if (documentCheck.getDocumentName().equals("HOUSE WAYBILL DESTINATION")) {
+
+                                    if (documentCheck.getVendorCode() != null){
+                                        if (!documentCheck.getVendorCode().equals(orderItemCheck.getVendorDestination())) {
+                                            clearErrorsAndMessages();
+                                            addActionMessage("HOUSE WAYBILL(S) DESTINATION MISSING!");
+                                            documentTab = "OUTBOUND_MISSING";
+                                            break;
+                                        }
+                                    }
+
+                                }
+
+
+                            }
+
+                            /*0-00000000000000000000000000000PIER TO PIER0000000000000000000000000000000000000*/
+
+
+
+                        /*} else {
+                            clearErrorsAndMessages();
+                            addActionMessage("DOCUMENTS NOT CREATED IN PLANNING YET!");
+                            documentTab = "OUTBOUND_MISSING";
+                        }*/
+
+
+
+                }
+
+            }
+
+        }
+
+        /*OUTBOUND DOCUMENTS TABLE VIEW*/
         for (Documents documentElem : outboundEntityList) {
             outboundDocuments.add(transformDocumentsToFormBean(documentElem));
         }
-
-        /*ARCHIVE DOCUMENTS*/
-        //archiveEntityList = documentsService.findDocumentByStageAndID("ARCHIVE", orderIdParam);
-
-        /*BILLING DOCUMENTS*/
-        //billingEntityList = documentsService.findDocumentByStageAndID("BILLING", orderIdParam);
-
-        /*Document flag determines message */
-        documentflag = (Integer) sessionAttributes.get("documentflag");
-        if (documentflag == null) {
-            clearErrorsAndMessages();
-        } else if (documentflag == 1) {
-            clearErrorsAndMessages();
-			addActionError("You must enter a reference number");
-        } else if (documentflag == 2) {
-            clearErrorsAndMessages();
-            addActionMessage("Entered reference number successfully!");
-        } else if (documentflag == 3) {
-            clearErrorsAndMessages();
-            addActionMessage("Document(s) successfully updated!");
-        } else if (documentflag == 4) {
-            clearErrorsAndMessages();
-			addActionError("Check all documents first before moving to next stage");
-        } else if(documentflag == 5) {
-            clearErrorsAndMessages();
-            addActionMessage("Document(s) checked!");
-        } else if(documentflag == 6){
-            clearErrorsAndMessages();
-            addActionMessage("Notified Destination office of faxed document");
-        } else if(documentflag == 7){
-            clearErrorsAndMessages();
-			addActionError("Document(s) must be checked before processing");
-        }else if(documentflag == 8){
-            clearErrorsAndMessages();
-            addActionMessage("All Documents processed!");
-        }else if(documentflag == 9){
-            clearErrorsAndMessages();
-			addActionError("No Documents checked");
-        }else{
-            clearErrorsAndMessages();
+        /*INBOUND DOCUMENTS TABLE VIEW*/
+        for (Documents documentElem : inboundEntityList) {
+            inboundDocuments.add(transformDocumentsToFormBean(documentElem));
         }
-        //resets document flag
-        documentflag = 0;
-        sessionAttributes.put("documentflag", documentflag);
-        sessionAttributes.put("orderIdParam", orderIdParam);
-        //set document tab to anchor page on load
-        if (sessionAttributes.get("documentTab") == null) {
+        /*FINAL OUTBOUND DOCUMENTS TABLE VIEW*/
+        for (Documents documentElem : finalOutboundEntityList) {
+            finalOutboundDocuments.add(transformDocumentsToFormBean(documentElem));
+        }
+        /*FINAL INBOUND DOCUMENTS TABLE VIEW*/
+        for (Documents documentElem : finalInboundEntityList){
+            finalInboundDocuments.add(transformDocumentsToFormBean(documentElem));
+        }
 
+        //DOCUMENT TAB OUTBOUND VALUE BEGIN================================================================================================================
+        if (sessionAttributes.get("documentTab") == null || "".equals(sessionAttributes.get("documentTab"))) {
             // Loop will count for documents already processed
             Integer checkDocs = 0;
 
@@ -225,18 +333,21 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     checkDocs = checkDocs + 1; // function will count checkDocs for document processed value greater than or equal to 1
                 }
             }
-
             // Checked documents must be equal to total documents before being processed
-            if(outboundCount != checkDocs){ // total outbound documents versus processed outbound documents
-                documentTab = "OUTBOUND"; // not equals will yield incomplete outbound stage
-            }else{
-                documentTab = "OUTBOUND_COMPLETE"; // equels mean completed outbound stage
+            if(documentTab == null || "".equals(documentTab)) {
+                if (outboundCount != checkDocs) { // total outbound documents versus processed outbound documents
+                    documentTab = "OUTBOUND"; // not equals will yield incomplete outbound stage
+                } else {
+                    documentTab = "OUTBOUND_COMPLETE"; // equal mean completed outbound stage
+                }
             }
         }else{
             documentTab = sessionAttributes.get("documentTab").toString(); // will get a difference document tab value from another method
         }
+        //DOCUMENT TAB OUTBOUND VALUE END================================================================================================================
 
-        // Document Tab Inbound Value
+        //DOCUMENT TAB INBOUND VALUE BEGIN================================================================================================================
+
         if(sessionAttributes.get("documentTabInbound") == null){
             // Loop will count for documents already processed for outbound stage
             Integer checkDocs = 0;
@@ -289,7 +400,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
             documentTabInbound = sessionAttributes.get("documentTabInbound").toString();
         }
 
-        // Document Tab Final Outbound Value
+        //DOCUMENT TAB INBOUND VALUE END================================================================================================================
+
+        //DOCUMENT TAB FINAL OUTBOUND VALUE BEGIN================================================================================================================
+
         if (sessionAttributes.get("documentTabFinalOutbound") == null) {
             // Loop will count for documents already processed for inbound stage
             Integer checkDocsInbound = 0;
@@ -322,11 +436,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
             System.out.println("FINAL OUTBOUND DOCUMENTS COUNT "+ finalOutboundCount);
             System.out.println("PROCESSED DOCUMENTS IN INBOUND STAGE " + checkDocsInbound);
             System.out.println("PROCESSED DOCUMENTS IN FINAL OUTBOUND STAGE " + checkDocsFinalOut);
-            System.out.println("FINAL OUTBOUND STAGE SENT" + checkDocsFinalOutSent);
+            System.out.println("FINAL OUTBOUND STAGE SENT " + checkDocsFinalOutSent);
 
             if (finalOutboundCount == 0 ){
                 documentTabFinalOutbound = "NO_FINAL_OUTBOUND_DOCUMENTS";
-            }else if(checkDocsFinalOut == checkDocsFinalOutSent){
+            }else if(checkDocsFinalOut == checkDocsFinalOutSent && checkDocsFinalOut != 0){
                 documentTabFinalOutbound = "FINAL_OUTBOUND_SENT";
             }else if(finalOutboundCount == checkDocsFinalOut){
                 documentTabFinalOutbound = "FINAL_OUTBOUND_COMPLETE";
@@ -337,6 +451,65 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }else{
             documentTabFinalOutbound = sessionAttributes.get("documentTabFinalOutbound").toString();
         }
+
+        //DOCUMENT TAB FINAL OUTBOUND VALUE END================================================================================================================
+
+        //DOCUMENT TAB FINAL INBOUND VALUE BEGIN================================================================================================================
+
+        if(sessionAttributes.get("documentTabFinalInbound") == null){
+
+            if(finalInboundCount == 0){
+                documentTabFinalInbound = "NO_FINAL_INBOUND_DOCUMENTS";
+            }else{
+                documentTabFinalInbound = "FINAL_INBOUND";
+            }
+
+        }else{
+            documentTabFinalInbound = sessionAttributes.get("documentTabFinalInbound").toString();
+        }
+
+        //DOCUMENT TAB FINAL INBOUND VALUE END================================================================================================================
+
+        sessionAttributes.put("documentflag", sessionAttributes.get("documentflag")); // get session document flag
+        documentFlag(); // document flag method
+        documentflag = 0; // resets document flag
+
+
+
+
+
+
+
+
+
+        /*ARCHIVE DOCUMENTS*/
+        //archiveEntityList = documentsService.findDocumentByStageAndID("ARCHIVE", orderIdParam);
+
+        /*BILLING DOCUMENTS*/
+        //billingEntityList = documentsService.findDocumentByStageAndID("BILLING", orderIdParam);
+
+
+
+        /*sessionAttributes.put("documentflag", documentflag);
+        sessionAttributes.put("orderIdParam", orderIdParam);*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         return SUCCESS;
@@ -1063,144 +1236,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return orderItemBean;
     }
 
-    /*public String editDocumentInfo() {
-
-        try{
-            Documents documentEntity = transformToDocumentEntityBean(document);
-
-            documentsService.updateDocument(documentEntity);
-
-        }catch(DocumentAlreadyExistsException e){
-            addFieldError("document.documentName", getText("err.documentName.already.exists"));
-            return INPUT;
-        }
-
-        return SUCCESS;
-    }*/
-
-    /*public String moveDocumentInbound(){
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
-        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
-
-        if(documentEntity.getDocumentProcessed().equals(1)){
-            *//*documentEntity.setDocumentType("FINAL OUTBOUND");*//*
-            documentEntity.setDocumentStatus("FROM INBOUND");
-
-            if (documentEntity.getDocumentName().equals("BOOKING REQUEST FORM WITH SIGNATURE")) {
-                documentEntity.setDocumentProcessed(0);
-                *//*documentEntity.setDocumentType("ARCHIVE");*//*
-                *//*Pass flag to view order documents*//*
-                documentflag = 3;
-                sessionAttributes.put("documentflag", documentflag);
-            }
-            if (documentEntity.getDocumentName().equals("MASTER BILL OF LADING")) {
-                if ("".equals(documentEntity.getReferenceNumber())) {
-                    *//*Pass flag to view order documents*//*
-                    documentflag = 1;
-                    sessionAttributes.put("documentflag", documentflag);
-                    *//*documentEntity.setDocumentType("INBOUND");*//*
-                    documentEntity.setDocumentName("MASTER BILL OF LADING");
-                    documentEntity.setDocumentProcessed(0);
-                } else {
-                    documentEntity.setDocumentName("MASTER BILL OF LADING");
-                    documentEntity.setDocumentStatus("FROM INBOUND");
-                    documentEntity.setDocumentProcessed(0);
-                    *//*Pass flag to view order documents*//*
-                    documentflag = 3;
-                    sessionAttributes.put("documentflag", documentflag);
-                }
-            }
-            if (documentEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN WITH SIGNATURE")) {
-                documentEntity.setDocumentProcessed(0);
-                *//*documentEntity.setDocumentType("ARCHIVE");*//*
-                *//*Pass flag to view order documents*//*
-                documentflag = 3;
-                sessionAttributes.put("documentflag", documentflag);
-            }
-            if(documentEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
-                documentEntity.setDocumentProcessed(0);
-                *//*documentEntity.setDocumentType("ARCHIVE");*//*
-
-                *//*Pass flag to view order documents*//*
-                documentflag = 3;
-                sessionAttributes.put("documentflag", documentflag);
-            }
-            else {
-                documentEntity.setDocumentProcessed(0);
-                *//*Pass flag to view order documents*//*
-                documentflag = 3;
-                sessionAttributes.put("documentflag", documentflag);
-            }
-
-            documentsService.updateDocument(documentEntity);
-        }else{
-            documentflag = 4;
-            sessionAttributes.put("documentflag", documentflag);
-        }
-
-        sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());
-
-        return SUCCESS;
-    }*/
-
-    /*public String moveDocumentFinalOutbound(){
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
-        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
-
-        if(documentEntity.getDocumentProcessed().equals(1)){
-
-            if(documentEntity.getDocumentName().equals("MASTER BILL OF LADING")) {
-                *//*documentEntity.setDocumentType("ARCHIVE");*//*
-                documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
-                documentEntity.setDocumentProcessed(0);
-                *//*Pass flag to view order documents*//*
-                documentflag = 3;
-                sessionAttributes.put("documentflag", documentflag);
-
-            } else if (documentEntity.getDocumentName().equals("HOUSE WAYBILL DESTINATION")) {
-                documentEntity.setDocumentProcessed(0);
-                *//*documentEntity.setDocumentType("FINAL INBOUND");*//*
-                documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
-                *//*Pass flag to view order documents*//*
-                documentflag = 3;
-                sessionAttributes.put("documentflag", documentflag);
-            }else if(documentEntity.getDocumentName().equals("SALES INVOICE / DELIVERY RECEIPT")) {
-                documentEntity.setDocumentProcessed(0);
-                *//*documentEntity.setDocumentType("FINAL INBOUND");*//*
-                documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
-                *//*Pass flag to view order documents*//*
-                documentflag = 3;
-                sessionAttributes.put("documentflag", documentflag);
-            }else if(documentEntity.getDocumentName().equals("AUTHORIZATION TO WITHDRAW")) {
-                documentEntity.setDocumentProcessed(0);
-                *//*documentEntity.setDocumentType("ARCHIVE");*//*
-                documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
-                *//*Pass flag to view order documents*//*
-                documentflag = 3;
-                sessionAttributes.put("documentflag", documentflag);
-            } else {
-                *//*documentEntity.setDocumentType("FINAL INBOUND");*//*
-                documentEntity.setDocumentStatus("FROM FINAL OUTBOUND");
-                documentEntity.setDocumentProcessed(0);
-                *//*Pass flag to view order documents*//*
-                documentflag = 3;
-                sessionAttributes.put("documentflag", documentflag);
-            }
-            documentsService.updateDocument(documentEntity);
-        }else{
-            documentflag = 4;
-            sessionAttributes.put("documentflag", documentflag);
-        }
-
-        sessionAttributes.put("orderIdParam", documentEntity.getReferenceId());
-
-        return SUCCESS;
-    }*/
-
     // Process Documents on Outbound Stage
     public String processDocuments(){
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -1217,7 +1252,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 for (int i = 0; i < check.length; i++) { // loop of how many values in check
 
                     if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){ // catches error when no values inside check
-                        documentflag = 9; // Shows error that no document was checked
+                        sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
+                        documentflag = 7; // Shows error that no document was checked
                         sessionAttributes.put("documentflag", documentflag);
                         return INPUT;
                     }
@@ -1228,7 +1264,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     // Will trigger if Proforma Bill of Lading does not have a Reference Number
                     if (documentIdEntity.getDocumentName().equals("PROFORMA BILL OF LADING") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("PROFORMA BILL OF LADING") && documentIdEntity.getReferenceNumber() == null) {
                         documentIdEntity.setDocumentStatus("INPUT REFERENCE NUMBER");
-                        documentIdEntity.setDocumentProcessed(0);
+                        /*documentIdEntity.setDocumentProcessed(0);*/
                         /*Pass flag to view order documents*/
                         documentflag = 1; // Shows must enter reference number error
                         sessionAttributes.put("documentflag", documentflag);
@@ -1236,57 +1272,33 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     } else if (documentIdEntity.getDocumentName().equals("PROFORMA BILL OF LADING") && documentIdEntity.getReferenceNumber() != null) {
                         documentIdEntity.setDocumentStatus("ENTERED REFERENCE NUMBER");
                         documentIdEntity.setDocumentProcessed(1);
-                        documentIdEntity.setArchiveStage(1);
+                        documentIdEntity.setArchiveStage(0);
                         /*Pass flag to view order documents*/
                         documentflag = 2; // shows reference number entered successfully
                         sessionAttributes.put("documentflag", documentflag);
-
-                        /*-------------------------------------------------------------------------------------------------------------------------*/
-                        // Master Bill of Lading will be created under pending documents begin
-                        /*Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
-
-                        Documents documentEntity = new Documents();
-
-                        Client client = clientService.findClientById(getClientId().toString());
-                        documentEntity.setClient(client);
-
-                        documentEntity.setDocumentName(DocumentsConstants.MASTER_BILL_OF_LADING);
-                        documentEntity.setReferenceId(orderEntity.getOrderId());
-                        documentEntity.setReferenceTable("ORDERS");
-                        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-                        documentEntity.setCreatedDate(new Date());
-                        documentEntity.setDocumentStatus("PENDING");
-                        documentEntity.setInboundStage(1);
-                        documentEntity.setDocumentProcessed(1);
-
-                        documentsService.addDocuments(documentEntity);
-*/
-                        // Master Bill of Lading will be created under pending documents end
-                        /*-------------------------------------------------------------------------------------------------------------------------*/
-
                     // Triggers if Document is House Bill of Lading
-                    } else if (documentIdEntity.getDocumentName().equals("HOUSE BILL OF LADING")) {
+                    } /*else if (documentIdEntity.getDocumentName().equals("HOUSE BILL OF LADING")) {
                         documentIdEntity.setDocumentProcessed(1);
-                        documentIdEntity.setInboundStage(1);
-                        /*Pass flag to view order documents*/
+                        *//*documentIdEntity.setInboundStage(0);*//*
+                        *//*Pass flag to view order documents*//*
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
                     } else if(documentIdEntity.getDocumentName().equals("BOOKING REQUEST FORM")){ // Triggers if Document is Booking Request Form
-                        documentIdEntity.setInboundStage(1);
+                        *//*documentIdEntity.setInboundStage(0);*//*
                         documentIdEntity.setDocumentProcessed(1);
                         documentIdEntity.setDocumentStatus("PRINTED");
-                        /*Pass flag to view order documents*/
+                        *//*Pass flag to view order documents*//*
                         documentflag = 5; // shows document check message
                     } else if(documentIdEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN")){ // Triggers if Document is HOUSE WAYBILL ORIGIN
-                        documentIdEntity.setInboundStage(1);
+                        *//*documentIdEntity.setInboundStage(0);*//*
                         documentIdEntity.setDocumentProcessed(1);
                         documentIdEntity.setDocumentStatus("PRINTED");
-                        /*Pass flag to view order documents*/
+                        *//*Pass flag to view order documents*//*
                         documentflag = 5; // shows document check message
 
                         // Master Way Bill Origin will be created under pending documents begin
 
-                        /*Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
+                        *//*Orders orderEntity = orderService.findOrdersById(documentIdEntity.getReferenceId());
 
                         Documents documentEntity = new Documents();
 
@@ -1303,12 +1315,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentEntity.setDocumentProcessed(1);
                         documentEntity.setOrderItemId(documentIdEntity.getOrderItemId());
 
-                        documentsService.addDocuments(documentEntity);*/
+                        documentsService.addDocuments(documentEntity);*//*
 
                         // Master Way Bill Origin will be created under pending documents end
 
-                    } else {
+                    }*/ else {
                         documentIdEntity.setDocumentStatus("PRINTED");
+                        documentIdEntity.setInboundStage(0);
                         documentIdEntity.setDocumentProcessed(1);
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
@@ -1324,7 +1337,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }else {
 
                 sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
-                documentflag = 7; // all documents must be checked before processing
+                documentflag = 4; // all documents must be checked before processing
                 sessionAttributes.put("documentflag", documentflag);
                 return INPUT;
         }
@@ -1336,9 +1349,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String processDocumentsInbound(){
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-/*        System.out.println("CHECK WORD PASS" + check);*/
+        System.out.println("CHECK WORD PASS " + check);
 
-        System.out.println("DOCUMENT ITEM" + document.getDocumentItem());
+        System.out.println("DOCUMENT ITEM " + document.getDocumentItem());
+
+        System.out.println("ORDER ID " + orderIdParam);
 
         if (check != null) {
 
@@ -1347,7 +1362,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 for (int i = 0; i < check.length; i++) {
                     // if no checkbox are selected
                     if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){
-                        documentflag = 9; // Shows error that no document was checked
+                        sessionAttributes.put("orderIdParam", orderIdParam );
+                        documentflag = 7; // Shows error that no document was checked
                         sessionAttributes.put("documentflag", documentflag);
                         return INPUT;
                     }
@@ -1362,6 +1378,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentIdEntity.setDocumentStatus("RECEIVED WITH SIGNATURE");
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
+                        sessionAttributes.put("documentflag", documentflag);
                     }else if(documentIdEntity.getDocumentName().equals("HOUSE BILL OF LADING")){
                         documentIdEntity.setDocumentProcessed(2);
                         /*Pass flag to view order documents*/
@@ -1374,7 +1391,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
                     }else if(documentIdEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN") && documentIdEntity.getReferenceNumber() == null){
-
                         documentflag = 1; // Shows must enter reference number error
                         sessionAttributes.put("documentflag", documentflag);
                     }else if(documentIdEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
@@ -1411,8 +1427,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
             }
 
         }else{
-            sessionAttributes.put("orderIdParam", (Integer) sessionAttributes.get("orderIdParam"));
-            documentflag = 7; // all documents must be checked before processing
+            sessionAttributes.put("orderIdParam", orderIdParam);
+            documentflag = 4; // all documents must be checked before processing
             sessionAttributes.put("documentflag", documentflag);
             return INPUT;
         }
@@ -1423,9 +1439,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String processDocumentsFinalOutbound(){
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-/*        System.out.println("CHECK WORD PASS" + check);*/
+        System.out.println("CHECK WORD PASS " + check);
 
-        System.out.println("DOCUMENT ITEM" + document.getDocumentItem());
+        System.out.println("DOCUMENT ITEM " + document.getDocumentItem());
+
+        System.out.println("ORDER ID " + orderIdParam);
 
         if (check != null) {
 
@@ -1434,7 +1452,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 for (int i = 0; i < check.length; i++) {
                     // if no checkbox are selected
                     if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){
-                        documentflag = 9; // Shows error that no document was checked
+                        sessionAttributes.put("orderIdParam", orderIdParam);
+                        documentflag = 7; // Shows error that no document was checked
                         sessionAttributes.put("documentflag", documentflag);
                         return INPUT;
                     }
@@ -1448,10 +1467,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentIdEntity.setDocumentProcessed(3);
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
+                        sessionAttributes.put("documentflag", documentflag);
                     }else if(documentIdEntity.getDocumentName().equals("MASTER BILL OF LADING") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("MASTER BILL OF LADING") && documentIdEntity.getReferenceNumber() == null){
                         documentflag = 1; // Shows must enter reference number error
                         sessionAttributes.put("documentflag", documentflag);
-                    }else if(documentIdEntity.getDocumentName().equals("MAfinal_outbound_tab == \"FINAL_OUTBOUND\"STER BILL OF LADING")){
+                    }else if(documentIdEntity.getDocumentName().equals("MASTER BILL OF LADING")){
                         documentIdEntity.setDocumentProcessed(3);
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
@@ -1461,6 +1481,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         sessionAttributes.put("documentflag", documentflag);
                     }else if(documentIdEntity.getDocumentName().equals("SALES INVOICE") || documentIdEntity.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || documentIdEntity.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ){
                         documentIdEntity.setDocumentProcessed(3);
+
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
@@ -1474,8 +1495,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
             }
 
         }else{
-            sessionAttributes.put("orderIdParam", (Integer) sessionAttributes.get("orderIdParam"));
-            documentflag = 7; // all documents must be checked before processing
+            sessionAttributes.put("orderIdParam", orderIdParam);
+            documentflag = 4; // all documents must be checked before processing
             sessionAttributes.put("documentflag", documentflag);
             return INPUT;
         }
@@ -1745,7 +1766,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
-    public String addReferenceNumberInbound() {
+    /*public String addReferenceNumberInbound() {
 
         Documents documentsEntity = transformToDocumentEntityBean(document);
 
@@ -1754,7 +1775,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderIdParam", documentsEntity.getReferenceId());
 
-        /*Pass flag to view order documents*/
+        *//*Pass flag to view order documents*//*
         if (documentsEntity.getDocumentName().equals("BOOKING REQUEST FORM") || documentsEntity.getDocumentName().equals("HOUSE BILL OF LADING") || documentsEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN") ){
             documentflag = 3; // document successfully updated
             sessionAttributes.put("documentflag", documentflag);
@@ -1764,7 +1785,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }
 
         return SUCCESS;
-    }
+    }*/
 
     public String activateFinalOutbound() {
         List<String> vendorSeaCodeList = new ArrayList<String>(); // placeholder for sea vendor codes
@@ -1800,7 +1821,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }
 
         List<Documents> authorizationWithdraw = documentsService.findDocumentNameAndId("AUTHORIZATION TO WITHDRAW", orderIdParam);
-        List<Documents> houseWaybillDestination = documentsService.findDocumentNameAndId("HOUSE WAYBILL DESTINATION", orderIdParam);
+        /*List<Documents> houseWaybillDestination = documentsService.findDocumentNameAndId("HOUSE WAYBILL DESTINATION", orderIdParam);*/
 
         // Authorization to withdraw will be created based on every order item and should have shipping in freight type
         Orders orderCheck = orderService.findOrdersById(orderIdParam);
@@ -1831,12 +1852,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentflag = 6; // Document already exist
                     sessionAttributes.put("documentflag", documentflag);
                     sessionAttributes.put("orderIdParam", orderIdParam);
-                    return INPUT;
+                    /*return INPUT;*/
+                    break;
                 }
             }
         }
 
-        for (String destinationVendor : vendorDestinationCodeList){
+        /*for (String destinationVendor : vendorDestinationCodeList){
             if(houseWaybillDestination.size() == 0){
                 Documents documentEntity = new Documents();
 
@@ -1861,25 +1883,18 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 sessionAttributes.put("orderIdParam", orderIdParam);
                 return INPUT;
             }
-        }
+        }*/
 
         inboundEntityList = documentsService.findDocumentByInboundStageAndID(1, orderIdParam);
-        finalOutboundEntityList = documentsService.findDocumentByFinalOutboundStageAndID(1, orderIdParam);
+        finalOutboundEntityList = documentsService.findDocumentByFinalOutboundStageAndID(0, orderIdParam);
 
-        for (Documents documentElem : inboundEntityList){
-            if(documentElem.getDocumentName().equals("BOOKING REQUEST FORM")){
-                documentElem.setArchiveStage(1);
-            }else if(documentElem.getDocumentName().equals("HOUSE BILL OF LADING")){
+        for (Documents documentElem : finalOutboundEntityList){
+            /*if(documentElem.getDocumentName().equals("BOOKING REQUEST FORM") || documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || documentElem.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
+                documentElem.setArchiveStage(0);
+            }else {
                 documentElem.setFinalOutboundStage(1);
-            }else if(documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN")){
-                documentElem.setArchiveStage(1);
-            }else if(documentElem.getDocumentName().equals("MASTER BILL OF LADING")){
-                documentElem.setFinalOutboundStage(1);
-            }else if(documentElem.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
-                documentElem.setArchiveStage(1);
-            }else if(documentElem.getDocumentName().equals("SALES INVOICE")){
-                documentElem.setFinalOutboundStage(1);
-            }
+            }*/
+            documentElem.setFinalOutboundStage(1);
             documentsService.updateDocument(documentElem);
         }
 
@@ -1933,57 +1948,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
-    /*public String moveDocuments() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        *//*OUTBOUND DOCUMENTS*//*
-        outboundEntityList = documentsService.findDocumentByOutboundStageAndID(1, orderIdParam);
-
-        outboundCount = outboundEntityList.size();
-        // Loop will count for documents already processed
-        Integer checkDocs = 0;
-
-        for (Documents documentElem : outboundEntityList) {
-            if(documentElem.getDocumentProcessed() == 1){
-                checkDocs = checkDocs + 1;
-            }
-        }
-        // Checked documents must be equal to total documents before being processed
-        if(outboundCount != checkDocs){
-            documentflag = 7; // All Documents must be checked before processing
-            sessionAttributes.put("documentflag", documentflag);
-            sessionAttributes.put("orderIdParam", orderIdParam);
-            documentTab = "OUTBOUND";
-            sessionAttributes.put("documentTab", documentTab);
-            return INPUT;
-        }else {
-            //Activates documents stage number depending on document name
-
-            for (Documents documentElem : outboundEntityList) {
-                documentElem.setDocumentStatus("FROM OUTBOUND");
-                if(documentElem.getDocumentName().equals("BOOKING REQUEST FORM")){
-                    documentElem.setInboundStage(1);
-                }else if(documentElem.getDocumentName().equals("PROFORMA BILL OF LADING")){
-                    documentElem.setArchiveStage(1);
-                }else if(documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN")){
-                    documentElem.setInboundStage(1);
-                }else{
-                    documentElem.setInboundStage(1);
-                }
-
-                documentsService.updateDocument(documentElem);
-            }
-
-            documentflag = 8; // All documents processed
-            sessionAttributes.put("documentflag", documentflag);
-            sessionAttributes.put("orderIdParam", orderIdParam);
-            documentTab = "OUTBOUND_COMPLETE";
-            sessionAttributes.put("documentTab", documentTab);
-
-        }
-
-        return SUCCESS;
-    }*/
-
     public String dateReceivedInbound(){
 
         System.out.println("----------------------------------------date" + dateReturnedInbound);
@@ -1996,12 +1960,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         outboundCount = outboundEntityList.size();
 
-        inboundEntityList = documentsService.findDocumentByInboundStageAndID(1, orderIdParam);
+        inboundEntityList = documentsService.findDocumentByInboundStageAndID(0, orderIdParam); // count inbound documents with 0 value
 
         inboundCount = inboundEntityList.size();
 
         // updates all existing inbound documents at this point and adds return date to them
         for (Documents documentInboundElem : inboundEntityList) {
+            documentInboundElem.setInboundStage(1);
             documentInboundElem.setInboundReturned(dateReturnedInbound);
 
             documentsService.updateDocument(documentInboundElem);
@@ -2077,7 +2042,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 sessionAttributes.put("documentflag", documentflag);
                 sessionAttributes.put("orderIdParam", orderIdParam);
 
-                return INPUT;
+                /*return INPUT;*/
+                break;
             }
         }
 
@@ -2116,7 +2082,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 sessionAttributes.put("documentflag", documentflag);
                 sessionAttributes.put("orderIdParam", orderIdParam);
 
-                return INPUT;
+                /*return INPUT;*/
+                break;
             }
         }
 
@@ -2280,7 +2247,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         Documents subEntity = documentsService.findDocumentById(formBean.getDocumentId());
 
-        if(subEntity.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || subEntity.getDocumentName().equals("HOUSE BILL OF LADING") || subEntity.getDocumentName().equals("HOUSE WAYBILL DESTINATION")){
+        if(subEntity.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || subEntity.getDocumentName().equals("HOUSE BILL OF LADING") || subEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || subEntity.getDocumentName().equals("BOOKING REQUEST FORM") ){
             entity.setReferenceNumber(subEntity.getReferenceNumber());
         }else{
             entity.setReferenceNumber(formBean.getReferenceNumber());
@@ -2297,7 +2264,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         entity.setReferenceTable(formBean.getReferenceTable());
         entity.setOrderNumber(formBean.getOrderNumber());
         if(subEntity.getDocumentName().equals("BOOKING REQUEST FORM") || subEntity.getDocumentName().equals("HOUSE BILL OF LADING") || subEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN")){
-            entity.setDocumentStatus("DOCUMENT UPDATED!");
+            entity.setDocumentStatus("DOCUMENT UPDATED !");
         }else{
             entity.setDocumentStatus("ENTERED REFERENCE NUMBER");
         }
@@ -3197,5 +3164,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setDateReturnedFinalInbound(Date dateReturnedFinalInbound) {
         this.dateReturnedFinalInbound = dateReturnedFinalInbound;
+    }
+
+    public String getDocumentItem() {
+        return documentItem;
+    }
+
+    public void setDocumentItem(String documentItem) {
+        this.documentItem = documentItem;
     }
 }

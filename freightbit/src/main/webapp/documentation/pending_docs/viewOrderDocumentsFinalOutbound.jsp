@@ -411,9 +411,10 @@
                             </s:if>
 
                             <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE' ">
-                                <button type="button" id="Cancel" class="pull-right btn" disabled>
-                                    Check Document(s)
+                                <button type="button" id="Cancel" class="pull-right btn" data-toggle="modal" data-target="#inputModal">
+                                    Send Documents
                                 </button>
+
                             </s:if>
 
                             </s:form>

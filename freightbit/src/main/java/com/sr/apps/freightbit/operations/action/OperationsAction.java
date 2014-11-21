@@ -1699,7 +1699,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 documentEntity.setDocumentStatus("FOR PRINTING");
                 documentEntity.setVendorCode(itemVendor);
                 documentEntity.setOutboundStage(1);
-                documentEntity.setReferenceNumber(orderIdParam.toString());
+                /*documentEntity.setReferenceNumber(orderIdParam.toString());*/
+                documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
                 documentEntity.setDocumentProcessed(0);
 
                 documentsService.addDocuments(documentEntity);
@@ -1759,9 +1760,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 documentEntity.setCreatedDate(new Date());
                 documentEntity.setDocumentStatus("FOR PRINTING");
                 documentEntity.setVendorCode(itemVendor);
-                documentEntity.setReferenceNumber(orderIdParam.toString());
-                documentEntity.setOutboundStage(1);
-                documentEntity.setDocumentProcessed(0);
+                /*documentEntity.setReferenceNumber(orderIdParam.toString());*/
+                documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
+                /*documentEntity.setOutboundStage(1);*/
+                documentEntity.setFinalOutboundStage(0);
+                documentEntity.setDocumentProcessed(2);
 
                 documentsService.addDocuments(documentEntity);
             } else {

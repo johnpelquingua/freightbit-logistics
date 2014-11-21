@@ -18,18 +18,24 @@
         </action>
 
         <action name="processDocumentsInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsInbound">
-            <result name="input" type="redirect">viewOrderDocumentsInbound</result>
-            <result name="success" type="redirect">viewOrderDocumentsInbound</result>
+            <!--<result name="input" type="redirect">viewOrderDocumentsInbound</result>
+            <result name="success" type="redirect">viewOrderDocumentsInbound</result>-->
+            <result name="input" type="redirect">viewOrderDocuments</result>
+            <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
-        <action name="processDocumentsFinalOutdateReceivedFinalInboundbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsFinalOutbound">
-            <result name="input" type="redirect">viewOrderDocumentsFinalOutbound</result>
-            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
+        <action name="processDocumentsFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsFinalOutbound">
+            <!--<result name="input" type="redirect">viewOrderDocumentsFinalOutbound</result>
+            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>-->
+            <result name="input" type="redirect">viewOrderDocuments</result>
+            <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="dateReceivedInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedInbound">
-            <result name="success" type="redirect">viewOrderDocumentsInbound</result>
-            <result name="input" type="redirect">viewOrderDocumentsInbound</result>
+            <!--<result name="success" type="redirect">viewOrderDocumentsInbound</result>
+            <result name="input" type="redirect">viewOrderDocumentsInbound</result>-->
+            <result name="success" type="redirect">viewOrderDocuments</result>
+            <result name="input" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="dateReceivedInboundInput" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedInboundInput">
@@ -57,15 +63,17 @@
         </action>
 
         <action name="activateFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="activateFinalOutbound">
-            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
+            <!--<result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>-->
+            <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="finalOutboundSent" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="finalOutboundSent">
-            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
+            <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="getInputFieldAction" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInput">
             <result name="success">/documentation/pending_docs/orderDocumentsInput.jsp</result>
+            <!--<result name="success">/documentation/pending_docs/viewOrderDocuments.jsp</result>-->
         </action>
 
         <action name="getInputFieldActionInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInboundInput">

@@ -269,20 +269,20 @@
         <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsFinalInbound.jsp"/>
     </definition>
     <!--OUTBOUND DOCUMENT INPUT VIEW-->
-    <definition name="documentation.orderDocumentsInput.tiles" extends="baseLayout">
+    <!--<definition name="documentation.orderDocumentsInput.tiles" extends="baseLayout">
         <put-attribute name="title" value="Input Number"/>
         <put-attribute name="body" value="/documentation/pending_docs/orderDocumentsInput.jsp"/>
-    </definition>
+    </definition>-->
     <!--INBOUND DOCUMENT INPUT VIEW-->
     <definition name="documentation.orderDocumentsInboundInput.tiles" extends="baseLayout">
         <put-attribute name="title" value="Input Number"/>
         <put-attribute name="body" value="/documentation/pending_docs/orderDocumentsInboundInput.jsp"/>
     </definition>
     <!--INBOUND DOCUMENT DATE RECEIVED INPUT VIEW ONLY-->
-    <definition name="documentation.dateReceivedInbound.tiles" extends="baseLayout">
+    <!--<definition name="documentation.dateReceivedInbound.tiles" extends="baseLayout">
         <put-attribute name="title" value="Input Number"/>
         <put-attribute name="body" value="/documentation/pending_docs/dateReceivedInbound.jsp"/>
-    </definition>
+    </definition>-->
 
     <definition name="documentation.viewArchivedDocuments.tiles" extends="baseLayout">
         <put-attribute name="title" value="Archived Documents"/>
