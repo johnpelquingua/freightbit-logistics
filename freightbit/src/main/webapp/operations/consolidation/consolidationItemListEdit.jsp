@@ -48,8 +48,8 @@
                         Total weight (kg) : <b><p id="result" style="display: inline">0</p></b> / <p style="display: inline" id="maxWt"></p> kg<br/>
                         Total volume (cbm) : <b><p id="result-vol" style="display: inline">0</p></b> / <p style="display: inline" id="maxVol"></p> cbm
                         <div style="float: right; margin-top: -1.2em;">
-                            <button class="btn btn-success" id="submitBtn">Save</button>
-                            <button type="button" class="btn btn-danger" onclick="resetBox()">Reset</button>
+                            <button class="btn btn-success" id="submitBtn" disabled>Save</button>
+                            <button type="button" class="btn btn-danger" onclick="resetBox('CONSO_EDIT')">Reset</button>
 
                             <s:url var="finalizeContainerUrl" action="finalizeContainer">
                                 <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
@@ -135,102 +135,7 @@
 <script>
     // AUTHORED BY Jan Sarmiento -- START
     $(document).ready(function(){
-        var conVol, conWt, maxWt, maxVol,
-                checkBox = $('.mainTable tbody td input[type="checkbox"]'),
-                child4 = $('.mainTable tbody tr td:nth-child(4)'),
-                child5 = $('.mainTable tbody tr td:nth-child(5)'),
-                weight = $('#result'),
-                volume = $('#result-vol'),
-                container = $('#containerType'),
-                submitBtn = $('#submitBtn'),
-                containedWt = $('.containerItems tbody tr td:nth-child(3)'),
-                containedVol = $('.containerItems tbody tr td:nth-child(4)'),
-                volContainer,
-                wtContainer;
-
-        // this automatically measures the dimension of the table
-        // and appends id(for the 4th and 5th td) and value(for the checkbox)
-        for(var i = 0; i < $('.mainTable tbody tr').size(); i++){
-            child4.eq(i).attr('id', 'val'+(i+1));
-            child5.eq(i).attr('id', 'val'+(i+1)+'-vol');
-            checkBox.eq(i).attr('class', 'val'+(i+1));
-            if(checkBox.eq(i).is(':checked')){
-                conWt = parseInt(weight.text())+parseInt(child4.eq(i).text());
-                conVol = parseInt(volume.text())+parseInt(child5.eq(i).text());
-                weight.empty().append(conWt);
-                volume.empty().append(conVol);
-            }
-        }
-
-        for(var x=0; x < $('.containerItems tbody tr').size(); x++){
-            volContainer = parseFloat(containedVol.eq(x).text())+parseFloat($('#result-vol').text());
-            wtContainer = parseFloat(containedWt.eq(x).text())+parseFloat($('#result').text());
-
-            $('#result').empty().append(wtContainer);
-            $('#result-vol').empty().append(volContainer);
-        }
-
-        /*
-         10 Footer = 14 cubic meter / 9 Tons
-         20 Footer = 28 cubic meter / 18 Tons
-         40 Standard Footer = 56 cubic meter / 20 Tons
-         40 High-Capacity = 78 cubic meter / 22 Tons
-         */
-
-        if(container.val() == '10 FOOTER'){
-            maxWt = 9000;
-            maxVol = 14;
-        }else if(container.val() == '20 FOOTER'){
-            maxWt = 18000;
-            maxVol = 28;
-        }else if(container.val() == '40 STD FOOTER'){
-            maxWt = 20000;
-            maxVol = 56;
-        }else if(container.val() == '40 HC FOOTER'){
-            maxWt = 22000;
-            maxVol = 78;
-        }
-
-        $('#maxVol').empty().append(maxVol);
-        $('#maxWt').empty().append(maxWt);
-
-        // This function listens for change of the checkboxes within the tbody of the mainTable class
-        checkBox.change(function(){
-            var wt, vol;
-            if($.isNumeric($('#'+this.className).text()) && $.isNumeric($('#'+this.className+'-vol').text())){
-                if(this.checked){
-                    wt = parseInt(weight.text())+parseInt($('#'+this.className).text());
-                    vol = parseInt(volume.text())+parseInt($('#'+this.className+'-vol').text());
-                }else{
-                    wt = parseInt(weight.text())-parseInt($('#'+this.className).text());
-                    vol = parseInt(volume.text())-parseInt($('#'+this.className+'-vol').text());
-                }
-            }
-
-            if(wt > maxWt || vol > maxVol){
-                submitBtn.prop('disabled',true);
-                $('#finalBtn').addClass('disabled');
-            }else{
-                submitBtn.prop('disabled',false);
-                $('#finalBtn').removeClass('disabled');
-            }
-
-            if(wt > maxWt){ wt = '<font color="red">'+wt+'</font>'; }
-            if(vol > maxVol){ vol = '<font color="red">'+vol+'</font>'; }
-            if(wt == 0 || vol == 0){
-                submitBtn.prop('disabled',true);
-                $('#finalBtn').addClass('disabled');
-            }
-
-            weight.empty().append(wt);
-            volume.empty().append(vol);
-        });
+        initValidationScript('CONSO_EDIT');
     });
-
-    function resetBox(){
-        $('.mainTable tbody td input[type="checkbox"]').removeAttr('checked');
-        $('#result').empty().append(0);
-        $('#result-vol').empty().append(0);
-    }
     // AUTHORED BY Jan Sarmiento -- END
 </script>
