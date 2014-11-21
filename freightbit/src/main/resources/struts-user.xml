@@ -25,7 +25,7 @@
             <result name="success" type="tiles">core.userListView.tiles</result>
         </action>
 
-        <action name="LoadviewUsers" class="com.sr.apps.freightbit.core.action.UserAction" method="LoadviewUsers">
+        <action name="LoadviewUsers" class="com.sr.apps.freightbit.core.action.UserAction" method="loadviewUsers">
             <result name="success" type="tiles">core.userListView.tiles</result>
         </action>
 

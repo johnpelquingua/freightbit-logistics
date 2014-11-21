@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static org.springframework.util.StringUtils.isEmpty;
+
 /**
  * UserAction includes view list of users, add, delete, edit, and view user info
  * Implements Preparable to allow the prepopulation of dropdown values inside prepare()
@@ -82,7 +84,7 @@ public class UserAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String LoadviewUsers() {
+    public String loadviewUsers() {
         String column = getColumnFilter();
         List<User> userEntityList = new ArrayList<User>();
         if (StringUtils.isNotBlank(column)) {
@@ -382,14 +384,16 @@ public class UserAction extends ActionSupport implements Preparable {
         	preSelectedPermissions = new String[selectedPermissionsList.size()];
         	/*preSelectedPermissionNames = new String[selectedPermissionsList.size()];*/
         }
-
-        for (int i=0; i<selectedPermissionsList.size(); i++) {
-        	String permissionId;
-            permissionId = selectedPermissionsList.get(i).getPermissionId().toString();
-            preSelectedPermissions[i] = permissionId;
-        	/*String permissionName=selectedPermissionsList.get(i).getDescription();
-        	preSelectedPermissionNames[i] = permissionName;*/
-        }
+		int i;
+		if(isEmpty(selectedPermissionsList.size())){
+			for (i = 0; i<selectedPermissionsList.size(); i++) {
+					String permissionId;
+					permissionId = selectedPermissionsList.get(i).getPermissionId().toString();
+					preSelectedPermissions[i] = permissionId;
+					/*String permissionName=selectedPermissionsList.get(i).getDescription();
+					preSelectedPermissionNames[i] = permissionName;*/
+			}
+		}
 	}
     
     //used to transform a formbean to an entity bean
