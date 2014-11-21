@@ -29,30 +29,23 @@ import java.util.*;
 public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(OrderStatusLogsAction.class);
-
     private OrderBean order = new OrderBean();
-
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
     private List<OrderStatusLogsBean> orderStatusLogss = new ArrayList<OrderStatusLogsBean>();
     private List<Parameters> orderStatusList = new ArrayList<Parameters>();
     private List<Parameters> updateStatusList = new ArrayList<Parameters>();
-
     private CommonUtils commonUtils = new CommonUtils();
-
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OrderStatusLogsBean orderStatusLogsBean = new OrderStatusLogsBean();
-
     private OrderStatusLogsService orderStatusLogsService;
     private ParameterService parameterService;
     private CustomerService customerService;
     private OrderService orderService;
-
     private Integer orderIdParam;
     private String orderNoParam;
     private Integer orderItemIdParam;
     private String bookingNumber;
-
     private String[] check;
 
     @Override
@@ -100,22 +93,16 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String setItemStatus() {
-
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderItem.getEditItem());
-        System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ" + check);
-
         for (int i =0; i<check.length; i++) {
             System.out.println("--------------------------------------" + check[i]);
         }
-
         return SUCCESS;
     }
 
     public String loadItemShipmentHistory() {
-
-        // Display correct Order Number in breadcrumb
         Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById(orderItemIdParam).getOrderId());
-        bookingNumber = orderEntity.getOrderNumber();
+        //bookingNumber = orderEntity.getOrderNumber(); // <- what's the use of this?
         order = transformToOrderFormBean(orderEntity);
 
         OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(orderItemIdParam);
@@ -276,7 +263,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return fullName.toString();
     }
 
-    public OrderStatusLogsService getOrderStatusLogsService() {
+    /*public OrderStatusLogsService getOrderStatusLogsService() {
         return orderStatusLogsService;
     }
 
@@ -340,10 +327,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         this.orderStatusList = orderStatusList;
     }
 
-    public void setParameterService(ParameterService parameterService) {
-        this.parameterService = parameterService;
-    }
-
     public OrderStatusLogsBean getOrderStatusLogsBean() {
         return orderStatusLogsBean;
     }
@@ -362,6 +345,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public ParameterService getParameterService() {
         return parameterService;
+    }
+
+    public void setParameterService(ParameterService parameterService) {
+        this.parameterService = parameterService;
     }
 
     public List<Parameters> getUpdateStatusList() {
@@ -402,13 +389,5 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setOrderStatusLogss(List<OrderStatusLogsBean> orderStatusLogss) {
         this.orderStatusLogss = orderStatusLogss;
-    }
-
-    public String[] getCheck() {
-        return check;
-    }
-
-    public void setCheck(String[] check) {
-        this.check = check;
-    }
+    }*/
 }

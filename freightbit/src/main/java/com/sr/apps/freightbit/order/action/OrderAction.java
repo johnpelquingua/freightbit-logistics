@@ -953,7 +953,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         if (customer != null) {
             orderBean.setCustomerName(customer.get(0).getCustomerName());
         } else {
-            orderBean.setConsigneeCode(customer.get(0).getCustomerCode());
+            customer.get(0).setCustomerCode(orderBean.getConsigneeCode());
         }
 
         //shipper contact info

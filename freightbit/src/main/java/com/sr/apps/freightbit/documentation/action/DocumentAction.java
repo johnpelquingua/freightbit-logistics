@@ -1205,7 +1205,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String processDocuments(){
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        System.out.println("CHECK WORD PASS" + check);
+       /* System.out.println("CHECK WORD PASS" + check);*/
 
         System.out.println("DOCUMENT ITEM" + document.getDocumentItem());
 
@@ -1336,7 +1336,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String processDocumentsInbound(){
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        System.out.println("CHECK WORD PASS" + check);
+/*        System.out.println("CHECK WORD PASS" + check);*/
 
         System.out.println("DOCUMENT ITEM" + document.getDocumentItem());
 
@@ -1423,7 +1423,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String processDocumentsFinalOutbound(){
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        System.out.println("CHECK WORD PASS" + check);
+/*        System.out.println("CHECK WORD PASS" + check);*/
 
         System.out.println("DOCUMENT ITEM" + document.getDocumentItem());
 

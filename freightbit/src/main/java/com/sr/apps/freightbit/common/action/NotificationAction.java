@@ -9,6 +9,7 @@ import java.math.BigInteger;
 import java.nio.charset.Charset;
 
 public class NotificationAction extends ActionSupport {
+	private  Charset count;
 	private InputStream inputStream = new ByteArrayInputStream(count.toString().getBytes(Charset.forName("UTF-8")));
 	private NotificationService notificationService;
 
