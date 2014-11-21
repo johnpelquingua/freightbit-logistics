@@ -76,6 +76,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Items> customerItems = new ArrayList<Items>();
     private List<Parameters> contactTypeList = new ArrayList<Parameters>();
     private List<Parameters> addressTypeList = new ArrayList<Parameters>();
+    private List<Parameters> containerList = new ArrayList<Parameters>();
     private String[] notificationList;
     private CustomerBean customer = new CustomerBean();
     private List<Documents> outboundEntityList = new ArrayList<Documents>();
@@ -150,44 +151,45 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String customerAction() {
 
-        List<Contacts> shipperContacts = customerService.findContactByRefIdAndType("shipper", customerID);
+        if(customerID != null){
+            List<Contacts> shipperContacts = customerService.findContactByRefIdAndType("shipper", customerID);
 
-        for (int i = 0; i < shipperContacts.size(); i++) {
-            customerContactsMap.put(shipperContacts.get(i).getContactId(), shipperContacts.get(i).getFirstName() + ' ' + shipperContacts.get(i).getMiddleName() + ' ' + shipperContacts.get(i).getLastName());
-        }
+            for (int i = 0; i < shipperContacts.size(); i++) {
+                customerContactsMap.put(shipperContacts.get(i).getContactId(), shipperContacts.get(i).getFirstName() + ' ' + shipperContacts.get(i).getMiddleName() + ' ' + shipperContacts.get(i).getLastName());
+            }
 
-        List<Address> shipperAddresses = customerService.findAddressByShipper("CONSIGNEE", customerID);
+            List<Address> shipperAddresses = customerService.findAddressByShipper("CONSIGNEE", customerID);
 
-        for (int i = 0; i < shipperAddresses.size(); i++) {
-            customerAddressMap.put(shipperAddresses.get(i).getAddressId(), shipperAddresses.get(i).getAddressLine1() + ' ' + shipperAddresses.get(i).getCity());
-        }
+            for (int i = 0; i < shipperAddresses.size(); i++) {
+                customerAddressMap.put(shipperAddresses.get(i).getAddressId(), shipperAddresses.get(i).getAddressLine1() + ' ' + shipperAddresses.get(i).getCity());
+            }
 
-        List<Contacts> shipperConsignee = customerService.findContactByRefIdAndType("CONSIGNEE", customerID);
+            List<Contacts> shipperConsignee = customerService.findContactByRefIdAndType("CONSIGNEE", customerID);
 
-        for (int i = 0; i < shipperConsignee.size(); i++) {
-            customerConsigneeMap.put(shipperConsignee.get(i).getContactId(), shipperConsignee.get(i).getFirstName() + ' ' + shipperConsignee.get(i).getMiddleName() + ' ' + shipperConsignee.get(i).getLastName());
-        }
+            for (int i = 0; i < shipperConsignee.size(); i++) {
+                customerConsigneeMap.put(shipperConsignee.get(i).getContactId(), shipperConsignee.get(i).getFirstName() + ' ' + shipperConsignee.get(i).getMiddleName() + ' ' + shipperConsignee.get(i).getLastName());
+            }
 
-        /*List <Address> consigneeAddresses = customerService.findAddressByCriteria("CONSIGNEE",customerID );
+        List <Address> consigneeAddresses = customerService.findAddressByCriteria("CONSIGNEE",customerID );
 
         for(int i = 0; i < consigneeAddresses.size(); i++ ) {
             consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
-        }*/
-        Address consigneeAddresses = customerService.findAddressByParameterMap(customerID, "CONSIGNEE", getClientId(), shipperConsignee.get(0).getContactId());
-        consigneeAddressMap.put(consigneeAddresses.getAddressId(), consigneeAddresses.getAddressLine1() + ' ' + consigneeAddresses.getAddressLine2() + ' ' + consigneeAddresses.getCity());
-        /*dummyMsg = "Ajax action Triggered";*/
+        }
+//            Address consigneeAddresses = customerService.findAddressByParameterMap(customerID, "CONSIGNEE", getClientId(), shipperConsignee.get(0).getContactId());
+//            consigneeAddressMap.put(consigneeAddresses.getAddressId(), consigneeAddresses.getAddressLine1() + ' ' + consigneeAddresses.getAddressLine2() + ' ' + consigneeAddresses.getCity());
 
-        Customer customerContactInfo = customerService.findCustomerById(customerID);
+            Customer customerContactInfo = customerService.findCustomerById(customerID);
 
-        customerPhoneMap.put(customerContactInfo.getPhone(), customerContactInfo.getPhone());
-        customerMobileMap.put(customerContactInfo.getMobile(), customerContactInfo.getMobile());
-        customerEmailMap.put(customerContactInfo.getEmail(), customerContactInfo.getEmail());
-        customerFaxMap.put(customerContactInfo.getFax(), customerContactInfo.getFax());
+            customerPhoneMap.put(customerContactInfo.getPhone(), customerContactInfo.getPhone());
+            customerMobileMap.put(customerContactInfo.getMobile(), customerContactInfo.getMobile());
+            customerEmailMap.put(customerContactInfo.getEmail(), customerContactInfo.getEmail());
+            customerFaxMap.put(customerContactInfo.getFax(), customerContactInfo.getFax());
 
-        List<Contacts> consigneeContacts = customerService.findContactByConsignee(shipperConsignee.get(0).getContactId(), "C_CONTACT", getClientId());
+            List<Contacts> consigneeContacts = customerService.findContactByConsignee(shipperConsignee.get(0).getContactId(), "C_CONTACT", getClientId());
 
-        for (int i = 0; i < consigneeContacts.size(); i++) {
-            consigneeContactMap.put(consigneeContacts.get(i).getContactId(), consigneeContacts.get(i).getFirstName() + ' ' + consigneeContacts.get(i).getMiddleName() + ' ' + consigneeContacts.get(i).getLastName());
+            for (int i = 0; i < consigneeContacts.size(); i++) {
+                consigneeContactMap.put(consigneeContacts.get(i).getContactId(), consigneeContacts.get(i).getFirstName() + ' ' + consigneeContacts.get(i).getMiddleName() + ' ' + consigneeContacts.get(i).getLastName());
+            }
         }
 
         return SUCCESS;
@@ -1518,6 +1520,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         portsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS);
         contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
         addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
+        containerList = parameterService.getParameterMap(ParameterConstants.CONTAINER_SIZE);
 
         containerQuantity = new ArrayList<Integer>();
         for (int i = 1; i <= 5; i++) {
@@ -2112,6 +2115,14 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setItemId(Integer itemId) {
         this.itemId = itemId;
+    }
+
+    public List<Parameters> getContainerList() {
+        return containerList;
+    }
+
+    public void setContainerList(List<Parameters> containerList) {
+        this.containerList = containerList;
     }
 }
 
