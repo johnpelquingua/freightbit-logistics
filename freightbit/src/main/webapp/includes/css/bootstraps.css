@@ -5485,6 +5485,21 @@ a.thumbnail.active {
     color: #2b542c;
 }
 
+.alert-errors {
+color: #ff0000;
+background-color:#ff6767;
+border-color: #ff0000;
+}
+
+.alert-errors hr {
+border-top-color: #ff0000;
+}
+
+.alert-errors .alert-link {
+color: #ff0000;
+}
+
+
 .alert-info {
     color: #31708f;
     background-color: #d9edf7;

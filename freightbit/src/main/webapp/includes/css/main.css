@@ -708,3 +708,18 @@ span.pagelinks {
      border-radius:2px;
      box-shadow:1px 1px 1px gray;
  }
+
+
+.alert-errors {
+color: #ff0000;
+background-color:#ff6767;
+border-color: #ff0000;
+}
+
+.alert-errors hr {
+border-top-color: #ff0000;
+}
+
+.alert-errors .alert-link {
+color: #ff0000;
+}

@@ -181,7 +181,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             clearErrorsAndMessages();
         } else if (documentflag == 1) {
             clearErrorsAndMessages();
-            addActionMessage("You must enter a reference number");
+			addActionError("You must enter a reference number");
         } else if (documentflag == 2) {
             clearErrorsAndMessages();
             addActionMessage("Entered reference number successfully!");
@@ -190,7 +190,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Document(s) successfully updated!");
         } else if (documentflag == 4) {
             clearErrorsAndMessages();
-            addActionMessage("Check all documents first before moving to next stage");
+			addActionError("Check all documents first before moving to next stage");
         } else if(documentflag == 5) {
             clearErrorsAndMessages();
             addActionMessage("Document(s) checked!");
@@ -199,13 +199,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Notified Destination office of faxed document");
         } else if(documentflag == 7){
             clearErrorsAndMessages();
-            addActionMessage("Document(s) must be checked before processing");
+			addActionError("Document(s) must be checked before processing");
         }else if(documentflag == 8){
             clearErrorsAndMessages();
             addActionMessage("All Documents processed!");
         }else if(documentflag == 9){
             clearErrorsAndMessages();
-            addActionMessage("No Documents checked");
+			addActionError("No Documents checked");
         }else{
             clearErrorsAndMessages();
         }
@@ -414,7 +414,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             clearErrorsAndMessages();
         } else if (documentflag == 1) {
             clearErrorsAndMessages();
-            addActionMessage("You must enter a reference number");
+			addActionError("You must enter a reference number");
         } else if (documentflag == 2) {
             clearErrorsAndMessages();
             addActionMessage("Entered reference number successfully!");
@@ -423,16 +423,16 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Document(s) successfully updated!");
         } else if (documentflag == 4) {
             clearErrorsAndMessages();
-            addActionMessage("Check all documents first before moving to next stage");
+			addActionError("Check all documents first before moving to next stage");
         }else if(documentflag == 5) {
             clearErrorsAndMessages();
             addActionMessage("Document checked!");
         }else if(documentflag == 6){
             clearErrorsAndMessages();
-            addActionMessage("One of more Proforma Bill of Lading does not exist");
+			addActionError("One of more Proforma Bill of Lading does not exist");
         }else if(documentflag == 7){
             clearErrorsAndMessages();
-            addActionMessage("Document(s) must be checked before processing");
+			addActionError("Document(s) must be checked before processing");
         }else if(documentflag == 8){
             clearErrorsAndMessages();
             addActionMessage("All Documents processed!");
@@ -441,7 +441,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Return Date of Inbound documents saved");
         }else if(documentflag == 10){
             clearErrorsAndMessages();
-            addActionMessage("One or more House WayBill Origin does not exist");
+			addActionError("One or more House WayBill Origin does not exist");
         }else{
             clearErrorsAndMessages();
         }
@@ -625,7 +625,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             clearErrorsAndMessages();
         } else if (documentflag == 1) {
             clearErrorsAndMessages();
-            addActionMessage("You must enter a reference number");
+			addActionError("You must enter a reference number");
         } else if (documentflag == 2) {
             clearErrorsAndMessages();
             addActionMessage("Entered reference number successfully!");
@@ -634,16 +634,16 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Document(s) successfully updated!");
         } else if (documentflag == 4) {
             clearErrorsAndMessages();
-            addActionMessage("Check all documents first before moving to next stage");
+			addActionError("Check all documents first before moving to next stage");
         }else if(documentflag == 5) {
             clearErrorsAndMessages();
             addActionMessage("Document checked!");
         }else if(documentflag == 6){
             clearErrorsAndMessages();
-            addActionMessage("Document(s) already exist");
+			addActionError("Document(s) already exist");
         }else if(documentflag == 7){
             clearErrorsAndMessages();
-            addActionMessage("Document(s) must be checked before processing");
+			addActionError("Document(s) must be checked before processing");
         }else if(documentflag == 8){
             clearErrorsAndMessages();
             addActionMessage("All Documents processed!");
@@ -652,7 +652,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Return Date of Inbound documents saved");
         }else if(documentflag == 10){
             clearErrorsAndMessages();
-            addActionMessage("One or more House WayBill Origin does not exist");
+			addActionError("One or more House WayBill Origin does not exist");
         }else{
             clearErrorsAndMessages();
         }
@@ -842,7 +842,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             clearErrorsAndMessages();
         } else if (documentflag == 1) {
             clearErrorsAndMessages();
-            addActionMessage("You must enter a reference number");
+			addActionError("You must enter a reference number");
         } else if (documentflag == 2) {
             clearErrorsAndMessages();
             addActionMessage("Entered reference number successfully!");
@@ -851,16 +851,16 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Document(s) successfully updated!");
         } else if (documentflag == 4) {
             clearErrorsAndMessages();
-            addActionMessage("Check all documents first before moving to next stage");
+			addActionError("Check all documents first before moving to next stage");
         }else if(documentflag == 5) {
             clearErrorsAndMessages();
             addActionMessage("Document checked!");
         }else if(documentflag == 6){
             clearErrorsAndMessages();
-            addActionMessage("Document(s) already exist");
+			addActionError("Document(s) already exist");
         }else if(documentflag == 7){
             clearErrorsAndMessages();
-            addActionMessage("Document(s) must be checked before processing");
+			addActionError("Document(s) must be checked before processing");
         }else if(documentflag == 8){
             clearErrorsAndMessages();
             addActionMessage("All Documents processed!");
@@ -869,7 +869,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Return Date of Inbound documents saved");
         }else if(documentflag == 10){
             clearErrorsAndMessages();
-            addActionMessage("One or more House WayBill Origin does not exist");
+			addActionError("One or more House WayBill Origin does not exist");
         }else{
             clearErrorsAndMessages();
         }

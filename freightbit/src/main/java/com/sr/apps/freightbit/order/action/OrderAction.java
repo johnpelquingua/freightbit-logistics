@@ -462,15 +462,15 @@ public class OrderAction extends ActionSupport implements Preparable {
         if (messageFlagPass == "FCL_LIMIT") {
             //error add container
             clearErrorsAndMessages();
-            addActionMessage("Sorry you can not exceed 5 containers.");
+			addActionError("Sorry you can not exceed 5 containers.");
         } else if (messageFlagPass == "OTHERS_LIMIT") {
             //error add item
             clearErrorsAndMessages();
-            addActionMessage("Sorry you can not exceed 250 items.");
+			addActionError("Sorry you can not exceed 250 items.");
         } else {
             // Success Add item
             clearErrorsAndMessages();
-            addActionMessage("Success! Booking Item has been added.");
+			addActionError("Success! Booking Item has been added.");
         }
 
         return SUCCESS;
@@ -707,7 +707,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                 orders.add(transformToOrderFormBean(orderElem));
             }
             clearErrorsAndMessages();
-            addActionMessage("You can only delete booking with status of PENDING and CANCELLED.");
+			addActionError("You can only delete booking with status of PENDING and CANCELLED.");
             return INPUT;
         }
     }
@@ -733,7 +733,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
             Booking = notificationService.countAll();
             System.out.println("The number of  new booking is " + Booking);
-            addActionMessage("Booking must have at least 1 item");
+			addActionError("Booking must have at least 1 item");
             return INPUT;
         }
         orderEntity.setOrderStatus("APPROVED");

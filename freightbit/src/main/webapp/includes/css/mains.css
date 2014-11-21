@@ -956,3 +956,18 @@ span.pagelinks {
 
  table.table.leftAlign.table-user-information tbody:nth-child(2) tr td:nth-child(1){font-weight: bold;}
  table.table.leftAlign.table-user-information tbody:nth-child(1) tr td:nth-child(1){font-weight: bold;}
+
+
+.alert-errors {
+color: #ff0000;
+background-color:#ff6767;
+border-color: #ff0000;
+}
+
+.alert-errors hr {
+border-top-color: #ff0000;
+}
+
+.alert-errors .alert-link {
+color: #ff0000;
+}

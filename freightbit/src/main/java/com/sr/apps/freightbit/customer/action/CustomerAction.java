@@ -391,7 +391,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         List<Orders> orderEntityList = orderService.findCustomerWithBooking(customerIdParam);
         if(orderEntityList.size()>0){
             clearErrorsAndMessages();
-            addActionMessage("You cannot delete a Customer associated with Booking");
+            addActionError("You cannot delete a Customer associated with Booking");
             return INPUT;
         }
         Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
@@ -418,7 +418,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
             customers.add(transformToFormBean(customerElem));
         }
         clearErrorsAndMessages();
-        addActionMessage("You cannot delete a Customer with an on-going booking");
+        addActionError("You cannot delete a Customer with an on-going booking");
         return SUCCESS;
     }
 

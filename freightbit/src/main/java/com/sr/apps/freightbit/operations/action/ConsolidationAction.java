@@ -168,7 +168,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
     public String updateStatusOfContainersError() {
         clearErrorsAndMessages();
-        addActionMessage("Please choose an Item to consolidate");
+		addActionError("Please choose an Item to consolidate");
 
         List<OrderItems> orderItems = new ArrayList<OrderItems>();
         orderItems = orderService.findAllOrderItemLCL();

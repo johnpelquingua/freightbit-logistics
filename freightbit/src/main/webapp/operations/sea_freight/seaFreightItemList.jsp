@@ -34,6 +34,22 @@
         </div>
     </div>
 </s:if>
+<s:if test="hasActionErrors()">
+   <div class="col-lg-12">
+	   <div class="alert alert-errors">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+   			<strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
+		</div>
+   </div>
+</s:if>
+<s:if test="hasActionErrors()">
+   <div class="col-lg-12">
+	   <div class="alert alert-errors">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+   			<strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
+		</div>
+   </div>
+</s:if>
 
 <div class="row">
 
@@ -248,7 +264,7 @@
                             <tr>
                                 <td><label>LEGEND:</label></td>
                                 <td><i class='fa fa-anchor'></i> PLANNING 1 = Set Shipping Vessel</td>
-                                <td><i class='fa fa-truck'></i> PLANNING 2 = Set Trucking Origin</td>
+                                <td><i class='fa fa-truck'></i> PLANNING 222 = Set Trucking Origin</td>
                                 <td><i class='fa fa-truck'></i> PLANNING 3 = Set Trucking Destination</td>
                             </tr>
                         </table>

@@ -1008,7 +1008,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String viewFreightItemListError() {
         clearErrorsAndMessages();
-        addActionMessage("Status must be the same");
+		addActionError("Status must be the same");
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
@@ -1617,7 +1617,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 documentsService.addDocuments(documentEntityProforma);
             } else {
                 clearErrorsAndMessages();
-                addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+				addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+                /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
                 for(OrderItems orderItemsElem : orderItemsList) {
                     orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                 }
@@ -1645,7 +1646,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
             documentsService.addDocuments(documentEntityHouse);
         } else {
             clearErrorsAndMessages();
-            addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+			addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+            /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
             for(OrderItems orderItemsElem : orderItemsList) {
                 orderItems.add(transformToOrderItemFormBean(orderItemsElem));
             }
@@ -1703,7 +1705,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 documentsService.addDocuments(documentEntity);
             } else {
                 clearErrorsAndMessages();
-                addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+				addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+                /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
                 for(OrderItems orderItemsElem : orderItemsList) {
                     orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                 }
@@ -1763,7 +1766,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 documentsService.addDocuments(documentEntity);
             } else {
                 clearErrorsAndMessages();
-                addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+				addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+                /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
                 for(OrderItems orderItemsElem : orderItemsList) {
                     orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                 }

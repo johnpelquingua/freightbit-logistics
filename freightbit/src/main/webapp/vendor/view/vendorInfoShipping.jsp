@@ -24,6 +24,14 @@
         </div>
     </div>
 </s:if>
+<s:if test="hasActionErrors()">
+   <div class="col-lg-12">
+	   <div class="alert alert-errors">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+   			<strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
+		</div>
+   </div>
+</s:if>
 
 <div class="row">
 

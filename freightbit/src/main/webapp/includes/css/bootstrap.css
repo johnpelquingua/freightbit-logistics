@@ -6499,6 +6499,20 @@ button.close {
     box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
 }
 
+
+.alert-errors {
+color: #ff0000;
+background-color:#ff6767;
+border-color: #ff0000;
+}
+
+.alert-errors hr {
+border-top-color: #ff0000;
+}
+
+.alert-errors .alert-link {
+color: #ff0000;
+}
 .popover.top {
     margin-top: -10px;
 }
