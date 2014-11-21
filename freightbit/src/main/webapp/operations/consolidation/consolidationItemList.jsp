@@ -57,7 +57,7 @@
                                 <s:url var="finalizeContainerUrl" action="finalizeContainer">
                                     <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
                                 </s:url>
-                                <s:a cssClass="btn btn-primary" href="%{finalizeContainerUrl}" title="Container Info" rel="tooltip" >Final</s:a>
+                                <s:a id="finalBtn" cssClass="btn btn-primary disabled" href="%{finalizeContainerUrl}" title="Container Info" rel="tooltip" >Final</s:a>
 
                                 <%--<button class="btn btn-primary" id="finalBtn" disabled>Final</button>--%>
                             </div>
@@ -66,8 +66,7 @@
                     <display:table id="orderItems" name="orderItemsBeans"
                                    requestURI="viewConsolidationItemList.action"
                                    class="mainTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
-                                   style="margin-top: 15px;">
-                        <%--Booking Date--%>
+                                   style="margin-top: 15px;"> <%--Booking Date--%>
                         <td>
                             <display:column>
                                 <s:checkbox theme="simple" name="check" id="check"
@@ -160,17 +159,17 @@
 
             if(wt > maxWt || vol > maxVol){
                 submitBtn.prop('disabled',true);
-                $('#finalBtn').prop('disabled',true);
+                $('#finalBtn').addClass('disabled');
             }else{
                 submitBtn.prop('disabled',false);
-                $('#finalBtn').prop('disabled',false);
+                $('#finalBtn').removeClass('disabled');
             }
 
             if(wt > maxWt){ wt = '<font color="red">'+wt+'</font>'; }
             if(vol > maxVol){ vol = '<font color="red">'+vol+'</font>'; }
             if(wt == 0 || vol == 0){
                 submitBtn.prop('disabled',true);
-                $('#finalBtn').prop('disabled',true);
+                $('#finalBtn').addClass('disabled');
             }
             weight.empty().append(wt);
             volume.empty().append(vol);

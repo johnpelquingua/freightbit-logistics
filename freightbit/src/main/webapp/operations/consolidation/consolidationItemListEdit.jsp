@@ -48,13 +48,13 @@
                         Total weight (kg) : <b><p id="result" style="display: inline">0</p></b> / <p style="display: inline" id="maxWt"></p> kg<br/>
                         Total volume (cbm) : <b><p id="result-vol" style="display: inline">0</p></b> / <p style="display: inline" id="maxVol"></p> cbm
                         <div style="float: right; margin-top: -1.2em;">
-                            <button class="btn btn-success" id="submitBtn" disabled>Save</button>
+                            <button class="btn btn-success" id="submitBtn">Save</button>
                             <button type="button" class="btn btn-danger" onclick="resetBox()">Reset</button>
 
                             <s:url var="finalizeContainerUrl" action="finalizeContainer">
                                 <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
                             </s:url>
-                            <s:a cssClass="btn btn-primary" href="%{finalizeContainerUrl}" title="Container Info" rel="tooltip" >Final</s:a>
+                            <s:a id="finalBtn" cssClass="btn btn-primary" href="%{finalizeContainerUrl}" title="Container Info" rel="tooltip" >Final</s:a>
 
                             <%--<button class="btn btn-primary" disabled>Final</button>--%>
                         </div>
@@ -101,7 +101,7 @@
             <div class="panel-body">
                 <div class="table-responsive">
                     <display:table id="orderItemsUnderContainer" name="orderItemsBeansUnderContainer" requestURI="viewConsolidationItemList.action"
-                                   class="mainTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                   class="containerItems table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
                         <td><display:column property="nameSize" title="Item Name <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -209,17 +209,17 @@
 
             if(wt > maxWt || vol > maxVol){
                 submitBtn.prop('disabled',true);
-                $('#finalBtn').prop('disabled',true);
+                $('#finalBtn').addClass('disabled');
             }else{
                 submitBtn.prop('disabled',false);
-                $('#finalBtn').prop('disabled',false);
+                $('#finalBtn').removeClass('disabled');
             }
 
             if(wt > maxWt){ wt = '<font color="red">'+wt+'</font>'; }
             if(vol > maxVol){ vol = '<font color="red">'+vol+'</font>'; }
             if(wt == 0 || vol == 0){
                 submitBtn.prop('disabled',true);
-                $('#finalBtn').prop('disabled',true);
+                $('#finalBtn').addClass('disabled');
             }
 
             weight.empty().append(wt);
