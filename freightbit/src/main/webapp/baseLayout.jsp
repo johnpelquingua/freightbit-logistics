@@ -40,7 +40,6 @@
     <script type='text/javascript' src='../includes/js/jquery-ui.js'></script>
     <script type='text/javascript' src='../includes/js/jquery-ui-timepicker-addon.js'></script>
     <script type='text/javascript' src='../includes/js/jquery.autocomplete.js'></script>
-    <script type='text/javascript' src='../includes/js/tableProp.js'></script>
 
     <%--<script type='text/javascript' src='includes/js/bootstrap-datepicker.js'></script>--%>
     <%--<script type='text/javascript' src='includes/js/bootstrap-datetimepicker.min.js'></script>--%>
