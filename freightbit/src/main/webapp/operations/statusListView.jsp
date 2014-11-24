@@ -84,5 +84,7 @@
 </div>
 
 <script>
-    tableProp('DESTI_ORIG','order',0 ,7, 8, 9, 5, 6);
+    $(document).ready(function(){
+        tableProp('DESTI_ORIG','order',0 ,7, 8, 9, 5, 6);
+    });
 </script>
