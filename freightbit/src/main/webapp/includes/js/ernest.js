@@ -322,6 +322,7 @@ function newlineHandler(){
     var outboundComment = $('.outbound_table tbody tr td:nth-child(6)'),
         finalOutboundComment = $('.final_outbound_table tbody tr td:nth-child(6)'),
         inboundTableComment = $('.inbound_table tbody tr td:nth-child(6)'),
+        finalInboundTableComment = $('.final_inbound_table tbody tr td:nth-child(6)'),
         transformedString;
 
     for(var i=0; i < outboundComment.size(); i++){
@@ -331,6 +332,8 @@ function newlineHandler(){
         finalOutboundComment.eq(i).empty().append(transformedString);
         transformedString = inboundTableComment.eq(i).text().replace(/\n/g, "<br />");
         inboundTableComment.eq(i).empty().append(transformedString);
+        transformedString = finalInboundTableComment.eq(i).text().replace(/\n/g, "<br />");
+        finalInboundTableComment.eq(i).empty().append(transformedString);
     }
 
     // AUTHORED BY JAN SARMIENTO -- END

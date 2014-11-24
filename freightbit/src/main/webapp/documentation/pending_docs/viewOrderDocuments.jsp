@@ -847,7 +847,7 @@
                                     <s:form name="myform" action="processDocumentsFinalInbound">
                                     <s:textfield  name="orderIdParam" id="order-Id"   />
                                     <s:textfield  name="document.documentItem" id="documentItemFinalInbound"></s:textfield>
-                                    <display:table id="document" name="finalInboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="finalInboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
