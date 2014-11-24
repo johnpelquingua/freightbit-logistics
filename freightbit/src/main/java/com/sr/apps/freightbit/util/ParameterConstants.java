@@ -52,6 +52,8 @@ public class ParameterConstants {
 
     public final static String VESSEL_SCHEDULE_SEARCH = "VESSEL_SCHEDULE_SEARCH";
 
+    public final static String CONTAINER_SEARCH = "CONTAINER_SEARCH";
+
     public final static String ORDER_STATUS = "ORDER_STATUS";
 
     public final static String CONTAINER_SIZE = "CONTAINER_SIZE";
@@ -65,6 +67,8 @@ public class ParameterConstants {
     public final static String EIR_TYPE = "EIR_TYPE";
 
     public final static String CONTAINER_STATUS = "CONTAINER_STATUS";
+
+    public final static String PORT_CODE = "PORT_CODE";
 
     public final static String CONTAINERS = "CONTAINERS";
 

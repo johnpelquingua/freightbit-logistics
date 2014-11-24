@@ -31,7 +31,7 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> EIR Forms
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Container Lists
                 </h3>
                 <span class="pull-right">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">

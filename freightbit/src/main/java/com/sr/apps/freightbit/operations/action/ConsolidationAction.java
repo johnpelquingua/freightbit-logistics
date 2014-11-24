@@ -8,6 +8,7 @@ import com.sr.apps.freightbit.operations.formbean.OperationsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
+import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.operations.entity.Container;
@@ -67,7 +68,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
     private String[] check;
 	@Override
 	public void prepare() throws Exception {
-        containerSearchList = parameterService.getParameterMap("CONTAINERS", "CONTAINER_SEARCH");
+        containerSearchList = parameterService.getParameterMap(ParameterConstants.CONTAINER_SEARCH);
     }
 
     public String viewConsolidationContainerInfo() {
@@ -189,6 +190,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 	}
 
     public String viewConsolidationContainerList() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
         String column = getColumnFilter();
 
         List<Container> containerList = new ArrayList<Container>();
@@ -198,9 +200,9 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         } else {
             containerList = containerService.findAllContainer();
         }
-        for (Container containerElem : containerList) {
-            containers.add(transformContainerToFormBean(containerElem));
-        }
+            for (Container containerElem : containerList) {
+                containers.add(transformContainerToFormBean(containerElem));
+            }
         return SUCCESS;
     }
 

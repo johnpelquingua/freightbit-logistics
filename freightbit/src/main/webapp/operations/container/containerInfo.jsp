@@ -11,10 +11,9 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> Customer</li>
-            <li class="active"><a href="<s:url action='viewContainerList' />"> Container List </a>
+            <li class="active"><a href="<s:url action='../operations/viewContainerList' />"> Container Management </a>
             </li>
-            <li class="active"> EIR Form Information</li>
+            <li class="active"> Container Information</li>
         </ol>
 
     </div>

@@ -57,6 +57,8 @@ public interface ContainerDao {
 
     public List<Container> findContainerByOperationsDept(String operationsDept);
 
+    public List<Container> findContainerByContainerStatus(String containerStatus);
+
     public Container findContainerById(Integer containerId);
 
     public List<Container> findContainerByCriteria(String column, String value);

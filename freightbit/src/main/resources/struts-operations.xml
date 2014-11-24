@@ -381,6 +381,10 @@
         <!--</action>-->
 
         <action name="deleteContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="deleteContainer">
+            <result name="success" type="redirect">loadSuccessDeleteContainer</result>
+        </action>
+
+        <action name="loadSuccessDeleteContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSuccessDeleteContainer">
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
@@ -395,17 +399,12 @@
         </action>
 
         <action name="searchContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="searchContainer">
-            <result name="input" type="tiles">operations.containerSearch.tiles</result>
-            <result name="success" type="redirect">viewContainerList</result>
+            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
         <action name="checkoutContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editContainer">
             <result name="input" type="tiles">operations.loadCheckoutForm.tiles</result>
             <result name="success" type="redirect">viewContainerList</result>
-        </action>
-
-        <action name="loadSearchFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSearchFormPage">
-            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
         <action name="loadAddFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadAddFormPage">
