@@ -40,7 +40,7 @@
                         <s:hidden name="document.inboundReturned" value="%{document.inboundReturned}" />
                         <s:hidden name="document.createdBy" value="%{document.createdBy}" />
                         <s:hidden name="document.orderItemId" value="%{document.orderItemId}" />
-                        <s:if test="document.documentName=='PROFORMA BILL OF LADING' || document.documentName=='MASTER BILL OF LADING' || document.documentName=='MASTER WAYBILL ORIGIN' || document.documentName=='SALES INVOICE'">
+                        <s:if test="document.documentName=='PROFORMA BILL OF LADING' || document.documentName=='MASTER BILL OF LADING' || document.documentName=='MASTER WAYBILL ORIGIN' || document.documentName=='SALES INVOICE' || document.documentName=='MASTER WAYBILL DESTINATION' ">
                             <s:textfield cssClass="form-control" placeholder="Reference Number" name="document.referenceNumber" style="margin-bottom: 15px !important;"
                                          id="document_referenceNumber" required="true" />
                         </s:if>

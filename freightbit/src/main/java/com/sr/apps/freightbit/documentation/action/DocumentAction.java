@@ -141,7 +141,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             addActionMessage("Entered reference number successfully!");
         } else if (documentflag == 3) {
             clearErrorsAndMessages();
-            addActionMessage("Document(s) successfully updated!");
+            addActionMessage("Document successfully updated!");
         } else if (documentflag == 4) {
             clearErrorsAndMessages();
             addActionMessage("Document(s) must be checked before processing");
@@ -1504,6 +1504,63 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
+    public String processDocumentsFinalInbound(){
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiCHECK WORD PASS " + check);
+
+        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiDOCUMENT ITEM " + document.getDocumentItem());
+
+        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiORDER ID " + orderIdParam);
+
+        if (check != null) {
+
+            if(document.getDocumentItem().equals("check")) {
+
+                for (int i = 0; i < check.length; i++) {
+                    // if no checkbox are selected
+                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){
+                        sessionAttributes.put("orderIdParam", orderIdParam);
+                        documentflag = 7; // Shows error that no document was checked
+                        sessionAttributes.put("documentflag", documentflag);
+                        return INPUT;
+                    }
+
+                    // will execute if document item is equals to check
+                    Integer documentId = Integer.parseInt(check[i]);
+
+                    Documents documentIdEntity = documentsService.findDocumentById(documentId);
+
+                    if(documentIdEntity.getDocumentName().equals("MASTER WAYBILL DESTINATION") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("MASTER WAYBILL DESTINATION") && documentIdEntity.getReferenceNumber() == null ){
+                        documentflag = 1; // Shows must enter reference number error
+                        sessionAttributes.put("documentflag", documentflag);
+                    }else{
+                        documentIdEntity.setDocumentProcessed(4);
+                        /*Pass flag to view order documents*/
+                        documentflag = 5; // shows document check message
+                        sessionAttributes.put("documentflag", documentflag);
+                    }
+
+                    // update each document
+                    documentsService.updateDocument(documentIdEntity);
+                    // session pass order id
+                    sessionAttributes.put("orderIdParam", documentIdEntity.getReferenceId());
+
+                }
+            }
+
+        }else{
+            sessionAttributes.put("orderIdParam", orderIdParam);
+            documentflag = 4; // all documents must be checked before processing
+            sessionAttributes.put("documentflag", documentflag);
+            return INPUT;
+        }
+
+        return SUCCESS;
+    }
+
+
+
     public String checkDocumentInbound(){
         Map sessionAttributes = ActionContext.getContext().getSession();
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
@@ -2247,7 +2304,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         Documents subEntity = documentsService.findDocumentById(formBean.getDocumentId());
 
-        if(subEntity.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || subEntity.getDocumentName().equals("HOUSE BILL OF LADING") || subEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || subEntity.getDocumentName().equals("BOOKING REQUEST FORM") ){
+        if(subEntity.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || subEntity.getDocumentName().equals("HOUSE BILL OF LADING") || subEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || subEntity.getDocumentName().equals("BOOKING REQUEST FORM") || subEntity.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ){
             entity.setReferenceNumber(subEntity.getReferenceNumber());
         }else{
             entity.setReferenceNumber(formBean.getReferenceNumber());
