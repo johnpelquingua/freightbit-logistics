@@ -31,6 +31,11 @@
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
+        <action name="processDocumentsFinalInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsFinalInbound">
+            <result name="input" type="redirect">viewOrderDocuments</result>
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
         <action name="dateReceivedInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedInbound">
             <!--<result name="success" type="redirect">viewOrderDocumentsInbound</result>
             <result name="input" type="redirect">viewOrderDocumentsInbound</result>-->
@@ -43,7 +48,9 @@
         </action>
 
         <action name="dateReceivedFinalInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedFinalInbound">
-            <result name="success" type="redirect">viewOrderDocumentsFinalInbound</result>
+            <!--<result name="success" type="redirect">viewOrderDocumentsFinalInbound</result>-->
+            <result name="success" type="redirect">viewOrderDocuments</result>
+            <result name="input" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="viewPlainDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewPlainDocuments">

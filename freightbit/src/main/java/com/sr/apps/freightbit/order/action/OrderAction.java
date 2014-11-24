@@ -150,9 +150,10 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String customerAction() {
-
-        if(customerID != null){
+        System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu " + customerID);
+        if(customerID != null) {
             List<Contacts> shipperContacts = customerService.findContactByRefIdAndType("shipper", customerID);
+
 
             for (int i = 0; i < shipperContacts.size(); i++) {
                 customerContactsMap.put(shipperContacts.get(i).getContactId(), shipperContacts.get(i).getFirstName() + ' ' + shipperContacts.get(i).getMiddleName() + ' ' + shipperContacts.get(i).getLastName());
@@ -170,11 +171,11 @@ public class OrderAction extends ActionSupport implements Preparable {
                 customerConsigneeMap.put(shipperConsignee.get(i).getContactId(), shipperConsignee.get(i).getFirstName() + ' ' + shipperConsignee.get(i).getMiddleName() + ' ' + shipperConsignee.get(i).getLastName());
             }
 
-        List <Address> consigneeAddresses = customerService.findAddressByCriteria("CONSIGNEE",customerID );
+            List<Address> consigneeAddresses = customerService.findAddressByCriteria("CONSIGNEE", customerID);
 
-        for(int i = 0; i < consigneeAddresses.size(); i++ ) {
-            consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity()  );
-        }
+            for (int i = 0; i < consigneeAddresses.size(); i++) {
+                consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity());
+            }
 //            Address consigneeAddresses = customerService.findAddressByParameterMap(customerID, "CONSIGNEE", getClientId(), shipperConsignee.get(0).getContactId());
 //            consigneeAddressMap.put(consigneeAddresses.getAddressId(), consigneeAddresses.getAddressLine1() + ' ' + consigneeAddresses.getAddressLine2() + ' ' + consigneeAddresses.getCity());
 
@@ -190,6 +191,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             for (int i = 0; i < consigneeContacts.size(); i++) {
                 consigneeContactMap.put(consigneeContacts.get(i).getContactId(), consigneeContacts.get(i).getFirstName() + ' ' + consigneeContacts.get(i).getMiddleName() + ' ' + consigneeContacts.get(i).getLastName());
             }
+
         }
 
         return SUCCESS;
