@@ -95,4 +95,9 @@ public class DocumentsServiceImpl implements DocumentsService {
     public void deleteDocument(Documents documents){
         documentsDao.deleteDocument(documents);
     }
+
+    @Override
+    public List<Documents> findEIRAndRefId(String documentName, Integer referenceId, String referenceTable){
+        return documentsDao.findEIRAndRefId(documentName, referenceId, referenceTable );
+    }
 }

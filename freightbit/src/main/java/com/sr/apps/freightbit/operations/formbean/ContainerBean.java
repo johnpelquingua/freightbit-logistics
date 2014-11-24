@@ -42,6 +42,9 @@ public class ContainerBean {
 
     private String eirType;
     private String portCode;
+    // for documents link on container list view
+    private String DocumentCheck;
+    private Integer documentId;
 
     public ContainerBean() {
     }
@@ -336,5 +339,21 @@ public class ContainerBean {
 
     public void setPortCode(String portCode) {
         this.portCode = portCode;
+    }
+
+    public Integer getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(Integer documentId) {
+        this.documentId = documentId;
+    }
+
+    public String getDocumentCheck() {
+        return DocumentCheck;
+    }
+
+    public void setDocumentCheck(String documentCheck) {
+        DocumentCheck = documentCheck;
     }
 }

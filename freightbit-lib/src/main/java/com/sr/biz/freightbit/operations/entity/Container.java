@@ -13,7 +13,7 @@ import java.util.Date;
 public class Container implements Serializable{
 
     private Integer containerId;
-    private Integer clientId;
+    /*private Integer clientId;*/
     private String eirType;
     private String eirNumber;
     private String portCode;
@@ -46,9 +46,8 @@ public class Container implements Serializable{
     public Container() {
     }
 
-    public Container(Integer containerId, Integer clientId, String eirType, String eirNumber, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String bookingNum, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept, String sealNumber, String vanLocation, String ladenEmpty, String containerType, String portCode) {
+    public Container(Integer containerId, String eirType, String eirNumber, String portCode, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String bookingNum, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String sealNumber, String vanLocation, String ladenEmpty, String containerStatus, String forkliftOperator, String operationsDept) {
         this.containerId = containerId;
-        this.clientId = clientId;
         this.eirType = eirType;
         this.eirNumber = eirNumber;
         this.portCode = portCode;
@@ -70,13 +69,13 @@ public class Container implements Serializable{
         this.modifiedTimestamp = modifiedTimestamp;
         this.containerNumber = containerNumber;
         this.containerSize = containerSize;
+        this.containerType = containerType;
+        this.sealNumber = sealNumber;
+        this.vanLocation = vanLocation;
+        this.ladenEmpty = ladenEmpty;
         this.containerStatus = containerStatus;
         this.forkliftOperator = forkliftOperator;
         this.operationsDept = operationsDept;
-        this.containerSize = containerType;
-        this.containerSize = sealNumber;
-        this.containerSize = vanLocation;
-        this.containerSize = ladenEmpty;
     }
 
     @Id
@@ -90,14 +89,14 @@ public class Container implements Serializable{
         this.containerId = containerId;
     }
 
-    @Column(name = "clientId")
+    /*@Column(name = "clientId")
     public Integer getClientId() {
         return clientId;
     }
 
     public void setClientId(Integer clientId) {
         this.clientId = clientId;
-    }
+    }*/
 
     @Column(name = "eirNumber")
     public String getEirNumber() {

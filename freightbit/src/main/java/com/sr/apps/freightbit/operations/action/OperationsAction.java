@@ -130,7 +130,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
         truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
         containerSearchList = parameterService.getParameterMap(ParameterConstants.CONTAINER_SEARCH);
-        containerSizeList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.CONTAINER_SIZE);
+        containerSizeList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
         containerEirTypeList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.EIR_TYPE);
         containerStatusList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.CONTAINER_STATUS);
         containerPortCode = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.PORT_CODE);
@@ -1375,6 +1375,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String viewContainerList() {
         String column = getColumnFilter();
 
+        /*String column = getColumnFilter();
+
         List<Container> containerList = new ArrayList<Container>();
 
         if (StringUtils.isNotBlank(column)) {
@@ -1382,20 +1384,30 @@ public class OperationsAction extends ActionSupport implements Preparable {
         } else {
             containerList = containerService.findAllContainer();
         }
-
         for (Container containerElem : containerList) {
             containers.add(transformContainerToFormBean(containerElem));
         }
+        return SUCCESS;*/
+
+        List<Container> containerList = new ArrayList<Container>();
+        containerList = containerService.findAllContainer();
+
+        for (Container containerElem : containerList) {
+
+            containers.add(transformContainerToFormBean(containerElem));
+
+        }
+
         return SUCCESS;
     }
 
-    public String containerAdd() throws Exception {
+  /*  public String containerAdd() throws Exception {
 
         Container containerEntity  = transformContainerToEntityBean(container);
         containerService.addContainer(containerEntity);
         addActionMessage("Success! New Form has been added.");
         return SUCCESS;
-    }
+    }*/
 
     public String deleteContainer() {
         Container containerEntity = containerService.findContainerById(containerIdParam);
@@ -1446,7 +1458,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         ContainerBean formBean = new ContainerBean();
         formBean.setContainerId(entity.getContainerId());
-        formBean.setClientId(entity.getClientId());
+        /*formBean.setClientId(entity.getClientId());*/
         formBean.setEirNumber(entity.getEirNumber());
         formBean.setPortCode(entity.getPortCode());
         formBean.setDateTime(entity.getDateTime());
@@ -1474,14 +1486,37 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setContainerStatus(entity.getContainerStatus());
         formBean.setSealNumber(entity.getSealNumber());
 
+        // FOR EIR 1 and 2 DOCUMENTS
+        String docName;
+
+        if(entity.getEirType().equals("EIR FORM 1")){
+            docName = "EQUIPMENT INTERCHANGE RECEIPT 1";
+        }else{
+            docName = "EQUIPMENT INTERCHANGE RECEIPT 2";
+        }
+
+        System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" + docName);
+
+        List<Documents> documentList = documentsService.findEIRAndRefId(docName,entity.getContainerId(),"CONTAINERS");
+
+        if(documentList != null){
+                formBean.setDocumentCheck("AVAILABLE");
+                /*formBean.setDocumentId(documentList.get(0).getDocumentId());*/
+            for(Documents documentElem : documentList ){
+                formBean.setDocumentId(documentElem.getDocumentId());
+            }
+        }
+
+        System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" + entity.getContainerId());
+
         return formBean;
     }
 
     private Container transformContainerToEntityBean(ContainerBean formBean){
 
         Container entity = new Container();
-        Client client = clientService.findClientById(getClientId().toString());
-        entity.setClientId(client.getClientId());
+        /*Client client = clientService.findClientById(getClientId().toString());
+        entity.setClientId(client.getClientId());*/
 
         if(formBean.getContainerId() != null) {
             entity.setContainerId(new Integer(formBean.getContainerId()));
@@ -1865,6 +1900,38 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if (StringUtils.isNotBlank(address.getZip()))
             fullAddress.append(address.getZip());
         return fullAddress.toString();
+    }
+
+    public String containerAdd() throws Exception {
+
+        Container containerEntity  = transformContainerToEntityBean(container);
+        containerService.addContainer(containerEntity);
+
+        // Add EIR 1 DOCUMENT BEGIN
+
+        Documents documentEntity = new Documents();
+
+        Client client = clientService.findClientById(getClientId().toString());
+        documentEntity.setClient(client);
+
+        if(containerEntity.getEirType().equals("EIR FORM 1")){
+            documentEntity.setDocumentName(DocumentsConstants.EQUIPMENT_INTERCHANGE_RECEIPT_1);
+        }else{
+            documentEntity.setDocumentName(DocumentsConstants.EQUIPMENT_INTERCHANGE_RECEIPT_2);
+        }
+        documentEntity.setReferenceId(containerEntity.getContainerId());
+        documentEntity.setReferenceTable("CONTAINERS");
+        documentEntity.setCreatedDate(new Date());
+        documentEntity.setDocumentStatus("FOR PRINTING");
+        documentEntity.setVendorCode(containerEntity.getShipping());
+        documentEntity.setDocumentProcessed(0);
+
+        documentsService.addDocuments(documentEntity);
+
+        // Add EIR 1 DOCUMENT END
+
+        addActionMessage("Success! New Form has been added.");
+        return SUCCESS;
     }
 
     public Integer getOrderIdParam() {

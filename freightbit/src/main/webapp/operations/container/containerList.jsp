@@ -69,6 +69,10 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="portCode" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+                                <%--<td><display:column property="documentCheck" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="documentId" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>--%>
                                 <td>
                                     <display:column title="Action">
                                         <s:url var="editContainerUrl" action="loadEditFormPage">
@@ -92,6 +96,10 @@
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
                                         </s:url>
                                         <s:a href="%{viewContainerInfoUrl}" title="Container Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
+
+                                        <a id="print-icon" href="#" onclick="generateReport(${container.documentId},'${container.eirType}');">
+                                            <i class="fa fa-print"></i>
+                                        </a>
 
                                         <s:url var="checkoutFormUrl" action="loadCheckoutFormPage">
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
@@ -159,5 +167,25 @@
             }
         }
     });
+
+    function generateReport(documentId,documentName) {
+        alert(documentId);
+        alert(documentName);
+        /*var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
+        win.onload = function () {
+            this.document.title = "Booking Request Form";
+        }*/
+        if(documentName == 'EIR FORM 1'){
+            var win = window.open('documentations/generateEIR1RequestReport?documentIdParam=' + documentId, 'eir1', 'width=910,height=800');
+            win.onload = function () {
+                this.document.title = "Equipment Interchange Receipt 1";
+            }
+        }else{
+            var win = window.open('documentations/generateEIR2RequestReport?documentIdParam=' + documentId, 'eir2', 'width=910,height=800');
+            win.onload = function () {
+                this.document.title = "Equipment Interchange Receipt 2";
+            }
+        }
+    }
 
 </script>

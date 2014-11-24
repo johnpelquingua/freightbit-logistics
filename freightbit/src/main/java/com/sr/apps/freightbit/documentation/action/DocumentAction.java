@@ -2638,7 +2638,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         String orderId = (documentEntity.getReferenceId()).toString();
 //        	String orderId = "26";
-//            String orderItemId = "1";
+//          String orderItemId = "1";
         	Map<String, String> params = new HashMap();
         	params.put("orderId", orderId);
 //        	params.put("orderItemId", orderItemId);
@@ -2701,7 +2701,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }
 
         return null;
-
     }
 
     public OrderBean transformOrdersToFormBean(Orders entity) {
