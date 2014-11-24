@@ -130,8 +130,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
         containerSearchList = parameterService.getParameterMap("CONTAINERS", "CONTAINER_SEARCH");
         containerSizeList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
-        containerEirTypeList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.EIR_TYPE);
-        containerStatusList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_STATUS);
+        containerEirTypeList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.EIR_TYPE);
+        containerStatusList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.CONTAINER_STATUS);
 
     }
 

@@ -66,5 +66,6 @@ public class ParameterConstants {
 
     public final static String CONTAINER_STATUS = "CONTAINER_STATUS";
 
+    public final static String CONTAINERS = "CONTAINERS";
 
 }
