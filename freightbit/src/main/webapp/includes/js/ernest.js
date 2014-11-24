@@ -313,3 +313,25 @@ function modeAbbrev(mode){
         return 'IW';
     }
 }
+
+function newlineHandler(){
+    // AUTHORED BY JAN SARMIENTO -- START
+    // This function modifies the \n character in the table and replaces it with a <br/> tag
+    // THIS FUNCTIONS CONCERNS ONLY THE FRONT-END
+
+    var outboundComment = $('.outbound_table tbody tr td:nth-child(6)'),
+        finalOutboundComment = $('.final_outbound_table tbody tr td:nth-child(6)'),
+        inboundTableComment = $('.inbound_table tbody tr td:nth-child(6)'),
+        transformedString;
+
+    for(var i=0; i < outboundComment.size(); i++){
+        transformedString = outboundComment.eq(i).text().replace(/\n/g, "<br />");
+        outboundComment.eq(i).empty().append(transformedString);
+        transformedString = finalOutboundComment.eq(i).text().replace(/\n/g, "<br />");
+        finalOutboundComment.eq(i).empty().append(transformedString);
+        transformedString = inboundTableComment.eq(i).text().replace(/\n/g, "<br />");
+        inboundTableComment.eq(i).empty().append(transformedString);
+    }
+
+    // AUTHORED BY JAN SARMIENTO -- END
+}

@@ -833,7 +833,7 @@
 
                         <div class="panel-body" style="text-align: center;">
 
-                            <s:if test=" documentTabFinalInbound == 'NO_FINAL_INBOUND_DOCUMENTS' ">
+                            <s:if test=" documentTabFinalInbound == 'NO_FINAL_INBOUND_DOCUMENTS' && documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE'">
 
                                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#finalInboundReceivedModal">
                                     Activate Finale Inbound Documents
@@ -1010,26 +1010,32 @@ BILLING DOCUMENTS PLACEHOLDER
 </div>
 
 <!-- Modal for Inbound documents received-->
-<div class="modal fade" id="inboundReceivedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="inboundReceivedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left: 15em; margin-top: -10em; overflow-y: hidden">
     <div class="modal-dialog">
         <div class="modal-content">
             <%--<div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>--%>
-            <div class="modal-body">
+            <div class="modal-body row">
                 <s:form action="dateReceivedInbound" theme="bootstrap">
                     <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
-                    <label class="col-lg-3 control-label" >Date Received</label>
-                    <div class="col-lg-3">
-                        <s:textfield type="text" cssClass="form-control" id="datepicker" name="dateReturnedInbound" required="true" placeholder="Select Returned date"></s:textfield>
+                    <div class="col-md-12">
+                        <label class="control-label" >Date Received</label>
+                        <div>
+                            <s:textfield type="text" cssClass="form-control" id="datepicker" name="dateReturnedInbound" required="true" placeholder="Select Returned date"></s:textfield>
+                        </div>
                     </div>
-                    <label class="col-lg-3 control-label" style="padding-top:0px;">No. of SI / DR documents returned</label>
-                    <div class="col-lg-3">
-                        <s:select cssClass="form-control" name="quantitySI_DR" cssStyle="margin-bottom: 15px !important; resize: none;" list="documentQuantity" emptyOption="true" required="true" />
+
+                    <div class="col-md-12">
+                        <label class="control-label" style="padding-top:0px;">No. of SI / DR documents returned</label>
+                        <div>
+                            <s:select cssClass="form-control" name="quantitySI_DR" cssStyle="margin-bottom: 15px !important; resize: none;" list="documentQuantity" emptyOption="true" required="true" />
+                        </div>
                     </div>
-                    <div class="col-lg-3 col-lg-offset-5">
-                        <s:submit name="submit" cssClass="btn btn-primary" value="Activate Inbound Documents" onclick="addOrderId()" />
+
+                    <div style="float: right; margin-right: 1em; margin-top: 2em;">
+                        <s:submit name="submit" cssClass="btn btn-primary" value="Okay" onclick="addOrderId()" />
                     </div>
                 </s:form>
             </div>
@@ -1049,18 +1055,24 @@ BILLING DOCUMENTS PLACEHOLDER
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>--%>
-            <div class="modal-body">
+            <div class="modal-body col-md-12">
                 <s:form action="finalOutboundSent" theme="bootstrap">
+                    <div class="row">
+                        <label class="control-label" >Date Sent</label>
+                        <div class="col-md-12">
+                            <s:textfield type="text" cssClass="form-control" id="datepicker2" name = "dateSentFinalOutbound" cssStyle="margin-bottom: 15px;" required="true" placeholder="Select Date Sent"></s:textfield>
+                        </div>
+                    </div>
                     <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
-                    <label class="col-lg-3 control-label" >Date Sent</label>
-                    <div class="col-lg-3">
-                        <s:textfield type="text" cssClass="form-control" id="datepicker2" name = "dateSentFinalOutbound" cssStyle="margin-bottom: 15px;" required="true" placeholder="Select Date Sent"></s:textfield>
+
+                    <div class="col-md-12">
+                        <label class="col-lg-3 control-label" >Tracking Number</label>
+                        <div class="col-lg-3">
+                            <s:textfield type="text" cssClass="form-control" name = "finalOutboundTrackingNumber" cssStyle="margin-bottom: 15px !important;" required="true" placeholder="Input Tracking Number"></s:textfield>
+                        </div>
                     </div>
-                    <label class="col-lg-3 control-label" >Tracking Number</label>
-                    <div class="col-lg-3">
-                        <s:textfield type="text" cssClass="form-control" name = "finalOutboundTrackingNumber" cssStyle="margin-bottom: 15px !important;" required="true" placeholder="Input Tracking Number"></s:textfield>
-                    </div>
-                    <div class="col-lg-3 col-lg-offset-5">
+
+                    <div class="row" style="margin-right: 3em;">
                         <s:submit name="submit" cssClass="btn btn-primary" value="Send Documents" onclick="addOrderId()" />
                     </div>
                 </s:form>
@@ -1077,20 +1089,21 @@ BILLING DOCUMENTS PLACEHOLDER
 <div class="modal fade" id="finalInboundReceivedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-
             <div class="modal-body">
                 <s:form action="dateReceivedFinalInbound" theme="bootstrap">
-                    <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
-                    <label class="col-lg-3 control-label" >Date Received</label>
-                    <div class="col-lg-3">
-                        <s:textfield type="text" cssClass="form-control" id="datepicker3" name="dateReturnedFinalInbound" required="true" placeholder="Select Returned date"></s:textfield>
+                    <div class="col-md-12">
+                        <label class="control-label" >Date Received</label>
+                        <div class="col-md-12">
+                            <s:textfield type="text" cssClass="form-control" id="datepicker3" name="dateReturnedFinalInbound" required="true" placeholder="Select Returned date"></s:textfield>
+                        </div>
                     </div>
-                    <div class="col-lg-3 col-lg-offset-5">
+                    <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
+
+                    <div class="col-md-12" style="margin-left: 3em; margin-top: 2em;">
                         <s:submit name="submit" cssClass="btn btn-primary" value="Activate Final Inbound Documents" onclick="addOrderId()" />
                     </div>
                 </s:form>
             </div>
-
         </div>
     </div>
 </div>
@@ -1103,6 +1116,24 @@ BILLING DOCUMENTS PLACEHOLDER
 <%--type="hidden"--%>
 
 <script>
+
+$(function () {
+    $('#myTab a:first').tab('show')
+});
+$(function() {
+    //for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
+    $('a[data-toggle="tab"]').on('click', function (e) {
+        localStorage.setItem('lastTab', $(e.target).attr('href'));
+    });
+
+    //go to the latest tab, if it exists:
+    var lastTab = localStorage.getItem('lastTab');
+
+    if (lastTab) {
+        $('a[href="'+lastTab+'"]').click();
+    }
+});
+
 
     function addCheckText() {
         var orderIdGet = document.getElementById("order_Id").value;
@@ -1138,25 +1169,7 @@ BILLING DOCUMENTS PLACEHOLDER
     }
 
 $(document).ready(function() {
-    
-    // AUTHORED BY JAN SARMIENTO -- START
-    // This function modifies the \n character in the table and replaces it with a <br/> tag
-    // THIS FUNCTIONS CONCERNS ONLY THE FRONT-END
-
-    var outboundComment = $('.outbound_table tbody tr td:nth-child(6)'),
-            finalOutboundComment = $('.final_outbound_table tbody tr td:nth-child(6)'),
-            inboundTableComment = $('.inbound_table tbody tr td:nth-child(6)');
-
-    for(var i=0; i < outboundComment.size(); i++){
-        var transformedString = outboundComment.eq(i).text().replace(/\n/g, "<br />");
-        outboundComment.eq(i).empty().append(transformedString);
-        transformedString = finalOutboundComment.eq(i).text().replace(/\n/g, "<br />");
-        finalOutboundComment.eq(i).empty().append(transformedString);
-        transformedString = inboundTableComment.eq(i).text().replace(/\n/g, "<br />");
-        inboundTableComment.eq(i).empty().append(transformedString);
-    }
-
-    // AUTHORED BY JAN SARMIENTO -- END
+    newlineHandler(); // function to handle "new line" characters on comments column on all tables. refer to : ernest.js - Jan Sarmiento
 
     /*----------------------For Example Purposes-------------------------*/
     $('#idAnchor').click(function(){
