@@ -65,19 +65,21 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
         public List<Orders> findAllOrders() {
 
             List<String> statusList = new ArrayList<>();
-            statusList.add("APPROVED");
+
+            /*statusList.add("APPROVED");
             statusList.add("PENDING");
             statusList.add("DISAPPROVED");
             statusList.add("BOOKING ON PROCESS");
             statusList.add("PLANNING 1");
             statusList.add("PLANNING 2");
             statusList.add("PLANNING 3");
-            statusList.add("SERVICE ACCOMPLISHED");
+            statusList.add("SERVICE ACCOMPLISHED");*/
+            statusList.add("ON GOING");
 
             log.debug("Finding orders with filter");
             try {
                 log.debug("Finding orders succeeded");
-                Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderStatus not in(:statusList)");
+                Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderStatus in(:statusList) order by createdTimestamp desc");
                 query.setParameterList("statusList", statusList);
                 List<Orders> results = (List<Orders>) query.list();
                 return results;

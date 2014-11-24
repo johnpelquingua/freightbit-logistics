@@ -263,7 +263,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return fullName.toString();
     }
 
-    /*public OrderStatusLogsService getOrderStatusLogsService() {
+    public OrderStatusLogsService getOrderStatusLogsService() {
         return orderStatusLogsService;
     }
 
@@ -389,5 +389,5 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setOrderStatusLogss(List<OrderStatusLogsBean> orderStatusLogss) {
         this.orderStatusLogss = orderStatusLogss;
-    }*/
+    }
 }
