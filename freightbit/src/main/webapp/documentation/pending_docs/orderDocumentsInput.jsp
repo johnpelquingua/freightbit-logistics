@@ -46,14 +46,14 @@
                         </s:if>
                         <s:else>
                             <%--<s:property value="%{document.referenceNumber}" />--%>
-                            <s:textfield cssClass="form-control" name="document.referenceNumber" style="margin-bottom: 15px !important;" disabled="true" />
+                            <s:textfield cssClass="form-control modalComment" name="document.referenceNumber" style="margin-bottom: 15px !important;" disabled="true" />
                         </s:else>
                     </div>
                 <%--</div>
                 <div class="form-group">--%>
                     <label class="col-lg-4 control-label" style="text-align: right; clear:both;">Comments</label>
                     <div class="col-lg-8" >
-                        <s:textarea cssClass="form-control" placeholder="Comments" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
+                        <s:textarea cssClass="form-control modalTextArea" placeholder="Comments" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
                                      id="document_documentComments" />
                     </div>
                 <%--</div>--%>
@@ -62,7 +62,7 @@
                             <s:param name="orderIdParam" value="document.referenceId"></s:param>
                         </s:url>
                         <s:a class="icon-action-link" href="%{cancelInputUrl}" rel="tooltip">
-                            <button type="button" class="btn">Cancel</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </s:a>
                         <s:submit name="submit" cssClass="btn btn-primary" value="Save" onclick="transformString()"/>
                     </div>
