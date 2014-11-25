@@ -1169,8 +1169,12 @@ $(function() {
     }
 
 $(document).ready(function() {
-    newlineHandler(); // function to handle "new line" characters on comments column on all tables. refer to : ernest.js - Jan Sarmiento
-
+    // START function to handle "new line" characters on comments column on all tables. refer to : ernest.js - Jan Sarmiento
+    newlineHandler('outbound_table', 6);
+    newlineHandler('inbound_table', 6);
+    newlineHandler('final_outbound_table', 6);
+    newlineHandler('final_inbound_table', 6);
+    // END
     /*----------------------For Example Purposes-------------------------*/
     $('#idAnchor').click(function(){
 

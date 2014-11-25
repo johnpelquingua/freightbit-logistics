@@ -19,6 +19,15 @@
     </div>
 </div>
 
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary">
@@ -99,7 +108,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <s:property value="%{messageSample}" />
                         <div class="col-md-6">
 
                             <div class="form-group">
@@ -167,7 +176,8 @@
             <div class="panel-footer">
                             <span class="pull-right">
                               <a href="viewUsers" class="btn btn-default" id="users-add-btn">Cancel</a>
-                              <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                              <%--<s:submit cssClass="btn btn-primary" name="submit" value="Save"/>--%>
+                              <button type="button" class="btn btn-danger saveBtn">Save</button>
                             </span>
             </div>
              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -194,5 +204,28 @@
 
 
     });
+
+    $('.saveBtn').click(function(){
+//        alert($('form[name="addForm"]').attr('action'));
+        /*$.ajax({
+            url : $('form[name="addForm"]').attr('action'),
+            type : 'POST',
+            data : $('form[name="addForm"]').serialize(),
+            success : function(data){
+                alert(data);
+            }
+        })*/
+        $.ajax({
+            url : $('form[name="addForm"]').attr('action'),
+            dataType : 'text/javascript',
+            type : 'POST',
+            data : $('form[name="addForm"]').serialize(),
+            success : function(data){
+                alert(data);
+            },error : function(){
+             alert('error');
+        }
+        })
+    })
 
 </script>
