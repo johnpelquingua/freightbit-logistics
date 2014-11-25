@@ -143,7 +143,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group" style="display: none;">
+                        <div class="form-group">
                             <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Customer<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
