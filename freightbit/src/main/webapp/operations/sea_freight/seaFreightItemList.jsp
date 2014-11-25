@@ -15,7 +15,7 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
+            <li class="active"><a href="<s:url action='viewSeaFreightList' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>"> Freight Plan : Orders </a></li>
             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                 <li class="active"> Freight Plan : Containers</li>
             </s:if>
@@ -28,23 +28,16 @@
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
-        <div class="alert alert-success">
+        <div class="alert alert-sucAcess">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
 </s:if>
+
 <s:if test="hasActionErrors()">
    <div class="col-lg-12">
-	   <div class="alert alert-errors">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-   			<strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
-		</div>
-   </div>
-</s:if>
-<s:if test="hasActionErrors()">
-   <div class="col-lg-12">
-	   <div class="alert alert-errors">
+	   <div class="alert alert-danger">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
    			<strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
 		</div>
@@ -260,17 +253,17 @@
 
                 <div class="table-responsive">
                     <div class="col-lg-12">
-                    <%--<span class="pull-left">--%>
+
                         <table class="col-lg-12" >
                             <tr>
                                 <td><label>LEGEND:</label></td>
                                 <td><i class='fa fa-anchor'></i> PLANNING 1 = Set Shipping Vessel</td>
-                                <td><i class='fa fa-truck'></i> PLANNING 222 = Set Trucking Origin</td>
+                                <td><i class='fa fa-truck'></i> PLANNING 2 = Set Trucking Origin</td>
                                 <td><i class='fa fa-truck'></i> PLANNING 3 = Set Trucking Destination</td>
                             </tr>
                         </table>
                     </div>
-                    <%--</span>--%>
+
                 </div>
             </div>
 
@@ -285,9 +278,8 @@
             </s:url>
             <s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"
                  title="Create Documents">
-                Create Proforma and House Bill of Lading
+                Create Proforma Bill of Lading
             </s:a>
-
 
             <s:url var="viewDocumentListUrl" action="viewDocumentList">
                 <s:param name="orderIdParam"
@@ -299,7 +291,6 @@
                  title="Go to Documents Page">
                 Go to Documents page
             </s:a>
-
             <%--<a href="#" class="btn btn-default">Go to Documents page</a>--%>
         </div>
     </div>

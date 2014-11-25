@@ -106,12 +106,12 @@
 
                     <table class="table leftAlign table-user-information">
 
-                        <th style="font-size: 20px; border-top: none; width: 300px;">Shipper Information</th>
+                        <th style="font-size: 20px; border-top: none; width: 300px;">Customer Information</th>
 
                         <tbody>
 
                         <tr>
-                            <td style="color: gray !important;">Shipper Name</td>
+                            <td style="color: gray !important;">Customer Name</td>
                             <td><s:property value="order.customerName"/></td>
                         </tr>
                         <tr>

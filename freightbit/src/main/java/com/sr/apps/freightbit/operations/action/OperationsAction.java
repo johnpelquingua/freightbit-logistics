@@ -19,7 +19,6 @@ import com.sr.apps.freightbit.vendor.formbean.TruckBean;
 import com.sr.apps.freightbit.vendor.formbean.VendorBean;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
-import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
@@ -30,7 +29,6 @@ import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.operations.entity.Container;
-import com.sr.biz.freightbit.operations.exceptions.ContainerAlreadyExistsException;
 import com.sr.biz.freightbit.operations.service.ContainerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
@@ -1660,8 +1658,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         order = transformToOrderFormBean(orderEntity);
         orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
-
-
+        // Shipping vendors set will be stored in VendorCodeDocument variable
         for (OrderItems everyItem : orderItemsList) {
             if (vendorCodeDocument.isEmpty()) {
                 vendorCodeDocument.add(everyItem.getVendorSea());
@@ -1673,39 +1670,51 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         List<Documents> proforma = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING", orderIdParam);
-        List<Documents> houseWayBill = documentsService.findDocumentNameAndId("HOUSE BILL OF LADING", orderIdParam);
+        /*List<Documents> houseWayBill = documentsService.findDocumentNameAndId("HOUSE BILL OF LADING", orderIdParam);*/
 
         for (String itemVendor : vendorCodeDocument) {
-            if (proforma.size() == 0) {
-                Documents documentEntityProforma = new Documents();
+            if(itemVendor != null){ // proforma document will be created if shipping vendor is not null
+                if (proforma.size() == 0) {
+                    Documents documentEntityProforma = new Documents();
 
-                Client client = clientService.findClientById(getClientId().toString());
-                documentEntityProforma.setClient(client);
+                    Client client = clientService.findClientById(getClientId().toString());
+                    documentEntityProforma.setClient(client);
 
-                documentEntityProforma.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
-                documentEntityProforma.setReferenceId(orderEntity.getOrderId());
-                documentEntityProforma.setReferenceTable("ORDERS");
-                documentEntityProforma.setOrderNumber(orderEntity.getOrderNumber());
-                documentEntityProforma.setCreatedDate(new Date());
-                documentEntityProforma.setDocumentStatus("INPUT REFERENCE NUMBER");
-                documentEntityProforma.setVendorCode(itemVendor);
-                documentEntityProforma.setOutboundStage(1);
-                documentEntityProforma.setDocumentProcessed(0);
+                    documentEntityProforma.setDocumentName(DocumentsConstants.PROFORMA_BILL_OF_LADING);
+                    documentEntityProforma.setReferenceId(orderEntity.getOrderId());
+                    documentEntityProforma.setReferenceTable("ORDERS");
+                    documentEntityProforma.setOrderNumber(orderEntity.getOrderNumber());
+                    documentEntityProforma.setCreatedDate(new Date());
+                    documentEntityProforma.setDocumentStatus("INPUT REFERENCE NUMBER");
+                    documentEntityProforma.setVendorCode(itemVendor);
+                    documentEntityProforma.setOutboundStage(1);
+                    documentEntityProforma.setDocumentProcessed(0);
 
-                documentsService.addDocuments(documentEntityProforma);
-            } else {
+                    documentsService.addDocuments(documentEntityProforma);
+                } else { // will prompt a message when attempting to create proforma if one was already created
+                    clearErrorsAndMessages();
+                    addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+
+                    for(OrderItems orderItemsElem : orderItemsList) {
+                        orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                    }
+
+                    return INPUT;
+                }
+            }else{ // if no shipping vendor set will return an error message
                 clearErrorsAndMessages();
-                addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
-                /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
+                addActionError("Container(s) / Item(s) has no Shipping vendor set!");
+
                 for(OrderItems orderItemsElem : orderItemsList) {
                     orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                 }
+
                 return INPUT;
             }
 
         }
 
-        if (houseWayBill.size() == 0) {
+        /*if (houseWayBill.size() == 0) {
             Documents documentEntityHouse = new Documents();
 
             Client client = clientService.findClientById(getClientId().toString());
@@ -1725,20 +1734,20 @@ public class OperationsAction extends ActionSupport implements Preparable {
         } else {
             clearErrorsAndMessages();
             addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
-            /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
+            *//*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*//*
             for(OrderItems orderItemsElem : orderItemsList) {
                 orderItems.add(transformToOrderItemFormBean(orderItemsElem));
             }
             return INPUT;
-        }
-
+        }*/
 
         clearErrorsAndMessages();
-        addActionMessage("SUCCESS! Documents has been created");
+        addActionMessage("SUCCESS! Document(s) has been created");
 
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
+
         return SUCCESS;
     }
 
@@ -1749,8 +1758,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         order = transformToOrderFormBean(orderEntity);
         orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
-
-
+        // Origin vendors set will be stored in VendorCodeDocument Variable
         for (OrderItems everyItem : orderItemsList) {
             if (vendorCodeDocument.isEmpty()) {
                 vendorCodeDocument.add(everyItem.getVendorOrigin());
@@ -1761,45 +1769,57 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
         }
 
-        List<Documents> proforma = documentsService.findDocumentNameAndId("HOUSE WAYBILL ORIGIN", orderIdParam);
+        List<Documents> waybillOrigin = documentsService.findDocumentNameAndId("HOUSE WAYBILL ORIGIN", orderIdParam);
+
         for (String itemVendor : vendorCodeDocument) {
-            if (proforma.size() == 0) {
-                Documents documentEntity = new Documents();
+            if(itemVendor != null) { // house waybill origin document will be created if origin vendor is not null
+                if (waybillOrigin.size() == 0) {
+                    Documents documentEntity = new Documents();
 
-                Client client = clientService.findClientById(getClientId().toString());
-                documentEntity.setClient(client);
+                    Client client = clientService.findClientById(getClientId().toString());
+                    documentEntity.setClient(client);
 
-                documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_ORIGIN);
-                documentEntity.setReferenceId(orderEntity.getOrderId());
-                documentEntity.setReferenceTable("ORDERS");
-                documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-                documentEntity.setCreatedDate(new Date());
-                documentEntity.setDocumentStatus("FOR PRINTING");
-                documentEntity.setVendorCode(itemVendor);
-                documentEntity.setOutboundStage(1);
-                /*documentEntity.setReferenceNumber(orderIdParam.toString());*/
-                documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
-                documentEntity.setDocumentProcessed(0);
+                    documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_ORIGIN);
+                    documentEntity.setReferenceId(orderEntity.getOrderId());
+                    documentEntity.setReferenceTable("ORDERS");
+                    documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+                    documentEntity.setCreatedDate(new Date());
+                    documentEntity.setDocumentStatus("FOR PRINTING");
+                    documentEntity.setVendorCode(itemVendor);
+                    documentEntity.setOutboundStage(1);
+                    documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
+                    documentEntity.setDocumentProcessed(0);
 
-                documentsService.addDocuments(documentEntity);
-            } else {
+                    documentsService.addDocuments(documentEntity);
+                } else { // will prompt a message when attempting to create house waybill origin if one was already created
+                    clearErrorsAndMessages();
+                    addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+
+                    for (OrderItems orderItemsElem : orderItemsList) {
+                        orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                    }
+                    return INPUT;
+                }
+            }else{ // if no origin vendor set will return an error message
                 clearErrorsAndMessages();
-                addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
-                /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
+                addActionError("Container(s) / Item(s) has no Shipping vendor set!");
+
                 for(OrderItems orderItemsElem : orderItemsList) {
                     orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                 }
+
                 return INPUT;
             }
 
         }
 
         clearErrorsAndMessages();
-        addActionMessage("SUCCESS! Documents has been created");
+        addActionMessage("SUCCESS! Document(s) has been created");
 
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
+
         return SUCCESS;
     }
 
@@ -1811,8 +1831,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         order = transformToOrderFormBean(orderEntity);
         orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
-
-
+        // Destination vendors set will be stored in VendorCodeDocument Variable
         for (OrderItems everyItem : orderItemsList) {
             if (vendorCodeDocument.isEmpty()) {
                 vendorCodeDocument.add(everyItem.getVendorDestination());
@@ -1824,45 +1843,60 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         List<Documents> proforma = documentsService.findDocumentNameAndId("HOUSE WAYBILL DESTINATION", orderIdParam);
+
         for (String itemVendor : vendorCodeDocument) {
-            if (proforma.size() == 0) {
-                Documents documentEntity = new Documents();
+            if(itemVendor != null) { // house waybill destination document will be created if destination vendor is not null
+                if (proforma.size() == 0) {
+                    Documents documentEntity = new Documents();
 
                 /*Client client = clientService.findClientById(getClientId().toString());
                 documentEntity.setClient(client);*/
+                    Client client = clientService.findClientById(getClientId().toString());
+                    documentEntity.setClient(client);
 
-                documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_DESTINATION);
-                documentEntity.setReferenceId(orderEntity.getOrderId());
-                documentEntity.setReferenceTable("ORDERS");
-                documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-                documentEntity.setCreatedDate(new Date());
-                documentEntity.setDocumentStatus("FOR PRINTING");
-                documentEntity.setVendorCode(itemVendor);
-                /*documentEntity.setReferenceNumber(orderIdParam.toString());*/
-                documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
-                /*documentEntity.setOutboundStage(1);*/
-                documentEntity.setFinalOutboundStage(0);
-                documentEntity.setDocumentProcessed(2);
+                    documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_DESTINATION);
+                    documentEntity.setReferenceId(orderEntity.getOrderId());
+                    documentEntity.setReferenceTable("ORDERS");
+                    documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+                    documentEntity.setCreatedDate(new Date());
+                    documentEntity.setDocumentStatus("FOR PRINTING");
+                    documentEntity.setVendorCode(itemVendor);
+                    /*documentEntity.setReferenceNumber(orderIdParam.toString());*/
+                    documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
+                    /*documentEntity.setOutboundStage(1);*/
+                    documentEntity.setFinalOutboundStage(0);
+                    documentEntity.setDocumentProcessed(2);
 
-                documentsService.addDocuments(documentEntity);
-            } else {
+                    documentsService.addDocuments(documentEntity);
+                } else {
+                    clearErrorsAndMessages();
+                    addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+                    /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
+                    for (OrderItems orderItemsElem : orderItemsList) {
+                        orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                    }
+                    return INPUT;
+                }
+            }else{ // if no destination vendor set will return an error message
                 clearErrorsAndMessages();
-                addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
-                /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
+                addActionError("Container(s) / Item(s) has no Shipping vendor set!");
+
                 for(OrderItems orderItemsElem : orderItemsList) {
                     orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                 }
+
                 return INPUT;
             }
 
         }
 
         clearErrorsAndMessages();
-        addActionMessage("SUCCESS! Documents has been created");
+        addActionMessage("SUCCESS! Document(s) has been created");
 
         for(OrderItems orderItemsElem : orderItemsList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
+
         return SUCCESS;
     }
 

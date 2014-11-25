@@ -17,7 +17,6 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Dispatch Plan : Orders  </a></li>
-            <%--<li class="active"> Inland Freight Planning : Containers / Items</li>--%>
             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                 <li class="active"> Dispatch Plan : Containers </li>
             </s:if>
@@ -36,9 +35,10 @@
         </div>
     </div>
 </s:if>
+
 <s:if test="hasActionErrors()">
    <div class="col-lg-12">
-	   <div class="alert alert-errors">
+	   <div class="alert alert-danger">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
    			<strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
 		</div>

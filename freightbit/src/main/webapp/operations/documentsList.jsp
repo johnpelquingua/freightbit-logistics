@@ -20,11 +20,13 @@
             <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
             <li class="active">
                 <%--<a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Containers / Items </a>--%>
+                    <s:property value="order.orderId"/>
                 <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                    <s:param name="orderIdParam"
+                    <%--<s:param name="orderIdParam"
                              value="#attr.order.orderId"></s:param>
                     <s:param name="orderNoParam"
-                             value="#attr.order.orderNo"></s:param>
+                             value="#attr.order.orderNo"></s:param>--%>
+                    <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                      title="Update Status">

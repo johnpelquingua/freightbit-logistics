@@ -903,12 +903,12 @@
 
                                 <table class="table leftAlign table-user-information">
 
-                                    <th style="font-size: 18px; border-top: none; width: 300px;">Shipper Information</th>
+                                    <th style="font-size: 18px; border-top: none; width: 300px;">Customer Information</th>
 
                                     <tbody>
 
                                     <tr>
-                                        <td style="color: gray !important;">Shipper Name</td>
+                                        <td style="color: gray !important;">Customer Name</td>
                                         <td><s:property value="order.customerName"/></td>
                                     </tr>
                                     <tr>
@@ -1011,7 +1011,7 @@
                             </span>
                                 </s:else>
                                 <th class="tb-font-black">Weight <br /> (kg) </th>
-                                <th class="tb-font-black">Volume <br /> (cm&#179;) </th>
+                                <th class="tb-font-black">Volume <br /> (m&#179;) </th>
                                 <th class="tb-font-black">Commodity</th>
                                 <th class="tb-font-black">Value <br /> (Php) </th>
                                 <th class="tb-font-black">Rate <br /> (Php) </th>
