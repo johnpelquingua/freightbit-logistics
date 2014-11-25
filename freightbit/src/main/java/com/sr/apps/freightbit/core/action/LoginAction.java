@@ -1,23 +1,19 @@
 package com.sr.apps.freightbit.core.action;
 
-import java.math.BigInteger;
-import java.security.Principal;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.opensymphony.xwork2.ActionSupport;
 import com.sr.biz.freightbit.common.service.NotificationService;
+import com.sr.biz.freightbit.core.entity.User;
+import com.sr.biz.freightbit.core.service.UserService;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.sr.biz.freightbit.core.entity.User;
-import com.sr.biz.freightbit.core.service.UserService;
+import javax.servlet.http.HttpServletRequest;
+import java.math.BigInteger;
+import java.security.Principal;
+import java.util.Map;
 
-/**
- * Created by JMXPSX on 4/23/14.
- */
+
 public class LoginAction extends ActionSupport implements SessionAware {
     private static final Logger log = Logger.getLogger(LoginAction.class);
 

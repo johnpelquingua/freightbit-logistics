@@ -42,7 +42,6 @@ public class UserAction extends ActionSupport implements Preparable {
 
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(UserAction.class);
-
     private List<UserBean> users = new ArrayList<UserBean>(); //list of users displayed in User List page
     private List<Parameters> userTypeList = new ArrayList<Parameters>(); //User type drop down values
     private List<Parameters> statusList = new ArrayList<Parameters>(); //Status drop down values
@@ -55,9 +54,7 @@ public class UserAction extends ActionSupport implements Preparable {
     private String permissionsSelected; //will contain the checked permissions from the jsp
     private String[] preSelectedPermissions; //the default permission id's assigned to the user
     private String[] preSelectedPermissionNames; //the permission names assigned to the user
-    
     private PasswordBean passwordBean = new PasswordBean();
-    
     private UserService userService;
     private ClientService clientService;
     private ParameterService parameterService;
@@ -99,6 +96,7 @@ public class UserAction extends ActionSupport implements Preparable {
         addActionMessage("Success! A User has been Deleted.");
         return SUCCESS;
     }
+
 //used to view list with deletion of new entries in Notification Database
     public String viewUsersNew() {
         String column = getColumnFilter();
@@ -114,8 +112,6 @@ public class UserAction extends ActionSupport implements Preparable {
         }
         return SUCCESS;
     }
-
-
 
     private String getColumnFilter() {
         String column = "";
@@ -137,7 +133,7 @@ public class UserAction extends ActionSupport implements Preparable {
     		user.setCompanyName("");
     	user.setUserName("");
     	user.setPassword("");
-    	populatePermissionsList(-1);
+    	populatePermissionsList(1);
         return SUCCESS;
     }
 
@@ -145,7 +141,7 @@ public class UserAction extends ActionSupport implements Preparable {
     	try {
 	        validateOnSubmit(user);
 	        if (hasFieldErrors()) {
-                populatePermissionsList(-1);
+                populatePermissionsList(1);
                 return INPUT;
             }
 	        Integer userId = userService.addUser(transformToEntityBean(user));
@@ -176,7 +172,7 @@ public class UserAction extends ActionSupport implements Preparable {
     public String loadEditUserPage() {
         User userEntity = userService.findUserByUserName(userNameParam);
         user = transformToFormBean(userEntity);
-        populatePermissionsList(-1);
+        populatePermissionsList(1);
         return SUCCESS;
     }
 
@@ -215,7 +211,7 @@ public class UserAction extends ActionSupport implements Preparable {
     public String viewUserInfo() {
         User userEntity = userService.findUserByUserName(userNameParam);
         user = transformToFormBean(userEntity); //specific user to view
-        populatePermissionsList(-1);
+        populatePermissionsList(1);
         return SUCCESS;
     }
     
@@ -283,7 +279,6 @@ public class UserAction extends ActionSupport implements Preparable {
     
     private void addPermissionsToUser(Integer userId) {
         PermissionUserGroup permissionUserGroup;
-
         //remove current permissions assigned to the user
     	findCurrentUserPermissions(userId); //populates preSelectedPermissions
         for (String permissionId : preSelectedPermissions) {
@@ -301,20 +296,16 @@ public class UserAction extends ActionSupport implements Preparable {
         } else {
             String permissionId = permissionsSelected.trim();
 //        for (String permissionId : permissionIdArray) {
-            permissionUserGroup = new PermissionUserGroup();
-            permissionUserGroup.setClientId(getClientId());
-            permissionUserGroup.setGroupId(getClientId());
-            permissionUserGroup.setUserId(userId);
-            permissionUserGroup.setPermissionId(Integer.parseInt(permissionId));
-            permissionService.addPermissionToUser(permissionUserGroup);
+			permissionUserGroup = new PermissionUserGroup();
+			permissionUserGroup.setClientId(getClientId());
+			permissionUserGroup.setGroupId(getClientId());
+			permissionUserGroup.setUserId(userId);
+			permissionUserGroup.setPermissionId(Integer.parseInt(permissionId));
+			permissionService.addPermissionToUser(permissionUserGroup);
 //        }
         }
-
-
-
     }
 
- 
     @Override
     public void prepare() {
         userSearchList = parameterService.getParameterMap(ParameterConstants.USER, ParameterConstants.SEARCH_CRITERIA);
@@ -370,7 +361,7 @@ public class UserAction extends ActionSupport implements Preparable {
             permissionsList.add(transformToPermissionsFormBean(permission));
         }
         //Integer userId = -1;
-        if (userId.equals(1)) {
+        if (userId.equals(-1)) {
         	User user = userService.findUserByUserName(userNameParam);
         	if (user!=null)
         		userId = user.getUserId();
@@ -382,7 +373,7 @@ public class UserAction extends ActionSupport implements Preparable {
 		List<Permission> selectedPermissionsList = (List<Permission>) permissionService.findPermissionByUser(getClientId(), userId);
         if (null != selectedPermissionsList) {
         	preSelectedPermissions = new String[selectedPermissionsList.size()];
-        	/*preSelectedPermissionNames = new String[selectedPermissionsList.size()];*/
+        	preSelectedPermissionNames = new String[selectedPermissionsList.size()];
         }
 		int i;
 		if(isEmpty(selectedPermissionsList.size())){
@@ -390,8 +381,8 @@ public class UserAction extends ActionSupport implements Preparable {
 					String permissionId;
 					permissionId = selectedPermissionsList.get(i).getPermissionId().toString();
 					preSelectedPermissions[i] = permissionId;
-					/*String permissionName=selectedPermissionsList.get(i).getDescription();
-					preSelectedPermissionNames[i] = permissionName;*/
+					String permissionName=selectedPermissionsList.get(i).getDescription();
+					preSelectedPermissionNames[i] = permissionName;
 			}
 		}
 	}
@@ -487,7 +478,6 @@ public class UserAction extends ActionSupport implements Preparable {
         this.statusList = statusList;
     }
 
-
     public List<Parameters> getUserTypeList() {
         return userTypeList;
     }
@@ -504,8 +494,6 @@ public class UserAction extends ActionSupport implements Preparable {
         this.userSearchList = userSearchList;
     }
 
-
-    
     public List<Customer> getCustomerList() {
 		return customerList;
 	}
@@ -562,7 +550,6 @@ public class UserAction extends ActionSupport implements Preparable {
 	public void setPreSelectedPermissionNames(String[] preSelectedPermissionNames) {
 		this.preSelectedPermissionNames = preSelectedPermissionNames;
 	}
-
 
 	public PasswordBean getPasswordBean() {
 		return passwordBean;

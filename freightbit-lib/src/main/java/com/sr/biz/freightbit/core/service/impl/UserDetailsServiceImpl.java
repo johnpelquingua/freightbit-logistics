@@ -1,11 +1,9 @@
 package com.sr.biz.freightbit.core.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.hibernate.mapping.Array;
+import com.sr.biz.freightbit.core.dao.PermissionDao;
+import com.sr.biz.freightbit.core.dao.UserDao;
+import com.sr.biz.freightbit.core.entity.Permission;
+import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
@@ -13,10 +11,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.sr.biz.freightbit.core.dao.PermissionDao;
-import com.sr.biz.freightbit.core.dao.UserDao;
-import com.sr.biz.freightbit.core.entity.Permission;
-import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
@@ -50,7 +48,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return null;
     }
     
-    public List <String> findPermissionByUser(Integer clientId, Integer userId) {
+    public List<String> findPermissionByUser(Integer clientId, Integer userId) {
         List <String> permissionNames = new ArrayList<String>();
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("clientId", clientId);
