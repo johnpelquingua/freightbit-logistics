@@ -145,24 +145,18 @@
                         </div>
                     </div>
 
+                    <%--<div class="row">--%>
+                        <%--<div class="col-md-6 pull-right"  style="margin-right: -17em;">--%>
+                            <%--<button onClick='CheckAll(document.myform.check)' class="col-lg-3 btn btn-default">--%>
+                                <%--Select All--%>
+                            <%--</button>--%>
+                            <%--<button onClick='UnCheckAll(document.myform.check)' class="col-lg-3 btn btn-default">--%>
+                                <%--Deselect All--%>
+                            <%--</button>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <div class="table-responsive">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <button onClick='CheckAll(document.myform.check)' class="col-lg-3 btn btn-default">
-                                    Select All
-                                </button>
-                                <button onClick='UnCheckAll(document.myform.check)' class="col-lg-3 btn btn-default">
-                                    Deselect All
-                                </button>
-                            </div>
-                            <s:form name="myform" action="checkItemStatus" theme="bootstrap">
-                            <div class="col-lg-6 pull-right">
-                                <s:submit cssClass="col-lg-6 btn btn-default" value="Set Vendor"
-                                          onclick="deleteText()"></s:submit>
-                                <s:submit cssClass="col-lg-6 btn btn-default" value="Edit Vendor"
-                                          onclick="addText()"></s:submit>
-                            </div>
-                        </div>
+                        <s:form name="myform" action="checkItemStatus" theme="bootstrap">
 
                         <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
                         <display:table id="orderItem" name="orderItems"
@@ -171,7 +165,7 @@
                                        style="margin-top: 15px; empty-cells:hide !important;">
                             <tr>
                                 <td>
-                                    <display:column>
+                                    <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
                                         <s:checkbox theme="simple" name="check"
                                                     fieldValue="%{#attr.orderItem.orderItemId}"/>
                                     </display:column>
@@ -248,7 +242,14 @@
                                 </display:column></td>
                             </tr>
                         </display:table>
-
+                            <div class="row">
+                                <div class="col-md-6 pull-right" style="margin-right: -17em;">
+                                    <s:submit cssClass="col-lg-3 btn btn-default" value="Set Vendor"
+                                              onclick="deleteText()"></s:submit>
+                                    <s:submit cssClass="col-lg-3 btn btn-default" value="Edit Vendor"
+                                              onclick="addText()"></s:submit>
+                                </div>
+                            </div>
                         </s:form>
                     </div>
                 </div>
@@ -335,6 +336,14 @@
 
             }
         }
+
+        $('#mainCheckBox').click(function(){
+            if($('#orderItem [type="checkbox"]:checked').length == $('#orderItem [type="checkbox"]').size()){
+                $('#orderItem [type="checkbox"]').prop('checked', false);
+            }else{
+                $('#orderItem [type="checkbox"]').prop('checked', true);
+            }
+        })
 
     });
 

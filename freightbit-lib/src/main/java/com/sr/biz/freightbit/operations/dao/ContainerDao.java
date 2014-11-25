@@ -4,9 +4,9 @@ import com.sr.biz.freightbit.operations.dao.ContainerDao;
 import com.sr.biz.freightbit.operations.entity.Container;
 import com.sr.biz.freightbit.operations.exceptions.ContainerAlreadyExistsException;
 import com.sr.biz.freightbit.operations.service.ContainerService;
-import com.sr.biz.freightbit.vendor.entity.Vendor;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import com.sr.biz.freightbit.vendor.entity.Vendor;
 import java.util.List;
 
 /**
@@ -20,7 +20,7 @@ public interface ContainerDao {
 
     public void deleteContainer(Container container);
 
-    public List findAllContainer();
+    public List<Container> findAllContainer();
 
     public List<Container> findContainerByOrderNumber(String orderNumber);
 

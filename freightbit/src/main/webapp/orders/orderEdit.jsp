@@ -229,7 +229,7 @@
 
     <legend style="text-align: left;">
         <span >
-            Shipper Information
+            Customer Information
         </span>
     </legend>
 
@@ -488,7 +488,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3">Last name<span class="asterisk_red"></span></label>
+                        <label class="col-lg-3">Last Name<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                          id="contact.lastName" required="true" maxLength="30" autofocus="true"
@@ -514,13 +514,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3">Email Address<span class="asterisk_red"></span></label>
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="Email Address" name="contact.email"
-                                         id="contact_email" type="email" required="true"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-lg-3">Phone<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.phone"
@@ -534,6 +527,13 @@
                             <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
                                          maxLength="19" required="true" id="contact_mobile"
                                          title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3">Email Address<span class="asterisk_red"></span></label>
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" placeholder="Email Address" name="contact.email"
+                                         id="contact_email" type="email" required="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -641,6 +641,15 @@
                         <s:hidden name="orderIdParam" id="orderIdHolder"/>
                         <s:hidden name="consignee.referenceId1" id="consigneeAddIdHolder"/>
                         <div class="form-group">
+                            <label class="col-lg-3" style="width: 26%;">Last Name<span class="asterisk_red"></span></label>
+                            <div class="col-lg-8" style="width: 74%;">
+                                <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
+                                             placeholder="Last Name" maxLength="30" required="true"
+                                             pattern="[a-zA-Z\s ]+"
+                                             title="Name should not contain special characters and/or numbers."/>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-lg-3" style="width: 26%;">First name<span class="asterisk_red"></span></label>
                             <div class="col-lg-8" style="width: 74%;">
                                 <s:textfield name="consignee.firstName" cssClass="form-control" id="consignee.firstName"
@@ -655,15 +664,6 @@
                                 <s:textfield name="consignee.middleName" cssClass="form-control"
                                              id="consignee.middleName"
                                              placeholder="Middle Name" maxLength="30" pattern="[a-zA-Z\s ]+"
-                                             title="Name should not contain special characters and/or numbers."/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-3" style="width: 26%;">Last Name<span class="asterisk_red"></span></label>
-                            <div class="col-lg-8" style="width: 74%;">
-                                <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
-                                             placeholder="Last Name" maxLength="30" required="true"
-                                             pattern="[a-zA-Z\s ]+"
                                              title="Name should not contain special characters and/or numbers."/>
                             </div>
                         </div>
@@ -837,7 +837,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3">Last name<span class="asterisk_red"></span></label>
+                        <label class="col-lg-3">Last Name<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                          id="consignee_contact_lastName" required="true" maxLength="30" autofocus="true"

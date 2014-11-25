@@ -145,7 +145,7 @@ function initValidationScript(pageType){
         }
 
         if(pageType == 'CONSO_EDIT'){
-            if(wt == wtContainer || vol == volContainer){
+            if(wt == wtContainer || vol == volContainer || wt > maxWt || vol > maxVol){
                 submitBtn.prop('disabled',true);
             }else{
                 submitBtn.prop('disabled',false);
@@ -314,27 +314,16 @@ function modeAbbrev(mode){
     }
 }
 
-function newlineHandler(){
-    // AUTHORED BY JAN SARMIENTO -- START
-    // This function modifies the \n character in the table and replaces it with a <br/> tag
-    // THIS FUNCTIONS CONCERNS ONLY THE FRONT-END
-
-    var outboundComment = $('.outbound_table tbody tr td:nth-child(6)'),
-        finalOutboundComment = $('.final_outbound_table tbody tr td:nth-child(6)'),
-        inboundTableComment = $('.inbound_table tbody tr td:nth-child(6)'),
-        finalInboundTableComment = $('.final_inbound_table tbody tr td:nth-child(6)'),
+// AUTHORED BY JAN SARMIENTO -- START
+// This function modifies the \n character in the table and replaces it with a <br/> tag
+// THIS FUNCTIONS CONCERNS ONLY THE FRONT-END
+function newlineHandler(tableName, commentColumn){
+    var tableComment = $('.'+tableName+' tbody tr td:nth-child('+commentColumn+')'),
         transformedString;
 
-    for(var i=0; i < outboundComment.size(); i++){
-        transformedString = outboundComment.eq(i).text().replace(/\n/g, "<br />");
-        outboundComment.eq(i).empty().append(transformedString);
-        transformedString = finalOutboundComment.eq(i).text().replace(/\n/g, "<br />");
-        finalOutboundComment.eq(i).empty().append(transformedString);
-        transformedString = inboundTableComment.eq(i).text().replace(/\n/g, "<br />");
-        inboundTableComment.eq(i).empty().append(transformedString);
-        transformedString = finalInboundTableComment.eq(i).text().replace(/\n/g, "<br />");
-        finalInboundTableComment.eq(i).empty().append(transformedString);
+    for(var i=0; i < tableComment.size(); i++){
+        transformedString = tableComment.eq(i).text().replace(/\n/g, "<br />");
+        tableComment.eq(i).empty().append(transformedString);
     }
-
-    // AUTHORED BY JAN SARMIENTO -- END
 }
+// AUTHORED BY JAN SARMIENTO -- END

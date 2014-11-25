@@ -297,11 +297,11 @@ public class PermissionAction extends ActionSupport {
     }
 
     public void populateUserDropdown() {
-/*        List<Permission> permissionList = (List<Permission>) permissionService.getPermissions(getClientId());
+        List<Permission> permissionList = (List<Permission>) permissionService.getPermissions(getClientId());
         setPermissions(new ArrayList<PermissionBean>());
         for (Permission permission : permissionList) {
             getPermissions().add(transformToFormBean(permission));
-        }*/
+        }
         populateGroupDropdown();
         if (getSelectedGroupId() != null) {
             setUserList(groupService.findAllUsersByGroupId(getSelectedGroupId()));

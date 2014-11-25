@@ -19,6 +19,15 @@
     </div>
 </div>
 
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-primary">
@@ -99,7 +108,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <s:property value="%{messageSample}" />
                         <div class="col-md-6">
 
                             <div class="form-group">
@@ -152,13 +161,13 @@
                         </div>
                     </div>
                     
-                  <!--   <div class="form-group">
+                    <div class="form-group">
                         <label class="col-lg-3 control-label"  style="padding-top:0px;">Permissions</label>
 
                         <div class="col-lg-9">
                         <s:checkboxlist list="permissionsList"  name="permissionsSelected" value="preSelectedPermissions" listKey="permissionId" listValue="permissionName"/>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
 
 
@@ -194,5 +203,4 @@
 
 
     });
-
 </script>

@@ -121,10 +121,6 @@
         </div>
     </div>
 
-    <div class="col-lg-2">
-
-    </div>
-
 </div>
 
 <div class="row">
@@ -132,7 +128,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-male"></i> Shipper Information</h3>
+                <h3 class="panel-title"><i class="fa fa-male"></i> Customer Information</h3>
             </div>
 
             <div class="panel-body">
@@ -145,7 +141,7 @@
                             <%--<s:property value="%{order.customerId}"/>--%>
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Shipper Name</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Customer Name</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.customerName"/></td>
                             </tr>
                             <tr>
@@ -246,7 +242,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row addItemDiv" tabindex="-1">
 
     <div class="col-lg-12" >
 
@@ -400,7 +396,6 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem.description"
-
                                         />
                             </s:if>
                             <s:else>
@@ -413,7 +408,6 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem_description_textfield"
-                                             required="true"
                                         />
                             </s:else>
 
@@ -478,7 +472,6 @@
                                         name="orderItem.remarks"
                                         id="orderItem_remarks"
                                         cssStyle="resize: none; height: 150px;"
-
                                     />
                         </div>
 
@@ -491,13 +484,10 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValues"
-
-
                                         />
                             </s:if>
                             <s:else>
                                 <s:select cssClass="form-control"
-
                                           id="orderItem_declaredValue"
                                           list="#{orderItem_declaredValue}"
                                           value="%{orderItem_declaredValue}"
@@ -523,7 +513,7 @@
                         </s:if>
                         <s:else>
                             <span>
-                                <s:submit name="submit" cssClass="btn btn-primary" id="submit_button" value="Add Item to List" />
+                                <s:submit name="submit" cssClass="addItemToList btn btn-primary" id="submit_button" value="Add Item to List" />
                             </span>
                         </s:else>
                     </div>
@@ -571,7 +561,7 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
 
-                    <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
+                    <table class="itemListing table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
                         <thead>
                         <tr class="header_center" style="background-color: #fff;">
                             <th class="tb-font-black">Quantity</th>
@@ -638,7 +628,7 @@
                     Total Rate: Php
                     </div>
                     <div class="col-lg-2" id="totalRate">
-
+                        0
                     </div>
                 </div>
             </div>
@@ -843,11 +833,6 @@
 
                             <div class="panel panel-info ">
 
-                                <%--<div align="center" style="margin-top: 15px;">
-                                    <img alt="User Pic" src="../includes/images/photo.png" style="height: 200px; width: 200px;"
-                                         class="img-circle">
-                                </div>--%>
-
                                 <br/>
 
                                 <table class="table leftAlign table-user-information">
@@ -959,8 +944,6 @@
 
                         </div>
 
-
-
                     </div>
 						<div class="col-lg-6">
                             <div class="panel panel-info ">
@@ -1067,6 +1050,30 @@
 </div>
 
 <script type="text/javascript">
+    // AUTHORED BY Jan Sarmiento -- START
+    $(document).ready(function(){
+        // adding item memory
+        $('.addItemToList').click(function(){
+            localStorage.setItem('addingItems', 'true');
+        })
+
+        // Addition of rate (php) and conversion to currency format
+        var itemList = $('.itemListing tbody tr td:nth-child(7)'),
+            totalPhp;
+
+        for(var i=0; i < itemList.size(); i++){
+            totalPhp = parseFloat(itemList.eq(i).text()) + parseFloat($('#totalRate').text());
+            $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        }
+    })
+
+    $(function(){ // function to check if adding item memory exists
+        var key = localStorage.getItem('addingItems')
+        if(key){
+            $('.addItemDiv').focus();
+        }
+    })
+    // END
 
 function getThis(){
     var itemQuantityField = $("#orderItem_quantity").val();
@@ -1319,22 +1326,6 @@ $(document).ready(function() {
 
                 });
         });
-
-        // Adding of Rates and displaying it in Total Rates
-        var tbl = document.getElementById("orderItems");
-        if (tbl != null) {
-
-            var orderItemTotalRate = 0;
-
-            for (var i = 0; i < tbl.rows.length; i++){
-
-                var orderItemRate = parseInt(tbl.rows[i+1].cells[6].innerHTML);
-
-                orderItemTotalRate = orderItemTotalRate + orderItemRate;
-
-                document.getElementById("totalRate").innerHTML = orderItemTotalRate;
-            }
-        }
     });
 
     // On dropdown change
@@ -1463,6 +1454,5 @@ $(document).ready(function() {
     sQuantity.onchange = function () {
         dynamicDropdown.call(this, sQuantity, this.selectedIndex);
     };
-
 
 </script>
