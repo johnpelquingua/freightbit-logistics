@@ -246,7 +246,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row addItemDiv" tabindex="-1">
 
     <div class="col-lg-12" >
 
@@ -523,7 +523,7 @@
                         </s:if>
                         <s:else>
                             <span>
-                                <s:submit name="submit" cssClass="btn btn-primary" id="submit_button" value="Add Item to List" />
+                                <s:submit name="submit" cssClass="addItemToList btn btn-primary" id="submit_button" value="Add Item to List" />
                             </span>
                         </s:else>
                     </div>
@@ -1067,6 +1067,21 @@
 </div>
 
 <script type="text/javascript">
+    // AUTHORED BY Jan Sarmiento -- START
+    // ADDING ITEM MEMORY
+    $(document).ready(function(){
+        $('.addItemToList').click(function(){
+            localStorage.setItem('addingItems', 'true');
+        })
+    })
+
+    $(function(){
+        var key = localStorage.getItem('addingItems')
+        if(key){
+            $('.addItemDiv').focus();
+        }
+    })
+    // END
 
 function getThis(){
     var itemQuantityField = $("#orderItem_quantity").val();
