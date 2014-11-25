@@ -41,8 +41,8 @@ public class EquipmentInterchangeReceipt1ReportServiceImpl extends ReportGenerat
 
     public Map<String, Object> getReportParameters(Map<String, String> params) {
         final Map parameters = new HashMap<String, Object>();
-        parameters.put("orderId", params.get("orderId"));
-        parameters.put("orderItemId",params.get("orderItemId"));
+        parameters.put("containerId", params.get("containerId"));
+        /*parameters.put("orderItemId",params.get("orderItemId"));*/
         return parameters;
 
     }

@@ -121,10 +121,6 @@
         </div>
     </div>
 
-    <div class="col-lg-2">
-
-    </div>
-
 </div>
 
 <div class="row">
@@ -400,7 +396,6 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem.description"
-
                                         />
                             </s:if>
                             <s:else>
@@ -413,7 +408,6 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem_description_textfield"
-                                             required="true"
                                         />
                             </s:else>
 
@@ -478,7 +472,6 @@
                                         name="orderItem.remarks"
                                         id="orderItem_remarks"
                                         cssStyle="resize: none; height: 150px;"
-
                                     />
                         </div>
 
@@ -491,13 +484,10 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValues"
-
-
                                         />
                             </s:if>
                             <s:else>
                                 <s:select cssClass="form-control"
-
                                           id="orderItem_declaredValue"
                                           list="#{orderItem_declaredValue}"
                                           value="%{orderItem_declaredValue}"
@@ -843,11 +833,6 @@
 
                             <div class="panel panel-info ">
 
-                                <%--<div align="center" style="margin-top: 15px;">
-                                    <img alt="User Pic" src="../includes/images/photo.png" style="height: 200px; width: 200px;"
-                                         class="img-circle">
-                                </div>--%>
-
                                 <br/>
 
                                 <table class="table leftAlign table-user-information">
@@ -958,8 +943,6 @@
                                 </table>
 
                         </div>
-
-
 
                     </div>
 						<div class="col-lg-6">
@@ -1478,6 +1461,5 @@ $(document).ready(function() {
     sQuantity.onchange = function () {
         dynamicDropdown.call(this, sQuantity, this.selectedIndex);
     };
-
 
 </script>

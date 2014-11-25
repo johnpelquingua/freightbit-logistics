@@ -78,6 +78,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private long contentLength;
     private String fileName;
     private String orderId;
+    private String containerId;
     private String bookingNumber;
     private Integer outboundCount;
     private Integer inboundCount;
@@ -2709,10 +2710,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String generateEIR1RequestReport() {
 
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
-        String orderId = (documentEntity.getReferenceId()).toString();
+        String containerId = (documentEntity.getReferenceId()).toString();
 
         Map<String, String> params = new HashMap();
-        params.put("orderId", orderId);
+        params.put("containerId", containerId);
 
         ByteArrayOutputStream byteArray = null;
         BufferedOutputStream responseOut = null;
@@ -2744,10 +2745,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String generateEIR2RequestReport() {
 
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
-        String orderId = (documentEntity.getReferenceId()).toString();
+        String containerId = (documentEntity.getReferenceId()).toString();
 
         Map<String, String> params = new HashMap();
-        params.put("orderId", orderId);
+        params.put("containerId", containerId);
 
         ByteArrayOutputStream byteArray = null;
         BufferedOutputStream responseOut = null;
@@ -3313,5 +3314,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setEquipmentInterchangeReceipt2ReportService(EquipmentInterchangeReceipt2ReportService equipmentInterchangeReceipt2ReportService) {
         this.equipmentInterchangeReceipt2ReportService = equipmentInterchangeReceipt2ReportService;
+    }
+
+    public String getContainerId() {
+        return containerId;
+    }
+
+    public void setContainerId(String containerId) {
+        this.containerId = containerId;
     }
 }

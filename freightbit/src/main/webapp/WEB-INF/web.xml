@@ -5,10 +5,10 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>Struts Blank</display-name>
 
-
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/conf/applicationContext.xml
@@ -17,10 +17,10 @@
         </param-value>
     </context-param>
 
-
     <listener>
         <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
     </listener>
+
     <context-param>
         <param-name>
             org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG
@@ -39,7 +39,8 @@
 		 <filter-class>  
 		         org.springframework.web.filter.DelegatingFilterProxy  
 		 </filter-class>  
-	</filter>  
+	</filter>
+
 	<filter-mapping>  
 			<filter-name>springSecurityFilterChain</filter-name>  
 		<url-pattern>/*</url-pattern>  
@@ -60,5 +61,9 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
+
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
 
 </web-app>
