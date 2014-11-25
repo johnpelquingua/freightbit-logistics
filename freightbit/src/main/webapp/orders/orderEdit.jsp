@@ -229,7 +229,7 @@
 
     <legend style="text-align: left;">
         <span >
-            Shipper Information
+            Customer Information
         </span>
     </legend>
 

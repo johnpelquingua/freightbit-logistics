@@ -128,7 +128,7 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-male"></i> Shipper Information</h3>
+                <h3 class="panel-title"><i class="fa fa-male"></i> Customer Information</h3>
             </div>
 
             <div class="panel-body">
@@ -141,7 +141,7 @@
                             <%--<s:property value="%{order.customerId}"/>--%>
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Shipper Name</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Customer Name</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.customerName"/></td>
                             </tr>
                             <tr>
