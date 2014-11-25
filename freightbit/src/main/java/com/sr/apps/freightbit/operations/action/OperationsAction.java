@@ -341,6 +341,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             } else {
                 for (int i =0; i<check.length; i++) {
+
+                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){ // catches error when no values inside check
+
+                        return INPUT;
+                    }
+
                     Integer orderItemId = Integer.parseInt(check[i]);
                     OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
                     if ("PLANNING 1".equals(entity.getStatus())) {

@@ -4,7 +4,6 @@
 
 <div class="row">
     <div class="col-lg-12">
-
         <legend style="text-align: left;">
             <span >
                <h1><i class="fa fa-male"></i> Container Management </h1>
@@ -26,12 +25,12 @@
     </div>
 </s:if>
 
-
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Container Lists
+                <h3 class="panel-title" style="float:left;top: 10px;">
+                    <i class="fa fa-list"></i> Container Lists
                 </h3>
                 <span class="pull-right">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
@@ -118,20 +117,20 @@
             <div class="panel-footer">
 
                 <span class="pull-right">
-
                 
                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                    <s:url var="loadAddFormPageUrl" action="loadAddFormPage">
-                    </s:url>
-                    <s:a class="icon-action-link" href="%{loadAddFormPageUrl}" rel="tooltip" title="New Container">
-                        <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchContainerPage'">
-                            <i class="fa fa-search"></i> Search Container
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            <i class="fa fa-home"> </i> Create New EIR Form
-                        </button>
-                    </s:a>
-                </sec:authorize>
+                        <s:url var="loadAddFormPageUrl" action="loadAddFormPage">
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{loadAddFormPageUrl}" rel="tooltip" title="New Container">
+                            <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchContainerPage'">
+                                <i class="fa fa-search"></i> Search Container
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa fa-home"> </i> Create New EIR Form
+                            </button>
+                        </s:a>
+                    </sec:authorize>
+
                 </span>
 
                 <div class="table-responsive" >
@@ -146,6 +145,7 @@
                         </table>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -169,8 +169,8 @@
     });
 
     function generateReport(documentId,documentName) {
-        alert(documentId);
-        alert(documentName);
+        /*alert(documentId);
+        alert(documentName);*/
         /*var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Booking Request Form";

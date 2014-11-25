@@ -1,6 +1,6 @@
 package com.sr.biz.freightbit.documentation.service.impl;
 
-import com.sr.biz.freightbit.documentation.service.AcceptanceReceiptReportService;
+import com.sr.biz.freightbit.documentation.service.EquipmentInterchangeReceipt2ReportService;
 import com.sr.biz.freightbit.documentation.service.ReportGeneratorService;
 import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
@@ -12,14 +12,14 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AcceptanceReceiptReportServiceImpl extends ReportGeneratorService implements AcceptanceReceiptReportService {
+public class EquipmentInterchangeReceipt2ReportServiceImpl extends ReportGeneratorService implements EquipmentInterchangeReceipt2ReportService {
     public MasterReport getReportDefinition()
     {
         try
         {
             // Get the URL to the reportDefinition file
             final Class classVar = this.getClass();
-            final URL reportDefinitionURL = classVar.getResource("/reports/Acceptance_Receipt.prpt");
+            final URL reportDefinitionURL = classVar.getResource("/reports/EIR2.prpt");
 
             // Parse the report file
             final ResourceManager resourceManager = new ResourceManager();
