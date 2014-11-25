@@ -480,7 +480,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3">Last name<span class="asterisk_red"></span></label>
+                            <label class="col-lg-3">Last Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                              id="contact.lastName" required="true" maxLength="30" autofocus="true"
@@ -827,7 +827,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3">Last name<span class="asterisk_red"></span></label>
+                        <label class="col-lg-3">Last Name<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                          id="consignee_contact_lastName" required="true" maxLength="30" autofocus="true"
