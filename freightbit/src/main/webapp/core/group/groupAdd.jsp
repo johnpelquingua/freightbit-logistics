@@ -2,6 +2,11 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <script type="text/javascript">
+
+    $(document).ready(function(){
+        $('.focusDiv').focus()
+    });
+
     function move(tr) {
         alert("here");
 
@@ -101,7 +106,7 @@
     </div>
     <!-- /.row -->
 
-    <div class="row">
+    <div class="row focusDiv" tabindex="-1">
         <div class="col-lg-6">
             <div class="panel panel-primary">
 

@@ -20,7 +20,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
+    <div class="col-md-12">
         <div class="panel panel-primary">
 
             <div class="panel-heading">
@@ -32,116 +32,123 @@
                 <div class="table-responsive list-table">
 
                     <s:form action="addUser" theme="bootstrap" cssClass="form-horizontal" method="post" name="addForm">
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;"> User Type<span class="asterisk_red"></span></label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;"> User Type<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-9">
-                            <s:select name="user.userType" id="userTypeSelect" list="userTypeList" listKey="key"
-                                      listValue="value" cssClass="form-control" value="user.userType"/>
+                                <div class="col-lg-9">
+                                    <s:select name="user.userType" id="userTypeSelect" list="userTypeList" listKey="key"
+                                              listValue="value" cssClass="form-control" value="user.userType"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Company<span class="asterisk_red"></span></label>
+
+                                <div class="col-lg-9">
+                                    <s:textfield disabled="true" required="true" name="user.companyName" cssClass="form-control"
+                                                 placeholder="Company Name"/>
+                                    <s:hidden name="user.companyName" value="%{user.companyName}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">First Name<span class="asterisk_red"></span></label>
+
+                                <div class="col-lg-9">
+                                    <s:textfield required="true" name="user.firstName" id="firstName" cssClass="form-control" maxlength="25"
+                                                 placeholder="First Name"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span></label>
+
+                                <div class="col-lg-9">
+                                    <s:textfield required="true" name="user.lastName" id="lastName" cssClass="form-control" maxlength="25"
+                                                 placeholder="Last Name"/>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">User Name<span class="asterisk_red"></span></label>
+
+                                <div class="col-lg-9">
+                                    <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control" maxlength="25" pattern="[^\s]{4,25}"
+                                                 placeholder="User Name" title="Username must have minimum 4 characters."/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Password<span class="asterisk_red"></span></label>
+
+                                <div class="col-lg-9">
+                                    <s:password required="true" name="user.password" id="uPassword" cssClass="form-control" maxlength="25"
+                                                pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces."   placeholder="Password"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Re-enter Password<span class="asterisk_red"></span></label>
+
+                                <div class="col-lg-9">
+                                    <s:password required="true" name="user.reenterPassword" id="uReenterPassword" cssClass="form-control" maxlength="25"
+                                                pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces."       placeholder="Re-enter Password"/>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Company<span class="asterisk_red"></span></label>
+                        <div class="col-md-6">
 
-                        <div class="col-lg-9">
-                            <s:textfield disabled="true" required="true" name="user.companyName" cssClass="form-control"
-                                         placeholder="Company Name"/>
-                            <s:hidden name="user.companyName" value="%{user.companyName}"/>
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Title<span class="asterisk_red"></span></label>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">First Name<span class="asterisk_red"></span></label>
+                                <div class="col-lg-9">
+                                    <s:textfield required="true" name="user.title" id="uTitle" cssClass="form-control" maxlength="50"
+                                                 placeholder="Title"/>
+                                </div>
+                            </div>
 
-                        <div class="col-lg-9">
-                            <s:textfield required="true" name="user.firstName" id="firstName" cssClass="form-control" maxlength="25"
-                                         placeholder="First Name"/>
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Email
+                                    Address<span class="asterisk_red"></span></label>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span></label>
+                                <div class="col-lg-9">
+                                    <s:textfield required="true" name="user.emailAddress" id="uEmailAddress" maxlength="50"
+                                                 pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                                                 cssClass="form-control" placeholder="E-mail"/>
+                                </div>
+                            </div>
 
-                        <div class="col-lg-9">
-                            <s:textfield required="true" name="user.lastName" id="lastName" cssClass="form-control" maxlength="25"
-                                         placeholder="Last Name"/>
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Contact Number<span class="asterisk_red"></span></label>
 
+                                <div class="col-lg-9">
+                                    <s:textfield required="true" name="user.contactNumber" id="uContactNumber"
+                                                 cssClass="form-control" placeholder="(XXX) XXX-XXXX" maxLength="14"
+                                                 title="(XXX)XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">User Name<span class="asterisk_red"></span></label>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Status<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-9">
-                            <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control" maxlength="25" pattern="[^\s]{4,25}"
-                                         placeholder="User Name" title="Username must have minimum 4 characters."/>
-                        </div>
-                    </div>
+                                <div class="col-lg-9">
+                                    <s:select required="true" name="user.status" id="uStatus" list="statusList" listKey="key"
+                                              listValue="value" cssClass="form-control" value="user.status"/>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Password<span class="asterisk_red"></span></label>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Customer<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-9">
-                            <s:password required="true" name="user.password" id="uPassword" cssClass="form-control" maxlength="25"
-                                       pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces."   placeholder="Password"/>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Re-enter Password<span class="asterisk_red"></span></label>
-
-                        <div class="col-lg-9">
-                            <s:password required="true" name="user.reenterPassword" id="uReenterPassword" cssClass="form-control" maxlength="25"
-                                   pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces."       placeholder="Re-enter Password"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Title<span class="asterisk_red"></span></label>
-
-                        <div class="col-lg-9">
-                            <s:textfield required="true" name="user.title" id="uTitle" cssClass="form-control" maxlength="50"
-                                         placeholder="Title"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Email
-                            Address<span class="asterisk_red"></span></label>
-
-                        <div class="col-lg-9">
-                            <s:textfield required="true" name="user.emailAddress" id="uEmailAddress" maxlength="50"
-                             pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
-                                         cssClass="form-control" placeholder="E-mail"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Contact Number<span class="asterisk_red"></span></label>
-
-                        <div class="col-lg-9">
-                            <s:textfield required="true" name="user.contactNumber" id="uContactNumber"
-                                         cssClass="form-control" placeholder="(XXX) XXX-XXXX" maxLength="14"
-                                     	  title="(XXX)XXX-XXXX Contact Number should not contain special characters and/or letters."/>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Status<span class="asterisk_red"></span></label>
-
-                        <div class="col-lg-9">
-                            <s:select required="true" name="user.status" id="uStatus" list="statusList" listKey="key"
-                                      listValue="value" cssClass="form-control" value="user.status"/>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Customer<span class="asterisk_red"></span></label>
-
-                        <div class="col-lg-9">
-                            <s:select name="user.customerId" id="customerCodeTextBox" list="customerList" listKey="customerId"
-                                      listValue="customerName" cssClass="form-control" value="user.customerId" disabled="true" emptyOption="true"/>
+                                <div class="col-lg-9">
+                                    <s:select name="user.customerId" id="customerCodeTextBox" list="customerList" listKey="customerId"
+                                              listValue="customerName" cssClass="form-control" value="user.customerId" disabled="true" emptyOption="true"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
