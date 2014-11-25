@@ -176,8 +176,7 @@
             <div class="panel-footer">
                             <span class="pull-right">
                               <a href="viewUsers" class="btn btn-default" id="users-add-btn">Cancel</a>
-                              <%--<s:submit cssClass="btn btn-primary" name="submit" value="Save"/>--%>
-                              <button type="button" class="btn btn-danger saveBtn">Save</button>
+                              <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                             </span>
             </div>
              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -204,28 +203,4 @@
 
 
     });
-
-    $('.saveBtn').click(function(){
-//        alert($('form[name="addForm"]').attr('action'));
-        /*$.ajax({
-            url : $('form[name="addForm"]').attr('action'),
-            type : 'POST',
-            data : $('form[name="addForm"]').serialize(),
-            success : function(data){
-                alert(data);
-            }
-        })*/
-        $.ajax({
-            url : $('form[name="addForm"]').attr('action'),
-            dataType : 'text/javascript',
-            type : 'POST',
-            data : $('form[name="addForm"]').serialize(),
-            success : function(data){
-                alert(data);
-            },error : function(){
-             alert('error');
-        }
-        })
-    })
-
 </script>
