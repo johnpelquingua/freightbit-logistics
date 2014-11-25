@@ -561,7 +561,7 @@
             <div class="panel-body">
                 <div class="table-responsive list-table">
 
-                    <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
+                    <table class="itemListing table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
                         <thead>
                         <tr class="header_center" style="background-color: #fff;">
                             <th class="tb-font-black">Quantity</th>
@@ -628,7 +628,7 @@
                     Total Rate: Php
                     </div>
                     <div class="col-lg-2" id="totalRate">
-
+                        0
                     </div>
                 </div>
             </div>
@@ -1051,14 +1051,23 @@
 
 <script type="text/javascript">
     // AUTHORED BY Jan Sarmiento -- START
-    // ADDING ITEM MEMORY
     $(document).ready(function(){
+        // adding item memory
         $('.addItemToList').click(function(){
             localStorage.setItem('addingItems', 'true');
         })
+
+        // Addition of rate (php) and conversion to currency format
+        var itemList = $('.itemListing tbody tr td:nth-child(7)'),
+            totalPhp;
+
+        for(var i=0; i < itemList.size(); i++){
+            totalPhp = parseFloat(itemList.eq(i).text()) + parseFloat($('#totalRate').text());
+            $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        }
     })
 
-    $(function(){
+    $(function(){ // function to check if adding item memory exists
         var key = localStorage.getItem('addingItems')
         if(key){
             $('.addItemDiv').focus();
@@ -1317,22 +1326,6 @@ $(document).ready(function() {
 
                 });
         });
-
-        // Adding of Rates and displaying it in Total Rates
-        var tbl = document.getElementById("orderItems");
-        if (tbl != null) {
-
-            var orderItemTotalRate = 0;
-
-            for (var i = 0; i < tbl.rows.length; i++){
-
-                var orderItemRate = parseInt(tbl.rows[i+1].cells[6].innerHTML);
-
-                orderItemTotalRate = orderItemTotalRate + orderItemRate;
-
-                document.getElementById("totalRate").innerHTML = orderItemTotalRate;
-            }
-        }
     });
 
     // On dropdown change
