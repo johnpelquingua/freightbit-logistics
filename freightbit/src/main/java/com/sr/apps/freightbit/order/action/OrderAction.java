@@ -954,6 +954,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         //customer info
         List<Customer> customer = customerService.findCustomersByCriteria("customerCode", order.getShipperCode(), getClientId());
+//
         if (customer != null) {
             orderBean.setCustomerName(customer.get(0).getCustomerName());
         } else {

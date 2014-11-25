@@ -354,7 +354,6 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setSealNumber(entity.getSealNumber());
         formBean.setVanLocation(entity.getVanLocation());
         formBean.setLadenEmpty(entity.getLadenEmpty());
-        formBean.setBookingNum(entity.getBookingNum());
         formBean.setReceiptNumber(entity.getReceiptNumber());
         formBean.setLadenEmpty(entity.getLadenEmpty());
         formBean.setForkliftOperator(entity.getForkliftOperator());

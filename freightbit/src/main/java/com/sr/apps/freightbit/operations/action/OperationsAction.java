@@ -19,7 +19,9 @@ import com.sr.apps.freightbit.vendor.formbean.TruckBean;
 import com.sr.apps.freightbit.vendor.formbean.VendorBean;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.service.ClientService;
@@ -28,6 +30,7 @@ import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.operations.entity.Container;
+import com.sr.biz.freightbit.operations.exceptions.ContainerAlreadyExistsException;
 import com.sr.biz.freightbit.operations.service.ContainerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
@@ -78,6 +81,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     private List<Vendor> vendorShippingList = new ArrayList<Vendor>();
     private List<Vendor> vendorTruckingList = new ArrayList<Vendor>();
+    private List<Vendor> vendorNameList = new ArrayList<Vendor>();
     private List<Parameters> vendorTypeList = new ArrayList<Parameters>();
     private List<Parameters> vendorClassList = new ArrayList<Parameters>();
     private List<Parameters> statusList = new ArrayList<Parameters>();
@@ -107,6 +111,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private OrderService orderService;
     private CustomerService customerService;
     private ParameterService parameterService;
+    private NotificationService notificationService;
     private ClientService clientService;
     private CommonUtils commonUtils;
     private DocumentsService documentsService;
@@ -123,6 +128,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public void prepare() {
         vendorShippingList = vendorService.findVendorsByCriteria("vendorType", "SHIPPING", 1);
         vendorTruckingList = vendorService.findVendorsByCriteria("vendorType", "TRUCKING", 1);
+        vendorNameList = vendorService.findAllShippingVendor();
         vendorTypeList = parameterService.getParameterMap(ParameterConstants.VENDOR_TYPE);
         vendorClassList = parameterService.getParameterMap(ParameterConstants.VENDOR_CLASS);
         statusList = parameterService.getParameterMap(ParameterConstants.STATUS);
@@ -130,7 +136,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
         truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
         containerSearchList = parameterService.getParameterMap(ParameterConstants.CONTAINER_SEARCH);
-        containerSizeList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
+        containerSizeList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.CONTAINER_SIZE);
         containerEirTypeList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.EIR_TYPE);
         containerStatusList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.CONTAINER_STATUS);
         containerPortCode = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.PORT_CODE);
@@ -1016,7 +1022,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String viewFreightItemListError() {
         clearErrorsAndMessages();
-		addActionError("Status must be the same");
+        addActionError("Status must be the same");
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
@@ -1379,10 +1385,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }*/
 
     public String viewContainerList() {
+
         String column = getColumnFilter();
-
-        /*String column = getColumnFilter();
-
         List<Container> containerList = new ArrayList<Container>();
 
         if (StringUtils.isNotBlank(column)) {
@@ -1393,27 +1397,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         for (Container containerElem : containerList) {
             containers.add(transformContainerToFormBean(containerElem));
         }
-        return SUCCESS;*/
-
-        List<Container> containerList = new ArrayList<Container>();
-        containerList = containerService.findAllContainer();
-
-        for (Container containerElem : containerList) {
-
-            containers.add(transformContainerToFormBean(containerElem));
-
-        }
-
         return SUCCESS;
     }
-
-  /*  public String containerAdd() throws Exception {
-
-        Container containerEntity  = transformContainerToEntityBean(container);
-        containerService.addContainer(containerEntity);
-        addActionMessage("Success! New Form has been added.");
-        return SUCCESS;
-    }*/
 
     public String deleteContainer() {
         Container containerEntity = containerService.findContainerById(containerIdParam);
@@ -1464,7 +1449,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         ContainerBean formBean = new ContainerBean();
         formBean.setContainerId(entity.getContainerId());
-        /*formBean.setClientId(entity.getClientId());*/
+        /*formBean.setClientId(entity.getClientId());  */
         formBean.setEirNumber(entity.getEirNumber());
         formBean.setPortCode(entity.getPortCode());
         formBean.setDateTime(entity.getDateTime());
@@ -1484,13 +1469,16 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setSealNumber(entity.getSealNumber());
         formBean.setVanLocation(entity.getVanLocation());
         formBean.setLadenEmpty(entity.getLadenEmpty());
-        formBean.setBookingNum(entity.getBookingNum());
         formBean.setReceiptNumber(entity.getReceiptNumber());
         formBean.setLadenEmpty(entity.getLadenEmpty());
         formBean.setForkliftOperator(entity.getForkliftOperator());
         formBean.setOperationsDept(entity.getOperationsDept());
         formBean.setContainerStatus(entity.getContainerStatus());
         formBean.setSealNumber(entity.getSealNumber());
+        formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
+        formBean.setModifiedBy(entity.getModifiedBy());
 
         // FOR EIR 1 and 2 DOCUMENTS
         String docName;
@@ -1506,7 +1494,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Documents> documentList = documentsService.findEIRAndRefId(docName,entity.getContainerId(),"CONTAINERS");
 
         if(documentList != null){
-                formBean.setDocumentCheck("AVAILABLE");
+            formBean.setDocumentCheck("AVAILABLE");
                 /*formBean.setDocumentId(documentList.get(0).getDocumentId());*/
             for(Documents documentElem : documentList ){
                 formBean.setDocumentId(documentElem.getDocumentId());
@@ -1515,6 +1503,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" + entity.getContainerId());
 
+/*        // FOR SHIPPING LINE Drop Down Values
+        List<Vendor> vendors = vendorService.findVendorsByShippingType("customerCode", order.getShipperCode(), getClientId());
+
+        if (customer != null) {
+            orderBean.setCustomerName(customer.get(0).getCustomerName());
+        } else {
+            customer.get(0).setCustomerCode(orderBean.getConsigneeCode());
+        }*/
+
         return formBean;
     }
 
@@ -1522,7 +1519,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         Container entity = new Container();
         /*Client client = clientService.findClientById(getClientId().toString());
-        entity.setClientId(client.getClientId());*/
+        entity.setClientId(client);*/
 
         if(formBean.getContainerId() != null) {
             entity.setContainerId(new Integer(formBean.getContainerId()));
@@ -1542,7 +1539,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setTrucking(formBean.getTrucking());
         entity.setPlateNumber(formBean.getPlateNumber());
         entity.setDriver(formBean.getDriver());
-        entity.setBookingNum(formBean.getBookingNum());
         entity.setSealNumber(formBean.getSealNumber());
         entity.setOrderNumber(formBean.getOrderNumber());
         entity.setRemarks(formBean.getRemarks());
@@ -1557,6 +1553,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setSealNumber(formBean.getSealNumber());
         entity.setLadenEmpty(formBean.getLadenEmpty());
         entity.setSealNumber(formBean.getSealNumber());
+        entity.setCreatedBy(commonUtils.getUserNameFromSession());
+        entity.setModifiedBy(commonUtils.getUserNameFromSession());
+        entity.setCreatedTimestamp(new Date());
+        entity.setModifiedTimestamp(new Date());
 
         if ("CONSOLIDATED".equals(formBean.getContainerStatus())) {
             entity.setContainerStatus("CONSOLIDATED");
@@ -1568,11 +1568,29 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String editContainer() throws Exception {
+        validateOnSubmit(container);
+        if (hasActionErrors()) {
+            return INPUT;
+        }
 
-        Container containerEntity  = transformContainerToEntityBean(container);
+        try {
+            Container containerEntity = transformContainerToEntityBean(container);
+            containerEntity.setModifiedBy(commonUtils.getUserNameFromSession());
+            containerEntity.setModifiedTimestamp(new Date());
+            containerService.updateContainer(containerEntity);
+        } catch (ContainerAlreadyExistsException e) {
+            addFieldError("container.containerId", getText("err.containerId.already.exist"));
+            return INPUT;
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! EIR Form has been updated.");
+        return SUCCESS;
+
+        /*Container containerEntity = transformContainerToEntityBean(container);
         containerService.updateContainer(containerEntity);
         addActionMessage("Success! New Form has been edited.");
-        return SUCCESS;
+        return SUCCESS;*/
 
     }
 
@@ -1810,8 +1828,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
             if (proforma.size() == 0) {
                 Documents documentEntity = new Documents();
 
-                Client client = clientService.findClientById(getClientId().toString());
-                documentEntity.setClient(client);
+                /*Client client = clientService.findClientById(getClientId().toString());
+                documentEntity.setClient(client);*/
 
                 documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_DESTINATION);
                 documentEntity.setReferenceId(orderEntity.getOrderId());
@@ -1910,8 +1928,24 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String containerAdd() throws Exception {
 
-        Container containerEntity  = transformContainerToEntityBean(container);
-        containerService.addContainer(containerEntity);
+        validateOnSubmit(container);
+        if (hasFieldErrors())
+            return INPUT;
+
+        try {
+            Container containerEntity = transformContainerToEntityBean(container);
+            containerEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            containerEntity.setCreatedTimestamp(new Date());
+            containerService.addContainer(containerEntity);
+
+            /*Notification notificationEntity = new Notification();
+            notificationEntity.setDescription("CONTAINER");
+            notificationEntity.setNotificationId(1);
+            notificationEntity.setNotificationType("Email");
+            notificationEntity.setReferenceId(1);
+            notificationEntity.setReferenceTable("Container");
+            notificationEntity.setUserId(1);
+            notificationService.addNotification(notificationEntity);*/
 
         // Add EIR 1 DOCUMENT BEGIN
 
@@ -1935,7 +1969,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         documentsService.addDocuments(documentEntity);
 
         // Add EIR 1 DOCUMENT END
-
+        }catch(ContainerAlreadyExistsException e) {
+            addFieldError("container.containerId", getText("err.container.already.exist"));
+            return INPUT;
+        }
+        clearErrorsAndMessages();
         addActionMessage("Success! New Form has been added.");
         return SUCCESS;
     }
@@ -2370,5 +2408,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setContainerPortCode(List<Parameters> containerPortCode) {
         this.containerPortCode = containerPortCode;
+    }
+
+    public List<Vendor> getVendorNameList() {
+        return vendorNameList;
+    }
+
+    public void setVendorNameList(List<Vendor> vendorNameList) {
+        this.vendorNameList = vendorNameList;
     }
 }

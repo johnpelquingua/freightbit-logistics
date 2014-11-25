@@ -4,6 +4,7 @@ package com.sr.biz.freightbit.operations.entity;
  * Created by Clarence C. Victoria on 11/3/2014.
  */
 
+import com.sr.biz.freightbit.core.entity.Client;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -13,7 +14,7 @@ import java.util.Date;
 public class Container implements Serializable{
 
     private Integer containerId;
-    /*private Integer clientId;*/
+    private Client clientId;
     private String eirType;
     private String eirNumber;
     private String portCode;
@@ -24,7 +25,6 @@ public class Container implements Serializable{
     private String plateNumber;
     private String vanNumber;
     private String driver;
-    private String bookingNum;
     private String orderNumber;
     private String remarks;
     private String vanTo;
@@ -46,8 +46,9 @@ public class Container implements Serializable{
     public Container() {
     }
 
-    public Container(Integer containerId, String eirType, String eirNumber, String portCode, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String bookingNum, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String sealNumber, String vanLocation, String ladenEmpty, String containerStatus, String forkliftOperator, String operationsDept) {
+    public Container(Integer containerId, Client clientId, String eirType, String eirNumber, String portCode, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String sealNumber, String vanLocation, String ladenEmpty, String containerStatus, String forkliftOperator, String operationsDept) {
         this.containerId = containerId;
+        this.clientId = clientId;
         this.eirType = eirType;
         this.eirNumber = eirNumber;
         this.portCode = portCode;
@@ -58,7 +59,6 @@ public class Container implements Serializable{
         this.plateNumber = plateNumber;
         this.vanNumber = vanNumber;
         this.driver = driver;
-        this.bookingNum = bookingNum;
         this.orderNumber = orderNumber;
         this.remarks = remarks;
         this.vanTo = vanTo;
@@ -89,14 +89,15 @@ public class Container implements Serializable{
         this.containerId = containerId;
     }
 
-    /*@Column(name = "clientId")
-    public Integer getClientId() {
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "clientId")
+    public Client getClientId() {
         return clientId;
     }
 
-    public void setClientId(Integer clientId) {
+    public void setClientId(Client clientId) {
         this.clientId = clientId;
-    }*/
+    }
 
     @Column(name = "eirNumber")
     public String getEirNumber() {
@@ -168,15 +169,6 @@ public class Container implements Serializable{
 
     public void setDriver(String driver) {
         this.driver = driver;
-    }
-
-    @Column(name = "bookingNum")
-    public String getBookingNum() {
-        return bookingNum;
-    }
-
-    public void setBookingNum(String bookingNum) {
-        this.bookingNum = bookingNum;
     }
 
     @Column(name = "orderNumber")
@@ -349,4 +341,6 @@ public class Container implements Serializable{
     public void setPortCode(String portCode) {
         this.portCode = portCode;
     }
+
+
 }

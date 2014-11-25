@@ -15,6 +15,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -63,14 +64,30 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
 
     @Override
     public List<Vendor> findAllShippingVendor() {
-        log.debug("Finding all Vendors");
+
+        List<String> vendorTypeList = new ArrayList<>();
+
+        vendorTypeList.add("SHIPPING");
+
+        log.debug("Finding vendors with filter");
+        try {
+            log.debug("Finding vendors succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Vendor v where v.vendorType in (:vendorTypeList)");
+            query.setParameterList("vendorTypeList", vendorTypeList);
+            List<Vendor> results = (List<Vendor>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding vendors failed");
+            throw e;
+        }
+        /*log.debug("Finding all Vendors");
         try {
             return getSessionFactory().getCurrentSession()
                     .createQuery("from Vendor where vendorType = 'SHIPPING'").list();
         } catch (RuntimeException re) {
             log.error("Find all failed", re);
             throw re;
-        }
+        }*/
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.sr.biz.freightbit.operations.dao.ContainerDao;
 import com.sr.biz.freightbit.operations.entity.Container;
 import com.sr.biz.freightbit.operations.exceptions.ContainerAlreadyExistsException;
 import com.sr.biz.freightbit.operations.service.ContainerService;
+import com.sr.biz.freightbit.vendor.entity.Vendor;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
@@ -41,8 +42,6 @@ public interface ContainerDao {
 
     public List<Container> findContainerByDriver(String driver);
 
-    public List<Container> findContainerByBookingNum(String bookingNum);
-
     public List<Container> findContainerByVanLocation(String vanLocation);
 
     public List<Container> findContainerByLadenEmpty(String ladenEmpty);
@@ -62,4 +61,7 @@ public interface ContainerDao {
     public Container findContainerById(Integer containerId);
 
     public List<Container> findContainerByCriteria(String column, String value);
+
+    public List<Vendor> findVendorsByShippingType(String vendorType);
+
 }

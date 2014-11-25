@@ -1,5 +1,7 @@
 package com.sr.apps.freightbit.operations.formbean;
 
+import com.sr.biz.freightbit.core.entity.Client;
+
 import java.util.Date;
 
 /**
@@ -8,7 +10,7 @@ import java.util.Date;
 public class ContainerBean {
 
     private Integer containerId;
-    private Integer clientId;
+    private Client clientId;
     private String eirNumber;
     private String receiptNumber;
     private Date dateTime;
@@ -17,7 +19,6 @@ public class ContainerBean {
     private String plateNumber;
     private String vanNumber;
     private String driver;
-    private String bookingNum;
     private String orderNumber;
     private String remarks;
     private String vanTo;
@@ -49,7 +50,7 @@ public class ContainerBean {
     public ContainerBean() {
     }
 
-    public ContainerBean(Integer containerId, Integer clientId, String eirType, String eirNumber, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String bookingNum, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept, String sealNumber, String vanLocation, String ladenEmpty, String containerType, String portCode, String containerSearchCriteria, String containerKeyword) {
+    public ContainerBean(Integer containerId, Client clientId, String eirType, String eirNumber, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept, String sealNumber, String vanLocation, String ladenEmpty, String containerType, String portCode, String containerSearchCriteria, String containerKeyword) {
         this.containerId = containerId;
         this.clientId = clientId;
         this.eirType = eirType;
@@ -62,7 +63,6 @@ public class ContainerBean {
         this.plateNumber = plateNumber;
         this.vanNumber = vanNumber;
         this.driver = driver;
-        this.bookingNum = bookingNum;
         this.orderNumber = orderNumber;
         this.remarks = remarks;
         this.vanTo = vanTo;
@@ -93,11 +93,11 @@ public class ContainerBean {
     }
 
 
-    public Integer getClientId() {
+    public Client getClientId() {
         return clientId;
     }
 
-    public void setClientId(Integer clientId) {
+    public void setClientId(Client clientId) {
         this.clientId = clientId;
     }
 
@@ -283,14 +283,6 @@ public class ContainerBean {
 
     public void setLadenEmpty(String ladenEmpty) {
         this.ladenEmpty = ladenEmpty;
-    }
-
-    public String getBookingNum() {
-        return bookingNum;
-    }
-
-    public void setBookingNum(String bookingNum) {
-        this.bookingNum = bookingNum;
     }
 
     public String getForkliftOperator() {

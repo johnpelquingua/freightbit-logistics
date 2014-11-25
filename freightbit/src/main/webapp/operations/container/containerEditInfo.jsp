@@ -33,8 +33,13 @@
       <div class="panel-body">
         <div class="table-responsive list-table">
           <s:form cssClass="form-horizontal" theme="bootstrap" action="editContainer">
-          <div class="col-lg-6">
-            <div class="form-group">
+              <s:hidden name="container.containerId" value="%{container.containerId}" />
+              <s:hidden name="container.modifiedBy" value="%{container.modifiedBy}"/>
+              <s:hidden name="container.modifiedTimestamp" value="%{container.modifiedTimestamp}"/>
+              <s:hidden name="container.eirType" value="%{container.eirType}"/>
+
+              <div class="col-lg-6">
+            <%--<div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Type: <span class="asterisk_red"></span></label>
               <div class="col-lg-8" >
                   <s:select cssClass="form-control"
@@ -47,9 +52,8 @@
                           required="true"
                         />
               </div>
-            </div>
+            </div>--%>
 
-            <s:hidden name="container.containerId" value="%{container.containerId}" />
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Container Number: <span class="asterisk_red"></span></label>
               <div class="col-lg-8" >
@@ -187,6 +191,39 @@
               <s:textfield name="container.driver" cssClass="form-control" id="container.driver" />
             </div>
             </div>
+
+              <div class="form-group">
+                  <label class="col-lg-4 control-label" style="padding-top:0px;">Forklift Operator: </label>
+                  <div class="col-lg-8" >
+                      <s:textfield name="container.forkliftOperator" cssClass="form-control" id="container.forkliftOperator" />
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-lg-4 control-label" style="padding-top:0px;">Operations Department: </label>
+                  <div class="col-lg-8" >
+                      <s:textfield name="container.operationsDept" cssClass="form-control" id="container.operationsDept" />
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-lg-4 control-label" style="padding-top:0px;">Laden / Empty: </label>
+                  <div class="col-lg-8" >
+                      <s:textfield name="container.ladenEmpty" cssClass="form-control" id="container.ladenEmpty" />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-lg-4 control-label" style="padding-top:0px;">Van To: </label>
+                  <div class="col-lg-8" >
+                      <s:textfield name="container.vanTo" cssClass="form-control" id="container.vanTo" />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="col-lg-4 control-label" style="padding-top:0px;">Van From: </label>
+                  <div class="col-lg-8" >
+                      <s:textfield name="container.vanFrom" cssClass="form-control" id="container.vanFrom" />
+                  </div>
+              </div>
           </div>
         </div>
       </div>

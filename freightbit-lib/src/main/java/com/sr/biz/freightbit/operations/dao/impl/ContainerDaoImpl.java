@@ -3,6 +3,7 @@ package com.sr.biz.freightbit.operations.dao.impl;
 import com.sr.biz.freightbit.operations.dao.ContainerDao;
 import com.sr.biz.freightbit.operations.entity.Container;
 
+import com.sr.biz.freightbit.vendor.entity.Vendor;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -217,20 +218,6 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
         }
     }
 
-    public List<Container> findContainerByBookingNum(String bookingNum) {
-        Log.debug("Finding Container via bookingNum");
-        try {
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where bookingNum = :bookingNum");
-            query.setParameter("bookingNum", bookingNum);
-            List<Container> results = (List<Container>) query.list();
-            Log.debug("Find Container by bookingNum successful, result size: " + results.size());
-            return results;
-        } catch (Exception e) {
-            Log.error("Find Container by bookingNum failed", e);
-            throw e;
-        }
-    }
-
     public List<Container> findContainerBySealNumber(String sealNumber) {
         Log.debug("Finding Container via eirNumber");
         try {
@@ -343,6 +330,20 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
         }
     }
 
+    public List<Vendor> findVendorsByShippingType(String vendorType) {
+        Log.debug("Finding Vendor via vendorType");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from vendors where vendorType = :vendorType");
+            query.setParameter("vendorType", vendorType);
+            List<Vendor> results = (List<Vendor>) query.list();
+            Log.debug("Find Vendor by vendorType successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Vendor by vendorType failed", e);
+            throw e;
+        }
+    }
+
     @Override
     public Container findContainerById(Integer containerId) {
         Log.debug("Finding Container By Id");
@@ -369,6 +370,5 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
                 .list();
         return vendors;
     }
-
 
 }
