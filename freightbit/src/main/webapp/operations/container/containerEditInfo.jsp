@@ -13,13 +13,13 @@
 
     <legend style="text-align: left;">
             <span >
-               <h1><i class="fa fa-male"></i> EIR Form </h1>
+               <h1><i class="fa fa-male"></i> Container List </h1>
             </span>
     </legend>
     <ol class="breadcrumb">
       <li class="active" ><a href="<s:url action='../home' />"> Dashboard </a></li>
-      <li class="active"> <a href="<s:url action='../viewContainerList' />"> Container Management </a></li>
-      <li class="active"> Container Lists </li>
+      <li class="active"> <a href="<s:url action='../operations/viewContainerList' />"> Container Management </a></li>
+      <li class="active"> Container List </li>
     </ol>
   </div>
 </div>
@@ -104,7 +104,15 @@
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Port Code: <span class="asterisk_red"></span></label>
               <div class="col-lg-8" >
-                <s:textfield required="true" name="container.portCode" cssClass="form-control" id="container.portCode" />
+                  <s:select cssClass="form-control"
+                            id="container.portCode"
+                            name="container.portCode"
+                            list="containerPortCode"
+                            listKey="key"
+                            listValue="value"
+                            emptyOption="true"
+                            required="true"
+                          />
               </div>
             </div>
 

@@ -38,4 +38,6 @@ public interface DocumentsService {
 
     public void deleteDocument(Documents documents);
 
+    public List<Documents> findEIRAndRefId(String documentName, Integer referenceId, String referenceTable);
+
 }

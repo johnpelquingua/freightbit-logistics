@@ -22,4 +22,6 @@ public class DocumentsConstants {
     public final static String MASTER_WAYBILL_DESTINATION = "MASTER WAYBILL DESTINATION";
     public final static String SALES_INVOICE = "SALES INVOICE";
     public final static String AUTHORIZATION_TO_WITHDRAW = "AUTHORIZATION TO WITHDRAW";
+    public final static String EQUIPMENT_INTERCHANGE_RECEIPT_1 = "EQUIPMENT INTERCHANGE RECEIPT 1";
+    public final static String EQUIPMENT_INTERCHANGE_RECEIPT_2 = "EQUIPMENT INTERCHANGE RECEIPT 2";
 }

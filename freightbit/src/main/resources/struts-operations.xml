@@ -362,6 +362,7 @@
         </action>
 
         <!--YardLogs START-->
+
         <action name="viewYardLogs" class="com.sr.apps.freightbit.operations.action.YardLogsAction" method="viewYardList">
             <result name="success" type="tiles">operations.viewYardLogs.tiles</result>
         </action>
@@ -376,11 +377,11 @@
             <result name="success" type="tiles">operations.viewContainerInfo.tiles</result>
         </action>
 
-        <!--<action name="viewContainerListTest" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewContainerListTest">-->
-            <!--<result name="success" type="tiles">operations.viewContainerListTest.tiles</result>-->
-        <!--</action>-->
-
         <action name="deleteContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="deleteContainer">
+            <result name="success" type="redirect">loadSuccessDeleteContainer</result>
+        </action>
+
+        <action name="loadSuccessDeleteContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSuccessDeleteContainer">
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
@@ -395,17 +396,12 @@
         </action>
 
         <action name="searchContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="searchContainer">
-            <result name="input" type="tiles">operations.containerSearch.tiles</result>
-            <result name="success" type="redirect">viewContainerList</result>
+            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
         <action name="checkoutContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editContainer">
             <result name="input" type="tiles">operations.loadCheckoutForm.tiles</result>
             <result name="success" type="redirect">viewContainerList</result>
-        </action>
-
-        <action name="loadSearchFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSearchFormPage">
-            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
         <action name="loadAddFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadAddFormPage">
@@ -464,10 +460,10 @@
             <result name="success" type="redirect">viewConsolidationContainerList</result>
         </action>
 
-
         <!--CONSOLIDATION-->
 
         <!--DOCUMENTS PAGE-->
+
         <action name="viewDocumentList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewDocumentList">
             <result name="success" type="tiles">operations.documentsList.tiles</result>
         </action>
@@ -492,9 +488,8 @@
         </action>
 
         <!--DOCUMENTS PAGE-->
-
+        <!--House Waybill Origin-->
         <action name="generateHouseWayBillReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateHouseWayBillReport">
-            <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->
             <result name="success" type="redirect">viewPlainDocuments</result>
             <result name="download" type="stream">
                 <param name="contentDisposition">attachment;filename="${fileName}"</param>
@@ -503,9 +498,8 @@
                 <param name="bufferSize">4096</param>
             </result>
         </action>
-
+        <!--House Waybill Destination-->
         <action name="generateHouseWayBillDestinationReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateHouseWayBillDestinationReport">
-            <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->
             <result name="success" type="redirect">viewPlainDocuments</result>
             <result name="download" type="stream">
                 <param name="contentDisposition">attachment;filename="${fileName}"</param>
@@ -514,9 +508,28 @@
                 <param name="bufferSize">4096</param>
             </result>
         </action>
-
+        <!--House Bill of Lading-->
         <action name="generateBillofLadingReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBillofLadingReport">
-            <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->
+            <result name="success" type="redirect">viewPlainDocuments</result>
+            <result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
+        <!--Equipment Interchange Receipt 1-->
+        <action name="generateEIR1RequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateEIR1RequestReport">
+            <result name="success" type="redirect">viewPlainDocuments</result>
+            <result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
+        <!--Equipment Interchange Receipt 2-->
+        <action name="generateEIR2RequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateEIR2RequestReport">
             <result name="success" type="redirect">viewPlainDocuments</result>
             <result name="download" type="stream">
                 <param name="contentDisposition">attachment;filename="${fileName}"</param>
@@ -529,6 +542,7 @@
     </package>
 
     <package name="operation" namespace="/operations" extends="json-default">
+
         <action name="listVendorDriverAndTrucks" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="listVendorDriverAndTrucks">
             <result type="json">/operations/sea_freight/seaFreightPlanning.jsp</result>
             <result type="json">/operations/freightBulkEdit.jsp</result>
@@ -537,5 +551,7 @@
         <action name="listVesselName" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction" method="listVesselName">
             <result type="json">/operations/vesselScheduleAdd.jsp</result>
         </action>
+
     </package>
+
 </struts>

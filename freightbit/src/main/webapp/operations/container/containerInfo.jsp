@@ -11,10 +11,9 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"> Customer</li>
-            <li class="active"><a href="<s:url action='viewContainerList' />"> Container List </a>
+            <li class="active"><a href="<s:url action='../operations/viewContainerList' />"> Container Management </a>
             </li>
-            <li class="active"> EIR Form Information</li>
+            <li class="active"> Container Information</li>
         </ol>
 
     </div>
@@ -58,14 +57,14 @@
                             <i class="fa fa-pencil"></i> Edit EIR Form
                         </s:a>
                     </sec:authorize>
-                    <s:url var="loadPrintFormPageUrl" action="loadPrintFormPage">
+                    <%--<s:url var="loadPrintFormPageUrl" action="loadPrintFormPage">
                     </s:url>
                     <s:a class="icon-action-link" href="%{loadPrintFormPageUrl}" rel="tooltip" title="Print Form">
                         <button type="button" class="btn btn-primary">
                             <i class="fa fa-home"> </i> Print EIR Form
                         </button>
-                    </s:a>
-
+                    </s:a>--%>
+                    <a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${container.documentId},'${container.eirType}')"> <i class="fa fa-print"></i> Print Booking</a>
                 </span>
             </div>
 
@@ -138,3 +137,22 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    function generateReport(documentId,documentName) {
+
+        if(documentName == 'EIR FORM 1'){
+            var win = window.open('documentations/generateEIR1RequestReport?documentIdParam=' + documentId, 'eir1', 'width=910,height=800');
+            win.onload = function () {
+                this.document.title = "Equipment Interchange Receipt 1";
+            }
+        }else{
+            var win = window.open('documentations/generateEIR2RequestReport?documentIdParam=' + documentId, 'eir2', 'width=910,height=800');
+            win.onload = function () {
+                this.document.title = "Equipment Interchange Receipt 2";
+            }
+        }
+    }
+
+</script>

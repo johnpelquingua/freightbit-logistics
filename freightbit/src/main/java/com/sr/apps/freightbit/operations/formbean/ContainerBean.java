@@ -8,6 +8,7 @@ import java.util.Date;
 public class ContainerBean {
 
     private Integer containerId;
+    private Integer clientId;
     private String eirNumber;
     private String receiptNumber;
     private Date dateTime;
@@ -41,6 +42,47 @@ public class ContainerBean {
 
     private String eirType;
     private String portCode;
+    // for documents link on container list view
+    private String DocumentCheck;
+    private Integer documentId;
+
+    public ContainerBean() {
+    }
+
+    public ContainerBean(Integer containerId, Integer clientId, String eirType, String eirNumber, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String bookingNum, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept, String sealNumber, String vanLocation, String ladenEmpty, String containerType, String portCode, String containerSearchCriteria, String containerKeyword) {
+        this.containerId = containerId;
+        this.clientId = clientId;
+        this.eirType = eirType;
+        this.eirNumber = eirNumber;
+        this.portCode = portCode;
+        this.receiptNumber = receiptNumber;
+        this.dateTime = dateTime;
+        this.shipping = shipping;
+        this.trucking = trucking;
+        this.plateNumber = plateNumber;
+        this.vanNumber = vanNumber;
+        this.driver = driver;
+        this.bookingNum = bookingNum;
+        this.orderNumber = orderNumber;
+        this.remarks = remarks;
+        this.vanTo = vanTo;
+        this.vanFrom = vanFrom;
+        this.createdBy = createdBy;
+        this.createdTimestamp = createdTimestamp;
+        this.modifiedBy = modifiedBy;
+        this.modifiedTimestamp = modifiedTimestamp;
+        this.containerNumber = containerNumber;
+        this.containerSize = containerSize;
+        this.containerStatus = containerStatus;
+        this.forkliftOperator = forkliftOperator;
+        this.operationsDept = operationsDept;
+        this.containerSize = containerType;
+        this.containerSize = sealNumber;
+        this.containerSize = vanLocation;
+        this.containerSize = ladenEmpty;
+        this.containerSearchCriteria = containerSearchCriteria;
+        this.containerKeyword = containerKeyword;
+    }
 
     public Integer getContainerId() {
         return containerId;
@@ -48,6 +90,15 @@ public class ContainerBean {
 
     public void setContainerId(Integer containerId) {
         this.containerId = containerId;
+    }
+
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 
     public String getEirNumber() {
@@ -288,5 +339,21 @@ public class ContainerBean {
 
     public void setPortCode(String portCode) {
         this.portCode = portCode;
+    }
+
+    public Integer getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(Integer documentId) {
+        this.documentId = documentId;
+    }
+
+    public String getDocumentCheck() {
+        return DocumentCheck;
+    }
+
+    public void setDocumentCheck(String documentCheck) {
+        DocumentCheck = documentCheck;
     }
 }

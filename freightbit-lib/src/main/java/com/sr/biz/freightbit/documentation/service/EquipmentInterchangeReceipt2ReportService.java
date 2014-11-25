@@ -5,10 +5,9 @@ import org.pentaho.reporting.engine.classic.core.MasterReport;
 
 import java.util.Map;
 
-public interface AcceptanceReceiptReportService {
+public interface EquipmentInterchangeReceipt2ReportService {
     public DataFactory getDataFactory(Map<String, String> params);
     public Map<String, Object> getReportParameters(Map<String, String> params);
     public MasterReport getReportDefinition();
-    public MasterReport generateReport(Map<String,String> params);
+    public MasterReport generateReport(Map<String, String> params);
 }
-

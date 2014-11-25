@@ -43,4 +43,6 @@ public interface DocumentsDao {
 
     public void deleteDocument(Documents documents);
 
+    public List<Documents> findEIRAndRefId (String documentName, Integer referenceId, String referenceTable);
+
 }

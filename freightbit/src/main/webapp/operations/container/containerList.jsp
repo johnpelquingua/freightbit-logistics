@@ -4,7 +4,6 @@
 
 <div class="row">
     <div class="col-lg-12">
-
         <legend style="text-align: left;">
             <span >
                <h1><i class="fa fa-male"></i> Container Management </h1>
@@ -26,12 +25,12 @@
     </div>
 </s:if>
 
-
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> EIR Forms
+                <h3 class="panel-title" style="float:left;top: 10px;">
+                    <i class="fa fa-list"></i> Container Lists
                 </h3>
                 <span class="pull-right">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
@@ -69,6 +68,10 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="portCode" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+                                <%--<td><display:column property="documentCheck" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="documentId" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>--%>
                                 <td>
                                     <display:column title="Action">
                                         <s:url var="editContainerUrl" action="loadEditFormPage">
@@ -93,6 +96,10 @@
                                         </s:url>
                                         <s:a href="%{viewContainerInfoUrl}" title="Container Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
 
+                                        <a id="print-icon" href="#" onclick="generateReport(${container.documentId},'${container.eirType}');">
+                                            <i class="fa fa-print"></i>
+                                        </a>
+
                                         <s:url var="checkoutFormUrl" action="loadCheckoutFormPage">
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
                                         </s:url>
@@ -110,20 +117,20 @@
             <div class="panel-footer">
 
                 <span class="pull-right">
-
                 
                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                    <s:url var="loadAddFormPageUrl" action="loadAddFormPage">
-                    </s:url>
-                    <s:a class="icon-action-link" href="%{loadAddFormPageUrl}" rel="tooltip" title="New Container">
-                        <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchContainerPage'">
-                            <i class="fa fa-search"></i> Search Container
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                            <i class="fa fa-home"> </i> Create New EIR Form
-                        </button>
-                    </s:a>
-                </sec:authorize>
+                        <s:url var="loadAddFormPageUrl" action="loadAddFormPage">
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{loadAddFormPageUrl}" rel="tooltip" title="New Container">
+                            <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchContainerPage'">
+                                <i class="fa fa-search"></i> Search Container
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa fa-home"> </i> Create New EIR Form
+                            </button>
+                        </s:a>
+                    </sec:authorize>
+
                 </span>
 
                 <div class="table-responsive" >
@@ -138,6 +145,7 @@
                         </table>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -159,5 +167,25 @@
             }
         }
     });
+
+    function generateReport(documentId,documentName) {
+        /*alert(documentId);
+        alert(documentName);*/
+        /*var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
+        win.onload = function () {
+            this.document.title = "Booking Request Form";
+        }*/
+        if(documentName == 'EIR FORM 1'){
+            var win = window.open('documentations/generateEIR1RequestReport?documentIdParam=' + documentId, 'eir1', 'width=910,height=800');
+            win.onload = function () {
+                this.document.title = "Equipment Interchange Receipt 1";
+            }
+        }else{
+            var win = window.open('documentations/generateEIR2RequestReport?documentIdParam=' + documentId, 'eir2', 'width=910,height=800');
+            win.onload = function () {
+                this.document.title = "Equipment Interchange Receipt 2";
+            }
+        }
+    }
 
 </script>

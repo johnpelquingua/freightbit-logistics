@@ -159,6 +159,10 @@
 
     <bean id="authorizationToWithdrawReportService" class="com.sr.biz.freightbit.documentation.service.impl.AuthorizationToWithdrawReportServiceImpl"/>
 
+    <bean id="equipmentInterchangeReceipt1ReportService" class="com.sr.biz.freightbit.documentation.service.impl.EquipmentInterchangeReceipt1ReportServiceImpl"/>
+
+    <bean id="equipmentInterchangeReceipt2ReportService" class="com.sr.biz.freightbit.documentation.service.impl.EquipmentInterchangeReceipt2ReportServiceImpl"/>
+
     <bean id="calendarService" class="com.sr.biz.freightbit.calendar.service.impl.CalendarServiceImpl">
         <property name="orderDao" ref="orderDao"/>
     </bean>

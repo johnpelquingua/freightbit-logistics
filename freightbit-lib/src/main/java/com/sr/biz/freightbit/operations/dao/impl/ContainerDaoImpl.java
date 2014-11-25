@@ -329,6 +329,20 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
         }
     }
 
+    public List<Container> findContainerByContainerStatus(String containerStatus) {
+        Log.debug("Finding Container via containerStatus");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where containerStatus = :containerStatus");
+            query.setParameter("containerStatus", containerStatus);
+            List<Container> results = (List<Container>) query.list();
+            Log.debug("Find Container by containerStatus successful, result size: " + results.size());
+            return results;
+        } catch (Exception e) {
+            Log.error("Find Container by containerStatus failed", e);
+            throw e;
+        }
+    }
+
     @Override
     public Container findContainerById(Integer containerId) {
         Log.debug("Finding Container By Id");
@@ -355,4 +369,6 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
                 .list();
         return vendors;
     }
+
+
 }

@@ -88,6 +88,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Parameters> containerSizeList = new ArrayList<Parameters>();
     private List<Parameters> containerEirTypeList = new ArrayList<Parameters>();
     private List<Parameters> containerStatusList = new ArrayList<Parameters>();
+    private List<Parameters> containerPortCode = new ArrayList<Parameters>();
 
 
     private OrderItemsBean orderItem = new OrderItemsBean();
@@ -128,10 +129,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
 //      updateStatusList = parameterService.getParameterMap(ParameterConstants.UPDATE_STATUS);
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
         truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
-        containerSearchList = parameterService.getParameterMap("CONTAINERS", "CONTAINER_SEARCH");
+        containerSearchList = parameterService.getParameterMap(ParameterConstants.CONTAINER_SEARCH);
         containerSizeList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.CONTAINER_SIZE);
         containerEirTypeList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.EIR_TYPE);
         containerStatusList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.CONTAINER_STATUS);
+        containerPortCode = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.PORT_CODE);
 
     }
 
@@ -339,6 +341,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             } else {
                 for (int i =0; i<check.length; i++) {
+
+                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){ // catches error when no values inside check
+
+                        return INPUT;
+                    }
+
                     Integer orderItemId = Integer.parseInt(check[i]);
                     OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
                     if ("PLANNING 1".equals(entity.getStatus())) {
@@ -1353,25 +1361,26 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String loadSearchContainerPage(){ return SUCCESS; }
 
-    public String searchContainer() {
+    /*public String searchContainer() {
         String column = getColumnFilter();
-        List<Container> containerList = new ArrayList<Container>();
+        List<Container> containerEntityList = new ArrayList<Container>();
 
         if (StringUtils.isNotBlank(column)) {
-            containerList = containerService.findContainerByCriteria(column, container.getContainerKeyword());
-
+            containerEntityList = containerService.findContainerByCriteria(column, container.getContainerKeyword());
         } else {
-            containerList = containerService.findAllContainer();
+            containerEntityList = containerService.findAllContainer();
         }
 
-        for (Container containerElem : containerList) {
+        for (Container containerElem : containerEntityList) {
             containers.add(transformContainerToFormBean(containerElem));
         }
 
         return SUCCESS;
-    }
+    }*/
 
     public String viewContainerList() {
+        String column = getColumnFilter();
+
         /*String column = getColumnFilter();
 
         List<Container> containerList = new ArrayList<Container>();
@@ -1385,38 +1394,55 @@ public class OperationsAction extends ActionSupport implements Preparable {
             containers.add(transformContainerToFormBean(containerElem));
         }
         return SUCCESS;*/
+
         List<Container> containerList = new ArrayList<Container>();
         containerList = containerService.findAllContainer();
 
         for (Container containerElem : containerList) {
+
             containers.add(transformContainerToFormBean(containerElem));
+
         }
+
         return SUCCESS;
     }
+
+  /*  public String containerAdd() throws Exception {
+
+        Container containerEntity  = transformContainerToEntityBean(container);
+        containerService.addContainer(containerEntity);
+        addActionMessage("Success! New Form has been added.");
+        return SUCCESS;
+    }*/
 
     public String deleteContainer() {
         Container containerEntity = containerService.findContainerById(containerIdParam);
         containerService.deleteContainer(containerEntity);
 
-        List<Container> containerList = new ArrayList<Container>();
-        containerList = containerService.findAllContainer();
+        return SUCCESS;
+    }
 
-        for (Container containerElem : containerList) {
+    public String loadSuccessDeleteContainer() {
+        List<Container> containerEntityList = containerService.findAllContainer();
+        for (Container containerElem : containerEntityList) {
             containers.add(transformContainerToFormBean(containerElem));
         }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Container has been deleted.");
 
         return SUCCESS;
     }
 
     public String getColumnFilter() {
         String column = "";
-        if ("Container Number".equals(container.getContainerSearchCriteria())) {
+        if ("CONTAINER NUMBER".equals(container.getContainerSearchCriteria())) {
             column = "containerNumber";
-        } else if ("EIR Number".equals(container.getContainerSearchCriteria())) {
+        } else if ("EIR NUMBER".equals(container.getContainerSearchCriteria())) {
             column = "eirNumber";
-        } else if ("Shipping Line".equals(container.getContainerSearchCriteria())) {
+        } else if ("SHIPPING LINE".equals(container.getContainerSearchCriteria())) {
             column = "shipping";
-        } else if ("Port Code".equals(container.getContainerSearchCriteria())) {
+        } else if ("PORT CODE".equals(container.getContainerSearchCriteria())) {
             column = "portCode";
         }
 
@@ -1438,6 +1464,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         ContainerBean formBean = new ContainerBean();
         formBean.setContainerId(entity.getContainerId());
+        /*formBean.setClientId(entity.getClientId());*/
         formBean.setEirNumber(entity.getEirNumber());
         formBean.setPortCode(entity.getPortCode());
         formBean.setDateTime(entity.getDateTime());
@@ -1465,12 +1492,37 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setContainerStatus(entity.getContainerStatus());
         formBean.setSealNumber(entity.getSealNumber());
 
+        // FOR EIR 1 and 2 DOCUMENTS
+        String docName;
+
+        if(entity.getEirType().equals("EIR FORM 1")){
+            docName = "EQUIPMENT INTERCHANGE RECEIPT 1";
+        }else{
+            docName = "EQUIPMENT INTERCHANGE RECEIPT 2";
+        }
+
+        System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" + docName);
+
+        List<Documents> documentList = documentsService.findEIRAndRefId(docName,entity.getContainerId(),"CONTAINERS");
+
+        if(documentList != null){
+                formBean.setDocumentCheck("AVAILABLE");
+                /*formBean.setDocumentId(documentList.get(0).getDocumentId());*/
+            for(Documents documentElem : documentList ){
+                formBean.setDocumentId(documentElem.getDocumentId());
+            }
+        }
+
+        System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" + entity.getContainerId());
+
         return formBean;
     }
 
     private Container transformContainerToEntityBean(ContainerBean formBean){
 
         Container entity = new Container();
+        /*Client client = clientService.findClientById(getClientId().toString());
+        entity.setClientId(client.getClientId());*/
 
         if(formBean.getContainerId() != null) {
             entity.setContainerId(new Integer(formBean.getContainerId()));
@@ -1505,12 +1557,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setSealNumber(formBean.getSealNumber());
         entity.setLadenEmpty(formBean.getLadenEmpty());
         entity.setSealNumber(formBean.getSealNumber());
-        entity.setContainerStatus(formBean.getContainerStatus());
-        /*if ("CONSOLIDATED".equals(formBean.getContainerStatus())) {
+
+        if ("CONSOLIDATED".equals(formBean.getContainerStatus())) {
             entity.setContainerStatus("CONSOLIDATED");
         } else {
             entity.setContainerStatus("OPEN");
-        }*/
+        }
 
         return entity;
     }
@@ -1530,6 +1582,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
         containerService.updateContainer(containerEntity);
         addActionMessage("Success! EIR Form has been checkout.");
         return SUCCESS;
+
+    }
+
+    public void validateOnSubmit(ContainerBean container) {
+        clearErrorsAndMessages();
+        if (StringUtils.isBlank(container.getContainerNumber())) {
+            addFieldError("container.containerNumber", "Container Number is required");
+        }
 
     }
 
@@ -1617,7 +1677,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 documentsService.addDocuments(documentEntityProforma);
             } else {
                 clearErrorsAndMessages();
-				addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+                addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
                 /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
                 for(OrderItems orderItemsElem : orderItemsList) {
                     orderItems.add(transformToOrderItemFormBean(orderItemsElem));
@@ -1646,7 +1706,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             documentsService.addDocuments(documentEntityHouse);
         } else {
             clearErrorsAndMessages();
-			addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+            addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
             /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
             for(OrderItems orderItemsElem : orderItemsList) {
                 orderItems.add(transformToOrderItemFormBean(orderItemsElem));
@@ -1706,7 +1766,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 documentsService.addDocuments(documentEntity);
             } else {
                 clearErrorsAndMessages();
-				addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+                addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
                 /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
                 for(OrderItems orderItemsElem : orderItemsList) {
                     orderItems.add(transformToOrderItemFormBean(orderItemsElem));
@@ -1769,7 +1829,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 documentsService.addDocuments(documentEntity);
             } else {
                 clearErrorsAndMessages();
-				addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+                addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
                 /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
                 for(OrderItems orderItemsElem : orderItemsList) {
                     orderItems.add(transformToOrderItemFormBean(orderItemsElem));
@@ -1852,6 +1912,30 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         Container containerEntity  = transformContainerToEntityBean(container);
         containerService.addContainer(containerEntity);
+
+        // Add EIR 1 DOCUMENT BEGIN
+
+        Documents documentEntity = new Documents();
+
+        Client client = clientService.findClientById(getClientId().toString());
+        documentEntity.setClient(client);
+
+        if(containerEntity.getEirType().equals("EIR FORM 1")){
+            documentEntity.setDocumentName(DocumentsConstants.EQUIPMENT_INTERCHANGE_RECEIPT_1);
+        }else{
+            documentEntity.setDocumentName(DocumentsConstants.EQUIPMENT_INTERCHANGE_RECEIPT_2);
+        }
+        documentEntity.setReferenceId(containerEntity.getContainerId());
+        documentEntity.setReferenceTable("CONTAINERS");
+        documentEntity.setCreatedDate(new Date());
+        documentEntity.setDocumentStatus("FOR PRINTING");
+        documentEntity.setVendorCode(containerEntity.getShipping());
+        documentEntity.setDocumentProcessed(0);
+
+        documentsService.addDocuments(documentEntity);
+
+        // Add EIR 1 DOCUMENT END
+
         addActionMessage("Success! New Form has been added.");
         return SUCCESS;
     }
@@ -2278,5 +2362,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setContainerStatusList(List<Parameters> containerStatusList) {
         this.containerStatusList = containerStatusList;
+    }
+
+    public List<Parameters> getContainerPortCode() {
+        return containerPortCode;
+    }
+
+    public void setContainerPortCode(List<Parameters> containerPortCode) {
+        this.containerPortCode = containerPortCode;
     }
 }
