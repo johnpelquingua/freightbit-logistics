@@ -100,25 +100,19 @@
                                             <i class="fa fa-print"></i>
                                         </a>
 
-<<<<<<< Updated upstream
                                         <%--<s:if test=" #attr.container.containerStatus == 'FINAL' || #attr.container.containerStatus == 'OPEN'">
                                         <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${container.containerId},'${container.containerStatus}');">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         </s:if>--%>
 
-                                        <s:if test=" #attr.container.containerStatus == 'FINAL' || #attr.container.containerStatus == 'OPEN'">
-                                        <s:url var="checkoutFormUrl" action="loadCheckoutFormPage">
-                                            <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
-                                        </s:url>
-                                        <s:a href="%{checkoutFormUrl}" title="Checkout Form" rel="tooltip" ><i class="fa fa-search"></i></s:a>
-=======
+
                                         <s:if test="#attr.container.containerStatus == 'FINAL'">
                                         <s:url var="checkoutFormUrl" action="loadCheckoutFormPage">
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
                                         </s:url>
                                         <s:a href="%{checkoutFormUrl}" title="Checkout Form" rel="tooltip" ><i class="fa fa-edit"></i></s:a>
->>>>>>> Stashed changes
+
                                         </s:if>
                                     </display:column>
                                 </td>

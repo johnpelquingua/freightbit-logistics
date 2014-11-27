@@ -76,6 +76,21 @@
                       </div>
                   </div>
 
+                          <div class="form-group">
+                              <label class="col-lg-4 control-label" style="padding-top:0px;">Container Status: <span class="asterisk_red"></span></label>
+                              <div class="col-lg-8" >
+                                  <s:select cssClass="form-control"
+                                            id="container.containerStatus"
+                                            name="container.containerStatus"
+                                            list="containerStatusList"
+                                            listKey="key"
+                                            listValue="value"
+                                            emptyOption="true"
+                                            required="true"
+                                          />
+                              </div>
+                          </div>
+
                   <div class="form-group">
                       <label class="col-lg-4 control-label" style="padding-top:0px;">Shipping Line: <span class="asterisk_red"></span></label>
                       <div class="col-lg-8" >
@@ -121,7 +136,7 @@
                       <script type="text/javascript">
                           $(function () {
                               var fromDatePickUp = $('#dateTime');
-                              fromDatePickUp.datetimepicker({
+                              fromDatePickUp.datepicker({
                                   timeFormat: 'h:mm TT',
                                   minDate: 0
                               });

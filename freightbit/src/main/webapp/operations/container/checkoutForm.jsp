@@ -34,9 +34,13 @@
         <div class="table-responsive list-table">
           <s:form cssClass="form-horizontal" theme="bootstrap" action="checkoutContainer">
               <s:hidden name="container.containerId" value="%{container.containerId}" />
+              <s:hidden name="container.containerNumber" value="%{container.containerNumber}" />
+              <s:hidden name="container.containerSize" value="%{container.containerSize}" />
+              <s:hidden name="container.shipping" value="%{container.shipping}" />
+              <s:hidden name="container.portCode" value="%{container.portCode}" />
               <s:hidden name="container.modifiedBy" value="%{container.modifiedBy}"/>
               <s:hidden name="container.modifiedTimestamp" value="%{container.modifiedTimestamp}"/>
-              <s:hidden name="container.eirType" value="%{container.eirType}"/>
+            <s:hidden name="container.eirType" value="EIR FORM 2"/>
 
 
             <div class="form-group">
@@ -47,7 +51,7 @@
               <script type="text/javascript">
                 $(function () {
                   var fromDatePickUp = $('#dateTime');
-                  fromDatePickUp.datetimepicker({
+                  fromDatePickUp.datepicker({
                     timeFormat: 'h:mm TT',
                     minDate: 0
                   });

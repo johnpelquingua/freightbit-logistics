@@ -1598,6 +1598,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         Container containerEntity  = transformContainerToEntityBean(container);
         containerService.updateContainer(containerEntity);
+        containerEntity.setContainerStatus("CHECKOUT");
         addActionMessage("Success! EIR Form has been checkout.");
         return SUCCESS;
 
