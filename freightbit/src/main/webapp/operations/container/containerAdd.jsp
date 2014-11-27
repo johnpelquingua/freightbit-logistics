@@ -39,7 +39,7 @@
                         <s:hidden name="container.containerId" value="%{container.containerId}" />
                         <s:hidden name="container.createdBy" value="%{container.createdBy}"/>
                         <s:hidden name="container.createdTimestamp" value="%{container.createdTimestamp}"/>
-                        <s:hidden name="container.eirType" value="EIR Form 1"/>
+                        <s:hidden name="container.eirType" value="EIR FORM 1"/>
                     <div class="col-lg-6">
                         <%--<div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Type: <span class="asterisk_red"></span></label>
@@ -85,7 +85,7 @@
                                           id="container.shipping"
                                           name="container.shipping"
                                           list="vendorShippingList"
-                                          listKey="vendorId"
+                                          listKey="vendorName"
                                           listValue="vendorName"
                                           emptyOption="true"
                                           required="true"
@@ -141,7 +141,7 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Remarks: </label>
                             <div class="col-lg-8" >
-                                <s:textarea required="true" name="container.remarks" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="container.remarks" />
+                                <s:textarea name="container.remarks" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="container.remarks" />
                             </div>
                         </div>
 
@@ -156,7 +156,7 @@
                                               id="container.trucking"
                                               name="container.trucking"
                                               list="vendorTruckingList"
-                                              listKey="vendorId"
+                                              listKey="vendorName"
                                               listValue="vendorName"
                                               emptyOption="true"
                                               required="true"
@@ -167,7 +167,8 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Plate Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.plateNumber" cssClass="form-control" id="container.plateNumber" />
+                                <s:textfield name="container.plateNumber" cssClass="form-control" id="container.plateNumber" />
+
                             </div>
 
                         </div>

@@ -113,6 +113,14 @@ public class TrucksDaoImpl extends HibernateDaoSupport implements TrucksDao {
     }
 
     @Override
+    public List<Trucks> findTrucksByPlateNumber(String plateNumber, Integer vendorId) {
+        Query query = getSessionFactory().getCurrentSession().createQuery(" from Trucks where plateNumber = :plateNumber and vendorId = :vendorId");
+        query.setParameter("plateNumber", plateNumber);
+        query.setParameter("vendorId", vendorId);
+        return query.list();
+    }
+
+    @Override
     public void updateTrucks(Trucks trucks) {
         log.debug("Updating Trucks");
         try {

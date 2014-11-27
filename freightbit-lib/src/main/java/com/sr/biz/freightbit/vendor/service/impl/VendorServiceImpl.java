@@ -222,6 +222,7 @@ public class VendorServiceImpl implements VendorService {
         return null;
     }
 
+
     @Override
     public List<Trucks> findTrucksByVendorId(Integer vendorId) {
         List<Trucks> result = trucksDao.findTrucksByVendorId(vendorId);

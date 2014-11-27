@@ -181,13 +181,6 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-	public ContainerBean transformToContainerFormBean(Container entity) {
-
-		ContainerBean formBean = new ContainerBean();
-		formBean.setOrderNumber(entity.getOrderNumber());
-
-		return formBean;
-	}
 
     public String viewConsolidationContainerList() {
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -358,7 +351,13 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setLadenEmpty(entity.getLadenEmpty());
         formBean.setForkliftOperator(entity.getForkliftOperator());
         formBean.setOperationsDept(entity.getOperationsDept());
-        formBean.setContainerStatus(entity.getContainerStatus());
+
+        if("CONSOLIDATED".equals(entity.getContainerStatus())) {
+            formBean.setContainerStatus("CONSOLIDATED");
+        }
+        else if("FINAL".equals(entity.getContainerStatus())){
+            formBean.setContainerStatus("FINAL");
+        }
 
         return formBean;
     }

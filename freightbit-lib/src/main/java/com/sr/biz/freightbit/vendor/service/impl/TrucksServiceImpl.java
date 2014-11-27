@@ -63,6 +63,11 @@ public class TrucksServiceImpl implements TrucksService {
     }
 
     @Override
+    public List<Trucks> findTrucksByPlateNumber(String plateNumber, Integer vendorId) {
+        return trucksDao.findTrucksByPlateNumber(plateNumber, vendorId);
+    }
+
+    @Override
     public List<Trucks> findTrucksByVendorId(Integer vendorId) {
         List<Trucks> result = trucksDao.findTrucksByVendorId(vendorId);
        /* if (result != null && !result.isEmpty()) {

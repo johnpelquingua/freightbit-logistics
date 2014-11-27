@@ -100,11 +100,18 @@
                                             <i class="fa fa-print"></i>
                                         </a>
 
+                                        <%--<s:if test=" #attr.container.containerStatus == 'FINAL' || #attr.container.containerStatus == 'OPEN'">
+                                        <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${container.containerId},'${container.containerStatus}');">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        </s:if>--%>
+
+                                        <s:if test=" #attr.container.containerStatus == 'FINAL' || #attr.container.containerStatus == 'OPEN'">
                                         <s:url var="checkoutFormUrl" action="loadCheckoutFormPage">
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
                                         </s:url>
                                         <s:a href="%{checkoutFormUrl}" title="Checkout Form" rel="tooltip" ><i class="fa fa-search"></i></s:a>
-
+                                        </s:if>
                                     </display:column>
                                 </td>
                             </display:table>
@@ -186,6 +193,24 @@
                 this.document.title = "Equipment Interchange Receipt 2";
             }
         }
+    }
+
+    function showInputFields(containerId,containerStatus) {
+
+        $.ajax({
+            url: 'checkoutContainer',
+            type: 'POST',
+            data: { containerIdParam: containerId , containerStatusParam: containerStatus },
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+                /*window.location.href = '#sixth';*/
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+
     }
 
 </script>

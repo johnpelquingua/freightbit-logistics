@@ -41,6 +41,7 @@ import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.exceptions.DriverAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
+import com.sr.biz.freightbit.vendor.service.TrucksService;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
@@ -80,7 +81,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     private List<Vendor> vendorShippingList = new ArrayList<Vendor>();
     private List<Vendor> vendorTruckingList = new ArrayList<Vendor>();
-    private List<Vendor> vendorNameList = new ArrayList<Vendor>();
     private List<Parameters> vendorTypeList = new ArrayList<Parameters>();
     private List<Parameters> vendorClassList = new ArrayList<Parameters>();
     private List<Parameters> statusList = new ArrayList<Parameters>();
@@ -106,6 +106,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     private OperationsService operationsService;
     private VendorService vendorService;
+    private TrucksService trucksService;
     private VesselSchedulesService vesselSchedulesService;
     private OrderService orderService;
     private CustomerService customerService;
@@ -117,6 +118,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private ContainerService containerService;
 
     private Map<String, String> driverMap = new LinkedHashMap<String, String>();
+    private Map<String, Integer> truckingPlateNumberMap = new LinkedHashMap<String, Integer>();
     private Map<String, String> trucksMap = new HashMap<String, String>();
 
     private String[] check;
@@ -127,7 +129,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public void prepare() {
         vendorShippingList = vendorService.findVendorsByCriteria("vendorType", "SHIPPING", 1);
         vendorTruckingList = vendorService.findVendorsByCriteria("vendorType", "TRUCKING", 1);
-        vendorNameList = vendorService.findAllShippingVendor();
         vendorTypeList = parameterService.getParameterMap(ParameterConstants.VENDOR_TYPE);
         vendorClassList = parameterService.getParameterMap(ParameterConstants.VENDOR_CLASS);
         statusList = parameterService.getParameterMap(ParameterConstants.STATUS);
@@ -2019,6 +2020,29 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String loadSuccessAddContainer() {
+        List<Container> containerEntityList = containerService.findAllContainer();
+        for (Container containerElem : containerEntityList) {
+            containers.add(transformContainerToFormBean(containerElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Container has been added.");
+
+        return SUCCESS;
+    }
+
+    public String truckingAction() {
+        if (vendorId != null) {
+            List<Trucks> truckPlateNumber = trucksService.findTrucksByPlateNumber("AAA-999", vendorId);
+
+            for (int i = 0; i < truckPlateNumber.size(); i++) {
+                truckingPlateNumberMap.put(truckPlateNumber.get(i).getPlateNumber(), truckPlateNumber.get(i).getVendorId());
+            }
+        }
+        return SUCCESS;
+    }
+
     public Integer getOrderIdParam() {
         return orderIdParam;
     }
@@ -2451,11 +2475,4 @@ public class OperationsAction extends ActionSupport implements Preparable {
         this.containerPortCode = containerPortCode;
     }
 
-    public List<Vendor> getVendorNameList() {
-        return vendorNameList;
-    }
-
-    public void setVendorNameList(List<Vendor> vendorNameList) {
-        this.vendorNameList = vendorNameList;
-    }
 }

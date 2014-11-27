@@ -387,7 +387,11 @@
 
         <action name="containerAdd" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="containerAdd">
             <result name="input" type="tiles">operations.containerAdd.tiles</result>
-            <result name="success" type="redirect">viewContainerList</result>
+            <result name="success" type="redirect">loadSuccessAddContainer</result>
+        </action>
+
+        <action name="loadSuccessAddContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSuccessAddContainer">
+            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
         <action name="editContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editContainer">
@@ -550,6 +554,10 @@
 
         <action name="listVesselName" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction" method="listVesselName">
             <result type="json">/operations/vesselScheduleAdd.jsp</result>
+        </action>
+
+        <action name="truckingAction" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="truckingAction">
+            <result type="json">/operations/containerAdd.jsp</result>
         </action>
 
     </package>
