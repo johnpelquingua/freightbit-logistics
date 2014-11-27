@@ -247,11 +247,11 @@
             </div>--%>
 
             <%--Anchor on tab click--%>
-            <s:textfield  value="%{documentTab}" id="documentTab"  />
-            <s:textfield  value="%{documentTabInbound}" id="documentTabInbound"  />
-            <s:textfield  value="%{documentTabFinalOutbound}" id="documentTabFinalOutbound"  />
-            <s:textfield  value="%{documentTabFinalInbound}" id="documentTabFinalInbound"  />
-            <s:textfield  value="%{documentTabArchive}" id="documentTabArchive"  />
+            <s:textfield type="hidden" value="%{documentTab}" id="documentTab"  />
+            <s:textfield type="hidden" value="%{documentTabInbound}" id="documentTabInbound"  />
+            <s:textfield type="hidden" value="%{documentTabFinalOutbound}" id="documentTabFinalOutbound"  />
+            <s:textfield type="hidden" value="%{documentTabFinalInbound}" id="documentTabFinalInbound"  />
+            <s:textfield type="hidden" value="%{documentTabArchive}" id="documentTabArchive"  />
             <s:textfield type="hidden" value="%{documentTabBilling}" id="documentTabBilling"  />
             <%--cssStyle="visibility: hidden;"--%>
 
@@ -1004,7 +1004,7 @@
 
     <div class="panel-body">
 
-        <s:if test=" documentTabArchive == 'NO_ARCHIVE_DOCUMENTS' ">
+        <s:if test=" documentTabArchive == 'NO_ARCHIVE_DOCUMENTS' && documentTabFinalInbound == 'FINAL_INBOUND_COMPLETE' ">
 
             <s:url var="activateArchiveUrl" action="activateArchive">
                 <s:param name="orderIdParam"
