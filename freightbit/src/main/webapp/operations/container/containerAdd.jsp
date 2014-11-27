@@ -35,7 +35,7 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
-                    <s:form cssClass="form-horizontal" theme="bootstrap" action="containerAdd">
+                    <s:form cssClass="form-horizontal" theme="bootstrap" action="containerAdd" id="addForm">
                         <s:hidden name="container.containerId" value="%{container.containerId}" />
                         <s:hidden name="container.createdBy" value="%{container.createdBy}"/>
                         <s:hidden name="container.createdTimestamp" value="%{container.createdTimestamp}"/>
@@ -118,7 +118,8 @@
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Date: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <s:textfield data-field="datetime" required="true" name="container.dateTime" cssClass="form-control" id="dateTime" readonly="true"/>
+                                <input type="text" data-field="datetime" required="true" class="form-control" id="falsedateTime" readonly="true"/>
+                                <s:textfield required="true" name="container.dateTime" cssClass="form-control" id="dateTime" style="display: none;"/>
                             </div>
                         </div>
 
@@ -219,7 +220,8 @@
             <div class="panel-footer">
                 <div class="pull-right">
                     <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Cancel</a>
-                    <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" action="save" value="Save"/>
+                    <%--<s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" action="save" value="Save"/>--%>
+                    <button type="button" class="btn btn-primary" onclick="finalAlter()">Save</button>
                 </div>
             </div>
         </div>
@@ -227,5 +229,11 @@
     </div>
 </div>
 <script>
+    function finalAlter(){
+        var time = $('#falsedateTime').val()+':00';
+        $('#dateTime').val(time);
+        alert($('#dateTime').val());
+        $('#addForm').submit();
+    }
     $(document).ready(function(){ $("#dtBox").DateTimePicker(); }); // FUNCTION FOR THE DATETIME PICKER REFER TO : DateTimePicker.js and DateTimePicker.css for styles
 </script>

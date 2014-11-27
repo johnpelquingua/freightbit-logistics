@@ -27,7 +27,7 @@
 			timeMeridiemSeparator: " ",
 			dateTimeSeparator: " ",
 		
-			dateTimeFormat: "dd-MM-yyyy HH:mm:ss",
+			dateTimeFormat: "yyyy-MM-dd HH:mm:ss",
 			dateFormat: "dd-MM-yyyy",
 			timeFormat: "HH:mm",
 		
@@ -88,7 +88,7 @@
 		
 			oInputElement: null,
 		
-			bIs12Hour: false	
+			bIs12Hour: true
 		};
 	
 		function DateTimePicker(element, options)
