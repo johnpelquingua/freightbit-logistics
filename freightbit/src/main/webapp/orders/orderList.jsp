@@ -180,17 +180,17 @@
     $(document).ready(function() {
         tableProp('NONE', 'order', 8, 5, 6, 7);
 
-        var tbl = document.getElementById("order");
+        <%--var tbl = document.getElementById("order");--%>
         <%--var ctr = <s:property value="%{Booking}"/>;--%>
 
-        if (tbl != null) {
-            for (var i =1; i <= ctr; i++) {
-                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                    tbl.rows[i].cells[j].style.backgroundColor=("#dff0d8") ;
+        <%--if (tbl != null) {--%>
+            <%--for (var i =1; i <= ctr; i++) {--%>
+                <%--for (var j = 0; j < tbl.rows[i].cells.length; j++) {--%>
+                    <%--tbl.rows[i].cells[j].style.backgroundColor=("#dff0d8") ;--%>
 
-                }
-            }
-        }
+                <%--}--%>
+            <%--}--%>
+        <%--}--%>
     });
 
     function generateReport(documentId,documentName) {

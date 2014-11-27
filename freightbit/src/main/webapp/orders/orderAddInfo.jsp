@@ -92,7 +92,7 @@
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Service Requirement</td>
-                                <td style="text-align: left !important;"><s:property value="order.serviceRequirement"/></td>
+                                <td style="text-align: left !important;" class="serviceReq"><s:property value="order.serviceRequirement"/></td>
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Payment Mode</td>
@@ -415,7 +415,7 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group weightAndVolume">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
@@ -508,7 +508,7 @@
                     <div style="clear:both; margin-top: 20px;" class="pull-right">
                         <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                             <span>
-                                <s:submit name="submit" cssClass="btn btn-primary" id="submit_button" value="Add Container to List" />
+                                <s:submit name="submit" cssClass="addContainerToList btn btn-primary" id="submit_button" value="Add Container to List"/>
                             </span>
                         </s:if>
                         <s:else>
@@ -1054,8 +1054,13 @@
     $(document).ready(function(){
         // adding item memory
         $('.addItemToList').click(function(){
-            localStorage.setItem('addingItems', 'true');
+            localStorage.setItem('addingItems', true);
         })
+
+        $('.addContainerToList').click(function(){
+            localStorage.setItem('addingContainer', true);
+        })
+
 
         // Addition of rate (php) and conversion to currency format
         var itemList = $('.itemListing tbody tr td:nth-child(7)'),
@@ -1068,9 +1073,14 @@
     })
 
     $(function(){ // function to check if adding item memory exists
-        var key = localStorage.getItem('addingItems')
-        if(key){
+        if(localStorage.getItem('addingItems') || localStorage.getItem('addingContainer')){
             $('.addItemDiv').focus();
+        }
+    })
+
+    $(function(){ // THIS FUNCTION HIDES THE WEIGHT AND VOLUME FIELD IF THE SERVICE REQ IS FULL CONTAINER LOAD
+        if($('.serviceReq').text() == 'FULL CONTAINER LOAD'){
+            $('.weightAndVolume').hide();
         }
     })
     // END
