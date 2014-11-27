@@ -225,9 +225,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }
 
         System.out.println("ggggggggggggggggggggggggggggggggggggggggggg" + documentListString);
+        System.out.println("ggggggggggggggggggggggggggggggggggggggggggg11111" + orderEntity.getServiceRequirement());
         // checker for documents missing
 
-        if(orderEntity.getServiceRequirement().equals("DOOR TO DOOR")){
+        if(orderEntity.getServiceMode().equals("DOOR TO DOOR")){
             if(!documentListString.contains("PROFORMA BILL OF LADING")){
                 clearErrorsAndMessages();
                 addActionMessage("PROFORMA BILL OF LADING(S) MISSING!");
@@ -244,7 +245,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 documentTab = "OUTBOUND_MISSING";
 
             }
-        }else if(orderEntity.getServiceRequirement().equals("PIER TO DOOR")){
+        }else if(orderEntity.getServiceMode().equals("PIER TO DOOR")){
             if(!documentListString.contains("PROFORMA BILL OF LADING")){
                 clearErrorsAndMessages();
                 addActionMessage("PROFORMA BILL OF LADING(S) MISSING!");
@@ -257,7 +258,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             }
 
-        }else if(orderEntity.getServiceRequirement().equals("DOOR TO PIER")){
+        }else if(orderEntity.getServiceMode().equals("DOOR TO PIER")){
             if(!documentListString.contains("PROFORMA BILL OF LADING")){
                 clearErrorsAndMessages();
                 addActionMessage("PROFORMA BILL OF LADING(S) MISSING!");
@@ -270,7 +271,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             }
 
-        }else if(orderEntity.getServiceRequirement().equals("PIER TO PIER")){
+        }else if(orderEntity.getServiceMode().equals("PIER TO PIER")){
             if(!documentListString.contains("PROFORMA BILL OF LADING")){
                 clearErrorsAndMessages();
                 addActionMessage("PROFORMA BILL OF LADING(S) MISSING!");
@@ -342,14 +343,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                             }
 
                             /*0-00000000000000000000000000000PIER TO PIER0000000000000000000000000000000000000*/
-
-
-
-                        /*} else {
-                            clearErrorsAndMessages();
-                            addActionMessage("DOCUMENTS NOT CREATED IN PLANNING YET!");
-                            documentTab = "OUTBOUND_MISSING";
-                        }*/
 
 
 
@@ -584,34 +577,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         sessionAttributes.put("documentflag", sessionAttributes.get("documentflag")); // get session document flag
         documentFlag(); // document flag method
         documentflag = 0; // resets document flag
-
-
-
-
-
-
-
-        /*sessionAttributes.put("documentflag", documentflag);
-        sessionAttributes.put("orderIdParam", orderIdParam);*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         return SUCCESS;
     }
