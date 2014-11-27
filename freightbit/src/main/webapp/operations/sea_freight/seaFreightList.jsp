@@ -104,5 +104,13 @@
 <script>
     $(document).ready(function(){
         tableProp('','order', 7, 4, 5, 6);
+        var freightStatus = $('#order tbody tr td:nth-child(7)'),
+            freightAction = $('#order tbody tr td:nth-child(8)');
+
+        for(var i=0; i < $('#order tbody tr').size(); i++){
+            if(freightStatus.eq(i).text() == 'INCOMPLETE'){
+                freightAction.eq(i).empty().append('<i class="fa fa-ban"></i>')
+            }
+        }
     })
 </script>

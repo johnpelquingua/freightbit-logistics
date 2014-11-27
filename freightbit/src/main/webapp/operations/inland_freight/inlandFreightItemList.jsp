@@ -117,7 +117,7 @@
                                        class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                        style="margin-top: 15px;">
 
-                            <td><display:column>
+                            <td><display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
                                 <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
                             </display:column></td>
 
@@ -282,6 +282,14 @@
             }
         }
 
+        $('#mainCheckBox').click(function(){
+            if($('#orderItem [type="checkbox"]:checked').length == $('#orderItem [type="checkbox"]').size()){
+                $('#orderItem [type="checkbox"]').prop('checked', false);
+            }else{
+                $('#orderItem [type="checkbox"]').prop('checked', true);
+            }
+        })
+        
     });
 
     function CheckAll(check)
