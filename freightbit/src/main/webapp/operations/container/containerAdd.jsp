@@ -8,6 +8,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
+<link rel="stylesheet" href="../includes/css/DateTimePicker.css">
+<script type='text/javascript' src='../includes/js/DateTimePicker.js'></script>
+
 <div class="row">
     <div class="col-lg-12">
 
@@ -111,24 +114,17 @@
                                 <s:textfield required="true" name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" />
                             </div>
                         </div>
-
+                        <div id="dtBox"></div><%--This is for the datetimepicker--%>
                         <div class="form-group">
                             <label class="col-lg-4 control-label" style="padding-top:0px;">Date: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
-                                <s:textfield required="true" name="container.dateTime" cssClass="form-control" id="dateTime" />
+                                <s:textfield data-field="datetime" required="true" name="container.dateTime" cssClass="form-control" id="dateTime" readonly="true"/>
                             </div>
-                            <script type="text/javascript">
-                                $(function () {
-                                    var fromDatePickUp = $('#dateTime');
-                                    fromDatePickUp.datetimepicker({
-                                        timeFormat: 'h:mm TT',
-                                        minDate: 0
-                                    });
-                                });
-                            </script>
                         </div>
 
                         <div class="form-group">
+
+
                             <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-8" >
                                 <s:textfield required="true" name="container.eirNumber" cssClass="form-control" id="container.eirNumber" />
@@ -229,9 +225,6 @@
         </s:form>
     </div>
 </div>
-
-<script type="text/javascript">
-    $('#dateTime').datetimepicker({
-        timeFormat: 'h:mm TT'
-    });
+<script>
+    $(document).ready(function(){ $("#dtBox").DateTimePicker(); }); // FUNCTION FOR THE DATETIME PICKER REFER TO : DateTimePicker.js and DateTimePicker.css for styles
 </script>
