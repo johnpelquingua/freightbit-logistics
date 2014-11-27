@@ -5,9 +5,6 @@ import com.sr.biz.freightbit.order.entity.Orders;
 
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 8/8/14.
- */
 public interface DocumentsService {
 
     public List<Documents> findDocumentationByCriteria(String column, String value);
@@ -31,6 +28,10 @@ public interface DocumentsService {
     public List<Documents> findDocumentByFinalOutboundStageAndID (Integer finalOutboundStage, Integer referenceId);
 
     public List<Documents> findDocumentByFinalInboundStageAndID (Integer finalInboundStage, Integer referenceId);
+
+    public List<Documents> findDocumentByArchiveStageAndID (Integer archiveStage, Integer referenceId);
+
+    public List<Documents> findDocumentByBillingStageAndID (Integer billingStage, Integer referenceId);
 
     public Documents findDocumentByNameAndVendorCode(String documentName, String vendorCode);
 

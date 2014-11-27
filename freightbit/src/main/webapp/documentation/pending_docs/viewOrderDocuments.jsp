@@ -32,6 +32,14 @@
                 $("#fourth").toggleClass('disabled active');
             }
 
+            var final_inbound_tab = $("#documentTabFinalInbound").val();
+
+            if(final_inbound_tab == "FINAL_INBOUND_COMPLETE" ){
+
+                $("#fourth").toggleClass('active complete');
+                $("#fifth").toggleClass('disabled active');
+            }
+
         });
 
     });
@@ -42,9 +50,9 @@
 </script>
 
 <style>
-    .pagebanner, .pagelinks {
+    /*.pagebanner, .pagelinks {
         display: none;
-    }
+    }*/
     #inboundReceivedModal{
         top:50%;
         outline: none;
@@ -243,6 +251,8 @@
             <s:textfield  value="%{documentTabInbound}" id="documentTabInbound"  />
             <s:textfield  value="%{documentTabFinalOutbound}" id="documentTabFinalOutbound"  />
             <s:textfield  value="%{documentTabFinalInbound}" id="documentTabFinalInbound"  />
+            <s:textfield  value="%{documentTabArchive}" id="documentTabArchive"  />
+            <s:textfield type="hidden" value="%{documentTabBilling}" id="documentTabBilling"  />
             <%--cssStyle="visibility: hidden;"--%>
 
                 <s:if test="hasActionMessages()">
@@ -470,7 +480,7 @@
 
                     <div class="tab-pane fade" id="inbound">
 
-                        <div class="panel-body" style="text-align: center;">
+                        <div class="panel-body">
 
                             <s:if test=" documentTabInbound == 'NO_INBOUND_DOCUMENTS' ">
 
@@ -482,11 +492,18 @@
 
                             <s:if test=" documentTabInbound == 'INBOUND' || documentTabInbound == 'INBOUND_COMPLETE'">
 
-                                <div class="table-responsive">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" >Date Received</label>
+                                    <div class="col-lg-3">
+                                        <s:textfield type="text" cssClass="form-control" name = "dateReturnedInbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive" style="clear:both;">
                                     <s:form name="myform" action="processDocumentsInbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
-                                    <s:textfield  name="document.documentItem" id="documentItemInbound" />
-                                    <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocumentsInbound.action" pagesize="10" class="inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <s:textfield type="hidden" name="document.documentItem" id="documentItemInbound" />
+                                    <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="inbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
@@ -666,7 +683,7 @@
 
                     <div class="tab-pane fade" id="finalOutbound">
 
-                        <div class="panel-body" style="text-align: center;">
+                        <div class="panel-body">
 
                             <s:if test=" documentTabFinalOutbound == 'NO_FINAL_OUTBOUND_DOCUMENTS' && documentTabInbound == 'INBOUND_COMPLETE' ">
                                 <s:url var="activateFinalOutboundUrl" action="activateFinalOutbound">
@@ -676,15 +693,26 @@
                                 <s:a class="icon-action-link" href="%{activateFinalOutboundUrl}" rel="tooltip">
                                     <button type="button" class="btn btn-primary">Activate Final Outbound Documents</button>
                                 </s:a>
-
                             </s:if>
 
                             <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND' || documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE' || documentTabFinalOutbound == 'FINAL_OUTBOUND_SENT'">
-                                <div class="table-responsive">
+
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label" >Date Sent</label>
+                                    <div class="col-lg-3">
+                                        <s:textfield type="text" cssClass="form-control" name = "dateSentFinalOutbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>
+                                    </div>
+                                    <label class="col-lg-2 control-label" >Tracking Number</label>
+                                    <div class="col-lg-3">
+                                        <s:textfield type="text" cssClass="form-control" name = "finalOutboundTrackingNumber" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive" style="clear:both;">
                                 <s:form name="myform" action="processDocumentsFinalOutbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
-                                    <s:textfield  name="document.documentItem" id="documentItemFinalOutbound"></s:textfield>
-                                    <display:table id="document" name="finalOutboundDocuments" requestURI="viewOrderDocumentsFinalOutbound.action" pagesize="10" class=" final_outbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <s:textfield type="hidden" name="document.documentItem" id="documentItemFinalOutbound"></s:textfield>
+                                    <display:table id="document" name="finalOutboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class=" final_outbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
@@ -831,9 +859,9 @@
 
                     <div class="tab-pane fade" id="finalInbound">
 
-                        <div class="panel-body" style="text-align: center;">
+                        <div class="panel-body">
 
-                            <s:if test=" documentTabFinalInbound == 'NO_FINAL_INBOUND_DOCUMENTS' && documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE'">
+                            <s:if test=" documentTabFinalInbound == 'NO_FINAL_INBOUND_DOCUMENTS' && documentTabFinalOutbound == 'FINAL_OUTBOUND_SENT'">
 
                                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#finalInboundReceivedModal">
                                     Activate Finale Inbound Documents
@@ -841,12 +869,19 @@
 
                             </s:if>
 
-                            <s:if test=" documentTabFinalInbound == 'FINAL_INBOUND' ">
+                            <s:if test=" documentTabFinalInbound == 'FINAL_INBOUND' || documentTabFinalInbound == 'FINAL_INBOUND_COMPLETE'">
 
-                                <div class="table-responsive">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label" >Date Received</label>
+                                    <div class="col-lg-3">
+                                        <s:textfield type="text" cssClass="form-control" name = "dateReturnedFinalInbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive" style="clear:both;">
                                     <s:form name="myform" action="processDocumentsFinalInbound">
-                                    <s:textfield  name="orderIdParam" id="order-Id"   />
-                                    <s:textfield  name="document.documentItem" id="documentItemFinalInbound"></s:textfield>
+                                    <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
+                                    <s:textfield type="hidden" name="document.documentItem" id="documentItemFinalInbound"></s:textfield>
                                     <display:table id="document" name="finalInboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
@@ -968,7 +1003,89 @@
 <div class="tab-pane fade" id="archive">
 
     <div class="panel-body">
-ARCHIVE DOCUMENTS PLACEHOLDER
+
+        <s:if test=" documentTabArchive == 'NO_ARCHIVE_DOCUMENTS' ">
+
+            <s:url var="activateArchiveUrl" action="activateArchive">
+                <s:param name="orderIdParam"
+                         value="#attr.order.orderId"></s:param>
+            </s:url>
+            <s:a class="icon-action-link" href="%{activateArchiveUrl}" rel="tooltip">
+                <button type="button" class="btn btn-primary">Activate Archive Documents</button>
+            </s:a>
+
+        </s:if>
+
+        <s:if test=" documentTabArchive == 'ARCHIVE' || documentTabArchive == 'ARCHIVE_COMPLETE' ">
+            <div class="table-responsive" style="clear:both;">
+                <s:form name="myform" action="processDocumentsArchive">
+                <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
+                <s:textfield type="hidden" name="document.documentItem" id="documentItemArchive"></s:textfield>
+                <display:table id="document" name="archiveDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                               style="margin-top: 15px;">
+
+                    <td>
+                        <display:column title="" class="tb-font-black" style="text-align: center;" >
+                            <s:if test="#attr.document.documentProcessed <= 4">
+                                <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                            </s:if>
+
+                            <s:else>
+                                <i class="fa fa-check-square-o"></i>
+                            </s:else>
+                            <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
+                            <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
+
+                        </display:column>
+                    </td>
+
+                    <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
+                    </display:column>
+                    </td>
+
+                    <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
+                    </display:column>
+                    </td>
+
+                    <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
+                    </display:column>
+                    </td>
+
+                    <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
+                    </display:column>
+                    </td>
+
+                    <td><display:column property="documentComments" title="Comments" class="tb-font-black" style="text-align: center;">
+                    </display:column>
+                    </td>
+
+                    <td>
+                        <display:column title="Action" class="tb-font-black" style="text-align: center;" >
+
+                            <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <%--Print Document--%>
+                            <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' ">
+                                <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                    <i class="fa fa-print"></i>
+                                </a>
+                            </s:if>
+
+                        </display:column>
+                    </td>
+
+                </display:table>
+            </div>
+
+
+            <s:if test=" documentTabArchive == 'ARCHIVE' ">
+                <s:submit cssClass="btn btn-default pull-right"  value="Check Document(s)" onclick="addCheckTextArchive()"></s:submit>
+            </s:if>
+
+            </s:form>
+        </s:if>
+
     </div>
 
 </div>
@@ -1055,24 +1172,22 @@ BILLING DOCUMENTS PLACEHOLDER
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>--%>
-            <div class="modal-body col-md-12">
+            <div class="modal-body row">
                 <s:form action="finalOutboundSent" theme="bootstrap">
-                    <div class="row">
+                    <div class="col-md-12">
                         <label class="control-label" >Date Sent</label>
-                        <div class="col-md-12">
+                        <div>
                             <s:textfield type="text" cssClass="form-control" id="datepicker2" name = "dateSentFinalOutbound" cssStyle="margin-bottom: 15px;" required="true" placeholder="Select Date Sent"></s:textfield>
                         </div>
                     </div>
                     <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
-
                     <div class="col-md-12">
-                        <label class="col-lg-3 control-label" >Tracking Number</label>
-                        <div class="col-lg-3">
+                        <label class="control-label" >Tracking Number</label>
+                        <div>
                             <s:textfield type="text" cssClass="form-control" name = "finalOutboundTrackingNumber" cssStyle="margin-bottom: 15px !important;" required="true" placeholder="Input Tracking Number"></s:textfield>
                         </div>
                     </div>
-
-                    <div class="row" style="margin-right: 3em;">
+                    <div style="float: right; margin-right: 1em; margin-top: 2em;">
                         <s:submit name="submit" cssClass="btn btn-primary" value="Send Documents" onclick="addOrderId()" />
                     </div>
                 </s:form>
@@ -1108,10 +1223,12 @@ BILLING DOCUMENTS PLACEHOLDER
     </div>
 </div>
 
-<s:textfield value="%{outboundCount}" id="outboundCount"  />
-<s:textfield value="%{inboundCount}" id="inboundCount"  />
-<s:textfield value="%{finalOutboundCount}" id="finalOutboundCount" />
-<s:textfield value="%{finalInboundCount}" id="finalInboundCount" />
+<s:textfield type="hidden" value="%{outboundCount}" id="outboundCount"  />
+<s:textfield type="hidden" value="%{inboundCount}" id="inboundCount"  />
+<s:textfield type="hidden" value="%{finalOutboundCount}" id="finalOutboundCount" />
+<s:textfield type="hidden" value="%{finalInboundCount}" id="finalInboundCount" />
+<s:textfield type="hidden" value="%{archiveCount}" id="archiveCount" />
+<s:textfield type="hidden" value="%{billingCount}" id="billingCount" />
 
 <%--type="hidden"--%>
 
@@ -1131,6 +1248,7 @@ $(function() {
 
     if (lastTab) {
         $('a[href="'+lastTab+'"]').click();
+
     }
 });
 
@@ -1160,6 +1278,13 @@ $(function() {
         var orderIdGet = document.getElementById("order_Id").value;
 
         document.getElementById("documentItemFinalInbound").value = "check";
+        document.getElementById("order-Id").value = orderIdGet;
+    }
+
+    function addCheckTextArchive() {
+        var orderIdGet = document.getElementById("order_Id").value;
+
+        document.getElementById("documentItemArchive").value = "check";
         document.getElementById("order-Id").value = orderIdGet;
     }
 

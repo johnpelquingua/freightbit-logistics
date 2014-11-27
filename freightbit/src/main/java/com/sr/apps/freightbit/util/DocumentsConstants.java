@@ -1,7 +1,7 @@
 package com.sr.apps.freightbit.util;
 
 public class DocumentsConstants {
-	
+
     //Document Types
     public final static String OUTBOUND = "OUTBOUND";
     public final static String INBOUND = "INBOUND";

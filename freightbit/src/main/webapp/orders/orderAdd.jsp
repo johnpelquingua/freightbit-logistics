@@ -150,7 +150,70 @@
                                 />
 
                             </div>
-                            <%--<div id="ajaxResponse"></div>--%>
+
+                        </div>
+
+                        <div class="form-group" style="clear: both;">
+
+                            <label class="col-lg-3 control-label" style="margin-top: 5px;">Phone</label>
+                            <div class="col-lg-3" >
+
+                                <s:select cssClass="form-control"
+                                          id="customerPhone"
+                                          list="#{customerPhone}"
+                                          value="%{customerPhone}"
+                                          style="display:none"
+                                        />
+                                <s:textfield cssClass="form-control"
+                                             id="customerPhone_textfield"
+                                             disabled="true"
+                                        />
+                            </div>
+
+                            <label class="col-lg-3 control-label" style="margin-top: 5px;">Mobile</label>
+                            <div class="col-lg-3" >
+                                <s:select cssClass="form-control"
+                                          id="customerMobile"
+                                          list="#{customerMobile}"
+                                          value="%{customerMobile}"
+                                          style="display:none"
+                                        />
+                                <s:textfield cssClass="form-control"
+                                             id="customerMobile_textfield"
+                                             disabled="true"
+                                        />
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="padding-top: 25px; clear: both;">
+
+                            <label class="col-lg-3 control-label" style="margin-top: 5px;">Email Address</label>
+                            <div class="col-lg-3" >
+                                <s:select cssClass="form-control"
+                                          id="customerEmail"
+                                          list="#{customerEmail}"
+                                          value="%{customerEmail}"
+                                          style="display:none"
+                                        />
+                                <s:textfield cssClass="form-control"
+                                             id="customerEmail_textfield"
+                                             disabled="true"
+                                        />
+                            </div>
+
+                            <label class="col-lg-3 control-label" style="margin-top: 5px;">Fax</label>
+                            <div class="col-lg-3" >
+                                <s:select cssClass="form-control"
+                                          id="customerFax"
+                                          list="#{customerFax}"
+                                          value="%{customerFax}"
+                                          style="display:none"
+                                        />
+                                <s:textfield cssClass="form-control"
+                                             id="customerFax_textfield"
+                                             disabled="true"
+                                        />
+                            </div>
                         </div>
 
                     </fieldset>
@@ -275,73 +338,10 @@
                         </div>
                     </div>
 
-                    <legend style="text-align: left;">
+                    <%--<legend style="text-align: left;">
                         <span>
                         </span>
-                    </legend>
-
-                    <div class="form-group" style="clear: both;">
-
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Phone</label>
-                        <div class="col-lg-3" >
-
-                            <s:select cssClass="form-control"
-                                      id="customerPhone"
-                                      list="#{customerPhone}"
-                                      value="%{customerPhone}"
-                                      style="display:none"
-                                    />
-                            <s:textfield cssClass="form-control"
-                                         id="customerPhone_textfield"
-                                         disabled="true"
-                                    />
-                        </div>
-
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Mobile</label>
-                        <div class="col-lg-3" >
-                            <s:select cssClass="form-control"
-                                      id="customerMobile"
-                                      list="#{customerMobile}"
-                                      value="%{customerMobile}"
-                                      style="display:none"
-                                    />
-                            <s:textfield cssClass="form-control"
-                                         id="customerMobile_textfield"
-                                         disabled="true"
-                                    />
-                        </div>
-                    </div>
-
-                    <div class="form-group" style="padding-top: 25px; clear: both;">
-
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Email Address</label>
-                        <div class="col-lg-3" >
-                            <s:select cssClass="form-control"
-                                      id="customerEmail"
-                                      list="#{customerEmail}"
-                                      value="%{customerEmail}"
-                                      style="display:none"
-                                    />
-                            <s:textfield cssClass="form-control"
-                                         id="customerEmail_textfield"
-                                         disabled="true"
-                                    />
-                        </div>
-
-                        <label class="col-lg-3 control-label" style="margin-top: 5px;">Fax</label>
-                        <div class="col-lg-3" >
-                            <s:select cssClass="form-control"
-                                      id="customerFax"
-                                      list="#{customerFax}"
-                                      value="%{customerFax}"
-                                      style="display:none"
-                                    />
-                            <s:textfield cssClass="form-control"
-                                         id="customerFax_textfield"
-                                         disabled="true"
-                                    />
-                        </div>
-                    </div>
+                    </legend>--%>
 
                     <legend style="text-align: left;">
                             <span >

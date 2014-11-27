@@ -1514,7 +1514,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return formBean;
     }
 
-    private Container transformContainerToEntityBean(ContainerBean formBean){
+    private Container   transformContainerToEntityBean(ContainerBean formBean){
 
         Container entity = new Container();
         /*Client client = clientService.findClientById(getClientId().toString());
@@ -1690,6 +1690,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntityProforma.setVendorCode(itemVendor);
                     documentEntityProforma.setOutboundStage(1);
                     documentEntityProforma.setDocumentProcessed(0);
+                    documentEntityProforma.setCreatedBy(commonUtils.getUserNameFromSession());
+                    // orderitem id should be set in orderitemid column WIP
 
                     documentsService.addDocuments(documentEntityProforma);
                 } else { // will prompt a message when attempting to create proforma if one was already created
@@ -1790,6 +1792,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntity.setOutboundStage(1);
                     documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
                     documentEntity.setDocumentProcessed(0);
+                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                    // orderitem id should be set in orderitemid column WIP
 
                     documentsService.addDocuments(documentEntity);
                 } else { // will prompt a message when attempting to create house waybill origin if one was already created
@@ -1867,6 +1871,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     /*documentEntity.setOutboundStage(1);*/
                     documentEntity.setFinalOutboundStage(0);
                     documentEntity.setDocumentProcessed(2);
+                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                    // orderitem id should be set in orderitemid column WIP
 
                     documentsService.addDocuments(documentEntity);
                 } else {
