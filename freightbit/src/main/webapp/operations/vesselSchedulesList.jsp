@@ -34,8 +34,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Vessel Schedules List</h3>
                 <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking"
-                            onclick="location.href='loadVesselScheduleSearch'">
+                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
                         <i class="fa fa-search"></i> Search Schedule
                     </button>
                     <button type="button" class="btn btn-primary new-booking"
@@ -103,20 +102,22 @@
 
 
             </div>
+        </div>
+    </div>
+</div>
 
-            <div class="panel-footer">
-
-                <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking"
-                            onclick="location.href='loadVesselScheduleSearch'">
-                        <i class="fa fa-search"></i> Search Schedule
-                    </button>
-                    <button type="button" class="btn btn-primary new-booking"
-                            onclick="location.href='loadAddVesselSchedule'">
-                        <i class="fa fa-anchor"></i> New Schedule
-                    </button>
-                </span>
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <%--<div class="modal-header">
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+            </div>--%>
+            <div class="modal-body">
+                <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>--%>
         </div>
     </div>
 </div>
@@ -125,4 +126,20 @@
     $(document).ready(function () {
         tableProp('DESTI_ORIG', 'vesselSchedule', 0, 0, 0, 0, 2,3);
     });
+
+    function showSearchFields() {
+        $.ajax({
+            url: 'loadVesselScheduleSearch',
+            type: 'POST',
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+                /*window.location.href = '#sixth';*/
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+
+    }
 </script>

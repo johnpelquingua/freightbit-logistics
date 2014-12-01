@@ -38,7 +38,7 @@
 
         <action name="loadVesselScheduleSearch" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
                 method="loadVesselScheduleSearch">
-            <result name="success" type="tiles">operations.vesselScheduleSearch.tiles</result>
+            <result name="success">/operations/vesselScheduleSearch.jsp</result>
         </action>
 
         <action name="loadAddVesselSchedule" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
@@ -404,7 +404,6 @@
         </action>
 
         <action name="checkoutContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editContainer">
-            <result name="input" type="tiles">operations.loadCheckoutForm.tiles</result>
             <result name="success" type="redirect">viewContainerList</result>
         </action>
 
@@ -413,7 +412,7 @@
         </action>
 
         <action name="loadSearchContainerPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSearchContainerPage">
-            <result name="success" type="tiles">operations.containerSearch.tiles</result>
+            <result name="success">/operations/container/containerSearch.jsp</result>
         </action>
 
         <action name="loadEditFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadEditFormPage">
@@ -421,7 +420,7 @@
         </action>
 
         <action name="loadCheckoutFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadCheckoutFormPage">
-            <result name="success" type="tiles">operations.loadCheckoutForm.tiles</result>
+            <result name="success">/operations/container/checkoutForm.jsp</result>
         </action>
 
         <!--CONTAINER-->
@@ -438,7 +437,7 @@
         </action>
 
         <action name="loadConsolidationContainerSearch" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="loadConsolidationContainerSearch">
-            <result name="success" type="tiles">operations.consolidationContainerSearch.tiles</result>
+            <result name="success">/operations/consolidationContainerSearch.jsp</result>
         </action>
 
         <action name="updateStatusOfContainers" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="updateStatusOfContainers">

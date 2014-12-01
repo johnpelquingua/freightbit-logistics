@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<%--
 <div class="row">
   <div class="col-lg-12">
 
@@ -19,7 +19,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-search"></i> Search </h3>
-      </div>
+      </div>--%>
       <div class="panel-body">
         <div class="table-responsive list-table">
           <s:form theme="bootstrap" cssClass="form-horizontal" action="viewContainerList">
@@ -47,10 +47,13 @@
       </div>
       <div class="panel-footer">
         <div class="pull-right">
+          <button type="button" class="btn" onclick="location.href='viewContainerList'">
+            Cancel
+          </button>
           <s:submit cssClass="btn btn-primary" name="submit" value="Search"/>
         </div>
       </div>
-    </div>
-    </s:form>
+          </s:form>
+    <%--</div>
   </div>
-</div>
+</div>--%>

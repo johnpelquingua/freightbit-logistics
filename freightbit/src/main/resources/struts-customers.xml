@@ -65,7 +65,7 @@
 
         <action name="loadSearchCustomerPage" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="loadSearchCustomerPage">
-            <result name="success" type="tiles">customer.customerSearch.tiles</result>
+            <result name="success">/customer/customerInfo/customerSearch.jsp</result>
         </action>
 
         <action name="searchCustomers" class="com.sr.apps.freightbit.customer.action.CustomerAction"

@@ -35,10 +35,10 @@
         <put-attribute name="body" value="/operations/vesselScheduleEdit.jsp"/>
     </definition>
 
-    <definition name="operations.vesselScheduleSearch.tiles" extends="baseLayout">
+    <!--<definition name="operations.vesselScheduleSearch.tiles" extends="baseLayout">
         <put-attribute name="title" value="Search Vessel Schedule"/>
         <put-attribute name="body" value="/operations/vesselScheduleSearch.jsp"/>
-    </definition>
+    </definition>-->
 
     <definition name="operations.vesselScheduleList.tiles" extends="baseLayout">
         <put-attribute name="title" value="Vessel Schedule List"/>
@@ -170,11 +170,6 @@
         <put-attribute name="body" value="/operations/container/containerInfo.jsp"/>
     </definition>
 
-    <!--<definition name="operations.viewContainerListTest.tiles" extends="baseLayout">-->
-        <!--<put-attribute name="title" value="Container Management"/>-->
-        <!--<put-attribute name="body" value="/operations/container/containerInfo.jsp"/>-->
-    <!--</definition>-->
-
     <definition name="operations.viewContainerList.tiles" extends="baseLayout">
         <put-attribute name="title" value="Container Management"/>
         <put-attribute name="body" value="/operations/container/containerList.jsp"/>
@@ -195,15 +190,15 @@
         <put-attribute name="body" value="/operations/container/containerList.jsp"/>
     </definition>
 
-    <definition name="operations.loadCheckoutForm.tiles" extends="baseLayout">
+    <!--<definition name="operations.loadCheckoutForm.tiles" extends="baseLayout">
         <put-attribute name="title" value="Container Management"/>
         <put-attribute name="body" value="/operations/container/checkoutForm.jsp"/>
-    </definition>
+    </definition>-->
 
-    <definition name="operations.containerSearch.tiles" extends="baseLayout">
+    <!--<definition name="operations.containerSearch.tiles" extends="baseLayout">
         <put-attribute name="title" value="Container Management"/>
         <put-attribute name="body" value="/operations/container/containerSearch.jsp"/>
-    </definition>
+    </definition>-->
 
     <definition name="operations.documentsList.tiles" extends="baseLayout">
         <put-attribute name="title" value="Available Documents"/>
@@ -225,10 +220,10 @@
         <put-attribute name="body" value="/operations/consolidation/consolidationItemListEdit.jsp"/>
     </definition>
 
-    <definition name="operations.consolidationContainerSearch.tiles" extends="baseLayout">
+    <!--<definition name="operations.consolidationContainerSearch.tiles" extends="baseLayout">
         <put-attribute name="title" value="Consolidation Container Search"/>
         <put-attribute name="body" value="/operations/consolidation/consolidationContainerSearch.jsp"/>
-    </definition>
+    </definition>-->
 
     <definition name="operations.consolidationContainerInfo.tiles" extends="baseLayout">
         <put-attribute name="title" value="Consolidation Container Info"/>
@@ -317,10 +312,10 @@
     <!-- DOCUMENTATION module end -->
 
     <!-- CORE module tiles Begin-->
-    <definition name="core.userSearch.tiles" extends="baseLayout">
+    <!--<definition name="core.userSearch.tiles" extends="baseLayout">
         <put-attribute name="title" value="Search User"/>
         <put-attribute name="body" value="/core/user/userSearch.jsp"/>
-    </definition>
+    </definition>-->
     <definition name="core.userListView.tiles" extends="baseLayout">
         <put-attribute name="title" value="User Page"/>
         <put-attribute name="body" value="/core/user/userListView.jsp"/>
@@ -392,10 +387,10 @@
 
     <!-- VENDOR module tiles Begin -->
 
-    <definition name="vendor.vendorSearch.tiles" extends="baseLayout">
+    <!--<definition name="vendor.vendorSearch.tiles" extends="baseLayout">
         <put-attribute name="title" value="Search Vendor"/>
         <put-attribute name="body" value="/vendor/vendorSearch.jsp"/>
-    </definition>
+    </definition>-->
     <definition name="vendor.vendorAdd.tiles" extends="baseLayout">
         <put-attribute name="title" value="Add New Vendor"/>
         <put-attribute name="body" value="/vendor/add/vendorAdd.jsp"/>
@@ -545,10 +540,10 @@
         <put-attribute name="title" value="Customer List Items"/>
         <put-attribute name="body" value="/customer/customerItem/customerListItems.jsp"/>
     </definition>
-    <definition name="customer.customerSearch.tiles" extends="baseLayout">
+    <!--<definition name="customer.customerSearch.tiles" extends="baseLayout">
         <put-attribute name="title" value="Search Customer"/>
         <put-attribute name="body" value="/customer/customerInfo/customerSearch.jsp"/>
-    </definition>
+    </definition>-->
     <definition name="customer.customerAdd.tiles" extends="baseLayout">
         <put-attribute name="title" value="Add Customer"/>
         <put-attribute name="body" value="/customer/customerInfo/customerAddInfo.jsp"/>
@@ -666,10 +661,10 @@
 
     <!-- ORDER module tiles Begin-->
 
-    <definition name="orders.booking-search.tiles" extends="baseLayout">
+    <!--<definition name="orders.booking-search.tiles" extends="baseLayout">
         <put-attribute name="title" value="Search Booking"/>
         <put-attribute name="body" value="/orders/orderSearch.jsp"/>
-    </definition>
+    </definition>-->
     <definition name="orders.booking-list.tiles" extends="baseLayout">
         <put-attribute name="title" value="Booking List"/>
         <put-attribute name="body" value="/orders/orderList.jsp"/>

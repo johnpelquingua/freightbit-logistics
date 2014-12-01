@@ -30,7 +30,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Consolidation Container List</h3>
                 <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadConsolidationContainerSearch'">
+                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
                         <i class="fa fa-search"></i> Search Container
                     </button>
                 </span>
@@ -81,12 +81,23 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadConsolidationContainerSearch'">
-                        <i class="fa fa-search"></i> Search Container
-                    </button>
-                </span>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <%--<div class="modal-header">
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+            </div>--%>
+            <div class="modal-body">
+                <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
+            </div>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>--%>
         </div>
     </div>
 </div>
@@ -102,5 +113,21 @@
         win.onload = function(){
             this.document.title = name;
         }
+    }
+
+    function showSearchFields() {
+        $.ajax({
+            url: 'loadConsolidationContainerSearch',
+            type: 'POST',
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+                /*window.location.href = '#sixth';*/
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+
     }
 </script>

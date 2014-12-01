@@ -34,7 +34,7 @@
                 </h3>
                 <span class="pull-right">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                    <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchContainerPage'">
+                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
                         <i class="fa fa-search"></i> Search Container
                     </button>
                     <s:url var="loadAddFormPageUrl" action="loadAddFormPage">
@@ -107,11 +107,14 @@
                                         </s:if>--%>
 
 
-                                        <s:if test="#attr.container.containerStatus == 'FINAL'">
-                                        <s:url var="checkoutFormUrl" action="loadCheckoutFormPage">
+                                        <s:if test="#attr.container.containerStatus == 'FINAL' || #attr.container.containerStatus == 'OPEN' ">
+                                            <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields();">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        <%--<s:url var="checkoutFormUrl" action="loadCheckoutFormPage">
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
                                         </s:url>
-                                        <s:a href="%{checkoutFormUrl}" title="Checkout Form" rel="tooltip" ><i class="fa fa-edit"></i></s:a>
+                                        <s:a href="%{checkoutFormUrl}" title="Checkout Form" rel="tooltip" ><i class="fa fa-edit"></i></s:a>--%>
 
                                         </s:if>
                                     </display:column>
@@ -125,22 +128,6 @@
             </div>
             <div class="panel-footer">
 
-                <span class="pull-right">
-                
-                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                        <s:url var="loadAddFormPageUrl" action="loadAddFormPage">
-                        </s:url>
-                        <s:a class="icon-action-link" href="%{loadAddFormPageUrl}" rel="tooltip" title="New Container">
-                            <button type="button" class="btn btn-success new-booking" onclick="location.href='loadSearchContainerPage'">
-                                <i class="fa fa-search"></i> Search Container
-                            </button>
-                            <button type="button" class="btn btn-primary">
-                                <i class="fa fa-home"> </i> Create New EIR Form
-                            </button>
-                        </s:a>
-                    </sec:authorize>
-
-                </span>
 
                 <div class="table-responsive" >
                     <div class="col-lg-12" style="position:relative;margin-top: -28px;">
@@ -156,6 +143,22 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <%--<div class="modal-header">
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+            </div>--%>
+            <div class="modal-body">
+                <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
+            </div>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>--%>
         </div>
     </div>
 </div>
@@ -197,12 +200,27 @@
         }
     }
 
-    function showInputFields(containerId,containerStatus) {
+    function showSearchFields() {
+        $.ajax({
+            url: 'loadSearchContainerPage',
+            type: 'POST',
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+                /*window.location.href = '#sixth';*/
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+
+    }
+
+    function showInputFields() {
 
         $.ajax({
-            url: 'checkoutContainer',
+            url: 'loadCheckoutFormPage',
             type: 'POST',
-            data: { containerIdParam: containerId , containerStatusParam: containerStatus },
             dataType: 'html',
             success: function (html) {
                 $('#inputDiv').html(html);

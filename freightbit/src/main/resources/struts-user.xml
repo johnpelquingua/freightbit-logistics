@@ -14,7 +14,7 @@
 
         <action name="loadSearchUserPage" class="com.sr.apps.freightbit.core.action.UserAction"
                 method="loadSearchUserPage">
-            <result name="success" type="tiles">core.userSearch.tiles</result>
+            <result name="success">/core/userSearch.jsp</result>
         </action>
 
         <action name="viewUsers" class="com.sr.apps.freightbit.core.action.UserAction" method="viewUsers">

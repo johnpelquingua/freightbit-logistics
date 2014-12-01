@@ -15,7 +15,7 @@
         <!--vendor-->
         <action name="loadSearchVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"
                 method="loadSearchVendorPage">
-            <result name="success" type="tiles">vendor.vendorSearch.tiles</result>
+            <result name="success">/vendor/vendorSearch.jsp</result>
         </action>
 
         <action name="loadAddVendorPage" class="com.sr.apps.freightbit.vendor.action.VendorAction"

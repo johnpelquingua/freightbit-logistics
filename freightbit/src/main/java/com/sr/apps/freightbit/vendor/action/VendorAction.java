@@ -108,7 +108,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         if (StringUtils.isNotBlank(column)) {
             vendorEntityList = vendorService.findVendorsByCriteria(column, vendor.getVendorKeyword(), getClientId());
         } else {
-            vendorEntityList = vendorService.findAllVendorByClientId(getClientId());
+            vendorEntityList = vendorService.findAllVendors();
         }
 
         for (Vendor vendorElem : vendorEntityList) {

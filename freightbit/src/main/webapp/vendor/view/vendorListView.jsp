@@ -31,8 +31,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Vendor List</h3>
                 <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking"
-                            onclick="location.href='loadSearchVendorPage'">
+                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
                         <i class="fa fa-search"></i> Search Vendor
                     </button>
                     <button type="button" class="btn btn-primary new-booking"
@@ -97,16 +96,6 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking"
-                            onclick="location.href='loadSearchVendorPage'">
-                        <i class="fa fa-search"></i> Search Vendor
-                    </button>
-                    <button type="button" class="btn btn-primary new-booking"
-                            onclick="location.href='loadAddVendorPage'">
-                        <i class="fa fa-building"></i> New Vendor
-                    </button>
-                </span>
 
                 <div class="table-responsive" >
                     <div class="col-lg-12" style="position:relative;margin-top: -28px;">
@@ -121,6 +110,22 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <%--<div class="modal-header">
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+            </div>--%>
+            <div class="modal-body">
+                <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
+            </div>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>--%>
         </div>
     </div>
 </div>
@@ -141,5 +146,20 @@
         }
     });
 
+    function showSearchFields() {
+        $.ajax({
+            url: 'loadSearchVendorPage',
+            type: 'POST',
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+                /*window.location.href = '#sixth';*/
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+
+    }
 
 </script>

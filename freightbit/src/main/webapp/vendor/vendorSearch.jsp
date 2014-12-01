@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<div class="row">
+<%--<div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
@@ -21,7 +21,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-search"></i> Search</h3>
-            </div>
+            </div>--%>
             <div class="panel-body">
                 <s:form cssClass="form-horizontal" action="viewVendors" theme="bootstrap">
                 <div class="form-group">
@@ -47,12 +47,16 @@
 
             <div class="panel-footer">
                 <div class="btn-group pull-right">
-
+                    <button type="button" class="btn" onclick="location.href='viewVendors'">
+                        Cancel
+                    </button>
                     <s:submit cssClass="btn btn-primary pull-right" name="submit" value="Search"/>
                 </div>
             </div>
+            </s:form>
+<%--
         </div>
-        </s:form>
+
         <div id="morris-chart-area"></div>
     </div>
-</div>
+</div>--%>

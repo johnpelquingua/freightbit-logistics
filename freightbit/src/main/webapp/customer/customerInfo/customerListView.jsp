@@ -35,8 +35,7 @@
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Customer List
                 </h3>
                 <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking"
-                            onclick="location.href='loadSearchCustomerPage'">
+                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
                         <i class="fa fa-search"></i> Search Customer
                     </button>
                     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
@@ -118,19 +117,6 @@
             </div>
             <div class="panel-footer">
 
-                <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking"
-                            onclick="location.href='loadSearchCustomerPage'">
-                        <i class="fa fa-search"></i> Search Customer
-                    </button>
-                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                    <button type="button" class="btn btn-primary new-booking"
-                            onclick="location.href='loadAddCustomerPage'">
-                        <i class="fa fa-male"></i> New Customer
-                    </button>
-                    </sec:authorize>
-                </span>
-
                 <div class="table-responsive" >
                     <div class="col-lg-12" style="position:relative;margin-top: -28px;">
                         <table class="col-lg-6">
@@ -144,6 +130,22 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <%--<div class="modal-header">
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+            </div>--%>
+            <div class="modal-body">
+                <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
+            </div>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>--%>
         </div>
     </div>
 </div>
@@ -164,5 +166,21 @@
             }
         }
     });
+
+    function showSearchFields() {
+        $.ajax({
+            url: 'loadSearchCustomerPage',
+            type: 'POST',
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+                /*window.location.href = '#sixth';*/
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+
+    }
 
 </script>
