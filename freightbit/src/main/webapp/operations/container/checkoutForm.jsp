@@ -7,8 +7,10 @@
 --%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<div class="row">
+<%--<div class="row">
   <div class="col-lg-12">
 
     <legend style="text-align: left;">
@@ -29,9 +31,8 @@
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-pencil"></i> Checkout Form </h3>
-      </div>
+      </div>--%>
       <div class="panel-body">
-        <div class="table-responsive list-table">
           <s:form cssClass="form-horizontal" theme="bootstrap" action="checkoutContainer">
               <s:hidden name="container.containerId" value="%{container.containerId}" />
               <s:hidden name="container.containerNumber" value="%{container.containerNumber}" />
@@ -65,16 +66,14 @@
                 <s:textfield required="true" name="container.sealNumber" cssClass="form-control" id="container.sealNumber" />
               </div>
             </div>
-          </div>
+            <div class="pull-right">
+              <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Cancel</a>
+              <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Save"/>
+            </div>
         </div>
-      </div>
-      <div class="panel-footer">
-        <div class="pull-right">
-          <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Cancel</a>
-          <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Save"/>
-        </div>
-      </div>
-      </s:form>
+          </s:form>
+      <%--</div>
+
     </div>
   </div>
-</div>
+</div>--%>

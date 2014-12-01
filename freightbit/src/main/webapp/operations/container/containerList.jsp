@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="row">
     <div class="col-lg-12">
@@ -163,7 +163,7 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<script>
 
     $(document).ready(function() {
         /*color coding of rows*/
@@ -224,7 +224,7 @@
             dataType: 'html',
             success: function (html) {
                 $('#inputDiv').html(html);
-                /*window.location.href = '#sixth';*/
+                window.location.href = '#sixth';
             },
             error: function(xhr, ajaxOptions, thrownError){
                 alert('An error occurred! ' + thrownError);

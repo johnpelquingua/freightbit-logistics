@@ -1503,15 +1503,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" + entity.getContainerId());
 
-/*        // FOR SHIPPING LINE Drop Down Values
-        List<Vendor> vendors = vendorService.findVendorsByShippingType("customerCode", order.getShipperCode(), getClientId());
-
-        if (customer != null) {
-            orderBean.setCustomerName(customer.get(0).getCustomerName());
-        } else {
-            customer.get(0).setCustomerCode(orderBean.getConsigneeCode());
-        }*/
-
         return formBean;
     }
 

@@ -1,4 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%--<div class="row">
     <div class="col-lg-12">
@@ -22,7 +25,6 @@
                 <h3 class="panel-title"><i class="fa fa-search"></i> Search </h3>
             </div>--%>
             <div class="panel-body">
-                <div class="table-responsive list-table">
                     <s:form cssClass="form-horizontal" action="searchCustomers" theme="bootstrap">
                     <div class="form-group">
                         <label class="col-sm-2 control-label" style="padding-top:0px;">Search By</label>
@@ -42,15 +44,12 @@
                             <s:textfield name="customer.customerKeyword" cssClass="form-control" placeholder="Keyword"/>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="panel-footer">
-                <div class= "pull-right">
-                    <button type="button" class="btn" onclick="location.href='customerList'">
-                        Cancel
-                    </button>
-                    <s:submit name="submit" cssClass="btn btn-primary" value="Search"/>
-                </div>
+                        <div class= "pull-right">
+                            <button type="button" class="btn" onclick="location.href='customerList'">
+                                Cancel
+                            </button>
+                            <s:submit name="submit" cssClass="btn btn-primary" value="Search"/>
+                        </div>
             </div>
                     </s:form>
         <%--</div>

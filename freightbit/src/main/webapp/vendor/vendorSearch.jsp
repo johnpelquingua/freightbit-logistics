@@ -1,4 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%--<div class="row">
     <div class="col-lg-12">
@@ -43,15 +46,12 @@
                                      id="vendor.vendorKeyword"/>
                     </div>
                 </div>
-            </div>
-
-            <div class="panel-footer">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn" onclick="location.href='viewVendors'">
-                        Cancel
-                    </button>
-                    <s:submit cssClass="btn btn-primary pull-right" name="submit" value="Search"/>
-                </div>
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn" onclick="location.href='viewVendors'">
+                            Cancel
+                        </button>
+                        <s:submit cssClass="btn btn-primary pull-right" name="submit" value="Search"/>
+                    </div>
             </div>
             </s:form>
 <%--

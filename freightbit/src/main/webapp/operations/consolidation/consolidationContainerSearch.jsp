@@ -9,7 +9,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
-
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%--
 <div class="row">
     <div class="col-lg-12">
@@ -51,15 +51,13 @@
                         <s:textfield cssClass="form-control" id="container.containerKeyword" name="container.containerKeyword" placeholder="Keyword"></s:textfield>
                     </div>
                 </div>
-            </div>
-            <div class="panel-footer">
-                <div class="pull-right">
-                        <button type="button" class="btn" onclick="location.href='consolidationContainerList'">
+                    <div class="pull-right">
+                        <button type="button" class="btn" onclick="location.href='viewConsolidationContainerList'">
                             Cancel
                         </button>
-                    <s:submit value="Search" type="submit" cssClass="btn btn-primary"></s:submit>
+                        <s:submit value="Search" type="submit" cssClass="btn btn-primary"></s:submit>
 
-                </div>
+                    </div>
             </div>
             </s:form>
         <%--</div>

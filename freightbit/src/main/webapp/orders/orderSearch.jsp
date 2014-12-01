@@ -41,15 +41,13 @@
                         <s:textfield cssClass="form-control" id="order.orderKeyword" name="order.orderKeyword" placeholder="Keyword"></s:textfield>
                     </div>
                 </div>
-            </div>
-            <div class="panel-footer">
-                <div class="pull-right">
-                    <button type="button" class="btn" onclick="location.href='viewOrders'">
-                        Cancel
-                    </button>
-                    <s:submit value="Search" type="submit" cssClass="btn btn-primary" onclick="viewOrders"></s:submit>
+                    <div class="pull-right">
+                        <button type="button" class="btn" onclick="location.href='viewOrders'">
+                            Cancel
+                        </button>
+                        <s:submit value="Search" type="submit" cssClass="btn btn-primary"></s:submit>
 
-                </div>
+                    </div>
             </div>
             </s:form>
 <%--        </div>

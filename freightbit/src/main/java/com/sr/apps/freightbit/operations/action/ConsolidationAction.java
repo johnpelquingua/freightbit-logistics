@@ -183,7 +183,6 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
 
     public String viewConsolidationContainerList() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
         String column = getColumnFilter();
 
         List<Container> containerList = new ArrayList<Container>();
@@ -239,7 +238,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         } else if ("SIZE".equals(container.getContainerSearchCriteria())) {
             column = "containerSize";
         } else if ("STATUS".equals(container.getContainerSearchCriteria())) {
-            column = "containerSTATUS";
+            column = "containerStatus";
         }
 
         return column;

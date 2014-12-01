@@ -251,7 +251,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         } else {
             orderEntityList = orderService.findAllOrders();
         }
-        System.out.println("TESTING");
         for (Orders orderElem : orderEntityList) {
             orders.add(transformToOrderFormBean(orderElem));
         }

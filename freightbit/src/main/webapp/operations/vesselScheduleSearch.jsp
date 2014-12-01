@@ -45,14 +45,12 @@
                                          id="vesselSchedule.vesselScheduleKeyword"/>
                         </div>
                     </div>
-            </div>
-            <div class="panel-footer">
-                <div class="pull-right">
-                    <button type="button" class="btn" onclick="location.href='viewVesselSchedules'">
-                        Cancel
-                    </button>
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Search"></s:submit>
-                </div>
+                        <div class="pull-right">
+                            <button type="button" class="btn" onclick="location.href='viewVesselSchedules'">
+                                Cancel
+                            </button>
+                            <s:submit cssClass="btn btn-primary" name="submit" value="Search"></s:submit>
+                        </div>
             </div>
                     </s:form>
         <%--</div>
