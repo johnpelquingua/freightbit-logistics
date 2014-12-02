@@ -207,7 +207,7 @@
             dataType: 'html',
             success: function (html) {
                 $('#inputDiv').html(html);
-                /*window.location.href = '#sixth';*/
+                window.location.href = '#sixth';
             },
             error: function(xhr, ajaxOptions, thrownError){
                 alert('An error occurred! ' + thrownError);
@@ -216,11 +216,12 @@
 
     }
 
-    function showInputFields() {
+    function showInputFields(containerId) {
 
         $.ajax({
             url: 'loadCheckoutFormPage',
             type: 'POST',
+            data: { containerIdParam: containerId },
             dataType: 'html',
             success: function (html) {
                 $('#inputDiv').html(html);

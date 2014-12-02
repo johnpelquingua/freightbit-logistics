@@ -67,7 +67,9 @@
               </div>
             </div>
             <div class="pull-right">
-              <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Cancel</a>
+              <button type="button" class="btn" onclick="location.href='viewContainerList'">
+                Cancel
+              </button>
               <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Save"/>
             </div>
         </div>
