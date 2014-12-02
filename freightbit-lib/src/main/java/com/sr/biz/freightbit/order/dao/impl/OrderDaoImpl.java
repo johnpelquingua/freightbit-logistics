@@ -116,6 +116,19 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         }
     }
 
+    @Override
+    public List<Orders> findAllOrdersByAging(Integer aging) {
+        Log.debug("finding Orders by aging");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.aging = :aging");
+            query.setParameter("aging", aging);
+            List<Orders> results = (List<Orders>) query.list();
+            Log.debug("find by aging successful, result size:" + results.size());
+            return results;
+        }catch(RuntimeException re){
+            Log.error("find by aging failed",re);
+            throw re;
+        }    }
 
     @Override
     public Orders findOrdersById (Integer orderId){

@@ -144,10 +144,10 @@ public class DocumentAction extends ActionSupport implements Preparable{
             clearErrorsAndMessages();
         } else if (documentflag == 1) {
             clearErrorsAndMessages();
-            addActionMessage("Reference Number must be entered");
+            addActionMessage("Serial Number must be entered");
         } else if (documentflag == 2) {
             clearErrorsAndMessages();
-            addActionMessage("Entered reference number successfully!");
+            addActionMessage("Entered serial number successfully!");
         } else if (documentflag == 3) {
             clearErrorsAndMessages();
             addActionMessage("Document successfully updated!");
@@ -2479,6 +2479,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         entity.setOrderItemId(formBean.getOrderItemId());
         entity.setInboundReturned(formBean.getInboundReturned());
         entity.setDocumentComments(formBean.getDocumentComments());
+        entity.setAging(formBean.getAging());
 
         return entity;
     }
@@ -2516,6 +2517,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
         formBean.setComments(entity.getComments());
         formBean.setPickupDate(entity.getPickupDate());
         formBean.setDeliveryDate(entity.getDeliveryDate());
+        formBean.setAging(entity.getAging());
+
 
         Contacts contactShipperName = customerService.findContactById(entity.getShipperContactId());
 
@@ -2969,6 +2972,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
         formBean.setInboundReturned(entity.getInboundReturned());
         formBean.setDocumentComments(entity.getDocumentComments());
         formBean.setOrderItemId(entity.getOrderItemId());
+        formBean.setAging(entity.getAging());
+
         Integer orderItemIdPass; // Variable to store Order Item ID
         // Condition if order item id if null or not
         if(entity.getOrderItemId() != null){

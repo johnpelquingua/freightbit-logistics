@@ -126,6 +126,21 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
+    public List<Documents> findDocumentsByAging(Integer aging) {
+        log.debug("getting Documents instance by order id:"  + aging);
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.aging = :aging");
+            query.setParameter("aging", aging);
+            List<Documents> results = (List<Documents>) query.list();
+            log.debug("find by aging successful, result size:" + results.size());
+            return results;
+        }catch (RuntimeException re){
+            log.error("get failed", re);
+            throw re;
+        }
+    }
+
+    @Override
     public List <Documents> findDuplicateDocumentByDocumentName(String documentName, Integer documentId){
         log.debug("Finding duplicate document by document Name");
         try{

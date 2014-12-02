@@ -56,12 +56,14 @@ public class Orders implements java.io.Serializable {
     private List<OrderItems> orderItems = new ArrayList<OrderItems>();
     private Integer customerId;
     private Integer consigneeContactPersonId;
+    private Integer aging;
+
 
     public Orders() {
     }
 
 
-    public Orders(String serviceMode, Integer orderId, Client client, String orderNumber, String serviceRequirement, String serviceType, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Date pickupDate, String originationPort, Date deliveryDate, String destinationPort, Double rates, List<OrderItems> orderItems, Integer customerId, Integer consigneeContactPersonId) {
+    public Orders(String serviceMode, Integer orderId, Client client, String orderNumber, String serviceRequirement, String serviceType, String notificationType, Date orderDate, String paymentMode, String comments, String orderStatus, String vendorCode, String truckCode, String trailerCode, String driverCode, String vesselNumber, String shipperCode, Integer shipperAddressId, Integer shipperContactId, String consigneeCode, Integer consigneeAddressId, Integer consigneeContactId, String accountRep, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, Date pickupDate, String originationPort, Date deliveryDate, String destinationPort, Double rates, List<OrderItems> orderItems, Integer customerId, Integer consigneeContactPersonId, Integer aging) {
         this.serviceMode = serviceMode;
         this.orderId = orderId;
         this.client = client;
@@ -97,6 +99,8 @@ public class Orders implements java.io.Serializable {
         this.orderItems = orderItems;
         this.customerId = customerId;
         this.consigneeContactPersonId = consigneeContactPersonId;
+        this.aging = aging;
+
     }
 
     @Id
@@ -477,6 +481,15 @@ public class Orders implements java.io.Serializable {
 
     public void setConsigneeContactPersonId(Integer consigneeContactPersonId) {
         this.consigneeContactPersonId = consigneeContactPersonId;
+    }
+
+    @Column(name = "aging")
+    public Integer getAging() {
+        return aging;
+    }
+
+    public void setAging(Integer aging) {
+        this.aging = aging;
     }
 }
 

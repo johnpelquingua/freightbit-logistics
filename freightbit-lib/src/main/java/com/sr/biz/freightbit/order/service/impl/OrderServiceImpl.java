@@ -99,6 +99,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Orders> findAllOrdersByAging(Integer aging) {
+        return orderDao.findAllOrdersByAging(aging);    }
+
+    @Override
     public Orders findOrdersById(Integer orderId) {
         return orderDao.findOrdersById(orderId);
     }

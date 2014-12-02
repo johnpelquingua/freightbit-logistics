@@ -41,4 +41,7 @@ public interface DocumentsService {
 
     public List<Documents> findEIRAndRefId(String documentName, Integer referenceId, String referenceTable);
 
+    public List<Documents> findDocumentsByAging(Integer aging);
+
+
 }

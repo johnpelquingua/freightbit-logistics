@@ -377,7 +377,7 @@
                                         </display:column>
                                     </td>
 
-                                    <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
+                                    <td><display:column property="referenceNumber" title="Serial Number" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                     </td>
 
@@ -582,7 +582,7 @@
                                         </display:column>
                                         </td>
 
-                                        <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
+                                        <td><display:column property="referenceNumber" title="Serial Number" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
 
@@ -766,7 +766,7 @@
                                         </display:column>
                                         </td>
 
-                                        <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
+                                        <td><display:column property="referenceNumber" title="Serial Number" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
 
@@ -916,7 +916,7 @@
                                         </display:column>
                                         </td>
 
-                                        <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
+                                        <td><display:column property="referenceNumber" title="Serial Number" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
 
@@ -1043,7 +1043,7 @@
                     </display:column>
                     </td>
 
-                    <td><display:column property="referenceNumber" title="Reference Number" class="tb-font-black" style="text-align: center;">
+                    <td><display:column property="referenceNumber" title="Serial Number" class="tb-font-black" style="text-align: center;">
                     </display:column>
                     </td>
 

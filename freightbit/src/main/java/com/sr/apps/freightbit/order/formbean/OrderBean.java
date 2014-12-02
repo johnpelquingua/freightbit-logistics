@@ -60,6 +60,7 @@ public class OrderBean {
     private String consigneeContactName;
     private String documentCheck;
     private Integer documentId;
+    private Integer aging;
 
 	private AddressBean shipperInfoAddress;
 	private ContactBean shipperInfoContact;
@@ -470,5 +471,13 @@ public class OrderBean {
 
     public void setDocumentId(Integer documentId) {
         this.documentId = documentId;
+    }
+
+    public Integer getAging() {
+        return aging;
+    }
+
+    public void setAging(Integer aging) {
+        this.aging = aging;
     }
 }

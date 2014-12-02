@@ -66,9 +66,9 @@ article:nth-child(2n+2){background:#d1d1d1}
                                 <%--Consignee Name--%>
                                 <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="originationPort" title="Origin <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="destinationPort" title="Destination <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="destinationPort" title="DEST <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--Freight Type--%>
                                 <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
@@ -78,6 +78,8 @@ article:nth-child(2n+2){background:#d1d1d1}
                                                     style="text-align: center;"> </display:column></td>
                                 <%--Service Mode--%>
                                 <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="aging" title="Aging <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column title="Action">
                                     <s:url var="viewDocumentsUrl" action="../documentation/viewOrderDocuments">

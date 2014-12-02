@@ -37,7 +37,7 @@ public class DocumentsBean {
     private String vendorCode;
     private String nameSize;
     private Integer orderItemId;
-
+    private Integer aging;
     private Integer documentIdParam;
     private Integer orderIdParam;
     private String documentItem;
@@ -275,5 +275,13 @@ public class DocumentsBean {
 
     public void setOrderItemId(Integer orderItemId) {
         this.orderItemId = orderItemId;
+    }
+
+    public Integer getAging() {
+        return aging;
+    }
+
+    public void setAging(Integer aging) {
+        this.aging = aging;
     }
 }

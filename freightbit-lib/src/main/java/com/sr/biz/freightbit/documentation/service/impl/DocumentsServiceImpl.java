@@ -51,6 +51,10 @@ public class DocumentsServiceImpl implements DocumentsService {
     public Documents findDocumentById(Integer documentId) { return documentsDao.findDocumentById(documentId); }
 
     @Override
+    public List<Documents> findDocumentsByAging(Integer aging) {
+        return documentsDao.findDocumentsByAging(aging);    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateDocument(Documents documents) {
 //        if(documentsDao.findDuplicateDocumentByDocumentName(documents.getDocumentName(), documents.getDocumentId()).size() > 0){

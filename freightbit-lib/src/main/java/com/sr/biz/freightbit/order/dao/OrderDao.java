@@ -37,4 +37,7 @@ public interface OrderDao {
     public void addCounterType(Counter counter);
 
     public List<Orders> findCustomerWithBooking(Integer customerId);
+
+    public List<Orders> findAllOrdersByAging (Integer aging);
+
 }

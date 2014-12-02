@@ -41,6 +41,7 @@ public class Documents implements Serializable {
     private String documentComments;
     private String vendorCode;
     private Integer orderItemId;
+    private Integer aging;
 
     public Documents() {
     }
@@ -289,5 +290,14 @@ public class Documents implements Serializable {
 
     public void setOrderItemId(Integer orderItemId) {
         this.orderItemId = orderItemId;
+    }
+
+    @Column(name = "aging")
+    public Integer getAging() {
+        return aging;
+    }
+
+    public void setAging(Integer aging) {
+        this.aging = aging;
     }
 }
