@@ -165,6 +165,10 @@
             <result name="success" type="tiles">operations.seaFreightList.tiles</result>
         </action>
 
+        <action name="checkOrderConsolidate" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkOrderConsolidate">
+            <result name="success" type="tiles">operations.seaFreightList.tiles</result>
+        </action>
+
         <action name="viewInlandFreightList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
             <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
         </action>

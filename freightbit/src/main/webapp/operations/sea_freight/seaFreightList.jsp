@@ -119,10 +119,18 @@
 
                     <div class="panel-body">
                         <div class="table-responsive">
+                        <s:form name="myform" action="checkOrderConsolidate" theme="bootstrap">
                             <display:table id="order" name="lclTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
+
+                                <td>
+                                    <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
+                                        <s:checkbox theme="simple" name="check"
+                                                    fieldValue="%{#attr.order.orderId}"/>
+                                    </display:column>
+                                </td>
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
@@ -171,6 +179,12 @@
                                 </display:column></td>
 
                             </display:table>
+                            <div class="row">
+                                <div class="col-md-6 pull-right" style="margin-right: -17em;">
+                                    <s:submit cssClass="col-lg-3 btn btn-default" value="Consolidate" ></s:submit>
+                                </div>
+                            </div>
+                        </s:form>
                         </div>
                     </div>
 

@@ -1054,6 +1054,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String checkOrderConsolidate() {
+
+        for (int i = 0; i < check.length; i++ ){
+            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+(check[i]));
+        }
+
+        return SUCCESS;
+    }
+
     public String viewFreightItemList() {
 
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
