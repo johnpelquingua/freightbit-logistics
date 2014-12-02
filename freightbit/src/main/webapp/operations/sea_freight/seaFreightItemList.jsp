@@ -138,16 +138,16 @@
                         </div>
                     </div>
 
-                    <%--<div class="row">--%>
-                        <%--<div class="col-md-6 pull-right"  style="margin-right: -17em;">--%>
-                            <%--<button onClick='CheckAll(document.myform.check)' class="col-lg-3 btn btn-default">--%>
-                                <%--Select All--%>
-                            <%--</button>--%>
-                            <%--<button onClick='UnCheckAll(document.myform.check)' class="col-lg-3 btn btn-default">--%>
-                                <%--Deselect All--%>
-                            <%--</button>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
+                    <%--<div class="row">
+                        <div class="col-md-6 pull-right"  style="margin-right: -17em;">
+                            <button onClick='CheckAll(document.myform.check)' class="col-lg-3 btn btn-default">
+                                Select All
+                            </button>
+                            <button onClick='UnCheckAll(document.myform.check)' class="col-lg-3 btn btn-default">
+                                Deselect All
+                            </button>
+                        </div>
+                    </div>--%>
                     <div class="table-responsive">
                         <s:form name="myform" action="checkItemStatus" theme="bootstrap">
 

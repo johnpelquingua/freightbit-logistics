@@ -435,7 +435,7 @@
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Volume (m&#179;)
+                            Volume (m&#179;)<span class="asterisk_red"/>
                         </label>
                         <div class="col-lg-3" >
 
@@ -455,6 +455,7 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.volume"
                                              id="orderItem_volume_textfield"
+                                             required="true"
                                         />
                             </s:else>
 

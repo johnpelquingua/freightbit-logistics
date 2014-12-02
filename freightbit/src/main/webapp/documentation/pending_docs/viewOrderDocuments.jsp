@@ -333,7 +333,7 @@
                                                style="margin-top: 15px;">
 
                                     <td>
-                                        <display:column>
+                                        <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
 
                                             <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
                                             <%--<s:property value="%{#attr.document.documentId}"/>--%>
@@ -1489,5 +1489,13 @@ function BillingProgress() {
     document.getElementById("fiOut").className = '';
     document.getElementById("fiIn").className = '';
 }
+
+$('#mainCheckBox').click(function(){
+    if($('#orderItem [type="checkbox"]:checked').length == $('#orderItem [type="checkbox"]').size()){
+        $('#orderItem [type="checkbox"]').prop('checked', false);
+    }else{
+        $('#orderItem [type="checkbox"]').prop('checked', true);
+    }
+})
 
 </script>

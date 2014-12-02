@@ -85,10 +85,10 @@
                                 <td><display:column property="consigneeCode" title="Consignee Name <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--ORIGIN--%>
-                                <td><display:column property="originationPort" title="Origin <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--DESTINATION--%>
-                                <td><display:column property="destinationPort" title="Destination <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--Freight Type--%>
                                 <td><display:column property="freightType" title="Freight Type <i class='fa fa-sort' />" class="tb-font-black"

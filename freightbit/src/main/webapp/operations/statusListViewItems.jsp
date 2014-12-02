@@ -99,96 +99,97 @@
             </div>
 
             <div class="panel-body">
-`
+
                 <div class="table-responsive">
-                    <button onClick='CheckAll(document.myform.check)' class="btn btn-default">Select All</button>
-                    <button onClick='UnCheckAll(document.myform.check)' class="btn btn-default">Deselect All</button>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <s:textfield  cssClass="col-lg-6" name="orderItem.editItem" id="edit"></s:textfield>
+                            <div class="col-lg-6 pull-right">
+                                <s:submit cssClass="col-lg-6 btn btn-default" value="Set Status" onclick="deleteText()"></s:submit>
+                                <s:submit cssClass="col-lg-6 btn btn-default" value="Edit Status" onclick="addText()"></s:submit>
+                    <%--<button onClick='CheckAll(document.myform.check)' class="col-lg-3 btn btn-default">Select All</button>
+                    <button onClick='UnCheckAll(document.myform.check)' class="col-lg-3 btn btn-default">Deselect All</button>--%>
+                            </div>
+                        </div>
+                    <s:form name="myform" action="setItemStatus" theme="bootstrap">
+                       <%-- <div class="col-lg-6 pull-right">
 
-                    <s:form name="myform" action="setItemStatus">
-                    <s:submit cssClass="btn btn-default" value="Set Status" onclick="deleteText()"></s:submit>
-                    <s:submit cssClass="btn btn-default" value="Edit Status" onclick="addText()"></s:submit>
-                    <s:textfield  name="orderItem.editItem" id="edit"></s:textfield>
-                    <display:table id="orderItem" name="orderItems"
-                                   requestURI="viewStatusListItems.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
-                                   style="margin-top: 15px;">
+                        </div>--%>
+                    </div>
+                        <display:table id="orderItem" name="orderItems"
+                                       requestURI="viewStatusListItems.action" pagesize="10"
+                                       class="table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
+                                       style="margin-top: 15px;">
 
-                        <td>
-                            <display:column>
-                            <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
-                            </display:column>
-                        </td>
+                            <td><display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
+                                <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
+                            </display:column></td>
 
-                        <td>
-                            <display:column property="createdTimeStamp" title="Date <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column>
-                        </td>
-
-                        <td>
-                            <display:column property="createdTimeStamp" title="Time <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column>
-                        </td>
-
-                        <td>
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                                <display:column property="nameSize" title="Container <i class='fa fa-sort' />" class="tb-font-black"
+                            <td>
+                                <display:column property="createdTimeStamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column>
-                            </s:if>
-                            <s:else>
-                                <display:column property="nameSize" title="Item <i class='fa fa-sort' />" class="tb-font-black"
+                            </td>
+
+                            <td>
+                                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                    <display:column property="nameSize" title="Container <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column>
+                                </s:if>
+                                <s:else>
+                                    <display:column property="nameSize" title="Item <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column>
+                                </s:else>
+                            </td>
+
+                            <td>
+                                <display:column property="status" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column>
-                            </s:else>
-                        </td>
+                            </td>
 
-                        <td>
-                            <display:column property="status" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column>
-                        </td>
+                            <td>
+                                <display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column>
+                            </td>
 
-                        <td>
-                            <display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column>
-                        </td>
+                            <%--<td>
+                                <display:column property="orderItemId" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column>
+                            </td>--%>
 
-                        <%--<td>
-                            <display:column property="orderItemId" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column>
-                        </td>--%>
+                            <%--<td>
+                                <display:column property="orderItemId" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column>
+                            </td>--%>
 
-                        <%--<td>
-                            <display:column property="orderItemId" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column>
-                        </td>--%>
+                            <%--<td>
+                                <display:column title="Action">
+                                    <s:url var="loadUpdateStatusUrl" action="loadUpdateStatus">
+                                        <s:param name="orderItemIdParam"
+                                                 value="#attr.orderStatusLogs.orderItemId">
+                                        </s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip"
+                                         title="Update Status">
+                                        <i class="fa fa-info-circle"></i>
+                                    </s:a>
+                                </display:column>
+                            </td>--%>
 
-                        <%--<td>
-                            <display:column title="Action">
-                                <s:url var="loadUpdateStatusUrl" action="loadUpdateStatus">
-                                    <s:param name="orderItemIdParam"
-                                             value="#attr.orderStatusLogs.orderItemId">
-                                    </s:param>
-                                </s:url>
-                                <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip"
-                                     title="Update Status">
-                                    <i class="fa fa-info-circle"></i>
-                                </s:a>
-                            </display:column>
-                        </td>--%>
+                            <td>
+                                <display:column title="Action">
+                                    <s:url var="loadItemShipmentHistoryUrl" action="loadItemShipmentHistory">
+                                        <s:param name="orderItemIdParam" value="#attr.orderItem.orderItemId">
+                                        </s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{loadItemShipmentHistoryUrl}" rel="tooltip" title="View Shipment History">
+                                        <i class="fa fa-info-circle"></i>
+                                    </s:a>
+                                </display:column>
+                            </td>
 
-                        <td>
-                            <display:column title="Action">
-                                <s:url var="loadItemShipmentHistoryUrl" action="loadItemShipmentHistory">
-                                    <s:param name="orderItemIdParam" value="#attr.orderItem.orderItemId">
-                                    </s:param>
-                                </s:url>
-                                <s:a class="icon-action-link" href="%{loadItemShipmentHistoryUrl}" rel="tooltip" title="View Shipment History">
-                                    <i class="fa fa-info-circle"></i>
-                                </s:a>
-                            </display:column>
-                        </td>
+                        </display:table>
 
-                    </display:table>
-
-                    <%--<s:submit value="Set Status"></s:submit>--%>
+                        <%--<s:submit value="Set Status"></s:submit>--%>
                     </s:form>
 
                 </div>
@@ -197,7 +198,7 @@
             <div class="panel-footer">
                 <span class="pull-right">
                     <button type="button" class="btn btn-primary new-booking" onclick="location.href='viewStatusList'">
-                         On-Going Booking List
+                        On-Going Booking List
                     </button>
                 </span>
             </div>
@@ -208,17 +209,25 @@
 
 <script>
 
-    function CheckAll(check)
+    $('#mainCheckBox').click(function(){
+        if($('#orderItem [type="checkbox"]:checked').length == $('#orderItem [type="checkbox"]').size()){
+            $('#orderItem [type="checkbox"]').prop('checked', false);
+        }else{
+            $('#orderItem [type="checkbox"]').prop('checked', true);
+        }
+    })
+
+    /*function CheckAll(check)
     {
-        for (i = 0; i < check.length; i++)
+        for (var i = 0; i < check.length; i++)
             check[i].checked = true ;
     }
 
     function UnCheckAll(check)
     {
-        for (i = 0; i < check.length; i++)
+        for (var i = 0; i < check.length; i++)
             check[i].checked = false ;
-    }
+    }*/
 
     function addText() {
         document.getElementById("edit").value = "edit";

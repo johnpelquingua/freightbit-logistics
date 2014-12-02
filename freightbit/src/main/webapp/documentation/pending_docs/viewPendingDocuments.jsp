@@ -68,7 +68,7 @@ article:nth-child(2n+2){background:#d1d1d1}
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="destinationPort" title="DEST <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <%--Freight Type--%>
                                 <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
