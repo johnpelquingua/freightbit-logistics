@@ -99,6 +99,7 @@
                 method="addedItemsInTable">
             <result name="success" type="tiles">orders.add-booking-info.tiles</result>
         </action>
+
         <!--Add Contacts in New Booking-->
         <action name="addCustomerContact" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addCustomerContact">

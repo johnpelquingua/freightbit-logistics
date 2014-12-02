@@ -100,7 +100,7 @@
                                 <s:textfield cssClass="form-control" value="%{order.orderNumber}" name="book-num" disabled="true"></s:textfield>
                             </div>
                             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px; text-align: center;">Freight Type</label>
-                            <div class="col-lg-4">
+                            <div  >
                                 <s:textfield cssClass="form-control" value="%{order.freightType}" name="book-num" disabled="true"></s:textfield>
                             </div>
                         </div>

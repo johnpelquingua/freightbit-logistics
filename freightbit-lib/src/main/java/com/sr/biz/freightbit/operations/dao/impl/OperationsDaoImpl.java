@@ -80,6 +80,126 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
     }
 
     @Override
+    public List<Orders> findOrdersByFCL() {
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'FULL CONTAINER LOAD'");
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch(Exception e){
+            log.error("Find failed.", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public List<Orders> findOrdersByCityFCL(String originationPort) {
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'FULL CONTAINER LOAD' and o.originationPort = :originationPort");
+            query.setParameter("originationPort", originationPort);
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch(Exception e){
+            log.error("Find failed.", e);
+            throw e;
+        }
+
+    }
+
+    @Override
+    public List<Orders> findOrdersByLCL() {
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LESS CONTAINER LOAD'");
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch(Exception e){
+            log.error("Find failed.", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public List<Orders> findOrdersByCityLCL(String originationPort) {
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LESS CONTAINER LOAD' and o.originationPort = :originationPort");
+            query.setParameter("originationPort", originationPort);
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch(Exception e){
+            log.error("Find failed.", e);
+            throw e;
+        }
+
+    }
+
+    @Override
+    public List<Orders> findOrdersByLCU() {
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LOOSE CARGO LOAD'");
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch(Exception e){
+            log.error("Find failed.", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public List<Orders> findOrdersByCityLCU(String originationPort) {
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LOOSE CARGO LOAD' and o.originationPort = :originationPort");
+            query.setParameter("originationPort", originationPort);
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch(Exception e){
+            log.error("Find failed.", e);
+            throw e;
+        }
+
+    }
+
+    @Override
+    public List<Orders> findOrdersByRCU() {
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'ROLLING CARGO LOAD'");
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch(Exception e){
+            log.error("Find failed.", e);
+            throw e;
+        }
+    }
+
+    @Override
+    public List<Orders> findOrdersByCityRCU(String originationPort) {
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'ROLLING CARGO LOAD' and o.originationPort = :originationPort");
+            query.setParameter("originationPort", originationPort);
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch(Exception e){
+            log.error("Find failed.", e);
+            throw e;
+        }
+
+    }
+
+    @Override
     public OrderItems findOrderItemById(Integer orderItemId) {
         log.debug("Find initiated");
         try {

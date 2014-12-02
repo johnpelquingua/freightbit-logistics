@@ -576,7 +576,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         sessionAttributes.put("documentflag", sessionAttributes.get("documentflag")); // get session document flag
         documentFlag(); // document flag method
-        documentflag = 0; // resets document flag
+        documentflag = 0; // resets document flagORDER
 
         return SUCCESS;
     }

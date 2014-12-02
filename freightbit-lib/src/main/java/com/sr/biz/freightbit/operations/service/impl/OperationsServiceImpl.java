@@ -8,9 +8,6 @@ import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 8/4/14.
- */
 public class OperationsServiceImpl implements OperationsService{
 
     private OperationsDao operationsDao;
@@ -59,6 +56,44 @@ public class OperationsServiceImpl implements OperationsService{
         operationsDao.updateOrderItem(orderItems);
     }
 
+    @Override
+    public List<Orders> findOrdersByFCL() {
+        return operationsDao.findOrdersByFCL();
+    }
 
+    @Override
+    public List<Orders> findOrdersByCityFCL(String originationPort) {
+        return operationsDao.findOrdersByCityFCL(originationPort);
+    }
+
+    @Override
+    public List<Orders> findOrdersByLCL() {
+        return operationsDao.findOrdersByLCL();
+    }
+
+    @Override
+    public List<Orders> findOrdersByCityLCL(String originationPort) {
+        return operationsDao.findOrdersByCityLCL(originationPort);
+    }
+
+    @Override
+    public List<Orders> findOrdersByLCU() {
+        return operationsDao.findOrdersByLCU();
+    }
+
+    @Override
+    public List<Orders> findOrdersByCityLCU(String originationPort) {
+        return operationsDao.findOrdersByCityLCU(originationPort);
+    }
+
+    @Override
+    public List<Orders> findOrdersByRCU() {
+        return operationsDao.findOrdersByRCU();
+    }
+
+    @Override
+    public List<Orders> findOrdersByCityRCU(String originationPort) {
+        return operationsDao.findOrdersByCityRCU(originationPort);
+    }
 
 }

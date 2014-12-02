@@ -43,7 +43,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Booking List </h3>
                 <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
+                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal1" onclick="showSearchFields();">
                         <i class="fa fa-search"></i> Search Booking
                     </button>
                     <button type="button" class="btn btn-primary new-booking"
@@ -175,14 +175,14 @@
     <!-- /.row -->
 </div>
 
-<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+<div class="modal fade" id="inputModal1" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <%--<div class="modal-header">
                 <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
             </div>--%>
             <div class="modal-body">
-                <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
+                <div id="inputDiv1"> <%--Area where input fields will appear--%> </div>
             </div>
             <div class="modal-footer">
                 <%--<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>--%>
@@ -222,7 +222,7 @@
             type: 'POST',
             dataType: 'html',
             success: function (html) {
-                $('#inputDiv').html(html);
+                $('#inputDiv1').html(html);
                 /*window.location.href = '#sixth';*/
             },
             error: function(xhr, ajaxOptions, thrownError){

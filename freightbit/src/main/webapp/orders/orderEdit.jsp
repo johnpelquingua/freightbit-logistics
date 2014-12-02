@@ -226,6 +226,14 @@
             </div>
         </div>
 
+        <div class="form-group" style="padding-top: 25px; clear: both;">
+            <div class="col-lg-2 col-lg-offset-10">
+                <div class="pull-right">
+                    <a data-toggle="modal" data-target="#editContactInfo" class="btn btn-info" id="id_Customer" style="width: 151px !important; margin-bottom: 5px;"> Edit Contact</a>
+                </div>
+            </div>
+        </div>
+
     </fieldset>
 </div>
 
@@ -336,19 +344,6 @@
         </div>
 
     </div>
-
-    <div class="form-group" style="clear: both;">
-        <div class="col-lg-2 col-lg-offset-10">
-            <div class="pull-right">
-                <a data-toggle="modal" data-target="#editContactInfo" class="btn btn-info" id="id_Customer" style="width: 151px !important; margin-bottom: 5px;"> Edit Contact</a>
-            </div>
-        </div>
-    </div>
-
-    <%--<legend style="text-align: left;">
-                        <span>
-                        </span>
-    </legend>--%>
 
     <legend style="text-align: left;">
         <span >

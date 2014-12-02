@@ -50,9 +50,6 @@ import org.apache.log4j.Logger;
 
 import java.util.*;
 
-/**
- * Created by Clarence C. Victoria on 8/4/14.
- */
 public class OperationsAction extends ActionSupport implements Preparable {
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(OperationsAction.class);
@@ -73,6 +70,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Parameters> containerSearchList = new ArrayList<Parameters>();
 
     private List<OrderBean> orders = new ArrayList<OrderBean>();
+    private List<OrderBean> fclTable = new ArrayList<OrderBean>();
+    private List<OrderBean> lclTable = new ArrayList<OrderBean>();
+    private List<OrderBean> lcuTable = new ArrayList<OrderBean>();
+    private List<OrderBean> rcuTable = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
     private VesselScheduleBean vesselSchedule = new VesselScheduleBean();
     private List<VesselScheduleBean> vesselSchedules = new ArrayList<VesselScheduleBean>();
@@ -92,7 +93,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Parameters> containerEirTypeList = new ArrayList<Parameters>();
     private List<Parameters> containerStatusList = new ArrayList<Parameters>();
     private List<Parameters> containerPortCode = new ArrayList<Parameters>();
-
 
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OperationsBean operationsBean = new OperationsBean();
@@ -122,6 +122,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Map<String, String> trucksMap = new HashMap<String, String>();
 
     private String[] check;
+    private String originCity; // load table based on origin city
 
     Map paramMap = new HashMap();
 
@@ -990,13 +991,66 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String viewFreightList() {
-        List<Orders> ordersList = new ArrayList<Orders>();
+        /*List<Orders> ordersList = new ArrayList<Orders>();
 
         ordersList = operationsService.findAllOrders();
 
         for (Orders orderElem : ordersList) {
             orders.add(transformToOrderFormBean(orderElem));
+        }*/
+
+        // For FCL Requirement
+        List<Orders> fclOrders = new ArrayList<Orders>();
+
+        if(originCity != null){
+            fclOrders = operationsService.findOrdersByCityFCL(originCity);
+        }else{
+            fclOrders = operationsService.findOrdersByFCL();
         }
+
+        for (Orders orderElem : fclOrders){
+            fclTable.add(transformToOrderFormBean(orderElem));
+        }
+
+        // For LCL Requirement
+        List<Orders> lclOrders = new ArrayList<Orders>();
+
+        if(originCity != null){
+            lclOrders = operationsService.findOrdersByCityLCL(originCity);
+        }else{
+            lclOrders = operationsService.findOrdersByLCL();
+        }
+
+        for (Orders orderElem : lclOrders){
+            lclTable.add(transformToOrderFormBean(orderElem));
+        }
+
+        // For LCU Requirement
+        List<Orders> lcuOrders = new ArrayList<Orders>();
+
+        if(originCity != null){
+            lcuOrders = operationsService.findOrdersByCityLCU(originCity);
+        }else{
+            lcuOrders = operationsService.findOrdersByLCU();
+        }
+
+        for (Orders orderElem : lcuOrders){
+            lcuTable.add(transformToOrderFormBean(orderElem));
+        }
+
+        // For RCU Requirement
+        List<Orders> rcuOrders = new ArrayList<Orders>();
+
+        if(originCity != null){
+            rcuOrders = operationsService.findOrdersByCityRCU(originCity);
+        }else{
+            rcuOrders = operationsService.findOrdersByRCU();
+        }
+
+        for (Orders orderElem : rcuOrders){
+            rcuTable.add(transformToOrderFormBean(orderElem));
+        }
+
         return SUCCESS;
     }
 
@@ -1097,6 +1151,29 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
         //formBean.setConsigneeCode(entity.getConsigneeCode());
         formBean.setOrderId(entity.getOrderId());
+
+        List <OrderItems> orderItemsVolume = orderService.findAllItemByOrderId(entity.getOrderId());
+
+            Float orderVolume = 0.F;
+
+            for(OrderItems orderItemElem : orderItemsVolume) {
+                if(orderItemElem.getVolume() != null){
+                    orderVolume = orderVolume + orderItemElem.getVolume();
+                }
+            }
+
+            formBean.setOrderVolume(orderVolume); // For showing the total volume of order items inside booking
+
+            Double orderWeight = 0.0;
+
+            for(OrderItems orderItemElem : orderItemsVolume) {
+                if(orderItemElem.getWeight() != null){
+                    orderWeight = orderWeight + orderItemElem.getWeight();
+                }
+            }
+
+            formBean.setOrderWeight(orderWeight); // For showing the total volume of order items inside booking
+
         formBean.setOrderStatus(entity.getOrderStatus());
         formBean.setFreightType(entity.getServiceType());
         formBean.setOriginationPort(entity.getOriginationPort());
@@ -2467,4 +2544,43 @@ public class OperationsAction extends ActionSupport implements Preparable {
         this.containerPortCode = containerPortCode;
     }
 
+    public List<OrderBean> getFclTable() {
+        return fclTable;
+    }
+
+    public void setFclTable(List<OrderBean> fclTable) {
+        this.fclTable = fclTable;
+    }
+
+    public List<OrderBean> getLclTable() {
+        return lclTable;
+    }
+
+    public void setLclTable(List<OrderBean> lclTable) {
+        this.lclTable = lclTable;
+    }
+
+    public List<OrderBean> getLcuTable() {
+        return lcuTable;
+    }
+
+    public void setLcuTable(List<OrderBean> lcuTable) {
+        this.lcuTable = lcuTable;
+    }
+
+    public List<OrderBean> getRcuTable() {
+        return rcuTable;
+    }
+
+    public void setRcuTable(List<OrderBean> rcuTable) {
+        this.rcuTable = rcuTable;
+    }
+
+    public String getOriginCity() {
+        return originCity;
+    }
+
+    public void setOriginCity(String originCity) {
+        this.originCity = originCity;
+    }
 }

@@ -60,6 +60,8 @@ public class OrderBean {
     private String consigneeContactName;
     private String documentCheck;
     private Integer documentId;
+    private Float orderVolume;
+    private Double orderWeight;
     private Integer aging;
 
 	private AddressBean shipperInfoAddress;
@@ -479,5 +481,21 @@ public class OrderBean {
 
     public void setAging(Integer aging) {
         this.aging = aging;
+    }
+
+    public Float getOrderVolume() {
+        return orderVolume;
+    }
+
+    public void setOrderVolume(Float orderVolume) {
+        this.orderVolume = orderVolume;
+    }
+
+    public Double getOrderWeight() {
+        return orderWeight;
+    }
+
+    public void setOrderWeight(Double orderWeight) {
+        this.orderWeight = orderWeight;
     }
 }

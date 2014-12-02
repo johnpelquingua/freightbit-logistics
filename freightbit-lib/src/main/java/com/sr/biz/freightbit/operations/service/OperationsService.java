@@ -6,9 +6,6 @@ import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 8/4/14.
- */
 public interface OperationsService {
 
     public List<Orders> findAllOrders();
@@ -26,5 +23,21 @@ public interface OperationsService {
     public List<OrderItems> findAllOrderItemsByOrderIdSea(Integer orderId);
 
     public List<OrderItems> findAllOrderItemsByOrderIdLand(Integer orderId);
+
+    public List<Orders> findOrdersByFCL();
+
+    public List<Orders> findOrdersByCityFCL(String originationPort);
+
+    public List<Orders> findOrdersByLCL();
+
+    public List<Orders> findOrdersByCityLCL(String originationPort);
+
+    public List<Orders> findOrdersByLCU();
+
+    public List<Orders> findOrdersByCityLCU(String originationPort);
+
+    public List<Orders> findOrdersByRCU();
+
+    public List<Orders> findOrdersByCityRCU(String originationPort);
 
 }
