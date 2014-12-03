@@ -221,7 +221,7 @@
             </s:url>
             <s:a cssClass="btn btn-primary" href="%{createdDocumentOriginUrl}" rel="tooltip"
                  title="Create Documents">
-                Create Bill of Lading Origin
+                Create House WayBill Origin
             </s:a>
 
             <s:url var="createdDocumentDestinationUrl" action="createdDocumentDestination">
@@ -231,7 +231,7 @@
             </s:url>
             <s:a cssClass="btn btn-primary" href="%{createdDocumentDestinationUrl}" rel="tooltip"
                  title="Create Documents">
-                Create Bill of Lading Destination
+                Create House Waybill Destination
             </s:a>
 
 

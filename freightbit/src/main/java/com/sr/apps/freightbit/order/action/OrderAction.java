@@ -128,6 +128,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private Map<Double, Double> shipperItemVolumeMap = new HashMap<Double, Double>();
     private Map<String, String> shipperItemCommodityMap = new HashMap<String, String>();
     private Map<Float, Float> shipperItemValueMap = new HashMap<Float, Float>();
+    private Map<Float, Float> shipperItemWeightMap = new HashMap<Float, Float>();
     private Integer itemId;
 
     public String itemAction() {
@@ -142,7 +143,9 @@ public class OrderAction extends ActionSupport implements Preparable {
 
             shipperItemCommodityMap.put(shipperItem.getDescription(), shipperItem.getDescription());
 
-            shipperItemValueMap.put(shipperItem.getWeight(), shipperItem.getWeight());
+            shipperItemValueMap.put(shipperItem.getSrp(), shipperItem.getSrp());
+
+            shipperItemWeightMap.put(shipperItem.getWeight(), shipperItem.getWeight());
 
         }
 
@@ -544,29 +547,31 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setCreatedDate(new Date());
         documentEntity.setDocumentStatus("FOR PRINTING");
         documentEntity.setDocumentProcessed(0);
-        documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
         documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
         documentEntity.setOutboundStage(1);
+        documentEntity.setVendorCode("Ernest Logistics Corp.");
         documentsService.addDocuments(documentEntity);
 
         // Booking Request Form will be created under pending documents end
 
         // House Bill of Lading will be created under pending documents start
 
-        Documents documentEntity2 = new Documents();
-        Client client2 = clientService.findClientById(getClientId().toString());
-        documentEntity2.setClient(client2);
-        documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
-        documentEntity2.setReferenceId(orderEntity.getOrderId());
-        documentEntity2.setReferenceTable("ORDERS");
-        documentEntity2.setOrderNumber(orderEntity.getOrderNumber());
-        documentEntity2.setCreatedDate(new Date());
-        documentEntity2.setDocumentStatus("FOR REFERENCE");
-        documentEntity2.setDocumentProcessed(0);
-        documentEntity2.setReferenceNumber(orderEntity.getOrderNumber());
-        documentEntity2.setCreatedBy(commonUtils.getUserNameFromSession());
-        documentEntity2.setOutboundStage(1);
-        documentsService.addDocuments(documentEntity2);
+        if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")){
+            Documents documentEntity2 = new Documents();
+            Client client2 = clientService.findClientById(getClientId().toString());
+            documentEntity2.setClient(client2);
+            documentEntity2.setDocumentName(DocumentsConstants.HOUSE_BILL_OF_LADING);
+            documentEntity2.setReferenceId(orderEntity.getOrderId());
+            documentEntity2.setReferenceTable("ORDERS");
+            documentEntity2.setOrderNumber(orderEntity.getOrderNumber());
+            documentEntity2.setCreatedDate(new Date());
+            documentEntity2.setDocumentStatus("FOR REFERENCE");
+            documentEntity2.setDocumentProcessed(0);
+            documentEntity2.setCreatedBy(commonUtils.getUserNameFromSession());
+            documentEntity2.setOutboundStage(1);
+            documentEntity2.setVendorCode("Ernest Logistics Corp.");
+            documentsService.addDocuments(documentEntity2);
+        }
 
         // House Bill of Lading will be created under pending documents end
 
@@ -1913,6 +1918,14 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setShipperItemVolumeMap(Map<Double, Double> shipperItemVolumeMap) {
         this.shipperItemVolumeMap = shipperItemVolumeMap;
+    }
+
+    public Map<Float, Float> getShipperItemWeightMap() {
+        return shipperItemWeightMap;
+    }
+
+    public void setShipperItemWeightMap(Map<Float, Float> shipperItemWeightMap) {
+        this.shipperItemWeightMap = shipperItemWeightMap;
     }
 
     public Integer getOrderItemIdParam() {

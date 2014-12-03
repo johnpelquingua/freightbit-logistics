@@ -39,46 +39,41 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <%--<div class="form-group">
-                                    <label class="col-lg-4 control-label" style="padding-top:0px !important; margin-top: 0px !important;">Company Name / Customer Name<span class="asterisk_red"></span></label>
-                                    <div class="col-lg-8" >
-                                        <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName"/>
-                                    </div>
-                                </div>--%>
+
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
-                                    <div class="col-lg-8" >
+                                    <label class="col-lg-5 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-7" >
                                         <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" onkeypress="return alphaKeyOnly(event)"
                                                 title="Company Code Must be 3 Capital Letters Only."/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Phone Number<span class="asterisk_red"></span></label>
-                                    <div class="col-lg-8" >
+                                    <label class="col-lg-5 control-label" style="padding-top:0px;">Phone Number<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-7" >
                                         <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer_phone" maxLength="14"
                                                      placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
-                                    <div class="col-lg-8" >
+                                    <label class="col-lg-5 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-7" >
                                         <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email" maxLength="50"
                                                      placeholder="Email Address" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Website</label>
-                                    <div class="col-lg-8" >
+                                    <label class="col-lg-5 control-label" style="padding-top:0px;">Website</label>
+                                    <div class="col-lg-7" >
                                         <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                <label class="col-lg-4  control-label" style="padding-top:0px;">DTI / SEC</label>
-                                <div class="col-lg-8" >
+                                <label class="col-lg-5  control-label" style="padding-top:0px;">DTI / SEC</label>
+                                <div class="col-lg-7" >
                                     <s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
                                                  placeholder="XXXXXXXX" maxLength="8"/>
                                 </div>
@@ -86,30 +81,30 @@
 
                                 <div class="form-group">
 
-                                    <label class="col-lg-4  control-label" style="padding-top:0px;">Customer Information Sheet</label>
-                                    <div class="col-lg-8" >
-                                        <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Customer Information Sheet"/>
+                                    <label class="col-lg-5  control-label" style="padding-top:0px;">Customer Information Sheet Number</label>
+                                    <div class="col-lg-7" >
+                                        <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Customer Information Sheet Number"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Customer Type<span class="asterisk_red"></span></label>
-                                    <div class="col-lg-8" >
+                                    <label class="col-lg-5 control-label" style="padding-top:0px;">Customer Type<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-7" >
                                         <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="form-control"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Mobile Number<span class="asterisk_red"></span></label>
-                                    <div class="col-lg-8" >
+                                    <label class="col-lg-5 control-label" style="padding-top:0px;">Mobile Number<span class="asterisk_red"></span></label>
+                                    <div class="col-lg-7" >
                                         <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer_mobile" maxLength="19"
                                                      placeholder="(+639XX)(XXX-XXXX)"
                                                      title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-4 control-label" style="padding-top:0px;">Fax  Number</label>
-                                    <div class="col-lg-8" >
+                                    <label class="col-lg-5 control-label" style="padding-top:0px;">Fax  Number</label>
+                                    <div class="col-lg-7" >
                                         <s:textfield   name="customer.fax" cssClass="form-control" id="customer_fax" maxLength="14"
                                                        title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters." placeholder="(XXX) XXX-XXXX"/>
                                     </div>
@@ -118,17 +113,17 @@
 
                                 <div class="form-group">
 
-                                        <label class="col-lg-4 control-label" style="padding-top:0px;">Mayor's Permit Number</label>
-                                        <div class="col-lg-8" >
+                                        <label class="col-lg-5 control-label" style="padding-top:0px;">Mayor's Permit Number</label>
+                                        <div class="col-lg-7" >
                                         <s:textfield name="customer.mayorsPermit" cssClass="form-control" id="customer_mayorsPermit" placeholder="XX-XXXXXX"/>
                                         </div>
 
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-lg-4  control-label" style="padding-top:0px;">Account Application Form</label>
-                                    <div class="col-lg-8" >
-                                        <s:textfield name="customer.aaf" cssClass="form-control" id="customer_aaf" placeholder="Account Application Form"/>
+                                    <label class="col-lg-5  control-label" style="padding-top:0px;">Account Application Form Number</label>
+                                    <div class="col-lg-7" >
+                                        <s:textfield name="customer.aaf" cssClass="form-control" id="customer_aaf" placeholder="Account Application Form Number"/>
                                     </div>
                                     </div>
                             </div>

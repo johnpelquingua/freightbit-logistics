@@ -418,19 +418,29 @@
                     <div class="form-group weightAndVolume">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                            <%--<s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                                 Weight (tons)<span class="asterisk_red" />
                             </s:if>
-                            <s:else>
+                            <s:else>--%>
                                 Weight (kg)<span class="asterisk_red" />
-                            </s:else>
+                            <%--</s:else>--%>
                         </label>
 
                         <div class="col-lg-3" >
 
-                                <s:textfield cssClass="form-control"
+                                <%--<s:textfield cssClass="form-control"
                                              name="orderItem.weight"
-                                             id="orderItem_weight" />
+                                             id="orderItem_weight" />--%>
+                                    <s:select cssClass="form-control"
+                                              id="orderItem_weight"
+                                              list="#{orderItem_weight}"
+                                              value="%{orderItem_weight}"
+                                              style="display:none"
+                                            />
+                                    <s:textfield cssClass="form-control"
+                                                 name="orderItem.weight"
+                                                 id="orderItem_weight_textfield"
+                                            />
 
                         </div>
 
@@ -1192,6 +1202,7 @@ $(document).ready(function() {
                 document.getElementById("orderItem_volume_textfield").value = '';
                 document.getElementById("orderItem_description_textfield").value = '';
                 document.getElementById("orderItem_declaredValue_textfield").value = '';
+                document.getElementById("orderItem_weight_textfield").value = '';
             }
 
             $.getJSON('itemAction', {
@@ -1210,6 +1221,10 @@ $(document).ready(function() {
                 var select3 = $('#orderItem_declaredValue');
 
                 select3.find('option').remove();
+
+                var select4 = $('#orderItem_weight');
+
+                select4.find('option').remove();
 
                 var itemQuantity = $("#orderItem_quantity").val();
                 // Set quantity to 1 when Item name is selected first
@@ -1257,6 +1272,22 @@ $(document).ready(function() {
                         $("#orderItem_declaredValue").append(newOption2);
                         document.getElementById("orderItem_declaredValue_textfield").value = totalValue; // set total value to the order item value textfield
                     });
+
+                    // populate item declared weight
+                    $.each(jsonResponse.shipperItemWeightMap, function (key, value) {
+
+                        $('<option>').val(key).text(value).appendTo(select4);
+
+                        var itemWeight = $("#orderItem_weight").val(); // get weight of order item
+                        document.getElementById("orderItem_weight_textfield").value = itemWeight; // set weight of order item to textfield
+                        var itemNum = $("#orderItem_quantity").val(); // get value of quantity
+                        var totalWeight = itemNum * itemWeight; // compute for total value
+                        $("#orderItem_weight").html(""); // clear list of order Item weight dropdown
+                        var newOption3 = $('<option value="'+totalWeight+'">'+totalWeight+'</option>'); // append new value to the dropdown list
+                        $("#orderItem_weight").append(newOption3);
+                        document.getElementById("orderItem_weight_textfield").value = totalWeight; // set total value to the order item value textfield
+                    });
+
             });
 
         });
@@ -1275,6 +1306,7 @@ $(document).ready(function() {
                 document.getElementById("orderItem_volume_textfield").value = '';
                 document.getElementById("orderItem_description_textfield").value = '';
                 document.getElementById("orderItem_declaredValue_textfield").value = '';
+                document.getElementById("orderItem_weight_textfield").value = '';
             }
 
             $.getJSON('itemAction', {
@@ -1293,6 +1325,10 @@ $(document).ready(function() {
                     var select3 = $('#orderItem_declaredValue');
 
                     select3.find('option').remove();
+
+                    var select4 = $('#orderItem_weight');
+
+                    select4.find('option').remove();
 
                     // populate item volume based on length X Width X Height
                     $.each(jsonResponse.shipperItemVolumeMap, function (key, value) {
@@ -1333,6 +1369,21 @@ $(document).ready(function() {
                         var newOption2 = $('<option value="'+totalValue+'">'+totalValue+'</option>'); // append new value to the dropdown list
                         $("#orderItem_declaredValue").append(newOption2);
                         document.getElementById("orderItem_declaredValue_textfield").value = totalValue; // set total value to the order item value textfield
+                    });
+
+                    // populate item declared weight
+                    $.each(jsonResponse.shipperItemWeightMap, function (key, value) {
+
+                        $('<option>').val(key).text(value).appendTo(select4);
+
+                        var itemWeight = $("#orderItem_weight").val(); // get weight of order item
+                        document.getElementById("orderItem_weight_textfield").value = itemWeight; // set weight of order item to textfield
+                        var itemNum = $("#orderItem_quantity").val(); // get value of quantity
+                        var totalWeight = itemNum * itemWeight; // compute for total value
+                        $("#orderItem_weight").html(""); // clear list of order Item weight dropdown
+                        var newOption3 = $('<option value="'+totalWeight+'">'+totalWeight+'</option>'); // append new value to the dropdown list
+                        $("#orderItem_weight").append(newOption3);
+                        document.getElementById("orderItem_weight_textfield").value = totalWeight; // set total value to the order item value textfield
                     });
 
                 });

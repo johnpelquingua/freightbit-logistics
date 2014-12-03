@@ -2,13 +2,6 @@ package com.sr.apps.freightbit.documentation.formbean;
 
 import java.util.Date;
 
-/**
- * Created with IntelliJ IDEA.
- * User: johnpel
- * Date: 8/8/14
- * Time: 10:21 AM
- * To change this template use File | Settings | File Templates.
- */
 public class DocumentsBean {
     private Integer documentId;
     /*private String documentType;*/
@@ -25,6 +18,7 @@ public class DocumentsBean {
     private Integer inboundStage;
     private Integer finalOutboundStage;
     private Integer finalInboundStage;
+    private Integer completeStage;
     private Integer archiveStage;
     private Integer billingStage;
     private Date inboundReturned;
@@ -283,5 +277,13 @@ public class DocumentsBean {
 
     public void setAging(Integer aging) {
         this.aging = aging;
+    }
+
+    public Integer getCompleteStage() {
+        return completeStage;
+    }
+
+    public void setCompleteStage(Integer completeStage) {
+        this.completeStage = completeStage;
     }
 }

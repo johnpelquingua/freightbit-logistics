@@ -20,7 +20,7 @@
                     </div>
                 <%--</div>
                 <div class="form-group">--%>
-                    <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Reference Number<span class="asterisk_red"></span></label>
+                    <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Series Number<span class="asterisk_red"></span></label>
                     <div class="col-lg-8" >
                         <%--<s:property value="%{document.documentId}" />
                         <s:property value="%{document.documentName}" />
@@ -35,25 +35,26 @@
                         <s:hidden name="document.inboundStage" value="%{document.inboundStage}" />
                         <s:hidden name="document.finalOutboundStage" value="%{document.finalOutboundStage}" />
                         <s:hidden name="document.finalInboundStage" value="%{document.finalInboundStage}" />
+                        <s:hidden name="document.completeStage" value="%{document.completeStage}" />
                         <s:hidden name="document.archiveStage" value="%{document.archiveStage}" />
                         <s:hidden name="document.documentProcessed" value="%{document.documentProcessed}" />
                         <s:hidden name="document.inboundReturned" value="%{document.inboundReturned}" />
                         <s:hidden name="document.createdBy" value="%{document.createdBy}" />
                         <s:hidden name="document.orderItemId" value="%{document.orderItemId}" />
-                        <s:if test="document.documentName=='PROFORMA BILL OF LADING' || document.documentName=='MASTER BILL OF LADING' || document.documentName=='MASTER WAYBILL ORIGIN' || document.documentName=='SALES INVOICE' || document.documentName=='MASTER WAYBILL DESTINATION' ">
+                        <%--<s:if test="document.documentName=='PROFORMA BILL OF LADING' || document.documentName=='MASTER BILL OF LADING' || document.documentName=='MASTER WAYBILL ORIGIN' || document.documentName=='SALES INVOICE' || document.documentName=='MASTER WAYBILL DESTINATION' ">
                             <s:textfield cssClass="form-control" placeholder="Reference Number" name="document.referenceNumber" style="margin-bottom: 15px !important;"
                                          id="document_referenceNumber" required="true" />
                         </s:if>
-                        <s:else>
+                        <s:else>--%>
                             <%--<s:property value="%{document.referenceNumber}" />--%>
-                            <s:textfield cssClass="form-control modalComment" name="document.referenceNumber" style="margin-bottom: 15px !important;" disabled="true" />
-                        </s:else>
+                            <s:textfield cssClass="form-control modalComment" name="document.referenceNumber" style="margin-bottom: 15px !important;" required="true" />
+                        <%--</s:else>--%>
                     </div>
                 <%--</div>
                 <div class="form-group">--%>
                     <label class="col-lg-4 control-label" style="text-align: right; clear:both;">Comments</label>
                     <div class="col-lg-8" >
-                        <s:textarea cssClass="form-control modalTextArea" placeholder="Comments" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
+                        <s:textarea cssClass="form-control modalTextArea" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
                                      id="document_documentComments" />
                     </div>
                 <%--</div>--%>

@@ -84,7 +84,7 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         log.debug("Find initiated.");
         try {
             log.debug("Find succeeded.");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'FULL CONTAINER LOAD'");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'FULL CONTAINER LOAD' order by createdTimestamp desc ");
             List<Orders> results = (List<Orders>) query.list();
             return results;
         } catch(Exception e){
@@ -98,7 +98,7 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         log.debug("Find initiated.");
         try {
             log.debug("Find succeeded.");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'FULL CONTAINER LOAD' and o.originationPort = :originationPort");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'FULL CONTAINER LOAD' and o.originationPort = :originationPort order by createdTimestamp desc");
             query.setParameter("originationPort", originationPort);
             List<Orders> results = (List<Orders>) query.list();
             return results;
@@ -114,7 +114,7 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         log.debug("Find initiated.");
         try {
             log.debug("Find succeeded.");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LESS CONTAINER LOAD'");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LESS CONTAINER LOAD' order by createdTimestamp desc ");
             List<Orders> results = (List<Orders>) query.list();
             return results;
         } catch(Exception e){
@@ -128,7 +128,7 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         log.debug("Find initiated.");
         try {
             log.debug("Find succeeded.");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LESS CONTAINER LOAD' and o.originationPort = :originationPort");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LESS CONTAINER LOAD' and o.originationPort = :originationPort order by createdTimestamp desc ");
             query.setParameter("originationPort", originationPort);
             List<Orders> results = (List<Orders>) query.list();
             return results;
@@ -144,7 +144,7 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         log.debug("Find initiated.");
         try {
             log.debug("Find succeeded.");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LOOSE CARGO LOAD'");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LOOSE CARGO LOAD' order by createdTimestamp desc ");
             List<Orders> results = (List<Orders>) query.list();
             return results;
         } catch(Exception e){
@@ -158,7 +158,7 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         log.debug("Find initiated.");
         try {
             log.debug("Find succeeded.");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LOOSE CARGO LOAD' and o.originationPort = :originationPort");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'LOOSE CARGO LOAD' and o.originationPort = :originationPort order by createdTimestamp desc ");
             query.setParameter("originationPort", originationPort);
             List<Orders> results = (List<Orders>) query.list();
             return results;
@@ -174,7 +174,7 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         log.debug("Find initiated.");
         try {
             log.debug("Find succeeded.");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'ROLLING CARGO LOAD'");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'ROLLING CARGO LOAD' order by createdTimestamp desc ");
             List<Orders> results = (List<Orders>) query.list();
             return results;
         } catch(Exception e){
@@ -188,7 +188,7 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         log.debug("Find initiated.");
         try {
             log.debug("Find succeeded.");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'ROLLING CARGO LOAD' and o.originationPort = :originationPort");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.serviceRequirement = 'ROLLING CARGO LOAD' and o.originationPort = :originationPort order by createdTimestamp desc ");
             query.setParameter("originationPort", originationPort);
             List<Orders> results = (List<Orders>) query.list();
             return results;

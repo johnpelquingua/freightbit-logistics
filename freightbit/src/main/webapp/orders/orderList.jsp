@@ -115,10 +115,10 @@
 
                                     </s:if>
 
-                                    | <%--separator--%>
                                     <%--approve booking--%>
                                     <%--<s:property value="%{#attr.order.orderId}"/>--%>
                                     <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING' ">
+                                        | <%--separator--%>
                                         <s:url var="approveOrderUrl" action="approveOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
@@ -127,6 +127,7 @@
                                         </s:a>
                                     </s:if>
                                     <s:if test=" #attr.order.orderStatus == 'APPROVED' || #attr.order.orderStatus == 'INCOMPLETE' ">
+                                        | <%--separator--%>
                                         <%--cancel booking--%>
                                         <s:url var="cancelOrderUrl" action="cancelOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>

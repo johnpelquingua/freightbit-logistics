@@ -105,9 +105,9 @@
             </div>
             <div class="panel-body" align="center">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_INLAND_FREIGHT', 'ROLE_SEA_FREIGHT', 'ROLE_SALES')">
-	                <div class="text-right">
+	                <%--<div class="text-right">
 	                <a href="#" onclick="loadCalendar();">View Calendar <i class="fa fa-arrow-circle-right"></i></a>
-	                </div>
+	                </div>--%>
                 </sec:authorize>
                 <iframe height="500" width="925" name="sample" seamless="seamless"></iframe>
             </div>

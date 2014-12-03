@@ -999,7 +999,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // For FCL Requirement
         List<Orders> fclOrders = new ArrayList<Orders>();
 
-        if(originCity != null){
+        System.out.println("9999999999999999999999999999999999999999"+ originCity);
+
+        if(originCity != null && originCity != "\0" && originCity != ""){
             fclOrders = operationsService.findOrdersByCityFCL(originCity);
         }else{
             fclOrders = operationsService.findOrdersByFCL();
@@ -1063,6 +1065,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String viewFreightItemList() {
 
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        System.out.println("7777777777777777777777777777777777777777777777" + orderIdParam );
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         order = transformToOrderFormBean(orderEntity);
@@ -1742,7 +1746,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntityProforma.setReferenceTable("ORDERS");
                     documentEntityProforma.setOrderNumber(orderEntity.getOrderNumber());
                     documentEntityProforma.setCreatedDate(new Date());
-                    documentEntityProforma.setDocumentStatus("INPUT REFERENCE NUMBER");
+                    documentEntityProforma.setDocumentStatus("INPUT SERIES NUMBER");
                     documentEntityProforma.setVendorCode(itemVendor);
                     documentEntityProforma.setOutboundStage(1);
                     documentEntityProforma.setDocumentProcessed(0);
@@ -1846,7 +1850,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntity.setDocumentStatus("FOR PRINTING");
                     documentEntity.setVendorCode(itemVendor);
                     documentEntity.setOutboundStage(1);
-                    documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
                     documentEntity.setDocumentProcessed(0);
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                     // orderitem id should be set in orderitemid column WIP
@@ -1922,9 +1925,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntity.setCreatedDate(new Date());
                     documentEntity.setDocumentStatus("FOR PRINTING");
                     documentEntity.setVendorCode(itemVendor);
-                    /*documentEntity.setReferenceNumber(orderIdParam.toString());*/
                     documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
-                    /*documentEntity.setOutboundStage(1);*/
                     documentEntity.setFinalOutboundStage(0);
                     documentEntity.setDocumentProcessed(2);
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());

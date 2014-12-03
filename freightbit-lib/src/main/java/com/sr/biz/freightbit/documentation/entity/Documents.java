@@ -6,10 +6,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by Clarence C. Victoria on 8/8/14.
- */
-
 @Entity
 @Table(name = "documents", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "documentId"))
 public class Documents implements Serializable {
@@ -30,6 +26,7 @@ public class Documents implements Serializable {
     private Integer inboundStage;
     private Integer finalOutboundStage;
     private Integer finalInboundStage;
+    private Integer completeStage;
     private Integer archiveStage;
     private Integer billingStage;
     private Date inboundReturned;
@@ -191,6 +188,15 @@ public class Documents implements Serializable {
 
     public void setFinalInboundStage(Integer finalInboundStage) {
         this.finalInboundStage = finalInboundStage;
+    }
+
+    @Column(name = "completeStage")
+    public Integer getCompleteStage() {
+        return completeStage;
+    }
+
+    public void setCompleteStage(Integer completeStage) {
+        this.completeStage = completeStage;
     }
 
     @Column(name = "archiveStage")

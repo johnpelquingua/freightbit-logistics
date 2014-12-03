@@ -168,10 +168,10 @@
                                             <tr><td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Mayor's Permit Number</td>
                                                 <td><s:property value="customer.mayorsPermit" /><br><br></td>
                                             </tr>
-                                            <tr> <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Account Application Form</td>
+                                            <tr> <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Account Application Form Number</td>
                                                 <td><s:property value="customer.aaf" /><br><br></td>
                                             </tr>
-                                            <tr><td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Customer Information Sheet</td>
+                                            <tr><td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Customer Information Sheet Number</td>
                                                 <td><s:property value="customer.signatureCard" /><br><br></td>
                                             </tr>
                                             </tbody>

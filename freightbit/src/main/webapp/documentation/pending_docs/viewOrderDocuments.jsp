@@ -6,7 +6,7 @@
 
     $(document).ready(function() {
 
-        $( window ).load(function() {
+        /*$( window ).load(function() {
 
             var outbound_tab = $("#documentTab").val();
 
@@ -40,7 +40,7 @@
                 $("#fifth").toggleClass('disabled active');
             }
 
-        });
+        });*/
 
     });
 
@@ -100,7 +100,7 @@
                                 <s:textfield cssClass="form-control" value="%{order.orderNumber}" name="book-num" disabled="true"></s:textfield>
                             </div>
                             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px; text-align: center;">Freight Type</label>
-                            <div  >
+                            <div class="col-lg-4">
                                 <s:textfield cssClass="form-control" value="%{order.freightType}" name="book-num" disabled="true"></s:textfield>
                             </div>
                         </div>
@@ -217,16 +217,22 @@
                             </div>
 
                             <div class="col-xs-2 bs-wizard-step disabled" id="fifth"><!-- active -->
+                                <div class="text-center bs-wizard-stepnum">COMPLETE</div>
+                                <div class="progress"><div class="progress-bar"></div></div>
+                                <a href="#complete" class="bs-wizard-dot" data-toggle="tab" onclick="completeProgress()"></a>
+                            </div>
+
+                            <%--<div class="col-xs-2 bs-wizard-step disabled" id="sixth"><!-- active -->
                                 <div class="text-center bs-wizard-stepnum">ARCHIVE</div>
                                 <div class="progress"><div class="progress-bar"></div></div>
                                 <a href="#archive" class="bs-wizard-dot" data-toggle="tab" onclick="archiveProgress()"></a>
                             </div>
 
-                            <div class="col-xs-2 bs-wizard-step disabled" id="sixth"><!-- active -->
+                            <div class="col-xs-2 bs-wizard-step disabled" id="seventh"><!-- active -->
                                 <div class="text-center bs-wizard-stepnum">BILLING</div>
                                 <div class="progress"><div class="progress-bar" data-toggle="tab" onclick="BillingProgress"></div></div>
                                 <a href="#billing" class="bs-wizard-dot"></a>
-                            </div>
+                            </div>--%>
                         </div>
 
                     </div>
@@ -246,13 +252,18 @@
             <%--<div id="inputDiv"> &lt;%&ndash;Area where input fields will appear&ndash;%&gt;
             </div>--%>
 
+            <%--<s:if test="hasActionMessages()">
+                <div class="col-lg-12">
+                    <div class="alert alert-errors">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                        <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+                    </div>
+                </div>
+            </s:if>--%>
+
             <%--Anchor on tab click--%>
-            <s:textfield type="hidden" value="%{documentTab}" id="documentTab"  />
-            <s:textfield type="hidden" value="%{documentTabInbound}" id="documentTabInbound"  />
-            <s:textfield type="hidden" value="%{documentTabFinalOutbound}" id="documentTabFinalOutbound"  />
-            <s:textfield type="hidden" value="%{documentTabFinalInbound}" id="documentTabFinalInbound"  />
-            <s:textfield type="hidden" value="%{documentTabArchive}" id="documentTabArchive"  />
-            <s:textfield type="hidden" value="%{documentTabBilling}" id="documentTabBilling"  />
+            <%--<s:textfield  value="%{documentTabArchive}" id="documentTabArchive"  />
+            <s:textfield  value="%{documentTabBilling}" id="documentTabBilling"  />--%>
             <%--cssStyle="visibility: hidden;"--%>
 
                 <s:if test="hasActionMessages()">
@@ -314,8 +325,9 @@
                         </s:a>--%>
                         <a href="#finalInbound" role="tab" data-toggle="tab">Final Inbound</a>
                     </li>
-                    <li id="arch"><a href="#archive" role="tab" data-toggle="tab">Archive</a></li>
-                    <li id="bill"><a href="#billing" role="tab" data-toggle="tab">Billing</a></li>
+                    <li id="comp"><a href="#complete" role="tab" data-toggle="tab">Complete</a></li>
+                    <%--<li id="arch"><a href="#archive" role="tab" data-toggle="tab">Archive</a></li>
+                    <li id="bill"><a href="#billing" role="tab" data-toggle="tab">Billing</a></li>--%>
                 </ul>
 
                 <div class="tab-content" id="focusHere" tabindex="-1">
@@ -377,7 +389,7 @@
                                         </display:column>
                                     </td>
 
-                                    <td><display:column property="referenceNumber" title="Serial Number" class="tb-font-black" style="text-align: center;">
+                                    <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                     </td>
 
@@ -416,7 +428,7 @@
                                                     </a>
                                                 <%--</s:if>--%>
                                                 <%--Print Document--%>
-                                                <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='ACCEPTANCE RECEIPT' ">
+                                                <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' ">
                                                     <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                         <i class="fa fa-print"></i>
                                                     </a>
@@ -583,7 +595,7 @@
                                         </display:column>
                                         </td>
 
-                                        <td><display:column property="referenceNumber" title="Serial Number" class="tb-font-black" style="text-align: center;">
+                                        <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
 
@@ -769,7 +781,7 @@
                                         </display:column>
                                         </td>
 
-                                        <td><display:column property="referenceNumber" title="Serial Number" class="tb-font-black" style="text-align: center;">
+                                        <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
 
@@ -920,7 +932,7 @@
                                         </display:column>
                                         </td>
 
-                                        <td><display:column property="referenceNumber" title="Serial Number" class="tb-font-black" style="text-align: center;">
+                                        <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
 
@@ -1002,110 +1014,185 @@
 
 <%------------------------------------------FINAL INBOUND DOCUMENTS END-----------------------------------------------%>
 
+<%------------------------------------------COMPLETE DOCUMENTS BEGIN-----------------------------------------------%>
+
+                    <div class="tab-pane fade" id="complete">
+
+                        <div class="panel-body">
+
+                            <div class="table-responsive" style="clear:both;">
+                            <%--<s:form name="myform" action="processDocumentsFinalInbound">--%>
+                            <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
+                            <s:textfield type="hidden" name="document.documentItem" id="documentItemComplete"></s:textfield>
+                            <display:table id="document" name="completeDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                           style="margin-top: 15px;">
+
+                                <td>
+                                    <display:column title="" class="tb-font-black" style="text-align: center;" >
+                                        <s:if test="#attr.document.documentProcessed == 3">
+                                            <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                        </s:if>
+
+                                        <s:else>
+                                            <i class="fa fa-check-square-o"></i>
+                                        </s:else>
+                                        <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
+                                        <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
+
+                                    </display:column>
+                                </td>
+
+                                <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
+                                </display:column>
+                                </td>
+
+                                <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
+                                </display:column>
+                                </td>
+
+                                <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
+                                </display:column>
+                                </td>
+
+                                <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
+                                </display:column>
+                                </td>
+
+                                <td><display:column property="documentComments" title="Comments" class="tb-font-black" style="text-align: center;">
+                                </display:column>
+                                </td>
+
+                                <td>
+
+                                    <display:column title="Action" class="tb-font-black" style="text-align: center;" >
+
+                                        <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <%--Print Document--%>
+                                        <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' ">
+                                            <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                        </s:if>
+
+                                    </display:column>
+
+                                </td>
+
+                            </display:table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+<%------------------------------------------COMPLETE DOCUMENTS END-----------------------------------------------%>
+
 <%------------------------------------------ARCHIVE DOCUMENTS BEGIN-----------------------------------------------%>
 
-<div class="tab-pane fade" id="archive">
+                    <%--<div class="tab-pane fade" id="archive">
 
-    <div class="panel-body">
+                        <div class="panel-body">
 
-        <s:if test=" documentTabArchive == 'NO_ARCHIVE_DOCUMENTS' && documentTabFinalInbound == 'FINAL_INBOUND_COMPLETE' ">
+                            <s:if test=" documentTabArchive == 'NO_ARCHIVE_DOCUMENTS' && documentTabFinalInbound == 'FINAL_INBOUND_COMPLETE' ">
 
-            <s:url var="activateArchiveUrl" action="activateArchive">
-                <s:param name="orderIdParam"
-                         value="#attr.order.orderId"></s:param>
-            </s:url>
-            <s:a class="icon-action-link" href="%{activateArchiveUrl}" rel="tooltip">
-                <button type="button" class="btn btn-primary">Activate Archive Documents</button>
-            </s:a>
+                                <s:url var="activateArchiveUrl" action="activateArchive">
+                                    <s:param name="orderIdParam"
+                                             value="#attr.order.orderId"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{activateArchiveUrl}" rel="tooltip">
+                                    <button type="button" class="btn btn-primary">Activate Archive Documents</button>
+                                </s:a>
 
-        </s:if>
-
-        <s:if test=" documentTabArchive == 'ARCHIVE' || documentTabArchive == 'ARCHIVE_COMPLETE' ">
-            <div class="table-responsive" style="clear:both;">
-                <s:form name="myform" action="processDocumentsArchive">
-                <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
-                <s:textfield type="hidden" name="document.documentItem" id="documentItemArchive"></s:textfield>
-                <display:table id="document" name="archiveDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
-                               style="margin-top: 15px;">
-
-                    <td>
-                        <display:column title="" class="tb-font-black" style="text-align: center;" >
-                            <s:if test="#attr.document.documentProcessed <= 4">
-                                <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
                             </s:if>
 
-                            <s:else>
-                                <i class="fa fa-check-square-o"></i>
-                            </s:else>
-                            <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
-                            <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
+                            <s:if test=" documentTabArchive == 'ARCHIVE' || documentTabArchive == 'ARCHIVE_COMPLETE' ">
+                                <div class="table-responsive" style="clear:both;">
+                                    <s:form name="myform" action="processDocumentsArchive">
+                                    <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
+                                    <s:textfield type="hidden" name="document.documentItem" id="documentItemArchive"></s:textfield>
+                                    <display:table id="document" name="archiveDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                                   style="margin-top: 15px;">
 
-                        </display:column>
-                    </td>
+                                        <td>
+                                            <display:column title="" class="tb-font-black" style="text-align: center;" >
+                                                <s:if test="#attr.document.documentProcessed <= 4">
+                                                    <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                </s:if>
 
-                    <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
-                    </display:column>
-                    </td>
+                                                <s:else>
+                                                    <i class="fa fa-check-square-o"></i>
+                                                </s:else>
+                                                &lt;%&ndash;<s:property value="%{#attr.document.documentProcessed}"/>&ndash;%&gt;
+                                                <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
 
-                    <td><display:column property="referenceNumber" title="Serial Number" class="tb-font-black" style="text-align: center;">
-                    </display:column>
-                    </td>
+                                            </display:column>
+                                        </td>
 
-                    <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
-                    </display:column>
-                    </td>
+                                        <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
 
-                    <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
-                    </display:column>
-                    </td>
+                                        <td><display:column property="referenceNumber" title="Serial Number" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
 
-                    <td><display:column property="documentComments" title="Comments" class="tb-font-black" style="text-align: center;">
-                    </display:column>
-                    </td>
+                                        <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
 
-                    <td>
-                        <display:column title="Action" class="tb-font-black" style="text-align: center;" >
+                                        <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
 
-                            <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                            <%--Print Document--%>
-                            <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' ">
-                                <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
-                                    <i class="fa fa-print"></i>
-                                </a>
+                                        <td><display:column property="documentComments" title="Comments" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
+
+                                        <td>
+                                            <display:column title="Action" class="tb-font-black" style="text-align: center;" >
+
+                                                <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                &lt;%&ndash;Print Document&ndash;%&gt;
+                                                <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' ">
+                                                    <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                        <i class="fa fa-print"></i>
+                                                    </a>
+                                                </s:if>
+
+                                            </display:column>
+                                        </td>
+
+                                    </display:table>
+                                </div>
+
+
+                                <s:if test=" documentTabArchive == 'ARCHIVE' ">
+                                    <s:submit cssClass="btn btn-default pull-right"  value="Check Document(s)" onclick="addCheckTextArchive()"></s:submit>
+                                </s:if>
+
+                                </s:form>
                             </s:if>
 
-                        </display:column>
-                    </td>
+                        </div>
 
-                </display:table>
-            </div>
-
-
-            <s:if test=" documentTabArchive == 'ARCHIVE' ">
-                <s:submit cssClass="btn btn-default pull-right"  value="Check Document(s)" onclick="addCheckTextArchive()"></s:submit>
-            </s:if>
-
-            </s:form>
-        </s:if>
-
-    </div>
-
-</div>
+                    </div>--%>
 
 <%------------------------------------------ARCHIVE DOCUMENTS BEGIN-----------------------------------------------%>
 
 <%------------------------------------------BILLING DOCUMENTS BEGIN-----------------------------------------------%>
 
-<div class="tab-pane fade" id="billing">
+                    <%--<div class="tab-pane fade" id="billing">
 
-    <div class="panel-body">
-BILLING DOCUMENTS PLACEHOLDER
-    </div>
+                        <div class="panel-body">
+                            BILLING DOCUMENTS PLACEHOLDER
+                        </div>
 
-</div>
-
+                    </div>
+--%>
 <%------------------------------------------BILLING DOCUMENTS BEGIN-----------------------------------------------%>
 
             </div>
@@ -1113,6 +1200,19 @@ BILLING DOCUMENTS PLACEHOLDER
         </div>
     </div>
 </div>
+
+<s:textfield  value="%{documentTab}" id="documentTab"  />
+<s:textfield  value="%{documentTabInbound}" id="documentTabInbound"  />
+<s:textfield  value="%{documentTabFinalOutbound}" id="documentTabFinalOutbound"  />
+<s:textfield  value="%{documentTabFinalInbound}" id="documentTabFinalInbound"  />
+<s:textfield  value="%{documentTabComplete}" id="documentTabComplete"  />
+<br />
+<s:textfield  value="%{outboundCount}" id="outboundCount"  />
+<s:textfield  value="%{inboundCount}" id="inboundCount"  />
+<s:textfield  value="%{finalOutboundCount}" id="finalOutboundCount" />
+<s:textfield  value="%{finalInboundCount}" id="finalInboundCount" />
+<s:textfield  value="%{completeCount}" id="completeCount" />
+
 <%--Modal window for input--%>
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -1226,14 +1326,8 @@ BILLING DOCUMENTS PLACEHOLDER
     </div>
 </div>
 
-<s:textfield type="hidden" value="%{outboundCount}" id="outboundCount"  />
-<s:textfield type="hidden" value="%{inboundCount}" id="inboundCount"  />
-<s:textfield type="hidden" value="%{finalOutboundCount}" id="finalOutboundCount" />
-<s:textfield type="hidden" value="%{finalInboundCount}" id="finalInboundCount" />
-<s:textfield type="hidden" value="%{archiveCount}" id="archiveCount" />
-<s:textfield type="hidden" value="%{billingCount}" id="billingCount" />
-
-<%--type="hidden"--%>
+<%--<s:textfield type="hidden" value="%{archiveCount}" id="archiveCount" />
+<s:textfield type="hidden" value="%{billingCount}" id="billingCount" />--%>
 
 <script>
 
@@ -1274,7 +1368,6 @@ BILLING DOCUMENTS PLACEHOLDER
             $(document).scrollTop($(document).height());
         }
     });
-
 
     function addCheckText() {
         var orderIdGet = document.getElementById("order_Id").value;
@@ -1462,55 +1555,72 @@ finalReturnedDate.datepicker({
 function OutboundProgress(){
     document.getElementById("out").className='active';
     document.getElementById("in").className='';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='';
     document.getElementById("fiOut").className='';
     document.getElementById("fiIn").className='';
+    document.getElementById("comp").className='';
+    document.getElementById("arch").className='';
+    document.getElementById("bill").className='';
+
 }
 
 function InboundProgress(){
-    document.getElementById("in").className='active';
     document.getElementById("out").className='';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='';
+    document.getElementById("in").className='active';
     document.getElementById("fiOut").className='';
     document.getElementById("fiIn").className='';
+    document.getElementById("comp").className='';
+    document.getElementById("arch").className='';
+    document.getElementById("bill").className='';
 }
 
 function finalOutboundProgress(){
     document.getElementById("out").className='';
     document.getElementById("in").className='';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='';
     document.getElementById("fiOut").className='active';
     document.getElementById("fiIn").className='';
+    document.getElementById("comp").className='';
+    document.getElementById("arch").className='';
+    document.getElementById("bill").className='';
 }
 
 function finalInboundProgress() {
-    document.getElementById("out").className = '';
-    document.getElementById("in").className = '';
-    document.getElementById("arch").className = '';
-    document.getElementById("bill").className = '';
-    document.getElementById("fiOut").className = '';
-    document.getElementById("fiIn").className = 'active';
+    document.getElementById("out").className='';
+    document.getElementById("in").className='';
+    document.getElementById("fiOut").className='';
+    document.getElementById("fiIn").className='active';
+    document.getElementById("comp").className='';
+    document.getElementById("arch").className='';
+    document.getElementById("bill").className='';
 }
 
-function archiveProgress() {
-    document.getElementById("out").className = '';
-    document.getElementById("in").className = '';
-    document.getElementById("arch").className = 'active';
-    document.getElementById("bill").className = '';
-    document.getElementById("fiOut").className = '';
-    document.getElementById("fiIn").className = '';
+function completeProgress() {
+    document.getElementById("out").className='';
+    document.getElementById("in").className='';
+    document.getElementById("fiOut").className='';
+    document.getElementById("fiIn").className='';
+    document.getElementById("comp").className='active';
+    document.getElementById("arch").className='';
+    document.getElementById("bill").className='';
+}
+
+/*function archiveProgress() {
+    document.getElementById("out").className='';
+    document.getElementById("in").className='';
+    document.getElementById("fiOut").className='';
+    document.getElementById("fiIn").className='';
+    document.getElementById("comp").className='';
+    document.getElementById("arch").className='active';
+    document.getElementById("bill").className='';
 }
 
 function BillingProgress() {
-    document.getElementById("out").className = '';
-    document.getElementById("in").className = '';
-    document.getElementById("arch").className = '';
-    document.getElementById("bill").className = 'active';
-    document.getElementById("fiOut").className = '';
-    document.getElementById("fiIn").className = '';
-}
+    document.getElementById("out").className='';
+    document.getElementById("in").className='';
+    document.getElementById("fiOut").className='';
+    document.getElementById("fiIn").className='';
+    document.getElementById("comp").className='';
+    document.getElementById("arch").className='';
+    document.getElementById("bill").className='active';
+}*/
 
 </script>
