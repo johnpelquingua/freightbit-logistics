@@ -339,7 +339,7 @@
                                                        style="margin-top: 15px;">
 
                                             <td>
-                                                <display:column title="" class="tb-font-black" style="text-align: center;" >
+                                                <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>" >
 
                                                     <s:if test=" documentTabInbound == 'INBOUND' ">
 
@@ -350,7 +350,7 @@
                                                             <i class="fa fa-square-o"></i>
                                                         </s:a>--%>
                                                         <s:if test="#attr.document.documentProcessed == 1">
-                                                            <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                                <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
                                                         </s:if>
                                                         <s:else>
                                                             <i class="fa fa-check-square-o"></i>
@@ -681,5 +681,13 @@ function addOrderId() {
     var orderIdGet = document.getElementById("order_Id").value;
     document.getElementById("order-Id").value = orderIdGet;
 }
+
+$('#mainCheckBox').click(function(){
+    if($('#document [type="checkbox"]:checked').length == $('#document [type="checkbox"]').size()){
+        $('#document [type="checkbox"]').prop('checked', false);
+    }else{
+        $('#document [type="checkbox"]').prop('checked', true);
+    }
+})
 
 </script>

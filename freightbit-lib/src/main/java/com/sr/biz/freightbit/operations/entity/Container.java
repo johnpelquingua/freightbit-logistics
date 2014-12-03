@@ -17,9 +17,9 @@ public class Container implements Serializable{
     private Client clientId;
     private String eirType;
     private String eirNumber;
-    private String portCode;
     private String receiptNumber;
-    private Date dateTime;
+    private Date gateInTime;
+    private Date gateOutTime;
     private String shipping;
     private String trucking;
     private String plateNumber;
@@ -46,14 +46,14 @@ public class Container implements Serializable{
     public Container() {
     }
 
-    public Container(Integer containerId, Client clientId, String eirType, String eirNumber, String portCode, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String sealNumber, String vanLocation, String ladenEmpty, String containerStatus, String forkliftOperator, String operationsDept) {
+    public Container(Integer containerId, Client clientId, String eirType, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String sealNumber, String vanLocation, String ladenEmpty, String containerStatus, String forkliftOperator, String operationsDept) {
         this.containerId = containerId;
         this.clientId = clientId;
         this.eirType = eirType;
         this.eirNumber = eirNumber;
-        this.portCode = portCode;
         this.receiptNumber = receiptNumber;
-        this.dateTime = dateTime;
+        this.gateInTime = gateInTime;
+        this.gateOutTime = gateOutTime;
         this.shipping = shipping;
         this.trucking = trucking;
         this.plateNumber = plateNumber;
@@ -117,13 +117,22 @@ public class Container implements Serializable{
         this.receiptNumber = receiptNumber;
     }
 
-    @Column(name = "dateTime")
-    public Date getDateTime() {
-        return dateTime;
+    @Column(name = "gateInTime")
+    public Date getGateInTime() {
+        return gateInTime;
     }
 
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
+    public void setGateInTime(Date gateInTime) {
+        this.gateInTime = gateInTime;
+    }
+
+    @Column(name = "gateOutTime")
+    public Date getGateOutTime() {
+        return gateOutTime;
+    }
+
+    public void setGateOutTime(Date gateOutTime) {
+        this.gateInTime = gateOutTime;
     }
 
     @Column(name = "shipping")
@@ -332,15 +341,5 @@ public class Container implements Serializable{
     public void setEirType(String eirType) {
         this.eirType = eirType;
     }
-
-    @Column(name = "portCode")
-    public String getPortCode() {
-        return portCode;
-    }
-
-    public void setPortCode(String portCode) {
-        this.portCode = portCode;
-    }
-
 
 }

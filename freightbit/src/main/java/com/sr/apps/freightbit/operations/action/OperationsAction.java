@@ -92,7 +92,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Parameters> containerSizeList = new ArrayList<Parameters>();
     private List<Parameters> containerEirTypeList = new ArrayList<Parameters>();
     private List<Parameters> containerStatusList = new ArrayList<Parameters>();
-    private List<Parameters> containerPortCode = new ArrayList<Parameters>();
 
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OperationsBean operationsBean = new OperationsBean();
@@ -140,8 +139,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         containerSizeList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.CONTAINER_SIZE);
         containerEirTypeList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.EIR_TYPE);
         containerStatusList = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.CONTAINER_STATUS);
-        containerPortCode = parameterService.getParameterMap(ParameterConstants.CONTAINERS, ParameterConstants.PORT_CODE);
-
     }
 
     public String updateCompleteInlandPlanning() {
@@ -1453,23 +1450,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String loadSearchContainerPage(){ return SUCCESS; }
 
-    /*public String searchContainer() {
-        String column = getColumnFilter();
-        List<Container> containerEntityList = new ArrayList<Container>();
-
-        if (StringUtils.isNotBlank(column)) {
-            containerEntityList = containerService.findContainerByCriteria(column, container.getContainerKeyword());
-        } else {
-            containerEntityList = containerService.findAllContainer();
-        }
-
-        for (Container containerElem : containerEntityList) {
-            containers.add(transformContainerToFormBean(containerElem));
-        }
-
-        return SUCCESS;
-    }*/
-
     public String viewContainerList() {
 
         String column = getColumnFilter();
@@ -1513,10 +1493,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             column = "eirNumber";
         } else if ("SHIPPING LINE".equals(container.getContainerSearchCriteria())) {
             column = "shipping";
-        } else if ("PORT CODE".equals(container.getContainerSearchCriteria())) {
-            column = "portCode";
         }
-
         return column;
     }
 
@@ -1537,8 +1514,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setContainerId(entity.getContainerId());
         /*formBean.setClientId(entity.getClientId());  */
         formBean.setEirNumber(entity.getEirNumber());
-        formBean.setPortCode(entity.getPortCode());
-        formBean.setDateTime(entity.getDateTime());
+        formBean.setGateInTime(entity.getGateInTime());
+        formBean.setGateOutTime(entity.getGateOutTime());
         formBean.setShipping(entity.getShipping());
         formBean.setTrucking(entity.getTrucking());
         formBean.setPlateNumber(entity.getPlateNumber());
@@ -1608,10 +1585,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setEirType(formBean.getEirType());
         entity.setEirNumber(formBean.getEirNumber());
         entity.setReceiptNumber(formBean.getReceiptNumber());
-        entity.setDateTime(formBean.getDateTime());
+        entity.setGateInTime(formBean.getGateInTime());
+        entity.setGateOutTime(formBean.getGateOutTime());
         entity.setShipping(formBean.getShipping());
         entity.setVanNumber(formBean.getVanNumber());
-        entity.setPortCode(formBean.getPortCode());
         entity.setVanLocation(formBean.getVanLocation());
         entity.setTrucking(formBean.getTrucking());
         entity.setPlateNumber(formBean.getPlateNumber());
@@ -2543,14 +2520,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setContainerStatusList(List<Parameters> containerStatusList) {
         this.containerStatusList = containerStatusList;
-    }
-
-    public List<Parameters> getContainerPortCode() {
-        return containerPortCode;
-    }
-
-    public void setContainerPortCode(List<Parameters> containerPortCode) {
-        this.containerPortCode = containerPortCode;
     }
 
     public List<OrderBean> getFclTable() {

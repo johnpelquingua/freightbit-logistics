@@ -41,7 +41,7 @@
                     </s:url>
                     <s:a class="icon-action-link" href="%{loadAddFormPageUrl}" rel="tooltip" title="New Container">
                         <button type="button" class="btn btn-primary">
-                            <i class="fa fa-home"> </i> Create New EIR Form
+                            <i class="fa fa-home"> </i> New Container
                         </button>
                     </s:a>
                 </sec:authorize>
@@ -56,22 +56,20 @@
                                            pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
-                                <td><display:column property="eirType" title="EIR Type <i class='fa fa-sort' />" class="tb-font-black"
+                                <s:hidden name="container.eirType" value="%{container.eirType}"/>
+                                <td><display:column property="containerNumber" title="Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="containerNumber" title="Container Number <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="containerSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="containerSize" title="Container Size <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="containerStatus" title="Container Status <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="containerStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="shipping" title="Shipping Line <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="portCode" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="gateInTime" title="Gate In <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <%--<td><display:column property="documentCheck" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="gateOutTime" title="Gate Out <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="documentId" title="Port Code <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>--%>
+
                                 <td>
                                     <display:column title="Action">
                                         <s:url var="editContainerUrl" action="loadEditFormPage">
@@ -100,21 +98,10 @@
                                             <i class="fa fa-print"></i>
                                         </a>
 
-                                        <%--<s:if test=" #attr.container.containerStatus == 'FINAL' || #attr.container.containerStatus == 'OPEN'">
-                                        <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${container.containerId},'${container.containerStatus}');">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        </s:if>--%>
-
-
                                         <s:if test="#attr.container.containerStatus == 'FINAL' || #attr.container.containerStatus == 'OPEN' ">
-                                            <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields();">
-                                                <i class="fa fa-edit"></i>
+                                            <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showGateOutFields(${container.containerId});">
+                                                <i class="fa fa-sign-out"></i>
                                             </a>
-                                        <%--<s:url var="checkoutFormUrl" action="loadCheckoutFormPage">
-                                            <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
-                                        </s:url>
-                                        <s:a href="%{checkoutFormUrl}" title="Checkout Form" rel="tooltip" ><i class="fa fa-edit"></i></s:a>--%>
 
                                         </s:if>
                                     </display:column>
@@ -216,8 +203,7 @@
 
     }
 
-    function showInputFields(containerId) {
-
+    function showGateOutFields(containerId) {
         $.ajax({
             url: 'loadCheckoutFormPage',
             type: 'POST',

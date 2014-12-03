@@ -26,8 +26,6 @@ public interface ContainerDao {
 
     public List<Container> findContainerByEIRNumber(String eirNumber);
 
-    public List<Container> findContainerByPortCode(String portCode);
-
     public List<Container> findContainerByReceiptNumber(String receiptNumber);
 
     public List<Container> findContainerBySealNumber(String sealNumber);

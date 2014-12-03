@@ -55,7 +55,7 @@
                                             style="text-align: center;"> </display:column></td>
 
                         <%--Order Number--%>
-                        <td><display:column property="dateTime" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="gateInTime" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
                         <td><display:column title="Action">

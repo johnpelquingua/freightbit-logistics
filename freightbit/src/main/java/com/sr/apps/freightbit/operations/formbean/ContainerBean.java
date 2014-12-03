@@ -13,7 +13,8 @@ public class ContainerBean {
     private Client clientId;
     private String eirNumber;
     private String receiptNumber;
-    private Date dateTime;
+    private Date gateInTime;
+    private Date gateOutTime;
     private String shipping;
     private String trucking;
     private String plateNumber;
@@ -42,7 +43,6 @@ public class ContainerBean {
     private String containerKeyword;
 
     private String eirType;
-    private String portCode;
     // for documents link on container list view
     private String DocumentCheck;
     private Integer documentId;
@@ -50,14 +50,14 @@ public class ContainerBean {
     public ContainerBean() {
     }
 
-    public ContainerBean(Integer containerId, Client clientId, String eirType, String eirNumber, String receiptNumber, Date dateTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept, String sealNumber, String vanLocation, String ladenEmpty, String containerType, String portCode, String containerSearchCriteria, String containerKeyword) {
+    public ContainerBean(Integer containerId, Client clientId, String eirType, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept, String sealNumber, String vanLocation, String ladenEmpty, String containerType, String containerSearchCriteria, String containerKeyword) {
         this.containerId = containerId;
         this.clientId = clientId;
         this.eirType = eirType;
         this.eirNumber = eirNumber;
-        this.portCode = portCode;
         this.receiptNumber = receiptNumber;
-        this.dateTime = dateTime;
+        this.gateInTime = gateInTime;
+        this.gateOutTime = gateOutTime;
         this.shipping = shipping;
         this.trucking = trucking;
         this.plateNumber = plateNumber;
@@ -117,12 +117,20 @@ public class ContainerBean {
         this.receiptNumber = receiptNumber;
     }
 
-    public Date getDateTime() {
-        return dateTime;
+    public Date getGateInTime() {
+        return gateInTime;
     }
 
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
+    public void setGateInTime(Date gateInTime) {
+        this.gateInTime = gateInTime;
+    }
+
+    public Date getGateOutTime() {
+        return gateOutTime;
+    }
+
+    public void setGateOutTime(Date gateOutTime) {
+        this.gateOutTime = gateOutTime;
     }
 
     public String getShipping() {
@@ -323,14 +331,6 @@ public class ContainerBean {
 
     public void setContainerKeyword(String containerKeyword) {
         this.containerKeyword = containerKeyword;
-    }
-
-    public String getPortCode() {
-        return portCode;
-    }
-
-    public void setPortCode(String portCode) {
-        this.portCode = portCode;
     }
 
     public Integer getDocumentId() {

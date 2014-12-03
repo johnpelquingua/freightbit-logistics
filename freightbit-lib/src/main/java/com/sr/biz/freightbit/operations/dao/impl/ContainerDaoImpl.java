@@ -103,21 +103,6 @@ public class ContainerDaoImpl extends HibernateDaoSupport implements ContainerDa
         }
     }
 
-    @Override
-    public List<Container> findContainerByPortCode(String portCode) {
-        Log.debug("Finding Container via portCode");
-        try {
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Container where portCode = :portCode");
-            query.setParameter("portCode", portCode);
-            List<Container> results = (List<Container>) query.list();
-            Log.debug("Find Container by orderNumber successful, result size: " + results.size());
-            return results;
-        } catch (Exception e) {
-            Log.error("Find Container by orderNumber failed", e);
-            throw e;
-        }
-    }
-
     public List<Container> findContainerByReceiptNumber(String receiptNumber) {
         Log.debug("Finding Container via receiptNumber");
         try {

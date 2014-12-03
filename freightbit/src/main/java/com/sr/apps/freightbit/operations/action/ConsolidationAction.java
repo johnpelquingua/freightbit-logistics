@@ -328,8 +328,8 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
 
         formBean.setContainerId(entity.getContainerId());
         formBean.setEirNumber(entity.getEirNumber());
-        formBean.setPortCode(entity.getPortCode());
-        formBean.setDateTime(entity.getDateTime());
+        formBean.setGateInTime(entity.getGateInTime());
+        formBean.setGateOutTime(entity.getGateOutTime());
         formBean.setShipping(entity.getShipping());
         formBean.setTrucking(entity.getTrucking());
         formBean.setPlateNumber(entity.getPlateNumber());
