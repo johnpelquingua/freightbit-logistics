@@ -265,7 +265,7 @@
                 </s:if>
 
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-tabs" role="tablist" style="padding-left: 10px;">
                     <%--Redirects to Outbound Stage--%>
                     <li class="active" id="out">
                         <%--<s:url var="outboundStageUrl" action="viewOrderDocuments">
@@ -318,7 +318,7 @@
                     <li id="bill"><a href="#billing" role="tab" data-toggle="tab">Billing</a></li>
                 </ul>
 
-                <div class="tab-content">
+                <div class="tab-content" id="focusHere" tabindex="-1">
 <%------------------------------------------OUTBOUND DOCUMENTS BEGIN-----------------------------------------------%>
 
                     <div class="tab-pane fade in active" id="outbound">
@@ -329,11 +329,11 @@
                                 <s:form name="myform" action="processDocuments">
                                 <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
 
-                                <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="outbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="outboundTable outbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">
 
                                     <td>
-                                        <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
+                                        <display:column title="<input type='checkbox' id='outboundCheckBox' name='outboundCheckBox'/>">
 
                                             <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
                                             <%--<s:property value="%{#attr.document.documentId}"/>--%>
@@ -458,7 +458,7 @@
                                         </button>
                                     </s:a>--%>
 
-                                    <s:submit cssClass="btn btn-default pull-right" value="Check Document(s)" onclick="addCheckText()"></s:submit>
+                                    <s:submit tabindex="-1" cssClass="checkBtn btn btn-default pull-right" value="Check Document(s)" onclick="addCheckText()"></s:submit>
 
                                 </s:if>
 
@@ -492,11 +492,12 @@
 
                             <s:if test=" documentTabInbound == 'INBOUND' || documentTabInbound == 'INBOUND_COMPLETE'">
 
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label" >Date Received</label>
-                                    <div class="col-lg-3">
-                                        <s:textfield type="text" cssClass="form-control" name = "dateReturnedInbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>
-                                    </div>
+                                <div class="form-group" style="padding-left: 15px;">
+                                    Date/Time received : <s:label name = "dateReturnedInbound"></s:label>
+                                    <%--<label class="col-lg-2 control-label" >Date Received</label>--%>
+                                    <%--<div class="col-lg-3">--%>
+                                        <%--<s:textfield type="text" cssClass="form-control" name = "dateReturnedInbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>--%>
+                                    <%--</div>--%>
                                 </div>
 
                                 <div class="table-responsive" style="clear:both;">
@@ -507,7 +508,7 @@
                                                    style="margin-top: 15px;">
 
                                         <td>
-                                            <display:column title="" class="tb-font-black" style="text-align: center;" >
+                                            <display:column title="<input type='checkbox' id='inboundCheckBox' />" class="tb-font-black" style="text-align: center;" >
 
                                                 <s:if test=" documentTabInbound == 'INBOUND' ">
 
@@ -697,26 +698,28 @@
 
                             <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND' || documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE' || documentTabFinalOutbound == 'FINAL_OUTBOUND_SENT'">
 
-                                <div class="form-group">
-                                    <label class="col-lg-3 control-label" >Date Sent</label>
-                                    <div class="col-lg-3">
-                                        <s:textfield type="text" cssClass="form-control" name = "dateSentFinalOutbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>
-                                    </div>
-                                    <label class="col-lg-2 control-label" >Tracking Number</label>
-                                    <div class="col-lg-3">
-                                        <s:textfield type="text" cssClass="form-control" name = "finalOutboundTrackingNumber" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>
-                                    </div>
+                                <div class="form-group" style="padding-left: 15px;">
+                                    <p>Date/Time sent : <s:label name = "dateSentFinalOutbound"></s:label></p>
+                                    <p>Tracking number : <s:label name = "finalOutboundTrackingNumber"></s:label></p>
+                                    <%--<label class="col-lg-3 control-label" >Date Sent</label>--%>
+                                    <%--<div class="col-lg-3">--%>
+                                        <%--<s:textfield type="text" cssClass="form-control" name = "dateSentFinalOutbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>--%>
+                                    <%--</div>--%>
+                                    <%--<label class="col-lg-2 control-label" >Tracking Number</label>--%>
+                                    <%--<div class="col-lg-3">--%>
+                                        <%--<s:textfield type="text" cssClass="form-control" name = "finalOutboundTrackingNumber" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>--%>
+                                    <%--</div>--%>
                                 </div>
 
                                 <div class="table-responsive" style="clear:both;">
                                 <s:form name="myform" action="processDocumentsFinalOutbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItemFinalOutbound"></s:textfield>
-                                    <display:table id="document" name="finalOutboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class=" final_outbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="finalOutboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="final_outbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
-                                            <display:column title="" class="tb-font-black" style="text-align: center;" >
+                                            <display:column title="<input type='checkbox' id='foCheckBox'/>" class="tb-font-black" style="text-align: center;" >
 
                                                 <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND' ">
 
@@ -871,11 +874,12 @@
 
                             <s:if test=" documentTabFinalInbound == 'FINAL_INBOUND' || documentTabFinalInbound == 'FINAL_INBOUND_COMPLETE'">
 
-                                <div class="form-group">
-                                    <label class="col-lg-3 control-label" >Date Received</label>
-                                    <div class="col-lg-3">
-                                        <s:textfield type="text" cssClass="form-control" name = "dateReturnedFinalInbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>
-                                    </div>
+                                <div class="form-group" style="padding-left: 15px;">
+                                    <p>Date Receieved : <s:label name="dateReturnedFinalInbound" ></s:label></p>
+                                    <%--<label class="col-lg-3 control-label" >Date Received</label>--%>
+                                    <%--<div class="col-lg-3">--%>
+                                        <%--<s:textfield type="text" cssClass="form-control" name = "dateReturnedFinalInbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>--%>
+                                    <%--</div>--%>
                                 </div>
 
                                 <div class="table-responsive" style="clear:both;">
@@ -886,7 +890,7 @@
                                                    style="margin-top: 15px;">
 
                                         <td>
-                                            <display:column title="" class="tb-font-black" style="text-align: center;" >
+                                            <display:column title="<input type='checkbox' id='fiCheckBox' />" class="tb-font-black" style="text-align: center;" >
                                                 <s:if test="#attr.document.documentProcessed == 3">
                                                     <%--<s:url var="checkDocumentFinalInboundUrl" action="checkDocumentFinalInbound">
                                                         <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
@@ -1201,21 +1205,20 @@ BILLING DOCUMENTS PLACEHOLDER
 </div>
 
 <%--Modal for Final Inbound Documents--%>
-<div class="modal fade" id="finalInboundReceivedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade " id="finalInboundReceivedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-header">
+                <h4 class="modal-title">Final Inbound Documents</h4>
+            </div>
+            <div class="modal-body" style="margin-top: -10px;">
                 <s:form action="dateReceivedFinalInbound" theme="bootstrap">
-                    <div class="col-md-12">
-                        <label class="control-label" >Date Received</label>
-                        <div class="col-md-12">
-                            <s:textfield type="text" cssClass="form-control" id="datepicker3" name="dateReturnedFinalInbound" required="true" placeholder="Select Returned date"></s:textfield>
-                        </div>
-                    </div>
+                    <label style="margin-left: 0.5em;" class="control-label">Date Received</label>
+                    <s:textfield type="text" cssClass="form-control" id="datepicker3" name="dateReturnedFinalInbound" required="true" placeholder="Select Returned date"></s:textfield>
                     <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
-
-                    <div class="col-md-12" style="margin-left: 3em; margin-top: 2em;">
-                        <s:submit name="submit" cssClass="btn btn-primary" value="Activate Final Inbound Documents" onclick="addOrderId()" />
+                    <div style="margin-top: 1em;" class="pull-right">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <s:submit name="submit" cssClass="btn btn-primary" value="Activate" onclick="addOrderId()" />
                     </div>
                 </s:form>
             </div>
@@ -1234,23 +1237,43 @@ BILLING DOCUMENTS PLACEHOLDER
 
 <script>
 
-$(function () {
-    $('#myTab a:first').tab('show')
-});
-$(function() {
-    //for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
-    $('a[data-toggle="tab"]').on('click', function (e) {
-        localStorage.setItem('lastTab', $(e.target).attr('href'));
+    $(document).ready(function(){
+        massCheckbox('outboundCheckBox', 'outboundTable');
+        massCheckbox('inboundCheckBox', 'inbound_table');
+        massCheckbox('foCheckBox', 'final_outbound_table');
+        massCheckbox('fiCheckBox', 'final_inbound_table');
+
+        $('.checkBtn').click(function(){
+            localStorage.setItem('checkDocuments', 'FOCUS');
+        })
+
+        $('i[class="fa fa-edit"]').click(function () {
+            localStorage.setItem('editDocuments', 'FOCUS');
+        })
+    })
+
+    $(function() {
+        $('#myTab a:first').tab('show');
+
+        //for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
+        $('a[data-toggle="tab"]').on('click', function (e) {
+            localStorage.setItem('lastTab', $(e.target).attr('href'));
+        });
+
+        //go to the latest tab, if it exists:
+        var lastTab = localStorage.getItem('lastTab'),
+            documentEdit = localStorage.getItem('checkDocuments'),
+            documentCheck = localStorage.getItem('editDocuments');
+
+        if (lastTab) {
+            $('a[href="'+lastTab+'"]').click();
+        }
+
+        if(documentEdit || documentCheck){
+//            $('.checkBtn').focus();
+            $(document).scrollTop($(document).height());
+        }
     });
-
-    //go to the latest tab, if it exists:
-    var lastTab = localStorage.getItem('lastTab');
-
-    if (lastTab) {
-        $('a[href="'+lastTab+'"]').click();
-
-    }
-});
 
 
     function addCheckText() {
@@ -1489,13 +1512,5 @@ function BillingProgress() {
     document.getElementById("fiOut").className = '';
     document.getElementById("fiIn").className = '';
 }
-
-$('#mainCheckBox').click(function(){
-    if($('#orderItem [type="checkbox"]:checked').length == $('#orderItem [type="checkbox"]').size()){
-        $('#orderItem [type="checkbox"]').prop('checked', false);
-    }else{
-        $('#orderItem [type="checkbox"]').prop('checked', true);
-    }
-})
 
 </script>

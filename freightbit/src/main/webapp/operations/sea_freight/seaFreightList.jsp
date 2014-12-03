@@ -25,9 +25,9 @@
                 </h3>
             </div>
 
-            <div class="col-md-12 form-group pull-left" style="margin-top: 0.8em; margin-left: -8em; margin-bottom: 0em;">
+            <div class="col-md-12 form-group pull-left" style="margin-top: 0.8em; margin-left: -5em; margin-bottom: 0em;">
                 <s:form action="changeOrigin" theme="bootstrap">
-                <label class="col-lg-2 control-label">Origin </label>
+                <label class="col-lg-2 control-label">Sort by Origin :</label>
                 <div class="col-lg-4">
                     <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                               id="select1" list="portsList" listKey="key"
@@ -42,7 +42,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
                 <li class="active" id="out">
-                    <a href="#fclTab" role="tab" data-toggle="tab">Full Container Load (LCL)</a>
+                    <a href="#fclTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
                 </li>
                 <li id="in">
                     <a href="#lclTab" role="tab" data-toggle="tab">Less Container Load (LCL)</a>
@@ -61,7 +61,7 @@
 
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <display:table id="order" name="fclTable"
+                            <display:table id="fclTable" name="fclTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
@@ -119,7 +119,7 @@
                     <div class="panel-body">
                         <div class="table-responsive">
                         <s:form name="myform" action="checkOrderConsolidate" theme="bootstrap">
-                            <display:table id="order" name="lclTable"
+                            <display:table id="lclTable" name="lclTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
@@ -211,7 +211,7 @@
 
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <display:table id="order" name="lcuTable"
+                            <display:table id="lcuTable" name="lcuTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
@@ -268,7 +268,7 @@
 
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <display:table id="order" name="rcuTable"
+                            <display:table id="rcuTable" name="rcuTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
@@ -351,8 +351,11 @@
 <script>
 
     $(document).ready(function(){
+        tableProp('DESTI_ORIG','fclTable', 7, 5, 0, 6, 0, 4);
+        tableProp('DESTI_ORIG','lclTable', 8, 5, 0, 7, 0, 6);
+
         seaFreightLclComputation('lclTable', 'wellTotalWeight', 'wellTotalVolume');
-        tableProp('','order', 7, 4, 5, 6);
+
         var freightStatus = $('#order tbody tr td:nth-child(7)'),
             freightAction = $('#order tbody tr td:nth-child(8)');
 
@@ -361,6 +364,18 @@
                 freightAction.eq(i).empty().append('<i class="fa fa-ban"></i>')
             }
         }
+
+        $('#mainCheckBox').click(function(){
+            var allCheckbox = $('#lclTable tbody tr td input[type="checkbox"]');
+            if(allCheckbox.is(':checked')){
+                allCheckbox.prop('checked', false);
+                computeAll('lclTable', 'wellTotalWeight', 'wellTotalVolume', 'SUBTRACT');
+            }else{
+                allCheckbox.prop('checked', true);
+                computeAll('lclTable', 'wellTotalWeight', 'wellTotalVolume', 'ADD');
+            }
+        })
+
     })
 
     $(function () {

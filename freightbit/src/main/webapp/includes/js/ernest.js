@@ -200,7 +200,6 @@ function tableProp(tableClass, tableName, colStatus, colType, colReq, colMode, c
             icon = changeIcons(typeColumn.text()),
             req = reqAbbrev(reqColumn.text()),
             mode = modeAbbrev(modeColumn.text());
-
         if(tableClass == 'DESTI_ORIG'){
             var desColumn = $('#'+tableName+' tbody tr td:nth-child('+colDestination+')').eq(i),
                 origColumn = $('#'+tableName+' tbody tr td:nth-child('+colOrigin+')').eq(i),
@@ -260,7 +259,7 @@ function placeAbbrev(place){
 
 function trColor(status){
     if(status == 'PENDING' || status == 'INCOMPLETE'){
-        return '#fcf8e3';
+        return '#f2a5aa';
     }else if(status == 'DISAPPROVED' || status == 'CANCELLED'){
         return '#f2dede';
     }else if(status == 'APPROVED' || status == 'SERVICE ACCOMPLISHED'){
@@ -328,6 +327,32 @@ function newlineHandler(tableName, commentColumn){
 }
 // AUTHORED BY JAN SARMIENTO -- END
 
+function computeAll(tableClass, wellTotalWeight, wellTotalVolume, operation){
+    var lclCheckBox = $('.'+tableClass+' tbody tr td input[type="checkbox"]'),
+        finalWt = 0, finalVol = 0;
+    if(operation == 'ADD'){
+        for(var i=0; i<lclCheckBox.size(); i++){
+            var tableWt = parseFloat(lclCheckBox.eq(i).closest('tr').find('td').eq(8).text()),
+                tableVol = parseFloat(lclCheckBox.eq(i).closest('tr').find('td').eq(9).text());
+            finalWt = finalWt + tableWt;
+            finalVol = finalVol + tableVol;
+        }
+        $('#'+wellTotalWeight).empty().append(finalWt);
+        $('#'+wellTotalVolume).empty().append(finalVol);
+        triggerComputation(finalWt, finalVol);
+    }
+    else if(operation == 'SUBTRACT'){
+        $('#'+wellTotalVolume).empty().append('0');
+        $('#'+wellTotalWeight).empty().append('0');
+        $('#recommendedContent').empty().append('Choose item(s) first');
+    }
+//    seaFreightLclComputation('lclTable', 'wellTotalWeight', 'wellTotalVolume');
+}
+
+function triggerComputation(weight, volume){
+    startRecommendation('mainReco', 'recommendedContent', weight, volume);
+}
+
 function seaFreightLclComputation(tableClass, wellTotalWeight, wellTotalVolume){
     var lclCheckBox = $('.'+tableClass+' tbody tr td input[type="checkbox"]');
 
@@ -350,7 +375,6 @@ function seaFreightLclComputation(tableClass, wellTotalWeight, wellTotalVolume){
             wellContentWt.empty().append(weight);
             wellContentVol.empty().append(volume);
         }
-
         startRecommendation('mainReco', 'recommendedContent', weight, volume);
     })
 }
@@ -422,4 +446,15 @@ function firstRecommendation(weight, volume){
     }
 
     return recommendation;
+}
+
+function massCheckbox(boxName, tableName){
+    $('#'+boxName).click(function(){
+        var allCheckbox = $('.'+tableName+' tbody tr td input[type="checkbox"]');
+        if(allCheckbox.is(':checked')){
+            allCheckbox.prop('checked', false);
+        }else{
+            allCheckbox.prop('checked', true);
+        }
+    })
 }
