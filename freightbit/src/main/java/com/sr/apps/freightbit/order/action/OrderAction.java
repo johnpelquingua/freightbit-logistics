@@ -549,7 +549,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setDocumentProcessed(0);
         documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
         documentEntity.setOutboundStage(1);
-        documentEntity.setVendorCode("Ernest Logistics Corp.");
+        documentEntity.setVendorCode("ELC");
         documentsService.addDocuments(documentEntity);
 
         // Booking Request Form will be created under pending documents end
@@ -569,7 +569,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             documentEntity2.setDocumentProcessed(0);
             documentEntity2.setCreatedBy(commonUtils.getUserNameFromSession());
             documentEntity2.setOutboundStage(1);
-            documentEntity2.setVendorCode("Ernest Logistics Corp.");
+            documentEntity2.setVendorCode("ELC");
             documentsService.addDocuments(documentEntity2);
         }
 

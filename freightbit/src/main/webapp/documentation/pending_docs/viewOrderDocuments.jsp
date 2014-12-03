@@ -340,6 +340,7 @@
                             <div class="table-responsive">
                                 <s:form name="myform" action="processDocuments">
                                 <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
+                                <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
 
                                 <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="outboundTable outbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">

@@ -75,10 +75,7 @@
 
                                 <td><display:column title="Action">
                                     <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
-                                        <s:param name="orderIdParam"
-                                                 value="#attr.order.orderId"></s:param>
-                                        <s:param name="orderNoParam"
-                                                 value="#attr.order.orderNo"></s:param>
+                                        <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{viewFreightItemListUrl}" rel="tooltip"
                                          title="Update Status">
@@ -189,10 +186,7 @@
 
                                 <td><display:column title="Action">
                                     <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
-                                        <s:param name="orderIdParam"
-                                                 value="#attr.order.orderId"></s:param>
-                                        <s:param name="orderNoParam"
-                                                 value="#attr.order.orderNo"></s:param>
+                                        <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{viewFreightItemListUrl}" rel="tooltip"
                                          title="Update Status">
@@ -246,10 +240,7 @@
 
                                 <td><display:column title="Action">
                                     <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
-                                        <s:param name="orderIdParam"
-                                                 value="#attr.order.orderId"></s:param>
-                                        <s:param name="orderNoParam"
-                                                 value="#attr.order.orderNo"></s:param>
+                                        <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{viewFreightItemListUrl}" rel="tooltip"
                                          title="Update Status">

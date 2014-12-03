@@ -1906,11 +1906,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
         }
 
-        List<Documents> proforma = documentsService.findDocumentNameAndId("HOUSE WAYBILL DESTINATION", orderIdParam);
+        List<Documents> waybillDestination = documentsService.findDocumentNameAndId("HOUSE WAYBILL DESTINATION", orderIdParam);
 
         for (String itemVendor : vendorCodeDocument) {
             if(itemVendor != null) { // house waybill destination document will be created if destination vendor is not null
-                if (proforma.size() == 0) {
+                if (waybillDestination.size() == 0) {
                     Documents documentEntity = new Documents();
 
                 /*Client client = clientService.findClientById(getClientId().toString());
@@ -1925,7 +1925,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntity.setCreatedDate(new Date());
                     documentEntity.setDocumentStatus("FOR PRINTING");
                     documentEntity.setVendorCode(itemVendor);
-                    documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
                     documentEntity.setFinalOutboundStage(0);
                     documentEntity.setDocumentProcessed(2);
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());

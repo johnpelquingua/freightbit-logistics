@@ -175,16 +175,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         // Order ID param pass value
-        /*if (orderIdParam == null) {
+        if (orderIdParam == null) {
             orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
-        }*/
+        }
 
         System.out.println("0000000000000000000000000 Session ID PARAM " + (Integer) sessionAttributes.get("orderIdParam") );
         System.out.println("------------------------- ID PARAM " + orderIdParam );
-
-        /*if ( orderIdParam != null ) {
-            orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
-        }*/
 
         // Display correct Order Number in breadcrumb
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
@@ -581,7 +577,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }
 
         //DOCUMENT TAB ARCHIVE VALUE END======================================================================================================================
-
+        sessionAttributes.put("orderIdParam", orderIdParam);
         sessionAttributes.put("documentflag", sessionAttributes.get("documentflag")); // get session document flag
         documentFlag(); // document flag method
         documentflag = 0; // resets document flagORDER
@@ -1314,12 +1310,15 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String processDocuments(){
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-       /* System.out.println("CHECK WORD PASS" + check);*/
+        System.out.println(".............................CHECK WORD PASS " + check);
 
-        System.out.println("DOCUMENT ITEM" + document.getDocumentItem());
-        System.out.println("CHECK WORD PASS" + (Integer)sessionAttributes.get("orderIdParam"));
-        // Check has value
-        if (check != null) {
+        System.out.println(".............................DOCUMENT ITEM " + document.getDocumentItem());
+
+        System.out.println(".............................ORDER ID PARAM " + orderIdParam);
+
+        System.out.println(".............................ORDER ID SESSION " + (Integer)sessionAttributes.get("orderIdParam"));
+
+        if (check != null) { // Check has value
 
             if(document.getDocumentItem().equals("check")) { // if word passed is equals to check
 

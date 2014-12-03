@@ -61,7 +61,7 @@
 
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <display:table id="fclTable" name="fclTable"
+                            <display:table id="order" name="fclTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
@@ -76,7 +76,6 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-
                                 <%--<td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>--%>
@@ -90,10 +89,7 @@
                                     </s:if>
                                     <s:else>
                                         <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                            <s:param name="orderIdParam"
-                                                     value="#attr.order.orderId"></s:param>
-                                            <%--<s:param name="orderNoParam"
-                                                     value="#attr.order.orderNo"></s:param>--%>
+                                            <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                                              title="Update Status">
@@ -119,7 +115,7 @@
                     <div class="panel-body">
                         <div class="table-responsive">
                         <s:form name="myform" action="checkOrderConsolidate" theme="bootstrap">
-                            <display:table id="lclTable" name="lclTable"
+                            <display:table id="order" name="lclTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
@@ -158,10 +154,7 @@
                                     </s:if>
                                     <s:else>
                                         <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                            <s:param name="orderIdParam"
-                                                     value="#attr.order.orderId"></s:param>
-                                            <s:param name="orderNoParam"
-                                                     value="#attr.order.orderNo"></s:param>
+                                            <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                                              title="Update Status">
@@ -197,11 +190,7 @@
                                 <hr/>
                                 <s:submit cssClass="btn btn-default" value="Consolidate" ></s:submit>
                             </div>
-                            <%--<div class="row">--%>
-                                <%--<div class="col-md-6 pull-right" style="margin-right: -17em;">--%>
-                                    <%--<s:submit cssClass="col-lg-3 btn btn-default" value="Consolidate" ></s:submit>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
+
                         </s:form>
                         </div>
                     </div>
@@ -211,7 +200,7 @@
 
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <display:table id="lcuTable" name="lcuTable"
+                            <display:table id="order" name="lcuTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
@@ -239,10 +228,7 @@
                                     </s:if>
                                     <s:else>
                                         <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                            <s:param name="orderIdParam"
-                                                     value="#attr.order.orderId"></s:param>
-                                            <s:param name="orderNoParam"
-                                                     value="#attr.order.orderNo"></s:param>
+                                            <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                                              title="Update Status">
@@ -268,7 +254,7 @@
 
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <display:table id="rcuTable" name="rcuTable"
+                            <display:table id="order" name="rcuTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
@@ -296,10 +282,7 @@
                                     </s:if>
                                     <s:else>
                                         <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                            <s:param name="orderIdParam"
-                                                     value="#attr.order.orderId"></s:param>
-                                            <s:param name="orderNoParam"
-                                                     value="#attr.order.orderNo"></s:param>
+                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                                              title="Update Status">
