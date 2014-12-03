@@ -18,25 +18,25 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
-            <div class="panel-heading">
+            <div class="panel-heading" style="margin-bottom: 1.5em;">
                 <h3 class="panel-title">
                     <i class="fa fa-list"></i> Dispatch Plan List
                 </h3>
             </div>
 
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist" style="clear:both;">
+            <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
                 <li class="active" id="out">
-                    <a href="#fclTab" role="tab" data-toggle="tab">FULL CONTAINER LOAD</a>
+                    <a href="#fclTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
                 </li>
                 <li id="in">
-                    <a href="#lclTab" role="tab" data-toggle="tab">LESS CONTAINER LOAD</a>
+                    <a href="#lclTab" role="tab" data-toggle="tab">Less Container Load (LCL)</a>
                 </li>
                 <li id="fiOut">
-                    <a href="#lcuTab" role="tab" data-toggle="tab">LOOSE CARGO LOAD</a>
+                    <a href="#lcuTab" role="tab" data-toggle="tab">Loose Cargo Load (LCU)</a>
                 </li>
                 <li id="fiIn">
-                    <a href="#rcuTab" role="tab" data-toggle="tab">ROLLING CARGO LOAD</a>
+                    <a href="#rcuTab" role="tab" data-toggle="tab">Rolling Cargo Load (RCU)</a>
                 </li>
             </ul>
 

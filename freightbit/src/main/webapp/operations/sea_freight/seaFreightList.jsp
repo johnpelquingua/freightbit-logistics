@@ -25,7 +25,7 @@
                 </h3>
             </div>
 
-            <div class="form-group">
+            <div class="col-md-12 form-group pull-left" style="margin-top: 0.8em; margin-left: -8em; margin-bottom: 0em;">
                 <s:form action="changeOrigin" theme="bootstrap">
                 <label class="col-lg-2 control-label">Origin </label>
                 <div class="col-lg-4">
@@ -40,18 +40,18 @@
             </div>
 
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist" style="clear:both;">
+            <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
                 <li class="active" id="out">
-                    <a href="#fclTab" role="tab" data-toggle="tab">FULL CONTAINER LOAD</a>
+                    <a href="#fclTab" role="tab" data-toggle="tab">Full Container Load (LCL)</a>
                 </li>
                 <li id="in">
-                    <a href="#lclTab" role="tab" data-toggle="tab">LESS CONTAINER LOAD</a>
+                    <a href="#lclTab" role="tab" data-toggle="tab">Less Container Load (LCL)</a>
                 </li>
                 <li id="fiOut">
-                    <a href="#lcuTab" role="tab" data-toggle="tab">LOOSE CARGO LOAD</a>
+                    <a href="#lcuTab" role="tab" data-toggle="tab">Loose Cargo Load (LCU)</a>
                 </li>
                 <li id="fiIn">
-                    <a href="#rcuTab" role="tab" data-toggle="tab">ROLLING CARGO LOAD</a>
+                    <a href="#rcuTab" role="tab" data-toggle="tab">Rolling Cargo Load (RCU)</a>
                 </li>
             </ul>
 
@@ -116,13 +116,12 @@
                 </div>
 
                 <div class="tab-pane fade" id="lclTab">
-
                     <div class="panel-body">
                         <div class="table-responsive">
                         <s:form name="myform" action="checkOrderConsolidate" theme="bootstrap">
                             <display:table id="order" name="lclTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
-                                           class="table table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
                                 <td>
@@ -179,15 +178,33 @@
                                 </display:column></td>
 
                             </display:table>
-                            <div class="row">
-                                <div class="col-md-6 pull-right" style="margin-right: -17em;">
-                                    <s:submit cssClass="col-lg-3 btn btn-default" value="Consolidate" ></s:submit>
+                            <div class="col-md-6 pull-right well">
+                                <p>Total Weight (kg) : <font id="wellTotalWeight">0</font></p>
+                                <p>Total Volume  (cbm) : <font id="wellTotalVolume">0</font></p>
+                                <hr/>
+                                <h4>
+                                    <i style="color: #3498DB;" class="fa fa-gears"></i>
+                                    Recommended container
+                                </h4>
+                                <div id="mainReco">
+                                    <div id="recommendedContent">
+                                        Choose item(s) first
+                                    </div>
+                                    <%--<div id="loadingIcon" style="align-items: center; width: 100%; padding: 15px; text-align: center">--%>
+                                        <%--<i style="font-size: 50px; color: #BDC3C7;" class="fa fa-circle-o-notch fa-spin"></i>--%>
+                                    <%--</div>--%>
                                 </div>
+                                <hr/>
+                                <s:submit cssClass="btn btn-default" value="Consolidate" ></s:submit>
                             </div>
+                            <%--<div class="row">--%>
+                                <%--<div class="col-md-6 pull-right" style="margin-right: -17em;">--%>
+                                    <%--<s:submit cssClass="col-lg-3 btn btn-default" value="Consolidate" ></s:submit>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
                         </s:form>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="tab-pane fade" id="lcuTab">
@@ -334,6 +351,7 @@
 <script>
 
     $(document).ready(function(){
+        seaFreightLclComputation('lclTable', 'wellTotalWeight', 'wellTotalVolume');
         tableProp('','order', 7, 4, 5, 6);
         var freightStatus = $('#order tbody tr td:nth-child(7)'),
             freightAction = $('#order tbody tr td:nth-child(8)');
@@ -345,4 +363,21 @@
         }
     })
 
+    $(function () {
+        $('#myTab a:first').tab('show')
+    });
+    $(function() {
+        //for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
+        $('a[data-toggle="tab"]').on('click', function (e) {
+            localStorage.setItem('lastTab', $(e.target).attr('href'));
+        });
+
+        //go to the latest tab, if it exists:
+        var lastTab = localStorage.getItem('lastTab');
+
+        if (lastTab) {
+            $('a[href="'+lastTab+'"]').click();
+
+        }
+    });
 </script>

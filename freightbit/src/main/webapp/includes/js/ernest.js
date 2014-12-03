@@ -327,3 +327,99 @@ function newlineHandler(tableName, commentColumn){
     }
 }
 // AUTHORED BY JAN SARMIENTO -- END
+
+function seaFreightLclComputation(tableClass, wellTotalWeight, wellTotalVolume){
+    var lclCheckBox = $('.'+tableClass+' tbody tr td input[type="checkbox"]');
+
+    lclCheckBox.change(function(){
+        var weight = parseFloat($(this).closest('tr').find('td').eq(8).text()),
+            volume = parseFloat($(this).closest('tr').find('td').eq(9).text()),
+            wellContentWt = $('#'+wellTotalWeight),
+            wellContentVol = $('#'+wellTotalVolume);
+
+        if($(this).is(':checked')){
+            weight = parseFloat(wellContentWt.text()) + weight;
+            volume = parseFloat(wellContentVol.text()) + volume;
+
+            wellContentWt.empty().append(weight);
+            wellContentVol.empty().append(volume);
+        }else{
+            weight = parseFloat(wellContentWt.text()) - weight;
+            volume = parseFloat(wellContentVol.text()) - volume;
+
+            wellContentWt.empty().append(weight);
+            wellContentVol.empty().append(volume);
+        }
+
+        startRecommendation('mainReco', 'recommendedContent', weight, volume);
+    })
+}
+
+function startRecommendation(slideDiv, appendDiv, weight, volume){
+    if(weight == 0 || volume == 0){
+        $('#'+appendDiv).empty().append('Choose item(s) first');
+//        $('#'+slideDiv).slideToggle();
+    }else{
+        var recommendation;
+        recommendation = firstRecommendation(weight, volume);
+        $('#'+appendDiv).empty().append(recommendation);
+//        $('#'+slideDiv).slideToggle();
+    }
+}
+
+function firstRecommendation(weight, volume){
+    var recWt = weight, recVol = volume,
+        hc40 = 0, std40 = 0, foot20 = 0, foot10 = 0, recommendation = "NONE";
+    while(1){
+        if(recWt > 20900 || recVol > 74.1){
+            recWt = recWt - 20900;
+            recVol = recVol - 74.1;
+            hc40++;
+        }else if(recWt > 19000 || recVol > 53.2){
+            recWt = recWt - 19000;
+            recVol = recVol - 53.2;
+            std40++;
+        }else if(recWt > 17100 || recVol > 26.6){
+            recWt = recWt - 17100;
+            recVol = recVol - 26.6;
+            foot20++;
+        }else if(recWt > 8550 || recVol > 13.3){
+            recWt = recWt - 8550;
+            recVol = recVol - 13.3;
+            foot10++;
+        }else if(recWt > 0 || recVol > 0){
+            foot10++;
+            break;
+        }
+    }
+
+    if(hc40 != 0){
+        recommendation = '<p>'+hc40+' - 40 FOOTER HC CONTAINERS</p>';
+    }
+
+    if(std40 != 0){
+        if(recommendation == 'NONE'){
+            recommendation = '<p>'+std40+' - 40 FOOTER STD CONTAINERS</p>';
+        }else {
+            recommendation = recommendation + '<p>'+std40+' - 40 FOOTER STD CONTAINERS</p>';
+        }
+    }
+
+    if(foot20 != 0){
+        if(recommendation == 'NONE'){
+            recommendation = '<p>'+foot20+' - 20 FOOTER CONTAINERS</p>';
+        }else {
+            recommendation = recommendation + '<p>'+foot20+' - 20 FOOTER CONTAINERS</p>';
+        }
+    }
+
+    if(foot10 != 0){
+        if(recommendation == 'NONE'){
+            recommendation = '<p>'+foot10+' - 10 FOOTER CONTAINERS</p>';
+        }else {
+            recommendation = recommendation + '<p>'+foot10+' - 10 FOOTER CONTAINERS</p>';
+        }
+    }
+
+    return recommendation;
+}
