@@ -68,8 +68,6 @@ public class ParameterConstants {
 
     public final static String CONTAINER_STATUS = "CONTAINER_STATUS";
 
-    public final static String PORT_CODE = "PORT_CODE";
-
     public final static String CONTAINERS = "CONTAINERS";
 
 }

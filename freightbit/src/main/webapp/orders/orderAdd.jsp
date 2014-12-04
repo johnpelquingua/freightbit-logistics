@@ -277,7 +277,7 @@
                     <div class="col-lg-9" style="text-align:left !important;">
                         <%--<s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                   name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>--%>
-                        <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy" />
+                        <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy"/>
 
                     </div>
 

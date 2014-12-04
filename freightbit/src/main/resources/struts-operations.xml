@@ -402,9 +402,17 @@
             <result name="success" type="tiles">operations.viewContainerList.tiles</result>
         </action>
 
+        <action name="loadSuccessGateOutContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSuccessGateOutContainer">
+            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
+        </action>
+
+        <action name="loadSuccessEditContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSuccessEditContainer">
+        <result name="success" type="tiles">operations.viewContainerList.tiles</result>
+        </action>
+
         <action name="editContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editContainer">
             <result name="input" type="tiles">operations.loadEditForm.tiles</result>
-            <result name="success" type="redirect">viewContainerList</result>
+            <result name="success" type="redirect">loadSuccessEditContainer</result>
         </action>
 
         <action name="searchContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="searchContainer">
@@ -412,7 +420,7 @@
         </action>
 
         <action name="checkoutContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkoutContainer">
-            <result name="success" type="tiles">operations.viewContainerList.tiles</result>
+            <result name="success" type="redirect">loadSuccessGateOutContainer</result>
         </action>
 
         <action name="loadAddFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadAddFormPage">

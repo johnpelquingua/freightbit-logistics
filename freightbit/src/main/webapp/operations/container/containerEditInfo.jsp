@@ -38,48 +38,30 @@
               <s:hidden name="container.modifiedTimestamp" value="%{container.modifiedTimestamp}"/>
               <s:hidden name="container.eirType" value="%{container.eirType}"/>
 
-              <div class="col-lg-6">
-
                   <div class="form-group">
-                      <label class="col-lg-4 control-label" style="padding-top:0px;">Container Van Number: <span class="asterisk_red"></span></label>
-                      <div class="col-lg-8" >
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">Container Van Number: <span class="asterisk_red"></span></label>
+                      <div class="col-lg-9" >
                           <s:textfield required="true" name="container.containerNumber" cssClass="form-control" id="container.containerNumber" />
                       </div>
                   </div>
 
                   <div class="form-group">
-                      <label class="col-lg-4 control-label" style="padding-top:0px;">Container Size: <span class="asterisk_red"></span></label>
-                      <div class="col-lg-8" >
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size: <span class="asterisk_red"></span></label>
+                      <div class="col-lg-9" >
                           <s:select cssClass="form-control"
                                     id="container.containerSize"
                                     name="container.containerSize"
                                     list="containerSizeList"
                                     listKey="key"
                                     listValue="value"
-                                    emptyOption="true"
                                     required="true"
                                   />
                       </div>
                   </div>
 
-                          <div class="form-group">
-                              <label class="col-lg-4 control-label" style="padding-top:0px;">Container Status: <span class="asterisk_red"></span></label>
-                              <div class="col-lg-8" >
-                                  <s:select cssClass="form-control"
-                                            id="container.containerStatus"
-                                            name="container.containerStatus"
-                                            list="containerStatusList"
-                                            listKey="key"
-                                            listValue="value"
-                                            emptyOption="true"
-                                            required="true"
-                                          />
-                              </div>
-                          </div>
-
                   <div class="form-group">
-                      <label class="col-lg-4 control-label" style="padding-top:0px;">Shipping Line: <span class="asterisk_red"></span></label>
-                      <div class="col-lg-8" >
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">Shipping Line: <span class="asterisk_red"></span></label>
+                      <div class="col-lg-9" >
                           <s:select cssClass="form-control"
                                     id="container.shipping"
                                     name="container.shipping"
@@ -93,15 +75,15 @@
                   </div>
 
                   <div class="form-group">
-                      <label class="col-lg-4 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>
-                      <div class="col-lg-8" >
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>
+                      <div class="col-lg-9" >
                           <s:textfield required="true" name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" />
                       </div>
                   </div>
 
                   <div class="form-group">
-                      <label class="col-lg-4 control-label" style="padding-top:0px;">Date/Time: <span class="asterisk_red"></span></label>
-                      <div class="col-lg-8" >
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">Date/Time: <span class="asterisk_red"></span></label>
+                      <div class="col-lg-9" >
                           <s:textfield required="true" name="container.gateInTime" cssClass="form-control" id="gateInTime" />
                       </div>
                       <script type="text/javascript">
@@ -116,24 +98,21 @@
                   </div>
 
                   <div class="form-group">
-                      <label class="col-lg-4 control-label" style="padding-top:0px;">EIR Number: <span class="asterisk_red"></span></label>
-                      <div class="col-lg-8" >
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">EIR Number: <span class="asterisk_red"></span></label>
+                      <div class="col-lg-9" >
                           <s:textfield required="true" name="container.eirNumber" cssClass="form-control" id="container.eirNumber" />
                       </div>
                   </div>
 
                   <div class="form-group">
-                      <label class="col-lg-4 control-label" style="padding-top:0px;">Van Location: <span class="asterisk_red"></span></label>
-                      <div class="col-lg-8" >
+                      <label class="col-lg-2 control-label" style="padding-top:0px;">Van Location: <span class="asterisk_red"></span></label>
+                      <div class="col-lg-9" >
                           <s:textfield required="true" name="container.vanLocation" cssClass="form-control" id="container.vanLocation" />
                       </div>
                   </div>
-
-
               </div>
-          </div>
+            </div>
         </div>
-      </div>
       <div class="panel-footer">
         <div class="pull-right">
           <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Cancel</a>

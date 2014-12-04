@@ -1622,6 +1622,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             entity.setContainerStatus("OPEN");
         }
 
+
         return entity;
     }
 
@@ -1641,8 +1642,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
             return INPUT;
         }
 
-        clearErrorsAndMessages();
-        addActionMessage("Success! EIR Form has been updated.");
         return SUCCESS;
 
         /*Container containerEntity = transformContainerToEntityBean(container);
@@ -1652,14 +1651,40 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     }
 
+    public String loadSuccessEditContainer() {
+        List<Container> containerEntityList = containerService.findAllContainer();
+        for (Container containerElem : containerEntityList) {
+            containers.add(transformContainerToFormBean(containerElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Container has been edited.");
+
+        return SUCCESS;
+    }
+
     public String checkoutContainer() throws Exception {
 
         Container containerEntity  = transformContainerToEntityBean(container);
+        containerEntity.setContainerStatus("GATE OUT");
         containerService.updateContainer(containerEntity);
-        containerEntity.setContainerStatus("CHECKOUT");
-        addActionMessage("Success! EIR Form has been checkout.");
+        /*containerService.findContainerById(containerIdParam);
+        container = transformContainerToFormBean(containerEntity);
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("containerId", container.getContainerId());*/
         return SUCCESS;
+    }
 
+    public String loadSuccessGateOutContainer() {
+        List<Container> containerEntityList = containerService.findAllContainer();
+        for (Container containerElem : containerEntityList) {
+            containers.add(transformContainerToFormBean(containerElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Container has been Gate Out.");
+
+        return SUCCESS;
     }
 
     public void validateOnSubmit(ContainerBean container) {
@@ -1689,6 +1714,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String loadCheckoutFormPage() {
         Container containerEntity = containerService.findContainerById(containerIdParam);
         container = transformContainerToFormBean(containerEntity);
+        addActionMessage("Success! Container has been Gate Out.");
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("containerId", container.getContainerId());
         return SUCCESS;

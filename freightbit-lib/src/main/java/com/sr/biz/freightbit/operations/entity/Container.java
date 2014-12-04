@@ -132,7 +132,7 @@ public class Container implements Serializable{
     }
 
     public void setGateOutTime(Date gateOutTime) {
-        this.gateInTime = gateOutTime;
+        this.gateOutTime = gateOutTime;
     }
 
     @Column(name = "shipping")

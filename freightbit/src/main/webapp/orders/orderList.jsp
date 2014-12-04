@@ -109,7 +109,7 @@
 
                                     <s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">
 
-                                        <a id="print-icon" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM');">
+                                        <a id="print-icon" title="Print Booking Form" rel="tooltip" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM');">
                                             <i class="fa fa-print"></i>
                                         </a>
 

@@ -23,11 +23,13 @@
               <s:hidden name="container.containerNumber" value="%{container.containerNumber}" />
               <s:hidden name="container.containerSize" value="%{container.containerSize}" />
               <s:hidden name="container.shipping" value="%{container.shipping}" />
-              <s:hidden name="container.portCode" value="%{container.portCode}" />
+              <s:hidden name="container.receiptNumber" value="%{container.receiptNumber}" />
+              <s:hidden name="container.gateInTime" value="%{container.gateInTime}" />
+              <s:hidden name="container.eirNumber" value="%{container.eirNumber}" />
+              <s:hidden name="container.vanLocation" value="%{container.vanLocation}" />
               <s:hidden name="container.modifiedBy" value="%{container.modifiedBy}"/>
-              <s:hidden name="container.modifiedTimestamp" value="%{container.modifiedTimestamp}"/>
+              <s:hidden name="container.modifiedTimest  amp" value="%{container.modifiedTimestamp}"/>
               <s:hidden name="container.eirType" value="EIR FORM 2"/>
-
 
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Date/Time: </label>
