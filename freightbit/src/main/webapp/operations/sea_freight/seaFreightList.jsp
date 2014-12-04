@@ -32,9 +32,10 @@
                     <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                               id="select1" list="portsList" listKey="key"
                               listValue="value" name="originCity" emptyOption="true"
+                              onchange="$(this).closest('form').submit()"
                               />
                 </div>
-                    <s:submit name="submit" cssClass="btn btn-primary" value="Okay" />
+                    <%--<s:submit name="submit" cssClass="btn btn-primary" value="Sort" />--%>
                 </s:form>
 
             </div>
@@ -171,7 +172,7 @@
                                 </display:column></td>
 
                             </display:table>
-                            <div class="col-md-6 pull-right well">
+                            <div class="col-md-6 pull-right well wellDiv" style="display: none;">
                                 <p>Total Weight (kg) : <font id="wellTotalWeight">0</font></p>
                                 <p>Total Volume  (cbm) : <font id="wellTotalVolume">0</font></p>
                                 <hr/>
@@ -183,9 +184,6 @@
                                     <div id="recommendedContent">
                                         Choose item(s) first
                                     </div>
-                                    <%--<div id="loadingIcon" style="align-items: center; width: 100%; padding: 15px; text-align: center">--%>
-                                        <%--<i style="font-size: 50px; color: #BDC3C7;" class="fa fa-circle-o-notch fa-spin"></i>--%>
-                                    <%--</div>--%>
                                 </div>
                                 <hr/>
                                 <s:submit cssClass="btn btn-default" value="Consolidate" ></s:submit>
@@ -337,7 +335,10 @@
         tablePropClass('DESTI_ORIG','fclTable', 7, 5, 0, 6, 0, 4);
         tablePropClass('DESTI_ORIG','lclTable', 8, 5, 0, 7, 0, 6);
 
-        seaFreightLclComputation('lclTable', 'wellTotalWeight', 'wellTotalVolume');
+        if($('.lclTable').size() != 0){
+            $('.wellDiv').show('fast');
+            seaFreightLclComputation('lclTable', 'wellTotalWeight', 'wellTotalVolume');
+        }
 
         var freightStatus = $('#order tbody tr td:nth-child(7)'),
             freightAction = $('#order tbody tr td:nth-child(8)');
