@@ -48,7 +48,7 @@
                         <div class="table-responsive">
                             <display:table id="order" name="fclTable"
                                            requestURI="/viewFreightList.action" pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="fclTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells:hide !important">
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -102,7 +102,7 @@
                         <div class="table-responsive">
                             <display:table id="order" name="lclTable"
                                            requestURI="/viewFreightList.action" pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="lclTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells:hide !important">
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -159,7 +159,7 @@
                         <div class="table-responsive">
                             <display:table id="order" name="lcuTable"
                                            requestURI="/viewFreightList.action" pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="lcuTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells:hide !important">
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -213,7 +213,7 @@
                         <div class="table-responsive">
                             <display:table id="order" name="rcuTable"
                                            requestURI="/viewFreightList.action" pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="rcuTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells:hide !important">
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -289,185 +289,29 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        tablePropClass('NONE', 'lclTable', 7, 4, 5, 6, 0, 0);
+        tablePropClass('NONE', 'fclTable', 7, 4, 5, 6, 0, 0);
+        tablePropClass('NONE', 'lcuTable', 7, 4, 5, 6, 0, 0);
+        tablePropClass('NONE', 'rcuTable', 7, 4, 5, 6, 0, 0);
+    })
 
-    $(document).ready(function() {
-        /*color coding of rows*/
-        var tbl = document.getElementById("order");
-        if (tbl != null) {
-            for (var i = 0; i < tbl.rows.length; i++) {
-
-                if (tbl.rows[i].cells[6].innerHTML == "PENDING" || tbl.rows[i].cells[6].innerHTML == "INCOMPLETE" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[j].style.backgroundColor = "#fcf8e3";
-                    }
-                }
-
-                if (tbl.rows[i].cells[6].innerHTML == "DISAPPROVED" || tbl.rows[i].cells[6].innerHTML == "CANCELLED") {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[j].style.backgroundColor = "#f2dede";
-                    }
-                }
-
-                if (tbl.rows[i].cells[6].innerHTML == "APPROVED" || tbl.rows[i].cells[6].innerHTML == "SERVICE ACCOMPLISHED") {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[j].style.backgroundColor = "#dff0d8";
-                    }
-                }
-
-                if (tbl.rows[i].cells[6].innerHTML == "ON GOING") {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[j].style.backgroundColor = "#bce8f1";
-                    }
-                }
-            }
-        }
-
+    $(function () {
+        $('#myTab a:first').tab('show')
     });
 
-    //    TYPE
-    $(document).ready(function() {
-        /*color coding of rows*/
-        var tbl = document.getElementById("order");
-        if (tbl != null) {
-            for (var i = 0; i < tbl.rows.length; i++) {
+    $(function() {
+        //for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
+        $('a[data-toggle="tab"]').on('click', function (e) {
+            localStorage.setItem('lastTab', $(e.target).attr('href'));
+        });
 
-                if (tbl.rows[i].cells[3].innerHTML == "SHIPPING AND TRUCKING" ) {
+        //go to the latest tab, if it exists:
+        var lastTab = localStorage.getItem('lastTab');
 
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[3].innerHTML = "<i class='fa fa-anchor' /> <i class='fa fa-truck' />";
-                    }
-                }
+        if (lastTab) {
+            $('a[href="'+lastTab+'"]').click();
 
-                if (tbl.rows[i].cells[3].innerHTML == "SHIPPING"  ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[3].innerHTML = "<i class='fa fa-anchor' />";
-                    }
-                }
-
-                if (tbl.rows[i].cells[3].innerHTML == "TRUCKING"  ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[3].innerHTML = "<i class='fa fa-truck' />";
-                    }
-                }
-            }
-        }
-
-    });
-
-    //    RQT
-
-    $(document).ready(function() {
-        /*color coding of rows*/
-        var tbl = document.getElementById("order");
-        if (tbl != null) {
-            for (var i = 0; i < tbl.rows.length; i++) {
-                if (tbl.rows[i].cells[4].innerHTML == "FULL CARGO LOAD" || tbl.rows[i].cells[4].innerHTML == "FULL CONTAINER LOAD") {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[4].innerHTML = "FCL";
-                    }
-                }
-
-                if (tbl.rows[i].cells[4].innerHTML == "FULL TRUCK LOAD" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[4].innerHTML = "FTL";
-                    }
-                }
-
-                if (tbl.rows[i].cells[4].innerHTML == "LESS TRUCK LOAD" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[4].innerHTML = "LTL";
-                    }
-                }
-
-                if (tbl.rows[i].cells[4].innerHTML == "LESS CARGO LOAD" || tbl.rows[i].cells[4].innerHTML == "LESS CONTAINER LOAD") {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[4].innerHTML = "LCL";
-                    }
-                }
-
-                if (tbl.rows[i].cells[4].innerHTML == "LOOSE CARGO LOAD" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[4].innerHTML = "LCU";
-                    }
-                }
-
-                if (tbl.rows[i].cells[4].innerHTML == "ROLLING CARGO LOAD" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[4].innerHTML = "CU";
-                    }
-                }
-            }
         }
     });
-
-    //    MODE
-    $(document).ready(function() {
-        /*color coding of rows*/
-        var tbl = document.getElementById("order");
-        if (tbl != null) {
-            for (var i = 0; i < tbl.rows.length; i++) {
-                if (tbl.rows[i].cells[5].innerHTML == "DOOR TO DOOR" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[5].innerHTML = "DD";
-                    }
-                }
-
-                if (tbl.rows[i].cells[5].innerHTML == "DOOR TO PIER" || tbl.rows[i].cells[5].innerHTML == "DOOR TO PORT" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[5].innerHTML = "DP";
-                    }
-                }
-
-                if (tbl.rows[i].cells[5].innerHTML == "PIER TO DOOR" || tbl.rows[i].cells[5].innerHTML == "PORT TO DOOR" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[5].innerHTML = "PD";
-                    }
-                }
-
-                if (tbl.rows[i].cells[5].innerHTML == "PIER TO PIER" || tbl.rows[i].cells[5].innerHTML == "PORT TO PORT" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[5].innerHTML = "PP";
-                    }
-                }
-
-                if (tbl.rows[i].cells[5].innerHTML == "PICKUP" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[5].innerHTML = "P";
-                    }
-                }
-
-                if (tbl.rows[i].cells[5].innerHTML == "DELIVERY" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[5].innerHTML = "D";
-                    }
-                }
-
-                if (tbl.rows[i].cells[5].innerHTML == "INTER-WAREHOUSE" ) {
-
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[i].cells[5].innerHTML = "IW";
-                    }
-                }
-            }
-        }
-    });
-
 </script>
