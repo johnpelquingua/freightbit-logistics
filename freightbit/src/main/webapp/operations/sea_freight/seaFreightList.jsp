@@ -63,7 +63,7 @@
                         <div class="table-responsive">
                             <display:table id="order" name="fclTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
-                                           class="table table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="fclTable table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -334,8 +334,8 @@
 <script>
 
     $(document).ready(function(){
-        tableProp('DESTI_ORIG','fclTable', 7, 5, 0, 6, 0, 4);
-        tableProp('DESTI_ORIG','lclTable', 8, 5, 0, 7, 0, 6);
+        tablePropClass('DESTI_ORIG','fclTable', 7, 5, 0, 6, 0, 4);
+        tablePropClass('DESTI_ORIG','lclTable', 8, 5, 0, 7, 0, 6);
 
         seaFreightLclComputation('lclTable', 'wellTotalWeight', 'wellTotalVolume');
 
@@ -349,7 +349,7 @@
         }
 
         $('#mainCheckBox').click(function(){
-            var allCheckbox = $('#lclTable tbody tr td input[type="checkbox"]');
+            var allCheckbox = $('.lclTable tbody tr td input[type="checkbox"]');
             if(allCheckbox.is(':checked')){
                 allCheckbox.prop('checked', false);
                 computeAll('lclTable', 'wellTotalWeight', 'wellTotalVolume', 'SUBTRACT');

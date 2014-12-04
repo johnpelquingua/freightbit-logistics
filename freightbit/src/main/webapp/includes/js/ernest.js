@@ -190,6 +190,33 @@ function resetBox(pageType){
     }
 }
 
+function tablePropClass(tableClass, tableName, colStatus, colType, colReq, colMode, colOrigin, colDestination){
+    var tableTr = $('.'+tableName+' tbody tr');
+    for(var i = 0; i < tableTr.size(); i++){
+        var statusColumn = $('.'+tableName+' tbody tr td:nth-child('+colStatus+')').eq(i).text(),
+            typeColumn = $('.'+tableName+' tbody tr td:nth-child('+colType+')').eq(i),
+            reqColumn = $('.'+tableName+' tbody tr td:nth-child('+colReq+')').eq(i),
+            modeColumn = $('.'+tableName+' tbody tr td:nth-child('+colMode+')').eq(i),
+            icon = changeIcons(typeColumn.text()),
+            req = reqAbbrev(reqColumn.text()),
+            mode = modeAbbrev(modeColumn.text());
+        if(tableClass == 'DESTI_ORIG'){
+            var desColumn = $('.'+tableName+' tbody tr td:nth-child('+colDestination+')').eq(i),
+                origColumn = $('.'+tableName+' tbody tr td:nth-child('+colOrigin+')').eq(i),
+                des = placeAbbrev(desColumn.text()),
+                ori = placeAbbrev(origColumn.text());
+
+            desColumn.empty().append(des);
+            origColumn.empty().append(ori);
+        }
+
+        tableTr.eq(i).css('background-color', trColor(statusColumn));
+        typeColumn.empty().append(icon);
+        reqColumn.empty().append(req);
+        modeColumn.empty().append(mode);
+    }
+}
+
 function tableProp(tableClass, tableName, colStatus, colType, colReq, colMode, colOrigin, colDestination){
     var tableTr = $('#'+tableName+' tbody tr');
     for(var i = 0; i < tableTr.size(); i++){
@@ -395,26 +422,47 @@ function firstRecommendation(weight, volume){
     var recWt = weight, recVol = volume,
         hc40 = 0, std40 = 0, foot20 = 0, foot10 = 0, recommendation = "NONE";
     while(1){
-        if(recWt > 20900 || recVol > 74.1){
-            recWt = recWt - 20900;
+        if(recVol <= 0){
+            break;
+        }else if(recVol > 53.2 || recWt > 15320){
+            recWt = recWt - 16890;
             recVol = recVol - 74.1;
             hc40++;
-        }else if(recWt > 19000 || recVol > 53.2){
-            recWt = recWt - 19000;
+        }else if(recVol > 26.6 || recWt > 14870){
+            recWt = recWt - 15320;
             recVol = recVol - 53.2;
             std40++;
-        }else if(recWt > 17100 || recVol > 26.6){
-            recWt = recWt - 17100;
+        }else if(recVol > 13.3 || recWt > 7250){
+            recWt = recWt - 14870;
             recVol = recVol - 26.6;
             foot20++;
-        }else if(recWt > 8550 || recVol > 13.3){
-            recWt = recWt - 8550;
+        }else if(recVol > 0 || recWt > 0){
+            recWt = recWt - 7250;
             recVol = recVol - 13.3;
             foot10++;
-        }else if(recWt > 0 || recVol > 0){
-            foot10++;
-            break;
         }
+
+//        if(recVol > 74.1 || recWt > 20900){
+//            recWt = recWt - 20900;
+//            recVol = recVol - 74.1;
+//            hc40++;
+//        }else if(recVol > 53.2 || recWt > 19000){
+//            recWt = recWt - 19000;
+//            recVol = recVol - 53.2;
+//            std40++;
+//        }else if(recVol > 26.6 || recWt > 17100 ){
+//            alert(1);
+//            recWt = recWt - 17100;
+//            recVol = recVol - 26.6;
+//            foot20++;
+//        }else if(recVol > 13.3 || recWt > 8550 ){
+//            recWt = recWt - 8550;
+//            recVol = recVol - 13.3;
+//            foot10++;
+//        }else if(recVol > 0 || recWt > 0){
+//            foot10++;
+//            break;
+//        }
     }
 
     if(hc40 != 0){
