@@ -35,6 +35,7 @@ public class OrderItems implements java.io.Serializable {
 //    for planning
     private String vendorOrigin;
     private String vendorSea;
+    private String vesselName;
     private String vendorDestination;
     private String finalPickupDate;
     private String finalDeliveryDate;
@@ -58,7 +59,7 @@ public class OrderItems implements java.io.Serializable {
                       String comments, Date createdTimestamp, String createdBy,
                       Date modifiedTimestamp, String modifiedBy, Float rate,
                       String nameSize, String status, Float volume, String vendorOrigin,
-                      String vendorSea, String vendorDestination, String finalPickupDate,
+                      String vendorSea, String vesselName, String vendorDestination, String finalPickupDate,
                       String finalDeliveryDate, String vesselScheduleId, String driverOrigin,
                       String driverDestination, String truckOrigin, String truckDestination) {
         this.orderItemId = orderItemId;
@@ -80,6 +81,7 @@ public class OrderItems implements java.io.Serializable {
         this.volume = volume;
         this.vendorOrigin = vendorOrigin;
         this.vendorSea = vendorSea;
+        this.vesselName = vesselName;
         this.vendorDestination = vendorDestination;
         this.finalPickupDate = finalPickupDate;
         this.finalDeliveryDate = finalDeliveryDate;
@@ -277,6 +279,15 @@ public class OrderItems implements java.io.Serializable {
 
     public void setVendorSea(String vendorSea) {
         this.vendorSea = vendorSea;
+    }
+
+    @Column(name = "vesselName")
+    public String getVesselName() {
+        return vesselName;
+    }
+
+    public void setVesselName(String vesselName) {
+        this.vesselName = vesselName;
     }
 
     @Column(name = "vendorDestination")

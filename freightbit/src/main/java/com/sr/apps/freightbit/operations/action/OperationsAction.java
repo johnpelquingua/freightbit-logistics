@@ -1731,7 +1731,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
 
         for (Documents documentElem : documentsList) {
-            documents.add(transformDocumentToFormBean(documentElem));
+            if("PROFORMA BILL OF LADING".equals(documentElem.getDocumentName())) {
+                documents.add(transformDocumentToFormBean(documentElem));
+            }
         }
 
         return SUCCESS;
@@ -2014,8 +2016,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setDocumentStatus(entity.getDocumentStatus());
         formBean.setCreatedDate(entity.getCreatedDate());
         formBean.setDocumentId(entity.getDocumentId());
+
         return formBean;
-    }
+        }
 
 //    -----------------DOCUMENTS PAGE-------------------------
 

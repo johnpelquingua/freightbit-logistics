@@ -77,10 +77,7 @@
                                            class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
-                                <td><display:column property="createdDate" title="Date" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                                <td><display:column property="createdTime" title="Time" class="tb-font-black"
+                                <td><display:column property="createdTimestamp" title="Date/Time" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
                                 <td><display:column property="createdBy" title="Updated By" class="tb-font-black"

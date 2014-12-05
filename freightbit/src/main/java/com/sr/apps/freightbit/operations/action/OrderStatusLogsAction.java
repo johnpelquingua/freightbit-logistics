@@ -238,8 +238,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public OrderStatusLogsBean transformToOrderStatusLogsFormBean (OrderStatusLogs entity) {
 
         OrderStatusLogsBean formBean = new OrderStatusLogsBean();
-        formBean.setCreatedDate(entity.getCreatedTimestamp());
-        formBean.setCreatedTime(entity.getCreatedTimestamp());
+        formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
         formBean.setStatus(entity.getStatus());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setNameSize(orderService.findOrderItemByOrderItemId(entity.getOrderItemId()).getNameSize());

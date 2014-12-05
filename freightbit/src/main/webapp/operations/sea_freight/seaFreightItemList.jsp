@@ -164,7 +164,11 @@
                                     </display:column>
                                 </td>
 
-                                <td><display:column property="nameSize" title="Name <i class='fa fa-sort' />"
+                                <td><display:column property="nameSize" title="Size <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+
+                                <td><display:column property="vendorSea" title="Shipping <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
@@ -172,7 +176,7 @@
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="vendorSea" title="Shipping <i class='fa fa-sort' />"
+                                <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
@@ -276,11 +280,12 @@
                          value="#attr.order.orderId"></s:param>
 
             </s:url>
+            <s:if test="#attr.order.vendorSea != ''">
             <s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"
                  title="Create Documents">
                 Create Proforma Bill of Lading
             </s:a>
-
+            </s:if>
             <s:url var="viewDocumentListUrl" action="viewDocumentList">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId">
