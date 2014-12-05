@@ -45,8 +45,7 @@
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
                         <%--Booking Date--%>
-                        <td><display:column property="eirNumber" title="EIR <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                        <s:hidden name="container.eirNumber" value="%{container.eirNumber}"/>
                         <td><display:column property="containerNumber" title="Number <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="containerSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
@@ -54,30 +53,23 @@
                         <td><display:column property="containerStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <%--Order Number--%>
-                        <td><display:column property="gateInTime" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
                         <td><display:column title="Action">
-                            <s:url var="viewConsolidationContainerInfoUrl" action="viewConsolidationContainerInfo">
-                                <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
-                            </s:url>
-                            <s:a href="%{viewConsolidationContainerInfoUrl}" title="Container Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
-
+                            <s:if test="#attr.container.containerStatus == 'OPEN' || #attr.container.containerStatus == 'CONSOLIDATED' || #attr.container.containerStatus == 'FINAL'">
                             <s:url var="viewConsolidationItemListUrl" action="viewConsolidationItemList">
                                 <s:param name="containerIdParam" value="%{#attr.container.containerId}"></s:param>
                                 <s:param name="containerSizeParam" value="%{#attr.container.containerSize}"></s:param>
                                 <s:param name="containerStatusParam" value="%{#attr.container.containerStatus}"></s:param>
                             </s:url>
-                            <s:a href="%{viewConsolidationItemListUrl}"><i class="fa fa-dropbox"></i></s:a>
+                            <s:a href="%{viewConsolidationItemListUrl}" title="Consolidate Items" rel="tooltip"><i class="fa fa-dropbox"></i></s:a>
+                            </s:if>
+                            <s:url var="viewConsolidationContainerInfoUrl" action="viewConsolidationContainerInfo">
+                                <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
+                            </s:url>
+                            <s:a href="%{viewConsolidationContainerInfoUrl}" title="Container Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
 
-                            <a href="#" onclick="generateReport(${document.documentId}, 'EIR 2')"><i class="fa fa-print"></i></a> <%--for EIR 1--%>
-                            <a href="#" onclick="generateReport(${document.documentId}, 'EIR 1')"><i class="fa fa-print"></i></a> <%--for EIR 2--%>
-
-
+                            <%--<a href="#" onclick="generateReport(${document.documentId}, 'EIR 2')"><i class="fa fa-print"></i></a> &lt;%&ndash;for EIR 1&ndash;%&gt;
+                            <a href="#" onclick="generateReport(${document.documentId}, 'EIR 1')"><i class="fa fa-print"></i></a> &lt;%&ndash;for EIR 2&ndash;%&gt;--%>
                         </display:column></td>
-
-
                     </display:table>
                 </div>
             </div>

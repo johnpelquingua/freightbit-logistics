@@ -84,12 +84,11 @@
                                 <s:textfield required="true" name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" />
                             </div>
                         </div>
-                        <div id="dtBox"></div><%--This is for the datetimepicker--%>
+                        <%--<div id="dtBox"></div>&lt;%&ndash;This is for the datetimepicker&ndash;%&gt;--%>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Date/Time: <span class="asterisk_red"></span></label>
                                 <div class="col-lg-9" >
                                     <s:textfield required="true" name="container.gateInTime" cssClass="form-control" id="gateInTime" />
-                                        <%--<input type="text" data-field="gateInTime" required="true" class="form-control" id="falsegateInTime"/>--%>
                                 </div>
                                 <script type="text/javascript">
                                     $(function () {

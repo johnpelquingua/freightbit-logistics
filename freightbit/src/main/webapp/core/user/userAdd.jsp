@@ -48,7 +48,7 @@
 
                                 <div class="col-lg-9">
                                     <s:select name="user.userType" id="userTypeSelect" list="userTypeList" listKey="key"
-                                              listValue="value" cssClass="form-control" value="user.userType"/>
+                                              listValue="value" cssClass="form-control"/>
                                 </div>
                             </div>
 

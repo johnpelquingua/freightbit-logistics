@@ -41,7 +41,7 @@
                     </s:url>
                     <s:a class="icon-action-link" href="%{loadAddFormPageUrl}" rel="tooltip" title="New Container">
                         <button type="button" class="btn btn-primary">
-                            <i class="fa fa-home"> </i> New Container
+                            <i class="fa fa-truck"> </i> New Container
                         </button>
                     </s:a>
                 </sec:authorize>
@@ -57,6 +57,7 @@
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
                                 <s:hidden name="container.eirType" value="%{container.eirType}"/>
+                                <s:hidden name="container.containerId" value="%{container.containerId}"/>
                                 <td><display:column property="containerNumber" title="Number <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="containerSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
@@ -72,6 +73,7 @@
 
                                 <td>
                                     <display:column title="Action">
+                                        <s:if test="#attr.container.containerStatus == 'OPEN' || #attr.container.containerStatus == 'CONSOLIDATED' || #attr.container.containerStatus == 'FINAL'">
                                         <s:url var="editContainerUrl" action="loadEditFormPage">
                                             <s:param name="containerIdParam"
                                                      value="#attr.container.containerId"></s:param>
@@ -79,11 +81,11 @@
                                         <sec:authorize
                                                 access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
                                             <s:a href="%{editContainerUrl}" class="icon-action-link" rel="tooltip"
-                                                 title="Edit this EIR Form">
+                                                 title="Edit this Container">
                                                 <i class="fa fa-pencil"></i>
                                             </s:a>
                                         </sec:authorize>
-
+                                        </s:if>
                                         <s:url var="deleteContainerUrl" action="deleteContainer">
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
                                         </s:url>
@@ -98,9 +100,11 @@
                                             <i class="fa fa-print"></i>
                                         </a>
 
-                                        <s:if test="#attr.container.containerStatus == 'FINAL' || #attr.container.containerStatus == 'OPEN' ">
+                                        <s:if test="#attr.container.containerStatus == 'FINAL'">
                                             <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showGateOutFields(${container.containerId});">
                                                 <i class="fa fa-sign-out"></i>
+                                                <s:param name="containerIdParam"
+                                                         value="#attr.container.containerId"></s:param>
                                             </a>
 
                                         </s:if>
@@ -114,21 +118,18 @@
                 </div>
             </div>
             <div class="panel-footer">
-
-
-                <div class="table-responsive" >
-                    <div class="col-lg-12" style="position:relative;margin-top: -28px;">
-                        <table class="col-lg-6">
-                            <tr>
-                                <td><label>Legend:</label></td>
-                                <td><i class="fa fa-pencil"></i> Edit</td>
-                                <td><i class="fa fa-trash-o"></i> Delete</td>
-                                <td><i class="fa fa-info-circle"></i> Information</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
+                <span class="pull-left">
+                    <tr>
+                    <td><label>LEGEND:</label></td>
+                    <td><i class='fa fa-pencil'></i> Edit</td>
+                    <td><i class='fa fa-trash-o' ></i> Delete</td>
+                    <td><i class='fa fa-info-circle' ></i> Information</td>
+                    <td><i class='fa fa-print' ></i> Print EIR Form</td>
+                    <s:if test="#attr.container.containerStatus == 'FINAL'">
+                        <td><i class='fa fa-sign-out' ></i> Gate Out</td>
+                    </s:if>
+                    </tr>
+                </span>
             </div>
         </div>
     </div>

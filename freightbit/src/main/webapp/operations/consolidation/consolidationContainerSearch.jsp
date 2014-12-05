@@ -10,30 +10,15 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%--
+
 <div class="row">
     <div class="col-lg-12">
-        <legend style="text-align: left;">
-            <span >
-               <h1><i class="fa fa-book"></i> Search Container for Consolidation</h1>
-            </span>
-        </legend>
-        <ol class="breadcrumb">
-            <li class="active" ><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewOrders' />"> Container List </a></li>
-            <li class="active"> Search Container </li>
-        </ol>
-    </div>
-</div>
-<!-- /.row -->
-<div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-search"></i> Search Container for Consolidation</h3>
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Search </h3>
             </div>
---%>
             <div class="panel-body">
+                <div class="well">
                 <s:form action="viewConsolidationContainerList" theme="bootstrap" cssClass="form-horizontal" >
                 <div class="form-group">
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Search By</label>
@@ -58,12 +43,9 @@
                         <s:submit value="Search" type="submit" cssClass="btn btn-primary"></s:submit>
 
                     </div>
+                </div>
             </div>
             </s:form>
-        <%--</div>
+        </div>
     </div>
-</div>--%>
-<!-- /.row -->
-
-
-
+</div>
