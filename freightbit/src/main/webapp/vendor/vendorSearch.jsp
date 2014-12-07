@@ -31,7 +31,7 @@
                                      id="vendor.vendorKeyword"/>
                     </div>
                 </div>
-                    <div class="btn-group pull-right">
+                    <div class=" pull-right">
                         <button type="button" class="btn" onclick="location.href='viewVendors'">
                             Cancel
                         </button>

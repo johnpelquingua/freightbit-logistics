@@ -99,6 +99,8 @@ public interface OrderService {
 
     public List<Orders> findAllOrdersByAging(Integer aging);
 
+    public List<OrderItems> findAllOrdersByOrderIdAndDestination(Integer orderId, String destinationPort);
+
     public List<OrderItems> findAllOrderItemLCL();
 
     public List<OrderItems> findAllOrderItemsByContainerId(Integer containerId);

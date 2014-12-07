@@ -64,7 +64,7 @@
                 </div>
             </div>
 
-            <div class="panel-footer">
+            <%--<div class="panel-footer">
 
                 <span class="pull-right">
                     <button type="button" class="btn btn-primary new-booking"
@@ -73,7 +73,7 @@
                     </button>
                 </span>
 
-            </div>
+            </div>--%>
 
         </div>
     </div>

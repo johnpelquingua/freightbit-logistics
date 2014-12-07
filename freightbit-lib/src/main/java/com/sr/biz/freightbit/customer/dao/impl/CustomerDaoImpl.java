@@ -1,9 +1,5 @@
 package com.sr.biz.freightbit.customer.dao.impl;
 
-/**
- * Created by ADMIN on 5/13/14.
- */
-
 import com.sr.biz.freightbit.customer.dao.CustomerDao;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import org.apache.commons.logging.Log;
@@ -16,7 +12,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 
 @Transactional
 public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao {
@@ -209,9 +204,5 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
             throw re;
         }
     }
-
-
-
-
 
 }

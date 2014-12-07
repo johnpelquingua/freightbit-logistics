@@ -80,14 +80,35 @@
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.21" />
           <element id="library" level="project" name="Maven: net.sourceforge.jdatepicker:jdatepicker:1.3.2" />
+          <element id="library" level="project" name="Maven: com.dhtmlx.planner:javaplanner:1.5" />
+          <element id="library" level="project" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-classic-core:5.0.5" />
+          <element id="library" level="project" name="Maven: pentaho:pentaho-database-model:5.0.5" />
+          <element id="library" level="project" name="Maven: pentaho-library:libloader:5.0.5" />
+          <element id="library" level="project" name="Maven: pentaho-library:libbase:5.0.5" />
+          <element id="library" level="project" name="Maven: pentaho-library:librepository:5.0.5" />
+          <element id="library" level="project" name="Maven: pentaho-library:libserializer:5.0.5" />
+          <element id="library" level="project" name="Maven: pentaho-library:libformula:5.0.5" />
+          <element id="library" level="project" name="Maven: pentaho-library:libfonts:5.0.5" />
+          <element id="library" level="project" name="Maven: pentaho-library:libformat:5.0.5" />
+          <element id="library" level="project" name="Maven: pentaho-library:libdocbundle:5.0.5" />
+          <element id="library" level="project" name="Maven: pentaho-library:libxml:5.0.5" />
+          <element id="library" level="project" name="Maven: com.lowagie:itext:2.1.7" />
+          <element id="library" level="project" name="Maven: bouncycastle:bcmail-jdk14:138" />
+          <element id="library" level="project" name="Maven: bouncycastle:bcprov-jdk14:138" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bctsp-jdk14:1.38" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bcprov-jdk14:1.38" />
+          <element id="library" level="project" name="Maven: org.bouncycastle:bcmail-jdk14:1.38" />
+          <element id="library" level="project" name="Maven: pentaho-reporting-engine:pentaho-reporting-engine-wizard-core:5.0.5" />
           <element id="library" level="project" name="Maven: displaytag:displaytag:1.2" />
-          <element id="library" level="project" name="Maven: com.lowagie:itext:1.3" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl104-over-slf4j:1.4.2" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-log4j12:1.4.2" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.4.2" />
           <element id="library" level="project" name="Maven: displaytag:displaytag-export-poi:1.2" />
           <element id="library" level="project" name="Maven: org.apache.poi:poi:3.2-FINAL" />
           <element id="library" level="project" name="Maven: displaytag:displaytag-portlet:1.2" />
+          <element id="library" level="project" name="Maven: org.apache.struts:struts2-json-plugin:2.3.16" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf-spring3:2.1.2.RELEASE" />
+          <element id="library" level="project" name="Maven: org.thymeleaf:thymeleaf:2.1.2.RELEASE" />
         </element>
       </element>
     </root>

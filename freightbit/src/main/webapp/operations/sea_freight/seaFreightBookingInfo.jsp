@@ -32,11 +32,6 @@
 
                 <div class="panel panel-info ">
 
-                    <%--<div align="center" style="margin-top: 15px;">
-                        <img alt="User Pic" src="../includes/images/photo.png" style="height: 200px; width: 200px;"
-                             class="img-circle">
-                    </div>--%>
-
                     <br/>
 
                     <table class="table leftAlign table-user-information">
@@ -222,7 +217,7 @@
                             </span>
                     </s:else>
                     <th class="tb-font-black">Weight <br /> (kg) </th>
-                    <th class="tb-font-black">Volume <br /> (cm&#179;) </th>
+                    <th class="tb-font-black">Volume <br /> (m&#179;) </th>
                     <th class="tb-font-black">Commodity</th>
                     <th class="tb-font-black">Value <br /> (Php) </th>
                     <th class="tb-font-black">Rate <br /> (Php) </th>

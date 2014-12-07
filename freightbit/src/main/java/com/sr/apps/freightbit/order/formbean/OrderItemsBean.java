@@ -23,7 +23,6 @@ public class OrderItemsBean {
     private Integer clientId;
     private String commodity;
     private String comments;
-
     private String vendorSea;
     private String vendorOrigin;
     private String vendorDestination;
@@ -35,31 +34,17 @@ public class OrderItemsBean {
     private String truckOrigin;
     private String truckDestination;
     private String vesselScheduleId;
-
     private String orderNum;
-
     private String editItem;
     private String port;
-
     private String serviceRequirement;
 
     public OrderItemsBean(){
 
     }
 
-    public OrderItemsBean(Integer orderItemId, Integer orderId,
-                          Integer quantity, String classification,
-                          String description, Double declaredValue,
-                          Double weight, String remarks, Float rate,
-                          Date createdTimeStamp, String createdBy,
-                          Date modifiedTimeStamp, String modifiedBy,
-                          String nameSize, String status, Float volume,
-                          Integer clientId, String commodity, String comments,
-                          String vendorSea, String vesselName, String vendorOrigin,
-                          String vendorDestination, String finalPickupDate,
-                          String driverOrigin, String driverDestination,
-                          String truckOrigin, String truckDestination,
-                          String vesselScheduleId) {
+    public OrderItemsBean(Date createdTimeStamp, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, String createdBy, Date modifiedTimeStamp, String modifiedBy, String nameSize, String status, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorDestination, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement) {
+        this.createdTimeStamp = createdTimeStamp;
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.quantity = quantity;
@@ -69,7 +54,6 @@ public class OrderItemsBean {
         this.weight = weight;
         this.remarks = remarks;
         this.rate = rate;
-        this.createdTimeStamp = createdTimeStamp;
         this.createdBy = createdBy;
         this.modifiedTimeStamp = modifiedTimeStamp;
         this.modifiedBy = modifiedBy;
@@ -80,15 +64,20 @@ public class OrderItemsBean {
         this.commodity = commodity;
         this.comments = comments;
         this.vendorSea = vendorSea;
-        this.vesselName = vesselName;
         this.vendorOrigin = vendorOrigin;
         this.vendorDestination = vendorDestination;
+        this.vesselName = vesselName;
         this.finalPickupDate = finalPickupDate;
+        this.finalDeliveryDate = finalDeliveryDate;
         this.driverOrigin = driverOrigin;
         this.driverDestination = driverDestination;
         this.truckOrigin = truckOrigin;
         this.truckDestination = truckDestination;
         this.vesselScheduleId = vesselScheduleId;
+        this.orderNum = orderNum;
+        this.editItem = editItem;
+        this.port = port;
+        this.serviceRequirement = serviceRequirement;
     }
 
     public String getVendorSea() {

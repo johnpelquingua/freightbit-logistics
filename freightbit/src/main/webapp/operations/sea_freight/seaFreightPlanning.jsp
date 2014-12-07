@@ -46,6 +46,7 @@
             <span class="panel-title">Booking Information</span>
         </div>
         <div class="panel-body form-horizontal">
+
             <div class="form-group">
                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking
                     Number</label>
@@ -106,6 +107,19 @@
             </div>
 
             <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                                 disabled="true"></s:textfield>
+                </div>
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
+                                 disabled="true"></s:textfield>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Address</label>
                 <div class="col-lg-4">
                     <s:textfield cssClass="form-control" value="%{order.shipperInfoAddress.address}" name="book-num"
@@ -117,10 +131,10 @@
                                  disabled="true"></s:textfield>
                 </div>
             </div>
+
         </div>
 
     </div>
-
 
     <s:if test="order.freightType=='SHIPPING'">
         <s:if test="order.modeOfService=='PIER TO PIER'">
@@ -168,11 +182,10 @@
                             <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                             <div class="col-lg-4">
                                 <div>
-                                    <s:select list="vendorShippingList" name="operationsBean.vendorList"
+                                    <s:select list="vendorShippingListClass" name="operationsBean.vendorList"
                                               id="operationsBean_vendorList"
-                                              listKey="vendorId" listValue="vendorCode" cssClass="form-control"
-                                              emptyOption="true"
-                                            ></s:select>
+                                              listKey="vendorId" listValue="vendorName" cssClass="form-control"
+                                              emptyOption="true" ></s:select>
                                 </div>
                             </div>
                             <div class="col-lg-2" style="text-align: center;">
@@ -183,7 +196,11 @@
                                 </div>
                             </div>
                             <div class="col-lg-2" style="text-align: center;">
-                               c
+                                <div>
+                                    <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
+                                        Add Vendor
+                                    </a>
+                                </div>
                             </div>
                             <div class="col-lg-2" style="text-align: center;">
                                 <div>
@@ -287,11 +304,10 @@
                             <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                             <div class="col-lg-4">
                                 <div>
-                                    <s:select list="vendorShippingList" name="operationsBean.vendorList"
+                                    <s:select list="vendorShippingListClass" name="operationsBean.vendorList"
                                               id="operationsBean_vendorList"
-                                              listKey="vendorId" listValue="vendorCode" cssClass="form-control"
-                                              emptyOption="true"
-                                            ></s:select>
+                                              listKey="vendorId" listValue="vendorName" cssClass="form-control"
+                                              emptyOption="true" ></s:select>
                                 </div>
                             </div>
                             <div class="col-lg-2" style="text-align: center;">
@@ -334,11 +350,15 @@
                                    requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                    style="margin-top: 15px;">
+                        <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
                         <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="originPort" title="Origin" class="tb-font-black"
+                        <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
+                        <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="destinationPort" title="DES" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="departureDate" title="Departure" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -360,10 +380,37 @@
                         </display:column></td>
                     </display:table>
                 </div>
+
+                <div class="panel-footer">
+                    <div class="pull-right">
+                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                             title="Update Status">
+
+                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <button type="button" class="btn">
+                                    Back to Freight Plan : Containers
+                                </button>
+                            </s:if>
+                            <s:else>
+                                <button type="button" class="btn">
+                                    Back to Freight Plan : Items
+                                </button>
+                            </s:else>
+
+                        </s:a>
+                    </div>
+                </div>
+
             </div>
 
             <%--Origin--%>
-            <div class="panel panel-primary">
+            <%--<div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-truck"></i>
                     <span class="panel-title"> Dispatch Plan : Origin</span>
@@ -395,10 +442,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
 
             <%--Destination--%>
-            <div class="panel panel-primary">
+            <%--<div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-truck"></i>
                     <span class="panel-title"> Dispatch Plan : Destination</span>
@@ -428,9 +475,9 @@
                             <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
                         </div>
                     </div>
-                </div>
+                </div>--%>
 
-                <div class="panel-footer">
+                <%--<div class="panel-footer">
                     <div class="pull-right">
                         <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
                             <s:param name="orderIdParam"
@@ -454,7 +501,8 @@
 
                         </s:a>
                     </div>
-                </div>
+                </div>--%>
+
             </div>
         </s:if>
         <s:elseif test="order.modeOfService=='DOOR TO PIER'">
@@ -502,9 +550,9 @@
                             <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                             <div class="col-lg-4">
                                 <div>
-                                    <s:select list="vendorShippingList" name="operationsBean.vendorList"
+                                    <s:select list="vendorShippingListClass" name="operationsBean.vendorList"
                                               id="operationsBean_vendorList"
-                                              listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                              listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                               emptyOption="true"
                                             ></s:select>
                                 </div>
@@ -657,9 +705,9 @@
                             <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                             <div class="col-lg-4">
                                 <div>
-                                    <s:select list="vendorShippingList" name="operationsBean.vendorList"
+                                    <s:select list="vendorShippingListClass" name="operationsBean.vendorList"
                                               id="operationsBean_vendorList"
-                                              listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                              listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                               emptyOption="true"
                                             ></s:select>
                                 </div>
@@ -798,9 +846,6 @@
 
 <%--Start Add Vendor Modal--%>
 
-
-
-
 <div class="modal fade" id="createVendor" role="form" aria-labelledby="myModalLabel1">
     <div class="modal-dialog modal-form">
         <div class="modal-content">
@@ -814,16 +859,24 @@
 
                             <s:form action="addVendorSea" cssClass="form-horizontal" theme="bootstrap">
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label" style="padding-top:0px;">Type<span
+                                    <label class="col-lg-3 control-label" style="padding-top:0px;">Type<span
                                             class="asterisk_red"></span></label>
 
-                                    <div class="col-lg-9"></span>
+                                    <%--<div class="col-lg-9"></span>
                                         <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
                                                   listKey="key" listValue="value" cssClass="form-control"/>
+                                    </div>--%>
+                                    <div class="col-lg-9"></span>
+                                        <%--<s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
+                                                  listKey="key" listValue="value" cssClass="form-control"/>--%>
+                                        <s:hidden type="hidden" cssClass="form-control" value="SHIPPING" name="vendor.vendorType"
+                                                     id="vendor.vendorType"/>
+                                        <s:textfield cssClass="form-control" value="Shipping" name="vendor_vendorType"
+                                                     id="vendor_vendorType" disabled="true"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label" style="padding-top:0px;">Company<span
+                                    <label class="col-lg-3 control-label" style="padding-top:0px;">Company<span
                                             class="asterisk_red"></span></label>
 
                                     <div class="col-lg-9">
@@ -832,7 +885,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span
+                                    <label class="col-lg-3 control-label" style="padding-top:0px;">Code<span
                                             class="asterisk_red"></span></label>
 
                                     <div class="col-lg-9">
@@ -843,7 +896,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label" style="padding-top:0px;">Class<span
+                                    <label class="col-lg-3 control-label" style="padding-top:0px;">Class<span
                                             class="asterisk_red"></span></label>
 
                                     <div class="col-lg-9">

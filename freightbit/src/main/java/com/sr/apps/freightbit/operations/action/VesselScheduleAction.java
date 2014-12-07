@@ -1,5 +1,5 @@
 package com.sr.apps.freightbit.operations.action;
-//
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
@@ -21,9 +21,6 @@ import org.apache.log4j.Logger;
 
 import java.util.*;
 
-/**
- * Created by Clarence C. Victoria on 7/23/14.
- */
 public class VesselScheduleAction extends ActionSupport implements Preparable{
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(VesselScheduleAction.class);
@@ -190,6 +187,8 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         entity.setDepartureDate(formBean.getDepartureDate());
         entity.setVendorCode(vendorService.findVendorById(formBean.getVendorId()).getVendorCode());
         entity.setVesselName(formBean.getVesselName());
+        entity.setCreatedBy(formBean.getCreatedBy());
+        entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
 
         return entity;
     }

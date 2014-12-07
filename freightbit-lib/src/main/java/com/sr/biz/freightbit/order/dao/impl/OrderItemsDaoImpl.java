@@ -104,7 +104,7 @@ public class OrderItemsDaoImpl extends HibernateDaoSupport implements OrderItems
         }
     }
 
-    @Override
+    /*@Override
     public List<OrderItems> findAllOrderItemByVesselName(String vesselName) {
         Log.debug("Finding all orderItems by vesselName");
         try {
@@ -117,5 +117,5 @@ public class OrderItemsDaoImpl extends HibernateDaoSupport implements OrderItems
             Log.error("Find all failed", re);
             throw re;
         }
-    }
+    }*/
 }

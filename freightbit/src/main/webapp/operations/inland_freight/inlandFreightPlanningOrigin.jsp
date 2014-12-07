@@ -46,46 +46,92 @@
         <span class="panel-title">Booking Information</span>
     </div>
     <div class="panel-body form-horizontal">
-        <div class="form-group">
-            <label for="book-num" class="col-lg-2 control-label">Booking Number</label>
 
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{order.orderNumber}" name="book-num"
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking Number</label>
+
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.orderNumber}"
+                             disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Freight Type</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.freightType}"
                              disabled="true"></s:textfield>
             </div>
         </div>
-        <div class="form-group">
-            <label for="book-num" class="col-lg-2 control-label">Service Mode</label>
 
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num"
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
+                Req't</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.serviceRequirement}"
+                             name="book-num"
+                             disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
+                Mode</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.modeOfService}"
+                             disabled="true"></s:textfield>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer
+                Name</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.customerName}"
+                             disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Consignee
+                Name</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.consigneeCode}"
                              disabled="true"></s:textfield>
             </div>
         </div>
-        <div class="form-group">
-            <label for="book-num" class="col-lg-2 control-label">Service Type</label>
 
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{order.serviceRequirement}" name="book-num"
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.originationPort}"
+                             disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination Port</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.destinationPort}"
                              disabled="true"></s:textfield>
             </div>
         </div>
-        <div class="form-group">
-            <label for="book-num" class="col-lg-2 control-label">Customer Name</label>
 
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{order.customerName}" name="book-num"
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                             disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
                              disabled="true"></s:textfield>
             </div>
         </div>
-        <div class="form-group">
-            <label for="book-num" class="col-lg-2 control-label">Consignee Name</label>
 
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num"
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Address</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.shipperInfoAddress.address}" name="book-num"
+                             disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination Address</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.consigneeInfoAddress.address}" name="book-num"
                              disabled="true"></s:textfield>
             </div>
         </div>
+
     </div>
 
 </div>
@@ -115,12 +161,10 @@
                     <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}"/>
                     <s:hidden name="operationsBean.status" value="%{orderItem.status}"/>
                     <s:hidden name="operationsBean.weight" value="%{orderItem.weight}"/>
-
                     <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}"/>
                     <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}"/>
                     <s:hidden name="operationsBean.vesselScheduleId" value="%{orderItem.vesselScheduleId}"/>
                     <s:hidden name="order.orderId" value="%{orderItem.orderId}"/>
-
                     <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}"/>
                     <s:hidden name="operationsBean.freightType" value="%{order.freightType}"/>
                     <div class="form-group">
@@ -138,7 +182,6 @@
                             <div class="col-lg-2">
                                 <div>
                                     <a data-target="#createVendor" id="createVendorButton" data-toggle="modal" class="btn btn-info">
-                                            <%--<i class="fa fa-plus"></i>--%>
                                         Add Vendor
                                     </a>
                                 </div>
@@ -153,15 +196,13 @@
                                 <s:select list="listDrivers" name="operationsBean.driverOrigin"
                                           id="driverList"
                                           listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
-                                          emptyOption="true" value="%{orderItem.driverDestination}"
-                                        ></s:select>
+                                          emptyOption="true" value="%{orderItem.driverDestination}" ></s:select>
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div>
                                 <a class="btn btn-info" data-toggle="modal" id="createDriverButton" data-target="#createDriver"
                                    style="width:100px !important;">
-                                        <%--<i class="fa fa-plus"></i>--%>
                                     Add Driver
                                 </a>
                             </div>
@@ -175,15 +216,13 @@
                                 <s:select list="listDrivers" name="operationsBean.truckOrigin"
                                           id="trucksList"
                                           listKey="truckId" listValue="truckCode" cssClass="form-control"
-                                          emptyOption="true" value="%{orderItem.truckDestination}"
-                                        ></s:select>
+                                          emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div>
                                 <a data-target="#createTruck" data-toggle="modal" id="createTruckButton" class="btn btn-info"
                                    style="width:100px !important;">
-                                        <%--<i class="fa fa-plus"></i>--%>
                                     Add Truck
                                 </a>
                             </div>
@@ -231,10 +270,48 @@
                              disabled="true"></s:textfield>
             </div>
         </div>
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Vessel Name </label>
+            <div class="col-lg-10">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.vesselName}" name="book-num" disabled="true"></s:textfield>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Date </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.departureDate}" name="book-num" disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date <Port></Port> </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.arrivalDate}" name="book-num" disabled="true"></s:textfield>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Time </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.departureTime}" name="book-num" disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Time <Port></Port> </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.arrivalTime}" name="book-num" disabled="true"></s:textfield>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.originPort}" name="book-num" disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination <Port></Port> </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.destinationPort}" name="book-num" disabled="true"></s:textfield>
+            </div>
+        </div>
     </div>
 </div>
 
-<%--------%>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-truck"></i>
@@ -242,6 +319,7 @@
     </div>
     <div class="panel-body">
         <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsOrigin">
+
             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}"/>
             <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}"/>
             <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}"/>
@@ -258,14 +336,13 @@
             <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}"/>
             <s:hidden name="operationsBean.status" value="%{orderItem.status}"/>
             <s:hidden name="operationsBean.weight" value="%{orderItem.weight}"/>
-
             <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}"/>
             <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}"/>
             <s:hidden name="operationsBean.vesselScheduleId" value="%{orderItem.vesselScheduleId}"/>
             <s:hidden name="order.orderId" value="%{orderItem.orderId}"/>
-
             <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}"/>
             <s:hidden name="operationsBean.freightType" value="%{order.freightType}"/>
+
             <div class="form-group">
                 <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
 
@@ -274,14 +351,12 @@
                         <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
                                   id="vendorListOrigin"
                                   listKey="vendorId" listValue="vendorCode" cssClass="form-control"
-                                  emptyOption="true" value="%{orderItem.vendorDestination}"
-                                ></s:select>
+                                  emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div>
                         <a data-target="#createVendor" id="createVendorButton" data-toggle="modal" class="btn btn-info">
-                                <%--<i class="fa fa-plus"></i>--%>
                             Add Vendor
                         </a>
                     </div>
@@ -295,46 +370,103 @@
                         <s:select list="listDrivers" name="operationsBean.driverOrigin"
                                   id="driverList"
                                   listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
-                                  emptyOption="true" value="%{orderItem.driverDestination}"
-                                ></s:select>
+                                  emptyOption="true" value="%{orderItem.driverDestination}" ></s:select>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div>
                         <a data-toggle="modal" data-target="#createDriver" id="createDriverButton" class="btn btn-info"
                            style="width:100px !important;">
-                                <%--<i class="fa fa-plus"></i>--%>
                             Add Driver
                         </a>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
 
                 <div class="col-lg-8">
                     <div>
                         <s:select list="listDrivers" name="operationsBean.truckOrigin"
                                   id="trucksList"
                                   listKey="truckId" listValue="truckCode" cssClass="form-control"
-                                  emptyOption="true" value="%{orderItem.truckDestination}"
-                                ></s:select>
+                                  emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div>
                         <a data-target="#createTruck" data-toggle="modal" id="createTruckButton" class="btn btn-info"
                            style="width:100px !important;">
-                                <%--<i class="fa fa-plus"></i>--%>
                             Add Truck
                         </a>
                     </div>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
+
+                <div class="col-lg-8">
+                    <div>
+                        <s:select cssClass="form-control"
+                                  id="bodyType"
+                                  list="#{bodyType}"
+                                  value="%{bodyType}"
+                                  style="display:none"
+                                />
+                        <s:textfield cssClass="form-control"
+                                     id="bodyType_textfield"
+                                     disabled="true"
+                                />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
+
+                <div class="col-lg-8">
+                    <div>
+                        <s:select cssClass="form-control"
+                                  id="plateNumber"
+                                  list="#{plateNumber}"
+                                  value="%{plateNumber}"
+                                  style="display:none"
+                                />
+                        <s:textfield cssClass="form-control"
+                                     id="plateNumber_textfield"
+                                     disabled="true"
+                                />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
+
+                <div class="col-lg-8">
+                    <div>
+                        <s:select cssClass="form-control"
+                                  id="grossWeight"
+                                  list="#{grossWeight}"
+                                  value="%{grossWeight}"
+                                  style="display:none"
+                                />
+                        <s:textfield cssClass="form-control"
+                                     id="grossWeight_textfield"
+                                     disabled="true"
+                                />
+                    </div>
+                </div>
+
+            </div>
+
             <div class="form-group">
                 <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
-                <div class="col-lg-10">
+                <div class="col-lg-8">
                     <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalPickupdate}"
                                  id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
                                  contenteditable="false" style="margin-bottom: 15px !important;"/>
@@ -347,8 +479,6 @@
     </div>
 </div>
 
-
-<%------%>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-truck"></i>
@@ -388,7 +518,7 @@
 
         <div class="form-group">
 
-            <label for="pickup" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+            <label for="pickup" class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
 
             <div class="col-lg-10">
                 <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true"/>
@@ -423,6 +553,7 @@
             </s:a>
         </div>
     </div>
+
 </div>
 </s:if>
 <s:elseif test="order.modeOfService=='DOOR TO PIER'">
@@ -451,7 +582,6 @@
         </div>
     </div>
 
-    <%--------%>
     <div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-truck"></i>
@@ -498,7 +628,6 @@
                     <div class="col-lg-2">
                         <div>
                             <a data-target="#createVendor" id="createVendorButton" data-toggle="modal" class="btn btn-info">
-                                    <%--<i class="fa fa-plus"></i>--%>
                                 Add Vendor
                             </a>
                         </div>
@@ -520,7 +649,6 @@
                         <div>
                             <a data-toggle="modal" data-target="#createDriver" id="createDriverButton" class="btn btn-info"
                                style="width:100px !important;">
-                                    <%--<i class="fa fa-plus"></i>--%>
                                 Add Driver
                             </a>
                         </div>
@@ -534,15 +662,13 @@
                             <s:select list="listDrivers" name="operationsBean.truckOrigin"
                                       id="trucksList"
                                       listKey="truckId" listValue="truckCode" cssClass="form-control"
-                                      emptyOption="true" value="%{orderItem.truckDestination}"
-                                    ></s:select>
+                                      emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                         </div>
                     </div>
                     <div class="col-lg-2">
                         <div>
                             <a data-target="#createTruck" data-toggle="modal" id="createTruckButton" class="btn btn-info"
                                style="width:100px !important;">
-                                    <%--<i class="fa fa-plus"></i>--%>
                                 Add Truck
                             </a>
                         </div>
@@ -584,10 +710,10 @@
                     <s:hidden name = "driver.vendorId" id="vendorId" ></s:hidden>
                     <div class="form-group">
 
-                        <label for="driver.licenseNumber" class="col-lg-2 control-label" style="padding-top:0px;">License<span
+                        <label for="driver.licenseNumber" class="col-lg-3 control-label" style="padding-top:0px;">License<span
                                 class="asterisk_red"></span></label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="AXX-XX-XXXXXXX"
                                          name="driver.licenseNumber" id="driver_licenseNumber" required="true"/>
                         </div>
@@ -596,10 +722,10 @@
 
                     <div class="form-group">
 
-                        <label for="driver.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last
+                        <label for="driver.lastName" class="col-lg-3 control-label" style="padding-top:0px;">Last
                             Name<span class="asterisk_red"></span></label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName"
                                          id="driver.lastName" required="true"/>
                         </div>
@@ -608,10 +734,10 @@
 
                     <div class="form-group">
 
-                        <label for="driver.firstName" class="col-lg-2 control-label" style="padding-top:0px;">First Name<span
+                        <label for="driver.firstName" class="col-lg-3 control-label" style="padding-top:0px;">First Name<span
                                 class="asterisk_red"></span></label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName"
                                          id="driver.firstName" required="true"/>
                         </div>
@@ -620,10 +746,10 @@
 
                     <div class="form-group">
 
-                        <label for="driver.middleName" class="col-lg-2 control-label" style="padding-top:0px;">Middle
+                        <label for="driver.middleName" class="col-lg-3 control-label" style="padding-top:0px;">Middle
                             Name</label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName"
                                          id="driver.middleName"/>
                         </div>
@@ -632,10 +758,10 @@
 
                     <div class="form-group">
 
-                        <label for="driver.title" class="col-lg-2 control-label" style="padding-top:0px;">Title<span
+                        <label for="driver.title" class="col-lg-3 control-label" style="padding-top:0px;">Title<span
                                 class="asterisk_red"></span></label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"
                                          id="driver.title" required="true"/>
                         </div>
@@ -644,10 +770,10 @@
 
                     <div class="form-group">
 
-                        <label class="col-lg-2 control-label" for="driver.status"
+                        <label class="col-lg-3 control-label" for="driver.status"
                                style="padding-top:0px;">Status</label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:select list="statusList" listKey="key" listValue="value" name="driver.status"
                                       cssClass="form-control"/>
                         </div>
@@ -686,16 +812,20 @@
 
                     <s:form cssClass="form-horizontal" action="addVendorInlandOrigin" method="POST" theme="bootstrap">
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Type<span
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Type<span
                                 class="asterisk_red"></span></label>
 
                         <div class="col-lg-9"></span>
-                            <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
-                                      listKey="key" listValue="value" cssClass="form-control"/>
+                            <%--<s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
+                                      listKey="key" listValue="value" cssClass="form-control"/>--%>
+                            <s:hidden type="hidden" cssClass="form-control" value="TRUCKING" name="vendor.vendorType"
+                                      id="vendor.vendorType"/>
+                            <s:textfield cssClass="form-control" value="Trucking" name="vendor_vendorType"
+                                         id="vendor_vendorType" disabled="true"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Company<span
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Company<span
                                 class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
@@ -704,7 +834,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Code<span
                                 class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
@@ -715,7 +845,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Class<span
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Class<span
                                 class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
@@ -971,28 +1101,79 @@
 
             $.getJSON('listVendorDriverAndTrucks', {
                         vendorId: vendorId
+                },
+
+                function (jsonResponse) {
+
+                    var driver = $('#driverList');
+
+                    driver.find('option').remove();
+
+                    var truck = $('#trucksList');
+
+                    truck.find('option').remove();
+
+                    $.each(jsonResponse.driverMap, function (key, value) {
+                        $('<option>').val(key).text(value).appendTo(driver);
+                    });
+
+                    $.each(jsonResponse.trucksMap, function (key, value) {
+                        $('<option>').val(key).text(value).appendTo(truck);
+                    });
+
+                    var truckCode = $("#trucksList").val();
+
+                    $.getJSON('truckDetails', {
+                        truckCodeParam: truckCode
                     },
 
                     function (jsonResponse) {
+                        var select1 = $('#bodyType');
 
-                        var driver = $('#driverList');
+                        select1.find('option').remove();
 
-                        driver.find('option').remove();
+                        var select2 = $('#plateNumber');
 
-                        var truck = $('#trucksList');
+                        select2.find('option').remove();
 
-                        truck.find('option').remove();
+                        var select3 = $('#grossWeight');
 
-                        $.each(jsonResponse.driverMap, function (key, value) {
-                            $('<option>').val(key).text(value).appendTo(driver);
+                        select3.find('option').remove();
+
+                        // For Truck Type Auto-populate
+                        $.each(jsonResponse.bodyTypeMap, function (key,value) {
+
+                            $('<option>').val(key).text(value).appendTo(select1);
+                            var bodyType = $("#bodyType").val();
+                            document.getElementById("bodyType_textfield").value = bodyType;
+
                         });
 
-                        $.each(jsonResponse.trucksMap, function (key, value) {
-                            $('<option>').val(key).text(value).appendTo(truck);
+                        // For Plate Number Auto-populate
+                        $.each(jsonResponse.plateNumberMap, function (key,value) {
+
+                            $('<option>').val(key).text(value).appendTo(select2);
+                            var plateNumber = $("#plateNumber").val();
+                            document.getElementById("plateNumber_textfield").value = plateNumber;
+
+                        });
+
+                        // For Gross Weight Auto-populate
+                        $.each(jsonResponse.grossWeightMap, function (key,value) {
+
+                            $('<option>').val(key).text(value).appendTo(select3);
+                            var grossWeight = $("#grossWeight").val();
+                            document.getElementById("grossWeight_textfield").value = grossWeight;
+
                         });
                     });
+                });
+
         });
+
     });
+
+
 
     $(document).ready(function(){
        $("#createDriverButton").click(function(){

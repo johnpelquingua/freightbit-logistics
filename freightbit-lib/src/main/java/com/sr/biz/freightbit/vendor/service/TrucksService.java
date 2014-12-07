@@ -24,6 +24,8 @@ public interface TrucksService {
 
     public Trucks findTrucksByTruckCode(String truckCode);
 
+    public Trucks findTruckByCode(String truckCode);
+
     public List<Trucks> findTrucksByPlateNumber(String plateNumber, Integer vendorId);
 
     public List<Trucks> findTrucksByVendorId(Integer vendorId);

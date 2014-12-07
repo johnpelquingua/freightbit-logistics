@@ -342,7 +342,7 @@
                                 <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
                                 <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
 
-                                <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="outboundTable outbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="outboundTable outbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">
 
                                     <td>
@@ -517,7 +517,7 @@
                                     <s:form name="myform" action="processDocumentsInbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItemInbound" />
-                                    <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="inbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
@@ -728,7 +728,7 @@
                                 <s:form name="myform" action="processDocumentsFinalOutbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItemFinalOutbound"></s:textfield>
-                                    <display:table id="document" name="finalOutboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="final_outbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="finalOutboundDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="final_outbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
@@ -899,7 +899,7 @@
                                     <s:form name="myform" action="processDocumentsFinalInbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItemFinalInbound"></s:textfield>
-                                    <display:table id="document" name="finalInboundDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="finalInboundDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
@@ -1025,7 +1025,7 @@
                             <%--<s:form name="myform" action="processDocumentsFinalInbound">--%>
                             <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                             <s:textfield type="hidden" name="document.documentItem" id="documentItemComplete"></s:textfield>
-                            <display:table id="document" name="completeDocuments" requestURI="viewOrderDocuments.action" pagesize="10" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                            <display:table id="document" name="completeDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
 
                                 <td>

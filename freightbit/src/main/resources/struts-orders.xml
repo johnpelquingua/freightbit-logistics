@@ -188,7 +188,11 @@
                 method="addedItemInBooking">
             <result name="success" type="tiles">orders.add-booking-info.tiles</result>
         </action>
-
+        <!--TO BE CORRECTED-->
+        <action name="createReport" class="com.sr.apps.freightbit.order.action.OrderAction" method="createReport">
+            <result name="success" type="redirect">viewInfoOrder</result>
+        </action>
+        <!--TO BE CORRECTED-->
         <!--For Printing Booking Request Form in Booking Module-->
         <action name="generateBookingRequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBookingRequestReport">
             <!-- <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>-->

@@ -1,10 +1,5 @@
 package com.sr.biz.freightbit.vendor.service.impl;
 
-/**
- * Created with IntelliJ IDEA.
- * User: johnpel
- */
-
 import com.sr.biz.freightbit.vendor.dao.TrucksDao;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
 import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
@@ -57,9 +52,15 @@ public class TrucksServiceImpl implements TrucksService {
     @Override
     public Trucks findTrucksByTruckCode(String truckCode) {
         List<Trucks> result = trucksDao.findTrucksByTruckCode(truckCode);
-        if (result != null && !result.isEmpty())
+        if (result != null && !result.isEmpty()) {
             return result.get(0);
+        }
         return null;
+    }
+
+    @Override
+    public Trucks findTruckByCode(String truckCode) {
+        return trucksDao.findTruckByCode(truckCode);
     }
 
     @Override
@@ -76,9 +77,4 @@ public class TrucksServiceImpl implements TrucksService {
         return result;
     }
 
-  /*  @Override
-    public void updateLastVisitDate(User user) {
-        user.setLastVisitDate(new Date());
-        userDao.updateUser(user);
-    }*/
 }

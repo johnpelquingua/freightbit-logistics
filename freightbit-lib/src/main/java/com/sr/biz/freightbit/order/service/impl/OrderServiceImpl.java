@@ -103,6 +103,11 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.findAllOrdersByAging(aging);    }
 
     @Override
+    public List<OrderItems> findAllOrdersByOrderIdAndDestination(Integer orderId, String destinationPort) {
+        return orderDao.findAllOrdersByOrderIdAndDestination(orderId, destinationPort);    }
+
+
+    @Override
     public Orders findOrdersById(Integer orderId) {
         return orderDao.findOrdersById(orderId);
     }

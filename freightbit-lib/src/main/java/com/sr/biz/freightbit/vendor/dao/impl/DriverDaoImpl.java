@@ -10,15 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by JMXPSX on 5/16/14.
- */
-
 @Transactional
 public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao {
 
     private static final Logger Log = Logger.getLogger(DriverDaoImpl.class);
-
 
     @Override
     public void addDriver(Driver driver) {
@@ -33,7 +28,6 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao {
         }
     }
 
-
     @Override
     public void deleteDriver(Driver driver) {
         Log.debug("Deleting a Driver");
@@ -46,7 +40,6 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao {
             throw re;
         }
     }
-
 
     @Override
     public void updateDriver(Driver driver) {
@@ -61,7 +54,6 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao {
         }
     }
 
-
     @Override
     public List<Driver> findAllDrivers() {
         Log.debug("finding all drivers");
@@ -73,7 +65,6 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao {
             throw re;
         }
     }
-
 
     @Override
     public List<Driver> findAllDriversByClientId(Integer clientId) {
@@ -89,7 +80,6 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao {
             throw re;
         }
     }
-
 
     @Override
     public Driver findDriverById(Integer driverId) {
@@ -107,7 +97,6 @@ public class DriverDaoImpl extends HibernateDaoSupport implements DriverDao {
             throw re;
         }
     }
-
 
     @Override
     public List<Driver> findDriverByLastName(String lastName) {

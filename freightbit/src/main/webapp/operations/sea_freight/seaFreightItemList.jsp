@@ -28,7 +28,7 @@
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
-        <div class="alert alert-sucAcess">
+        <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
@@ -64,16 +64,17 @@
                             <span class="panel-title">Booking Information</span>
                         </div>
                         <div class="panel-body form-horizontal">
+
                             <div class="form-group">
-                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking
-                                    Number</label>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking Number</label>
+
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.orderNumber}" name="book-num"
+                                    <s:textfield cssClass="form-control" value="%{order.orderNumber}"
                                                  disabled="true"></s:textfield>
                                 </div>
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Freight Type</label>
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.freightType}" name="book-num"
+                                    <s:textfield cssClass="form-control" value="%{order.freightType}"
                                                  disabled="true"></s:textfield>
                                 </div>
                             </div>
@@ -89,7 +90,7 @@
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
                                     Mode</label>
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num"
+                                    <s:textfield cssClass="form-control" value="%{order.modeOfService}"
                                                  disabled="true"></s:textfield>
                                 </div>
 
@@ -99,13 +100,13 @@
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer
                                     Name</label>
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.customerName}" name="book-num"
+                                    <s:textfield cssClass="form-control" value="%{order.customerName}"
                                                  disabled="true"></s:textfield>
                                 </div>
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Consignee
                                     Name</label>
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num"
+                                    <s:textfield cssClass="form-control" value="%{order.consigneeCode}"
                                                  disabled="true"></s:textfield>
                                 </div>
                             </div>
@@ -113,12 +114,25 @@
                             <div class="form-group">
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port</label>
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.originationPort}" name="book-num"
+                                    <s:textfield cssClass="form-control" value="%{order.originationPort}"
                                                  disabled="true"></s:textfield>
                                 </div>
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination Port</label>
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.destinationPort}" name="book-num"
+                                    <s:textfield cssClass="form-control" value="%{order.destinationPort}"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
                                                  disabled="true"></s:textfield>
                                 </div>
                             </div>
@@ -135,6 +149,7 @@
                                                  disabled="true"></s:textfield>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -148,6 +163,7 @@
                             </button>
                         </div>
                     </div>--%>
+
                     <div class="table-responsive">
                         <s:form name="myform" action="checkItemStatus" theme="bootstrap">
 
@@ -172,7 +188,7 @@
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="vesselScheduleId" title="Voyage <i class='fa fa-sort' />"
+                                <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
@@ -180,12 +196,12 @@
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="vendorOrigin" title="Origin <i class='fa fa-sort' />"
+                                <td><display:column property="vendorOrigin" title="ORI <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
                                 <td><display:column property="vendorDestination"
-                                                    title="Destination <i class='fa fa-sort' />"
+                                                    title="DES <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
@@ -280,12 +296,12 @@
                          value="#attr.order.orderId"></s:param>
 
             </s:url>
-            <s:if test="#attr.order.vendorSea != ''">
+            <%--<s:if test="#attr.orderItem.vendorSea != ''">--%>
             <s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"
                  title="Create Documents">
                 Create Proforma Bill of Lading
             </s:a>
-            </s:if>
+            <%--</s:if>--%>
             <s:url var="viewDocumentListUrl" action="viewDocumentList">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId">

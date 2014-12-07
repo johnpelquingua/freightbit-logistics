@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class DocumentsBean {
     private Integer documentId;
-    /*private String documentType;*/
+    private String documentType;
     private Integer clientId;
     private String documentName;
     private Integer referenceId;
@@ -45,6 +45,14 @@ public class DocumentsBean {
 
     public void setDocumentId(Integer documentId) {
         this.documentId = documentId;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
     }
 
     public Integer getClientId() {

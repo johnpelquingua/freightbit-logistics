@@ -30,4 +30,6 @@ public interface VendorDao {
 
     public List<Vendor> findAllShippingVendor();
 
+    public List<Vendor> findShippingVendorClass(String vendorClass);
+
 }

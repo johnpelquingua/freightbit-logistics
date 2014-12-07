@@ -195,7 +195,6 @@
             dataType: 'html',
             success: function (html) {
                 $('#inputDiv').html(html);
-                window.location.href = '#sixth';
             },
             error: function(xhr, ajaxOptions, thrownError){
                 alert('An error occurred! ' + thrownError);
@@ -212,7 +211,6 @@
             dataType: 'html',
             success: function (html) {
                 $('#inputDiv').html(html);
-                window.location.href = '#sixth';
             },
             error: function(xhr, ajaxOptions, thrownError){
                 alert('An error occurred! ' + thrownError);

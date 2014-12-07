@@ -63,7 +63,7 @@
     </welcome-file-list>
 
     <session-config>
-        <session-timeout>5</session-timeout>
+        <session-timeout>500</session-timeout> <!--500seconds = 8 mins-->
     </session-config>
 
 </web-app>

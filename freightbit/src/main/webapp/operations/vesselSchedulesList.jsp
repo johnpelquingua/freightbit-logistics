@@ -55,13 +55,16 @@
                         <td><display:column property="vendorCode" title="Shipping Company <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
-                        <td><display:column property="originPort" title="Origin <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
-                        <td><display:column property="destinationPort" title="Destination <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-
                         <td><display:column property="voyageNumber" title="Voyage # <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="originPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
                         <td><display:column property="departureDate" title="Departure <i class='fa fa-sort' />" class="tb-font-black"

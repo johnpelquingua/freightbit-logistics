@@ -418,12 +418,7 @@
                     <div class="form-group weightAndVolume">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            <%--<s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
-                                Weight (tons)<span class="asterisk_red" />
-                            </s:if>
-                            <s:else>--%>
                                 Weight (kg)<span class="asterisk_red" />
-                            <%--</s:else>--%>
                         </label>
 
                         <div class="col-lg-3" >
@@ -579,16 +574,14 @@
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
                             <span>
                                 <th class="tb-font-black">Size</th>
-                                <th class="tb-font-black">Weight <br /> (tons) </th>
                             </span>
                             </s:if>
                             <s:else>
                             <span>
                                 <th class="tb-font-black">Name</th>
-                                <th class="tb-font-black">Weight <br /> (kg) </th>
                             </span>
                             </s:else>
-
+                            <th class="tb-font-black">Weight <br /> (kg) </th>
                             <th class="tb-font-black">Volume <br /> (m&#179;) </th>
                             <th class="tb-font-black">Commodity</th>
                             <th class="tb-font-black">Value <br /> (Php) </th>

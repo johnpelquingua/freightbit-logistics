@@ -66,33 +66,87 @@
                         </div>
                         <div class="panel-body form-horizontal">
                             <div class="form-group">
-                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking Number</label>
-                                <div class="col-lg-10">
-                                    <s:textfield cssClass="form-control" value="%{order.orderNumber}" name="book-num" disabled="true"></s:textfield>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking
+                                    Number</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.orderNumber}" name="book-num"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Freight Type</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.freightType}" name="book-num"
+                                                 disabled="true"></s:textfield>
                                 </div>
                             </div>
+
                             <div class="form-group">
-                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Mode</label>
-                                <div class="col-lg-10">
-                                    <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num" disabled="true"></s:textfield>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
+                                    Req't</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.serviceRequirement}"
+                                                 name="book-num"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
+                                    Mode</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num"
+                                                 disabled="true"></s:textfield>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer
+                                    Name</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.customerName}" name="book-num"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Consignee
+                                    Name</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num"
+                                                 disabled="true"></s:textfield>
                                 </div>
                             </div>
+
                             <div class="form-group">
-                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Type</label>
-                                <div class="col-lg-10">
-                                    <s:textfield cssClass="form-control" value="%{order.serviceRequirement}" name="book-num" disabled="true"></s:textfield>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.originationPort}" name="book-num"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination Port</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.destinationPort}" name="book-num"
+                                                 disabled="true"></s:textfield>
                                 </div>
                             </div>
+
                             <div class="form-group">
-                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Customer Name</label>
-                                <div class="col-lg-10">
-                                    <s:textfield cssClass="form-control" value="%{order.customerName}" name="book-num" disabled="true"></s:textfield>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
+                                                 disabled="true"></s:textfield>
                                 </div>
                             </div>
+
                             <div class="form-group">
-                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Consignee Name</label>
-                                <div class="col-lg-10">
-                                    <s:textfield cssClass="form-control" value="%{order.consigneeCode}" name="book-num" disabled="true"></s:textfield>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Address</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.shipperInfoAddress.address}" name="book-num"
+                                                 disabled="true"></s:textfield>
+                                </div>
+                                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination Address</label>
+                                <div class="col-lg-4">
+                                    <s:textfield cssClass="form-control" value="%{order.consigneeInfoAddress.address}" name="book-num"
+                                                 disabled="true"></s:textfield>
                                 </div>
                             </div>
                         </div>
@@ -117,19 +171,23 @@
                                                 class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
-                            <td><display:column property="vesselScheduleId" title="Voyage <i class='fa fa-sort' />"
-                                                class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-
                             <td><display:column property="vendorSea" title="Shipping <i class='fa fa-sort' />"
                                                 class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
-                            <td><display:column property="vendorOrigin" title="Origin <i class='fa fa-sort' />"
+                            <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
                                                 class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
-                            <td><display:column property="vendorDestination" title="Destination <i class='fa fa-sort' />"
+                            <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="vendorOrigin" title="ORI <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="vendorDestination" title="DES <i class='fa fa-sort' />"
                                                 class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 

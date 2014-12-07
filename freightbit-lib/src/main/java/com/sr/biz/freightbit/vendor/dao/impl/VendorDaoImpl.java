@@ -1,10 +1,5 @@
 package com.sr.biz.freightbit.vendor.dao.impl;
 
-/**
- * Created with IntelliJ IDEA.
- * User: johnpel
- */
-
 import com.sr.biz.freightbit.vendor.dao.VendorDao;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
 import org.apache.log4j.Logger;
@@ -80,14 +75,28 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
             log.error("Finding vendors failed");
             throw e;
         }
-        /*log.debug("Finding all Vendors");
+    }
+
+    @Override
+    public List<Vendor> findShippingVendorClass(String vendorClass) {
+
+        List<String> vendorTypeList = new ArrayList<>();
+
+        vendorTypeList.add("SHIPPING");
+
+        log.debug("Finding vendors with filter");
         try {
-            return getSessionFactory().getCurrentSession()
-                    .createQuery("from Vendor where vendorType = 'SHIPPING'").list();
-        } catch (RuntimeException re) {
-            log.error("Find all failed", re);
-            throw re;
-        }*/
+            log.debug("Finding vendors succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Vendor v where v.vendorType in (:vendorTypeList) and v.vendorClass = :vendorClass");
+            query.setParameterList("vendorTypeList", vendorTypeList);
+            query.setParameter("vendorClass", vendorClass);
+            List<Vendor> results = (List<Vendor>) query.list();
+            return results;
+
+        }catch (Exception e) {
+            log.error("Finding vendors failed");
+            throw e;
+        }
     }
 
     @Override

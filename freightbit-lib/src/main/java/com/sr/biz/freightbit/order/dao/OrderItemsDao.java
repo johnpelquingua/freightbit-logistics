@@ -18,6 +18,6 @@ public interface OrderItemsDao {
 
     public List<OrderItems> findAllOrderItemsByContainerId(Integer containerId);
 
-    public List<OrderItems> findAllOrderItemByVesselName(String vesselName);
+    /*public List<OrderItems> findAllOrderItemByVesselName(String vesselName);*/
 
 }

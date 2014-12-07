@@ -1,10 +1,7 @@
 package com.sr.apps.freightbit.operations.formbean;
-//
+
 import java.util.Date;
 
-/**
- * Created by Clarence C. Victoria on 7/23/14.
- */
 public class VesselScheduleBean {
 
     private Integer vesselScheduleId;
@@ -25,13 +22,14 @@ public class VesselScheduleBean {
     private String vesselScheduleCriteria;
     private String vendorCode;
     private String vesselName;
-
+    private String vendorName;
 
     public VesselScheduleBean() {
 
     }
 
-    public VesselScheduleBean(Integer vesselScheduleId, String voyageNumber, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String destinationPort, String arrivalDate, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword, String vesselScheduleCriteria, String vendorCode, String vesselName) {
+    public VesselScheduleBean(String arrivalDate, Integer vesselScheduleId, String voyageNumber, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String destinationPort, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword, String vesselScheduleCriteria, String vendorCode, String vesselName, String vendorName) {
+        this.arrivalDate = arrivalDate;
         this.vesselScheduleId = vesselScheduleId;
         this.voyageNumber = voyageNumber;
         this.clientId = clientId;
@@ -40,7 +38,6 @@ public class VesselScheduleBean {
         this.departureDate = departureDate;
         this.departureTime = departureTime;
         this.destinationPort = destinationPort;
-        this.arrivalDate = arrivalDate;
         this.arrivalTime = arrivalTime;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
@@ -50,6 +47,7 @@ public class VesselScheduleBean {
         this.vesselScheduleCriteria = vesselScheduleCriteria;
         this.vendorCode = vendorCode;
         this.vesselName = vesselName;
+        this.vendorName = vendorName;
     }
 
     public String getVendorCode() {
@@ -194,5 +192,13 @@ public class VesselScheduleBean {
 
     public void setVesselName(String vesselName) {
         this.vesselName = vesselName;
+    }
+
+    public String getVendorName() {
+        return vendorName;
+    }
+
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
 }

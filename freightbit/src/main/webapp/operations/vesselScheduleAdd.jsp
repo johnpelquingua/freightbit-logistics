@@ -58,14 +58,13 @@
                 </div>
 
                     <div class="form-group">
-                        <label for="vesselSchedule.vesselName" class="col-sm-2 control-label">Vessel Name:<span class="asterisk_red"></span></label>
+                        <label for="vesselSchedule.vesselName" class="col-sm-2 control-label" style="padding-top:0px;">Vessel Name:<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
                                 <s:select list="listVessel" name="vesselSchedule.vesselName"
                                           id="vesselList"
                                           listKey="vesselName" listValue="vesselName" cssClass="form-control"
-                                          emptyOption="true" value="%{vesselSchedule.vesselName}"
-                                        ></s:select>
+                                          emptyOption="true" value="%{vesselSchedule.vesselName}" required="true"></s:select>
                             </div>
 
                     </div>

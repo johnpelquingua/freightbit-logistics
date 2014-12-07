@@ -105,6 +105,19 @@
         </div>
 
         <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                             disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
+                             disabled="true"></s:textfield>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Address</label>
             <div class="col-lg-4">
                 <s:textfield cssClass="form-control" value="%{order.shipperInfoAddress.address}" name="book-num"
@@ -124,11 +137,6 @@
     <div class="panel-heading">
         <i class="fa fa-anchor"></i>
         <span class="panel-title">Freight Plan</span>
-        <%--<span class="pull-right">--%>
-            <%--<a class="btn btn-primary new-booking" onclick="location.href='loadAddDriverPage'">--%>
-                <%--<i class="fa fa-pencil"></i> Edit--%>
-            <%--</a>--%>
-        <%--</span>--%>
         <span class="pull-right">
         <s:url var="viewFreightPlanningUrl" action="viewEditSeaFreight">
             <s:param name="orderItemIdParam"
@@ -156,6 +164,46 @@
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Voyage Number </label>
             <div class="col-lg-10">
                 <s:textfield cssClass="form-control" value="%{orderItem.vesselScheduleId}" name="book-num" disabled="true"></s:textfield>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Vessel Name </label>
+            <div class="col-lg-10">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.vesselName}" name="book-num" disabled="true"></s:textfield>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Date </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.departureDate}" name="book-num" disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date <Port></Port> </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.arrivalDate}" name="book-num" disabled="true"></s:textfield>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Time </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.departureTime}" name="book-num" disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Time <Port></Port> </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.arrivalTime}" name="book-num" disabled="true"></s:textfield>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.originPort}" name="book-num" disabled="true"></s:textfield>
+            </div>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination <Port></Port> </label>
+            <div class="col-lg-4">
+                <s:textfield cssClass="form-control" value="%{vesselSchedule.destinationPort}" name="book-num" disabled="true"></s:textfield>
             </div>
         </div>
     </div>

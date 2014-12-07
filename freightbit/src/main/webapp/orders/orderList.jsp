@@ -185,9 +185,9 @@
             <div class="modal-body">
                 <div id="inputDiv1"> <%--Area where input fields will appear--%> </div>
             </div>
-            <div class="modal-footer">
-                <%--<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>--%>
-            </div>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>--%>
         </div>
     </div>
 </div>
@@ -232,6 +232,8 @@
         });
 
     }
+
+
 
 </script>
 

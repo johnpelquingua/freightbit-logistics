@@ -23,10 +23,25 @@
     <%--<td><s:property value="order.documentId"/></td>--%>
     <div class="panel-heading">
         <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Booking Information</h3>
-        <div class="btn-toolbar btn-group pull-right">
+        <div class="btn-toolbar pull-right">
             <a class="btn btn-info" title="Edit Booking" href="<s:url action='loadEditOrderInBooking' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" > <i class="fa fa-edit"></i> Edit Booking</a>
 
+        <s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">
             <a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM')"> <i class="fa fa-print"></i> Print Booking</a>
+        </s:if>
+
+        <s:else>
+            <a class="btn btn-info" title="Create Booking Request Form" href="<s:url action='createReport' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" > <i class="fa fa-file-text-o"></i> Create Booking Request Form</a>
+
+            <%--<s:url var="createReportUrl" action="createReport">
+                <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
+            </s:url>
+            <s:a href="%{createReportUrl}" class="icon-action-link" rel="tooltip" title="View this user">
+                <a class="btn btn-info" title="Create Booking Request Form" > <i class="fa fa-file-text-o"></i> Create Booking Request Form</a>
+             </s:a>--%>
+
+        </s:else>
+
         </div>
     </div>
 
@@ -342,5 +357,21 @@
             this.document.title = "Booking Request Form";
         }
     }
+
+    /*function createReport(orderId) {
+        $.ajax({
+            url: 'createReport',
+            type: 'POST',
+            data: { orderIdParam: orderId },
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+
+    }*/
 
 </script>

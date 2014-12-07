@@ -97,7 +97,7 @@
                     </tbody>
                 </div>
             </div>
-            <div class="panel-footer">
+            <%--<div class="panel-footer">
                 <span class="pull-right">
                     <button type="button" class="btn btn-success new-booking"
                             onclick="location.href='loadSearchUserPage'">
@@ -108,7 +108,7 @@
                         <i class="fa fa-male"></i> New User
                     </button>
                 </span>
-            </div>
+            </div>--%>
         </div>
     </div>
 </div>

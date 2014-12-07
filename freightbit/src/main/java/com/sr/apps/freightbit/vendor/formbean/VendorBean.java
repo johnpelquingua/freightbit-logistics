@@ -6,9 +6,6 @@ import com.sr.apps.freightbit.common.formbean.ContactBean;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by ADMIN on 5/28/2014.
- */
 public class VendorBean {
 
     private Integer vendorId;

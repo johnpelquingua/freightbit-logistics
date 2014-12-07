@@ -16,6 +16,8 @@ public interface OperationsDao {
 
     public List<VesselSchedules> findVesselScheduleByVendorId(Integer vendorId);
 
+    public List<VesselSchedules> findVesselScheduleByVendorIdOriDesClass(Integer vendorId, String originPort, String destinationPort );
+
     public List<VesselSchedules> findAllVesselSchedule();
 
     public void updateOrderItem(OrderItems orderItems);
@@ -26,18 +28,28 @@ public interface OperationsDao {
 
     public List<Orders> findOrdersByFCL();
 
-    public List<Orders> findOrdersByCityFCL(String originationPort);
+    public List<Orders> findOrdersByOriginDestinationFCL(String originationPort, String destinationPort);
 
     public List<Orders> findOrdersByLCL();
 
-    public List<Orders> findOrdersByCityLCL(String originationPort);
+    public List<Orders> findOrdersByOriginDestinationLCL(String originationPort, String destinationPort);
+
+    public List<Orders> findOrdersByOriginDestinationStatusTypeLCL(String originationPort , String destinationPort);
 
     public List<Orders> findOrdersByLCU();
 
-    public List<Orders> findOrdersByCityLCU(String originationPort);
+    public List<Orders> findOrdersByOriginDestinationLCU(String originationPort, String destinationPort);
 
     public List<Orders> findOrdersByRCU();
 
-    public List<Orders> findOrdersByCityRCU(String originationPort);
+    public List<Orders> findOrdersByOriginDestinationRCU(String originationPort, String destinationPort);
+
+    public List<Orders> findOrdersByFTL();
+
+    public List<Orders> findOrdersByOriginDestinationFTL(String originationPort, String destinationPort);
+
+    public List<Orders> findOrdersByLTL();
+
+    public List<Orders> findOrdersByOriginDestinationLTL(String originationPort, String destinationPort);
 
 }

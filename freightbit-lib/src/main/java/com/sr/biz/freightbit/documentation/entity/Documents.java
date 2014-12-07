@@ -11,7 +11,7 @@ import java.util.Date;
 public class Documents implements Serializable {
 
     private Integer documentId;
-    /*private String documentType;*/
+    private String documentType;
     /*private Integer clientId;*/
     private Client client;
     private String documentName;
@@ -54,14 +54,14 @@ public class Documents implements Serializable {
         this.documentId = documentId;
     }
 
-    /*@Column(name = "documentType")
+    @Column(name = "documentType")
     public String getDocumentType() {
         return documentType;
     }
 
     public void setDocumentType(String documentType) {
         this.documentType = documentType;
-    }*/
+    }
 
     /*@Column(name = "clientId")
     public Integer getClientId() {

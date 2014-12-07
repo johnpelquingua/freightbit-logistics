@@ -5,12 +5,9 @@ package com.sr.biz.freightbit.vendor.dao;
  * User: johnpelquingua.com
  */
 
-import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
 
 import java.util.List;
-import java.util.Map;
-
 
 public interface TrucksDao {
 
@@ -22,7 +19,9 @@ public interface TrucksDao {
 
     public Trucks findTrucksById(Long truckId);
 
-    public List<Trucks> findTrucksByTruckCode(String truckCode);
+    public List <Trucks> findTrucksByTruckCode(String truckCode);
+
+    public Trucks findTruckByCode(String truckCode);
 
     public List<Trucks> findTrucksByPlateNumber(String plateNumber, Integer vendorId);
 

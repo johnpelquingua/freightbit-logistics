@@ -16,7 +16,6 @@ import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
-import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
@@ -156,7 +155,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu " + customerID);
         if(customerID != null) {
             List<Contacts> shipperContacts = customerService.findContactByRefIdAndType("shipper", customerID);
-
 
             for (int i = 0; i < shipperContacts.size(); i++) {
                 customerContactsMap.put(shipperContacts.get(i).getContactId(), shipperContacts.get(i).getFirstName() + ' ' + shipperContacts.get(i).getMiddleName() + ' ' + shipperContacts.get(i).getLastName());
@@ -514,6 +512,35 @@ public class OrderAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String createReport() {
+
+        // Booking Request Form will be created under pending documents start
+
+        Documents documentEntity = new Documents();
+        Client client = clientService.findClientById(getClientId().toString());
+        documentEntity.setClient(client);
+        documentEntity.setDocumentName(DocumentsConstants.BOOKING_REQUEST_FORM);
+        documentEntity.setReferenceId(orderIdParam);
+        documentEntity.setReferenceTable("ORDERS");
+        documentEntity.setOrderNumber(orderService.findOrdersById(orderIdParam).getOrderNumber());
+        documentEntity.setCreatedDate(new Date());
+        documentEntity.setDocumentStatus("FOR PRINTING");
+        documentEntity.setDocumentProcessed(0);
+        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+        documentEntity.setOutboundStage(1);
+        documentEntity.setVendorCode("ELC");
+        documentEntity.setDocumentType("MASTER");
+        documentsService.addDocuments(documentEntity);
+
+        // Booking Request Form will be created under pending documents end
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        // Put Order Id to Order Id session
+        sessionAttributes.put("orderIdParam", orderIdParam);
+
+        return SUCCESS;
+    }
+
     public String addOrder() {
         /*validateOnSubmit(order);
         if (hasFieldErrors()) {
@@ -525,38 +552,21 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderService.addOrder(orderEntity);
 
         // Add Notification for user that booking was created
-        Notification notificationEntity = new Notification();
+        /*Notification notificationEntity = new Notification();
         notificationEntity.setDescription("BOOKING");
         notificationEntity.setNotificationId(1);
         notificationEntity.setNotificationType("Email");
         notificationEntity.setReferenceId(1);
         notificationEntity.setReferenceTable("Order");
         notificationEntity.setUserId(1);
-        notificationService.addNotification(notificationEntity);
+        notificationService.addNotification(notificationEntity);*/
         // End of Add Notification
 
-        // Booking Request Form will be created under pending documents start
 
-        Documents documentEntity = new Documents();
-        Client client = clientService.findClientById(getClientId().toString());
-        documentEntity.setClient(client);
-        documentEntity.setDocumentName(DocumentsConstants.BOOKING_REQUEST_FORM);
-        documentEntity.setReferenceId(orderEntity.getOrderId());
-        documentEntity.setReferenceTable("ORDERS");
-        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-        documentEntity.setCreatedDate(new Date());
-        documentEntity.setDocumentStatus("FOR PRINTING");
-        documentEntity.setDocumentProcessed(0);
-        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-        documentEntity.setOutboundStage(1);
-        documentEntity.setVendorCode("ELC");
-        documentsService.addDocuments(documentEntity);
-
-        // Booking Request Form will be created under pending documents end
 
         // House Bill of Lading will be created under pending documents start
 
-        if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")){
+        /*if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")){
             Documents documentEntity2 = new Documents();
             Client client2 = clientService.findClientById(getClientId().toString());
             documentEntity2.setClient(client2);
@@ -571,7 +581,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             documentEntity2.setOutboundStage(1);
             documentEntity2.setVendorCode("ELC");
             documentsService.addDocuments(documentEntity2);
-        }
+        }*/
 
         // House Bill of Lading will be created under pending documents end
 
@@ -698,9 +708,15 @@ public class OrderAction extends ActionSupport implements Preparable {
             List<OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(orderIdParam);
             // delete Order Items that are under OrderId
             for (OrderItems orderItemElem : orderItemsEntity) {
-
                 orderService.deleteItem(orderItemElem);
             }
+
+            List<Documents> orderDocumentsEntity = documentsService.findDocumentsByOrderId(orderIdParam);
+            // delete all documents that are under Order Id
+            for (Documents documentElem : orderDocumentsEntity){
+                documentsService.deleteDocument(documentElem);
+            }
+
             return SUCCESS;
 
         } else {
@@ -764,6 +780,11 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String viewInfoOrder() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        if(orderIdParam == null){
+            orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
+        }
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         order = transformToOrderFormBean(orderEntity);

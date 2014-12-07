@@ -1,13 +1,10 @@
 package com.sr.biz.freightbit.order.dao;
 
-import java.math.BigInteger;
-import java.util.List;
-
-import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.order.entity.Counter;
+import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 
-import javax.persistence.criteria.Order;
+import java.util.List;
 
 /**
  * Created by JMXPSX on 5/27/14.
@@ -39,5 +36,7 @@ public interface OrderDao {
     public List<Orders> findCustomerWithBooking(Integer customerId);
 
     public List<Orders> findAllOrdersByAging (Integer aging);
+
+    public List<OrderItems> findAllOrdersByOrderIdAndDestination(Integer orderId, String destinationPort);
 
 }

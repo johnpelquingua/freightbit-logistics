@@ -1,31 +1,23 @@
 package com.sr.biz.freightbit.order.dao.impl;
 
-import java.math.BigInteger;
-import java.util.List;
-
-import com.sr.biz.freightbit.customer.entity.Customer;
+import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.entity.Counter;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Restrictions;
+import com.sr.biz.freightbit.order.entity.OrderItems;
+import com.sr.biz.freightbit.order.entity.Orders;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sr.biz.freightbit.order.dao.OrderDao;
-import com.sr.biz.freightbit.order.entity.Orders;
+import java.util.List;
 
-import javax.persistence.criteria.Order;
-
-/**
- * Created by JMXPSX on 5/27/14.
- */
 @Transactional
 public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
 
     private static final Logger Log = Logger.getLogger(OrderDaoImpl.class);
-
 
     @Override
     public void addOrder(Orders order) {
@@ -40,7 +32,6 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         }
     }
 
-
     @Override
     public void deleteOrder(Orders order) {
         Log.debug("Delete Booking");
@@ -53,7 +44,6 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
             throw re;
         }
     }
-
 
     @Override
     public void updateOrder(Orders order) {
@@ -86,7 +76,6 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         }
     }
 
-
     @Override
     public List<Orders> findAllOrders(){
         Log.debug("finding all drivers");
@@ -97,9 +86,6 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
             throw re;
         }
     }
-
-
-
 
     @Override
     public List<Orders> findAllOrdersByClientId (Integer clientId) {
@@ -128,7 +114,24 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         }catch(RuntimeException re){
             Log.error("find by aging failed",re);
             throw re;
-        }    }
+        }
+    }
+
+    @Override
+    public List<OrderItems> findAllOrdersByOrderIdAndDestination(Integer orderId, String destinationPort) {
+        Log.debug("finding Orders");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderId = :orderId and o.destinationPort = :destinationPort");
+            query.setParameter("orderId", orderId);
+            query.setParameter("destinationPort", destinationPort);
+            List<OrderItems> results = (List<OrderItems>) query.list();
+            Log.debug("find by order successful, result size:" + results.size());
+            return results;
+        }catch(RuntimeException re){
+            Log.error("find by aging failed",re);
+            throw re;
+        }
+    }
 
     @Override
     public Orders findOrdersById (Integer orderId){
@@ -146,7 +149,6 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
             throw re;
         }
     }
-
 
     @Override
     public List<Orders> findOrdersByOrderNumber (String orderNumber){
@@ -198,7 +200,6 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
      }
      return 0;
     }
-
 
     @Override
     public void addCounterType(Counter counter) {

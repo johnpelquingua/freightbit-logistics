@@ -41,9 +41,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by ADMIN on 5/28/2014.
- */
 public class VendorAction extends ActionSupport implements Preparable {
 
     private static final long serialVersionUID = 1L;
@@ -92,14 +89,9 @@ public class VendorAction extends ActionSupport implements Preparable {
     private NotificationService notificationService;
     private CommonUtils commonUtils;
 
-
-
-
-
     public String loadSearchVendorPage() {
         return SUCCESS;
     }
-
 
     public String viewVendors() {
         String column = getColumnFilter();
@@ -154,11 +146,9 @@ public class VendorAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-
     public String loadAddVendorPage() {
         return SUCCESS;
     }
-
 
     public String addVendor() throws Exception {
         validateOnSubmit(vendor);
@@ -166,7 +156,6 @@ public class VendorAction extends ActionSupport implements Preparable {
             return INPUT;
 
         try {
-            /*vendorService.addVendor(transformToEntityBean(vendor));*/
 
             Vendor vendorEntity = transformToEntityBean(vendor);
             vendorEntity.setCreatedBy(commonUtils.getUserNameFromSession());
@@ -199,14 +188,11 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
     }
 
-
     public String loadEditVendorPage() {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
         vendor = transformToFormBean(vendorEntity);
         return SUCCESS;
     }
-
-
 
     public String editVendor() {
         validateOnSubmit(vendor);
@@ -238,7 +224,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         sessionAttributes.put("vendorCode", vendor.getVendorCode());
         return SUCCESS;
     }
-
 
     public String viewInfoVendor() {
         Vendor vendorEntity = new Vendor();
@@ -325,7 +310,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         Pattern namePattern = Pattern.compile(name);
         Pattern codePattern = Pattern.compile(code);
 
-
 ////        Matcher matcher = namePattern.matcher(vendorBean.getVendorName());
 ////        if (!matcher.matches()){
 ////            addFieldError("vendor.vendorName", "Name must be letters only.");
@@ -353,7 +337,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         }else if(StringUtils.isBlank(vendorBean.getVendorCode())) {
             addFieldError("vendor.vendorCode", getText("err.vendorCode.required"));
         }
-
 
 }
 
@@ -391,7 +374,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setCreatedTimeStamp(entity.getCreatedTimeStamp());
 
         return formBean;
-
     }
 
     //trucks
@@ -494,7 +476,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         for (Trucks truckElem : truckEntityList) {
             trucks.add(transformToFormBeanTrucks(truckElem));
         }
-
 
         return SUCCESS;
     }
@@ -1012,13 +993,11 @@ public class VendorAction extends ActionSupport implements Preparable {
         List<Contacts> contactEntityList = new ArrayList<Contacts>();
         contactEntityList = vendorService.findContactByReferenceId(vendorId);
 
-
         for (Contacts contactElem : contactEntityList) {
             contacts.add(transformToFormBeanContacts(contactElem));
         }
 
         return SUCCESS;
-
     }
 
     public String loadSaveCompleteContacts() {
@@ -1351,15 +1330,12 @@ public class VendorAction extends ActionSupport implements Preparable {
         return clientId;
     }
 
-
     private Integer getSessionVendorId() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer vendorId = (Integer) sessionAttributes.get("vendorId");
 
         return vendorId;
     }
-
-
 
     @Override
     public void prepare() {

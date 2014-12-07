@@ -58,14 +58,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="vesselSchedule.vesselName" class="col-sm-2 control-label">Vessel Name:<span class="asterisk_red"></span></label>
+                            <label for="vesselSchedule.vesselName" class="col-sm-2 control-label" style="padding-top:0px;">Vessel Name:<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
                                 <s:select list="listVessel" name="vesselSchedule.vesselName"
                                           id="vesselList"
                                           listKey="vesselName" listValue="vesselName" cssClass="form-control"
-                                          emptyOption="true" value="%{vesselSchedule.vesselName}"
-                                        ></s:select>
+                                          emptyOption="true" value="%{vesselSchedule.vesselName}" required="true" ></s:select>
                             </div>
 
                         </div>
@@ -132,6 +131,7 @@
                             <label for="vesselSchedule.destinationPort" class="col-lg-2 control-label" style="padding-top:0px;">Destination Pier<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
+
                                 <s:select emptyOption="true" id="vesselSchedule_destinationPort"
                                           value="vesselSchedule.destinationPort"
                                           name="vesselSchedule.destinationPort"
@@ -146,7 +146,7 @@
             <div class="panel-footer">
 
                 <div class="pull-right">
-                    <button type="button" id="Cancel" class="btn" data-toggle="modal" data-target="#cancelBooking">
+                    <button type="button" id="Cancel" class="btn" data-toggle="modal" data-target="#cancelEdit">
                         Cancel
                     </button>
                     <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
@@ -161,12 +161,12 @@
 </div>
 
 <!-- Cancel Booking Modal -->
-<div class="modal fade" id="cancelBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="cancelEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
                 <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
-                <h4 class="modal-title" id="myModalLabel">Cancel Edit Booking</h4>
+                <h4 class="modal-title" id="myModalLabel">Cancel Vessel Schedule Edit</h4>
             </div>
             <div class="modal-body">
                 <p>Are you sure you want to cancel editing?</p>
@@ -187,33 +187,30 @@
     //pick up date validation
     departureDate.datepicker({
 
+        dateFormat: 'mm-dd-yy',
+        minDate: 0,
 
-                dateFormat: 'mm-dd-yy',
-                minDate: 0,
+        onClose: function (dateText, inst) {
 
-                onClose: function (dateText, inst) {
+            if (arrivalDate.val() != '') {
+                var testStartDate = departureDate.datepicker('getDate');
+                var testEndDate = departureDate.datepicker('getDate');
 
-                    if (arrivalDate.val() != '') {
-                        var testStartDate = departureDate.datepicker('getDate');
-                        var testEndDate = departureDate.datepicker('getDate');
-
-                        if (testStartDate > testEndDate)
-                            arrivalDate.datepicker('setDate', testStartDate);
-
-                    }
-
-                    else {
-                        arrivalDate.val(dateText);
-                    }
-                },
-
-                onSelect: function (selectedDateTime) {
-                    arrivalDate.datepicker('option', 'minDate', departureDate.datepicker('getDate'));
-                }
+                if (testStartDate > testEndDate)
+                    arrivalDate.datepicker('setDate', testStartDate);
 
             }
 
-    );
+            else {
+                arrivalDate.val(dateText);
+            }
+        },
+
+        onSelect: function (selectedDateTime) {
+            arrivalDate.datepicker('option', 'minDate', departureDate.datepicker('getDate'));
+        }
+
+    });
 
     // delivery date validation -jp
     arrivalDate.datepicker({
@@ -240,8 +237,6 @@
         onSelect: function (selectedDateTime) {
             departureDate.datepicker('option', 'maxDate', arrivalDate.datepicker('getDate'));
         }
-
-
 
     });
 
@@ -277,7 +272,7 @@
     var select1 = select = document.getElementById('vesselSchedule_originPort');
     var select2 = select = document.getElementById('vesselSchedule_destinationPort');
 
-    select2.value = '';
+    /*select2.value = '';*/
 
     select1.onchange = function() {
         preventDuplicatePort.call(this, select2, this.selectedIndex);
@@ -292,23 +287,46 @@
             var vendorId = $("#vendorId").val();
 
             $.getJSON('listVesselName', {
-                        vendorId : vendorId
-                    },
+                    vendorId : vendorId
+                },
 
-                    function(jsonResponse) {
+                function(jsonResponse) {
 
-                        var vessel = $('#vesselList');
+                    var vessel = $('#vesselList');
 
-                        vessel.find('option').remove();
+                    vessel.find('option').remove();
 
-                        $.each(jsonResponse.vesselMap, function(key, value) {
-                            $('<option>').val(key).text(value).appendTo(vessel);
-                        });
-
-
+                    $.each(jsonResponse.vesselMap, function(key, value) {
+                        $('<option>').val(key).text(value).appendTo(vessel);
                     });
-        });
-    });
 
+                });
+
+        });
+
+        /*populates vessel list on edit load*/
+        $(window).load(function(){
+
+            var vendorId = $("#vendorId").val();
+
+            $.getJSON('listVesselName', {
+                    vendorId : vendorId
+                },
+
+                function(jsonResponse) {
+
+                    var vessel = $('#vesselList');
+
+                    vessel.find('option').remove();
+
+                    $.each(jsonResponse.vesselMap, function(key, value) {
+                        $('<option>').val(key).text(value).appendTo(vessel);
+                    });
+
+                });
+
+        });
+
+    });
 
 </script>
