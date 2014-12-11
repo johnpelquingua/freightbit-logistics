@@ -496,6 +496,7 @@ function firstRecommendation(weight, volume){
     return recommendation;
 }
 
+// THIS FUNCTION IS FOR CHECK ALL THIS REQUIRES THE ID OF THE MASTER CHECKBOX AND TABLE CLASS
 function massCheckbox(boxName, tableName){
     $('#'+boxName).click(function(){
         var allCheckbox = $('.'+tableName+' tbody tr td input[type="checkbox"]');
@@ -503,6 +504,23 @@ function massCheckbox(boxName, tableName){
             allCheckbox.prop('checked', false);
         }else{
             allCheckbox.prop('checked', true);
+        }
+    })
+}
+
+// THIS FUNCTION IS FOR FORM VALIDATION THIS REQURES THE CLASS OF INPUTS AND CLASS OF SUBMIT BUTTON
+function validationForm(inputClass, submitBtn){
+    var formInput = $('.'+inputClass);
+
+    formInput.change(function(){
+        var bool = 0;
+        for(var i = 0; i < formInput.size(); i++){
+            if(formInput.eq(i).val() != 0){
+                bool++;
+            }
+        }
+        if(bool == formInput.size()){
+            $('.'+submitBtn).prop('disabled', false);
         }
     })
 }
