@@ -692,7 +692,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield name="item.itemName" id="item.itemName" required="true"
-                                             cssClass="form-control" pattern="[A-Za-z ]+" title="Must be letters only" maxlength="50"/>
+                                             cssClass="form-control addItemInput" pattern="[A-Za-z ]+" title="Must be letters only" maxlength="50"/>
                             </div>
                         </div>
 
@@ -702,7 +702,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield name="item.itemCode" id="item_itemCode" required="true"
-                                             cssClass="form-control" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
+                                             cssClass="form-control addItemInput" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
                             </div>
 
                         </div>
@@ -713,7 +713,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield name="item.weight" id="item.weight" required="true"
-                                             cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
+                                             cssClass="form-control addItemInput" pattern="[0-9.,]+" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                         </div>
@@ -724,7 +724,7 @@
                             <label class="col-lg-3 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                                <s:textfield name="item.srp" id="item_srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in Quality is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.srp" id="item_srp" required="true" cssClass="form-control addItemInput" pattern="[0-9.,]+" title="Special characters in Quality is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                         </div>
@@ -734,7 +734,7 @@
                             <label class="col-lg-3 control-label" style="padding-top:0px;">Length (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                                <s:textfield name="item.length" id="item.length" required="true" cssClass="form-control"
+                                <s:textfield name="item.length" id="item.length" required="true" cssClass="addItemInput form-control"
                                              style="150px" pattern="[0-9.]+" title="Special characters in length is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
@@ -744,7 +744,7 @@
                             <label class="col-lg-3 control-label" style="padding-top:0px;">Width (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                                <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control"  pattern="[0-9.]+" title="Special characters in width is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.width" id="item.width" required="true" cssClass="addItemInput form-control"  pattern="[0-9.]+" title="Special characters in width is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                         </div>
@@ -755,7 +755,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield name="item.height" id="item.height" required="true"
-                                             cssClass="form-control" pattern="[0-9.]+" title="Special characters in height is not valid" onkeypress="return isNumberKey(event)"/>
+                                             cssClass="addItemInput form-control" pattern="[0-9.]+" title="Special characters in height is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
@@ -784,7 +784,7 @@
 
             <div class="modal-footer">
                 <div>
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                    <s:submit cssClass="btn btn-primary saveBtnModal" name="submit" value="Save" disabled="true"/>
                 </div>
                 </s:form>
             </div>
@@ -1498,6 +1498,10 @@ $(document).ready(function() {
             }
         }
     }
+
+    $(document).ready(function(){
+        validationForm('addItemInput', 'saveBtnModal');
+    })
 
     var sContainer = select = document.getElementById('orderItem.nameSize');
     var sQuantity = select = document.getElementById('orderItem.quantity');

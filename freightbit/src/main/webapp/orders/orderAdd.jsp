@@ -417,7 +417,7 @@
             Cancel
         </button>
 
-        <s:submit name="submit" cssClass="btn btn-primary" value="Next" />
+        <s:submit name="submit" cssClass="btn btn-primary nextBtn" value="Next" disabled="true"/>;
         </s:form>
     </div>
 
@@ -1788,6 +1788,8 @@ $(document).ready(function(){
     $("#consignee_contact_phone").mask("(999) 999-9999");
     $("#consignee_contact_mobile").mask("(+63999)(999-9999)");
     $("#consignee_contact_fax").mask("(999) 999-9999");
+
+    validationForm('bookingInput', 'nextBtn');
 });
 
 </script>

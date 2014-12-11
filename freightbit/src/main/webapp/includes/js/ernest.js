@@ -510,19 +510,21 @@ function massCheckbox(boxName, tableName){
 
 // THIS FUNCTION IS FOR FORM VALIDATION THIS REQURES THE CLASS OF INPUTS AND CLASS OF SUBMIT BUTTON
 function validationForm(inputClass, submitBtn){
-    var formInput = $('.'+inputClass);
-
-    formInput.change(function(){
+    $('.'+inputClass+':enabled').change(function(){
+        var formInput = $('.'+inputClass+':enabled');
         var bool = 0;
         for(var i = 0; i < formInput.size(); i++){
-            if(formInput.eq(i).val() != 0){
+            if(formInput.eq(i).val() != ''){
                 bool++;
             }
         }
 
         if(bool == formInput.size()){
             $('.'+submitBtn).prop('disabled', false);
+        }else{
+            $('.'+submitBtn).prop('disabled', true);
         }
+
     })
 }
 

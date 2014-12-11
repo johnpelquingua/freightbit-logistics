@@ -35,30 +35,30 @@
 
                         <div class="col-lg-9"></span>
                             <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
-                                      listKey="key" listValue="value" cssClass="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Company<span class="asterisk_red"></span></label>
-
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
-                                         id="vendor.vendorName" required="true"/>
+                                      listKey="key" listValue="value" cssClass="vendorInput form-control" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" name="vendor.vendorCode" id="vendor_vendorCode" required="true"
-                                         placeholder="Code" maxLength="3" pattern="[A-Z]+" title="Must be letters only" onkeypress="return alphaKeyOnly(event)"/>
+                            <s:textfield cssClass="vendorInput form-control" name="vendor.vendorCode" id="vendor_vendorCode" required="true"
+                                         placeholder="Code" maxLength="3" pattern="[A-Z]+" title="Must be letters only" onkeyup="this.value=this.value.toUpperCase();"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Company<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="vendorInput form-control" placeholder="Company Name" name="vendor.vendorName"
+                                         id="vendor.vendorName" required="true"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Class<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
-                            <s:select list="vendorClassList" listKey="key" listValue="value" cssClass="form-control"
+                            <s:select list="vendorClassList" listKey="key" listValue="value" cssClass="vendorInput form-control"
                                       id="vendor.vendorClass" name="vendor.vendorClass"/>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
             <div class="panel-footer">
                 <div class="pull-right">
                     <a href="viewVendors" class="btn btn-default" id ="groups-btn">Cancel</a>
-                    <s:submit cssClass="btn btn-primary" value="Save" type="submit"/>
+                    <s:submit cssClass="btn btn-primary submitBtn" value="Save" type="submit" disabled="true"/>
                 </div>
             </div>
             </s:form>
@@ -87,17 +87,6 @@
 <script type="text/javascript">
 
    $(document).ready(function(){
-       $("#vendor_vendorCode").keyup(function(){
-           this.value=this.value.toUpperCase();
-
-       });
+       validationForm('vendorInput', 'submitBtn');
    });
-   function alphaKeyOnly(evt)
-   {
-       var charCode = (evt.which) ? evt.which : event.keyCode
-       if ((charCode > 32 && charCode < 57)||(charCode > 57 && charCode <65) || (charCode > 90 && charCode < 97) )
-           return false;
-
-       return true;
-   }
 </script>

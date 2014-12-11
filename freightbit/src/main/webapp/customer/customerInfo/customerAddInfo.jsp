@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-12 control-label" style="padding-top:0px !important; margin-top: 0px !important; text-align:left;">Company Name / Customer Name<span class="asterisk_red"></span></label>
                                     <div class="col-lg-12" >
-                                        <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName"/>
+                                        <s:textfield  required="true" name="customer.customerName" cssClass="customerInput form-control" id="customer.customerName"/>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
                                     <div class="col-lg-7" >
-                                        <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" onkeypress="return alphaKeyOnly(event)"
+                                        <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="customerInput form-control" id="customer.customerCode" onkeypress="return alphaKeyOnly(event)"
                                                 title="Company Code Must be 3 Capital Letters Only."/>
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Phone Number<span class="asterisk_red"></span></label>
                                     <div class="col-lg-7" >
-                                        <s:textfield required="true" name="customer.phone" cssClass="form-control" id="customer_phone" maxLength="14"
+                                        <s:textfield required="true" name="customer.phone" cssClass="customerInput form-control" id="customer_phone" maxLength="14"
                                                      placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
                                     <div class="col-lg-7" >
-                                        <s:textfield required="true" name="customer.email" cssClass="form-control" id="customer.email" type="email" maxLength="50"
+                                        <s:textfield required="true" name="customer.email" cssClass="customerInput form-control" id="customer.email" type="email" maxLength="50"
                                                      placeholder="Email Address" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
                                     </div>
                                 </div>
@@ -91,13 +91,13 @@
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Customer Type<span class="asterisk_red"></span></label>
                                     <div class="col-lg-7" >
-                                        <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="form-control"/>
+                                        <s:select name="customer.customerType" id="customer.customerType" listKey="key" listValue="value" list="customerTypeList" cssClass="customerInput form-control"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Mobile Number<span class="asterisk_red"></span></label>
                                     <div class="col-lg-7" >
-                                        <s:textfield required="true" name="customer.mobile" cssClass="form-control" id="customer_mobile" maxLength="19"
+                                        <s:textfield required="true" name="customer.mobile" cssClass="customerInput form-control" id="customer_mobile" maxLength="19"
                                                      placeholder="(+639XX)(XXX-XXXX)"
                                                      title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                                     </div>
@@ -169,9 +169,9 @@
 
             <div class="panel-footer">
                 <div class="pull-right">
-                    <a href="customerList" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <a href="customerList" class="btn btn-danger" id ="groups-btn">Cancel</a>
 
-                    <s:submit name="submit" cssClass="btn btn-primary" value="Save" />
+                    <s:submit name="submit" cssClass="btn btn-primary submitBtn" value="Save" disabled="true"/>
                 </div>
             </div>
             </s:form>
@@ -188,7 +188,7 @@
         $("#customer_dti").mask("99999999");
         $("#customer_mayorsPermit").mask("99-999999");
 
-
+        validationForm('customerInput', 'submitBtn');
     });
 
     $("#customer_customerCode").keyup(function(){
