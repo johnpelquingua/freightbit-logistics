@@ -112,9 +112,8 @@
                             </div>
                         </div>
                     <s:form name="myform" action="setItemStatus" theme="bootstrap">
-                       <%-- <div class="col-lg-6 pull-right">
-
-                        </div>--%>
+                        <s:hidden value="%{orderIdParam}" name="orderStatusLogsBean.orderId"/>
+                        <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                     </div>
                         <display:table id="orderItem" name="orderItems"
                                        requestURI="viewStatusListItems.action" pagesize="10"

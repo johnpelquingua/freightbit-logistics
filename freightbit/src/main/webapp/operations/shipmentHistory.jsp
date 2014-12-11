@@ -62,7 +62,7 @@
 
             <div class="panel-body horizontal">
 
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Container: <s:property value="orderItem.nameSize"/> </label>
                 </s:if>
                 <s:else>
@@ -89,17 +89,17 @@
 
                 </div>
                 <s:form cssClass="form-horizontal" theme="bootstrap" action="setItemStatus" >
+                <s:hidden value="%{orderIdParam}" name="orderStatusLogsBean.orderId"/>
+                <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                 <div class="col-lg-3" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Current Date/Time</label>
                     <s:textfield required="true" name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp" />
 
                 </div>
-
-
-
-                <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update</label>
+                    <s:if test="#attr.order.serviceRequirement == 'FULL CONTAINER LOAD' || #attr.order.serviceRequirement == 'LOOSE CARGO LOAD' || #attr.order.serviceRequirement == 'ROLLING CARGO LOAD'">
+
                     <s:select cssClass="form-control"
                               id="orderStatusLogs.status"
                               name="orderStatusLogsBean.status"
@@ -109,15 +109,34 @@
                               emptyOption="true"
                               required="true"
                             />
-                </div>
+                    </s:if>
+                    <s:elseif test="#attr.order.serviceRequirement == 'LESS CONTAINER LOAD'">
+                    <s:select cssClass="form-control"
+                              name="orderStatusLogsBean.status"
+                              list="seaFreightLCLList"
+                              listKey="key"
+                              listValue="value"
+                              emptyOption="true"
+                              required="true"
+                            />
+                    </s:elseif>
+                    <s:else>
+                        <s:select cssClass="form-control"
+                                  name="orderStatusLogsBean.status"
+                                  list="inlandFreightList"
+                                  listKey="key"
+                                  listValue="value"
+                                  emptyOption="true"
+                                  required="true"
+                                />
+                    </s:else>
 
+                </div>
             </div>
 
             <div class="panel-footer">
 
                 <div class="pull-right">
-                    <%--<s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                        &lt;%&ndash;<li class="active"> Booking <s:property value="bookingNumber"/> Container List</li>&ndash;%&gt;
                         <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                             <s:param name="orderIdParam"
                                      value="order.orderId"></s:param>
@@ -130,10 +149,6 @@
                                 Back to Sea Freight Planning : Orders
                             </button>
                         </s:a>
-
-                    </s:if>--%>
-
-
                     <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status"/>
                 </div>
             </div>

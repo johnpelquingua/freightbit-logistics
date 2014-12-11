@@ -10,6 +10,8 @@ public class ParameterConstants {
 
     public final static String INLAND_FREIGHT = "INLAND_FREIGHT";
 
+    public final static String SEA_FREIGHT_LCL = "SEA_FREIGHT_LCL";
+
     public final static String SEA_FREIGHT = "SEA_FREIGHT";
 
     public final static String USER = "USER";

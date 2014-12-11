@@ -2206,8 +2206,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
             docName = "EQUIPMENT INTERCHANGE RECEIPT 2";
         }
 
-        System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" + docName);
-
         List<Documents> documentList = documentsService.findEIRAndRefId(docName,entity.getContainerId(),"CONTAINERS");
 
         if(documentList != null){
@@ -2217,8 +2215,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 formBean.setDocumentId(documentElem.getDocumentId());
             }
         }
-
-        System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT" + entity.getContainerId());
 
         return formBean;
     }
@@ -2694,7 +2690,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             /*Notification notificationEntity = new Notification();
             notificationEntity.setDescription("CONTAINER");
-            notificationEntity.setNotificationId(1);
+            notificationEntity.setNotificationId(17);
             notificationEntity.setNotificationType("Email");
             notificationEntity.setReferenceId(1);
             notificationEntity.setReferenceTable("Container");
