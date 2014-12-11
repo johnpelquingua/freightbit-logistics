@@ -88,26 +88,21 @@
                             </display:table>
 
                 </div>
-                <s:form cssClass="form-horizontal" theme="bootstrap" action="setItemStatus" id="setStatus">
+                <s:form cssClass="form-horizontal" theme="bootstrap" action="setItemStatus" >
                 <div class="col-lg-3" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Current Date/Time</label>
-                    <s:textfield required="true" name="orderStatusLogs.createdTimestamp" cssClass="form-control" id="createdTimestamp" />
-                    <script type="text/javascript">
-                        $(function () {
-                            var curDate = $('#createdTimestamp');
-                            curDate.datetimepicker({
-                                timeFormat: 'h:mm TT',
-                                minDate: 0
-                            });
-                        });
-                    </script>
+                    <s:textfield required="true" name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp" />
+
                 </div>
-                <s:hidden value="%{orderItemIdParam}" name="orderStatusLogs.orderItemId"/>
+
+
+
+                <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update</label>
                     <s:select cssClass="form-control"
                               id="orderStatusLogs.status"
-                              name="orderStatusLogs.status"
+                              name="orderStatusLogsBean.status"
                               list="seaFreightList"
                               listKey="key"
                               listValue="value"
@@ -146,3 +141,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        var curDate = $('#createdTimestamp');
+        curDate.datetimepicker({
+            timeFormat: 'h:mm TT',
+            minDate: 0
+        });
+    });
+</script>

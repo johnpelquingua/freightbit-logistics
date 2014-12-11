@@ -421,7 +421,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Destinations</span>
+                        <span class="panel-title">Dispatch Plan : Destination</span>
                     </div>
                     <div class="panel-body">
                         <s:form cssClass="form-horizontal" theme="bootstrap" action="editBulkItemsInlandDestination">
@@ -450,62 +450,125 @@
                             <s:hidden name="operationsBean.truckOrigin" value="%{orderItem.truckOrigin}" />
                             <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
                             <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
+
                             <div class="form-group">
-                                <label for="operationsBean.vendorListDestination" class="col-sm-2 control-label">Vendor:</label>
-                                <div class="col-sm-9">
-                                    <div style="width:90%;float:left;padding-right:10px;">
+                                <label class="col-lg-2 control-label">Vendor</label>
+
+                                <div class="col-lg-8">
+                                    <div>
                                         <s:select list="vendorTruckingList" name="operationsBean.vendorListDestination"
-                                                  id="vendorListDestination"
-                                                  listKey="vendorId" listValue="vendorCode" cssClass="form-control"
-                                                  emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
-                                    </div>
-                                    <div class="col-lg-1">
-                                        <div>
-                                            <a data-toggle="modal" data-target="#createVendor" class="btn btn-info">
-                                                Add Vendor
-                                            </a>
-                                        </div>
+                                                  id="vendorListDestination" listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                                  emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
                                     </div>
                                 </div>
+                                <div class="col-lg-2">
+                                    <div>
+                                        <a data-toggle="modal" data-target="#createVendor" class="btn btn-info">
+                                            Add Vendor
+                                        </a>
+                                    </div>
+                                </div>
+
                             </div>
+
                             <div class="form-group">
-                                <label for="operationsBean.driverDestination" class="col-sm-2 control-label">Driver:</label>
-                                <div class="col-sm-9">
-                                    <div style="width:90%;float:left;padding-right:10px;">
+                                <label class="col-lg-2 control-label">Driver</label>
+                                <div class="col-lg-8">
+                                    <div>
                                         <s:select list="listDrivers" name="operationsBean.driverDestination"
-                                                  id="driverListDestination"
-                                                  listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
+                                                  id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
                                                   emptyOption="true" value="%{orderItem.driverDestination}" ></s:select>
                                     </div>
-                                    <div class="col-lg-1">
-                                        <div>
-                                            <a data-toggle="modal" data-target="#createDriver" class="btn btn-info" id="createDriverButton" style="width:100px !important;">
-                                                Add Driver
-                                            </a>
-                                        </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div>
+                                        <a data-toggle="modal" data-target="#createDriver" class="btn btn-info" id="createDriverButton" style="width:100px !important;">
+                                            Add Driver
+                                        </a>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
-                                <label for="operationsBean.truckDestination" class="col-sm-2 control-label">Truck:</label>
-                                <div class="col-sm-9">
-                                    <div style="width:90%;float:left;padding-right:10px;">
+                                <label class="col-lg-2 control-label">Truck Code</label>
+                                <div class="col-lg-8">
+                                    <div>
                                         <s:select list="listDrivers" name="operationsBean.truckDestination"
-                                                  id="trucksListDestination"
-                                                  listKey="truckId" listValue="truckCode" cssClass="form-control"
+                                                  id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="form-control"
                                                   emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                                     </div>
-                                    <div class="col-lg-1">
-                                        <div>
-                                            <a data-toggle="modal" data-target="#createTruck" id="createTruckButton" class="btn btn-info" style="width:100px !important;">
-                                                Add Truck
-                                            </a>
-                                        </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div>
+                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckButton" class="btn btn-info" style="width:100px !important;">
+                                            Add Truck
+                                        </a>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
+
+                                <div class="col-lg-8">
+                                    <div>
+                                        <s:select cssClass="form-control"
+                                                  id="bodyTypeDestination"
+                                                  list="#{bodyType}"
+                                                  value="%{bodyType}"
+                                                  style="display:none"
+                                                />
+                                        <s:textfield cssClass="form-control"
+                                                     id="bodyType_Destination_textfield"
+                                                     disabled="true"
+                                                />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
+
+                                <div class="col-lg-8">
+                                    <div>
+                                        <s:select cssClass="form-control"
+                                                  id="plateNumberDestination"
+                                                  list="#{plateNumber}"
+                                                  value="%{plateNumber}"
+                                                  style="display:none"
+                                                />
+                                        <s:textfield cssClass="form-control"
+                                                     id="plateNumber_Destination_textfield"
+                                                     disabled="true"
+                                                />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
+
+                                <div class="col-lg-8">
+                                    <div>
+                                        <s:select cssClass="form-control"
+                                                  id="grossWeightDestination"
+                                                  list="#{grossWeight}"
+                                                  value="%{grossWeight}"
+                                                  style="display:none"
+                                                />
+                                        <s:textfield cssClass="form-control"
+                                                     id="grossWeight_Destination_textfield"
+                                                     disabled="true"
+                                                />
+                                    </div>
+                                </div>
+
+                            </div>
+
                             <div class="form-group" style="margin-bottom: 0px !important;">
-                                <label for="dropoff" class="col-sm-2 control-label">Drop off Date:</label>
+                                <label for="dropoff" class="col-sm-2 control-label">Drop off Date</label>
                                 <div class="col-sm-8" style="padding: 0px; width: 64.5% !important; position: relative; left: 15px;">
                                     <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                                 </div>
@@ -1870,49 +1933,49 @@
                     $('<option>').val(key).text(value).appendTo(truck);
                 });
 
-                var truckCode = $("#trucksList").val();
-
+                var truckCode = $("#trucksListDestination").val();
+                alert(truckCode);
                 $.getJSON('truckDetails', {
                     truckCodeParam: truckCode
                 },
 
                 function (jsonResponse) {
-                    var select1 = $('#bodyType');
+                    var select4 = $('#bodyTypeDestination');
 
-                    select1.find('option').remove();
+                    select4.find('option').remove();
 
-                    var select2 = $('#plateNumber');
+                    var select5 = $('#plateNumberDestination');
 
-                    select2.find('option').remove();
+                    select5.find('option').remove();
 
-                    var select3 = $('#grossWeight');
+                    var select6 = $('#grossWeightDestination');
 
-                    select3.find('option').remove();
+                    select6.find('option').remove();
 
                     // For Truck Type Auto-populate
                     $.each(jsonResponse.bodyTypeMap, function (key,value) {
 
-                        $('<option>').val(key).text(value).appendTo(select1);
-                        var bodyType = $("#bodyType").val();
-                        document.getElementById("bodyType_textfield").value = bodyType;
+                        $('<option>').val(key).text(value).appendTo(select4);
+                        var bodyType = $("#bodyTypeDestination").val();
+                        document.getElementById("bodyType_Destination_textfield").value = bodyType;
 
                     });
 
                     // For Plate Number Auto-populate
                     $.each(jsonResponse.plateNumberMap, function (key,value) {
 
-                        $('<option>').val(key).text(value).appendTo(select2);
-                        var plateNumber = $("#plateNumber").val();
-                        document.getElementById("plateNumber_textfield").value = plateNumber;
+                        $('<option>').val(key).text(value).appendTo(select5);
+                        var plateNumber = $("#plateNumberDestination").val();
+                        document.getElementById("plateNumber_Destination_textfield").value = plateNumber;
 
                     });
 
                     // For Gross Weight Auto-populate
                     $.each(jsonResponse.grossWeightMap, function (key,value) {
 
-                        $('<option>').val(key).text(value).appendTo(select3);
-                        var grossWeight = $("#grossWeight").val();
-                        document.getElementById("grossWeight_textfield").value = grossWeight;
+                        $('<option>').val(key).text(value).appendTo(select6);
+                        var grossWeight = $("#grossWeightDestination").val();
+                        document.getElementById("grossWeight_Destination_textfield").value = grossWeight;
 
                     });
                 });
