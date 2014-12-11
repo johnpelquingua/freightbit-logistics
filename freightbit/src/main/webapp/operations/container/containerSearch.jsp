@@ -34,9 +34,7 @@
                         </div>
                     </div>
                         <div class="pull-right">
-                            <button type="button" class="btn" onclick="location.href='viewContainerList'">
-                                Cancel
-                            </button>
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
                             <s:submit cssClass="btn btn-primary" name="submit" value="Search"/>
                         </div>
                     </s:form>

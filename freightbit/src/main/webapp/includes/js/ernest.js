@@ -519,8 +519,39 @@ function validationForm(inputClass, submitBtn){
                 bool++;
             }
         }
+
         if(bool == formInput.size()){
             $('.'+submitBtn).prop('disabled', false);
         }
     })
+}
+
+function postAjaxHtml(url, successDiv, idParam, columnParam){
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'html',
+        success: function (html) {
+            $('#'+successDiv).html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            alert('An error occurred! ' + thrownError);
+        }
+    });
+}
+
+function showGateOutFields(containerId) {
+    $.ajax({
+        url: 'loadCheckoutFormPage',
+        type: 'POST',
+        data: { containerIdParam: containerId },
+        dataType: 'html',
+        success: function (html) {
+            $('#inputDiv').html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            alert('An error occurred! ' + thrownError);
+        }
+    });
+
 }

@@ -44,14 +44,14 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Container Van Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="container.containerNumber" cssClass="form-control" id="container.containerNumber" />
+                                <s:textfield required="true" name="container.containerNumber" cssClass="containerInput form-control" id="container.containerNumber" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                    <s:select cssClass="form-control"
+                                    <s:select cssClass="containerInput form-control"
                                               id="container.containerSize"
                                               name="container.containerSize"
                                               list="containerSizeList"
@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Shipping Line: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:select cssClass="form-control"
+                                <s:select cssClass="containerInput form-control"
                                           id="container.shipping"
                                           name="container.shipping"
                                           list="vendorShippingList"
@@ -81,14 +81,14 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="container.receiptNumber" cssClass="form-control" id="container.receiptNumber" />
+                                <s:textfield required="true" name="container.receiptNumber" cssClass="containerInput form-control" id="container.receiptNumber" />
                             </div>
                         </div>
                         <%--<div id="dtBox"></div>&lt;%&ndash;This is for the datetimepicker&ndash;%&gt;--%>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Date/Time: <span class="asterisk_red"></span></label>
                                 <div class="col-lg-9" >
-                                    <s:textfield required="true" name="container.gateInTime" cssClass="form-control" id="gateInTime" />
+                                    <s:textfield readonly="true" required="true" name="container.gateInTime" cssClass="containerInput form-control" id="gateInTime" />
                                 </div>
                                 <script type="text/javascript">
                                     $(function () {
@@ -104,14 +104,14 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">EIR Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="container.eirNumber" cssClass="form-control" id="container.eirNumber" />
+                                <s:textfield required="true" name="container.eirNumber" cssClass="containerInput form-control" id="container.eirNumber" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Van Location: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="container.vanLocation" cssClass="form-control" id="container.vanLocation" />
+                                <s:textfield required="true" name="container.vanLocation" cssClass="containerInput form-control" id="container.vanLocation" />
                             </div>
                         </div>
                     </div>
@@ -120,13 +120,18 @@
             <div class="panel-footer">
                 <div class="pull-right">
                     <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Cancel</a>
-                    <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" action="save" value="Save"/>
+                    <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary submitBtn" action="save" value="Save" disabled="true"/>
                 </div>
             </div>
         </div>
         </s:form>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        validationForm('containerInput', 'submitBtn');
+    })
+</script>
 <%--
 <script>
     function finalAlter(){

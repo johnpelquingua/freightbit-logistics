@@ -62,7 +62,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="order_freightType"
-                                          cssClass="form-control"
+                                          cssClass="form-control bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.freightType"
                                           list="freightTypeList"
@@ -80,7 +80,7 @@
 
                             <div class="col-lg-10">
 
-                                <s:select cssClass="form-control"
+                                <s:select cssClass="form-control bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.serviceRequirement"
                                           list="serviceRequirementList"
@@ -100,7 +100,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="order_modeOfService"
-                                          cssClass="form-control"
+                                          cssClass="form-control bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.modeOfService"
                                           list="modeOfServiceList"
@@ -119,7 +119,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="order_modeOfPayment"
-                                          cssClass="form-control step1"
+                                          cssClass="form-control step1 bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.modeOfPayment"
                                           list="modeOfPaymentList"
@@ -139,7 +139,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="customerName"
-                                          cssClass="form-control step1"
+                                          cssClass="form-control step1 bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.customerId"
                                           list="customerList"
@@ -238,13 +238,13 @@
 
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
-                        <input type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="bookingInput from_date form-control" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;">
 
                     </div>
 
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
-                        <input type="text" class="to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="bookingInput to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;">
                     </div>
 
                 </div>
@@ -254,7 +254,7 @@
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Origin Port<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
 
-                        <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                        <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;"
                                   id="select1" name="order.originationPort" list="portsList" listKey="key"
                                   listValue="value" required="true"/>
 
@@ -263,7 +263,7 @@
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Destination Port<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
 
-                        <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                        <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;"
                                   id="select2" name="order.destinationPort" list="portsList" listKey="key"
                                   listValue="value" required="true"/>
 
@@ -277,7 +277,7 @@
                     <div class="col-lg-9" style="text-align:left !important;">
                         <%--<s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                   name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>--%>
-                        <s:checkboxlist list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy"/>
+                        <s:checkboxlist cssClass="bookingInputBox" list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy"/>
 
                     </div>
 
@@ -298,8 +298,7 @@
 
                     <legend style="text-align: left;">
                             <span >
-                                Customer Information
-                            </span>
+                                Customer Information </span>
                     </legend>
 
                     <div class="form-group">
@@ -307,7 +306,7 @@
 
                         <div class="col-lg-7">
 
-                                <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperContact" name="order.shipperContactId"
+                                <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="shipperContact" name="order.shipperContactId"
                                           list="contactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
                         </div>
 
@@ -325,7 +324,7 @@
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-7">
-                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
+                            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
                                       list="addressList" listKey="addressId" listValue="addressLine1 + ' ' + addressLine2" required="true"/>
                         </div>
 
@@ -349,7 +348,7 @@
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Consignee Name<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-7">
-                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="shipperConsignee" name="order.consigneeContactId"
+                            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="shipperConsignee" name="order.consigneeContactId"
                                       list="consigneeList" listKey="contactId"
                                       listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
                         </div>
@@ -369,7 +368,7 @@
 
                         <div class="col-lg-7">
 
-                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeAddress" name="order.consigneeAddressId"
+                            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="consigneeAddress" name="order.consigneeAddressId"
                                       list="consigneeAddressList" listKey="addressId"
                                       listValue="addressLine1 + ' ' + addressLine2" required="true" />
 
@@ -382,7 +381,7 @@
 
                         <div class="col-lg-7">
 
-                            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeContact" name="order.consigneeContactPersonId"
+                            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="consigneeContact" name="order.consigneeContactPersonId"
                                       list="consigneeList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
                         </div>
 

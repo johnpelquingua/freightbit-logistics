@@ -34,7 +34,7 @@
                 </h3>
                 <span class="pull-right">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
+                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="postAjaxHtml('loadSearchContainerPage', 'inputDiv');">
                         <i class="fa fa-search"></i> Search Container
                     </button>
                     <s:url var="loadAddFormPageUrl" action="loadAddFormPage">
@@ -62,13 +62,13 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="containerSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="containerStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
                                 <td><display:column property="shipping" title="Shipping Line <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="gateInTime" title="Gate In <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="gateOutTime" title="Gate Out <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="containerStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
                                 <td>
@@ -152,22 +152,6 @@
 </div>
 
 <script>
-
-    $(document).ready(function() {
-        /*color coding of rows*/
-        var tbl = document.getElementById("container");
-        if (tbl != null) {
-            for (var i = 0; i < tbl.rows.length; i++) {
-                if ($("#alert").length) {
-                    /*tbl.rows[i].cells[6].style.backgroundColor="#fcf8e3";*/
-                    for (var j = 0; j < tbl.rows[i].cells.length; j++) {
-                        tbl.rows[1].cells[j].style.backgroundColor = "#dff0d8";
-                    }
-                }
-            }
-        }
-    });
-
     function generateReport(documentId,documentName) {
         /*alert(documentId);
         alert(documentName);*/
@@ -187,36 +171,4 @@
             }
         }
     }
-
-    function showSearchFields() {
-        $.ajax({
-            url: 'loadSearchContainerPage',
-            type: 'POST',
-            dataType: 'html',
-            success: function (html) {
-                $('#inputDiv').html(html);
-            },
-            error: function(xhr, ajaxOptions, thrownError){
-                alert('An error occurred! ' + thrownError);
-            }
-        });
-
-    }
-
-    function showGateOutFields(containerId) {
-        $.ajax({
-            url: 'loadCheckoutFormPage',
-            type: 'POST',
-            data: { containerIdParam: containerId },
-            dataType: 'html',
-            success: function (html) {
-                $('#inputDiv').html(html);
-            },
-            error: function(xhr, ajaxOptions, thrownError){
-                alert('An error occurred! ' + thrownError);
-            }
-        });
-
-    }
-
 </script>
