@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class DocumentsBean {
     private Integer documentId;
-    private String documentType;
     private Integer clientId;
     private String documentName;
+    private String documentType;
     private Integer referenceId;
     private String referenceTable;
     private String orderNumber;

@@ -9,7 +9,9 @@ import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
+import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
@@ -32,14 +34,17 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private OrderBean order = new OrderBean();
     private List<OrderBean> orders = new ArrayList<OrderBean>();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
-    private List<OrderStatusLogsBean> orderStatusLogss = new ArrayList<OrderStatusLogsBean>();
+    private List<OrderStatusLogsBean> orderStatusLogs = new ArrayList<OrderStatusLogsBean>();
     private List<Parameters> orderStatusList = new ArrayList<Parameters>();
     private List<Parameters> updateStatusList = new ArrayList<Parameters>();
+    private List<Parameters> inlandFreightList = new ArrayList<Parameters>();
+    private List<Parameters> seaFreightList = new ArrayList<Parameters>();
     private CommonUtils commonUtils = new CommonUtils();
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OrderStatusLogsBean orderStatusLogsBean = new OrderStatusLogsBean();
     private OrderStatusLogsService orderStatusLogsService;
     private ParameterService parameterService;
+    private NotificationService notificationService;
     private CustomerService customerService;
     private OrderService orderService;
     private Integer orderIdParam;
@@ -52,6 +57,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public void prepare() {
         orderStatusList = parameterService.getParameterMap(ParameterConstants.ORDER_STATUS);
         updateStatusList = parameterService.getParameterMap(ParameterConstants.UPDATE_STATUS, ParameterConstants.UPDATE_STATUS);
+        inlandFreightList = parameterService.getParameterMap(ParameterConstants.INLAND_FREIGHT);
+        seaFreightList = parameterService.getParameterMap(ParameterConstants.SEA_FREIGHT);
     }
 
     public String viewStatusList() {
@@ -93,10 +100,71 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String setItemStatus() {
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderItem.getEditItem());
+        /*System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderItem.getEditItem());
         for (int i =0; i<check.length; i++) {
             System.out.println("--------------------------------------" + check[i]);
+        }*/ //For Checking of Checked Items//
+
+        /*validateOnSubmit(orderItem);
+        if (hasFieldErrors())
+            return INPUT;*/
+
+        try {
+            OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
+            Map sessionAttributes = ActionContext.getContext().getSession();
+            /*sessionAttributes.put("orderItemIdParam", orderItemIdParam);*/
+            orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+/*
+            orderStatusLogsEntity.setCreatedTimestamp(new Date());
+*/
+            /*orderStatusLogsEntity.setStatus(orderItem.getStatus());
+            orderStatusLogsEntity.setOrderId((Integer) sessionAttributes.get("orderIdParam"));
+            orderStatusLogsEntity.setOrderItemId((Integer) sessionAttributes.get("orderItemIdParam"));*/
+            orderStatusLogsService.addStatus(orderStatusLogsEntity);
+
+            /*Notification notificationEntity = new Notification();
+            notificationEntity.setDescription("SHIPMENT_LOGS");
+            notificationEntity.setNotificationId(1);
+            notificationEntity.setNotificationType("Email");
+            notificationEntity.setReferenceId(1);
+            notificationEntity.setReferenceTable("Shipment_Logs");
+            notificationEntity.setUserId(1);
+
+            notificationService.addNotification(notificationEntity);*/
+
+        }catch (Exception e) {
+            addActionError("Update Failed");
+            return INPUT;
         }
+
+        return SUCCESS;
+    }
+
+    public void validateOnSubmit(OrderItemsBean orderItemsBean) {
+        clearErrorsAndMessages();
+        if (StringUtils.isBlank(orderItemsBean.getStatus())) {
+            addFieldError("orderStatusLogs.status", "Shipment Status is required");
+        }
+
+    }
+
+    public String loadSuccessSetStatus() {
+        /*Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById(orderItemIdParam).getOrderId());
+        order = transformToOrderFormBean(orderEntity);
+
+        OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(orderItemIdParam);
+        orderItem = transformToOrderItemFormBean(orderItemEntity);*/
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        List<OrderStatusLogs> orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs((Integer) sessionAttributes.get("orderItemIdParam"));
+
+        for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
+            orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Shipment Logs has been updated.");
+
         return SUCCESS;
     }
 
@@ -113,7 +181,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs(orderItemIdParam);
 
         for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
-            orderStatusLogss.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
+            orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
         }
 
         return SUCCESS;
@@ -195,6 +263,17 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public OrderItems transformToOrderItemEntity (OrderItemsBean formBean) {
         OrderItems entity = orderStatusLogsService.findOrderItemById(formBean.getOrderItemId());
         entity.setStatus(formBean.getStatus());
+        entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
+        return entity;
+    }
+
+    public OrderStatusLogs transformToOrderStatusLogsEntity (OrderStatusLogsBean formBean) {
+        OrderStatusLogs entity = new OrderStatusLogs();
+        entity.setOrderId(formBean.getOrderId());
+        entity.setOrderItemId(formBean.getOrderItemId());
+        entity.setStatus(formBean.getStatus());
+        entity.setCreatedBy(formBean.getCreatedBy());
+        entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
         return entity;
     }
 
@@ -226,7 +305,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public OrderItemsBean transformToOrderItemFormBean(OrderItems entity) {
 
         OrderItemsBean formBean = new OrderItemsBean();
-        formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
+        formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
         formBean.setNameSize(entity.getNameSize());
         formBean.setStatus(entity.getStatus());
         formBean.setOrderItemId(entity.getOrderItemId());
@@ -382,11 +461,27 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         this.order = order;
     }
 
-    public List<OrderStatusLogsBean> getOrderStatusLogss() {
-        return orderStatusLogss;
+    public List<OrderStatusLogsBean> getOrderStatusLogs() {
+        return orderStatusLogs;
     }
 
-    public void setOrderStatusLogss(List<OrderStatusLogsBean> orderStatusLogss) {
-        this.orderStatusLogss = orderStatusLogss;
+    public void setOrderStatusLogs(List<OrderStatusLogsBean> orderStatusLogs) {
+        this.orderStatusLogs = orderStatusLogs;
+    }
+
+    public List<Parameters> getInlandFreightList() {
+        return inlandFreightList;
+    }
+
+    public void setInlandFreightList(List<Parameters> inlandFreightList) {
+        this.inlandFreightList = inlandFreightList;
+    }
+
+    public List<Parameters> getSeaFreightList() {
+        return seaFreightList;
+    }
+
+    public void setSeaFreightList(List<Parameters> seaFreightList) {
+        this.seaFreightList = seaFreightList;
     }
 }

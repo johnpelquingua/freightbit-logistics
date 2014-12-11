@@ -25,5 +25,7 @@ public interface OrderStatusLogsDao {
 
     public OrderItems findOrderItemById(Integer orderItemId);
 
+    public OrderStatusLogs findOrderStatusLogsById(Integer orderItemId);
+
     public void updateStatusOrderItem(OrderItems orderItems);
 }

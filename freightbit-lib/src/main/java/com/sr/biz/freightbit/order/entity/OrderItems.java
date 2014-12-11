@@ -1,13 +1,16 @@
 package com.sr.biz.freightbit.order.entity;
 
+import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "orderitems"
         , catalog = "freightbit"
 )
-public class OrderItems implements java.io.Serializable {
+public class OrderItems implements Serializable {
 
     private Integer orderItemId;
     private Integer clientId;

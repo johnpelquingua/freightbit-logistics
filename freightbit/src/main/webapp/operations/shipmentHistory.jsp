@@ -63,16 +63,15 @@
             <div class="panel-body horizontal">
 
                 <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                    Container : <s:property value="orderItem.nameSize"/>
+                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Container: <s:property value="orderItem.nameSize"/> </label>
                 </s:if>
                 <s:else>
-                    Item : <s:property value="orderItem.nameSize"/>
+                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Item: <s:property value="orderItem.nameSize"/> </label>
                 </s:else>
                 <br />
                 <br />
                 <div class="table-responsive TableContainer">
-
-                            <display:table id="orderStatusLogs" name="orderStatusLogss"
+                            <display:table id="orderStatusLogs" name="orderStatusLogs"
                                            requestURI="loadItemShipmentHistory.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
@@ -89,29 +88,41 @@
                             </display:table>
 
                 </div>
-
-                <%--<div class="col-lg-2" style="text-align: center">
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Current Date</label>
-                    <s:textfield cssClass="form-control" />
+                <s:form cssClass="form-horizontal" theme="bootstrap" action="setItemStatus" id="setStatus">
+                <div class="col-lg-3" style="text-align: center">
+                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Current Date/Time</label>
+                    <s:textfield required="true" name="orderStatusLogs.createdTimestamp" cssClass="form-control" id="createdTimestamp" />
+                    <script type="text/javascript">
+                        $(function () {
+                            var curDate = $('#createdTimestamp');
+                            curDate.datetimepicker({
+                                timeFormat: 'h:mm TT',
+                                minDate: 0
+                            });
+                        });
+                    </script>
                 </div>
-
-                <div class="col-lg-2" style="text-align: center">
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Current Time</label>
-                    <s:textfield cssClass="form-control" />
-                </div>
-
-                <div class="col-lg-8" style="text-align: center">
+                <s:hidden value="%{orderItemIdParam}" name="orderStatusLogs.orderItemId"/>
+                <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update</label>
-
-                </div>--%>
+                    <s:select cssClass="form-control"
+                              id="orderStatusLogs.status"
+                              name="orderStatusLogs.status"
+                              list="seaFreightList"
+                              listKey="key"
+                              listValue="value"
+                              emptyOption="true"
+                              required="true"
+                            />
+                </div>
 
             </div>
 
             <div class="panel-footer">
 
                 <div class="pull-right">
-                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                        <%--<li class="active"> Booking <s:property value="bookingNumber"/> Container List</li>--%>
+                    <%--<s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                        &lt;%&ndash;<li class="active"> Booking <s:property value="bookingNumber"/> Container List</li>&ndash;%&gt;
                         <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                             <s:param name="orderIdParam"
                                      value="order.orderId"></s:param>
@@ -125,33 +136,13 @@
                             </button>
                         </s:a>
 
-                    </s:if>
-                    <s:else>
-                        <%--<li class="active"> Booking <s:property value="bookingNumber"/>Item List</li>--%>
-                        <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
-                            <s:param name="orderIdParam"
-                                     value="order.orderId"></s:param>
-                            <s:param name="orderNoParam"
-                                     value="order.orderNo"></s:param>
-                        </s:url>
+                    </s:if>--%>
 
-                        <s:a href="%{viewStatusListItemsUrl}" rel="tooltip" title="Update Status">
-                            <button type="button" id="Cancel" class="btn">
-                                Back to Sea Freight Planning : Orders
-                            </button>
-                        </s:a>
 
-                    </s:else>
-
-                    <button type="button" id="" class="btn" onclick="location.href='setItemStatus'">
-                        Set Status
-                    </button>
-
+                    <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status"/>
                 </div>
-
             </div>
-
+            </s:form>
         </div>
-
     </div>
 </div>

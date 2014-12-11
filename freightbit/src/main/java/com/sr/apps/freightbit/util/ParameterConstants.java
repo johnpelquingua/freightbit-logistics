@@ -8,6 +8,10 @@ public class ParameterConstants {
 
     public final static String UPDATE_STATUS = "UPDATE_STATUS";
 
+    public final static String INLAND_FREIGHT = "INLAND_FREIGHT";
+
+    public final static String SEA_FREIGHT = "SEA_FREIGHT";
+
     public final static String USER = "USER";
     
     public final static String CUSTOMERS = "CUSTOMERS";

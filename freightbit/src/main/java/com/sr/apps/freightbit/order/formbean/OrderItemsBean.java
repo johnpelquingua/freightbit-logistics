@@ -13,9 +13,9 @@ public class OrderItemsBean {
     private Double weight;
     private String remarks;
     private Float rate;
-    private Date createdTimeStamp;
+    private Date createdTimestamp;
     private String createdBy;
-    private Date modifiedTimeStamp;
+    private Date modifiedTimestamp;
     private String modifiedBy;
     private String nameSize;
     private String status;
@@ -43,8 +43,8 @@ public class OrderItemsBean {
 
     }
 
-    public OrderItemsBean(Date createdTimeStamp, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, String createdBy, Date modifiedTimeStamp, String modifiedBy, String nameSize, String status, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorDestination, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement) {
-        this.createdTimeStamp = createdTimeStamp;
+    public OrderItemsBean(Date createdTimestamp, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, String createdBy, Date modifiedTimestamp, String modifiedBy, String nameSize, String status, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorDestination, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement) {
+        this.createdTimestamp = createdTimestamp;
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.quantity = quantity;
@@ -55,7 +55,7 @@ public class OrderItemsBean {
         this.remarks = remarks;
         this.rate = rate;
         this.createdBy = createdBy;
-        this.modifiedTimeStamp = modifiedTimeStamp;
+        this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
         this.nameSize = nameSize;
         this.status = status;
@@ -208,12 +208,12 @@ public class OrderItemsBean {
         this.remarks = remarks;
     }
 
-    public Date getCreatedTimeStamp() {
-        return createdTimeStamp;
+    public Date getCreatedTimestamp() {
+        return createdTimestamp;
     }
 
-    public void setCreatedTimeStamp(Date createdTimeStamp) {
-        this.createdTimeStamp = createdTimeStamp;
+    public void setCreatedTimestamp(Date createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 
     public String getCreatedBy() {
@@ -224,12 +224,12 @@ public class OrderItemsBean {
         this.createdBy = createdBy;
     }
 
-    public Date getModifiedTimeStamp() {
-        return modifiedTimeStamp;
+    public Date getModifiedTimestamp() {
+        return modifiedTimestamp;
     }
 
-    public void setModifiedTimeStamp(Date modifiedTimeStamp) {
-        this.modifiedTimeStamp = modifiedTimeStamp;
+    public void setModifiedTimestamp(Date modifiedTimestamp) {
+        this.modifiedTimestamp = modifiedTimestamp;
     }
 
     public String getModifiedBy() {

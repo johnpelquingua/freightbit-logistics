@@ -185,7 +185,7 @@ public class OrderAction extends ActionSupport implements Preparable {
             customerEmailMap.put(customerContactInfo.getEmail(), customerContactInfo.getEmail());
             customerFaxMap.put(customerContactInfo.getFax(), customerContactInfo.getFax());
 
-            List<Contacts> consigneeContacts = customerService.findContactByConsignee(shipperConsignee.get(0).getContactId(), "C_CONTACT", getClientId());
+            List<Contacts> consigneeContacts = customerService.findContactByRefIdAndType("shipper", customerID);
 
             for (int i = 0; i < consigneeContacts.size(); i++) {
                 consigneeContactMap.put(consigneeContacts.get(i).getContactId(), consigneeContacts.get(i).getFirstName() + ' ' + consigneeContacts.get(i).getMiddleName() + ' ' + consigneeContacts.get(i).getLastName());

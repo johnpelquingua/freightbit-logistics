@@ -90,7 +90,7 @@
 
             <div class="panel-heading">
                 <%--<h3 class="panel-title"><i class="fa fa-list"></i> List of Items of <s:property value="%{orderNoParam}"/> </h3>--%>
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                     <span class="active"><i class="fa fa-list"></i> Container List</span>
                 </s:if>
                 <s:else>
@@ -126,17 +126,17 @@
                             </display:column></td>
 
                             <td>
-                                <display:column property="createdTimeStamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
+                                <display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column>
                             </td>
 
                             <td>
-                                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                                    <display:column property="nameSize" title="Container <i class='fa fa-sort' />" class="tb-font-black"
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                    <display:column property="nameSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column>
                                 </s:if>
                                 <s:else>
-                                    <display:column property="nameSize" title="Item <i class='fa fa-sort' />" class="tb-font-black"
+                                    <display:column property="nameSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column>
                                 </s:else>
                             </td>

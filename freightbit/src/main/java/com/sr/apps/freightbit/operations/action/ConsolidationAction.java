@@ -293,10 +293,10 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setDeclaredValue(entity.getDeclaredValue());
         formBean.setComments(entity.getComments());
         formBean.setRate(entity.getRate());
-        formBean.setCreatedTimeStamp(entity.getCreatedTimestamp());
+        formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setModifiedBy(entity.getModifiedBy());
-        formBean.setModifiedTimeStamp(entity.getModifiedTimestamp());
+        formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
         formBean.setStatus(entity.getStatus());
         formBean.setWeight(entity.getWeight());
         formBean.setVendorSea(entity.getVendorSea());

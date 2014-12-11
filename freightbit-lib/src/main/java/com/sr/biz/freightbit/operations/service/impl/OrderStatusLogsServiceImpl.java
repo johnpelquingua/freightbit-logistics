@@ -63,4 +63,8 @@ public class OrderStatusLogsServiceImpl implements OrderStatusLogsService {
         return orderStatusLogsDao.findOrderItemById(orderItemId);
     }
 
+    @Override
+    public OrderStatusLogs findOrderStatusLogsById(Integer orderItemId) {
+        return orderStatusLogsDao.findOrderStatusLogsById(orderItemId);
+    }
 }

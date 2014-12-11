@@ -154,4 +154,23 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
             throw e;
         }
     }
+
+    @Override
+    public OrderStatusLogs findOrderStatusLogsById(Integer orderItemId) {
+        log.debug("Finding orderItem via id");
+        try {
+            log.debug("finding order item succeed");
+            OrderStatusLogs instance = (OrderStatusLogs) getSessionFactory().getCurrentSession().get(OrderItems.class, orderItemId);
+            if (instance == null) {
+                log.debug("get successful, no instance found");
+            } else {
+                log.debug("get successful, instance found");
+            }
+            return instance;
+
+        } catch (Exception e) {
+            log.error("Finding order item failed");
+            throw e;
+        }
+    }
 }
