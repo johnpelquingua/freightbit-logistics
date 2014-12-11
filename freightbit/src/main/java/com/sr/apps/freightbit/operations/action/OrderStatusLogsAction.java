@@ -9,13 +9,13 @@ import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Contacts;
-import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
+import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.operations.service.OrderStatusLogsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
@@ -25,9 +25,6 @@ import org.apache.log4j.Logger;
 
 import java.util.*;
 
-/**
- * Created by Clarence C. Victoria on 7/31/14.
- */
 public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private static final long serialVersionUID = 1L;
     private static final Logger log = Logger.getLogger(OrderStatusLogsAction.class);
@@ -45,6 +42,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private OrderStatusLogsService orderStatusLogsService;
     private ParameterService parameterService;
     private NotificationService notificationService;
+    private OperationsService operationsService;
     private CustomerService customerService;
     private OrderService orderService;
     private Integer orderIdParam;
@@ -109,10 +107,11 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         if (hasFieldErrors())
             return INPUT;*/
 
-        try {
+        /*try {*/
             OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
             Map sessionAttributes = ActionContext.getContext().getSession();
-            /*sessionAttributes.put("orderItemIdParam", orderItemIdParam);*/
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA "+ orderStatusLogsEntity.getOrderItemId());
+            sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
             orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
 /*
             orderStatusLogsEntity.setCreatedTimestamp(new Date());
@@ -132,10 +131,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
             notificationService.addNotification(notificationEntity);*/
 
-        }catch (Exception e) {
+        /*}catch (Exception e) {
             addActionError("Update Failed");
             return INPUT;
-        }
+        }*/
 
         return SUCCESS;
     }
@@ -269,8 +268,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public OrderStatusLogs transformToOrderStatusLogsEntity (OrderStatusLogsBean formBean) {
         OrderStatusLogs entity = new OrderStatusLogs();
-        entity.setOrderId(formBean.getOrderId());
+
         entity.setOrderItemId(formBean.getOrderItemId());
+        entity.setOrderId(operationsService.findOrderItemById(formBean.getOrderItemId()).getOrderId());
         entity.setStatus(formBean.getStatus());
         entity.setCreatedBy(formBean.getCreatedBy());
         entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
@@ -341,10 +341,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return fullName.toString();
     }
 
-    public OrderStatusLogsService getOrderStatusLogsService() {
-        return orderStatusLogsService;
-    }
-
     public void setOrderStatusLogsService(OrderStatusLogsService orderStatusLogsService) {
         this.orderStatusLogsService = orderStatusLogsService;
     }
@@ -411,6 +407,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setOrderStatusLogsBean(OrderStatusLogsBean orderStatusLogsBean) {
         this.orderStatusLogsBean = orderStatusLogsBean;
+    }
+
+    public void setOperationsService(OperationsService operationsService) {
+        this.operationsService = operationsService;
     }
 
     public CommonUtils getCommonUtils() {

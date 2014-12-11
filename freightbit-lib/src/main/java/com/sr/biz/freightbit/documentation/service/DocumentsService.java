@@ -17,6 +17,8 @@ public interface DocumentsService {
 
     public List<Documents> findDocumentsByOrderId(Integer orderId);
 
+    public List<Documents> findOperationDocumentsByOrderId(Integer orderId);
+
     public Documents findDocumentById(Integer documentId);
 
     public void updateDocument(Documents documents);

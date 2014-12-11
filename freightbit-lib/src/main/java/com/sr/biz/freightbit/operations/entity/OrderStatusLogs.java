@@ -4,9 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by Clarence C. Victoria on 7/30/14.
- */
 @Entity
 @Table(name = "orderstatuslogs", catalog = "freightbit", uniqueConstraints = @UniqueConstraint(columnNames = "statusId"))
 public class OrderStatusLogs implements Serializable {

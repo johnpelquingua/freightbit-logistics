@@ -1,10 +1,7 @@
 package com.sr.apps.freightbit.operations.formbean;
-//
+
 import java.util.Date;
 
-/**
- * Created by Clarence C. Victoria on 8/4/14.
- */
 public class OrderStatusLogsBean {
 
     private Integer statusId;

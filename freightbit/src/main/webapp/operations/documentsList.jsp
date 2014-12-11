@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Clarence C. Victoria
-  Date: 11/5/2014
-  Time: 9:53 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
@@ -60,11 +53,11 @@
                                    requestURI="viewDocumentList.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
-                        <%--Booking Date--%>
-                        <td><display:column property="documentName" title="Document <i class='fa fa-sort' />" class="tb-font-black"
+
+                        <td><display:column property="documentName" title="Document Name <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <%--Order Number--%>
-                        <td><display:column property="referenceNumber" title="Ref. # <i class='fa fa-sort' />" class="tb-font-black"
+
+                        <td><display:column property="referenceNumber" title="Series Number <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
                         <td><display:column property="vendorCode" title="Vendor <i class='fa fa-sort' />" class="tb-font-black"
@@ -72,7 +65,7 @@
 
                         <td><display:column property="documentStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <%--ORIGIN--%>
+
                         <td><display:column property="createdDate" title="Date <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td>
@@ -112,19 +105,13 @@
 
 <script>
     function generateReport(documentId,documentName) {
-        if (documentName == "BOOKING REQUEST FORM" || documentName == "BOOKING REQUEST FORM WITH SIGNATURE") {
+        if (documentName == "BOOKING REQUEST FORM") {
             var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
             win.onload = function () {
                 this.document.title = "Booking Request Form";
             }
         }
-        else if (documentName == "HOUSE BILL OF LADING") {
-            var win = window.open('documentations/generateBillofLadingReport?documentIdParam=' + documentId, 'HouseBillofLading', 'width=910,height=800');
-            win.onload = function () {
-                this.document.title = " House Bill of Lading";
-            }
-        }
-        else if (documentName == "HOUSE WAYBILL ORIGIN" || documentName == "HOUSE WAYBILL ORIGIN WITH SIGNATURE") {
+        else if (documentName == "HOUSE WAYBILL ORIGIN") {
             var win = window.open('documentations/generateHouseWayBillReport?documentIdParam=' + documentId, 'HouseWayBillOrigin', 'width=910,height=800');
             win.onload = function () {
                 this.document.title = " House Way Bill Origin";

@@ -134,11 +134,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
             bacolodWeight = 0.00; // Loop of per order item weight total
             bacolodVolume = 0.F; // Loop of per order item volume total
 
-            /*System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + bacolodOrders );*/
-
             for (Orders orderBacolod : bacolodOrders) {
-
-                /*lclTable.add(transformToOrderFormBean(orderDestination));*/
 
                 List<OrderItems> bacolodOrderItems = orderService.findAllItemByOrderId(orderBacolod.getOrderId());
 

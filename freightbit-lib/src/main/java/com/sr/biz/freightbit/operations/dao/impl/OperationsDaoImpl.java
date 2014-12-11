@@ -255,6 +255,7 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
         List<String> statusList = new ArrayList<>();
         List<String> typeList = new ArrayList<>();
 
+        statusList.add("PENDING");
         statusList.add("ON GOING");
 
         typeList.add("SHIPPING");
