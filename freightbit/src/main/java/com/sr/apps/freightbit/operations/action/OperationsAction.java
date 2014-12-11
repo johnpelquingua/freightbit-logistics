@@ -2378,11 +2378,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String viewDocumentList() {
         List<Documents> documentsList = new ArrayList<Documents>();
 
-        /*documentsList = documentsService.findDocumentsByOrderId(orderIdParam);*/
-        documentsList = documentsService.findOperationDocumentsByOrderId(orderIdParam);
+        documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
+        /*documentsList = documentsService.findOperationDocumentsByOrderId(orderIdParam);*/
 
         for (Documents documentElem : documentsList) {
-            documents.add(transformDocumentToFormBean(documentElem));
+            System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggg " + documentElem.getDocumentName() );
+            /*documents.add(transformDocumentToFormBean(documentElem));*/
+            if(documentElem.getDocumentName().equals("PROFORMA BILL OF LADING") || documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ){
+                documents.add(transformDocumentToFormBean(documentElem));
+            }
         }
 
         return SUCCESS;
