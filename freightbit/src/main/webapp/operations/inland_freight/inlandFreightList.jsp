@@ -24,7 +24,17 @@
                 </h3>
             </div>
 
-            <!-- Nav tabs -->
+            <!-- Main Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
+                <li class="active" id="ori">
+                    <a href="#oriTab" role="tab" data-toggle="tab">ORIGIN</a>
+                </li>
+                <li id="des">
+                    <a href="#desTab" role="tab" data-toggle="tab">DESTINATION</a>
+                </li>
+            </ul>
+
+            <%--<!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
                 <li class="active" id="out">
                     <a href="#fclTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
@@ -38,15 +48,100 @@
                 <li id="fiIn">
                     <a href="#rcuTab" role="tab" data-toggle="tab">Rolling Cargo Load (RCU)</a>
                 </li>
-            </ul>
+            </ul>--%>
+
+            <div class="tab-pane fade in active" id="oriTab">
+
+                <s:form action="changeTruckOrigin" theme="bootstrap">
+                    <label class="col-lg-2 control-label">Sort by Origin :</label>
+                    <div class="col-lg-3">
+                        <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                  id="select1" list="portsList" listKey="key"
+                                  listValue="value" name="originCityTruck" emptyOption="true" required="true"
+                                  onchange="$(this).closest('form').submit()"
+                                  />
+                    </div>
+                    <%--<label class="col-lg-2 control-label">Sort by Destination :</label>
+                    <div class="col-lg-3">
+                        <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                  id="select2" list="portsList" listKey="key"
+                                  listValue="value" name="destinationCity" emptyOption="true" required="true" />
+
+                    </div>
+                    <s:submit name="submit" cssClass="btn btn-primary" value="OK" />--%>
+                </s:form>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
+                    <li class="active" id="fclOri">
+                        <a href="#fclOriTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
+                    </li>
+                    <li id="lclOri">
+                        <a href="#lclOriTab" role="tab" data-toggle="tab">Less Container Load (LCL)</a>
+                    </li>
+                    <li id="lcuOri">
+                        <a href="#lcuOriTab" role="tab" data-toggle="tab">Loose Cargo Load (LCU)</a>
+                    </li>
+                    <li id="rcuOri">
+                        <a href="#rcuOriTab" role="tab" data-toggle="tab">Rolling Cargo Load (RCU)</a>
+                    </li>
+                    <li id="ftlOri">
+                        <a href="#ftlTab" role="tab" data-toggle="tab">Full Truck Load (FTL)</a>
+                    </li>
+                    <li id="ltlOri">
+                        <a href="#ltlTab" role="tab" data-toggle="tab">Less Truck Load (LTL)</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-pane fade" id="desTab">
+
+                <s:form action="changeTruckDestination" theme="bootstrap">
+                    <%--<label class="col-lg-2 control-label">Sort by Origin :</label>
+                    <div class="col-lg-3">
+                        <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                  id="select1" list="portsList" listKey="key"
+                                  listValue="value" name="originCity" emptyOption="true" required="true"
+                                  onchange="$(this).closest('form').submit()"
+                                />
+                    </div>--%>
+                    <label class="col-lg-2 control-label">Sort by Destination :</label>
+                    <div class="col-lg-3">
+                        <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
+                                  id="select2" list="portsList" listKey="key"
+                                  listValue="value" name="destinationCityTruck" emptyOption="true" required="true"
+                                  onchange="$(this).closest('form').submit()"
+                                />
+
+                    </div>
+
+                </s:form>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
+                    <li class="active" id="fclDes">
+                        <a href="#fclDesTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
+                    </li>
+                    <li id="lclDes">
+                        <a href="#lclDesTab" role="tab" data-toggle="tab">Less Container Load (LCL)</a>
+                    </li>
+                    <li id="lcuDes">
+                        <a href="#lcuDesTab" role="tab" data-toggle="tab">Loose Cargo Load (LCU)</a>
+                    </li>
+                    <li id="rcuDes">
+                        <a href="#rcuDesTab" role="tab" data-toggle="tab">Rolling Cargo Load (RCU)</a>
+                    </li>
+                </ul>
+            </div>
 
             <div class="tab-content">
 
-                <div class="tab-pane fade in active" id="fclTab">
+                <div class="tab-pane fade in active" id="fclOriTab">
 
                     <div class="panel-body">
+                        FCL TRUCK ORIGIN
                         <div class="table-responsive">
-                            <display:table id="order" name="fclTable"
+                            <display:table id="order" name="fclTruckTable"
                                            requestURI="/viewFreightList.action" pagesize="10"
                                            class="fclTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells:hide !important">
@@ -96,11 +191,12 @@
 
                 </div>
 
-                <div class="tab-pane fade" id="lclTab">
+                <div class="tab-pane fade" id="lclOriTab">
 
                     <div class="panel-body">
+                        LCL TRUCK ORIGIN
                         <div class="table-responsive">
-                            <display:table id="order" name="lclTable"
+                            <display:table id="order" name="lclTruckTable"
                                            requestURI="/viewFreightList.action" pagesize="10"
                                            class="lclTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells:hide !important">
@@ -153,11 +249,12 @@
 
                 </div>
 
-                <div class="tab-pane fade" id="lcuTab">
+                <div class="tab-pane fade" id="lcuOriTab">
 
                     <div class="panel-body">
+                        LCU TRUCK ORIGIN
                         <div class="table-responsive">
-                            <display:table id="order" name="lcuTable"
+                            <display:table id="order" name="lcuTruckTable"
                                            requestURI="/viewFreightList.action" pagesize="10"
                                            class="lcuTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells:hide !important">
@@ -207,11 +304,12 @@
 
                 </div>
 
-                <div class="tab-pane fade" id="rcuTab">
+                <div class="tab-pane fade" id="rcuOriTab">
 
                     <div class="panel-body">
+                        RCU TRUCK ORIGIN
                         <div class="table-responsive">
-                            <display:table id="order" name="rcuTable"
+                            <display:table id="order" name="rcuTruckTable"
                                            requestURI="/viewFreightList.action" pagesize="10"
                                            class="rcuTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells:hide !important">
@@ -261,27 +359,342 @@
 
                 </div>
 
-            </div>
+                <div class="tab-pane fade" id="ftlTab">
 
-            <div class="panel-footer">
-                <div class="table-responsive">
-                    <div class="col-lg-12">
-                        <table class="col-lg-12">
-                            <tr>
-                                <td><label>LEGEND:</label></td>
-                                <td><i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled</td>
-                                <td><i class="fa fa-stop" style="color: #428bca;"></i> On Going</td>
-                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete</td>
-                                <td><i class="fa fa-stop" style="color: #5cb85c;"></i> Approved / Newly Added</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class='fa fa-anchor'></i> Shipping</td>
-                                <td><i class='fa fa-truck' ></i> Trucking</td>
-                            </tr>
-                        </table>
+                    <div class="panel-body">
+                        FTL TRUCK ORIGIN
+                        <div class="table-responsive">
+                            <display:table id="order" name="ftlTable"
+                                           requestURI="viewSeaFreightList.action" pagesize="10"
+                                           class="table table-hover table-bordered text-center tablesorter table-condensed"
+                                           style="margin-top: 15px;empty-cells: hide;">
+
+                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <%--<td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>--%>
+                                <%--<td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>--%>
+                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column title="Action">
+                                    <s:if test="#attr.order.orderStatus=='PENDING'">
+                                        <i class="fa fa-ban"></i>
+                                    </s:if>
+                                    <s:else>
+                                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                                             title="Update Status">
+                                            <i class="fa fa-edit" id="status"></i>
+                                        </s:a>
+
+                                        <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
+                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
+                                            <i class="fa fa-info-circle"></i>
+                                        </s:a>
+                                    </s:else>
+                                </display:column></td>
+
+                            </display:table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="ltlTab">
+
+                    <div class="panel-body">
+                        LTL TRUCK ORIGIN
+                        <div class="table-responsive">
+                            <display:table id="order" name="ltlTable"
+                                           requestURI="viewSeaFreightList.action" pagesize="10"
+                                           class="table table-hover table-bordered text-center tablesorter table-condensed"
+                                           style="margin-top: 15px;empty-cells: hide;">
+
+                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <%--<td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>--%>
+                                <%--<td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>--%>
+                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column title="Action">
+                                    <s:if test="#attr.order.orderStatus=='PENDING'">
+                                        <i class="fa fa-ban"></i>
+                                    </s:if>
+                                    <s:else>
+                                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                                             title="Update Status">
+                                            <i class="fa fa-edit" id="status"></i>
+                                        </s:a>
+
+                                        <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
+                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
+                                            <i class="fa fa-info-circle"></i>
+                                        </s:a>
+                                    </s:else>
+                                </display:column></td>
+
+                            </display:table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="panel-footer">
+                    <div class="table-responsive">
+                        <div class="col-lg-12">
+                            <table class="col-lg-12">
+                                <tr>
+                                    <td><label>LEGEND:</label></td>
+                                    <td><i class="fa fa-stop" style="color: #d9534f;"></i> Cancelled</td>
+                                    <td><i class="fa fa-stop" style="color: #428bca;"></i> On Going</td>
+                                    <td style="width: 20%;"><i class="fa fa-stop" style="color: #f0ad4e;"></i> Pending / Incomplete</td>
+                                    <td><i class="fa fa-stop" style="color: #5cb85c;"></i> Approved / Newly Added</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><i class='fa fa-anchor'></i> Shipping</td>
+                                    <td><i class='fa fa-truck' ></i> Trucking</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
+            </div>
+
+            <div class="tab-content">
+
+                <div class="tab-pane fade" id="fclDesTab">
+                    FCL TRUCK DESTINATION
+                    <div class="table-responsive">
+                        <display:table id="order" name="fclTruckTableDes"
+                                       requestURI="/viewFreightList.action" pagesize="10"
+                                       class="fclTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                       style="margin-top: 15px;empty-cells:hide !important">
+
+                            <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column title="Action">
+                                <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
+                                    <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewFreightItemListUrl}" rel="tooltip"
+                                     title="Update Status">
+                                    <i class="fa fa-edit"></i>
+                                </s:a>
+
+                                <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderInland">
+                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
+                                    <i class="fa fa-info-circle"></i>
+                                </s:a>
+                            </display:column></td>
+
+                        </display:table>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="lclDesTab">
+                    LCL TRUCK DESTINATION
+                    <div class="table-responsive">
+                        <display:table id="order" name="lclTruckTableDes"
+                                       requestURI="/viewFreightList.action" pagesize="10"
+                                       class="lclTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                       style="margin-top: 15px;empty-cells:hide !important">
+
+                            <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column title="Action">
+                                <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
+                                    <s:param name="orderIdParam"
+                                             value="#attr.order.orderId"></s:param>
+                                    <s:param name="orderNoParam"
+                                             value="#attr.order.orderNo"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewFreightItemListUrl}" rel="tooltip"
+                                     title="Update Status">
+                                    <i class="fa fa-edit"></i>
+                                </s:a>
+
+                                <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderInland">
+                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
+                                    <i class="fa fa-info-circle"></i>
+                                </s:a>
+                            </display:column></td>
+
+                        </display:table>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="lcuDesTab">
+                    LCU TRUCK DESTINATION
+                    <div class="table-responsive">
+                        <display:table id="order" name="lcuTruckTableDes"
+                                       requestURI="/viewFreightList.action" pagesize="10"
+                                       class="lcuTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                       style="margin-top: 15px;empty-cells:hide !important">
+
+                            <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column title="Action">
+                                <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
+                                    <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewFreightItemListUrl}" rel="tooltip"
+                                     title="Update Status">
+                                    <i class="fa fa-edit"></i>
+                                </s:a>
+
+                                <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderInland">
+                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
+                                    <i class="fa fa-info-circle"></i>
+                                </s:a>
+                            </display:column></td>
+
+                        </display:table>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="rcuDesTab">
+                    RCU TRUCK DESTINATION
+                    <div class="table-responsive">
+                        <display:table id="order" name="rcuTruckTableDes"
+                                       requestURI="/viewFreightList.action" pagesize="10"
+                                       class="rcuTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                       style="margin-top: 15px;empty-cells:hide !important">
+
+                            <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column title="Action">
+                                <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
+                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewFreightItemListUrl}" rel="tooltip"
+                                     title="Update Status">
+                                    <i class="fa fa-edit"></i>
+                                </s:a>
+
+                                <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderInland">
+                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
+                                    <i class="fa fa-info-circle"></i>
+                                </s:a>
+                            </display:column></td>
+
+                        </display:table>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -294,7 +707,7 @@
         tablePropClass('NONE', 'fclTable', 7, 4, 5, 6, 0, 0);
         tablePropClass('NONE', 'lcuTable', 7, 4, 5, 6, 0, 0);
         tablePropClass('NONE', 'rcuTable', 7, 4, 5, 6, 0, 0);
-    })
+    });
 
     $(function () {
         $('#myTab a:first').tab('show')

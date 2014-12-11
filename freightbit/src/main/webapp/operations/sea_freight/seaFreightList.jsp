@@ -62,12 +62,12 @@
                 <li id="rcu">
                     <a href="#rcuTab" role="tab" data-toggle="tab">Rolling Cargo Load (RCU)</a>
                 </li>
-                <li id="ftl">
+                <%--<li id="ftl">
                     <a href="#ftlTab" role="tab" data-toggle="tab">Full Truck Load (FTL)</a>
                 </li>
                 <li id="ltl">
                     <a href="#ltlTab" role="tab" data-toggle="tab">Less Truck Load (LTL)</a>
-                </li>
+                </li>--%>
             </ul>
 
             <div class="tab-content">
@@ -305,106 +305,6 @@
                     </div>
 
                 </div>
-
-                <div class="tab-pane fade" id="ftlTab">
-
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <display:table id="order" name="ftlTable"
-                                           requestURI="viewSeaFreightList.action" pagesize="10"
-                                           class="table table-hover table-bordered text-center tablesorter table-condensed"
-                                           style="margin-top: 15px;empty-cells: hide;">
-
-                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column title="Action">
-                                    <s:if test="#attr.order.orderStatus=='PENDING'">
-                                        <i class="fa fa-ban"></i>
-                                    </s:if>
-                                    <s:else>
-                                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                             title="Update Status">
-                                            <i class="fa fa-edit" id="status"></i>
-                                        </s:a>
-
-                                        <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
-                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
-                                            <i class="fa fa-info-circle"></i>
-                                        </s:a>
-                                    </s:else>
-                                </display:column></td>
-
-                            </display:table>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="tab-pane fade" id="ltlTab">
-
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <display:table id="order" name="ltlTable"
-                                           requestURI="viewSeaFreightList.action" pagesize="10"
-                                           class="table table-hover table-bordered text-center tablesorter table-condensed"
-                                           style="margin-top: 15px;empty-cells: hide;">
-
-                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column title="Action">
-                                    <s:if test="#attr.order.orderStatus=='PENDING'">
-                                        <i class="fa fa-ban"></i>
-                                    </s:if>
-                                    <s:else>
-                                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                             title="Update Status">
-                                            <i class="fa fa-edit" id="status"></i>
-                                        </s:a>
-
-                                        <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
-                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
-                                            <i class="fa fa-info-circle"></i>
-                                        </s:a>
-                                    </s:else>
-                                </display:column></td>
-
-                            </display:table>
-                        </div>
-                    </div>
 
                 </div>
 

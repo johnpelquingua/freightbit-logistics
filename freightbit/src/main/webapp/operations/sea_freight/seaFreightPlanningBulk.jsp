@@ -142,7 +142,7 @@
     </div>
     <div class="panel-body">
         <s:form cssClass="form-horizontal" action="findVesselScheduleBulk" theme="bootstrap" style="margin-bottom: -50px;">
-            <c:out value="${sessionScope.vendorIdPass}" />
+            <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
             <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
             <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -170,9 +170,14 @@
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
                 </s:else>
                 <div class="col-lg-10">
-                    <div class="form-control">
-                        <c:out value="${sessionScope.nameSizeParam}"/>
-                    </div>
+                    <%--<div class="form-control">--%>
+                        <%--<c:out value="${sessionScope.nameSizeParam}"/>--%>
+                        <ol>
+                            <s:iterator value="nameSizeList" >
+                                <li><s:property /></li>
+                            </s:iterator>
+                        </ol>
+                    <%--</div>--%>
                 </div>
             </div>
             <div class="form-group">
@@ -182,8 +187,7 @@
                         <s:select list="vendorShippingList" name="operationsBean.vendorList"
                                   id="operationsBean_vendorList"
                                   listKey="vendorId" listValue="vendorCode" cssClass="form-control"
-                                  emptyOption="true"
-                                ></s:select>
+                                  emptyOption="true" ></s:select>
                     </div>
                 </div>
                 <div class="col-lg-2" style="text-align: center;">
@@ -306,16 +310,24 @@
                     <%--<s:textfield id="itemIdHolder"  value="%{orderItem.orderItemId}"/>--%>
                     <s:form action="addVendorSeaBulk" cssClass="form-horizontal" theme="bootstrap">
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Type<span
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Type<span
                                     class="asterisk_red"></span></label>
 
-                            <div class="col-lg-9"></span>
+                            <%--<div class="col-lg-9"></span>
                                 <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
                                           listKey="key" listValue="value" cssClass="form-control"/>
+                            </div>--%>
+                            <div class="col-lg-9"></span>
+                                    <%--<s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
+                                              listKey="key" listValue="value" cssClass="form-control"/>--%>
+                                <s:hidden type="hidden" cssClass="form-control" value="SHIPPING" name="vendor.vendorType"
+                                          id="vendor.vendorType"/>
+                                <s:textfield cssClass="form-control" value="Shipping" name="vendor_vendorType"
+                                             id="vendor_vendorType" disabled="true"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Company<span
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Company<span
                                     class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
@@ -324,7 +336,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Code<span
                                     class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
@@ -335,7 +347,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Class<span
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Class<span
                                     class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
@@ -372,12 +384,18 @@
                 <div class="panel-body">
 
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addVesselScheduleInPlanningBulk">
-                        <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
+                    <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
                     <label>Voyage Number<span class="asterisk_red"></span></label>
 
                     <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber"/>
 
+                    <label>Vessel<span class="asterisk_red"></span></label>
 
+                    <s:select emptyOption="true" id="vesselList"
+                              value="vesselSchedule.vesselName"
+                              name="vesselSchedule.vesselName"
+                              list="vesselList" listValue="value" listKey="key"
+                              cssClass="form-control" required="true"/>
 
                     <label> Departure Date<span class="asterisk_red"></span></label>
 
@@ -450,6 +468,22 @@
             }
 
             $("#vendorIdHolder").val(vendorId);
+            // To get the vessel list of the vendor
+            $.getJSON('listVessel', {
+                vendorId: vendorId
+            },
+
+            function (jsonResponse) {
+
+                var vessel = $('#vesselList');
+
+                vessel.find('option').remove();
+
+                $.each(jsonResponse.vesselMap, function (key, value) {
+                    $('<option>').val(key).text(value).appendTo(vessel);
+                });
+
+            });
         });
     });
 

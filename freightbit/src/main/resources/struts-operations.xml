@@ -100,7 +100,7 @@
         <!--<result name="PLANNING 2" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
         <!--</action>-->
 
-        <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
+            <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
             <result name="PLANNING 1" type="tiles">operations.seaFreightPlanning.tiles</result>
             <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
@@ -176,6 +176,14 @@
 
         <action name="changeOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
             <result name="success" type="tiles">operations.seaFreightList.tiles</result>
+        </action>
+
+        <action name="changeTruckOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
+            <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
+        </action>
+
+        <action name="changeTruckDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightList">
+            <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
         </action>
 
         <action name="viewSeaFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
@@ -575,6 +583,10 @@
         <action name="truckDetails" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="truckDetails">
             <result type="json">/operations/sea_freight/seaFreightPlanning.jsp</result>
             <result type="json">/operations/freightBulkEdit.jsp</result>
+        </action>
+
+        <action name="listVessel" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="listVessel">
+            <result type="json">/operations/sea_freight/seaFreightPlanning.jsp</result>
         </action>
 
         <action name="listVesselName" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction" method="listVesselName">

@@ -73,6 +73,16 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private ParameterService parameterService;
     public BigInteger Booking, Customer , User , Vendor , AllNotification;
 
+    private String test ;
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+
     public String execute() throws Exception {
 
         portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
@@ -123,6 +133,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
             bacolodWeight = 0.00; // Loop of per order item weight total
             bacolodVolume = 0.F; // Loop of per order item volume total
+
+            /*System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " + bacolodOrders );*/
 
             for (Orders orderBacolod : bacolodOrders) {
 

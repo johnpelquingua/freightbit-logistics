@@ -67,6 +67,21 @@ public class OperationsServiceImpl implements OperationsService{
     }
 
     @Override
+    public List<Orders> findOrdersByFCLTrucks() {
+        return operationsDao.findOrdersByFCLTrucks();
+    }
+
+    @Override
+    public List<Orders> findOrdersByFCLTrucksOrigin(String originationPort) {
+        return operationsDao.findOrdersByFCLTrucksOrigin(originationPort);
+    }
+
+    @Override
+    public List<Orders> findOrdersByFCLTrucksDestination(String destinationPort) {
+        return operationsDao.findOrdersByFCLTrucksDestination(destinationPort);
+    }
+
+    @Override
     public List<Orders> findOrdersByOriginDestinationFCL(String originationPort, String destinationPort) {
         return operationsDao.findOrdersByOriginDestinationFCL(originationPort,destinationPort);
     }
@@ -74,6 +89,21 @@ public class OperationsServiceImpl implements OperationsService{
     @Override
     public List<Orders> findOrdersByLCL() {
         return operationsDao.findOrdersByLCL();
+    }
+
+    @Override
+    public List<Orders> findOrdersByLCLTrucks() {
+        return operationsDao.findOrdersByLCLTrucks();
+    }
+
+    @Override
+    public List<Orders> findOrdersByLCLTrucksOrigin(String originationPort) {
+        return operationsDao.findOrdersByLCLTrucksOrigin(originationPort);
+    }
+
+    @Override
+    public List<Orders> findOrdersByLCLTrucksDestination(String destinationPort) {
+        return operationsDao.findOrdersByLCLTrucksDestination(destinationPort);
     }
 
     @Override
@@ -92,6 +122,21 @@ public class OperationsServiceImpl implements OperationsService{
     }
 
     @Override
+    public List<Orders> findOrdersByLCUTrucks() {
+        return operationsDao.findOrdersByLCUTrucks();
+    }
+
+    @Override
+    public List<Orders> findOrdersByLCUTrucksOrigin(String originationPort) {
+        return operationsDao.findOrdersByLCUTrucksOrigin(originationPort);
+    }
+
+    @Override
+    public List<Orders> findOrdersByLCUTrucksDestination(String destinationPort) {
+        return operationsDao.findOrdersByLCUTrucksDestination(destinationPort);
+    }
+
+    @Override
     public List<Orders> findOrdersByOriginDestinationLCU(String originationPort, String destinationPort) {
         return operationsDao.findOrdersByOriginDestinationLCU(originationPort,destinationPort);
     }
@@ -99,6 +144,21 @@ public class OperationsServiceImpl implements OperationsService{
     @Override
     public List<Orders> findOrdersByRCU() {
         return operationsDao.findOrdersByRCU();
+    }
+
+    @Override
+    public List<Orders> findOrdersByRCUTrucks() {
+        return operationsDao.findOrdersByRCUTrucks();
+    }
+
+    @Override
+    public List<Orders> findOrdersByRCUTrucksOrigin(String originationPort) {
+        return operationsDao.findOrdersByRCUTrucksOrigin(originationPort);
+    }
+
+    @Override
+    public List<Orders> findOrdersByRCUTrucksDestination(String destinationPort) {
+        return operationsDao.findOrdersByRCUTrucksDestination(destinationPort);
     }
 
     @Override
@@ -117,6 +177,11 @@ public class OperationsServiceImpl implements OperationsService{
     }
 
     @Override
+    public List<Orders> findOrdersByOriginFTL(String originationPort) {
+        return operationsDao.findOrdersByOriginFTL(originationPort);
+    }
+
+    @Override
     public List<Orders> findOrdersByLTL() {
         return operationsDao.findOrdersByLTL();
     }
@@ -124,6 +189,11 @@ public class OperationsServiceImpl implements OperationsService{
     @Override
     public List<Orders> findOrdersByOriginDestinationLTL(String originationPort, String destinationPort) {
         return operationsDao.findOrdersByOriginDestinationLTL(originationPort,destinationPort);
+    }
+
+    @Override
+    public List<Orders> findOrdersByOriginLTL(String originationPort) {
+        return operationsDao.findOrdersByOriginLTL(originationPort);
     }
 
 }

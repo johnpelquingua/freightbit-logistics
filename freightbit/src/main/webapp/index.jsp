@@ -143,6 +143,9 @@
             </div>
 
             <div class="panel-body">
+                <s:iterator value="test" >
+                    <li><s:property /></li>
+                </s:iterator>
                 <div class="table-responsive">
                     <table class="table table-hover table-bordered text-center tablesorter table-striped">
                         <thead>

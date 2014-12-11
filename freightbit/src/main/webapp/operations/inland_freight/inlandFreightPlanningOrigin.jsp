@@ -175,8 +175,7 @@
                                 <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
                                           id="vendorListOrigin"
                                           listKey="vendorId" listValue="vendorCode" cssClass="form-control"
-                                          emptyOption="true" value="%{orderItem.vendorDestination}"
-                                        ></s:select>
+                                          emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
                             </div>
 
                             <div class="col-lg-2">
@@ -518,6 +517,36 @@
 
         <div class="form-group">
 
+            <label class="col-lg-2 control-label" style="padding-top:0px;">Body Type</label>
+
+            <div class="col-lg-10">
+                <s:textfield cssClass="form-control" value="%{truckDestination.truckType}" disabled="true" />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
+
+            <div class="col-lg-10">
+                <s:textfield cssClass="form-control" value="%{truckDestination.plateNumber}" disabled="true" />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
+
+            <div class="col-lg-1">
+                <s:textfield cssClass="form-control" value="%{truckDestination.grossWeight}" disabled="true" />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
             <label for="pickup" class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
 
             <div class="col-lg-10">
@@ -579,6 +608,45 @@
                                  disabled="true"></s:textfield>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Vessel Name </label>
+                <div class="col-lg-10">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.vesselName}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Date </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.departureDate}" name="book-num" disabled="true"></s:textfield>
+                </div>
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date <Port></Port> </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.arrivalDate}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Time </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.departureTime}" name="book-num" disabled="true"></s:textfield>
+                </div>
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Time <Port></Port> </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.arrivalTime}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.originPort}" name="book-num" disabled="true"></s:textfield>
+                </div>
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination <Port></Port> </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.destinationPort}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -605,12 +673,10 @@
                 <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}"/>
                 <s:hidden name="operationsBean.status" value="%{orderItem.status}"/>
                 <s:hidden name="operationsBean.weight" value="%{orderItem.weight}"/>
-
                 <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}"/>
                 <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}"/>
                 <s:hidden name="operationsBean.vesselScheduleId" value="%{orderItem.vesselScheduleId}"/>
                 <s:hidden name="order.orderId" value="%{orderItem.orderId}"/>
-
                 <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}"/>
                 <s:hidden name="operationsBean.freightType" value="%{order.freightType}"/>
                 <div class="form-group">
@@ -675,9 +741,68 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
+
+                    <div class="col-lg-8">
+                        <div>
+                            <s:select cssClass="form-control"
+                                      id="bodyType"
+                                      list="#{bodyType}"
+                                      value="%{bodyType}"
+                                      style="display:none"
+                                    />
+                            <s:textfield cssClass="form-control"
+                                         id="bodyType_textfield"
+                                         disabled="true"
+                                    />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
+
+                    <div class="col-lg-8">
+                        <div>
+                            <s:select cssClass="form-control"
+                                      id="plateNumber"
+                                      list="#{plateNumber}"
+                                      value="%{plateNumber}"
+                                      style="display:none"
+                                    />
+                            <s:textfield cssClass="form-control"
+                                         id="plateNumber_textfield"
+                                         disabled="true"
+                                    />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
+
+                    <div class="col-lg-8">
+                        <div>
+                            <s:select cssClass="form-control"
+                                      id="grossWeight"
+                                      list="#{grossWeight}"
+                                      value="%{grossWeight}"
+                                      style="display:none"
+                                    />
+                            <s:textfield cssClass="form-control"
+                                         id="grossWeight_textfield"
+                                         disabled="true"
+                                    />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
-                    <div class="col-lg-10">
+                    <div class="col-lg-8">
                         <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalPickupdate}"
                                      id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
                                      contenteditable="false" style="margin-bottom: 15px !important;"/>
@@ -780,13 +905,6 @@
 
                     </div>
 
-                        <%--<div class="pull-right">
-
-                            <s:submit cssClass="btn btn-info" name="submit" value="Save"/>
-                        </div>
-
-                    </s:form>--%>
-
                 </div>
             </div>
             <div class="modal-footer">
@@ -815,7 +933,7 @@
                         <label class="col-lg-3 control-label" style="padding-top:0px;">Type<span
                                 class="asterisk_red"></span></label>
 
-                        <div class="col-lg-9"></span>
+                        <div class="col-lg-9">
                             <%--<s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
                                       listKey="key" listValue="value" cssClass="form-control"/>--%>
                             <s:hidden type="hidden" cssClass="form-control" value="TRUCKING" name="vendor.vendorType"
@@ -1172,8 +1290,6 @@
         });
 
     });
-
-
 
     $(document).ready(function(){
        $("#createDriverButton").click(function(){

@@ -140,18 +140,18 @@
                 <div class="panel-body form-horizontal">
                     <div class="form-group">
 
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Vendor</label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
                         </div>
                     </div>
 
                     <div class="form-group">
 
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Driver</label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
                         </div>
 
@@ -159,17 +159,47 @@
 
                     <div class="form-group">
 
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Truck Code</label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
                         </div>
 
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-                        <div class="col-lg-10">
+
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Body Type</label>
+
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" value="%{truck.truckType}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Plate Number</label>
+
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" value="%{truck.plateNumber}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Gross Weight</label>
+
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" value="%{truck.grossWeight}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Pickup Date</label>
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
                         </div>
                     </div>
@@ -205,9 +235,9 @@
 
                     <div class="form-group">
 
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Vendor</label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />
                         </div>
 
@@ -215,9 +245,9 @@
 
                     <div class="form-group">
 
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Driver</label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />
                         </div>
 
@@ -225,9 +255,9 @@
 
                     <div class="form-group">
 
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Truck Code</label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
                         </div>
 
@@ -235,9 +265,9 @@
 
                     <div class="form-group">
 
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Dropoff Date</label>
 
-                        <div class="col-lg-10">
+                        <div class="col-lg-9">
                             <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
                         </div>
 

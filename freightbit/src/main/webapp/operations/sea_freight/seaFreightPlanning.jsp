@@ -145,7 +145,7 @@
                 </div>
                 <div class="panel-body">
                     <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
-                        <c:out value="${sessionScope.vendorIdPass}" />
+                        <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
                         <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                         <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                         <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -267,7 +267,7 @@
                 </div>
                 <div class="panel-body">
                     <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
-                        <c:out value="${sessionScope.vendorIdPass}" />
+                        <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
                         <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                         <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                         <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -410,7 +410,7 @@
             </div>
 
             <%--Origin--%>
-            <%--<div class="panel panel-primary">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-truck"></i>
                     <span class="panel-title"> Dispatch Plan : Origin</span>
@@ -434,6 +434,35 @@
                             <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
                         </div>
                     </div>
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Body Type</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truck.truckType}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truck.plateNumber}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truck.grossWeight}" disabled="true" />
+                        </div>
+
+                    </div>
 
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
@@ -442,10 +471,10 @@
                         </div>
                     </div>
                 </div>
-            </div>--%>
+            </div>
 
             <%--Destination--%>
-            <%--<div class="panel panel-primary">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-truck"></i>
                     <span class="panel-title"> Dispatch Plan : Destination</span>
@@ -470,12 +499,41 @@
                         </div>
                     </div>
                     <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Body Type</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truckDestination.truckType}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truckDestination.plateNumber}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truckDestination.grossWeight}" disabled="true" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
                         <div class="col-lg-10">
                             <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
                         </div>
                     </div>
-                </div>--%>
+                </div>
 
                 <%--<div class="panel-footer">
                     <div class="pull-right">
@@ -513,7 +571,7 @@
                 </div>
                 <div class="panel-body">
                     <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
-                        <c:out value="${sessionScope.vendorIdPass}" />
+                        <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
                         <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                         <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                         <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -598,11 +656,15 @@
                                    requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                    style="margin-top: 15px;">
+                        <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
                         <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="originPort" title="Origin" class="tb-font-black"
+                        <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
+                        <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="destinationPort" title="DES" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="departureDate" title="Departure" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -653,6 +715,36 @@
                     </div>
 
                     <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Body Type</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truck.truckType}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truck.plateNumber}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truck.grossWeight}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
                         <div class="col-lg-10">
                             <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
@@ -669,7 +761,7 @@
                 </div>
                 <div class="panel-body">
                     <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
-                        <c:out value="${sessionScope.vendorIdPass}" />
+                        <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
                         <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                         <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                         <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -752,11 +844,15 @@
                                    requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                    style="margin-top: 15px;">
+                        <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
                         <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="originPort" title="Origin" class="tb-font-black"
+                        <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
+                        <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="destinationPort" title="DES" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="departureDate" title="Departure" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -804,6 +900,35 @@
                         <div class="col-lg-10">
                             <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
                         </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Body Type</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truckDestination.truckType}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truckDestination.plateNumber}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
+
+                        <div class="col-lg-10">
+                            <s:textfield cssClass="form-control" value="%{truckDestination.grossWeight}" disabled="true" />
+                        </div>
+
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
@@ -857,53 +982,53 @@
             <div class="modal-body">
                 <div class="panel-body">
 
-                            <s:form action="addVendorSea" cssClass="form-horizontal" theme="bootstrap">
-                                <div class="form-group">
-                                    <label class="col-lg-3 control-label" style="padding-top:0px;">Type<span
-                                            class="asterisk_red"></span></label>
+                    <s:form action="addVendorSea" cssClass="form-horizontal" theme="bootstrap">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Type<span
+                                    class="asterisk_red"></span></label>
 
-                                    <%--<div class="col-lg-9"></span>
-                                        <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
-                                                  listKey="key" listValue="value" cssClass="form-control"/>
-                                    </div>--%>
-                                    <div class="col-lg-9"></span>
-                                        <%--<s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
-                                                  listKey="key" listValue="value" cssClass="form-control"/>--%>
-                                        <s:hidden type="hidden" cssClass="form-control" value="SHIPPING" name="vendor.vendorType"
-                                                     id="vendor.vendorType"/>
-                                        <s:textfield cssClass="form-control" value="Shipping" name="vendor_vendorType"
-                                                     id="vendor_vendorType" disabled="true"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-3 control-label" style="padding-top:0px;">Company<span
-                                            class="asterisk_red"></span></label>
+                            <%--<div class="col-lg-9"></span>
+                                <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
+                                          listKey="key" listValue="value" cssClass="form-control"/>
+                            </div>--%>
+                            <div class="col-lg-9"></span>
+                                <%--<s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
+                                          listKey="key" listValue="value" cssClass="form-control"/>--%>
+                                <s:hidden type="hidden" cssClass="form-control" value="SHIPPING" name="vendor.vendorType"
+                                             id="vendor.vendorType"/>
+                                <s:textfield cssClass="form-control" value="Shipping" name="vendor_vendorType"
+                                             id="vendor_vendorType" disabled="true"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Company<span
+                                    class="asterisk_red"></span></label>
 
-                                    <div class="col-lg-9">
-                                        <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
-                                                     id="vendor.vendorName" required="true"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-3 control-label" style="padding-top:0px;">Code<span
-                                            class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
+                                <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
+                                             id="vendor.vendorName" required="true"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Code<span
+                                    class="asterisk_red"></span></label>
 
-                                    <div class="col-lg-9">
-                                        <s:textfield cssClass="form-control" name="vendor.vendorCode" id="vendor_vendorCode"
-                                                     required="true"
-                                                     placeholder="Code" maxLength="3" pattern="[A-Z]+" title="Must be letters only"
-                                                     onkeypress="return alphaKeyOnly(event)"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-3 control-label" style="padding-top:0px;">Class<span
-                                            class="asterisk_red"></span></label>
+                            <div class="col-lg-9">
+                                <s:textfield cssClass="form-control" name="vendor.vendorCode" id="vendor_vendorCode"
+                                             required="true"
+                                             placeholder="Code" maxLength="3" pattern="[A-Z]+" title="Must be letters only"
+                                             onkeypress="return alphaKeyOnly(event)"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Class<span
+                                    class="asterisk_red"></span></label>
 
-                                    <div class="col-lg-9">
-                                        <s:select list="vendorClassList" listKey="key" listValue="value" cssClass="form-control"
-                                                  id="vendor.vendorClass" name="vendor.vendorClass"/>
-                                    </div>
-                                </div>
+                            <div class="col-lg-9">
+                                <s:select list="vendorClassList" listKey="key" listValue="value" cssClass="form-control"
+                                          id="vendor.vendorClass" name="vendor.vendorClass"/>
+                            </div>
+                        </div>
 
                 </div>
             </div>
@@ -934,18 +1059,26 @@
 
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addVesselScheduleInPlanning">
 
+                            <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
+
                             <label>Voyage Number<span class="asterisk_red"></span></label>
 
                             <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber"/>
 
-                            <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
+                            <label>Vessel<span class="asterisk_red"></span></label>
 
-                            <label> Departure Date<span class="asterisk_red"></span></label>
+                            <s:select emptyOption="true" id="vesselList"
+                                      value="vesselSchedule.vesselName"
+                                      name="vesselSchedule.vesselName"
+                                      list="vesselList" listValue="value" listKey="key"
+                                      cssClass="form-control" required="true"/>
+
+                            <label>Departure Date<span class="asterisk_red"></span></label>
 
                             <s:textfield cssClass="form-control" id="departureDate"
                                          name="vesselSchedule.departureDate"/>
 
-                            <label> Departure Time<span class="asterisk_red"></span></label>
+                            <label>Departure Time<span class="asterisk_red"></span></label>
 
                             <s:textfield cssClass="form-control" id="departureTime"
                                          name="vesselSchedule.departureTime" readonly="true"/>
@@ -954,18 +1087,18 @@
 
                             <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true"/>
 
-                            <label> Arrival Time<span class="asterisk_red"></span></label>
+                            <label>Arrival Time<span class="asterisk_red"></span></label>
 
                             <s:textfield cssClass="form-control" id="arrivalTime"
                                          name="vesselSchedule.arrivalTime"/>
 
                             <label>Origin Pier<span class="asterisk_red"></span></label>
 
-                        <s:select emptyOption="true" id="vesselSchedule_originPort"
-                                  value="vesselSchedule.originPort"
-                                  name="vesselSchedule.originPort"
-                                  list="portsList" listValue="value" listKey="key"
-                                  cssClass="form-control"/>
+                            <s:select emptyOption="true" id="vesselSchedule_originPort"
+                                      value="vesselSchedule.originPort"
+                                      name="vesselSchedule.originPort"
+                                      list="portsList" listValue="value" listKey="key"
+                                      cssClass="form-control" required="true"/>
 
                             <label>Destination Pier<span class="asterisk_red"></span></label>
 
@@ -973,7 +1106,7 @@
                                       value="vesselSchedule.destinationPort"
                                       name="vesselSchedule.destinationPort"
                                       list="portsList" listValue="value" listKey="key"
-                                      cssClass="form-control"/>
+                                      cssClass="form-control" required="true"/>
 
                 </div>
             </div>
@@ -1011,6 +1144,22 @@
             }
 
             $("#vendorIdHolder").val(vendorId);
+            // To get the vessel list of the vendor
+            $.getJSON('listVessel', {
+                vendorId: vendorId
+            },
+
+            function (jsonResponse) {
+
+                var vessel = $('#vesselList');
+
+                vessel.find('option').remove();
+
+                $.each(jsonResponse.vesselMap, function (key, value) {
+                    $('<option>').val(key).text(value).appendTo(vessel);
+                });
+
+            });
         });
     });
 

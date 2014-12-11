@@ -11,7 +11,6 @@ import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.service.UserService;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
-import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.log4j.Logger;
@@ -120,9 +119,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
         bacolodWeight = 0.00; // Loop of per order item weight total
         bacolodVolume = 0.F; // Loop of per order item volume total
 
-        for (Orders orderBacolod : bacolodOrders) {
+        /*for (Orders orderBacolod : bacolodOrders) {
 
-                /*lclTable.add(transformToOrderFormBean(orderDestination));*/
+                *//*lclTable.add(transformToOrderFormBean(orderDestination));*//*
 
             List<OrderItems> bacolodOrderItems = orderService.findAllItemByOrderId(orderBacolod.getOrderId());
 
@@ -133,9 +132,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------BACOLOD-------------------------------------------------*/
+            *//*-------------------------------------------BACOLOD-------------------------------------------------*//*
 
-            /*-------------------------------------------BUTUAN-------------------------------------------------*/
+            *//*-------------------------------------------BUTUAN-------------------------------------------------*//*
 
         List<Orders> butuanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "BUTUAN");
 
@@ -153,9 +152,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------BUTUAN-------------------------------------------------*/
+            *//*-------------------------------------------BUTUAN-------------------------------------------------*//*
 
-            /*-------------------------------------------CAGAYAN-------------------------------------------------*/
+            *//*-------------------------------------------CAGAYAN-------------------------------------------------*//*
 
         List<Orders> cagayanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "CAGAYAN");
 
@@ -173,9 +172,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------CAGAYAN-------------------------------------------------*/
+            *//*-------------------------------------------CAGAYAN-------------------------------------------------*//*
 
-            /*-------------------------------------------CEBU-------------------------------------------------*/
+            *//*-------------------------------------------CEBU-------------------------------------------------*//*
 
         List<Orders> cebuOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "CEBU");
 
@@ -193,9 +192,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------CEBU-------------------------------------------------*/
+            *//*-------------------------------------------CEBU-------------------------------------------------*//*
 
-            /*-------------------------------------------COTABATO-------------------------------------------------*/
+            *//*-------------------------------------------COTABATO-------------------------------------------------*//*
 
         List<Orders> cotabatoOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "COTABATO");
 
@@ -213,9 +212,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------COTABATO-------------------------------------------------*/
+            *//*-------------------------------------------COTABATO-------------------------------------------------*//*
 
-            /*-------------------------------------------DAVAO-------------------------------------------------*/
+            *//*-------------------------------------------DAVAO-------------------------------------------------*//*
 
         List<Orders> davaoOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "DAVAO");
 
@@ -232,9 +231,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
             }
 
         }
-            /*-------------------------------------------DAVAO-------------------------------------------------*/
+            *//*-------------------------------------------DAVAO-------------------------------------------------*//*
 
-            /*-------------------------------------------DUMAGUETE-------------------------------------------------*/
+            *//*-------------------------------------------DUMAGUETE-------------------------------------------------*//*
 
         List<Orders> dumagueteOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "DUMAGUETE");
 
@@ -252,9 +251,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------DUMAGUETE-------------------------------------------------*/
+            *//*-------------------------------------------DUMAGUETE-------------------------------------------------*//*
 
-            /*-------------------------------------------GENSAN-------------------------------------------------*/
+            *//*-------------------------------------------GENSAN-------------------------------------------------*//*
 
         List<Orders> gensanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "GEN. SANTOS");
 
@@ -272,9 +271,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------GENSAN-------------------------------------------------*/
+            *//*-------------------------------------------GENSAN-------------------------------------------------*//*
 
-            /*-------------------------------------------ILIGAN-------------------------------------------------*/
+            *//*-------------------------------------------ILIGAN-------------------------------------------------*//*
 
         List<Orders> iliganOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "ILIGAN");
 
@@ -292,9 +291,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------ILIGAN-------------------------------------------------*/
+            *//*-------------------------------------------ILIGAN-------------------------------------------------*//*
 
-            /*-------------------------------------------ILOILO-------------------------------------------------*/
+            *//*-------------------------------------------ILOILO-------------------------------------------------*//*
 
         List<Orders> iloiloOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "ILOILO");
 
@@ -312,9 +311,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------ILOILO-------------------------------------------------*/
+            *//*-------------------------------------------ILOILO-------------------------------------------------*//*
 
-            /*-------------------------------------------OZAMIS-------------------------------------------------*/
+            *//*-------------------------------------------OZAMIS-------------------------------------------------*//*
 
         List<Orders> ozamisOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "OZAMIS");
 
@@ -332,9 +331,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------OZAMIS-------------------------------------------------*/
+            *//*-------------------------------------------OZAMIS-------------------------------------------------*//*
 
-            /*-------------------------------------------PALAWAN-------------------------------------------------*/
+            *//*-------------------------------------------PALAWAN-------------------------------------------------*//*
 
         List<Orders> palawanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "PALAWAN");
 
@@ -352,9 +351,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------PALAWAN-------------------------------------------------*/
+            *//*-------------------------------------------PALAWAN-------------------------------------------------*//*
 
-            /*-------------------------------------------ROXAS-------------------------------------------------*/
+            *//*-------------------------------------------ROXAS-------------------------------------------------*//*
 
         List<Orders> roxasOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "ROXAS");
 
@@ -372,9 +371,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------ROXAS-------------------------------------------------*/
+            *//*-------------------------------------------ROXAS-------------------------------------------------*//*
 
-            /*-------------------------------------------TAGBILARAN-------------------------------------------------*/
+            *//*-------------------------------------------TAGBILARAN-------------------------------------------------*//*
 
         List<Orders> tagbilaranOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "TAGBILARAN");
 
@@ -392,9 +391,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------TAGBILARAN-------------------------------------------------*/
+            *//*-------------------------------------------TAGBILARAN-------------------------------------------------*//*
 
-            /*-------------------------------------------TACLOBAN-------------------------------------------------*/
+            *//*-------------------------------------------TACLOBAN-------------------------------------------------*//*
 
         List<Orders> taclobanOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "TACLOBAN");
 
@@ -412,9 +411,9 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
         }
 
-            /*-------------------------------------------TACLOBAN-------------------------------------------------*/
+            *//*-------------------------------------------TACLOBAN-------------------------------------------------*//*
 
-            /*-------------------------------------------ZAMBOANGA-------------------------------------------------*/
+            *//*-------------------------------------------ZAMBOANGA-------------------------------------------------*//*
 
         List<Orders> zamboangaOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL(originCity, "ZAMBOANGA");
 
@@ -430,7 +429,7 @@ public class DashboardAction extends ActionSupport implements SessionAware {
                 zamboangaVolume = zamboangaVolume + orderItemZamboanga.getVolume();
             }
 
-        }
+        }*/
 
             /*-------------------------------------------ZAMBOANGA-------------------------------------------------*/
 

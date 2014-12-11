@@ -32,8 +32,6 @@
 
                 <div class="panel panel-info ">
 
-                    <br/>
-
                     <table class="table leftAlign table-user-information">
                         <th style="font-size: 20px; border-top: none; width: 300px;">
                             Booking Number
@@ -148,6 +146,8 @@
 
                         <th style="font-size: 20px; border-top: none; width: 300px;">Consignee Information</th>
 
+                        <tbody>
+
                         <tr>
                             <td style="color: gray !important;">Consignee Name</td>
                             <td><s:property value="order.consigneeInfoContact.name"/></td>
@@ -180,6 +180,7 @@
                             <td style="color: gray !important;">Delivery Address</td>
                             <td><s:property value="order.consigneeInfoAddress.address"/></td>
                         </tr>
+
                         </tbody>
 
                     </table>
@@ -248,7 +249,7 @@
 
         <div class="pull-right">
             <button type="button" id="Cancel" class="btn" onclick="location.href='viewSeaFreightList'">
-                Back to Freight Plan
+                Back to Freight Plan : Orders
             </button>
         </div>
 
@@ -256,6 +257,5 @@
 
 </div>
 
-<!-- /.row -->
 
 

@@ -152,7 +152,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String customerAction() {
-        System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu " + customerID);
+
         if(customerID != null) {
             List<Contacts> shipperContacts = customerService.findContactByRefIdAndType("shipper", customerID);
 
@@ -177,8 +177,6 @@ public class OrderAction extends ActionSupport implements Preparable {
             for (int i = 0; i < consigneeAddresses.size(); i++) {
                 consigneeAddressMap.put(consigneeAddresses.get(i).getAddressId(), consigneeAddresses.get(i).getAddressLine1() + ' ' + consigneeAddresses.get(i).getAddressLine2() + ' ' + consigneeAddresses.get(i).getCity());
             }
-//            Address consigneeAddresses = customerService.findAddressByParameterMap(customerID, "CONSIGNEE", getClientId(), shipperConsignee.get(0).getContactId());
-//            consigneeAddressMap.put(consigneeAddresses.getAddressId(), consigneeAddresses.getAddressLine1() + ' ' + consigneeAddresses.getAddressLine2() + ' ' + consigneeAddresses.getCity());
 
             Customer customerContactInfo = customerService.findCustomerById(customerID);
 
