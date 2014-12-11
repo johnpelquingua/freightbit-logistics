@@ -5,15 +5,15 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-primary">
+        <div class="panel panel-primary" style="margin-bottom: 0px;">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-pencil"></i> Search </h3>
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Search Vendor </h3>
             </div>
             <div class="panel-body">
-                <div class="well">
+                <div class="well" style="margin-top: 10px;">
                 <s:form cssClass="form-horizontal" action="viewVendors" theme="bootstrap">
                 <div class="form-group">
-                    <label for="vendor.vendorSearchCriteria" class="col-sm-2 control-label" style="padding-top:0px;">Search By</label>
+                    <label for="vendor.vendorSearchCriteria" class="col-sm-2 control-label" style="padding-top:0px;">Search by</label>
 
                     <div class="col-sm-10">
                         <s:select emptyOption="true" id="vendor.vendorSearchCriteria"
@@ -31,11 +31,11 @@
                                      id="vendor.vendorKeyword"/>
                     </div>
                 </div>
-                    <div class=" pull-right">
+                    <div class="pull-right">
                         <button type="button" class="btn" onclick="location.href='viewVendors'">
                             Cancel
                         </button>
-                        <s:submit cssClass="btn btn-primary pull-right" name="submit" value="Search"/>
+                        <s:submit cssClass="btn btn-primary" name="submit" value="Search"/>
                     </div>
                 </div>
             </div>

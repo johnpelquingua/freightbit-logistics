@@ -13,15 +13,15 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-primary">
+        <div class="panel panel-primary" style="margin-bottom: 0px;">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-pencil"></i> Search </h3>
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Search Container </h3>
             </div>
             <div class="panel-body">
-                <div class="well">
+                <div class="well" style="margin-top: 10px;">
                 <s:form action="viewConsolidationContainerList" theme="bootstrap" cssClass="form-horizontal" >
                 <div class="form-group">
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Search By</label>
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Search by</label>
                     <div class="col-lg-10">
                         <s:select emptyOption="true" id="container.containerSearchCriteria"
                                   value="container.containerSearchCriteria"

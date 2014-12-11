@@ -85,7 +85,7 @@
             <%--<div class="modal-header">
                 <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
             </div>--%>
-            <div class="modal-body">
+            <div class="modal-body" style="padding: 0px;">
                 <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
             <%--<div class="modal-footer">

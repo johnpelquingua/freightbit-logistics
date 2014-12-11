@@ -182,7 +182,7 @@
             <%--<div class="modal-header">
                 <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
             </div>--%>
-            <div class="modal-body">
+            <div class="modal-body" style="padding: 0px;">
                 <div id="inputDiv1"> <%--Area where input fields will appear--%> </div>
             </div>
             <%--<div class="modal-footer">
@@ -197,17 +197,17 @@
     $(document).ready(function() {
         tableProp('NONE', 'order', 8, 5, 6, 7);
 
-        <%--var tbl = document.getElementById("order");--%>
+        var tbl = document.getElementById("order");
         <%--var ctr = <s:property value="%{Booking}"/>;--%>
 
-        <%--if (tbl != null) {--%>
-            <%--for (var i =1; i <= ctr; i++) {--%>
-                <%--for (var j = 0; j < tbl.rows[i].cells.length; j++) {--%>
-                    <%--tbl.rows[i].cells[j].style.backgroundColor=("#dff0d8") ;--%>
+        if (tbl != null) {
+            for (var i =1; i <= ctr; i++) {
+                for (var j = 0; j < tbl.rows[i].cells.length; j++) {
+                    tbl.rows[i].cells[j].style.backgroundColor=("#dff0d8") ;
 
-                <%--}--%>
-            <%--}--%>
-        <%--}--%>
+                }
+            }
+        }
     });
 
     function generateReport(documentId,documentName) {
