@@ -30,7 +30,9 @@
                         <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="Keyword"
                                          name="container.containerKeyword"
-                                         id="container.containerKeyword"/>
+                                         id="container.containerKeyword"
+                                         maxlength="20"
+                                    />
                         </div>
                     </div>
                         <div class="pull-right">
