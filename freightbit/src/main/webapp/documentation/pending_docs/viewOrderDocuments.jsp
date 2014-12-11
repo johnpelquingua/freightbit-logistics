@@ -44,9 +44,6 @@
 
     });
 
-
-
-
 </script>
 
 <style>
@@ -59,7 +56,6 @@
     }
 </style>
 
-
 <div class="row">
     <div class="col-lg-12">
 
@@ -68,6 +64,7 @@
                <h1><i class="fa fa-file-text"></i> Documents Module </h1>
             </span>
         </legend>
+
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"><a href="<s:url action='../documentation/viewPendingDocuments' />"> Pending Documents List</a></li>
@@ -1457,7 +1454,6 @@ $( window ).load(function() {
 /*Script that will trigger input area*/
 
 function showInputFields(referenceId,documentId) {
-
     $.ajax({
         url: 'getInputFieldAction',
         type: 'POST',
@@ -1471,7 +1467,6 @@ function showInputFields(referenceId,documentId) {
             alert('An error occurred! ' + thrownError);
         }
     });
-
 }
 
 function generateReport(documentId,documentName) {

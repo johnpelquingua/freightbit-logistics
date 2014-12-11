@@ -107,7 +107,7 @@
         <!--<result name="PLANNING 2" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
         <!--</action>-->
 
-            <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
+        <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
             <result name="PLANNING 1" type="tiles">operations.seaFreightPlanning.tiles</result>
             <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
@@ -523,7 +523,16 @@
         </action>
 
         <action name="deleteDocument" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="deleteDocument">
-            <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
+            <!--<result name="success" type="tiles">operations.seaFreightItemList.tiles</result>-->
+            <result name="success" type="redirect">viewDocumentList</result>
+        </action>
+        <!--Documents input modal-->
+        <action name="getInputFieldAction" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="orderDocumentsInput">
+            <result name="success">/operations/orderDocumentsInput.jsp</result>
+        </action>
+
+        <action name="addReferenceNumber" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addReferenceNumber">
+            <result name="success" type="redirect">viewDocumentList</result>
         </action>
 
         <!--DOCUMENTS PAGE-->

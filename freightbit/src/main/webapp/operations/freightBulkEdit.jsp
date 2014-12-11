@@ -1934,7 +1934,7 @@
                 });
 
                 var truckCode = $("#trucksListDestination").val();
-                alert(truckCode);
+
                 $.getJSON('truckDetails', {
                     truckCodeParam: truckCode
                 },
@@ -2030,7 +2030,6 @@
 
                 if (testStartDate > testEndDate)
                     pickup.datepicker('setDate', testEndDate);
-
             }
 
             else {

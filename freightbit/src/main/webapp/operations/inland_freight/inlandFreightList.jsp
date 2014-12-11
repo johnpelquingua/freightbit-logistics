@@ -152,7 +152,8 @@
                                         <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
-                                        <td><display:column title="Action">
+                                        <%--<td>
+                                            <display:column title="Action">
                                             <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
                                                 <s:param name="orderIdParam"
                                                          value="#attr.order.orderId"></s:param>
@@ -170,7 +171,8 @@
                                             <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
                                                 <i class="fa fa-info-circle"></i>
                                             </s:a>
-                                        </display:column></td>
+                                            </display:column>
+                                        </td>--%>
 
                                     </display:table>
                                 </div>

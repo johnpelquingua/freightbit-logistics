@@ -1296,17 +1296,18 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setDeclaredValue(formBean.getDeclaredValue());
         entity.setWeight(formBean.getWeight());
         // Condition in FCL and LCL
-        if (sessionAttributes.get("service_Req").equals("FULL CONTAINER LOAD")) {
-            entity.setNameSize(formBean.getNameSize());
-            entity.setServiceRequirement("FULL CONTAINER LOAD");
-        } else {
-            /*Integer nameId = Integer.parseInt(formBean.getNameSize());
-            Items itemEntity = customerService.findItemByCustomerItemsId(nameId);
-            entity.setNameSize(itemEntity.getItemName());*/
-            entity.setNameSize(formBean.getNameSize());
-            entity.setServiceRequirement("LESS CONTAINER LOAD");
-        }
 
+        /*if (sessionAttributes.get("service_Req").equals("FULL CONTAINER LOAD")) {
+            entity.setNameSize(formBean.getNameSize());
+        } else {
+            *//*Integer nameId = Integer.parseInt(formBean.getNameSize());
+            Items itemEntity = customerService.findItemByCustomerItemsId(nameId);
+            entity.setNameSize(itemEntity.getItemName());*//*
+            entity.setNameSize(formBean.getNameSize());
+        }*/
+
+        entity.setNameSize(formBean.getNameSize());
+        entity.setServiceRequirement(orderService.findOrdersById((Integer) sessionAttributes.get("orderIdPass")).getServiceRequirement());
         entity.setRate(formBean.getRate());
         entity.setComments(formBean.getRemarks());
         // Trucking Freight Types will proceed to inland freight operations

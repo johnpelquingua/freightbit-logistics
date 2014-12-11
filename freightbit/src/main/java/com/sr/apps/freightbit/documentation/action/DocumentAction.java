@@ -2416,7 +2416,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             entity.setDocumentId(new Integer(formBean.getDocumentId()));
         }
 
-        Documents subEntity = documentsService.findDocumentById(formBean.getDocumentId());
+        /*Documents subEntity = documentsService.findDocumentById(formBean.getDocumentId());*/
 
         entity.setReferenceNumber(formBean.getReferenceNumber());
         entity.setCreatedDate(new Date());

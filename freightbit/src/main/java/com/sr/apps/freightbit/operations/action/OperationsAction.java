@@ -108,6 +108,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OperationsBean operationsBean = new OperationsBean();
+    private DocumentsBean document = new DocumentsBean();
     private OrderBean order = new OrderBean();
     private ContactBean contact = new ContactBean();
     private AddressBean address = new AddressBean();
@@ -280,7 +281,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             entity.setDriverId(driverBean.getDriverId());
         }
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
+        /*Map sessionAttributes = ActionContext.getContext().getSession();*/
         entity.setVendorId(driverBean.getVendorId());
 
         entity.setLicenseNumber(driverBean.getLicenseNumber());
@@ -656,7 +657,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         sessionAttributes.put("vendorIdParam", vendorIdParam);
 
-        Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
+        /*Integer orderId = (Integer) sessionAttributes.get("orderIdParam");*/
 
         return SUCCESS;
     }
@@ -677,8 +678,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         sessionAttributes.put("vendorIdParam", vendorIdParam);
-
-        /*Integer orderId = (Integer) sessionAttributes.get("orderIdParam");*/
 
         return SUCCESS;
     }
@@ -1594,14 +1593,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String checkOrderConsolidate() {
+    /*public String checkOrderConsolidate() {
 
         for (int i = 0; i < check.length; i++ ){
             System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+(check[i]));
         }
 
         return SUCCESS;
-    }
+    }*/
 
     public String viewFreightItemList() {
 
@@ -1948,7 +1947,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         String vendorSea = sessionAttributes.get("vendorSea").toString();
         String modeOfService = sessionAttributes.get("modeOfService").toString();
         String freightType = sessionAttributes.get("freightType").toString();
-
         entity.setOrderItemId(orderItemId);
         entity.setClientId(clientId);
         entity.setNameSize(nameSize);
@@ -2052,7 +2050,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setModifiedTimestamp(formBean.getModifiedTimestamp());
         entity.setWeight(formBean.getWeight());
         entity.setStatus("ON GOING");
-
         entity.setVendorOrigin(formBean.getVendorOrigin());
         entity.setFinalPickupDate(formBean.getPickupDate());
         entity.setDriverOrigin(formBean.getDriverOrigin());
@@ -2210,7 +2207,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         if(documentList != null){
             formBean.setDocumentCheck("AVAILABLE");
-                /*formBean.setDocumentId(documentList.get(0).getDocumentId());*/
             for(Documents documentElem : documentList ){
                 formBean.setDocumentId(documentElem.getDocumentId());
             }
@@ -2228,9 +2224,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if(formBean.getContainerId() != null) {
             entity.setContainerId(new Integer(formBean.getContainerId()));
         }
-
-        /*System.out.println(entity.getEirType());
-        System.out.println(entity.getContainerStatus());*/
 
         entity.setEirType(formBean.getEirType());
         entity.setEirNumber(formBean.getEirNumber());
@@ -2289,12 +2282,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         return SUCCESS;
-
-        /*Container containerEntity = transformContainerToEntityBean(container);
-        containerService.updateContainer(containerEntity);
-        addActionMessage("Success! New Form has been edited.");
-        return SUCCESS;*/
-
     }
 
     public String loadSuccessEditContainer() {
@@ -2314,10 +2301,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Container containerEntity  = transformContainerToEntityBean(container);
         containerEntity.setContainerStatus("GATE OUT");
         containerService.updateContainer(containerEntity);
-        /*containerService.findContainerById(containerIdParam);
-        container = transformContainerToFormBean(containerEntity);
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        sessionAttributes.put("containerId", container.getContainerId());*/
         return SUCCESS;
     }
 
@@ -2341,19 +2324,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     }
 
-    public String loadSearchFormPage() {
-        return SUCCESS;
-    }
-
     public String loadEditFormPage() {
         Container containerEntity = containerService.findContainerById(containerIdParam);
         container = transformContainerToFormBean(containerEntity);
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("containerId", container.getContainerId());
-        return SUCCESS;
-    }
-
-    public String loadPrintFormPage() {
         return SUCCESS;
     }
 
@@ -2366,26 +2341,164 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-
 //    -----------------CONSOLIDATION MODULE-------------------------
 
 //    -----------------DOCUMENTS PAGE-------------------------
 
+    public String orderDocumentsInput() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        if(orderIdParam == null){
+            orderIdParam = (Integer)sessionAttributes.get("orderIdParam");
+        }
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
+
+        // Reference number will be added to this document ID
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        document = transformDocumentsToFormBean(documentEntity);
+
+        return SUCCESS;
+    }
+
+    public String addReferenceNumber() {
+
+        Documents documentsEntity = transformToDocumentEntityBean(document);
+
+        documentsService.updateDocument(documentsEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", documentsEntity.getReferenceId());
+
+        return SUCCESS;
+    }
+
     public String viewDocumentList() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        // Order ID param pass value
+        if (orderIdParam == null) {
+            orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
+        }
+
         List<Documents> documentsList = new ArrayList<Documents>();
 
         documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
-        /*documentsList = documentsService.findOperationDocumentsByOrderId(orderIdParam);*/
 
         for (Documents documentElem : documentsList) {
-            System.out.println("gggggggggggggggggggggggggggggggggggggggggggggggggggggg " + documentElem.getDocumentName() );
-            /*documents.add(transformDocumentToFormBean(documentElem));*/
             if(documentElem.getDocumentName().equals("PROFORMA BILL OF LADING") || documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ){
-                documents.add(transformDocumentToFormBean(documentElem));
+                documents.add(transformDocumentsToFormBean(documentElem));
             }
         }
 
         return SUCCESS;
+    }
+
+    private Documents transformToDocumentEntityBean(DocumentsBean formBean) {
+
+        Documents entity = new Documents();
+
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
+
+        if(formBean.getDocumentId() != null) {
+            entity.setDocumentId(new Integer(formBean.getDocumentId()));
+        }
+
+        Documents subEntity = documentsService.findDocumentById(formBean.getDocumentId());
+
+        entity.setReferenceNumber(formBean.getReferenceNumber());
+        entity.setCreatedDate(new Date());
+        entity.setDocumentName(formBean.getDocumentName());
+        entity.setOutboundStage(formBean.getOutboundStage());
+        entity.setInboundStage(formBean.getInboundStage());
+        entity.setFinalOutboundStage(formBean.getFinalOutboundStage());
+        entity.setFinalInboundStage(formBean.getFinalInboundStage());
+        entity.setCompleteStage(formBean.getCompleteStage());
+        entity.setArchiveStage(formBean.getArchiveStage());
+        entity.setReferenceId(formBean.getReferenceId());
+        entity.setReferenceTable(formBean.getReferenceTable());
+        entity.setOrderNumber(formBean.getOrderNumber());
+        entity.setDocumentStatus("DOCUMENT UPDATED!");
+        entity.setDocumentProcessed(formBean.getDocumentProcessed());
+        entity.setCreatedBy(formBean.getCreatedBy());
+        entity.setOrderItemId(formBean.getOrderItemId());
+        entity.setInboundReturned(formBean.getInboundReturned());
+        entity.setDocumentComments(formBean.getDocumentComments());
+        entity.setAging(formBean.getAging());
+
+        return entity;
+    }
+
+    public DocumentsBean transformDocumentsToFormBean(Documents entity) {
+        DocumentsBean formBean = new DocumentsBean();
+
+        formBean.setDocumentId(entity.getDocumentId());
+        formBean.setDocumentName(entity.getDocumentName());
+        formBean.setReferenceTable(entity.getReferenceTable());
+        formBean.setOrderNumber(entity.getOrderNumber());
+        formBean.setDocumentStatus(entity.getDocumentStatus());
+        formBean.setDocumentProcessed(entity.getDocumentProcessed());
+        formBean.setReferenceNumber(entity.getReferenceNumber());
+        formBean.setOutboundStage(entity.getOutboundStage());
+        formBean.setInboundStage(entity.getInboundStage());
+        formBean.setFinalOutboundStage(entity.getFinalOutboundStage());
+        formBean.setFinalInboundStage(entity.getFinalInboundStage());
+        formBean.setArchiveStage(entity.getArchiveStage());
+        formBean.setReferenceId(entity.getReferenceId());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setInboundReturned(entity.getInboundReturned());
+        formBean.setOrderItemId(entity.getOrderItemId());
+        formBean.setDocumentComments(entity.getDocumentComments());
+        formBean.setInboundReturned(entity.getInboundReturned());
+        formBean.setDocumentComments(entity.getDocumentComments());
+        formBean.setOrderItemId(entity.getOrderItemId());
+        formBean.setAging(entity.getAging());
+        formBean.setCreatedDate(entity.getCreatedDate());
+
+        Integer orderItemIdPass; // Variable to store Order Item ID
+        // Condition if order item id if null or not
+        if(entity.getOrderItemId() != null){
+            orderItemIdPass = entity.getOrderItemId();
+        }else{
+            orderItemIdPass = 0;
+        }
+
+        OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemIdPass);
+
+        // Per document the table will show appropriate data based on document name.
+        if(entity.getDocumentName().equals("PROFORMA BILL OF LADING") || entity.getDocumentName().equals("MASTER BILL OF LADING")){
+            // Vendor Code for Vessel Company will show based from voyage number information
+
+            // Search all order Items with the same order id
+            List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
+
+            for (OrderItems orderItemElem : orderItemsEntity) {
+                Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorSea());
+                formBean.setVendorCode(vendorEntity.getVendorName());
+            }
+
+        }else if (entity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
+            List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
+
+            for (OrderItems orderItemElem : orderItemsEntity) {
+                Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorOrigin());
+                formBean.setVendorCode(vendorEntity.getVendorName());
+            }
+
+        }else if (entity.getDocumentName().equals("SALES INVOICE")){
+            Orders orderEntity = orderService.findOrdersById(entity.getReferenceId());
+            Customer customerEntity = customerService.findCustomerById(orderEntity.getCustomerId());
+            formBean.setVendorCode("CUSTOMER: " + customerEntity.getCustomerName());
+
+        }else{
+            formBean.setVendorCode("Ernest Logistics Corp.");
+        }
+
+        return formBean;
     }
 
     public String createdDocumentsSea() {
@@ -2565,8 +2678,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 if (waybillDestination.size() == 0) {
                     Documents documentEntity = new Documents();
 
-                /*Client client = clientService.findClientById(getClientId().toString());
-                documentEntity.setClient(client);*/
                     Client client = clientService.findClientById(getClientId().toString());
                     documentEntity.setClient(client);
 
@@ -2615,8 +2726,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-
-
     public String deleteDocument() {
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         documentsService.deleteDocument(documentEntity);
@@ -2626,26 +2735,16 @@ public class OperationsAction extends ActionSupport implements Preparable {
         documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
 
         for (Documents documentElem : documentsList) {
-            documents.add(transformDocumentToFormBean(documentElem));
+            documents.add(transformDocumentsToFormBean(documentElem));
         }
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", orderIdParam);
+
         return SUCCESS;
     }
 
-    public DocumentsBean transformDocumentToFormBean(Documents entity) {
-        DocumentsBean formBean = new DocumentsBean();
-
-        formBean.setDocumentName(entity.getDocumentName());
-        formBean.setReferenceNumber(entity.getReferenceNumber());
-        formBean.setVendorCode(entity.getVendorCode());
-        formBean.setDocumentStatus(entity.getDocumentStatus());
-        formBean.setCreatedDate(entity.getCreatedDate());
-        formBean.setDocumentId(entity.getDocumentId());
-
-        return formBean;
-        }
-
 //    -----------------DOCUMENTS PAGE-------------------------
-
 
     private String getFullName(String lastName, String firstName, String middleName) {
         StringBuilder fullName = new StringBuilder("");
@@ -2737,17 +2836,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         clearErrorsAndMessages();
         addActionMessage("Success! Container has been added.");
 
-        return SUCCESS;
-    }
-
-    public String truckingAction() {
-        /*if (vendorId != null) {
-            List<Trucks> truckPlateNumber = trucksService.findTrucksByPlateNumber("AAA-999", vendorId);
-
-            for (int i = 0; i < truckPlateNumber.size(); i++) {
-                truckingPlateNumberMap.put(truckPlateNumber.get(i).getPlateNumber(), truckPlateNumber.get(i).getVendorId());
-            }
-        }*/
         return SUCCESS;
     }
 
@@ -3385,5 +3473,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setNameSizeList(List<String> nameSizeList) {
         this.nameSizeList = nameSizeList;
+    }
+
+    public DocumentsBean getDocument() {
+        return document;
+    }
+
+    public void setDocument(DocumentsBean document) {
+        this.document = document;
     }
 }

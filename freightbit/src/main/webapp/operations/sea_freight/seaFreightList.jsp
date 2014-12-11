@@ -133,12 +133,12 @@
                                            class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
-                                <td>
+                                <%--<td>
                                     <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
                                         <s:checkbox theme="simple" name="check"
                                                     fieldValue="%{#attr.order.orderId}"/>
                                     </display:column>
-                                </td>
+                                </td>--%>
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
@@ -158,7 +158,8 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="orderVolume" title="Volume  <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column title="Action">
+                                <%--<td>
+                                    <display:column title="Action">
                                     <s:if test="#attr.order.orderStatus=='PENDING'">
                                         <i class="fa fa-ban"></i>
                                     </s:if>
@@ -178,7 +179,8 @@
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
                                     </s:else>
-                                </display:column></td>
+                                    </display:column>
+                                </td>--%>
 
                             </display:table>
                             <div class="col-md-6 pull-right well wellDiv" style="display: none;">

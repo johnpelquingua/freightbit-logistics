@@ -68,22 +68,27 @@
 
                         <td><display:column property="createdDate" title="Date <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
+
                         <td>
-                                <display:column title="Action" class="tb-font-black" style="text-align: center;" >
-                                    <s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">
-                                        <i class="fa fa-ban"></i>
-                                        <s:url var="deleteDocumentUrl" action="deleteDocument">
-                                            <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
-                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                            <i class="fa fa-trash-o"></i>
-                                        </s:a>
-                                    </s:if>
-                                    <s:elseif test="#attr.document.documentName=='BOOKING REQUEST FORM'">
-                                        <i class="fa fa-ban"></i>
-                                    </s:elseif>
-                                    <s:else>
+                            <display:column title="Action" class="tb-font-black" style="text-align: center;">
+
+                                <s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">
+                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <s:url var="deleteDocumentUrl" action="deleteDocument">
+                                        <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
+                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
+                                        <i class="fa fa-trash-o"></i>
+                                    </s:a>
+                                </s:if>
+
+                                <s:else>
+                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
                                     <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                         <i class="fa fa-print"></i>
                                         <s:url var="deleteDocumentUrl" action="deleteDocument">
@@ -94,16 +99,47 @@
                                             <i class="fa fa-trash-o"></i>
                                         </s:a>
                                     </a>
-                                    </s:else>
-                                </display:column></td>
+                                </s:else>
+
+                            </display:column>
+                        </td>
                     </display:table>
                 </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--Modal window for input--%>
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+    /*Script that will trigger input area*/
+
+    function showInputFields(referenceId,documentId) {
+        $.ajax({
+            url: 'getInputFieldAction',
+            type: 'POST',
+            data: { orderIdParam: referenceId , documentIdParam: documentId },
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+    }
+
     function generateReport(documentId,documentName) {
         if (documentName == "BOOKING REQUEST FORM") {
             var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
