@@ -80,7 +80,9 @@
                         <div class="col-sm-10">
                             <s:textfield cssClass="form-control" placeholder="Keyword"
                                          name="vesselSchedule.vesselScheduleKeyword"
-                                         id="vesselSchedule.vesselScheduleKeyword"/>
+                                         id="vesselSchedule.vesselScheduleKeyword"
+                                        maxlength="20"
+                                    />
                         </div>
                     </div>
                     <div class="pull-right">
