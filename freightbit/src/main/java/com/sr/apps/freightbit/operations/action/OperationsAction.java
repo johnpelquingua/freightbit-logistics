@@ -951,7 +951,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // To display vessel schedule info
 
         // if Vessel Schedule Id is null and populates field with none value
-        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty()){
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE") ){
             orderItem.setVendorSea("NONE");
             orderItem.setVesselScheduleId("NONE");
             vesselSchedule.setVesselName("NONE");
@@ -1021,7 +1021,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 
         // if Vessel Schedule Id is null and populates field with none value
-        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty()){
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE")){
             orderItem.setVendorSea("NONE");
             orderItem.setVesselScheduleId("NONE");
             vesselSchedule.setVesselName("NONE");
@@ -1081,7 +1081,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 
         // if Vessel Schedule Id is null and populates field with none value
-        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty()){
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE") ){
             orderItem.setVendorSea("NONE");
             orderItem.setVesselScheduleId("NONE");
             vesselSchedule.setVesselName("NONE");
@@ -1141,7 +1141,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 
         // if Vessel Schedule Id is null and populates field with none value
-        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty()){
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE")){
             orderItem.setVendorSea("NONE");
             orderItem.setVesselScheduleId("NONE");
             vesselSchedule.setVesselName("NONE");
@@ -1198,7 +1198,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         order = transformToOrderFormBean(orderEntity);
 
         // if Vessel Schedule Id is null and populates field with none value
-        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty()){
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE")){
             orderItem.setVendorSea("NONE");
             orderItem.setVesselScheduleId("NONE");
             vesselSchedule.setVesselName("NONE");
@@ -1246,9 +1246,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 
-        if ("PLANNING 1".equals(entity.getStatus())) {
+        if ("PLANNING 1".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 1")) {
             return "PLANNING 1";
-        } else if ("PLANNING 2".equals(entity.getStatus())) {
+        } else if ("PLANNING 2".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 2")) {
             return "PLANNING 2";
         } else {
             return "PLANNING 3";
@@ -1593,15 +1593,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    /*public String checkOrderConsolidate() {
-
-        for (int i = 0; i < check.length; i++ ){
-            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+(check[i]));
-        }
-
-        return SUCCESS;
-    }*/
-
     public String viewFreightItemList() {
 
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
@@ -1799,11 +1790,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         formBean.setOrderStatus(entity.getOrderStatus());
         formBean.setFreightType(entity.getServiceType());
-        formBean.setOriginationPort(entity.getOriginationPort());
+        if(entity.getOriginationPort() != null){
+            formBean.setOriginationPort(entity.getOriginationPort());
+        }else{
+            formBean.setOriginationPort("NONE");
+        }
+        /*formBean.setOriginationPort(entity.getOriginationPort());*/
         formBean.setModeOfPayment(entity.getPaymentMode());
         formBean.setNotifyBy(entity.getNotificationType());
         formBean.setOrderDate(entity.getOrderDate());
-        formBean.setDestinationPort(entity.getDestinationPort());
+        /*formBean.setDestinationPort(entity.getDestinationPort());*/
+        if(entity.getDestinationPort() != null){
+            formBean.setDestinationPort(entity.getDestinationPort());
+        }else{
+            formBean.setDestinationPort("NONE");
+        }
         formBean.setRates(entity.getRates());
         formBean.setComments(entity.getComments());
         formBean.setPickupDate(entity.getPickupDate());
@@ -1904,14 +1905,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }else if(orderCheck.getServiceMode().equals("PIER TO PIER")){
             formBean.setVendorOrigin("N/A");
             formBean.setVendorDestination("N/A");
+        }else if(orderCheck.getServiceType().equals("TRUCKING")){
+            formBean.setVendorOrigin(entity.getVendorOrigin());
+            formBean.setVendorDestination("N/A");
         }else{
             formBean.setVendorOrigin(entity.getVendorOrigin());
             formBean.setVendorDestination(entity.getVendorDestination());
         }
 
-        if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId())) {
-            formBean.setVesselScheduleId("");
-            formBean.setVesselName("");
+        if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId()) || "NONE".equals(entity.getVesselScheduleId())) {
+            formBean.setVesselScheduleId("NONE");
+            formBean.setVesselName("NONE");
         } else {
             formBean.setVesselScheduleId(entity.getVesselScheduleId());
             // Clarence set vessel schedule ID as voyage Number too confusing...
@@ -2073,7 +2077,16 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public VesselScheduleBean transformToFormBeanVesselSchedule(VesselSchedules entity) {
 
         VesselScheduleBean formBean = new VesselScheduleBean();
-        formBean.setVesselScheduleId(entity.getVesselScheduleId());
+        /*formBean.setVesselScheduleId(entity.getVesselScheduleId());*/
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + entity.getVesselScheduleId());
+        if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId()) || "NONE".equals(entity.getVesselScheduleId())) {
+            /*formBean.setVesselScheduleId("NONE");*/
+            formBean.setVesselName("NONE");
+        } else {
+            formBean.setVesselScheduleId(entity.getVesselScheduleId());
+            // Clarence set vessel schedule ID as voyage Number too confusing...
+            /*formBean.setVesselName(vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(entity.getVesselScheduleId()).getVesselName());*/
+        }
         formBean.setVendorId(entity.getVendorId());
         formBean.setOriginPort(entity.getOriginPort());
         formBean.setDestinationPort(entity.getDestinationPort());

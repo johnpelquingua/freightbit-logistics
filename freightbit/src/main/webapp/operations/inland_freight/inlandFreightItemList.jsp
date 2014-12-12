@@ -268,7 +268,7 @@
 
                 <div class="table-responsive">
                     <div class="col-lg-12">
-                        <%--<span class="pull-left">--%>
+
                         <table class="col-lg-12" >
                             <tr>
                                 <td><label>LEGEND:</label></td>
@@ -278,43 +278,42 @@
                             </tr>
                         </table>
                     </div>
-                    <%--</span>--%>
+
                 </div>
             </div>
         </div>
         <div class="pull-right">
+
             <s:url var="createdDocumentOriginUrl" action="createdDocumentOrigin">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId"></s:param>
-
             </s:url>
             <s:a cssClass="btn btn-primary" href="%{createdDocumentOriginUrl}" rel="tooltip"
                  title="Create Documents">
                 Create House WayBill Origin
             </s:a>
 
-            <s:url var="createdDocumentDestinationUrl" action="createdDocumentDestination">
-                <s:param name="orderIdParam"
-                         value="#attr.order.orderId"></s:param>
-
-            </s:url>
-            <s:a cssClass="btn btn-primary" href="%{createdDocumentDestinationUrl}" rel="tooltip"
-                 title="Create Documents">
-                Create House Waybill Destination
-            </s:a>
-
-
+            <s:if test="%{#attr.orderItem.serviceType}!='TRUCKING'">
+                <s:url var="createdDocumentDestinationUrl" action="createdDocumentDestination">
+                    <s:param name="orderIdParam"
+                             value="#attr.order.orderId"></s:param>
+                </s:url>
+                <s:a cssClass="btn btn-primary" href="%{createdDocumentDestinationUrl}" rel="tooltip"
+                     title="Create Documents">
+                    Create House Waybill Destination
+                </s:a>
+            </s:if>
 
             <s:url var="viewDocumentListUrl" action="viewDocumentList">
                 <s:param name="orderIdParam"
                          value="%{orderIdParam}">
                 </s:param>
-
             </s:url>
             <s:a cssClass="btn btn-default" href="%{viewDocumentListUrl}" rel="tooltip"
                  title="Go to Documents Page">
                 Go to Documents page
             </s:a>
+
         </div>
     </div>
 </div>

@@ -1311,10 +1311,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setRate(formBean.getRate());
         entity.setComments(formBean.getRemarks());
         // Trucking Freight Types will proceed to inland freight operations
-        if (sessionAttributes.get("f_Type").equals("TRUCKING") && sessionAttributes.get("service_Mode").equals("PICKUP")) {
+        if (sessionAttributes.get("f_Type").equals("TRUCKING")) {
             entity.setStatus("PLANNING 2");
-        } else if (sessionAttributes.get("f_Type").equals("TRUCKING") && sessionAttributes.get("service_Mode").equals("DELIVERY")) {
-            entity.setStatus("PLANNING 3");
         } else {
             entity.setStatus("PLANNING 1");
         }

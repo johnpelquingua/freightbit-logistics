@@ -72,6 +72,7 @@
 
                         <td><display:column property="arrivalDate" title="Arrival <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
+
                         <td class="tb-font-black" style="text-align: center;">
                             <display:column title="Actions">
 

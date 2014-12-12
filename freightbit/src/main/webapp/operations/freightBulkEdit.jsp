@@ -1052,7 +1052,7 @@
         </s:if>
 
         <s:if test="order.freightType=='TRUCKING'">
-            <s:if test="order.modeOfService=='PICKUP'">
+            <%--<s:if test="order.modeOfService=='PICKUP'">--%>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-truck"></i>
@@ -1139,7 +1139,7 @@
                                 </div>
                             </div>
 
-                            <%--<div class="form-group">
+                            <div class="form-group">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
 
                                 <div class="col-lg-8">
@@ -1197,7 +1197,7 @@
                                     </div>
                                 </div>
 
-                            </div>--%>
+                            </div>
 
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
@@ -1211,10 +1211,10 @@
                         </s:form>
                     </div>
                 </div>
-            </s:if>
+            <%--</s:if>--%>
         </s:if>
 
-        <s:if test="order.freightType=='TRUCKING'">
+        <%--<s:if test="order.freightType=='TRUCKING'">
             <s:if test="order.modeOfService=='DELIVERY'">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -1316,7 +1316,7 @@
                     </div>
                 </div>
             </s:if>
-        </s:if>
+        </s:if>--%>
 
     </div>
 </div>
