@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <label for="vesselSchedule.voyageNumber" class="col-lg-2 control-label" style="padding-top:0px;">Voyage Number<span class="asterisk_red"></span></label>
                     <div class="col-lg-9">
-                        <s:textfield cssClass="form-control vesselInput" name="vesselSchedule.voyageNumber" maxlength="10"/>
+                        <s:textfield placeholder="Numeric input only e.g. 0-9" cssClass="inputNumbersOnly form-control vesselInput" name="vesselSchedule.voyageNumber" maxlength="10"/>
                     </div>
                 </div>
 
@@ -155,6 +155,7 @@
 
 
 <script type="text/javascript">
+
     var departureDate = $('#departureDate');
     var arrivalDate = $('#arrivalDate');
     // departure date

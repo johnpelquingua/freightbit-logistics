@@ -88,6 +88,7 @@
 
 <script type='text/javascript' src='../includes/js/validate.min.js'></script>
 <script type='text/javascript' src='../includes/js/ernest.js'></script>
+<%--<script type='text/javascript' src='../includes/js/ernest.min.js'></script>--%>
 
 <!-- Page Specific Plugins -->
 

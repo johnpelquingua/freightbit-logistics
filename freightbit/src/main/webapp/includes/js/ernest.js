@@ -511,6 +511,14 @@ function massCheckbox(boxName, tableName){
 // THIS FUNCTION IS FOR FORM VALIDATION THIS REQURES THE CLASS OF INPUTS AND CLASS OF SUBMIT BUTTON
 function validationForm(inputClass, submitBtn){
     $('.'+inputClass+':enabled').change(function(){
+        initValidation();
+    })
+
+    $('.'+inputClass+':enabled').keyup(function(){
+        initValidation();
+    })
+
+    function initValidation(){
         var formInput = $('.'+inputClass+':enabled');
         var bool = 0;
         for(var i = 0; i < formInput.size(); i++){
@@ -524,8 +532,7 @@ function validationForm(inputClass, submitBtn){
         }else{
             $('.'+submitBtn).prop('disabled', true);
         }
-
-    })
+    }
 }
 
 function postAjaxHtml(url, successDiv, idParam, columnParam){
@@ -556,4 +563,17 @@ function showGateOutFields(containerId) {
         }
     });
 
+}
+
+function restrictField_Numbers(fieldClass){
+    $('.'+fieldClass).keypress(function(e) {
+        var a = [];
+        var k = e.which;
+
+        for (i = 48; i < 58; i++)
+            a.push(i);
+
+        if (!(a.indexOf(k)>=0))
+            e.preventDefault();
+    })
 }
