@@ -25,14 +25,16 @@
             </div>
 
             <!-- Main Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
-                <li class="active" id="ori">
-                    <a href="#oriTab" role="tab" data-toggle="tab">Origin</a>
-                </li>
-                <li id="des">
-                    <a href="#desTab" role="tab" data-toggle="tab">Destination</a>
-                </li>
-            </ul>
+            <div class="row" style="padding-left: 5px;">
+                <ul class="nav nav-tabs" role="tablist" style="text-align: center;">
+                    <li class="active col-md-6" id="ori" style="padding-right: 0px;">
+                        <a href="#oriTab" role="tab" data-toggle="tab"><i class="fa fa-truck"></i> Origin</a>
+                    </li>
+                    <li id="des" class="col-md-6" style="padding-left: 0px;">
+                        <a href="#desTab" role="tab" data-toggle="tab"><i class="fa fa-flip-horizontal fa-truck"></i> Destination</a>
+                    </li>
+                </ul>
+            </div>
 
             <div class="tab-content">
                 <%--ORIGIN TABS--%>
@@ -75,7 +77,7 @@
                                 <div class="table-responsive">
                                     <display:table id="order" name="fclTruckTable"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="fclTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="fclTable table table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -127,7 +129,7 @@
                                 <div class="table-responsive">
                                     <display:table id="order" name="lclTruckTable"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="lclTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -184,7 +186,7 @@
                                 <div class="table-responsive">
                                     <display:table id="order" name="lcuTruckTable"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="lcuTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="lcuTable table table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -236,7 +238,7 @@
                                 <div class="table-responsive">
                                     <display:table id="order" name="rcuTruckTable"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="rcuTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="rcuTable table table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -418,7 +420,7 @@
                                 <div class="table-responsive">
                                     <display:table id="order" name="fclTruckTableDes"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="fclTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="fclTable table table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -469,7 +471,7 @@
                                 <div class="table-responsive">
                                     <display:table id="order" name="lclTruckTableDes"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="lclTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -523,7 +525,7 @@
                                 <div class="table-responsive">
                                     <display:table id="order" name="lcuTruckTableDes"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="lcuTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="lcuTable table table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -574,7 +576,7 @@
                                 <div class="table-responsive">
                                     <display:table id="order" name="rcuTruckTableDes"
                                                    requestURI="/viewFreightList.action" pagesize="10"
-                                                   class="rcuTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="rcuTable table table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells:hide !important">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"

@@ -60,7 +60,7 @@
                                 <s:param name="containerSizeParam" value="%{#attr.container.containerSize}"></s:param>
                                 <s:param name="containerStatusParam" value="%{#attr.container.containerStatus}"></s:param>
                             </s:url>
-                            <s:a href="%{viewConsolidationItemListUrl}" title="Consolidate Items" rel="tooltip"><i class="fa fa-dropbox"></i></s:a>
+                            <s:a href="%{viewConsolidationItemListUrl}" title="Consolidate Items" rel="tooltip"><i class="fa fa-cubes"></i></s:a>
                             </s:if>
                             <s:url var="viewConsolidationContainerInfoUrl" action="viewConsolidationContainerInfo">
                                 <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
