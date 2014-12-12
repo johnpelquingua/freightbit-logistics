@@ -44,7 +44,13 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Container Van Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="container.containerNumber" cssClass="containerInput form-control" id="container.containerNumber" />
+                                <s:textfield required="true"
+                                             name="container.containerNumber"
+                                             cssClass="containerInput form-control"
+                                             id="container.containerNumber"
+                                             maxlength="20"
+                                             placeholder="Enter container van number"
+                                        />
                             </div>
                         </div>
 
@@ -81,14 +87,25 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Receipt Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="container.receiptNumber" cssClass="containerInput form-control" id="container.receiptNumber" />
+                                <s:textfield required="true"
+                                             name="container.receiptNumber"
+                                             cssClass="containerInput form-control"
+                                             id="container.receiptNumber"
+                                             placeholder="Enter receipt number"
+                                        />
                             </div>
                         </div>
                         <%--<div id="dtBox"></div>&lt;%&ndash;This is for the datetimepicker&ndash;%&gt;--%>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Date/Time: <span class="asterisk_red"></span></label>
                                 <div class="col-lg-9" >
-                                    <s:textfield readonly="true" required="true" name="container.gateInTime" cssClass="containerInput form-control" id="gateInTime" />
+                                    <s:textfield readonly="true"
+                                                 required="true"
+                                                 name="container.gateInTime"
+                                                 cssClass="containerInput form-control"
+                                                 id="gateInTime"
+                                                 placeholder="Click here to set Date/Time"
+                                            />
                                 </div>
                                 <script type="text/javascript">
                                     $(function () {
@@ -104,14 +121,24 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">EIR Number: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="container.eirNumber" cssClass="containerInput form-control" id="container.eirNumber" />
+                                <s:textfield required="true"
+                                             name="container.eirNumber"
+                                             cssClass="containerInput form-control"
+                                             id="container.eirNumber"
+                                             placeholder="Enter EIR number"
+                                        />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Van Location: <span class="asterisk_red"></span></label>
                             <div class="col-lg-9" >
-                                <s:textfield required="true" name="container.vanLocation" cssClass="containerInput form-control" id="container.vanLocation" />
+                                <s:textfield required="true"
+                                             name="container.vanLocation"
+                                             cssClass="containerInput form-control"
+                                             id="container.vanLocation"
+                                             placeholder="Enter van location"
+                                        />
                             </div>
                         </div>
                     </div>

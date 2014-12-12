@@ -281,6 +281,10 @@ function placeAbbrev(place){
         return 'TAC';
     }else if(place == 'ZAMBOANGA'){
         return 'ZAM';
+    }else if(place == 'CEBU'){
+        return 'CEB'
+    }else{
+        return place;
     }
 }
 

@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="pull-right">
-                        <button type="button" class="btn" onclick="location.href='customerList'">
+                        <button type="button" class="btn" data-dismiss="modal">
                             Cancel
                         </button>
                         <s:submit name="submit" cssClass="btn btn-primary" value="Search"/>

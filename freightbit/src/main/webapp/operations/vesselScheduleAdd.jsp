@@ -65,7 +65,7 @@
                     <label for="vesselSchedule.departureDate" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-9">
                         <s:textfield cssClass="form-control vesselInput" id="departureDate"
-                                     name="vesselSchedule.departureDate" readonly="true"/>
+                                     name="vesselSchedule.departureDate" readonly="true" placeholder="Click here to set Departure Date"/>
                     </div>
                 </div>
 
@@ -73,14 +73,19 @@
                     <label for="vesselSchedule.departureTime" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Time<span class="asterisk_red"></span></label>
                     <div class="col-lg-9">
                         <s:textfield cssClass="form-control vesselInput" id="departureTime"
-                                     name="vesselSchedule.departureTime" readonly="true"/>
+                                     name="vesselSchedule.departureTime" readonly="true" placeholder="Click here to set Departure Time"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="vesselSchedule.arrivalDate" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-9">
-                        <s:textfield cssClass="form-control vesselInput" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true"/>
+                        <s:textfield cssClass="form-control vesselInput"
+                                     id="arrivalDate"
+                                     name="vesselSchedule.arrivalDate"
+                                     readonly="true"
+                                     placeholder="Click here to set Arrival Date"
+                                />
                     </div>
                 </div>
 
@@ -89,7 +94,8 @@
                     <div class="col-lg-9">
                         <s:textfield cssClass="form-control vesselInput" id="arrivalTime"
                                      name="vesselSchedule.arrivalTime"
-                                    readonly="true"
+                                     readonly="true"
+                                     placeholder="Click here to set Arrival Time"
                                 />
                     </div>
                 </div>
