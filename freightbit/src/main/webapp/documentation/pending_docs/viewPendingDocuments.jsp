@@ -86,7 +86,7 @@ article:nth-child(2n+2){background:#d1d1d1}
                                         <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{viewDocumentsUrl}" rel="tooltip" title="View Documents">
-                                        <i class="fa fa-eye"></i>
+                                        <i class="fa fa-list-alt"></i>
                                     </s:a>
                                 </display:column></td>
 

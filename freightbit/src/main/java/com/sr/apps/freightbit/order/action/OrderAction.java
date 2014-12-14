@@ -525,7 +525,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setDocumentStatus("FOR PRINTING");
         documentEntity.setDocumentProcessed(0);
         documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-        documentEntity.setOutboundStage(1);
+        documentEntity.setOutboundStage(0);
         documentEntity.setVendorCode("ELC");
         documentEntity.setDocumentType("MASTER");
         documentsService.addDocuments(documentEntity);

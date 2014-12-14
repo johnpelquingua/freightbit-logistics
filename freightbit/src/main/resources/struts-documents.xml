@@ -42,8 +42,6 @@
         </action>
 
         <action name="dateReceivedInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedInbound">
-            <!--<result name="success" type="redirect">viewOrderDocumentsInbound</result>
-            <result name="input" type="redirect">viewOrderDocumentsInbound</result>-->
             <result name="success" type="redirect">viewOrderDocuments</result>
             <result name="input" type="redirect">viewOrderDocuments</result>
         </action>

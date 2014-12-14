@@ -2551,7 +2551,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntityProforma.setCreatedDate(new Date());
                     documentEntityProforma.setDocumentStatus("INPUT SERIES NUMBER");
                     documentEntityProforma.setVendorCode(itemVendor);
-                    documentEntityProforma.setOutboundStage(1);
+                    documentEntityProforma.setOutboundStage(0);
                     documentEntityProforma.setDocumentProcessed(0);
                     documentEntityProforma.setDocumentType("MASTER");
                     documentEntityProforma.setCreatedBy(commonUtils.getUserNameFromSession());
@@ -2626,7 +2626,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntity.setCreatedDate(new Date());
                     documentEntity.setDocumentStatus("FOR PRINTING");
                     documentEntity.setVendorCode(itemVendor);
-                    documentEntity.setOutboundStage(1);
+                    documentEntity.setOutboundStage(0);
                     documentEntity.setDocumentProcessed(0);
                     documentEntity.setDocumentType("MASTER");
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());

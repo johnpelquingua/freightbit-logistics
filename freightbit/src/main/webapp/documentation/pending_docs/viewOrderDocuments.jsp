@@ -124,6 +124,45 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px; text-align: center;">Origin Port</label>
+                            <div class="col-lg-4">
+                                <s:textfield cssClass="form-control" value="%{order.originationPort}"
+                                             disabled="true"></s:textfield>
+                            </div>
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px; text-align: center;">Destination Port</label>
+                            <div class="col-lg-4">
+                                <s:textfield cssClass="form-control" value="%{order.destinationPort}"
+                                             disabled="true"></s:textfield>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px; text-align: center;">Pickup Date</label>
+                            <div class="col-lg-4">
+                                <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                                             disabled="true"></s:textfield>
+                            </div>
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px; text-align: center;">Delivery Date</label>
+                            <div class="col-lg-4">
+                                <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
+                                             disabled="true"></s:textfield>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px; text-align: center;">Pickup Address</label>
+                            <div class="col-lg-4">
+                                <s:textfield cssClass="form-control" value="%{order.shipperInfoAddress.address}" name="book-num"
+                                             disabled="true"></s:textfield>
+                            </div>
+                            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px; text-align: center;">Destination Address</label>
+                            <div class="col-lg-4">
+                                <s:textfield cssClass="form-control" value="%{order.consigneeInfoAddress.address}" name="book-num"
+                                             disabled="true"></s:textfield>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -147,16 +186,14 @@
                                     <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <span>
                                     <th class="tb-font-black">Size</th>
-                                    <th class="tb-font-black">Weight <br /> (tons) </th>
                                 </span>
                                     </s:if>
                                     <s:else>
                                 <span>
                                     <th class="tb-font-black">Name</th>
-                                    <th class="tb-font-black">Weight <br /> (kg) </th>
                                 </span>
                                     </s:else>
-
+                                    <th class="tb-font-black">Weight <br /> (kg) </th>
                                     <th class="tb-font-black">Volume <br /> (m&#179;) </th>
                                     <th class="tb-font-black">Commodity</th>
                                 </tr>
@@ -334,152 +371,140 @@
 
                         <div class="panel-body">
 
-                            <div class="table-responsive">
-                                <s:form name="myform" action="processDocuments">
-                                <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
-                                <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
+                            <s:if test=" documentTab == 'NO_OUTBOUND_DOCUMENTS' || documentTab == 'OUTBOUND_INCOMPLETE' ">
 
-                                <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="outboundTable outbound_table table table-striped table-hover table-bordered text-center tablesorter"
-                                               style="margin-top: 15px;">
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#inboundReceivedModal">
+                                    Activate Outbound Documents
+                                </button>
 
-                                    <td>
-                                        <display:column title="<input type='checkbox' id='outboundCheckBox' name='outboundCheckBox'/>">
+                            </s:if>
 
-                                            <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
-                                            <%--<s:property value="%{#attr.document.documentId}"/>--%>
+                            <s:if test=" documentTab == 'OUTBOUND' ">
 
-                                            <s:if test=" documentTab == 'OUTBOUND' || documentTab == 'OUTBOUND_COMPLETE'">
+                                <div class="table-responsive">
+                                    <s:form name="myform" action="processDocuments">
+                                    <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
+                                    <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
 
-                                                <s:if test="#attr.document.documentProcessed == 0">
-                                                    <%--<s:url var="checkDocumentUrl" action="checkDocument">
-                                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                                    </s:url>
-                                                    <s:a class="icon-action-link" href="%{checkDocumentUrl}" rel="tooltip" title ="Check Document">
-                                                        <i class="fa fa-square-o"></i>
-                                                    </s:a>--%>
-                                                    <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                    <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="outboundTable outbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                                   style="margin-top: 15px;">
+
+                                        <td>
+                                            <display:column title="<input type='checkbox' id='outboundCheckBox' name='outboundCheckBox'/>">
+
+                                                <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
+                                                <%--<s:property value="%{#attr.document.documentId}"/>--%>
+
+                                                <s:if test=" documentTab == 'OUTBOUND' || documentTab == 'OUTBOUND_COMPLETE'">
+
+                                                    <s:if test="#attr.document.documentProcessed == 0">
+                                                        <%--<s:url var="checkDocumentUrl" action="checkDocument">
+                                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                        </s:url>
+                                                        <s:a class="icon-action-link" href="%{checkDocumentUrl}" rel="tooltip" title ="Check Document">
+                                                            <i class="fa fa-square-o"></i>
+                                                        </s:a>--%>
+                                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                    </s:if>
+
+                                                    <s:else>
+                                                        <%--<s:url var="uncheckDocumentUrl" action="unCheckDocument">
+                                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                        </s:url>
+                                                        <s:a class="icon-action-link" href="%{uncheckDocumentUrl}" rel="tooltip" title ="Edit Booking">
+                                                            <i class="fa fa-check-square-o"></i>
+                                                        </s:a>--%>
+                                                        <i class="fa fa-check-square-o"></i>
+                                                    </s:else>
+                                                    <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
+                                                    <%--<input  id="documentProcess" value="${document.documentId}" name="documentNameParam"/>--%>
+
                                                 </s:if>
 
                                                 <s:else>
-                                                    <%--<s:url var="uncheckDocumentUrl" action="unCheckDocument">
-                                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                                    </s:url>
-                                                    <s:a class="icon-action-link" href="%{uncheckDocumentUrl}" rel="tooltip" title ="Edit Booking">
-                                                        <i class="fa fa-check-square-o"></i>
-                                                    </s:a>--%>
-                                                    <i class="fa fa-check-square-o"></i>
+
+                                                    <i class="fa fa-square-o"></i>
+
                                                 </s:else>
-                                                <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
-                                                <%--<input  id="documentProcess" value="${document.documentId}" name="documentNameParam"/>--%>
 
-                                            </s:if>
+                                            </display:column>
+                                        </td>
 
-                                            <s:else>
+                                        <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
+                                            </display:column>
+                                        </td>
 
-                                                <i class="fa fa-square-o"></i>
+                                        <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
+                                            </display:column>
+                                        </td>
 
-                                            </s:else>
-
+                                        <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
                                         </display:column>
-                                    </td>
+                                        </td>
 
-                                    <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
-                                        </display:column>
-                                    </td>
+                                        <td><display:column property="documentStatus" title="Status" class="tb-font-black"
+                                                            style="text-align: center;" > </display:column></td>
 
-                                    <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
-                                        </display:column>
-                                    </td>
+                                        <td><display:column property="documentComments" title="Comments" class="tb-font-black"
+                                                            style="text-align: center;" > </display:column></td>
 
-                                    <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
-                                    </display:column>
-                                    </td>
+                                        <td>
+                                            <display:column title="Action" class="tb-font-black" style="text-align: center;" >
 
-                                    <td><display:column property="documentStatus" title="Status" class="tb-font-black"
-                                                        style="text-align: center;" > </display:column></td>
+                                                <%--<s:if test=" documentTab == 'OUTBOUND' ">--%>
 
-                                    <td><display:column property="documentComments" title="Comments" class="tb-font-black"
-                                                        style="text-align: center;" > </display:column></td>
+                                                    <%--<input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
+                                                    <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>--%>
 
-                                    <td>
-                                        <display:column title="Action" class="tb-font-black" style="text-align: center;" >
-
-                                            <%--<s:if test=" documentTab == 'OUTBOUND' ">--%>
-
-                                                <%--<input type="hidden" id="action_${document.documentId}" value="${document.documentId}" name="documentIdParam"/>
-                                                <input type="hidden" id="action_${document.documentName}" value="${document.documentName}" name="documentNameParam"/>--%>
-
-                                                <%--Input Reference ID--%>
-                                                <%--<s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">--%>
-                                                    <%--<a data-toggle="modal" data-target="#addReferenceNumber" >
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>--%>
-                                                    <%--<s:url var="addReferenceNumberUrl" action="orderDocumentsInput">
-                                                        <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
+                                                    <%--Input Reference ID--%>
+                                                    <%--<s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">--%>
+                                                        <%--<a data-toggle="modal" data-target="#addReferenceNumber" >
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>--%>
+                                                        <%--<s:url var="addReferenceNumberUrl" action="orderDocumentsInput">
+                                                            <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
+                                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                        </s:url>
+                                                        <s:a id="edit-icon" class="icon-action-link" href="%{addReferenceNumberUrl}" rel="tooltip" title ="Add Reference Number">
+                                                            <i class="fa fa-edit"></i>
+                                                        </s:a>--%>
+                                                        <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    <%--</s:if>--%>
+                                                    <%--Print Document--%>
+                                                    <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' ">
+                                                        <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                            <i class="fa fa-print"></i>
+                                                        </a>
+                                                    </s:if>
+                                                    <%--Move Document--%>
+                                                    <%--<s:url var="moveDocumentUrl" action="moveDocument">
                                                         <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                     </s:url>
-                                                    <s:a id="edit-icon" class="icon-action-link" href="%{addReferenceNumberUrl}" rel="tooltip" title ="Add Reference Number">
-                                                        <i class="fa fa-edit"></i>
+                                                    <s:a id="check-icon" class="icon-action-link" href="%{moveDocumentUrl}" rel="tooltip" title ="Next Stage">
+                                                        <i class="fa fa-hand-o-right"></i>
                                                     </s:a>--%>
-                                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>
-                                                <%--</s:if>--%>
-                                                <%--Print Document--%>
-                                                <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' ">
-                                                    <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
-                                                        <i class="fa fa-print"></i>
-                                                    </a>
-                                                </s:if>
-                                                <%--Move Document--%>
-                                                <%--<s:url var="moveDocumentUrl" action="moveDocument">
-                                                    <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                                </s:url>
-                                                <s:a id="check-icon" class="icon-action-link" href="%{moveDocumentUrl}" rel="tooltip" title ="Next Stage">
-                                                    <i class="fa fa-hand-o-right"></i>
-                                                </s:a>--%>
 
-                                            <%--</s:if>
+                                                <%--</s:if>
 
-                                            <s:else>
+                                                <s:else>
 
-                                                <i class="fa fa-ban"></i>
+                                                    <i class="fa fa-ban"></i>
 
-                                            </s:else>--%>
+                                                </s:else>--%>
 
-                                        </display:column>
-                                    </td>
+                                            </display:column>
+                                        </td>
 
-                                </display:table>
-                                <%--<s:submit cssClass="btn btn-default" value="Process Documents" onclick="addTextSet()"></s:submit>--%>
+                                    </display:table>
 
-                            </div>
-
-                                <s:if test=" documentTab == 'OUTBOUND' ">
-
-                                    <%--<s:url var="processDocumentsUrl" action="moveDocuments">
-                                        <s:param name="orderIdParam"
-                                                 value="#attr.order.orderId"></s:param>
-                                        &lt;%&ndash;<s:property value="%{#attr.order.orderId}"/>&ndash;%&gt;
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{processDocumentsUrl}">
-                                        <button type="button" id="Cancel" class="pull-right btn">
-                                            Process Documents
-                                        </button>
-                                    </s:a>--%>
+                                </div>
 
                                     <s:submit tabindex="-1" cssClass="checkBtn btn btn-default pull-right" value="Check Document(s)" onclick="addCheckText()"></s:submit>
 
-                                </s:if>
-
-                                <%--<s:else>
-                                    <button type="button" id="Cancel" class="pull-right btn" disabled>
-                                        Check Document(s)
-                                    </button>
-                                    &lt;%&ndash;<s:submit cssClass="btn btn-default pull-right" value="Process Documents" onclick="addMoveText()"></s:submit>&ndash;%&gt;
-                                </s:else>--%>
-
-                            </s:form>
+                                </s:form>
+                            </s:if>
                         </div>
 
                     </div>
@@ -492,7 +517,7 @@
 
                         <div class="panel-body">
 
-                            <s:if test=" documentTabInbound == 'NO_INBOUND_DOCUMENTS' ">
+                            <s:if test=" documentTabInbound == 'NO_INBOUND_DOCUMENTS' && documentTab == 'OUTBOUND_COMPLETE' ">
 
                                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#inboundReceivedModal">
                                     Activate Inbound Documents
@@ -1232,10 +1257,7 @@
 <div class="modal fade" id="inboundReceivedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left: 15em; margin-top: -10em; overflow-y: hidden">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>--%>
+
             <div class="modal-body row">
                 <s:form action="dateReceivedInbound" theme="bootstrap">
                     <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
@@ -1258,10 +1280,7 @@
                     </div>
                 </s:form>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>--%>
+
         </div>
     </div>
 </div>
