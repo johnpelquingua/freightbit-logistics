@@ -655,7 +655,7 @@
 
     <div class="pull-right">
         <!-- Button trigger modal -->
-        <button class="btn" data-toggle="modal" data-target="#cancelBooking">
+        <button class="btn btn-danger" data-toggle="modal" data-target="#cancelBooking">
             Cancel
         </button>
 
@@ -812,7 +812,7 @@
                     <s:param name="orderIdParam" value="order.orderId"></s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip">
-                    <button type="button" class="btn btn-primary">Yes</button>
+                    <button type="button" class="btn btn-danger">Yes</button>
                 </s:a>
             </div>
         </div>

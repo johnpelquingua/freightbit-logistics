@@ -37,7 +37,7 @@
                     </div>
                 </div>
                     <div class="pull-right">
-                        <button type="button" class="btn" data-dismiss="modal">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
                             Cancel
                         </button>
                         <s:submit value="Search" type="submit" cssClass="btn btn-primary"></s:submit>

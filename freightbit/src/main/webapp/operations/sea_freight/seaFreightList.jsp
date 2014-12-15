@@ -43,7 +43,7 @@
                                   listValue="value" name="destinationCity" emptyOption="true" required="true" />
 
                     </div>
-                    <s:submit name="submit" cssClass="btn btn-primary" value="OK" />
+                    <s:submit name="submit" cssClass="btn btn-primary" value="Sort" />
                 </s:form>
 
             </div>

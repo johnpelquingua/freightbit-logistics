@@ -146,7 +146,7 @@
             <%--</div>--%>
             <div class="panel-footer">
                 <div class="pull-right">
-                    <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <a href="viewContainerList" class="btn btn-danger" id ="groups-btn">Cancel</a>
                     <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary submitBtn" action="save" value="Save" disabled="true"/>
                 </div>
             </div>

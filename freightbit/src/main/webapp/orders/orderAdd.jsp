@@ -413,7 +413,7 @@
 <div class="panel-footer">
 
     <div class="pull-right">
-        <button type="button" id="Cancel" class="btn" data-toggle="modal" data-target="#cancelBooking">
+        <button type="button" id="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#cancelBooking">
             Cancel
         </button>
 
@@ -445,7 +445,7 @@
                     <s:param name="orderIdParam" value="order.orderId"></s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip">
-                    <button type="button" class="btn btn-primary">Yes</button>
+                    <button type="button" class="btn btn-danger">Yes</button>
                 </s:a>
             </div>
         </div>

@@ -126,7 +126,7 @@
 
             <div class="panel-footer">
                 <div class="pull-right">
-                    <button type="button" id="Cancel" class="btn" data-toggle="modal" data-target="#cancelBooking">
+                    <button type="button" id="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#cancelBooking">
                         Cancel
                     </button>
                     <%--<button class="btn btn-primary" name="submit" type="button" onclick="validateInputContent()">Save</button>--%>
@@ -146,14 +146,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
-                <h4 class="modal-title" id="myModalLabel">Cancel Booking</h4>
+                <h4 class="modal-title" id="myModalLabel">Cancel Schedule</h4>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to cancel the booking?</p>
+                <p>Are you sure you want to cancel adding vessel schedule?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary" onclick="location.href='viewVesselSchedules'">Yes</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='viewVesselSchedules'">Yes</button>
             </div>
         </div>
     </div>
