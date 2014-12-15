@@ -189,7 +189,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
             /*-------------------------------------------CEBU-------------------------------------------------*/
 
-            /*List<Orders> cebuOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "CEBU");
+            List<Orders> cebuOrders = operationsService.findOrdersByOriginDestinationStatusTypeLCL("MANILA", "CEBU");
 
             cebuWeight = 0.00; // Loop of per order item weight total
             cebuVolume = 0.F; // Loop of per order item volume total
@@ -203,7 +203,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
                     cebuVolume = cebuVolume + orderItemCebu.getVolume();
                 }
 
-            }*/
+            }
 
             /*-------------------------------------------CEBU-------------------------------------------------*/
 
