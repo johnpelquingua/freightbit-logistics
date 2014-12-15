@@ -21,14 +21,14 @@
                                       value="container.containerSearchCriteria"
                                       name="container.containerSearchCriteria"
                                       list="containerSearchList" listValue="value" listKey="key"
-                                      cssClass="form-control"/>
+                                      cssClass="containerSearchDropdown form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="container.containerKeyword" class="col-lg-2 control-label" style="padding-top:0px;">Search</label>
 
                         <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Keyword"
+                            <s:textfield cssClass="containerSearchText form-control" placeholder="Keyword"
                                          name="container.containerKeyword"
                                          id="container.containerKeyword"
                                          maxlength="20"
@@ -37,7 +37,7 @@
                     </div>
                         <div class="pull-right">
                             <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
-                            <s:submit cssClass="btn btn-primary" name="submit" value="Search"/>
+                            <s:submit cssClass="containerSearchBtn btn btn-primary" name="submit" value="Search" disabled="true"/>
                         </div>
                     </s:form>
                     </div>
@@ -45,3 +45,6 @@
         </div>
     </div>
 </div>
+<script>
+    validateSearchModal('containerSearchBtn', 'containerSearchText', 'containerSearchDropdown');
+</script>

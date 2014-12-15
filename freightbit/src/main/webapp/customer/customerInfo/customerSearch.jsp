@@ -70,20 +70,20 @@
                                       value="customer.customerSearchCriteria"
                                       name="customer.customerSearchCriteria"
                                       list="customerSearchList" listValue="value" listKey="key"
-                                      cssClass="form-control customerCriteriaCSS"/>
+                                      cssClass="customerSearchDropdown form-control customerCriteriaCSS"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Search</label>
                         <div class="col-lg-10">
-                            <s:textfield name="customer.customerKeyword" cssClass="form-control" placeholder="Keyword"/>
+                            <s:textfield name="customer.customerKeyword" cssClass="customerSearchText form-control" placeholder="Keyword"/>
                         </div>
                     </div>
                     <div class="pull-right">
-                        <button type="button" class="btn" data-dismiss="modal">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
                             Cancel
                         </button>
-                        <s:submit name="submit" cssClass="btn btn-primary" value="Search"/>
+                        <s:submit name="submit" cssClass="customerSearchBtn btn btn-primary" value="Search" disabled="true"/>
                     </div>
 
                 </div>
@@ -92,6 +92,9 @@
         </div>
     </div>
 </div>
+<script>
+    validateSearchModal('customerSearchBtn', 'customerSearchText', 'customerSearchDropdown');
+</script>
         <%--</div>
     </div>
 </div>

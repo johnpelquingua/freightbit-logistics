@@ -27,20 +27,20 @@
                                   value="container.containerSearchCriteria"
                                   name="container.containerSearchCriteria"
                                   list="containerSearchList" listValue="value" listKey="key"
-                                  cssClass="form-control"/>
+                                  cssClass="consolidationSearchDropdown form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Search</label>
                     <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" id="container.containerKeyword" name="container.containerKeyword" placeholder="Keyword"></s:textfield>
+                        <s:textfield cssClass="consolidationSearchText form-control" id="container.containerKeyword" name="container.containerKeyword" placeholder="Keyword"></s:textfield>
                     </div>
                 </div>
                     <div class="pull-right">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">
                             Cancel
                         </button>
-                        <s:submit value="Search" type="submit" cssClass="btn btn-primary"></s:submit>
+                        <s:submit value="Search" type="submit" cssClass="consolidationSearchBtn btn btn-primary" disabled="true"></s:submit>
 
                     </div>
                 </div>
@@ -49,3 +49,6 @@
         </div>
     </div>
 </div>
+<script>
+    validateSearchModal('consolidationSearchBtn', 'consolidationSearchText', 'consolidationSearchDropdown');
+</script>

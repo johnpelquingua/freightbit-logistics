@@ -683,3 +683,19 @@ function notifBox_booking(boxClass){
     return bool;
 //    console.log($('.'+boxClass).size());
 }
+
+function validateSearchModal(button, textfield, dropdown){
+    $('.'+textfield).keyup(function(){initValidate();})
+    $('.'+dropdown).change(function(){initValidate();})
+
+    function initValidate(){
+        console.clear();
+        if($('.'+textfield).val() != '' && $('.'+dropdown).val() != ''){
+            $('.'+button).prop('disabled', false);
+            console.log('ENABLE BUTTON');
+        }else{
+            $('.'+button).prop('disabled', true);
+            console.log('DISABLE BUTTON');
+        }
+    }
+}

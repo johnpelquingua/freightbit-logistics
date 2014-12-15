@@ -20,14 +20,14 @@
                                   value="vendor.vendorSearchCriteria"
                                   name="vendor.vendorSearchCriteria"
                                   list="vendorSearchList" listValue="value" listKey="key"
-                                  cssClass="form-control vendorCriteriaCSS"/>
+                                  cssClass="vendorSearchDropdown form-control vendorCriteriaCSS"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="vendor.vendorKeyword" class="col-sm-2 control-label" style="padding-top:0px;">Search</label>
 
                     <div class="col-sm-10">
-                        <s:textfield cssClass="form-control" placeholder="Keyword" name="vendor.vendorKeyword"
+                        <s:textfield cssClass="vendorSearchText form-control" placeholder="Keyword" name="vendor.vendorKeyword"
                                      id="vendor.vendorKeyword"/>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         <button type="button" class="btn btn-danger" data-dismiss="modal">
                             Cancel
                         </button>
-                        <s:submit cssClass="btn btn-primary" name="submit" value="Search"/>
+                        <s:submit cssClass="vendorSearchBtn btn btn-primary" name="submit" value="Search" disabled="true"/>
                     </div>
                 </div>
             </div>
@@ -43,3 +43,6 @@
         </div>
     </div>
 </div>
+<script>
+    validateSearchModal('vendorSearchBtn', 'vendorSearchText', 'vendorSearchDropdown');
+</script>

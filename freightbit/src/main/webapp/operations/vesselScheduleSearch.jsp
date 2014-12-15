@@ -71,14 +71,14 @@
                                       value="vesselSchedule.vesselScheduleCriteria"
                                       name="vesselSchedule.vesselScheduleCriteria"
                                       list="vesselScheduleSearch" listValue="value" listKey="key"
-                                      cssClass="form-control"/>
+                                      cssClass="vesselSearchDropdown form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="vesselSchedule.vesselScheduleKeyword" class="col-lg-2 control-label" style="padding-top:0px;">Search</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Keyword"
+                            <s:textfield cssClass="vesselSearchText form-control" placeholder="Keyword"
                                          name="vesselSchedule.vesselScheduleKeyword"
                                          id="vesselSchedule.vesselScheduleKeyword"
                                         maxlength="20"
@@ -89,7 +89,7 @@
                         <button type="button" class="btn btn-danger" data-dismiss="modal">
                             Cancel
                         </button>
-                        <s:submit cssClass="btn btn-primary" name="submit" value="Search"></s:submit>
+                        <s:submit cssClass="vesselSearchBtn btn btn-primary" name="submit" value="Search" disabled="true"></s:submit>
                     </div>
                 </div>
             </div>
@@ -97,6 +97,9 @@
         </div>
     </div>
 </div>
+<script>
+    validateSearchModal('vesselSearchBtn', 'vesselSearchText', 'vesselSearchDropdown');
+</script>
         <%--</div>
     </div>
 </div>--%>

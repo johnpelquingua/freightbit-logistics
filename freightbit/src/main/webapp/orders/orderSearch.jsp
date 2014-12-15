@@ -41,21 +41,21 @@
                                       value="order.orderSearchCriteria"
                                       name="order.orderSearchCriteria"
                                       list="orderSearchList" listValue="value" listKey="key"
-                                      cssClass="form-control"/>
+                                      cssClass="bookingSearchDropdown form-control"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Search</label>
 
                         <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" id="order.orderKeyword" name="order.orderKeyword" placeholder="Keyword"></s:textfield>
+                            <s:textfield cssClass="bookingSearchText form-control" id="order.orderKeyword" name="order.orderKeyword" placeholder="Keyword"></s:textfield>
                         </div>
                     </div>
                     <div class="pull-right">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">
                             Cancel
                         </button>
-                        <s:submit value="Search" type="submit" cssClass="btn btn-primary"></s:submit>
+                        <s:submit value="Search" type="submit" cssClass="bookingSearchBtn btn btn-primary" disabled="true"></s:submit>
                     </div>
                 </div>
             </div>
@@ -63,6 +63,9 @@
         </div>
     </div>
 </div>
+<script>
+    validateSearchModal('bookingSearchBtn', 'bookingSearchText', 'bookingSearchDropdown');
+</script>
 <%--        </div>
     </div>
 </div>--%>
