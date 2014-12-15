@@ -1074,6 +1074,8 @@
             totalPhp = parseFloat(itemList.eq(i).text()) + parseFloat($('#totalRate').text());
             $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         }
+
+        newlineHandler('itemListing', 8);
     })
 
     $(function(){ // function to check if adding item memory exists

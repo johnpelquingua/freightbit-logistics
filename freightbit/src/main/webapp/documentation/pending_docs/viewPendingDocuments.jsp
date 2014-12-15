@@ -144,7 +144,7 @@ article:nth-child(2n+2){background:#d1d1d1}
 </div>
 <script>
     $(document).ready(function(){
-        tableProp('DESTI_ORIG', 'order', 0, 7, 8, 9, 5, 6, 0);
+        tableProp('DESTI_ORIG', 'order', 0, 7, 8, 9, 5, 6, 1);
     });
 //    /*Optional query for scrolling*/
 //
