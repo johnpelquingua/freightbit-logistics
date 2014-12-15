@@ -599,6 +599,15 @@ function validationForm(inputClass, submitBtn, page){
         initValidation();
     })
 
+    $('.notifBox').click(function(){
+        initValidation();
+//        if(notifBox_booking('notifBox')){
+//            $('.'+submitBtn).prop('disabled', false);
+//        }else{
+//            $('.'+submitBtn).prop('disabled', true);
+//        }
+    })
+
     function initValidation(){
         console.clear();
         var formInput = $('.'+inputClass+':enabled');
@@ -611,7 +620,7 @@ function validationForm(inputClass, submitBtn, page){
             }
         }
         console.log(bool+' out of '+formInput.size());
-        if(bool == formInput.size()){
+        if(bool == formInput.size() && notifBox_booking('notifBox')){
             $('.'+submitBtn).prop('disabled', false);
         }else{
             $('.'+submitBtn).prop('disabled', true);
@@ -661,4 +670,16 @@ function restrictField_Numbers(fieldClass){
         if (!(a.indexOf(k)>=0))
             e.preventDefault();
     })
+}
+
+function notifBox_booking(boxClass){
+    var bool = false;
+    for(var i=0; i < $('.'+boxClass).size(); i++){
+        if($('.'+boxClass).eq(i).is(':checked')){
+            bool = true;
+        }
+    }
+
+    return bool;
+//    console.log($('.'+boxClass).size());
 }
