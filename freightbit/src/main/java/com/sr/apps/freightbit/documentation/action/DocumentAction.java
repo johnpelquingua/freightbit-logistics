@@ -1121,81 +1121,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
-    /*public String orderDocumentsInboundInput() {
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
-        if(orderIdParam == null){
-            orderIdParam = (Integer)sessionAttributes.get("orderIdParam");
-        }
-
-        // Display correct Order Number in breadcrumb
-        Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        bookingNumber = orderEntity.getOrderNumber();
-        order = transformToOrderFormBean(orderEntity);
-
-        // Reference number will be added to this document ID
-        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
-        document = transformDocumentsToFormBean(documentEntity);
-
-        // Display Order items under documents view page
-        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(orderIdParam);
-        // display item listing in table
-        for (OrderItems orderItemElem : orderItemEntityList) {
-            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
-        }
-
-        inboundEntityList = documentsService.findDocumentByInboundStageAndID(1, orderIdParam);
-
-        inboundCount = inboundEntityList.size();
-
-        sessionAttributes.put("inboundCount", inboundCount); // Puts inbound count in session before forwarding to transformDocumentsToFormBean
-
-        for (Documents documentElem : inboundEntityList) {
-            inboundDocuments.add(transformDocumentsToFormBean(documentElem));
-        }
-
-        return SUCCESS;
-    }*/
-
-    /*public String orderDocumentsFinalOutboundInput(){
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
-        if(orderIdParam == null){
-            orderIdParam = (Integer)sessionAttributes.get("orderIdParam");
-        }
-
-        // Display correct Order Number in breadcrumb
-        Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        bookingNumber = orderEntity.getOrderNumber();
-        order = transformToOrderFormBean(orderEntity);
-
-        // Reference number will be added to this document ID
-        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
-        document = transformDocumentsToFormBean(documentEntity);
-
-        // Display Order items under documents view page
-        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(orderIdParam);
-        // display item listing in table
-        for (OrderItems orderItemElem : orderItemEntityList) {
-            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
-        }
-
-        finalOutboundEntityList = documentsService.findDocumentByFinalOutboundStageAndID(1, orderIdParam);
-
-        finalOutboundCount = finalOutboundEntityList.size();
-
-        sessionAttributes.put("finalOutboundCount", finalOutboundCount); // Puts final outbound count in session before forwarding to transformDocumentsToFormBean
-
-        for (Documents documentElem : finalOutboundEntityList) {
-            finalOutboundDocuments.add(transformDocumentsToFormBean(documentElem));
-        }
-
-
-        return SUCCESS;
-    }*/
-
     public String addReferenceNumber() {
 
         Documents documentsEntity = transformToDocumentEntityBean(document);
@@ -1217,26 +1142,18 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
-    /*public String addReferenceNumberInbound() {
+    public String activateOutbound() {
 
-        Documents documentsEntity = transformToDocumentEntityBean(document);
+        System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq " + orderIdParam);
 
-        documentsService.updateDocument(documentsEntity);
+        /*List <Documents> outboundDocumentsList = documentsService.findDocumentByOutboundStageAndID(0, orderIdParam);
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        sessionAttributes.put("orderIdParam", documentsEntity.getReferenceId());
+        for(Documents documentElem : outboundDocumentsList){
 
-        *//*Pass flag to view order documents*//*
-        if (documentsEntity.getDocumentName().equals("BOOKING REQUEST FORM") || documentsEntity.getDocumentName().equals("HOUSE BILL OF LADING") || documentsEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN") ){
-            documentflag = 3; // document successfully updated
-            sessionAttributes.put("documentflag", documentflag);
-        }else {
-            documentflag = 2; // entered reference number successfully
-            sessionAttributes.put("documentflag", documentflag);
-        }
+        }*/
 
         return SUCCESS;
-    }*/
+    }
 
     public String activateFinalOutbound() {
         List<String> vendorSeaCodeList = new ArrayList<String>(); // placeholder for sea vendor codes
@@ -1309,33 +1226,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             }
         }
 
-        /*for (String destinationVendor : vendorDestinationCodeList){
-            if(houseWaybillDestination.size() == 0){
-                Documents documentEntity = new Documents();
-
-                Client client = clientService.findClientById(getClientId().toString());
-                documentEntity.setClient(client);
-
-                documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_DESTINATION);
-                documentEntity.setReferenceId(orderEntity.getOrderId());
-                documentEntity.setReferenceTable("ORDERS");
-                documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-                documentEntity.setCreatedDate(new Date());
-                documentEntity.setDocumentStatus("FOR PRINTING");
-                documentEntity.setVendorCode(destinationVendor);
-                documentEntity.setFinalOutboundStage(1);
-                documentEntity.setDocumentProcessed(2);
-                documentEntity.setReferenceNumber(orderEntity.getOrderNumber());
-
-                documentsService.addDocuments(documentEntity);
-            }else{
-                documentflag = 6; // Document already exist
-                sessionAttributes.put("documentflag", documentflag);
-                sessionAttributes.put("orderIdParam", orderIdParam);
-                return INPUT;
-            }
-        }*/
-
         inboundEntityList = documentsService.findDocumentByInboundStageAndID(1, orderIdParam);
         finalOutboundEntityList = documentsService.findDocumentByFinalOutboundStageAndID(0, orderIdParam);
 
@@ -1361,7 +1251,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String activateArchive() {
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        /*Orders orderEntity = orderService.findOrdersById(orderIdParam);*/
 
         List<Documents> allDocuments = documentsService.findDocumentsByOrderId(orderIdParam);
 
@@ -2207,6 +2097,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
         //get consignee name
         Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
         formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
+        if(orderService.findOrdersById(entity.getOrderId()).getServiceType().equals("TRUCKING")){
+            formBean.setOriginationPort("N/A");
+            formBean.setDestinationPort("N/A");
+        }else{
+            formBean.setOriginationPort(entity.getOriginationPort());
+            formBean.setDestinationPort(entity.getDestinationPort());
+        }
         formBean.setOriginationPort(entity.getOriginationPort());
         formBean.setDestinationPort(entity.getDestinationPort());
         formBean.setOrderStatus(entity.getOrderStatus());

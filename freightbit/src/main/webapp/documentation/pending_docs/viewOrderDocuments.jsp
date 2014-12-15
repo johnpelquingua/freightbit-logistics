@@ -373,9 +373,17 @@
 
                             <s:if test=" documentTab == 'NO_OUTBOUND_DOCUMENTS' || documentTab == 'OUTBOUND_INCOMPLETE' ">
 
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#inboundReceivedModal">
+                                <%--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#inboundReceivedModal">
                                     Activate Outbound Documents
-                                </button>
+                                </button>--%>
+
+                                <s:url var="activateOutboundUrl" action="activateOutbound">
+                                    <s:param name="orderIdParam"
+                                             value="#attr.order.orderId"></s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{activateOutboundUrl}" rel="tooltip">
+                                    <button type="button" class="btn btn-primary">Activate Outbound Documents</button>
+                                </s:a>
 
                             </s:if>
 
@@ -1240,15 +1248,11 @@
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
+
             <div class="modal-body">
                 <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
-            </div>--%>
+
         </div>
     </div>
 </div>
@@ -1289,10 +1293,7 @@
 <div class="modal fade" id="sendFinalOutbound" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <%--<div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>--%>
+
             <div class="modal-body row">
                 <s:form action="finalOutboundSent" theme="bootstrap">
                     <div class="col-md-12">
@@ -1313,10 +1314,7 @@
                     </div>
                 </s:form>
             </div>
-            <%--<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>--%>
+
         </div>
     </div>
 </div>

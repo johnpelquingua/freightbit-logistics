@@ -6,9 +6,6 @@ import com.sr.biz.freightbit.order.entity.Orders;
 
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 7/30/14.
- */
 public interface OrderStatusLogsService {
 
     public void addStatus(OrderStatusLogs orderStatusLogs);
@@ -18,8 +15,6 @@ public interface OrderStatusLogsService {
     public void updateStatusOrderItem(OrderItems orderItems);
 
     public List<Orders> findAllOrders();
-
-    /*public List<OrderItems> findAllItemsByOrderId(Integer orderId);*/
 
     public List<OrderStatusLogs> findAllShipmentLogs(Integer orderItemId);
 
