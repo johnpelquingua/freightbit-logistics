@@ -102,9 +102,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         if (hasFieldErrors())
             return INPUT;*/
 
-        try {
+//        try {
             OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
             Map sessionAttributes = ActionContext.getContext().getSession();
+//            sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderId());
             sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
             orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             orderStatusLogsService.addStatus(orderStatusLogsEntity);
@@ -118,10 +119,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             notificationEntity.setUserId(1);
             notificationService.addNotification(notificationEntity);*/
 
-        }catch (Exception e) {
+        /*}catch (Exception e) {
             addActionError("Update Failed");
             return INPUT;
-        }
+        }*/
 
         return SUCCESS;
     }
@@ -137,6 +138,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         public String loadSuccessSetStatus() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         List<OrderStatusLogs> orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs((Integer) sessionAttributes.get("orderItemIdParam"));
+        Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam")).getOrderId());
+        order = transformToOrderFormBean(orderEntity);
+        OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
+        orderItem = transformToOrderItemFormBean(orderItemEntity);
 
             for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
             orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
