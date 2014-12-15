@@ -102,15 +102,6 @@
 
                 <div class="table-responsive">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <s:textfield  cssClass="col-lg-6" name="orderItem.editItem" id="edit"></s:textfield>
-                            <div class="col-lg-6 pull-right">
-                                <s:submit cssClass="col-lg-6 btn btn-default" value="Set Status" onclick="deleteText()"></s:submit>
-                                <s:submit cssClass="col-lg-6 btn btn-default" value="Edit Status" onclick="addText()"></s:submit>
-                    <%--<button onClick='CheckAll(document.myform.check)' class="col-lg-3 btn btn-default">Select All</button>
-                    <button onClick='UnCheckAll(document.myform.check)' class="col-lg-3 btn btn-default">Deselect All</button>--%>
-                            </div>
-                        </div>
                     <s:form name="myform" action="setItemStatus" theme="bootstrap">
                         <s:hidden value="%{orderIdParam}" name="orderStatusLogsBean.orderId"/>
                         <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
@@ -150,30 +141,6 @@
                                                 style="text-align: center;"> </display:column>
                             </td>
 
-                            <%--<td>
-                                <display:column property="orderItemId" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
-                                                style="text-align: center;"> </display:column>
-                            </td>--%>
-
-                            <%--<td>
-                                <display:column property="orderItemId" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
-                                                style="text-align: center;"> </display:column>
-                            </td>--%>
-
-                            <%--<td>
-                                <display:column title="Action">
-                                    <s:url var="loadUpdateStatusUrl" action="loadUpdateStatus">
-                                        <s:param name="orderItemIdParam"
-                                                 value="#attr.orderStatusLogs.orderItemId">
-                                        </s:param>
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip"
-                                         title="Update Status">
-                                        <i class="fa fa-info-circle"></i>
-                                    </s:a>
-                                </display:column>
-                            </td>--%>
-
                             <td>
                                 <display:column title="Action">
                                     <s:url var="loadItemShipmentHistoryUrl" action="loadItemShipmentHistory">
@@ -187,13 +154,17 @@
                             </td>
 
                         </display:table>
-
-                        <%--<s:submit value="Set Status"></s:submit>--%>
+                    <div class="row">
+                        <%--<s:textfield  style="display: none" cssClass="col-lg-6" name="orderItem.editItem" id="edit"></s:textfield>--%>
+                            <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
+                            <div class="col-md-6 pull-right" style="margin-right: -17em;">
+                            <s:submit cssClass="col-lg-3 btn btn-default" value="Set Status" onclick="deleteText()"></s:submit>
+                            <s:submit cssClass="col-lg-3 btn btn-default" value="Edit Status" onclick="addText()"></s:submit>
+                        </div>
+                    </div>
                     </s:form>
-
                 </div>
             </div>
-
             <div class="panel-footer">
                 <span class="pull-right">
                     <button type="button" class="btn btn-primary new-booking" onclick="location.href='viewStatusList'">
