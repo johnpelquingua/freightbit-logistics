@@ -340,8 +340,8 @@
 <script>
 
     $(document).ready(function(){
-        tablePropClass('DESTI_ORIG','fclTable', 7, 5, 0, 6, 0, 4);
-        tablePropClass('DESTI_ORIG','lclTable', 8, 5, 0, 7, 0, 6);
+        tablePropClass('DESTI_ORIG','fclTable', 7, 5, 0, 6, 0, 4, 0);
+        tablePropClass('DESTI_ORIG','lclTable', 7, 4, 0, 6, 0, 5, 0);
 
         if($('.lclTable').size() != 0){
             $('.wellDiv').show('fast');

@@ -195,7 +195,7 @@
 <script>
 
     $(document).ready(function() {
-        tableProp('NONE', 'order', 8, 5, 6, 7);
+        tableProp('NONE', 'order', 8, 5, 6, 7, 0, 0, 1);
 
         <%--var tbl = document.getElementById("order");--%>
         <%--&lt;%&ndash;var ctr = <s:property value="%{Booking}"/>;&ndash;%&gt;--%>

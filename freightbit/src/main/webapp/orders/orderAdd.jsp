@@ -114,6 +114,27 @@
                         </div>
 
                         <div class="form-group">
+
+                            <label class="col-lg-2 control-label">Customer Name<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-10">
+
+                                <s:select id="customerName"
+                                          cssClass="form-control step1 bookingInput"
+                                          style="margin-bottom: 15px !important;"
+                                          name="order.customerId"
+                                          list="customerList"
+                                          listKey="customerId"
+                                          listValue="customerName"
+                                          emptyOption="true"
+                                          required="true"
+                                        />
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-lg-2 control-label">Payment Mode<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
@@ -130,27 +151,6 @@
                                 />
 
                             </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-lg-2 control-label">Customer Name<span class="asterisk_red"></span></label>
-
-                            <div class="col-lg-10">
-
-                                <s:select id="customerName"
-                                          cssClass="form-control step1 bookingInput"
-                                          style="margin-bottom: 15px !important;"
-                                          name="order.customerId"
-                                          list="customerList"
-                                          listKey="customerId"
-                                          listValue="customerName"
-                                          emptyOption="true"
-                                          required="true"
-                                />
-
-                            </div>
-
                         </div>
 
                         <div class="form-group" style="clear: both;">
@@ -238,13 +238,12 @@
 
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
-                        <input type="text" class="bookingInput from_date form-control" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;">
-
+                        <input type="text" class="from_date form-control" id="datepicker1" name="order.pickupDate" required="true" placeholder="Select Pickup date" contenteditable="false" style="margin-bottom: 15px !important;" readonly="true">
                     </div>
 
                     <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
-                        <input type="text" class="bookingInput to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;">
+                        <input type="text" class="to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;" readonly="true">
                     </div>
 
                 </div>
@@ -277,7 +276,7 @@
                     <div class="col-lg-9" style="text-align:left !important;">
                         <%--<s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                   name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>--%>
-                        <s:checkboxlist cssClass="bookingInputBox" list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy"/>
+                        <s:checkboxlist cssClass="" list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy"/>
 
                     </div>
 
@@ -417,7 +416,7 @@
             Cancel
         </button>
 
-        <s:submit name="submit" cssClass="btn btn-primary nextBtn" value="Next"/>;
+        <s:submit name="submit" cssClass="btn btn-primary nextBtn" value="Next" disabled="true"/>;
         </s:form>
     </div>
 
@@ -1789,7 +1788,7 @@ $(document).ready(function(){
     $("#consignee_contact_mobile").mask("(+63999)(999-9999)");
     $("#consignee_contact_fax").mask("(999) 999-9999");
 
-//    validationForm('bookingInput', 'nextBtn');
+    validationForm('bookingInput', 'nextBtn', 'bookingDatePicker');
 });
 
 </script>

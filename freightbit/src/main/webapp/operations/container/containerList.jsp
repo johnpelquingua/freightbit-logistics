@@ -54,7 +54,7 @@
                         <tr>
                             <display:table id="container" name="containers" requestURI="viewContainerList.action"
                                            pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter"
+                                           class="containerTable table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
                                 <s:hidden name="container.eirType" value="%{container.eirType}"/>
                                 <s:hidden name="container.containerId" value="%{container.containerId}"/>
@@ -171,4 +171,9 @@
             }
         }
     }
+
+    $(document).ready(function(){
+        initTimestampAbbrev('containerTable', 4);
+        initTimestampAbbrev('containerTable', 5);
+    });
 </script>

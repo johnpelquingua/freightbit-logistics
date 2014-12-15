@@ -128,7 +128,9 @@
 
 <script>
     $(document).ready(function () {
-        tableProp('DESTI_ORIG', 'vesselSchedule', 0, 0, 0, 0, 2,3);
+        tableProp('DESTI_ORIG', 'vesselSchedule', 0, 0, 0, 0, 4, 5, 0);
+        dateAbbrev_Format2('vesselSchedule', 6);
+        dateAbbrev_Format2('vesselSchedule', 7);
     });
 
     function showSearchFields() {

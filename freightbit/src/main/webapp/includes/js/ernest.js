@@ -193,8 +193,7 @@ function resetBox(pageType){
 function tablePropClass(tableClass, tableName, colStatus, colType, colReq, colMode, colOrigin, colDestination){
     var tableTr = $('.'+tableName+' tbody tr');
     for(var i = 0; i < tableTr.size(); i++){
-        var statusColumn = $('.'+tableName+' tbody tr td:nth-child('+colStatus+')').eq(i).text(),
-            typeColumn = $('.'+tableName+' tbody tr td:nth-child('+colType+')').eq(i),
+        var statusColumn = $('.'+tableName+' tbody tr td:nth-child('+colStatus+')').eq(i).text(), typeColumn = $('.'+tableName+' tbody tr td:nth-child('+colType+')').eq(i),
             reqColumn = $('.'+tableName+' tbody tr td:nth-child('+colReq+')').eq(i),
             modeColumn = $('.'+tableName+' tbody tr td:nth-child('+colMode+')').eq(i),
             icon = changeIcons(typeColumn.text()),
@@ -217,16 +216,19 @@ function tablePropClass(tableClass, tableName, colStatus, colType, colReq, colMo
     }
 }
 
-function tableProp(tableClass, tableName, colStatus, colType, colReq, colMode, colOrigin, colDestination){
+function tableProp(tableClass, tableName, colStatus, colType, colReq, colMode, colOrigin, colDestination, colDate){
     var tableTr = $('#'+tableName+' tbody tr');
     for(var i = 0; i < tableTr.size(); i++){
         var statusColumn = $('#'+tableName+' tbody tr td:nth-child('+colStatus+')').eq(i).text(),
             typeColumn = $('#'+tableName+' tbody tr td:nth-child('+colType+')').eq(i),
             reqColumn = $('#'+tableName+' tbody tr td:nth-child('+colReq+')').eq(i),
             modeColumn = $('#'+tableName+' tbody tr td:nth-child('+colMode+')').eq(i),
+            dateColumn = $('#'+tableName+' tbody tr td:nth-child('+colDate+')').eq(i),
             icon = changeIcons(typeColumn.text()),
             req = reqAbbrev(reqColumn.text()),
-            mode = modeAbbrev(modeColumn.text());
+            mode = modeAbbrev(modeColumn.text()),
+            dateTrans = dateAbbrev(dateColumn.text());
+
         if(tableClass == 'DESTI_ORIG'){
             var desColumn = $('#'+tableName+' tbody tr td:nth-child('+colDestination+')').eq(i),
                 origColumn = $('#'+tableName+' tbody tr td:nth-child('+colOrigin+')').eq(i),
@@ -241,6 +243,7 @@ function tableProp(tableClass, tableName, colStatus, colType, colReq, colMode, c
         typeColumn.empty().append(icon);
         reqColumn.empty().append(req);
         modeColumn.empty().append(mode);
+        dateColumn.empty().append(dateTrans);
     }
 }
 
@@ -307,6 +310,8 @@ function changeIcons(type){
         return "<i class='fa fa-anchor' />";
     }else if(type == 'TRUCKING'){
         return "<i class='fa fa-truck' />";
+    }else{
+        return type;
     }
 }
 
@@ -323,6 +328,8 @@ function reqAbbrev(req){
         return 'LCU';
     }else if(req == 'ROLLING CARGO LOAD'){
         return 'RCU';
+    }else{
+        return req;
     }
 }
 
@@ -341,6 +348,93 @@ function modeAbbrev(mode){
         return 'D';
     }else if(mode == 'INTER-WAREHOUSE'){
         return 'IW';
+    }else{
+        return mode;
+    }
+}
+
+function dateAbbrev(date){
+    var splitDate = date.split('-'),
+        month;
+
+    if(splitDate[1] == '01'){
+        month = 'JAN';
+    }else if(splitDate[1] == '02'){
+        month = 'FEB';
+    }else if(splitDate[1] == '03'){
+        month = 'MAR';
+    }else if(splitDate[1] == '04'){
+        month = 'APR';
+    }else if(splitDate[1] == '05'){
+        month = 'MAY';
+    }else if(splitDate[1] == '06'){
+        month = 'JUN';
+    }else if(splitDate[1] == '07'){
+        month = 'JUL';
+    }else if(splitDate[1] == '08'){
+        month = 'AUG';
+    }else if(splitDate[1] == '09'){
+        month = 'SEP';
+    }else if(splitDate[1] == '10'){
+        month = 'OCT';
+    }else if(splitDate[1] == '11'){
+        month = 'NOV';
+    }else if(splitDate[1] == '12'){
+        month = 'DEC';
+    }else{
+        month = splitDate[1];
+    }
+
+    return splitDate[0].substr(2,4)+'-'+month+'-'+splitDate[2];
+}
+
+function initTimestampAbbrev(tableClass, dateColumn){
+    var table = $('.'+tableClass+' tbody tr td:nth-child('+dateColumn+')');
+
+    for(var i = 0; i < table.size(); i++){
+            var splitDate = table.eq(i).text().split(' ');
+        if(splitDate[0] != ''){
+            table.eq(i).empty().append(dateAbbrev(splitDate[0])+' '+splitDate[1].substr(0,8));
+        }
+    }
+}
+
+function dateAbbrev_Format2(table, column){
+    var tableSelect = $('#'+table+' tbody tr');
+    for(var i = 0; i < tableSelect.size(); i++){
+        var dateColumn = $('#'+table+' tbody tr td:nth-child('+column+')').eq(i),
+            splitDate = dateColumn.text().split('-'),
+            month;
+
+        if(splitDate[0] == '01'){
+            month = 'JAN';
+        }else if(splitDate[0] == '02'){
+            month = 'FEB';
+        }else if(splitDate[0] == '03'){
+            month = 'MAR';
+        }else if(splitDate[0] == '04'){
+            month = 'APR';
+        }else if(splitDate[0] == '05'){
+            month = 'MAY';
+        }else if(splitDate[0] == '06'){
+            month = 'JUN';
+        }else if(splitDate[0] == '07'){
+            month = 'JUL';
+        }else if(splitDate[0] == '08'){
+            month = 'AUG';
+        }else if(splitDate[0] == '09'){
+            month = 'SEP';
+        }else if(splitDate[0] == '10'){
+            month = 'OCT';
+        }else if(splitDate[0] == '11'){
+            month = 'NOV';
+        }else if(splitDate[0] == '12'){
+            month = 'DEC';
+        }else{
+            month = splitDate[0];
+        }
+
+        dateColumn.empty().append(splitDate[1]+'-'+month+'-'+splitDate[2].substr(2,4));
     }
 }
 
@@ -445,28 +539,6 @@ function firstRecommendation(weight, volume){
             recVol = recVol - 13.3;
             foot10++;
         }
-
-//        if(recVol > 74.1 || recWt > 20900){
-//            recWt = recWt - 20900;
-//            recVol = recVol - 74.1;
-//            hc40++;
-//        }else if(recVol > 53.2 || recWt > 19000){
-//            recWt = recWt - 19000;
-//            recVol = recVol - 53.2;
-//            std40++;
-//        }else if(recVol > 26.6 || recWt > 17100 ){
-//            alert(1);
-//            recWt = recWt - 17100;
-//            recVol = recVol - 26.6;
-//            foot20++;
-//        }else if(recVol > 13.3 || recWt > 8550 ){
-//            recWt = recWt - 8550;
-//            recVol = recVol - 13.3;
-//            foot10++;
-//        }else if(recVol > 0 || recWt > 0){
-//            foot10++;
-//            break;
-//        }
     }
 
     if(hc40 != 0){
@@ -513,7 +585,8 @@ function massCheckbox(boxName, tableName){
 }
 
 // THIS FUNCTION IS FOR FORM VALIDATION THIS REQURES THE CLASS OF INPUTS AND CLASS OF SUBMIT BUTTON
-function validationForm(inputClass, submitBtn){
+function validationForm(inputClass, submitBtn, page){
+
     $('.'+inputClass+':enabled').change(function(){
         initValidation();
     })
@@ -522,15 +595,22 @@ function validationForm(inputClass, submitBtn){
         initValidation();
     })
 
+    $('.'+inputClass+':enabled').click(function(){
+        initValidation();
+    })
+
     function initValidation(){
+        console.clear();
         var formInput = $('.'+inputClass+':enabled');
         var bool = 0;
+
         for(var i = 0; i < formInput.size(); i++){
-            if(formInput.eq(i).val() != ''){
+            if(formInput.eq(i).val() != '' && formInput.eq(i).val() != undefined){
                 bool++;
+                console.log('- '+formInput.eq(i).val())
             }
         }
-
+        console.log(bool+' out of '+formInput.size());
         if(bool == formInput.size()){
             $('.'+submitBtn).prop('disabled', false);
         }else{
@@ -569,6 +649,7 @@ function showGateOutFields(containerId) {
 
 }
 
+// restrict a textfield for numbers only
 function restrictField_Numbers(fieldClass){
     $('.'+fieldClass).keypress(function(e) {
         var a = [];
