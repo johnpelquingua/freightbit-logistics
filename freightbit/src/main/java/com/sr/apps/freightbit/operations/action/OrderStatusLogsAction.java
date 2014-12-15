@@ -252,6 +252,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         entity.setStatus(formBean.getStatus());
         entity.setCreatedBy(formBean.getCreatedBy());
         entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
+        entity.setDeliveryDate(formBean.getDeliveryDate());
+        entity.setPickupDate(formBean.getPickupDate());
+        entity.setDepartureTime(formBean.getDepartureTime());
+        entity.setArrivalTime(formBean.getArrivalTime());
         return entity;
     }
 
@@ -296,6 +300,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
         OrderStatusLogsBean formBean = new OrderStatusLogsBean();
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+        formBean.setDeliveryDate(entity.getDeliveryDate());
+        formBean.setPickupDate(entity.getPickupDate());
+        formBean.setDepartureTime(entity.getDepartureTime());
+        formBean.setArrivalTime(entity.getArrivalTime());
         formBean.setStatus(entity.getStatus());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setNameSize(orderService.findOrderItemByOrderItemId(entity.getOrderItemId()).getNameSize());

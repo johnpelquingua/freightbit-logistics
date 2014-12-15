@@ -13,17 +13,27 @@ public class OrderStatusLogs implements Serializable {
     private String status;
     private String createdBy;
     private Date createdTimestamp;
+    private Date deliveryDate;
+    private Date pickupDate;
+    private Date departureTime;
+    private Date arrivalTime;
+
+
 
     public OrderStatusLogs() {
     }
 
-    public OrderStatusLogs(Integer statusId, Integer orderId, Integer orderItemId, String status, String createdBy, Date createdTimestamp) {
+    public OrderStatusLogs(Integer statusId, Integer orderId, Integer orderItemId, String status, String createdBy, Date createdTimestamp, Date deliveryDate, Date pickupDate, Date departureTime, Date arrivalTime) {
         this.statusId = statusId;
         this.orderId = orderId;
         this.orderItemId = orderItemId;
         this.status = status;
         this.createdBy = createdBy;
         this.createdTimestamp = createdTimestamp;
+        this.deliveryDate = deliveryDate;
+        this.pickupDate = pickupDate;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
     }
 
     @Id
@@ -37,7 +47,7 @@ public class OrderStatusLogs implements Serializable {
         this.statusId = statusId;
     }
 
-    @Column(name = "orderId", unique = true)
+    @Column(name = "orderId")
     public Integer getOrderId() {
         return orderId;
     }
@@ -46,7 +56,7 @@ public class OrderStatusLogs implements Serializable {
         this.orderId = orderId;
     }
 
-    @Column(name = "orderItemId", unique = true)
+    @Column(name = "orderItemId")
     public Integer getOrderItemId() {
         return orderItemId;
     }
@@ -55,7 +65,7 @@ public class OrderStatusLogs implements Serializable {
         this.orderItemId = orderItemId;
     }
 
-    @Column(name = "status", unique = true)
+    @Column(name = "status")
     public String getStatus() {
         return status;
     }
@@ -64,7 +74,7 @@ public class OrderStatusLogs implements Serializable {
         this.status = status;
     }
 
-    @Column(name = "createdBy", unique = true)
+    @Column(name = "createdBy")
     public String getCreatedBy() {
         return createdBy;
     }
@@ -73,12 +83,48 @@ public class OrderStatusLogs implements Serializable {
         this.createdBy = createdBy;
     }
 
-    @Column(name = "createdTimestamp", unique = true)
+    @Column(name = "createdTimestamp")
     public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
 
     public void setCreatedTimestamp(Date createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
+    }
+
+    @Column(name = "deliveryDate")
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    @Column(name = "pickupDate")
+    public Date getPickupDate() {
+        return pickupDate;
+    }
+
+    public void setPickupDate(Date pickupDate) {
+        this.pickupDate = pickupDate;
+    }
+
+    @Column(name = "departureTime")
+    public Date getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(Date departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    @Column(name = "arrivalTime")
+    public Date getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(Date arrivalTime) {
+        this.arrivalTime = arrivalTime;
     }
 }
