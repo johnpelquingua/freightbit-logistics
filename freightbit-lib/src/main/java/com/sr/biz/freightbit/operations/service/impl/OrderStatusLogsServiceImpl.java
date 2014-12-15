@@ -10,9 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 7/30/14.
- */
 public class OrderStatusLogsServiceImpl implements OrderStatusLogsService {
 
     private OrderStatusLogsDao orderStatusLogsDao;

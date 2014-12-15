@@ -97,9 +97,20 @@
                             </display:table>
 
                 </div>
+
+                <%--<s:textfield value="%{orderStatusLogsBean.orderItemId}" name="orderStatusLogsBean.orderItemId"/>
+                <s:property value="%{orderItemIdParam}" />
+                <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>--%>
+
                 <s:form cssClass="form-horizontal" theme="bootstrap" action="setItemStatus" >
-                <s:hidden value="%{orderIdParam}" name="orderStatusLogsBean.orderId"/>
-                <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
+
+                <s:if test="orderItemIdParam != null">
+                    <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
+                </s:if>
+                <s:else>
+                    <s:hidden value="%{orderStatusLogsBean.orderItemId}" name="orderStatusLogsBean.orderItemId"/>
+                </s:else>
+
                 <div class="col-lg-3" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Current Date/Time <span class="asterisk_red"></span></label>
                     <s:textfield required="true" name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp" />
