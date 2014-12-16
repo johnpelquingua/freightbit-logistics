@@ -13,7 +13,9 @@
    </global-method-security>
 
 	<!-- COMMON CORE -->
-    <http auto-config="true">
+
+	<http auto-config="true">
+	<access-denied-handler error-page="/403" />
     <intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <intercept-url pattern="/includes/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <intercept-url pattern="/struts/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
