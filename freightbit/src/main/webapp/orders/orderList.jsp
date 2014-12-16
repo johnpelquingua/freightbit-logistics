@@ -78,8 +78,8 @@
                             <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"
                                                 style="text-align: center;"> </display:column></td>
 
-                            <td><display:column property="documentCheck" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"
-                                                style="text-align: center;"> </display:column></td>
+                            <%--<td><display:column property="documentCheck" title="Status <i class='fa fa-sort' />" class="tb-font-black status-color"--%>
+                                                <%--style="text-align: center;"> </display:column></td>--%>
 
                             <td class="tb-font-black" style="text-align: center;">
                                 <display:column title="Actions">
