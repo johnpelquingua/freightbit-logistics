@@ -41,14 +41,14 @@
                             <div class="col-lg-10" ></span>
                                 <s:select name="address.addressType" list="addressTypeList" listValue="value"
                                           listKey="key"
-                                          cssClass="form-control" id="address.addressType" emptyOption="true"/>
+                                          cssClass="addAddressInput form-control" id="address.addressType" emptyOption="true"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Address Line 1<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10" >
-                                <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control" required="true"
+                                <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="addAddressInput form-control" required="true"
                                         />
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;" >City<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield name="address.city" id="address.city" cssClass="form-control" required="true"
+                                <s:textfield name="address.city" id="address.city" cssClass="addAddressInput form-control" required="true"
                                        />
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Zip Code<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield name="address.zip" id="address.zip" cssClass="form-control" required="true"
+                                <s:textfield name="address.zip" id="address.zip" cssClass="addAddressInput form-control" required="true"
                                         title="Zip Code is required. Must be 4 digits only" maxlength="4"/>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                 <div class="pull-right">
                     <a href="viewAddress" class="btn btn-default" id ="groups-btn">Cancel</a>
 
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                    <s:submit cssClass="addAddressBtn btn btn-primary" name="submit" value="Save" disabled="true"/>
                 </div>
             </div>
             </s:form>
@@ -124,3 +124,8 @@
     </div>--%>
 
 </div>
+<script>
+    $(document).ready(function(){
+        validationForm('addAddressInput', 'addAddressBtn');
+    })
+</script>

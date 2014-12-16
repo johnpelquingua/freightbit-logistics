@@ -42,7 +42,7 @@
 
                         <div class="col-lg-10" >
 
-                            <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
+                            <s:textfield name="consignee.lastName" cssClass="addConsigneeInput form-control" id="consignee.lastName"
                                          placeholder="Last Name" maxLength="30" required="true"
                                          pattern="[a-zA-Z\s]+"
                                          title="Name should not contain special characters and/or numbers."/>
@@ -57,7 +57,7 @@
 
                         <div class="col-sm-10 " >
 
-                            <s:textfield name="consignee.firstName" cssClass="form-control" id="consignee.firstName"
+                            <s:textfield name="consignee.firstName" cssClass="addConsigneeInput form-control" id="consignee.firstName"
                                          placeholder="First Name" maxLength="30" autofocus="true" required="true"
                                          pattern="[a-zA-Z\s]+"
                                          title="Name should not contain special characters and/or numbers."/>
@@ -85,7 +85,7 @@
 
                         <div class="col-lg-10" >
 
-                            <s:textfield name="consignee.email" cssClass="form-control" id="consignee.email"
+                            <s:textfield name="consignee.email" cssClass="addConsigneeInput form-control" id="consignee.email"
                                          placeholder="Email Address" type="email" required="true" maxLength="50" title="Must be a valid email"
                                     />
                         </div>
@@ -97,7 +97,7 @@
 
                         <div class="col-lg-10" >
 
-                            <s:textfield name="consignee.phone" cssClass="form-control" id="consignee_phone"
+                            <s:textfield name="consignee.phone" cssClass="addConsigneeInput form-control" id="consignee_phone"
                                          placeholder="(XXX) XXX-XXXX" maxLength="14" required="true"
                                          title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                         </div>
@@ -109,9 +109,8 @@
 
                         <div class="col-lg-10" >
 
-                            <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee_mobile"
+                            <s:textfield name="consignee.mobile" cssClass="addConsigneeInput form-control" id="consignee_mobile"
                                          placeholder="(+639XX) (XXX-XXXX)" maxLength="19" required="true"
-
                                          title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                         </div>
                     </div>
@@ -134,7 +133,7 @@
 
                         <div class="col-lg-10" >
 
-                            <s:textfield name="consignee.addressLine1" cssClass="form-control"
+                            <s:textfield name="consignee.addressLine1" cssClass="addConsigneeInput form-control"
                                          id="consignee.addressLine1" placeholder="Address 1" required="true"
                                          maxLength="50"/>
                         </div>
@@ -155,7 +154,7 @@
 
                         <div class="col-lg-10" >
 
-                            <s:textfield name="consignee.city" cssClass="form-control"
+                            <s:textfield name="consignee.city" cssClass="addConsigneeInput form-control"
                                          id="consignee.city" placeholder="City" required="true"
                                          pattern="[a-zA-Z ]+" maxLength="50"
                                          title="City should not contain special characters and/or numbers."/>
@@ -179,7 +178,7 @@
 
                         <div class="col-lg-10" >
 
-                            <s:textfield name="consignee.zip" cssClass="form-control"
+                            <s:textfield name="consignee.zip" cssClass="addConsigneeInput form-control"
                                          id="consignee.zip" placeholder="ZIP" required="true"
                                          pattern="[0-9]+" maxLength="4"
                                          title="ZIP should not contain special characters and/or letters."
@@ -194,7 +193,7 @@
                         Cancel
                     </button>--%>
                     <a href="viewConsignees" class="btn btn-default" id ="groups-btn">Cancel</a>
-                    <s:submit name="submit" cssClass="btn btn-primary" value="Save"/>
+                    <s:submit name="submit" cssClass="addConsigneeBtn btn btn-primary" value="Save" disabled="true"/>
                 </div>
             </div>
             </s:form>
@@ -227,11 +226,10 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-
+        validationForm('addConsigneeInput', 'addConsigneeBtn');
         $("#consignee_phone").mask("(999) 999-9999");
         $("#consignee_mobile").mask("(+63999)(999-9999)");
         $("#consignee_fax").mask("(999) 999-9999");
-
     });
 
     function isNumberKey(evt)

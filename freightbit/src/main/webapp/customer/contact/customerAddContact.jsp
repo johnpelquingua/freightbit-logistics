@@ -38,7 +38,7 @@
                         <label for="contact.contactType" class="col-lg-2 control-label" style="padding-top:0px;">Contact Type<span class="asterisk_red"></span></label>
                         <div class="col-lg-10" >
                             <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
-                                      listKey="key" listValue="value" cssClass="form-control"
+                                      listKey="key" listValue="value" cssClass="addContactInput form-control"
                                       value="contact.contactType" emptyOption="true"/>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label for="contact.email" class="col-lg-2 control-label" style="padding-top:0px;">Position<span class="asterisk_red"></span></label>
                         <div class="col-lg-10" >
-                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
+                            <s:textfield cssClass="addContactInput form-control" placeholder="Position" name="contact.position"
                                          type="text" required="true"/>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                     <div class="form-group">
                         <label for="contact.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span></label>
                         <div class="col-lg-10" >
-                            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
+                            <s:textfield cssClass="addContactInput form-control" placeholder="Last Name" name="contact.lastName"
                                          id="contact.lastName" required="true" maxLength="30" autofocus="true"
                                          pattern="[a-zA-Z\s ]+"
                                          title="Name should not contain special characters and/or numbers."/>
@@ -64,7 +64,7 @@
                     <div class="form-group">
                         <label for="contact.firstName" class="col-lg-2 control-label" style="padding-top:0px;">First Name<span class="asterisk_red"></span></label>
                         <div class="col-lg-10" >
-                            <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
+                            <s:textfield cssClass="addContactInput form-control" placeholder="First Name" name="contact.firstName"
                                          id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s ]+"
                                          title="Name should not contain special characters and/or numbers."
                                          required="true"/>
@@ -83,7 +83,7 @@
                     <div class="form-group">
                         <label for="contact.email" class="col-lg-2 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
                         <div class="col-lg-10" >
-                            <s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email"
+                            <s:textfield cssClass="addContactInput form-control" placeholder="E-mail" name="contact.email"
                                          type="email" required="true"/>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                     <div class="form-group">
                         <label for="contact.phone" class="col-lg-2 control-label" style="padding-top:0px;">Phone<span class="asterisk_red"></span></label>
                         <div class="col-lg-10" >
-                            <s:textfield cssClass="form-control" placeholder="(XXX)XXX-XXXX" name="contact.phone"
+                            <s:textfield cssClass="addContactInput form-control" placeholder="(XXX)XXX-XXXX" name="contact.phone"
                                          maxLength="14" required="true" id="contact_phone"
 										 title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                         </div>
@@ -100,7 +100,7 @@
                     <div class="form-group">
                         <label for="contact.mobile" class="col-lg-2 control-label" style="padding-top:0px;">Mobile<span class="asterisk_red"></span></label>
                         <div class="col-lg-10" >
-                            <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
+                            <s:textfield cssClass="addContactInput form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
                                          maxLength="19" required="true" id="contact_mobile"
 
                                          title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
@@ -119,7 +119,7 @@
             <div class="panel-footer">
                 <div class="pull-right">
                     <a href="viewCustomerContacts" class="btn btn-default" id ="groups-btn">Cancel</a>
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                    <s:submit disabled="true" cssClass="btn btn-primary addContactBtn" name="submit" value="Save"/>
                 </div>
             </div>
             </s:form>
@@ -155,11 +155,9 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-
-            $("#contact_phone").mask("(999) 999-9999");
-            $("#contact_mobile").mask("(+63999)(999-9999)");
-            $("#contact_fax").mask("(999) 999-9999");
-
+        $("#contact_phone").mask("(999) 999-9999");
+        $("#contact_mobile").mask("(+63999)(999-9999)");
+        $("#contact_fax").mask("(999) 999-9999");
+        validationForm('addContactInput', 'addContactBtn')
     });
-
 </script>

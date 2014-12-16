@@ -585,28 +585,27 @@ function massCheckbox(boxName, tableName){
 }
 
 // THIS FUNCTION IS FOR FORM VALIDATION THIS REQURES THE CLASS OF INPUTS AND CLASS OF SUBMIT BUTTON
-function validationForm(inputClass, submitBtn, page){
+function validationForm(inputClass, submitBtn, module){
 
-    $('.'+inputClass+':enabled').change(function(){
+    var classInput = $('.'+inputClass+':enabled'),
+        submitBtn = $('.'+submitBtn);
+    classInput.change(function(){
         initValidation();
-    })
+    });
 
-    $('.'+inputClass+':enabled').keyup(function(){
+    classInput.keyup(function(){
         initValidation();
-    })
+    });
 
-    $('.'+inputClass+':enabled').click(function(){
+    classInput.click(function(){
         initValidation();
-    })
+    });
 
-    $('.notifBox').click(function(){
-        initValidation();
-//        if(notifBox_booking('notifBox')){
-//            $('.'+submitBtn).prop('disabled', false);
-//        }else{
-//            $('.'+submitBtn).prop('disabled', true);
-//        }
-    })
+    if(module == 'BOOKING'){
+        $('.notifBox').click(function(){
+            initValidation();
+        })
+    }
 
     function initValidation(){
         console.clear();
@@ -620,10 +619,19 @@ function validationForm(inputClass, submitBtn, page){
             }
         }
         console.log(bool+' out of '+formInput.size());
-        if(bool == formInput.size() && notifBox_booking('notifBox')){
-            $('.'+submitBtn).prop('disabled', false);
+
+        if(module == 'BOOKING'){
+            if(bool == formInput.size() && notifBox_booking('notifBox')){
+                submitBtn.prop('disabled', false);
+            }else{
+                submitBtn.prop('disabled', true);
+            }
         }else{
-            $('.'+submitBtn).prop('disabled', true);
+            if(bool == formInput.size()){
+                submitBtn.prop('disabled', false);
+            }else{
+                submitBtn.prop('disabled', true);
+            }
         }
     }
 }
