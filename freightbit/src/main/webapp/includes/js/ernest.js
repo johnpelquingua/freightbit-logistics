@@ -248,108 +248,119 @@ function tableProp(tableClass, tableName, colStatus, colType, colReq, colMode, c
 }
 
 function placeAbbrev(place){
-    if(place == 'MANILA'){
-        return 'MNL';
-    }else if(place == 'BACOLOD'){
-        return 'BAC';
-    }else if(place == 'BUTUAN'){
-        return 'BXU';
-    }else if(place == 'CAGAYAN'){
-        return 'CGY';
-    }else if(place == 'COTABATO'){
-        return 'CBO';
-    }else if(place == 'DAVAO'){
-        return 'DVO';
-    }else if(place == 'DUMAGUETE'){
-        return 'DGT';
-    }else if(place == 'DIPOLOG'){
-        return 'DPG';
-    }else if(place == 'GEN. SANTOS'){
-        return 'GES';
-    }else if(place == 'ILIGAN'){
-        return 'ILI';
-    }else if(place == 'ILOILO'){
-        return 'ILO';
-    }else if(place == 'OZAMIS'){
-        return 'OZA';
-    }else if(place == 'GEN. SANTOS'){
-        return 'GES';
-    }else if(place == 'PALAWAN'){
-        return 'PPS';
-    }else if(place == 'ROXAS'){
-        return 'RXS';
-    }else if(place == 'TAGBILARAN'){
-        return 'TAG';
-    }else if(place == 'TACLOBAN'){
-        return 'TAC';
-    }else if(place == 'ZAMBOANGA'){
-        return 'ZAM';
-    }else if(place == 'CEBU'){
-        return 'CEB'
-    }else{
-        return place;
+    switch(place){
+        case 'MANILA' :
+            return 'MNL';
+        case 'BACOLOD' :
+            return 'BAC';
+        case 'BUTUAN' :
+            return 'BXU';
+        case 'CAGAYAN' :
+            return 'CGY';
+        case 'COTABATO' :
+            return 'CBO';
+        case 'DAVAO' :
+            return 'DVO';
+        case 'DUMAGUETE' :
+            return 'DGT';
+        case 'DIPOLOG' :
+            return 'DPG';
+        case 'GEN. SANTOS' :
+            return 'GES';
+        case 'ILIGAN' :
+            return 'ILI';
+        case 'ILOILO' :
+            return 'ILO';
+        case 'OZAMIS' :
+            return 'OZA';
+        case 'PALAWAN' :
+            return 'PPS';
+        case 'ROXAS' :
+            return 'RXS';
+        case 'TAGBILIARAN' :
+            return 'TAG';
+        case 'TACLOBAN' :
+            return 'TAC';
+        case 'ZAMBOANGA' :
+            return 'ZAM';
+        case 'CEBU' :
+            return 'CEB';
+        default :
+            return place;
     }
 }
 
 function trColor(status){
-    if(status == 'PENDING' || status == 'INCOMPLETE'){
-        return '#f2a5aa';
-    }else if(status == 'DISAPPROVED' || status == 'CANCELLED'){
-        return '#f2dede';
-    }else if(status == 'APPROVED' || status == 'SERVICE ACCOMPLISHED'){
-        return '#dff0d8';
-    }else if(status == 'ON GOING'){
-        return '#bce8f1';
+    switch(status){
+        case 'PENDING' :
+        case 'INCOMPLETE' :
+            return '#f2a5aa';
+        case 'DISAPPROVED' :
+        case 'CANCELLED' :
+            return '#f2dede';
+        case 'APPROVED' :
+        case 'SERVICE ACCOMPLISHED' :
+            return '#dff0d8';
+        case 'ON GOING' :
+            return '#bce8f1';
     }
 }
 
 function changeIcons(type){
-    if(type == 'SHIPPING AND TRUCKING'){
-        return "<i class='fa fa-anchor' /> <i class='fa fa-truck' />";
-    }else if(type == 'SHIPPING'){
-        return "<i class='fa fa-anchor' />";
-    }else if(type == 'TRUCKING'){
-        return "<i class='fa fa-truck' />";
-    }else{
-        return type;
+    switch(type){
+        case 'SHIPPING AND TRUCKING':
+            return "<i class='fa fa-anchor' /> <i class='fa fa-truck' />";
+        case 'SHIPPING' :
+            return "<i class='fa fa-anchor' />";
+        case 'TRUCKING' :
+            return "<i class='fa fa-truck' />";
+        default :
+            return type;
     }
 }
 
 function reqAbbrev(req){
-    if(req == 'FULL CARGO LOAD' || req == 'FULL CONTAINER LOAD'){
-        return 'FCL';
-    }else if(req == 'FULL TRUCK LOAD'){
-        return 'FTL';
-    }else if(req == 'LESS TRUCK LOAD'){
-        return 'LTL';
-    }else if(req == 'LESS CARGO LOAD' || req == 'LESS CONTAINER LOAD'){
-        return 'LCL';
-    }else if(req == 'LOOSE CARGO LOAD'){
-        return 'LCU';
-    }else if(req == 'ROLLING CARGO LOAD'){
-        return 'RCU';
-    }else{
-        return req;
+    switch(req){
+        case 'FULL CONTAINER LOAD':
+        case 'FULL CARGO LOAD' :
+            return 'FCL';
+        case 'FULL TRUCK LOAD' :
+            return 'FTL';
+        case 'LESS TRUCK LOAD' :
+            return 'LTL';
+        case 'LESS CONTAINER LOAD' :
+        case 'LESS CARGO LOAD' :
+            return 'LCL';
+        case 'LOOSE CARGO LOAD' :
+            return 'LCU';
+        case 'ROLLING CARGO LOAD' :
+            return 'RCU';
+        default :
+            return req;
     }
 }
 
 function modeAbbrev(mode){
-    if(mode == 'DOOR TO DOOR'){
-        return 'DD';
-    }else if(mode == 'DOOR TO PIER' || mode == 'DOOR TO PORT'){
-        return 'DP';
-    }else if(mode == 'PIER TO DOOR' || mode == 'PORT TO DOOR'){
-        return 'PD';
-    }else if(mode == 'PIER TO PIER' || mode == 'PORT TO PORT'){
-        return 'PP';
-    }else if(mode == 'PICKUP'){
-        return 'P';
-    }else if(mode == 'DELIVERY'){
-        return 'D';
-    }else if(mode == 'INTER-WAREHOUSE'){
-        return 'IW';
-    }else{
-        return mode;
+    switch(mode){
+        case 'DOOR TO DOOR' :
+            return 'DD';
+        case 'DOOR TO PIER' :
+        case 'DOOR TO PORT' :
+            return 'DP';
+        case 'PIER TO DOOR' :
+        case 'PORT TO DOOR' :
+            return 'PD';
+        case 'PIER TO PIER' :
+        case 'PORT TO PORT' :
+            return 'PP';
+        case 'PICKUP' :
+            return 'P';
+        case 'DELIVERY' :
+            return 'D';
+        case 'INTER-WAREHOUSE' :
+            return 'IW';
+        default :
+            return mode;
     }
 }
 
@@ -357,32 +368,46 @@ function dateAbbrev(date){
     var splitDate = date.split('-'),
         month;
 
-    if(splitDate[1] == '01'){
-        month = 'JAN';
-    }else if(splitDate[1] == '02'){
-        month = 'FEB';
-    }else if(splitDate[1] == '03'){
-        month = 'MAR';
-    }else if(splitDate[1] == '04'){
-        month = 'APR';
-    }else if(splitDate[1] == '05'){
-        month = 'MAY';
-    }else if(splitDate[1] == '06'){
-        month = 'JUN';
-    }else if(splitDate[1] == '07'){
-        month = 'JUL';
-    }else if(splitDate[1] == '08'){
-        month = 'AUG';
-    }else if(splitDate[1] == '09'){
-        month = 'SEP';
-    }else if(splitDate[1] == '10'){
-        month = 'OCT';
-    }else if(splitDate[1] == '11'){
-        month = 'NOV';
-    }else if(splitDate[1] == '12'){
-        month = 'DEC';
-    }else{
-        month = splitDate[1];
+    switch(splitDate[1]){
+        case '01' :
+            month = 'JAN';
+            break;
+        case '02' :
+            month = 'FEB';
+            break;
+        case '03' :
+            month = 'MAR';
+            break;
+        case '04' :
+            month = 'APR';
+            break;
+        case '05' :
+            month = 'MAY';
+            break;
+        case '06' :
+            month = 'JUN';
+            break;
+        case '07' :
+            month = 'JUL';
+            break;
+        case '08' :
+            month = 'AUG';
+            break;
+        case '09' :
+            month = 'SEP';
+            break;
+        case '10' :
+            month = 'OCT';
+            break;
+        case '11' :
+            month = 'NOV';
+            break;
+        case '12' :
+            month = 'DEC';
+            break;
+        default :
+            month = splitDate[1];
+            break;
     }
 
     return splitDate[0].substr(2,4)+'-'+month+'-'+splitDate[2];
@@ -406,32 +431,46 @@ function dateAbbrev_Format2(table, column){
             splitDate = dateColumn.text().split('-'),
             month;
 
-        if(splitDate[0] == '01'){
-            month = 'JAN';
-        }else if(splitDate[0] == '02'){
-            month = 'FEB';
-        }else if(splitDate[0] == '03'){
-            month = 'MAR';
-        }else if(splitDate[0] == '04'){
-            month = 'APR';
-        }else if(splitDate[0] == '05'){
-            month = 'MAY';
-        }else if(splitDate[0] == '06'){
-            month = 'JUN';
-        }else if(splitDate[0] == '07'){
-            month = 'JUL';
-        }else if(splitDate[0] == '08'){
-            month = 'AUG';
-        }else if(splitDate[0] == '09'){
-            month = 'SEP';
-        }else if(splitDate[0] == '10'){
-            month = 'OCT';
-        }else if(splitDate[0] == '11'){
-            month = 'NOV';
-        }else if(splitDate[0] == '12'){
-            month = 'DEC';
-        }else{
-            month = splitDate[0];
+        switch(splitDate[0]){
+            case '01' :
+                month = 'JAN';
+                break;
+            case '02' :
+                month = 'FEB';
+                break;
+            case '03' :
+                month = 'MAR';
+                break;
+            case '04' :
+                month = 'APR';
+                break;
+            case '05' :
+                month = 'MAY';
+                break;
+            case '06' :
+                month = 'JUN';
+                break;
+            case '07' :
+                month = 'JUL';
+                break;
+            case '08' :
+                month = 'AUG';
+                break;
+            case '09' :
+                month = 'SEP';
+                break;
+            case '10' :
+                month = 'OCT';
+                break;
+            case '11' :
+                month = 'NOV';
+                break;
+            case '12' :
+                month = 'DEC';
+                break;
+            default :
+                month = splitDate[0];
+                break;
         }
 
         dateColumn.empty().append(splitDate[1]+'-'+month+'-'+splitDate[2].substr(2,4));
