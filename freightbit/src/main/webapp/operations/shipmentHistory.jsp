@@ -2,12 +2,6 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<style>
-    .pagebanner, .pagelinks {
-        display: none;
-    }
-</style>
-
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
         <div class="alert alert-success" id="alert">
@@ -79,22 +73,28 @@
                 </s:else>
                 <br />
                 <br />
-                <div class="table-responsive TableContainer">
+                <div class="table-responsive list-table">
+                    <tbody>
+                    <table>
+                        <tr>
                             <display:table id="orderStatusLogs" name="orderStatusLogs"
                                            requestURI="loadItemShipmentHistory.action" pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;empty-cells: hide;">
 
-                                <td><display:column property="createdTimestamp" title="Date/Time" class="tb-font-black"
+                                <td><display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="createdBy" title="Updated By" class="tb-font-black"
+                                <td><display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="status" title="Shipment History" class="tb-font-black"
+                                <td><display:column property="status" title="Shipment History <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
                             </display:table>
+                        </tr>
+                    </table>
+                    </tbody>
                 </div>
 
                 <s:form cssClass="form-horizontal" theme="bootstrap" action="setItemStatus" >
@@ -305,5 +305,11 @@
             timeFormat: 'h:mm TT',
             minDate: 0
         });
+    });
+
+    $('#seaFreightLCLStatus').change(function(event) {
+        var show = $(this).val() == "ARRIVED";
+            $(show).remove(this);
+//        alert(1);
     });
 </script>

@@ -93,6 +93,7 @@
                 method="setItemStatus">
             <result name="input" type="tiles">operations.itemShipmentHistory.tiles</result>
             <result name="success" type="redirect">loadSuccessSetStatus</result>
+            <result name="NULL_INPUT" type="redirect">viewStatusListItems</result>
         </action>
 
         <action name="loadSuccessSetStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"

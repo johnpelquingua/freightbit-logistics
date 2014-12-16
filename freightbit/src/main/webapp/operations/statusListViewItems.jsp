@@ -157,9 +157,8 @@
                     <div class="row">
                         <%--<s:textfield  style="display: none" cssClass="col-lg-6" name="orderItem.editItem" id="edit"></s:textfield>--%>
                             <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
-                            <div class="col-md-6 pull-right" style="margin-right: -17em;">
-                            <s:submit cssClass="col-lg-3 btn btn-default" value="Set Status" onclick="deleteText()"></s:submit>
-                            <s:submit cssClass="col-lg-3 btn btn-default" value="Edit Status" onclick="addText()"></s:submit>
+                            <div class="col-md-5 pull-right" style="margin-right: -17em;">
+                            <s:submit cssClass="col-lg-4 btn btn-default" value="Set Status" onclick="addText()"></s:submit>
                         </div>
                     </div>
                     </s:form>
@@ -187,24 +186,8 @@
         }
     })
 
-    /*function CheckAll(check)
-    {
-        for (var i = 0; i < check.length; i++)
-            check[i].checked = true ;
-    }
-
-    function UnCheckAll(check)
-    {
-        for (var i = 0; i < check.length; i++)
-            check[i].checked = false ;
-    }*/
-
     function addText() {
         document.getElementById("edit").value = "edit";
-    }
-
-    function deleteText() {
-        document.getElementById("edit").value = "";
     }
 
 </script>
