@@ -176,7 +176,7 @@
             <div class="panel-footer">
                             <span class="pull-right">
                               <a href="viewUsers" class="btn btn-danger" id="users-add-btn">Cancel</a>
-                              <s:submit cssClass="btn btn-primary submitBtn" name="submit" value="Save" disabled="true"/>
+                              <s:submit cssClass="btn btn-primary submitBtn" name="submit" value="Save" disabled="false"/>
                             </span>
             </div>
              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
