@@ -41,7 +41,7 @@
 
                             <div class="col-lg-10">
                                 <s:select name="address.addressType" list="addressTypeList" listValue="value"
-                                          listKey="key" cssClass="form-control" id="address.addressType"
+                                          listKey="key" cssClass="vendorAddAddressInput form-control" id="address.addressType"
                                           emptyOption="true"/>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
 
                             <div class="col-lg-10">
                                 <s:textfield name="address.addressLine1" id="address.addressLine1"
-                                             cssClass="form-control" required="true" maxlength="50"/>
+                                             cssClass="vendorAddAddressInput form-control" required="true" maxlength="50"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -65,7 +65,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">City<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield name="address.city" id="address.city" cssClass="form-control" required="true" maxlength="30"/>
+                                <s:textfield name="address.city" id="address.city" cssClass="vendorAddAddressInput form-control" required="true" maxlength="30"/>
                             </div>
                         </div>
 
@@ -80,7 +80,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Zip Code<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield name="address.zip" id="address.zip" cssClass="form-control" pattern="[0-9]+" maxlength="4" requiredLabel="true"/>
+                                <s:textfield name="address.zip" id="address.zip" cssClass="vendorAddAddressInput form-control" pattern="[0-9]+" maxlength="4" requiredLabel="true"/>
                             </div>
                         </div>
                         <s:property value="%{vendorIdParam}"/>
@@ -94,9 +94,9 @@
 
             <div class="panel-footer">
                 <div class="pull-right">
-                    <a href="viewTruckingAddress" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <a href="viewTruckingAddress" class="btn btn-danger" id ="groups-btn">Cancel</a>
 
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                    <s:submit cssClass="vendordAddAddressBtn btn btn-primary" name="submit" value="Save" disabled="true"/>
                 </div>
             </div>
             </s:form>
@@ -117,3 +117,8 @@
     </div>--%>
 
 </div>
+<script>
+    $(document).ready(function(){
+        validationForm('vendorAddAddressInput', 'vendordAddAddressBtn');
+    })
+</script>

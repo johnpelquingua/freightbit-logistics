@@ -73,7 +73,7 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Code</label>
 
                         <div class="col-sm-10">
-                            <s:textfield required="true" name="groupBean.groupCode" cssClass="form-control"/>
+                            <s:textfield required="true" name="groupBean.groupCode" cssClass="addGroupInput form-control"/>
                         </div>
                     </div>
 
@@ -81,7 +81,7 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Name</label>
 
                         <div class="col-sm-10">
-                            <s:textfield required="true" name="groupBean.groupName" cssClass="form-control"/>
+                            <s:textfield required="true" name="groupBean.groupName" cssClass="addGroupInput form-control"/>
                         </div>
                     </div>
 
@@ -89,15 +89,15 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Description</label>
 
                         <div class="col-sm-10">
-                            <s:textfield name="groupBean.description" cssClass="form-control"/>
+                            <s:textfield name="groupBean.description" cssClass="addGroupInput form-control"/>
                         </div>
                     </div>
 
                     <s:hidden name="groupBean.groupId" value="%{groupBean.groupId}"/>
 
                 <span class="pull-right">
-                    <a href="viewGroups" class="btn btn-default ">Cancel</a>
-                    <s:submit name="submit" value="Save" cssClass="btn btn-primary"/>
+                    <a href="viewGroups" class="btn btn-danger ">Cancel</a>
+                    <s:submit name="submit" value="Save" cssClass="addGroupBtn btn btn-primary" disabled="true"/>
                 </span>
 
                 </div>
@@ -217,4 +217,9 @@
     </div>
 
 </s:form>
+<script>
+    $(document).ready(function(){
+        validationForm('addGroupInput', 'addGroupBtn')
+    })
+</script>
 

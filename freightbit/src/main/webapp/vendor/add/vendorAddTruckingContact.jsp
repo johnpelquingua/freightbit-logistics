@@ -40,7 +40,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Contact Type<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
                             <s:select list="contactTypeList" name="contact.contactType" id="contact.contactType"
-                                      listKey="key" listValue="value" cssClass="form-control"
+                                      listKey="key" listValue="value" cssClass="addTruckingContactInput form-control"
                                       value="contact.contactType"/>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
+                            <s:textfield cssClass="addTruckingContactInput form-control" placeholder="Last Name" name="contact.lastName"
                                          id="contact.lastName" pattern="[A-Za-z\s]+" title="Must be letters only" required="true" maxlength="30"/>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">First Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
+                            <s:textfield cssClass="form-control addTruckingContactInput" placeholder="First Name" name="contact.firstName"
                                          id="contact.firstName" pattern="[A-Za-z\s]+" title="Must be letters only" required="true" maxlength="30"/>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Telephone<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="(XXX)XXX-XXXX" name="contact.phone" maxLength="14" required="true"
+                            <s:textfield cssClass="form-control addTruckingContactInput" placeholder="(XXX)XXX-XXXX" name="contact.phone" maxLength="14" required="true"
                                          id="trucking_phone" title="(XXX) XXX-XXXX Telephone Number should not contain special characters and/or letters."/>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile" maxLength="19"
+                            <s:textfield cssClass="form-control addTruckingContactInput" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile" maxLength="19"
                                          id="trucking_mobile" required="true"
                                          title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                             </div>
@@ -97,7 +97,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">E-mail<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email" type="email" maxLength="50" required="true"
+                            <s:textfield cssClass="form-control addTruckingContactInput" placeholder="E-mail" name="contact.email" type="email" maxLength="50" required="true"
                                          pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Position<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="Position" name="contact.position" required="true"/>
+                                <s:textfield cssClass="form-control addTruckingContactInput" placeholder="Position" name="contact.position" required="true"/>
                             </div>
                         </div>
 
@@ -122,9 +122,8 @@
 
             <div class="panel-footer">
                 <div class="pull-right">
-                    <a href="viewVendorTruckingContacts" class="btn btn-default" id ="groups-btn">Cancel</a>
-
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                    <a href="viewVendorTruckingContacts" class="btn btn-danger" id ="groups-btn">Cancel</a>
+                    <s:submit cssClass="addTruckingContactBtn btn btn-primary" name="submit" value="Save" disabled="true"/>
                 </div>
             </div>
             </s:form>
@@ -148,10 +147,9 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-
+        validationForm('addTruckingContactInput', 'addTruckingContactBtn');
         $("#trucking_phone").mask("(999) 999-9999");
         $("#trucking_mobile").mask("(+63999)(999-9999)");
         $("#trucking_fax").mask("(999) 999-9999");
-
     });
 </script>

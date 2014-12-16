@@ -48,7 +48,7 @@
                             <label for="driver.licenseNumber" class="col-lg-2 control-label" style="padding-top:0px;">License<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="AXX-XX-XXXXXXX"
+                                <s:textfield cssClass="vendorAddDriverInput form-control" placeholder="AXX-XX-XXXXXXX"
                                              name="driver.licenseNumber" id="driver_licenseNumber" required="true"/>
                             </div>
 
@@ -59,7 +59,7 @@
                             <label for="driver.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName"
+                                <s:textfield cssClass="form-control vendorAddDriverInput" placeholder="Last Name" name="driver.lastName"
                                              id="driver.lastName" required="true"/>
                             </div>
 
@@ -70,7 +70,7 @@
                             <label for="driver.firstName" class="col-lg-2 control-label" style="padding-top:0px;">First Name<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName"
+                                <s:textfield cssClass="form-control vendorAddDriverInput" placeholder="First Name" name="driver.firstName"
                                              id="driver.firstName" required="true"/>
                             </div>
 
@@ -92,7 +92,7 @@
                             <label for="driver.title" class="col-lg-2 control-label" style="padding-top:0px;">Title<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"
+                                <s:textfield cssClass="form-control vendorAddDriverInput" placeholder="Title" name="driver.title"
                                              id="driver.title" required="true"/>
                             </div>
 
@@ -120,9 +120,9 @@
 
             <div class="panel-footer">
                 <div class="pull-right">
-                    <a href="viewDrivers" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <a href="viewDrivers" class="btn btn-danger" id ="groups-btn">Cancel</a>
 
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                    <s:submit cssClass="btn btn-primary vendorAddDriverBtn" name="submit" value="Save" disabled="true"/>
                 </div>
             </div>
             </s:form>
@@ -148,10 +148,9 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-
+        validationForm('vendorAddDriverInput', 'vendorAddDriverBtn');
         $("#driver_licenseNumber").mask("A99-99-9999999");
 //        $("#shipping_mobile").mask("(+63999)(999-9999)");
 //        $("#shipping_fax").mask("(999) 999-9999");
-
     });
 </script>
