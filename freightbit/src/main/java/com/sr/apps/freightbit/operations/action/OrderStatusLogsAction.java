@@ -9,6 +9,7 @@ import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
@@ -93,25 +94,11 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public String setItemStatus() {
         Map sessionAttributes = ActionContext.getContext().getSession();
-
-        /*System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderItem.getEditItem());
-        for (int i =0; i<check.length; i++) {
-            System.out.println("--------------------------------------" + check[i]);
-        }*/ //For Checking of Checked Items//
-
-        /*validateOnSubmit(orderItem);
-        if (hasFieldErrors())
-            return INPUT;*/
-
-//        try {
+        try {
             OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
-
-//            sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderId());
-
             sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
             orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             orderStatusLogsService.addStatus(orderStatusLogsEntity);
-
 
             /*Notification notificationEntity = new Notification();
             notificationEntity.setDescription("SHIPMENT_LOGS");
@@ -122,61 +109,31 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             notificationEntity.setUserId(1);
             notificationService.addNotification(notificationEntity);*/
 
-        /*}catch (Exception e) {
+        }catch (Exception e) {
             addActionError("Update Failed");
             return INPUT;
-        }*/
-
-
-
-        /*Orders orderEntity = orderService.findOrdersById(orderStatusLogsEntity.getOrderId());
-        order = transformToOrderFormBean(orderEntity);
-
-        OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(orderStatusLogsEntity.getOrderItemId());
-        orderItem = transformToOrderItemFormBean(orderItemEntity);
-
-        List<OrderStatusLogs> orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs(orderStatusLogsEntity.getOrderItemId());
-
-        for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
-            orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
         }
-
-        clearErrorsAndMessages();
-        addActionMessage("Success! Shipment Logs has been updated.");*/
 
         return SUCCESS;
     }
 
-    public void validateOnSubmit(OrderItemsBean orderItemsBean) {
-        clearErrorsAndMessages();
-        if (StringUtils.isBlank(orderItemsBean.getStatus())) {
-            addFieldError("orderStatusLogs.status", "Shipment Status is required");
-        }
+    public String loadSuccessSetStatus() {
+    Map sessionAttributes = ActionContext.getContext().getSession();
+    Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam")).getOrderId());
+    order = transformToOrderFormBean(orderEntity);
+    OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
+    orderItem = transformToOrderItemFormBean(orderItemEntity);
+    List<OrderStatusLogs> orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs((Integer) sessionAttributes.get("orderItemIdParam"));
 
+    for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
+        orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
     }
+    // Will show orderItem on second load without passing orderItemIdParam from table
+    orderStatusLogsBean.setOrderItemId(orderItemEntity.getOrderItemId());
 
-        public String loadSuccessSetStatus() {
-
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
-        Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam")).getOrderId());
-        order = transformToOrderFormBean(orderEntity);
-
-        OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
-        orderItem = transformToOrderItemFormBean(orderItemEntity);
-
-        List<OrderStatusLogs> orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs((Integer) sessionAttributes.get("orderItemIdParam"));
-
-        for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
-            orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
-        }
-        // will show orderitem on second load without passing orderitemid param from table
-        orderStatusLogsBean.setOrderItemId(orderItemEntity.getOrderItemId());
-
-        clearErrorsAndMessages();
-        addActionMessage("Success! Shipment Logs has been updated.");
-        return SUCCESS;
+    clearErrorsAndMessages();
+    addActionMessage("Success! Shipment Logs has been updated.");
+    return SUCCESS;
     }
 
     public String loadItemShipmentHistory() {
@@ -284,12 +241,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
 
         OrderStatusLogs entity = new OrderStatusLogs();
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +formBean.getOrderItemId());
-        /*if(orderItemIdParam != null){
-            entity.setOrderItemId(orderItemIdParam);
-        }else{
-            entity.setOrderItemId(formBean.getOrderItemId());
-        }*/
         entity.setOrderItemId(formBean.getOrderItemId());
         entity.setOrderId(operationsService.findOrderItemById(formBean.getOrderItemId()).getOrderId());
         entity.setStatus(formBean.getStatus());

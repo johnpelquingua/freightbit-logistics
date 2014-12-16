@@ -95,15 +95,9 @@
                                                     style="text-align: center;"> </display:column></td>
 
                             </display:table>
-
                 </div>
 
-                <%--<s:textfield value="%{orderStatusLogsBean.orderItemId}" name="orderStatusLogsBean.orderItemId"/>
-                <s:property value="%{orderItemIdParam}" />
-                <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>--%>
-
                 <s:form cssClass="form-horizontal" theme="bootstrap" action="setItemStatus" >
-
                 <s:if test="orderItemIdParam != null">
                     <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                 </s:if>
@@ -153,19 +147,9 @@
                                 />
                     </s:else>
                 </div>
-                <%--<label id="actualDeliveryDateLabel" class="col-lg-3 control-label" style="display:none">Actual Delivery Date: <span class="asterisk_red"></span></label>
-                <div class="pull-left" style="padding-top:24px;">
-                    <s:textfield required="true" name="orderStatusLogsBean.deliveryDate" cssClass="form-control" id="deliveryDate" style="display:none"/>
-                </div>
-                <label id="actualPickupDateLabel" class="col-lg-3 control-label" style="display:none">Actual Pickup Date: <span class="asterisk_red"></span></label>
-                <div class="pull-left" style="padding-top:24px;">
-                    <s:textfield required="true" name="orderStatusLogsBean.pickupDate" cssClass="form-control" id="pickupDate" style="display:none"/>
-                </div>--%>
-
             </div>
 
             <div class="panel-footer">
-
                 <div class="pull-right">
                         <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                             <s:param name="orderIdParam"
@@ -179,11 +163,12 @@
                             Back to Sea Freight Planning : Orders
                             </button>
                         </s:a>
-                    <%--<s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status"  data-toggle=""/>--%>
-                    <button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
-                    <button id="modalTrigger" style="display: none" data-toggle="modal"></button>
+                    <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status" />
+                    <%--<button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
+                    <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
             </div>
             </div>
+            </s:form>
         </div>
     </div>
 </div>
@@ -267,7 +252,6 @@
         </div>
     </div>
 </div>
-</s:form>
 <script type="text/javascript">
     function checkUpStatus(){
         if($('.statusDropdown').val() == 'DELIVERED'){
