@@ -6,9 +6,6 @@ import com.sr.biz.freightbit.order.entity.Orders;
 
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 7/30/14.
- */
 public interface OrderStatusLogsDao {
 
     public void addOrderStatus(OrderStatusLogs orderStatusLogs);

@@ -83,7 +83,7 @@
 
         <action name="activateArchive" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="activateArchive">
             <!--<result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>-->
-            <result name="success" type="redirect">viewOrderDocuments</result>
+            <result name="success" type="redirect">viewPendingDocuments</result>
         </action>
 
         <action name="finalOutboundSent" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="finalOutboundSent">
@@ -151,33 +151,44 @@
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
-        <action name="moveDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="moveDocuments">
-            <result name="input" type="redirect">viewOrderDocuments</result>
-            <result name="success" type="redirect">viewOrderDocuments</result>
-        </action>
-
-        <action name="moveDocumentInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="moveDocumentInbound">
-            <result name="success" type="redirect">viewOrderDocumentsInbound</result>
-        </action>
-
-        <action name="moveDocumentFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="moveDocumentFinalOutbound">
-            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
-        </action>
-
         <action name="checkDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="checkDocument">
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="checkDocumentInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="checkDocumentInbound">
-            <result name="success" type="redirect">viewOrderDocumentsInbound</result>
+            <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="checkDocumentFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="checkDocumentFinalOutbound">
-            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
+            <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="checkDocumentFinalInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="checkDocumentFinalInbound">
-            <result name="success" type="redirect">viewOrderDocumentsFinalInbound</result>
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
+        <action name="checkDocumentComplete" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="checkDocumentComplete">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
+        <action name="completeDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="completeDocuments">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
+        <action name="completeDocumentsInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="completeDocumentsInbound">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
+        <action name="completeDocumentsFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="completeDocumentsFinalOutbound">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
+        <action name="completeDocumentsFinalInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="completeDocumentsFinalInbound">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
+        <action name="activateCompleteStage" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="activateCompleteStage">
+            <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="addReferenceNumber" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addReferenceNumber">

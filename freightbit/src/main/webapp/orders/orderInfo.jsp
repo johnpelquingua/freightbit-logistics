@@ -20,11 +20,13 @@
 </div>
 
 <div class="panel panel-primary">
-    <%--<td><s:property value="order.documentId"/></td>--%>
+    <%--<td><s:property value="#attr.order.documentId"/></td>--%>
     <div class="panel-heading">
         <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Booking Information</h3>
         <div class="btn-toolbar pull-right">
             <a class="btn btn-info" title="Edit Booking" href="<s:url action='loadEditOrderInBooking' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" > <i class="fa fa-edit"></i> Edit Booking</a>
+
+        <%--<s:property value="#attr.order.documentCheck" />--%>
 
         <s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">
             <a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM')"> <i class="fa fa-print"></i> Print Booking</a>
@@ -52,11 +54,6 @@
             <div class="col-lg-6">
 
                 <div class="panel panel-info ">
-
-                    <%--<div align="center" style="margin-top: 15px;">
-                        <img alt="User Pic" src="../includes/images/photo.png" style="height: 200px; width: 200px;"
-                             class="img-circle">
-                    </div>--%>
 
                     <br/>
 

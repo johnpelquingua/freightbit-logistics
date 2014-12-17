@@ -2553,7 +2553,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntityProforma.setVendorCode(itemVendor);
                     documentEntityProforma.setOutboundStage(0);
                     documentEntityProforma.setDocumentProcessed(0);
-                    documentEntityProforma.setDocumentType("MASTER");
                     documentEntityProforma.setCreatedBy(commonUtils.getUserNameFromSession());
                     // orderitem id should be set in orderitemid column WIP
 
@@ -2628,7 +2627,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntity.setVendorCode(itemVendor);
                     documentEntity.setOutboundStage(0);
                     documentEntity.setDocumentProcessed(0);
-                    documentEntity.setDocumentType("MASTER");
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                     // orderitem id should be set in orderitemid column WIP
 

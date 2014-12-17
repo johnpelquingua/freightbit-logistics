@@ -1133,10 +1133,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
         /*OUTBOUND DOCUMENTS*/
-        outboundEntityList = documentsService.findDocumentByOutboundStageAndID(1, order.getOrderId());
-
-        Integer outboundCount = outboundEntityList.size();
-        System.out.println("Outbound count here ! " + outboundCount);
+        /*outboundEntityList = documentsService.findDocumentByOutboundStageAndID(1, order.getOrderId());*/
+        outboundEntityList = documentsService.findDocumentsByOrderId(order.getOrderId());
 
         for (Documents documentElem : outboundEntityList) {
             if (documentElem.getDocumentName().equals("BOOKING REQUEST FORM")) {

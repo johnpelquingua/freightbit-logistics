@@ -18,8 +18,6 @@ public class OrderStatusLogs implements Serializable {
     private Date departureTime;
     private Date arrivalTime;
 
-
-
     public OrderStatusLogs() {
     }
 

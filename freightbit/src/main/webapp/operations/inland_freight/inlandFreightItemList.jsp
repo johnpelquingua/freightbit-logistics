@@ -292,8 +292,8 @@
                  title="Create Documents">
                 Create House WayBill Origin
             </s:a>
-
-            <s:if test="%{#attr.orderItem.serviceType}!='TRUCKING'">
+            <%--<s:property value="#attr.order.freightType" />--%>
+            <s:if test="#attr.order.freightType!='TRUCKING'">
                 <s:url var="createdDocumentDestinationUrl" action="createdDocumentDestination">
                     <s:param name="orderIdParam"
                              value="#attr.order.orderId"></s:param>

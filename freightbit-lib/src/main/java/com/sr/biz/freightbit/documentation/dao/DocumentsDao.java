@@ -33,6 +33,8 @@ public interface DocumentsDao {
 
     public List<Documents> findDocumentByFinalInboundStageAndID(Integer finalInboundStage, Integer referenceId);
 
+    public List<Documents> findDocumentByCompleteStageAndID(Integer completeStage, Integer referenceId);
+
     public List<Documents> findDocumentByArchiveStageAndID(Integer archiveStage, Integer referenceId);
 
     public List<Documents> findDocumentByBillingStageAndID(Integer billingStage, Integer referenceId);

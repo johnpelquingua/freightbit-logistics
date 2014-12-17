@@ -22,28 +22,32 @@
                 <div class="form-group">--%>
                     <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Series Number<span class="asterisk_red"></span></label>
                     <div class="col-lg-8" >
-                        <%--<s:property value="%{document.documentId}" />
-                        <s:property value="%{document.documentName}" />
-                        <s:property value="%{document.referenceId}" />
-                        <s:property value="%{document.referenceNumber}" />--%>
-                        <%--<s:property value="%{document.documentType}" />--%>
+                        <%--<s:property value="%{document.vendorCode}" />
+                        <s:property value="%{document.documentType}" />--%>
+
                         <s:hidden name="document.documentId" value="%{document.documentId}" />
                         <s:hidden name="document.documentName" value="%{document.documentName}" id="documentName" />
-                        <s:hidden name="document.vendorCode" value="%{document.vendorCode}" />
                         <s:hidden name="document.referenceId" value="%{document.referenceId}" />
                         <s:hidden name="document.referenceTable" value="%{document.referenceTable}" />
                         <s:hidden name="document.orderNumber" value="%{document.orderNumber}" />
+                        <s:hidden name="document.createdDate" value="%{document.createdDate}" />
+                        <s:hidden name="document.documentStatus" value="%{document.documentStatus}" />
+                        <s:hidden name="document.documentProcessed" value="%{document.documentProcessed}" />
+                        <s:hidden name="document.documentType" value="%{document.documentType}" />
                         <s:hidden name="document.outboundStage" value="%{document.outboundStage}" />
                         <s:hidden name="document.inboundStage" value="%{document.inboundStage}" />
                         <s:hidden name="document.finalOutboundStage" value="%{document.finalOutboundStage}" />
                         <s:hidden name="document.finalInboundStage" value="%{document.finalInboundStage}" />
                         <s:hidden name="document.completeStage" value="%{document.completeStage}" />
-                        <s:hidden name="document.archiveStage" value="%{document.archiveStage}" />
-                        <s:hidden name="document.documentProcessed" value="%{document.documentProcessed}" />
                         <s:hidden name="document.inboundReturned" value="%{document.inboundReturned}" />
+                        <s:hidden name="document.finalOutboundSent" value="%{document.finalOutboundSent}" />
+                        <s:hidden name="document.finalOutboundLbc" value="%{document.finalOutboundLbc}" />
+                        <s:hidden name="document.finalInboundReturned" value="%{document.finalInboundReturned}" />
+                        <s:hidden name="document.finalInboundReceivedBy" value="%{document.finalInboundReceivedBy}" />
                         <s:hidden name="document.createdBy" value="%{document.createdBy}" />
                         <s:hidden name="document.orderItemId" value="%{document.orderItemId}" />
-                        <s:hidden name="document.documentType" value="%{document.documentType}" />
+                        <s:hidden name="document.aging" value="%{document.aging}" />
+
                         <%--<s:if test="document.documentName=='PROFORMA BILL OF LADING' || document.documentName=='MASTER BILL OF LADING' || document.documentName=='MASTER WAYBILL ORIGIN' || document.documentName=='SALES INVOICE' || document.documentName=='MASTER WAYBILL DESTINATION' ">
                             <s:textfield cssClass="form-control" placeholder="Reference Number" name="document.referenceNumber" style="margin-bottom: 15px !important;"
                                          id="document_referenceNumber" required="true" />

@@ -294,4 +294,6 @@ public class DocumentsBean {
     public void setCompleteStage(Integer completeStage) {
         this.completeStage = completeStage;
     }
+
+
 }

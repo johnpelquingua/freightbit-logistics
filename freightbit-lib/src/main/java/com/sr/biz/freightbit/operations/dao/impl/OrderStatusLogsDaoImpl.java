@@ -13,9 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Clarence C. Victoria on 7/30/14.
- */
 @Transactional
 public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements OrderStatusLogsDao {
     private static final Logger log = Logger.getLogger(OrderStatusLogsDaoImpl.class);

@@ -265,6 +265,23 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
+    public List<Documents> findDocumentByCompleteStageAndID(Integer completeStage, Integer referenceId) {
+
+        log.debug("Finding Documents with filter");
+        try{
+            log.debug("Finding documents succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.completeStage = :completeStage and d.referenceId = :referenceId");
+            query.setParameter("completeStage", completeStage);
+            query.setParameter("referenceId", referenceId);
+            List<Documents> results = (List<Documents>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
+
+    @Override
     public List<Documents> findDocumentByArchiveStageAndID(Integer archiveStage, Integer referenceId) {
 
         log.debug("Finding Documents with filter");

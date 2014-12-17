@@ -6,7 +6,7 @@
 
     $(document).ready(function() {
 
-        /*$( window ).load(function() {
+        $( window ).load(function() {
 
             var outbound_tab = $("#documentTab").val();
 
@@ -40,7 +40,7 @@
                 $("#fifth").toggleClass('disabled active');
             }
 
-        });*/
+        });
 
     });
 
@@ -387,32 +387,33 @@
 
                             </s:if>
 
-                            <s:if test=" documentTab == 'OUTBOUND' ">
+                            <s:if test=" documentTab == 'OUTBOUND_STAGE' || documentTab == 'OUTBOUND_COMPLETE' || documentTab == 'OUTBOUND_STAGE_PENDING' ">
 
                                 <div class="table-responsive">
                                     <s:form name="myform" action="processDocuments">
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
                                     <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
 
-                                    <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="outboundTable outbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="outboundTable outbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
-                                            <display:column title="<input type='checkbox' id='outboundCheckBox' name='outboundCheckBox'/>">
+                                            <%--<display:column title="<input type='checkbox' id='outboundCheckBox' name='outboundCheckBox'/>">--%>
+                                            <display:column>
 
                                                 <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
                                                 <%--<s:property value="%{#attr.document.documentId}"/>--%>
 
-                                                <s:if test=" documentTab == 'OUTBOUND' || documentTab == 'OUTBOUND_COMPLETE'">
+                                                <s:if test=" documentTab == 'OUTBOUND_STAGE' || documentTab == 'OUTBOUND_COMPLETE' || documentTab == 'OUTBOUND_STAGE_PENDING'">
 
                                                     <s:if test="#attr.document.documentProcessed == 0">
-                                                        <%--<s:url var="checkDocumentUrl" action="checkDocument">
+                                                        <s:url var="checkDocumentUrl" action="checkDocument">
                                                             <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                         </s:url>
                                                         <s:a class="icon-action-link" href="%{checkDocumentUrl}" rel="tooltip" title ="Check Document">
                                                             <i class="fa fa-square-o"></i>
-                                                        </s:a>--%>
-                                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                        </s:a>
+                                                        <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
                                                     </s:if>
 
                                                     <s:else>
@@ -455,6 +456,9 @@
 
                                         <td><display:column property="documentComments" title="Comments" class="tb-font-black"
                                                             style="text-align: center;" > </display:column></td>
+
+                                        <%--<td><display:column property="documentType" title="Comments" class="tb-font-black"
+                                                            style="text-align: center;" > </display:column></td>--%>
 
                                         <td>
                                             <display:column title="Action" class="tb-font-black" style="text-align: center;" >
@@ -509,7 +513,18 @@
 
                                 </div>
 
-                                    <s:submit tabindex="-1" cssClass="checkBtn btn btn-default pull-right" value="Check Document(s)" onclick="addCheckText()"></s:submit>
+                                    <%--<s:submit tabindex="-1" cssClass="checkBtn btn btn-default pull-right" value="Complete Stage" onclick="addCheckText()"></s:submit>--%>
+                                    <s:if test=" documentTab == 'OUTBOUND_STAGE' || documentTab == 'OUTBOUND_STAGE_PENDING' ">
+
+                                        <s:url var="completeDocumentsUrl" action="completeDocuments">
+                                            <s:param name="orderIdParam"
+                                                     value="#attr.order.orderId"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{completeDocumentsUrl}" rel="tooltip">
+                                            <button type="button" class="btn btn-primary pull-right">Complete Outbound Stage</button>
+                                        </s:a>
+
+                                    </s:if>
 
                                 </s:form>
                             </s:if>
@@ -533,7 +548,7 @@
 
                             </s:if>
 
-                            <s:if test=" documentTabInbound == 'INBOUND' || documentTabInbound == 'INBOUND_COMPLETE'">
+                            <s:if test=" documentTabInbound == 'INBOUND_STAGE' || documentTabInbound == 'INBOUND_COMPLETE'">
 
                                 <div class="form-group" style="padding-left: 15px;">
                                     Date/Time received : <s:label name = "dateReturnedInbound"></s:label>
@@ -547,26 +562,34 @@
                                     <s:form name="myform" action="processDocumentsInbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItemInbound" />
-                                    <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="inbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
-                                            <display:column title="<input type='checkbox' id='inboundCheckBox' />" class="tb-font-black" style="text-align: center;" >
+                                            <%--<display:column title="<input type='checkbox' id='inboundCheckBox' />" class="tb-font-black" style="text-align: center;" >--%>
+                                                <display:column>
 
-                                                <s:if test=" documentTabInbound == 'INBOUND' ">
+                                                <s:if test=" documentTabInbound == 'INBOUND_STAGE' ">
 
-                                                    <%--<s:url var="checkDocumentInboundUrl" action="checkDocumentInbound">
-                                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                                    </s:url>
-                                                    <s:a class="icon-action-link" href="%{checkDocumentInboundUrl}" rel="tooltip" title ="Check Document">
-                                                        <i class="fa fa-square-o"></i>
-                                                    </s:a>--%>
                                                     <s:if test="#attr.document.documentProcessed == 1">
-                                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                        <s:url var="checkDocumentInboundUrl" action="checkDocumentInbound">
+                                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                        </s:url>
+                                                        <s:a class="icon-action-link" href="%{checkDocumentInboundUrl}" rel="tooltip" title ="Check Document">
+                                                            <i class="fa fa-square-o"></i>
+                                                        </s:a>
                                                     </s:if>
                                                     <s:else>
                                                         <i class="fa fa-check-square-o"></i>
                                                     </s:else>
+
+                                                    <%--<s:if test="#attr.document.documentProcessed == 1">
+                                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                    </s:if>
+                                                    <s:else>
+                                                        <i class="fa fa-check-square-o"></i>
+                                                    </s:else>--%>
+
                                                 </s:if>
 
                                                 <s:if test=" documentTabInbound == 'INBOUND_COMPLETE' ">
@@ -583,6 +606,7 @@
                                                     <s:else>
                                                         <i class="fa fa-check-square-o"></i>
                                                     </s:else>
+
                                                 </s:if>
 
                                                 <s:if test=" documentTabInbound == 'NO_INBOUND_DATE' || documentTabInbound == 'OUTBOUND_DOCUMENTS_INCOMPLETE' ">
@@ -699,17 +723,18 @@
 
                                     </display:table>
 
-                                <s:if test=" documentTabInbound == 'INBOUND' ">
-                                    <s:submit cssClass="btn btn-default pull-right"  value="Check Document(s)" onclick="addCheckTextInbound()"></s:submit>
+                                <s:if test=" documentTabInbound == 'INBOUND_STAGE' ">
+
+                                    <%--<s:submit cssClass="btn btn-default pull-right"  value="Check Document(s)" onclick="addCheckTextInbound()"></s:submit>--%>
+                                    <s:url var="completeDocumentsInboundUrl" action="completeDocumentsInbound">
+                                        <s:param name="orderIdParam"
+                                                 value="#attr.order.orderId"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{completeDocumentsInboundUrl}" rel="tooltip">
+                                        <button type="button" class="btn btn-primary pull-right">Complete Inbound Stage</button>
+                                    </s:a>
 
                                 </s:if>
-
-                                <%--<s:else>
-                                    <button type="button" id="Cancel" class="pull-right btn" disabled>
-                                        Check Document(s)
-                                    </button>
-                                    &lt;%&ndash;<s:submit cssClass="btn btn-default pull-right" value="Process Documents" onclick="addMoveText()"></s:submit>&ndash;%&gt;
-                                </s:else>--%>
 
                                 </s:form>
 
@@ -739,7 +764,7 @@
                                 </s:a>
                             </s:if>
 
-                            <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND' || documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE' || documentTabFinalOutbound == 'FINAL_OUTBOUND_SENT'">
+                            <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND' || documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE' || documentTabFinalOutbound == 'FINAL_OUTBOUND_SENT' || documentTabFinalOutbound == 'FINAL_OUTBOUND_PENDING'">
 
                                 <div class="form-group" style="padding-left: 15px;">
                                     <p>Date/Time sent : <s:label name = "dateSentFinalOutbound"></s:label></p>
@@ -758,39 +783,42 @@
                                 <s:form name="myform" action="processDocumentsFinalOutbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItemFinalOutbound"></s:textfield>
-                                    <display:table id="document" name="finalOutboundDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="final_outbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="finalOutboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="final_outbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
-                                            <display:column title="<input type='checkbox' id='foCheckBox'/>" class="tb-font-black" style="text-align: center;" >
+                                            <%--<display:column title="<input type='checkbox' id='foCheckBox'/>" class="tb-font-black" style="text-align: center;">--%>
+                                            <display:column>
 
-                                                <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND' ">
+                                                <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND_STAGE' || documentTabFinalOutbound == 'FINAL_OUTBOUND_PENDING' ">
 
-                                                    <%--<s:if test="#attr.document.documentProcessed == 2">
+                                                    <s:if test="#attr.document.documentProcessed == 2">
                                                         <s:url var="checkDocumentFinalOutboundUrl" action="checkDocumentFinalOutbound">
                                                             <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                         </s:url>
                                                         <s:a class="icon-action-link" href="%{checkDocumentFinalOutboundUrl}">
                                                             <i class="fa fa-square-o"></i>
                                                         </s:a>
-                                                    </s:if>--%>
-                                                    <s:if test="#attr.document.documentProcessed == 2">
+                                                    </s:if>
+
+                                                    <%--<s:if test="#attr.document.documentProcessed == 2">
                                                         <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
                                                     </s:if>
                                                     <s:else>
                                                         <i class="fa fa-check-square-o"></i>
+                                                    </s:else>--%>
+
+                                                    <s:else>
+                                                        <%--<s:url var="uncheckDocumentUrl" action="unCheckDocument">
+                                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                        </s:url>
+                                                        <s:a class="icon-action-link" href="%{uncheckDocumentUrl}" rel="tooltip" title ="Edit Booking">
+                                                            <i class="fa fa-check-square-o"></i>
+                                                        </s:a>--%>
+
+                                                        <i class="fa fa-check-square-o"></i>
                                                     </s:else>
 
-                                                    <%--<s:else>--%>
-                                                    <%--<s:url var="uncheckDocumentUrl" action="unCheckDocument">
-                                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                                    </s:url>
-                                                    <s:a class="icon-action-link" href="%{uncheckDocumentUrl}" rel="tooltip" title ="Edit Booking">
-                                                        <i class="fa fa-check-square-o"></i>
-                                                    </s:a>--%>
-
-                                                    <%--<i class="fa fa-check-square-o"></i>
-                                                </s:else>--%>
                                                     <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
                                                     <%--<input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>--%>
 
@@ -878,15 +906,25 @@
                                     </div>
 
 
-                                    <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND' ">
-                                        <s:submit cssClass="btn btn-default pull-right" value="Check Document(s)" onclick="addCheckTextFinalOutbound()"></s:submit>
+                                    <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND_STAGE' || documentTabFinalOutbound == 'FINAL_OUTBOUND_PENDING' ">
+
+                                        <%--<s:submit cssClass="btn btn-default pull-right" value="Check Document(s)" onclick="addCheckTextFinalOutbound()"></s:submit>--%>
                                         <%--<button type="button" id="Cancel" class="pull-right btn" onclick="addCheckTextFinalOutbound()">
                                             Check Document(s)
                                         </button>--%>
+
+                                        <s:url var="completeDocumentsFinalOutboundUrl" action="completeDocumentsFinalOutbound">
+                                            <s:param name="orderIdParam"
+                                                     value="#attr.order.orderId"></s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{completeDocumentsFinalOutboundUrl}" rel="tooltip">
+                                            <button type="button" class="btn btn-primary pull-right">Complete Final Outbound Stage</button>
+                                        </s:a>
+
                                     </s:if>
 
                                     <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND_COMPLETE' ">
-                                        <button type="button" id="Cancel" class="pull-right btn" data-toggle="modal" data-target="#sendFinalOutbound">
+                                        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#sendFinalOutbound">
                                             Send Documents
                                         </button>
                                     </s:if>
@@ -915,7 +953,7 @@
 
                             </s:if>
 
-                            <s:if test=" documentTabFinalInbound == 'FINAL_INBOUND' || documentTabFinalInbound == 'FINAL_INBOUND_COMPLETE'">
+                            <s:if test=" documentTabFinalInbound == 'FINAL_INBOUND_STAGE' || documentTabFinalInbound == 'FINAL_INBOUND_COMPLETE'">
 
                                 <div class="form-group" style="padding-left: 15px;">
                                     <p>Date Receieved : <s:label name="dateReturnedFinalInbound" ></s:label></p>
@@ -929,19 +967,20 @@
                                     <s:form name="myform" action="processDocumentsFinalInbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItemFinalInbound"></s:textfield>
-                                    <display:table id="document" name="finalInboundDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="finalInboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
-                                            <display:column title="<input type='checkbox' id='fiCheckBox' />" class="tb-font-black" style="text-align: center;" >
+                                            <%--<display:column title="<input type='checkbox' id='fiCheckBox' />" class="tb-font-black" style="text-align: center;" >--%>
+                                                <display:column>
                                                 <s:if test="#attr.document.documentProcessed == 3">
-                                                    <%--<s:url var="checkDocumentFinalInboundUrl" action="checkDocumentFinalInbound">
+                                                    <s:url var="checkDocumentFinalInboundUrl" action="checkDocumentFinalInbound">
                                                         <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                     </s:url>
                                                     <s:a class="icon-action-link" href="%{checkDocumentFinalInboundUrl}" rel="tooltip" title ="Edit Booking">
                                                         <i class="fa fa-square-o"></i>
-                                                    </s:a>--%>
-                                                    <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                    </s:a>
+                                                    <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
                                                 </s:if>
 
                                                 <s:else>
@@ -1030,12 +1069,20 @@
 
                                     </display:table>
                                 </div>
-                                        <s:if test=" documentTabFinalInbound == 'FINAL_INBOUND' ">
-                                            <s:submit cssClass="btn btn-default pull-right"  value="Check Document(s)" onclick="addCheckTextFinalInbound()"></s:submit>
+                                        <s:if test=" documentTabFinalInbound == 'FINAL_INBOUND_STAGE' ">
+                                            <%--<s:submit cssClass="btn btn-default pull-right"  value="Check Document(s)" onclick="addCheckTextFinalInbound()"></s:submit>--%>
                                             <%--<button type="button" id="Cancel" class="pull-right btn" onclick="addCheckTextFinalInbound()">
                                                 Check Document(s)
                                             </button>--%>
+                                            <s:url var="completeDocumentsFinalInboundUrl" action="completeDocumentsFinalInbound">
+                                                <s:param name="orderIdParam"
+                                                         value="#attr.order.orderId"></s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{completeDocumentsFinalInboundUrl}" rel="tooltip">
+                                                <button type="button" class="btn btn-primary pull-right">Complete Final Inbound Stage</button>
+                                            </s:a>
                                         </s:if>
+
                                     </s:form>
                             </s:if>
 
@@ -1051,68 +1098,117 @@
 
                         <div class="panel-body">
 
-                            <div class="table-responsive" style="clear:both;">
-                            <%--<s:form name="myform" action="processDocumentsFinalInbound">--%>
-                            <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
-                            <s:textfield type="hidden" name="document.documentItem" id="documentItemComplete"></s:textfield>
-                            <display:table id="document" name="completeDocuments" requestURI="viewOrderDocuments.action" pagesize="20" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
-                                           style="margin-top: 15px;">
 
-                                <td>
-                                    <display:column title="" class="tb-font-black" style="text-align: center;" >
-                                        <s:if test="#attr.document.documentProcessed == 3">
-                                            <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
-                                        </s:if>
 
-                                        <s:else>
-                                            <i class="fa fa-check-square-o"></i>
-                                        </s:else>
-                                        <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
-                                        <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
+                                <div class="table-responsive" style="clear:both;">
 
+                                <s:form name="myform" action="processDocumentsFinalInbound">
+
+                                <s:textfield type="hidden" name="orderIdParam" id="order-Id"/>
+                                <s:textfield type="hidden" name="document.documentItem" id="documentItemComplete"></s:textfield>
+                                <display:table id="document" name="completeDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                               style="margin-top: 15px;">
+
+                                    <td>
+
+                                            <display:column title="" class="tb-font-black" style="text-align: center;" >
+
+                                                <%--<s:if test=" documentTabComplete == 'COMPLETE_STAGE_ACTIVE' ">--%>
+
+                                                    <s:if test="#attr.document.documentProcessed <= 4">
+                                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                        <%--<s:url var="checkDocumentCompleteUrl" action="checkDocumentComplete">
+                                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                        </s:url>
+                                                        <s:a class="icon-action-link" href="%{checkDocumentCompleteUrl}" rel="tooltip" title ="Check Document">
+                                                            <i class="fa fa-square-o"></i>
+                                                        </s:a>--%>
+                                                    </s:if>
+
+                                                    <s:else>
+                                                        <i class="fa fa-check-square-o"></i>
+                                                    </s:else>
+                                                    <%--<s:property value="%{#attr.document.documentProcessed}"/>--%>
+                                                    <input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>
+
+                                                <%--</s:if>--%>
+
+                                            </display:column>
+
+                                    </td>
+
+                                    <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                     </display:column>
-                                </td>
+                                    </td>
 
-                                <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
-                                </display:column>
-                                </td>
+                                    <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
+                                    </display:column>
+                                    </td>
 
-                                <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
-                                </display:column>
-                                </td>
+                                    <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
+                                    </display:column>
+                                    </td>
 
-                                <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
-                                </display:column>
-                                </td>
+                                    <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
+                                    </display:column>
+                                    </td>
 
-                                <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
-                                </display:column>
-                                </td>
+                                    <td><display:column property="documentComments" title="Comments" class="tb-font-black" style="text-align: center;">
+                                    </display:column>
+                                    </td>
 
-                                <td><display:column property="documentComments" title="Comments" class="tb-font-black" style="text-align: center;">
-                                </display:column>
-                                </td>
+                                    <td>
 
-                                <td>
+                                        <display:column title="Action" class="tb-font-black" style="text-align: center;" >
 
-                                    <display:column title="Action" class="tb-font-black" style="text-align: center;" >
-
-                                        <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <%--Print Document--%>
-                                        <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' ">
-                                            <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
-                                                <i class="fa fa-print"></i>
+                                            <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                                <i class="fa fa-edit"></i>
                                             </a>
-                                        </s:if>
+                                            <%--Print Document--%>
+                                            <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' ">
+                                                <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                    <i class="fa fa-print"></i>
+                                                </a>
+                                            </s:if>
 
-                                    </display:column>
+                                        </display:column>
 
-                                </td>
+                                    </td>
 
-                            </display:table>
-                            </div>
+                                </display:table>
+                                </div>
+
+                                <s:if test=" documentTabComplete == 'COMPLETE_STAGE' ">
+
+                                    <s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckTextComplete()"></s:submit>
+
+                                </s:if>
+
+                                </s:form>
+
+                                <s:if test=" documentTabFinalInbound == 'FINAL_INBOUND_COMPLETE' && documentTabComplete == 'COMPLETE_STAGE_INACTIVE' ">
+
+                                    <s:url var="activateCompleteStageUrl" action="activateCompleteStage">
+                                        <s:param name="orderIdParam"
+                                                 value="#attr.order.orderId"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{activateCompleteStageUrl}" rel="tooltip">
+                                        <button type="button" class="btn btn-primary pull-right">Activate Complete Stage</button>
+                                    </s:a>
+
+                                </s:if>
+
+                                <s:if test=" documentTabComplete == 'ALL_DOCUMENTS_COMPLETE' ">
+
+                                    <s:url var="archiveStageUrl" action="activateArchive">
+                                        <s:param name="orderIdParam"
+                                                 value="#attr.order.orderId"></s:param>
+                                    </s:url>
+                                    <s:a class="icon-action-link" href="%{archiveStageUrl}" rel="tooltip">
+                                        <button type="button" class="btn btn-primary pull-right">Move To Archive</button>
+                                    </s:a>
+
+                                </s:if>
 
                         </div>
 
@@ -1238,11 +1334,11 @@
 <s:textfield  value="%{documentTabFinalInbound}" id="documentTabFinalInbound"  />
 <s:textfield  value="%{documentTabComplete}" id="documentTabComplete"  />
 <br />
-<s:textfield  value="%{outboundCount}" id="outboundCount"  />
+<%--<s:textfield  value="%{outboundCount}" id="outboundCount"  />
 <s:textfield  value="%{inboundCount}" id="inboundCount"  />
 <s:textfield  value="%{finalOutboundCount}" id="finalOutboundCount" />
 <s:textfield  value="%{finalInboundCount}" id="finalInboundCount" />
-<s:textfield  value="%{completeCount}" id="completeCount" />
+<s:textfield  value="%{completeCount}" id="completeCount" />--%>
 
 <%--Modal window for input--%>
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
@@ -1310,7 +1406,7 @@
                         </div>
                     </div>
                     <div style="float: right; margin-right: 1em; margin-top: 2em;">
-                        <s:submit name="submit" cssClass="btn btn-primary" value="Send Documents" onclick="addOrderId()" />
+                        <s:submit name="submit" cssClass="btn btn-primary" value="Okay" onclick="addOrderId()" />
                     </div>
                 </s:form>
             </div>
@@ -1332,8 +1428,8 @@
                     <s:textfield type="text" cssClass="form-control" id="datepicker3" name="dateReturnedFinalInbound" required="true" placeholder="Select Returned date"></s:textfield>
                     <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
                     <div style="margin-top: 1em;" class="pull-right">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <s:submit name="submit" cssClass="btn btn-primary" value="Activate" onclick="addOrderId()" />
+                        <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                        <s:submit name="submit" cssClass="btn btn-primary" value="Okay" onclick="addOrderId()" />
                     </div>
                 </s:form>
             </div>
@@ -1412,10 +1508,10 @@
         document.getElementById("order-Id").value = orderIdGet;
     }
 
-    function addCheckTextArchive() {
+    function addCheckTextComplete() {
         var orderIdGet = document.getElementById("order_Id").value;
 
-        document.getElementById("documentItemArchive").value = "check";
+        document.getElementById("documentItemComplete").value = "check";
         document.getElementById("order-Id").value = orderIdGet;
     }
 
@@ -1570,9 +1666,8 @@ function OutboundProgress(){
     document.getElementById("fiOut").className='';
     document.getElementById("fiIn").className='';
     document.getElementById("comp").className='';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='';
-
+    /*document.getElementById("arch").className='';
+    document.getElementById("bill").className='';*/
 }
 
 function InboundProgress(){
@@ -1581,8 +1676,8 @@ function InboundProgress(){
     document.getElementById("fiOut").className='';
     document.getElementById("fiIn").className='';
     document.getElementById("comp").className='';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='';
+    /*document.getElementById("arch").className='';
+    document.getElementById("bill").className='';*/
 }
 
 function finalOutboundProgress(){
@@ -1591,8 +1686,8 @@ function finalOutboundProgress(){
     document.getElementById("fiOut").className='active';
     document.getElementById("fiIn").className='';
     document.getElementById("comp").className='';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='';
+   /* document.getElementById("arch").className='';
+    document.getElementById("bill").className='';*/
 }
 
 function finalInboundProgress() {
@@ -1601,8 +1696,8 @@ function finalInboundProgress() {
     document.getElementById("fiOut").className='';
     document.getElementById("fiIn").className='active';
     document.getElementById("comp").className='';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='';
+    /*document.getElementById("arch").className='';
+    document.getElementById("bill").className='';*/
 }
 
 function completeProgress() {
@@ -1611,8 +1706,8 @@ function completeProgress() {
     document.getElementById("fiOut").className='';
     document.getElementById("fiIn").className='';
     document.getElementById("comp").className='active';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='';
+    /*document.getElementById("arch").className='';
+    document.getElementById("bill").className='';*/
 }
 
 /*function archiveProgress() {

@@ -88,6 +88,11 @@ public class DocumentsServiceImpl implements DocumentsService {
     }
 
     @Override
+    public List<Documents> findDocumentByCompleteStageAndID (Integer completeStage, Integer referenceId) {
+        return documentsDao.findDocumentByCompleteStageAndID(completeStage, referenceId);
+    }
+
+    @Override
     public List<Documents> findDocumentByArchiveStageAndID (Integer archiveStage, Integer referenceId) {
         return documentsDao.findDocumentByArchiveStageAndID(archiveStage, referenceId);
     }
