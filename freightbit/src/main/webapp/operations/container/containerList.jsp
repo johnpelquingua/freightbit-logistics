@@ -118,19 +118,38 @@
                 </div>
             </div>
             <div class="panel-footer">
-                <span class="pull-left">
-                    <tr>
-                    <td><label>LEGEND:</label></td>
-                    <td><i class='fa fa-pencil'></i> Edit</td>
-                    <td><i class='fa fa-trash-o' ></i> Delete</td>
-                    <td><i class='fa fa-info-circle' ></i> Information</td>
-                    <td><i class='fa fa-print' ></i> Print EIR Form</td>
-                    <s:if test="#attr.container.containerStatus == 'FINAL'">
-                        <td><i class='fa fa-sign-out' ></i> Gate Out</td>
-                    </s:if>
-                    </tr>
-                </span>
+                <div class="table-responsive">
+                    <div class="col-lg-12">
+                        <table class="col-lg-12">
+                            <tr>
+                                <td><label>LEGEND:</label></td>
+                                <td><i class='fa fa-edit' ></i> Edit</td>
+                                <td><i class='fa fa-trash-o' ></i> Delete</td>
+                                <td><i class='fa fa-info-circle' ></i> Information</td>
+                                <td><i class='fa fa-print' ></i> Print EIR forms</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><i class="fa fa-sign-out"></i> Gate Out</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
+            <%--<div class="panel-footer">--%>
+                <%--<span class="pull-left">--%>
+                    <%--<tr>--%>
+                    <%--<td><label>LEGEND:</label></td>--%>
+                    <%--<td><i class='fa fa-pencil'></i> Edit</td>--%>
+                    <%--<td><i class='fa fa-trash-o' ></i> Delete</td>--%>
+                    <%--<td><i class='fa fa-info-circle' ></i> Information</td>--%>
+                    <%--<td><i class='fa fa-print' ></i> Print EIR Form</td>--%>
+                    <%--<s:if test="#attr.container.containerStatus == 'FINAL'">--%>
+                        <%--<td><i class='fa fa-sign-out' ></i> Gate Out</td>--%>
+                    <%--</s:if>--%>
+                    <%--</tr>--%>
+                <%--</span>--%>
+            <%--</div>--%>
         </div>
     </div>
 </div>

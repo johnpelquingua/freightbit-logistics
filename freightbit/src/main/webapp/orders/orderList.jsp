@@ -152,7 +152,6 @@
             </div>
 
             <div class="panel-footer">
-
                 <div class="table-responsive">
                     <div class="col-lg-12">
                         <table class="col-lg-12">
@@ -167,11 +166,19 @@
                                 <td></td>
                                 <td><i class='fa fa-anchor'></i> Shipping</td>
                                 <td><i class='fa fa-truck' ></i> Trucking</td>
+                                <td><i class='fa fa-info-circle' ></i> Information</td>
+                                <td><i class='fa fa-trash-o'></i> Delete</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><i class='fa fa-pencil' ></i> Edit</td>
+                                <td><i class='fa fa-print' ></i> Print</td>
+                                <td><i class='fa fa-check' ></i> Approve</td>
+                                <td><i class='fa fa-times' ></i> Cancel</td>
                             </tr>
                         </table>
                     </div>
                 </div>
-
             </div>
 
         </div>

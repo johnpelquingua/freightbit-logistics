@@ -96,11 +96,18 @@ article:nth-child(2n+2){background:#d1d1d1}
                     </section>--%>
                 </div>
             </div>
-
             <div class="panel-footer">
-                <span class="pull-left">
-                    <label>LEGEND:</label> <i class='fa fa-anchor'></i> Shipping <i class='fa fa-truck' ></i> Trucking
-                </span>
+                <div class="table-responsive">
+                    <div class="col-lg-12">
+                        <table class="col-lg-12">
+                            <tr>
+                                <td><label>LEGEND:</label></td>
+                                <td><i class='fa fa-anchor' ></i> Shipping</td>
+                                <td><i class='fa fa-truck' ></i> Trucking</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
             <%--<div class="panel-body">
                 <div class="table-responsive">

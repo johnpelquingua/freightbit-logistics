@@ -285,5 +285,6 @@
         });
 
         validationForm('vesselInput', 'submitBtn');
+        restrictField_Numbers('inputNumbersOnly');
     });
 </script>

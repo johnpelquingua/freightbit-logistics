@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-12 control-label" style="padding-top:0px !important; margin-top: 0px !important; text-align:left;">Company Name / Customer Name<span class="asterisk_red"></span></label>
                                     <div class="col-lg-12" >
-                                        <s:textfield  required="true" name="customer.customerName" cssClass="customerInput form-control" id="customer.customerName"/>
+                                        <s:textfield placeholder="Enter Company / Customer name" required="true" name="customer.customerName" cssClass="customerInput form-control" id="customer.customerName"/>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
                                     <div class="col-lg-7" >
-                                        <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="customerInput form-control" id="customer.customerCode" onkeypress="return alphaKeyOnly(event)"
+                                        <s:textfield placeholder="Enter company code" required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="customerInput form-control" id="customer.customerCode" onkeypress="return alphaKeyOnly(event)"
                                                 title="Company Code Must be 3 Capital Letters Only."/>
                                     </div>
                                 </div>

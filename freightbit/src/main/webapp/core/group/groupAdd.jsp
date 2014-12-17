@@ -70,18 +70,18 @@
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Code</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></label>
 
                         <div class="col-sm-10">
-                            <s:textfield required="true" name="groupBean.groupCode" cssClass="addGroupInput form-control"/>
+                            <s:textfield placeholder="Enter group code here" required="true" name="groupBean.groupCode" cssClass="addGroupInput form-control"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Name</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Name<span class="asterisk_red"></label>
 
                         <div class="col-sm-10">
-                            <s:textfield required="true" name="groupBean.groupName" cssClass="addGroupInput form-control"/>
+                            <s:textfield placeholder="Enter group name here" required="true" name="groupBean.groupName" cssClass="addGroupInput form-control"/>
                         </div>
                     </div>
 
@@ -89,7 +89,7 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Description</label>
 
                         <div class="col-sm-10">
-                            <s:textfield name="groupBean.description" cssClass="addGroupInput form-control"/>
+                            <s:textfield placeholder="Enter group description here" name="groupBean.description" cssClass="form-control"/>
                         </div>
                     </div>
 

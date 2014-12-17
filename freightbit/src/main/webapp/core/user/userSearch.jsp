@@ -37,32 +37,35 @@
             <div class="panel-body">
                 <div class="well" style="margin-top: 10px;">
                     <s:form cssClass="form-horizontal" action="viewUsers" theme="bootstrap">
-                    <div class="form-group">
-                        <label for="user.userSearchCriteria" class="col-sm-2 control-label" style="padding-top:0px;">Search by</label>
+                        <div class="form-group">
+                            <label for="user.userSearchCriteria" class="col-sm-2 control-label" style="padding-top:0px;">Search by</label>
 
-                        <div class="col-sm-10">
-                            <s:select emptyOption="true" list="userSearchList" listValue="value" listKey="key"
-                                      cssClass="form-control" name="user.userSearchCriteria"
-                                      value="user.userSearchCriteria"/>
+                            <div class="col-sm-10">
+                                <s:select emptyOption="true" list="userSearchList" listValue="value" listKey="key"
+                                          cssClass="userSearchInput form-control" name="user.userSearchCriteria"
+                                          value="user.userSearchCriteria"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="user.userKeyword" class="col-sm-2 control-label" style="padding-top:0px;">Search</label>
+                        <div class="form-group">
+                            <label for="user.userKeyword" class="col-sm-2 control-label" style="padding-top:0px;">Search</label>
 
-                        <div class="col-sm-10">
-                            <s:textfield cssClass="form-control" placeholder="Keyword" name="user.userKeyword"/>
+                            <div class="col-sm-10">
+                                <s:textfield cssClass="userSearchInput form-control" placeholder="Keyword" name="user.userKeyword"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="pull-right">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                        <s:submit value="Search" type="submit" cssClass="btn btn-primary"></s:submit>
-                    </div>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            <s:submit value="Search" type="submit" cssClass="userSearchBtn btn btn-primary" disabled="true"></s:submit>
+                        </div>
+                    </s:form>
                 </div>
             </div>
-            </s:form>
         </div>
     </div>
 </div>
+<script>
+    validationForm('userSearchInput', 'userSearchBtn');
+</script>
 
             <%--<label  style="font-size: 20px;">Search User</label>
             <div class="panel-body">
