@@ -59,9 +59,9 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
     }
 
     @Override
-        public List<Orders> findAllOrders() {
+    public List<Orders> findAllOrders() {
 
-            List<String> statusList = new ArrayList<>();
+        List<String> statusList = new ArrayList<>();
 
             /*statusList.add("APPROVED");
             statusList.add("PENDING");
@@ -71,19 +71,19 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
             statusList.add("PLANNING 2");
             statusList.add("PLANNING 3");
             statusList.add("SERVICE ACCOMPLISHED");*/
-            statusList.add("ON GOING");
+        statusList.add("ON GOING");
 
-            log.debug("Finding orders with filter");
-            try {
-                log.debug("Finding orders succeeded");
-                Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderStatus in(:statusList) order by createdTimestamp desc");
-                query.setParameterList("statusList", statusList);
-                List<Orders> results = (List<Orders>) query.list();
-                return results;
-            } catch (Exception e) {
-                log.error("Finding orders failed");
-                throw e;
-            }
+        log.debug("Finding orders with filter");
+        try {
+            log.debug("Finding orders succeeded");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Orders o where o.orderStatus in(:statusList) order by createdTimestamp desc");
+            query.setParameterList("statusList", statusList);
+            List<Orders> results = (List<Orders>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Finding orders failed");
+            throw e;
+        }
     }
 
     /*@Override

@@ -253,9 +253,9 @@
                              value="#attr.vesselSchedule.vendorId">
                     </s:param>
                 </s:url>
-                <s:a class="icon-action-link" href="%{editBulkItemsUrl}" rel="tooltip"
-                     title="Update Status">
-                    Choose this vessel...
+                <s:a class="icon-action-link" href="%{editBulkItemsUrl}" rel="tooltip" title="Update Status">
+                    <%--Choose this vessel...--%>
+                    <i class="fa fa-arrow-circle-down"></i>
                 </s:a>
             </display:column></td>
         </display:table>

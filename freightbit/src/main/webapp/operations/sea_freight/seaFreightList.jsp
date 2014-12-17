@@ -158,7 +158,7 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="orderVolume" title="Volume  <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <%--<td>
+                                <td>
                                     <display:column title="Action">
                                     <s:if test="#attr.order.orderStatus=='PENDING'">
                                         <i class="fa fa-ban"></i>
@@ -180,7 +180,7 @@
                                         </s:a>
                                     </s:else>
                                     </display:column>
-                                </td>--%>
+                                </td>
 
                             </display:table>
                             <div class="col-md-6 pull-right well wellDiv" style="display: none;">

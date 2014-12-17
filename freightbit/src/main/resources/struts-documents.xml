@@ -36,10 +36,15 @@
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
-        <action name="processDocumentsArchive" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsArchive">
+        <action name="processDocumentsComplete" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsComplete">
             <result name="input" type="redirect">viewOrderDocuments</result>
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
+
+        <!--<action name="processDocumentsArchive" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsArchive">
+            <result name="input" type="redirect">viewOrderDocuments</result>
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>-->
 
         <action name="dateReceivedInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedInbound">
             <result name="success" type="redirect">viewOrderDocuments</result>

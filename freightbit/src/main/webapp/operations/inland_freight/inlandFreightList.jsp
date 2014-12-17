@@ -154,7 +154,7 @@
                                         <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
-                                        <%--<td>
+                                        <td>
                                             <display:column title="Action">
                                             <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
                                                 <s:param name="orderIdParam"
@@ -174,7 +174,7 @@
                                                 <i class="fa fa-info-circle"></i>
                                             </s:a>
                                             </display:column>
-                                        </td>--%>
+                                        </td>
 
                                     </display:table>
                                 </div>

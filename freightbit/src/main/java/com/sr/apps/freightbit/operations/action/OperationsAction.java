@@ -890,7 +890,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         orderItem = transformToOrderItemFormBean(entity);
 
         // if Vessel Schedule Id is null and populates field with none value
-        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty()){
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().equals("NONE") || orderItem.getVesselScheduleId().isEmpty()){
             orderItem.setVendorSea("NONE");
             orderItem.setVesselScheduleId("NONE");
             vesselSchedule.setVesselName("NONE");
@@ -2078,7 +2078,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         VesselScheduleBean formBean = new VesselScheduleBean();
         /*formBean.setVesselScheduleId(entity.getVesselScheduleId());*/
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + entity.getVesselScheduleId());
+        /*System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + entity.getVesselScheduleId());*/
         if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId()) || "NONE".equals(entity.getVesselScheduleId())) {
             /*formBean.setVesselScheduleId("NONE");*/
             formBean.setVesselName("NONE");
@@ -2435,7 +2435,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setReferenceId(formBean.getReferenceId());
         entity.setReferenceTable(formBean.getReferenceTable());
         entity.setOrderNumber(formBean.getOrderNumber());
-        entity.setDocumentStatus("DOCUMENT UPDATED!");
+        entity.setDocumentStatus("DOCUMENT UPDATED");
         entity.setDocumentProcessed(formBean.getDocumentProcessed());
         entity.setCreatedBy(formBean.getCreatedBy());
         entity.setOrderItemId(formBean.getOrderItemId());

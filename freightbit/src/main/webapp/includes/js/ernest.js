@@ -292,7 +292,7 @@ function placeAbbrev(place){
 }
 
 function trColor(status){
-    if(status == 'PENDING' || status == 'INCOMPLETE'){
+    if( status == 'INCOMPLETE'){
         return '#f2a5aa';
     }else if(status == 'DISAPPROVED' || status == 'CANCELLED'){
         return '#f2dede';
@@ -300,6 +300,8 @@ function trColor(status){
         return '#dff0d8';
     }else if(status == 'ON GOING'){
         return '#bce8f1';
+    }else if(status == 'PENDING'){
+        return '#f0ad4e';
     }
 }
 
