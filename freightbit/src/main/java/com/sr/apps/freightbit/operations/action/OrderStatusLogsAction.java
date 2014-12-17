@@ -92,24 +92,87 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String serviceAccomplishedStatus() {
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
+        orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
+        orderService.updateOrder(orderEntity);
+        addActionMessage("Success! Service Accomplished");
+
+        return SUCCESS;
+    }
+
     public String setItemStatus() {
         Map sessionAttributes = ActionContext.getContext().getSession();
-        /*if("edit".equals(orderItem.getEditItem())) {
+        /*System.out.println("CHECK WORD PASS " + check);
+        *//*System.out.println("ORDER ID " + orderItemIdParam);*//*
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        *//*if("edit".equals(orderItem.getEditItem())) {*//*
             if (check == null) {
                 return INPUT;
-            }
-            else {
-                for (int i =0; i<check.length; i++) {
+            } else {
+                for (int i = 0; i < check.length; i++) {
                     if (check[i].equals("false") || check[i].equals("null") || "".equals(check[i])) { // catches error when no values inside check
                         return "NULL_INPUT";
                     }
 
-                    Integer orderItemId = Integer.parseInt(check[i]);
-                    OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
-                    sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
-                    orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                    orderStatusLogsService.addStatus(orderStatusLogsEntity);
+
+                    System.out.println("check  ----------------------" + check[i]);
+
+
+                    Integer orderStatusItemId = Integer.parseInt(check[i]);
+                    OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(orderStatusItemId);
+                    orderItem = transformToOrderItemFormBean(orderItemEntity);
+                    sessionAttributes.put("orderItemIdParam", orderItemEntity.getOrderItemId());
+
+
+
+
+
+                    *//*if(check == null){
+                        OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(orderItemIdParam);
+                        orderItem = transformToOrderItemFormBean(orderItemEntity);
+
+                        sessionAttributes.put("orderItemIdParam", orderItemEntity.getOrderItemId());
+
+                    }else{
+
+                        Integer orderStatusItemId = Integer.parseInt(check[i]);
+                        OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(orderStatusItemId);
+                        orderItem = transformToOrderItemFormBean(orderItemEntity);
+                        sessionAttributes.put("orderItemIdParam", orderItemEntity.getOrderItemId());
+
+                    }*//*
+
+
+
+
+                *//*OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
+                orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                orderStatusLogsService.addStatus(orderStatusLogsEntity);*//*
+
+                    List<OrderStatusLogs> orderStatusLogsEntityList = new ArrayList<OrderStatusLogs>();
+                *//*orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs(orderItemIdParam);*//*
+                    orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs(orderStatusItemId);
+
+                    for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
+                        orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
+                        *//*orderStatusLogsService.addStatus(orderStatusLogsElem);*//*
+                    }
+
+
+
+
+
+
                 }
+
+
+
+
+
+
             }*/
             try {
                 OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
@@ -130,7 +193,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 addActionError("Update Failed");
                 return INPUT;
             }
-
         return SUCCESS;
     }
 
@@ -278,6 +340,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         formBean.setOrderNumber(entity.getOrderNumber());
         formBean.setOriginationPort(entity.getOriginationPort());
         formBean.setDestinationPort(entity.getDestinationPort());
+        formBean.setOrderStatus(entity.getOrderStatus());
         /*formBean.setCustomerName(entity.getShipperCode());*/
         //get shipper's name
         Contacts shipperContactName = customerService.findContactById(entity.getShipperContactId());
@@ -298,11 +361,12 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public OrderItemsBean transformToOrderItemFormBean(OrderItems entity) {
 
         OrderItemsBean formBean = new OrderItemsBean();
+        formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
         formBean.setNameSize(entity.getNameSize());
         /*OrderStatusLogs statusLogsEntity = orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId());
         System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + statusLogsEntity.getStatus());*/
-//        formBean.setStatus(orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId()).getStatus());
+        //        formBean.setShipmentStatus(orderStatusLogsService.findOrderStatusLogsStatusById(entity.getOrderItemId()).getStatus());
         formBean.setStatus(entity.getStatus());
         formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setCreatedBy(entity.getCreatedBy());
@@ -492,5 +556,13 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setSeaFreightLCLList(List<Parameters> seaFreightLCLList) {
         this.seaFreightLCLList = seaFreightLCLList;
+    }
+
+    public String[] getCheck() {
+        return check;
+    }
+
+    public void setCheck(String[] check) {
+        this.check = check;
     }
 }

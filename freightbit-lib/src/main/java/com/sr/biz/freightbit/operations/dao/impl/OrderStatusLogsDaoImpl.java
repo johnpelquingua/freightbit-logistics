@@ -170,4 +170,21 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
             throw e;
         }
     }
+
+    @Override
+    public OrderStatusLogs findOrderStatusLogsStatusById(Integer orderItemId) {
+        log.debug("Finding orderStatusLogs via orderItemId");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderStatusLogs osl where osl.orderItemId = :orderItemId");
+            query.setParameter("orderItemId", orderItemId);
+            List<OrderStatusLogs> results = (List<OrderStatusLogs>) query.list();
+            if (results != null && results.size() > 0)
+                return results.get(0);
+            else
+                return null;
+        } catch (Exception e) {
+            log.error("Finding orderItems failed");
+            throw e;
+        }
+    }
 }

@@ -24,4 +24,6 @@ public interface OrderStatusLogsService {
 
     public OrderStatusLogs findOrderStatusLogsById(Integer orderItemId);
 
+    public OrderStatusLogs findOrderStatusLogsStatusById(Integer orderItemId);
+
 }

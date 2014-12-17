@@ -120,7 +120,7 @@
 
                                     <%--approve booking--%>
                                     <%--<s:property value="%{#attr.order.orderId}"/>--%>
-                                    <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING' ">
+                                    <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING' || #attr.order.orderStatus == 'ON GOING'">
                                         | <%--separator--%>
                                         <s:url var="approveOrderUrl" action="approveOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
@@ -129,7 +129,7 @@
                                             <i class="fa fa-check"></i>
                                         </s:a>
                                     </s:if>
-                                    <s:if test=" #attr.order.orderStatus == 'APPROVED' || #attr.order.orderStatus == 'INCOMPLETE' ">
+                                    <s:if test=" #attr.order.orderStatus == 'APPROVED' || #attr.order.orderStatus == 'INCOMPLETE' || #attr.order.orderStatus == 'ON GOING'">
                                         | <%--separator--%>
                                         <%--cancel booking--%>
                                         <s:url var="cancelOrderUrl" action="cancelOrder">

@@ -103,4 +103,5 @@ public class OrderStatusLogsBean {
     public void setArrivalTime(Date arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
+
 }

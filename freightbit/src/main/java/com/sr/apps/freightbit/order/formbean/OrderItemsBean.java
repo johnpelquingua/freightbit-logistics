@@ -19,6 +19,7 @@ public class OrderItemsBean {
     private String modifiedBy;
     private String nameSize;
     private String status;
+    private String shipmentStatus;
     private Float volume;
     private Integer clientId;
     private String commodity;
@@ -43,7 +44,7 @@ public class OrderItemsBean {
 
     }
 
-    public OrderItemsBean(Date createdTimestamp, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, String createdBy, Date modifiedTimestamp, String modifiedBy, String nameSize, String status, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorDestination, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement) {
+    public OrderItemsBean(Date createdTimestamp, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, String createdBy, Date modifiedTimestamp, String modifiedBy, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorDestination, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement) {
         this.createdTimestamp = createdTimestamp;
         this.orderItemId = orderItemId;
         this.orderId = orderId;
@@ -59,6 +60,7 @@ public class OrderItemsBean {
         this.modifiedBy = modifiedBy;
         this.nameSize = nameSize;
         this.status = status;
+        this.shipmentStatus = shipmentStatus;
         this.volume = volume;
         this.clientId = clientId;
         this.commodity = commodity;
@@ -350,5 +352,13 @@ public class OrderItemsBean {
 
     public void setPort(String port) {
         this.port = port;
+    }
+
+    public String getShipmentStatus() {
+        return shipmentStatus;
+    }
+
+    public void setShipmentStatus(String shipmentStatus) {
+        this.shipmentStatus = shipmentStatus;
     }
 }

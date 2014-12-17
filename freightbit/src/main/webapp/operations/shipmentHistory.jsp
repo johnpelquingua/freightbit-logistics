@@ -79,16 +79,16 @@
                         <tr>
                             <display:table id="orderStatusLogs" name="orderStatusLogs"
                                            requestURI="loadItemShipmentHistory.action" pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter"
-                                           style="margin-top: 15px;empty-cells: hide;">
+                                           class="shipmentMonitoringTable table table-striped table-hover table-bordered text-center tablesorter"
+                                            style="margin-top: 15px;empty-cells: hide;">
 
                                 <td><display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="status" title="Shipment History <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="status" title="Shipment History <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
                             </display:table>
@@ -106,7 +106,7 @@
                 </s:else>
 
                 <div class="col-lg-3" style="text-align: center">
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Current Date/Time <span class="asterisk_red"></span></label>
+                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Actual Date/Time <span class="asterisk_red"></span></label>
                     <s:textfield required="true" name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp" />
 
                 </div>
@@ -135,7 +135,7 @@
 
                             />
                     </s:elseif>
-                    <s:else>
+                    <s:elseif test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'TRUCKING' && #attr.order.serviceRequirement != 'FULL CONTAINER LOAD' && #attr.order.serviceRequirement != 'LOOSE CARGO LOAD' && #attr.order.serviceRequirement != 'ROLLING CARGO LOAD' && #attr.order.serviceRequirement != 'LESS CONTAINER LOAD'">
                         <s:select cssClass="statusDropdown form-control"
                                   id="inlandFreightStatus"
                                   name="orderStatusLogsBean.status"
@@ -145,7 +145,7 @@
                                   emptyOption="true"
                                   required="true"
                                 />
-                    </s:else>
+                    </s:elseif>
                 </div>
             </div>
 
@@ -160,7 +160,7 @@
 
                         <s:a href="%{viewStatusListItemsUrl}" rel="tooltip" title="Update Status">
                             <button type="button" id="Cancel" class="btn">
-                            Back to Sea Freight Planning : Orders
+                            Back to Booking Item List
                             </button>
                         </s:a>
                     <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status" />
@@ -253,7 +253,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    function checkUpStatus(){
+    /*function checkUpStatus(){
         if($('.statusDropdown').val() == 'DELIVERED'){
             $('#deliveryModal').modal('toggle');
             $('#modalTrigger').click()
@@ -273,7 +273,15 @@
         else{
             $('form').submit()
         }
-    }
+    }*/
+    $(document).ready(function() {
+        var shipTable = $('.shipmentMonitoringTable tbody tr td:nth-child(2)');
+        if (shipTable.size()) {
+            for (var i = 0; i < shipTable.size(); i++) {
+                $('.statusDropdown option[value="' + shipTable.eq(i).text() + '"]').remove();
+            }
+        }
+    });
 
     function sendOkStatus(){
         $('form').submit()
@@ -307,9 +315,4 @@
         });
     });
 
-    $('#seaFreightLCLStatus').change(function(event) {
-        var show = $(this).val() == "ARRIVED";
-            $(show).remove(this);
-//        alert(1);
-    });
 </script>

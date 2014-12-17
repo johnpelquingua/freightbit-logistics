@@ -103,8 +103,9 @@
                 <div class="table-responsive">
                     <div class="row">
                     <s:form name="myform" action="setItemStatus" theme="bootstrap">
-                        <s:hidden value="%{orderIdParam}" name="orderStatusLogsBean.orderId"/>
-                        <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
+                        <s:hidden value="%{#attr.order.orderId}" name="orderStatusLogsBean.orderId"/>
+                        <%--<s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>--%>
+                        <s:property value="#attr.orderItem.orderItemId"></s:property>
                     </div>
                         <display:table id="orderItem" name="orderItems"
                                        requestURI="viewStatusListItems.action" pagesize="10"
@@ -141,6 +142,7 @@
                                                 style="text-align: center;"> </display:column>
                             </td>
 
+
                             <td>
                                 <display:column title="Action">
                                     <s:url var="loadItemShipmentHistoryUrl" action="loadItemShipmentHistory">
@@ -157,8 +159,19 @@
                     <div class="row">
                         <%--<s:textfield  style="display: none" cssClass="col-lg-6" name="orderItem.editItem" id="edit"></s:textfield>--%>
                             <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
-                            <div class="col-md-5 pull-right" style="margin-right: -17em;">
+                            <div class="col-md-7 pull-right" style="margin-right: -17em;">
+                                <s:url var="accStatus" action="serviceAccomplishedStatus">
+                                    <s:param name="orderIdParam"
+                                             value="order.orderId"></s:param>
+                                </s:url>
+
+                                <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
+                                    <button type="button" id="Complete" class="btn btn-default">
+                                        Complete The Service
+                                    </button>
+                                </s:a>
                             <s:submit cssClass="col-lg-4 btn btn-default" value="Set Status" onclick="addText()"></s:submit>
+
                         </div>
                     </div>
                     </s:form>
