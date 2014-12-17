@@ -40,15 +40,18 @@
                      <tr>
                          <td>
                              <div class="form-group">
-                                 <label for="consignee.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span>
+
+                                 <label for="consignee.firstName" class="col-lg-2 control-label " style="padding-top:0px;">First
+                                     Name<span class="asterisk_red"></span>
                                  </label>
 
-                                 <div class="col-lg-10" >
+                                 <div class="col-sm-10 " >
 
-                                     <s:textfield name="consignee.lastName" cssClass="addConsigneeInput form-control" id="consignee.lastName"
-                                                  placeholder="Last Name" maxLength="30" required="true" style="width:95%"
+                                     <s:textfield name="consignee.firstName" cssClass="addConsigneeInput form-control" id="consignee.firstName"
+                                                  placeholder="First Name" maxLength="30" autofocus="true" required="true" style="width:95%"
                                                   pattern="[a-zA-Z\s]+"
-                                                  title="Name should not contain special characters and/or numbers."/>
+                                                  title="Name should not contain special characters and/or numbers." />
+
                                  </div>
                              </div>
                          </td>
@@ -69,18 +72,15 @@
                      <tr>
                          <td>
                              <div class="form-group">
-
-                                 <label for="consignee.firstName" class="col-lg-2 control-label " style="padding-top:0px;">First
-                                     Name<span class="asterisk_red"></span>
+                                 <label for="consignee.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span>
                                  </label>
 
-                                 <div class="col-sm-10 " >
+                                 <div class="col-lg-10" >
 
-                                     <s:textfield name="consignee.firstName" cssClass="addConsigneeInput form-control" id="consignee.firstName"
-                                                  placeholder="First Name" maxLength="30" autofocus="true" required="true" style="width:115%"
+                                     <s:textfield name="consignee.lastName" cssClass="addConsigneeInput form-control" id="consignee.lastName"
+                                                  placeholder="Last Name" maxLength="30" required="true" style="width:95%"
                                                   pattern="[a-zA-Z\s]+"
-                                                  title="Name should not contain special characters and/or numbers." />
-
+                                                  title="Name should not contain special characters and/or numbers."/>
                                  </div>
                              </div>
                          </td>
