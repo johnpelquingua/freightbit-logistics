@@ -79,16 +79,16 @@
                         <tr>
                             <display:table id="orderStatusLogs" name="orderStatusLogs"
                                            requestURI="loadItemShipmentHistory.action" pagesize="10"
-                                           class="shipmentMonitoringTable table table-striped table-hover table-bordered text-center tablesorter"
+                                           class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;empty-cells: hide;">
 
                                 <td><display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="status" title="Shipment History <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
+                                <td><display:column property="status" title="Shipment History <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
                             </display:table>
@@ -107,12 +107,13 @@
 
                 <div class="col-lg-3" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Current Date/Time <span class="asterisk_red"></span></label>
-                    <s:textfield required="true" name="orderStatusLogsBean.createdTimestamp" cssClass="shipmentMonitoringInput form-control" id="createdTimestamp" readonly="true"/>
+                    <s:textfield required="true" name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp" />
+
                 </div>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update <span class="asterisk_red"></span></label>
                     <s:if test="#attr.order.serviceRequirement == 'FULL CONTAINER LOAD' || #attr.order.serviceRequirement == 'LOOSE CARGO LOAD' || #attr.order.serviceRequirement == 'ROLLING CARGO LOAD'">
-                    <s:select cssClass="shipmentMonitoringInput statusDropdown form-control"
+                    <s:select cssClass="statusDropdown form-control"
                               id="seaFreightStatus"
                               name="orderStatusLogsBean.status"
                               list="seaFreightList"
@@ -123,7 +124,7 @@
                             />
                     </s:if>
                     <s:elseif test="#attr.order.serviceRequirement == 'LESS CONTAINER LOAD'">
-                    <s:select cssClass="shipmentMonitoringInput statusDropdown form-control"
+                    <s:select cssClass="statusDropdown form-control"
                               id="seaFreightLCLStatus"
                               name="orderStatusLogsBean.status"
                               list="seaFreightLCLList"
@@ -135,7 +136,7 @@
                             />
                     </s:elseif>
                     <s:else>
-                        <s:select cssClass="shipmentMonitoringInput statusDropdown form-control"
+                        <s:select cssClass="statusDropdown form-control"
                                   id="inlandFreightStatus"
                                   name="orderStatusLogsBean.status"
                                   list="inlandFreightList"
@@ -162,7 +163,7 @@
                             Back to Sea Freight Planning : Orders
                             </button>
                         </s:a>
-                    <s:submit id="saveBtn" name="submit" cssClass="shipmentMonitoringBtn btn btn-primary" value="Update Status" disabled="true"/>
+                    <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status" />
                     <%--<button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
                     <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
             </div>
@@ -252,40 +253,31 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(document).ready(function(){
-        var shipTable = $('.shipmentMonitoringTable tbody tr td:nth-child(2)');
-        if(shipTable.size()){
-            for(var i = 0; i < shipTable.size(); i++){
-                $('.statusDropdown option[value="'+shipTable.eq(i).text()+'"]').remove();
-            }
+    function checkUpStatus(){
+        if($('.statusDropdown').val() == 'DELIVERED'){
+            $('#deliveryModal').modal('toggle');
+            $('#modalTrigger').click()
         }
+        else if($('.statusDropdown').val() == 'PICKUP'){
+            $('#pickupModal').modal('toggle');
+            $('#modalTrigger').click()
+        }
+        else if($('.statusDropdown').val() == 'ARRIVED'){
+            $('#inTransitModal').modal('toggle');
+            $('#modalTrigger').click()
+        }
+        else if($('.statusDropdown').val() == 'IN-TRANSIT'){
+            $('#arrivedModal').modal('toggle');
+            $('#modalTrigger').click()
+        }
+        else{
+            $('form').submit()
+        }
+    }
 
-        validationForm('shipmentMonitoringInput', 'shipmentMonitoringBtn');
-    });
-    //    function checkUpStatus(){ if($('.statusDropdown').val() == 'DELIVERED'){
-//            $('#deliveryModal').modal('toggle');
-//            $('#modalTrigger').click()
-//        }
-//        else if($('.statusDropdown').val() == 'PICKUP'){
-//            $('#pickupModal').modal('toggle');
-//            $('#modalTrigger').click()
-//        }
-//        else if($('.statusDropdown').val() == 'ARRIVED'){
-//            $('#inTransitModal').modal('toggle');
-//            $('#modalTrigger').click()
-//        }
-//        else if($('.statusDropdown').val() == 'IN-TRANSIT'){
-//            $('#arrivedModal').modal('toggle');
-//            $('#modalTrigger').click()
-//        }
-//        else{
-//            $('form').submit()
-//        }
-//    }
-//
-//    function sendOkStatus(){
-//        $('form').submit()
-//    }
+    function sendOkStatus(){
+        $('form').submit()
+    }
 
     $(function () {
         var curDate = $('#createdTimestamp');
