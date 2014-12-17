@@ -30,28 +30,17 @@
         </param-value>
     </context-param>
 
-    <!-- Spring MVC -->
-    <servlet>
-        <servlet-name>mvc-dispatcher</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>mvc-dispatcher</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-
     <listener>
         <listener-class>com.sr.apps.freightbit.core.listeners.Struts2ListenerOnGAE</listener-class>
     </listener>
 
-    <!-- Spring Security -->
 	 <filter>  
 		 <filter-name>springSecurityFilterChain</filter-name>  
 		 <filter-class>  
 		         org.springframework.web.filter.DelegatingFilterProxy  
 		 </filter-class>  
 	</filter>
+
 	<filter-mapping>  
 			<filter-name>springSecurityFilterChain</filter-name>  
 		<url-pattern>/*</url-pattern>  
@@ -74,7 +63,7 @@
     </welcome-file-list>
 
     <session-config>
-        <session-timeout>-1</session-timeout> <!--500seconds = 8 mins-->
+        <session-timeout>500</session-timeout> <!--500seconds = 8 mins-->
     </session-config>
 
 </web-app>
