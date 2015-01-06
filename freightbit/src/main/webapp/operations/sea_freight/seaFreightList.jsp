@@ -332,7 +332,7 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><i class='fa fa-edit' ></i> Edit</td>
+                                <td><i class='fa fa-tasks' ></i> Set Vessel Schedule</td>
                                 <td><i class='fa fa-print' ></i> Print</td>
                                 <td><i class='fa fa-check' ></i> Approve</td>
                                 <td><i class='fa fa-times' ></i> Cancel</td>
