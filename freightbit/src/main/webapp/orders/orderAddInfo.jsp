@@ -359,7 +359,7 @@
                                     </s:iterator>
                                 </datalist>--%>
 
-                                <input list="items" id="itemName" name="orderItem.nameSize" class="form-control"/>
+                                <input list="items" id="itemName" name="orderItem.nameSize" class="form-control" maxLength="30"/>
                                 <datalist id="items">
                                     <s:iterator value="customerItems">
                                         <%--<option value=<s:property value="%{customerItemsId}" /> ><s:property value="%{itemName}" /> </option>--%>
@@ -382,6 +382,7 @@
                                          id="orderItem_rate"
                                          name="orderItem.rate"
                                          required="true"
+                                         maxLength="16"
 
                                     />
                         </div>
@@ -408,6 +409,7 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.description"
                                              id="orderItem_description_textfield"
+                                             maxLength="20"
                                         />
                             </s:else>
 
@@ -435,6 +437,7 @@
                                     <s:textfield cssClass="form-control"
                                                  name="orderItem.weight"
                                                  id="orderItem_weight_textfield"
+                                                 maxLength="9"
                                             />
 
                         </div>
@@ -502,6 +505,7 @@
                                 <s:textfield cssClass="form-control"
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValue_textfield"
+                                             maxLength="19"
                                         />
                             </s:else>
 
