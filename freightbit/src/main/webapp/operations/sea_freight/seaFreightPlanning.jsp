@@ -410,7 +410,7 @@
             </div>
 
             <%--Origin--%>
-            <div class="panel panel-primary">
+            <%--<div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-truck"></i>
                     <span class="panel-title"> Dispatch Plan : Origin</span>
@@ -471,10 +471,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
 
             <%--Destination--%>
-            <div class="panel panel-primary">
+            <%--<div class="panel panel-primary">
                 <div class="panel-heading">
                     <i class="fa fa-truck"></i>
                     <span class="panel-title"> Dispatch Plan : Destination</span>
@@ -535,7 +535,7 @@
                     </div>
                 </div>
 
-                <%--<div class="panel-footer">
+                &lt;%&ndash;<div class="panel-footer">
                     <div class="pull-right">
                         <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
                             <s:param name="orderIdParam"
@@ -559,9 +559,9 @@
 
                         </s:a>
                     </div>
-                </div>--%>
+                </div>&ndash;%&gt;
 
-            </div>
+            </div>--%>
         </s:if>
         <s:elseif test="order.modeOfService=='DOOR TO PIER'">
             <div class="panel panel-primary">
