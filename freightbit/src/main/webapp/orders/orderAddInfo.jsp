@@ -424,22 +424,26 @@
                         </label>
 
                         <div class="col-lg-3" >
-
-                                <%--<s:textfield cssClass="form-control"
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                                <s:textfield cssClass="form-control"
                                              name="orderItem.weight"
-                                             id="orderItem_weight" />--%>
-                                    <s:select cssClass="form-control"
-                                              id="orderItem_weight"
-                                              list="#{orderItem_weight}"
-                                              value="%{orderItem_weight}"
-                                              style="display:none"
-                                            />
-                                    <s:textfield cssClass="form-control"
-                                                 name="orderItem.weight"
-                                                 id="orderItem_weight_textfield"
-                                                 maxLength="9"
-                                                 required="true"
-                                            />
+                                             id="orderItem_weight" />
+                            </s:if>
+                            <s:else>
+                                <s:select cssClass="form-control"
+                                          id="orderItem_weight"
+                                          list="#{orderItem_weight}"
+                                          value="%{orderItem_weight}"
+                                          style="display:none"
+                                        />
+                                <s:textfield placeholder="TESTING"
+                                             cssClass="form-control"
+                                             name="orderItem.weight"
+                                             id="orderItem_weight_textfield"
+                                             maxLength="9"
+                                             required="true"
+                                        />
+                            </s:else>
 
                         </div>
 
@@ -1092,7 +1096,7 @@
 
     $(function(){ // THIS FUNCTION HIDES THE WEIGHT AND VOLUME FIELD IF THE SERVICE REQ IS FULL CONTAINER LOAD
         if($('.serviceReq').text() == 'FULL CONTAINER LOAD'){
-            $('.weightAndVolume').hide();
+//            $('.weightAndVolume').hide();
         }
     })
     // END
@@ -1161,7 +1165,7 @@ $(document).ready(function() {
     $("#orderItem_rate").maskMoney();
     $("#orderItem_weight").mask('9,999,999');
     $("#orderItem-volume").mask('9,999,999');
-    $("#orderItemVolume").mask('9,999,999');
+//    $("#orderItemVolume").mask('9,999,999');
     $("#orderItem_volume_textfield").mask('9,999,999');
     $("#orderItem_declaredValues").maskMoney();
     $("#orderItem_declaredValue_textfield").maskMoney();
@@ -1431,7 +1435,7 @@ $(document).ready(function() {
         if (select.options[ index ].value === '') {
 
             document.getElementById("orderItem-volume").value = "";
-            document.getElementById("orderItemVolume").value = "";
+//            document.getElementById("orderItemVolume").value = "";
         }
 
         if (select.options[ index ].value === '10 FOOTER') {
@@ -1442,13 +1446,13 @@ $(document).ready(function() {
                 document.getElementById("orderItem_weight").value = 9;
                 document.getElementById("orderItem.quantity").value = 1;
                 document.getElementById("orderItem-volume").value = "14";
-                document.getElementById("orderItemVolume").value = "14";
+//                document.getElementById("orderItemVolume").value = "14";
             }else{
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 14;
                 document.getElementById("orderItem_weight").value = 9;
                 document.getElementById("orderItem-volume").value = containerVolume;
-                document.getElementById("orderItemVolume").value = containerVolume;
+//                document.getElementById("orderItemVolume").value = containerVolume;
             }
         }
 
@@ -1460,13 +1464,13 @@ $(document).ready(function() {
                 document.getElementById("orderItem_weight").value = 18;
                 document.getElementById("orderItem.quantity").value = 1;
                 document.getElementById("orderItem-volume").value = "28";
-                document.getElementById("orderItemVolume").value = "28";
+//                document.getElementById("orderItemVolume").value = "28";
             }else {
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 28;
                 document.getElementById("orderItem_weight").value = 18;
                 document.getElementById("orderItem-volume").value = containerVolume;
-                document.getElementById("orderItemVolume").value = containerVolume;
+//                document.getElementById("orderItemVolume").value = containerVolume;
             }
         }
 
@@ -1478,13 +1482,13 @@ $(document).ready(function() {
                 document.getElementById("orderItem_weight").value = 20;
                 document.getElementById("orderItem.quantity").value = 1;
                 document.getElementById("orderItem-volume").value = "56";
-                document.getElementById("orderItemVolume").value = "56";
+//                document.getElementById("orderItemVolume").value = "56";
             }else {
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 56;
                 document.getElementById("orderItem_weight").value = 20;
                 document.getElementById("orderItem-volume").value = containerVolume;
-                document.getElementById("orderItemVolume").value = containerVolume;
+//                document.getElementById("orderItemVolume").value = containerVolume;
             }
         }
 
@@ -1496,13 +1500,13 @@ $(document).ready(function() {
                 document.getElementById("orderItem_weight").value = 22;
                 document.getElementById("orderItem.quantity").value = 1;
                 document.getElementById("orderItem-volume").value = "78";
-                document.getElementById("orderItemVolume").value = "78";
+//                document.getElementById("orderItemVolume").value = "78";
             }else {
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 78;
                 document.getElementById("orderItem_weight").value = 22;
                 document.getElementById("orderItem-volume").value = containerVolume;
-                document.getElementById("orderItemVolume").value = containerVolume;
+//                document.getElementById("orderItemVolume").value = containerVolume;
             }
         }
     }
