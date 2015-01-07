@@ -478,7 +478,7 @@
                     <div class="form-group">
                         <label class="col-lg-3">Position<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
+                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position" maxLength="30"
                                          type="text" required="true"/>
                         </div>
                     </div>
@@ -827,7 +827,7 @@
                     <div class="form-group">
                         <label class="col-lg-3">Position<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
+                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position" maxLength="30"
                                          type="text" required="true"/>
                         </div>
                     </div>
