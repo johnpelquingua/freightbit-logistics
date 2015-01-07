@@ -168,7 +168,7 @@
                             </display:column></td>
                             <%--Change Header based on Service Requirement--%>
                             <td>
-                                <s:if test="#attr.orderItem.serviceRequirement == 'FULL CONTAINER LOAD'">
+                                <s:if test="#attr.order.serviceRequirement == 'FULL CONTAINER LOAD'">
                                     <display:column property="nameSize" title="Container Size <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;">
