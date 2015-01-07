@@ -359,7 +359,7 @@
                                     </s:iterator>
                                 </datalist>--%>
 
-                                <input list="items" id="itemName" name="orderItem.nameSize" class="form-control" maxLength="30"/>
+                                <input list="items" id="itemName" name="orderItem.nameSize" class="form-control" maxLength="30" required="true"/>
                                 <datalist id="items">
                                     <s:iterator value="customerItems">
                                         <%--<option value=<s:property value="%{customerItemsId}" /> ><s:property value="%{itemName}" /> </option>--%>
@@ -438,6 +438,7 @@
                                                  name="orderItem.weight"
                                                  id="orderItem_weight_textfield"
                                                  maxLength="9"
+                                                 required="true"
                                             />
 
                         </div>
@@ -506,6 +507,7 @@
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValue_textfield"
                                              maxLength="19"
+                                             required="true"
                                         />
                             </s:else>
 
