@@ -573,7 +573,7 @@
                         <div class="col-lg-9" style="width: 74%;">
                             <s:select name="address.addressType" list="addressTypeList" listValue="value"
                                       listKey="key"
-                                      cssClass="form-control" id="address.addressType" emptyOption="true"/>
+                                      cssClass="form-control" id="address.addressType" emptyOption="true" required="true"/>
                         </div>
                     </div>
                     <div class="form-group">
