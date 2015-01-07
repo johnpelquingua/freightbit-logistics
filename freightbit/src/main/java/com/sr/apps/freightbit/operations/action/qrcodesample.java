@@ -31,7 +31,7 @@ public class qrcodesample {
 
         try {
             FileOutputStream fout = new FileOutputStream(new File(
-                    "C:\\QR_Code.JPG"));
+                    "C:\\QR_Code.PNG"));
 
             fout.write(out.toByteArray());
 
