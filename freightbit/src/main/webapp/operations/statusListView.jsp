@@ -22,6 +22,13 @@
 
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-list"></i> On-Going Booking List</h3>
+                <span class="pull-right">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="postAjaxHtml('loadSearchBookingPage', 'inputDiv');">
+                        <i class="fa fa-search"></i> Search Booking Number
+                    </button>
+                </sec:authorize>
+                </span>
             </div>
 
             <div class="panel-body">
@@ -94,7 +101,21 @@
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <%--<div class="modal-header">
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+            </div>--%>
+            <div class="modal-body">
+                <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
+            </div>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>--%>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function(){
         tableProp('DESTI_ORIG','order',0 ,7, 8, 9, 5, 6, 1);

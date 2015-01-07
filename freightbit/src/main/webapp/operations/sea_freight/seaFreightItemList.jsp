@@ -181,14 +181,14 @@
                                 </td>
                                 <%--Change Header based on Service Requirement--%>
                                 <td>
-                                    <s:if test="%{#attr.orderItem.serviceRequirement}=='FULL CARGO LOAD'">
-                                        <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
+                                    <s:if test="#attr.orderItem.serviceRequirement == 'FULL CARGO LOAD'">
+                                        <display:column property="nameSize" title="Container Size <i class='fa fa-sort' />"
                                                         class="tb-font-black"
                                                         style="text-align: center;">
                                         </display:column>
                                     </s:if>
                                     <s:else>
-                                        <display:column property="nameSize" title="Name <i class='fa fa-sort' />"
+                                        <display:column property="nameSize" title="Item Name <i class='fa fa-sort' />"
                                                         class="tb-font-black"
                                                         style="text-align: center;">
                                         </display:column>

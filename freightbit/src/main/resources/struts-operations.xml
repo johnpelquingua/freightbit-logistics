@@ -73,6 +73,10 @@
             <result name="success" type="tiles">operations.updateStatus.tiles</result>
         </action>
 
+        <action name="loadSearchBookingPage" class="com.sr.apps.freightbit.order.action.OrderAction" method="loadSearchBookingPage">
+            <result name="success">/operations/shipmentMonitoringSearch.jsp</result>
+        </action>
+
         <action name="loadItemShipmentHistory" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
                 method="loadItemShipmentHistory">
             <result name="success" type="tiles">operations.itemShipmentHistory.tiles</result>
@@ -98,7 +102,7 @@
 
         <action name="serviceAccomplishedStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
                 method="serviceAccomplishedStatus">
-            <result name="success" type="redirect">viewOrders</result>
+            <result name="success" type="tiles">orders.booking-list.tiles</result>
         </action>
 
         <action name="loadSuccessSetStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
@@ -476,6 +480,18 @@
         <action name="viewConsolidationItemList" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="viewConsolidationItemList">
             <result name="success" type="tiles">operations.consolidationItemList.tiles</result>
             <result name="CONSOLIDATED" type="tiles">operations.consolidationItemListEdit.tiles</result>
+        </action>
+
+        <action name="loadQRFormPage" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadQRFormPage">
+            <result name="success" type="tiles">operations.createQRCode.tiles</result>
+        </action>
+
+        <action name="generate" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="generate">
+            <result name="success" type="redirect">loadSuccessGenerateQR</result>
+        </action>
+
+        <action name="loadSuccessGenerateQR" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSuccessGenerateQR">
+            <result name="success" type="tiles">operations.consolidationContainerList.tiles</result>
         </action>
 
         <action name="loadConsolidationContainerSearch" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="loadConsolidationContainerSearch">

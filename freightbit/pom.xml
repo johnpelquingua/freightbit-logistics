@@ -205,8 +205,44 @@
             <artifactId>struts2-json-plugin</artifactId>
             <version>2.3.16</version>
         </dependency>
-        
-         <dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>zxingorg</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>zxing.appspot.com</artifactId>
+            <version>3.1.0</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>net.glxn.qrgen</groupId>
+            <artifactId>core</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.glxn.qrgen</groupId>
+            <artifactId>javase</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring3</artifactId>
             <version>2.1.2.RELEASE</version>

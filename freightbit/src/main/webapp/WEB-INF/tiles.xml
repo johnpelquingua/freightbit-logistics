@@ -215,6 +215,11 @@
         <put-attribute name="body" value="/operations/consolidation/consolidationItemList.jsp"/>
     </definition>
 
+    <definition name="operations.createQRCode.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Consolidation"/>
+        <put-attribute name="body" value="/operations/consolidation/createQRCode.jsp"/>
+    </definition>
+
     <definition name="operations.consolidationItemListEdit.tiles" extends="baseLayout">
         <put-attribute name="title" value="Consolidation"/>
         <put-attribute name="body" value="/operations/consolidation/consolidationItemListEdit.jsp"/>

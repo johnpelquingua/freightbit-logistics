@@ -31,6 +31,13 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Consolidation Container List</h3>
                 <span class="pull-right">
+                    <s:url var="loadQRFormPageUrl" action="loadQRFormPage">
+                    </s:url>
+                    <s:a class="icon-action-link" href="%{loadQRFormPageUrl}" rel="tooltip" title="Create QR Code">
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa fa-qrcode"> </i> Create QR Code
+                        </button>
+                    </s:a>
                     <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
                         <i class="fa fa-search"></i> Search Container
                     </button>

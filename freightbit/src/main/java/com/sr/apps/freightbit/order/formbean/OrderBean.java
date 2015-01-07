@@ -498,4 +498,6 @@ public class OrderBean {
     public void setOrderWeight(Double orderWeight) {
         this.orderWeight = orderWeight;
     }
+
+
 }

@@ -62,15 +62,41 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         seaFreightList = parameterService.getParameterMap(ParameterConstants.SEA_FREIGHT);
     }
 
+    private Integer getClientId() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer clientId = (Integer) sessionAttributes.get("clientId");
+        return clientId;
+    }
+
     public String viewStatusList() {
+
         List<Orders> orderEntityList = new ArrayList<Orders>();
+        String column = getColumnFilter();
 
-        orderEntityList = orderStatusLogsService.findAllOrders();
-
+        if (StringUtils.isNotBlank(column)) {
+            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+        } else {
+            orderEntityList = orderStatusLogsService.findAllOrders();
+        }
         for (Orders ordersElem : orderEntityList) {
             orders.add(transformToOrderFormBean(ordersElem));
         }
         return SUCCESS;
+    }
+
+    public String getColumnFilter() {
+
+        String column = "";
+        if (order == null) {
+            System.out.println("ok");
+            return column;
+        } else {
+            if ("BOOKING NUMBER".equals(order.getOrderSearchCriteria())) {
+                column = "orderNumber";
+            }
+            return column;
+        }
+
     }
 
     public String viewStatusListItems() {
@@ -94,11 +120,16 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public String serviceAccomplishedStatus() {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        order = transformToOrderFormBean(orderEntity);
         orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
         orderService.updateOrder(orderEntity);
-        addActionMessage("Success! Service Accomplished");
 
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+        orderEntityList = orderService.findAllOrders();
+        for (Orders ordersElem : orderEntityList) {
+            orders.add(transformToOrderFormBean(ordersElem));
+        }
+
+        addActionMessage("Success! Service Accomplished");
         return SUCCESS;
     }
 
@@ -565,4 +596,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public void setCheck(String[] check) {
         this.check = check;
     }
+
+
 }

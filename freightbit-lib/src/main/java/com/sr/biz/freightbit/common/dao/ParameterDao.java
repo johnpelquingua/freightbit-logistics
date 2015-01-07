@@ -11,7 +11,7 @@ public interface ParameterDao {
 
     public List<Parameters> findParameterMapByRefColumn(String referenceTable, String referenceColumn);
 
-    public List<Parameters> findParametersByProperty(Map<String, Object> params);
+	public List<Parameters> findParametersByProperty(Map<String, Object> params);
 
 	public void addParameter(Parameters param);
 

@@ -45,9 +45,17 @@ import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
+import net.glxn.qrgen.core.image.ImageType;
+import net.glxn.qrgen.javase.QRCode;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.*;
 
 public class OperationsAction extends ActionSupport implements Preparable {
@@ -392,6 +400,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 }
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
+
+                vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
 
                 return "PLANNING 1";
             } else if (planning2.size() > 0) {
@@ -2108,11 +2118,44 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
 //    -----------------CONSOLIDATION MODULE-------------------------
 
+
+
     public String loadAddFormPage() {
         return SUCCESS;
     }
 
+    public String loadQRFormPage(){ return SUCCESS; }
+
+    public String loadSuccessGenerateQR(){
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Container has been deleted.");
+        return SUCCESS;
+    }
+
     public String loadSearchContainerPage(){ return SUCCESS; }
+
+    /*public String generate() {
+        Container containerEntity  = transformContainerToEntityBean(container);
+        containerService.updateContainer(containerEntity);
+        return SUCCESS;
+    }*/
+
+    public void generate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String qrtext = request.getParameter("containerType");
+        ByteArrayOutputStream out = QRCode.from(qrtext).to(ImageType.PNG).stream();
+
+        response.setContentType("image/png");
+        response.setContentLength(out.size());
+
+        OutputStream outStream = response.getOutputStream();
+        outStream.write(out.toByteArray());
+
+        outStream.flush();
+        outStream.close();
+
+    }
 
     public String viewContainerList() {
 

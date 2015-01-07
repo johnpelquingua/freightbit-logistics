@@ -2,12 +2,6 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<style>
-    .pagebanner, .pagelinks {
-        display: none;
-    }
-</style>
-
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
         <div class="alert alert-success" id="alert">

@@ -17,6 +17,8 @@
                 <li><a href="<s:url action='operations/viewInlandFreightList' />"> <i class="fa fa-caret-right fa-fw"></i> Dispatch Plan</a></li>
                     <%--<li><a href="<s:url action='operations/viewShipmentMonitoringList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>--%>
                 <li><a href="<s:url action='operations/viewVesselSchedules' />"> <i class="fa fa-caret-right fa-fw"></i> Vessel Schedule</a></li>
+                <li><a href="<s:url action='operations/viewStatusList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>
+
 
             </ul>
         </li>
@@ -27,7 +29,6 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-road"></i> Yard Management <b class="caret"></b></a>
             <ul class="dropdown-menu">
 
-                <li><a href="<s:url action='operations/viewStatusList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>
                 <li><a href="<s:url action='operations/viewContainerList' />"> <i class="fa fa-caret-right fa-fw"></i> Container Management</a></li>
                 <li><a href="<s:url action='operations/viewConsolidationContainerList' />"> <i class="fa fa-caret-right fa-fw"></i> Consolidation</a></li>
 

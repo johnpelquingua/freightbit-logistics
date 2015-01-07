@@ -60,6 +60,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Parameters> modeOfServiceList = new ArrayList<Parameters>();
     private List<Parameters> modeOfPaymentList = new ArrayList<Parameters>();
     private List<Parameters> orderSearchList = new ArrayList<Parameters>();
+    private List<Parameters> bookingNumSearchList = new ArrayList<Parameters>();
     private List<Parameters> notifyByList = new ArrayList<Parameters>();
     private List<Contacts> shipperList = new ArrayList<Contacts>();
     private List<Contacts> consigneeList = new ArrayList<Contacts>();
@@ -306,6 +307,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
 
     }
+
+    public String loadSearchBookingPage(){ return SUCCESS; }
 
     public String loadAddOrderPage() {
         return SUCCESS;
@@ -1540,6 +1543,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         modeOfServiceList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.MODE_OF_SERVICE);
         notifyByList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.NOTIFY_BY);
         orderSearchList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.ORDER_SEARCH);
+        bookingNumSearchList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.BOOKING_SEARCH);
         portsList = parameterService.getParameterMap(ParameterConstants.ORDER, ParameterConstants.PORTS);
         contactTypeList = parameterService.getParameterMap(ParameterConstants.CONTACT_TYPE);
         addressTypeList = parameterService.getParameterMap(ParameterConstants.ADDRESS_TYPE);
@@ -1656,6 +1660,14 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setOrderSearchList(List<Parameters> orderSearchList) {
         this.orderSearchList = orderSearchList;
+    }
+
+    public List<Parameters> getBookingNumSearchList() {
+        return bookingNumSearchList;
+    }
+
+    public void setBookingNumSearchList(List<Parameters> bookingNumSearchList) {
+        this.bookingNumSearchList = bookingNumSearchList;
     }
 
     public ContactBean getContact() {

@@ -1,12 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<style>
-    .pagebanner, .pagelinks {
-        display: none;
-    }
-</style>
-
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
