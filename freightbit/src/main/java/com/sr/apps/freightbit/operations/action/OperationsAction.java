@@ -1016,6 +1016,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return "PLANNING 2";
     }
 
+    public String viewSeaFreightPlanning() {
+        String column = getColumnFilter();
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+        if (StringUtils.isNotBlank(column)) {
+            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+        } else {
+            orderEntityList = orderService.findAllOrders();
+        }
+        for (Orders orderElem : orderEntityList) {
+            orders.add(transformToOrderFormBean(orderElem));
+        }
+
+        return SUCCESS;
+    }
+
     public String viewEditSeaFreight() {
         Map sessionAttributes = ActionContext.getContext().getSession();
 

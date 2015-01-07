@@ -40,6 +40,8 @@
 <div class="row">
 <div class="col-lg-12">
 
+
+<%--Booking Information--%>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-book"></i>
@@ -135,6 +137,7 @@
     </div>
 </div>
 
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-anchor"></i>
@@ -226,6 +229,7 @@
                 </div>
             </div>
         </s:if>
+
         <display:table id="vesselSchedule" name="vesselSchedules"
                        requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                        class="table table-striped table-hover table-bordered text-center tablesorter"

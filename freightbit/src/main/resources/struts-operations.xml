@@ -266,6 +266,11 @@
         <action name="viewInfoOrderSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfoOrderSea">
             <result name="success" type="tiles">operations.viewInfoOrderSea.tiles</result>
         </action>
+
+        <action name="viewSeaFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewSeaFreightPlanning">
+            <result name="success" type="tiles">operations.vesselScheduleListOn.tiles</result>
+        </action>
+
         <!--When adding Vessel Schedule while in planning module-->
         <!--Operations ends here-->
 

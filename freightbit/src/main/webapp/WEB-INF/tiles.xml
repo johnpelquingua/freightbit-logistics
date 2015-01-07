@@ -45,6 +45,11 @@
         <put-attribute name="body" value="/operations/vesselSchedulesList.jsp"/>
     </definition>
 
+    <definition name="operations.vesselScheduleListOn.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Vessel Schedule Lists"/>
+        <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanningBulk.jsp"/>
+    </definition>
+
     <definition name="operations.statusList.tiles" extends="baseLayout">
         <put-attribute name="title" value="Order List"/>
         <put-attribute name="body" value="/operations/statusListView.jsp"/>
