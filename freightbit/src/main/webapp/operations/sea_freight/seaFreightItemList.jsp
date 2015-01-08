@@ -180,6 +180,11 @@
                                     </display:column>
                                 </td>
                                 <%--Change Header based on Service Requirement--%>
+
+                                <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;"></display:column></td>
+
                                 <td>
                                     <s:if test="#attr.order.serviceRequirement == 'FULL CONTAINER LOAD'">
                                         <display:column property="nameSize" title="Container Size <i class='fa fa-sort' />"
