@@ -42,7 +42,7 @@ public class OrderStatusLogsTest {
         orderStatusLogs.setOrderItemId(1);
         orderStatusLogs.setOrderId(1);
         orderStatusLogs.setCreatedBy("admin");
-        orderStatusLogs.setCreatedTimestamp(new Date());
+        orderStatusLogs.setCreatedTimestamp("");
         orderStatusLogs.setStatus("APPROVED");
 
         return orderStatusLogs;

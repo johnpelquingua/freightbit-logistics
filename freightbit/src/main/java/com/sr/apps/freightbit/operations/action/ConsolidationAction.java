@@ -342,7 +342,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setContainerNumber(entity.getContainerNumber());
         formBean.setContainerSize(entity.getContainerSize());
         formBean.setContainerType(entity.getContainerType());
-//        formBean.setContainerStatus(entity.getContainerStatus());
+        formBean.setContainerStatus(entity.getContainerStatus());
         formBean.setEirType(entity.getEirType());
         formBean.setSealNumber(entity.getSealNumber());
         formBean.setVanLocation(entity.getVanLocation());
@@ -352,7 +352,7 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         formBean.setForkliftOperator(entity.getForkliftOperator());
         formBean.setOperationsDept(entity.getOperationsDept());
 
-        if("CONSOLIDATED".equals(entity.getContainerStatus())) {
+        /*if("CONSOLIDATED".equals(entity.getContainerStatus())) {
             formBean.setContainerStatus("CONSOLIDATED");
         }
         else if("OPEN".equals(entity.getContainerStatus())){
@@ -360,6 +360,12 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
         }
         else if("FINAL".equals(entity.getContainerStatus())){
             formBean.setContainerStatus("FINAL");
+        }*/
+
+        if("GATE OUT".equals(entity.getContainerStatus())) {
+            formBean.setContainerNumber(null);
+            formBean.setContainerSize(null);
+            formBean.setContainerStatus(null);
         }
         return formBean;
     }

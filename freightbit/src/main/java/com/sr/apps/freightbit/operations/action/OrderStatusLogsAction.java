@@ -298,7 +298,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String updateStatus() {
+    /*public String updateStatus() {
         try {
             OrderItems entity = transformToOrderItemEntity(orderItem);
             orderStatusLogsService.updateStatusOrderItem(entity);
@@ -308,7 +308,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
             orderStatusLogs.setOrderId((Integer) sessionAttributes.get("orderIdParam"));
             orderStatusLogs.setOrderItemId((Integer) sessionAttributes.get("orderItemIdParam"));
-            /*orderStatusLogs.setCreatedTimestamp(new Date());*/
+            *//*orderStatusLogs.setCreatedTimestamp(new Date());*//*
 
             Date date = new Date();
             Date time = new Date();
@@ -338,7 +338,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }
         return SUCCESS;
 
-    }
+    }*/
 
     public OrderItems transformToOrderItemEntity (OrderItemsBean formBean) {
         OrderItems entity = orderStatusLogsService.findOrderItemById(formBean.getOrderItemId());
@@ -395,10 +395,15 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
         formBean.setNameSize(entity.getNameSize());
-        /*OrderStatusLogs statusLogsEntity = orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId());
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + statusLogsEntity.getStatus());*/
-        //        formBean.setShipmentStatus(orderStatusLogsService.findOrderStatusLogsStatusById(entity.getOrderItemId()).getStatus());
-        formBean.setStatus(entity.getStatus());
+        OrderStatusLogs statusLogsEntity = orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId());
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + statusLogsEntity.getStatus());
+        /*if(orderStatusLogsService.findOrderStatusLogsStatusById(entity.getOrderItemId()).getStatus() == null || orderStatusLogsService.findOrderStatusLogsStatusById(entity.getOrderItemId()).getStatus().equals("") || orderStatusLogsService.findOrderStatusLogsStatusById(entity.getOrderItemId()).getStatus().length() == 0 || orderStatusLogsService.findOrderStatusLogsStatusById(entity.getOrderItemId()).getStatus().isEmpty()) {
+
+            formBean.setStatus(entity.getStatus());
+        }
+        else {
+            formBean.setStatus(orderStatusLogsService.findOrderStatusLogsStatusById(entity.getOrderItemId()).getStatus());
+        }*/
         formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setCreatedBy(entity.getCreatedBy());
 

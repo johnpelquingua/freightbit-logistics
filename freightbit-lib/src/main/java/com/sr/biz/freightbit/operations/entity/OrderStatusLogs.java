@@ -12,7 +12,7 @@ public class OrderStatusLogs implements Serializable {
     private Integer orderItemId;
     private String status;
     private String createdBy;
-    private Date createdTimestamp;
+    private String createdTimestamp;
     private Date deliveryDate;
     private Date pickupDate;
     private Date departureTime;
@@ -21,7 +21,7 @@ public class OrderStatusLogs implements Serializable {
     public OrderStatusLogs() {
     }
 
-    public OrderStatusLogs(Integer statusId, Integer orderId, Integer orderItemId, String status, String createdBy, Date createdTimestamp, Date deliveryDate, Date pickupDate, Date departureTime, Date arrivalTime) {
+    public OrderStatusLogs(Integer statusId, Integer orderId, Integer orderItemId, String status, String createdBy, String createdTimestamp, Date deliveryDate, Date pickupDate, Date departureTime, Date arrivalTime) {
         this.statusId = statusId;
         this.orderId = orderId;
         this.orderItemId = orderItemId;
@@ -82,11 +82,11 @@ public class OrderStatusLogs implements Serializable {
     }
 
     @Column(name = "createdTimestamp")
-    public Date getCreatedTimestamp() {
+    public String getCreatedTimestamp() {
         return createdTimestamp;
     }
 
-    public void setCreatedTimestamp(Date createdTimestamp) {
+    public void setCreatedTimestamp(String createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 

@@ -106,7 +106,7 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
         log.debug("Finding all Shipment Logs");
         try{
             /*return getSessionFactory().getCurrentSession().createQuery("from OrderStatusLogs orderStatusLogs order by createdTimestamp desc").list();*/
-            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderStatusLogs o where o.orderItemId = :orderItemId");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderStatusLogs o where o.orderItemId = :orderItemId order by createdTimestamp desc");
             query.setParameter("orderItemId", orderItemId);
             List<OrderStatusLogs> results = (List<OrderStatusLogs>) query.list();
             log.debug("find by client id successful, result size:" + results.size());
@@ -157,13 +157,21 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
         log.debug("Finding orderItem via id");
         try {
             log.debug("finding order item succeed");
-            OrderStatusLogs instance = (OrderStatusLogs) getSessionFactory().getCurrentSession().get(OrderItems.class, orderItemId);
+        /*    OrderStatusLogs instance = (OrderStatusLogs) getSessionFactory().getCurrentSession().get(OrderItems.class, orderItemId);
             if (instance == null) {
                 log.debug("get successful, no instance found");
             } else {
                 log.debug("get successful, instance found");
             }
-            return instance;
+            return instance;*/
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from OrderStatusLogs o where o.orderItemId = :orderItemId");
+            query.setParameter("orderItemId", orderItemId);
+            List<OrderStatusLogs> results = (List<OrderStatusLogs>) query.list();
+            if (results != null && results.size() > 0) {
+                return results.get(0);
+            }
+            return null;
 
         } catch (Exception e) {
             log.error("Finding order item failed");
