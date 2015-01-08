@@ -105,10 +105,9 @@
                     <s:hidden value="%{orderStatusLogsBean.orderItemId}" name="orderStatusLogsBean.orderItemId"/>
                 </s:else>
 
-                <div class="col-lg-3" style="text-align: center">
+                <div class="col-lg-3" style="text-align: center; display: none;">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Actual Date/Time <span class="asterisk_red"></span></label>
-                    <s:textfield required="true" name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp" />
-
+                    <s:textfield required="true" name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp"/>
                 </div>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update <span class="asterisk_red"></span></label>
@@ -278,7 +277,9 @@
         var shipTable = $('.shipmentMonitoringTable tbody tr td:nth-child(2)');
         if (shipTable.size()) {
             for (var i = 0; i < shipTable.size(); i++) {
-                $('.statusDropdown option[value="' + shipTable.eq(i).text() + '"]').remove();
+                if(shipTable.eq(i).text() != 'CANCELLED' && shipTable.eq(i).text() != 'PENDING'){
+                    $('.statusDropdown option[value="' + shipTable.eq(i).text() + '"]').remove();
+                }
             }
         }
     });
@@ -293,10 +294,28 @@
         var pickDate = $('#pickupDate');
         var arrTime = $('#arrivalTime');
         var depTime = $('#departureTime');
-        curDate.datetimepicker({
-            timeFormat: 'h:mm TT',
-            minDate: 0
-        });
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+
+        var yyyy = today.getFullYear();
+        if(dd<10){
+            dd='0'+dd
+        }
+        if(mm<10){
+            mm='0'+mm
+        }
+        today = dd+'/'+mm+'/'+yyyy;
+
+        var dt = new Date(), minutesTS = dt.getMinutes();
+
+        var time = dt.getHours() + ":" + dt.toLocaleTimeString() + ":" + dt.getSeconds()+'.0';
+        curDate.val(today+' '+ dt.toLocaleTimeString());
+//        curDate.datetimepicker({
+//            timeFormat: 'h:mm TT',
+//            minDate: 0
+//        });
         delDate.datetimepicker({
             timeFormat: 'h:mm TT',
             minDate: 0
