@@ -21,8 +21,7 @@
                     <s:param name="orderNoParam"
                              value="#attr.order.orderNo"></s:param>
                 </s:url>
-                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                     title="Update Status">
+                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
                     <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                         Freight Plan : Containers
                     </s:if>
@@ -141,7 +140,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-anchor"></i>
-        <span class="panel-title">Sea Operation</span>
+        <span class="panel-title">Freight Plan</span>
     </div>
     <div class="panel-body">
         <s:form cssClass="form-horizontal" action="findVesselScheduleBulk" theme="bootstrap" style="margin-bottom: -50px;">
@@ -166,7 +165,7 @@
             <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
 
             <div class="form-group">
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
                 </s:if>
                 <s:else>
@@ -187,16 +186,16 @@
                 <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                 <div class="col-lg-4">
                     <div>
-                        <s:select list="vendorShippingList" name="operationsBean.vendorList"
+                        <s:select list="vendorShippingListClass" name="operationsBean.vendorList"
                                   id="operationsBean_vendorList"
-                                  listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                  listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                   emptyOption="true" ></s:select>
                     </div>
                 </div>
                 <div class="col-lg-2" style="text-align: center;">
                     <div>
                         <a href="#" style="width: 135px;">
-                            <s:submit cssClass="btn btn-primary" name="submit" value="Search Schedule"/>
+                            <s:submit cssClass="btn btn-primary" name="submit" value="Filter by Vendor"/>
                         </a>
                     </div>
                 </div>
@@ -257,7 +256,7 @@
                              value="#attr.vesselSchedule.vendorId">
                     </s:param>
                 </s:url>
-                <s:a class="icon-action-link" href="%{editBulkItemsUrl}" rel="tooltip" title="Update Status">
+                <s:a class="icon-action-link" href="%{editBulkItemsUrl}" rel="tooltip" title="Set Schedule">
                     <%--Choose this vessel...--%>
                     <i class="fa fa-arrow-circle-down"></i>
                 </s:a>
@@ -269,23 +268,22 @@
 
         <div class="pull-right">
 
-            <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
+            <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId"></s:param>
                 <s:param name="orderNoParam"
                          value="#attr.order.orderNo"></s:param>
             </s:url>
-            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                 title="Update Status">
+            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
 
                 <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                     <button type="button" class="btn">
-                        Dispatch Plan : Containers
+                        Back to Freight Plan : Containers
                     </button>
                 </s:if>
                 <s:else>
                     <button type="button" class="btn">
-                        Dispatch Plan : Items
+                        Back to Freight Plan : Items
                     </button>
                 </s:else>
             </s:a>

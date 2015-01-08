@@ -52,6 +52,11 @@ public class OperationsServiceImpl implements OperationsService{
     }
 
     @Override
+    public List<VesselSchedules> findVesselScheduleByOriDesClass(String originPort, String destinationPort) {
+        return operationsDao.findVesselScheduleByOriDesClass(originPort, destinationPort );
+    }
+
+    @Override
     public List<VesselSchedules> findAllVesselSchedule() {
         return operationsDao.findAllVesselSchedule();
     }

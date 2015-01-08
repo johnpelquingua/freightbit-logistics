@@ -602,6 +602,23 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
     }
 
     @Override
+    public List<VesselSchedules> findVesselScheduleByOriDesClass(String originPort, String destinationPort ) {
+        log.debug("Find initiated");
+        try {
+            log.debug("Find succeed");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from VesselSchedules v where v.originPort = :originPort and v.destinationPort = :destinationPort");
+            query.setParameter("originPort", originPort);
+            query.setParameter("destinationPort", destinationPort);
+            List<VesselSchedules> results = (List<VesselSchedules>) query.list();
+            return results;
+
+        } catch (Exception e) {
+            log.error("Find failed", e);
+            throw e;
+        }
+    }
+
+    @Override
     public List<VesselSchedules> findAllVesselSchedule() {
         log.debug("Find initiated");
         try {

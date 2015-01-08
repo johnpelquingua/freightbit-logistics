@@ -50,24 +50,18 @@
 
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
-                <li class="active" id="fcl">
+                <li class="active col-md-3" id="fcl">
                     <a href="#fclTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
                 </li>
-                <li id="lcl">
+                <li class="col-md-3" id="lcl">
                     <a href="#lclTab" role="tab" data-toggle="tab">Less Container Load (LCL)</a>
                 </li>
-                <li id="lcu">
+                <li class="col-md-3" id="lcu">
                     <a href="#lcuTab" role="tab" data-toggle="tab">Loose Cargo Load (LCU)</a>
                 </li>
-                <li id="rcu">
+                <li class="col-md-3" id="rcu">
                     <a href="#rcuTab" role="tab" data-toggle="tab">Rolling Cargo Load (RCU)</a>
                 </li>
-                <%--<li id="ftl">
-                    <a href="#ftlTab" role="tab" data-toggle="tab">Full Truck Load (FTL)</a>
-                </li>
-                <li id="ltl">
-                    <a href="#ltlTab" role="tab" data-toggle="tab">Less Truck Load (LTL)</a>
-                </li>--%>
             </ul>
 
             <div class="tab-content">
@@ -133,12 +127,12 @@
                                            class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
-                                <%--<td>
+                                <td>
                                     <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
                                         <s:checkbox theme="simple" name="check"
                                                     fieldValue="%{#attr.order.orderId}"/>
                                     </display:column>
-                                </td>--%>
+                                </td>
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
@@ -305,8 +299,6 @@
                             </display:table>
                         </div>
                     </div>
-
-                </div>
 
                 </div>
 

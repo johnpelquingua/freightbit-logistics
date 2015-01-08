@@ -18,6 +18,8 @@ public interface OperationsDao {
 
     public List<VesselSchedules> findVesselScheduleByVendorIdOriDesClass(Integer vendorId, String originPort, String destinationPort );
 
+    public List<VesselSchedules> findVesselScheduleByOriDesClass(String originPort, String destinationPort);
+
     public List<VesselSchedules> findAllVesselSchedule();
 
     public void updateOrderItem(OrderItems orderItems);

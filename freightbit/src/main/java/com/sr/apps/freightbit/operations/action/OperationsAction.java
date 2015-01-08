@@ -388,27 +388,51 @@ public class OperationsAction extends ActionSupport implements Preparable {
             sessionAttributes.put("checkedItemsInSession", check);
             order = transformToOrderFormBean(orderEntity);
 
-            if (planning1.size() > 0) {
+            /*if (planning1.size() > 0) {*/
 
                 nameSizeList = new ArrayList<String>();
 
-                for(int i = 0; i < planning1.size(); i++){
-                    OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planning1.get(i));
+                Integer planSize;
+                List<Integer> planningList = new ArrayList();
+
+                if(planning1.size() == 0){
+                    if(planning2.size() == 0){
+                        planSize = planning3.size();
+                        planningList = planning3;
+                    }else{
+                        planSize = planning2.size();
+                        planningList = planning2;
+                    }
+
+                }else {
+                    planSize = planning1.size();
+                    planningList = planning1;
+                }
+
+                for(int i = 0; i < planSize; i++){
+                    OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planningList.get(i));
                     nameSizeList.add(orderItemEntity.getNameSize());
+                }
+
+                vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
+
+                // Vessel schedules filtered by origin and destination
+                List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
+
+                for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+                    vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
                 }
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
 
-                vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
-
                 return "PLANNING 1";
-            } else if (planning2.size() > 0) {
+            /*} else if (planning2.size() > 0) {
                 return "PLANNING 2";
             } else if (planning3.size() > 0) {
                 return "PLANNING 3";
             } else {
                 return INPUT;
-            }
+            }*/
 
         } else {
 
@@ -673,7 +697,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public String editOrderItemsSea() {
         /*Client client = clientService.findClientById(getClientId().toString());*/
 
-        try {
+        /*try {
             OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
             entity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
             operationsService.updateOrderItem(entity);
@@ -681,7 +705,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
         } catch (Exception e) {
             log.error("Update Order Item failed", e);
             return INPUT;
-        }
+        }*/
+
+        OrderItems entity = transformOrderItemToEntityBeanSea(operationsBean);
+        entity.setVendorSea(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVendorCode());
+        entity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
+        operationsService.updateOrderItem(entity);
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
@@ -1039,6 +1068,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         order = transformToOrderFormBean(orderEntity);
 
         vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
+        System.out.println("***************************************************"+order.getOriginationPort());
+        // Vessel schedules filtered by origin and destination
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
 
         sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
@@ -1266,16 +1302,24 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
 
+        // Vessel schedules filtered by origin and destination
+        List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
+
         sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 
-        if ("PLANNING 1".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 1")) {
-            return "PLANNING 1";
+        /*if ("PLANNING 1".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 1")) {
+            return "PLANNING 1"; // will be directed to sea vendor select
         } else if ("PLANNING 2".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 2")) {
-            return "PLANNING 2";
+            return "PLANNING 2"; // will be directed to origin vendor select
         } else {
-            return "PLANNING 3";
-        }
+            return "PLANNING 3"; // will be directed to destination vendor select
+        }*/
+        return "PLANNING 1";
     }
 
     public String reloadInlandFreightPlanning() {
@@ -1916,7 +1960,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
         formBean.setStatus(entity.getStatus());
         formBean.setWeight(entity.getWeight());
-        formBean.setVendorSea(entity.getVendorSea());
+        if(entity.getVendorSea() == null || "".equals(entity.getVendorSea()) || "NONE".equals(entity.getVendorSea())){
+            formBean.setVendorSea("NONE");
+        }else{
+            formBean.setVendorSea(entity.getVendorSea());
+        }
         // Vendor Origin and Destination will have N/A values if service mode does not require them
         Orders orderCheck = orderService.findOrdersById(entity.getOrderId());
         if (orderCheck.getServiceMode().equals("PIER TO DOOR")){
@@ -1932,8 +1980,16 @@ public class OperationsAction extends ActionSupport implements Preparable {
             formBean.setVendorOrigin(entity.getVendorOrigin());
             formBean.setVendorDestination("N/A");
         }else{
-            formBean.setVendorOrigin(entity.getVendorOrigin());
-            formBean.setVendorDestination(entity.getVendorDestination());
+            if(entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin()) || "NONE".equals(entity.getVendorOrigin())){
+                formBean.setVendorOrigin("NONE");
+            }else{
+                formBean.setVendorOrigin(entity.getVendorOrigin());
+            }
+            if(entity.getVendorDestination() == null || "".equals(entity.getVendorDestination()) || "NONE".equals(entity.getVendorDestination())){
+                formBean.setVendorDestination("NONE");
+            }else{
+                formBean.setVendorDestination(entity.getVendorDestination());
+            }
         }
 
         if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId()) || "NONE".equals(entity.getVesselScheduleId())) {
@@ -1958,10 +2014,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public OrderItems transformOrderItemToEntityBeanSea (OperationsBean formBean) {
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
+        /*Map sessionAttributes = ActionContext.getContext().getSession();*/
 
         OrderItems entity = new OrderItems();
-        Integer orderItemId = (Integer) sessionAttributes.get("orderItemId");
+
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + orderItemIdParam);
+
+        Client client = clientService.findClientById(getClientId().toString());
+
+        /*Integer orderItemId = (Integer) sessionAttributes.get("orderItemId");
         Integer clientId = (Integer) sessionAttributes.get("clientId");
         Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
         String nameSize = (String) sessionAttributes.get("nameSize");
@@ -1973,41 +2034,42 @@ public class OperationsAction extends ActionSupport implements Preparable {
         String modifiedBy = (String) sessionAttributes.get("modifiedBy");
         String vendorSea = sessionAttributes.get("vendorSea").toString();
         String modeOfService = sessionAttributes.get("modeOfService").toString();
-        String freightType = sessionAttributes.get("freightType").toString();
-        entity.setOrderItemId(orderItemId);
-        entity.setClientId(clientId);
-        entity.setNameSize(nameSize);
-        entity.setOrderId(orderId);
-        entity.setQuantity(quantity);
-        entity.setClassification(classification);
-        entity.setDeclaredValue(declaredValue);
-        entity.setRate(rate);
-        entity.setCreatedBy(createdBy);
-        entity.setModifiedBy(modifiedBy);
-        // Add missing order items field that was left out in the form and added in the backend instead
-        entity.setComments(operationsService.findOrderItemById(orderItemId).getComments());
-        entity.setCommodity(operationsService.findOrderItemById(orderItemId).getCommodity());
-        entity.setCreatedTimestamp(operationsService.findOrderItemById(orderItemId).getCreatedTimestamp());
-        entity.setModifiedTimestamp(operationsService.findOrderItemById(orderItemId).getModifiedTimestamp());
-        entity.setWeight(operationsService.findOrderItemById(orderItemId).getWeight());
-        entity.setVolume(operationsService.findOrderItemById(orderItemId).getVolume());
-        entity.setServiceRequirement(operationsService.findOrderItemById(orderItemId).getServiceRequirement());
+        String freightType = sessionAttributes.get("freightType").toString();*/
 
-        if("SHIPPING AND TRUCKING".equals(freightType)) {
-            if ("DOOR TO DOOR".equals(modeOfService)) {
+        entity.setOrderItemId(orderItemIdParam);
+        entity.setClientId(client.getClientId());
+        entity.setNameSize(operationsService.findOrderItemById(orderItemIdParam).getNameSize());
+        entity.setOrderId(operationsService.findOrderItemById(orderItemIdParam).getOrderId());
+        entity.setQuantity(operationsService.findOrderItemById(orderItemIdParam).getQuantity());
+        entity.setClassification(operationsService.findOrderItemById(orderItemIdParam).getClassification());
+        entity.setDeclaredValue(operationsService.findOrderItemById(orderItemIdParam).getDeclaredValue());
+        entity.setRate(operationsService.findOrderItemById(orderItemIdParam).getRate());
+        entity.setCreatedBy(operationsService.findOrderItemById(orderItemIdParam).getCreatedBy());
+        entity.setModifiedBy(operationsService.findOrderItemById(orderItemIdParam).getModifiedBy());
+        entity.setComments(operationsService.findOrderItemById(orderItemIdParam).getComments());
+        entity.setCommodity(operationsService.findOrderItemById(orderItemIdParam).getCommodity());
+        entity.setCreatedTimestamp(operationsService.findOrderItemById(orderItemIdParam).getCreatedTimestamp());
+        entity.setModifiedTimestamp(operationsService.findOrderItemById(orderItemIdParam).getModifiedTimestamp());
+        entity.setWeight(operationsService.findOrderItemById(orderItemIdParam).getWeight());
+        entity.setVolume(operationsService.findOrderItemById(orderItemIdParam).getVolume());
+        entity.setServiceRequirement(operationsService.findOrderItemById(orderItemIdParam).getServiceRequirement());
+
+        if("SHIPPING AND TRUCKING".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemIdParam).getOrderId()).getServiceType())) {
+            if ("DOOR TO DOOR".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemIdParam).getOrderId()).getServiceMode())) {
                 entity.setStatus("PLANNING 2");
-            } else if ("DOOR TO PIER".equals(modeOfService)) {
+            } else if ("DOOR TO PIER".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemIdParam).getOrderId()).getServiceMode())) {
                 entity.setStatus("PLANNING 2");
             } else {
                 entity.setStatus("PLANNING 3");
             }
         }
 
-        if ("SHIPPING".equals(freightType)) {
+        if ("SHIPPING".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemIdParam).getOrderId()).getServiceType())) {
             entity.setStatus("ON GOING");
         }
 
-        entity.setVendorSea(vendorService.findVendorById(Integer.parseInt(vendorSea)).getVendorCode());
+        /*entity.setVendorSea(vendorService.findVendorById(Integer.parseInt(vendorSea)).getVendorCode());*/
+        /*entity.setVendorSea(operationsService.findOrderItemById(orderItemIdParam).getVendorSea());*/
         return entity;
     }
 

@@ -113,9 +113,6 @@
         <!--Status ends here-->
 
         <!--Operations starts here-->
-        <!--<action name="viewSeaFreightPlanningBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewSeaFreightPlanningBulk">-->
-        <!--<result name="PLANNING 2" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
-        <!--</action>-->
 
         <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
             <result name="PLANNING 1" type="tiles">operations.seaFreightPlanning.tiles</result>
@@ -158,7 +155,7 @@
 
         <action name="editOrderItemsSea" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsSea">
             <result name="success" type="redirect">updateCompleteSeaPlanning</result>
-            <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+            <!--<result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>-->
         </action>
 
         <action name="editOrderItemsOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsOrigin">

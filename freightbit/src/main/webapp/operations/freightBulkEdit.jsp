@@ -133,6 +133,9 @@
 
             </div>
         </div>
+    </div>
+
+    <div class="col-lg-12">
 
         <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
             <s:if test="order.modeOfService=='DOOR TO DOOR'">
@@ -164,7 +167,7 @@
                             <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
 
                             <div class="form-group">
-                                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
                                     <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
                                 </s:if>
                                 <s:else>
@@ -260,7 +263,7 @@
                     </div>
                 </div>
 
-                <div class="panel panel-primary">
+                <%--<div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-truck"></i>
                         <span class="panel-title">Dispatch Plan : Origin</span>
@@ -416,9 +419,9 @@
                             </div>
                         </s:form>
                     </div>
-                </div>
+                </div>--%>
 
-                <div class="panel panel-primary">
+                <%--<div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-truck"></i>
                         <span class="panel-title">Dispatch Plan : Destination</span>
@@ -578,7 +581,7 @@
                             </div>
                         </s:form>
                     </div>
-                </div>
+                </div>--%>
             </s:if>
             <s:elseif test="order.modeOfService=='DOOR TO PIER'">
                 <div class="panel panel-primary">
@@ -1051,8 +1054,8 @@
             </s:if>
         </s:if>
 
-        <s:if test="order.freightType=='TRUCKING'">
-            <%--<s:if test="order.modeOfService=='PICKUP'">--%>
+        <%--<s:if test="order.freightType=='TRUCKING'">
+            &lt;%&ndash;<s:if test="order.modeOfService=='PICKUP'">&ndash;%&gt;
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-truck"></i>
@@ -1211,8 +1214,8 @@
                         </s:form>
                     </div>
                 </div>
-            <%--</s:if>--%>
-        </s:if>
+            &lt;%&ndash;</s:if>&ndash;%&gt;
+        </s:if>--%>
 
         <%--<s:if test="order.freightType=='TRUCKING'">
             <s:if test="order.modeOfService=='DELIVERY'">

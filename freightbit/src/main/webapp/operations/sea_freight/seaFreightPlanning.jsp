@@ -21,8 +21,7 @@
                     <s:param name="orderNoParam"
                              value="#attr.order.orderNo"></s:param>
                 </s:url>
-                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                     title="Update Status">
+                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip" >
                     <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                         Freight Plan : Containers
                     </s:if>
@@ -191,7 +190,7 @@
                             <div class="col-lg-2" style="text-align: center;">
                                 <div>
                                     <a href="#" style="width: 135px;">
-                                        <s:submit cssClass="btn btn-primary" name="submit" value="Search Schedule"/>
+                                        <s:submit cssClass="btn btn-primary" name="submit" value="Filter by Vendor"/>
                                     </a>
                                 </div>
                             </div>
@@ -240,14 +239,18 @@
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column title="Action">
                             <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                <s:param name="orderItemIdParam"
+                                         value="#attr.orderItem.orderItemId">
+                                </s:param>
                                 <s:param name="vesselScheduleIdParam"
                                          value="#attr.vesselSchedule.vesselScheduleId">
                                 </s:param>
                                 <s:param name="vendorIdParam"
                                          value="#attr.vesselSchedule.vendorId">
                                 </s:param>
+                                <%--<s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />--%>
                             </s:url>
-                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Update Status">
+                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
                                 <%--Choose this vessel...--%>
                                 <i class="fa fa-arrow-circle-down"></i>
                             </s:a>
@@ -313,7 +316,7 @@
                             <div class="col-lg-2" style="text-align: center;">
                                 <div>
                                     <a href="#" style="width: 135px;">
-                                        <s:submit cssClass="btn btn-primary" name="submit" value="Search Schedule"/>
+                                        <s:submit cssClass="btn btn-primary" name="submit" value="Filter by Vendor"/>
                                     </a>
                                 </div>
                             </div>
@@ -366,6 +369,9 @@
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column title="Action">
                             <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                <s:param name="orderItemIdParam"
+                                         value="#attr.orderItem.orderItemId">
+                                </s:param>
                                 <s:param name="vesselScheduleIdParam"
                                          value="#attr.vesselSchedule.vesselScheduleId">
                                 </s:param>
@@ -373,7 +379,7 @@
                                          value="#attr.vesselSchedule.vendorId">
                                 </s:param>
                             </s:url>
-                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Update Status">
+                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
                                <%-- Choose this vessel...--%>
                                 <i class="fa fa-arrow-circle-down"></i>
                             </s:a>
@@ -389,8 +395,7 @@
                             <s:param name="orderNoParam"
                                      value="#attr.order.orderNo"></s:param>
                         </s:url>
-                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                             title="Update Status">
+                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip" >
 
                             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                                 <button type="button" class="btn">
@@ -530,7 +535,7 @@
                             <div class="col-lg-2" style="text-align: center;">
                                 <div>
                                     <a href="#" style="width: 135px;">
-                                        <s:submit cssClass="btn btn-primary" name="submit" value="Search Schedule"/>
+                                        <s:submit cssClass="btn btn-primary" name="submit" value="Filter by Vendor"/>
                                     </a>
                                 </div>
                             </div>
@@ -584,6 +589,9 @@
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column title="Action">
                             <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                <s:param name="orderItemIdParam"
+                                         value="#attr.orderItem.orderItemId">
+                                </s:param>
                                 <s:param name="vesselScheduleIdParam"
                                          value="#attr.vesselSchedule.vesselScheduleId">
                                 </s:param>
@@ -591,7 +599,7 @@
                                          value="#attr.vesselSchedule.vendorId">
                                 </s:param>
                             </s:url>
-                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Update Status">
+                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
                                 <%--Choose this vessel...--%>
                                 <i class="fa fa-arrow-circle-down"></i>
                             </s:a>
@@ -719,7 +727,7 @@
                             <div class="col-lg-2" style="text-align: center;">
                                 <div>
                                     <a href="#" style="width: 135px;">
-                                        <s:submit cssClass="btn btn-primary" name="submit" value="Search Schedule"/>
+                                        <s:submit cssClass="btn btn-primary" name="submit" value="Filter by Vendor"/>
                                     </a>
                                 </div>
                             </div>
@@ -772,6 +780,9 @@
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column title="Action">
                             <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                <s:param name="orderItemIdParam"
+                                         value="#attr.orderItem.orderItemId">
+                                </s:param>
                                 <s:param name="vesselScheduleIdParam"
                                          value="#attr.vesselSchedule.vesselScheduleId">
                                 </s:param>
@@ -779,7 +790,7 @@
                                          value="#attr.vesselSchedule.vendorId">
                                 </s:param>
                             </s:url>
-                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Update Status">
+                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
                                 <%--Choose this vessel...--%>
                                 <i class="fa fa-arrow-circle-down"></i>
                             </s:a>
@@ -858,8 +869,7 @@
                             <s:param name="orderNoParam"
                                      value="#attr.order.orderNo"></s:param>
                         </s:url>
-                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                             title="Update Status">
+                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip" >
 
                             <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                                 <button type="button" class="btn">

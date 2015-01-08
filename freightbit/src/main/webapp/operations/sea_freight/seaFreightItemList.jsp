@@ -235,7 +235,7 @@
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
                                     </s:if>
-                                    <s:else>
+                                    <s:elseif test="#attr.orderItem.status=='PLANNING 1'">
                                         <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
@@ -245,7 +245,7 @@
                                             </s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
-                                             title="Update Status">
+                                             title="Set Schedule">
                                             <i class="fa fa-edit"></i>
                                         </s:a>
 
@@ -261,16 +261,40 @@
                                              title="Show Information">
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
+                                    </s:elseif>
+                                    <s:else>
+                                        <%--<s:url var="viewEditSeaFreightUrl" action="viewEditSeaFreight">--%>
+                                        <s:url var="viewEditSeaFreightUrl" action="viewFreightPlanning"> <%--will be redirected to sea freight planning on edit--%>
+                                            <s:param name="orderItemIdParam"
+                                                     value="#attr.orderItem.orderItemId">
+                                            </s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{viewEditSeaFreightUrl}" rel="tooltip"
+                                             title="Edit Schedule">
+                                            <i class="fa fa-edit"></i>
+                                        </s:a>
 
+                                        <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
+                                            <s:param name="orderItemIdParam"
+                                                     value="#attr.orderItem.orderItemId">
+                                            </s:param>
+                                            <s:param name="orderNoParam"
+                                                     value="orderNoParam">
+                                            </s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
+                                             title="Show Information">
+                                            <i class="fa fa-info-circle"></i>
+                                        </s:a>
                                     </s:else>
                                 </display:column></td>
                             </tr>
                         </display:table>
                             <div class="row">
                                 <div class="col-md-6 pull-right" style="margin-right: -17em;">
-                                    <s:submit cssClass="col-lg-3 btn btn-default" value="Set Vendor"
+                                    <s:submit cssClass="col-lg-3 btn btn-default" value="Set Vessel Schedule"
                                               onclick="deleteText()"></s:submit>
-                                    <s:submit cssClass="col-lg-3 btn btn-default" value="Edit Vendor"
+                                    <s:submit cssClass="col-lg-3 btn btn-default" value="Edit Vessel Schedule"
                                               onclick="addText()"></s:submit>
                                 </div>
                             </div>
