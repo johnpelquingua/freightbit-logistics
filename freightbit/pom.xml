@@ -13,6 +13,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+
+    <!-- DO NOT ADD UNNECESSARY DEPENDENCIES UNLESS YOU TELL THE TEAM LEAD-->
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -170,6 +172,7 @@
             <artifactId>freightbit-lib</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>org.apache.struts.xwork</groupId>
             <artifactId>xwork-core</artifactId>
@@ -207,42 +210,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>core</artifactId>
-            <version>2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>javase</artifactId>
-            <version>2.0</version>
-        </dependency>
-
-        <!--<dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>zxingorg</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>zxing.appspot.com</artifactId>
-            <version>3.1.0</version>
-        </dependency>-->
-
-        <dependency>
-            <groupId>net.glxn.qrgen</groupId>
-            <artifactId>core</artifactId>
-            <version>2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>net.glxn.qrgen</groupId>
-            <artifactId>javase</artifactId>
-            <version>2.0</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring3</artifactId>
             <version>2.1.2.RELEASE</version>
@@ -253,7 +220,6 @@
 		        </exclusion>
            </exclusions> 
         </dependency>
-
     </dependencies>
 
     <build>

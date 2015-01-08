@@ -45,8 +45,6 @@ import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
-import net.glxn.qrgen.core.image.ImageType;
-import net.glxn.qrgen.javase.QRCode;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -2155,22 +2153,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         containerService.updateContainer(containerEntity);
         return SUCCESS;
     }*/
-
-    public void generate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String qrtext = request.getParameter("containerType");
-        ByteArrayOutputStream out = QRCode.from(qrtext).to(ImageType.PNG).stream();
-
-        response.setContentType("image/png");
-        response.setContentLength(out.size());
-
-        OutputStream outStream = response.getOutputStream();
-        outStream.write(out.toByteArray());
-
-        outStream.flush();
-        outStream.close();
-
-    }
 
     public String viewContainerList() {
 
