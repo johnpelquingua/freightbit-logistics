@@ -742,4 +742,9 @@ function hideVesselSchedule(){
             }
         }
     }
+
+    setTimeout(function(){
+        $('.loadingDiv').hide();
+        $('.tableDiv').show();
+    }, 1000);
 }
