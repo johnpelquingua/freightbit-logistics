@@ -709,3 +709,15 @@ function validateSearchModal(button, textfield, dropdown){
         }
     }
 }
+
+function changeDateValue(dateSelector, mode){
+    var newDate = new Date(dateSelector.val());
+
+    if(mode == 'DECREMENT'){
+        newDate.setDate(newDate.getDate()-1);
+    }else{
+        newDate.setDate(newDate.getDate()+1);
+    }
+    newDate = (newDate.getMonth()+1) +'/'+ newDate.getDate()+'/'+newDate.getUTCFullYear();
+    dateSelector.empty().val(newDate);
+}

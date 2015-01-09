@@ -127,12 +127,12 @@
                             <div class="form-group">
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                                    <s:textfield cssClass="form-control pickupDate" value="%{order.pickupDate}"
                                                  disabled="true"></s:textfield>
                                 </div>
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
+                                    <s:textfield cssClass="form-control deliveryDate" value="%{order.deliveryDate}"
                                                  disabled="true"></s:textfield>
                                 </div>
                             </div>
@@ -353,8 +353,13 @@
 </div>
 
 <script>
-
     $(document).ready(function () {
+
+//        $('.pickupDate').val();
+//        $('.deliveryDate').val();
+
+        changeDateValue($('.pickupDate'), 'INCREMENT');
+        changeDateValue($('.deliveryDate'), 'DECREMENT');
 
         var tbl = document.getElementById("orderItem");
         if (tbl != null) {
