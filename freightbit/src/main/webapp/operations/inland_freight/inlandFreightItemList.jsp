@@ -155,7 +155,7 @@
                     <s:hidden value="%{orderNoParam}" />
                     <div class="table-responsive">
                         <div class="row">
-                            <s:form name="myform" action="checkItemStatus" theme="bootstrap">
+                            <s:form name="myform" action="checkItemStatusInland" theme="bootstrap">
                         </div>
                         <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
                         <display:table id="orderItem" name="orderItems"
@@ -222,7 +222,7 @@
                                     </s:a>
                                 </s:if>
                                 <s:else>
-                                    <s:url var="viewFreightPlanningUrl" action="viewFreightPlanning">
+                                    <s:url var="viewFreightPlanningUrl" action="viewFreightPlanningInland">
                                         <s:param name="orderItemIdParam"
                                                  value="#attr.orderItem.orderItemId">
                                         </s:param>
@@ -231,8 +231,8 @@
                                         </s:param>
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
-                                         title="Update Status" >
-                                        <i class="fa fa-edit"></i>
+                                         title="Set Vendor" >
+                                        <i class="fa fa-tasks"></i>
                                     </s:a>
 
                                     <s:url var="viewInfoUrl" action="viewSeaFreightInfo">

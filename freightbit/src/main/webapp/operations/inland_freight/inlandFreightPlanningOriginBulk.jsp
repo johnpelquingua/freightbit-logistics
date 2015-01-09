@@ -15,13 +15,13 @@
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Dispatch Plan : Orders </a></li>
             <li class="active">
-                <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
                     <s:param name="orderIdParam"
                              value="#attr.order.orderId"></s:param>
                     <s:param name="orderNoParam"
                              value="#attr.order.orderNo"></s:param>
                 </s:url>
-                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
                      title="Update Status">
                     <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                         Dispatch Plan : Containers

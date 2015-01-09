@@ -265,9 +265,7 @@
     </div>
 
     <div class="panel-footer">
-
         <div class="pull-right">
-
             <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId"></s:param>

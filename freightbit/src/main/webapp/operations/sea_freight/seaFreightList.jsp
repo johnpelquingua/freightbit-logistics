@@ -162,7 +162,7 @@
                                             <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                             title="Update Status">
+                                             title="Direct Load">
                                             <i class="fa fa-tasks" id="status"></i>
                                         </s:a>
 
@@ -232,8 +232,8 @@
                                             <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                             title="Update Status">
-                                            <i class="fa fa-edit" id="status"></i>
+                                             title="Set Vessel Schedule">
+                                            <i class="fa fa-tasks" id="status"></i>
                                         </s:a>
 
                                         <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
@@ -283,8 +283,8 @@
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                             title="Update Status">
-                                            <i class="fa fa-edit" id="status"></i>
+                                             title="Set Vessel Schedule">
+                                            <i class="fa fa-tasks" id="status"></i>
                                         </s:a>
 
                                         <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">

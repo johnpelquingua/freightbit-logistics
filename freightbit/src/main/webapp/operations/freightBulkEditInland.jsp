@@ -8,30 +8,30 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-                <h1><i class="fa fa-anchor"></i> Freight Plan </h1>
+                <h1><i class="fa fa-anchor"></i> Dispatch Plan </h1>
             </span>
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
+            <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Dispatch Plan : Orders </a></li>
             <li class="active">
-                <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
                     <s:param name="orderIdParam"
                              value="#attr.order.orderId"></s:param>
                     <s:param name="orderNoParam"
                              value="#attr.order.orderNo"></s:param>
                 </s:url>
-                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
                      title="Update Status">
-                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                        Freight Plan : Containers
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        Dispatch Plan : Containers
                     </s:if>
                     <s:else>
-                        Freight Plan : Items
+                        Dispatch Plan : Items
                     </s:else>
                 </s:a>
             </li>
-            <li class="active"> Freight Plan </li>
+            <li class="active"> Dispatch Plan </li>
         </ol>
 
     </div>
@@ -139,14 +139,14 @@
 
         <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
             <s:if test="order.modeOfService=='DOOR TO DOOR'">
-                <div class="panel panel-primary">
+                <%--<div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-anchor"></i>
                         <span class="panel-title"> Freight Plan </span>
                     </div>
                     <div class="panel-body">
                         <s:form cssClass="form-horizontal" action="findVesselScheduleBulk" theme="bootstrap" style="margin-bottom: -50px;">
-                            <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
+                            &lt;%&ndash;<c:out value="${sessionScope.vendorIdPass}" />&ndash;%&gt;
                             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                             <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                             <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -174,14 +174,14 @@
                                     <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
                                 </s:else>
                                 <div class="col-lg-10">
-                                    <%--<div class="form-control">--%>
-                                        <%--<c:out value="${sessionScope.nameSizeParam}"/>--%>
+                                    &lt;%&ndash;<div class="form-control">&ndash;%&gt;
+                                        &lt;%&ndash;<c:out value="${sessionScope.nameSizeParam}"/>&ndash;%&gt;
                                         <ol>
                                             <s:iterator value="nameSizeList" >
                                                 <li><s:property /></li>
                                             </s:iterator>
                                         </ol>
-                                    <%--</div>--%>
+                                    &lt;%&ndash;</div>&ndash;%&gt;
                                 </div>
                             </div>
                             <div class="form-group">
@@ -260,9 +260,9 @@
                             </display:column></td>
                         </display:table>
                     </div>
-                </div>
+                </div>--%>
 
-                <%--<div class="panel panel-primary">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-truck"></i>
                         <span class="panel-title">Dispatch Plan : Origin</span>
@@ -418,9 +418,9 @@
                             </div>
                         </s:form>
                     </div>
-                </div>--%>
+                </div>
 
-                <%--<div class="panel panel-primary">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-truck"></i>
                         <span class="panel-title">Dispatch Plan : Destination</span>
@@ -580,17 +580,17 @@
                             </div>
                         </s:form>
                     </div>
-                </div>--%>
+                </div>
             </s:if>
             <s:elseif test="order.modeOfService=='DOOR TO PIER'">
-                <div class="panel panel-primary">
+                <%--<div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-anchor"></i>
                         <span class="panel-title">Freight Plan</span>
                     </div>
                     <div class="panel-body">
                         <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
-                            <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
+                            &lt;%&ndash;<c:out value="${sessionScope.vendorIdPass}" />&ndash;%&gt;
                             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                             <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                             <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -618,14 +618,14 @@
                                     <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
                                 </s:else>
                                 <div class="col-lg-10">
-                                    <%--<div class="form-control">--%>
-                                        <%--<c:out value="${sessionScope.nameSizeParam}"/>--%>
+                                    &lt;%&ndash;<div class="form-control">&ndash;%&gt;
+                                        &lt;%&ndash;<c:out value="${sessionScope.nameSizeParam}"/>&ndash;%&gt;
                                         <ol>
                                             <s:iterator value="nameSizeList" >
                                                 <li><s:property /></li>
                                             </s:iterator>
                                         </ol>
-                                    <%--</div>--%>
+                                    &lt;%&ndash;</div>&ndash;%&gt;
                                 </div>
                             </div>
                             <div class="form-group">
@@ -704,7 +704,7 @@
                             </display:column></td>
                         </display:table>
                     </div>
-                </div>
+                </div>--%>
 
                 <%--Origin--%>
                 <div class="panel panel-primary">
@@ -742,14 +742,14 @@
                 </div>
             </s:elseif>
             <s:elseif test="order.modeOfService=='PIER TO DOOR'">
-                <div class="panel panel-primary">
+                <%--<div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-anchor"></i>
                         <span class="panel-title">Freight Plan</span>
                     </div>
                     <div class="panel-body">
                         <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
-                            <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
+                            &lt;%&ndash;<c:out value="${sessionScope.vendorIdPass}" />&ndash;%&gt;
                             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                             <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                             <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -776,14 +776,14 @@
                                     <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
                                 </s:else>
                                 <div class="col-lg-10">
-                                    <%--<div class="form-control">--%>
-                                        <%--<c:out value="${sessionScope.nameSizeParam}"/>--%>
+                                    &lt;%&ndash;<div class="form-control">&ndash;%&gt;
+                                        &lt;%&ndash;<c:out value="${sessionScope.nameSizeParam}"/>&ndash;%&gt;
                                         <ol>
                                             <s:iterator value="nameSizeList" >
                                                 <li><s:property /></li>
                                             </s:iterator>
                                         </ol>
-                                    <%--</div>--%>
+                                    &lt;%&ndash;</div>&ndash;%&gt;
                                 </div>
                             </div>
                             <div class="form-group">
@@ -862,7 +862,7 @@
                             </display:column></td>
                         </display:table>
                     </div>
-                </div>
+                </div>--%>
 
                 <%--Destination--%>
                 <div class="panel panel-primary">
@@ -899,23 +899,23 @@
 
                     <div class="panel-footer">
                         <div class="pull-right">
-                            <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                            <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
                                 <s:param name="orderIdParam"
                                          value="#attr.order.orderId"></s:param>
                                 <s:param name="orderNoParam"
                                          value="#attr.order.orderNo"></s:param>
                             </s:url>
-                            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                            <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
                                  title="Update Status">
 
-                                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                     <button type="button" class="btn">
-                                        Back to Freight Plan : Containers
+                                        Back to Dispatch Plan : Containers
                                     </button>
                                 </s:if>
                                 <s:else>
                                     <button type="button" class="btn">
-                                        Back to Freight Plan : Items
+                                        Back to Dispatch Plan : Items
                                     </button>
                                 </s:else>
 
@@ -926,7 +926,7 @@
             </s:elseif>
         </s:if>
 
-        <s:if test="order.freightType=='SHIPPING'">
+        <%--<s:if test="order.freightType=='SHIPPING'">
             <s:if test="order.modeOfService=='PIER TO PIER'">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -935,7 +935,7 @@
                     </div>
                     <div class="panel-body">
                         <s:form cssClass="form-horizontal" action="findVesselScheduleBulk" theme="bootstrap" style="margin-bottom: -50px;">
-                            <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
+                            &lt;%&ndash;<c:out value="${sessionScope.vendorIdPass}" />&ndash;%&gt;
                             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                             <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                             <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -963,14 +963,14 @@
                                     <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
                                 </s:else>
                                 <div class="col-lg-10">
-                                    <%--<div class="form-control">--%>
-                                        <%--<c:out value="${sessionScope.nameSizeParam}"/>--%>
+                                    &lt;%&ndash;<div class="form-control">&ndash;%&gt;
+                                        &lt;%&ndash;<c:out value="${sessionScope.nameSizeParam}"/>&ndash;%&gt;
                                         <ol>
                                             <s:iterator value="nameSizeList" >
                                                 <li><s:property /></li>
                                             </s:iterator>
                                         </ol>
-                                    <%--</div>--%>
+                                    &lt;%&ndash;</div>&ndash;%&gt;
                                 </div>
                             </div>
                             <div class="form-group">
@@ -1051,7 +1051,7 @@
                     </div>
                 </div>
             </s:if>
-        </s:if>
+        </s:if>--%>
 
         <%--<s:if test="order.freightType=='TRUCKING'">
             &lt;%&ndash;<s:if test="order.modeOfService=='PICKUP'">&ndash;%&gt;
@@ -1324,22 +1324,22 @@
 
     <div class="panel-footer">
         <div class="pull-right">
-            <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+            <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId"></s:param>
                 <s:param name="orderNoParam"
                          value="#attr.order.orderNo"></s:param>
             </s:url>
-            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
+            <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip">
 
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                     <button type="button" class="btn">
-                        Back to Freight Plan : Containers
+                        Back to Dispatch Plan : Containers
                     </button>
                 </s:if>
                 <s:else>
                     <button type="button" class="btn">
-                        Back to Freight Plan : Items
+                        Back to Dispatch Plan : Items
                     </button>
                 </s:else>
             </s:a>

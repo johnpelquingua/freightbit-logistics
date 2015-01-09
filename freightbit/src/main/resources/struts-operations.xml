@@ -116,17 +116,34 @@
 
         <action name="viewFreightPlanning" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanning">
             <result name="PLANNING 1" type="tiles">operations.seaFreightPlanning.tiles</result>
+            <!--<result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+            <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>-->
+        </action>
+
+        <action name="viewFreightPlanningInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanningInland">
+            <!--<result name="PLANNING 1" type="tiles">operations.seaFreightPlanning.tiles</result>-->
             <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
         </action>
 
         <action name="checkItemStatus" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkItemStatus">
             <result name="PLANNING 1" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
-            <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
-            <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>
+            <!--<result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
+            <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>-->
             <result name="EDIT" type="tiles">operations.freightBulkEdit.tiles</result>
             <result name="NULL_INPUT" type="redirect">viewSeaFreightItemListNullError</result>
             <result name="input" type="redirect">viewSeaFreightItemListError</result>
+        </action>
+
+        <action name="checkItemStatusInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkItemStatusInland">
+            <!--<result name="PLANNING 1" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
+            <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
+            <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>
+            <result name="EDIT" type="tiles">operations.freightBulkEditInland.tiles</result>
+            <result name="NULL_INPUT" type="redirect">viewSeaFreightItemListNullError</result>
+            <!--<result name="input" type="redirect">viewSeaFreightItemListError</result>-->
+            <result name="input" type="redirect">viewInlandFreightItemListError</result>
+
         </action>
 
         <action name="viewEditSeaFreight" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewEditSeaFreight">
@@ -207,6 +224,11 @@
         <action name="viewSeaFreightItemListError" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListError">
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
+
+        <action name="viewInlandFreightItemListError" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListError">
+            <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
+        </action>
+
 
         <action name="viewSeaFreightItemListNullError" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListNullError">
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>

@@ -235,7 +235,7 @@
 
 <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
 <s:if test="order.modeOfService=='DOOR TO DOOR'">
-    <div class="panel panel-primary">
+    <%--<div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-anchor"></i>
             <span class="panel-title">Freight Plan</span>
@@ -297,7 +297,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 
     <div class="panel panel-primary">
         <div class="panel-heading">

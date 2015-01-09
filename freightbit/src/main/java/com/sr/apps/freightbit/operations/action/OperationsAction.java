@@ -48,12 +48,6 @@ import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.*;
 
 public class OperationsAction extends ActionSupport implements Preparable {
@@ -368,7 +362,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             return INPUT;
                         }
                     }
-                    else if ("PLANNING 2".equals(entity.getStatus())) {
+                    /*else if ("PLANNING 2".equals(entity.getStatus())) {
                         planning2.add(orderItemId);
                         if (planning1.size() > 0 || planning3.size() > 0) {
                             return INPUT;
@@ -379,7 +373,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         if (planning1.size() > 0 || planning2.size() > 0) {
                             return INPUT;
                         }
-                    }
+                    }*/
                 }
             }
 
@@ -455,7 +449,184 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             return INPUT;
                         }
                     }
-                    else if ("PLANNING 2".equals(entity.getStatus())) {
+                    /*else if ("PLANNING 2".equals(entity.getStatus())) {
+                        planning2.add(orderItemId);
+                        if (planning1.size() > 0 || planning3.size() > 0) {
+                            return INPUT;
+                        }
+                    }
+                    else if  ("PLANNING 3".equals(entity.getStatus())) {
+                        planning3.add(orderItemId);
+                        if (planning1.size() > 0 || planning2.size() > 0) {
+                            return INPUT;
+                        }
+                    }*/
+                    else if ("ON GOING".equals(entity.getStatus())) {
+                        planning4.add(orderItemId);
+                    }
+                }
+
+                Map sessionAttributes = ActionContext.getContext().getSession();
+                Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+                sessionAttributes.put("checkedItemsInSession", check);
+                order = transformToOrderFormBean(orderEntity);
+
+                if (planning1.size() > 0) {
+
+                    nameSizeList = new ArrayList<String>();
+
+                    for(int i = 0; i < planning1.size(); i++){
+                        OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planning1.get(i));
+                        nameSizeList.add(orderItemEntity.getNameSize());
+                    }
+
+                } else if (planning2.size() > 0) {
+
+                    nameSizeList = new ArrayList<String>();
+
+                    for(int i = 0; i < planning2.size(); i++){
+                        OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planning2.get(i));
+                        nameSizeList.add(orderItemEntity.getNameSize());
+                    }
+
+                } else if (planning3.size() > 0) {
+
+                    nameSizeList = new ArrayList<String>();
+
+                    for(int i = 0; i < planning3.size(); i++){
+                        OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planning3.get(i));
+                        nameSizeList.add(orderItemEntity.getNameSize());
+                    }
+
+                }
+
+                /*nameSizeList = new ArrayList<String>();
+
+                for(int i = 0; i < planning4.size(); i++){
+                    OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planning4.get(i));
+                    nameSizeList.add(orderItemEntity.getNameSize());
+                }*/
+
+                // Vessel schedules filtered by origin and destination
+                List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
+
+                for (VesselSchedules vesselScheduleElem : vesselSchedulesList) {
+                    vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+                }
+
+                sessionAttributes.put("nameSizeList", nameSizeList);
+
+                return "EDIT";
+            }
+        }
+    }
+
+    public String checkItemStatusInland() {
+
+        List<Integer> planning1 = new ArrayList();
+        List<Integer> planning2 = new ArrayList();
+        List<Integer> planning3 = new ArrayList();
+        List<Integer> planning4 = new ArrayList();
+
+        if ("".equals(orderItem.getEditItem())) {
+
+            if (check == null) {
+                return INPUT;
+
+            } else {
+                for (int i =0; i<check.length; i++) {
+
+                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){ // catches error when no values inside check
+                        return "NULL_INPUT";
+                    }
+
+                    Integer orderItemId = Integer.parseInt(check[i]);
+                    OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
+                    /*if ("PLANNING 1".equals(entity.getStatus())) {
+                        planning1.add(orderItemId);
+                        if (planning2.size() > 0 || planning3.size() > 0) {
+                            return INPUT;
+                        }
+                    }*/
+                    if ("PLANNING 2".equals(entity.getStatus())) {
+                        planning2.add(orderItemId);
+                        if (planning1.size() > 0 || planning3.size() > 0) {
+                            return INPUT;
+                        }
+                    }
+                    else if  ("PLANNING 3".equals(entity.getStatus())) {
+                        planning3.add(orderItemId);
+                        if (planning1.size() > 0 || planning2.size() > 0) {
+                            return INPUT;
+                        }
+                    }
+                }
+            }
+
+            Map sessionAttributes = ActionContext.getContext().getSession();
+            Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+            sessionAttributes.put("checkedItemsInSession", check);
+            order = transformToOrderFormBean(orderEntity);
+
+            /*if (planning1.size() > 0) {*/
+
+            nameSizeList = new ArrayList<String>();
+
+            Integer planSize;
+            List<Integer> planningList = new ArrayList();
+
+            if(planning1.size() == 0){
+                if(planning2.size() == 0){
+                    planSize = planning3.size();
+                    planningList = planning3;
+                }else{
+                    planSize = planning2.size();
+                    planningList = planning2;
+                }
+
+            }else {
+                planSize = planning1.size();
+                planningList = planning1;
+            }
+
+            for(int i = 0; i < planSize; i++){
+                OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planningList.get(i));
+                nameSizeList.add(orderItemEntity.getNameSize());
+            }
+
+            sessionAttributes.put("nameSizeList", nameSizeList);
+
+            /*return "PLANNING 1";*/
+            if (planning2.size() > 0) {
+                return "PLANNING 2";
+            } else if (planning3.size() > 0) {
+                return "PLANNING 3";
+            } else{
+                return "PLANNING 2";
+            }
+
+        } else {
+
+            orderItem.setEditItem("");
+
+            if (check == null) {
+                return INPUT;
+            } else {
+                for (int i =0; i<check.length; i++) {
+
+                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){ // catches error when no values inside check
+                        return "NULL_INPUT";
+                    }
+
+                    Integer orderItemId = Integer.parseInt(check[i]);
+                    OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
+                    /*if ("PLANNING 1".equals(entity.getStatus())) {
+                        planning1.add(orderItemId);
+                        if (planning2.size() > 0 || planning3.size() > 0) {
+                            return INPUT;
+                        }
+                    }*/
+                    if ("PLANNING 2".equals(entity.getStatus())) {
                         planning2.add(orderItemId);
                         if (planning1.size() > 0 || planning3.size() > 0) {
                             return INPUT;
@@ -504,13 +675,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         nameSizeList.add(orderItemEntity.getNameSize());
                     }
 
-                }
-
-                nameSizeList = new ArrayList<String>();
-
-                for(int i = 0; i < planning4.size(); i++){
-                    OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planning4.get(i));
-                    nameSizeList.add(orderItemEntity.getNameSize());
                 }
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
@@ -1320,6 +1484,70 @@ public class OperationsAction extends ActionSupport implements Preparable {
             return "PLANNING 3"; // will be directed to destination vendor select
         }*/
         return "PLANNING 1";
+    }
+
+    public String viewFreightPlanningInland(){
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        OrderItems entity = operationsService.findOrderItemById(orderItemIdParam);
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        order = transformToOrderFormBean(orderEntity);
+
+        // if Vessel Schedule Id is null and populates field with none value
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE")){
+            orderItem.setVendorSea("NONE");
+            orderItem.setVesselScheduleId("NONE");
+            vesselSchedule.setVesselName("NONE");
+            vesselSchedule.setDepartureDate("NONE");
+            vesselSchedule.setArrivalDate("NONE");
+            vesselSchedule.setDepartureTime("NONE");
+            vesselSchedule.setArrivalTime("NONE");
+            vesselSchedule.setOriginPort("NONE");
+            vesselSchedule.setDestinationPort("NONE");
+        }else{
+            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
+            vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+        }
+
+        // if Truck Origin Code is null and populates field with none value
+        if(orderItem.getTruckOrigin() == null || orderItem.getTruckOrigin().equals("") || orderItem.getTruckOrigin().length() == 0 || orderItem.getTruckOrigin().isEmpty()){
+            orderItem.setVendorOrigin("NONE");
+            orderItem.setDriverOrigin("NONE");
+            orderItem.setTruckOrigin("NONE");
+            orderItem.setFinalPickupDate("NONE");
+            truck.setTruckType("NONE");
+            truck.setPlateNumber("NONE");
+            truck.setGrossWeight(0);
+        }else{
+            Trucks truckEntity = vendorService.findTrucksByTruckCode(orderItem.getTruckOrigin());
+            truck = transformToFormBeanTrucks(truckEntity);
+        }
+
+        // if Truck Destination Code is null and populates field with none value
+        if(orderItem.getTruckDestination() == null || orderItem.getTruckDestination().equals("") || orderItem.getTruckDestination().length() == 0 || orderItem.getTruckDestination().isEmpty()){
+            orderItem.setVendorDestination("NONE");
+            orderItem.setDriverDestination("NONE");
+            orderItem.setTruckDestination("NONE");
+            orderItem.setFinalDeliveryDate("NONE");
+            truckDestination.setTruckType("NONE");
+            truckDestination.setPlateNumber("NONE");
+            truckDestination.setGrossWeight(0);
+        }else{
+            Trucks truckEntity = vendorService.findTrucksByTruckCode(orderItem.getTruckDestination());
+            truckDestination = transformToFormBeanTrucks(truckEntity);
+        }
+
+        sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
+        sessionAttributes.put("nameSizeParam", entity.getNameSize());
+
+        if("PLANNING 2".equals(entity.getStatus())){
+            return "PLANNING 2";
+        }else{
+            return "PLANNING 3";
+        }
     }
 
     public String reloadInlandFreightPlanning() {
@@ -2592,8 +2820,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
             List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
 
             for (OrderItems orderItemElem : orderItemsEntity) {
-                Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorSea());
-                formBean.setVendorCode(vendorEntity.getVendorName());
+                if(orderItemElem.getVendorSea() != null && !"".equals(orderItemElem.getVendorSea()) && !orderItemElem.getVendorSea().equals("NONE") ){
+                    System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"+ orderItemElem.getVendorSea() );
+                    Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorSea());
+                    formBean.setVendorCode(vendorEntity.getVendorName());
+                }
             }
 
         }else if (entity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
