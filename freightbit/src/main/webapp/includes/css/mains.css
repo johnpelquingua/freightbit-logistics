@@ -971,3 +971,7 @@ border-top-color: #ff0000;
 .alert-errors .alert-link {
 color: #ff0000;
 }
+
+.zeroPadding {
+ padding: 0px;
+}

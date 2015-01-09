@@ -50,16 +50,16 @@
 
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
-                <li class="active col-md-3" id="fcl">
+                <li class="active col-md-3 zeroPadding" id="fcl">
                     <a href="#fclTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
                 </li>
-                <li class="col-md-3" id="lcl">
+                <li class="col-md-3 zeroPadding" id="lcl">
                     <a href="#lclTab" role="tab" data-toggle="tab">Less Container Load (LCL)</a>
                 </li>
-                <li class="col-md-3" id="lcu">
+                <li class="col-md-3 zeroPadding" id="lcu">
                     <a href="#lcuTab" role="tab" data-toggle="tab">Loose Cargo Load (LCU)</a>
                 </li>
-                <li class="col-md-3" id="rcu">
+                <li class="col-md-3 zeroPadding" id="rcu">
                     <a href="#rcuTab" role="tab" data-toggle="tab">Rolling Cargo Load (RCU)</a>
                 </li>
             </ul>
