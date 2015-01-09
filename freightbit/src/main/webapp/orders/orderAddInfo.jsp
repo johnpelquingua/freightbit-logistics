@@ -1376,12 +1376,12 @@ $(document).ready(function() {
                         document.getElementById("orderItem_declaredValue_textfield").value = totalValue; // set total value to the order item value textfield
                     });
 
-                    // populate item declared weight
-                    $.each(jsonResponse.shipperItemWeightMap, function (key, value) {
+                        // populate item declared weight
+                        $.each(jsonResponse.shipperItemWeightMap, function (key, value) {
 
-                        $('<option>').val(key).text(value).appendTo(select4);
+                            $('<option>').val(key).text(value).appendTo(select4);
 
-                        var itemWeight = $("#orderItem_weight").val(); // get weight of order item
+                            var itemWeight = $("#orderItem_weight").val(); // get weight of order item
                         document.getElementById("orderItem_weight_textfield").value = itemWeight; // set weight of order item to textfield
                         var itemNum = $("#orderItem_quantity").val(); // get value of quantity
                         var totalWeight = itemNum * itemWeight; // compute for total value
@@ -1408,25 +1408,25 @@ $(document).ready(function() {
         if (sContainer.value != ''){
             if(sContainer.value === '10 FOOTER'){
                 var totalVolume = sQuantity.value * 14; /*cmb*/
-                var totalWeight = sQuantity.value * 9; /*tons*/
+                var totalWeight = sQuantity.value * 9000; /*tons*/
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
             if(sContainer.value === '20 FOOTER'){
                 var totalVolume = sQuantity.value * 28; /*cmb*/
-                var totalWeight = sQuantity.value * 18; /*tons*/
+                var totalWeight = sQuantity.value * 18000; /*tons*/
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
             if(sContainer.value === '40 STD FOOTER'){
                 var totalVolume = sQuantity.value * 56; /*cmb*/
-                var totalWeight = sQuantity.value * 20; /*tons*/
+                var totalWeight = sQuantity.value * 20000; /*tons*/
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
             if(sContainer.value === '40 HC FOOTER'){
                 var totalVolume = sQuantity.value * 78; /*cmb*/
-                var totalWeight = sQuantity.value * 22; /*tons*/
+                var totalWeight = sQuantity.value * 22000; /*tons*/
                 document.getElementById("orderItem-volume").value = totalVolume;
                 document.getElementById("orderItem_weight").value = totalWeight;
             }
@@ -1443,14 +1443,14 @@ $(document).ready(function() {
             var containerQuantityNull = document.getElementById("orderItem.quantity").value;
 
             if(containerQuantityNull == '') {
-                document.getElementById("orderItem_weight").value = 9;
+                document.getElementById("orderItem_weight").value = 9000;
                 document.getElementById("orderItem.quantity").value = 1;
                 document.getElementById("orderItem-volume").value = "14";
 //                document.getElementById("orderItemVolume").value = "14";
             }else{
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 14;
-                document.getElementById("orderItem_weight").value = 9;
+                document.getElementById("orderItem_weight").value = 9000;
                 document.getElementById("orderItem-volume").value = containerVolume;
 //                document.getElementById("orderItemVolume").value = containerVolume;
             }
@@ -1461,14 +1461,14 @@ $(document).ready(function() {
             var containerQuantityNull = document.getElementById("orderItem.quantity").value;
 
             if(containerQuantityNull == '') {
-                document.getElementById("orderItem_weight").value = 18;
+                document.getElementById("orderItem_weight").value = 18000;
                 document.getElementById("orderItem.quantity").value = 1;
                 document.getElementById("orderItem-volume").value = "28";
 //                document.getElementById("orderItemVolume").value = "28";
             }else {
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 28;
-                document.getElementById("orderItem_weight").value = 18;
+                document.getElementById("orderItem_weight").value = 18000;
                 document.getElementById("orderItem-volume").value = containerVolume;
 //                document.getElementById("orderItemVolume").value = containerVolume;
             }
@@ -1479,14 +1479,14 @@ $(document).ready(function() {
             var containerQuantity = document.getElementById("orderItem.quantity").value;
 
             if(containerQuantity == '') {
-                document.getElementById("orderItem_weight").value = 20;
+                document.getElementById("orderItem_weight").value = 20000;
                 document.getElementById("orderItem.quantity").value = 1;
                 document.getElementById("orderItem-volume").value = "56";
 //                document.getElementById("orderItemVolume").value = "56";
             }else {
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 56;
-                document.getElementById("orderItem_weight").value = 20;
+                document.getElementById("orderItem_weight").value = 20000;
                 document.getElementById("orderItem-volume").value = containerVolume;
 //                document.getElementById("orderItemVolume").value = containerVolume;
             }
@@ -1497,14 +1497,14 @@ $(document).ready(function() {
             var containerQuantity = document.getElementById("orderItem.quantity").value;
 
             if(containerQuantity == '') {
-                document.getElementById("orderItem_weight").value = 22;
+                document.getElementById("orderItem_weight").value = 22000;
                 document.getElementById("orderItem.quantity").value = 1;
                 document.getElementById("orderItem-volume").value = "78";
 //                document.getElementById("orderItemVolume").value = "78";
             }else {
                 var containerQuantity = document.getElementById("orderItem.quantity").value;
                 var containerVolume = containerQuantity * 78;
-                document.getElementById("orderItem_weight").value = 22;
+                document.getElementById("orderItem_weight").value = 22000;
                 document.getElementById("orderItem-volume").value = containerVolume;
 //                document.getElementById("orderItemVolume").value = containerVolume;
             }
