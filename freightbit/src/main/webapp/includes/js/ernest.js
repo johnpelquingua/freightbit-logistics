@@ -721,3 +721,25 @@ function changeDateValue(dateSelector, mode){
     newDate = (newDate.getMonth()+1) +'/'+ newDate.getDate()+'/'+newDate.getUTCFullYear();
     dateSelector.empty().val(newDate);
 }
+
+function hideVesselSchedule(){
+    var vesselTable = $('#vesselSchedule tbody tr td:nth-child(6)'),
+        splitDate,
+        currentDate = new Date();
+
+    for(var i=0; i < vesselTable.size(); i++){
+        splitDate = vesselTable.eq(i).text().split('-');
+
+        if(currentDate.getUTCFullYear() > splitDate[2]){
+            vesselTable.eq(i).closest('tr').remove();
+        }else{
+            if((currentDate.getMonth()+1) > splitDate[1]){
+                vesselTable.eq(i).closest('tr').remove();
+            }else{
+                if(currentDate.getDate() < splitDate[0]){
+                    vesselTable.eq(i).closest('tr').remove();
+                }
+            }
+        }
+    }
+}

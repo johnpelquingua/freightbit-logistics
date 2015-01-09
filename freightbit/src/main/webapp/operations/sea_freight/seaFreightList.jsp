@@ -163,7 +163,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                                              title="Update Status">
-                                            <i class="fa fa-edit" id="status"></i>
+                                            <i class="fa fa-tasks" id="status"></i>
                                         </s:a>
 
                                         <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
@@ -342,7 +342,7 @@
 
     $(document).ready(function(){
         tablePropClass('DESTI_ORIG','fclTable', 7, 5, 0, 6, 0, 4, 0);
-        tablePropClass('DESTI_ORIG','lclTable', 7, 4, 0, 6, 0, 5, 0);
+        tablePropClass('DESTI_ORIG','lclTable', 8, 5, 0, 7, 0, 6, 0);
 
         if($('.lclTable').size() != 0){
             $('.wellDiv').show('fast');

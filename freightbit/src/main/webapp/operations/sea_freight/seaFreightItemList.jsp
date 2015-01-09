@@ -355,12 +355,6 @@
 <script>
     $(document).ready(function () {
 
-//        $('.pickupDate').val();
-//        $('.deliveryDate').val();
-
-        changeDateValue($('.pickupDate'), 'INCREMENT');
-        changeDateValue($('.deliveryDate'), 'DECREMENT');
-
         var tbl = document.getElementById("orderItem");
         if (tbl != null) {
             for (var i = 0; i < tbl.rows.length; i++) {
