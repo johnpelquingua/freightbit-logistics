@@ -470,7 +470,7 @@
                             <label class="col-lg-3">Position<span class="asterisk_red"></span></label>
                             <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
-                                             type="text" required="true"/>
+                                             type="text" required="true" maxlength="30"/>
                             </div>
                         </div>
                         <div class="form-group">

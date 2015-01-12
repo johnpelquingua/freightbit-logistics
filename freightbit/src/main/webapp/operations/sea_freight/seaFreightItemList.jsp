@@ -293,13 +293,11 @@
                                 </display:column></td>
                             </tr>
                         </display:table>
-                            <div class="row">
-                                <div class="col-md-6 pull-right" style="margin-right: -17em;">
-                                    <s:submit cssClass="col-lg-3 btn btn-default" value="Set Vessel Schedule"
-                                              onclick="deleteText()"></s:submit>
-                                    <s:submit cssClass="col-lg-3 btn btn-default" value="Edit Vessel Schedule"
-                                              onclick="addText()"></s:submit>
-                                </div>
+                            <div class="pull-right">
+                                <s:submit cssClass="btn btn-primary" value="Set Vessel Schedule"
+                                          onclick="deleteText()"></s:submit>
+                                <s:submit cssClass="btn btn-success" value="Edit Vessel Schedule"
+                                          onclick="addText()"></s:submit>
                             </div>
                         </s:form>
                     </div>

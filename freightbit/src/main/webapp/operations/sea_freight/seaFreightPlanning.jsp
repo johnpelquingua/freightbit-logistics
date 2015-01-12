@@ -224,7 +224,7 @@
                         </div>
                     </s:if>
                     <display:table id="vesselSchedule" name="vesselSchedules"
-                                   requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                   requestURI="/viewSeaFreightPlanning.action" length="10000" pagesize="10000"
                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                    style="margin-top: 15px;">
                         <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
@@ -1066,6 +1066,7 @@
         changeDateValue($('.pickupDate'), 'INCREMENT');
         changeDateValue($('.deliveryDate'), 'DECREMENT');
         hideVesselSchedule();
+        $('#vesselSchedule').oneSimpleTablePagination({rowsPerPage: 10});
 
         $("#createSchedule").click(function() {
             var vendorId = $("#operationsBean_vendorList").val();

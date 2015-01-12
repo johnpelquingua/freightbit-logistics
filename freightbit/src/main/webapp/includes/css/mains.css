@@ -975,3 +975,12 @@ color: #ff0000;
 .zeroPadding {
  padding: 0px;
 }
+
+span.pagelinks li{
+ display: inline;
+ margin: 5px;
+ list-style-type: circle !important;}
+span.pagination li{
+ display: inline;
+ margin: 5px;
+ list-style-type: circle !important;}
