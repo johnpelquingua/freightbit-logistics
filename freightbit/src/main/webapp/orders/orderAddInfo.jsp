@@ -436,8 +436,7 @@
                                           value="%{orderItem_weight}"
                                           style="display:none"
                                         />
-                                <s:textfield placeholder="TESTING"
-                                             cssClass="form-control"
+                                <s:textfield cssClass="form-control"
                                              name="orderItem.weight"
                                              id="orderItem_weight_textfield"
                                              maxLength="9"
