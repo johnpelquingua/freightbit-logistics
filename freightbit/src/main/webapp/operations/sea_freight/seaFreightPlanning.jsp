@@ -1066,6 +1066,7 @@
         changeDateValue($('.pickupDate'), 'INCREMENT');
         changeDateValue($('.deliveryDate'), 'DECREMENT');
         hideVesselSchedule();
+        $('#vesselSchedule').oneSimpleTablePagination({rowsPerPage: 10});
 
         $("#createSchedule").click(function() {
             var vendorId = $("#operationsBean_vendorList").val();

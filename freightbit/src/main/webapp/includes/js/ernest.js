@@ -745,6 +745,6 @@ function hideVesselSchedule(){
 
     setTimeout(function(){
         $('.loadingDiv').hide();
-        $('.tableDiv').show();
+        $('.tableDiv').fadeIn();
     }, 1000);
 }
