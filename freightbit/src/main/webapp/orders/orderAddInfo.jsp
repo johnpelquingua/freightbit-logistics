@@ -1075,16 +1075,7 @@
             localStorage.setItem('addingContainer', true);
         })
 
-
-        // Addition of rate (php) and conversion to currency format
-        var itemList = $('.itemListing tbody tr td:nth-child(7)'),
-            totalPhp;
-
-        for(var i=0; i < itemList.size(); i++){
-            totalPhp = parseFloat(itemList.eq(i).text()) + parseFloat($('#totalRate').text());
-            $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-        }
-
+        addTotalRate();
         newlineHandler('itemListing', 8);
     })
 
@@ -1096,7 +1087,7 @@
 
     $(function(){ // THIS FUNCTION HIDES THE WEIGHT AND VOLUME FIELD IF THE SERVICE REQ IS FULL CONTAINER LOAD
         if($('.serviceReq').text() == 'FULL CONTAINER LOAD'){
-//            $('.weightAndVolume').hide();
+            $('.weightAndVolume').hide();
         }
     })
     // END

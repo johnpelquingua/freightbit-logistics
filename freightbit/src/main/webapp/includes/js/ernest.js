@@ -748,3 +748,14 @@ function hideVesselSchedule(){
         $('.tableDiv').fadeIn();
     }, 1000);
 }
+
+function addTotalRate(){
+    // Addition of rate (php) and conversion to currency format
+    var itemList = $('.itemListing tbody tr td:nth-child(7)'),
+        totalPhp = 0;
+
+    for(var i=0; i < itemList.size(); i++){
+        totalPhp = totalPhp + parseFloat(itemList.eq(i).text());
+    }
+    $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+}
