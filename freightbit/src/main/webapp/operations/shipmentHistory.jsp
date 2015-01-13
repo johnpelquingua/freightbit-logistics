@@ -97,7 +97,7 @@
                     </tbody>
                 </div>
 
-                <s:form cssClass="form-horizontal" theme="bootstrap" action="updateStatus" >
+                <s:form cssClass="form-horizontal" theme="bootstrap" action="setBulkItemStatus" >
                 <s:if test="orderItemIdParam != null">
                     <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                 </s:if>

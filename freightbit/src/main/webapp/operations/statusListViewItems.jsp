@@ -139,7 +139,7 @@
 
                             <td>
                                 <display:column title="Action">
-                                    <s:url var="loadItemShipmentHistoryUrl" action="loadItemShipmentHistory">
+                                    <s:url var="loadItemShipmentHistoryUrl" action="loadUpdateStatus">
                                         <s:param name="orderItemIdParam" value="#attr.orderItem.orderItemId">
                                         </s:param>
                                     </s:url>

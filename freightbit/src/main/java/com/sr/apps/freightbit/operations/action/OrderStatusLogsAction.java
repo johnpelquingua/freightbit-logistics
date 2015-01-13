@@ -215,25 +215,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                     sessionAttributes.put("orderItemIdParam", orderItemEntity.getOrderItemId());
                 }
             }
-            /*try {
-                OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
-                sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
-                orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                orderStatusLogsService.addStatus(orderStatusLogsEntity);*/
-
-            /*Notification notificationEntity = new Notification();
-            notificationEntity.setDescription("SHIPMENT_LOGS");
-            notificationEntity.setNotificationId(18);
-            notificationEntity.setNotificationType("Email");
-            notificationEntity.setReferenceId(1);
-            notificationEntity.setReferenceTable("Shipment Logs");
-            notificationEntity.setUserId(1);
-            notificationService.addNotification(notificationEntity);*/
-
-            } /*catch (Exception e) {
-                addActionError("Update Failed");
-                return INPUT;
-            }*/
+            }
         return "SET";
     }
 
@@ -278,15 +260,48 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String loadUpdateStatus() {
-        OrderItems entity = orderStatusLogsService.findOrderItemById(orderItemIdParam);
-        orderItem = transformToOrderItemFormBean(entity);
+        Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById(orderItemIdParam).getOrderId());
+        order = transformToOrderFormBean(orderEntity);
+
+        OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(orderItemIdParam);
+        orderItem = transformToOrderItemFormBean(orderItemEntity);
+
+        List<OrderStatusLogs> orderStatusLogsEntityList = new ArrayList<OrderStatusLogs>();
+
+        orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs(orderItemIdParam);
+
+        for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
+            orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
+        }
+
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderItemIdParam", orderItemIdParam);
+
         return SUCCESS;
     }
 
-    /*public String updateStatus() {
+    public String updateStatus() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
         try {
+                OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
+                sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
+                orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                orderStatusLogsService.addStatus(orderStatusLogsEntity);
+
+            Notification notificationEntity = new Notification();
+            notificationEntity.setDescription("SHIPMENT_LOGS");
+            notificationEntity.setNotificationId(18);
+            notificationEntity.setNotificationType("Email");
+            notificationEntity.setReferenceId(1);
+            notificationEntity.setReferenceTable("Shipment Logs");
+            notificationEntity.setUserId(1);
+            notificationService.addNotification(notificationEntity);
+
+    } catch (Exception e) {
+                addActionError("Update Failed");
+                return INPUT;
+            }
+        /*try {
             OrderItems entity = transformToOrderItemEntity(orderItem);
             orderStatusLogsService.updateStatusOrderItem(entity);
 
@@ -295,7 +310,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
             orderStatusLogs.setOrderId((Integer) sessionAttributes.get("orderIdParam"));
             orderStatusLogs.setOrderItemId((Integer) sessionAttributes.get("orderItemIdParam"));
-            *//*orderStatusLogs.setCreatedTimestamp(new Date());*//*
+            orderStatusLogs.setCreatedTimestamp(new Date());
 
             Date date = new Date();
             Date time = new Date();
@@ -322,10 +337,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         } catch (Exception e) {
             addActionError("Update Failed");
             return INPUT;
-        }
+        }*/
         return SUCCESS;
 
-    }*/
+    }
 
     public OrderItems transformToOrderItemEntity (OrderItemsBean formBean) {
         OrderItems entity = orderStatusLogsService.findOrderItemById(formBean.getOrderItemId());
