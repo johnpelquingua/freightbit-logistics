@@ -199,7 +199,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public String setBulkItemStatus() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         System.out.println("CHECK WORD PASS " + check);
-        System.out.println("ORDER ID " + orderItemIdParam);
+        System.out.println("ORDER ITEM ID " + orderItemIdParam);
 
         if("".equals(orderItem.getEditItem())) {
             if (check == null) {

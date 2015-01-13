@@ -347,7 +347,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Integer> planning2 = new ArrayList();
         List<Integer> planning3 = new ArrayList();
         List<Integer> planning4 = new ArrayList();
-
+        System.out.println("CHECK WORD PASS " + check);
+        System.out.println("ORDER ID " + orderItemIdParam);
         if ("".equals(orderItem.getEditItem())) {
 
             if (check == null) {
@@ -490,7 +491,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 }
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
-
                 return "EDIT";
             }
         }
