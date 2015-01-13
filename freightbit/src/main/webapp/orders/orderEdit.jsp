@@ -782,7 +782,8 @@
                     <div class="form-group">
                         <label class="col-lg-3">Email Address</label>
                         <div class="col-lg-9">
-                            <s:textfield name="customer.email" id="customer_email" cssClass="form-control" required="true"/>
+                            <s:textfield name="customer.email" id="customer_email" cssClass="form-control" required="true"
+                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"/>
                         </div>
                     </div>
 

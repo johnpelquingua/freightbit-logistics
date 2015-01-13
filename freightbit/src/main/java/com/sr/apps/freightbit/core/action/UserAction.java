@@ -93,7 +93,7 @@ public class UserAction extends ActionSupport implements Preparable {
             users.add(transformToFormBean(userElem));
         }
         clearErrorsAndMessages();
-        addActionMessage("Success! A User has been Deleted.");
+        addActionMessage("Success! User account has been deleted.");
         return SUCCESS;
     }
 
