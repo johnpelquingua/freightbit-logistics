@@ -9,10 +9,6 @@ public class OrderStatusLogsBean {
     private String status;
     private String createdBy;
     private String createdTimestamp;
-    private Date deliveryDate;
-    private Date pickupDate;
-    private Date departureTime;
-    private Date arrivalTime;
     private String nameSize;
     private Integer orderItemId;
 
@@ -70,38 +66,6 @@ public class OrderStatusLogsBean {
 
     public void setCreatedTimestamp(String createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
-    }
-
-    public Date getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
-    public Date getPickupDate() {
-        return pickupDate;
-    }
-
-    public void setPickupDate(Date pickupDate) {
-        this.pickupDate = pickupDate;
-    }
-
-    public Date getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(Date departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    public Date getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(Date arrivalTime) {
-        this.arrivalTime = arrivalTime;
     }
 
 }

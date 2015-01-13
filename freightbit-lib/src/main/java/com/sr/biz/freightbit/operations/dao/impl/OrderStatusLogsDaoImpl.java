@@ -156,8 +156,8 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
     public OrderStatusLogs findOrderStatusLogsById(Integer orderItemId) {
         log.debug("Finding orderItem via id");
         try {
-            log.debug("finding order item succeed");
-        /*    OrderStatusLogs instance = (OrderStatusLogs) getSessionFactory().getCurrentSession().get(OrderItems.class, orderItemId);
+            /*log.debug("finding order item succeed");
+            OrderStatusLogs instance = (OrderStatusLogs) getSessionFactory().getCurrentSession().get(OrderItems.class, orderItemId);
             if (instance == null) {
                 log.debug("get successful, no instance found");
             } else {
@@ -169,7 +169,7 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
             query.setParameter("orderItemId", orderItemId);
             List<OrderStatusLogs> results = (List<OrderStatusLogs>) query.list();
             if (results != null && results.size() > 0) {
-                return results.get(0);
+                return results.get(results.size() - 1);
             }
             return null;
 

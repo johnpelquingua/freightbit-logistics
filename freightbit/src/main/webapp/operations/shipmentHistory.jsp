@@ -105,7 +105,7 @@
                     <s:hidden value="%{orderStatusLogsBean.orderItemId}" name="orderStatusLogsBean.orderItemId"/>
                 </s:else>
 
-                <div class="col-lg-3" style="text-align: center; display: none;">
+                <div class="col-lg-3" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Actual Date/Time <span class="asterisk_red"></span></label>
                     <s:textfield name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp" readonly="true">
                         <s:param name="value">
@@ -115,7 +115,7 @@
                 </div>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update <span class="asterisk_red"></span></label>
-                    <s:if test="#attr.order.serviceRequirement == 'FULL CONTAINER LOAD' || #attr.order.serviceRequirement == 'LOOSE CARGO LOAD' || #attr.order.serviceRequirement == 'ROLLING CARGO LOAD'">
+                    <s:if test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'SHIPPING' && #attr.order.serviceRequirement == 'FULL CONTAINER LOAD' && #attr.order.serviceRequirement == 'LOOSE CARGO LOAD' && #attr.order.serviceRequirement == 'ROLLING CARGO LOAD'">
                     <s:select cssClass="statusDropdown form-control"
                               id="seaFreightStatus"
                               name="orderStatusLogsBean.status"
@@ -126,7 +126,7 @@
                               required="true"
                             />
                     </s:if>
-                    <s:elseif test="#attr.order.serviceRequirement == 'LESS CONTAINER LOAD'">
+                    <s:elseif test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'SHIPPING' && #attr.order.serviceRequirement == 'LESS CONTAINER LOAD'">
                     <s:select cssClass="statusDropdown form-control"
                               id="seaFreightLCLStatus"
                               name="orderStatusLogsBean.status"

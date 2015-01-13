@@ -13,25 +13,17 @@ public class OrderStatusLogs implements Serializable {
     private String status;
     private String createdBy;
     private String createdTimestamp;
-    private Date deliveryDate;
-    private Date pickupDate;
-    private Date departureTime;
-    private Date arrivalTime;
 
     public OrderStatusLogs() {
     }
 
-    public OrderStatusLogs(Integer statusId, Integer orderId, Integer orderItemId, String status, String createdBy, String createdTimestamp, Date deliveryDate, Date pickupDate, Date departureTime, Date arrivalTime) {
+    public OrderStatusLogs(Integer statusId, Integer orderId, Integer orderItemId, String status, String createdBy, String createdTimestamp) {
         this.statusId = statusId;
         this.orderId = orderId;
         this.orderItemId = orderItemId;
         this.status = status;
         this.createdBy = createdBy;
         this.createdTimestamp = createdTimestamp;
-        this.deliveryDate = deliveryDate;
-        this.pickupDate = pickupDate;
-        this.departureTime = departureTime;
-        this.arrivalTime = arrivalTime;
     }
 
     @Id
@@ -90,39 +82,4 @@ public class OrderStatusLogs implements Serializable {
         this.createdTimestamp = createdTimestamp;
     }
 
-    @Column(name = "deliveryDate")
-    public Date getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
-    @Column(name = "pickupDate")
-    public Date getPickupDate() {
-        return pickupDate;
-    }
-
-    public void setPickupDate(Date pickupDate) {
-        this.pickupDate = pickupDate;
-    }
-
-    @Column(name = "departureTime")
-    public Date getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(Date departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    @Column(name = "arrivalTime")
-    public Date getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(Date arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
 }

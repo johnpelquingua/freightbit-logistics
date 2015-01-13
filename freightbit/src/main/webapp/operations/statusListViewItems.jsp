@@ -96,7 +96,7 @@
 
                 <div class="table-responsive">
                     <div class="row">
-                    <s:form name="myform" action="setItemStatus" theme="bootstrap">
+                    <s:form name="myform" action="setBulkItemStatus" theme="bootstrap">
                         <s:hidden value="%{#attr.order.orderId}" name="orderStatusLogsBean.orderId"/>
                         <%--<s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>--%>
                         <s:property value="#attr.orderItem.orderItemId"></s:property>
@@ -194,7 +194,7 @@
     })
 
     function addText() {
-        document.getElementById("edit").value = "edit";
+        document.getElementById("edit").value = "";
     }
 
 </script>

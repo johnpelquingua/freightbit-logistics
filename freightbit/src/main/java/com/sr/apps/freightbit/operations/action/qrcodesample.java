@@ -1,3 +1,4 @@
+/*
 package com.sr.apps.freightbit.operations.action;
 
 import javax.servlet.ServletException;
@@ -11,7 +12,8 @@ import java.io.*;
 
 public class qrcodesample {
 
-    /*public void generate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    */
+/*public void generate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String qrtext = request.getParameter("containerType");
         ByteArrayOutputStream out = QRCode.from(qrtext).to(ImageType.PNG).stream();
@@ -25,7 +27,8 @@ public class qrcodesample {
         outStream.flush();
         outStream.close();
 
-    }*/
+    }*//*
+
     public static void main(String[] args) {
         ByteArrayOutputStream out = QRCode.from("Happy New Yeah!! xD").to(ImageType.PNG).stream();
 
@@ -44,4 +47,4 @@ public class qrcodesample {
             // Do Logging
         }
     }
-}
+}*/

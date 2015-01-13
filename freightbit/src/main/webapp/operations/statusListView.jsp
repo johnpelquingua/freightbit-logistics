@@ -57,14 +57,14 @@
                         <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
                                             style="width: 5%; text-align: center;"> </display:column></td>
                         <%--Freight Type--%>
-                        <td><display:column property="freightType" title="Freight Type <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                             style="width: 5%; text-align: center;"> </display:column></td>
 
-                        <td><display:column property="serviceRequirement" title="Service Requirement <i class='fa fa-sort' />"
+                        <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />"
                                             class="tb-font-black"
                                             style="width: 5%; text-align: center;"> </display:column></td>
 
-                        <td><display:column property="modeOfService" title="Service Mode <i class='fa fa-sort' />" class="tb-font-black"
+                        <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
 
                         <td><display:column title="Action">
