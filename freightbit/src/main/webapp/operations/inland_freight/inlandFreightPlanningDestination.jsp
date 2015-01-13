@@ -235,7 +235,7 @@
 
 <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
 <s:if test="order.modeOfService=='DOOR TO DOOR'">
-    <%--<div class="panel panel-primary">
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-anchor"></i>
             <span class="panel-title">Freight Plan</span>
@@ -297,44 +297,14 @@
                 </div>
             </div>
         </div>
-    </div>--%>
+    </div>
 
-    <div class="panel panel-primary">
+    <%--<div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-truck"></i>
             <span class="panel-title">Dispatch Plan: Origin</span>
         </div>
         <div class="panel-body form-horizontal">
-
-            <%--<div class="form-group">
-                <label class="col-sm-2 control-label">Vendor:</label>
-
-                <div class="col-sm-10" style="padding: 0px; width: 77.5%; position: relative; left: 15px;">
-                    <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Driver:</label>
-
-                <div class="col-sm-10" style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px;">
-                    <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Truck:</label>
-
-                <div class="col-sm-10"
-                     style="padding: 10px 0px; width: 77.5%; position: relative; left: 15px; margin-top: -10px;">
-                    <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Pickup Date:</label>
-
-                <div class="col-sm-10" style="padding: 0px; width: 77.5%; position: relative; left: 15px;">
-                    <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true"/>
-                </div>
-            </div>--%>
 
                 <div class="form-group">
 
@@ -403,7 +373,7 @@
                 </div>
 
         </div>
-    </div>
+    </div>--%>
 
     <div class="panel panel-primary">
         <div class="panel-heading">
