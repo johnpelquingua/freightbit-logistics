@@ -256,14 +256,12 @@
                             </display:column></td>
 
                         </display:table>
-                        <div class="row">
-                            <div class="col-md-6 pull-right" style="margin-right: -17em;">
-                                <s:submit cssClass="col-lg-3 btn btn-default" value="Set Vendor"
+                            <div class="pull-right">
+                                <s:submit cssClass="btn btn-primary" value="Set Vendor"
                                           onclick="deleteText()"></s:submit>
-                                <s:submit cssClass="col-lg-3 btn btn-default" value="Edit Vendor"
+                                <s:submit cssClass="btn btn-success" value="Edit Vendor"
                                           onclick="addText()"></s:submit>
                             </div>
-                        </div>
                         </s:form>
                     </div>
                 </div>
