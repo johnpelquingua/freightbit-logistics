@@ -215,7 +215,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                     sessionAttributes.put("orderItemIdParam", orderItemEntity.getOrderItemId());
                 }
             }
-            }
+        }
         return "SET";
     }
 
@@ -288,14 +288,14 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 orderStatusLogsService.addStatus(orderStatusLogsEntity);
 
-            Notification notificationEntity = new Notification();
+            /*Notification notificationEntity = new Notification();
             notificationEntity.setDescription("SHIPMENT_LOGS");
             notificationEntity.setNotificationId(18);
             notificationEntity.setNotificationType("Email");
             notificationEntity.setReferenceId(1);
             notificationEntity.setReferenceTable("Shipment Logs");
             notificationEntity.setUserId(1);
-            notificationService.addNotification(notificationEntity);
+            notificationService.addNotification(notificationEntity);*/
 
     } catch (Exception e) {
                 addActionError("Update Failed");
