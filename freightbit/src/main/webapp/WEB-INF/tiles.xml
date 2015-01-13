@@ -62,7 +62,7 @@
 
     <definition name="operations.successStatusListItems.tiles" extends="baseLayout">
         <put-attribute name="title" value="Order Item List"/>
-        <put-attribute name="body" value="/operations/statusListViewItems.jsp"/>
+        <put-attribute name="body" value="/operations/updateStatus.jsp"/>
     </definition>
 
     <definition name="operations.updateStatus.tiles" extends="baseLayout">
