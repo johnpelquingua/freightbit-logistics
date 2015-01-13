@@ -1063,10 +1063,9 @@
     // User must choose a vendor first before adding vessel schedule
     $(document).ready(function(){
 
-        changeDateValue($('.pickupDate'), 'INCREMENT');
-        changeDateValue($('.deliveryDate'), 'DECREMENT');
+//        changeDateValue($('.pickupDate'), 'INCREMENT');
+//        changeDateValue($('.deliveryDate'), 'DECREMENT');
         hideVesselSchedule();
-        $('#vesselSchedule').oneSimpleTablePagination({rowsPerPage: 10});
 
         $("#createSchedule").click(function() {
             var vendorId = $("#operationsBean_vendorList").val();

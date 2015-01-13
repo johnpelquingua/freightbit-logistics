@@ -718,14 +718,18 @@ function changeDateValue(dateSelector, mode){
     }else{
         newDate.setDate(newDate.getDate()+1);
     }
-    newDate = (newDate.getMonth()+1) +'/'+ newDate.getDate()+'/'+newDate.getUTCFullYear();
-    dateSelector.empty().val(newDate);
+    newDate = (newDate.getMonth()+1) +'-'+ newDate.getDate()+'-'+newDate.getUTCFullYear();
+//    dateSelector.empty().val(newDate);
+    return newDate;
 }
 
 function hideVesselSchedule(){
     var vesselTable = $('#vesselSchedule tbody tr td:nth-child(6)'),
+        arrivalDate = $('#vesselSchedule tbody tr td:nth-child(7)'),
         splitDate,
-        currentDate = new Date();
+        currentDate = new Date(),
+        pickupDate = changeDateValue($('.pickupDate'), 'INCREMENT'),
+        deliveryDate = changeDateValue($('.deliveryDate'), 'DECREMENT');
 
     for(var i=0; i < vesselTable.size(); i++){
         splitDate = vesselTable.eq(i).text().split('-');
@@ -741,11 +745,22 @@ function hideVesselSchedule(){
                 }
             }
         }
+
+        if(new Date(pickupDate) > new Date(vesselTable.eq(i).text()) || new Date(deliveryDate) < new Date(arrivalDate.eq(i).text())){
+            vesselTable.eq(i).closest('tr').remove();
+        }
     }
 
     setTimeout(function(){
-        $('.loadingDiv').hide();
-        $('.tableDiv').fadeIn();
+        if($('#vesselSchedule tbody tr').size() == 0){
+            $('.loadingDiv').empty().append('No schedule found.');
+        }else{
+            if($('#vesselSchedule tbody tr').size() > 10){
+                $('#vesselSchedule').oneSimpleTablePagination({rowsPerPage: 10});
+            }
+            $('.loadingDiv').hide();
+            $('.tableDiv').fadeIn();
+        }
     }, 1000);
 }
 
