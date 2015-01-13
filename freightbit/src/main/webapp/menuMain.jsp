@@ -41,7 +41,7 @@
         <ul class="dropdown-menu">
             <li><a href="<s:url action='documentation/viewPendingDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Pending Documents</a></li>
             <li><a href="<s:url action='documentation/viewArchivedDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Archived Documents</a></li>
-            <li><a href="<s:url action='documentation/viewPlainDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Plain Documents</a></li>
+            <%--<li><a href="<s:url action='documentation/viewPlainDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Plain Documents</a></li>--%>
         </ul>
     </li>
 

@@ -212,7 +212,7 @@
                                                 style="text-align: center;"> </display:column></td>
 
                             <td><display:column title="Action">
-                                <s:if test="#attr.orderItem.status=='ON GOING'">
+                                <s:if test="#attr.orderItem.status=='ON GOING' || #attr.orderItem.status=='PLANNING 1'">
                                     <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
                                         <s:param name="orderItemIdParam"
                                                  value="#attr.orderItem.orderItemId">

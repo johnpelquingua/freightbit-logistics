@@ -133,7 +133,7 @@
 
         <action name="viewFreightPlanningInland" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightPlanningInland">
             <!--<result name="PLANNING 1" type="tiles">operations.seaFreightPlanning.tiles</result>-->
-            <result name="PLANNING 2" type="tiles">operations.inlandFreightPlnningOrigin.tiles</result>
+            <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
         </action>
 

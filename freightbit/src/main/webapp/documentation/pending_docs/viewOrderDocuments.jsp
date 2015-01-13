@@ -6,7 +6,7 @@
 
     $(document).ready(function() {
 
-        $( window ).load(function() {
+        /*$( window ).load(function() {
 
             var outbound_tab = $("#documentTab").val();
 
@@ -40,7 +40,7 @@
                 $("#fifth").toggleClass('disabled active');
             }
 
-        });
+        });*/
 
     });
 
@@ -1666,14 +1666,12 @@ finalReturnedDate.datepicker({
 
 });
 
-function OutboundProgress(){
+/*function OutboundProgress(){
     document.getElementById("out").className='active';
     document.getElementById("in").className='';
     document.getElementById("fiOut").className='';
     document.getElementById("fiIn").className='';
     document.getElementById("comp").className='';
-    /*document.getElementById("arch").className='';
-    document.getElementById("bill").className='';*/
 }
 
 function InboundProgress(){
@@ -1682,8 +1680,6 @@ function InboundProgress(){
     document.getElementById("fiOut").className='';
     document.getElementById("fiIn").className='';
     document.getElementById("comp").className='';
-    /*document.getElementById("arch").className='';
-    document.getElementById("bill").className='';*/
 }
 
 function finalOutboundProgress(){
@@ -1692,8 +1688,6 @@ function finalOutboundProgress(){
     document.getElementById("fiOut").className='active';
     document.getElementById("fiIn").className='';
     document.getElementById("comp").className='';
-   /* document.getElementById("arch").className='';
-    document.getElementById("bill").className='';*/
 }
 
 function finalInboundProgress() {
@@ -1702,8 +1696,6 @@ function finalInboundProgress() {
     document.getElementById("fiOut").className='';
     document.getElementById("fiIn").className='active';
     document.getElementById("comp").className='';
-    /*document.getElementById("arch").className='';
-    document.getElementById("bill").className='';*/
 }
 
 function completeProgress() {
@@ -1712,9 +1704,7 @@ function completeProgress() {
     document.getElementById("fiOut").className='';
     document.getElementById("fiIn").className='';
     document.getElementById("comp").className='active';
-    /*document.getElementById("arch").className='';
-    document.getElementById("bill").className='';*/
-}
+}*/
 
 /*function archiveProgress() {
     document.getElementById("out").className='';
