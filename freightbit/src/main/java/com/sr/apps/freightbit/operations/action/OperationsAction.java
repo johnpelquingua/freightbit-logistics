@@ -1269,13 +1269,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 
-        if ("PLANNING 1".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 1")) {
+        /*if ("PLANNING 1".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 1")) {
             return "PLANNING 1";
         } else if ("PLANNING 2".equals(entity.getStatus()) || entity.getStatus().equals("PLANNING 2")) {
             return "PLANNING 2";
         } else {
             return "PLANNING 3";
-        }
+        }*/
+        return "PLANNING 1";
     }
 
     public String reloadInlandFreightPlanning() {
