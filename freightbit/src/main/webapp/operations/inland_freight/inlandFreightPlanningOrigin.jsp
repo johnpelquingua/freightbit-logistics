@@ -313,7 +313,7 @@
 <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
 <s:if test="order.modeOfService=='DOOR TO DOOR'">
 <div class="panel panel-primary">
-    <%--<div class="panel-heading">
+    <div class="panel-heading">
         <i class="fa fa-anchor"></i>
         <span class="panel-title">Freight Plan</span>
     </div>
@@ -373,7 +373,7 @@
                 <s:textfield cssClass="form-control" value="%{vesselSchedule.destinationPort}" name="book-num" disabled="true"></s:textfield>
             </div>
         </div>
-    </div>--%>
+    </div>
 </div>
 
 <div class="panel panel-primary">
@@ -542,7 +542,7 @@
 </div>
 
 <div class="panel panel-primary">
-    <div class="panel-heading">
+    <%--<div class="panel-heading">
         <i class="fa fa-truck"></i>
         <span class="panel-title"> Dispatch Plan : Destination</span>
     </div>
@@ -617,7 +617,7 @@
             </div>
 
         </div>
-    </div>
+    </div>--%>
 
     <div class="panel-footer">
 
