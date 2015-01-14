@@ -26,14 +26,14 @@
 
             <!-- Main Nav tabs -->
             <div class="row" style="padding-left: 5px;">
-                <ul class="nav nav-tabs" role="tablist" style="text-align: center;">
-                    <li class="active col-md-4" id="ori" style="padding-right: 0px;">
+                <ul class="nav nav-tabs center-text" role="tablist">
+                    <li class="active col-md-4 padding-0-r" id="ori">
                         <a href="#oriTab" role="tab" data-toggle="tab"><i class="fa fa-truck"></i> Origin</a>
                     </li>
-                    <li class="col-md-4" id="truck" style="padding-right: 0px;">
+                    <li class="col-md-4 padding-0-lr" id="truck">
                         <a href="#truckTab" role="tab" data-toggle="tab"><i class="fa fa-automobile"></i> Trucking</a>
                     </li>
-                    <li id="des" class="col-md-4" style="padding-left: 0px;">
+                    <li id="des" class="col-md-4 padding-0-l">
                         <a href="#desTab" role="tab" data-toggle="tab"><i class="fa fa-flip-horizontal fa-truck"></i> Destination</a>
                     </li>
                 </ul>
@@ -54,17 +54,17 @@
                             </div>
                         </s:form>
                     </div>
-                    <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
-                        <li class="active col-md-3" id="fclOri">
+                    <ul class="nav nav-tabs center-text" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
+                        <li class="active col-md-3 padding-0-r" id="fclOri">
                             <a href="#fclOriTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
                         </li>
-                        <li class="col-md-3" id="lclOri">
+                        <li class="col-md-3 padding-0-lr" id="lclOri">
                             <a href="#lclOriTab" role="tab" data-toggle="tab">Less Container Load (LCL)</a>
                         </li>
-                        <li class="col-md-3" id="lcuOri">
+                        <li class="col-md-3 padding-0-lr" id="lcuOri">
                             <a href="#lcuOriTab" role="tab" data-toggle="tab">Loose Cargo Load (LCU)</a>
                         </li>
-                        <li class="col-md-3" id="rcuOri">
+                        <li class="col-md-3 padding-0-r" id="rcuOri">
                             <a href="#rcuOriTab" role="tab" data-toggle="tab">Rolling Cargo Load (RCU)</a>
                         </li>
                         <%--<li id="ftlOri">
@@ -405,11 +405,11 @@
                     </div>
 
                     <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
-                        <li class="active col-md-6" id="ftlOri">
-                            <a href="#ftlTab" role="tab" data-toggle="tab">Full Truck Load (FTL)</a>
+                        <li class="active col-md-6" id="ftlOri" style="padding-left: 0px; padding-right: 0px;">
+                            <a href="#ftlTab" role="tab" data-toggle="tab" style="text-align: center;">Full Truck Load (FTL)</a>
                         </li>
-                        <li class="col-md-6" id="ltlOri">
-                            <a href="#ltlTab" role="tab" data-toggle="tab">Less Truck Load (LTL)</a>
+                        <li class="col-md-6" id="ltlOri" style="padding-left: 0px; padding-right: 0px;">
+                            <a href="#ltlTab" role="tab" data-toggle="tab" style="text-align: center;">Less Truck Load (LTL)</a>
                         </li>
                     </ul>
 
@@ -532,17 +532,17 @@
                             </div>
                         </s:form>
                     </div>
-                    <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
-                        <li class="active col-md-3" id="fclDes">
+                    <ul class="nav nav-tabs center-text" role="tablist" style="clear:both; padding-bottom: 0px;">
+                        <li class="active col-md-3 padding-0-r" id="fclDes">
                             <a href="#fclDesTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
                         </li>
-                        <li class="col-md-3" id="lclDes">
+                        <li class="col-md-3 padding-0-lr" id="lclDes">
                             <a href="#lclDesTab" role="tab" data-toggle="tab">Less Container Load (LCL)</a>
                         </li>
-                        <li class="col-md-3" id="lcuDes">
+                        <li class="col-md-3 padding-0-lr" id="lcuDes">
                             <a href="#lcuDesTab" role="tab" data-toggle="tab">Loose Cargo Load (LCU)</a>
                         </li>
-                        <li class="col-md-3" id="rcuDes">
+                        <li class="col-md-3 padding-0-l" id="rcuDes">
                             <a href="#rcuDesTab" role="tab" data-toggle="tab">Rolling Cargo Load (RCU)</a>
                         </li>
                     </ul>

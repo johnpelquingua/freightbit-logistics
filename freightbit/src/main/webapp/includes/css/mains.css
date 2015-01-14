@@ -984,3 +984,20 @@ span.pagination li{
  display: inline;
  margin: 5px;
  list-style-type: circle !important;}
+
+.padding-0-l {
+    padding-left: 0px;
+}
+
+.padding-0-r {
+    padding-right: 0px;
+}
+
+.padding-0-lr{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.center-text {
+    text-align: center;
+}

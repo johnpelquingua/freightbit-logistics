@@ -109,7 +109,7 @@
         <div class="form-group">
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
             <div class="col-lg-4">
-                <s:textfield cssClass="form-control" value="%{order.pickupDate}"
+                <s:textfield cssClass="form-control pickupDate" value="%{order.pickupDate}"
                              disabled="true"></s:textfield>
             </div>
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
@@ -144,7 +144,7 @@
                 <span class="panel-title"> Dispatch Plan : Origin</span>
             </div>
             <div class="panel-body">
-                <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsOrigin">
+                <s:form cssClass="form-horizontal originForm" theme="bootstrap" action="editOrderItemsOrigin">
 
                     <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}"/>
                     <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}"/>
@@ -294,14 +294,14 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
                         <div class="col-lg-8">
-                            <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalPickupdate}"
+                            <s:textfield cssClass="from_date form-control step2 finalPickupDate" value="%{orderItem.finalPickupdate}"
                                          id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
                                          contenteditable="false" style="margin-bottom: 15px !important;"/>
                         </div>
                     </div>
 
                     <div style="float: right;">
-                        <button class="btn btn-primary">Save</button>
+                        <button class="btn btn-primary finalSaveBtn" type="button">Save</button>
                     </div>
 
                 </s:form>
@@ -344,7 +344,7 @@
         <div class="form-group">
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Date </label>
             <div class="col-lg-4">
-                <s:textfield cssClass="form-control" value="%{vesselSchedule.departureDate}" name="book-num" disabled="true"></s:textfield>
+                <s:textfield cssClass="form-control departureDate" value="%{vesselSchedule.departureDate}" name="book-num" disabled="true"></s:textfield>
             </div>
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date <Port></Port> </label>
             <div class="col-lg-4">
@@ -382,7 +382,7 @@
         <span class="panel-title"> Dispatch Plan : Origin</span>
     </div>
     <div class="panel-body">
-        <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsOrigin">
+        <s:form cssClass="form-horizontal originForm" theme="bootstrap" action="editOrderItemsOrigin">
 
             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}"/>
             <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}"/>
@@ -529,13 +529,13 @@
                 <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
                 <div class="col-lg-8">
-                    <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalPickupdate}"
+                    <s:textfield cssClass="from_date form-control step2 finalPickupDate" value="%{orderItem.finalPickupdate}"
                                  id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
                                  contenteditable="false" style="margin-bottom: 15px !important;"/>
                 </div>
             </div>
             <div style="float: right;">
-                <button class="btn btn-primary">Save</button>
+                <button class="btn btn-primary finalSaveBtn" type="button">Save</button>
             </div>
         </s:form>
     </div>
@@ -681,7 +681,7 @@
             <div class="form-group">
                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Date </label>
                 <div class="col-lg-4">
-                    <s:textfield cssClass="form-control" value="%{vesselSchedule.departureDate}" name="book-num" disabled="true"></s:textfield>
+                    <s:textfield cssClass="form-control departureDate" value="%{vesselSchedule.departureDate}" name="book-num" disabled="true"></s:textfield>
                 </div>
                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date <Port></Port> </label>
                 <div class="col-lg-4">
@@ -719,7 +719,7 @@
             <span class="panel-title"> Dispatch Plan : Origin</span>
         </div>
         <div class="panel-body">
-            <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsOrigin">
+            <s:form cssClass="form-horizontal originForm" theme="bootstrap" action="editOrderItemsOrigin">
                 <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}"/>
                 <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}"/>
                 <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}"/>
@@ -866,13 +866,13 @@
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
                     <div class="col-lg-8">
-                        <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalPickupdate}"
+                        <s:textfield cssClass="from_date form-control step2 finalPickupDate" value="%{orderItem.finalPickupdate}"
                                      id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
                                      contenteditable="false" style="margin-bottom: 15px !important;"/>
                     </div>
                 </div>
                 <div style="float: right;">
-                    <button class="btn btn-primary">Save</button>
+                    <button class="btn btn-primary finalSaveBtn" type="button">Save</button>
                 </div>
             </s:form>
         </div>
@@ -1214,6 +1214,25 @@
     </div>
 </div>
 
+<%-- MODAL FOR DATE WARNING  -- START --%>
+<div class="modal fade" id="dateWarningModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Pickup Date Error</h4>
+            </div>
+            <div class="modal-body" id="dateWarningModalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%-- MODAL FOR DATE WARNING  -- END --%>
+
 <script type="text/javascript">
 
     var pickup = $('#pickup');
@@ -1400,5 +1419,26 @@
         startDate: 2
 
     });
+
+    $(document).ready(function(){
+        $('.finalSaveBtn').click(function(){
+            var pickupdate = new Date($('.pickupDate').val()),
+                departureDate = new Date($('.departureDate').val()),
+                finalPickupDate = new Date($('.finalPickupDate').val()),
+                finalSaveBtn = $('.finalSaveBtn'),
+                formToSubmit = $('.originForm');
+
+            if(finalPickupDate.setHours(0,0,0,0) >= pickupdate.setHours(0,0,0,0) && finalPickupDate.setHours(0,0,0,0) <= departureDate.setHours(0,0,0,0)){
+                formToSubmit.submit();
+            }else{
+                pickupdate = pickupdate.getUTCFullYear()+'-'+(pickupdate.getMonth()+1)+'-'+pickupdate.getDate();
+                departureDate = departureDate.getUTCFullYear()+'-'+(departureDate.getMonth()+1)+'-'+departureDate.getDate();
+                $('#dateWarningModal').modal('show');
+                var message = 'Date must be between <font color="red">'+pickupdate+'</font> and <font color="red">'+departureDate+'</font>';
+                $('#dateWarningModalBody').empty().append(message);
+            }
+        })
+    })
+
 
 </script>
