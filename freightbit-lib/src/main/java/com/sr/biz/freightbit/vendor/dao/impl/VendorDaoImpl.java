@@ -87,9 +87,10 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
         log.debug("Finding vendors with filter");
         try {
             log.debug("Finding vendors succeeded");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from Vendor v where v.vendorType in (:vendorTypeList) and v.vendorClass = :vendorClass");
+            /*Query query = getSessionFactory().getCurrentSession().createQuery("from Vendor v where v.vendorType in (:vendorTypeList) and v.vendorClass = :vendorClass");*/
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Vendor v where v.vendorType in (:vendorTypeList)"); // vendor class removed for front end class filtering
             query.setParameterList("vendorTypeList", vendorTypeList);
-            query.setParameter("vendorClass", vendorClass);
+            /*query.setParameter("vendorClass", vendorClass);*/
             List<Vendor> results = (List<Vendor>) query.list();
             return results;
 

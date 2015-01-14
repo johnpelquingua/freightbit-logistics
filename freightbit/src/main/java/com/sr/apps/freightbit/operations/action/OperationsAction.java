@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
+import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.documentation.formbean.DocumentsBean;
 import com.sr.apps.freightbit.operations.formbean.ContainerBean;
 import com.sr.apps.freightbit.operations.formbean.OperationsBean;
@@ -117,6 +118,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private TruckBean truck = new TruckBean();
     private TruckBean truckDestination = new TruckBean();
     private ContainerBean container = new ContainerBean();
+    private CustomerBean customer = new CustomerBean();
 
     private OperationsService operationsService;
     private VendorService vendorService;
@@ -1420,6 +1422,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
         order = transformToOrderFormBean(orderEntity);
 
+        Customer customerEntity = customerService.findCustomerById(orderEntity.getCustomerId());
+        customer = new CustomerBean();
+        customer.setCustomerType(customerEntity.getCustomerType());
+
         // if Vessel Schedule Id is null and populates field with none value
         if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE")){
             orderItem.setVendorSea("NONE");
@@ -2416,6 +2422,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setVesselName(entity.getVesselName());
         // To find for the Vendor Name via Vendor Code
         formBean.setVendorName(vendorService.findVendorByVendorCode(entity.getVendorCode()).getVendorName());
+        // To show vendor class
+        formBean.setVendorClass(vendorService.findVendorByVendorCode(entity.getVendorCode()).getVendorClass());
         return formBean;
     }
 
@@ -3825,5 +3833,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setDocument(DocumentsBean document) {
         this.document = document;
+    }
+
+    public CustomerBean getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerBean customer) {
+        this.customer = customer;
     }
 }

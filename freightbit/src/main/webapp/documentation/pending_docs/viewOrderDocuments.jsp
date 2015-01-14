@@ -2,11 +2,11 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<script>
+<%--<script>
 
     $(document).ready(function() {
 
-        /*$( window ).load(function() {
+        $( window ).load(function() {
 
             var outbound_tab = $("#documentTab").val();
 
@@ -40,11 +40,11 @@
                 $("#fifth").toggleClass('disabled active');
             }
 
-        });*/
+        });
 
     });
 
-</script>
+</script>--%>
 
 <style>
     .pagebanner, .pagelinks {
@@ -220,7 +220,7 @@
 
                 </div>
 
-                <div class="well">
+                <%--<div class="well">
 
                     <div class="container">
 
@@ -256,21 +256,11 @@
                                 <a href="#complete" class="bs-wizard-dot" data-toggle="tab" onclick="completeProgress()"></a>
                             </div>
 
-                            <%--<div class="col-xs-2 bs-wizard-step disabled" id="sixth"><!-- active -->
-                                <div class="text-center bs-wizard-stepnum">ARCHIVE</div>
-                                <div class="progress"><div class="progress-bar"></div></div>
-                                <a href="#archive" class="bs-wizard-dot" data-toggle="tab" onclick="archiveProgress()"></a>
-                            </div>
-
-                            <div class="col-xs-2 bs-wizard-step disabled" id="seventh"><!-- active -->
-                                <div class="text-center bs-wizard-stepnum">BILLING</div>
-                                <div class="progress"><div class="progress-bar" data-toggle="tab" onclick="BillingProgress"></div></div>
-                                <a href="#billing" class="bs-wizard-dot"></a>
-                            </div>--%>
                         </div>
 
                     </div>
-                </div>
+
+                </div>--%>
 
             </div>
 
@@ -283,7 +273,7 @@
             </div>--%>
             <%--------------------------FOR EXAMPLE PURPOSES------------------------------%>
 
-            <%--<div id="inputDiv"> &lt;%&ndash;Area where input fields will appear&ndash;%&gt;
+            <%--<div id="inputDiv"> &t;%&ndash;Area where input fields will appear&ndash;%&gt;
             </div>--%>
 
             <%--<s:if test="hasActionMessages()">
@@ -1100,8 +1090,6 @@
 
                         <div class="panel-body">
 
-
-
                                 <div class="table-responsive" style="clear:both;">
 
                                 <s:form name="myform" action="processDocumentsComplete">
@@ -1334,17 +1322,23 @@
     </div>
 </div>
 
-<s:hidden  value="%{documentTab}" id="documentTab"  />
-<s:hidden  value="%{documentTabInbound}" id="documentTabInbound"  />
-<s:hidden  value="%{documentTabFinalOutbound}" id="documentTabFinalOutbound"  />
-<s:hidden  value="%{documentTabFinalInbound}" id="documentTabFinalInbound"  />
-<s:hidden  value="%{documentTabComplete}" id="documentTabComplete"  />
+<s:property value="%{documentTab}" /> <br />
+<s:property value="%{documentTabInbound}" /> <br />
+<s:property value="%{documentTabFinalOutbound}" /> <br />
+<s:property value="%{documentTabFinalInbound}" /> <br />
+<s:property value="%{documentTabComplete}" /> <br />
+
+<s:hidden value="%{documentTab}" id="documentTab"  />
+<s:hidden value="%{documentTabInbound}" id="documentTabInbound"  />
+<s:hidden value="%{documentTabFinalOutbound}" id="documentTabFinalOutbound"  />
+<s:hidden value="%{documentTabFinalInbound}" id="documentTabFinalInbound"  />
+<s:hidden value="%{documentTabComplete}" id="documentTabComplete"  />
 <br />
-<s:hidden  value="%{outboundCount}" id="outboundCount"  />
-<s:hidden  value="%{inboundCount}" id="inboundCount"  />
-<s:hidden  value="%{finalOutboundCount}" id="finalOutboundCount" />
-<s:hidden  value="%{finalInboundCount}" id="finalInboundCount" />
-<s:hidden  value="%{completeCount}" id="completeCount" />
+<s:hidden value="%{outboundCount}" id="outboundCount"  />
+<s:hidden value="%{inboundCount}" id="inboundCount"  />
+<s:hidden value="%{finalOutboundCount}" id="finalOutboundCount" />
+<s:hidden value="%{finalInboundCount}" id="finalInboundCount" />
+<s:hidden value="%{completeCount}" id="completeCount" />
 
 <%--Modal window for input--%>
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">

@@ -23,12 +23,13 @@ public class VesselScheduleBean {
     private String vendorCode;
     private String vesselName;
     private String vendorName;
+    private String vendorClass;
 
     public VesselScheduleBean() {
 
     }
 
-    public VesselScheduleBean(String arrivalDate, Integer vesselScheduleId, String voyageNumber, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String destinationPort, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword, String vesselScheduleCriteria, String vendorCode, String vesselName, String vendorName) {
+    public VesselScheduleBean(String arrivalDate, Integer vesselScheduleId, String voyageNumber, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String destinationPort, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword, String vesselScheduleCriteria, String vendorCode, String vesselName, String vendorName, String vendorClass) {
         this.arrivalDate = arrivalDate;
         this.vesselScheduleId = vesselScheduleId;
         this.voyageNumber = voyageNumber;
@@ -48,6 +49,7 @@ public class VesselScheduleBean {
         this.vendorCode = vendorCode;
         this.vesselName = vesselName;
         this.vendorName = vendorName;
+        this.vendorClass = vendorClass;
     }
 
     public String getVendorCode() {
@@ -200,5 +202,13 @@ public class VesselScheduleBean {
 
     public void setVendorName(String vendorName) {
         this.vendorName = vendorName;
+    }
+
+    public String getVendorClass() {
+        return vendorClass;
+    }
+
+    public void setVendorClass(String vendorClass) {
+        this.vendorClass = vendorClass;
     }
 }

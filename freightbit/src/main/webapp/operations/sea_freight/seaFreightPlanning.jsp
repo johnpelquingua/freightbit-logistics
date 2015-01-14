@@ -131,6 +131,8 @@
                 </div>
             </div>
 
+            <s:property value="%{customer.customerType}" />
+
         </div>
 
     </div>
@@ -371,6 +373,8 @@
                         <td><display:column property="departureDate" title="Departure" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column title="Action">
                             <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
