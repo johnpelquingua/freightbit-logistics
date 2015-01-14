@@ -103,13 +103,21 @@
             <result name="success" type="tiles">operations.successStatusListItems.tiles</result>
         </action>
 
+        <action name="updateBulkStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
+                method="updateBulkStatus">
+            <result name="input" type="tiles">operations.itemShipmentHistory.tiles</result>
+            <result name="success" type="redirect">loadSuccessSetStatus</result>
+        </action>
+
         <action name="setBulkItemStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
                 method="setBulkItemStatus">
             <result name="input" type="redirect">viewStatusListItemsError</result>
-            <result name="SET" type="redirect">loadItemShipmentHistory</result>
-            <result name="success" type="redirect">loadSuccessSetStatus</result>
+            <result name="SET" type="tiles">operations.itemShipmentHistory.tiles</result>
+            <!--<result name="success" type="redirect">loadSuccessSetStatus</result>-->
             <result name="NULL_INPUT" type="redirect">viewStatusListItemsNullError</result>
         </action>
+
+
 
         <action name="serviceAccomplishedStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
                 method="serviceAccomplishedStatus">

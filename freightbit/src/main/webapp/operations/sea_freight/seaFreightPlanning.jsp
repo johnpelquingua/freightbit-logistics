@@ -22,7 +22,7 @@
                              value="#attr.order.orderNo"></s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip" >
-                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                         Freight Plan : Containers
                     </s:if>
                     <s:else>
@@ -167,7 +167,7 @@
                         <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
 
                         <div class="form-group">
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
                             </s:if>
                             <s:else>
@@ -293,7 +293,7 @@
                         <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
 
                         <div class="form-group">
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
                             </s:if>
                             <s:else>
@@ -407,7 +407,7 @@
                         </s:url>
                         <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip" >
 
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <button type="button" class="btn">
                                     Back to Freight Plan : Containers
                                 </button>
@@ -519,7 +519,7 @@
                         <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
 
                         <div class="form-group">
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
                             </s:if>
                             <s:else>
@@ -711,7 +711,7 @@
                         <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
                         <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
                         <div class="form-group">
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
                             </s:if>
                             <s:else>
@@ -881,7 +881,7 @@
                         </s:url>
                         <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip" >
 
-                            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                 <button type="button" class="btn">
                                     Back to Freight Plan : Containers
                                 </button>

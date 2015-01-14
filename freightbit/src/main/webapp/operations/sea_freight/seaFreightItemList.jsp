@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span>
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                     <h1><i class="fa fa-anchor"></i> Freight Plan : Containers</h1>
                 </s:if>
                 <s:else>
@@ -16,7 +16,7 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"><a href="<s:url action='viewSeaFreightList' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>"> Freight Plan : Orders </a></li>
-            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                 <li class="active"> Freight Plan : Containers</li>
             </s:if>
             <s:else>
@@ -184,7 +184,7 @@
                                                     class="tb-font-black"
                                                     style="text-align: center;"></display:column></td>
                                 <td>
-                                    <s:if test="%{#attr.orderItem.serviceRequirement}=='FULL CARGO LOAD'">
+                                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                         <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
                                                         class="tb-font-black"
                                                         style="text-align: center;">

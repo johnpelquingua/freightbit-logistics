@@ -52,6 +52,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private Integer orderItemIdParam;
     private String bookingNumber;
     private String[] check;
+    private List<String> nameSizeList;
 
     @Override
     public void prepare() {
@@ -197,6 +198,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String setBulkItemStatus() {
+        List<Integer> bulkItems = new ArrayList();
         Map sessionAttributes = ActionContext.getContext().getSession();
         System.out.println("CHECK WORD PASS " + check);
         System.out.println("ORDER ITEM ID " + orderItemIdParam);
@@ -210,10 +212,35 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                         return "NULL_INPUT";
                     }
                     Integer orderStatusItemId = Integer.parseInt(check[i]);
-                    OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(orderStatusItemId);
-                    orderItem = transformToOrderItemFormBean(orderItemEntity);
-                    sessionAttributes.put("orderItemIdParam", orderItemEntity.getOrderItemId());
+                    OrderItems entity = orderStatusLogsService.findOrderItemById(orderStatusItemId);
+                    orderItem = transformToOrderItemFormBean(entity);
+                    sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
+
+                    if ("ARRIVED".equals(entity.getStatus())) {
+                        bulkItems.add(orderStatusItemId);
+                    }
+
+                    /*OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
+                    sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
+                    orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                    orderStatusLogsService.addStatus(orderStatusLogsEntity);*/
+
                 }
+                Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam")).getOrderId());
+                sessionAttributes.put("checkedItemsInSession", check);
+                order = transformToOrderFormBean(orderEntity);
+                nameSizeList = new ArrayList<String>();
+                Integer itemSize;
+                List<Integer> bulkItemList = new ArrayList();
+                itemSize = bulkItems.size();
+                bulkItemList = bulkItems;
+                for(int i = 0; i < itemSize; i++){
+                    OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(bulkItemList.get(i));
+                    nameSizeList.add(orderItemEntity.getNameSize());
+                }
+                sessionAttributes.put("nameSizeList", nameSizeList);
+                System.out.print("qwerty"+nameSizeList);
+
             }
         }
         return "SET";
@@ -227,7 +254,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     orderItem = transformToOrderItemFormBean(orderItemEntity);
     List<OrderStatusLogs> orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs((Integer) sessionAttributes.get("orderItemIdParam"));
 
-    for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
+        for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
         orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
     }
     // Will show orderItem on second load without passing orderItemIdParam from table
@@ -280,6 +307,20 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String updateBulkStatus() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        try {
+            OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
+            sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
+            orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            orderStatusLogsService.addStatus(orderStatusLogsEntity);
+        } catch (Exception e) {
+            addActionError("Update Failed");
+            return INPUT;
+        }
+        return SUCCESS;
+    }
+
     public String updateStatus() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         try {
@@ -287,15 +328,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
                 orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 orderStatusLogsService.addStatus(orderStatusLogsEntity);
-
-            /*Notification notificationEntity = new Notification();
-            notificationEntity.setDescription("SHIPMENT_LOGS");
-            notificationEntity.setNotificationId(18);
-            notificationEntity.setNotificationType("Email");
-            notificationEntity.setReferenceId(1);
-            notificationEntity.setReferenceTable("Shipment Logs");
-            notificationEntity.setUserId(1);
-            notificationService.addNotification(notificationEntity);*/
 
     } catch (Exception e) {
                 addActionError("Update Failed");
@@ -594,5 +626,11 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         this.check = check;
     }
 
+    public List<String> getNameSizeList() {
+        return nameSizeList;
+    }
 
+    public void setNameSizeList(List<String> nameSizeList) {
+        this.nameSizeList = nameSizeList;
+    }
 }

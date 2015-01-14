@@ -425,7 +425,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             return "PLANNING 1";
             /*} else if (planning2.size() > 0) {
                 return "PLANNING 2";
-            } else if (planning3.size() > 0) {
+//            } else if (planning3.size() > 0) {
                 return "PLANNING 3";
             } else {
                 return INPUT;

@@ -12,7 +12,7 @@
             <li class="active"><a href="<s:url action='home' />"> Dashboard </a></li>
             <li class="active"><a href="<s:url action='../operations/viewStatusList' />"> On-Going Booking List </a></li>
             <%--<li class="active"> On-Going Booking List</li>--%>
-            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                 <li class="active"> Booking <s:property value="bookingNumber"/> Container List</li>
             </s:if>
             <s:else>
@@ -96,75 +96,79 @@
 
                 <div class="table-responsive">
                     <div class="row">
-                    <s:form name="myform" action="setBulkItemStatus" theme="bootstrap">
+                        <s:form name="myform" action="setBulkItemStatus" theme="bootstrap" cssClass="setStatusForm">
+                        <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
                         <s:hidden value="%{#attr.order.orderId}" name="orderStatusLogsBean.orderId"/>
-                        <%--<s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>--%>
+                        <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                         <s:property value="#attr.orderItem.orderItemId"></s:property>
                     </div>
-                        <display:table id="orderItem" name="orderItems"
-                                       requestURI="viewStatusListItems.action" pagesize="10"
-                                       class="table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
-                                       style="margin-top: 15px;">
+                    <display:table id="orderItem" name="orderItems"
+                                   requestURI="viewStatusListItems.action" pagesize="10"
+                                   class="bulkItemStatus table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
+                                   style="margin-top: 15px;">
 
-                            <td><display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
-                                <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
-                            </display:column></td>
+                        <td><display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
+                            <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
+                        </display:column></td>
 
-                            <td>
-                                <display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
+                        <td>
+                            <display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column>
+                        </td>
+
+                        <td>
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <display:column property="nameSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column>
-                            </td>
-
-                            <td>
-                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <display:column property="nameSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column>
-                                </s:if>
-                                <s:else>
-                                    <display:column property="nameSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column>
-                                </s:else>
-                            </td>
-
-                            <td>
-                                <display:column property="status" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
+                            </s:if>
+                            <s:else>
+                                <display:column property="nameSize" title="Name <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column>
-                            </td>
+                            </s:else>
+                        </td>
 
-                            <td>
-                                <display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
-                                                style="text-align: center;"> </display:column>
-                            </td>
+                        <td>
+                            <display:column property="status" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column>
+                        </td>
+
+                        <td>
+                            <display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column>
+                        </td>
 
 
-                            <td>
-                                <display:column title="Action">
-                                    <s:url var="loadItemShipmentHistoryUrl" action="loadUpdateStatus">
-                                        <s:param name="orderItemIdParam" value="#attr.orderItem.orderItemId">
-                                        </s:param>
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{loadItemShipmentHistoryUrl}" rel="tooltip" title="View Shipment History">
-                                        <i class="fa fa-info-circle"></i>
-                                    </s:a>
-                                </display:column>
-                            </td>
-
-                        </display:table>
-                    <div class="row">
-                        <%--<s:textfield  style="display: none" cssClass="col-lg-6" name="orderItem.editItem" id="edit"></s:textfield>--%>
-                            <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
-                            <div class="col-md-7 pull-right" style="margin-right: -17em;">
-                                <s:url var="accStatus" action="serviceAccomplishedStatus">
-                                    <s:param name="orderIdParam"
-                                             value="order.orderId"></s:param>
+                        <td>
+                            <display:column title="Action">
+                                <s:url var="loadUpdateStatusUrl" action="loadUpdateStatus">
+                                    <s:param name="orderItemIdParam" value="#attr.orderItem.orderItemId">
+                                    </s:param>
                                 </s:url>
-
-                                <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
-                                    <button type="button" id="Complete" class="btn btn-default">
-                                        Complete The Service
-                                    </button>
+                                <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip" title="View Shipment History">
+                                    <i class="fa fa-info-circle"></i>
                                 </s:a>
-                            <s:submit cssClass="col-lg-4 btn btn-default" value="Set Status" onclick="addText()"></s:submit>
+                            </display:column>
+                        </td>
+
+                    </display:table>
+                    <div class="row">
+                            <%--<s:textfield  style="display: none" cssClass="col-lg-6" name="orderItem.editItem" id="edit"></s:textfield>--%>
+                        <div class="col-md-7 pull-right" style="margin-right: -17em;">
+                            <s:url var="accStatus" action="serviceAccomplishedStatus">
+                                <s:param name="orderIdParam"
+                                         value="order.orderId"></s:param>
+                            </s:url>
+
+                            <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
+                                <button type="button" id="Complete" class="btn btn-default">
+                                    Complete The Service
+                                </button>
+                            </s:a>
+
+                            <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set Status" onclick="addText();">
+                                Set Status
+                            </button>--%>
+                                <s:submit cssClass="col-lg-4 btn btn-default" value="Set Status" onclick="addText();"></s:submit>
 
                         </div>
                     </div>
@@ -197,4 +201,22 @@
         document.getElementById("edit").value = "";
     }
 
+    /*$(document).ready(function(){
+        $('.setStatusBtn').click(function(){
+            var bulkStatus = $('.bulkItemStatus tbody tr td:nth-child(4)'),
+            sameStatus = $('.bulkItemStatus tbody tr td:nth-child(4)').eq(0).text(),
+            flag = 0;
+            for (var i = 0; i < bulkStatus.size(); i++) {
+                if (bulkStatus.eq(i).text() != sameStatus) {
+                    flag++;
+                }
+            }
+            if(flag == 0){
+                $('.setStatusForm').submit();
+            }
+            else{
+                alert('Current statuses of both items should be the same.');
+            }
+        });
+     });*/
 </script>

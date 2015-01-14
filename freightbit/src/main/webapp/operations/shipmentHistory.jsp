@@ -24,7 +24,7 @@
             <li class="active"><a href="<s:url action='../operations/viewStatusList' />"> On-Going Booking List </a></li>
 
             <%--<li class="active"> On-Going Booking List</li>--%>
-            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                 <%--<li class="active"> Booking <s:property value="bookingNumber"/> Container List</li>--%>
                 <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                     <s:param name="orderIdParam"
@@ -64,15 +64,23 @@
         <div class="panel panel-primary">
 
             <div class="panel-body horizontal">
-
+                <div class="form-group">
                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Container: <s:property value="orderItem.nameSize"/> </label>
+                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Container: </label>
                 </s:if>
                 <s:else>
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Item: <s:property value="orderItem.nameSize"/> </label>
+                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Item: <s:property value="orderItem.nameSize"/></label>
                 </s:else>
                 <br />
                 <br />
+                <div class="col-lg-10">
+                    <ol>
+                        <s:iterator value="nameSizeList" >
+                            <li><s:property /></li>
+                        </s:iterator>
+                    </ol>
+                </div>
+                    </div>
                 <div class="table-responsive list-table">
                     <tbody>
                     <table>
@@ -97,7 +105,7 @@
                     </tbody>
                 </div>
 
-                <s:form cssClass="form-horizontal" theme="bootstrap" action="setBulkItemStatus" >
+                <s:form cssClass="form-horizontal" theme="bootstrap" action="updateBulkStatus" >
                 <s:if test="orderItemIdParam != null">
                     <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                 </s:if>
