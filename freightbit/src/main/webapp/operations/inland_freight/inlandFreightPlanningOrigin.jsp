@@ -1421,23 +1421,7 @@
     });
 
     $(document).ready(function(){
-        $('.finalSaveBtn').click(function(){
-            var pickupdate = new Date($('.pickupDate').val()),
-                departureDate = new Date($('.departureDate').val()),
-                finalPickupDate = new Date($('.finalPickupDate').val()),
-                finalSaveBtn = $('.finalSaveBtn'),
-                formToSubmit = $('.originForm');
-
-            if(finalPickupDate.setHours(0,0,0,0) >= pickupdate.setHours(0,0,0,0) && finalPickupDate.setHours(0,0,0,0) <= departureDate.setHours(0,0,0,0)){
-                formToSubmit.submit();
-            }else{
-                pickupdate = pickupdate.getUTCFullYear()+'-'+(pickupdate.getMonth()+1)+'-'+pickupdate.getDate();
-                departureDate = departureDate.getUTCFullYear()+'-'+(departureDate.getMonth()+1)+'-'+departureDate.getDate();
-                $('#dateWarningModal').modal('show');
-                var message = 'Date must be between <font color="red">'+pickupdate+'</font> and <font color="red">'+departureDate+'</font>';
-                $('#dateWarningModalBody').empty().append(message);
-            }
-        })
+        dateValidationInit();
     })
 
 

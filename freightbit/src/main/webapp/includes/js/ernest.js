@@ -726,6 +726,8 @@ function changeDateValue(dateSelector, mode){
 function hideVesselSchedule(){
     var vesselTable = $('#vesselSchedule tbody tr td:nth-child(6)'),
         arrivalDate = $('#vesselSchedule tbody tr td:nth-child(7)'),
+        schedClass = $('#vesselSchedule tbody tr td:nth-child(8)'),
+        bookingClass = $('#bookingClass'),
         splitDate,
         currentDate = new Date(),
         pickupDate = changeDateValue($('.pickupDate'), 'INCREMENT'),
@@ -748,6 +750,16 @@ function hideVesselSchedule(){
 
         if(new Date(pickupDate) > new Date(vesselTable.eq(i).text()) || new Date(deliveryDate) < new Date(arrivalDate.eq(i).text())){
             vesselTable.eq(i).closest('tr').remove();
+        }
+
+        if(bookingClass.val() == 'REGULAR'){
+            if(schedClass.eq(i).text() == 'PREMIUM'){
+                schedClass.eq(i).closest('tr').remove();
+            }
+        }else if(bookingClass.val() == 'ECONOMY'){
+            if(schedClass.eq(i).text() != 'ECONOMY'){
+                schedClass.eq(i).closest('tr').remove();
+            }
         }
     }
 
@@ -773,4 +785,24 @@ function addTotalRate(){
         totalPhp = totalPhp + parseFloat(itemList.eq(i).text());
     }
     $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+}
+
+function dateValidationInit(){
+    $('.finalSaveBtn').click(function(){
+        var pickupdate = new Date($('.pickupDate').val()),
+            departureDate = new Date($('.departureDate').val()),
+            finalPickupDate = new Date($('.finalPickupDate').val()),
+            finalSaveBtn = $('.finalSaveBtn'),
+            formToSubmit = $('.originForm');
+
+        if(finalPickupDate.setHours(0,0,0,0) >= pickupdate.setHours(0,0,0,0) && finalPickupDate.setHours(0,0,0,0) <= departureDate.setHours(0,0,0,0)){
+            formToSubmit.submit();
+        }else{
+            pickupdate = pickupdate.getUTCFullYear()+'-'+(pickupdate.getMonth()+1)+'-'+pickupdate.getDate();
+            departureDate = departureDate.getUTCFullYear()+'-'+(departureDate.getMonth()+1)+'-'+departureDate.getDate();
+            $('#dateWarningModal').modal('show');
+            var message = 'Date must be between <font color="red">'+pickupdate+'</font> and <font color="red">'+departureDate+'</font>';
+            $('#dateWarningModalBody').empty().append(message);
+        }
+    })
 }

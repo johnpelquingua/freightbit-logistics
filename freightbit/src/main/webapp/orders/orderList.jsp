@@ -120,7 +120,7 @@
 
                                     <%--approve booking--%>
                                     <%--<s:property value="%{#attr.order.orderId}"/>--%>
-                                    <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING' || #attr.order.orderStatus == 'ON GOING'">
+                                    <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING'">
                                         | <%--separator--%>
                                         <s:url var="approveOrderUrl" action="approveOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>

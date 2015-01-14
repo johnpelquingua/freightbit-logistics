@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-            <s:property value="%{customer.customerType}" />
+            <s:hidden value="%{customer.customerType}" id="bookingClass"/>
 
         </div>
 
