@@ -603,6 +603,10 @@ function validationForm(inputClass, submitBtn, module){
         initValidation();
     });
 
+    classInput.hover(function(){
+        initValidation();
+    })
+
     if(module == 'BOOKING'){
         $('.notifBox').click(function(){
             initValidation();
