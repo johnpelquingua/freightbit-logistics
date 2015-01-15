@@ -486,8 +486,8 @@
                         <label class="col-lg-3">Last Name<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
-                                         id="contact.lastName" required="true" maxLength="30" autofocus="true"
-                                         pattern="[a-zA-Z\s ]+"
+                                         id="contact.lastName`" required="true" maxLength="30" autofocus="true"
+                                         pattern="[a-zA-Z\s\xD1-\xF1 ]+"
                                          title="Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
@@ -495,7 +495,7 @@
                         <label class="col-lg-3">First Name<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                         id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                         id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s\xD1-\xF1 ]+"
                                          title="Name should not contain special characters and/or numbers."
                                          required="true"/>
                         </div>
@@ -504,7 +504,7 @@
                         <label class="col-lg-3">Middle Name</label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                                         id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                         id="contact.middleName" maxLength="30" pattern="[a-zA-Z\s\xD1-\xF1 ]+"
                                          title="Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
@@ -582,13 +582,14 @@
                         <label class="col-lg-3" style="width: 26%;">Address Line 1<span class="asterisk_red"></span></label>
                         <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control" required="true"
-                                    pattern="[]"/>
+                                    pattern="^[0-9]+\s+([a-zA-Z]+|[a-zA-Z]+\s[a-zA-Z]+)$" maxLength="100"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3" style="width: 26%;">Address Line 2</label>
                         <div class="col-lg-9" style="width: 74%;">
-                            <s:textfield name="address.addressLine2" id="address.addressLine2" cssClass="form-control"/>
+                            <s:textfield name="address.addressLine2" id="address.addressLine2" cssClass="form-control"
+                                    pattern=""/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -644,7 +645,7 @@
                             <div class="col-lg-8" style="width: 74%;">
                                 <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
                                              placeholder="Last Name" maxLength="30" required="true"
-                                             pattern="[a-zA-Z\s ]+"
+                                             pattern="[a-zA-Z\s ]+[ -~]"
                                              title="Name should not contain special characters and/or numbers."/>
                             </div>
                         </div>
