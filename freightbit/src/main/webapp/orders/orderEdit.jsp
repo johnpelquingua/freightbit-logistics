@@ -472,7 +472,7 @@
             <div class="modal-body">
                 <div class="panel-body">
 
-                    <s:form action="addCustomerContactEditOrder" cssClass="form-horizontal" theme="bootstrap">
+                        <s:form action="addCustomerContactEditOrder" cssClass="form-horizontal" theme="bootstrap">
                     <s:hidden name="orderIdParam" id="orderIdHolder"/>
                     <s:hidden name="contact.referenceId" id="custIdHolder"/>
                     <div class="form-group">
@@ -513,7 +513,8 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.phone"
                                          maxLength="14" required="true" id="contact_phone"
-                                         title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                         title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."
+                                         pattern=".{14}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -521,7 +522,8 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
                                          maxLength="19" required="true" id="contact_mobile"
-                                         title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                                         title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."
+                                         pattern=".{18}" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -579,7 +581,8 @@
                     <div class="form-group">
                         <label class="col-lg-3" style="width: 26%;">Address Line 1<span class="asterisk_red"></span></label>
                         <div class="col-lg-9" style="width: 74%;">
-                            <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control" required="true"/>
+                            <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control" required="true"
+                                    pattern="[]"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -603,7 +606,8 @@
                     <div class="form-group">
                         <label class="col-lg-3" style="width: 26%;">Zip<span class="asterisk_red"></span></label>
                         <div class="col-lg-9" style="width: 74%;">
-                            <s:textfield name="address.zip" id="address.zip" cssClass="form-control" required="true"/>
+                            <s:textfield name="address.zip" id="address.zip" cssClass="form-control" required="true"
+                                    pattern="[0-9]{4}"/>
                         </div>
                     </div>
                 </div>
@@ -667,7 +671,8 @@
                             <div class="col-lg-8" style="width: 74%;">
                                 <s:textfield name="consignee.phone" cssClass="form-control" id="consignee_phone"
                                              placeholder="(XXX) XXX-XXXX" maxLength="14" required="true"
-                                             title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                             title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."
+                                             pattern=".{14}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -675,7 +680,8 @@
                             <div class="col-lg-8" style="width: 74%;">
                                 <s:textfield name="consignee.mobile" cssClass="form-control" id="consignee_mobile"
                                              placeholder="(+639XX) (XXX-XXXX)" maxLength="19" required="true"
-                                             title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                                             title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."
+                                             pattern=".{18}"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -869,7 +875,8 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.phone"
                                          maxLength="14" required="true" id="consignee_contact_phone"
-                                         title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                         title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."
+                                         pattern=".{14}" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -877,7 +884,8 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile"
                                          maxLength="19" required="true" id="consignee_contact_mobile"
-                                         title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                                         title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."
+                                         pattern=".{18}"/>
                         </div>
                     </div>
                     <div class="form-group">

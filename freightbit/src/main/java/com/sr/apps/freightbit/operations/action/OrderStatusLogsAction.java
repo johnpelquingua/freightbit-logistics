@@ -9,7 +9,6 @@ import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Contacts;
-import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
@@ -216,9 +215,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                     orderItem = transformToOrderItemFormBean(entity);
                     sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
 
-                    if ("ARRIVED".equals(entity.getStatus())) {
+                    /*if ("ARRIVED".equals(entity.getStatus())) {
                         bulkItems.add(orderStatusItemId);
-                    }
+                    }*/
 
                     /*OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
                     sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
