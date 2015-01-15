@@ -766,31 +766,37 @@
                     <s:hidden name="customer.customerId" id="customerIdHolder"/>
                     <s:hidden name="orderIdParam" id="orderIdHolder"/>
                     <div class="form-group">
-                        <label class="col-lg-3">Phone</label>
+                        <label class="col-lg-3">Phone <span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
-                            <s:textfield name="customer.phone" id="customer_phone" cssClass="form-control" required="true"/>
+                            <s:textfield name="customer.phone" id="customer_phone" cssClass="form-control" required="true"
+                                         placeholder="(XXX) XXX-XXXX"
+                                         title="(XXX) XXX-XXXX Phone should not contain special characters and/or letters." />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3">Mobile</label>
+                        <label class="col-lg-3">Mobile <span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
-                            <s:textfield name="customer.mobile" id="customer_mobile" cssClass="form-control" required="true"/>
+                            <s:textfield name="customer.mobile" id="customer_mobile" cssClass="form-control" required="true"
+                                         placeholder="(+639XX)(XXX-XXXX)"
+                                         title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters." />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3">Email Address</label>
+                        <label class="col-lg-3">Email Address<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield name="customer.email" id="customer_email" cssClass="form-control" required="true"
-                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"/>
+                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"
+                                         placeholder="Email Address" />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-3">Fax</label>
+                        <label class="col-lg-3">Fax </label>
                         <div class="col-lg-9">
-                            <s:textfield name="customer.fax" id="customer_fax" cssClass="form-control" required="true"/>
+                            <s:textfield name="customer.fax" id="customer_fax" cssClass="form-control" required="true"
+                                         placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters." />
                         </div>
                     </div>
 
