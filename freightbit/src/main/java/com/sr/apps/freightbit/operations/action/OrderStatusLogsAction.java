@@ -9,7 +9,6 @@ import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Contacts;
-import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
@@ -24,7 +23,9 @@ import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private static final long serialVersionUID = 1L;
@@ -212,19 +213,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                         return "NULL_INPUT";
                     }
                     Integer orderStatusItemId = Integer.parseInt(check[i]);
-                    OrderItems entity = orderStatusLogsService.findOrderItemById(orderStatusItemId);
-                    orderItem = transformToOrderItemFormBean(entity);
-                    sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
-
-                    if ("ARRIVED".equals(entity.getStatus())) {
-                        bulkItems.add(orderStatusItemId);
-                    }
-
-                    /*OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
-                    sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
-                    orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                    orderStatusLogsService.addStatus(orderStatusLogsEntity);*/
-
+                    OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(orderStatusItemId);
+                    orderItem = transformToOrderItemFormBean(orderItemEntity);
+                    sessionAttributes.put("orderItemIdParam", orderItemEntity.getOrderItemId());
                 }
                 Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam")).getOrderId());
                 sessionAttributes.put("checkedItemsInSession", check);
@@ -282,6 +273,11 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderItemIdParam", orderItemIdParam);
+
+        //todo: del
+        for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList){
+            orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
+        }
 
         return SUCCESS;
     }
@@ -426,8 +422,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
         formBean.setNameSize(entity.getNameSize());
         OrderStatusLogs statusLogsEntity = orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId());
-        if(statusLogsEntity == null || statusLogsEntity.equals("")) {
-                formBean.setStatus(entity.getStatus());
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + statusLogsEntity.getStatus());
+        if(orderStatusLogsService.findOrderStatusLogsStatusById(entity.getOrderItemId()).getStatus() == null || orderStatusLogsService.findOrderStatusLogsStatusById(entity.getOrderItemId()).getStatus().equals("") || orderStatusLogsService.findOrderStatusLogsStatusById(entity.getOrderItemId()).getStatus().length() == 0 || orderStatusLogsService.findOrderStatusLogsStatusById(entity.getOrderItemId()).getStatus().isEmpty()) {
+
+            formBean.setStatus(entity.getStatus());
         }
         else {
                 formBean.setStatus(orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId()).getStatus());
