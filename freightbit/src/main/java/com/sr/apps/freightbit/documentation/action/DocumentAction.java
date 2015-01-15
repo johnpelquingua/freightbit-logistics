@@ -410,6 +410,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             }
 
             //DOCUMENT TAB OUTBOUND VALUE BEGIN================================================================================================================
+
             if (sessionAttributes.get("documentTab") == null || "".equals(sessionAttributes.get("documentTab"))) {
                 // Loop will count for documents already processed
                 Integer checkDocs = 0;
@@ -433,19 +434,25 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 }*/
                     // Checked documents must be equal to total documents before being processed
                 if (documentTab == null || "".equals(documentTab)) {
-                    if (outboundCount == 0) {
-                        documentTab = "NO_OUTBOUND_DOCUMENTS";
-                    } else if (outboundCount != checkDocs) {
-                        documentTab = "OUTBOUND_STAGE";
-                    } /*else if (checkDocs != checkTypeOutbound) { // total outbound documents versus processed outbound documents
-                        documentTab = "OUTBOUND_STAGE_PENDING"; // not equals will yield incomplete outbound stage
-                    }*/ else {
-                        documentTab = "OUTBOUND_COMPLETE"; // equal mean completed outbound stage
+//                    if (outboundCount == 0) {
+//                        documentTab = "NO_OUTBOUND_DOCUMENTS";
+//                    } else if (outboundCount != checkDocs) {
+//                        documentTab = "OUTBOUND_STAGE";
+//                    } /*else if (checkDocs != checkTypeOutbound) { // total outbound documents versus processed outbound documents
+//                        documentTab = "OUTBOUND_STAGE_PENDING"; // not equals will yield incomplete outbound stage
+//                    }*/ else {
+//                        documentTab = "OUTBOUND_COMPLETE"; // equal mean completed outbound stage
+//                    }
+                    if (outboundCount > 0){
+                        documentTab = "OUTBOUND_READY";
+                    }else{
+                        documentTab = "OUTBOUND_PENDING";
                     }
                 }
             } else {
                 documentTab = sessionAttributes.get("documentTab").toString(); // will get a difference document tab value from another method
             }
+
             //DOCUMENT TAB OUTBOUND VALUE END================================================================================================================
 
             //DOCUMENT TAB INBOUND VALUE BEGIN================================================================================================================
@@ -479,23 +486,28 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     }
                 }
 
-                System.out.println("OUTBOUND DOCUMENTS COUNT " + outboundCount);
-                System.out.println("PROCESSED DOCUMENTS IN OUTBOUND STAGE " + checkDocs);
-                System.out.println("INBOUND DOCUMENT COUNT " + inboundCount);
-                System.out.println("INBOUND DOCUMENTS WITH RETURNED DATES " + checkReturnedInboundDateDocs);
-                System.out.println("PROCESSED DOCUMENTS IN INBOUND STAGE " + checkDocsInbound);
+//                System.out.println("OUTBOUND DOCUMENTS COUNT " + outboundCount);
+//                System.out.println("PROCESSED DOCUMENTS IN OUTBOUND STAGE " + checkDocs);
+//                System.out.println("INBOUND DOCUMENT COUNT " + inboundCount);
+//                System.out.println("INBOUND DOCUMENTS WITH RETURNED DATES " + checkReturnedInboundDateDocs);
+//                System.out.println("PROCESSED DOCUMENTS IN INBOUND STAGE " + checkDocsInbound);
 
                 // Checked documents must be equal to total documents before being processed for outbound stage
-                if (outboundCount != checkDocs) {
-                    documentTabInbound = "OUTBOUND_DOCUMENTS_INCOMPLETE";
-                } else if (inboundCount != checkReturnedInboundDateDocs) {
-                    documentTabInbound = "NO_INBOUND_DATE";
-                } else if (inboundCount != checkDocsInbound) {
-                    documentTabInbound = "INBOUND_STAGE";
-                } else if (inboundCount == 0) {
-                    documentTabInbound = "NO_INBOUND_DOCUMENTS";
-                } else if (inboundCount == checkReturnedInboundDateDocs && inboundCount == checkDocsInbound) {
-                    documentTabInbound = "INBOUND_COMPLETE";
+//                if (outboundCount != checkDocs) {
+//                    documentTabInbound = "OUTBOUND_DOCUMENTS_INCOMPLETE";
+//                } else if (inboundCount != checkReturnedInboundDateDocs) {
+//                    documentTabInbound = "NO_INBOUND_DATE";
+//                } else if (inboundCount != checkDocsInbound) {
+//                    documentTabInbound = "INBOUND_STAGE";
+//                } else if (inboundCount == 0) {
+//                    documentTabInbound = "NO_INBOUND_DOCUMENTS";
+//                } else if (inboundCount == checkReturnedInboundDateDocs && inboundCount == checkDocsInbound) {
+//                    documentTabInbound = "INBOUND_COMPLETE";
+//                }
+                if(inboundCount > 0){
+                    documentTabInbound = "INBOUND_READY";
+                }else{
+                    documentTabInbound = "INBOUND_PENDING";
                 }
 
             } else {
@@ -537,21 +549,26 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     }
                 }
 
-                System.out.println("PROCESSED DOCUMENTS IN INBOUND STAGE " + checkDocsInbound);
-                System.out.println("FINAL OUTBOUND DOCUMENTS COUNT " + finalOutboundCount);
-                System.out.println("PROCESSED DOCUMENTS IN FINAL OUTBOUND STAGE " + checkDocsFinalOut);
-                System.out.println("FINAL OUTBOUND STAGE SENT " + checkDocsFinalOutSent);
+//                System.out.println("PROCESSED DOCUMENTS IN INBOUND STAGE " + checkDocsInbound);
+//                System.out.println("FINAL OUTBOUND DOCUMENTS COUNT " + finalOutboundCount);
+//                System.out.println("PROCESSED DOCUMENTS IN FINAL OUTBOUND STAGE " + checkDocsFinalOut);
+//                System.out.println("FINAL OUTBOUND STAGE SENT " + checkDocsFinalOutSent);
 
-                if (finalOutboundCount == 0) {
-                    documentTabFinalOutbound = "NO_FINAL_OUTBOUND_DOCUMENTS";
-                } /*else if (finalInboundCheck.size() != checkDocsFinalOut) {
+//                if (finalOutboundCount == 0) {
+//                    documentTabFinalOutbound = "NO_FINAL_OUTBOUND_DOCUMENTS";
+//                } /*else if (finalInboundCheck.size() != checkDocsFinalOut) {
+//                    documentTabFinalOutbound = "FINAL_OUTBOUND_PENDING";
+//                }*/ else if (checkDocsFinalOut == checkDocsFinalOutSent && checkDocsFinalOut != 0) {
+//                    documentTabFinalOutbound = "FINAL_OUTBOUND_SENT";
+//                } else if (finalOutboundCount == checkDocsFinalOut) {
+//                    documentTabFinalOutbound = "FINAL_OUTBOUND_COMPLETE";
+//                } else {
+//                    documentTabFinalOutbound = "FINAL_OUTBOUND_STAGE";
+//                }
+                if(finalOutboundCount > 0){
+                    documentTabFinalOutbound = "FINAL_OUTBOUND_READY";
+                }else{
                     documentTabFinalOutbound = "FINAL_OUTBOUND_PENDING";
-                }*/ else if (checkDocsFinalOut == checkDocsFinalOutSent && checkDocsFinalOut != 0) {
-                    documentTabFinalOutbound = "FINAL_OUTBOUND_SENT";
-                } else if (finalOutboundCount == checkDocsFinalOut) {
-                    documentTabFinalOutbound = "FINAL_OUTBOUND_COMPLETE";
-                } else {
-                    documentTabFinalOutbound = "FINAL_OUTBOUND_STAGE";
                 }
 
             } else {
@@ -572,20 +589,26 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             if (sessionAttributes.get("documentTabFinalInbound") == null) {
 
-                if (finalInboundCount == 0) {
-                    documentTabFinalInbound = "NO_FINAL_INBOUND_DOCUMENTS";
-                } else if (finalInboundCount == checkDocsFinalIn) {
-                    documentTabFinalInbound = "FINAL_INBOUND_COMPLETE";
-                } else {
-                    documentTabFinalInbound = "FINAL_INBOUND_STAGE";
+//                if (finalInboundCount == 0) {
+//                    documentTabFinalInbound = "NO_FINAL_INBOUND_DOCUMENTS";
+//                } else if (finalInboundCount == checkDocsFinalIn) {
+//                    documentTabFinalInbound = "FINAL_INBOUND_COMPLETE";
+//                } else {
+//                    documentTabFinalInbound = "FINAL_INBOUND_STAGE";
+//                }
+
+                if(finalInboundCount > 0){
+                    documentTabFinalInbound = "FINAL_INBOUND_READY";
+                }else{
+                    documentTabFinalInbound = "FINAL_INBOUND_PENDING";
                 }
 
             } else {
                 documentTabFinalInbound = sessionAttributes.get("documentTabFinalInbound").toString();
             }
 
-            System.out.println("FINAL INBOUND DOCUMENTS COUNT " + finalInboundCount);
-            System.out.println("PROCESSED DOCUMENTS IN FINAL INBOUND STAGE " + checkDocsFinalIn);
+//            System.out.println("FINAL INBOUND DOCUMENTS COUNT " + finalInboundCount);
+//            System.out.println("PROCESSED DOCUMENTS IN FINAL INBOUND STAGE " + checkDocsFinalIn);
 
             //DOCUMENT TAB FINAL INBOUND VALUE END================================================================================================================
 
@@ -601,7 +624,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             if (sessionAttributes.get("documentTabComplete") == null) {
 
-                if (completeCount == 0) {
+                /*if (completeCount == 0) {
                     documentTabComplete = "NO_COMPLETE_DOCUMENTS";
                 } else if (documentsList.size() == completeEntityList.size() && documentsList.size() != checkDocsComplete) {
                     documentTabComplete = "COMPLETE_STAGE";
@@ -609,41 +632,46 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentTabComplete = "ALL_DOCUMENTS_COMPLETE";
                 } else {
                     documentTabComplete = "COMPLETE_STAGE_INACTIVE";
+                }*/
+                if(completeCount > 0){
+                    documentTabComplete = "COMPLETE_READY";
+                }else{
+                    documentTabComplete = "COMPLETE_PENDING";
                 }
 
             } else {
                 documentTabComplete = sessionAttributes.get("documentTabComplete").toString();
             }
 
-            System.out.println("COMPLETE DOCUMENTS COUNT " + completeCount);
-            System.out.println("PROCESSED DOCUMENTS IN COMPLETE STAGE " + checkDocsComplete);
-            System.out.println("ALL DOCUMENTS COUNT " + documentsList.size());
+//            System.out.println("COMPLETE DOCUMENTS COUNT " + completeCount);
+//            System.out.println("PROCESSED DOCUMENTS IN COMPLETE STAGE " + checkDocsComplete);
+//            System.out.println("ALL DOCUMENTS COUNT " + documentsList.size());
 
             //DOCUMENT TAB COMPLETE VALUE END======================================================================================================================
 
             //DOCUMENT TAB ARCHIVE VALUE BEGIN====================================================================================================================
 
-            Integer checkDocsArchive = 0; // Loop will count for archive documents with returned date and status of 5
-
-            for (Documents documentElem : archiveEntityList) {
-                if (documentElem.getDocumentProcessed() >= 5) {
-                    checkDocsArchive = checkDocsArchive + 1;
-                }
-            }
-
-            if (sessionAttributes.get("documentTabArchive") == null) {
-
-                if (archiveCount == 0) {
-                    documentTabArchive = "NO_ARCHIVE_DOCUMENTS";
-                } else if (archiveCount == checkDocsArchive) {
-                    documentTabArchive = "ARCHIVE_COMPLETE";
-                } else {
-                    documentTabArchive = "ARCHIVE";
-                }
-
-            } else {
-                documentTabArchive = sessionAttributes.get("documentTabArchive").toString();
-            }
+//            Integer checkDocsArchive = 0; // Loop will count for archive documents with returned date and status of 5
+//
+//            for (Documents documentElem : archiveEntityList) {
+//                if (documentElem.getDocumentProcessed() >= 5) {
+//                    checkDocsArchive = checkDocsArchive + 1;
+//                }
+//            }
+//
+//            if (sessionAttributes.get("documentTabArchive") == null) {
+//
+//                if (archiveCount == 0) {
+//                    documentTabArchive = "NO_ARCHIVE_DOCUMENTS";
+//                } else if (archiveCount == checkDocsArchive) {
+//                    documentTabArchive = "ARCHIVE_COMPLETE";
+//                } else {
+//                    documentTabArchive = "ARCHIVE";
+//                }
+//
+//            } else {
+//                documentTabArchive = sessionAttributes.get("documentTabArchive").toString();
+//            }
 
             //DOCUMENT TAB ARCHIVE VALUE END======================================================================================================================
 
@@ -1043,13 +1071,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Map sessionAttributes = ActionContext.getContext().getSession();
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
 
-        if ("".equals(documentEntity.getReferenceNumber()) || documentEntity.getReferenceNumber() == null ) {
-            documentEntity.setDocumentStatus("INPUT SERIES NUMBER");
+        if ("".equals(documentEntity.getReferenceNumber()) || documentEntity.getReferenceNumber() == null) {
+            /*documentEntity.setDocumentStatus("INPUT SERIES NUMBER");*/
             documentflag = 1; // Series number must be entered error
             sessionAttributes.put("documentflag", documentflag);
         }else {
+            documentEntity.setInboundStage(1);
             documentEntity.setDocumentProcessed(1);
-            documentEntity.setDocumentStatus("Checked!");
+            documentEntity.setDocumentStatus("INBOUND STAGE");
             documentflag = 5; // document checked
             sessionAttributes.put("documentflag", documentflag);
         }
@@ -1066,12 +1095,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
 
         if ("".equals(documentEntity.getReferenceNumber()) || documentEntity.getReferenceNumber() == null ) {
-            documentEntity.setDocumentStatus("INPUT SERIES NUMBER");
+            /*documentEntity.setDocumentStatus("INPUT SERIES NUMBER");*/
             documentflag = 1; // Series number must be entered error
             sessionAttributes.put("documentflag", documentflag);
         }else {
+            documentEntity.setFinalOutboundStage(1);
             documentEntity.setDocumentProcessed(2);
-            documentEntity.setDocumentStatus("Checked!");
+            documentEntity.setDocumentStatus("FINAL OUTBOUND STAGE");
             documentflag = 5; // document checked
             sessionAttributes.put("documentflag", documentflag);
         }
@@ -1088,12 +1118,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
 
         if ("".equals(documentEntity.getReferenceNumber()) || documentEntity.getReferenceNumber() == null ) {
-            documentEntity.setDocumentStatus("INPUT SERIES NUMBER");
+//            documentEntity.setDocumentStatus("INPUT SERIES NUMBER");
             documentflag = 1; // Series number must be entered error
             sessionAttributes.put("documentflag", documentflag);
         }else {
+            documentEntity.setFinalInboundStage(1);
             documentEntity.setDocumentProcessed(3);
-            documentEntity.setDocumentStatus("Checked!");
+            documentEntity.setDocumentStatus("FINAL INBOUND STAGE");
             documentflag = 5; // document checked
             sessionAttributes.put("documentflag", documentflag);
         }
@@ -1110,12 +1141,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
 
         if ("".equals(documentEntity.getReferenceNumber()) || documentEntity.getReferenceNumber() == null ) {
-            documentEntity.setDocumentStatus("INPUT SERIES NUMBER");
+//            documentEntity.setDocumentStatus("INPUT SERIES NUMBER");
             documentflag = 1; // Series number must be entered error
             sessionAttributes.put("documentflag", documentflag);
         }else {
+            documentEntity.setCompleteStage(1);
             documentEntity.setDocumentProcessed(4);
-            documentEntity.setDocumentStatus("Checked!");
+            documentEntity.setDocumentStatus("COMPLETE STAGE");
             documentflag = 5; // document checked
             sessionAttributes.put("documentflag", documentflag);
         }
@@ -1132,12 +1164,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
 
         if ("".equals(documentEntity.getReferenceNumber()) || documentEntity.getReferenceNumber() == null ) {
-            documentEntity.setDocumentStatus("INPUT SERIES NUMBER");
+//            documentEntity.setDocumentStatus("INPUT SERIES NUMBER");
             documentflag = 1; // Series number must be entered error
             sessionAttributes.put("documentflag", documentflag);
         }else {
+            documentEntity.setCompleteStage(1);
             documentEntity.setDocumentProcessed(5);
-            documentEntity.setDocumentStatus("Checked!");
+            documentEntity.setDocumentStatus("COMPLETED");
             documentflag = 5; // document checked
             sessionAttributes.put("documentflag", documentflag);
         }

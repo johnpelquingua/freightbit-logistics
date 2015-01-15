@@ -530,7 +530,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
         documentEntity.setOutboundStage(0);
         documentEntity.setVendorCode("ELC");
-        documentEntity.setDocumentType("MASTER");
+        /*documentEntity.setDocumentType("MASTER");*/
         documentsService.addDocuments(documentEntity);
 
         // Booking Request Form will be created under pending documents end
