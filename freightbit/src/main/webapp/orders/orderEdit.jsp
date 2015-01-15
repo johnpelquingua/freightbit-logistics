@@ -876,7 +876,7 @@
                             <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.phone"
                                          maxLength="14" required="true" id="consignee_contact_phone"
                                          title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."
-                                         pattern=".{14}"/>
+                                         pattern=".{14}" />
                         </div>
                     </div>
                     <div class="form-group">
