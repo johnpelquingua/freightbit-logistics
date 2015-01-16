@@ -276,7 +276,7 @@
                     <div class="col-lg-9" style="text-align:left !important;">
                         <%--<s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                   name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>--%>
-                        <s:checkboxlist cssClass="notifBox" list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy"/>
+                        <s:checkboxlist cssClass="notifBox" list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy" />
 
                     </div>
 
@@ -636,7 +636,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-lg-3" style="width: 26%;">First name<span class="asterisk_red"></span></label>
+                            <label class="col-lg-3" style="width: 26%;">First Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" style="width: 74%;">
                                 <s:textfield name="consignee.firstName" cssClass="form-control" id="consignee.firstName"
                                              placeholder="First Name" maxLength="30" autofocus="true" required="true"
@@ -1164,7 +1164,7 @@ $(document).ready(function() {
                 }
 
             else {
-                toDateDelivery.val(dateText);
+                /*toDateDelivery.val(dateText);*/
                 }
             } },
 
@@ -1192,7 +1192,7 @@ $(document).ready(function() {
                 }
 
             else {
-                fromDatePickUp.val(dateText);
+                /*fromDatePickUp.val(dateText);*/
                 }
             }},
 
@@ -1319,15 +1319,26 @@ $(document).ready(function() {
         $('#datepicker2').val('');
         $('#datepicker1').prop('disabled' , false);
         $('#datepicker2').prop('disabled' , false);
-        $('#select1').prop('disabled',false);
-        $('#select2').prop('disabled',false);
+        $('#select1').prop('disabled', false);
+        $('#select2').prop('disabled', false);
+        $("#order_modeOfPayment").val('');
+        $("#order_modeOfPayment").val('');
+        $("#customerPhone_textfield").val('');
+        $("#customerMobile_textfield").val('');
+        $("#customerEmail_textfield").val('');
+        $("#customerFax_textfield").val('');
+        $("#Comments").val('');
+        $("#consigneeContact").val('');
+
         for (var i = 0; i < sMode.options.length; i++){
 
             if(sMode.options[i].value == "PIER TO PIER"){
                 sMode.options[i].style.display = "block";
                 sMode.options[i].selected = true;
+
             }else{
                 sMode.options[i].style.display = "none";
+
             }
         }
 
@@ -1352,6 +1363,15 @@ $(document).ready(function() {
         $('#datepicker2').prop('disabled' , false);
         $('#select1').prop('disabled',false);
         $('#select2').prop('disabled',false);
+        $("#order_modeOfPayment").val('');
+        $("#order_modeOfPayment").val('');
+        $("#customerPhone_textfield").val('');
+        $("#customerMobile_textfield").val('');
+        $("#customerEmail_textfield").val('');
+        $("#customerFax_textfield").val('');
+        $("#Comments").val('');
+        $("#consigneeContact").val('');
+
             for (var i = 0; i < sMode.options.length; i++) {
                 $("#order_modeOfService").val('');
                 if(sMode.options[i].value == "DOOR TO DOOR" || sMode.options[i].value == "DOOR TO PIER" || sMode.options[i].value == "PIER TO DOOR"){
@@ -1381,6 +1401,15 @@ $(document).ready(function() {
         $('#datepicker2').val('');
         $('#datepicker1').prop('disabled' , false);
         $('#datepicker2').prop('disabled' , false);
+        $("#order_modeOfPayment").val('');
+        $("#customerPhone_textfield").val('');
+        $("#customerMobile_textfield").val('');
+        $("#customerEmail_textfield").val('');
+        $("#customerFax_textfield").val('');
+        $("#Comments").val('');
+        $("#consigneeContact").val('');
+
+
         for (var i = 0; i < sMode.options.length; i++){
             $("#order_modeOfService").val('');
             if(sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE"){
@@ -1416,6 +1445,7 @@ $(document).ready(function() {
             if (document.getElementById('order_freightType').value != "TRUCKING") {
                 if (sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE") {
                     sMode.options[i].style.display = "none";
+
                 } else {
                     sMode.options[i].style.display = "block";
                 }
