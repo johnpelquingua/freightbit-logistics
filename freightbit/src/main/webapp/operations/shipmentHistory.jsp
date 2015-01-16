@@ -69,11 +69,11 @@
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Container: </label>
                 </s:if>
                 <s:else>
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Item: <s:property value="orderItem.nameSize"/></label>
+                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Item: </label>
                 </s:else>
                 <br />
                 <br />
-                <div class="col-lg-10">
+                <div class="col-lg-5">
                     <ol>
                         <s:iterator value="nameSizeList" >
                             <li><s:property /></li>
@@ -107,11 +107,15 @@
 
                 <s:form cssClass="form-horizontal" theme="bootstrap" action="updateBulkStatus" >
                 <s:if test="orderItemIdParam != null">
+                    <%--<s:property value="%{orderItemIdParam}"/>A--%>
                     <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                 </s:if>
                 <s:else>
                     <s:hidden value="%{orderStatusLogsBean.orderItemId}" name="orderStatusLogsBean.orderItemId"/>
+                    <%--<s:property value="%{orderStatusLogsBean.orderItemId}"/>B
+                    <s:hidden value="%{orderStatusLogsBean.orderItemId}" name="orderItemIdParam"/>--%>
                 </s:else>
+
 
                 <div class="col-lg-3" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Actual Date/Time <span class="asterisk_red"></span></label>

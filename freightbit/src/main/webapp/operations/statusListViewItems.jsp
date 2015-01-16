@@ -106,7 +106,7 @@
                                    requestURI="viewStatusListItems.action" pagesize="10"
                                    class="bulkItemStatus table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
                                    style="margin-top: 15px;">
-
+<tr>
                         <td><display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
                             <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
                         </display:column></td>
@@ -149,7 +149,7 @@
                                 </s:a>
                             </display:column>
                         </td>
-
+</tr>
                     </display:table>
                     <div class="row">
                             <%--<s:textfield  style="display: none" cssClass="col-lg-6" name="orderItem.editItem" id="edit"></s:textfield>--%>
@@ -165,10 +165,10 @@
                                 </button>
                             </s:a>
 
-                            <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set Status" onclick="addText();">
+                            <button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set Status" onclick="addText();">
                                 Set Status
-                            </button>--%>
-                                <s:submit cssClass="col-lg-4 btn btn-default" value="Set Status" onclick="addText();"></s:submit>
+                            </button>
+                                <%--<s:submit cssClass="col-lg-4 btn btn-default" value="Set Status" onclick="addText();"></s:submit>--%>
 
                         </div>
                     </div>
@@ -201,7 +201,7 @@
         document.getElementById("edit").value = "";
     }
 
-    /*$(document).ready(function(){
+    $(document).ready(function(){
         $('.setStatusBtn').click(function(){
             var bulkStatus = $('.bulkItemStatus tbody tr td:nth-child(4)'),
             sameStatus = $('.bulkItemStatus tbody tr td:nth-child(4)').eq(0).text(),
@@ -218,5 +218,5 @@
                 alert('Current statuses of both items should be the same.');
             }
         });
-     });*/
+     });
 </script>

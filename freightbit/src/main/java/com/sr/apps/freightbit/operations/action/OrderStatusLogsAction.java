@@ -119,46 +119,44 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String viewStatusListItemsNullError() {
+
+        addActionMessage("No Item(s) selected.");
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
         List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
 
-        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParam);
+        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParamSession);
 
         // Display correct Order Number in breadcrumb
-        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        Orders orderEntity = orderService.findOrdersById(orderIdParamSession);
         bookingNumber = orderEntity.getOrderNumber();
         order = transformToOrderFormBean(orderEntity);
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        List<OrderStatusLogs> orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs((Integer) sessionAttributes.get("orderItemIdParam"));
 
         for (OrderItems orderItemsElem : orderItemEntityList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
 
-        clearErrorsAndMessages();
-        addActionMessage("No Item(s) selected.");
         return SUCCESS;
     }
 
     public String viewStatusListItemsError() {
+
+        addActionMessage("Status must be the same.");
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
         List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
 
-        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParam);
+        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParamSession);
 
         // Display correct Order Number in breadcrumb
-        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        Orders orderEntity = orderService.findOrdersById(orderIdParamSession);
         bookingNumber = orderEntity.getOrderNumber();
         order = transformToOrderFormBean(orderEntity);
-
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        List<OrderStatusLogs> orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs((Integer) sessionAttributes.get("orderItemIdParam"));
 
         for (OrderItems orderItemsElem : orderItemEntityList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
 
-        clearErrorsAndMessages();
-        addActionMessage("Status must be the same.");
         return SUCCESS;
     }
 
@@ -197,52 +195,131 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String setBulkItemStatus() {
-        List<Integer> bulkItems = new ArrayList();
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        System.out.println("CHECK WORD PASS " + check);
-        System.out.println("ORDER ITEM ID " + orderItemIdParam);
+        List<Integer> ongoingBulkItems = new ArrayList();
+        List<Integer> planning1BulkItems = new ArrayList();
+        List<Integer> planning2BulkItems = new ArrayList();
+        List<Integer> planning3BulkItems = new ArrayList();
+        List<Integer> deliveredBulkItems = new ArrayList();
+        List<Integer> pickupBulkItems = new ArrayList();
+        List<Integer> positionedBulkItems = new ArrayList();
+        List<Integer> departureBulkItems = new ArrayList();
+        List<Integer> transitBulkItems = new ArrayList();
+        List<Integer> arrivedBulkItems = new ArrayList();
+        List<Integer> returnedBulkItems = new ArrayList();
+        List<Integer> consolidationBulkItems = new ArrayList();
 
+        Map sessionAttributes = ActionContext.getContext().getSession();
         if("".equals(orderItem.getEditItem())) {
             if (check == null) {
                 return INPUT;
             } else {
                 for (int i = 0; i < check.length; i++) {
+
                     if (check[i].equals("false") || check[i].equals("null") || "".equals(check[i])) { // catches error when no values inside check
+                        sessionAttributes.put("orderIdParam", orderStatusLogsBean.getOrderId());
                         return "NULL_INPUT";
                     }
                     Integer orderStatusItemId = Integer.parseInt(check[i]);
-                    OrderItems entity = orderStatusLogsService.findOrderItemById(orderStatusItemId);
-                    orderItem = transformToOrderItemFormBean(entity);
-                    sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
+                    Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById(orderStatusItemId).getOrderId());
+                    order = transformToOrderFormBean(orderEntity);
+                    OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(orderStatusItemId);
 
-                    /*if ("ARRIVED".equals(entity.getStatus())) {
-                        bulkItems.add(orderStatusItemId);
-                    }*/
+                    //To Display the listed statuses under the items selected.
+                    List<OrderStatusLogs> orderStatusLogsEntityList = new ArrayList<OrderStatusLogs>();
+                    orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs(orderStatusItemId);
+                    orderItem = transformToOrderItemFormBean(orderItemEntity);
 
-                    /*OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
-                    sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
-                    orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                    orderStatusLogsService.addStatus(orderStatusLogsEntity);*/
+                    for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
+                        orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
+                    }
 
+                    sessionAttributes.put("orderItemIdParam", orderItemEntity.getOrderItemId());
+
+                    //Use to check if the statuses being checked matched then it will store it to a variable called "check".
+                    if ("ON GOING".equals(orderItemEntity.getStatus())) {
+                        ongoingBulkItems.add(orderStatusItemId);
+                    }
+                    else if("PLANNING 1".equals(orderItemEntity.getStatus())) {
+                        planning1BulkItems.add(orderStatusItemId);
+                    }
+                    else if("PLANNING 2".equals(orderItemEntity.getStatus())) {
+                        planning2BulkItems.add(orderStatusItemId);
+                    }
+                    else if("PLANNING 3".equals(orderItemEntity.getStatus())) {
+                        planning3BulkItems.add(orderStatusItemId);
+                    }
+                    else if("DELIVERED".equals(orderItemEntity.getStatus())) {
+                        deliveredBulkItems.add(orderStatusItemId);
+                    }
+                    else if("PICKUP".equals(orderItemEntity.getStatus())) {
+                        pickupBulkItems.add(orderStatusItemId);
+                    }
+                    else if("POSITIONED".equals(orderItemEntity.getStatus())) {
+                        positionedBulkItems.add(orderStatusItemId);
+                    }
+                    else if("QUEUE FOR DEPARTURE".equals(orderItemEntity.getStatus())) {
+                        departureBulkItems.add(orderStatusItemId);
+                    }
+                    else if("IN-TRANSIT".equals(orderItemEntity.getStatus())) {
+                        transitBulkItems.add(orderStatusItemId);
+                    }
+                    else if("ARRIVED".equals(orderItemEntity.getStatus())) {
+                        arrivedBulkItems.add(orderStatusItemId);
+                    }
+                    else if("RETURNED TO ORIGIN".equals(orderItemEntity.getStatus())) {
+                        returnedBulkItems.add(orderStatusItemId);
+                    }
+
+                    else if("QUEUE FOR CONSOLIDATION".equals(orderItemEntity.getStatus())) {
+                        consolidationBulkItems.add(orderStatusItemId);
+                    }
                 }
+
+                //The code below functions as a list for the OrderItems being selected, so if the user set a status for the bulk items, it will display it on the page.
                 Orders orderEntity = orderService.findOrdersById(orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam")).getOrderId());
                 sessionAttributes.put("checkedItemsInSession", check);
                 order = transformToOrderFormBean(orderEntity);
+
                 nameSizeList = new ArrayList<String>();
-                Integer itemSize;
-                List<Integer> bulkItemList = new ArrayList();
-                itemSize = bulkItems.size();
-                bulkItemList = bulkItems;
-                for(int i = 0; i < itemSize; i++){
-                    OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(bulkItemList.get(i));
+
+                for(int x = 0; x < check.length; x++){
+                    OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById(Integer.parseInt(check[x]));
                     nameSizeList.add(orderItemEntity.getNameSize());
                 }
-                sessionAttributes.put("nameSizeList", nameSizeList);
-                System.out.print("qwerty"+nameSizeList);
 
+                sessionAttributes.put("nameSizeList", nameSizeList);
+                System.out.print("qwerty" + nameSizeList);
             }
         }
         return "SET";
+    }
+
+    public String updateBulkStatus() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        try {
+        /*System.out.println("0987654321"+orderItemIdParam);
+        System.out.println("1234567890"+orderStatusLogsBean.getOrderItemId());*/
+            sessionAttributes.get("checkedItemsInSession");
+            System.out.println("123456780" + sessionAttributes.get("checkedItemsInSession"));
+
+//            for() {
+            OrderItems orderItemEntity = orderStatusLogsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
+            orderStatusLogsBean.setOrderItemId(orderItemEntity.getOrderItemId());
+
+            OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
+            orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            orderStatusLogsService.addStatus(orderStatusLogsEntity);
+
+            //Status in OrderStatusLogs will be passed into OrderItems table
+            orderItemEntity.setStatus(orderStatusLogsBean.getStatus());
+            orderStatusLogsService.updateStatusOrderItem(orderItemEntity);
+//            }
+
+        } catch (Exception e) {
+            addActionError("Update Failed");
+            return INPUT;
+        }
+        return SUCCESS;
     }
 
     public String loadSuccessSetStatus() {
@@ -255,13 +332,14 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
         for (OrderStatusLogs orderStatusLogsElem : orderStatusLogsEntityList) {
         orderStatusLogs.add(transformToOrderStatusLogsFormBean(orderStatusLogsElem));
-    }
-    // Will show orderItem on second load without passing orderItemIdParam from table
-    orderStatusLogsBean.setOrderItemId(orderItemEntity.getOrderItemId());
+        }
+        // Will show orderItem on second load without passing orderItemIdParam from table
+        orderStatusLogsBean.setOrderItemId(orderItemEntity.getOrderItemId());
 
-    clearErrorsAndMessages();
-    addActionMessage("Success! Shipment Logs has been updated.");
-    return SUCCESS;
+        clearErrorsAndMessages();
+        addActionMessage("Success! Shipment Logs has been updated.");
+        nameSizeList = (List) sessionAttributes.get("nameSizeList");
+        return SUCCESS;
     }
 
     public String loadItemShipmentHistory() {
@@ -306,20 +384,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String updateBulkStatus() {
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        try {
-            OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
-            sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
-            orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-            orderStatusLogsService.addStatus(orderStatusLogsEntity);
-        } catch (Exception e) {
-            addActionError("Update Failed");
-            return INPUT;
-        }
-        return SUCCESS;
-    }
-
     public String updateStatus() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         try {
@@ -328,49 +392,11 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 orderStatusLogsService.addStatus(orderStatusLogsEntity);
 
-    } catch (Exception e) {
+        } catch (Exception e) {
                 addActionError("Update Failed");
                 return INPUT;
             }
-        /*try {
-            OrderItems entity = transformToOrderItemEntity(orderItem);
-            orderStatusLogsService.updateStatusOrderItem(entity);
-
-            OrderStatusLogs orderStatusLogs = new OrderStatusLogs();
-            Map sessionAttributes = ActionContext.getContext().getSession();
-
-            orderStatusLogs.setOrderId((Integer) sessionAttributes.get("orderIdParam"));
-            orderStatusLogs.setOrderItemId((Integer) sessionAttributes.get("orderItemIdParam"));
-            orderStatusLogs.setCreatedTimestamp(new Date());
-
-            Date date = new Date();
-            Date time = new Date();
-
-            Calendar calendarA = Calendar.getInstance();
-            calendarA.setTime(date);
-
-            Calendar calendarB = Calendar.getInstance();
-            calendarB.setTime(time);
-
-            calendarA.set(Calendar.HOUR_OF_DAY, calendarB.get(Calendar.HOUR_OF_DAY));
-            calendarA.set(Calendar.MINUTE, calendarB.get(Calendar.MINUTE));
-            calendarA.set(Calendar.SECOND, calendarB.get(Calendar.SECOND));
-            calendarA.set(Calendar.MILLISECOND, calendarB.get(Calendar.MILLISECOND));
-
-            Date result = calendarA.getTime();
-
-            orderStatusLogs.setCreatedTimestamp(result);
-
-            orderStatusLogs.setCreatedBy(commonUtils.getUserNameFromSession());
-            orderStatusLogs.setStatus(orderItem.getStatus());
-
-            orderStatusLogsService.addStatus(orderStatusLogs);
-        } catch (Exception e) {
-            addActionError("Update Failed");
-            return INPUT;
-        }*/
         return SUCCESS;
-
     }
 
     public OrderItems transformToOrderItemEntity (OrderItemsBean formBean) {
