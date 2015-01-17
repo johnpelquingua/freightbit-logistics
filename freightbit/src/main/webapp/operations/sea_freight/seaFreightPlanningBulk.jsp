@@ -184,7 +184,7 @@
                 <div class="col-lg-4">
                     <div>
                         <s:select list="vendorShippingListClass" name="operationsBean.vendorList"
-                                  id="operationsBean_vendorList"
+                                  id="operationsBean_vendorList" required="true"
                                   listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                   emptyOption="true" ></s:select>
                     </div>
@@ -580,5 +580,7 @@
     select2.onchange = function() {
         preventDuplicatePort.call(this, select1, this.selectedIndex);
     };
+
+    var select3 =
 
 </script>

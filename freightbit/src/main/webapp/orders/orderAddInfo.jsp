@@ -47,68 +47,68 @@
                 <div class="row">
 
                     <div class="col-lg-6 ">
-                        <table class="table table-user-information">
+                        <table class="table table-user-information" style="table-layout: fixed;">
                             <tbody>
                             <tr>
 
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important; border-top: none;">Booking Number</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Booking Number</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.orderNumber"/></td>
                             </tr>
 
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Freight Type</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Freight Type</td>
                                 <td style="text-align: left !important;"><s:property value="order.freightType"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Service Mode</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Service Mode</td>
                                 <td style="text-align: left !important;"><s:property value="order.modeOfService"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Origin Port</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Origin Port</td>
                                 <td style="text-align: left !important;"><s:property value="order.originationPort"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Notification Type</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Notification Type</td>
                                 <td style="text-align: left !important;"><s:property value="order.notifyBy"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Status</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Status</td>
                                 <td style="text-align: left !important;"><s:property value="order.orderStatus"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Comments</td>
-                                <td style="text-align: left !important;"><s:property value="order.comments"/></td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Comments</td>
+                                <td style="text-align: left; word-wrap: break-word; !important;"><s:property value="order.comments"/></td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
 
                     <div class="col-lg-6 ">
-                        <table class="table table-user-information">
+                        <table class="table table-user-information" style="table-layout: fixed;">
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important; border-top: none;">Booking Date</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Booking Date</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.orderDate"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Service Requirement</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Service Requirement</td>
                                 <td style="text-align: left !important;" class="serviceReq"><s:property value="order.serviceRequirement"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Payment Mode</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Payment Mode</td>
                                 <td style="text-align: left !important;"><s:property value="order.modeOfPayment"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Destination Port</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Destination Port</td>
                                 <td style="text-align: left !important;"><s:property value="order.destinationPort"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Total Rate</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Total Rate</td>
                                 <%--<td style="text-align: left !important;"><s:property value="order.rates"/></td>--%>
                                 <td style="text-align: left !important;">"N/A"</td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:right !important;">Prepared By</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Prepared By</td>
                                 <td style="text-align: left !important;"><s:property value="order.accountRep"/></td>
                             </tr>
                             </tbody>

@@ -287,7 +287,7 @@
                     <label class="col-lg-3 control-label" style="margin-top: 5px; clear:both;">Comments </label>
 
                     <div class="col-lg-9">
-                        <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="Comments" />
+                        <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="Comments"  maxLength="255"/>
                     </div>
 
                 </div>
@@ -564,7 +564,7 @@
                         <label class="col-lg-3" style="width: 26%;">Address Type<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" style="width: 74%;">
                             <s:select name="address.addressType" list="addressTypeList" listValue="value"
-                                      listKey="key"
+                                      listKey="key" required="true"
                                       cssClass="form-control" id="address.addressType" emptyOption="true"/>
                             </div>
                             </div>

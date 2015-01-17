@@ -780,7 +780,7 @@
                         <label class="col-lg-3">Phone <span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield name="customer.phone" id="customer_phone" cssClass="form-control" required="true"
-                                         placeholder="(XXX) XXX-XXXX"
+                                         placeholder="(XXX) XXX-XXXX" pattern=".{14,}"
                                          title="(XXX) XXX-XXXX Phone should not contain special characters and/or letters." />
                         </div>
                     </div>
@@ -789,7 +789,7 @@
                         <label class="col-lg-3">Mobile <span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield name="customer.mobile" id="customer_mobile" cssClass="form-control" required="true"
-                                         placeholder="(+639XX)(XXX-XXXX)"
+                                         placeholder="(+639XX)(XXX-XXXX)" pattern=".{18,}"
                                          title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters." />
                         </div>
                     </div>
@@ -806,7 +806,7 @@
                     <div class="form-group">
                         <label class="col-lg-3">Fax </label>
                         <div class="col-lg-9">
-                            <s:textfield name="customer.fax" id="customer_fax" cssClass="form-control" required="true"
+                            <s:textfield name="customer.fax" id="customer_fax" cssClass="form-control" pattern=".{14,}"
                                          placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters." />
                         </div>
                     </div>
