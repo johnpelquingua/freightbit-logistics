@@ -2450,6 +2450,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
     // Authorization to Withdraw
     public String generateAuthorizationToWithdrawReport() {
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>documentIdParam " + documentIdParam);
+
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         String orderId = (documentEntity.getReferenceId()).toString();
 

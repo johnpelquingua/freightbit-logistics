@@ -1617,6 +1617,13 @@ function addDocument(referenceId,documentStage) {
             window.location.href = '#documentTab';
         }
     }
+    else if (documentName == "PROFORMA BILL OF LADING") {
+        var win = window.open('documentations/generateAuthorizationToWithdrawReport?documentIdParam=' + documentId, 'Proforma Bill of Lading', 'width=910,height=800');
+        win.onload = function () {
+            this.document.title = "Authorization to Withdraw";
+            window.location.href = '#documentTab';
+        }
+    }
 }
 
 /*function generateReleaseOrderReport(){
