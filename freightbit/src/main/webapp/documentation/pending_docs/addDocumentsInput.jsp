@@ -17,7 +17,7 @@
                 <%--<s:hidden name="document.referenceId" value="orderIdParam" />--%>
                 <%--<s:textfield cssClass="form-control" style="margin-bottom: 15px !important;" value="%{document.documentName}" disabled="true"></s:textfield>--%>
                     <input list="documents" id="documentName" name="document.documentName" class="form-control" maxLength="30" required="true"/>
-                    <datalist id="documents">
+                    <datalist id="documents" class="datalistDocuments">
                         <s:iterator value="documentNames">
                             <%--<option value=<s:property value="value"/> />--%>
                             <%--<s:property> </s:property>--%>
@@ -54,5 +54,21 @@
     </div>
 
 </div>
+
+<script>
+    $(document).ready(function(){
+        for(var i=0; i < $('.datalistDocuments option').size(); i++){
+            if($('.datalistDocuments option').eq(i).val() == ''){
+                $('.datalistDocuments option').eq(i).remove();
+            }
+
+            if($('[name="documentStageParam"]').val() == 'OUTBOUND'){
+                if($('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT'){
+                    $('.datalistDocuments option').eq(i).remove();
+                }
+            }
+        }
+    });
+</script>
 
 
