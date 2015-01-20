@@ -2,21 +2,6 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<style>
-/*Style for scrollable table*/
-
-/*html,body{width:100%;height:100%;}
-div.horizontal{display:block;width:100%;height:100%;overflow:hidden;position:static}
-div.scroller{display:block;width:100%;height:100%;overflow:hidden;position:static}
-.table{display:table;width:150%;max-width:150%;height:100%}
-.table > section{width:3600px;height:100%;display:table-cell;background:#e3e3e3;vertical-align:middle;text-align:center}
-.TableContainer{overflow:scroll;overflow-x: overlay;}
-article{width:800px;height:400px;display:table-cell;background:#e3e3e3;vertical-align:middle;text-align:center}
-article:nth-child(2n+2){background:#d1d1d1}
-.table-bordered > thead > tr > th{padding: 10px;}*/
-
-</style>
-
 <div class="row">
     <div class="col-lg-12">
 
@@ -153,17 +138,4 @@ article:nth-child(2n+2){background:#d1d1d1}
     $(document).ready(function(){
         tableProp('DESTI_ORIG', 'order', 0, 7, 8, 9, 5, 6, 1);
     });
-//    /*Optional query for scrolling*/
-//
-//    $(window).load(function() {
-//    var vWidth = $(window).width();
-//    var vHeight = $(window).height();
-//    $('.table > section').css('width', vWidth).css('height', vHeight);
-//    });
-//
-//    $(window).resize(function() {
-//    var vWidth = $(window).width();
-//    var vHeight = $(window).height();
-//    $('.table > section').css('width', vWidth).css('height', vHeight);
-//    });
 </script>

@@ -2890,9 +2890,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntityProforma.setReferenceTable("ORDERS");
                     documentEntityProforma.setOrderNumber(orderEntity.getOrderNumber());
                     documentEntityProforma.setCreatedDate(new Date());
-                    documentEntityProforma.setDocumentStatus("INPUT SERIES NUMBER");
+                    documentEntityProforma.setDocumentStatus("FROM PLANNING");
                     documentEntityProforma.setVendorCode(itemVendor);
-                    documentEntityProforma.setOutboundStage(0);
+                    documentEntityProforma.setOutboundStage(1);
                     documentEntityProforma.setDocumentProcessed(0);
                     documentEntityProforma.setCreatedBy(commonUtils.getUserNameFromSession());
                     // orderitem id should be set in orderitemid column WIP
@@ -2964,9 +2964,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntity.setReferenceTable("ORDERS");
                     documentEntity.setOrderNumber(orderEntity.getOrderNumber());
                     documentEntity.setCreatedDate(new Date());
-                    documentEntity.setDocumentStatus("FOR PRINTING");
+                    documentEntity.setDocumentStatus("FROM PLANNING");
                     documentEntity.setVendorCode(itemVendor);
-                    documentEntity.setOutboundStage(0);
+                    documentEntity.setOutboundStage(1);
                     documentEntity.setDocumentProcessed(0);
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                     // orderitem id should be set in orderitemid column WIP
@@ -3038,9 +3038,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntity.setReferenceTable("ORDERS");
                     documentEntity.setOrderNumber(orderEntity.getOrderNumber());
                     documentEntity.setCreatedDate(new Date());
-                    documentEntity.setDocumentStatus("FOR PRINTING");
+                    documentEntity.setDocumentStatus("FROM PLANNING");
                     documentEntity.setVendorCode(itemVendor);
-                    documentEntity.setFinalOutboundStage(0);
+                    documentEntity.setFinalOutboundStage(1);
                     documentEntity.setDocumentProcessed(2);
                     documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                     // orderitem id should be set in orderitemid column WIP

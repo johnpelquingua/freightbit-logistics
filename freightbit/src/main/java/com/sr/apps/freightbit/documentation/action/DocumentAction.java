@@ -10,8 +10,10 @@ import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
 import com.sr.apps.freightbit.util.CommonUtils;
 import com.sr.apps.freightbit.util.DocumentsConstants;
+import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
+import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.customer.entity.Customer;
@@ -19,6 +21,7 @@ import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.documentation.service.*;
 import com.sr.biz.freightbit.operations.service.OperationsService;
+import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
@@ -56,6 +59,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private DocumentsBean document = new DocumentsBean();
     private List<OrderItemsBean> orderItems = new ArrayList<OrderItemsBean>();
     private List<Integer> documentQuantity = new ArrayList<Integer>();
+    private List<Parameters> documentNames = new ArrayList<Parameters>();
+//    private List<String> documentNameList = new ArrayList<String>();
 
     private VesselSchedulesService vesselSchedulesService;
     private VendorService vendorService;
@@ -73,10 +78,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private OrderService orderService;
     private ClientService clientService;
     private OperationsService operationsService;
+    private ParameterService parameterService;
     private CommonUtils commonUtils = new CommonUtils();
 
     private Integer orderIdParam;
     private Integer documentIdParam;
+    public String documentStageParam;
     private InputStream inputStream;
     private long contentLength;
     private String fileName;
@@ -114,7 +121,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private Date dateSentFinalOutbound; // variable to capture sent date of final outbound
     private String finalOutboundTrackingNumber; // variable to store tracking number of final outbound documents
     private Date dateReturnedFinalInbound; // variable to save date of documents returned for final inbound
-    
+
     @Override
     public void prepare() throws Exception{
         documentQuantity = new ArrayList<Integer>();
@@ -124,6 +131,29 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String viewArchivedDocuments() {
+
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+
+        orderEntityList = documentsService.findAllOrdersDocumentation();
+
+        for(Orders orderElem : orderEntityList){
+            List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
+
+            Integer checkDocs = 0; // loop will count for documents with complete status
+            for (Documents documentElem : allDocs){
+
+                if (documentElem.getDocumentStatus().equals("COMPLETED")){
+                    checkDocs = checkDocs + 1;
+                }
+
+            }
+
+            if(allDocs.size() == checkDocs && allDocs.size() > 1){ // documents that is equal to all completed documents will be added to the list
+                orders.add(transformOrdersToFormBean(orderElem));
+            }
+
+        }
+
         return SUCCESS;
     }
 
@@ -133,11 +163,31 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         orderEntityList = documentsService.findAllOrdersDocumentation();
 
-        for (Orders orderElem : orderEntityList) {
-            if(!orderElem.getOrderStatus().equals("SERVICE ACCOMPLISHED")){
+//        List<Orders> orderEntityDocumentCompleteList = new ArrayList<Orders>();
+
+        for(Orders orderElem : orderEntityList){
+            List <Documents> allDocs = documentsService.findDocumentsByOrderId(orderElem.getOrderId()); // will look for all documents under order ID
+
+            Integer checkDocs = 0; // loop will count for documents with complete status
+            for (Documents documentElem : allDocs){
+
+                if (documentElem.getDocumentStatus().equals("COMPLETED")){
+                    checkDocs = checkDocs + 1;
+                }
+
+            }
+
+            if(allDocs.size() != checkDocs ){ // documents that is not equal to all completed documents will be added to the list
                 orders.add(transformOrdersToFormBean(orderElem));
             }
+
         }
+
+//        for (Orders orderElem : orderEntityList) {
+//            if(!orderElem.getOrderStatus().equals("SERVICE ACCOMPLISHED")){
+//                orders.add(transformOrdersToFormBean(orderElem));
+//            }
+//        }
 
         return SUCCESS;
     }
@@ -234,8 +284,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
             documentListString.add(documentAdd.getDocumentName());
         }
 
-        System.out.println("ggggggggggggggggggggggggggggggggggggggggggg" + documentListString);
-        System.out.println("ggggggggggggggggggggggggggggggggggggggggggg11111" + orderEntity.getServiceRequirement());
+//        System.out.println("ggggggggggggggggggggggggggggggggggggggggggg" + documentListString);
+//        System.out.println("ggggggggggggggggggggggggggggggggggggggggggg11111" + orderEntity.getServiceRequirement());
         // checker for documents missing
 
         if(orderEntity.getServiceMode().equals("DOOR TO DOOR")){
@@ -633,7 +683,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 } else {
                     documentTabComplete = "COMPLETE_STAGE_INACTIVE";
                 }*/
-                if(completeCount > 0){
+                if(documentsList.size() == checkDocsComplete && completeCount > 0) {
+                    documentTabComplete = "ARCHIVE_PENDING";
+                } else if(completeCount > 0){
                     documentTabComplete = "COMPLETE_READY";
                 }else{
                     documentTabComplete = "COMPLETE_PENDING";
@@ -1078,7 +1130,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }else {
             documentEntity.setInboundStage(1);
             documentEntity.setDocumentProcessed(1);
-            documentEntity.setDocumentStatus("INBOUND STAGE");
+            documentEntity.setDocumentStatus("INBOUND");
             documentflag = 5; // document checked
             sessionAttributes.put("documentflag", documentflag);
         }
@@ -1101,7 +1153,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }else {
             documentEntity.setFinalOutboundStage(1);
             documentEntity.setDocumentProcessed(2);
-            documentEntity.setDocumentStatus("FINAL OUTBOUND STAGE");
+            documentEntity.setDocumentStatus("FINAL OUTBOUND");
             documentflag = 5; // document checked
             sessionAttributes.put("documentflag", documentflag);
         }
@@ -1124,7 +1176,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }else {
             documentEntity.setFinalInboundStage(1);
             documentEntity.setDocumentProcessed(3);
-            documentEntity.setDocumentStatus("FINAL INBOUND STAGE");
+            documentEntity.setDocumentStatus("FINAL INBOUND");
             documentflag = 5; // document checked
             sessionAttributes.put("documentflag", documentflag);
         }
@@ -1147,7 +1199,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }else {
             documentEntity.setCompleteStage(1);
             documentEntity.setDocumentProcessed(4);
-            documentEntity.setDocumentStatus("COMPLETE STAGE");
+            documentEntity.setDocumentStatus("PENDING COMPLETE");
             documentflag = 5; // document checked
             sessionAttributes.put("documentflag", documentflag);
         }
@@ -1343,17 +1395,25 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     public String activateOutbound() {
-
+        // for outbound pending documents
         List <Documents> outboundDocumentsList = documentsService.findDocumentByOutboundStageAndID(0, orderIdParam);
 
         for(Documents documentElem : outboundDocumentsList){
             documentElem.setOutboundStage(1);
             if(documentElem.getDocumentName().equals("BOOKING REQUEST FORM")){
                 documentElem.setDocumentStatus("FROM BOOKING");
-            }else if(documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") || documentElem.getDocumentName().equals("PROFORMA BILL OF LADING") ){
+            }else if(documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || documentElem.getDocumentName().equals("PROFORMA BILL OF LADING") ){
                 documentElem.setDocumentStatus("FROM PLANNING");
             }
 
+            documentsService.updateDocument(documentElem);
+        }
+
+        // for other stages pending documents
+        List <Documents> finalOutboundDocuments = documentsService.findDocumentByFinalOutboundStageAndID(0, orderIdParam);
+
+        for(Documents documentElem : finalOutboundDocuments){
+            documentElem.setFinalOutboundStage(1);
             documentsService.updateDocument(documentElem);
         }
 
@@ -1453,6 +1513,72 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderIdParam", orderIdParam);
+
+        return SUCCESS;
+    }
+
+    public String addDocumentsInput(){
+
+//        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderIdParam);
+        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" + documentStageParam);
+
+        documentNames = parameterService.getParameterMap(ParameterConstants.DOCUMENT, ParameterConstants.DOCUMENT_NAME);
+
+//        documentNameList.add("HOUSE BILL OF LADING");
+//        documentNameList.add("afdad");
+
+//        for (int i=0; i == documentNames.size(); i++){
+//            System.out.println(">>>>>>>" + documentNames.get(i).getReferenceColumn());
+//
+//        }
+
+//        if(documentStageParam.equals("OUTBOUND")){
+//            documentNames.add("HOUSE BILL OF LADING");
+//            documentNames.add("HOUSE BILL OF LADING2");
+//        }
+
+        return SUCCESS;
+    }
+
+    public String addDocument() {
+
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + document.getDocumentName());
+        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" + document.getReferenceNumber());
+        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" + document.getDocumentComments());
+        System.out.println("dddddddddddddddddddddddddddddd" + document.getReferenceId());
+        System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee" + documentStageParam);
+
+        Documents documentEntity = new Documents();
+        Client client = clientService.findClientById(getClientId().toString());
+
+        documentEntity.setClient(client);
+        documentEntity.setDocumentName(document.getDocumentName());
+        documentEntity.setReferenceId(document.getReferenceId());
+        documentEntity.setReferenceTable("ORDERS");
+        documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+        documentEntity.setCreatedDate(new Date());
+
+        if(documentStageParam.equals("OUTBOUND")) {
+            documentEntity.setOutboundStage(1);
+            documentEntity.setDocumentStatus("OUTBOUND");
+        }else if(documentStageParam.equals("INBOUND")){
+            documentEntity.setInboundStage(1);
+            documentEntity.setDocumentStatus("INBOUND");
+        }else if(documentStageParam.equals("FINAL INBOUND")){
+            documentEntity.setFinalInboundStage(1);
+            documentEntity.setDocumentStatus("FINAL INBOUND");
+        }else{
+            documentEntity.setFinalOutboundStage(1);
+            documentEntity.setDocumentStatus("FINAL OUTBOUND");
+        }
+        documentEntity.setDocumentProcessed(0);
+        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+        documentEntity.setReferenceNumber(document.getReferenceNumber());
+        documentEntity.setDocumentComments(document.getDocumentComments());
+        documentsService.addDocuments(documentEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam",  document.getReferenceId());
 
         return SUCCESS;
     }
@@ -1585,12 +1711,19 @@ public class DocumentAction extends ActionSupport implements Preparable{
             documentsService.updateDocument(documentElem);
         }
 
-
-
         sessionAttributes.put("orderIdParam", orderIdParam);
 
         return SUCCESS;
+    }
 
+    public String deleteDocument() {
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        documentsService.deleteDocument(documentEntity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", orderIdParam);
+
+        return SUCCESS;
     }
 
     public String finalOutboundSent(){
@@ -3079,4 +3212,32 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public void setDocumentTabComplete(String documentTabComplete) {
         this.documentTabComplete = documentTabComplete;
     }
+
+    public String getDocumentStageParam() {
+        return documentStageParam;
+    }
+
+    public void setDocumentStageParam(String documentStageParam) {
+        this.documentStageParam = documentStageParam;
+    }
+
+    public List<Parameters> getDocumentNames() {
+        return documentNames;
+    }
+
+    public void setDocumentNames(List<Parameters> documentNames) {
+        this.documentNames = documentNames;
+    }
+
+    public void setParameterService(ParameterService parameterService) {
+        this.parameterService = parameterService;
+    }
+
+//    public List<String> getDocumentNameList() {
+//        return documentNameList;
+//    }
+//
+//    public void setDocumentNameList(List<String> documentNameList) {
+//        this.documentNameList = documentNameList;
+//    }
 }

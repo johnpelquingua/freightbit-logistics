@@ -525,10 +525,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         documentEntity.setReferenceTable("ORDERS");
         documentEntity.setOrderNumber(orderService.findOrdersById(orderIdParam).getOrderNumber());
         documentEntity.setCreatedDate(new Date());
-        documentEntity.setDocumentStatus("FOR PRINTING");
+        documentEntity.setDocumentStatus("FROM BOOKING");
         documentEntity.setDocumentProcessed(0);
         documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-        documentEntity.setOutboundStage(0);
+        documentEntity.setOutboundStage(1);
         documentEntity.setVendorCode("ELC");
         /*documentEntity.setDocumentType("MASTER");*/
         documentsService.addDocuments(documentEntity);
@@ -1921,8 +1921,6 @@ public class OrderAction extends ActionSupport implements Preparable {
     public void setCustomerItems(List<Items> customerItems) {
         this.customerItems = customerItems;
     }
-
-
 
     public Map<Float, Float> getShipperItemValueMap() {
         return shipperItemValueMap;

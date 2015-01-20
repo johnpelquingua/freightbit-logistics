@@ -78,4 +78,8 @@ public class ParameterConstants {
 
     public final static String CONTAINERS = "CONTAINERS";
 
+    public final static String DOCUMENT = "DOCUMENT";
+
+    public final static String DOCUMENT_NAME = "DOCUMENT_NAME";
+
 }

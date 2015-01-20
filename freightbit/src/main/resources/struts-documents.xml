@@ -100,6 +100,14 @@
             <!--<result name="success">/documentation/pending_docs/viewOrderDocuments.jsp</result>-->
         </action>
 
+        <action name="getAddDocumentAction" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addDocumentsInput">
+            <result name="success">/documentation/pending_docs/addDocumentsInput.jsp</result>
+        </action>
+
+        <action name="addDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addDocument">
+            <result name="success" type="redirect">viewOrderDocuments</result>
+        </action>
+
         <action name="getInputFieldActionInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInboundInput">
             <result name="success">/documentation/pending_docs/orderDocumentsInboundInput.jsp</result>
         </action>
@@ -206,6 +214,10 @@
 
         <action name="addReferenceNumberFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addReferenceNumberFinalOutbound">
             <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>
+        </action>
+
+        <action name="deleteDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="deleteDocument">
+            <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="generateBookingRequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateBookingRequestReport">
