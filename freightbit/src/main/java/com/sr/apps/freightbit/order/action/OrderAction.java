@@ -358,8 +358,8 @@ public class OrderAction extends ActionSupport implements Preparable {
             contactEntity.setCreatedTimestamp(new Date());
             customerService.addContact(contactEntity);
         } catch (ContactAlreadyExistsException e) {
-            addFieldError("contact.lastName", getText("err.contact.already.exists"));
-            return INPUT;
+            /*addFieldError("contact.lastName", getText("err.contact.already.exists"));
+            return INPUT;*/
         }
 
         Map sessionAttributes = ActionContext.getContext().getSession();

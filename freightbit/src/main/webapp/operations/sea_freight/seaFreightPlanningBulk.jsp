@@ -184,7 +184,7 @@
                 <div class="col-lg-4">
                     <div>
                         <s:select list="vendorShippingListClass" name="operationsBean.vendorList"
-                                  id="operationsBean_vendorList" required="true"
+                                  id="operationsBean_vendorList" required="true" autofocus="true"
                                   listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                   emptyOption="true" ></s:select>
                     </div>

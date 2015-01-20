@@ -44,7 +44,7 @@
 
                             <div class="col-lg-10">
                                 <s:select name="address.addressType" list="addressTypeList" listValue="value"
-                                          listKey="key"
+                                          listKey="key" required="true"
                                           cssClass="form-control" id="address.addressType" emptyOption="true"/>
                             </div>
                         </div>
