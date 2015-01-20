@@ -381,7 +381,7 @@
                         <div class="col-lg-7">
 
                             <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="consigneeContact" name="order.consigneeContactPersonId"
-                                      list="consigneeList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
+                                      list="consigneeContactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
                         </div>
 
                         <div class="col-lg-2">
