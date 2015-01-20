@@ -1058,6 +1058,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
         order = transformToOrderFormBean(orderEntity);
 
+        Customer customerEntity = customerService.findCustomerById(orderEntity.getCustomerId());
+        customer = new CustomerBean();
+        customer.setCustomerType(customerEntity.getCustomerType());
+
         sessionAttributes.put("orderItemId", operationsBean.getOrderItemId());
         sessionAttributes.put("nameSize", operationsBean.getNameSize());
         sessionAttributes.put("quantity", operationsBean.getQuantity());
