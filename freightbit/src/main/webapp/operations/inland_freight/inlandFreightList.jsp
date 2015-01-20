@@ -25,7 +25,7 @@
             </div>
 
             <!-- Main Nav tabs -->
-            <div class="row" style="padding-left: 5px;">
+            <div class="row padding-10-lr">
                 <ul class="nav nav-tabs center-text" role="tablist">
                     <li class="active col-md-4 padding-0-r" id="ori">
                         <a href="#oriTab" role="tab" data-toggle="tab"><i class="fa fa-truck"></i> Origin</a>
@@ -42,7 +42,7 @@
             <div class="tab-content">
                 <%--ORIGIN TABS--%>
                 <div class="tab-pane fade in active" id="oriTab">
-                    <div style="margin-top: 15px; margin-left: -70px">
+                    <div class="padding-10-top">
                         <s:form action="changeTruckOrigin" theme="bootstrap">
                             <label class="col-lg-2 control-label">Sort by Origin :</label>
                             <div class="col-lg-3">
@@ -54,7 +54,7 @@
                             </div>
                         </s:form>
                     </div>
-                    <ul class="nav nav-tabs center-text" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
+                    <ul class="nav nav-tabs center-text padding-0-bot" role="tablist" style="clear:both;">
                         <li class="active col-md-3 padding-0-r" id="fclOri">
                             <a href="#fclOriTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
                         </li>
@@ -64,7 +64,7 @@
                         <li class="col-md-3 padding-0-lr" id="lcuOri">
                             <a href="#lcuOriTab" role="tab" data-toggle="tab">Loose Cargo Load (LCU)</a>
                         </li>
-                        <li class="col-md-3 padding-0-r" id="rcuOri">
+                        <li class="col-md-3 padding-0-lr" id="rcuOri">
                             <a href="#rcuOriTab" role="tab" data-toggle="tab">Rolling Cargo Load (RCU)</a>
                         </li>
                         <%--<li id="ftlOri">
@@ -391,7 +391,7 @@
 
                 <%--TRUCKING TABS--%>
                 <div class="tab-pane fade" id="truckTab">
-                    <div style="margin-top: 15px; margin-left: -70px">
+                    <div class="padding-10-top">
                         <s:form action="changeTruckOrigin" theme="bootstrap">
                             <label class="col-lg-2 control-label">Sort by Location :</label>
                             <div class="col-lg-3">
@@ -404,12 +404,12 @@
                         </s:form>
                     </div>
 
-                    <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
-                        <li class="active col-md-6" id="ftlOri" style="padding-left: 0px; padding-right: 0px;">
-                            <a href="#ftlTab" role="tab" data-toggle="tab" style="text-align: center;">Full Truck Load (FTL)</a>
+                    <ul class="nav nav-tabs padding-10-lr center-text" role="tablist" style="clear:both;">
+                        <li class="active col-md-6 padding-0-lr" id="ftlOri">
+                            <a href="#ftlTab" role="tab" data-toggle="tab">Full Truck Load (FTL)</a>
                         </li>
-                        <li class="col-md-6" id="ltlOri" style="padding-left: 0px; padding-right: 0px;">
-                            <a href="#ltlTab" role="tab" data-toggle="tab" style="text-align: center;">Less Truck Load (LTL)</a>
+                        <li class="col-md-6 padding-0-lr" id="ltlOri">
+                            <a href="#ltlTab" role="tab" data-toggle="tab">Less Truck Load (LTL)</a>
                         </li>
                     </ul>
 
@@ -520,7 +520,7 @@
 
                 <%--DESTINATION TABS--%>
                 <div class="tab-pane fade" id="desTab">
-                    <div style="margin-top: 15px; margin-left: -50px">
+                    <div class="padding-10-top">
                         <s:form action="changeTruckDestination" theme="bootstrap">
                             <label class="col-lg-2 control-label">Sort by Destination :</label>
                             <div class="col-lg-3">
@@ -532,7 +532,7 @@
                             </div>
                         </s:form>
                     </div>
-                    <ul class="nav nav-tabs center-text" role="tablist" style="clear:both; padding-bottom: 0px;">
+                    <ul class="nav nav-tabs center-text padding-0-bot" role="tablist" style="clear:both;">
                         <li class="active col-md-3 padding-0-r" id="fclDes">
                             <a href="#fclDesTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
                         </li>
@@ -778,7 +778,7 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><i class='fa fa-edit' ></i> Edit</td>
+                                <td><i class='fa fa-tasks' ></i> Set Vendor</td>
                                 <td><i class='fa fa-print' ></i> Print</td>
                                 <td><i class='fa fa-check' ></i> Approve</td>
                                 <td><i class='fa fa-times' ></i> Cancel</td>

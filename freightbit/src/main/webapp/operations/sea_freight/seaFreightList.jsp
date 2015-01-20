@@ -25,7 +25,7 @@
                 </h3>
             </div>
 
-            <div class="col-md-12 form-group pull-left" style="margin-top: 0.8em; margin-left: -5em; margin-bottom: 0em;">
+            <div class="col-md-12 form-group pull-left" style="margin-top: 0.8em; margin-bottom: 0em;">
 
                 <s:form action="changeOrigin" theme="bootstrap">
                     <label class="col-lg-2 control-label">Sort by Origin :</label>
@@ -49,7 +49,7 @@
             </div>
 
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist" style="clear:both; padding: 5px; padding-bottom: 0px;">
+            <ul class="nav nav-tabs center-text padding-0-bot padding-10-lr" role="tablist" style="clear:both;">
                 <li class="active col-md-3 zeroPadding" id="fcl">
                     <a href="#fclTab" role="tab" data-toggle="tab">Full Container Load (FCL)</a>
                 </li>
