@@ -523,7 +523,8 @@
                                             <button type="button" class="btn btn-primary pull-right">Complete Outbound Stage</button>
                                         </s:a>--%>
 
-                                        <a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'OUTBOUND');">
+                                        <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'OUTBOUND');">--%>
+                                        <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="OUTBOUND">
                                             <button type="button" class="btn btn-primary pull-right">Add Outbound Document</button>
                                         </a>
 
@@ -756,7 +757,8 @@
 
                                 <%--</s:if>--%>
 
-                                    <a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'INBOUND');">
+                                    <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'INBOUND');">--%>
+                                    <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="INBOUND">
                                         <button type="button" class="btn btn-primary pull-right">Add Inbound Document</button>
                                     </a>
 
@@ -964,7 +966,8 @@
                                         <%--</button>--%>
                                     <%--</s:if>--%>
 
-                                    <a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'FINAL OUTBOUND');">
+                                    <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'FINAL OUTBOUND');">--%>
+                                    <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="FINAL OUTBOUND">
                                         <button type="button" class="btn btn-primary pull-right">Add Final Outbound Document</button>
                                     </a>
 
@@ -1132,7 +1135,8 @@
                                             </s:a>--%>
                                         <%--</s:if>--%>
 
-                                        <a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'FINAL INBOUND');">
+                                        <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'FINAL INBOUND');">--%>
+                                        <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="FINAL INBOUND">
                                             <button type="button" class="btn btn-primary pull-right">Add Final Inbound Document</button>
                                         </a>
 
@@ -1557,24 +1561,22 @@ function showInputFields(referenceId,documentId) {
     });
 }
 
-function addDocument(referenceId,documentStage) {
-//    document.getElementById("referenceId").value = referenceId;
-    alert(documentStage);
-    $.ajax({
-        url: 'getAddDocumentAction',
-        async: false,
-        type: 'POST',
-        data: { orderIdParam: referenceId , documentStageParam: documentStage },
-        dataType: 'html',
-        success: function (html) {
-            $('#documentInputDiv').empty().html(html);
-        },
-        error: function(xhr, ajaxOptions, thrownError){
-            alert('An error occurred! ' + thrownError);
-        }
+    $('.addDocTrigger').click(function(){
+        $.ajax({
+            url: 'getAddDocumentAction',
+            async: false,
+            type: 'POST',
+            data: { orderIdParam: $(this).attr('data-referenceId') , documentStageParam: $(this).attr('data-stage') },
+            dataType: 'html',
+            success: function (html) {
+                $('#documentInputDiv').empty().html(html);
+                $('#addDocumentModal').modal().show();
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
     });
-}
-
 
     function generateReport(documentId,documentName) {
     if (documentName == "BOOKING REQUEST FORM") {
