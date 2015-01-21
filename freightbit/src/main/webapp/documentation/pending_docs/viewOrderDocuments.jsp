@@ -1559,13 +1559,15 @@ function showInputFields(referenceId,documentId) {
 
 function addDocument(referenceId,documentStage) {
 //    document.getElementById("referenceId").value = referenceId;
+    alert(documentStage);
     $.ajax({
         url: 'getAddDocumentAction',
+        async: false,
         type: 'POST',
         data: { orderIdParam: referenceId , documentStageParam: documentStage },
         dataType: 'html',
         success: function (html) {
-            $('#documentInputDiv').html(html);
+            $('#documentInputDiv').empty().html(html);
         },
         error: function(xhr, ajaxOptions, thrownError){
             alert('An error occurred! ' + thrownError);

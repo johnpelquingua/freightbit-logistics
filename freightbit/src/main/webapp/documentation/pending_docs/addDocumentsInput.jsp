@@ -13,10 +13,12 @@
                 <s:hidden name="document.referenceId" value="%{orderIdParam}" />
                 <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
                 <s:hidden name="documentStageParam" value="%{documentStageParam}" />
-                <s:property value="%{documentStageParam}" />
+                <s:textfield value="%{documentStageParam}" />
+                <s:textfield value="%{order.freightType}" cssClass="serviceType"/>
+                <s:textfield value="%{order.modeOfService}" cssClass="serviceMode"/>
                 <%--<s:hidden name="document.referenceId" value="orderIdParam" />--%>
                 <%--<s:textfield cssClass="form-control" style="margin-bottom: 15px !important;" value="%{document.documentName}" disabled="true"></s:textfield>--%>
-                    <input list="documents" id="documentName" name="document.documentName" class="form-control" maxLength="30" required="true"/>
+                    <input list="documents" id="documentName" name="document.documentName" class="form-control" maxLength="30" required="true" style="margin-bottom: 15px !important;" required="true"/>
                     <datalist id="documents" class="datalistDocuments">
                         <s:iterator value="documentNames">
                             <%--<option value=<s:property value="value"/> />--%>
@@ -61,10 +63,37 @@
             if($('.datalistDocuments option').eq(i).val() == ''){
                 $('.datalistDocuments option').eq(i).remove();
             }
-
             if($('[name="documentStageParam"]').val() == 'OUTBOUND'){
-                if($('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT'){
-                    $('.datalistDocuments option').eq(i).remove();
+                if($('.serviceType').val() == 'SHIPPING AND TRUCKING' || $('.serviceType').val() == 'SHIPPING'){
+                    if($('.serviceMode').val() == 'DOOR TO DOOR' || $('.serviceMode').val() == 'DOOR TO PIER' ){
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'LETTER OF AUTHORIZATION' ){
+                            $('.datalistDocuments option').eq(i).remove();
+                        }
+                    }else{
+                        if($('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL ORIGIN' || $('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'SALES INVOICE' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'LETTER OF AUTHORIZATION'){
+                            $('.datalistDocuments option').eq(i).remove();
+                        }
+                    }
+                }else{
+                    $('.datalistDocuments').remove();
+                }
+            }else if($('[name="documentStageParam"]').val() == 'INBOUND'){
+                if($('.serviceType').val() == 'SHIPPING AND TRUCKING' || $('.serviceType').val() == 'SHIPPING'){
+                    if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'LETTER OF AUTHORIZATION'){
+                        $('.datalistDocuments option').eq(i).remove();
+                    }
+                }else{
+                    if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER' || $('.datalistDocuments option').eq(i).val() == 'HOUSE BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'MASTER BILL OF LADING' || $('.datalistDocuments option').eq(i).val() == 'LETTER OF AUTHORIZATION'){
+                        $('.datalistDocuments option').eq(i).remove();
+                    }
+                }
+            }else if($('[name="documentStageParam"]').val() == 'FINAL OUTBOUND'){
+                if($('.serviceType').val() == 'SHIPPING AND TRUCKING' || $('.serviceType').val() == 'SHIPPING'){
+                    if($('.datalistDocuments option').eq(i).val() == 'MASTER WAYBILL DESTINATION' || $('.datalistDocuments option').eq(i).val() == 'ACCEPTANCE RECEIPT' || $('.datalistDocuments option').eq(i).val() == 'DELIVERY ORDER' || $('.datalistDocuments option').eq(i).val() == 'RELEASE ORDER'){
+                        $('.datalistDocuments option').eq(i).remove();
+                    }
+                }else{
+
                 }
             }
         }

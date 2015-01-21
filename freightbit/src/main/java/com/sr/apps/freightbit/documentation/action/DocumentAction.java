@@ -1519,8 +1519,17 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public String addDocumentsInput(){
 
-//        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderIdParam);
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderIdParam);
         System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" + documentStageParam);
+
+//        OrderBean orderBean = new OrderBean();
+//
+//        orderBean.setServiceType(orderService.findOrdersById(orderIdParam).getServiceType());
+//        orderBean.setModeOfService(orderService.findOrdersById(orderIdParam).getServiceMode());
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
 
         documentNames = parameterService.getParameterMap(ParameterConstants.DOCUMENT, ParameterConstants.DOCUMENT_NAME);
 
