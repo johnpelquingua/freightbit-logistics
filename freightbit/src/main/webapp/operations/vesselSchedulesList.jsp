@@ -49,7 +49,7 @@
                 <div class="table-responsive">
                     <display:table id="vesselSchedule" name="vesselSchedules"
                                    requestURI="viewVesselSchedules.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                   class="table table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;">
 
                         <td><display:column property="vendorCode" title="Shipping Company <i class='fa fa-sort' />" class="tb-font-black"
@@ -122,6 +122,11 @@
                                 <td><i class='fa fa-check' ></i> Approve</td>
                                 <td><i class='fa fa-times' ></i> Cancel</td>
                             </tr>
+                            <tr>
+                                <td></td>
+                                <td><i class="fa fa-stop" style="color: #d9534f;"></i> Unavailable</td>
+                                <td><i class="fa fa-stop" style="color: #5cb85c;"></i> Available</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -149,6 +154,7 @@
 <script>
     $(document).ready(function () {
         tableProp('DESTI_ORIG', 'vesselSchedule', 0, 0, 0, 0, 4, 5, 0);
+        vesselScheduleColor('vesselSchedule', 6);
         dateAbbrev_Format2('vesselSchedule', 6);
         dateAbbrev_Format2('vesselSchedule', 7);
         validateSearchModal('vesselSearchbtn', 'vesselSearchtext', 'vesselSearchDropdown');
@@ -167,6 +173,5 @@
                 alert('An error occurred! ' + thrownError);
             }
         });
-
     }
 </script>

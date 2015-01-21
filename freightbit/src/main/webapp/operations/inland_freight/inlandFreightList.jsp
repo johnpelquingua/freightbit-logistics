@@ -799,22 +799,11 @@
         tablePropClass('NONE', 'rcuTable', 7, 4, 5, 6, 0, 0);
     });
 
-    $(function () {
-        $('#myTab a:first').tab('show')
-    });
+    $(function () { $('#myTab a:first').tab('show') });
 
     $(function() {
-        //for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
-        $('a[data-toggle="tab"]').on('click', function (e) {
-            localStorage.setItem('lastTab', $(e.target).attr('href'));
-        });
-
-        //go to the latest tab, if it exists:
+        $('a[data-toggle="tab"]').on('click', function (e) { localStorage.setItem('lastTab', $(e.target).attr('href')); });
         var lastTab = localStorage.getItem('lastTab');
-
-        if (lastTab) {
-            $('a[href="'+lastTab+'"]').click();
-
-        }
+        if (lastTab) { $('a[href="'+lastTab+'"]').click(); }
     });
 </script>

@@ -16,7 +16,6 @@
 </div>
 
 <div class="row">
-
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -24,9 +23,7 @@
                     Freight Plan List
                 </h3>
             </div>
-
             <div class="col-md-12 form-group pull-left" style="margin-top: 0.8em; margin-bottom: 0em;">
-
                 <s:form action="changeOrigin" theme="bootstrap">
                     <label class="col-lg-2 control-label">Sort by Origin :</label>
                     <div class="col-lg-3">
@@ -206,7 +203,7 @@
                         <div class="table-responsive">
                             <display:table id="order" name="lcuTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
-                                           class="table table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="lcuTable table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -257,7 +254,7 @@
                         <div class="table-responsive">
                             <display:table id="order" name="rcuTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
-                                           class="table table-hover table-bordered text-center tablesorter table-condensed"
+                                           class="rcuTable table table-hover table-bordered text-center tablesorter table-condensed"
                                            style="margin-top: 15px;empty-cells: hide;">
 
                                 <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
@@ -339,9 +336,10 @@
 </div>
 
 <script>
-
     $(document).ready(function(){
         tablePropClass('DESTI_ORIG','fclTable', 7, 5, 0, 6, 0, 4, 0);
+        tablePropClass('DESTI_ORIG','lcuTable', 7, 5, 0, 6, 0, 4, 0);
+        tablePropClass('DESTI_ORIG','rcuTable', 7, 5, 0, 6, 0, 4, 0);
         tablePropClass('DESTI_ORIG','lclTable', 8, 5, 0, 7, 0, 6, 0);
 
         if($('.lclTable').size() != 0){
@@ -368,53 +366,25 @@
                 computeAll('lclTable', 'wellTotalWeight', 'wellTotalVolume', 'ADD');
             }
         })
-
-    })
+    });
 
     $(function () {
         $('#myTab a:first').tab('show')
     });
+
     $(function() {
-        //for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
-        $('a[data-toggle="tab"]').on('click', function (e) {
-            localStorage.setItem('lastTab', $(e.target).attr('href'));
-        });
-
-        //go to the latest tab, if it exists:
+        $('a[data-toggle="tab"]').on('click', function (e) { localStorage.setItem('lastTab', $(e.target).attr('href')); });
         var lastTab = localStorage.getItem('lastTab');
-
-        if (lastTab) {
-            $('a[href="'+lastTab+'"]').click();
-
-        }
+        if (lastTab) { $('a[href="'+lastTab+'"]').click(); }
     });
-
-    function preventDuplicatePort(select, index) {
-
-        var options = select.options,
-                len = options.length;
-
-            select.options[ index ].disabled = true;
-
-            if (index === select.selectedIndex) {
-                alert('You already selected the same port "' + select.options[index].text + '". Please choose another');
-                this.selectedIndex = 0;
-                select2.value = '';
-            }
-
-    }
 
     var select1 = select = document.getElementById('select1');
     var select2 = select = document.getElementById('select2');
-
     /*select2.value = '';*/
-
     select1.onchange = function () {
         preventDuplicatePort.call(this, select2, this.selectedIndex);
     };
-
     select2.onchange = function () {
         preventDuplicatePort.call(this, select1, this.selectedIndex);
     };
-
 </script>

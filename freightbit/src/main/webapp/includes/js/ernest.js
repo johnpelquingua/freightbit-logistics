@@ -810,3 +810,26 @@ function dateValidationInit(){
         }
     })
 }
+
+function preventDuplicatePort(select, index) {
+    var options = select.options,
+        len = options.length;
+
+    select.options[ index ].disabled = true;
+
+    if (index === select.selectedIndex) {
+        alert('You already selected the same port "' + select.options[index].text + '". Please choose another');
+        this.selectedIndex = 0;
+        select2.value = '';
+    }
+}
+
+function vesselScheduleColor(tableClass, departureColumn){
+    var tableDepartureColumn = $('#'+tableClass+' tbody tr td:nth-child('+departureColumn+')');
+    for(var i = 0; i < tableDepartureColumn.size(); i++){
+        var departDate = new Date(tableDepartureColumn.eq(i).text()),
+            currentDate = new Date();
+        if(departDate < currentDate){ tableDepartureColumn.eq(i).closest('tr').css('background-color', '#f2a5aa');
+        }else{ tableDepartureColumn.eq(i).closest('tr').css('background-color', '#dff0d8'); }
+    }
+}
