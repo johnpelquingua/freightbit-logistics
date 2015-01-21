@@ -177,7 +177,7 @@
 
                             <s:textfield name="consignee.zip" cssClass="addConsigneeInput form-control"
                                          id="consignee.zip" placeholder="ZIP" required="true"
-                                         pattern="[0-9]+ " maxLength="4" style="width:95%"
+                                         pattern="[0-9]{4}" maxLength="4" style="width:95%"
 
                                          title="ZIP should not contain special characters and/or letters."
                                          onkeypress="return isNumberKey(event)"/>
