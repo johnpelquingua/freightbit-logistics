@@ -84,6 +84,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private Integer orderIdParam;
     private Integer documentIdParam;
     public String documentStageParam;
+    public String vendorCodeParam;
     private InputStream inputStream;
     private long contentLength;
     private String fileName;
@@ -727,6 +728,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             //DOCUMENT TAB ARCHIVE VALUE END======================================================================================================================
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>> OUTBOUND " + documentTab);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>> INBOUND " + documentTabInbound);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>> FINAL OUTBOUND " + documentTabFinalOutbound);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>> FINAL INBOUND " + documentTabFinalInbound);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>> COMPLETE " + documentTabComplete);
+
             sessionAttributes.put("orderIdParam", orderIdParam);
 
             if (sessionAttributes.get("documentflag") != null) {
@@ -1199,7 +1206,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         }else {
             documentEntity.setCompleteStage(1);
             documentEntity.setDocumentProcessed(4);
-            documentEntity.setDocumentStatus("PENDING COMPLETE");
+            documentEntity.setDocumentStatus("RECEIVED");
             documentflag = 5; // document checked
             sessionAttributes.put("documentflag", documentflag);
         }
@@ -2253,6 +2260,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
     // Booking Request Form
     public String generateBookingRequestReport() {
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>documentIdParam " + documentIdParam);
+
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         String orderId = (documentEntity.getReferenceId()).toString();
 
@@ -2460,6 +2469,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String generateAuthorizationToWithdrawReport() {
 
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>documentIdParam " + documentIdParam);
+//        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>documentIdParam " + vendorCodeParam);
 
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         String orderId = (documentEntity.getReferenceId()).toString();
@@ -3244,11 +3254,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
         this.parameterService = parameterService;
     }
 
-//    public List<String> getDocumentNameList() {
-//        return documentNameList;
-//    }
-//
-//    public void setDocumentNameList(List<String> documentNameList) {
-//        this.documentNameList = documentNameList;
-//    }
+    public String getVendorCodeParam() {
+        return vendorCodeParam;
+    }
+
+    public void setVendorCodeParam(String vendorCodeParam) {
+        this.vendorCodeParam = vendorCodeParam;
+    }
 }

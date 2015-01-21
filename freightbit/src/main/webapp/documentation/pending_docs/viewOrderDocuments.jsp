@@ -475,7 +475,7 @@
                                                     <%--</s:if>--%>
                                                     <%--Print Document--%>
                                                     <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='PROFORMA BILL OF LADING' ">
-                                                        <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                        <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}','${document.vendorCode}');">
                                                             <i class="fa fa-print"></i>
                                                         </a>
                                                     </s:if>
@@ -1244,31 +1244,24 @@
                                 </display:table>
                                 </div>
 
-                                <%--<s:if test=" documentTabComplete == 'COMPLETE_STAGE' ">--%>
+                                <s:if test=" documentTabComplete == 'COMPLETE_READY' ">
 
-                                    <s:submit cssClass="btn btn-primary pull-right"  value="Complete Document(s)" onclick="addCheckTextComplete()"></s:submit>
-
-                                <%--</s:if>--%>
-
-                                </s:form>
-
-                                <s:if test=" documentTabFinalInbound == 'FINAL_INBOUND_COMPLETE' && documentTabComplete == 'COMPLETE_STAGE_INACTIVE' ">
-
-                                    <s:url var="activateCompleteStageUrl" action="activateCompleteStage">
-                                        <s:param name="orderIdParam"
-                                                 value="#attr.order.orderId"></s:param>
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{activateCompleteStageUrl}" rel="tooltip">
-                                        <button type="button" class="btn btn-primary pull-right">Activate Complete Stage</button>
-                                    </s:a>
+                                    <s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckTextComplete()"></s:submit>
 
                                 </s:if>
 
-                                <%--<s:property value="#attr.order.orderStatus" />--%>
+                                </s:form>
 
-                                <%--<s:if test=" documentTabComplete == 'ALL_DOCUMENTS_COMPLETE' &&  ">--%>
+                                <s:if test=" documentTabComplete == 'ARCHIVE_PENDING' ">
 
-                                <s:if test=" #attr.order.orderStatus == 'SERVICE ACCOMPLISHED'  ">
+                                    <%--<s:url var="activateCompleteStageUrl" action="activateCompleteStage">--%>
+                                        <%--<s:param name="orderIdParam"--%>
+                                                 <%--value="#attr.order.orderId"></s:param>--%>
+                                    <%--</s:url>--%>
+                                    <%--<s:a class="icon-action-link" href="%{activateCompleteStageUrl}" rel="tooltip">--%>
+                                        <%--<button type="button" class="btn btn-primary pull-right">Activate Complete Stage</button>--%>
+                                    <%--</s:a>--%>
+
                                     <s:url var="archiveStageUrl" action="activateArchive">
                                         <s:param name="orderIdParam"
                                                  value="#attr.order.orderId"></s:param>
@@ -1278,6 +1271,20 @@
                                     </s:a>
 
                                 </s:if>
+
+                                <%--<s:property value="#attr.order.orderStatus" />--%>
+
+                                <%--<s:if test=" documentTabComplete == 'ALL_DOCUMENTS_COMPLETE' &&  ">--%>
+
+                                <%--<s:if test=" #attr.order.orderStatus == 'SERVICE ACCOMPLISHED'  ">--%>
+                                    <%--<s:url var="archiveStageUrl" action="activateArchive">--%>
+                                        <%--<s:param name="orderIdParam"--%>
+                                                 <%--value="#attr.order.orderId"></s:param>--%>
+                                    <%--</s:url>--%>
+                                    <%--<s:a class="icon-action-link" href="%{archiveStageUrl}" rel="tooltip">--%>
+                                        <%--<button type="button" class="btn btn-primary pull-right">Move To Archive</button>--%>
+                                    <%--</s:a>--%>
+                                <%--</s:if>--%>
 
                             </s:if>
 
@@ -1293,11 +1300,11 @@
     </div>
 </div>
 
-<s:property value="%{documentTab}" /> <br />
-<s:property value="%{documentTabInbound}" /> <br />
-<s:property value="%{documentTabFinalOutbound}" /> <br />
-<s:property value="%{documentTabFinalInbound}" /> <br />
-<s:property value="%{documentTabComplete}" /> <br />
+<%--<s:property value="%{documentTab}" /> <br />--%>
+<%--<s:property value="%{documentTabInbound}" /> <br />--%>
+<%--<s:property value="%{documentTabFinalOutbound}" /> <br />--%>
+<%--<s:property value="%{documentTabFinalInbound}" /> <br />--%>
+<%--<s:property value="%{documentTabComplete}" /> <br />--%>
 
 <s:hidden value="%{documentTab}" id="documentTab"  />
 <s:hidden value="%{documentTabInbound}" id="documentTabInbound"  />
@@ -1578,9 +1585,10 @@ function showInputFields(referenceId,documentId) {
         });
     });
 
-    function generateReport(documentId,documentName) {
+    function generateReport(documentId,documentName,vendorCode) {
     if (documentName == "BOOKING REQUEST FORM") {
-        var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
+        alert(vendorCode);
+        var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId , 'bookingRequest', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Booking Request Form";
             window.location.href = '#documentTab';
