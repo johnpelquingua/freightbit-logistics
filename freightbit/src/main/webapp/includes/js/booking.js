@@ -576,3 +576,215 @@ $(document).ready(function(){
 
     validationForm('bookingInput', 'nextBtn', 'BOOKING');
 });
+
+function dynamicDropdown(select, index) {
+    var opt = select.options,
+        lent = opt.length;
+
+    while ( lent-- ){
+        opt[ lent ].disabled = false;
+    }
+
+    switch(select.options[ index ].value){
+        case 'DOOR TO PIER' :
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#shipperAddress").prop('disabled', false);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").val('');
+            $("#consigneeAddress").prop('disabled', true);
+            break;
+        case 'PIER TO DOOR' :
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#shipperAddress").prop('disabled', true);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").prop('disabled', false);
+            $("#consigneeAddress").val('');
+            break;
+        default :
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#shipperAddress").prop('disabled', false);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").prop('disabled', false);
+            $("#consigneeAddress").val('');
+            break;
+    }
+
+    // IF PICKUP IS SELECTED
+    switch(select.options[index].value){
+        case 'PICKUP' :
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#datepicker2").prop('disabled', true);
+            $("#datepicker1").prop('disabled', false);
+            $("#datepicker2").val('');
+            $("#datepicker1").val('');
+            $("#shipperAddress").prop('disabled', false);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").val('');
+            $("#consigneeAddress").prop('disabled', true);
+            break;
+        case 'DELIVERY' :
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#datepicker1").prop('disabled', true);
+            $("#datepicker2").prop('disabled', false);
+            $("#datepicker2").val('');
+            $("#datepicker1").val('');
+            $("#shipperAddress").prop('disabled', true);
+            $("#shipperAddress").val('');
+            $("#shipperConsignee").val('');
+            $("#consigneeAddress").prop('disabled', false);
+            $("#consigneeAddress").val('');
+            break;
+        case 'INTER-WAREHOUSE' :
+            $("#customerName").val('');
+            $("#shipperContact").val('');
+            $("#datepicker1").prop('disabled', false);
+            $("#datepicker2").prop('disabled', false);
+            $("#datepicker2").val('');
+            $("#datepicker1").val('');
+            break;
+    }
+
+
+
+    // If Service Mode is Pier to Pier
+    if (select.options[ index ].value === 'PIER TO PIER') {
+        for (var i = 0; i < sType.options.length; i++){
+            if(sType.options[i].value == "SHIPPING"){
+                sType.options[i].disabled = false;
+                sType.options[i].selected = true;
+            }
+        }
+        $("#customerName").val('');
+        $("#shipperContact").val('');
+        $("#shipperAddress").prop('disabled', true);
+        $("#shipperAddress").val('');
+        $("#shipperConsignee").val('');
+        $("#consigneeAddress").prop('disabled', true);
+        $("#consigneeAddress").val('');
+    }else{
+        for (var i = 0; i < sType.options.length; i++){
+            if(sType.options[i].value == "SHIPPING AND TRUCKING"){
+                sType.options[i].disabled = false;
+            }
+        }
+    }
+
+    // If Service Type is Shipping
+    if (select.options[ index ].value === 'SHIPPING'){
+        $("#select1").val('');
+        $("#select2").val('');
+        $('#datepicker1').val('');
+        $('#datepicker2').val('');
+        $('#datepicker1').prop('disabled' , false);
+        $('#datepicker2').prop('disabled' , false);
+        $('#select1').prop('disabled', false);
+        $('#select2').prop('disabled', false);
+        $("#order_modeOfPayment").val('');
+        $("#order_modeOfPayment").val('');
+        $("#customerPhone_textfield").val('');
+        $("#customerMobile_textfield").val('');
+        $("#customerEmail_textfield").val('');
+        $("#customerFax_textfield").val('');
+        $("#Comments").val('');
+        $("#consigneeContact").val('');
+
+        for (var i = 0; i < sMode.options.length; i++){
+            if(sMode.options[i].value == "PIER TO PIER"){
+                sMode.options[i].style.display = "block";
+                sMode.options[i].selected = true;
+            }else{
+                sMode.options[i].style.display = "none";
+            }
+        }
+
+        for (var i = 0; i < sReq.options.length; i++){
+            $("#order_serviceRequirement").val('');
+            if(sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD"){
+                sReq.options[i].style.display = "none";
+            }else{
+                sReq.options[i].style.display = "block";
+            }
+        }
+    }
+    // If Service Type is Shipping and Trucking
+    if (select.options[ index ].value === 'SHIPPING AND TRUCKING') {
+        $("#select1").val('');
+        $("#select2").val('');
+        $("#order_modeOfService").val('');
+        $('#datepicker1').val('');
+        $('#datepicker2').val('');
+        $('#datepicker1').prop('disabled' , false);
+        $('#datepicker2').prop('disabled' , false);
+        $('#select1').prop('disabled',false);
+        $('#select2').prop('disabled',false);
+        $("#order_modeOfPayment").val('');
+        $("#order_modeOfPayment").val('');
+        $("#customerPhone_textfield").val('');
+        $("#customerMobile_textfield").val('');
+        $("#customerEmail_textfield").val('');
+        $("#customerFax_textfield").val('');
+        $("#Comments").val('');
+        $("#consigneeContact").val('');
+        for (var i = 0; i < sMode.options.length; i++) {
+            $("#order_modeOfService").val('');
+            if(sMode.options[i].value == "DOOR TO DOOR" || sMode.options[i].value == "DOOR TO PIER" || sMode.options[i].value == "PIER TO DOOR"){
+                sMode.options[i].style.display = "block";
+            }else{
+                sMode.options[i].style.display = "none";
+            }
+        }
+
+        for (var i = 0; i < sReq.options.length; i++){
+            $("#order_serviceRequirement").val('');
+            if(sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD"){
+                sReq.options[i].style.display = "none";
+            }else{
+                sReq.options[i].style.display = "block";
+            }
+        }
+    }
+    // If Service Type is Trucking
+    if (select.options[ index ].value === 'TRUCKING'){
+        $('#select1').val('');
+        $('#select2').val('');
+        $("#select1").prop('disabled', true);
+        $("#select2").prop('disabled', true);
+        $('#datepicker1').val('');
+        $('#datepicker2').val('');
+        $('#datepicker1').prop('disabled' , false);
+        $('#datepicker2').prop('disabled' , false);
+        $("#order_modeOfPayment").val('');
+        $("#customerPhone_textfield").val('');
+        $("#customerMobile_textfield").val('');
+        $("#customerEmail_textfield").val('');
+        $("#customerFax_textfield").val('');
+        $("#Comments").val('');
+        $("#consigneeContact").val('');
+        for (var i = 0; i < sMode.options.length; i++){
+            $("#order_modeOfService").val('');
+            if(sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE"){
+                sMode.options[i].style.display = "block";
+            }else{
+                sMode.options[i].style.display = "none";
+            }
+        }
+        for (var i = 0; i < sReq.options.length; i++){
+            $("#order_serviceRequirement").val('');
+            if(sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD"){
+                sReq.options[i].style.display = "block";
+            }else{
+                sReq.options[i].style.display = "none";
+            }
+        }
+    }
+
+}
