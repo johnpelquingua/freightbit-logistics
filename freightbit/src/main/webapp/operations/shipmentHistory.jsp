@@ -64,23 +64,24 @@
         <div class="panel panel-primary">
 
             <div class="panel-body horizontal">
+
                 <div class="form-group">
                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Container: </label>
+                    <label class="col-lg-1 control-label" style="padding-top:0px;font-size: 14px;font-weight: bold;">Container: </label>
                 </s:if>
                 <s:else>
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Item: </label>
+                    <label class="col-lg-1 control-label" style="padding-top:0px;font-size: 14px;font-weight: bold;">Item: </label>
                 </s:else>
-                <br />
-                <br />
-                <div class="col-lg-5">
-                    <ol>
+                    <br/>
+                    <div class="col-lg-12">
+                        <ol>
                         <s:iterator value="nameSizeList" >
                             <li><s:property /></li>
                         </s:iterator>
-                    </ol>
-                </div>
+                        </ol>
                     </div>
+                </div>
+
                 <div class="table-responsive list-table">
                     <tbody>
                     <table>
@@ -92,6 +93,17 @@
 
                                 <td><display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+
+                                <td>
+                                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                        <display:column property="nameSize" title="Size <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column>
+                                    </s:if>
+                                    <s:else>
+                                        <display:column property="nameSize" title="Name <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column>
+                                    </s:else>
+                                </td>
 
                                 <td><display:column property="status" title="Shipment History <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
@@ -107,13 +119,10 @@
 
                 <s:form cssClass="form-horizontal" theme="bootstrap" action="updateBulkStatus" >
                 <s:if test="orderItemIdParam != null">
-                    <%--<s:property value="%{orderItemIdParam}"/>A--%>
                     <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                 </s:if>
                 <s:else>
                     <s:hidden value="%{orderStatusLogsBean.orderItemId}" name="orderStatusLogsBean.orderItemId"/>
-                    <%--<s:property value="%{orderStatusLogsBean.orderItemId}"/>B
-                    <s:hidden value="%{orderStatusLogsBean.orderItemId}" name="orderItemIdParam"/>--%>
                 </s:else>
 
 

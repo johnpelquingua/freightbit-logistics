@@ -211,6 +211,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         if("".equals(orderItem.getEditItem())) {
             if (check == null) {
+                sessionAttributes.put("orderIdParam", orderStatusLogsBean.getOrderId());
                 return INPUT;
             } else {
                 for (int i = 0; i < check.length; i++) {
@@ -296,10 +297,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public String updateBulkStatus() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         try {
-//            sessionAttributes.get("checkedItemsInSession");
-            System.out.println("1111111111111111111111" + sessionAttributes.get("checkedItemsInSession"));
-            System.out.println("aaaaaaaaaaaaaaaaaaaa" + sessionAttributes.get("orderItemIdParam"));
-
+            //checkedItemsInSession stores the value of the checkedItems from SetBulkItemStatus.
+            //Stored in string array checkedItemsInSession since it is an object, I also parsed it into an integer.
             String[] checkedItemsInSession = (String[]) sessionAttributes.get("checkedItemsInSession");
             for (String checkValue : checkedItemsInSession) {
                 Integer bulkId = Integer.parseInt(checkValue);
