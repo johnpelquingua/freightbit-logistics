@@ -58,7 +58,7 @@
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.weight" id="item.weight" required="true" cssStyle="width: 140%"
-                                             cssClass="addItemInput form-control" pattern="[0-9.,]+" title="Special characters in Weight is not valid" onkeypress="return isNumberKey(event)"/>
+                                             cssClass="addItemInput form-control" pattern="((\d+)((\.)?\d{1,2})[^0])" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                         </div>
@@ -76,7 +76,7 @@
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.length" id="item.length" required="true" cssStyle="width: 140%" cssClass="addItemInput form-control"
-                                             style="150px" pattern="[0-9.]+" title="Special characters in length is not valid" onkeypress="return isNumberKey(event)"/>
+                                             style="150px" pattern="((\d+)((\.)?\d{1,2})[^0])" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
@@ -85,14 +85,15 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Width (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
-                                <s:textfield name="item.width" id="item.width" required="true" cssStyle="width: 140%" cssClass="addItemInput form-control"  pattern="[0-9.]+" title="Special characters in width is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.width" id="item.width" required="true" cssStyle="width: 140%" cssClass="addItemInput form-control"
+                                             pattern="((\d+)((\.)?\d{1,2})[^0])" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Height (m)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.height" id="item.height" required="true" cssStyle="width: 140%"
-                                             cssClass="addItemInput form-control" pattern="[0-9.]+" title="Special characters in height is not valid" onkeypress="return isNumberKey(event)"/>
+                                             cssClass="addItemInput form-control" pattern="((\d+)((\.)?\d{1,2})[^0])" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
