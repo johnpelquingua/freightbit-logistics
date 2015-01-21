@@ -67,7 +67,7 @@
 
                 <div class="form-group">
                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                    <label class="col-lg-1 control-label" style="padding-top:0px;font-size: 14px;font-weight: bold;">Container: </label>
+                    <label class="col-lg-1 control-label" style="padding-top:0px;font-size: 14px;font-weight: bold;">Size: </label>
                 </s:if>
                 <s:else>
                     <label class="col-lg-1 control-label" style="padding-top:0px;font-size: 14px;font-weight: bold;">Item: </label>
@@ -127,7 +127,7 @@
 
 
                 <div class="col-lg-3" style="text-align: center">
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Actual Date/Time <span class="asterisk_red"></span></label>
+                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Actual Date/Time </label>
                     <s:textfield name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp" readonly="true">
                         <s:param name="value">
                             <s:date name="new java.util.Date()" format="dd-MMM-yyyy hh:mm a"/>
@@ -196,86 +196,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="deliveryModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-                <%--<div class="modal-header">
-                    <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-                </div>--%>
-            <div class="modal-body">
-                <div id="deliveryInput">
-                    <label id="deliveryLabel" class="control-label header">Actual Delivery Date: <span class="asterisk_red"></span></label>
-                    <div class="pull-center" style="padding-top:0px;">
-                        <s:textfield required="true" name="orderStatusLogsBean.deliveryDate" cssClass="form-control" id="deliveryDate" />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="pickupModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-                <%--<div class="modal-header">
-                    <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-                </div>--%>
-            <div class="modal-body">
-                <div id="pickupInput">
-                    <label id="pickupLabel" class="control-label header">Actual Pickup Date: <span class="asterisk_red"></span></label>
-                    <div class="pull-center" style="padding-top:0px;">
-                        <s:textfield required="true" name="orderStatusLogsBean.pickupDate" cssClass="form-control" id="pickupDate" />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="inTransitModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-                <%--<div class="modal-header">
-                    <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-                </div>--%>
-            <div class="modal-body">
-                <div id="inTransitInput">
-                    <label id="inTransitLabel" class="control-label header">Actual Time of Departure: <span class="asterisk_red"></span></label>
-                    <div class="pull-center" style="padding-top:0px;">
-                        <s:textfield required="true" name="orderStatusLogsBean.departureTime" cssClass="form-control" id="departureTime" />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="arrivedModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-                <%--<div class="modal-header">
-                    <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-                </div>--%>
-            <div class="modal-body">
-                <div id="arrivedInput">
-                    <label id="arrivedLabel" class="control-label header" >Actual Time of Arrival: <span class="asterisk_red"></span></label>
-                    <div class="pull-center" style="padding-top:0px;">
-                        <s:textfield required="true" name="orderStatusLogsBean.arrivalTime" cssClass="form-control" id="arrivalTime" />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
 <script type="text/javascript">
     /*function checkUpStatus(){
         if($('.statusDropdown').val() == 'DELIVERED'){
@@ -312,33 +232,5 @@
     function sendOkStatus(){
         $('form').submit()
     }
-
-    /*$(function () {
-        var curDate = $('#createdTimestamp');
-        var delDate = $('#deliveryDate');
-        var pickDate = $('#pickupDate');
-        var arrTime = $('#arrivalTime');
-        var depTime = $('#departureTime');
-        curDate.datetimepicker({
-            timeFormat: 'h:mm TT',
-            minDate: 0
-        });
-        delDate.datetimepicker({
-            timeFormat: 'h:mm TT',
-            minDate: 0
-        });
-        pickDate.datetimepicker({
-            timeFormat: 'h:mm TT',
-            minDate: 0
-        });
-        arrTime.datetimepicker({
-            timeFormat: 'h:mm TT',
-            minDate: 0
-        });
-        depTime.datetimepicker({
-            timeFormat: 'h:mm TT',
-            minDate: 0
-        });
-    });*/
 
 </script>

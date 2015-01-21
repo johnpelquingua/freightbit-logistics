@@ -66,7 +66,7 @@
             <div class="panel-body horizontal">
 
                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Container: <s:property value="orderItem.nameSize"/> </label>
+                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Size: <s:property value="orderItem.nameSize"/> </label>
                 </s:if>
                 <s:else>
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Item: <s:property value="orderItem.nameSize"/> </label>

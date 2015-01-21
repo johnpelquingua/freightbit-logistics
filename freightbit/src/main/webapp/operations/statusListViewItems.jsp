@@ -113,7 +113,7 @@
 
                         <td>
                             <display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column>
+                                            style="text-align: center;" format="{0,date,dd-MMM-yyyy hh:mm a}"></display:column>
                         </td>
 
                         <td>
@@ -158,13 +158,13 @@
                                 <s:param name="orderIdParam"
                                          value="order.orderId"></s:param>
                             </s:url>
-
+                            <s:if test="orderStatusLogs.status != 'ON GOING' || orderStatusLogs.status != 'PLANNING 1' || orderStatusLogs.status != 'PLANNING 2' || orderStatusLogs.status != 'PLANNING 3'">
                             <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
                                 <button type="button" id="Complete" class="btn btn-default">
                                     Complete The Service
                                 </button>
                             </s:a>
-
+                            </s:if>
                             <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set All Status" onclick="addText();">
                                 Set Status
                             </button>--%>

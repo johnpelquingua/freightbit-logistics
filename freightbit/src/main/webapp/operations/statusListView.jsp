@@ -21,7 +21,8 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> On-Going Booking List</h3>
+                <i class="fa fa-list"></i>
+                <span class="panel-title">On-Going Booking List</span>
                 <span class="pull-right">
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
                     <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="postAjaxHtml('loadSearchBookingPage', 'inputDiv');">
@@ -89,7 +90,7 @@
             <div class="panel-footer">
                 <div class="table-responsive">
                     <div class="col-lg-12">
-                        <table class="col-lg-12">
+                        <table class="col-lg-2">
                             <tr>
                                 <td><label>LEGEND:</label></td>
                                 <td><i class='fa fa-edit' ></i> Edit</td>
