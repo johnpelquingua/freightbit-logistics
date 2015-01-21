@@ -40,7 +40,7 @@
 
                             <div class="col-lg-10" ></span>
                                 <s:select name="address.addressType" list="addressTypeList" listValue="value"
-                                          listKey="key"
+                                          listKey="key" reqired="true"
                                           cssClass="addAddressInput form-control" id="address.addressType" emptyOption="true"/>
                             </div>
                         </div>
