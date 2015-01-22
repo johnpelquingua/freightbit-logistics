@@ -167,7 +167,7 @@
                             <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set All Status" onclick="addText();">
                                 Set Status
                             </button>--%>
-                                <s:submit cssClass="btn btn-success" value="Set Status X" onclick="addText();"></s:submit>
+                                <s:submit cssClass="btn btn-success" value="Set Status" onclick="addText();"></s:submit>
                         </div>
                     </s:form>
                 </div>
