@@ -174,7 +174,145 @@
                     </div>
 
                 </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-file-text"></i>Documents</h3>
+                    </div>
 
+                    <div class="panel-body">
+                        <div style="margin: 1em;">
+
+                            <s:form name="myform" action="processDocumentsComplete">
+
+                                <%--<s:textfield type="hidden" name="orderIdParam" id="order-Id"/>--%>
+                                <%--<s:textfield type="hidden" name="document.documentItem" id="documentItemComplete"></s:textfield>--%>
+                            <display:table id="document" name="archiveDocuments" requestURI="viewOrderDocumentsArchived.action" pagesize="50" class="table table-striped table-hover table-bordered text-center tablesorter"
+                                           style="margin-top: 15px;">
+
+                                <%--<td>--%>
+
+                                <%--<display:column title="" class="tb-font-black" style="text-align: center;" >--%>
+                                <%--<%--<display:column title="<input type='checkbox' id='fiCheckBox' />" class="tb-font-black" style="text-align: center;" >--%>--%>
+
+                                <%--<%--<s:if test=" documentTabComplete == 'COMPLETE_STAGE_ACTIVE' ">--%>--%>
+
+                                <%--<s:if test="#attr.document.documentProcessed <= 4">--%>
+                                <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
+                                <%--<%--<s:url var="checkDocumentCompleteUrl" action="checkDocumentComplete">--%>
+                                <%--<s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>--%>
+                                <%--</s:url>--%>
+                                <%--<s:a class="icon-action-link" href="%{checkDocumentCompleteUrl}" rel="tooltip" title ="Check Document">--%>
+                                <%--<i class="fa fa-square-o"></i>--%>
+                                <%--</s:a>--%>--%>
+                                <%--</s:if>--%>
+
+                                <%--<s:else>--%>
+                                <%--<i class="fa fa-check-square-o"></i>--%>
+                                <%--</s:else>--%>
+                                <%--<%--<s:property value="%{#attr.document.documentProcessed}"/>--%>--%>
+                                <%--<input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>--%>
+
+                                <%--<%--</s:if>--%>--%>
+
+                                <%--</display:column>--%>
+
+                                <%--</td>--%>
+
+                                <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
+                                </display:column>
+                                </td>
+
+                                <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
+                                </display:column>
+                                </td>
+
+                                <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
+                                </display:column>
+                                </td>
+
+                                <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
+                                </display:column>
+                                </td>
+
+                                <td><display:column property="documentComments" title="Comments" class="tb-font-black" style="text-align: center;">
+                                </display:column>
+                                </td>
+
+                                <td>
+
+                                    <display:column title="Action" class="tb-font-black" style="text-align: center;" >
+
+                                        <%--<a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">--%>
+                                        <%--<i class="fa fa-edit"></i>--%>
+                                        <%--</a>--%>
+
+                                        <%--Print Document--%>
+                                        <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' ">
+                                            <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                        </s:if>
+
+                                        <%--<s:url var="deleteDocumentUrl" action="deleteDocument">--%>
+                                        <%--<s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>--%>
+                                        <%--<s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>--%>
+                                        <%--</s:url>--%>
+                                        <%--<s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">--%>
+                                        <%--<i class="fa fa-trash-o"></i>--%>
+                                        <%--</s:a>--%>
+
+                                    </display:column>
+
+                                </td>
+
+                            </display:table>
+                        </div>
+
+                        <s:if test=" documentTabComplete == 'COMPLETE_READY' ">
+
+                            <s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckTextComplete()"></s:submit>
+
+                        </s:if>
+
+                        </s:form>
+
+                        <s:if test=" documentTabComplete == 'ARCHIVE_PENDING' ">
+
+                            <%--<s:url var="activateCompleteStageUrl" action="activateCompleteStage">--%>
+                            <%--<s:param name="orderIdParam"--%>
+                            <%--value="#attr.order.orderId"></s:param>--%>
+                            <%--</s:url>--%>
+                            <%--<s:a class="icon-action-link" href="%{activateCompleteStageUrl}" rel="tooltip">--%>
+                            <%--<button type="button" class="btn btn-primary pull-right">Activate Complete Stage</button>--%>
+                            <%--</s:a>--%>
+
+                            <s:url var="archiveStageUrl" action="activateArchive">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{archiveStageUrl}" rel="tooltip">
+                                <button type="button" class="btn btn-primary pull-right">Move To Archive</button>
+                            </s:a>
+
+                        </s:if>
+
+                        <%--<s:property value="#attr.order.orderStatus" />--%>
+
+                        <%--<s:if test=" documentTabComplete == 'ALL_DOCUMENTS_COMPLETE' &&  ">--%>
+
+                        <%--<s:if test=" #attr.order.orderStatus == 'SERVICE ACCOMPLISHED'  ">--%>
+                        <%--<s:url var="archiveStageUrl" action="activateArchive">--%>
+                        <%--<s:param name="orderIdParam"--%>
+                        <%--value="#attr.order.orderId"></s:param>--%>
+                        <%--</s:url>--%>
+                        <%--<s:a class="icon-action-link" href="%{archiveStageUrl}" rel="tooltip">--%>
+                        <%--<button type="button" class="btn btn-primary pull-right">Move To Archive</button>--%>
+                        <%--</s:a>--%>
+                        <%--</s:if>--%>
+
+                        <%------------------------------------------COMPLETE DOCUMENTS END-----------------------------------------------%>
+                    </div>
+                </div>
             </div>
 
                 <s:if test="hasActionMessages()">
@@ -188,137 +326,6 @@
 
 <%------------------------------------------COMPLETE DOCUMENTS BEGIN-----------------------------------------------%>
 
-                            <div class="table-responsive" style="clear:both;">
-
-                                <s:form name="myform" action="processDocumentsComplete">
-
-                                <s:textfield type="hidden" name="orderIdParam" id="order-Id"/>
-                                <s:textfield type="hidden" name="document.documentItem" id="documentItemComplete"></s:textfield>
-                                <display:table id="document" name="archiveDocuments" requestURI="viewOrderDocumentsArchived.action" pagesize="50" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
-                                               style="margin-top: 15px;">
-
-                                    <%--<td>--%>
-
-                                            <%--<display:column title="" class="tb-font-black" style="text-align: center;" >--%>
-                                            <%--&lt;%&ndash;<display:column title="<input type='checkbox' id='fiCheckBox' />" class="tb-font-black" style="text-align: center;" >&ndash;%&gt;--%>
-
-                                                <%--&lt;%&ndash;<s:if test=" documentTabComplete == 'COMPLETE_STAGE_ACTIVE' ">&ndash;%&gt;--%>
-
-                                                    <%--<s:if test="#attr.document.documentProcessed <= 4">--%>
-                                                        <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
-                                                        <%--&lt;%&ndash;<s:url var="checkDocumentCompleteUrl" action="checkDocumentComplete">--%>
-                                                            <%--<s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>--%>
-                                                        <%--</s:url>--%>
-                                                        <%--<s:a class="icon-action-link" href="%{checkDocumentCompleteUrl}" rel="tooltip" title ="Check Document">--%>
-                                                            <%--<i class="fa fa-square-o"></i>--%>
-                                                        <%--</s:a>&ndash;%&gt;--%>
-                                                    <%--</s:if>--%>
-
-                                                    <%--<s:else>--%>
-                                                        <%--<i class="fa fa-check-square-o"></i>--%>
-                                                    <%--</s:else>--%>
-                                                    <%--&lt;%&ndash;<s:property value="%{#attr.document.documentProcessed}"/>&ndash;%&gt;--%>
-                                                    <%--<input type="hidden" id="documentProcess" value="${document.documentProcessed}" name="documentNameParam"/>--%>
-
-                                                <%--&lt;%&ndash;</s:if>&ndash;%&gt;--%>
-
-                                            <%--</display:column>--%>
-
-                                    <%--</td>--%>
-
-                                    <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
-                                    </display:column>
-                                    </td>
-
-                                    <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
-                                    </display:column>
-                                    </td>
-
-                                    <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
-                                    </display:column>
-                                    </td>
-
-                                    <td><display:column property="documentStatus" title="Status" class="tb-font-black" style="text-align: center;">
-                                    </display:column>
-                                    </td>
-
-                                    <td><display:column property="documentComments" title="Comments" class="tb-font-black" style="text-align: center;">
-                                    </display:column>
-                                    </td>
-
-                                    <td>
-
-                                        <display:column title="Action" class="tb-font-black" style="text-align: center;" >
-
-                                            <%--<a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">--%>
-                                                <%--<i class="fa fa-edit"></i>--%>
-                                            <%--</a>--%>
-
-                                            <%--Print Document--%>
-                                            <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' ">
-                                                <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
-                                                    <i class="fa fa-print"></i>
-                                                </a>
-                                            </s:if>
-
-                                            <%--<s:url var="deleteDocumentUrl" action="deleteDocument">--%>
-                                                <%--<s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>--%>
-                                                <%--<s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>--%>
-                                            <%--</s:url>--%>
-                                            <%--<s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">--%>
-                                                <%--<i class="fa fa-trash-o"></i>--%>
-                                            <%--</s:a>--%>
-
-                                        </display:column>
-
-                                    </td>
-
-                                </display:table>
-                            </div>
-
-                                <s:if test=" documentTabComplete == 'COMPLETE_READY' ">
-
-                                    <s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckTextComplete()"></s:submit>
-
-                                </s:if>
-
-                                </s:form>
-
-                                <s:if test=" documentTabComplete == 'ARCHIVE_PENDING' ">
-
-                                    <%--<s:url var="activateCompleteStageUrl" action="activateCompleteStage">--%>
-                                        <%--<s:param name="orderIdParam"--%>
-                                                 <%--value="#attr.order.orderId"></s:param>--%>
-                                    <%--</s:url>--%>
-                                    <%--<s:a class="icon-action-link" href="%{activateCompleteStageUrl}" rel="tooltip">--%>
-                                        <%--<button type="button" class="btn btn-primary pull-right">Activate Complete Stage</button>--%>
-                                    <%--</s:a>--%>
-
-                                    <s:url var="archiveStageUrl" action="activateArchive">
-                                        <s:param name="orderIdParam"
-                                                 value="#attr.order.orderId"></s:param>
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{archiveStageUrl}" rel="tooltip">
-                                        <button type="button" class="btn btn-primary pull-right">Move To Archive</button>
-                                    </s:a>
-
-                                </s:if>
-
-                                <%--<s:property value="#attr.order.orderStatus" />--%>
-
-                                <%--<s:if test=" documentTabComplete == 'ALL_DOCUMENTS_COMPLETE' &&  ">--%>
-
-                                <%--<s:if test=" #attr.order.orderStatus == 'SERVICE ACCOMPLISHED'  ">--%>
-                                    <%--<s:url var="archiveStageUrl" action="activateArchive">--%>
-                                        <%--<s:param name="orderIdParam"--%>
-                                                 <%--value="#attr.order.orderId"></s:param>--%>
-                                    <%--</s:url>--%>
-                                    <%--<s:a class="icon-action-link" href="%{archiveStageUrl}" rel="tooltip">--%>
-                                        <%--<button type="button" class="btn btn-primary pull-right">Move To Archive</button>--%>
-                                    <%--</s:a>--%>
-                                <%--</s:if>--%>
-
-<%------------------------------------------COMPLETE DOCUMENTS END-----------------------------------------------%>
 
         </div>
     </div>
