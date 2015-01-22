@@ -151,9 +151,8 @@
                         </td>
                     </tr>
                     </display:table>
-                    <div class="row">
                             <%--<s:textfield  style="display: none" cssClass="col-lg-6" name="orderItem.editItem" id="edit"></s:textfield>--%>
-                        <div class="col-md-7 pull-right" style="margin-right: -17em;">
+                        <div class="pull-right">
                             <s:url var="accStatus" action="serviceAccomplishedStatus">
                                 <s:param name="orderIdParam"
                                          value="order.orderId"></s:param>
@@ -168,10 +167,8 @@
                             <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set All Status" onclick="addText();">
                                 Set Status
                             </button>--%>
-                                <s:submit cssClass="col-lg-4 btn btn-default" value="Set Status" onclick="addText();"></s:submit>
-
+                                <s:submit cssClass="btn btn-success" value="Set Status X" onclick="addText();"></s:submit>
                         </div>
-                    </div>
                     </s:form>
                 </div>
             </div>

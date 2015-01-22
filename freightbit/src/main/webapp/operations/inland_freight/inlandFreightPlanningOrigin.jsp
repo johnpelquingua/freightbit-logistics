@@ -539,9 +539,31 @@
             </div>
         </s:form>
     </div>
+    <div class="panel-footer">
+        <div class="pull-right">
+            <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
+                <s:param name="orderIdParam"
+                         value="#attr.order.orderId"></s:param>
+                <s:param name="orderNoParam"
+                         value="#attr.order.orderNo"></s:param>
+            </s:url>
+            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                 title="Update Status">
+                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                    <button type="button" class="btn">
+                        Dispatch Plan : Containers
+                    </button>
+                </s:if>
+                <s:else>
+                    <button type="button" class="btn">
+                        Dispatch Plan : Items
+                    </button>
+                </s:else>
+            </s:a>
+        </div>
+    </div>
 </div>
 
-<div class="panel panel-primary">
     <%--<div class="panel-heading">
         <i class="fa fa-truck"></i>
         <span class="panel-title"> Dispatch Plan : Destination</span>
@@ -619,34 +641,6 @@
         </div>
     </div>--%>
 
-    <div class="panel-footer">
-
-        <div class="pull-right">
-
-            <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
-                <s:param name="orderIdParam"
-                         value="#attr.order.orderId"></s:param>
-                <s:param name="orderNoParam"
-                         value="#attr.order.orderNo"></s:param>
-            </s:url>
-            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                 title="Update Status">
-
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                    <button type="button" class="btn">
-                        Dispatch Plan : Containers
-                    </button>
-                </s:if>
-                <s:else>
-                    <button type="button" class="btn">
-                        Dispatch Plan : Items
-                    </button>
-                </s:else>
-            </s:a>
-        </div>
-    </div>
-
-</div>
 </s:if>
 <s:elseif test="order.modeOfService=='DOOR TO PIER'">
     <div class="panel panel-primary">
