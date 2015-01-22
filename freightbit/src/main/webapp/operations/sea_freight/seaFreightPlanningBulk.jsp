@@ -581,6 +581,17 @@
         preventDuplicatePort.call(this, select1, this.selectedIndex);
     };
 
-    var select3 =
+     $(document).ready(function() {
+         $('#findVesselScheduleBulk_submit').prop('disabled',true);
+         $("#operationsBean_vendorList").change(function(){
+             var vendorId = $("#operationsBean_vendorList").val();
+             $('#operationsBean_vendorList option:selected').each(function(){
+                 if(vendorId == "" || null) {
+                     $('#findVesselScheduleBulk_submit').prop('disabled',true); }
+                 else {
+                     $('#findVesselScheduleBulk_submit').prop('disabled',false); }
+             });
+         });
+     });
 
 </script>
