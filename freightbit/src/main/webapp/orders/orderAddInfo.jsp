@@ -488,7 +488,7 @@
                                         name="orderItem.remarks"
                                         id="orderItem_remarks"
                                         cssStyle="resize: none; height: 150px;"
-                                        maxLength="250"
+                                        maxLength="255"
 
                                     />
                         </div>
