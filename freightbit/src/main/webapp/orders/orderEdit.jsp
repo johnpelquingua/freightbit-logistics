@@ -530,7 +530,7 @@
                         <label class="col-lg-3">Email Address<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Email Address" name="contact.email"
-                                         id="contact_email" type="email" required="true"/>
+                                         id="contact_email" type="email" required="true" pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{3,})$"/>
                         </div>
                     </div>
                     <div class="form-group">
