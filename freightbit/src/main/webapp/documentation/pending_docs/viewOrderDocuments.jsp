@@ -54,6 +54,10 @@
         top:50%;
         outline: none;
     }
+
+    .documentsCheckbox {
+        cursor: pointer;
+    }
 </style>
 
 <div class="row">
@@ -400,8 +404,9 @@
                                                             <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                         </s:url>
                                                         <s:a class="icon-action-link" href="%{checkDocumentUrl}" rel="tooltip" title ="Check Document">
-                                                            <i class="fa fa-square-o"></i>
                                                         </s:a>
+                                                        <i class="fa fa-square-o documentsCheckbox"></i>
+
                                                         <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
                                                     </s:if>
 
@@ -588,8 +593,8 @@
                                                             <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                         </s:url>
                                                         <s:a class="icon-action-link" href="%{checkDocumentInboundUrl}" rel="tooltip" title ="Check Document">
-                                                            <i class="fa fa-square-o"></i>
                                                         </s:a>
+                                                        <i class="fa fa-square-o documentsCheckbox"></i>
                                                     </s:if>
                                                     <s:else>
                                                         <i class="fa fa-check-square-o"></i>
@@ -823,8 +828,8 @@
                                                             <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                         </s:url>
                                                         <s:a class="icon-action-link" href="%{checkDocumentFinalOutboundUrl}">
-                                                            <i class="fa fa-square-o"></i>
                                                         </s:a>
+                                                        <i class="fa fa-square-o documentsCheckbox"></i>
                                                     </s:if>
                                                     <s:else>
                                                         <i class="fa fa-check-square-o"></i>
@@ -1021,8 +1026,8 @@
                                                         <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                     </s:url>
                                                     <s:a class="icon-action-link" href="%{checkDocumentFinalInboundUrl}" rel="tooltip" title ="Check Document">
-                                                        <i class="fa fa-square-o"></i>
                                                     </s:a>
+                                                    <i class="fa fa-square-o documentsCheckbox"></i>
                                                     <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
                                                 </s:if>
 
@@ -1430,10 +1435,11 @@
 <script>
 
     $(document).ready(function(){
-        massCheckbox('outboundCheckBox', 'outboundTable');
-        massCheckbox('inboundCheckBox', 'inbound_table');
-        massCheckbox('foCheckBox', 'final_outbound_table');
-        massCheckbox('fiCheckBox', 'final_inbound_table');
+        documentsCheckbox();
+//        massCheckbox('outboundCheckBox', 'outboundTable');
+//        massCheckbox('inboundCheckBox', 'inbound_table');
+//        massCheckbox('foCheckBox', 'final_outbound_table');
+//        massCheckbox('fiCheckBox', 'final_inbound_table');
 
         $('.checkBtn').click(function(){
             localStorage.setItem('checkDocuments', 'FOCUS');

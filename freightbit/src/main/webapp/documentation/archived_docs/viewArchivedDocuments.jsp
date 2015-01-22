@@ -34,7 +34,7 @@
 
                     <display:table id="order" name="orders"
                                    requestURI="viewArchivedDocuments.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                   class="archivedDocumentsTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                    style="margin-top: 15px;empty-cells: hide;">
                         <%--Booking Date--%>
                         <td><display:column property="orderDate" title="Order Date <i class='fa fa-sort' />" class="tb-font-black"
@@ -98,7 +98,11 @@
     </div>
 </div>
 
-
+<script>
+    $(document).ready(function(){
+        tablePropClass('DESTI_ORIG', 'archivedDocumentsTable', 0,7,8,9,5,6);
+    })
+</script>
 
 
 
