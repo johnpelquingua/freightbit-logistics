@@ -268,21 +268,27 @@
         <put-attribute name="title" value="Order Documents"/>
         <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocuments.jsp"/>
     </definition>
+
+    <definition name="documentation.viewOrderDocumentsArchived.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Order Documents"/>
+        <put-attribute name="body" value="/documentation/archived_docs/viewOrderDocumentsArchived.jsp"/>
+    </definition>
+
     <!--INBOUND DOCUMENT VIEW-->
-    <definition name="documentation.viewOrderDocumentsInbound.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Order Documents"/>
-        <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsInbound.jsp"/>
-    </definition>
+    <!--<definition name="documentation.viewOrderDocumentsInbound.tiles" extends="baseLayout">-->
+        <!--<put-attribute name="title" value="Order Documents"/>-->
+        <!--<put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsInbound.jsp"/>-->
+    <!--</definition>-->
     <!--FINAL OUTBOUND DOCUMENT VIEW-->
-    <definition name="documentation.viewOrderDocumentsFinalOutbound.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Order Documents"/>
-        <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsFinalOutbound.jsp"/>
-    </definition>
+    <!--<definition name="documentation.viewOrderDocumentsFinalOutbound.tiles" extends="baseLayout">-->
+        <!--<put-attribute name="title" value="Order Documents"/>-->
+        <!--<put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsFinalOutbound.jsp"/>-->
+    <!--</definition>-->
     <!--FINAL INBOUND DOCUMENT VIEW-->
-    <definition name="documentation.viewOrderDocumentsFinalInbound.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Order Documents"/>
-        <put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsFinalInbound.jsp"/>
-    </definition>
+    <!--<definition name="documentation.viewOrderDocumentsFinalInbound.tiles" extends="baseLayout">-->
+        <!--<put-attribute name="title" value="Order Documents"/>-->
+        <!--<put-attribute name="body" value="/documentation/pending_docs/viewOrderDocumentsFinalInbound.jsp"/>-->
+    <!--</definition>-->
     <!--OUTBOUND DOCUMENT INPUT VIEW-->
     <!--<definition name="documentation.orderDocumentsInput.tiles" extends="baseLayout">
         <put-attribute name="title" value="Input Number"/>
@@ -304,30 +310,30 @@
         <put-attribute name="body" value="/documentation/archived_docs/viewArchivedDocuments.jsp"/>
     </definition>
 
-    <definition name="documentation.acceptanceReceipt.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Acceptance Receipt Form"/>
-        <put-attribute name="body" value="/documentation/forms/acceptanceReceipt.jsp"/>
-    </definition>
+    <!--<definition name="documentation.acceptanceReceipt.tiles" extends="baseLayout">-->
+        <!--<put-attribute name="title" value="Acceptance Receipt Form"/>-->
+        <!--<put-attribute name="body" value="/documentation/forms/acceptanceReceipt.jsp"/>-->
+    <!--</definition>-->
 
-    <definition name="documentation.billOfLading.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Bill of Lading"/>
-        <put-attribute name="body" value="/documentation/forms/billOfLading.jsp"/>
-    </definition>
+    <!--<definition name="documentation.billOfLading.tiles" extends="baseLayout">-->
+        <!--<put-attribute name="title" value="Bill of Lading"/>-->
+        <!--<put-attribute name="body" value="/documentation/forms/billOfLading.jsp"/>-->
+    <!--</definition>-->
 
-    <definition name="documentation.wayBillOrigin.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Way Bill Origin"/>
-        <put-attribute name="body" value="/documentation/forms/waybillOrigin.jsp"/>
-    </definition>
+    <!--<definition name="documentation.wayBillOrigin.tiles" extends="baseLayout">-->
+        <!--<put-attribute name="title" value="Way Bill Origin"/>-->
+        <!--<put-attribute name="body" value="/documentation/forms/waybillOrigin.jsp"/>-->
+    <!--</definition>-->
 
-    <definition name="documentation.wayBillDestination.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Bill of Destination"/>
-        <put-attribute name="body" value="/documentation/forms/waybillDestination.jsp"/>
-    </definition>
+    <!--<definition name="documentation.wayBillDestination.tiles" extends="baseLayout">-->
+        <!--<put-attribute name="title" value="Bill of Destination"/>-->
+        <!--<put-attribute name="body" value="/documentation/forms/waybillDestination.jsp"/>-->
+    <!--</definition>-->
 
-    <definition name="documentation.releaseOrder.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Bill of Destination"/>
-        <put-attribute name="body" value="/documentation/forms/releaseOrder.jsp"/>
-    </definition>
+    <!--<definition name="documentation.releaseOrder.tiles" extends="baseLayout">-->
+        <!--<put-attribute name="title" value="Bill of Destination"/>-->
+        <!--<put-attribute name="body" value="/documentation/forms/releaseOrder.jsp"/>-->
+    <!--</definition>-->
 
     <!-- DOCUMENTATION module end -->
 

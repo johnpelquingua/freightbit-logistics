@@ -413,7 +413,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                             }
 
-
                         }
 
                     }
@@ -744,6 +743,42 @@ public class DocumentAction extends ActionSupport implements Preparable{
             documentflag = 0; // resets document flagORDER
 
             return SUCCESS;
+    }
+
+    public String viewOrderDocumentsArchived(){
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        // Order ID param pass value
+        if (orderIdParam == null) {
+            orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
+        }
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        bookingNumber = orderEntity.getOrderNumber(); // for booking number information on breadcrumb
+        order = transformToOrderFormBean(orderEntity);
+
+        // Display Order items under documents view page
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId(orderIdParam);
+        // display item listing in table
+        for (OrderItems orderItemElem : orderItemEntityList) {
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
+
+        /*ARCHIVE DOCUMENTS LIST*/
+        archiveEntityList = documentsService.findDocumentByArchiveStageAndID(1, orderIdParam);
+        /*ARCHIVE DOCUMENTS LIST COUNT*/
+        archiveCount = archiveEntityList.size();
+
+        /*ARCHIVE DOCUMENTS TABLE VIEW*/
+        for (Documents documentElem : archiveEntityList) {
+            archiveDocuments.add(transformDocumentsToFormBean(documentElem));
+        }
+
+
+
+        return SUCCESS;
     }
 
     private OrderItemsBean transformToOrderItemsFormBean(OrderItems orderItem) {

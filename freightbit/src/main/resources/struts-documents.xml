@@ -73,6 +73,10 @@
             <result name="success" type="tiles">documentation.viewOrderDocuments.tiles</result>
         </action>
 
+        <action name="viewOrderDocumentsArchived" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="viewOrderDocumentsArchived">
+            <result name="success" type="tiles">documentation.viewOrderDocumentsArchived.tiles</result>
+        </action>
+
         <action name="getResultAction" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="getResultAction">
             <result name="success">/documentation/result.jsp</result>
         </action>
