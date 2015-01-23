@@ -375,13 +375,12 @@
                     <div class="form-group">
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Rate (Php)<span class="asterisk_red" />
+                            Rate (Php)
                         </label>
                         <div class="col-lg-3" >
                             <s:textfield cssClass="form-control"
                                          id="orderItem_rate"
                                          name="orderItem.rate"
-                                         required="true"
                                          maxLength="16"
 
                                     />
