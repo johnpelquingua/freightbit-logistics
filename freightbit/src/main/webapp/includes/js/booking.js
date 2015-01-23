@@ -5,12 +5,12 @@
  */
 $(document).ready(function() {
 
-    $('.serviceModeDropdown').change(function(){
+    function changeDateLabels(changeVar){
         var deliveryDateLabel = $('.deliveryDateLabel'),
             pickupDateLabel = $('.pickupDateLabel'),
             deliveryDateInput = $('.deliveryDateInput'),
             pickupDateInput = $('.pickupDateInput');
-        switch($(this).val()){
+        switch(changeVar){
             case 'PIER TO DOOR' :
                 deliveryDateLabel.empty().append('Delivery Date<span class="asterisk_red"></span>');
                 deliveryDateInput.attr('placeholder', 'Select Delivery date');
@@ -35,6 +35,14 @@ $(document).ready(function() {
                 deliveryDateLabel.empty().append('Delivery Date<span class="asterisk_red"></span>');
                 deliveryDateInput.attr('placeholder', 'Select Delivery date');
                 break;
+        }
+    }
+
+    $('.serviceModeDropdown').change(function(){ changeDateLabels($(this).val()); });
+
+    $('.freightTypeField').change(function(){
+        if($(this).val() == 'SHIPPING'){
+            changeDateLabels('PIER TO PIER');
         }
     });
 

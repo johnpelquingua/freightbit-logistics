@@ -62,7 +62,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="order_freightType"
-                                          cssClass="form-control bookingInput"
+                                          cssClass="freightTypeField form-control bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.freightType"
                                           list="freightTypeList"

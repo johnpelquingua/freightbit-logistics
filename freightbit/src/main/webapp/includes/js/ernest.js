@@ -879,3 +879,8 @@ function documentsCheckbox(){
         }
     });
 }
+
+function preventSamePort(select1, select2) {
+    select2.find('option').show();
+    select2.find('option:contains("'+select1.val()+'")').hide();
+}

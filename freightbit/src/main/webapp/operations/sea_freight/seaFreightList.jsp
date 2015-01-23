@@ -345,10 +345,10 @@
 
 <script>
     $(document).ready(function(){
-        tablePropClass('DESTI_ORIG','fclTable', 7, 5, 0, 6, 0, 4, 0);
-        tablePropClass('DESTI_ORIG','lcuTable', 7, 5, 0, 6, 0, 4, 0);
-        tablePropClass('DESTI_ORIG','rcuTable', 7, 5, 0, 6, 0, 4, 0);
-        tablePropClass('DESTI_ORIG','lclTable', 8, 5, 0, 7, 0, 6, 0);
+        tablePropClass('DESTI_ORIG','fclTable', 8, 6, 0, 7, 0, 4, 5);
+        tablePropClass('DESTI_ORIG','lclTable', 9, 6, 0, 8, 0, 6, 7);
+        tablePropClass('DESTI_ORIG','lcuTable', 8, 6, 0, 7, 0, 4, 5);
+        tablePropClass('DESTI_ORIG','rcuTable', 8, 6, 0, 7, 0, 4, 5);
 
         if($('.lclTable').size() != 0){
             $('.wellDiv').show('fast');
@@ -386,13 +386,6 @@
         if (lastTab) { $('a[href="'+lastTab+'"]').click(); }
     });
 
-    var select1 = select = document.getElementById('select1');
-    var select2 = select = document.getElementById('select2');
-    /*select2.value = '';*/
-    select1.onchange = function () {
-        preventDuplicatePort.call(this, select2, this.selectedIndex);
-    };
-    select2.onchange = function () {
-        preventDuplicatePort.call(this, select1, this.selectedIndex);
-    };
+    $('#select1').change(function(){ preventSamePort($(this), $('#select2')); })
+    $('#select2').change(function(){ preventSamePort($(this), $('#select1')); })
 </script>
