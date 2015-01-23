@@ -4,6 +4,26 @@
  * this will be included at the BOTTOM of the jsp page
  */
 $(document).ready(function() {
+
+    $('.serviceModeDropdown').change(function(){
+        switch($(this).val()){
+            case 'PIER TO DOOR' :
+                $('.pickupDateLabel').empty().append('Acceptance Date<span class="asterisk_red"></span>');
+                break;
+            case 'DOOR TO PIER' :
+                $('.deliveryDateLabel').empty().append('Release Date<span class="asterisk_red"></span>');
+                break;
+            case 'PIER TO PIER' :
+                $('.deliveryDateLabel').empty().append('Release Date<span class="asterisk_red"></span>')
+                $('.pickupDateLabel').empty().append('Acceptance Date<span class="asterisk_red"></span>')
+                break;
+            default :
+                $('.pickupDateLabel').empty().append('Pickup Date<span class="asterisk_red"></span>');
+                $('.deliveryDateLabel').empty().append('Delivery Date<span class="asterisk_red"></span>');
+                break;
+        }
+    });
+
     // Customer Dropdown
     $('#customerName').change(function(event) {
         var custId = $("#customerName").val();
