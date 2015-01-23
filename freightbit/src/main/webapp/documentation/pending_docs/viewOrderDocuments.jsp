@@ -1323,6 +1323,21 @@
 <s:hidden value="%{finalInboundCount}" id="finalInboundCount" />
 <s:hidden value="%{completeCount}" id="completeCount" />
 
+<%--WARNING MODAL--%>
+<div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="color: red; font-size: 1.5em;"><i class="fa fa-warning"></i> WARNING</div>
+            <div class="modal-body">
+                <div id="warningModalContent"> <%--Area where input fields will appear--%> </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <%--Modal window for input--%>
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">

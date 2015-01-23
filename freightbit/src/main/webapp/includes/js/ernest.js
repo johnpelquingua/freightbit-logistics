@@ -799,14 +799,36 @@ function dateValidationInit(){
             finalSaveBtn = $('.finalSaveBtn'),
             formToSubmit = $('.originForm');
 
-        if(finalPickupDate.setHours(0,0,0,0) >= pickupdate.setHours(0,0,0,0) && finalPickupDate.setHours(0,0,0,0) <= departureDate.setHours(0,0,0,0)){
-            formToSubmit.submit();
+        if(departureDate != 'Invalid Date' && pickupdate != 'Invalid Date'){
+            if(finalPickupDate.setHours(0,0,0,0) >= pickupdate.setHours(0,0,0,0) && finalPickupDate.setHours(0,0,0,0) <= departureDate.setHours(0,0,0,0)){
+                formToSubmit.submit();
+            }else{
+                pickupdate = pickupdate.getUTCFullYear()+'-'+(pickupdate.getMonth()+1)+'-'+pickupdate.getDate();
+                departureDate = departureDate.getUTCFullYear()+'-'+(departureDate.getMonth()+1)+'-'+departureDate.getDate();
+                var message = 'Date must be between <font color="red">'+pickupdate+'</font> and <font color="red">'+departureDate+'</font>';
+                $('#dateWarningModalBody').empty().append(message);
+                $('#dateWarningModal').modal('show');
+            }
         }else{
-            pickupdate = pickupdate.getUTCFullYear()+'-'+(pickupdate.getMonth()+1)+'-'+pickupdate.getDate();
-            departureDate = departureDate.getUTCFullYear()+'-'+(departureDate.getMonth()+1)+'-'+departureDate.getDate();
-            $('#dateWarningModal').modal('show');
-            var message = 'Date must be between <font color="red">'+pickupdate+'</font> and <font color="red">'+departureDate+'</font>';
-            $('#dateWarningModalBody').empty().append(message);
+            if(pickupdate != 'Invalid Date'){
+                if(finalPickupDate.setHours(0,0,0,0) >= pickupdate.setHours(0,0,0,0)){
+                    formToSubmit.submit();
+                }else{
+                    pickupdate = pickupdate.getUTCFullYear()+'-'+(pickupdate.getMonth()+1)+'-'+pickupdate.getDate();
+                    var message = 'Date must be no later than <font color="red">'+pickupdate+'</font>';
+                    $('#dateWarningModalBody').empty().append(message);
+                    $('#dateWarningModal').modal('show');
+                }
+            }else{
+                if(finalPickupDate.setHours(0,0,0,0) >= departureDate.setHours(0,0,0,0)){
+                    formToSubmit.submit();
+                }else{
+                    departureDate = departureDate.getUTCFullYear()+'-'+(departureDate.getMonth()+1)+'-'+departureDate.getDate();
+                    var message = 'Date must be no later than <font color="red">'+departureDate+'</font>';
+                    $('#dateWarningModalBody').empty().append(message);
+                    $('#dateWarningModal').modal('show');
+                }
+            }
         }
     })
 }
@@ -832,4 +854,16 @@ function vesselScheduleColor(tableClass, departureColumn){
         if(departDate < currentDate){ tableDepartureColumn.eq(i).closest('tr').css('background-color', '#f2a5aa');
         }else{ tableDepartureColumn.eq(i).closest('tr').css('background-color', '#dff0d8'); }
     }
+}
+
+function documentsCheckbox(){
+    $('.documentsCheckbox').click(function(){
+        if($(this).parent().siblings().eq(1).text() == undefined || $(this).parent().siblings().eq(1).text() == '' || $(this).parent().siblings().eq(1).text() == null){
+//            alert('Please input SERIES NUMBER first before proceeding document');
+            $('#warningModalContent').empty().append('Please input SERIES NUMBER first before proceeding document');
+            $('#warningModal').modal().show();
+        }else{
+            window.location = $(this).prev().attr('href');
+        }
+    });
 }
