@@ -6,20 +6,34 @@
 $(document).ready(function() {
 
     $('.serviceModeDropdown').change(function(){
+        var deliveryDateLabel = $('.deliveryDateLabel'),
+            pickupDateLabel = $('.pickupDateLabel'),
+            deliveryDateInput = $('.deliveryDateInput'),
+            pickupDateInput = $('.pickupDateInput');
         switch($(this).val()){
             case 'PIER TO DOOR' :
-                $('.pickupDateLabel').empty().append('Acceptance Date<span class="asterisk_red"></span>');
+                deliveryDateLabel.empty().append('Delivery Date<span class="asterisk_red"></span>');
+                deliveryDateInput.attr('placeholder', 'Select Delivery date');
+                pickupDateLabel.empty().append('Acceptance Date<span class="asterisk_red"></span>');
+                pickupDateInput.attr('placeholder', 'Select Acceptance date');
                 break;
             case 'DOOR TO PIER' :
-                $('.deliveryDateLabel').empty().append('Release Date<span class="asterisk_red"></span>');
+                deliveryDateLabel.empty().append('Release Date<span class="asterisk_red"></span>');
+                deliveryDateInput.attr('placeholder', 'Select Release date');
+                pickupDateLabel.empty().append('Pickup Date<span class="asterisk_red"></span>');
+                pickupDateInput.attr('placeholder', 'Select Pickup date');
                 break;
             case 'PIER TO PIER' :
-                $('.deliveryDateLabel').empty().append('Release Date<span class="asterisk_red"></span>')
-                $('.pickupDateLabel').empty().append('Acceptance Date<span class="asterisk_red"></span>')
+                deliveryDateLabel.empty().append('Release Date<span class="asterisk_red"></span>');
+                deliveryDateInput.attr('placeholder', 'Select Release date');
+                pickupDateLabel.empty().append('Acceptance Date<span class="asterisk_red"></span>');
+                pickupDateInput.attr('placeholder', 'Select Acceptance date');
                 break;
             default :
-                $('.pickupDateLabel').empty().append('Pickup Date<span class="asterisk_red"></span>');
-                $('.deliveryDateLabel').empty().append('Delivery Date<span class="asterisk_red"></span>');
+                pickupDateLabel.empty().append('Pickup Date<span class="asterisk_red"></span>');
+                pickupDateInput.attr('placeholder', 'Select Pickup date');
+                deliveryDateLabel.empty().append('Delivery Date<span class="asterisk_red"></span>');
+                deliveryDateInput.attr('placeholder', 'Select Delivery date');
                 break;
         }
     });
