@@ -4,6 +4,40 @@
  * this will be included at the BOTTOM of the jsp page
  */
 $(document).ready(function() {
+
+    $('.serviceModeDropdown').change(function(){
+        var deliveryDateLabel = $('.deliveryDateLabel'),
+            pickupDateLabel = $('.pickupDateLabel'),
+            deliveryDateInput = $('.deliveryDateInput'),
+            pickupDateInput = $('.pickupDateInput');
+        switch($(this).val()){
+            case 'PIER TO DOOR' :
+                deliveryDateLabel.empty().append('Delivery Date<span class="asterisk_red"></span>');
+                deliveryDateInput.attr('placeholder', 'Select Delivery date');
+                pickupDateLabel.empty().append('Acceptance Date<span class="asterisk_red"></span>');
+                pickupDateInput.attr('placeholder', 'Select Acceptance date');
+                break;
+            case 'DOOR TO PIER' :
+                deliveryDateLabel.empty().append('Release Date<span class="asterisk_red"></span>');
+                deliveryDateInput.attr('placeholder', 'Select Release date');
+                pickupDateLabel.empty().append('Pickup Date<span class="asterisk_red"></span>');
+                pickupDateInput.attr('placeholder', 'Select Pickup date');
+                break;
+            case 'PIER TO PIER' :
+                deliveryDateLabel.empty().append('Release Date<span class="asterisk_red"></span>');
+                deliveryDateInput.attr('placeholder', 'Select Release date');
+                pickupDateLabel.empty().append('Acceptance Date<span class="asterisk_red"></span>');
+                pickupDateInput.attr('placeholder', 'Select Acceptance date');
+                break;
+            default :
+                pickupDateLabel.empty().append('Pickup Date<span class="asterisk_red"></span>');
+                pickupDateInput.attr('placeholder', 'Select Pickup date');
+                deliveryDateLabel.empty().append('Delivery Date<span class="asterisk_red"></span>');
+                deliveryDateInput.attr('placeholder', 'Select Delivery date');
+                break;
+        }
+    });
+
     // Customer Dropdown
     $('#customerName').change(function(event) {
         var custId = $("#customerName").val();
@@ -289,24 +323,9 @@ sMode.onchange = function() {
     dynamicDropdown.call(this, sMode, this.selectedIndex);
 };
 
-
-// Avoid selecting duplicate ports
-function preventDuplicatePort(select, index) {
-    var options = select.options,
-        len = options.length;
-    var fType = $('#order_freightType').val();
-    /*will only warn duplicate ports if not trucking service type*/
-    if(fType != "TRUCKING") {
-        while ( len-- ){
-            options[ len ].disabled = false;
-        }
-        select.options[ index ].disabled = true;
-        if (index === select.selectedIndex) {
-            alert('You already selected the same port "' + select.options[index].text + '". Please choose another');
-            this.selectedIndex = 0;
-            select2.value = '';
-        }
-    }
+function preventDuplicatePort(select1, select2) {
+    select2.find('option').show();
+    select2.find('option:contains("'+select1.val()+'")').hide();
 }
 
 var select1 = select = document.getElementById('select1');
@@ -315,11 +334,11 @@ var select2 = select = document.getElementById('select2');
 select2.value = '';
 
 select1.onchange = function () {
-    preventDuplicatePort.call(this, select2, this.selectedIndex);
+    preventDuplicatePort($('#select1'), $('#select2'));
 };
 
 select2.onchange = function () {
-    preventDuplicatePort.call(this, select1, this.selectedIndex);
+    preventDuplicatePort($('#select2'), $('#select1'));
 };
 
 //to get the customer id for adding new contact person

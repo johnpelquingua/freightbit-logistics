@@ -786,7 +786,11 @@ function addTotalRate(){
         totalPhp = 0;
 
     for(var i=0; i < itemList.size(); i++){
-        totalPhp = totalPhp + parseFloat(itemList.eq(i).text());
+        if($.isNumeric(parseFloat(itemList.eq(i).text()))){
+            totalPhp += parseFloat(itemList.eq(i).text());
+        }else{
+            itemList.eq(i).empty().append('<font color="red">0.00</font>');
+        }
     }
     $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
 }
@@ -798,6 +802,14 @@ function dateValidationInit(){
             finalPickupDate = new Date($('.finalPickupDate').val()),
             finalSaveBtn = $('.finalSaveBtn'),
             formToSubmit = $('.originForm');
+
+//        alert($('.serviceModeField').val());
+//        alert(pickupdate);
+//        if($('.serviceModeField').val() == 'DELIVERY'){
+//
+//        }else if($('.serviceModeField').val() == 'PICKUP'){
+//
+//        }
 
         if(departureDate != 'Invalid Date' && pickupdate != 'Invalid Date'){
             if(finalPickupDate.setHours(0,0,0,0) >= pickupdate.setHours(0,0,0,0) && finalPickupDate.setHours(0,0,0,0) <= departureDate.setHours(0,0,0,0)){
@@ -833,18 +845,18 @@ function dateValidationInit(){
     })
 }
 
-function preventDuplicatePort(select, index) {
-    var options = select.options,
-        len = options.length;
-
-    select.options[ index ].disabled = true;
-
-    if (index === select.selectedIndex) {
-        alert('You already selected the same port "' + select.options[index].text + '". Please choose another');
-        this.selectedIndex = 0;
-        select2.value = '';
-    }
-}
+//function preventDuplicatePort(select, index) {
+//    var options = select.options,
+//        len = options.length;
+//
+//    select.options[ index ].disabled = true;
+//
+//    if (index === select.selectedIndex) {
+//        alert('You already selected the same port "' + select.options[index].text + '". Please choose another');
+//        this.selectedIndex = 0;
+//        select2.value = '';
+//    }
+//}
 
 function vesselScheduleColor(tableClass, departureColumn){
     var tableDepartureColumn = $('#'+tableClass+' tbody tr td:nth-child('+departureColumn+')');

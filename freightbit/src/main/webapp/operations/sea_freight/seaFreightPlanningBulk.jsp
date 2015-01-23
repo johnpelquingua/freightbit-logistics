@@ -23,10 +23,10 @@
                 </s:url>
                 <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
                     <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                        Freight Plan : Containers
+                        Freight Plan : Items
                     </s:if>
                     <s:else>
-                        Freight Plan : Items
+                        Freight Plan : Containers
                     </s:else>
                 </s:a>
             </li>
@@ -272,12 +272,12 @@
 
                 <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
                     <button type="button" class="btn">
-                        Back to Freight Plan : Containers
+                        Back to Freight Plan : Items
                     </button>
                 </s:if>
                 <s:else>
                     <button type="button" class="btn">
-                        Back to Freight Plan : Items
+                        Back to Freight Plan : Containers
                     </button>
                 </s:else>
             </s:a>

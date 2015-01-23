@@ -72,7 +72,7 @@
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
                 Mode</label>
             <div class="col-lg-4">
-                <s:textfield cssClass="form-control" value="%{order.modeOfService}"
+                <s:textfield cssClass="serviceModeField form-control" value="%{order.modeOfService}"
                              disabled="true"></s:textfield>
             </div>
 
@@ -1214,7 +1214,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Pickup Date Error</h4>
+                <h4 class="modal-title" id="myModalLabel" style="color: red"><i class="fa fa-warning"></i> WARNING</h4>
             </div>
             <div class="modal-body" id="dateWarningModalBody">
 
