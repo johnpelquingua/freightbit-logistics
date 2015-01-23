@@ -5,9 +5,6 @@ import org.pentaho.reporting.engine.classic.core.MasterReport;
 
 import java.util.Map;
 
-/**
- * Created by user on 10/15/2014.
- */
 public interface HouseBillofLadingReportService {
     public DataFactory getDataFactory(Map<String, String> params);
     public Map<String, Object> getReportParameters(Map<String, String> params);

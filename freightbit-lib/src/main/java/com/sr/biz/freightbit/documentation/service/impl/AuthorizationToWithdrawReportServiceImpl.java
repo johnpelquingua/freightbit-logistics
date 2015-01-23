@@ -12,9 +12,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by JMXPSX on 10/20/2014.
- */
 public class AuthorizationToWithdrawReportServiceImpl extends ReportGeneratorService implements AuthorizationToWithdrawReportService
 {
 

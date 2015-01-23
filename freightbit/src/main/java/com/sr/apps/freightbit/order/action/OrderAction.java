@@ -514,6 +514,8 @@ public class OrderAction extends ActionSupport implements Preparable {
     }
 
     public String createReport() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
 
         // Booking Request Form will be created under pending documents start
 
@@ -535,7 +537,6 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         // Booking Request Form will be created under pending documents end
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
         // Put Order Id to Order Id session
         sessionAttributes.put("orderIdParam", orderIdParam);
 
@@ -761,8 +762,13 @@ public class OrderAction extends ActionSupport implements Preparable {
 			addActionError("Booking must have at least 1 item");
             return INPUT;
         }
+
         orderEntity.setOrderStatus("APPROVED");
         orderService.updateOrder(orderEntity);
+
+        sessionAttributes.put("orderIdParam", orderIdParam);
+        createReport();
+
         clearErrorsAndMessages();
         addActionMessage("Booking successfully Approved!");
 
@@ -774,8 +780,13 @@ public class OrderAction extends ActionSupport implements Preparable {
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         orderEntity.setOrderStatus("CANCELLED");
         orderService.updateOrder(orderEntity);
+
+        Documents bookingRequestFormEntity = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
+        documentsService.deleteDocument(bookingRequestFormEntity);
+
         clearErrorsAndMessages();
         addActionMessage("Booking cancelled.");
+
         return SUCCESS;
 
     }
@@ -2018,9 +2029,9 @@ public class OrderAction extends ActionSupport implements Preparable {
         this.ctr = ctr;
     }
 
-    public DocumentsService getDocumentsService() {
-        return documentsService;
-    }
+//    public DocumentsService getDocumentsService() {
+//        return documentsService;
+//    }
 
     public void setDocumentsService(DocumentsService documentsService) {
         this.documentsService = documentsService;

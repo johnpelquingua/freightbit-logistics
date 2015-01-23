@@ -350,6 +350,24 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
         }
     }
 
+    @Override
+    public Documents findDocumentNameAndOrderId(String documentName, Integer referenceId) {
+
+        log.debug("Finding Document ....");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.documentName = :documentName and d.referenceId = :referenceId");
+            query.setParameter("documentName", documentName);
+            query.setParameter("referenceId", referenceId);
+            List<Documents> results = (List<Documents>) query.list();
+            if (results != null && results.size() > 0) {
+                return results.get(0);
+            }
+            return null;
+        } catch (Exception e) {
+            log.error("Finding documents failed");
+            throw e;
+        }
+    }
 
     @Override
     public void deleteDocument(Documents documents){

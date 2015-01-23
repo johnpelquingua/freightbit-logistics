@@ -10,12 +10,12 @@
 
             <label class="col-lg-4 control-label" style="text-align: right;">Document Name</label>
             <div class="col-lg-8">
-                <s:hidden name="document.referenceId" value="%{orderIdParam}" />
+                <s:textfield name="document.referenceId" value="%{orderIdParam}" />
                 <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
-                <s:hidden name="documentStageParam" value="%{documentStageParam}" />
+                <s:textfield name="documentStageParam" value="%{documentStageParam}" />
                 <%--<s:textfield value="%{documentStageParam}" />--%>
-                <s:hidden value="%{order.freightType}" cssClass="serviceType"/>
-                <s:hidden value="%{order.modeOfService}" cssClass="serviceMode"/>
+                <s:textfield value="%{order.freightType}" cssClass="serviceType"/>
+                <s:textfield value="%{order.modeOfService}" cssClass="serviceMode"/>
                 <%--<s:hidden name="document.referenceId" value="orderIdParam" />--%>
                 <%--<s:textfield cssClass="form-control" style="margin-bottom: 15px !important;" value="%{document.documentName}" disabled="true"></s:textfield>--%>
                     <input list="documents" id="documentName" name="document.documentName" class="form-control" maxLength="30" required="true" style="margin-bottom: 15px !important;" required="true"/>

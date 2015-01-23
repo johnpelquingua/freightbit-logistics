@@ -299,6 +299,16 @@
             </result>
         </action>
 
+        <action name="generate2GOProformaReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generate2GOProformaReport">
+            <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>
+            <result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>viewOrderDocuments
+            </result>
+        </action>
+
         <action name="generateEIR1RequestReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateEIR1RequestReport">
             <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>
             <result name="download" type="stream">

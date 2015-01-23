@@ -480,7 +480,7 @@
                                                     <%--</s:if>--%>
                                                     <%--Print Document--%>
                                                     <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='PROFORMA BILL OF LADING' ">
-                                                        <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}','${document.vendorCode}');">
+                                                        <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                             <i class="fa fa-print"></i>
                                                         </a>
                                                     </s:if>
@@ -1606,9 +1606,9 @@ function showInputFields(referenceId,documentId) {
         });
     });
 
-    function generateReport(documentId,documentName,vendorCode) {
+    function generateReport(documentId,documentName) {
     if (documentName == "BOOKING REQUEST FORM") {
-        alert(vendorCode);
+//        alert(vendorCode);
         var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId , 'bookingRequest', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Booking Request Form";
@@ -1646,12 +1646,12 @@ function showInputFields(referenceId,documentId) {
     else if (documentName == "AUTHORIZATION TO WITHDRAW") {
         var win = window.open('documentations/generateAuthorizationToWithdrawReport?documentIdParam=' + documentId, 'Authorization to Withdraw', 'width=910,height=800');
         win.onload = function () {
-            this.document.title = "Authorization to Withdraw";
+            this.document.title = "Proforma Bill of Lading";
             window.location.href = '#documentTab';
         }
     }
     else if (documentName == "PROFORMA BILL OF LADING") {
-        var win = window.open('documentations/generateAuthorizationToWithdrawReport?documentIdParam=' + documentId, 'Proforma Bill of Lading', 'width=910,height=800');
+        var win = window.open('documentations/generate2GOProformaReport?documentIdParam=' + documentId, 'Proforma Bill of Lading', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Authorization to Withdraw";
             window.location.href = '#documentTab';

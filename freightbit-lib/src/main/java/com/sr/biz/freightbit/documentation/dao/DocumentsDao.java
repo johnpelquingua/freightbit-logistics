@@ -45,6 +45,8 @@ public interface DocumentsDao {
 
     public List<Documents> findDocumentNameAndId(String documentName, Integer orderItemId);
 
+    public Documents findDocumentNameAndOrderId(String documentName, Integer orderItemId);
+
     public void deleteDocument(Documents documents);
 
     public List<Documents> findDocumentsByAging(Integer aging);

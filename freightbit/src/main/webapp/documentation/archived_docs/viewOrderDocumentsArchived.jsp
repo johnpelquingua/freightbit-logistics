@@ -615,7 +615,7 @@ function showInputFields(referenceId,documentId) {
 
     function generateReport(documentId,documentName,vendorCode) {
     if (documentName == "BOOKING REQUEST FORM") {
-        alert(vendorCode);
+//        alert(vendorCode);
         var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId , 'bookingRequest', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Booking Request Form";

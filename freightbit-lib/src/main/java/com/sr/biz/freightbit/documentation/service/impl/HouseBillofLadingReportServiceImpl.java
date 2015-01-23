@@ -12,9 +12,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by user on 10/15/2014.
- */
 public class HouseBillofLadingReportServiceImpl extends ReportGeneratorService implements HouseBillofLadingReportService {
 
     public MasterReport getReportDefinition()

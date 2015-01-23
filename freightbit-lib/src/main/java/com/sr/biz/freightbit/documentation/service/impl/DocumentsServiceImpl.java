@@ -113,6 +113,11 @@ public class DocumentsServiceImpl implements DocumentsService {
     }
 
     @Override
+    public Documents findDocumentNameAndOrderId (String documentName, Integer referenceId){
+        return documentsDao.findDocumentNameAndOrderId(documentName, referenceId);
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void deleteDocument(Documents documents){
         documentsDao.deleteDocument(documents);

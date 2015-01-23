@@ -26,23 +26,13 @@
         <div class="btn-toolbar pull-right">
             <a class="btn btn-info" title="Edit Booking" href="<s:url action='loadEditOrderInBooking' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" > <i class="fa fa-edit"></i> Edit Booking</a>
 
-        <%--<s:property value="#attr.order.documentCheck" />--%>
+        <%--<s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">--%>
+            <%--<a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM')"> <i class="fa fa-print"></i> Print Booking</a>--%>
+        <%--</s:if>--%>
 
-        <s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">
-            <a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM')"> <i class="fa fa-print"></i> Print Booking</a>
-        </s:if>
-
-        <s:else>
-            <a class="btn btn-info" title="Create Booking Request Form" href="<s:url action='createReport' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" > <i class="fa fa-file-text-o"></i> Create Booking Request Form</a>
-
-            <%--<s:url var="createReportUrl" action="createReport">
-                <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
-            </s:url>
-            <s:a href="%{createReportUrl}" class="icon-action-link" rel="tooltip" title="View this user">
-                <a class="btn btn-info" title="Create Booking Request Form" > <i class="fa fa-file-text-o"></i> Create Booking Request Form</a>
-             </s:a>--%>
-
-        </s:else>
+        <%--<s:else>--%>
+            <%--<a class="btn btn-info" title="Create Booking Request Form" href="<s:url action='createReport' ><s:param name="orderIdParam" value="%{order.orderId}"></s:param></s:url>" > <i class="fa fa-file-text-o"></i> Create Booking Request Form</a>   --%>
+        <%--</s:else>--%>
 
         </div>
     </div>

@@ -29,7 +29,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class BookingRequestReportServiceImpl extends ReportGeneratorService  implements BookingRequestReportService
 {
 

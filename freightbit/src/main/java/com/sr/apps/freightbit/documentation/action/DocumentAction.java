@@ -72,6 +72,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private AcceptanceReceiptReportService acceptanceReceiptReportService;
     private HouseWayBillDestinationReportService houseWayBillDestinationReportService;
     private AuthorizationToWithdrawReportService authorizationToWithdrawReportService;
+    private ProformaBillOfLading2GOReportService proformaBillOfLading2GOReportService;
     private EquipmentInterchangeReceipt1ReportService equipmentInterchangeReceipt1ReportService;
     private EquipmentInterchangeReceipt2ReportService equipmentInterchangeReceipt2ReportService;
     private CustomerService customerService;
@@ -2538,6 +2539,42 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return null;
     }
 
+    /*2GO Proforma Bill of Lading*/
+    public String generate2GOProformaReport(){
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>documentIdParam " + documentIdParam);
+
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        String orderId = (documentEntity.getReferenceId()).toString();
+
+        Map<String, String> params = new HashMap();
+        params.put("orderId", orderId);
+
+        ByteArrayOutputStream byteArray = null;
+        BufferedOutputStream responseOut = null;
+
+        try{
+            final File outputFile = new File("Proforma Bill of Lading - 2GO.pdf");
+
+            MasterReport report = proformaBillOfLading2GOReportService.generateReport(params);
+
+            HttpServletResponse response = ServletActionContext.getResponse();
+            responseOut = new BufferedOutputStream(response.getOutputStream());
+            byteArray = new ByteArrayOutputStream();
+
+            boolean isRendered = PdfReportUtil.createPDF(report, byteArray);
+            byteArray.writeTo(responseOut);
+
+            byteArray.close();
+            responseOut.close();
+
+        }catch (Exception re) {
+            re.printStackTrace();
+        }
+
+        return null;
+    }
+
     // Equipment Interchange Receipt 1
     public String generateEIR1RequestReport() {
 
@@ -3295,5 +3332,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setVendorCodeParam(String vendorCodeParam) {
         this.vendorCodeParam = vendorCodeParam;
+    }
+
+    public void setProformaBillOfLading2GOReportService(ProformaBillOfLading2GOReportService proformaBillOfLading2GOReportService) {
+        this.proformaBillOfLading2GOReportService = proformaBillOfLading2GOReportService;
     }
 }
