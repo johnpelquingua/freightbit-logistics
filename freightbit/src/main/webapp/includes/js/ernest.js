@@ -354,6 +354,44 @@ function modeAbbrev(mode){
     }
 }
 
+function dateAbbrev_Format3(date){
+    var splitDate = date.split('-'),
+        month;
+
+    if(splitDate[0] == '01'){
+        month = 'JAN';
+    }else if(splitDate[0] == '02'){
+        month = 'FEB';
+    }else if(splitDate[0] == '03'){
+        month = 'MAR';
+    }else if(splitDate[0] == '04'){
+        month = 'APR';
+    }else if(splitDate[0] == '05'){
+        month = 'MAY';
+    }else if(splitDate[0] == '06'){
+        month = 'JUN';
+    }else if(splitDate[0] == '07'){
+        month = 'JUL';
+    }else if(splitDate[0] == '08'){
+        month = 'AUG';
+    }else if(splitDate[0] == '09'){
+        month = 'SEP';
+    }else if(splitDate[0] == '10'){
+        month = 'OCT';
+    }else if(splitDate[0] == '11'){
+        month = 'NOV';
+    }else if(splitDate[0] == '12'){
+        month = 'DEC';
+    }else{
+        month = splitDate[0];
+    }
+
+    // FORMAT MUST BE dd/Mon/yyyy
+
+    return splitDate[1]+'-'+month+'-'+splitDate[2];
+//    return splitDate[2]+'-'+month+'-'+splitDate[0];
+}
+
 function dateAbbrev(date){
     var splitDate = date.split('-'),
         month;
@@ -766,6 +804,9 @@ function hideVesselSchedule(){
                 schedClass.eq(i).closest('tr').remove();
             }
         }
+
+        var dateToAppend = dateAbbrev_Format3(arrivalDate.eq(i).text());
+        arrivalDate.eq(i).empty().append(dateToAppend);
     }
 
     setTimeout(function(){

@@ -959,19 +959,19 @@ $(document).ready(function() {
 
                     $('#ajaxResponse').text(jsonResponse.dummyMsg);
 
-                    var select = $('#shipperContact').val();
+                    var select = $('#shipperContact');
 
                     select.find('option').remove();
 
-                    var select2 = $('#shipperAddress').val();
+                    var select2 = $('#shipperAddress');
 
                     select2.find('option').remove();
 
-                    var select3 = $('#shipperConsignee').val();
+                    var select3 = $('#shipperConsignee');
 
                     select3.find('option').remove();
 
-                    var select4 = $('#consigneeAddress').val();
+                    var select4 = $('#consigneeAddress');
 
                     select4.find('option').remove();
 
@@ -1058,7 +1058,6 @@ $(document).ready(function() {
                     $.each(jsonResponse.customerPhoneMap, function(key, value) {
                         $('<option>').val(key).text(value).appendTo(select5);
                         var customerPhone = $("#customerPhone").val();
-                        alert(customerPhone);
                         document.getElementById("customerPhone_textfield").value = customerPhone;
                     });
 
@@ -1066,7 +1065,6 @@ $(document).ready(function() {
                     $.each(jsonResponse.customerMobileMap, function(key, value) {
                         $('<option>').val(key).text(value).appendTo(select6);
                         var customerMobile = $("#customerMobile").val();
-                        alert(customerMobile);
                         document.getElementById("customerMobile_textfield").value = customerMobile;
                     });
 
