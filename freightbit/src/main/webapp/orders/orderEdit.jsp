@@ -1121,14 +1121,14 @@ $(document).ready(function() {
                 }
             }
 
-            for (var i = 0; i < sReq.options.length; i++){
-                $("#order_serviceRequirement").val('');
-                if(sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD"){
-                    sReq.options[i].style.display = "none";
-                }else{
-                    sReq.options[i].style.display = "block";
-                }
-            }
+//            for (var i = 0; i < sReq.options.length; i++){
+//                $("#order_serviceRequirement").val('');
+//                if(sReq.options[i].value == "FULL TRUCK LOAD" || sReq.options[i].value == "LESS TRUCK LOAD"){
+//                    sReq.options[i].style.display = "none";
+//                }else{
+//                    sReq.options[i].style.display = "block";
+//                }
+//            }
 
         } else if (order_freightType == 'SHIPPING'){
 

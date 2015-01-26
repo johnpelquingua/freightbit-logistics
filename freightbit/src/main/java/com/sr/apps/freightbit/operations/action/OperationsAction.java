@@ -452,7 +452,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             return INPUT;
                         }
                     }
-                    /*else if ("PLANNING 2".equals(entity.getStatus())) {
+                    else if ("PLANNING 2".equals(entity.getStatus())) {
                         planning2.add(orderItemId);
                         if (planning1.size() > 0 || planning3.size() > 0) {
                             return INPUT;
@@ -463,7 +463,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         if (planning1.size() > 0 || planning2.size() > 0) {
                             return INPUT;
                         }
-                    }*/
+                    }
                     else if ("ON GOING".equals(entity.getStatus())) {
                         planning4.add(orderItemId);
                     }
@@ -1476,6 +1476,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
 
+        /*for current vessel schedule bound for edit*/
+        if(orderItem.getVesselScheduleId() != null || !orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() != 0 || !orderItem.getVesselScheduleId().isEmpty() || !orderItem.getVesselScheduleId().equals("NONE")){
+            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
+            vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+        }
+
         // Vessel schedules filtered by origin and destination
         List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
 
@@ -2401,7 +2407,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         VesselScheduleBean formBean = new VesselScheduleBean();
         /*formBean.setVesselScheduleId(entity.getVesselScheduleId());*/
-        /*System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa " + entity.getVesselScheduleId());*/
         if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId()) || "NONE".equals(entity.getVesselScheduleId())) {
             /*formBean.setVesselScheduleId("NONE");*/
             formBean.setVesselName("NONE");
