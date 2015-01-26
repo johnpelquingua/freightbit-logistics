@@ -40,11 +40,11 @@
 <div class="row">
 <div class="col-lg-12">
 <div class="panel panel-primary">
-    <div class="panel-heading">
+    <div class="panel-heading bookingDivHead" onclick="$('.bookingDivBody').slideToggle('fast')">
         <i class="fa fa-book"></i>
         <span class="panel-title">Booking Information</span>
     </div>
-    <div class="panel-body form-horizontal">
+    <div class="panel-body form-horizontal bookingDivBody" style="display: none;">
         <div class="form-group">
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Booking
                 Number</label>
@@ -419,12 +419,12 @@
          title="Update Status">
 
         <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-            <button type="button" class="btn btn-default">
+            <button type="button" class="btn btn-danger">
                 Back to Freight Plan : Containers
             </button>
         </s:if>
         <s:else>
-            <button type="button" class="btn btn-default">
+            <button type="button" class="btn btn-danger">
                 Back to Freight Plan : Items
             </button>
         </s:else>
