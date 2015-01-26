@@ -5,6 +5,8 @@
  */
 $(document).ready(function() {
 
+    $('.basicInfoInput').change(function(){ $('.notifBox').attr('checked', false); })
+
     function changeDateLabels(changeVar){
         var deliveryDateLabel = $('.deliveryDateLabel'),
             pickupDateLabel = $('.pickupDateLabel'),
