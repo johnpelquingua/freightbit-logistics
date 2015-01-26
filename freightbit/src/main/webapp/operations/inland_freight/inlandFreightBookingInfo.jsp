@@ -249,8 +249,8 @@
     <div class="panel-footer">
 
         <div class="pull-right">
-            <button type="button" id="Cancel" class="btn" onclick="location.href='viewInlandFreightList'">
-                Back to Dispatch Plan : Orders
+            <button type="button" id="Cancel" class="btn btn-danger" onclick="location.href='viewInlandFreightList'">
+                <i class="fa fa-chevron-left"></i> Back to Dispatch Plan : Orders
             </button>
         </div>
 

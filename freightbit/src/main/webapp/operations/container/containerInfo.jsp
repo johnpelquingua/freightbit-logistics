@@ -126,7 +126,7 @@
             </div>
             <div class="panel-footer">
                 <span class="pull-right">
-                    <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Back to Container Lists</a>
+                    <a href="viewContainerList" class="btn btn-danger" id ="groups-btn"> <i class="fa fa-chevron-left"></i> Back to Container Lists</a>
                 </span>
             </div>
         </div>

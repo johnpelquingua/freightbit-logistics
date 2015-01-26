@@ -164,7 +164,7 @@
             </div>
             <div class="panel-footer">
                 <span class="pull-right">
-                  <a href="viewUsers" class="btn btn-default" id="users-add-btn">Cancel</a>
+                  <a href="viewUsers" class="btn btn-danger" id="users-add-btn">Cancel</a>
                   <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
                 </span>
             </div>

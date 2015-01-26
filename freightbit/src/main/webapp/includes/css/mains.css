@@ -1014,3 +1014,11 @@ span.pagination li{
 .padding-10-top {
     padding-top : 0.6em;
 }
+
+.padding-10-bot {
+    padding-bottom: 0.6em;
+}
+
+.margin-10-bot {
+    margin-bottom: 0.8em;
+}

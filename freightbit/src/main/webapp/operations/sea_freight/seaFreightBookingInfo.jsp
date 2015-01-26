@@ -248,8 +248,8 @@
     <div class="panel-footer">
 
         <div class="pull-right">
-            <button type="button" id="Cancel" class="btn" onclick="location.href='viewSeaFreightList'">
-                Back to Freight Plan : Orders
+            <button type="button" id="Cancel" class="btn btn-danger" onclick="location.href='viewSeaFreightList'">
+                <i class="fa fa-chevron-left"></i> Back to Freight Plan : Orders
             </button>
         </div>
 

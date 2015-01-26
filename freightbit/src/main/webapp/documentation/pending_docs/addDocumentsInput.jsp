@@ -2,10 +2,9 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<div class="panel-body">
-
-    <div class="well">
-
+        <div class="modal-header margin-10-bot center-text" style="font-size: 1.5em; !important;">
+            <i class="fa fa-plus"></i> Add New Documents
+        </div>
         <s:form action="addDocument" theme="bootstrap">
 
             <label class="col-lg-4 control-label" style="text-align: right;">Document Name</label>
@@ -16,7 +15,7 @@
                 <%--<s:textfield value="%{documentStageParam}" />--%>
                 <s:textfield value="%{order.freightType}" cssClass="serviceType"/>
                 <s:textfield value="%{order.modeOfService}" cssClass="serviceMode"/>
-                <%--<s:hidden name="document.referenceId" value="orderIdParam" />--%>
+                <s:hidden name="document.referenceId" value="orderIdParam" />
                 <%--<s:textfield cssClass="form-control" style="margin-bottom: 15px !important;" value="%{document.documentName}" disabled="true"></s:textfield>--%>
                     <input list="documents" id="documentName" name="document.documentName" class="form-control" maxLength="30" required="true" style="margin-bottom: 15px !important;" required="true"/>
                     <datalist id="documents" class="datalistDocuments">
@@ -41,7 +40,7 @@
                             id="document_documentComments" />
             </div>
 
-            <div style="clear:both;" class="pull-right">
+            <div style="clear:both;" class="modal-footer">
                 <s:url var="cancelInputUrl" action="viewOrderDocuments">
                     <s:param name="orderIdParam" value="document.referenceId"></s:param>
                 </s:url>
@@ -53,9 +52,6 @@
 
         </s:form>
 
-    </div>
-
-</div>
 
 <script>
     $(document).ready(function(){

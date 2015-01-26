@@ -224,7 +224,7 @@
 
             <div class="panel-footer">
                 <div class="pull-right">
-                    <a href="customerList" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <a href="customerList" class="btn btn-danger" id ="groups-btn">Cancel</a>
                     <s:submit name="submit" cssClass="btn btn-primary" value="Save" />
                 </div>
             </div>

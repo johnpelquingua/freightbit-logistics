@@ -95,7 +95,7 @@
                     <s:hidden name="groupBean.groupId" value="%{groupBean.groupId}"/>
 
                 <span class="pull-right">
-                    <a href="viewGroups" class="btn btn-default ">Cancel</a>
+                    <a href="viewGroups" class="btn btn-danger ">Cancel</a>
                     <s:submit name="submit" value="Save" cssClass="btn btn-primary"/>
                 </span>
 

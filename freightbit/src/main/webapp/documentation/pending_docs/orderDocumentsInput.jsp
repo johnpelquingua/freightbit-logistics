@@ -1,11 +1,10 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-
-<div class="panel-body">
-
-    <div class="well">
         <%--<div class="container">--%>
+            <div class="modal-header margin-10-bot center-text" style="font-size: 1.5em; !important;">
+                <i class="fa fa-file"></i> Edit Documents
+            </div>
             <s:form action="addReferenceNumber" theme="bootstrap">
                 <%--<div class="form-group">--%>
                     <label class="col-lg-4 control-label" style="text-align: right;">Document Name</label>
@@ -65,7 +64,7 @@
                                      id="document_documentComments" />
                     </div>
                 <%--</div>--%>
-                    <div style="clear:both;" class="pull-right">
+                    <div style="clear:both;" class="modal-footer">
                         <s:url var="cancelInputUrl" action="viewOrderDocuments">
                             <s:param name="orderIdParam" value="document.referenceId"></s:param>
                         </s:url>
@@ -76,8 +75,4 @@
                     </div>
             </s:form>
         <%--</div>--%>
-    </div>
-
-</div>
-
 

@@ -74,7 +74,7 @@
             </div>
             <div class="panel-footer">
                 <div class="pull-right">
-                    <a href="viewVendors" class="btn btn-default" id ="groups-btn">Cancel</a>
+                    <a href="viewVendors" class="btn btn-danger" id ="groups-btn">Cancel</a>
                     <s:submit cssClass="btn btn-primary submitBtn" value="Save" type="submit" disabled="true"/>
                 </div>
             </div>

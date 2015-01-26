@@ -73,7 +73,7 @@
                 <div class="" style="float: right;">
                     <%--<button class="btn btn-default" onclick="this.form.action='viewVendors'"/>--%>
                     <%--Cancel</button>--%>
-                   <a href="viewVendors" class="btn btn-default" id ="groups-btn">Cancel</a>
+                   <a href="viewVendors" class="btn btn-danger" id ="groups-btn">Cancel</a>
                     <s:submit cssClass="btn btn-primary" value="Save" type="submit"/>
                 </div>
                 </s:form>

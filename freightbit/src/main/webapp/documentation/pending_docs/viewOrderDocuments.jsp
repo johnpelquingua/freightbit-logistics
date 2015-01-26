@@ -530,7 +530,7 @@
 
                                         <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'OUTBOUND');">--%>
                                         <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="OUTBOUND">
-                                            <button type="button" class="btn btn-primary pull-right">Add Outbound Document</button>
+                                            <button type="button" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i> Add Outbound Document</button>
                                         </a>
 
                                         <%--<s:url var="addOutboundDocumentUrl" action="addOutboundDocument">
@@ -764,7 +764,7 @@
 
                                     <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'INBOUND');">--%>
                                     <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="INBOUND">
-                                        <button type="button" class="btn btn-primary pull-right">Add Inbound Document</button>
+                                        <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add Inbound Document</button>
                                     </a>
 
                                 </s:form>
@@ -973,7 +973,7 @@
 
                                     <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'FINAL OUTBOUND');">--%>
                                     <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="FINAL OUTBOUND">
-                                        <button type="button" class="btn btn-primary pull-right">Add Final Outbound Document</button>
+                                        <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add Final Outbound Document</button>
                                     </a>
 
                                 </s:form>
@@ -1142,7 +1142,7 @@
 
                                         <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'FINAL INBOUND');">--%>
                                         <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="FINAL INBOUND">
-                                            <button type="button" class="btn btn-primary pull-right">Add Final Inbound Document</button>
+                                            <button type="button" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add Final Inbound Document</button>
                                         </a>
 
                                     </s:form>
@@ -1342,7 +1342,7 @@
 <div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body" style="padding: 0px;">
                 <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
         </div>
@@ -1353,7 +1353,7 @@
 <div class="modal fade" id="addDocumentModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body" style="padding: 0px;">
                 <div id="documentInputDiv"> <%--Area where input fields will appear--%> </div>
             </div>
         </div>
