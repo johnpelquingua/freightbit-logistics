@@ -132,6 +132,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public List<Contacts> findConsigneeContactByRefIdAndType(String contactType, Integer customerId) {
+        return contactsDao.findContactByRefTableAndIdAndType("CONTACTS", customerId, contactType);
+    }
+
+    @Override
     public List<Contacts> findContactByParameterMap(Integer referenceId, String contactType, Integer clientId) {
         List<Contacts> contacts = new ArrayList<Contacts>();
         Map<String, Object> paramMap = new HashMap<String, Object>();
