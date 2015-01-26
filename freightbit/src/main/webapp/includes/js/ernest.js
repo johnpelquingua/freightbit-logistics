@@ -204,7 +204,6 @@ function tablePropClass(tableClass, tableName, colStatus, colType, colReq, colMo
                 origColumn = $('.'+tableName+' tbody tr td:nth-child('+colOrigin+')').eq(i),
                 des = placeAbbrev(desColumn.text()),
                 ori = placeAbbrev(origColumn.text());
-
             desColumn.empty().append(des);
             origColumn.empty().append(ori);
         }
@@ -387,7 +386,9 @@ function dateAbbrev(date){
         month = splitDate[1];
     }
 
-    return splitDate[0].substr(2,4)+'-'+month+'-'+splitDate[2];
+    // FORMAT MUST BE dd/Mon/yyyy
+
+    return splitDate[2]+'-'+month+'-'+splitDate[0];
 }
 
 function initTimestampAbbrev(tableClass, dateColumn){
@@ -436,7 +437,7 @@ function dateAbbrev_Format2(table, column){
             month = splitDate[0];
         }
 
-        dateColumn.empty().append(splitDate[1]+'-'+month+'-'+splitDate[2].substr(2,4));
+        dateColumn.empty().append(splitDate[1]+'-'+month+'-'+splitDate[2]);
     }
 }
 

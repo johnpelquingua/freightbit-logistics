@@ -345,11 +345,6 @@
 
 <script>
     $(document).ready(function(){
-        tablePropClass('DESTI_ORIG','fclTable', 8, 6, 0, 7, 0, 4, 5);
-        tablePropClass('DESTI_ORIG','lclTable', 9, 6, 0, 8, 0, 6, 7);
-        tablePropClass('DESTI_ORIG','lcuTable', 8, 6, 0, 7, 0, 4, 5);
-        tablePropClass('DESTI_ORIG','rcuTable', 8, 6, 0, 7, 0, 4, 5);
-
         if($('.lclTable').size() != 0){
             $('.wellDiv').show('fast');
             seaFreightLclComputation('lclTable', 'wellTotalWeight', 'wellTotalVolume');
@@ -374,6 +369,11 @@
                 computeAll('lclTable', 'wellTotalWeight', 'wellTotalVolume', 'ADD');
             }
         })
+
+        tablePropClass('DESTI_ORIG','fclTable', 8, 6, 0, 7, 4, 5);
+        tablePropClass('DESTI_ORIG','lclTable', 9, 5, 0, 8, 6, 7);
+        tablePropClass('DESTI_ORIG','lcuTable', 8, 6, 0, 7, 4, 5);
+        tablePropClass('DESTI_ORIG','rcuTable', 8, 6, 0, 7, 4, 5);
     });
 
     $(function () {

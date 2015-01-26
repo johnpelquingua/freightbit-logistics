@@ -62,7 +62,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="order_freightType"
-                                          cssClass="freightTypeField form-control bookingInput"
+                                          cssClass="basicInfoInput freightTypeField form-control bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.freightType"
                                           list="freightTypeList"
@@ -80,7 +80,7 @@
 
                             <div class="col-lg-10">
 
-                                <s:select cssClass="form-control bookingInput"
+                                <s:select cssClass="basicInfoInput form-control bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.serviceRequirement"
                                           list="serviceRequirementList"
@@ -100,7 +100,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="order_modeOfService"
-                                          cssClass="serviceModeDropdown form-control bookingInput"
+                                          cssClass="basicInfoInput serviceModeDropdown form-control bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.modeOfService"
                                           list="modeOfServiceList"
@@ -120,7 +120,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="customerName"
-                                          cssClass="form-control step1 bookingInput"
+                                          cssClass="basicInfoInput form-control step1 bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.customerId"
                                           list="customerList"
@@ -140,7 +140,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="order_modeOfPayment"
-                                          cssClass="form-control step1 bookingInput"
+                                          cssClass="basicInfoInput form-control step1 bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.modeOfPayment"
                                           list="modeOfPaymentList"
