@@ -25,6 +25,7 @@ public class VesselScheduleBean {
     private String vendorName;
     private String vendorClass;
 
+
     public VesselScheduleBean() {
 
     }
@@ -211,4 +212,5 @@ public class VesselScheduleBean {
     public void setVendorClass(String vendorClass) {
         this.vendorClass = vendorClass;
     }
+
 }

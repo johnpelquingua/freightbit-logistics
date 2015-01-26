@@ -217,6 +217,43 @@
                                 </div>
                             </div>
                         </s:form>
+
+                            <%---------------------------------------------------------------------------------------------%>
+
+                        <%--<s:if test="scheduleExists == 'TRUE' ">--%>
+
+                            <hr>
+                            <h4 style="text-align:center;">Current Schedule</h4>
+                            <hr>
+                            <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
+                                           requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                           class="table table-striped table-hover table-bordered text-center tablesorter"
+                                           style="margin-top: 15px;">
+
+                                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                    <td><display:column property="nameSize" title="Container" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                </s:if>
+                                <s:else>
+                                    <td><display:column property="nameSize" title="Item" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                </s:else>
+                                <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="vesselScheduleId" title="Voyage #" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+
+                            </display:table>
+                        <%--</s:if>--%>
+
+                            <%---------------------------------------------------------------------------------------------%>
+
                         <div class="form-group" style="padding-top: 50px;">
                             <hr>
                             <h4 style="text-align:center;">List of Schedules</h4>
@@ -234,7 +271,11 @@
                                        requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                        class="table table-striped table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
+                            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
                             <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="originPort" title="Origin" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
@@ -255,7 +296,8 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editBulkItemsUrl}" rel="tooltip"
                                      title="Update Status">
-                                    Choose this vessel...
+                                    <%--Choose this vessel...--%>
+                                    <i class="fa fa-arrow-circle-down"></i>
                                 </s:a>
                             </display:column></td>
                         </display:table>
@@ -699,7 +741,8 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
                                      title="Update Status">
-                                    Choose this vessel...
+                                    <%--Choose this vessel...--%>
+                                    <i class="fa fa-arrow-circle-down"></i>
                                 </s:a>
                             </display:column></td>
                         </display:table>
@@ -857,7 +900,8 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
                                      title="Update Status">
-                                    Choose this vessel...
+                                    <%--Choose this vessel...--%>
+                                    <i class="fa fa-arrow-circle-down"></i>
                                 </s:a>
                             </display:column></td>
                         </display:table>
@@ -1044,7 +1088,8 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editBulkItemsUrl}" rel="tooltip"
                                      title="Update Status">
-                                    Choose this vessel...
+                                    <%--Choose this vessel...--%>
+                                    <i class="fa fa-arrow-circle-down"></i>
                                 </s:a>
                             </display:column></td>
                         </display:table>

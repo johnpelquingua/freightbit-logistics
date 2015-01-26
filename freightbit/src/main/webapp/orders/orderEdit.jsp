@@ -1088,7 +1088,7 @@ $(document).ready(function() {
 //                    });
 
                     var consignee_Id = $("#shipperConsignee").val();
-                    alert(consignee_Id);
+//                    alert(consignee_Id);
 
                     $.getJSON('consigneeAction', {
                                 customerID : custId,

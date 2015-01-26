@@ -89,7 +89,7 @@
                                 <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column title="Action">
-                                    <s:if test="#attr.order.orderStatus=='PENDING'">
+                                    <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
                                         <i class="fa fa-ban"></i>
                                     </s:if>
                                     <s:else>
@@ -155,7 +155,7 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td>
                                     <display:column title="Action">
-                                    <s:if test="#attr.order.orderStatus=='PENDING'">
+                                    <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' ">
                                         <i class="fa fa-ban"></i>
                                     </s:if>
                                     <s:else>
@@ -227,7 +227,7 @@
                                 <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column title="Action">
-                                    <s:if test="#attr.order.orderStatus=='PENDING'">
+                                    <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' ">
                                         <i class="fa fa-ban"></i>
                                     </s:if>
                                     <s:else>
@@ -280,7 +280,7 @@
                                 <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column title="Action">
-                                    <s:if test="#attr.order.orderStatus=='PENDING'">
+                                    <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
                                         <i class="fa fa-ban"></i>
                                     </s:if>
                                     <s:else>
