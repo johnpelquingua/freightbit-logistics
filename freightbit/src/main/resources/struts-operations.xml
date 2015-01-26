@@ -143,9 +143,10 @@
         </action>
 
         <action name="checkItemStatus" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkItemStatus">
-            <result name="PLANNING 1" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
+            <!--<result name="PLANNING 1" type="tiles">operations.seaFreightPlanningBulk.tiles</result>-->
             <!--<result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>-->
+            <result name="success" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
             <result name="EDIT" type="tiles">operations.freightBulkEdit.tiles</result>
             <result name="NULL_INPUT" type="redirect">viewSeaFreightItemListNullError</result>
             <result name="input" type="redirect">viewSeaFreightItemListError</result>

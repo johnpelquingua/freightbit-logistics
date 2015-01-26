@@ -138,18 +138,24 @@
         <i class="fa fa-anchor"></i>
         <span class="panel-title">Freight Plan</span>
         <span class="pull-right">
-        <s:url var="viewFreightPlanningUrl" action="viewEditSeaFreight">
-            <s:param name="orderItemIdParam"
-                     value="#attr.orderItem.orderItemId">
-            </s:param>
-            <s:param name="nameSizeParam"
-                     value="#attr.orderItem.nameSizeParam">
-            </s:param>
-        </s:url>
-        <s:a cssClass="btn btn-success new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
-             title="Update Status" >
-            <i class="fa fa-edit"></i>Edit
-        </s:a>
+
+        <%--<s:textfield cssClass="form-control" value="%{orderItem.vendorSea}" />--%>
+
+        <s:if test="#attr.orderItem.vendorSea != 'NONE'">
+            <s:url var="viewFreightPlanningUrl" action="viewEditSeaFreight">
+                <s:param name="orderItemIdParam"
+                         value="#attr.orderItem.orderItemId">
+                </s:param>
+                <s:param name="nameSizeParam"
+                         value="#attr.orderItem.nameSizeParam">
+                </s:param>
+            </s:url>
+            <s:a cssClass="btn btn-success new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
+                 title="Update Status" >
+                <i class="fa fa-edit"></i>Edit
+            </s:a>
+        </s:if>
+
         </span>
     </div>
     <div class="panel-body form-horizontal">
@@ -210,195 +216,196 @@
 
 </div>
 
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <i class="fa fa-truck"></i>
-                    <span class="panel-title"> Dispatch Plan : Origin</span>
-                    <span class="pull-right">
-                    <s:url var="viewFreightPlanningUrl" action="viewEditInlandFreightOrigin">
-                        <s:param name="orderItemIdParam"
-                                 value="#attr.orderItem.orderItemId">
-                        </s:param>
-                        <s:param name="nameSizeParam"
-                                 value="#attr.orderItem.nameSizeParam">
-                        </s:param>
-                    </s:url>
-                    <s:a cssClass="btn btn-success new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
-                         title="Update Status" >
-                        <i class="fa fa-edit"></i>Edit
-                    </s:a>
-                    </span>
-                </div>
-                <div class="panel-body form-horizontal">
-                    <div class="form-group">
+    <%--<div class="row">--%>
+        <%--<div class="col-lg-6">--%>
+            <%--<div class="panel panel-primary">--%>
+                <%--<div class="panel-heading">--%>
+                    <%--<i class="fa fa-truck"></i>--%>
+                    <%--<span class="panel-title"> Dispatch Plan : Origin</span>--%>
+                    <%--<span class="pull-right">--%>
+                    <%--<s:url var="viewFreightPlanningUrl" action="viewEditInlandFreightOrigin">--%>
+                        <%--<s:param name="orderItemIdParam"--%>
+                                 <%--value="#attr.orderItem.orderItemId">--%>
+                        <%--</s:param>--%>
+                        <%--<s:param name="nameSizeParam"--%>
+                                 <%--value="#attr.orderItem.nameSizeParam">--%>
+                        <%--</s:param>--%>
+                    <%--</s:url>--%>
+                    <%--<s:a cssClass="btn btn-success new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"--%>
+                         <%--title="Update Status" >--%>
+                        <%--<i class="fa fa-edit"></i>Edit--%>
+                    <%--</s:a>--%>
+                    <%--</span>--%>
+                <%--</div>--%>
+                <%--<div class="panel-body form-horizontal">--%>
+                    <%--<div class="form-group">--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Vendor</label>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Vendor</label>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
-                        </div>
-                    </div>
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
 
-                    <div class="form-group">
+                    <%--<div class="form-group">--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Driver</label>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Driver</label>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
-                        </div>
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />--%>
+                        <%--</div>--%>
 
-                    </div>
+                    <%--</div>--%>
 
-                    <div class="form-group">
+                    <%--<div class="form-group">--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Truck Code</label>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Truck Code</label>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
-                        </div>
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />--%>
+                        <%--</div>--%>
 
-                    </div>
+                    <%--</div>--%>
 
-                    <div class="form-group">
+                    <%--<div class="form-group">--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Body Type</label>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Body Type</label>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{truck.truckType}" disabled="true" />
-                        </div>
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{truck.truckType}" disabled="true" />--%>
+                        <%--</div>--%>
 
-                    </div>
+                    <%--</div>--%>
 
-                    <div class="form-group">
+                    <%--<div class="form-group">--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Plate Number</label>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Plate Number</label>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{truck.plateNumber}" disabled="true" />
-                        </div>
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{truck.plateNumber}" disabled="true" />--%>
+                        <%--</div>--%>
 
-                    </div>
+                    <%--</div>--%>
 
-                    <div class="form-group">
+                    <%--<div class="form-group">--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Gross Weight</label>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Gross Weight</label>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{truck.grossWeight}" disabled="true" />
-                        </div>
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{truck.grossWeight}" disabled="true" />--%>
+                        <%--</div>--%>
 
-                    </div>
+                    <%--</div>--%>
 
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Pickup Date</label>
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
-                        </div>
-                    </div>
+                    <%--<div class="form-group">--%>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Pickup Date</label>--%>
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
 
-                </div>
+                <%--</div>--%>
 
-            </div>
-        </div>
-
-
-        <div class="col-lg-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <i class="fa fa-truck"></i>
-                    <span class="panel-title"> Dispatch Plan : Destination</span>
-                    <span class="pull-right">
-                    <s:url var="viewFreightPlanningUrl" action="viewEditInlandFreightDestination">
-                        <s:param name="orderItemIdParam"
-                                 value="#attr.orderItem.orderItemId">
-                        </s:param>
-                        <s:param name="nameSizeParam"
-                                 value="#attr.orderItem.nameSizeParam">
-                        </s:param>
-                    </s:url>
-                    <s:a cssClass="btn btn-success new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
-                         title="Update Status" >
-                        <i class="fa fa-edit"></i>Edit
-                    </s:a>
-                    </span>
-                </div>
-                <div class="panel-body form-horizontal">
+            <%--</div>--%>
+        <%--</div>--%>
 
 
-                    <div class="form-group">
+        <%--<div class="col-lg-6">--%>
+            <%--<div class="panel panel-primary">--%>
+                <%--<div class="panel-heading">--%>
+                    <%--<i class="fa fa-truck"></i>--%>
+                    <%--<span class="panel-title"> Dispatch Plan : Destination</span>--%>
+                    <%--<span class="pull-right">--%>
+                    <%--<s:url var="viewFreightPlanningUrl" action="viewEditInlandFreightDestination">--%>
+                        <%--<s:param name="orderItemIdParam"--%>
+                                 <%--value="#attr.orderItem.orderItemId">--%>
+                        <%--</s:param>--%>
+                        <%--<s:param name="nameSizeParam"--%>
+                                 <%--value="#attr.orderItem.nameSizeParam">--%>
+                        <%--</s:param>--%>
+                    <%--</s:url>--%>
+                    <%--<s:a cssClass="btn btn-success new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"--%>
+                         <%--title="Update Status" >--%>
+                        <%--<i class="fa fa-edit"></i>Edit--%>
+                    <%--</s:a>--%>
+                    <%--</span>--%>
+                <%--</div>--%>
+                <%--<div class="panel-body form-horizontal">--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Vendor</label>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />
-                        </div>
+                    <%--<div class="form-group">--%>
 
-                    </div>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Vendor</label>--%>
 
-                    <div class="form-group">
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />--%>
+                        <%--</div>--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Driver</label>
+                    <%--</div>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />
-                        </div>
+                    <%--<div class="form-group">--%>
 
-                    </div>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Driver</label>--%>
 
-                    <div class="form-group">
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />--%>
+                        <%--</div>--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Truck Code</label>
+                    <%--</div>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
-                        </div>
+                    <%--<div class="form-group">--%>
 
-                    </div>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Truck Code</label>--%>
 
-                    <div class="form-group">
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />--%>
+                        <%--</div>--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Body Type</label>
+                    <%--</div>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{truckDestination.truckType}" disabled="true" />
-                        </div>
+                    <%--<div class="form-group">--%>
 
-                    </div>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Body Type</label>--%>
 
-                    <div class="form-group">
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{truckDestination.truckType}" disabled="true" />--%>
+                        <%--</div>--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Plate Number</label>
+                    <%--</div>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{truckDestination.plateNumber}" disabled="true" />
-                        </div>
+                    <%--<div class="form-group">--%>
 
-                    </div>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Plate Number</label>--%>
 
-                    <div class="form-group">
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{truckDestination.plateNumber}" disabled="true" />--%>
+                        <%--</div>--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Gross Weight</label>
+                    <%--</div>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{truckDestination.grossWeight}" disabled="true" />
-                        </div>
+                    <%--<div class="form-group">--%>
 
-                    </div>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Gross Weight</label>--%>
 
-                    <div class="form-group">
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{truckDestination.grossWeight}" disabled="true" />--%>
+                        <%--</div>--%>
 
-                        <label class="col-lg-3 control-label" style="padding-top:0px;">Dropoff Date</label>
+                    <%--</div>--%>
 
-                        <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
-                        </div>
+                    <%--<div class="form-group">--%>
 
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <%--<label class="col-lg-3 control-label" style="padding-top:0px;">Dropoff Date</label>--%>
+
+                        <%--<div class="col-lg-9">--%>
+                            <%--<s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />--%>
+                        <%--</div>--%>
+
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+
     </div>
 
 <div class="pull-right">

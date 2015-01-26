@@ -365,7 +365,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             return INPUT;
                         }
                     }
-                    /*else if ("PLANNING 2".equals(entity.getStatus())) {
+                    else if ("PLANNING 2".equals(entity.getStatus())) {
                         planning2.add(orderItemId);
                         if (planning1.size() > 0 || planning3.size() > 0) {
                             return INPUT;
@@ -376,7 +376,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         if (planning1.size() > 0 || planning2.size() > 0) {
                             return INPUT;
                         }
-                    }*/
+                    }
                 }
             }
 
@@ -400,7 +400,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     planSize = planning2.size();
                     planningList = planning2;
                 }
-
             }else {
                 planSize = planning1.size();
                 planningList = planning1;
@@ -422,7 +421,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             sessionAttributes.put("nameSizeList", nameSizeList);
 
-            return "PLANNING 1";
+//            return "PLANNING 1";
             /*} else if (planning2.size() > 0) {
                 return "PLANNING 2";
 //            } else if (planning3.size() > 0) {
@@ -430,6 +429,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             } else {
                 return INPUT;
             }*/
+            return SUCCESS;
 
         } else {
 
