@@ -290,14 +290,29 @@
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
                                     </s:else>
+
+                                    <%--<s:url var="createdDocumentsSeaUrl" action="createdDocumentsSea">--%>
+                                        <%--<s:param name="orderIdParam"--%>
+                                                 <%--value="#attr.order.orderId"></s:param>--%>
+
+                                    <%--</s:url>--%>
+
+                                    <%--<s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"--%>
+                                         <%--title="Create Documents">--%>
+                                        <%--Create Proforma Bill of Lading--%>
+                                    <%--</s:a>--%>
+
                                 </display:column></td>
                             </tr>
                         </display:table>
                             <div class="pull-right">
+
                                 <s:submit cssClass="btn btn-primary" value="Set Vessel Schedule"
                                           onclick="deleteText()"></s:submit>
+
                                 <s:submit cssClass="btn btn-success" value="Edit Vessel Schedule"
                                           onclick="addText()"></s:submit>
+
                             </div>
                         </s:form>
                     </div>
@@ -332,12 +347,12 @@
                          value="#attr.order.orderId"></s:param>
 
             </s:url>
-            <%--<s:if test="#attr.orderItem.vendorSea != ''">--%>
+
             <s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"
                  title="Create Documents">
                 Create Proforma Bill of Lading
             </s:a>
-            <%--</s:if>--%>
+
             <s:url var="viewDocumentListUrl" action="viewDocumentList">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId">
