@@ -805,8 +805,11 @@ function hideVesselSchedule(){
             }
         }
 
-        var dateToAppend = dateAbbrev_Format3(arrivalDate.eq(i).text());
-        arrivalDate.eq(i).empty().append(dateToAppend);
+        var arrivalDateReformat = dateAbbrev_Format3(arrivalDate.eq(i).text()),
+            departureDateReformat = dateAbbrev_Format3(vesselTable.eq(i).text());
+
+        arrivalDate.eq(i).empty().append(arrivalDateReformat);
+        vesselTable.eq(i).empty().append(departureDateReformat);
     }
 
     setTimeout(function(){
