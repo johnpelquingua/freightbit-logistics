@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2015 at 03:09 AM
+-- Generation Time: Jan 27, 2015 at 02:50 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.4.16
 
@@ -196,7 +196,7 @@ INSERT INTO `container` (`containerId`, `eirNumber`, `eirType`, `sealNumber`, `c
 (17, '4321', 'EIR FORM 1', NULL, 'A-1B', '10 FOOTER', NULL, '2014-12-04 04:13:00', NULL, '2GO', NULL, NULL, NULL, NULL, 'Roxas', NULL, NULL, NULL, NULL, 'admin', '2014-12-04 04:14:24', 'admin', '2014-12-04 04:14:24', NULL, 'OPEN', NULL, NULL, NULL, '1234', NULL, NULL),
 (18, '8765', 'EIR FORM 1', NULL, 'A-2B', '20 FOOTER', NULL, '2014-12-04 04:14:00', NULL, '2GO', NULL, NULL, NULL, NULL, 'Palawan', NULL, NULL, NULL, NULL, 'admin', '2014-12-04 04:14:51', 'admin', '2014-12-04 04:14:51', NULL, 'OPEN', NULL, NULL, NULL, '5678', NULL, NULL),
 (19, '3210', 'EIR FORM 1', NULL, 'A-3B', '40 STD FOOTER', NULL, '2014-12-04 04:15:00', NULL, '2GO', NULL, NULL, NULL, NULL, 'Iligan', NULL, NULL, NULL, NULL, 'admin', '2014-12-04 04:15:32', 'admin', '2014-12-04 04:15:32', NULL, 'OPEN', NULL, NULL, NULL, '0123', NULL, NULL),
-(22, '7654', 'EIR FORM 2', '4563', 'A-4B', '40 HC FOOTER', NULL, '2014-12-04 06:05:00', '2014-12-04 07:00:00', '2GO', NULL, NULL, NULL, NULL, 'Zamboanga', NULL, NULL, NULL, NULL, 'admin', '2015-01-08 03:20:04', 'admin', '2015-01-08 03:20:04', NULL, 'GATE OUT', NULL, NULL, NULL, '4567', NULL, NULL);
+(22, '7654', 'EIR FORM 2', '4563', 'A-4B', '40 HC FOOTER', NULL, '2014-12-04 06:05:00', '2014-12-04 07:00:00', '2GO', NULL, NULL, NULL, NULL, 'Zamboanga', NULL, NULL, NULL, NULL, 'admin', '2015-01-08 03:20:04', 'admin', '2015-01-08 03:20:04', NULL, 'FINAL', NULL, NULL, NULL, '4567', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -366,7 +366,6 @@ INSERT INTO `documents` (`documentId`, `clientId`, `documentName`, `documentType
 (62, 1, 'EQUIPMENT INTERCHANGE RECEIPT 1', NULL, 12, 'CONTAINERS', NULL, '2014-12-04 10:52:10', 'FOR PRINTING', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2GO', NULL, NULL),
 (63, 1, 'EQUIPMENT INTERCHANGE RECEIPT 1', NULL, 13, 'CONTAINERS', NULL, '2014-12-04 11:06:46', 'FOR PRINTING', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2GO', NULL, NULL),
 (65, 1, 'EQUIPMENT INTERCHANGE RECEIPT 1', NULL, 15, 'CONTAINERS', NULL, '2014-12-04 12:12:19', 'FOR PRINTING', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2GO', NULL, NULL),
-(66, 1, 'EQUIPMENT INTERCHANGE RECEIPT 1', NULL, 16, 'CONTAINERS', NULL, '2014-12-04 12:12:57', 'FOR PRINTING', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2GO', NULL, NULL),
 (67, 1, 'EQUIPMENT INTERCHANGE RECEIPT 1', NULL, 17, 'CONTAINERS', NULL, '2014-12-04 12:14:24', 'FOR PRINTING', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2GO', NULL, NULL),
 (68, 1, 'EQUIPMENT INTERCHANGE RECEIPT 1', NULL, 18, 'CONTAINERS', NULL, '2014-12-04 12:14:51', 'FOR PRINTING', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2GO', NULL, NULL),
 (69, 1, 'EQUIPMENT INTERCHANGE RECEIPT 1', NULL, 19, 'CONTAINERS', NULL, '2014-12-04 12:15:32', 'FOR PRINTING', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2GO', NULL, NULL),
@@ -532,7 +531,7 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
   `createdBy` varchar(25) NOT NULL,
   `modifiedTimestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `modifiedBy` varchar(25) NOT NULL,
-  `rate` float NOT NULL,
+  `rate` float DEFAULT NULL,
   `nameSize` varchar(45) NOT NULL,
   `status` varchar(50) DEFAULT NULL,
   `vesselScheduleId` varchar(25) DEFAULT NULL,
@@ -551,7 +550,7 @@ CREATE TABLE IF NOT EXISTS `orderitems` (
   `serviceRequirement` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`orderItemId`),
   KEY `clientId` (`clientId`,`orderId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `orderitems`
@@ -568,10 +567,11 @@ INSERT INTO `orderitems` (`orderItemId`, `clientId`, `orderId`, `quantity`, `cla
 (16, 1, 7, 1, NULL, 'Item Testing', 500, 467467, 'Testing of Items', '2014-12-16 04:16:55', 'admin', '2014-12-16 04:16:55', 'admin', 300, 'GG Item', 'QUEUE FOR DEPARTURE', NULL, 123, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'LESS CONTAINER LOAD'),
 (17, 1, 13, 3, NULL, '13123', 1231.32, NULL, '', '2015-01-06 06:27:39', 'admin', '2015-01-06 06:27:39', 'admin', 1231.23, '40 STD FOOTER', 'PLANNING 1', NULL, 168, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FULL CONTAINER LOAD'),
 (18, 1, 12, 1, NULL, 'dsfgdfg', 4353.53, NULL, 'gergg', '2015-01-07 03:26:01', 'admin', '2015-01-07 03:26:01', 'admin', 4354.35, '20 FOOTER', 'PLANNING 1', NULL, 28, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FULL CONTAINER LOAD'),
-(19, 1, 12, 1, NULL, 'dsfs', 345.34, NULL, 'gfdf', '2015-01-07 03:47:38', 'admin', '2015-01-07 03:47:38', 'admin', 545.45, '40 STD FOOTER', 'PLANNING 1', NULL, 56, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FULL CONTAINER LOAD'),
+(19, 1, 12, 1, NULL, 'dsfs', 345.34, NULL, 'gfdf', '2015-01-07 03:47:38', 'admin', '2015-01-22 02:21:33', 'admin', 545.45, '40 STD FOOTER', 'PLANNING 2', NULL, 56, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FULL CONTAINER LOAD'),
 (20, 1, 12, 1, NULL, '', 4545.45, NULL, 'rdfdf', '2015-01-07 07:28:40', 'admin', '2015-01-07 07:28:40', 'admin', 32454.3, '10 FOOTER', 'PLANNING 1', NULL, 14, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FULL CONTAINER LOAD'),
 (21, 1, 9, 1, NULL, 'TESTING', 4684.68, 467467, 'dfdfdf', '2015-01-07 09:42:17', 'admin', '2015-01-07 09:42:17', 'admin', 43434.3, 'SGJSDGJ', 'PLANNING 1', NULL, 1236350000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'LESS CONTAINER LOAD'),
-(22, 1, 7, 1, NULL, '', 1800, 3700, 'Key to Victory', '2015-01-14 06:03:36', 'admin', '2015-01-14 06:03:36', 'admin', 1800, 'Keyblade', 'IN-TRANSIT', NULL, 450, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'LESS CONTAINER LOAD');
+(22, 1, 7, 1, NULL, '', 1800, 3700, 'Key to Victory', '2015-01-14 06:03:36', 'admin', '2015-01-14 06:03:36', 'admin', 1800, 'Keyblade', 'IN-TRANSIT', NULL, 450, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'LESS CONTAINER LOAD'),
+(23, 1, 17, 1, NULL, 'Everyone', 343.24, 18000, '2NE1', '2015-01-22 03:33:23', 'admin', '2015-01-22 03:33:23', 'admin', 345.67, '20 FOOTER', 'PLANNING 2', '2GO-111', 28, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'AAA', NULL, NULL, 'FULL CONTAINER LOAD');
 
 -- --------------------------------------------------------
 
@@ -619,7 +619,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   PRIMARY KEY (`orderId`),
   UNIQUE KEY `orderNumber` (`orderNumber`),
   KEY `clientId` (`clientId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `orders`
@@ -628,11 +628,12 @@ CREATE TABLE IF NOT EXISTS `orders` (
 INSERT INTO `orders` (`orderId`, `clientId`, `orderNumber`, `serviceType`, `serviceMode`, `notificationType`, `orderDate`, `paymentMode`, `comments`, `orderStatus`, `vendorCode`, `truckCode`, `trailerCode`, `driverCode`, `vesselNumber`, `shipperCode`, `shipperAddressId`, `shipperContactId`, `consigneeCode`, `consigneeAddressId`, `consigneeContactId`, `accountRep`, `createdTimestamp`, `createdBy`, `modifiedTimestamp`, `modifiedBy`, `pickupDate`, `originationPort`, `deliveryDate`, `destinationPort`, `rates`, `serviceRequirement`, `deliveryTime`, `customerId`, `consigneeContactPersonId`, `aging`) VALUES
 (6, 1, 'WAL-0000', 'SHIPPING AND TRUCKING', 'DOOR TO DOOR', 'PHONE, MOBILE', '2014-12-10', 'FREIGHT PREPAID', 'EMERGENCY', 'ON GOING', NULL, NULL, NULL, NULL, NULL, NULL, 111, 1, NULL, 113, 2, 'admin', '2014-12-10 04:00:16', 'admin', '2014-12-10 04:00:16', 'admin', '2014-11-28', 'MANILA', '2014-11-29', 'BACOLOD', 0, 'FULL CONTAINER LOAD', NULL, 47, 3, NULL),
 (7, 1, 'WAL-0001', 'SHIPPING AND TRUCKING', 'PIER TO DOOR', 'MOBILE', '2015-01-14', 'FREIGHT COLLECT', 'eszgf', 'ON GOING', NULL, NULL, NULL, NULL, NULL, NULL, 111, 1, NULL, 113, 2, 'admin', '2015-01-14 06:02:31', 'admin', '2015-01-14 06:02:31', 'admin', '2014-11-28', 'BACOLOD', '2014-11-28', 'BUTUAN', 0, 'LESS CONTAINER LOAD', NULL, 47, 3, NULL),
-(9, 1, 'WAL-0002', 'SHIPPING AND TRUCKING', 'DOOR TO DOOR', 'PHONE, MOBILE, SMS, FAX, E-MAIL', '2015-01-15', 'FREIGHT PREPAID', '', 'PENDING', NULL, NULL, NULL, NULL, NULL, NULL, 111, 1, NULL, 113, 2, 'admin', '2015-01-15 04:00:15', 'admin', '2015-01-15 04:00:15', 'admin', '2014-12-02', 'MANILA', '2014-12-03', 'CEBU', 0, 'LESS CONTAINER LOAD', NULL, 47, 3, NULL),
+(9, 1, 'WAL-0002', 'SHIPPING AND TRUCKING', 'DOOR TO DOOR', 'PHONE, MOBILE, SMS, FAX, E-MAIL', '2015-01-22', 'FREIGHT PREPAID', '', 'CANCELLED', NULL, NULL, NULL, NULL, NULL, NULL, 111, 1, NULL, 113, 2, 'admin', '2015-01-22 03:32:11', 'admin', '2015-01-22 03:32:11', 'admin', '2014-12-02', 'MANILA', '2014-12-03', 'CEBU', 0, 'LESS CONTAINER LOAD', NULL, 47, 3, NULL),
 (10, 1, 'WAL-0003', 'SHIPPING AND TRUCKING', 'DOOR TO DOOR', 'E-MAIL', '2014-12-04', 'FREIGHT PREPAID', '', 'ON GOING', NULL, NULL, NULL, NULL, NULL, NULL, 111, 1, NULL, 113, 2, 'admin', '2014-12-04 04:21:06', 'admin', '2014-12-04 04:21:06', 'admin', '2014-12-04', 'CEBU', '2014-12-05', 'ZAMBOANGA', 0, 'FULL CONTAINER LOAD', NULL, 47, 3, NULL),
-(12, 1, 'WAL-0004', 'SHIPPING AND TRUCKING', 'DOOR TO DOOR', 'E-MAIL', '2015-01-07', 'FREIGHT PREPAID', '', 'APPROVED', NULL, NULL, NULL, NULL, NULL, NULL, 111, 1, NULL, 113, 2, 'admin', '2015-01-07 07:28:24', 'admin', '2015-01-07 07:28:24', 'admin', '2014-12-04', 'ZAMBOANGA', '2014-12-05', 'COTABATO', 0, 'FULL CONTAINER LOAD', NULL, 47, 3, NULL),
-(13, 1, 'WAL-0005', 'SHIPPING AND TRUCKING', 'DOOR TO DOOR', 'E-MAIL', '2015-01-07', 'FREIGHT PREPAID', '', 'APPROVED', NULL, NULL, NULL, NULL, NULL, NULL, 111, 1, NULL, 113, 2, 'admin', '2015-01-07 03:18:55', 'admin', '2015-01-07 03:18:55', 'admin', '2014-12-05', 'BUTUAN', '2014-12-06', 'DUMAGUETE', 0, 'FULL CONTAINER LOAD', NULL, 47, 3, NULL),
-(15, 1, 'CSC-0000', 'SHIPPING AND TRUCKING', 'DOOR TO DOOR', 'E-MAIL', '2014-12-12', 'FREIGHT PREPAID', '', 'INCOMPLETE', NULL, NULL, NULL, NULL, NULL, NULL, 116, 8, NULL, 117, 7, 'admin', '2014-12-12 03:12:38', 'admin', '2014-12-12 03:12:38', 'admin', '2014-12-12', 'ILIGAN', '2014-12-13', 'ILOILO', 0, 'FULL CONTAINER LOAD', NULL, 48, 6, NULL);
+(12, 1, 'WAL-0004', 'SHIPPING AND TRUCKING', 'DOOR TO DOOR', 'E-MAIL', '2015-01-22', 'FREIGHT PREPAID', '', 'APPROVED', NULL, NULL, NULL, NULL, NULL, NULL, 111, 1, NULL, 113, 2, 'admin', '2015-01-22 05:35:35', 'admin', '2015-01-22 05:35:35', 'admin', '2014-12-04', 'ZAMBOANGA', '2014-12-05', 'COTABATO', 0, 'FULL CONTAINER LOAD', NULL, 47, 3, NULL),
+(13, 1, 'WAL-0005', 'SHIPPING AND TRUCKING', 'DOOR TO DOOR', 'E-MAIL', '2015-01-22', 'FREIGHT PREPAID', '', 'APPROVED', NULL, NULL, NULL, NULL, NULL, NULL, 111, 1, NULL, 113, 2, 'admin', '2015-01-22 08:22:20', 'admin', '2015-01-22 08:22:20', 'admin', '2014-12-05', 'BUTUAN', '2014-12-06', 'DUMAGUETE', 0, 'FULL CONTAINER LOAD', NULL, 47, 3, NULL),
+(15, 1, 'CSC-0000', 'SHIPPING AND TRUCKING', 'DOOR TO DOOR', 'E-MAIL', '2014-12-12', 'FREIGHT PREPAID', '', 'INCOMPLETE', NULL, NULL, NULL, NULL, NULL, NULL, 116, 8, NULL, 117, 7, 'admin', '2014-12-12 03:12:38', 'admin', '2014-12-12 03:12:38', 'admin', '2014-12-12', 'ILIGAN', '2014-12-13', 'ILOILO', 0, 'FULL CONTAINER LOAD', NULL, 48, 6, NULL),
+(17, 1, 'aBC-0000', 'TRUCKING', 'DOOR TO DOOR', 'MOBILE', '2015-01-22', 'FREIGHT PREPAID', '', 'ON GOING', NULL, NULL, NULL, NULL, NULL, NULL, 114, 4, NULL, 115, 5, 'admin', '2015-01-22 03:32:51', 'admin', '2015-01-22 03:32:51', 'admin', '2015-01-22', 'PALAWAN', '2015-01-26', 'ILIGAN', 0, 'FULL CONTAINER LOAD', NULL, 46, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -647,6 +648,7 @@ CREATE TABLE IF NOT EXISTS `orderstatuslogs` (
   `status` varchar(45) DEFAULT NULL,
   `createdBy` varchar(25) DEFAULT NULL,
   `createdTimestamp` varchar(255) DEFAULT NULL,
+  `actualDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`statusId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
@@ -654,12 +656,11 @@ CREATE TABLE IF NOT EXISTS `orderstatuslogs` (
 -- Dumping data for table `orderstatuslogs`
 --
 
-INSERT INTO `orderstatuslogs` (`statusId`, `orderId`, `orderItemId`, `status`, `createdBy`, `createdTimestamp`) VALUES
-(27, 6, 7, 'RETURNED TO ORIGIN', 'admin', '09-Jan-2015 12:01 PM'),
-(29, 7, 9, 'ARRIVED', 'admin', '13-Jan-2015 10:25 AM'),
-(30, 7, 16, 'RETURNED TO ORIGIN', 'admin', '13-Jan-2015 10:31 AM'),
-(31, 6, 7, 'QUEUE FOR DEPARTURE', 'admin', '13-Jan-2015 10:40 AM'),
-(32, 7, 22, 'ARRIVED', 'admin', '14-Jan-2015 02:04 PM');
+INSERT INTO `orderstatuslogs` (`statusId`, `orderId`, `orderItemId`, `status`, `createdBy`, `createdTimestamp`, `actualDate`) VALUES
+(27, 6, 7, 'RETURNED TO ORIGIN', 'admin', '2015-01-23 05:10:00', '2015-01-27 16:00:00'),
+(29, 7, 9, 'ARRIVED', 'admin', '2015-01-23 05:11:00', '2015-01-22 21:11:00'),
+(30, 7, 16, 'QUEUE FOR DEPARTURE', 'admin', '2015-01-23 05:12:00', '2015-01-22 21:12:00'),
+(32, 7, 22, 'ARRIVED', 'admin', '2015-01-23 05:13:00', '2015-01-22 21:13:00');
 
 -- --------------------------------------------------------
 
@@ -1032,7 +1033,7 @@ INSERT INTO `user` (`userId`, `contactNo`, `creationDate`, `email`, `firstName`,
 (14, '12345678899', NULL, 'sales@test.com', 'Sales', 'Sales', NULL, '2014-08-15 06:31:03', '$2a$10$5IX66sdASDCSc3638Et2ie0iakLv7v7h0rKrPDDjt8vFq065wMani', 'ACTIVE', 'Sales', 'REGISTERED USER', 'sales', 1, NULL, NULL, NULL),
 (15, '1234567', NULL, 'finance@test.com', 'Finance', 'Finance', NULL, '2014-08-15 06:31:03', '$2a$10$W5c4n8uS3WmUJhaVwuKSmOey5jTQkdoxDHrPE5gPB1Yz0D83v4SOO', 'ACTIVE', 'Finance', 'REGISTERED USER', 'finance', 1, NULL, NULL, NULL),
 (16, '1234567', NULL, 'document@test.com', 'Documents', 'Specialist', NULL, '2014-08-15 06:31:03', '$2a$10$W5c4n8uS3WmUJhaVwuKSmOey5jTQkdoxDHrPE5gPB1Yz0D83v4SOO', 'ACTIVE', 'Doc Specialist', 'FREIGHT DOCUMENTS SPECIALIST', 'documentsspecialist', 1, NULL, NULL, NULL),
-(17, '1234567', NULL, 'admin@test.com', 'Super', 'User', '2015-01-22 00:41:13', '2014-08-15 06:28:59', '$2a$10$W5c4n8uS3WmUJhaVwuKSmOey5jTQkdoxDHrPE5gPB1Yz0D83v4SOO', 'ACTIVE', 'Admin', 'REGISTERED USER', 'admin', 1, NULL, NULL, NULL),
+(17, '1234567', NULL, 'admin@test.com', 'Super', 'User', '2015-01-27 09:43:06', '2014-08-15 06:28:59', '$2a$10$W5c4n8uS3WmUJhaVwuKSmOey5jTQkdoxDHrPE5gPB1Yz0D83v4SOO', 'ACTIVE', 'Admin', 'REGISTERED USER', 'admin', 1, NULL, NULL, NULL),
 (19, '09123456789', NULL, 'janernest@gmail.com', 'Jan Ernest', 'Go', NULL, '2014-08-15 06:31:03', '$2a$10$W5c4n8uS3WmUJhaVwuKSmOey5jTQkdoxDHrPE5gPB1Yz0D83v4SOO', 'ACTIVE', 'CEO', 'REGISTERED USER', 'janernest', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -1124,15 +1125,16 @@ CREATE TABLE IF NOT EXISTS `vesselschedules` (
   PRIMARY KEY (`vesselScheduleId`),
   KEY `clientID` (`clientId`),
   KEY `vendorId` (`vendorId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `vesselschedules`
 --
 
 INSERT INTO `vesselschedules` (`vesselScheduleId`, `clientId`, `vendorId`, `originPort`, `departureDate`, `departureTime`, `destinationPort`, `arrivalDate`, `arrivalTime`, `createdTimestamp`, `createdBy`, `modifiedTimestamp`, `modifiedBy`, `voyageNumber`, `vendorCode`, `vesselName`) VALUES
-(1, 1, 1, 'ROXAS', '11-18-2014', '4:00 AM', 'TACLOBAN', '11-18-2014', '5:00 AM', '2014-11-17 09:18:26', 'admin', '2014-11-17 09:18:26', 'admin', '2GO-111', 'AAA', NULL),
-(2, 1, 1, 'ROXAS', '12-10-2014', '10:32 AM', 'TACLOBAN', '12-11-2014', '10:32 AM', '2014-12-10 02:33:15', 'admin', '2014-12-10 02:33:48', 'admin', '50124', 'AAA', 'SS Tidehunter');
+(1, 1, 1, 'ROXAS', '11-18-2014', '4:00 AM', 'TACLOBAN', '11-18-2014', '5:00 AM', '2014-11-17 09:18:26', 'admin', '2015-01-22 03:35:30', 'admin', '2GO-111', 'AAA', 'SS Tidehunter'),
+(2, 1, 1, 'ROXAS', '12-10-2014', '10:32 AM', 'TACLOBAN', '12-11-2014', '10:32 AM', '2014-12-10 02:33:15', 'admin', '2014-12-10 02:33:48', 'admin', '50124', 'AAA', 'SS Tidehunter'),
+(3, 1, 1, 'PALAWAN', '01-22-2015', '6:00 AM', 'GEN. SANTOS', '01-28-2015', '12:00 PM', '2015-01-22 03:34:50', 'admin', '2015-01-22 03:34:50', 'admin', '324324', 'AAA', 'SS Tidehunter');
 
 -- --------------------------------------------------------
 

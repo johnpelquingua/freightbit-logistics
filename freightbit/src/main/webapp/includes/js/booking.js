@@ -613,9 +613,45 @@ $(document).ready(function(){
                     document.getElementById("customerFax_textfield").value = customerFax;
                 });
 
-                // populate consignee contacts
-                $.each(jsonResponse.consigneeContactMap, function(key, value) {
-                    $('<option>').val(key).text(value).appendTo(select9);
+//                // populate consignee contacts
+//                $.each(jsonResponse.consigneeContactMap, function(key, value) {
+//                    $('<option>').val(key).text(value).appendTo(select9);
+//                });// populate consignee contacts
+                var consignee_Id = $("#shipperConsignee").val();
+                //alert(consignee_Id);
+
+                //$.each(jsonResponse.consigneeContactMap, function(key, value) {
+                //    $('<option>').val(key).text(value).appendTo(select9);
+                //});
+
+                $.getJSON('consigneeAction', {
+                    customerID : custId,
+                    consigneeId : consignee_Id
+                },function(jsonResponse) {
+                    var select4 = $('#consigneeAddress'),
+                        select9 = $('#consigneeContact');
+
+                    select4.find('option').remove();
+                    select9.find('option').remove();
+
+                    // populate consignee address
+                    $.each(jsonResponse.consigneeAddressMap, function(key, value) {
+                        if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'PICKUP' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
+                            if ($("#shipperConsignee").val() != '') {
+                                $('<option>').val(key).text(value).appendTo(select4);
+                            } else {
+                                if ($("#consigneeAddress").val() != '') {
+                                    $('<option>').val(null).text("").appendTo(select4);
+                                }
+                                $('<option>').val(key).text(value).appendTo(select4);
+                            }
+                        }
+                    });
+
+                    // populate consignee contacts
+                    $.each(jsonResponse.consigneeContactMap, function(key, value) {
+                        $('<option>').val(key).text(value).appendTo(select9);
+                    });
                 });
             }
         );
