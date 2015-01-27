@@ -22,11 +22,11 @@
                              value="#attr.order.orderNo"></s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
-                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                        Freight Plan : Items
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        Freight Plan : Containers
                     </s:if>
                     <s:else>
-                        Freight Plan : Containers
+                        Freight Plan : Items
                     </s:else>
                 </s:a>
             </li>
@@ -212,6 +212,42 @@
                 </div>
             </div>
         </s:form>
+
+        <%---------------------------------------------------------------------------------------------%>
+
+        <%--<s:if test="scheduleExists == 'TRUE' ">--%>
+
+        <hr>
+        <h4 style="text-align:center;">Current Schedule</h4>
+        <hr>
+        <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
+                       requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                       class="table table-striped table-hover table-bordered text-center tablesorter"
+                       style="margin-top: 15px;">
+            <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+            <td><display:column property="nameSize" title="Container" class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+            </s:if>
+            <s:else>
+            <td><display:column property="nameSize" title="Item" class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+            </s:else>
+            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+            <td><display:column property="vesselScheduleId" title="Voyage #" class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+            <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+            <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                style="text-align: center;"> </display:column></td>
+
+        </display:table>
+        <%--</s:if>--%>
+
+        <%---------------------------------------------------------------------------------------------%>
+
         <div class="form-group" style="padding-top: 50px;">
             <hr>
             <h4 style="text-align:center;">List of Schedules</h4>
@@ -276,7 +312,7 @@
             </s:url>
             <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
 
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="order.serviceRequirement=='LESS CONTAINER LOAD'">
                     <button type="button" class="btn">
                         Back to Freight Plan : Items
                     </button>

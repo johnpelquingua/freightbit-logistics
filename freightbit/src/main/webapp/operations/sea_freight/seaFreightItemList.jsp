@@ -198,7 +198,7 @@
                                     </s:else>
                                 </td>
 
-                                <td><display:column property="vendorSea" title="Shipping <i class='fa fa-sort' />"
+                                <td><display:column property="vendorName" title="Vendor <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
@@ -210,14 +210,14 @@
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="vendorOrigin" title="ORI <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
+                                <%--<td><display:column property="vendorOrigin" title="ORI <i class='fa fa-sort' />"--%>
+                                                    <%--class="tb-font-black"--%>
+                                                    <%--style="text-align: center;"> </display:column></td>--%>
 
-                                <td><display:column property="vendorDestination"
-                                                    title="DES <i class='fa fa-sort' />"
-                                                    class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
+                                <%--<td><display:column property="vendorDestination"--%>
+                                                    <%--title="DES <i class='fa fa-sort' />"--%>
+                                                    <%--class="tb-font-black"--%>
+                                                    <%--style="text-align: center;"> </display:column></td>--%>
 
                                 <td><display:column property="status" title="Status <i class='fa fa-sort' />"
                                                     class="tb-font-black"

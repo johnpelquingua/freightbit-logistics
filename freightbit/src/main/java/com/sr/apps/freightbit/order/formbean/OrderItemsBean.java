@@ -40,12 +40,17 @@ public class OrderItemsBean {
     private String port;
     private String serviceRequirement;
 
+    private String vendorName;
+    private String voyageNumber;
+    private String departureDate;
+    private String arrivalDate;
+
     public OrderItemsBean(){
 
     }
 
-    public OrderItemsBean(Date createdTimestamp, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, String createdBy, Date modifiedTimestamp, String modifiedBy, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorDestination, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement) {
-        this.createdTimestamp = createdTimestamp;
+    public OrderItemsBean(String createdBy, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimestamp, Date modifiedTimestamp, String modifiedBy, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorDestination, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement, String vendorName, String voyageNumber, String departureDate, String arrivalDate) {
+        this.createdBy = createdBy;
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.quantity = quantity;
@@ -55,7 +60,7 @@ public class OrderItemsBean {
         this.weight = weight;
         this.remarks = remarks;
         this.rate = rate;
-        this.createdBy = createdBy;
+        this.createdTimestamp = createdTimestamp;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
         this.nameSize = nameSize;
@@ -80,6 +85,10 @@ public class OrderItemsBean {
         this.editItem = editItem;
         this.port = port;
         this.serviceRequirement = serviceRequirement;
+        this.vendorName = vendorName;
+        this.voyageNumber = voyageNumber;
+        this.departureDate = departureDate;
+        this.arrivalDate = arrivalDate;
     }
 
     public String getVendorSea() {
@@ -360,5 +369,37 @@ public class OrderItemsBean {
 
     public void setShipmentStatus(String shipmentStatus) {
         this.shipmentStatus = shipmentStatus;
+    }
+
+    public String getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(String arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public String getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(String departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public String getVoyageNumber() {
+        return voyageNumber;
+    }
+
+    public void setVoyageNumber(String voyageNumber) {
+        this.voyageNumber = voyageNumber;
+    }
+
+    public String getVendorName() {
+        return vendorName;
+    }
+
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
 }

@@ -52,7 +52,7 @@
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Phone Number<span class="asterisk_red"></span></label>
                                     <div class="col-lg-7" >
                                         <s:textfield required="true" name="customer.phone" cssClass="customerInput form-control" id="customer_phone" maxLength="14" pattern=".{14,}"
-                                                     placeholder="(XXX) XXX-XXXX" title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                                     placeholder="(XXX) XXX-XXXX" title="Phone number should contain 10 digits including local city code."/>
                                     </div>
                                 </div>
 
@@ -61,7 +61,7 @@
                                     <div class="col-lg-7" >
                                         <s:textfield required="true" name="customer.email" cssClass="customerInput form-control" id="customer.email" type="email" maxLength="50"
                                                      placeholder="Email Address" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"
-                                                     title="Example: abcdefg@yahoo.com" />
+                                                     title="Example: email@domain.com" />
                                     </div>
                                 </div>
 
@@ -100,14 +100,14 @@
                                     <div class="col-lg-7" >
                                         <s:textfield required="true" name="customer.mobile" cssClass="customerInput form-control" id="customer_mobile" maxLength="19"
                                                      placeholder="(+639XX) (XXX-XXXX)" pattern=".{18,}"
-                                                     title="(+639XX)(XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                                                     title="Mobile number should contain 11 digits."/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Fax  Number</label>
                                     <div class="col-lg-7" >
                                         <s:textfield   name="customer.fax" cssClass="form-control" id="customer_fax" maxLength="14" pattern=".{14,}"
-                                                       title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters." placeholder="(XXX) XXX-XXXX"/>
+                                                       title="Fax number should contain 10 digits including local city codes." placeholder="(XXX) XXX-XXXX"/>
                                     </div>
                                 </div>
 
