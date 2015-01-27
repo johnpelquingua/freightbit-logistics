@@ -173,7 +173,7 @@
                                                 style="text-align: center;"></display:column></td>
 
                             <td>
-                                <s:if test="%{#attr.orderItem.serviceRequirement}=='FULL CARGO LOAD'">
+                                <s:if test="%{#attr.orderItem.serviceRequirement}=='FULL CONTAINER LOAD'">
                                     <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;">
@@ -187,23 +187,19 @@
                                 </s:else>
                             </td>
 
-                            <%--<td><display:column property="vendorSea" title="Shipping <i class='fa fa-sort' />"--%>
-                                                <%--class="tb-font-black"--%>
-                                                <%--style="text-align: center;"> </display:column></td>--%>
-
-                            <%--<td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"--%>
-                                                <%--class="tb-font-black"--%>
-                                                <%--style="text-align: center;"> </display:column></td>--%>
-
-                            <%--<td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"--%>
-                                                <%--class="tb-font-black"--%>
-                                                <%--style="text-align: center;"> </display:column></td>--%>
-
-                            <td><display:column property="vendorOrigin" title="ORI <i class='fa fa-sort' />"
+                            <td><display:column property="vendorOrigin" title="Origin Vendor <i class='fa fa-sort' />"
                                                 class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
-                            <td><display:column property="vendorDestination" title="DES <i class='fa fa-sort' />"
+                            <td><display:column property="finalPickupDate" title="Pick-Up Date <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="vendorDestination" title="Destination Vendor <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="finalDeliveryDate" title="Delivery Date <i class='fa fa-sort' />"
                                                 class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
@@ -350,7 +346,6 @@
                         tbl.rows[i].cells[j].style.backgroundColor = "#dff0d8";
                     }
                 }
-
             }
         }
 
@@ -361,7 +356,6 @@
                 $('#orderItem [type="checkbox"]').prop('checked', true);
             }
         })
-        
     });
 
     function CheckAll(check)

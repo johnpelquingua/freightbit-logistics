@@ -35,7 +35,7 @@ public interface VendorService {
 
     public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId);
 
-    public List<Vendor> findVendorTruckByOrigin(String serviceArea);
+    public List<Vendor> findVendorTruckByLocation(String serviceArea);
 
     //Address
 

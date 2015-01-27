@@ -175,7 +175,7 @@
                         <div class="col-lg-8">
                             <div>
                                 <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
-                                          id="vendorListOrigin" listKey="vendorId" listValue="vendorCode" cssClass="dispatchInput form-control"
+                                          id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
                                           emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
                             </div>
                         </div>
@@ -413,7 +413,7 @@
                 <div class="col-lg-8">
                     <div>
                         <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
-                                  id="vendorListOrigin" listKey="vendorId" listValue="vendorCode" cssClass="dispatchInput form-control"
+                                  id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
                                   emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
                     </div>
                 </div>
@@ -743,7 +743,7 @@
                         <div>
                             <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
                                       id="vendorListOrigin"
-                                      listKey="vendorId" listValue="vendorCode" cssClass="dispatchInput form-control"
+                                      listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
                                       emptyOption="true" value="%{orderItem.vendorDestination}"
                                     ></s:select>
                         </div>

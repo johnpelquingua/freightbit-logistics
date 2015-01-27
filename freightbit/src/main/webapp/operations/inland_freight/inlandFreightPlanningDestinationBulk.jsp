@@ -282,7 +282,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Drop off Date</label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
                         <div class="col-lg-8">
                             <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                         </div>

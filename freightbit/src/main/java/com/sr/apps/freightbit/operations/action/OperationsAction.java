@@ -102,6 +102,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Vendor> vendorShippingListClass = new ArrayList<Vendor>();
     private List<Vendor> vendorTruckingList = new ArrayList<Vendor>();
     private List<Vendor> vendorTruckingOriginList = new ArrayList<Vendor>();
+    private List<Vendor> vendorTruckingDestinationList = new ArrayList<Vendor>();
     private List<Parameters> vendorTypeList = new ArrayList<Parameters>();
     private List<Parameters> vendorClassList = new ArrayList<Parameters>();
     private List<Parameters> statusList = new ArrayList<Parameters>();
@@ -1589,7 +1590,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             truckDestination = transformToFormBeanTrucks(truckEntity);
         }
 
-        vendorTruckingOriginList = vendorService.findVendorTruckByOrigin(order.getOriginationPort());
+        vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
+
+        vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
 
         sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
@@ -2302,26 +2305,38 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Orders orderCheck = orderService.findOrdersById(entity.getOrderId());
         if (orderCheck.getServiceMode().equals("PIER TO DOOR")){
             formBean.setVendorOrigin("N/A");
+            formBean.setFinalPickupDate("N/A");
             formBean.setVendorDestination(entity.getVendorDestination());
+            formBean.setFinalDeliveryDate(entity.getFinalDeliveryDate());
         }else if(orderCheck.getServiceMode().equals("DOOR TO PIER")){
             formBean.setVendorOrigin(entity.getVendorOrigin());
+            formBean.setFinalPickupDate(entity.getFinalPickupDate());
             formBean.setVendorDestination("N/A");
+            formBean.setFinalDeliveryDate("N/A");
         }else if(orderCheck.getServiceMode().equals("PIER TO PIER")){
             formBean.setVendorOrigin("N/A");
+            formBean.setFinalPickupDate("N/A");
             formBean.setVendorDestination("N/A");
+            formBean.setFinalDeliveryDate("N/A");
         }else if(orderCheck.getServiceType().equals("TRUCKING")){
             formBean.setVendorOrigin(entity.getVendorOrigin());
+            formBean.setFinalPickupDate(entity.getFinalPickupDate());
             formBean.setVendorDestination("N/A");
+            formBean.setFinalDeliveryDate("N/A");
         }else{
             if(entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin()) || "NONE".equals(entity.getVendorOrigin())){
                 formBean.setVendorOrigin("NONE");
+                formBean.setFinalPickupDate("NONE");
             }else{
                 formBean.setVendorOrigin(entity.getVendorOrigin());
+                formBean.setFinalPickupDate(entity.getFinalPickupDate());
             }
             if(entity.getVendorDestination() == null || "".equals(entity.getVendorDestination()) || "NONE".equals(entity.getVendorDestination())){
                 formBean.setVendorDestination("NONE");
+                formBean.setFinalDeliveryDate("NONE");
             }else{
                 formBean.setVendorDestination(entity.getVendorDestination());
+                formBean.setFinalDeliveryDate(entity.getFinalDeliveryDate());
             }
         }
 
@@ -4134,6 +4149,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setVendorTruckingOriginList(List<Vendor> vendorTruckingOriginList) {
         this.vendorTruckingOriginList = vendorTruckingOriginList;
+    }
+
+    public List<Vendor> getVendorTruckingDestinationList() {
+        return vendorTruckingDestinationList;
+    }
+
+    public void setVendorTruckingDestinationList(List<Vendor> vendorTruckingDestinationList) {
+        this.vendorTruckingDestinationList = vendorTruckingDestinationList;
     }
 
     public Date getFilterDelivery() {

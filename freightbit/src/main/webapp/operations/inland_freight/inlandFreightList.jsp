@@ -44,7 +44,7 @@
                 <div class="tab-pane fade in active" id="oriTab">
                     <div class="padding-10-top">
                         <s:form action="changeTruckOrigin" theme="bootstrap">
-                            <label class="col-lg-2 control-label">Sort by Origin :</label>
+                            <label class="col-lg-2 col-lg-offset-2 control-label">Sort by Origin :</label>
                             <div class="col-lg-3">
                                 <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                           id="select1" list="portsList" listKey="key"
@@ -393,7 +393,7 @@
                 <div class="tab-pane fade" id="truckTab">
                     <div class="padding-10-top">
                         <s:form action="changeTruckOrigin" theme="bootstrap">
-                            <label class="col-lg-2 control-label">Sort by Location :</label>
+                            <label class="col-lg-2 col-lg-offset-2 control-label">Sort by Location :</label>
                             <div class="col-lg-3">
                                 <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                           id="select1" list="portsList" listKey="key"
@@ -522,7 +522,7 @@
                 <div class="tab-pane fade" id="desTab">
                     <div class="padding-10-top">
                         <s:form action="changeTruckDestination" theme="bootstrap">
-                            <label class="col-lg-2 control-label">Sort by Destination :</label>
+                            <label class="col-lg-2 col-lg-offset-2 control-label">Sort by Destination :</label>
                             <div class="col-lg-3">
                                 <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                           id="select2" list="portsList" listKey="key"

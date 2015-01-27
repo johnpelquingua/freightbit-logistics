@@ -26,7 +26,9 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
     @Override
     public Integer addUser(User user) {
-        log.debug("adding a new User");
+        log.debug("adding a n" +
+                "14" +
+                "kew User");
         try {
             Session session = getSessionFactory().getCurrentSession();
             Integer userId = (Integer) session.save(user);

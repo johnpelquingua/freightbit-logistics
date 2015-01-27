@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1><i class="fa fa-truck"></i> Dispatch Plan: Destination</h1>
+        <h1><i class="fa fa-truck"></i> Dispatch Plan : Destination</h1>
 
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
@@ -134,7 +134,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-truck"></i>
-                <span class="panel-title">Dispatch Plan: Destination</span>
+                <span class="panel-title">Dispatch Plan : Destination</span>
             </div>
             <div class="panel-body">
                 <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsDestination">
@@ -168,9 +168,9 @@
 
                         <div class="col-sm-10">
                             <div style="width:90%;float:left;padding-right:10px;">
-                                <s:select list="vendorTruckingList" name="operationsBean.vendorListDestination"
+                                <s:select list="vendorTruckingDestinationList" name="operationsBean.vendorListDestination"
                                           id="vendorListDestination"
-                                          listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                          listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                           emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
                             </div>
                             <div style="width:5%;float:left;">
@@ -378,7 +378,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-truck"></i>
-            <span class="panel-title">Dispatch Plan: Destination</span>
+            <span class="panel-title">Dispatch Plan : Destination</span>
         </div>
         <div class="panel-body form-horizontal">
             <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsDestination">
@@ -413,8 +413,8 @@
 
                     <div class="col-lg-8">
                         <div>
-                            <s:select list="vendorTruckingList" name="operationsBean.vendorListDestination"
-                                      id="vendorListDestination" listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                            <s:select list="vendorTruckingDestinationList" name="operationsBean.vendorListDestination"
+                                      id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                       emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
                         </div>
                     </div>
@@ -611,7 +611,7 @@
     <div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-truck"></i>
-            <span class="panel-title">Dispatch Plan: Destination</span>
+            <span class="panel-title">Dispatch Plan : Destination</span>
         </div>
         <div class="panel-body">
             <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsDestination">
@@ -642,8 +642,8 @@
 
                     <div class="col-lg-8">
                         <div>
-                            <s:select list="vendorTruckingList" name="operationsBean.vendorListDestination"
-                                      id="vendorListDestination" listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                            <s:select list="vendorTruckingDestinationList" name="operationsBean.vendorListDestination"
+                                      id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                       emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
                         </div>
                     </div>
