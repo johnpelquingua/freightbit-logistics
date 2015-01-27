@@ -1022,3 +1022,17 @@ span.pagination li{
 .margin-10-bot {
     margin-bottom: 0.8em;
 }
+
+.menu-style-a {
+    border-top: 1px solid #4b4c4d;
+    border-top-color: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid #353637;
+    border-bottom-color: rgba(0, 0, 0, 0.18);
+}
+.error-handler-msg{
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: -100px;
+}
+
+
