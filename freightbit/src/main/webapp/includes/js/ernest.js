@@ -834,12 +834,16 @@ function addTotalRate(){
 
     for(var i=0; i < itemList.size(); i++){
         if($.isNumeric(parseFloat(itemList.eq(i).text()))){
-            totalPhp += parseFloat(itemList.eq(i).text());
+            var origRate = parseFloat(itemList.eq(i).text());
+            totalPhp += origRate;
+            itemList.eq(i).empty().append(origRate.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         }else{
             itemList.eq(i).empty().append('<font color="red">0.00</font>');
         }
     }
     $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+    $('.loadingDiv').hide();
+    $('.tableDiv').fadeIn();
 }
 
 function dateValidationInit(){

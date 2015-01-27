@@ -578,7 +578,11 @@
             </legend>
 
             <div class="panel-body">
-                <div class="table-responsive list-table">
+                <div class="loadingDiv" style="text-align: center;">
+                    Processing Items. Please Wait.<br/>
+                    <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
+                </div>
+                <div class="table-responsive list-table tableDiv" style="display: none;">
 
                     <table class="itemListing table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
                         <thead>
