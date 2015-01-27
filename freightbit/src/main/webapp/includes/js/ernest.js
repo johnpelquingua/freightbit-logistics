@@ -767,62 +767,57 @@ function changeDateValue(dateSelector, mode){
 }
 
 function hideVesselSchedule(){
-    var vesselTable = $('#vesselSchedule tbody tr td:nth-child(6)'),
-        arrivalDate = $('#vesselSchedule tbody tr td:nth-child(7)'),
+    var departureDateTable = $('#vesselSchedule tbody tr td:nth-child(6)'),
+        arrivalDateTable = $('#vesselSchedule tbody tr td:nth-child(7)'),
         schedClass = $('#vesselSchedule tbody tr td:nth-child(8)'),
         bookingClass = $('#bookingClass'),
-        splitDate,
-        currentDate = new Date(),
-        pickupDate = changeDateValue($('.pickupDate'), 'INCREMENT'),
-        deliveryDate = changeDateValue($('.deliveryDate'), 'DECREMENT');
+        currentDate = new Date().setHours(0,0,0,0),
+        pickupDate = new Date($('.pickupDate').val()).setHours(0,0,0,0),
+        deliveryDate = new Date($('.deliveryDate').val()).setHours(0,0,0,0);
 
-    for(var i=0; i < vesselTable.size(); i++){
-        splitDate = vesselTable.eq(i).text().split('-');
+    for(var i=0; i < departureDateTable.size(); i++){
+        var loopDepartureDate = new Date(departureDateTable.eq(i).text()).setHours(0,0,0,0),
+            loopArrivalDate = new Date(arrivalDateTable.eq(i).text()).setHours(0,0,0,0);
 
-        if(currentDate.getUTCFullYear() > splitDate[2]){
-            vesselTable.eq(i).closest('tr').remove();
-        }else{
-            if((currentDate.getMonth()+1) > splitDate[1]){
-                vesselTable.eq(i).closest('tr').remove();
-            }else{
-                if(currentDate.getDate() < splitDate[0]){
-                    vesselTable.eq(i).closest('tr').remove();
-                }
-            }
+        // DELETES OVERDUE SCHEDULES
+        if(loopDepartureDate < currentDate){
+            departureDateTable.eq(i).closest('tr').remove();
+            continue;
         }
 
-        if(new Date(pickupDate) > new Date(vesselTable.eq(i).text()) || new Date(deliveryDate) < new Date(arrivalDate.eq(i).text())){
-            vesselTable.eq(i).closest('tr').remove();
+        if(pickupDate > loopDepartureDate || deliveryDate < loopArrivalDate){
+            departureDateTable.eq(i).closest('tr').remove();
+            continue;
         }
 
         if(bookingClass.val() == 'REGULAR'){
             if(schedClass.eq(i).text() == 'PREMIUM'){
                 schedClass.eq(i).closest('tr').remove();
+                continue;
             }
         }else if(bookingClass.val() == 'ECONOMY'){
             if(schedClass.eq(i).text() != 'ECONOMY'){
                 schedClass.eq(i).closest('tr').remove();
+                continue;
             }
         }
 
-        var arrivalDateReformat = dateAbbrev_Format3(arrivalDate.eq(i).text()),
-            departureDateReformat = dateAbbrev_Format3(vesselTable.eq(i).text());
+        var arrivalDateReformat = dateAbbrev_Format3(arrivalDateTable.eq(i).text()),
+            departureDateReformat = dateAbbrev_Format3(departureDateTable.eq(i).text());
 
-        arrivalDate.eq(i).empty().append(arrivalDateReformat);
-        vesselTable.eq(i).empty().append(departureDateReformat);
+        arrivalDateTable.eq(i).empty().append(arrivalDateReformat);
+        departureDateTable.eq(i).empty().append(departureDateReformat);
     }
 
-    setTimeout(function(){
-        if($('#vesselSchedule tbody tr').size() == 0){
-            $('.loadingDiv').empty().append('No schedule found.');
-        }else{
-            if($('#vesselSchedule tbody tr').size() > 10){
-                $('#vesselSchedule').oneSimpleTablePagination({rowsPerPage: 10});
-            }
-            $('.loadingDiv').hide();
-            $('.tableDiv').fadeIn();
+    if($('#vesselSchedule tbody tr').size() == 0){
+        $('.loadingDiv').empty().append('<i>No schedule found.</i>');
+    }else{
+        if($('#vesselSchedule tbody tr').size() > 10){
+            $('#vesselSchedule').oneSimpleTablePagination({rowsPerPage: 10});
         }
-    }, 1000);
+        $('.loadingDiv').hide();
+        $('.tableDiv').fadeIn();
+    }
 }
 
 function addTotalRate(){
@@ -948,6 +943,4 @@ function buttonControl(){
             $('.houseWaybillDestinationBtn').show();
             $('.houseWaybillOriginBtn').show();
     }
-//    houseWaybillDestinationBtn
-//    houseWaybillOriginBtn
 }
