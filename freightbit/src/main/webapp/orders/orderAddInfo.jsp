@@ -549,7 +549,7 @@
 
 <s:if test="hasActionMessages()">
     <div class="col-lg-12" id="successDiv">
-        <div id="alert" class="alert alert-danger">
+        <div id="alert" class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>

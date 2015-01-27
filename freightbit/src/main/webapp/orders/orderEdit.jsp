@@ -420,7 +420,7 @@
 <div class="panel-footer">
 
     <div class="pull-right">
-        <button type="button" id="Cancel" class="btn" data-toggle="modal" data-target="#cancelBooking">
+        <button type="button" id="Cancel" class="btn btn-danger" data-toggle="modal" data-target="#cancelBooking">
             Cancel
         </button>
 
