@@ -31,6 +31,21 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
     }
 
     @Override
+    public void updateOrderStatusLogsItems(OrderStatusLogs orderStatusLogs) {
+        log.debug("Updating status of orderItem");
+        try {
+            Session session = getSessionFactory().getCurrentSession();
+            session.saveOrUpdate(orderStatusLogs);
+            log.debug("update succeed");
+            System.out.println("<----------------update succeed---------------->");
+            System.out.println(orderStatusLogs.getStatus() + ", " + orderStatusLogs.getOrderItemId());
+        } catch (Exception e) {
+            log.error("Update failed");
+            throw e;
+        }
+    }
+
+    @Override
     public void updateStatusOrders(Orders orders) {
         log.debug("Updating status of orders");
         try {
@@ -180,11 +195,11 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
     }
 
     @Override
-    public OrderStatusLogs findOrderStatusLogsStatusById(Integer orderItemId) {
+    public OrderStatusLogs findOrderStatusLogsStatusById(Integer statusId) {
         log.debug("Finding orderStatusLogs via orderItemId");
         try {
-            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderStatusLogs osl where osl.orderItemId = :orderItemId");
-            query.setParameter("orderItemId", orderItemId);
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderStatusLogs osl where osl.statusId = :statusId");
+            query.setParameter("statusId", statusId);
             List<OrderStatusLogs> results = (List<OrderStatusLogs>) query.list();
             if (results != null && results.size() > 0)
                 return results.get(0);

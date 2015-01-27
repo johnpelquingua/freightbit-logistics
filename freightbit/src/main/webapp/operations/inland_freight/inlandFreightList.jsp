@@ -415,7 +415,7 @@
 
                     <div class="tab-content">
 
-                        <div class="tab-pane fade active" id="ftlTab">
+                        <div class="tab-pane fade in active" id="ftlTab">
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <display:table id="order" name="ftlTable"

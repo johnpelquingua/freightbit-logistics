@@ -28,7 +28,7 @@
               <s:hidden name="container.eirNumber" value="%{container.eirNumber}" />
               <s:hidden name="container.vanLocation" value="%{container.vanLocation}" />
               <s:hidden name="container.modifiedBy" value="%{container.modifiedBy}"/>
-              <s:hidden name="container.modifiedTimest  amp" value="%{container.modifiedTimestamp}"/>
+              <s:hidden name="container.modifiedTimestamp" value="%{container.modifiedTimestamp}"/>
               <s:hidden name="container.eirType" value="EIR FORM 2"/>
 
             <div class="form-group">

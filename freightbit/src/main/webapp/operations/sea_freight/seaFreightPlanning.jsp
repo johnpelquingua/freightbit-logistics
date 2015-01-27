@@ -144,7 +144,7 @@
                     <span class="panel-title">Freight Plan</span>
                 </div>
                 <div class="panel-body">
-                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
+                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: 1.4em;">
                         <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
                         <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                         <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
@@ -184,7 +184,7 @@
                                 <div>
                                     <s:select list="vendorShippingListClass" name="operationsBean.vendorList"
                                               id="operationsBean_vendorList"
-                                              listKey="vendorId" listValue="vendorName" cssClass="form-control"
+                                              listKey="vendorId" listValue="vendorName" cssClass="form-control addScheduleInput"
                                               emptyOption="true" ></s:select>
                                 </div>
                             </div>
@@ -215,51 +215,51 @@
 
                 <s:if test="scheduleExists == 'TRUE' ">
 
-                    <hr>
-                    <h4 style="text-align:center;">Current Schedule</h4>
-                    <hr>
-                    <display:table id="vesselSchedule" name="vesselSchedule"
-                                   requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter"
-                                   style="margin-top: 15px;">
-                        <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="originPort" title="ORI" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="destinationPort" title="DES" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <%--<td><display:column title="Action">--%>
-                            <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">--%>
-                                <%--<s:param name="orderItemIdParam"--%>
-                                         <%--value="#attr.orderItem.orderItemId">--%>
-                                <%--</s:param>--%>
-                                <%--<s:param name="vesselScheduleIdParam"--%>
-                                         <%--value="#attr.vesselSchedule.vesselScheduleId">--%>
-                                <%--</s:param>--%>
-                                <%--<s:param name="vendorIdParam"--%>
-                                         <%--value="#attr.vesselSchedule.vendorId">--%>
-                                <%--</s:param>--%>
-                            <%--</s:url>--%>
-                            <%--<s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">--%>
-                                <%--&lt;%&ndash;Choose this vessel...&ndash;%&gt;--%>
-                                <%--<i class="fa fa-arrow-circle-down"></i>--%>
-                            <%--</s:a>--%>
-                        <%--</display:column></td>--%>
-                    </display:table>
+                    <div class="well">
+                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedule</h4>
+                        <display:table id="vesselSchedule" name="vesselSchedule"
+                                       requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                       class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable"
+                                       style="margin-top: 15px;">
+                            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="destinationPort" title="DES" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <%--<td><display:column title="Action">--%>
+                                <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">--%>
+                                    <%--<s:param name="orderItemIdParam"--%>
+                                             <%--value="#attr.orderItem.orderItemId">--%>
+                                    <%--</s:param>--%>
+                                    <%--<s:param name="vesselScheduleIdParam"--%>
+                                             <%--value="#attr.vesselSchedule.vesselScheduleId">--%>
+                                    <%--</s:param>--%>
+                                    <%--<s:param name="vendorIdParam"--%>
+                                             <%--value="#attr.vesselSchedule.vendorId">--%>
+                                    <%--</s:param>--%>
+                                <%--</s:url>--%>
+                                <%--<s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">--%>
+                                    <%--&lt;%&ndash;Choose this vessel...&ndash;%&gt;--%>
+                                    <%--<i class="fa fa-arrow-circle-down"></i>--%>
+                                <%--</s:a>--%>
+                            <%--</display:column></td>--%>
+                        </display:table>
+                    </div>
                 </s:if>
 
 <%---------------------------------------------------------------------------------------------%>
                     <div class="form-group" style="padding-top: 50px;">
                         <hr>
-                        <h4 style="text-align:center;">List of Schedules</h4>
+                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i>  List of Schedules</h4>
                         <hr>
                     </div>
                     <s:if test="hasActionMessages()">
@@ -272,7 +272,7 @@
                     </s:if>
                     <display:table id="vesselSchedule" name="vesselSchedules"
                                    requestURI="/viewSeaFreightPlanning.action" length="10000" pagesize="10000"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter listOfSchedules"
                                    style="margin-top: 15px;">
                         <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -316,7 +316,7 @@
                     <span class="panel-title">Freight Plan</span>
                 </div>
                 <div class="panel-body">
-                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
+                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: 1.4em;">
                         <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
                         <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                         <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
@@ -387,13 +387,11 @@
             <%--<s:textfield value="%{scheduleExists}" />--%>
             <s:if test="scheduleExists == 'TRUE' ">
 
-                    <hr>
-                    <h4 style="text-align:center;">Current Schedule</h4>
-                    <hr>
+                <div class="well">
+                    <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedule</h4>
                     <display:table id="vesselSchedule" name="vesselSchedule"
                                    requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter"
-                                   style="margin-top: 15px;">
+                                   class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable">
                         <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
@@ -408,31 +406,14 @@
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <%--<td><display:column title="Action">--%>
-                            <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">--%>
-                                <%--<s:param name="orderItemIdParam"--%>
-                                         <%--value="#attr.orderItem.orderItemId">--%>
-                                <%--</s:param>--%>
-                                <%--<s:param name="vesselScheduleIdParam"--%>
-                                         <%--value="#attr.vesselSchedule.vesselScheduleId">--%>
-                                <%--</s:param>--%>
-                                <%--<s:param name="vendorIdParam"--%>
-                                         <%--value="#attr.vesselSchedule.vendorId">--%>
-                                <%--</s:param>--%>
-                            <%--</s:url>--%>
-                            <%--<s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">--%>
-                                <%--&lt;%&ndash;Choose this vessel...&ndash;%&gt;--%>
-                                <%--<i class="fa fa-arrow-circle-down"></i>--%>
-                            <%--</s:a>--%>
-                        <%--</display:column></td>--%>
                     </display:table>
+                </div>
             </s:if>
 
     <%---------------------------------------------------------------------------------------------%>
-                    <div class="form-group" style="padding-top: 50px;">
+                    <div class="form-group" style="padding-top: 0px;">
                         <hr>
-                        <h4 style="text-align:center;">List of Schedules</h4>
-                        <hr>
+                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> List of Schedules</h4>
                     </div>
                     <s:if test="hasActionMessages()">
                         <div class="col-lg-12" id="successDiv">
@@ -449,7 +430,7 @@
                     <div class="tableDiv" style="display: none;">
                         <display:table id="vesselSchedule" name="vesselSchedules"
                                    requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter listOfSchedules"
                                    style="margin-top: 15px;">
                         <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -588,7 +569,7 @@
                     <span class="panel-title">Freight Plan</span>
                 </div>
                 <div class="panel-body">
-                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
+                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: 1.4em;">
                         <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
                         <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                         <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
@@ -660,12 +641,11 @@
     <%---------------------------------------------------------------------------------------------%>
 
                 <s:if test="scheduleExists == 'TRUE' ">
-                    <hr>
-                    <h4 style="text-align:center;">Current Schedule</h4>
-                    <hr>
+                <div class="well">
+                    <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedule</h4>
                     <display:table id="vesselSchedule" name="vesselSchedule"
                                    requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable"
                                    style="margin-top: 15px;">
                         <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -681,30 +661,14 @@
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
-                        <%--<td><display:column title="Action">--%>
-                            <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">--%>
-                                <%--<s:param name="orderItemIdParam"--%>
-                                         <%--value="#attr.orderItem.orderItemId">--%>
-                                <%--</s:param>--%>
-                                <%--<s:param name="vesselScheduleIdParam"--%>
-                                         <%--value="#attr.vesselSchedule.vesselScheduleId">--%>
-                                <%--</s:param>--%>
-                                <%--<s:param name="vendorIdParam"--%>
-                                         <%--value="#attr.vesselSchedule.vendorId">--%>
-                                <%--</s:param>--%>
-                            <%--</s:url>--%>
-                            <%--<s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">--%>
-                                <%--&lt;%&ndash;Choose this vessel...&ndash;%&gt;--%>
-                                <%--<i class="fa fa-arrow-circle-down"></i>--%>
-                            <%--</s:a>--%>
-                        <%--</display:column></td>--%>
                     </display:table>
+                </div>
                 </s:if>
 
     <%---------------------------------------------------------------------------------------------%>
                 <div class="form-group" style="padding-top: 50px;">
                         <hr>
-                        <h4 style="text-align:center;">List of Schedules</h4>
+                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> List of Schedules</h4>
                         <hr>
                     </div>
                     <s:if test="hasActionMessages()">
@@ -717,7 +681,7 @@
                     </s:if>
                     <display:table id="vesselSchedule" name="vesselSchedules"
                                    requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter listOfSchedules"
                                    style="margin-top: 15px;">
                         <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -826,7 +790,7 @@
                     <span class="panel-title">Freight Plan</span>
                 </div>
                 <div class="panel-body">
-                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: -50px;">
+                    <s:form cssClass="form-horizontal" action="findVesselSchedule" theme="bootstrap" style="margin-bottom: 1.4em;">
                         <%--<c:out value="${sessionScope.vendorIdPass}" />--%>
                         <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                         <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
@@ -896,12 +860,12 @@
     <%---------------------------------------------------------------------------------------------%>
 
                     <s:if test="scheduleExists == 'TRUE' ">
-                        <hr>
-                        <h4 style="text-align:center;">Current Schedule</h4>
+                    <div class="well">
+                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedule</h4>
                         <hr>
                         <display:table id="vesselSchedule" name="vesselSchedule"
                                        requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                       class="table table-striped table-hover table-bordered text-center tablesorter"
+                                       class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable"
                                        style="margin-top: 15px;">
                             <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
@@ -917,30 +881,14 @@
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <%--<td><display:column title="Action">--%>
-                            <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">--%>
-                            <%--<s:param name="orderItemIdParam"--%>
-                            <%--value="#attr.orderItem.orderItemId">--%>
-                            <%--</s:param>--%>
-                            <%--<s:param name="vesselScheduleIdParam"--%>
-                            <%--value="#attr.vesselSchedule.vesselScheduleId">--%>
-                            <%--</s:param>--%>
-                            <%--<s:param name="vendorIdParam"--%>
-                            <%--value="#attr.vesselSchedule.vendorId">--%>
-                            <%--</s:param>--%>
-                            <%--</s:url>--%>
-                            <%--<s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">--%>
-                            <%--&lt;%&ndash;Choose this vessel...&ndash;%&gt;--%>
-                            <%--<i class="fa fa-arrow-circle-down"></i>--%>
-                            <%--</s:a>--%>
-                            <%--</display:column></td>--%>
                         </display:table>
+                    </div>
                     </s:if>
 
     <%---------------------------------------------------------------------------------------------%>
                     <div class="form-group" style="padding-top: 50px;">
                         <hr>
-                        <h4 style="text-align:center;">List of Schedules</h4>
+                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> List of Schedules</h4>
                         <hr>
                     </div>
                     <s:if test="hasActionMessages()">
@@ -953,7 +901,7 @@
                     </s:if>
                     <display:table id="vesselSchedule" name="vesselSchedules"
                                    requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter listOfSchedules"
                                    style="margin-top: 15px;">
                         <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
@@ -1247,9 +1195,6 @@
 
     // User must choose a vendor first before adding vessel schedule
     $(document).ready(function(){
-
-//        changeDateValue($('.pickupDate'), 'INCREMENT');
-//        changeDateValue($('.deliveryDate'), 'DECREMENT');
         hideVesselSchedule();
 
         $("#createSchedule").click(function() {

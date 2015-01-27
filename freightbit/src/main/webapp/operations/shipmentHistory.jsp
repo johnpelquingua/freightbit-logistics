@@ -92,7 +92,7 @@
                                             style="margin-top: 15px;empty-cells: hide;">
 
                                 <td><display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
+                                                    style="text-align: center;"></display:column></td>
 
                                 <td>
                                     <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
@@ -108,8 +108,20 @@
                                 <td><display:column property="status" title="Shipment History <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
+                                <td><display:column property="actualDate" title="Actual Date/Time <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;" format="{0,date,dd-MMM-yyyy HH:mm:ss a}"></display:column></td>
+
                                 <td><display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+
+                                <td>
+                                    <display:column title="Action">
+                                        <a id="edit-icon" href="#" data-toggle="modal" data-target="#actualModal" onclick="showActualDateFields(${orderStatusLogs.statusId});">
+                                            <i class="fa fa-edit"></i>
+                                                <%--<s:param name="orderItemIdParam" value="#attr.orderStatusLogs.orderItemId"></s:param>--%>
+                                        </a>
+                                    </display:column>
+                                </td>
 
                             </display:table>
                         </tr>
@@ -136,39 +148,45 @@
                 </div>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update <span class="asterisk_red"></span></label>
-                    <s:if test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'SHIPPING' && #attr.order.serviceRequirement == 'FULL CONTAINER LOAD' && #attr.order.serviceRequirement == 'LOOSE CARGO LOAD' && #attr.order.serviceRequirement == 'ROLLING CARGO LOAD'">
-                    <s:select cssClass="statusDropdown form-control"
-                              id="seaFreightStatus"
-                              name="orderStatusLogsBean.status"
-                              list="seaFreightList"
-                              listKey="key"
-                              listValue="value"
-                              emptyOption="true"
-                              required="true"
-                            />
-                    </s:if>
-                    <s:elseif test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'SHIPPING' && #attr.order.serviceRequirement == 'LESS CONTAINER LOAD'">
-                    <s:select cssClass="statusDropdown form-control"
-                              id="seaFreightLCLStatus"
-                              name="orderStatusLogsBean.status"
-                              list="seaFreightLCLList"
-                              listKey="key"
-                              listValue="value"
-                              emptyOption="true"
-                              required="true"
-
-                            />
-                    </s:elseif>
-                    <s:elseif test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'TRUCKING' && #attr.order.serviceRequirement != 'FULL CONTAINER LOAD' && #attr.order.serviceRequirement != 'LOOSE CARGO LOAD' && #attr.order.serviceRequirement != 'ROLLING CARGO LOAD' && #attr.order.serviceRequirement != 'LESS CONTAINER LOAD'">
+                    <s:if test="#attr.order.serviceRequirement == 'FULL CONTAINER LOAD' || #attr.order.serviceRequirement == 'LOOSE CARGO LOAD' ||
+                                #attr.order.serviceRequirement == 'ROLLING CARGO LOAD'">
                         <s:select cssClass="statusDropdown form-control"
-                                  id="inlandFreightStatus"
+                                  id="seaFreightStatus"
                                   name="orderStatusLogsBean.status"
-                                  list="inlandFreightList"
+                                  list="seaFreightList"
                                   listKey="key"
                                   listValue="value"
                                   emptyOption="true"
                                   required="true"
                                 />
+                    </s:if>
+
+                    <s:elseif test="#attr.order.serviceRequirement == 'LESS CONTAINER LOAD'">
+                        <s:select cssClass="statusDropdown form-control"
+                                  id="seaFreightLCLStatus"
+                                  name="orderStatusLogsBean.status"
+                                  list="seaFreightLCLList"
+                                  listKey="key"
+                                  listValue="value"
+                                  emptyOption="true"
+                                  required="true"
+                                />
+                    </s:elseif>
+
+                    <s:elseif test="#attr.order.serviceRequirement == 'FULL TRUCK LOAD' || #attr.order.serviceRequirement == 'LESS TRUCK LOAD'">
+                        <s:if test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'TRUCKING'">
+                            <s:if test="#attr.order.modeOfService == 'PICKUP' || #attr.order.modeOfService == 'DELIVERY' || #attr.order.modeOfService == 'INTER-WAREHOUSE'">
+                                <s:select cssClass="statusDropdown form-control"
+                                          id="inlandFreightStatus"
+                                          name="orderStatusLogsBean.status"
+                                          list="inlandFreightList"
+                                          listKey="key"
+                                          listValue="value"
+                                          emptyOption="true"
+                                          required="true"
+                                        />
+                            </s:if>
+                        </s:if>
                     </s:elseif>
                 </div>
             </div>
@@ -192,10 +210,30 @@
                     <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
             </div>
             </div>
-            </s:form>
         </div>
     </div>
 </div>
+<div class="modal fade" id="actualModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <%--<div class="modal-header">
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+            </div>--%>
+            <div class="modal-body">
+                <div id="actualInput">
+                    <%--<label id="actualLabel" class="control-label header">Actual Date/Time: <span class="asterisk_red"></span></label>
+                    <div class="pull-center" style="padding-top:0px;">
+                        <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actualDate" />
+                    </div>--%>
+                </div>
+            </div>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
+            </div>--%>
+        </div>
+    </div>
+</div>
+</s:form>
 <script type="text/javascript">
     /*function checkUpStatus(){
         if($('.statusDropdown').val() == 'DELIVERED'){
@@ -229,8 +267,16 @@
         }
     });
 
-    function sendOkStatus(){
-        $('form').submit()
-    }
+    /*    function sendOkStatus(){
+     $('form').submit()
+     }*/
 
+    /*$(function () {
+     var curDate = $('#createdTimestamp');
+
+     curDate.datetimepicker({
+     timeFormat: 'h:mm TT',
+     minDate: 0
+     });
+     });*/
 </script>

@@ -10,6 +10,8 @@ public interface OrderStatusLogsDao {
 
     public void addOrderStatus(OrderStatusLogs orderStatusLogs);
 
+    public void updateOrderStatusLogsItems(OrderStatusLogs orderStatusLogs);
+
     public void updateStatusOrders(Orders orders);
 
     public List<Orders> findAllOrders();
@@ -24,7 +26,7 @@ public interface OrderStatusLogsDao {
 
     public OrderStatusLogs findOrderStatusLogsById(Integer orderItemId);
 
-    public OrderStatusLogs findOrderStatusLogsStatusById(Integer orderItemId);
+    public OrderStatusLogs findOrderStatusLogsStatusById(Integer statusId);
 
     public void updateStatusOrderItem(OrderItems orderItems);
 }

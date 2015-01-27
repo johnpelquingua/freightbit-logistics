@@ -112,7 +112,7 @@
                         </display:column></td>
 
                         <td>
-                            <display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
+                            <display:column property="createdTimestamp" title="Actual Date/Time <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;" format="{0,date,dd-MMM-yyyy hh:mm a}"></display:column>
                         </td>
 
@@ -140,6 +140,7 @@
 
                         <td>
                             <display:column title="Action">
+                                <s:if test="#attr.orderItem.status != 'PLANNING 1' && #attr.orderItem.status != 'PLANNING 2' && #attr.orderItem.status != 'PLANNING 3'">
                                 <s:url var="loadUpdateStatusUrl" action="loadUpdateStatus">
                                     <s:param name="orderItemIdParam" value="#attr.orderItem.orderItemId">
                                     </s:param>
@@ -147,6 +148,7 @@
                                 <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip" title="View Shipment History">
                                     <i class="fa fa-info-circle"></i>
                                 </s:a>
+                                </s:if>
                             </display:column>
                         </td>
                     </tr>
@@ -157,8 +159,8 @@
                                 <s:param name="orderIdParam"
                                          value="order.orderId"></s:param>
                             </s:url>
-                            <s:if test="orderStatusLogs.status != 'ON GOING' || orderStatusLogs.status != 'PLANNING 1' || orderStatusLogs.status != 'PLANNING 2' || orderStatusLogs.status != 'PLANNING 3'">
-                            <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
+                            <s:if test="#attr.orderItem.status == 'ARRIVED' || #attr.orderItem.status == 'DELIVERED'">
+                                <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
                                 <button type="button" id="Complete" class="btn btn-default">
                                     Complete The Service
                                 </button>

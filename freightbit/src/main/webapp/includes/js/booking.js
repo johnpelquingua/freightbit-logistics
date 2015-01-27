@@ -6,7 +6,7 @@
 $(document).ready(function() {
     $('.serviceModeDropdown').change(function(){
         $('.addAddressItems').prop('disabled', true);
-        if($(this).val() == 'PIER TO DOOR' || $(this).val() == 'DOOR TO PIER'){
+        if($(this).val() == 'PIER TO DOOR' || $(this).val() == 'PIER TO PIER'){
             $('.addAddressItems').prop('disabled', true);
             $('.addAddressItems').addClass('disabled');
         }else{

@@ -26,6 +26,12 @@ public class OrderStatusLogsServiceImpl implements OrderStatusLogsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateOrderStatusLogs(OrderStatusLogs orderStatusLogs) {
+        orderStatusLogsDao.updateOrderStatusLogsItems(orderStatusLogs);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void updateOrderStatus(Orders orders) {
         orderStatusLogsDao.updateStatusOrders(orders);
     }
@@ -66,7 +72,7 @@ public class OrderStatusLogsServiceImpl implements OrderStatusLogsService {
     }
 
     @Override
-    public OrderStatusLogs findOrderStatusLogsStatusById(Integer orderItemId) {
-        return orderStatusLogsDao.findOrderStatusLogsStatusById(orderItemId);
+    public OrderStatusLogs findOrderStatusLogsStatusById(Integer statusId) {
+        return orderStatusLogsDao.findOrderStatusLogsStatusById(statusId);
     }
 }

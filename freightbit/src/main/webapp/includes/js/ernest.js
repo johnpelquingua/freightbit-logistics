@@ -711,6 +711,21 @@ function showGateOutFields(containerId) {
 
 }
 
+function showActualDateFields(statusId) {
+    $.ajax({
+        url: 'loadActualDateForm',
+        type: 'POST',
+        data: { statusIdParam: statusId },
+        dataType: 'html',
+        success: function (html) {
+            $('#actualInput').html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            alert('An error occurred! ' + thrownError);
+        }
+    });
+}
+
 // restrict a textfield for numbers only
 function restrictField_Numbers(fieldClass){
     $('.'+fieldClass).keypress(function(e) {
@@ -767,62 +782,64 @@ function changeDateValue(dateSelector, mode){
 }
 
 function hideVesselSchedule(){
-    var vesselTable = $('#vesselSchedule tbody tr td:nth-child(6)'),
-        arrivalDate = $('#vesselSchedule tbody tr td:nth-child(7)'),
-        schedClass = $('#vesselSchedule tbody tr td:nth-child(8)'),
+    var departureDateTable = $('.listOfSchedules tbody tr td:nth-child(6)'),
+        arrivalDateTable = $('.listOfSchedules tbody tr td:nth-child(7)'),
+        schedClass = $('.listOfSchedules tbody tr td:nth-child(8)'),
         bookingClass = $('#bookingClass'),
-        splitDate,
-        currentDate = new Date(),
-        pickupDate = changeDateValue($('.pickupDate'), 'INCREMENT'),
-        deliveryDate = changeDateValue($('.deliveryDate'), 'DECREMENT');
+        currentDate = new Date().setHours(0,0,0,0),
+        pickupDate = new Date($('.pickupDate').val()).setHours(0,0,0,0),
+        deliveryDate = new Date($('.deliveryDate').val()).setHours(0,0,0,0),
+        voyageNumberCurrent = $('.currentSchedulesTable tbody tr td:nth-child(2)').eq(0).text(),
+        voyageNumberList = $('.listOfSchedules tbody tr td:nth-child(2)');
 
-    for(var i=0; i < vesselTable.size(); i++){
-        splitDate = vesselTable.eq(i).text().split('-');
+    for(var i=0; i < departureDateTable.size(); i++){
+        var loopDepartureDate = new Date(departureDateTable.eq(i).text()).setHours(0,0,0,0),
+            loopArrivalDate = new Date(arrivalDateTable.eq(i).text()).setHours(0,0,0,0);
 
-        if(currentDate.getUTCFullYear() > splitDate[2]){
-            vesselTable.eq(i).closest('tr').remove();
-        }else{
-            if((currentDate.getMonth()+1) > splitDate[1]){
-                vesselTable.eq(i).closest('tr').remove();
-            }else{
-                if(currentDate.getDate() < splitDate[0]){
-                    vesselTable.eq(i).closest('tr').remove();
-                }
-            }
+        if(voyageNumberCurrent == voyageNumberList.eq(i).text()){
+            voyageNumberList.eq(i).closest('tr').remove();
+            continue;
         }
 
-        if(new Date(pickupDate) > new Date(vesselTable.eq(i).text()) || new Date(deliveryDate) < new Date(arrivalDate.eq(i).text())){
-            vesselTable.eq(i).closest('tr').remove();
+        // DELETES OVERDUE SCHEDULES
+        if(loopDepartureDate < currentDate){
+            departureDateTable.eq(i).closest('tr').remove();
+            continue;
+        }
+
+        if(pickupDate > loopDepartureDate || deliveryDate < loopArrivalDate){
+            departureDateTable.eq(i).closest('tr').remove();
+            continue;
         }
 
         if(bookingClass.val() == 'REGULAR'){
             if(schedClass.eq(i).text() == 'PREMIUM'){
                 schedClass.eq(i).closest('tr').remove();
+                continue;
             }
         }else if(bookingClass.val() == 'ECONOMY'){
             if(schedClass.eq(i).text() != 'ECONOMY'){
                 schedClass.eq(i).closest('tr').remove();
+                continue;
             }
         }
 
-        var arrivalDateReformat = dateAbbrev_Format3(arrivalDate.eq(i).text()),
-            departureDateReformat = dateAbbrev_Format3(vesselTable.eq(i).text());
+        var arrivalDateReformat = dateAbbrev_Format3(arrivalDateTable.eq(i).text()),
+            departureDateReformat = dateAbbrev_Format3(departureDateTable.eq(i).text());
 
-        arrivalDate.eq(i).empty().append(arrivalDateReformat);
-        vesselTable.eq(i).empty().append(departureDateReformat);
+        arrivalDateTable.eq(i).empty().append(arrivalDateReformat);
+        departureDateTable.eq(i).empty().append(departureDateReformat);
     }
 
-    setTimeout(function(){
-        if($('#vesselSchedule tbody tr').size() == 0){
-            $('.loadingDiv').empty().append('No schedule found.');
-        }else{
-            if($('#vesselSchedule tbody tr').size() > 10){
-                $('#vesselSchedule').oneSimpleTablePagination({rowsPerPage: 10});
-            }
-            $('.loadingDiv').hide();
-            $('.tableDiv').fadeIn();
+    if($('.listOfSchedules tbody tr').size() == 0){
+        $('.loadingDiv').empty().append('<i>No schedule found.</i>');
+    }else{
+        if($('.listOfSchedules tbody tr').size() > 10){
+            $('.listOfSchedules').oneSimpleTablePagination({rowsPerPage: 10});
         }
-    }, 1000);
+        $('.loadingDiv').hide();
+        $('.tableDiv').fadeIn();
+    }
 }
 
 function addTotalRate(){
@@ -832,12 +849,16 @@ function addTotalRate(){
 
     for(var i=0; i < itemList.size(); i++){
         if($.isNumeric(parseFloat(itemList.eq(i).text()))){
-            totalPhp += parseFloat(itemList.eq(i).text());
+            var origRate = parseFloat(itemList.eq(i).text());
+            totalPhp += origRate;
+            itemList.eq(i).empty().append(origRate.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         }else{
             itemList.eq(i).empty().append('<font color="red">0.00</font>');
         }
     }
     $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+    $('.loadingDiv').hide();
+    $('.tableDiv').fadeIn();
 }
 
 function dateValidationInit(){
@@ -948,6 +969,4 @@ function buttonControl(){
             $('.houseWaybillDestinationBtn').show();
             $('.houseWaybillOriginBtn').show();
     }
-//    houseWaybillDestinationBtn
-//    houseWaybillOriginBtn
 }
