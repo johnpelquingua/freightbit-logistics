@@ -312,9 +312,9 @@
                          value="%{orderIdParam}">
                 </s:param>
             </s:url>
-            <s:a cssClass="btn btn-default" href="%{viewDocumentListUrl}" rel="tooltip"
+            <s:a cssClass="btn btn-warning" href="%{viewDocumentListUrl}" rel="tooltip"
                  title="Go to Documents Page">
-                Go to Documents page
+                Proceed to Documents page <i class="fa fa-chevron-right"></i>
             </s:a>
 
         </div>

@@ -555,8 +555,8 @@
                     </button>
                 </s:if>
                 <s:else>
-                    <button type="button" class="btn">
-                        Dispatch Plan : Items
+                    <button type="button" class="btn btn-danger">
+                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
                     </button>
                 </s:else>
             </s:a>
