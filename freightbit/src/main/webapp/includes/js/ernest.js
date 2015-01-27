@@ -523,8 +523,8 @@ function seaFreightLclComputation(tableClass, wellTotalWeight, wellTotalVolume){
     var lclCheckBox = $('.'+tableClass+' tbody tr td input[type="checkbox"]');
 
     lclCheckBox.change(function(){
-        var weight = parseFloat($(this).closest('tr').find('td').eq(8).text()),
-            volume = parseFloat($(this).closest('tr').find('td').eq(9).text()),
+        var weight = parseFloat($(this).closest('tr').find('td').eq(10).text()),
+            volume = parseFloat($(this).closest('tr').find('td').eq(11).text()),
             wellContentWt = $('#'+wellTotalWeight),
             wellContentVol = $('#'+wellTotalVolume);
 

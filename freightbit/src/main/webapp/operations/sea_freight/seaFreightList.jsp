@@ -198,7 +198,7 @@
                                     </div>
                                 </div>
                                 <hr/>
-                                <s:submit cssClass="btn btn-default" value="Consolidate" ></s:submit>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#consolidateModal">Consolidate</button>
                             </div>
 
                         </s:form>
@@ -352,8 +352,27 @@
     </div>
 </div>
 
+<%--LARGE MODAL FOR CONSOLIDATION >> START--%>
+
+<div id="consolidateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="font-size: 1.6em;">
+                <i class="fa fa-cubes"></i> Consolidate
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary">Save</button>
+                <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--LARGE MODAL FOR CONSOLIDATION >> END--%>
+
 <script>
     $(document).ready(function(){
+
         if($('.lclTable').size() != 0){
             $('.wellDiv').show('fast');
             seaFreightLclComputation('lclTable', 'wellTotalWeight', 'wellTotalVolume');
