@@ -767,17 +767,24 @@ function changeDateValue(dateSelector, mode){
 }
 
 function hideVesselSchedule(){
-    var departureDateTable = $('#vesselSchedule tbody tr td:nth-child(6)'),
-        arrivalDateTable = $('#vesselSchedule tbody tr td:nth-child(7)'),
-        schedClass = $('#vesselSchedule tbody tr td:nth-child(8)'),
+    var departureDateTable = $('.listOfSchedules tbody tr td:nth-child(6)'),
+        arrivalDateTable = $('.listOfSchedules tbody tr td:nth-child(7)'),
+        schedClass = $('.listOfSchedules tbody tr td:nth-child(8)'),
         bookingClass = $('#bookingClass'),
         currentDate = new Date().setHours(0,0,0,0),
         pickupDate = new Date($('.pickupDate').val()).setHours(0,0,0,0),
-        deliveryDate = new Date($('.deliveryDate').val()).setHours(0,0,0,0);
+        deliveryDate = new Date($('.deliveryDate').val()).setHours(0,0,0,0),
+        voyageNumberCurrent = $('.currentSchedulesTable tbody tr td:nth-child(2)').eq(0).text(),
+        voyageNumberList = $('.listOfSchedules tbody tr td:nth-child(2)');
 
     for(var i=0; i < departureDateTable.size(); i++){
         var loopDepartureDate = new Date(departureDateTable.eq(i).text()).setHours(0,0,0,0),
             loopArrivalDate = new Date(arrivalDateTable.eq(i).text()).setHours(0,0,0,0);
+
+        if(voyageNumberCurrent == voyageNumberList.eq(i).text()){
+            voyageNumberList.eq(i).closest('tr').remove();
+            continue;
+        }
 
         // DELETES OVERDUE SCHEDULES
         if(loopDepartureDate < currentDate){
@@ -809,11 +816,11 @@ function hideVesselSchedule(){
         departureDateTable.eq(i).empty().append(departureDateReformat);
     }
 
-    if($('#vesselSchedule tbody tr').size() == 0){
+    if($('.listOfSchedules tbody tr').size() == 0){
         $('.loadingDiv').empty().append('<i>No schedule found.</i>');
     }else{
-        if($('#vesselSchedule tbody tr').size() > 10){
-            $('#vesselSchedule').oneSimpleTablePagination({rowsPerPage: 10});
+        if($('.listOfSchedules tbody tr').size() > 10){
+            $('.listOfSchedules').oneSimpleTablePagination({rowsPerPage: 10});
         }
         $('.loadingDiv').hide();
         $('.tableDiv').fadeIn();
