@@ -21,6 +21,7 @@ public class Vendor implements java.io.Serializable {
     private String vendorType;
     private String vendorClass;
     private String vendorStatus;
+    private String serviceArea;
     private Date createdTimeStamp;
     private String createdBy;
     private Date modifiedTimeStamp;
@@ -31,7 +32,7 @@ public class Vendor implements java.io.Serializable {
     }
 
     public Vendor(Client client, String vendorCode, String vendorName,
-                  String vendorType, String vendorClass, String vendorStatus, Date createdTimeStamp,
+                  String vendorType, String vendorClass, String vendorStatus, String serviceArea, Date createdTimeStamp,
                   String createdBy, Date modifiedTimeStamp, String modifiedBY) {
 
         this.client = client;
@@ -40,6 +41,7 @@ public class Vendor implements java.io.Serializable {
         this.vendorType = vendorType;
         this.vendorClass = vendorClass;
         this.vendorStatus = vendorStatus;
+        this.serviceArea = serviceArea;
         this.createdTimeStamp = createdTimeStamp;
         this.createdBy = createdBy;
         this.modifiedTimeStamp = modifiedTimeStamp;
@@ -111,6 +113,15 @@ public class Vendor implements java.io.Serializable {
 
     public void setVendorStatus(String vendorStatus) {
         this.vendorStatus = vendorStatus;
+    }
+
+    @Column(name = "serviceArea")
+    public String getServiceArea() {
+        return serviceArea;
+    }
+
+    public void setServiceArea(String serviceArea) {
+        this.serviceArea = serviceArea;
     }
 
     @Column(name = "createdTimeStamp")

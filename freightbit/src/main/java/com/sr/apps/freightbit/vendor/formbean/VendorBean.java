@@ -15,6 +15,7 @@ public class VendorBean {
     private String vendorClass;
     private String vendorType;
     private String vendorStatus;
+    private String serviceArea;
     private String vendorSearchCriteria;
     private String vendorKeyword;
     private String createdBy;
@@ -30,7 +31,7 @@ public class VendorBean {
 
     }
 
-    public VendorBean(Integer vendorId, Integer clientId, String vendorCode, String vendorName, String vendorClass, String vendorType, String vendorStatus, String vendorSearchCriteria, String vendorKeyword, String createdBy, Date createdTimeStamp, List<VesselBean> vesselBeanList, List<TruckBean> truckBeanList, List<DriverBean> driverBeanList, List<AddressBean> addressBeanList, List<ContactBean> contactBeanList) {
+    public VendorBean(Integer vendorId, Integer clientId, String vendorCode, String vendorName, String vendorClass, String vendorType, String vendorStatus, String serviceArea, String vendorSearchCriteria, String vendorKeyword, String createdBy, Date createdTimeStamp, List<VesselBean> vesselBeanList, List<TruckBean> truckBeanList, List<DriverBean> driverBeanList, List<AddressBean> addressBeanList, List<ContactBean> contactBeanList) {
         this.vendorId = vendorId;
         this.clientId = clientId;
         this.vendorCode = vendorCode;
@@ -38,6 +39,7 @@ public class VendorBean {
         this.vendorClass = vendorClass;
         this.vendorType = vendorType;
         this.vendorStatus = vendorStatus;
+        this.serviceArea = serviceArea;
         this.vendorSearchCriteria = vendorSearchCriteria;
         this.vendorKeyword = vendorKeyword;
         this.createdBy = createdBy;
@@ -111,6 +113,14 @@ public class VendorBean {
 
     public void setVendorStatus(String vendorStatus) {
         this.vendorStatus = vendorStatus;
+    }
+
+    public String getServiceArea() {
+        return serviceArea;
+    }
+
+    public void setServiceArea(String serviceArea) {
+        this.serviceArea = serviceArea;
     }
 
     public String getVendorType() {

@@ -101,6 +101,23 @@ public class VendorDaoImpl extends HibernateDaoSupport implements VendorDao {
     }
 
     @Override
+    public List<Vendor> findVendorTruckOrigin(String serviceArea) {
+        log.debug("Finding Vendor instance by example");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Vendor v where v.serviceArea = :serviceArea");
+            query.setParameter("serviceArea", serviceArea);
+            List<Vendor> results = (List<Vendor>) query.list();
+            log.debug("Find Vendor by serviceArea successful, result size: "
+                    + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            log.error("Find Vendor by serviceArea failed", re);
+            throw re;
+        }
+    }
+
+    @Override
     public List<Vendor> findAllVendorByClientId(Integer clientId) {
         log.debug("Finding Vendor instance by Client");
         try {

@@ -61,6 +61,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     private List<Parameters> contactTypeList = new ArrayList<Parameters>();
     private List<Parameters> addressTypeList = new ArrayList<Parameters>();
     private List<Parameters> vesselTypeList = new ArrayList<Parameters>();
+    private List<Parameters> portsList = new ArrayList<Parameters>();
 
     private VendorBean vendor = new VendorBean();
     private TruckBean truck = new TruckBean();
@@ -353,6 +354,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         entity.setVendorClass(vendorBean.getVendorClass());
         entity.setVendorName(vendorBean.getVendorName());
         entity.setVendorStatus(vendorBean.getVendorStatus());
+        entity.setServiceArea(vendorBean.getServiceArea());
         entity.setVendorType(vendorBean.getVendorType());
         entity.setCreatedBy(vendorBean.getCreatedBy());
         entity.setCreatedTimeStamp(vendorBean.getCreatedTimeStamp());
@@ -369,7 +371,7 @@ public class VendorAction extends ActionSupport implements Preparable {
         formBean.setVendorCode(entity.getVendorCode());
         formBean.setVendorType(entity.getVendorType());
         formBean.setVendorStatus(entity.getVendorStatus());
-
+        formBean.setServiceArea(entity.getServiceArea());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setCreatedTimeStamp(entity.getCreatedTimeStamp());
 
@@ -1341,6 +1343,7 @@ public class VendorAction extends ActionSupport implements Preparable {
     public void prepare() {
         vendorTypeList = parameterService.getParameterMap(ParameterConstants.VENDOR_TYPE);
         vendorSearchList = parameterService.getParameterMap(ParameterConstants.VENDOR_SEARCH);
+        portsList = parameterService.getParameterMap(ParameterConstants.PORTS);
         statusList = parameterService.getParameterMap(ParameterConstants.STATUS);
         truckTypeList = parameterService.getParameterMap(ParameterConstants.TRUCK_TYPE);
         vendorClassList = parameterService.getParameterMap(ParameterConstants.VENDOR_CLASS);
@@ -1619,5 +1622,13 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public void setNotificationService(NotificationService notificationService) {
         this.notificationService = notificationService;
+    }
+
+    public List<Parameters> getPortsList() {
+        return portsList;
+    }
+
+    public void setPortsList(List<Parameters> portsList) {
+        this.portsList = portsList;
     }
 }

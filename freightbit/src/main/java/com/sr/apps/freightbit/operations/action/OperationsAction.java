@@ -101,6 +101,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private List<Vendor> vendorShippingList = new ArrayList<Vendor>();
     private List<Vendor> vendorShippingListClass = new ArrayList<Vendor>();
     private List<Vendor> vendorTruckingList = new ArrayList<Vendor>();
+    private List<Vendor> vendorTruckingOriginList = new ArrayList<Vendor>();
     private List<Parameters> vendorTypeList = new ArrayList<Parameters>();
     private List<Parameters> vendorClassList = new ArrayList<Parameters>();
     private List<Parameters> statusList = new ArrayList<Parameters>();
@@ -1587,6 +1588,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
             Trucks truckEntity = vendorService.findTrucksByTruckCode(orderItem.getTruckDestination());
             truckDestination = transformToFormBeanTrucks(truckEntity);
         }
+
+        vendorTruckingOriginList = vendorService.findVendorTruckByOrigin(order.getOriginationPort());
 
         sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
@@ -4014,6 +4017,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setOrderItemVesselSchedule(List<OrderItemsBean> orderItemVesselSchedule) {
         this.orderItemVesselSchedule = orderItemVesselSchedule;
+    }
+
+    public List<Vendor> getVendorTruckingOriginList() {
+        return vendorTruckingOriginList;
+    }
+
+    public void setVendorTruckingOriginList(List<Vendor> vendorTruckingOriginList) {
+        this.vendorTruckingOriginList = vendorTruckingOriginList;
     }
 
     public Date getFilterDelivery() {

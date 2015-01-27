@@ -98,6 +98,12 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
+    public List<Vendor> findVendorTruckByOrigin(String serviceArea) {
+        List<Vendor> vendor = vendorDao.findVendorTruckOrigin(serviceArea);
+        return vendor;
+    }
+
+    @Override
     public Vendor findVendorById(Integer vendorId) {
         return vendorDao.findVendorById(vendorId);
     }

@@ -34,7 +34,7 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Type<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9"></span>
-                            <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
+                            <s:select list="vendorTypeList" name="vendor.vendorType" id="vendorTypeId"
                                       listKey="key" listValue="value" cssClass="vendorInput form-control" />
                         </div>
                     </div>
@@ -62,6 +62,16 @@
                                       id="vendor.vendorClass" name="vendor.vendorClass"/>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Service Area<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-9">
+                            <s:select list="portsList" listKey="key" listValue="value" cssClass="vendorInput form-control"
+                                      id="serviceAreaId" name="vendor.serviceArea" emptyOption="true"/>
+                        </div>
+                    </div>
+
                     <%--<div class="form-group">--%>
                         <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Status<span class="asterisk_red"></span></label>--%>
 
@@ -89,4 +99,18 @@
    $(document).ready(function(){
        validationForm('vendorInput', 'submitBtn');
    });
+
+   $(document).ready(function(){
+       $("#vendorTypeId").change(function(){
+           if($('.vendorInput').val() == 'SHIPPING'){
+               $("#serviceAreaId").prop('disabled', true);
+               $("#serviceAreaId").val('');
+           }
+           else{
+               $("#serviceAreaId").prop('disabled', false);
+
+           }
+       });
+   });
+
 </script>

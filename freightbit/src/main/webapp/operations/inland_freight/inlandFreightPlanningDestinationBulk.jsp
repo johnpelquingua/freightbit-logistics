@@ -354,7 +354,15 @@
                                       id="vendor.vendorClass" name="vendor.vendorClass"/>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Service Area<span
+                                class="asterisk_red"></span></label>
 
+                        <div class="col-lg-9">
+                            <s:select list="portsList" listKey="key" listValue="value" cssClass="form-control"
+                                      id="vendor.serviceArea" name="vendor.serviceArea"/>
+                        </div>
+                    </div>
 
                 </div>
             </div>

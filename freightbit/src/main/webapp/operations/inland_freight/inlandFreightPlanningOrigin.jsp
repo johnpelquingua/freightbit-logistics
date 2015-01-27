@@ -174,7 +174,7 @@
 
                         <div class="col-lg-8">
                             <div>
-                                <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
+                                <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
                                           id="vendorListOrigin" listKey="vendorId" listValue="vendorCode" cssClass="dispatchInput form-control"
                                           emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
                             </div>
@@ -412,7 +412,7 @@
 
                 <div class="col-lg-8">
                     <div>
-                        <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
+                        <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
                                   id="vendorListOrigin" listKey="vendorId" listValue="vendorCode" cssClass="dispatchInput form-control"
                                   emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
                     </div>
@@ -741,7 +741,7 @@
 
                     <div class="col-lg-8">
                         <div>
-                            <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
+                            <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
                                       id="vendorListOrigin"
                                       listKey="vendorId" listValue="vendorCode" cssClass="dispatchInput form-control"
                                       emptyOption="true" value="%{orderItem.vendorDestination}"
@@ -1028,7 +1028,15 @@
                                       id="vendor.vendorClass" name="vendor.vendorClass"/>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Service Area<span
+                                class="asterisk_red"></span></label>
 
+                        <div class="col-lg-9">
+                            <s:select list="portsList" listKey="key" listValue="value" cssClass="form-control"
+                                      id="vendor.serviceArea" name="vendor.serviceArea"/>
+                        </div>
+                    </div>
 
                 </div>
             </div>

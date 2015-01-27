@@ -21,6 +21,8 @@ public interface VendorDao {
 
     public List<Vendor> findVendorByVendorCode(String vendorCode);
 
+    public List<Vendor> findVendorTruckOrigin(String serviceArea);
+
     public void updateVendor(Vendor vendor);
 
     public List<Vendor> findVendorsByCriteria(String column, String value, Integer clientId);

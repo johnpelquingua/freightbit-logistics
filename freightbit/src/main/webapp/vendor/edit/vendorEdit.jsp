@@ -59,6 +59,15 @@
                                   name="vendor.vendorClass"/>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="vendor.serviceArea" class="col-lg-2 control-label" style="padding-top:0px;">Service Area<span class="asterisk_red"></span></label>
+
+                    <div class="col-lg-9">
+                        <s:select cssClass="form-control" id="vendor.serviceArea" list="portsList" listKey="key"
+                                  listValue="value"
+                                  name="vendor.serviceArea"/>
+                    </div>
+                </div>
                 <%--<div class="form-group">--%>
                     <%--<label for="vendor.vendorStatus" class="col-lg-2 control-label" style="padding-top:0px;">Status<span class="asterisk_red"></span></label>--%>
 
