@@ -3,6 +3,26 @@
  */
 // AUTHORED BY Jan Sarmiento -- START
 $(document).ready(function(){
+    $('.containerSizeDropdown').change(function(){
+        var declaredValField = $('.automaticDeclaredValue');
+        switch($(this).val()){
+            case '10 FOOTER' :
+                declaredValField.val('250,000.00');
+                break;
+            case '20 FOOTER' :
+                declaredValField.val('500,000.00');
+                break;
+            case '40 STD FOOTER' :
+                declaredValField.val('1,000,000.00');
+                break;
+            case '40 HC FOOTER' :
+                declaredValField.val('1,000,000.00');
+                break;
+            default :
+                declaredValField.val('');
+        }
+    });
+
     // adding item memory
     $('.addItemToList').click(function(){
         localStorage.setItem('addingItems', true);

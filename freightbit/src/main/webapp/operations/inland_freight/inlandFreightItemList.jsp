@@ -90,7 +90,7 @@
                                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service
                                     Mode</label>
                                 <div class="col-lg-4">
-                                    <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num"
+                                    <s:textfield cssClass="serviceModeInput form-control" value="%{order.modeOfService}" name="book-num"
                                                  disabled="true"></s:textfield>
                                 </div>
 
@@ -291,7 +291,7 @@
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId"></s:param>
             </s:url>
-            <s:a cssClass="btn btn-primary" href="%{createdDocumentOriginUrl}" rel="tooltip"
+            <s:a cssClass="btn btn-primary houseWaybillOriginBtn" href="%{createdDocumentOriginUrl}" rel="tooltip"
                  title="Create Documents">
                 Create House WayBill Origin
             </s:a>
@@ -301,7 +301,7 @@
                     <s:param name="orderIdParam"
                              value="#attr.order.orderId"></s:param>
                 </s:url>
-                <s:a cssClass="btn btn-primary" href="%{createdDocumentDestinationUrl}" rel="tooltip"
+                <s:a cssClass="btn btn-primary houseWaybillDestinationBtn" href="%{createdDocumentDestinationUrl}" rel="tooltip"
                      title="Create Documents">
                     Create House Waybill Destination
                 </s:a>
@@ -324,6 +324,7 @@
 <script>
 
     $(document).ready(function() {
+        buttonControl();
         /*color coding of rows*/
         var tbl = document.getElementById("orderItem");
         if (tbl != null) {

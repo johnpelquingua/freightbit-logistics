@@ -215,7 +215,7 @@
                         </div>
                     </div>
                     <div class="form-group" style="margin-bottom: 0px !important;">
-                        <label for="dropoff" class="col-sm-2 control-label">Drop off Date:</label>
+                        <label for="dropoff" class="col-sm-2 control-label">Delivery Date:</label>
 
                         <div class="col-sm-10"
                              style="padding: 0px; width: 75.5% !important; position: relative; left: 15px;">
@@ -526,7 +526,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Drop off Date</label>
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalDeliveryDate}"
@@ -751,7 +751,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Drop off Date</label>
+                    <label class="col-sm-2 control-label">Delivery Date</label>
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalDeliveryDate}"

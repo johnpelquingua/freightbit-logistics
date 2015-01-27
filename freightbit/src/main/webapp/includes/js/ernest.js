@@ -929,3 +929,25 @@ function preventSamePort(select1, select2) {
     select2.find('option').show();
     select2.find('option:contains("'+select1.val()+'")').hide();
 }
+
+function buttonControl(){
+    switch($('.serviceModeInput').val()){
+        case 'PIER TO DOOR' :
+            $('.houseWaybillOriginBtn').hide();
+            $('.houseWaybillDestinationBtn').show();
+            break;
+        case 'DOOR TO PIER' :
+            $('.houseWaybillOriginBtn').show();
+            $('.houseWaybillDestinationBtn').hide();
+            break;
+        case 'PIER TO PIER' :
+            $('.houseWaybillDestinationBtn').hide();
+            $('.houseWaybillOriginBtn').hide();
+            break;
+        default :
+            $('.houseWaybillDestinationBtn').show();
+            $('.houseWaybillOriginBtn').show();
+    }
+//    houseWaybillDestinationBtn
+//    houseWaybillOriginBtn
+}
