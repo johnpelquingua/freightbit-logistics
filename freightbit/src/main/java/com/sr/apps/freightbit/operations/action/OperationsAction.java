@@ -2845,48 +2845,51 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setAging(entity.getAging());
         formBean.setCreatedDate(entity.getCreatedDate());
+        formBean.setVendorCode(vendorService.findVendorByVendorCode(entity.getVendorCode()).getVendorName());
 
-        Integer orderItemIdPass; // Variable to store Order Item ID
-        // Condition if order item id if null or not
-        if(entity.getOrderItemId() != null){
-            orderItemIdPass = entity.getOrderItemId();
-        }else{
-            orderItemIdPass = 0;
-        }
-
-        OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemIdPass);
-
-        // Per document the table will show appropriate data based on document name.
-        if(entity.getDocumentName().equals("PROFORMA BILL OF LADING") || entity.getDocumentName().equals("MASTER BILL OF LADING")){
-            // Vendor Code for Vessel Company will show based from voyage number information
-
-            // Search all order Items with the same order id
-            List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
-
-            for (OrderItems orderItemElem : orderItemsEntity) {
-                if(orderItemElem.getVendorSea() != null && !"".equals(orderItemElem.getVendorSea()) && !orderItemElem.getVendorSea().equals("NONE") ){
-                    System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"+ orderItemElem.getVendorSea() );
-                    Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorSea());
-                    formBean.setVendorCode(vendorEntity.getVendorName());
-                }
-            }
-
-        }else if (entity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
-            List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
-
-            for (OrderItems orderItemElem : orderItemsEntity) {
-                Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorOrigin());
-                formBean.setVendorCode(vendorEntity.getVendorName());
-            }
-
-        }else if (entity.getDocumentName().equals("SALES INVOICE")){
-            Orders orderEntity = orderService.findOrdersById(entity.getReferenceId());
-            Customer customerEntity = customerService.findCustomerById(orderEntity.getCustomerId());
-            formBean.setVendorCode("CUSTOMER: " + customerEntity.getCustomerName());
-
-        }else{
-            formBean.setVendorCode("Ernest Logistics Corp.");
-        }
+//        Integer orderItemIdPass; // Variable to store Order Item ID
+//        // Condition if order item id if null or not
+//        if(entity.getOrderItemId() != null){
+//            orderItemIdPass = entity.getOrderItemId();
+//        }else{
+//            orderItemIdPass = 0;
+//        }
+//
+//        OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemIdPass);
+//
+//        // Per document the table will show appropriate data based on document name.
+//        if(entity.getDocumentName().equals("PROFORMA BILL OF LADING") || entity.getDocumentName().equals("MASTER BILL OF LADING")){
+//            // Vendor Code for Vessel Company will show based from voyage number information
+//
+//            // Search all order Items with the same order id
+//            List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
+//
+//            for (OrderItems orderItemElem : orderItemsEntity) {
+//                if(orderItemElem.getVendorSea() != null && !"".equals(orderItemElem.getVendorSea()) && !orderItemElem.getVendorSea().equals("NONE") ){
+//
+//                    Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorSea());
+//                    formBean.setVendorCode(vendorEntity.getVendorName());
+//                }
+//            }
+//
+//        }
+//        else if (entity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
+//            List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
+//
+//            for (OrderItems orderItemElem : orderItemsEntity) {
+//                Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorOrigin());
+//                formBean.setVendorCode(vendorEntity.getVendorName());
+//            }
+//
+//        }else if (entity.getDocumentName().equals("SALES INVOICE")){
+//            Orders orderEntity = orderService.findOrdersById(entity.getReferenceId());
+//            Customer customerEntity = customerService.findCustomerById(orderEntity.getCustomerId());
+//            formBean.setVendorCode("CUSTOMER: " + customerEntity.getCustomerName());
+//
+//        }
+//        else{
+//            formBean.setVendorCode("Ernest Logistics Corp.");
+//        }
 
         return formBean;
     }
@@ -2936,7 +2939,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentsService.addDocuments(documentEntityProforma);
                 } else { // will prompt a message when attempting to create proforma if one was already created
                     clearErrorsAndMessages();
-                    addActionError("I have found out that there is a document with the same name. Please delete them first before creating a new one");
+                    addActionError("Proforma Bill of Lading(s) already exists.");
 
                     for(OrderItems orderItemsElem : orderItemsList) {
                         orderItems.add(transformToOrderItemFormBean(orderItemsElem));

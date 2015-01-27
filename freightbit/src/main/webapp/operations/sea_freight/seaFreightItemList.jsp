@@ -198,7 +198,7 @@
                                     </s:else>
                                 </td>
 
-                                <td><display:column property="vendorSea" title="Shipping <i class='fa fa-sort' />"
+                                <td><display:column property="vendorName" title="Vendor <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 

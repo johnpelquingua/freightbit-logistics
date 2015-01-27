@@ -72,20 +72,20 @@
                         <td>
                             <display:column title="Action" class="tb-font-black" style="text-align: center;">
 
-                                <s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">
-                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <s:url var="deleteDocumentUrl" action="deleteDocument">
-                                        <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
-                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                        <i class="fa fa-trash-o"></i>
-                                    </s:a>
-                                </s:if>
+                                <%--<s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">--%>
+                                    <%--<a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">--%>
+                                        <%--<i class="fa fa-edit"></i>--%>
+                                    <%--</a>--%>
+                                    <%--<s:url var="deleteDocumentUrl" action="deleteDocument">--%>
+                                        <%--<s:param name="orderIdParam" value="%{orderIdParam}"></s:param>--%>
+                                        <%--<s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>--%>
+                                    <%--</s:url>--%>
+                                    <%--<s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">--%>
+                                        <%--<i class="fa fa-trash-o"></i>--%>
+                                    <%--</s:a>--%>
+                                <%--</s:if>--%>
 
-                                <s:else>
+                                <%--<s:else>--%>
                                     <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
                                         <i class="fa fa-edit"></i>
                                     </a>
@@ -99,7 +99,7 @@
                                             <i class="fa fa-trash-o"></i>
                                         </s:a>
                                     </a>
-                                </s:else>
+                                <%--</s:else>--%>
 
                             </display:column>
                         </td>

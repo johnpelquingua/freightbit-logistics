@@ -81,7 +81,7 @@
                                              value="#attr.vesselSchedule.vesselScheduleId"></s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editVesselScheduleUrl}" rel="tooltip"
-                                     title="Edit this vendor">
+                                     title="Edit this Vessel Schedule">
                                     <%--<img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
                                          style="border-radius:25%;">--%>
                                     <i class="fa fa-pencil"></i>
@@ -92,7 +92,7 @@
                                              value="#attr.vesselSchedule.vesselScheduleId"></s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{deleteVesselScheduleUrl}" rel="tooltip"
-                                     title="Delete this Vendor"
+                                     title="Delete this Vessel Schedule"
                                      onclick="return confirm('Do you really want to delete?');">
                                     <%--<img src="../includes/images/delete-booking.png" class="icon-action circ-icon"
                                          style="border-radius:25%;">--%>
