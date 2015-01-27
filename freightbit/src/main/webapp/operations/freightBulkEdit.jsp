@@ -23,11 +23,11 @@
                 </s:url>
                 <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                      title="Update Status">
-                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                        Freight Plan : Items
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        Freight Plan : Containers
                     </s:if>
                     <s:else>
-                        Freight Plan : Containers
+                        Freight Plan : Items
                     </s:else>
                 </s:a>
             </li>
@@ -834,7 +834,7 @@
                                 <div class="col-lg-4">
                                     <div>
                                         <s:select list="vendorShippingList" name="operationsBean.vendorList"
-                                                  id="operationsBean_vendorList"
+                                                  id="operationsBean_vendorList" autofocus="true" required="true"
                                                   listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                                   emptyOption="true"></s:select>
                                     </div>
@@ -952,7 +952,7 @@
                             <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                                  title="Update Status">
 
-                                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                     <button type="button" class="btn">
                                         Back to Freight Plan : Containers
                                     </button>
@@ -1049,6 +1049,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </s:form>
                         <div class="form-group" style="padding-top: 50px;">
                             <hr>
@@ -1377,14 +1378,14 @@
             </s:url>
             <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
 
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                     <button type="button" class="btn">
                         Back to Freight Plan : Containers
                     </button>
                 </s:if>
                 <s:else>
                     <button type="button" class="btn">
-                        Back to Freight Plan : Containers
+                        Back to Freight Plan : Items
                     </button>
                 </s:else>
             </s:a>
@@ -2182,6 +2183,19 @@
         dateFormat: 'mm/dd/yy',
         startDate: 2
 
+    });
+
+    $(document).ready(function() {
+        $('#findVesselSchedule_submit').prop('disabled',true);
+        $("#operationsBean_vendorList").change(function(){
+            var vendorId = $("#operationsBean_vendorList").val();
+            $('#operationsBean_vendorList option:selected').each(function(){
+                if(vendorId == "" || null) {
+                    $('#findVesselSchedule_submit').prop('disabled',true); }
+                else {
+                    $('#findVesselSchedule_submit').prop('disabled',false); }
+            });
+        });
     });
 
 </script>
