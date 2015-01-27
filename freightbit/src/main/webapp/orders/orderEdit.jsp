@@ -294,7 +294,7 @@
         <label class="col-lg-3 control-label" style="margin-top: 5px; clear:both;">Comments </label>
         <%--<s:property value="%{order.comments}" />--%>
         <div class="col-lg-9">
-            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="Comments"/>
+            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="Comments" maxLength="255"/>
         </div>
     </div>
 
@@ -856,7 +856,7 @@
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                          id="consignee_contact_lastName" required="true" maxLength="30" autofocus="true"
-                                         pattern="[a-zA-Z\s ]+"
+                                         pattern="[a-zA-Z\s\xD1-\xF1 ]+"
                                          title="Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
@@ -864,7 +864,7 @@
                         <label class="col-lg-3">First Name<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                         id="consignee_contact_firstName" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                         id="consignee_contact_firstName" maxLength="30" pattern="[a-zA-Z\s\xD1-\xF1 ]+"
                                          title="Name should not contain special characters and/or numbers."
                                          required="true"/>
                         </div>
@@ -873,7 +873,7 @@
                         <label class="col-lg-3">Middle Name</label>
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                                         id="consignee_contact_middleName" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                         id="consignee_contact_middleName" maxLength="30" pattern="[a-zA-Z\s\xD1-\xF1 ]+"
                                          title="Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
