@@ -517,7 +517,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String createReport() {
         Map sessionAttributes = ActionContext.getContext().getSession();
-        orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
+        orderIdParam = (Integer) sessionAttributes.get("orderIdPass");
 
         // Booking Request Form will be created under pending documents start
 
@@ -595,6 +595,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         // Put Order Id to Order Id session
         sessionAttributes.put("orderIdPass", orderIdPass);
+        createReport();
 
         return SUCCESS;
     }
@@ -769,7 +770,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderService.updateOrder(orderEntity);
 
         sessionAttributes.put("orderIdParam", orderIdParam);
-        createReport();
+//        createReport();
 
         clearErrorsAndMessages();
         addActionMessage("Booking successfully Approved!");
