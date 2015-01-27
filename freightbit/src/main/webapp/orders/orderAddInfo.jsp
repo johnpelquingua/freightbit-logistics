@@ -329,7 +329,7 @@
 
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
                                 <span>
-                                    <s:select cssClass="form-control"
+                                    <s:select cssClass="form-control containerSizeDropdown"
                                               id="orderItem.nameSize"
                                               name="orderItem.nameSize"
                                               list="containerList"
@@ -498,19 +498,19 @@
                         <div class="col-lg-3" >
 
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
-                                <s:textfield cssClass="form-control"
+                                <s:textfield cssClass="form-control automaticDeclaredValue"
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValues"
                                         />
                             </s:if>
                             <s:else>
-                                <s:select cssClass="form-control"
+                                <s:select cssClass="form-control automaticDeclaredValue"
                                           id="orderItem_declaredValue"
                                           list="#{orderItem_declaredValue}"
                                           value="%{orderItem_declaredValue}"
                                           style="display:none"
                                         />
-                                <s:textfield cssClass="form-control"
+                                <s:textfield cssClass="form-control automaticDeclaredValue"
                                              name="orderItem.declaredValue"
                                              id="orderItem_declaredValue_textfield"
                                              maxLength="19"
@@ -1066,5 +1066,5 @@
 </div>
 </div>
 
-<%--<script type="text/javascript" src="../includes/js/bookingInfo.js"></script>--%>
-<script type="text/javascript" src="../includes/js/bookingInfo.min.js"></script>
+<script type="text/javascript" src="../includes/js/bookingInfo.js"></script>
+<%--<script type="text/javascript" src="../includes/js/bookingInfo.min.js"></script>--%>

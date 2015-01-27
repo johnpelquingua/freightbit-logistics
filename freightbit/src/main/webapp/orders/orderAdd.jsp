@@ -323,14 +323,14 @@
                         <label class="col-lg-3 control-label" style="margin-top: 5px;">Pickup Address<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-7">
-                            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
+                            <s:select cssClass="bookingInput form-control addAddressItems" style="margin-bottom: 15px !important;" id="shipperAddress" name="order.shipperAddressId"
                                       list="addressList" listKey="addressId" listValue="addressLine1 + ' ' + addressLine2" required="true"/>
                         </div>
 
                         <div class="col-lg-2">
 
                             <div class="pull-right">
-                                <a data-toggle="modal" data-target="#createAddress" class="btn btn-info" id="idAddress" style="width: 151px !important;"> Add Address</a>
+                                <a data-toggle="modal" data-target="#createAddress" class="addAddressItems btn btn-info" id="idAddress" style="width: 151px !important;"> Add Address</a>
                             </div>
 
                         </div>
