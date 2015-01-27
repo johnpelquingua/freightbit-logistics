@@ -49,6 +49,9 @@ import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class OperationsAction extends ActionSupport implements Preparable {
@@ -143,6 +146,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private Map<Integer, Integer> grossWeightMap = new HashMap<Integer, Integer>();
     private Map<String, String> vesselMap = new HashMap<String, String>();
 
+    Date filterPickup;
+    Date filterDelivery;
     private String[] check;
     private String originCity; // load table based on origin city
     private String destinationCity; // load table based on destination city
@@ -347,8 +352,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Integer> planning2 = new ArrayList();
         List<Integer> planning3 = new ArrayList();
         List<Integer> planning4 = new ArrayList();
+
         System.out.println("CHECK WORD PASS " + check);
         System.out.println("ORDER ID " + orderItemIdParam);
+
         if ("".equals(orderItem.getEditItem())) {
 
             if (check == null) {
@@ -2333,6 +2340,50 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return formBean;
     }
 
+    public String checkOrderConsolidate() throws ParseException {
+
+        List<Integer> ordersListing = new ArrayList<Integer>();
+
+        if(check == null){
+
+        }else{
+
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+            String dateInStringPast = "31-Dec-1900";
+            String dateInStringFuture = "31-Dec-3000";
+            Date pastDate = formatter.parse(dateInStringPast);
+            Date futureDate = formatter.parse(dateInStringFuture);
+
+//            System.out.println("afafafasfafafafasfafasf"+date);
+//            System.out.println("afafadfadfadfadfadfadfadfadfadfxxxxx"+formatter.format(date));
+
+            filterPickup = pastDate;
+            filterDelivery = futureDate;
+
+            for(int i=0; i<check.length; i++){
+                if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){ // catches error when no values inside check
+
+                }
+
+                Integer orderId = Integer.parseInt(check[i]);
+                Orders entity = orderService.findOrdersById(orderId);
+
+                if (entity.getPickupDate().compareTo(filterPickup)>0){
+                    filterPickup = entity.getPickupDate();
+                }
+
+                if (entity.getDeliveryDate().compareTo(filterDelivery)<0){
+                    filterDelivery = entity.getDeliveryDate();
+                }
+
+            }
+        }
+
+        viewFreightList();
+
+        return SUCCESS;
+    }
+
     public OrderItems transformOrderItemToEntityBeanSea (OperationsBean formBean) {
 
         /*Map sessionAttributes = ActionContext.getContext().getSession();*/
@@ -3955,5 +4006,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setOrderItemVesselSchedule(List<OrderItemsBean> orderItemVesselSchedule) {
         this.orderItemVesselSchedule = orderItemVesselSchedule;
+    }
+
+    public Date getFilterDelivery() {
+        return filterDelivery;
+    }
+
+    public void setFilterDelivery(Date filterDelivery) {
+        this.filterDelivery = filterDelivery;
+    }
+
+    public Date getFilterPickup() {
+        return filterPickup;
+    }
+
+    public void setFilterPickup(Date filterPickup) {
+        this.filterPickup = filterPickup;
     }
 }

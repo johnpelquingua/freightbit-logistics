@@ -121,6 +121,7 @@
                     <div class="panel-body">
                         <div class="table-responsive">
                         <s:form name="myform" action="checkOrderConsolidate" theme="bootstrap">
+
                             <display:table id="order" name="lclTable"
                                            requestURI="viewSeaFreightList.action" pagesize="10"
                                            class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
@@ -153,6 +154,10 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="orderVolume" title="Volume  <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+                                <td><display:column property="pickupDate" title="PICKUP  <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="deliveryDate" title="DELIVERY  <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
                                 <td>
                                     <display:column title="Action">
                                     <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' ">
@@ -178,6 +183,7 @@
                                 </td>
 
                             </display:table>
+
                             <div class="col-md-6 pull-right well wellDiv" style="display: none;">
                                 <p>Total Weight (kg) : <font id="wellTotalWeight">0</font></p>
                                 <p>Total Volume  (cbm) : <font id="wellTotalVolume">0</font></p>
@@ -198,6 +204,9 @@
                         </s:form>
                         </div>
                     </div>
+
+                    <s:textfield value="%{filterPickup}" />
+                    <s:textfield value="%{filterDelivery}" />
 
                 </div>
 
