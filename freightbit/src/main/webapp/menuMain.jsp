@@ -3,62 +3,68 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <ul class="nav navbar-nav side-nav">
-    <li><a href="<s:url action='home.action' />" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
-        <li><a href="<s:url action='orders/viewOrders' />" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-book"></i> Booking</a></li>
+    <li><a href="<s:url action='home.action' />" class="menu-style-a"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <!-- BOOKING -->
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
+        <li><a href="<s:url action='orders/viewOrders' />" class="menu-style-a"><i class="fa fa-book"></i> Booking</a></li>
     </sec:authorize>
 
+    <!-- OPERATION -->
     <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-truck"></i> Operations <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-truck"></i> Operations <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                <li><a href="<s:url action='operations/viewSeaFreightList' />"> <i class="fa fa-caret-right fa-fw"></i> Freight Plan</a></li>
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
+                    <li><a href="<s:url action='operations/viewSeaFreightList' />"> <i class="fa fa-caret-right fa-fw"></i> Freight Plan</a></li>
+                </sec:authorize>
                 <li><a href="<s:url action='operations/viewInlandFreightList' />"> <i class="fa fa-caret-right fa-fw"></i> Dispatch Plan</a></li>
-                    <%--<li><a href="<s:url action='operations/viewShipmentMonitoringList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>--%>
+                <%--<li><a href="<s:url action='operations/viewShipmentMonitoringList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>--%>
                 <li><a href="<s:url action='operations/viewVesselSchedules' />"> <i class="fa fa-caret-right fa-fw"></i> Vessel Schedule</a></li>
                 <li><a href="<s:url action='operations/viewStatusList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>
-
-
             </ul>
         </li>
     </sec:authorize>
 
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
+    <!-- YARD MANAGEMENT -->
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-road"></i> Yard Management <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-road"></i> Yard Management <b class="caret"></b></a>
             <ul class="dropdown-menu">
-
                 <li><a href="<s:url action='operations/viewContainerList' />"> <i class="fa fa-caret-right fa-fw"></i> Container Management</a></li>
                 <li><a href="<s:url action='operations/viewConsolidationContainerList' />"> <i class="fa fa-caret-right fa-fw"></i> Consolidation</a></li>
-
             </ul>
         </li>
     </sec:authorize>
 
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-file-text"></i> Documentations <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-            <li><a href="<s:url action='documentation/viewPendingDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Pending Documents</a></li>
-            <li><a href="<s:url action='documentation/viewArchivedDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Archived Documents</a></li>
-            <%--<li><a href="<s:url action='documentation/viewPlainDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Plain Documents</a></li>--%>
-        </ul>
-    </li>
+    <!-- DOCUMENTATION -->
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-file-text"></i> Documentations <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href="<s:url action='documentation/viewPendingDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Pending Documents</a></li>
+                <li><a href="<s:url action='documentation/viewArchivedDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Archived Documents</a></li>
+                <%--<li><a href="<s:url action='documentation/viewPlainDocuments' />"> <i class="fa fa-caret-right fa-fw"></i>Plain Documents</a></li>--%>
+            </ul>
+        </li>
+    </sec:authorize>
 
-    <li >
-        <a href="<s:url action='customers/customerList' />" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-male"></i> Customer </a>
-        <%--<ul class="dropdown-menu">--%>
-        <%--<li><a href="<s:url action='customers/loadSearchCustomerPage' />"> <i class="fa fa-caret-right fa-fw"></i> Search Customer</a></li>--%>
-        <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES')">--%>
-        <%--<li><a href="<s:url action='customers/loadAddCustomerPage' />"> <i class="fa fa-caret-right fa-fw"></i> Add Customer</a></li>--%>
-        <%--</sec:authorize>--%>
-        <%--</ul>--%>
-    </li>
+    <!-- CUSTOMER -->
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+        <li >
+            <a href="<s:url action='customers/customerList' />" class="menu-style-a"><i class="fa fa-male"></i> Customer </a>
+            <%--<ul class="dropdown-menu">--%>
+            <%--<li><a href="<s:url action='customers/loadSearchCustomerPage' />"> <i class="fa fa-caret-right fa-fw"></i> Search Customer</a></li>--%>
+            <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES')">--%>
+            <%--<li><a href="<s:url action='customers/loadAddCustomerPage' />"> <i class="fa fa-caret-right fa-fw"></i> Add Customer</a></li>--%>
+            <%--</sec:authorize>--%>
+            <%--</ul>--%>
+        </li>
+    </sec:authorize>
 
+    <!-- VENDOR -->
     <sec:authorize access="hasRole('ROLE_ADMIN')">
         <li>
-            <a href="<s:url action='vendor/viewVendors' />" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-building-o"></i> Vendor </a>
-
+            <a href="<s:url action='vendor/viewVendors' />" class="menu-style-a"><i class="fa fa-building-o"></i> Vendor </a>
                 <%--<ul class="dropdown-menu">--%>
                 <%--<li><a href="<s:url action='vendor/loadSearchVendorPage' />"> <i class="fa fa-caret-right fa-fw"></i> Search Vendor</a></li>--%>
                 <%--<li><a href="<s:url action='vendor/loadAddVendorPage' />"> <i class="fa fa-caret-right fa-fw"></i> Add Vendor</a></li>--%>
@@ -66,9 +72,10 @@
         </li>
     </sec:authorize>
 
+    <!-- ACCOUNT -->
     <sec:authorize access="hasRole('ROLE_ADMIN')">
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-user"></i> Accounts <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-user"></i> Accounts <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a href="<s:url action='core/viewUsers' />"> <i class="fa fa-caret-right fa-fw"></i> User</a></li>
                 <li><a href="<s:url action='core/viewGroups' />"> <i class="fa fa-caret-right fa-fw"></i> Group</a></li>
@@ -77,8 +84,9 @@
         </li>
     </sec:authorize>
 
+    <!-- REPORT -->
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-bar-chart-o"></i> Reports <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-bar-chart-o"></i> Reports <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="<s:url action='reports/truckReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Trucks</a></li>
             <li><a href="<s:url action='reports/containerReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Container</a></li>
@@ -88,14 +96,17 @@
         </ul>
     </li>
 
-    <%--<li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-money"></i> Finance <b class="caret"></b></a>
+    <!-- FINANCE -->
+<%--
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-money"></i> Finance <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li><a href="<s:url action='finance/searchFinance'/>"> <i class="fa fa-caret-right fa-fw"></i> Search Finance</a></li>
             <li><a href="<s:url action='finance/addFinance'/>"> <i class="fa fa-caret-right fa-fw"></i> Add Finance</a></li>
         </ul>
-    </li>--%>
+    </li>
+--%>
 
-    <%--<li class=""><a href="Help" style="border-top: 1px solid #4b4c4d; border-top-color: rgba(255, 255, 255, 0.05); border-bottom: 1px solid #353637; border-bottom-color: rgba(0, 0, 0, 0.18);"><i class="fa fa-question"></i> Help</a></li>--%>
-
+    <!-- HELP -->
+    <%--<li class=""><a href="Help" class="menu-style-a"><i class="fa fa-question"></i> Help</a></li>--%>
 </ul>

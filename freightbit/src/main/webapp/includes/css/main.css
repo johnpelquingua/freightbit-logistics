@@ -723,3 +723,7 @@ border-top-color: #ff0000;
 .alert-errors .alert-link {
 color: #ff0000;
 }
+ span.pagelinks.li{
+     display: inline;
+     margin: 5px;
+     list-style-type: circle !important;}

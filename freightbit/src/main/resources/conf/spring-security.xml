@@ -13,7 +13,7 @@
    </global-method-security>
 
 	<!-- COMMON CORE -->
-    <http auto-config="true">
+    <http auto-config="true" access-denied-page="/deniedMofo.jsp">
     <intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <intercept-url pattern="/includes/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <intercept-url pattern="/struts/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
@@ -25,6 +25,7 @@
     <intercept-url pattern="/core/**" access="ROLE_ADMIN" />
     <intercept-url pattern="/vendor/**" access="ROLE_ADMIN" />
     <intercept-url pattern="/documentation/**" access="ROLE_ADMIN" />
+    <intercept-url pattern="/operations/**" access="ROLE_INLAND_FREIGHT, ROLE_ADMIN" />
 
 	<!-- CUSTOMER  MODULE -->
     <intercept-url pattern="/customer/address/customerAddAddress" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
@@ -110,7 +111,6 @@
 	<!--<session-management invalid-session-url="/sessionTimeout.htm" />-->
 
 </http>
-
 	<!-- AUTH MANAGER -->
     <authentication-manager >
     	<authentication-provider ref="authProvider"></authentication-provider>  
@@ -124,4 +124,5 @@
  	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
  	<beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 
+	<!--<jdbc-user-service id="userDetailsService" data-source-ref=""/>-->
 </beans:beans>
