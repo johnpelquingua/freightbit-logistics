@@ -11,6 +11,7 @@ public class OrderStatusLogsBean {
     private String createdTimestamp;
     private String nameSize;
     private Integer orderItemId;
+    private Date actualDate;
 
     public Integer getStatusId() {
         return statusId;
@@ -66,6 +67,14 @@ public class OrderStatusLogsBean {
 
     public void setCreatedTimestamp(String createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
+    }
+
+    public Date getActualDate() {
+        return actualDate;
+    }
+
+    public void setActualDate(Date actualDate) {
+        this.actualDate = actualDate;
     }
 
 }

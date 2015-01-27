@@ -83,14 +83,25 @@
                                            style="margin-top: 15px;empty-cells: hide;">
 
                                 <td><display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
+                                                    style="text-align: center;"></display:column></td>
 
                                 <td><display:column property="status" title="Shipment History <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
+                                <td><display:column property="actualDate" title="Actual Date/Time <i class='fa fa-sort' />" class="tb-font-black"
+                                                   style="text-align: center;" format="{0,date,dd-MMM-yyyy HH:mm:ss a}"></display:column></td>
+
                                 <td><display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
+                                <td>
+                                    <display:column title="Action">
+                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#actualModal" onclick="showActualDateFields(${orderStatusLogs.statusId});">
+                                        <i class="fa fa-edit"></i>
+                                        <%--<s:param name="orderItemIdParam" value="#attr.orderStatusLogs.orderItemId"></s:param>--%>
+                                    </a>
+                                    </display:column>
+                                </td>
                             </display:table>
                         </tr>
                     </table>
@@ -106,8 +117,8 @@
                 </s:else>
 
                 <div class="col-lg-3" style="text-align: center">
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Actual Date/Time <span class="asterisk_red"></span></label>
-                    <s:textfield name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp" readonly="true">
+                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Date/Time <span class="asterisk_red"></span></label>
+                    <s:textfield name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp">
                         <s:param name="value">
                             <s:date name="new java.util.Date()" format="dd-MMM-yyyy hh:mm a"/>
                         </s:param>
@@ -115,7 +126,8 @@
                 </div>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update <span class="asterisk_red"></span></label>
-                    <s:if test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'SHIPPING' && #attr.order.serviceRequirement == 'FULL CONTAINER LOAD' && #attr.order.serviceRequirement == 'LOOSE CARGO LOAD' && #attr.order.serviceRequirement == 'ROLLING CARGO LOAD'">
+                    <s:if test="#attr.order.serviceRequirement == 'FULL CONTAINER LOAD' || #attr.order.serviceRequirement == 'LOOSE CARGO LOAD' ||
+                                #attr.order.serviceRequirement == 'ROLLING CARGO LOAD'">
                         <s:select cssClass="statusDropdown form-control"
                                   id="seaFreightStatus"
                                   name="orderStatusLogsBean.status"
@@ -124,9 +136,10 @@
                                   listValue="value"
                                   emptyOption="true"
                                   required="true"
-                                />
+                         />
                     </s:if>
-                    <s:elseif test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'SHIPPING' && #attr.order.serviceRequirement == 'LESS CONTAINER LOAD'">
+
+                    <s:elseif test="#attr.order.serviceRequirement == 'LESS CONTAINER LOAD'">
                         <s:select cssClass="statusDropdown form-control"
                                   id="seaFreightLCLStatus"
                                   name="orderStatusLogsBean.status"
@@ -135,19 +148,23 @@
                                   listValue="value"
                                   emptyOption="true"
                                   required="true"
-
-                                />
+                        />
                     </s:elseif>
-                    <s:elseif test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'TRUCKING' && #attr.order.serviceRequirement != 'FULL CONTAINER LOAD' && #attr.order.serviceRequirement != 'LOOSE CARGO LOAD' && #attr.order.serviceRequirement != 'ROLLING CARGO LOAD' && #attr.order.serviceRequirement != 'LESS CONTAINER LOAD'">
-                        <s:select cssClass="statusDropdown form-control"
-                                  id="inlandFreightStatus"
-                                  name="orderStatusLogsBean.status"
-                                  list="inlandFreightList"
-                                  listKey="key"
-                                  listValue="value"
-                                  emptyOption="true"
-                                  required="true"
+
+                    <s:elseif test="#attr.order.serviceRequirement == 'FULL TRUCK LOAD' || #attr.order.serviceRequirement == 'LESS TRUCK LOAD'">
+                        <s:if test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'TRUCKING'">
+                            <s:if test="#attr.order.modeOfService == 'PICKUP' || #attr.order.modeOfService == 'DELIVERY' || #attr.order.modeOfService == 'INTER-WAREHOUSE'">
+                                <s:select cssClass="statusDropdown form-control"
+                                          id="inlandFreightStatus"
+                                          name="orderStatusLogsBean.status"
+                                          list="inlandFreightList"
+                                          listKey="key"
+                                          listValue="value"
+                                          emptyOption="true"
+                                          required="true"
                                 />
+                            </s:if>
+                        </s:if>
                     </s:elseif>
                 </div>
             </div>
@@ -167,110 +184,50 @@
                         </button>
                     </s:a>
                     <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status" />
-                        <%--<button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
+<%--                        <button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
                         <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
                 </div>
             </div>
-            </s:form>
         </div>
     </div>
 </div>
-<div class="modal fade" id="deliveryModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+<div class="modal fade" id="actualModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <%--<div class="modal-header">
                 <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
             </div>--%>
             <div class="modal-body">
-                <div id="deliveryInput">
-                    <label id="deliveryLabel" class="control-label header">Actual Delivery Date: <span class="asterisk_red"></span></label>
+                <div id="actualInput">
+                    <%--<label id="actualLabel" class="control-label header">Actual Date/Time: <span class="asterisk_red"></span></label>
                     <div class="pull-center" style="padding-top:0px;">
-                        <s:textfield required="true" name="orderStatusLogsBean.deliveryDate" cssClass="form-control" id="deliveryDate" />
-                    </div>
+                        <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actualDate" />
+                    </div>--%>
                 </div>
             </div>
-            <div class="modal-footer">
+            <%--<div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="pickupModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
             </div>--%>
-            <div class="modal-body">
-                <div id="pickupInput">
-                    <label id="pickupLabel" class="control-label header">Actual Pickup Date: <span class="asterisk_red"></span></label>
-                    <div class="pull-center" style="padding-top:0px;">
-                        <s:textfield required="true" name="orderStatusLogsBean.pickupDate" cssClass="form-control" id="pickupDate" />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
-            </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="inTransitModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
-            <div class="modal-body">
-                <div id="inTransitInput">
-                    <label id="inTransitLabel" class="control-label header">Actual Time of Departure: <span class="asterisk_red"></span></label>
-                    <div class="pull-center" style="padding-top:0px;">
-                        <s:textfield required="true" name="orderStatusLogsBean.departureTime" cssClass="form-control" id="departureTime" />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="arrivedModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <%--<div class="modal-header">
-                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
-            </div>--%>
-            <div class="modal-body">
-                <div id="arrivedInput">
-                    <label id="arrivedLabel" class="control-label header" >Actual Time of Arrival: <span class="asterisk_red"></span></label>
-                    <div class="pull-center" style="padding-top:0px;">
-                        <s:textfield required="true" name="orderStatusLogsBean.arrivalTime" cssClass="form-control" id="arrivalTime" />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
+</s:form>
 <script type="text/javascript">
     /*function checkUpStatus(){
      if($('.statusDropdown').val() == 'DELIVERED'){
-     $('#deliveryModal').modal('toggle');
+     $('#actualModal').modal('toggle');
      $('#modalTrigger').click()
      }
      else if($('.statusDropdown').val() == 'PICKUP'){
-     $('#pickupModal').modal('toggle');
+     $('#actualModal').modal('toggle');
      $('#modalTrigger').click()
      }
      else if($('.statusDropdown').val() == 'ARRIVED'){
-     $('#inTransitModal').modal('toggle');
+     $('#actualModal').modal('toggle');
      $('#modalTrigger').click()
      }
      else if($('.statusDropdown').val() == 'IN-TRANSIT'){
-     $('#arrivedModal').modal('toggle');
+     $('#actualModal').modal('toggle');
      $('#modalTrigger').click()
      }
      else{
@@ -288,36 +245,16 @@
         }
     });
 
-    function sendOkStatus(){
+/*    function sendOkStatus(){
         $('form').submit()
-    }
+    }*/
 
     /*$(function () {
      var curDate = $('#createdTimestamp');
-     var delDate = $('#deliveryDate');
-     var pickDate = $('#pickupDate');
-     var arrTime = $('#arrivalTime');
-     var depTime = $('#departureTime');
-     curDate.datetimepicker({
-     timeFormat: 'h:mm TT',
-     minDate: 0
-     });
-     delDate.datetimepicker({
-     timeFormat: 'h:mm TT',
-     minDate: 0
-     });
-     pickDate.datetimepicker({
-     timeFormat: 'h:mm TT',
-     minDate: 0
-     });
-     arrTime.datetimepicker({
-     timeFormat: 'h:mm TT',
-     minDate: 0
-     });
-     depTime.datetimepicker({
-     timeFormat: 'h:mm TT',
-     minDate: 0
-     });
-     });*/
 
+         curDate.datetimepicker({
+         timeFormat: 'h:mm TT',
+         minDate: 0
+         });
+     });*/
 </script>

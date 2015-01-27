@@ -711,6 +711,21 @@ function showGateOutFields(containerId) {
 
 }
 
+function showActualDateFields(statusId) {
+    $.ajax({
+        url: 'loadActualDateForm',
+        type: 'POST',
+        data: { statusIdParam: statusId },
+        dataType: 'html',
+        success: function (html) {
+            $('#actualInput').html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            alert('An error occurred! ' + thrownError);
+        }
+    });
+}
+
 // restrict a textfield for numbers only
 function restrictField_Numbers(fieldClass){
     $('.'+fieldClass).keypress(function(e) {

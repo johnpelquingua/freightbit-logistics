@@ -49,6 +49,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private Integer orderIdParam;
     private String orderNoParam;
     private Integer orderItemIdParam;
+    private Integer statusIdParam;
     private String bookingNumber;
     private String[] check;
     private List<String> nameSizeList;
@@ -338,6 +339,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         addActionMessage("Success! Shipment Logs has been updated.");
         nameSizeList = (List) sessionAttributes.get("nameSizeList");
         return SUCCESS;
+
     }
 
     public String loadItemShipmentHistory() {
@@ -398,6 +400,34 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String loadActualDateForm() {
+        OrderStatusLogs orderStatusLogsEntity = orderStatusLogsService.findOrderStatusLogsStatusById(statusIdParam);
+        orderStatusLogsBean = transformToOrderStatusLogsFormBean(orderStatusLogsEntity);
+
+        return SUCCESS;
+    }
+
+    public String actualDateInput() throws Exception {
+
+        OrderStatusLogs orderStatusLogsEntity = orderStatusLogsService.findOrderStatusLogsStatusById(orderStatusLogsBean.getStatusId());
+        OrderStatusLogs entity = new OrderStatusLogs();
+
+        entity.setStatusId(orderStatusLogsEntity.getStatusId());
+        entity.setStatus(orderStatusLogsEntity.getStatus());
+        entity.setOrderItemId(orderStatusLogsEntity.getOrderItemId());
+        entity.setOrderId(orderStatusLogsEntity.getOrderId());
+        entity.setCreatedBy(orderStatusLogsEntity.getCreatedBy());
+        entity.setCreatedTimestamp(orderStatusLogsEntity.getCreatedTimestamp());
+        entity.setActualDate(orderStatusLogsBean.getActualDate());
+
+        orderStatusLogsService.updateOrderStatusLogs(entity);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
+
+        return SUCCESS;
+    }
+
     public OrderItems transformToOrderItemEntity (OrderItemsBean formBean) {
         OrderItems entity = orderStatusLogsService.findOrderItemById(formBean.getOrderItemId());
         entity.setStatus(formBean.getStatus());
@@ -414,6 +444,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         entity.setStatus(formBean.getStatus());
         entity.setCreatedBy(formBean.getCreatedBy());
         entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
+        entity.setActualDate(formBean.getActualDate());
+
         return entity;
     }
 
@@ -444,12 +476,19 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public OrderItemsBean transformToOrderItemFormBean(OrderItems entity) {
+        OrderStatusLogs statusLogsEntity = orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId());
+        OrderStatusLogs timeLogsEntity = orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId());
 
         OrderItemsBean formBean = new OrderItemsBean();
         formBean.setOrderItemId(entity.getOrderItemId());
-        formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+
+        if(timeLogsEntity == null || timeLogsEntity.equals("")) {
+            formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+        }
+        else {
+            formBean.setCreatedTimestamp(orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId()).getActualDate());
+        }
         formBean.setNameSize(entity.getNameSize());
-        OrderStatusLogs statusLogsEntity = orderStatusLogsService.findOrderStatusLogsById(entity.getOrderItemId());
         if(statusLogsEntity == null || statusLogsEntity.equals("")) {
                 formBean.setStatus(entity.getStatus());
         }
@@ -465,13 +504,18 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     public OrderStatusLogsBean transformToOrderStatusLogsFormBean (OrderStatusLogs entity) {
 
         OrderStatusLogsBean formBean = new OrderStatusLogsBean();
+        formBean.setStatusId(entity.getStatusId());
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+        formBean.setActualDate(entity.getActualDate());
         formBean.setStatus(entity.getStatus());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setNameSize(orderService.findOrderItemByOrderItemId(entity.getOrderItemId()).getNameSize());
         formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setOrderId(operationsService.findOrderItemById(entity.getOrderItemId()).getOrderId());
 
+        /*if(entity.getActualDate() == null || (entity.getActualDate().equals("")){
+            formBean.setActualDate("NONE");
+        }*/
         return formBean;
 
     }
@@ -656,5 +700,13 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setNameSizeList(List<String> nameSizeList) {
         this.nameSizeList = nameSizeList;
+    }
+
+    public Integer getStatusIdParam() {
+        return statusIdParam;
+    }
+
+    public void setStatusIdParam(Integer statusIdParam) {
+        this.statusIdParam = statusIdParam;
     }
 }

@@ -10,6 +10,8 @@ public interface OrderStatusLogsService {
 
     public void addStatus(OrderStatusLogs orderStatusLogs);
 
+    public void updateOrderStatusLogs(OrderStatusLogs orderStatusLogs);
+
     public void updateOrderStatus(Orders orders);
 
     public void updateStatusOrderItem(OrderItems orderItems);
@@ -24,6 +26,6 @@ public interface OrderStatusLogsService {
 
     public OrderStatusLogs findOrderStatusLogsById(Integer orderItemId);
 
-    public OrderStatusLogs findOrderStatusLogsStatusById(Integer orderItemId);
+    public OrderStatusLogs findOrderStatusLogsStatusById(Integer statusId);
 
 }
