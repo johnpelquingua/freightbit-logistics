@@ -235,23 +235,6 @@
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-                            <%--<td><display:column title="Action">--%>
-                                <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">--%>
-                                    <%--<s:param name="orderItemIdParam"--%>
-                                             <%--value="#attr.orderItem.orderItemId">--%>
-                                    <%--</s:param>--%>
-                                    <%--<s:param name="vesselScheduleIdParam"--%>
-                                             <%--value="#attr.vesselSchedule.vesselScheduleId">--%>
-                                    <%--</s:param>--%>
-                                    <%--<s:param name="vendorIdParam"--%>
-                                             <%--value="#attr.vesselSchedule.vendorId">--%>
-                                    <%--</s:param>--%>
-                                <%--</s:url>--%>
-                                <%--<s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">--%>
-                                    <%--&lt;%&ndash;Choose this vessel...&ndash;%&gt;--%>
-                                    <%--<i class="fa fa-arrow-circle-down"></i>--%>
-                                <%--</s:a>--%>
-                            <%--</display:column></td>--%>
                         </display:table>
                     </div>
                 </s:if>

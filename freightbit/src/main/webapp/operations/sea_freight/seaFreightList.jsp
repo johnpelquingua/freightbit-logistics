@@ -360,6 +360,28 @@
             <div class="modal-header" style="font-size: 1.6em;">
                 <i class="fa fa-cubes"></i> Consolidate
             </div>
+
+                <display:table id="vesselSchedule" name="vesselSchedules"
+                               requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                               class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable"
+                               style="margin-top: 15px;">
+                    <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+                    <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+                    <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+                    <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+                    <td><display:column property="destinationPort" title="DES" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+                    <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+                    <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                        style="text-align: center;"> </display:column></td>
+                </display:table>
+
+
             <div class="modal-footer">
                 <button class="btn btn-primary">Save</button>
                 <button class="btn btn-danger" data-dismiss="modal">Cancel</button>

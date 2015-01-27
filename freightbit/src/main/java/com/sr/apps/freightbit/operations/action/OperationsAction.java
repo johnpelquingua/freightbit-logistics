@@ -1979,6 +1979,14 @@ public class OperationsAction extends ActionSupport implements Preparable {
             rcuTruckTableDes.add(transformToOrderFormBean(orderElem));
         }
 
+        // Load all vessel schedules
+        // FOR IMPROVEMENT -- FILTER ALL VESSEL SCHEDULES DATES THAT WILL NOT INCLUDE CURRENT DATE
+        List<VesselSchedules> vesselSchedulesList = operationsService.findAllVesselSchedule();
+
+        for(VesselSchedules vesselScheduleElem : vesselSchedulesList){
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
+
         return SUCCESS;
     }
 
@@ -2535,7 +2543,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         VesselScheduleBean formBean = new VesselScheduleBean();
         /*formBean.setVesselScheduleId(entity.getVesselScheduleId());*/
-        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + entity.getVesselScheduleId() );
+//        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + entity.getVesselScheduleId() );
         if (entity.getVesselScheduleId() == null || "".equals(entity.getVesselScheduleId()) || "NONE".equals(entity.getVesselScheduleId())) {
             /*formBean.setVesselScheduleId("NONE");*/
             formBean.setVesselName("NONE");
