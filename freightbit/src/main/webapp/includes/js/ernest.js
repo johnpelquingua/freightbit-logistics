@@ -970,3 +970,88 @@ function buttonControl(){
             $('.houseWaybillOriginBtn').show();
     }
 }
+
+function lclHideVesselSchedule(){
+    $('.lclConsolidateSchedule tbody tr').show();
+    // FIRST STEP - FILTER SCHEDULE TABLE BY ORIGIN / DESTINATION
+    var scheduleTable = $('.lclConsolidateSchedule tbody tr'),
+        sched_origin = $('.lclConsolidateSchedule tbody tr td:nth-child(4)'),
+        sched_desti = $('.lclConsolidateSchedule tbody tr td:nth-child(5)'),
+        lclTable_ori = $('.lclTable tbody tr td:nth-child(6)').eq(0).text(),
+        lclTable_des = $('.lclTable tbody tr td:nth-child(7)').eq(0).text();
+
+    for(var i=0; i < scheduleTable.size(); i++){
+        if(placeAbbrev(sched_desti.eq(i).text()) == lclTable_des){
+            if(placeAbbrev(sched_origin.eq(i).text()) != lclTable_ori){
+                sched_origin.eq(i).closest('tr').hide();
+            }
+        }else{
+            sched_origin.eq(i).closest('tr').hide();
+        }
+    }
+    // FIRST STEP - END
+
+    // SECOND STEP - FILTER SCHEDULE BY DATE - START
+    var lcl_pickupDateValue,
+        lcl_deliveryDateValue,
+        checkbox = $('.lclCheckbox:checked');
+
+    for(var i=0; i < checkbox.size(); i++){
+        var loop_pickupDate = new Date(checkbox.eq(i).closest('tr').find('td').eq(11).text()).setHours(0,0,0,0),
+            loop_deliveryDate = new Date(checkbox.eq(i).closest('tr').find('td').eq(12).text()).setHours(0,0,0,0);
+
+        if(i == 0){
+            lcl_pickupDateValue = loop_pickupDate;
+            lcl_deliveryDateValue = loop_deliveryDate;
+        }
+
+        if(loop_pickupDate > lcl_pickupDateValue){
+            lcl_pickupDateValue = loop_pickupDate;
+        }
+
+        if(loop_deliveryDate < lcl_deliveryDateValue){
+            lcl_deliveryDateValue = loop_deliveryDate;
+        }
+    }
+
+    var lclConsolidateSchedule = $('.lclConsolidateSchedule tbody tr'),
+        conso_departureDate = $('.lclConsolidateSchedule tbody tr td:nth-child(6)'),
+        conso_arrivalDate = $('.lclConsolidateSchedule tbody tr td:nth-child(7)'),
+        currentDate = new Date().setHours(0,0,0,0);
+
+    for(var i=0; i < lclConsolidateSchedule.size(); i++){
+        var loop_departureDate = new Date(conso_departureDate.eq(i).text()).setHours(0,0,0,0),
+            loop_arrivalDate = new Date(conso_arrivalDate.eq(i).text()).setHours(0,0,0,0);
+
+        if(loop_departureDate < currentDate){
+            conso_departureDate.eq(i).closest('tr').hide();
+            continue;
+        }
+
+        if(lcl_pickupDateValue > loop_departureDate || lcl_deliveryDateValue < loop_arrivalDate){
+            conso_departureDate.eq(i).closest('tr').hide();
+            continue;
+        }
+    }
+
+    // SECOND STEP - END
+}
+
+function filterLclTable(){
+    var lclTable = $('.lclTable tbody tr'),
+        lcl_origin = $('.lclTable tbody tr td:nth-child(6)'),
+        lcl_desti = $('.lclTable tbody tr td:nth-child(7)'),
+        initialOrigin = lcl_origin.eq(0).text(),
+        initialDestination = lcl_desti.eq(0).text(),
+        boolean = false;
+
+    for(var i=0; i < lclTable.size(); i++){
+        if(initialDestination != lcl_desti.eq(i).text() || initialOrigin != lcl_origin.eq(i).text()){
+            boolean = true;
+        }
+
+        if(boolean){
+            $('.lclCheckbox').prop('disabled', true);
+        }
+    }
+}

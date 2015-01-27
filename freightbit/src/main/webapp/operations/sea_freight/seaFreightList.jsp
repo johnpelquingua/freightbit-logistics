@@ -128,8 +128,9 @@
                                            style="margin-top: 15px;empty-cells: hide;">
 
                                 <td>
-                                    <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
-                                        <s:checkbox theme="simple" name="check"
+                                    <%--<display:column title="<input type='checkbox' class='lclCheckbox' id='mainCheckBox' name='mainCheckBox'/>">--%>
+                                    <display:column title="">
+                                        <s:checkbox theme="simple" name="check" cssClass="lclCheckbox"
                                                     fieldValue="%{#attr.order.orderId}"/>
                                     </display:column>
                                 </td>
@@ -198,7 +199,7 @@
                                     </div>
                                 </div>
                                 <hr/>
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#consolidateModal">Consolidate</button>
+                                <button disabled type="button" class="consolidateBtn btn btn-default" data-toggle="modal" data-target="#consolidateModal">Consolidate</button>
                             </div>
 
                         </s:form>
@@ -360,30 +361,28 @@
             <div class="modal-header" style="font-size: 1.6em;">
                 <i class="fa fa-cubes"></i> Consolidate
             </div>
-
-                <display:table id="vesselSchedule" name="vesselSchedules"
-                               requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                               class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable"
-                               style="margin-top: 15px;">
-                    <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-                    <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-                    <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-                    <td><display:column property="originPort" title="ORI" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-                    <td><display:column property="destinationPort" title="DES" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-                    <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-                    <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                        style="text-align: center;"> </display:column></td>
-                </display:table>
-
-
+                <div class="modal-body">
+                    <display:table id="vesselSchedule" name="vesselSchedules"
+                                   requestURI="/viewSeaFreightPlanning.action"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter lclConsolidateSchedule"
+                                   style="margin-top: 15px;">
+                        <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="destinationPort" title="DES" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+                    </display:table>
+                </div>
             <div class="modal-footer">
-                <button class="btn btn-primary">Save</button>
                 <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -394,7 +393,27 @@
 
 <script>
     $(document).ready(function(){
+        // START
+        if($('.lclTable tbody tr').size() > 1){ filterLclTable(); }
 
+        $('.consolidateBtn').click(function(){
+            lclHideVesselSchedule();
+        });
+
+        $('.lclCheckbox').change(function(){
+            var checkBoolean = false;
+            for(var i=0; i < $('.lclCheckbox').size(); i++){
+                if($('.lclCheckbox').eq(i).is(':checked')){
+                    checkBoolean = true;
+                }
+            }
+            if(checkBoolean){
+                $('.consolidateBtn').attr('disabled', false);
+            }else{
+                $('.consolidateBtn').attr('disabled', true);
+            }
+        });
+        // END
         if($('.lclTable').size() != 0){
             $('.wellDiv').show('fast');
             seaFreightLclComputation('lclTable', 'wellTotalWeight', 'wellTotalVolume');
