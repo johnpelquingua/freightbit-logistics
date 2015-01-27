@@ -22,11 +22,11 @@
                              value="#attr.order.orderNo"></s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
-                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
-                        Freight Plan : Items
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        Freight Plan : Containers
                     </s:if>
                     <s:else>
-                        Freight Plan : Containers
+                        Freight Plan : Items
                     </s:else>
                 </s:a>
             </li>
@@ -312,7 +312,7 @@
             </s:url>
             <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
 
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="order.serviceRequirement=='LESS CONTAINER LOAD'">
                     <button type="button" class="btn">
                         Back to Freight Plan : Items
                     </button>
