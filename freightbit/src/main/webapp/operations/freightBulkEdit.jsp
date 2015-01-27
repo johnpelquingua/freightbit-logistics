@@ -135,7 +135,7 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <%--<div class="col-lg-12">--%>
 
         <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
             <s:if test="order.modeOfService=='DOOR TO DOOR'">
@@ -301,6 +301,29 @@
                                 </s:a>
                             </display:column></td>
                         </display:table>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="pull-right">
+                            <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                                <s:param name="orderNoParam"
+                                         value="#attr.order.orderNo"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
+
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                    <button type="button" class="btn">
+                                        Back to Freight Plan : Containers
+                                    </button>
+                                </s:if>
+                                <s:else>
+                                    <button type="button" class="btn">
+                                        Back to Freight Plan : Items
+                                    </button>
+                                </s:else>
+                            </s:a>
+                        </div>
                     </div>
                 </div>
 
@@ -703,6 +726,42 @@
                                 </div>
                             </div>
                         </s:form>
+
+                            <%---------------------------------------------------------------------------------------------%>
+
+                            <%--<s:if test="scheduleExists == 'TRUE' ">--%>
+
+                        <hr>
+                        <h4 style="text-align:center;">Current Schedule</h4>
+                        <hr>
+                        <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
+                                       requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                       class="table table-striped table-hover table-bordered text-center tablesorter"
+                                       style="margin-top: 15px;">
+                            <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <td><display:column property="nameSize" title="Container" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                            </s:if>
+                            <s:else>
+                                <td><display:column property="nameSize" title="Item" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                            </s:else>
+                            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselScheduleId" title="Voyage #" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                        </display:table>
+                            <%--</s:if>--%>
+
+                            <%---------------------------------------------------------------------------------------------%>
+
                         <div class="form-group" style="padding-top: 50px;">
                             <hr>
                             <h4 style="text-align:center;">List of Schedules</h4>
@@ -720,7 +779,11 @@
                                        requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                        class="table table-striped table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
+                            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
                             <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="originPort" title="Origin" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
@@ -729,6 +792,8 @@
                             <td><display:column property="departureDate" title="Departure" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column title="Action">
                                 <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
@@ -747,42 +812,88 @@
                             </display:column></td>
                         </display:table>
                     </div>
+                    <div class="panel-footer">
+                        <div class="pull-right">
+                            <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                                <s:param name="orderNoParam"
+                                         value="#attr.order.orderNo"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
+
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                    <button type="button" class="btn">
+                                        Back to Freight Plan : Containers
+                                    </button>
+                                </s:if>
+                                <s:else>
+                                    <button type="button" class="btn">
+                                        Back to Freight Plan : Items
+                                    </button>
+                                </s:else>
+                            </s:a>
+                        </div>
+                    </div>
                 </div>
 
                 <%--Origin--%>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Origin</span>
-                    </div>
-                    <div class="panel-body form-horizontal">
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
-                            </div>
-                        </div>
+                <%--<div class="panel panel-primary">--%>
+                    <%--<div class="panel-heading">--%>
+                        <%--<i class="fa fa-truck"></i>--%>
+                        <%--<span class="panel-title">Dispatch Plan : Origin</span>--%>
+                    <%--</div>--%>
+                    <%--<div class="panel-body form-horizontal">--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>--%>
+                            <%--<div class="col-lg-10">--%>
+                                <%--<s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>--%>
+                            <%--<div class="col-lg-10">--%>
+                                <%--<s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>--%>
+                            <%--<div class="col-lg-10">--%>
+                                <%--<s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>--%>
+                            <%--<div class="col-lg-10">--%>
+                                <%--<s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="panel-footer">--%>
+                        <%--<div class="pull-right">--%>
+                            <%--<s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">--%>
+                                <%--<s:param name="orderIdParam"--%>
+                                         <%--value="#attr.order.orderId"></s:param>--%>
+                                <%--<s:param name="orderNoParam"--%>
+                                         <%--value="#attr.order.orderNo"></s:param>--%>
+                            <%--</s:url>--%>
+                            <%--<s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">--%>
+
+                                <%--<s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">--%>
+                                    <%--<button type="button" class="btn">--%>
+                                        <%--Back to Freight Plan : Containers--%>
+                                    <%--</button>--%>
+                                <%--</s:if>--%>
+                                <%--<s:else>--%>
+                                    <%--<button type="button" class="btn">--%>
+                                        <%--Back to Freight Plan : Items--%>
+                                    <%--</button>--%>
+                                <%--</s:else>--%>
+                            <%--</s:a>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
             </s:elseif>
             <s:elseif test="order.modeOfService=='PIER TO DOOR'">
                 <div class="panel panel-primary">
@@ -906,41 +1017,6 @@
                             </display:column></td>
                         </display:table>
                     </div>
-                </div>
-
-                <%--Destination--%>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <i class="fa fa-truck"></i>
-                        <span class="panel-title">Dispatch Plan : Destination</span>
-                    </div>
-                    <div class="panel-body form-horizontal">
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="panel-footer">
                         <div class="pull-right">
                             <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
@@ -949,8 +1025,7 @@
                                 <s:param name="orderNoParam"
                                          value="#attr.order.orderNo"></s:param>
                             </s:url>
-                            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                 title="Update Status">
+                            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
 
                                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                                     <button type="button" class="btn">
@@ -962,11 +1037,70 @@
                                         Back to Freight Plan : Items
                                     </button>
                                 </s:else>
-
                             </s:a>
                         </div>
                     </div>
                 </div>
+
+                <%--Destination--%>
+                <%--<div class="panel panel-primary">--%>
+                    <%--<div class="panel-heading">--%>
+                        <%--<i class="fa fa-truck"></i>--%>
+                        <%--<span class="panel-title">Dispatch Plan : Destination</span>--%>
+                    <%--</div>--%>
+                    <%--<div class="panel-body form-horizontal">--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>--%>
+                            <%--<div class="col-lg-10">--%>
+                                <%--<s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>--%>
+                            <%--<div class="col-lg-10">--%>
+                                <%--<s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>--%>
+                            <%--<div class="col-lg-10">--%>
+                                <%--<s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="form-group">--%>
+                            <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>--%>
+                            <%--<div class="col-lg-10">--%>
+                                <%--<s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+
+                    <%--<div class="panel-footer">--%>
+                        <%--<div class="pull-right">--%>
+                            <%--<s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">--%>
+                                <%--<s:param name="orderIdParam"--%>
+                                         <%--value="#attr.order.orderId"></s:param>--%>
+                                <%--<s:param name="orderNoParam"--%>
+                                         <%--value="#attr.order.orderNo"></s:param>--%>
+                            <%--</s:url>--%>
+                            <%--<s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"--%>
+                                 <%--title="Update Status">--%>
+
+                                <%--<s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">--%>
+                                    <%--<button type="button" class="btn">--%>
+                                        <%--Back to Freight Plan : Containers--%>
+                                    <%--</button>--%>
+                                <%--</s:if>--%>
+                                <%--<s:else>--%>
+                                    <%--<button type="button" class="btn">--%>
+                                        <%--Back to Freight Plan : Items--%>
+                                    <%--</button>--%>
+                                <%--</s:else>--%>
+
+                            <%--</s:a>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
             </s:elseif>
         </s:if>
 
@@ -1050,6 +1184,41 @@
                                 </div>
                             </div>
 
+                        <%---------------------------------------------------------------------------------------------%>
+
+                        <%--<s:if test="scheduleExists == 'TRUE' ">--%>
+
+                        <hr>
+                        <h4 style="text-align:center;">Current Schedule</h4>
+                        <hr>
+                        <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
+                                       requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                       class="table table-striped table-hover table-bordered text-center tablesorter"
+                                       style="margin-top: 15px;">
+                            <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <td><display:column property="nameSize" title="Container" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                            </s:if>
+                            <s:else>
+                                <td><display:column property="nameSize" title="Item" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                            </s:else>
+                            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselScheduleId" title="Voyage #" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                        </display:table>
+                        <%--</s:if>--%>
+
+                        <%---------------------------------------------------------------------------------------------%>
+
                         </s:form>
                         <div class="form-group" style="padding-top: 50px;">
                             <hr>
@@ -1068,7 +1237,11 @@
                                        requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                        class="table table-striped table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
+                            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
                             <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="originPort" title="Origin" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
@@ -1077,6 +1250,8 @@
                             <td><display:column property="departureDate" title="Departure" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column title="Action">
                                 <s:url var="editBulkItemsUrl" action="editBulkItems">
@@ -1094,6 +1269,29 @@
                                 </s:a>
                             </display:column></td>
                         </display:table>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="pull-right">
+                            <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                                <s:param name="orderNoParam"
+                                         value="#attr.order.orderNo"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
+
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                    <button type="button" class="btn">
+                                        Back to Freight Plan : Containers
+                                    </button>
+                                </s:if>
+                                <s:else>
+                                    <button type="button" class="btn">
+                                        Back to Freight Plan : Items
+                                    </button>
+                                </s:else>
+                            </s:a>
+                        </div>
                     </div>
                 </div>
             </s:if>
@@ -1366,9 +1564,9 @@
             </s:if>
         </s:if>--%>
 
-    </div>
+    <%--</div>--%>
 
-    <div class="panel-footer">
+    <%--<div class="panel-footer">
         <div class="pull-right">
             <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
                 <s:param name="orderIdParam"
@@ -1390,7 +1588,7 @@
                 </s:else>
             </s:a>
         </div>
-    </div>
+    </div>--%>
 
 </div>
 

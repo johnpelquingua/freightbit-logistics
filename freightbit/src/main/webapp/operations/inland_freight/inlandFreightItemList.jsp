@@ -187,17 +187,17 @@
                                 </s:else>
                             </td>
 
-                            <td><display:column property="vendorSea" title="Shipping <i class='fa fa-sort' />"
-                                                class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
+                            <%--<td><display:column property="vendorSea" title="Shipping <i class='fa fa-sort' />"--%>
+                                                <%--class="tb-font-black"--%>
+                                                <%--style="text-align: center;"> </display:column></td>--%>
 
-                            <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
-                                                class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
+                            <%--<td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"--%>
+                                                <%--class="tb-font-black"--%>
+                                                <%--style="text-align: center;"> </display:column></td>--%>
 
-                            <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
-                                                class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
+                            <%--<td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"--%>
+                                                <%--class="tb-font-black"--%>
+                                                <%--style="text-align: center;"> </display:column></td>--%>
 
                             <td><display:column property="vendorOrigin" title="ORI <i class='fa fa-sort' />"
                                                 class="tb-font-black"

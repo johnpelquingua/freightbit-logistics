@@ -265,7 +265,7 @@
             Pulling up Schedules. Please Wait.<br/>
             <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
         </div>
-        <div class="tableDiv" style="display: none;">
+        <%--<div class="tableDiv" style="display: none;">--%>
             <display:table id="vesselSchedule" name="vesselSchedules"
                            requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                            class="table table-striped table-hover table-bordered text-center tablesorter"
@@ -284,6 +284,8 @@
                                     style="text-align: center;"> </display:column></td>
                 <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
                                     style="text-align: center;"> </display:column></td>
+                <td><display:column property="vendorClass" title="Class" class="tb-font-black"
+                                    style="text-align: center;"> </display:column></td>
                 <td><display:column title="Action">
                     <s:url var="editBulkItemsUrl" action="editBulkItems">
                         <s:param name="vesselScheduleIdParam"
@@ -299,7 +301,7 @@
                     </s:a>
                 </display:column></td>
             </display:table>
-        </div>
+        <%--</div>--%>
     </div>
 
     <div class="panel-footer">

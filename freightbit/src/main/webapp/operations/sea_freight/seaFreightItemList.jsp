@@ -350,7 +350,7 @@
 
             <s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"
                  title="Create Documents">
-                Create Proforma Bill of Lading
+                Create Document(s)
             </s:a>
 
             <s:url var="viewDocumentListUrl" action="viewDocumentList">

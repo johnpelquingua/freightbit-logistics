@@ -2889,7 +2889,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
 
         for (Documents documentElem : documentsList) {
-            if(documentElem.getDocumentName().equals("PROFORMA BILL OF LADING") || documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ){
+            if(documentElem.getDocumentName().equals("PROFORMA BILL OF LADING") || documentElem.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || documentElem.getDocumentName().equals("ACCEPTANCE RECEIPT") || documentElem.getDocumentName().equals("RELEASE ORDER") ){
                 documents.add(transformDocumentsToFormBean(documentElem));
             }
         }
@@ -3008,13 +3008,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String createdDocumentsSea() {
-        List<Documents> documentsList = new ArrayList<Documents>();
+
+//        List<Documents> documentsList = new ArrayList<Documents>();
         List<String> vendorCodeDocument = new ArrayList<String>();
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         order = transformToOrderFormBean(orderEntity);
         orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+
         // Shipping vendors set will be stored in VendorCodeDocument variable
         for (OrderItems everyItem : orderItemsList) {
             if (vendorCodeDocument.isEmpty()) {
@@ -3027,10 +3029,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         List<Documents> proforma = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING", orderIdParam);
-        /*List<Documents> houseWayBill = documentsService.findDocumentNameAndId("HOUSE BILL OF LADING", orderIdParam);*/
+        List<Documents> withdrawAuthorization = documentsService.findDocumentNameAndId("AUTHORIZATION TO WITHDRAW", orderIdParam);
+        List<Documents> acceptanceReceipt = documentsService.findDocumentNameAndId("ACCEPTANCE RECEIPT", orderIdParam);
+        List<Documents> releaseOrder = documentsService.findDocumentNameAndId("RELEASE ORDER", orderIdParam);
 
         for (String itemVendor : vendorCodeDocument) {
             if(itemVendor != null){ // proforma document will be created if shipping vendor is not null
+
                 if (proforma.size() == 0) {
                     Documents documentEntityProforma = new Documents();
 
@@ -3058,8 +3063,112 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                     }
 
-                    return INPUT;
+//                    return INPUT;
                 }
+
+                if(withdrawAuthorization.size() == 0){
+                    Documents documentEntityAuthorization = new Documents();
+
+                    Client client = clientService.findClientById(getClientId().toString());
+                    documentEntityAuthorization.setClient(client);
+
+                    documentEntityAuthorization.setDocumentName(DocumentsConstants.AUTHORIZATION_TO_WITHDRAW);
+                    documentEntityAuthorization.setReferenceId(orderEntity.getOrderId());
+                    documentEntityAuthorization.setReferenceTable("ORDERS");
+                    documentEntityAuthorization.setOrderNumber(orderEntity.getOrderNumber());
+                    documentEntityAuthorization.setCreatedDate(new Date());
+                    documentEntityAuthorization.setDocumentStatus("FROM PLANNING");
+                    documentEntityAuthorization.setVendorCode(itemVendor);
+                    documentEntityAuthorization.setOutboundStage(1);
+                    documentEntityAuthorization.setDocumentProcessed(0);
+                    documentEntityAuthorization.setCreatedBy(commonUtils.getUserNameFromSession());
+                    // orderitem id should be set in orderitemid column WIP
+
+                    documentsService.addDocuments(documentEntityAuthorization);
+
+                } else {
+                    clearErrorsAndMessages();
+                    addActionError("Authorization to Withdraw(s) already exists.");
+
+                    for(OrderItems orderItemsElem : orderItemsList) {
+                        orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                    }
+
+//                    return INPUT;
+                }
+
+                if(orderEntity.getServiceMode().equals("PIER TO PIER") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
+
+                    if(acceptanceReceipt.size() == 0){
+
+                        Documents documentEntityAcceptance = new Documents();
+
+                        Client client = clientService.findClientById(getClientId().toString());
+                        documentEntityAcceptance.setClient(client);
+
+                        documentEntityAcceptance.setDocumentName(DocumentsConstants.ACCEPTANCE_RECEIPT);
+                        documentEntityAcceptance.setReferenceId(orderEntity.getOrderId());
+                        documentEntityAcceptance.setReferenceTable("ORDERS");
+                        documentEntityAcceptance.setOrderNumber(orderEntity.getOrderNumber());
+                        documentEntityAcceptance.setCreatedDate(new Date());
+                        documentEntityAcceptance.setDocumentStatus("FROM PLANNING");
+                        documentEntityAcceptance.setVendorCode(itemVendor);
+                        documentEntityAcceptance.setOutboundStage(1);
+                        documentEntityAcceptance.setDocumentProcessed(0);
+                        documentEntityAcceptance.setCreatedBy(commonUtils.getUserNameFromSession());
+                        // orderitem id should be set in orderitemid column WIP
+
+                        documentsService.addDocuments(documentEntityAcceptance);
+
+                    }else{
+                        clearErrorsAndMessages();
+                        addActionError("Acceptance Receipt(s) already exists.");
+
+                        for(OrderItems orderItemsElem : orderItemsList) {
+                            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                        }
+
+//                        return INPUT;
+                    }
+
+                }
+
+                if(orderEntity.getServiceMode().equals("PIER TO PIER") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
+
+                    if(releaseOrder.size() == 0){
+
+                        Documents documentEntityRelease = new Documents();
+
+                        Client client = clientService.findClientById(getClientId().toString());
+                        documentEntityRelease.setClient(client);
+
+                        documentEntityRelease.setDocumentName(DocumentsConstants.RELEASE_ORDER);
+                        documentEntityRelease.setReferenceId(orderEntity.getOrderId());
+                        documentEntityRelease.setReferenceTable("ORDERS");
+                        documentEntityRelease.setOrderNumber(orderEntity.getOrderNumber());
+                        documentEntityRelease.setCreatedDate(new Date());
+                        documentEntityRelease.setDocumentStatus("FROM PLANNING");
+                        documentEntityRelease.setVendorCode(itemVendor);
+                        documentEntityRelease.setOutboundStage(1);
+                        documentEntityRelease.setDocumentProcessed(0);
+                        documentEntityRelease.setCreatedBy(commonUtils.getUserNameFromSession());
+                        // orderitem id should be set in orderitemid column WIP
+
+                        documentsService.addDocuments(documentEntityRelease);
+
+                    }else{
+
+                        clearErrorsAndMessages();
+                        addActionError("Release Order(s) already exists.");
+
+                        for(OrderItems orderItemsElem : orderItemsList) {
+                            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                        }
+
+//                        return INPUT;
+                    }
+                }
+
             }else{ // if no shipping vendor set will return an error message
                 clearErrorsAndMessages();
                 addActionError("Container(s) / Item(s) has no Shipping vendor set!");
