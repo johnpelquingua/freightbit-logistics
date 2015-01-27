@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -133,7 +134,6 @@
 
                             <div class="form-group">
                                 <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Contact Number<span class="asterisk_red"></span></label>
-
                                 <div class="col-lg-9">
                                     <s:textfield required="true" name="user.contactNumber" id="uContactNumber"
                                                  cssClass="userAddForm form-control" placeholder="(XXX) XXX-XXXX" maxLength="14"
@@ -143,7 +143,6 @@
 
                             <div class="form-group">
                                 <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Status<span class="asterisk_red"></span></label>
-
                                 <div class="col-lg-9">
                                     <s:select required="true" name="user.status" id="uStatus" list="statusList" listKey="key"
                                               listValue="value" cssClass="userAddForm form-control" value="user.status"/>
@@ -152,7 +151,6 @@
 
                             <div class="form-group">
                                 <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Customer<span class="asterisk_red"></span></label>
-
                                 <div class="col-lg-9">
                                     <s:select name="user.customerId" id="customerCodeTextBox" list="customerList" listKey="customerId"
                                               listValue="customerName" cssClass="userAddForm form-control" value="user.customerId" disabled="true" emptyOption="true"/>
@@ -163,13 +161,11 @@
                     
                     <div class="form-group">
                         <label class="col-lg-3 control-label"  style="padding-top:0px;">Permissions</label>
-
                         <div class="col-lg-9">
                         <s:checkboxlist list="permissionsList"  name="permissionsSelected" value="preSelectedPermissions" listKey="permissionId" listValue="permissionName"/>
                         </div>
                     </div>
                 </div>
-
 
             </div>
 
@@ -191,16 +187,64 @@
         $("#uContactNumber").mask("(999) 999-9999");
         
         $("#userTypeSelect").change(function() {
-            if (this.value == "CUSTOMER") {
+            if (this.value == "ADMIN") {
                 $("#customerCodeTextBox").prop("disabled", false);
                 $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-1").prop("checked", true);
             } else {
-            	
                 $("#customerCodeTextBox").prop("disabled", true);
                 $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-1").prop("checked", false);
+            } if (this.value == "CUSTOMER RELATIONS DEPARTMENT") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-2").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-2").prop("checked", false);
+            } if (this.value == "FREIGHT OPERATIONS OFFICER") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-3").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-3").prop("checked", false);
+            } if (this.value == "FREIGHT OPERATIONS SPECIALIST") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-5").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-5").prop("checked", false);
+            } if (this.value == "FREIGHT OPERATIONS MANAGER") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-9").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-9").prop("checked", false);
+            } if (this.value == "FREIGHT DOCUMENTS SPECIALIST") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-8").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-8").prop("checked", false);
+            } if (this.value == "INLAND FREIGHT OFFICER") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-4").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-4").prop("checked", false);
             }
         }).change();
-
         validationForm('userAddForm', 'submitBtn');
     });
 </script>

@@ -178,25 +178,65 @@
 
         $("#uContactNumber").mask("(999) 999-9999");
 
-        //if default value of User Type is 'CUSTOMER'
-        if ($('#userTypeSelect').val() == 'CUSTOMER') {
-            $("#customerCodeTextBox").prop("disabled", false);
-            $("#customerCodeTextBox").prop("required", true);
-        } else {
-            $("#customerCodeTextBox").prop("disabled", true);
-            $("#customerCodeTextBox").prop("required", false);
-        }
-        
         $("#userTypeSelect").change(function() {
-            if (this.value == "CUSTOMER") {
+            if (this.value == "ADMIN") {
                 $("#customerCodeTextBox").prop("disabled", false);
                 $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-1").prop("checked", true);
             } else {
                 $("#customerCodeTextBox").prop("disabled", true);
                 $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-1").prop("checked", false);
+            } if (this.value == "CUSTOMER RELATIONS DEPARTMENT") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-2").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-2").prop("checked", false);
+            } if (this.value == "FREIGHT OPERATIONS OFFICER") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-3").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-3").prop("checked", false);
+            } if (this.value == "FREIGHT OPERATIONS SPECIALIST") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-5").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-5").prop("checked", false);
+            } if (this.value == "FREIGHT OPERATIONS MANAGER") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-9").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-9").prop("checked", false);
+            } if (this.value == "FREIGHT DOCUMENTS SPECIALIST") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-8").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-8").prop("checked", false);
+            } if (this.value == "INLAND FREIGHT OFFICER") {
+                $("#customerCodeTextBox").prop("disabled", false);
+                $("#customerCodeTextBox").prop("required", true);
+                $("#permissionsSelected-4").prop("checked", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true);
+                $("#customerCodeTextBox").prop("required", false);
+                $("#permissionsSelected-4").prop("checked", false);
             }
         }).change();
-
+        validationForm('userAddForm', 'submitBtn');
     });
-
 </script>
