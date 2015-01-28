@@ -1058,6 +1058,9 @@ function filterLclTable(){
     var lclTable = $('.lclTable tbody tr'),
         lcl_origin = $('.lclTable tbody tr td:nth-child(6)'),
         lcl_desti = $('.lclTable tbody tr td:nth-child(7)'),
+        lcl_status = $('.lclTable tbody tr td:nth-child(9)'),
+        lcl_checkboxColumn = $('.lclTable tbody tr td:nth-child(1)'),
+        lcl_actionColumn = $('.lclTable tbody tr td:nth-child(14)'),
         initialOrigin = lcl_origin.eq(0).text(),
         initialDestination = lcl_desti.eq(0).text(),
         boolean = false;
@@ -1070,5 +1073,16 @@ function filterLclTable(){
         if(boolean){
             $('.lclCheckbox').prop('disabled', true);
         }
+
+        switch(lcl_status.eq(i).text()){
+            case 'PENDING' :
+            case 'INCOMPLETE' :
+            case 'CANCELLED' :
+                lcl_actionColumn.eq(i).empty().append('<i class="fa fa-ban"></i>');
+                lcl_checkboxColumn.eq(i).empty().append('<i class="fa fa-ban"></i>');
+        }
     }
+
+    $('.lclMainLoadingDiv').hide();
+    $('.lclMainTable').fadeIn();
 }
