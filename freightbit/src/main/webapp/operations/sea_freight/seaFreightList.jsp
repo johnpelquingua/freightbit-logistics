@@ -206,9 +206,6 @@
                         </div>
                     </div>
 
-                    <s:textfield value="%{filterPickup}" />
-                    <s:textfield value="%{filterDelivery}" />
-
                 </div>
 
                 <div class="tab-pane fade" id="lcuTab">
@@ -362,25 +359,31 @@
                 <i class="fa fa-cubes"></i> Consolidate
             </div>
                 <div class="modal-body">
-                    <display:table id="vesselSchedule" name="vesselSchedules"
-                                   requestURI="/viewSeaFreightPlanning.action"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter lclConsolidateSchedule"
-                                   style="margin-top: 15px;">
-                        <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="originPort" title="ORI" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="destinationPort" title="DES" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                    </display:table>
+                    <div class="consolidateLoadingDiv center-text">
+                        Pulling up Schedules. Please Wait.<br/>
+                        <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
+                    </div>
+                    <div class="consolidateTableDiv" style="display: none;">
+                        <display:table id="vesselSchedule" name="vesselSchedules"
+                                       requestURI="/viewSeaFreightPlanning.action"
+                                       class="table table-striped table-hover table-bordered text-center tablesorter lclConsolidateSchedule"
+                                       style="margin-top: 15px;">
+                            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="destinationPort" title="DES" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                        </display:table>
+                    </div>
                 </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal">Cancel</button>

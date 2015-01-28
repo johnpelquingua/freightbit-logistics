@@ -469,8 +469,13 @@
                                              name="orderItem.volume"
                                              id="orderItem_volume_textfield"
                                              required="true"
-                                             pattern="\d(?:\d*\,)?\d+"
                                         />
+                                <%--<s:textfield cssClass="form-control"--%>
+                                             <%--name="orderItem.volume"--%>
+                                             <%--id="orderItem_volume_textfield"--%>
+                                             <%--required="true"--%>
+                                             <%--pattern="\d(?:\d*\,)?\d+"--%>
+                                        <%--/>--%>
                             </s:else>
 
                         </div>
