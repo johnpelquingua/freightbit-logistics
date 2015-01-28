@@ -1094,7 +1094,7 @@ function lclCheckboxFilter(item){
             box = $('.lclCheckbox');
 
         for(var i=0; i < box.size(); i++){
-            if(box.eq(i).closest('tr').find('td').eq(6).text() == des || box.eq(i).closest('tr').find('td').eq(5).text() == ori){
+            if(box.eq(i).closest('tr').find('td').eq(6).text() == des && box.eq(i).closest('tr').find('td').eq(5).text() == ori){
                 box.eq(i).attr('disabled', false);
             }else{
                 box.eq(i).attr('disabled', true);
