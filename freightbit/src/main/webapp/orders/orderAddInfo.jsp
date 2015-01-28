@@ -50,8 +50,7 @@
                         <table class="table table-user-information" style="table-layout: fixed;">
                             <tbody>
                             <tr>
-
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Booking Number</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none; width: 30%">Booking Number</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.orderNumber"/></td>
                             </tr>
 
@@ -87,7 +86,7 @@
                         <table class="table table-user-information" style="table-layout: fixed;">
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Booking Date</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none; width: 30%">Booking Date</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.orderDate"/></td>
                             </tr>
                             <tr>
@@ -141,7 +140,7 @@
                             <%--<s:property value="%{order.customerId}"/>--%>
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Customer Name</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none; width: 30%">Customer Name</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.customerName"/></td>
                             </tr>
                             <tr>
@@ -199,7 +198,7 @@
 
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none;">Consignee Name</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none; width: 28%">Consignee Name</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.consigneeInfoContact.name"/></td>
                             </tr>
                             <tr>
