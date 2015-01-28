@@ -186,7 +186,8 @@
                                             </s:else>
                                         </display:column>
                                     </td>
-
+                                    <td><display:column property="orderId" title="HIDE_ME" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
                                 </display:table>
                             </div>
 
@@ -205,7 +206,7 @@
                                 </div>
                                 <hr/>
                                 <div class="warningMsg"><i class="fa fa-warning" style="color: #E74C3C"></i> <i style="color: #E74C3C; font-size: 0.9em;">Bookings must have the same DES and ORI to initialize consolidation</i></div>
-                                <br/><button style="margin-top: 1em;" disabled type="button" class="consolidateBtn btn btn-default" data-toggle="modal" data-target="#consolidateModal"><i class="fa fa-cubes"></i> Consolidate</button>
+                                <br/><button style="margin-top: 1em;" disabled type="button" class="consolidateBtn btn btn-default" data-toggle="modal"><i class="fa fa-cubes"></i> Consolidate</button>
                             </div>
 
                         </s:form>
@@ -365,6 +366,7 @@
                 <i class="fa fa-cubes"></i> Consolidate
             </div>
                 <div class="modal-body">
+                    <s:textfield cssClass="consolidateModalTextfield"></s:textfield>
                     <div class="consolidateLoadingDiv center-text">
                         Pulling up Schedules. Please Wait.<br/>
                         <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>

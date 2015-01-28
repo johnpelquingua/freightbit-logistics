@@ -983,8 +983,9 @@ function lclHideVesselSchedule(){
     var scheduleTable = $('.lclConsolidateSchedule tbody tr'),
         sched_origin = $('.lclConsolidateSchedule tbody tr td:nth-child(4)'),
         sched_desti = $('.lclConsolidateSchedule tbody tr td:nth-child(5)'),
-        lclTable_ori = $('.lclTable tbody tr td:nth-child(6)').eq(0).text(),
-        lclTable_des = $('.lclTable tbody tr td:nth-child(7)').eq(0).text();
+        checkedItems = $('.lclCheckbox:checked'),
+        lclTable_ori = checkedItems.eq(0).closest('tr').find('td').eq(5).text(),
+        lclTable_des = checkedItems.eq(0).closest('tr').find('td').eq(6).text();
 
     for(var i=0; i < scheduleTable.size(); i++){
         if(placeAbbrev(sched_desti.eq(i).text()) == lclTable_des){
@@ -1053,6 +1054,19 @@ function lclHideVesselSchedule(){
         $('.consolidateLoadingDiv').empty().append('<h3><i class="fa fa-warning" style="color: #ff0000"></i> No schedules found</h3><i>Please make sure you have existing schedule(s).</i>').show();
         $('.consolidateTableDiv').hide();
     }
+
+    // APPEND ALL ID OF CHECKED ITEMS -- START
+    for(var i=0; i < checkedItems.size(); i++){
+        var itemId = checkedItems.eq(i).closest('tr').find('td').eq(14).text()
+        if(i == 0){
+            $('.consolidateModalTextfield').val(itemId);
+        }else{
+            $('.consolidateModalTextfield').val($('.consolidateModalTextfield').val()+'?'+itemId);
+        }
+    }
+    // APPEND ALL ID OF CHECKED ITEMS -- END
+
+    $('#consolidateModal').modal('show');
     // THIRD STEP (OPTIONAL) - END
 }
 
@@ -1085,6 +1099,8 @@ function filterLclTable(){
         }
     }
 
+    $('.lclTable td:nth-child(15)').hide();
+    $('.lclTable th:nth-child(15)').hide();
     $('.lclMainLoadingDiv').hide();
     $('.lclMainTable').fadeIn();
 }
