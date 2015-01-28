@@ -121,69 +121,74 @@
                     <div class="panel-body">
                         <div class="table-responsive">
                         <s:form name="myform" action="checkOrderConsolidate" theme="bootstrap">
+                            <div class="lclMainLoadingDiv" style="text-align: center; margin: 1.6em;">
+                                Processing LCL orders. Please Wait.<br/>
+                                <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
+                            </div>
+                            <div class="lclMainTable" style="display: none;">
+                                <display:table id="order" name="lclTable"
+                                               requestURI="viewSeaFreightList.action" pagesize="10"
+                                               class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
+                                               style="margin-top: 15px;empty-cells: hide;">
 
-                            <display:table id="order" name="lclTable"
-                                           requestURI="viewSeaFreightList.action" pagesize="10"
-                                           class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
-                                           style="margin-top: 15px;empty-cells: hide;">
+                                    <td>
+                                            <%--<display:column title="<input type='checkbox' class='lclCheckbox' id='mainCheckBox' name='mainCheckBox'/>">--%>
+                                        <display:column title="">
+                                            <s:checkbox theme="simple" name="check" cssClass="lclCheckbox"
+                                                        fieldValue="%{#attr.order.orderId}"/>
+                                        </display:column>
+                                    </td>
 
-                                <td>
-                                    <%--<display:column title="<input type='checkbox' class='lclCheckbox' id='mainCheckBox' name='mainCheckBox'/>">--%>
-                                    <display:column title="">
-                                        <s:checkbox theme="simple" name="check" cssClass="lclCheckbox"
-                                                    fieldValue="%{#attr.order.orderId}"/>
-                                    </display:column>
-                                </td>
+                                    <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="orderWeight" title="Weight  <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="orderVolume" title="Volume  <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="pickupDate" title="PICKUP  <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="deliveryDate" title="DELIVERY  <i class='fa fa-sort' />" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td>
+                                        <display:column title="Action">
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' ">
+                                                <i class="fa fa-ban"></i>
+                                            </s:if>
+                                            <s:else>
+                                                <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                                                    <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                                                     title="Direct Load">
+                                                    <i class="fa fa-tasks" id="status"></i>
+                                                </s:a>
 
-                                <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="orderWeight" title="Weight  <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="orderVolume" title="Volume  <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="pickupDate" title="PICKUP  <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="deliveryDate" title="DELIVERY  <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td>
-                                    <display:column title="Action">
-                                    <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' ">
-                                        <i class="fa fa-ban"></i>
-                                    </s:if>
-                                    <s:else>
-                                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                            <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                             title="Direct Load">
-                                            <i class="fa fa-tasks" id="status"></i>
-                                        </s:a>
+                                                <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
+                                                    <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
+                                                    <i class="fa fa-info-circle"></i>
+                                                </s:a>
+                                            </s:else>
+                                        </display:column>
+                                    </td>
 
-                                        <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
-                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
-                                            <i class="fa fa-info-circle"></i>
-                                        </s:a>
-                                    </s:else>
-                                    </display:column>
-                                </td>
-
-                            </display:table>
+                                </display:table>
+                            </div>
 
                             <div class="col-md-6 pull-right well wellDiv" style="display: none;">
                                 <p>Total Weight (kg) : <font id="wellTotalWeight">0</font></p>
@@ -205,9 +210,6 @@
                         </s:form>
                         </div>
                     </div>
-
-                    <s:textfield value="%{filterPickup}" />
-                    <s:textfield value="%{filterDelivery}" />
 
                 </div>
 
@@ -362,25 +364,31 @@
                 <i class="fa fa-cubes"></i> Consolidate
             </div>
                 <div class="modal-body">
-                    <display:table id="vesselSchedule" name="vesselSchedules"
-                                   requestURI="/viewSeaFreightPlanning.action"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter lclConsolidateSchedule"
-                                   style="margin-top: 15px;">
-                        <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="originPort" title="ORI" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="destinationPort" title="DES" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                    </display:table>
+                    <div class="consolidateLoadingDiv center-text">
+                        Pulling up Schedules. Please Wait.<br/>
+                        <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
+                    </div>
+                    <div class="consolidateTableDiv" style="display: none;">
+                        <display:table id="vesselSchedule" name="vesselSchedules"
+                                       requestURI="/viewSeaFreightPlanning.action"
+                                       class="table table-striped table-hover table-bordered text-center tablesorter lclConsolidateSchedule"
+                                       style="margin-top: 15px;">
+                            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="destinationPort" title="DES" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                        </display:table>
+                    </div>
                 </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
