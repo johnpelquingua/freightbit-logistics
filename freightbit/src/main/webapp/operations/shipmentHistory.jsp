@@ -116,7 +116,7 @@
 
                                 <td>
                                     <display:column title="Action">
-                                        <a id="edit-icon" href="#" data-toggle="modal" data-target="#actualModal" onclick="showActualDateFields(${orderStatusLogs.statusId});">
+                                        <a id="edit-icon" href="#" data-toggle="modal" data-target="#actualModal" onclick="showActualDateFields(${orderStatusLogs.statusId});" title="Set Actual Date of this status" rel="tooltip">
                                             <i class="fa fa-edit"></i>
                                                 <%--<s:param name="orderItemIdParam" value="#attr.orderStatusLogs.orderItemId"></s:param>--%>
                                         </a>

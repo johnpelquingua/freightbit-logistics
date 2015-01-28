@@ -208,7 +208,7 @@
                 <thead>
                 <tr class="header_center" style="background-color: #fff;">
                     <th class="tb-font-black">Quantity</th>
-                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                             <span>
                                 <th class="tb-font-black">Size</th>
                             </span>

@@ -24,7 +24,7 @@
                 <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                      title="Update Status">
 
-                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                         Dispatch Plan : Containers
                     </s:if>
                     <s:else>
@@ -301,6 +301,17 @@
                     </div>
 
                     <div style="float: right;">
+                        <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>
+                        </s:url>
+                        <s:a href="%{viewInlandFreightItemListUrl}" rel="tooltip" title="Cancel">
+                            <button type="button" id="Cancel" class="btn btn-danger">
+                                Cancel
+                            </button>
+                        </s:a>
                         <button class="btn btn-primary finalSaveBtn" type="button" disabled>Save</button>
                     </div>
 
@@ -535,6 +546,17 @@
                 </div>
             </div>
             <div style="float: right;">
+                <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
+                    <s:param name="orderIdParam"
+                             value="#attr.order.orderId"></s:param>
+                    <s:param name="orderNoParam"
+                             value="#attr.order.orderNo"></s:param>
+                </s:url>
+                <s:a href="%{viewInlandFreightItemListUrl}" rel="tooltip" title="Cancel">
+                    <button type="button" id="Cancel" class="btn btn-danger">
+                        Cancel
+                    </button>
+                </s:a>
                 <button class="btn btn-primary finalSaveBtn" type="button" disabled>Save</button>
             </div>
         </s:form>
@@ -549,7 +571,7 @@
             </s:url>
             <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                  title="Update Status">
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                     <button type="button" class="btn">
                         Dispatch Plan : Containers
                     </button>
@@ -866,6 +888,17 @@
                     </div>
                 </div>
                 <div style="float: right;">
+                    <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
+                        <s:param name="orderIdParam"
+                                 value="#attr.order.orderId"></s:param>
+                        <s:param name="orderNoParam"
+                                 value="#attr.order.orderNo"></s:param>
+                    </s:url>
+                    <s:a href="%{viewInlandFreightItemListUrl}" rel="tooltip" title="Cancel">
+                        <button type="button" id="Cancel" class="btn btn-danger">
+                            Cancel
+                        </button>
+                    </s:a>
                     <button class="btn btn-primary finalSaveBtn" type="button" disabled>Save</button>
                 </div>
             </s:form>
@@ -1324,55 +1357,59 @@
                     });
 
                     var truckCode = $("#trucksList").val();
+                    if(truckCode != null) {
+                        $.getJSON('truckDetails', {
+                            truckCodeParam: truckCode
+                        },
 
-                    $.getJSON('truckDetails', {
-                        truckCodeParam: truckCode
-                    },
+                        function (jsonResponse) {
+                            var select1 = $('#bodyType');
 
-                    function (jsonResponse) {
-                        var select1 = $('#bodyType');
+                            select1.find('option').remove();
 
-                        select1.find('option').remove();
+                            var select2 = $('#plateNumber');
 
-                        var select2 = $('#plateNumber');
+                            select2.find('option').remove();
 
-                        select2.find('option').remove();
+                            var select3 = $('#grossWeight');
 
-                        var select3 = $('#grossWeight');
+                            select3.find('option').remove();
 
-                        select3.find('option').remove();
+                            // For Truck Type Auto-populate
+                            $.each(jsonResponse.bodyTypeMap, function (key, value) {
 
-                        // For Truck Type Auto-populate
-                        $.each(jsonResponse.bodyTypeMap, function (key,value) {
+                                $('<option>').val(key).text(value).appendTo(select1);
+                                var bodyType = $("#bodyType").val();
+                                document.getElementById("bodyType_textfield").value = bodyType;
 
-                            $('<option>').val(key).text(value).appendTo(select1);
-                            var bodyType = $("#bodyType").val();
-                            document.getElementById("bodyType_textfield").value = bodyType;
+                            });
 
+                            // For Plate Number Auto-populate
+                            $.each(jsonResponse.plateNumberMap, function (key, value) {
+
+                                $('<option>').val(key).text(value).appendTo(select2);
+                                var plateNumber = $("#plateNumber").val();
+                                document.getElementById("plateNumber_textfield").value = plateNumber;
+
+                            });
+
+                            // For Gross Weight Auto-populate
+                            $.each(jsonResponse.grossWeightMap, function (key, value) {
+
+                                $('<option>').val(key).text(value).appendTo(select3);
+                                var grossWeight = $("#grossWeight").val();
+                                document.getElementById("grossWeight_textfield").value = grossWeight;
+
+                            });
                         });
-
-                        // For Plate Number Auto-populate
-                        $.each(jsonResponse.plateNumberMap, function (key,value) {
-
-                            $('<option>').val(key).text(value).appendTo(select2);
-                            var plateNumber = $("#plateNumber").val();
-                            document.getElementById("plateNumber_textfield").value = plateNumber;
-
-                        });
-
-                        // For Gross Weight Auto-populate
-                        $.each(jsonResponse.grossWeightMap, function (key,value) {
-
-                            $('<option>').val(key).text(value).appendTo(select3);
-                            var grossWeight = $("#grossWeight").val();
-                            document.getElementById("grossWeight_textfield").value = grossWeight;
-
-                        });
-                    });
-                });
-
+                    }
+                    else{
+                        document.getElementById("bodyType_textfield").value = '';
+                        document.getElementById("plateNumber_textfield").value = '';
+                        document.getElementById("grossWeight_textfield").value = '';
+                    }
+            });
         });
-
     });
 
     $(document).ready(function(){

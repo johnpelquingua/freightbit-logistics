@@ -23,7 +23,7 @@
                 <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                      title="Update Status">
 
-                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                         Dispatch Plan : Containers
                     </s:if>
                     <s:else>
@@ -278,30 +278,26 @@
     </div>
 
     <div class="pull-right">
-        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+        <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
             <s:param name="orderIdParam"
                      value="#attr.order.orderId"></s:param>
             <s:param name="orderNoParam"
                      value="#attr.order.orderNo"></s:param>
         </s:url>
-        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+        <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
              title="Update Status">
 
-            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                 <button type="button" class="btn btn-default">
-                    Back to Freight Plan : Containers
+                    Back to Dispatch Plan : Containers
                 </button>
             </s:if>
             <s:else>
                 <button type="button" class="btn btn-default">
-                    Back to Freight Plan : Items
+                    Back to Dispatch Plan : Items
                 </button>
             </s:else>
-
         </s:a>
     </div>
-
 </div>
-
-
 </div>

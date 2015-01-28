@@ -96,7 +96,7 @@
 
                                 <td>
                                     <display:column title="Action">
-                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#actualModal" onclick="showActualDateFields(${orderStatusLogs.statusId});">
+                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#actualModal" onclick="showActualDateFields(${orderStatusLogs.statusId});" title="Set Actual Date of this status" rel="tooltip">
                                         <i class="fa fa-edit"></i>
                                         <%--<s:param name="orderItemIdParam" value="#attr.orderStatusLogs.orderItemId"></s:param>--%>
                                     </a>
@@ -179,7 +179,7 @@
                     </s:url>
 
                     <s:a href="%{viewStatusListItemsUrl}" rel="tooltip" title="Update Status">
-                        <button type="button" id="Cancel" class="btn">
+                        <button type="button" id="Cancel" class="btn btn-danger">
                             Back to Booking Item List
                         </button>
                     </s:a>
