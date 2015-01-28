@@ -1066,13 +1066,13 @@ function filterLclTable(){
         boolean = false;
 
     for(var i=0; i < lclTable.size(); i++){
-        if(initialDestination != lcl_desti.eq(i).text() || initialOrigin != lcl_origin.eq(i).text()){
-            boolean = true;
-        }
-
-        if(boolean){
-            $('.lclCheckbox').prop('disabled', true);
-        }
+//        if(initialDestination != lcl_desti.eq(i).text() || initialOrigin != lcl_origin.eq(i).text()){
+//            boolean = true;
+//        }
+//
+//        if(boolean){
+//            $('.lclCheckbox').prop('disabled', true);
+//        }
 
         switch(lcl_status.eq(i).text()){
             case 'PENDING' :
