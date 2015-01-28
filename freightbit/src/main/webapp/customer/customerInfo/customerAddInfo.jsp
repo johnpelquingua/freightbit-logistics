@@ -61,7 +61,7 @@
                                     <div class="col-lg-7" >
                                         <s:textfield required="true" name="customer.email" cssClass="customerInput form-control" id="customer.email" type="email" maxLength="50"
                                                      placeholder="Email Address" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"
-                                                     title="Example: email@domain.com" />
+                                                     title="Example: example@domain.com" />
                                     </div>
                                 </div>
 
