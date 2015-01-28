@@ -6,7 +6,7 @@
         <legend style="text-align: left;">
             <span >
 
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                     <h1><i class="fa fa-truck"></i> Dispatch Plan : Containers</h1>
                 </s:if>
                 <s:else>
@@ -17,7 +17,7 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
             <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Dispatch Plan : Orders  </a></li>
-            <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                 <li class="active"> Dispatch Plan : Containers </li>
             </s:if>
             <s:else>
@@ -191,7 +191,7 @@
                                                 class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
-                            <td><display:column property="finalPickupDate" title="Pick-Up Date <i class='fa fa-sort' />"
+                            <td><display:column property="finalPickupDate" title="Pick-up Date <i class='fa fa-sort' />"
                                                 class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
@@ -208,19 +208,21 @@
                                                 style="text-align: center;"> </display:column></td>
 
                             <td><display:column title="Action">
+
                                 <s:if test="#attr.orderItem.status=='ON GOING' || #attr.orderItem.status=='PLANNING 1'">
-                                    <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
-                                        <s:param name="orderItemIdParam"
-                                                 value="#attr.orderItem.orderItemId">
-                                        </s:param>
-                                        <s:param name="orderNoParam"
-                                                 value="orderNoParam">
-                                        </s:param>
-                                    </s:url>
-                                    <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
-                                         title="Show Information">
-                                        <i class="fa fa-info-circle"></i>
-                                    </s:a>
+                                    <%--<s:url var="viewInfoUrl" action="viewSeaFreightInfo">--%>
+                                        <%--<s:param name="orderItemIdParam"--%>
+                                                 <%--value="#attr.orderItem.orderItemId">--%>
+                                        <%--</s:param>--%>
+                                        <%--<s:param name="orderNoParam"--%>
+                                                 <%--value="orderNoParam">--%>
+                                        <%--</s:param>--%>
+                                    <%--</s:url>--%>
+                                    <%--<s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"--%>
+                                         <%--title="Show Information">--%>
+                                        <%--<i class="fa fa-info-circle"></i>--%>
+                                    <%--</s:a>--%>
+                                    <i class="fa fa-ban"></i>
                                 </s:if>
                                 <s:else>
                                     <s:url var="viewFreightPlanningUrl" action="viewFreightPlanningInland">
@@ -236,7 +238,7 @@
                                         <i class="fa fa-tasks"></i>
                                     </s:a>
 
-                                    <s:url var="viewInfoUrl" action="viewSeaFreightInfo">
+                                    <s:url var="viewInfoUrl" action="viewInlandFreightInfo">
                                         <s:param name="orderItemIdParam"
                                                  value="#attr.orderItem.orderItemId">
                                         </s:param>
@@ -249,6 +251,7 @@
                                         <i class="fa fa-info-circle"></i>
                                     </s:a>
                                 </s:else>
+
                             </display:column></td>
 
                         </display:table>
