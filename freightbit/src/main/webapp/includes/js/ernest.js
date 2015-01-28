@@ -796,10 +796,10 @@ function hideVesselSchedule(){
         var loopDepartureDate = new Date(departureDateTable.eq(i).text()).setHours(0,0,0,0),
             loopArrivalDate = new Date(arrivalDateTable.eq(i).text()).setHours(0,0,0,0);
 
-        if(voyageNumberCurrent == voyageNumberList.eq(i).text()){
-            voyageNumberList.eq(i).closest('tr').remove();
-            continue;
-        }
+//        if(voyageNumberCurrent == voyageNumberList.eq(i).text()){
+//            voyageNumberList.eq(i).closest('tr').remove();
+//            continue;
+//        }
 
         // DELETES OVERDUE SCHEDULES
         if(loopDepartureDate < currentDate){
@@ -831,15 +831,27 @@ function hideVesselSchedule(){
         departureDateTable.eq(i).empty().append(departureDateReformat);
     }
 
-    if($('.listOfSchedules tbody tr').size() == 0){
-        $('.loadingDiv').empty().append('<i>No schedule found.</i>');
-    }else{
-        if($('.listOfSchedules tbody tr').size() > 10){
-            $('.listOfSchedules').oneSimpleTablePagination({rowsPerPage: 10});
+    setTimeout(function(){
+        if($('.listOfSchedules tbody tr').size() == 0){
+            $('.loadingDiv').empty().append('<i>No schedule found.</i>');
+        }else{
+            if($('.listOfSchedules tbody tr').size() > 10){
+                $('.listOfSchedules').oneSimpleTablePagination({rowsPerPage: 10});
+            }
+            $('.loadingDiv').hide();
+            $('.tableDiv').fadeIn();
         }
-        $('.loadingDiv').hide();
-        $('.tableDiv').fadeIn();
-    }
+    }, 1000);
+
+//    if($('.listOfSchedules tbody tr').size() == 0){
+//        $('.loadingDiv').empty().append('<i>No schedule found.</i>');
+//    }else{
+//        if($('.listOfSchedules tbody tr').size() > 10){
+//            $('.listOfSchedules').oneSimpleTablePagination({rowsPerPage: 10});
+//        }
+//        $('.loadingDiv').hide();
+//        $('.tableDiv').fadeIn();
+//    }
 }
 
 function addTotalRate(){
@@ -868,14 +880,6 @@ function dateValidationInit(){
             finalPickupDate = new Date($('.finalPickupDate').val()),
             finalSaveBtn = $('.finalSaveBtn'),
             formToSubmit = $('.originForm');
-
-//        alert($('.serviceModeField').val());
-//        alert(pickupdate);
-//        if($('.serviceModeField').val() == 'DELIVERY'){
-//
-//        }else if($('.serviceModeField').val() == 'PICKUP'){
-//
-//        }
 
         if(departureDate != 'Invalid Date' && pickupdate != 'Invalid Date'){
             if(finalPickupDate.setHours(0,0,0,0) >= pickupdate.setHours(0,0,0,0) && finalPickupDate.setHours(0,0,0,0) <= departureDate.setHours(0,0,0,0)){
@@ -927,8 +931,8 @@ function dateValidationInit(){
 function vesselScheduleColor(tableClass, departureColumn){
     var tableDepartureColumn = $('#'+tableClass+' tbody tr td:nth-child('+departureColumn+')');
     for(var i = 0; i < tableDepartureColumn.size(); i++){
-        var departDate = new Date(tableDepartureColumn.eq(i).text()),
-            currentDate = new Date();
+        var departDate = new Date(tableDepartureColumn.eq(i).text()).setHours(0,0,0,0),
+            currentDate = new Date().setHours(0,0,0,0);
         if(departDate < currentDate){ tableDepartureColumn.eq(i).closest('tr').css('background-color', '#f2a5aa');
         }else{ tableDepartureColumn.eq(i).closest('tr').css('background-color', '#dff0d8'); }
     }

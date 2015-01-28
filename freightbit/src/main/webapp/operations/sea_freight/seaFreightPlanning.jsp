@@ -253,7 +253,11 @@
                             </div>
                         </div>
                     </s:if>
-
+                    <div class="loadingDiv" style="text-align: center;">
+                        Pulling up Schedules. Please Wait.<br/>
+                        <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
+                    </div>
+                    <div class="tableDiv" style="display: none;">
                         <display:table id="vesselSchedule" name="vesselSchedules"
                                        requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                        class="table table-striped table-hover table-bordered text-center tablesorter listOfSchedules"
@@ -291,7 +295,7 @@
                                 </s:a>
                             </display:column></td>
                         </display:table>
-
+                    </div>
                 </div>
             </div>
         </s:if>
@@ -667,44 +671,50 @@
                             </div>
                         </div>
                     </s:if>
-                    <display:table id="vesselSchedule" name="vesselSchedules"
-                                   requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter listOfSchedules"
-                                   style="margin-top: 15px;">
-                        <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="originPort" title="ORI" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="destinationPort" title="DES" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="vendorClass" title="Class" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column title="Action">
-                            <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
-                                <s:param name="orderItemIdParam"
-                                         value="#attr.orderItem.orderItemId">
-                                </s:param>
-                                <s:param name="vesselScheduleIdParam"
-                                         value="#attr.vesselSchedule.vesselScheduleId">
-                                </s:param>
-                                <s:param name="vendorIdParam"
-                                         value="#attr.vesselSchedule.vendorId">
-                                </s:param>
-                            </s:url>
-                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
-                                <%--Choose this vessel...--%>
-                                <i class="fa fa-arrow-circle-down"></i>
-                            </s:a>
-                        </display:column></td>
-                    </display:table>
+                    <div class="loadingDiv" style="text-align: center;">
+                        Pulling up Schedules. Please Wait.<br/>
+                        <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
+                    </div>
+                    <div class="tableDiv" style="display: none;">
+                        <display:table id="vesselSchedule" name="vesselSchedules"
+                                       requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                       class="table table-striped table-hover table-bordered text-center tablesorter listOfSchedules"
+                                       style="margin-top: 15px;">
+                            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="destinationPort" title="DES" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vendorClass" title="Class" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column title="Action">
+                                <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                    <s:param name="orderItemIdParam"
+                                             value="#attr.orderItem.orderItemId">
+                                    </s:param>
+                                    <s:param name="vesselScheduleIdParam"
+                                             value="#attr.vesselSchedule.vesselScheduleId">
+                                    </s:param>
+                                    <s:param name="vendorIdParam"
+                                             value="#attr.vesselSchedule.vendorId">
+                                    </s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
+                                    <%--Choose this vessel...--%>
+                                    <i class="fa fa-arrow-circle-down"></i>
+                                </s:a>
+                            </display:column></td>
+                        </display:table>
+                    </div>
                 </div>
             </div>
 
@@ -889,44 +899,50 @@
                             </div>
                         </div>
                     </s:if>
-                    <display:table id="vesselSchedule" name="vesselSchedules"
-                                   requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                   class="table table-striped table-hover table-bordered text-center tablesorter listOfSchedules"
-                                   style="margin-top: 15px;">
-                        <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="originPort" title="ORI" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="destinationPort" title="DES" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column property="vendorClass" title="Class" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
-                        <td><display:column title="Action">
-                            <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
-                                <s:param name="orderItemIdParam"
-                                         value="#attr.orderItem.orderItemId">
-                                </s:param>
-                                <s:param name="vesselScheduleIdParam"
-                                         value="#attr.vesselSchedule.vesselScheduleId">
-                                </s:param>
-                                <s:param name="vendorIdParam"
-                                         value="#attr.vesselSchedule.vendorId">
-                                </s:param>
-                            </s:url>
-                            <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
-                                <%--Choose this vessel...--%>
-                                <i class="fa fa-arrow-circle-down"></i>
-                            </s:a>
-                        </display:column></td>
-                    </display:table>
+                    <div class="loadingDiv" style="text-align: center;">
+                        Pulling up Schedules. Please Wait.<br/>
+                        <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
+                    </div>
+                    <div class="tableDiv" style="display: none;">
+                        <display:table id="vesselSchedule" name="vesselSchedules"
+                                       requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                       class="table table-striped table-hover table-bordered text-center tablesorter listOfSchedules"
+                                       style="margin-top: 15px;">
+                            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="destinationPort" title="DES" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column property="vendorClass" title="Class" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                            <td><display:column title="Action">
+                                <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                    <s:param name="orderItemIdParam"
+                                             value="#attr.orderItem.orderItemId">
+                                    </s:param>
+                                    <s:param name="vesselScheduleIdParam"
+                                             value="#attr.vesselSchedule.vesselScheduleId">
+                                    </s:param>
+                                    <s:param name="vendorIdParam"
+                                             value="#attr.vesselSchedule.vendorId">
+                                    </s:param>
+                                </s:url>
+                                <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
+                                    <%--Choose this vessel...--%>
+                                    <i class="fa fa-arrow-circle-down"></i>
+                                </s:a>
+                            </display:column></td>
+                        </display:table>
+                    </div>
                 </div>
             </div>
 
