@@ -203,7 +203,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div>
-                                        <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
+                                        <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info" style="width: 135px;">
                                             Add Vendor
                                         </a>
                                     </div>
@@ -717,7 +717,7 @@
                                 </div>
                                 <div class="col-lg-2" style="text-align: center;">
                                     <div>
-                                        <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
+                                        <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info" style="width: 135px;">
                                             Add Vendor
                                         </a>
                                     </div>
@@ -969,7 +969,7 @@
                                 </div>
                                 <div class="col-lg-2" style="text-align: center;">
                                     <div>
-                                        <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
+                                        <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info" style="width: 135px;">
                                             Add Vendor
                                         </a>
                                     </div>
@@ -1184,7 +1184,7 @@
                                 </div>
                                 <div class="col-lg-2" style="text-align: center;">
                                     <div>
-                                        <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
+                                        <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info" style="width: 135px;">
                                             Add Vendor
                                         </a>
                                     </div>
@@ -1644,7 +1644,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName"
-                                         id="driver.lastName" required="true"/>
+                                         id="driver_lastName" required="true"/>
                         </div>
 
                     </div>
@@ -1655,7 +1655,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName"
-                                         id="driver.firstName" required="true"/>
+                                         id="driver_firstName" required="true"/>
                         </div>
 
                     </div>
@@ -1666,7 +1666,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName"
-                                         id="driver.middleName" />
+                                         id="driver_middleName" />
                         </div>
 
                     </div>
@@ -1677,7 +1677,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"
-                                         id="driver.title" required="true"/>
+                                         id="driver_title" required="true"/>
                         </div>
 
                     </div>
@@ -1730,7 +1730,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">LTO Certificate Number<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
-                                     id="truck.truckCode" required="true" maxlength="10"/>
+                                     id="truck_truckCode" required="true" maxlength="10"/>
                     </div>
                 </div>
                     <%--MV File Number--%>
@@ -1746,7 +1746,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Model<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="e.g. 4Runner, Yukon, Silverado, etc." name="truck.modelNumber"
-                                     id="truck.modelNumber" required="true"/>
+                                     id="truck_modelNumber" required="true"/>
                     </div>
                 </div>
                     <%--Owner's Name = ownerName--%>
@@ -1754,7 +1754,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Owner's Name<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Owner's Name" name="truck.ownerName"
-                                     id="truck.ownerName" required="true"/>
+                                     id="truck_ownerName" required="true"/>
                     </div>
                 </div>
                     <%--Owner's Address = ownerAddress--%>
@@ -1762,7 +1762,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0;">Owner's Address<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Owner's Address" name="truck.ownerAddress"
-                                     id="truck.ownerAddress" required="true"/>
+                                     id="truck_ownerAddress" required="true"/>
                     </div>
                 </div>
                     <%--O.R. Number = officialReceipt--%>
@@ -1770,7 +1770,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">O.R. Number<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt"
-                                     id="truck.officialReceipt" required="true"/>
+                                     id="truck_officialReceipt" required="true"/>
                     </div>
                 </div>
                     <%--CR Date of Issue--%>
@@ -1786,7 +1786,7 @@
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="e.g. Toyota, GMC, Chevrolet, etc."
                                      name="truck.engineNumber"
-                                     id="truck.engineNumber" required="true"/>
+                                     id="truck_engineNumber" required="true"/>
                     </div>
                 </div>
                     <%--Type of Body = truckType--%>
@@ -1802,7 +1802,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Year Model<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder=" e.g. 1999, 2012, etc." name="truck.modelYear"
-                                     id="truck.modelYear" required="true" maxLength="4"/>
+                                     id="truck_modelYear" required="true" maxLength="4"/>
                     </div>
                 </div>
                     <%--Gross Weight = grossWeight--%>
@@ -1810,7 +1810,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Gross Weight (kg.)<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
-                                     id="truck.grossWeight" required="true"/>
+                                     id="truck_grossWeight" required="true"/>
                     </div>
                 </div>
                     <%--Net Weight = netWeight--%>
@@ -1818,7 +1818,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Net Weight (kg.)<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Net Weight" name="truck.netWeight"
-                                     id="truck.netWeight" required="true"/>
+                                     id="truck_netWeight" required="true"/>
                     </div>
                 </div>
                     <%--Net Capacity = netCapacity--%>
@@ -1826,7 +1826,7 @@
                     <label class="col-lg-4 control-label" style="padding-top:0px;">Net Capacity<span class="asterisk_red"></span></label>
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Net Capacity" name="truck.netCapacity"
-                                     id="truck.netCapacity" required="true"/>
+                                     id="truck_netCapacity" required="true"/>
                     </div>
                 </div>
             </div>
@@ -1868,7 +1868,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
-                                         id="vendor.vendorName" required="true"/>
+                                         id="vendor_vendorName" required="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -2334,9 +2334,15 @@
 
     });
 
-    $(document).ready(function(){
-        $("#createDriverButtonOrigin").click(function(){
+    $(document).ready(function () {
+        $("#createDriverButton").click(function () {
             var vendorId = $("#vendorListOrigin").val();
+            $("#driver_licenseNumber").val('');
+            $("#driver_lastName").val('');
+            $("#driver_firstName").val('');
+            $("#driver_middleName").val('');
+            $("#driver_title").val('');
+
             if (vendorId == "" || null) {
                 alert("Select a vendor first");
                 return false;
@@ -2345,9 +2351,22 @@
         })
     });
 
-    $(document).ready(function(){
-        $("#createTruckButtonOrigin").click(function(){
+    $(document).ready(function () {
+        $("#createTruckButton").click(function () {
             var vendorId = $("#vendorListOrigin").val();
+            $("#truck_plateNumber").val('');
+            $("#truck_truckCode").val('');
+            $("#truck_motorVehicleNumber").val('');
+            $("#truck_modelNumber").val('');
+            $("#truck_ownerName").val('');
+            $("#truck_ownerAddress").val('');
+            $("#truck_officialReceipt").val('');
+            $("#truck_engineNumber").val('');
+            $("#truck_modelYear").val('');
+            $("#truck_grossWeight").val('');
+            $("#truck_netWeight").val('');
+            $("#truck_netCapacity").val('');
+
             if (vendorId == "" || null) {
                 alert("Select a vendor first");
                 return false;
@@ -2355,10 +2374,22 @@
             $("#vendorIdTruck").val(vendorId);
         })
     });
+    $(document).ready(function () {
+        $("#createVendorButton").click(function () {
+            $("#vendor_vendorName").val('');
+            $("#vendor_vendorCode").val('');
+        })
+    });
 
-    $(document).ready(function(){
-        $("#createDriverButton").click(function(){
+    $(document).ready(function () {
+        $("#createDriverButton").click(function () {
             var vendorId = $("#vendorListDestination").val();
+            $("#driver_licenseNumber").val('');
+            $("#driver_lastName").val('');
+            $("#driver_firstName").val('');
+            $("#driver_middleName").val('');
+            $("#driver_title").val('');
+
             if (vendorId == "" || null) {
                 alert("Select a vendor first");
                 return false;
@@ -2367,9 +2398,22 @@
         })
     });
 
-    $(document).ready(function(){
-        $("#createTruckButton").click(function(){
+    $(document).ready(function () {
+        $("#createTruckButton").click(function () {
             var vendorId = $("#vendorListDestination").val();
+            $("#truck_plateNumber").val('');
+            $("#truck_truckCode").val('');
+            $("#truck_motorVehicleNumber").val('');
+            $("#truck_modelNumber").val('');
+            $("#truck_ownerName").val('');
+            $("#truck_ownerAddress").val('');
+            $("#truck_officialReceipt").val('');
+            $("#truck_engineNumber").val('');
+            $("#truck_modelYear").val('');
+            $("#truck_grossWeight").val('');
+            $("#truck_netWeight").val('');
+            $("#truck_netCapacity").val('');
+
             if (vendorId == "" || null) {
                 alert("Select a vendor first");
                 return false;

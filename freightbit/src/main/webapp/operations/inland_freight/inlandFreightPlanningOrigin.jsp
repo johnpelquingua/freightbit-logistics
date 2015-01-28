@@ -942,7 +942,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName"
-                                         id="driver.lastName" required="true"/>
+                                         id="driver_lastName" required="true"/>
                         </div>
 
                     </div>
@@ -954,7 +954,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName"
-                                         id="driver.firstName" required="true"/>
+                                         id="driver_firstName" required="true"/>
                         </div>
 
                     </div>
@@ -966,7 +966,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName"
-                                         id="driver.middleName"/>
+                                         id="driver_middleName"/>
                         </div>
 
                     </div>
@@ -978,7 +978,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"
-                                         id="driver.title" required="true"/>
+                                         id="driver_title" required="true"/>
                         </div>
 
                     </div>
@@ -1038,7 +1038,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Company Name" name="vendor.vendorName"
-                                         id="vendor.vendorName" required="true"/>
+                                         id="vendor_vendorName" required="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -1113,7 +1113,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
-                                     id="truck.truckCode" required="true" maxlength="10"/>
+                                     id="truck_truckCode" required="true" maxlength="10"/>
                     </div>
                 </div>
                     <%--MV File Number--%>
@@ -1135,7 +1135,7 @@
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="e.g. 4Runner, Yukon, Silverado, etc."
                                      name="truck.modelNumber"
-                                     id="truck.modelNumber" required="true"/>
+                                     id="truck_modelNumber" required="true"/>
                     </div>
                 </div>
                     <%--Owner's Name = ownerName--%>
@@ -1145,7 +1145,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Owner's Name" name="truck.ownerName"
-                                     id="truck.ownerName" required="true"/>
+                                     id="truck_ownerName" required="true"/>
                     </div>
                 </div>
                     <%--Owner's Address = ownerAddress--%>
@@ -1155,7 +1155,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Owner's Address" name="truck.ownerAddress"
-                                     id="truck.ownerAddress" required="true"/>
+                                     id="truck_ownerAddress" required="true"/>
                     </div>
                 </div>
                     <%--O.R. Number = officialReceipt--%>
@@ -1165,7 +1165,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt"
-                                     id="truck.officialReceipt" required="true"/>
+                                     id="truck_officialReceipt" required="true"/>
                     </div>
                 </div>
                     <%--CR Date of Issue--%>
@@ -1186,7 +1186,7 @@
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="e.g. Toyota, GMC, Chevrolet, etc."
                                      name="truck.engineNumber"
-                                     id="truck.engineNumber" required="true"/>
+                                     id="truck_engineNumber" required="true"/>
                     </div>
                 </div>
                     <%--Type of Body = truckType--%>
@@ -1205,7 +1205,7 @@
                             class="asterisk_red"></span></label>
 
                     <div class="col-lg-8">
-                        <s:textfield cssClass="form-control" placeholder=" e.g. 1999, 2012, etc." name="truck.modelYear"
+                        <s:textfield cssClass="form-control" placeholder=" e.g. 1999, 2012, etc." name="truck_modelYear"
                                      id="truck.modelYear" required="true" maxLength="4"/>
                     </div>
                 </div>
@@ -1215,7 +1215,7 @@
                             class="asterisk_red"></span></label>
 
                     <div class="col-lg-8">
-                        <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
+                        <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck_grossWeight"
                                      id="truck.grossWeight" required="true"/>
                     </div>
                 </div>
@@ -1226,7 +1226,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Net Weight" name="truck.netWeight"
-                                     id="truck.netWeight" required="true"/>
+                                     id="truck_netWeight" required="true"/>
                     </div>
                 </div>
                     <%--Net Capacity = netCapacity--%>
@@ -1236,7 +1236,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Net Capacity" name="truck.netCapacity"
-                                     id="truck.netCapacity" required="true"/>
+                                     id="truck_netCapacity" required="true"/>
                     </div>
                 </div>
             </div>
@@ -1412,20 +1412,46 @@
         });
     });
 
-    $(document).ready(function(){
-       $("#createDriverButton").click(function(){
-           var vendorId = $("#vendorListOrigin").val();
-           if (vendorId == "" || null) {
-               alert("Select a vendor first");
-               return false;
-           }
-           $("#vendorId").val(vendorId);
-       })
+    $(document).ready(function () {
+        $("#createVendorButton").click(function () {
+            $("#vendor_vendorName").val('');
+            $("#vendor_vendorCode").val('');
+        })
     });
 
-    $(document).ready(function(){
-        $("#createTruckButton").click(function(){
+    $(document).ready(function () {
+        $("#createDriverButton").click(function () {
             var vendorId = $("#vendorListOrigin").val();
+            $("#driver_licenseNumber").val('');
+            $("#driver_lastName").val('');
+            $("#driver_firstName").val('');
+            $("#driver_middleName").val('');
+            $("#driver_title").val('');
+
+            if (vendorId == "" || null) {
+                alert("Select a vendor first");
+                return false;
+            }
+            $("#vendorId").val(vendorId);
+        })
+    });
+
+    $(document).ready(function () {
+        $("#createTruckButton").click(function () {
+            var vendorId = $("#vendorListOrigin").val();
+            $("#truck_plateNumber").val('');
+            $("#truck_truckCode").val('');
+            $("#truck_motorVehicleNumber").val('');
+            $("#truck_modelNumber").val('');
+            $("#truck_ownerName").val('');
+            $("#truck_ownerAddress").val('');
+            $("#truck_officialReceipt").val('');
+            $("#truck_engineNumber").val('');
+            $("#truck_modelYear").val('');
+            $("#truck_grossWeight").val('');
+            $("#truck_netWeight").val('');
+            $("#truck_netCapacity").val('');
+
             if (vendorId == "" || null) {
                 alert("Select a vendor first");
                 return false;
