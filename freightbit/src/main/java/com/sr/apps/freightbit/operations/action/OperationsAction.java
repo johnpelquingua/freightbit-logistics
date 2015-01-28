@@ -570,12 +570,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                     Integer orderItemId = Integer.parseInt(check[i]);
                     OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
-                    /*if ("PLANNING 1".equals(entity.getStatus())) {
+                    if ("PLANNING 1".equals(entity.getStatus())) {
                         planning1.add(orderItemId);
                         if (planning2.size() > 0 || planning3.size() > 0) {
                             return INPUT;
                         }
-                    }*/
+                    }
                     if ("PLANNING 2".equals(entity.getStatus())) {
                         planning2.add(orderItemId);
                         if (planning1.size() > 0 || planning3.size() > 0) {
@@ -631,7 +631,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             } else if (planning3.size() > 0) {
                 return "PLANNING 3";
             } else{
-                return "PLANNING 2";
+                return "input";
             }
 
         } else {
