@@ -1086,3 +1086,38 @@ function filterLclTable(){
     $('.lclMainLoadingDiv').hide();
     $('.lclMainTable').fadeIn();
 }
+
+function lclCheckboxFilter(item){
+    if(item.is(':checked')){
+        var des = item.closest('tr').find('td').eq(6).text(),
+            ori = item.closest('tr').find('td').eq(5).text(),
+            box = $('.lclCheckbox');
+
+        for(var i=0; i < box.size(); i++){
+            if(box.eq(i).closest('tr').find('td').eq(6).text() == des || box.eq(i).closest('tr').find('td').eq(5).text() == ori){
+                box.eq(i).attr('disabled', false);
+            }else{
+                box.eq(i).attr('disabled', true);
+            }
+        }
+    }else{
+        var disabledBox = $('.lclCheckbox:disabled'),
+            checkedBox = $('.lclCheckbox:checked');
+        if(checkedBox.size() != 0){
+            for(var i=0; i < disabledBox.size(); i++){
+                if(checkedBox.eq(i).closest('tr').find('td').eq(5).text() == disabledBox.eq(i).closest('tr').find('td').eq(5).text() && checkedBox.eq(i).closest('tr').find('td').eq(6).text() != disabledBox.eq(i).closest('tr').find('td').eq(6).text()){
+                    disabledBox.eq(i).attr('disabled', false);
+                }
+            }
+        }else{
+            disabledBox.attr('disabled', false);
+        }
+    }
+    if($('.lclCheckbox:checked').size() != 0){
+        $('.warningMsg').hide();
+        $('.consolidateBtn').attr('disabled', false);
+    }else{
+        $('.warningMsg').show();
+        $('.consolidateBtn').attr('disabled', true);
+    }
+}

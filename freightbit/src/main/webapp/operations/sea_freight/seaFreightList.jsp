@@ -204,7 +204,8 @@
                                     </div>
                                 </div>
                                 <hr/>
-                                <button disabled type="button" class="consolidateBtn btn btn-default" data-toggle="modal" data-target="#consolidateModal">Consolidate</button>
+                                <div class="warningMsg"><i class="fa fa-warning" style="color: #E74C3C"></i> <i style="color: #E74C3C; font-size: 0.9em;">Bookings must have the same DES and ORI to initialize consolidation</i></div>
+                                <br/><button style="margin-top: 1em;" disabled type="button" class="consolidateBtn btn btn-default" data-toggle="modal" data-target="#consolidateModal"><i class="fa fa-cubes"></i> Consolidate</button>
                             </div>
 
                         </s:form>
@@ -402,6 +403,7 @@
 <script>
     $(document).ready(function(){
         // START
+
         if($('.lclTable tbody tr').size() > 1){ filterLclTable(); }
 
         $('.consolidateBtn').click(function(){
@@ -409,38 +411,11 @@
         });
 
         $('.lclCheckbox').change(function(){
-            if($(this).is(':checked')){
-                var des = $(this).closest('tr').find('td').eq(6).text(),
-                    ori = $(this).closest('tr').find('td').eq(5).text(),
-                    box = $('.lclCheckbox');
-
-                for(var i=0; i < box.size(); i++){
-                    if(box.eq(i).closest('tr').find('td').eq(6).text() == des || box.eq(i).closest('tr').find('td').eq(5).text() == ori){
-                        box.eq(i).attr('disabled', false);
-                    }else{
-                        box.eq(i).attr('disabled', true);
-                    }
-                }
-            }else{
-                var disabledBox = $('.lclCheckbox:disabled'),
-                        checkedBox = $('.lclCheckbox:checked');
-                if(checkedBox.size() != 0){
-                    for(var i=0; i < disabledBox.size(); i++){
-                        if(checkedBox.eq(i).closest('tr').find('td').eq(5).text() == disabledBox.eq(i).closest('tr').find('td').eq(5).text() && checkedBox.eq(i).closest('tr').find('td').eq(6).text() != disabledBox.eq(i).closest('tr').find('td').eq(6).text()){
-                            disabledBox.eq(i).attr('disabled', false);
-                        }
-                    }
-                }else{
-                    disabledBox.attr('disabled', false);
-                }
-            }
-            if($('.lclCheckbox:checked').size() != 0){
-                $('.consolidateBtn').attr('disabled', false);
-            }else{
-                $('.consolidateBtn').attr('disabled', true);
-            }
+            lclCheckboxFilter($(this));
         });
+
         // END
+
         if($('.lclTable').size() != 0){
             $('.wellDiv').show('fast');
             seaFreightLclComputation('lclTable', 'wellTotalWeight', 'wellTotalVolume');
