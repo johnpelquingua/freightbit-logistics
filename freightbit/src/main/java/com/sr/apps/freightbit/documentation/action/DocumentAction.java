@@ -2732,13 +2732,15 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             for (OrderItems orderItemElem : orderItemsEntity) {
                 // ---------------------------------------- NULL ERROR --------------------------------------
-                /*if(orderItemElem.getVendorSea().equals(null) || "".equals(orderItemElem.getVendorSea()) ){*/
+                String vendorHolder = orderItemElem.getVendorSea();
+                if(vendorHolder != null){
+                System.out.println(">>>>>>>>>>>>>>>>>>> " + orderItemElem.getVendorSea());
                     Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorSea());
                     formBean.setVendorCode(vendorEntity.getVendorName());
-                /*}else{
+                }else{
                     formBean.setVendorCode("NONE");
-                }*/
 
+                }
             }
 
         }else if (entity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){

@@ -1016,7 +1016,7 @@ function lclHideVesselSchedule(){
             lcl_pickupDateValue = loop_pickupDate;
         }
 
-        if(loop_deliveryDate > lcl_deliveryDateValue){
+        if(loop_deliveryDate < lcl_deliveryDateValue){
             lcl_deliveryDateValue = loop_deliveryDate;
         }
     }
@@ -1027,6 +1027,7 @@ function lclHideVesselSchedule(){
         currentDate = new Date().setHours(0,0,0,0);
 
     for(var i=0; i < lclConsolidateSchedule.size(); i++){
+
         var loop_departureDate = new Date(conso_departureDate.eq(i).text()).setHours(0,0,0,0),
             loop_arrivalDate = new Date(conso_arrivalDate.eq(i).text()).setHours(0,0,0,0);
 
@@ -1041,6 +1042,17 @@ function lclHideVesselSchedule(){
                 continue;
             }
         }
+
+        if(loop_arrivalDate > currentDate){
+            conso_arrivalDate.eq(i).closest('tr').hide();
+            continue;
+        }
+
+        if(lcl_deliveryDateValue < loop_deliveryDate){
+            conso_arrivalDate.eq(i).closest('tr').hide();
+            continue;
+        }
+
     }
 
     // SECOND STEP - END
@@ -1056,17 +1068,17 @@ function lclHideVesselSchedule(){
     }
 
     // APPEND ALL ID OF CHECKED ITEMS -- START
-    for(var i=0; i < checkedItems.size(); i++){
-        var itemId = checkedItems.eq(i).closest('tr').find('td').eq(14).text()
-        if(i == 0){
-            $('.consolidateModalTextfield').val(itemId);
-        }else{
-            $('.consolidateModalTextfield').val($('.consolidateModalTextfield').val()+'?'+itemId);
-        }
-    }
+    //for(var i=0; i < checkedItems.size(); i++){
+    //    var itemId = checkedItems.eq(i).closest('tr').find('td').eq(14).text()
+    //    if(i == 0){
+    //        $('.consolidateModalTextfield').val(itemId);
+    //    }else{
+    //        $('.consolidateModalTextfield').val($('.consolidateModalTextfield').val()+'?'+itemId);
+    //    }
+    //}
     // APPEND ALL ID OF CHECKED ITEMS -- END
 
-    $('#consolidateModal').modal('show');
+    //$('#consolidateModal').modal('show');
     // THIRD STEP (OPTIONAL) - END
 }
 

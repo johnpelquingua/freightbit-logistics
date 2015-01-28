@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -206,10 +207,11 @@
                                 </div>
                                 <hr/>
                                 <div class="warningMsg"><i class="fa fa-warning" style="color: #E74C3C"></i> <i style="color: #E74C3C; font-size: 0.9em;">Bookings must have the same DES and ORI to initialize consolidation</i></div>
-                                <br/><button style="margin-top: 1em;" disabled type="button" class="consolidateBtn btn btn-default" data-toggle="modal"><i class="fa fa-cubes"></i> Consolidate</button>
+                                <br/><button style="margin-top: 1em;" disabled type="button" class="consolidateBtn btn btn-default" data-toggle="modal" data-target="#consolidateModal"><i class="fa fa-cubes"></i> Consolidate</button>
                             </div>
 
                         </s:form>
+                        <s:textfield cssClass="consolidateModalTextfield" id="consolidatedOrders" />
                         </div>
                     </div>
 
@@ -366,32 +368,7 @@
                 <i class="fa fa-cubes"></i> Consolidate
             </div>
                 <div class="modal-body">
-                    <s:textfield cssClass="consolidateModalTextfield"></s:textfield>
-                    <div class="consolidateLoadingDiv center-text">
-                        Pulling up Schedules. Please Wait.<br/>
-                        <i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>
-                    </div>
-                    <div class="consolidateTableDiv" style="display: none;">
-                        <display:table id="vesselSchedule" name="vesselSchedules"
-                                       requestURI="/viewSeaFreightPlanning.action"
-                                       class="table table-striped table-hover table-bordered text-center tablesorter lclConsolidateSchedule"
-                                       style="margin-top: 15px;">
-                            <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="originPort" title="ORI" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="destinationPort" title="DES" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                        </display:table>
-                    </div>
+                    <div id="consolidatedModalDiv"> <%--Area where input fields will appear--%> </div>
                 </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -409,7 +386,35 @@
         if($('.lclTable tbody tr').size() > 1){ filterLclTable(); }
 
         $('.consolidateBtn').click(function(){
+
+            var checkedItems = $('.lclCheckbox:checked');
+
+            for(var i=0; i < checkedItems.size(); i++){
+                var itemId = checkedItems.eq(i).closest('tr').find('td').eq(14).text()
+                if(i == 0){
+                    $('.consolidateModalTextfield').val(itemId);
+                }else{
+                    $('.consolidateModalTextfield').val($('.consolidateModalTextfield').val()+'?'+itemId);
+                }
+            }
+alert($('#consolidatedOrders').val());
+            $.ajax({
+                url: 'getConsolidateAction',
+                async: false,
+                type: 'POST',
+                data: { checkLCL: $('#consolidatedOrders').val() },
+                dataType: 'html',
+                success: function (html) {
+                    $('#consolidatedModalDiv').html(html);
+//                    $('#consolidateModal').modal().show();
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    alert('An error occurred! ' + thrownError);
+                }
+            });
+
             lclHideVesselSchedule();
+
         });
 
         $('.lclCheckbox').change(function(){
@@ -461,4 +466,6 @@
 
     $('#select1').change(function(){ preventSamePort($(this), $('#select2')); })
     $('#select2').change(function(){ preventSamePort($(this), $('#select1')); })
+
+
 </script>

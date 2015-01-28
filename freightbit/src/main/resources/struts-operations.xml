@@ -225,6 +225,10 @@
             <result name="success" type="tiles">operations.seaFreightList.tiles</result>
         </action>
 
+        <action name="setLCLBulkSchedule" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="setLCLBulkSchedule">
+            <result name="success" type="tiles">operations.seaFreightList.tiles</result>
+        </action>
+
         <action name="checkOrderConsolidate" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkOrderConsolidate">
             <result name="success" type="tiles">operations.seaFreightList.tiles</result>
         </action>
@@ -550,6 +554,10 @@
             <result name="success">/operations/consolidation/consolidationContainerSearch.jsp</result>
         </action>
 
+        <action name="getConsolidateAction" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="consolidateAction">
+            <result name="success">/operations/inland_freight/consolidateModalInput.jsp</result>
+        </action>
+
         <action name="updateStatusOfContainers" class="com.sr.apps.freightbit.operations.action.ConsolidationAction" method="updateStatusOfContainers">
             <result name="success" type="tiles">operations.consolidationItemList.tiles</result>
             <result name="CONSOLIDATED" type="tiles">operations.consolidationItemListEdit.tiles</result>
@@ -685,6 +693,10 @@
 
         <action name="truckingAction" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="truckingAction">
             <result type="json">/operations/containerAdd.jsp</result>
+        </action>
+
+        <action name="orderConsolidate" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="orderConsolidate">
+            <result type="json">/operations/sea_freight/seaFreightList.jsp</result>
         </action>
 
     </package>

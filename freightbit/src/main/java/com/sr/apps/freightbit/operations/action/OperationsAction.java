@@ -150,7 +150,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     Date filterPickup;
     Date filterDelivery;
+    private String[] dummyMsg;
     private String[] check;
+    private String[] checkLCL;
     private String originCity; // load table based on origin city
     private String destinationCity; // load table based on destination city
     private String originCityTruck; // load table based on origin city trucking
@@ -365,7 +367,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             } else {
                 for (int i =0; i<check.length; i++) {
-
+                    System.out.println("CHECK PER ONE " + check[i]);
                     if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){ // catches error when no values inside check
                         return "NULL_INPUT";
                     }
@@ -1266,7 +1268,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         order = transformToOrderFormBean(orderEntity);
 
         vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
-        System.out.println("***************************************************"+order.getOriginationPort());
+
         // Vessel schedules filtered by origin and destination
         List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
 
@@ -1793,6 +1795,28 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    /*public String orderConsolidate(){
+
+        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCC " + checkLCL);
+
+        dummyMsg = checkLCL;
+
+        return SUCCESS;
+    }*/
+
+    public String setLCLBulkSchedule(){
+
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA " + vesselScheduleIdParam);
+        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBB " + vendorIdParam);
+        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCC " + checkLCL);
+
+//        for(int i=0; i == checkLCL.length; i++){
+//            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDD " + checkLCL[i]);
+//        }
+
+        return SUCCESS;
+    }
+
     public String viewFreightList() {
 
         // For FCL Requirement
@@ -2276,6 +2300,29 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return formBean;
     }
 
+    public String consolidateAction(){
+
+        dummyMsg = checkLCL;
+
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA " + vesselScheduleIdParam);
+        System.out.println("BBBBBBBBBBBBBBBBBBBBBBBB " + vendorIdParam);
+        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCC " + checkLCL);
+
+        // Load all vessel schedules
+        // FOR IMPROVEMENT -- FILTER ALL VESSEL SCHEDULES DATES THAT WILL NOT INCLUDE CURRENT DATE
+
+        vesselSchedule.setOrdersLCL(checkLCL);
+
+        List<VesselSchedules> vesselSchedulesList = operationsService.findAllVesselSchedule();
+
+        for(VesselSchedules vesselScheduleElem : vesselSchedulesList){
+
+            vesselSchedules.add(transformToFormBeanVesselSchedule(vesselScheduleElem));
+        }
+
+        return SUCCESS;
+    }
+
     public OrderItemsBean transformToOrderItemFormBean(OrderItems entity) {
         OrderItemsBean formBean = new OrderItemsBean();
         formBean.setNameSize(entity.getNameSize());
@@ -2380,9 +2427,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
             Date pastDate = formatter.parse(dateInStringPast);
             Date futureDate = formatter.parse(dateInStringFuture);
 
-//            System.out.println("afafafasfafafafasfafasf"+date);
-//            System.out.println("afafadfadfadfadfadfadfadfadfadfxxxxx"+formatter.format(date));
-
             filterPickup = pastDate;
             filterDelivery = futureDate;
 
@@ -2419,21 +2463,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + orderItemIdParam);
 
         Client client = clientService.findClientById(getClientId().toString());
-
-        /*Integer orderItemId = (Integer) sessionAttributes.get("orderItemId");
-        Integer clientId = (Integer) sessionAttributes.get("clientId");
-        Integer orderId = (Integer) sessionAttributes.get("orderIdParam");
-        String nameSize = (String) sessionAttributes.get("nameSize");
-        Integer quantity = (Integer) sessionAttributes.get("quantity");
-        String classification = (String) sessionAttributes.get("classification");
-        Double declaredValue = (Double) sessionAttributes.get("declaredValue");
-        Float rate = (Float) sessionAttributes.get("rate");
-        String createdBy = (String) sessionAttributes.get("createdBy");
-        String modifiedBy = (String) sessionAttributes.get("modifiedBy");
-        String vendorSea = sessionAttributes.get("vendorSea").toString();
-        String modeOfService = sessionAttributes.get("modeOfService").toString();
-        String freightType = sessionAttributes.get("freightType").toString();*/
-
         entity.setOrderItemId(orderItemIdParam);
         entity.setClientId(client.getClientId());
         entity.setNameSize(operationsService.findOrderItemById(orderItemIdParam).getNameSize());
@@ -4173,5 +4202,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setFilterPickup(Date filterPickup) {
         this.filterPickup = filterPickup;
+    }
+
+    public String[] getCheckLCL() {
+        return checkLCL;
+    }
+
+    public void setCheckLCL(String[] checkLCL) {
+        this.checkLCL = checkLCL;
+    }
+
+    public String[] getDummyMsg() {
+        return dummyMsg;
+    }
+
+    public void setDummyMsg(String[] dummyMsg) {
+        this.dummyMsg = dummyMsg;
     }
 }

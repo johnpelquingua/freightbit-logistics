@@ -517,7 +517,12 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String createReport() {
         Map sessionAttributes = ActionContext.getContext().getSession();
-        orderIdParam = (Integer) sessionAttributes.get("orderIdPass");
+
+        if(sessionAttributes.get("orderIdPass") != null){
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>ID PASS " + (Integer) sessionAttributes.get("orderIdPass"));
+            orderIdParam = (Integer) sessionAttributes.get("orderIdPass");
+
+        }
 
         // Booking Request Form will be created under pending documents start
 

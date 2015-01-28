@@ -24,14 +24,14 @@ public class VesselScheduleBean {
     private String vesselName;
     private String vendorName;
     private String vendorClass;
-
+    private String[] ordersLCL;
 
     public VesselScheduleBean() {
 
     }
 
-    public VesselScheduleBean(String arrivalDate, Integer vesselScheduleId, String voyageNumber, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String destinationPort, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword, String vesselScheduleCriteria, String vendorCode, String vesselName, String vendorName, String vendorClass) {
-        this.arrivalDate = arrivalDate;
+    public VesselScheduleBean(String destinationPort, Integer vesselScheduleId, String voyageNumber, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String arrivalDate, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword, String vesselScheduleCriteria, String vendorCode, String vesselName, String vendorName, String vendorClass, String[] ordersLCL) {
+        this.destinationPort = destinationPort;
         this.vesselScheduleId = vesselScheduleId;
         this.voyageNumber = voyageNumber;
         this.clientId = clientId;
@@ -39,7 +39,7 @@ public class VesselScheduleBean {
         this.originPort = originPort;
         this.departureDate = departureDate;
         this.departureTime = departureTime;
-        this.destinationPort = destinationPort;
+        this.arrivalDate = arrivalDate;
         this.arrivalTime = arrivalTime;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
@@ -51,6 +51,7 @@ public class VesselScheduleBean {
         this.vesselName = vesselName;
         this.vendorName = vendorName;
         this.vendorClass = vendorClass;
+        this.ordersLCL = ordersLCL;
     }
 
     public String getVendorCode() {
@@ -213,4 +214,11 @@ public class VesselScheduleBean {
         this.vendorClass = vendorClass;
     }
 
+    public String[] getOrdersLCL() {
+        return ordersLCL;
+    }
+
+    public void setOrdersLCL(String[] ordersLCL) {
+        this.ordersLCL = ordersLCL;
+    }
 }
