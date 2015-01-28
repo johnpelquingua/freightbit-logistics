@@ -1009,11 +1009,11 @@ function lclHideVesselSchedule(){
             lcl_deliveryDateValue = loop_deliveryDate;
         }
 
-        if(loop_pickupDate > lcl_pickupDateValue){
+        if(loop_pickupDate < lcl_pickupDateValue){
             lcl_pickupDateValue = loop_pickupDate;
         }
 
-        if(loop_deliveryDate < lcl_deliveryDateValue){
+        if(loop_deliveryDate > lcl_deliveryDateValue){
             lcl_deliveryDateValue = loop_deliveryDate;
         }
     }
