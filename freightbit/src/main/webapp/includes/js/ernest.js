@@ -1047,17 +1047,6 @@ function lclHideVesselSchedule(){
                 continue;
             }
         }
-
-        if(loop_arrivalDate > currentDate){
-            conso_arrivalDate.eq(i).closest('tr').hide();
-            continue;
-        }
-
-        if(lcl_deliveryDateValue < loop_deliveryDate){
-            conso_arrivalDate.eq(i).closest('tr').hide();
-            continue;
-        }
-
     }
 
     // SECOND STEP - END
@@ -1162,4 +1151,18 @@ function actionConfirmation(icon, confirmBtn, modal){
         confirmBtn.attr('href', $(this).prev().attr('href'));
         modal.modal('show');
     });
+}
+
+function processDocumentStage(table, tableDiv, loadingDiv, stageColumn){
+    var stageFlag = $(table+' tbody tr td:nth-child('+stageColumn+')');
+    for(var i=0; i < stageFlag; i++){
+        switch(stageFlag.eq(i).text()){
+            case 0 :
+            case 1 :
+            case 2 :
+            case 3 :
+            case 4 :
+            case 5 :
+        }
+    }
 }
