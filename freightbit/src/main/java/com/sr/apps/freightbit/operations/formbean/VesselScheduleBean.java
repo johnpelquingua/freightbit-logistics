@@ -24,21 +24,21 @@ public class VesselScheduleBean {
     private String vesselName;
     private String vendorName;
     private String vendorClass;
-    private String[] ordersLCL;
+    private String ordersLCL;
 
     public VesselScheduleBean() {
 
     }
 
-    public VesselScheduleBean(String destinationPort, Integer vesselScheduleId, String voyageNumber, Integer clientId, Integer vendorId, String originPort, String departureDate, String departureTime, String arrivalDate, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword, String vesselScheduleCriteria, String vendorCode, String vesselName, String vendorName, String vendorClass, String[] ordersLCL) {
-        this.destinationPort = destinationPort;
+    public VesselScheduleBean(String departureDate, Integer vesselScheduleId, String voyageNumber, Integer clientId, Integer vendorId, String originPort, String departureTime, String destinationPort, String arrivalDate, String arrivalTime, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String vesselScheduleKeyword, String vesselScheduleCriteria, String vendorCode, String vesselName, String vendorName, String vendorClass, String ordersLCL) {
+        this.departureDate = departureDate;
         this.vesselScheduleId = vesselScheduleId;
         this.voyageNumber = voyageNumber;
         this.clientId = clientId;
         this.vendorId = vendorId;
         this.originPort = originPort;
-        this.departureDate = departureDate;
         this.departureTime = departureTime;
+        this.destinationPort = destinationPort;
         this.arrivalDate = arrivalDate;
         this.arrivalTime = arrivalTime;
         this.createdTimestamp = createdTimestamp;
@@ -214,11 +214,11 @@ public class VesselScheduleBean {
         this.vendorClass = vendorClass;
     }
 
-    public String[] getOrdersLCL() {
+    public String getOrdersLCL() {
         return ordersLCL;
     }
 
-    public void setOrdersLCL(String[] ordersLCL) {
+    public void setOrdersLCL(String ordersLCL) {
         this.ordersLCL = ordersLCL;
     }
 }
