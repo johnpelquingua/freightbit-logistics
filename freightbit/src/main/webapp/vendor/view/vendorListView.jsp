@@ -1,6 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<style>
+    .vendorDeleteAction {
+        cursor: pointer;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -75,8 +81,8 @@
                                              title="Delete this Vendor"
                                              onclick="return confirm('Do you really want to delete?');">
                                             <%--<img src="../includes/images/remove-user.png" class="icon-action circ-icon">--%>
-                                            <i class="fa fa-trash-o"></i>
                                         </s:a>
+                                        <i class="fa fa-trash-o vendorDeleteAction"></i>
 
                                         <s:url var="viewInfoVendorUrl" action="viewInfoVendor">
                                             <s:param name="vendorCodeParam" value="#attr.vendor.vendorCode"></s:param>
@@ -130,6 +136,21 @@
     </div>
 </div>
 
+<div class="modal fade" id="vendorDeleteModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="font-size: 1.5em;"><i class="fa fa-warning" style="color: red;"></i> Confirm vendor deletion</div>
+            <div class="modal-body">
+                Are you sure you want to delete this vendor?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <a class="vendorDeleteBtn btn btn-danger" href="#">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
     $(document).ready(function() {
         /*color coding of rows*/
@@ -144,6 +165,8 @@
                 }
             }
         }
+
+        actionConfirmation($('.vendorDeleteAction'), $('.vendorDeleteBtn'), $('#vendorDeleteModal'));
     });
 
     function showSearchFields() {

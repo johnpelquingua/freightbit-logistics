@@ -2,6 +2,13 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <style>
+    /*.fa:hover {*/
+        /*font-size: 180%; !important;*/
+        /*margin-top: -7px; !important;*/
+        /*margin-bottom: -7px; !important;*/
+        /*margin-right: -4px; !important;*/
+        /*margin-left: -4px; !important;*/
+    /*}*/
     .cancelBookingIcon {
         cursor: pointer;
         color: red;
@@ -101,7 +108,7 @@
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editOrderUrl}" rel="tooltip" title ="Edit Booking">
-                                            <i class="fa fa-pencil"></i>
+                                            <i class="fa fa-pencil table-action-icons"></i>
                                         </s:a>
 
                                     <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING' || #attr.order.orderStatus == 'INCOMPLETE' ">
@@ -111,7 +118,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip" title="Delete Booking" onclick="return confirm('Do you really want to delete?');">
                                         </s:a>
-                                        <i class="fa fa-trash-o deleteBookingIcon"></i>
+                                        <i class="fa fa-trash-o deleteBookingIcon table-action-icons"></i>
                                     </s:if>
 
                                         <%--info booking--%>
@@ -119,13 +126,13 @@
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
-                                            <i class="fa fa-info-circle"></i>
+                                            <i class="fa fa-info-circle table-action-icons"></i>
                                         </s:a>
 
                                     <s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">
 
                                         <a id="print-icon" title="Print Booking Form" rel="tooltip" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM');">
-                                            <i class="fa fa-print"></i>
+                                            <i class="fa fa-print table-action-icons"></i>
                                         </a>
 
                                     </s:if>
@@ -139,7 +146,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{approveOrderUrl}" rel="tooltip" title="Approve Booking" onclick="return confirm('Approve Booking?');">
                                         </s:a>
-                                        <i class="fa fa-check approveBookingIcon"></i>
+                                        <i class="fa fa-check approveBookingIcon table-action-icons"></i>
                                     </s:if>
                                     <s:if test=" #attr.order.orderStatus == 'APPROVED' || #attr.order.orderStatus == 'INCOMPLETE' || #attr.order.orderStatus == 'ON GOING'">
                                         | <%--separator--%>
@@ -149,7 +156,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{cancelOrderUrl}" rel="tooltip" title="Cancel Booking" onclick="return confirm('Cancel Booking?');">
                                         </s:a>
-                                        <i class="fa fa-times cancelBookingIcon"></i>
+                                        <i class="fa fa-times cancelBookingIcon table-action-icons"></i>
                                     </s:if>
 
                                 </display:column>

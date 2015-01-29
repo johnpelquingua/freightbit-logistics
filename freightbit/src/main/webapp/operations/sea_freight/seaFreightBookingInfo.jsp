@@ -201,9 +201,9 @@
     </div>
 
     <div class="panel-body">
-        <div class="table-responsive list-table">
+        <div class="table-responsive list-table cargoDetailsTableDiv center-text">
 
-            <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
+            <table class="cargoDetailsTable table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
                 <thead>
                 <tr class="header_center" style="background-color: #fff;">
                     <th class="tb-font-black">Quantity</th>
@@ -257,5 +257,12 @@
 
 </div>
 
+<script>
+    $(document).ready(function(){
+        if($('.cargoDetailsTable tbody tr').size() == 0){
+            $('.cargoDetailsTableDiv').empty().append('<h4 style="padding-bottom: -10px"><i class="fa fa-warning " style="color: red;"></i> No cargo/container found!</h4><i>Please make sure that the information of the booking is correct</i>');
+        }
+    })
+</script>
 
 

@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <label class="col-lg-12 control-label" style="padding-top:0px !important; margin-top: 0px !important; text-align:left;">Company Name / Customer Name<span class="asterisk_red"></span></label>
                                 <div class="col-lg-12" >
-                                    <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName"/>
+                                    <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName" pattern="^[a-zA-Z]+$" />
                                 </div>
                             </div>
                         </div>
@@ -52,8 +52,8 @@
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Company Code<span class="asterisk_red"></span></label>
                                 <div class="col-lg-7" >
 
-                                    <s:textfield required="true" maxLength="3" name="customer.customerCode" cssStyle="text-transform:uppercase" cssClass="form-control" id="customer.customerCode" onkeypress="return alphaKeyOnly(event)"
-                                                 pattern=".{3,}" title="Company Code Must be 3 Capital Letters Only"/>
+                                    <s:textfield required="true" maxLength="3" name="customer.customerCode" cssClass="form-control" id="customerCode" onkeypress="return alphaKeyOnly(event)"
+                                                 pattern="^[A-Z]{3,}$" title="Company Code Must be 3 Capital Letters Only"/>
                                 </div>
                             </div>
                             <%--<div class="form-group">
@@ -82,7 +82,7 @@
                             <div class="form-group">
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Website</label>
                                 <div class="col-lg-7" >
-                                    <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website"/>
+                                    <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website" pattern="^[_A-Za-z0-9-\\+]*(\\.[A-Za-z]{3,})$" title="Proper Format: example.com"/>
                                 </div>
                             </div>
 
@@ -149,7 +149,7 @@
                             <div class="form-group">
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Account Application Form Number</label>
                                 <div class="col-lg-7" >
-                                    <s:textfield name="customer.aaf" cssClass="form-control" id="customer_aaf" placeholder="Account Application Form Number"/>
+                                    <s:textfield name="customer.aaf" cssClass="form-control" id="customer_aaf" placeholder="Account Application Form Number" maxlength="30"/>
                                 </div>
                             </div>
                         </div>
@@ -245,7 +245,7 @@
 
     });
 
-    $("#customer_customerCode").keyup(function(){
+    $("#customerCode").keyup(function(){
 
         this.value=this.value.toUpperCase();
     });

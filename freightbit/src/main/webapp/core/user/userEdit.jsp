@@ -67,7 +67,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield required="true" name="user.firstName" id="firstName" cssClass="form-control" maxlength="25"
-                                             placeholder="First Name"/>
+                                             placeholder="First Name" pattern="^[a-zA-Z]+$" title="First Name should not contain special characters and/or numbers."/>
                             </div>
                         </div>
 
@@ -76,7 +76,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield required="true" name="user.lastName" id="lastName" cssClass="form-control" maxlength="25"
-                                             placeholder="Last Name"/>
+                                             placeholder="Last Name" pattern="^[a-zA-Z]+$" title="Last Name should not contain special characters and/or numbers."/>
                             </div>
                         </div>
 
@@ -85,7 +85,7 @@
                             <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">User Name <span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                                <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control" maxlength="25" pattern="[^\s]{4,25}"
+                                <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control" maxlength="25" pattern="^[a-zA-Z ]{4,}$"
                                              placeholder="User Name" title="Username must have minimum 4 characters."/>
                             </div>
                         </div>

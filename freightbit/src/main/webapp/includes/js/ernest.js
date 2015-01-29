@@ -1163,10 +1163,8 @@ function actionConfirmation(icon, confirmBtn, modal){
 }
 
 function processDocumentStage(table, tableDiv, loadingDiv, stageColumn){
-    var stageFlag = $(table+' tbody tr td:nth-child('+stageColumn+')'),
-        thTitle = $(table+' thead tr th:nth-child('+stageColumn+')').eq(0).text();
+    var stageFlag = $(table+' tbody tr td:nth-child('+stageColumn+')');
 
-    alert(thTitle);
     for(var i=0; i < stageFlag.size(); i++){
         switch(stageFlag.eq(i).text()){
             case '1' :
@@ -1186,9 +1184,8 @@ function processDocumentStage(table, tableDiv, loadingDiv, stageColumn){
                 break;
         }
     }
-
     $(table+' thead tr th:nth-child('+stageColumn+')').hide();
     stageFlag.hide();
-//    loadingDiv.hide();
-//    tableDiv.fadeIn();
+    loadingDiv.hide();
+    tableDiv.fadeIn();
 }

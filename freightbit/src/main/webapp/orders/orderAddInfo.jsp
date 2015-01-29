@@ -3,6 +3,12 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<style>
+    .itemListingDeleteActionIcon {
+        cursor: pointer;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -632,9 +638,8 @@
                                     <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
                                          title="Delete this Item?"
                                          onclick="return confirm('Do you really want to delete this item?');">
-                                        <i class="fa fa-trash-o"></i>
                                     </s:a>
-
+                                    <i class="fa fa-trash-o itemListingDeleteActionIcon"></i>
                                 </td>
                             </tr>
                         </s:iterator>
@@ -846,26 +851,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <%--<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
-                <h4 class="modal-title" id="myModalLabel">Save Booking ?</h4>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-check"></i> Confirm Booking Details</h4>
             </div>
             <div class="modal-body">
-
                 <div class="panel-body">
-
                     <div class="col-lg-12">
-
                         <div class="col-lg-12">
-
                             <div class="panel panel-info ">
-
                                 <br/>
-
                                 <table class="table leftAlign table-user-information">
-                                    <th style="font-size: 20px; border-top: none; width: 300px;">
-                                        Booking Number
+                                    <th style="font-size: 20px; border-top: none;">
+                                        <i class="fa fa-book"></i> Booking Number
                                         <%--<s:property value="order.orderId"/>--%>
                                     </th>
-                                    <th style="font-size: 20px; border-top: none; width: 300px;">
+                                    <th style="font-size: 20px; border-top: none;">
                                         <s:property value="order.orderNumber"/>
                                     </th>
                                     <tbody>
@@ -917,21 +916,15 @@
 
                                     </tbody>
                                 </table>
-
                             </div>
-
                         </div>
-
                         <div class="col-lg-6">
 
                             <div class="panel panel-info ">
 
                                 <table class="table leftAlign table-user-information">
-
-                                    <th style="font-size: 18px; border-top: none; width: 300px;">Customer Information</th>
-
+                                    <th style="font-size: 18px; border-top: none;" colspan="2"><i class="fa fa-user"></i> Customer Information</th>
                                     <tbody>
-
                                     <tr>
                                         <td style="color: gray !important;">Customer Name</td>
                                         <td><s:property value="order.customerName"/></td>
@@ -975,7 +968,7 @@
 
                                 <table class="table leftAlign table-user-information">
 
-                                    <th style="font-size: 18px; border-top: none; width: 300px;">Consignee Information</th>
+                                    <th style="font-size: 18px; border-top: none;" colspan="2"><i class="fa fa-user"></i> Consignee Information</th>
 
                                     <tr>
                                         <td style="color: gray !important;">Consignee Name</td>
@@ -1019,9 +1012,12 @@
                 </div>
 
                 <div class="panel-body">
-                    <div class="table-responsive list-table">
-
-                        <table class="table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
+                    <div class="cargoContainerSavingTableLoadingDiv well" style="text-align: center; display: none;">
+                        <h4><i class="fa fa-warning" style="color: #ff0000"></i> Booking has no cargo/container!</h4>
+                        <i>Please make sure that the information of the booking is correct</i>
+                    </div>
+                    <div class="table-responsive list-table cargoContainerSavingTableDiv">
+                        <table class="cargoContainerSavingTable table table-striped table-hover table-bordered text-center tablesorter" id="orderItems">
                             <thead>
                             <tr class="header_center" style="background-color: #fff;">
                                 <th class="tb-font-black">Quantity</th>
@@ -1044,7 +1040,6 @@
                             </tr>
                             </thead>
                             <tbody>
-
                             <s:iterator value="orderItems" var="orderItem">
                                 <tr>
                                     <td class="tb-font-black"><s:property value="quantity"/></td>
@@ -1059,19 +1054,33 @@
                             </s:iterator>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 <%--<button type="button" class="btn btn-primary" href="#"><a style="color: #fff; text-decoration: none;" href="<s:url action='../orders/viewOrders' />">Yes</a></button>--%>
-                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Save</button>
             </div>
         </div>
     </div>
 </div>
+</div>
+
+<div class="modal fade" id="itemListingDeleteModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="font-size: 1.5em;"><i class="fa fa-warning" style="color: red;"></i> Confirm item deletion</div>
+            <div class="modal-body">
+                Are you sure you want to delete this item?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <a class="itemListingDeleteConfirmBtn btn btn-danger" href="#">Delete</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="../includes/js/bookingInfo.js"></script>
