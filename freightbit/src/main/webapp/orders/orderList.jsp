@@ -2,6 +2,13 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <style>
+    /*.fa:hover {*/
+        /*font-size: 180%; !important;*/
+        /*margin-top: -7px; !important;*/
+        /*margin-bottom: -7px; !important;*/
+        /*margin-right: -4px; !important;*/
+        /*margin-left: -4px; !important;*/
+    /*}*/
     .cancelBookingIcon {
         cursor: pointer;
         color: red;

@@ -572,8 +572,8 @@
             <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                  title="Update Status">
                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                    <button type="button" class="btn">
-                        Dispatch Plan : Containers
+                    <button type="button" class="btn btn-danger">
+                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
                     </button>
                 </s:if>
                 <s:else>
