@@ -226,7 +226,7 @@
         </action>
 
         <action name="setLCLBulkSchedule" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="setLCLBulkSchedule">
-            <result name="success" type="tiles">operations.seaFreightList.tiles</result>
+            <result name="success" type="redirect">viewSeaFreightList</result>
         </action>
 
         <action name="checkOrderConsolidate" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkOrderConsolidate">

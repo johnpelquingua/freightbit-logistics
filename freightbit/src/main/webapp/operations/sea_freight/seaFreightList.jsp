@@ -394,7 +394,7 @@
                 if(i == 0){
                     $('.consolidateModalTextfield').val(itemId);
                 }else{
-                    $('.consolidateModalTextfield').val($('.consolidateModalTextfield').val()+'?'+itemId);
+                    $('.consolidateModalTextfield').val($('.consolidateModalTextfield').val()+','+itemId);
                 }
             }
 alert($('#consolidatedOrders').val());
