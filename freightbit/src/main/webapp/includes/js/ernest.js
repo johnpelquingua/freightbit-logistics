@@ -1047,6 +1047,15 @@ function lclHideVesselSchedule(){
                 continue;
             }
         }
+
+        // MODIFIED VERSION - REPLACE ABOVE CHECKING WITH THIS AND TEST/PLAY IT OUT - Jan (START)
+        if(lcl_pickupDateValue > loop_departureDate){
+            if(lcl_deliveryDateValue != loop_arrivalDate && lcl_deliveryDateValue > loop_arrivalDate){
+                conso_departureDate.eq(i).closest('tr').hide();
+                continue;
+            }
+        }
+        // MODIFIED VERSION - REPLACE ABOVE CHECKING WITH THIS AND TEST/PLAY IT OUT - Jan (END)
     }
 
     // SECOND STEP - END
@@ -1154,15 +1163,32 @@ function actionConfirmation(icon, confirmBtn, modal){
 }
 
 function processDocumentStage(table, tableDiv, loadingDiv, stageColumn){
-    var stageFlag = $(table+' tbody tr td:nth-child('+stageColumn+')');
-    for(var i=0; i < stageFlag; i++){
+    var stageFlag = $(table+' tbody tr td:nth-child('+stageColumn+')'),
+        thTitle = $(table+' thead tr th:nth-child('+stageColumn+')').eq(0).text();
+
+    alert(thTitle);
+    for(var i=0; i < stageFlag.size(); i++){
         switch(stageFlag.eq(i).text()){
-            case 0 :
-            case 1 :
-            case 2 :
-            case 3 :
-            case 4 :
-            case 5 :
+            case '1' :
+                stageFlag.eq(i).closest('tr').css('background-color', '#ffc860');
+                break;
+            case '2' :
+                stageFlag.eq(i).closest('tr').css('background-color', '#ffd37e');
+                break;
+            case '3' :
+                stageFlag.eq(i).closest('tr').css('background-color', '#feabff');
+                break;
+            case '4' :
+                stageFlag.eq(i).closest('tr').css('background-color', '#c1c2ff');
+                break;
+            case '5' :
+                stageFlag.eq(i).closest('tr').css('background-color', '#a7ffad');
+                break;
         }
     }
+
+    $(table+' thead tr th:nth-child('+stageColumn+')').hide();
+    stageFlag.hide();
+//    loadingDiv.hide();
+//    tableDiv.fadeIn();
 }
