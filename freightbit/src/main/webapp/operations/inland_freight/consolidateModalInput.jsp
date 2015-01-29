@@ -51,5 +51,4 @@
   </display:table>
 </div>
 
-<s:textfield value="%{vesselSchedule.ordersLCL}"/>
-<%--<s:textfield cssClass="consolidateModalTextfield" value="%{vesselSchedule.ordersLCL}"/>--%>
+<s:hidden value="%{vesselSchedule.ordersLCL}"/>
