@@ -279,6 +279,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setVendorClass(vendorBean.getVendorClass());
         entity.setVendorName(vendorBean.getVendorName());
         entity.setVendorType(vendorBean.getVendorType());
+        entity.setServiceArea(vendorBean.getServiceArea());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimeStamp(new Date());
         entity.setVendorStatus("ACTIVE");
@@ -1632,6 +1633,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
             vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
         }
 
+        vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
+
+        vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
+
         clearErrorsAndMessages();
         addActionMessage("Vendor Added Successfully!");
 
@@ -1657,6 +1662,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
 
         order = transformToOrderFormBean(orderEntity);
+
+        vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
+
+        vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
 
         clearErrorsAndMessages();
         addActionMessage("Vendor Added Successfully!");
