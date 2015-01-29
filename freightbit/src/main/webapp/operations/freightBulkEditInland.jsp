@@ -1749,7 +1749,7 @@
                     <s:select emptyOption="true" id="vesselSchedule_originPort"
                               value="vesselSchedule.originPort"
                               name="vesselSchedule.originPort"
-                              list="portsList" listValue="value" listKey="key"
+                              list="portsList" listValue="value" listKey="key"order
                               cssClass="form-control"/>
 
                     <label>Destination Pier<span class="asterisk_red"></span></label>

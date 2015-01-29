@@ -371,13 +371,17 @@
     </div>
 
     <div class="form-group" style="clear:both;">
-        <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address<span class="asterisk_red"></span></label>
+        <label class="col-lg-3 control-label" style="margin-top: 5px;">Delivery Address</label>
 
         <div class="col-lg-7">
+
             <%--<s:property value="%{order.consigneeAddressId}" />--%>
-            <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeAddress" name="order.consigneeAddressId" value="order.consigneeAddressId"
+            <s:select cssClass="form-control" style="margin-bottom: 15px !important; display:none;" id="consigneeAddress" name="order.consigneeAddressId" value="order.consigneeAddressId"
                       list="consigneeAddressList" listKey="addressId"
                       listValue="addressLine1 + ' ' + addressLine2" required="true"/>
+
+            <s:textfield cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="consigneeAddress_textfield"/>
+
         </div>
 
     </div>
@@ -1050,6 +1054,7 @@ $(document).ready(function() {
                             $('<option>').val(key).text(value).appendTo(select4);
                         }else{
                             $('<option>').val(key).text(value).appendTo(select4);
+                            $("#consigneeAddress_textfield").val(value);
                         }
 
                         /*var consignAdd = $("#consigneeAddress").val();
@@ -1110,6 +1115,7 @@ $(document).ready(function() {
 
                                         if ($("#shipperConsignee").val() != '') {
                                             $('<option>').val(key).text(value).appendTo(select4);
+                                            $("#consigneeAddress_textfield").val(value);
                                         } else {
                                             if ($("#consigneeAddress").val() != '') {
                                                 $('<option>').val(null).text("").appendTo(select4);
@@ -1320,6 +1326,7 @@ $(document).ready(function() {
 
                             if ($("#shipperConsignee").val() != '') {
                                 $('<option>').val(key).text(value).appendTo(select4);
+                                $("#consigneeAddress_textfield").val(value);
                             } else {
                                 if ($("#consigneeAddress").val() != '') {
                                     $('<option>').val(null).text("").appendTo(select4);

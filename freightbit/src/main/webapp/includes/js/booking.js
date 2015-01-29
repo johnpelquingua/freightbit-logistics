@@ -142,6 +142,7 @@ $(document).ready(function() {
                     $('<option>').val(key).text(value).appendTo(select4);
                 }else{
                     $('<option>').val(key).text(value).appendTo(select4);
+                    $("#consigneeAddress_textfield").val(value);
                 }
 
             });
@@ -190,13 +191,16 @@ $(document).ready(function() {
 
                 // populate consignee address
                 $.each(jsonResponse.consigneeAddressMap, function(key, value) {
+                    console.log(key);
+                    console.log(value);
                     if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'PICKUP' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
                         if ($("#shipperConsignee").val() != '') {
                             $('<option>').val(key).text(value).appendTo(select4);
+                            $("#consigneeAddress_textfield").val(value);
                         } else {
                             if ($("#consigneeAddress").val() != '') {
                                 $('<option>').val(null).text("").appendTo(select4);
-                            }
+                                }
                             $('<option>').val(key).text(value).appendTo(select4);
                         }
                     }
@@ -232,6 +236,7 @@ $(document).ready(function() {
                 if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'PICKUP' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
                     if ($("#shipperConsignee").val() != '') {
                         $('<option>').val(key).text(value).appendTo(select4);
+                        $("#consigneeAddress_textfield").val(value);
                     } else {
                         if ($("#consigneeAddress").val() != '') {
                             $('<option>').val(null).text("").appendTo(select4);
@@ -592,6 +597,7 @@ $(document).ready(function(){
                         $('<option>').val(key).text(value).appendTo(select4);
                     }else{
                         $('<option>').val(key).text(value).appendTo(select4);
+                        $("#consigneeAddress_textfield").val(value);
                     }
                 });
 
@@ -649,6 +655,7 @@ $(document).ready(function(){
                         if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'PICKUP' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
                             if ($("#shipperConsignee").val() != '') {
                                 $('<option>').val(key).text(value).appendTo(select4);
+                                $("#consigneeAddress_textfield").val(value);
                             } else {
                                 if ($("#consigneeAddress").val() != '') {
                                     $('<option>').val(null).text("").appendTo(select4);
