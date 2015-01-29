@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-12 control-label" style="padding-top:0px !important; margin-top: 0px !important; text-align:left;">Company Name / Customer Name<span class="asterisk_red"></span></label>
                                     <div class="col-lg-12" >
-                                        <s:textfield placeholder="Enter Company / Customer name" required="true" name="customer.customerName" cssClass="customerInput form-control" id="customer.customerName"/>
+                                        <s:textfield placeholder="Enter Company / Customer name" required="true" name="customer.customerName" cssClass="customerInput form-control" id="customer.customerName" maxLength="50"/>
                                     </div>
                                 </div>
                             </div>
