@@ -213,7 +213,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         if("".equals(orderItem.getEditItem())) {
             if (check == null) {
                 sessionAttributes.put("orderIdParam", orderStatusLogsBean.getOrderId());
-                return INPUT;
+                return "NULL_INPUT";
             } else {
                 for (int i = 0; i < check.length; i++) {
 

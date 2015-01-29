@@ -160,6 +160,7 @@
             <result name="success" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
             <result name="EDIT" type="tiles">operations.freightBulkEdit.tiles</result>
             <result name="NULL_INPUT" type="redirect">viewSeaFreightItemListNullError</result>
+            <result name="errorInput" type="redirect">viewSeaFreightItemListErrorInput</result>
             <result name="input" type="redirect">viewSeaFreightItemListError</result>
         </action>
 
@@ -168,8 +169,8 @@
             <result name="PLANNING 2" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
             <result name="PLANNING 3" type="tiles">operations.inlandFreightPlanningDestinationBulk.tiles</result>
             <result name="EDIT" type="tiles">operations.freightBulkEditInland.tiles</result>
-            <result name="NULL_INPUT" type="redirect">viewSeaFreightItemListNullError</result>
-            <!--<result name="input" type="redirect">viewSeaFreightItemListError</result>-->
+            <result name="NULL_INPUT" type="redirect">viewInlandFreightItemListNullError</result>
+            <result name="errorInput" type="redirect">viewInlandFreightItemListErrorInput</result>
             <result name="input" type="redirect">viewInlandFreightItemListError</result>
 
         </action>
@@ -249,6 +250,7 @@
             <result name="success" type="tiles">operations.inlandFreightList.tiles</result>
         </action>
 
+        <!--Sea Freight (Freight Plan) Validation Errors-->
         <action name="viewSeaFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
@@ -257,16 +259,28 @@
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
 
-        <action name="viewInlandFreightItemListError" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListError">
+        <action name="viewSeaFreightItemListErrorInput" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewSeaFreightItemListErrorInput">
             <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
         </action>
-
 
         <action name="viewSeaFreightItemListNullError" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListNullError">
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
 
+        <!--Inland Freight (Dispatch Plan) Validation Errors-->
         <action name="viewInlandFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
+            <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
+        </action>
+
+        <action name="viewInlandFreightItemListError" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListError">
+            <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
+        </action>
+
+        <action name="viewInlandFreightItemListErrorInput" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInlandFreightItemListErrorInput">
+            <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
+        </action>
+
+        <action name="viewInlandFreightItemListNullError" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemListNullError">
             <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
         </action>
 

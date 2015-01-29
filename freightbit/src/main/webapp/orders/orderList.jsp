@@ -1,7 +1,19 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-
+<style>
+    .cancelBookingIcon {
+        cursor: pointer;
+        color: red;
+    }
+    .approveBookingIcon {
+        cursor: pointer;
+        color: #2ECC71;
+    }
+    .deleteBookingIcon {
+        cursor: pointer;
+    }
+</style>
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -98,8 +110,8 @@
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip" title="Delete Booking" onclick="return confirm('Do you really want to delete?');">
-                                            <i class="fa fa-trash-o"></i>
                                         </s:a>
+                                        <i class="fa fa-trash-o deleteBookingIcon"></i>
                                     </s:if>
 
                                         <%--info booking--%>
@@ -126,8 +138,8 @@
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{approveOrderUrl}" rel="tooltip" title="Approve Booking" onclick="return confirm('Approve Booking?');">
-                                            <i class="fa fa-check"></i>
                                         </s:a>
+                                        <i class="fa fa-check approveBookingIcon"></i>
                                     </s:if>
                                     <s:if test=" #attr.order.orderStatus == 'APPROVED' || #attr.order.orderStatus == 'INCOMPLETE' || #attr.order.orderStatus == 'ON GOING'">
                                         | <%--separator--%>
@@ -136,8 +148,8 @@
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{cancelOrderUrl}" rel="tooltip" title="Cancel Booking" onclick="return confirm('Cancel Booking?');">
-                                            <i class="fa fa-times"></i>
                                         </s:a>
+                                        <i class="fa fa-times cancelBookingIcon"></i>
                                     </s:if>
 
                                 </display:column>
@@ -173,8 +185,8 @@
                                 <td></td>
                                 <td><i class='fa fa-pencil' ></i> Edit</td>
                                 <td><i class='fa fa-print' ></i> Print</td>
-                                <td><i class='fa fa-check' ></i> Approve</td>
-                                <td><i class='fa fa-times' ></i> Cancel</td>
+                                <td><i class='fa fa-check' style="color: #2ECC71;"></i> Approve</td>
+                                <td><i class='fa fa-times' style="color: red"></i> Cancel</td>
                             </tr>
                         </table>
                     </div>
@@ -202,11 +214,83 @@
     </div>
 </div>
 
+<div class="modal fade" id="cancelBookingModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Cancel Booking</span>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to cancel the booking?<br/>
+                <i style="color: #E74C3C">* This booking might have items, containers, vendors, customers and such associated to it. Please confirm cancellation.</i>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                <a href="" class="btn btn-danger confirmCancelModalBtn">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="approveBookingModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="font-size: 1.4em;"><i class="fa fa-check" style="color: #2ECC71;"></i> Approve Booking</span>
+            </div>
+            <div class="modal-body">
+                Do you want to approve this booking? Please confirm.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                <a href="" class="btn btn-primary confirmApproveModalBtn">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteBookingModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Delete Booking</span>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to <i style="color: #E74C3C;">DELETE</i> the booking?<br/>
+                <i style="color: #E74C3C">* This booking might have items, containers, vendors, customers and such associated to it. Please confirm cancellation.</i>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                <a href="" class="btn btn-danger confirmDeleteModalBtn">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
 
     $(document).ready(function() {
         tableProp('NONE', 'order', 8, 5, 6, 7, 0, 0, 1);
+        actionConfirmation($('.cancelBookingIcon'), $('.confirmCancelModalBtn'), $('#cancelBookingModal'));
+        actionConfirmation($('.approveBookingIcon'), $('.confirmApproveModalBtn'), $('#approveBookingModal'));
+        actionConfirmation($('.deleteBookingIcon'), $('.confirmDeleteModalBtn'), $('#deleteBookingModal'));
 
+
+//        $('.cancelBookingIcon').click(function(){
+//            $('.confirmCancelModalBtn').attr('href', $(this).prev().attr('href'));
+//            $('#cancelBookingModal').modal('show');
+//        });
+
+//        $('.approveBookingIcon').click(function(){
+//            $('.confirmApproveModalBtn').attr('href', $(this).prev().attr('href'));
+//            $('#approveBookingModal').modal('show');
+//        });
+//
+//        $('.deleteBookingIcon').click(function(){
+//            $('.confirmDeleteModalBtn').attr('href', $(this).prev().attr('href'));
+//            $('#deleteBookingModal').modal('show');
+//        });
         <%--var tbl = document.getElementById("order");--%>
         <%--&lt;%&ndash;var ctr = <s:property value="%{Booking}"/>;&ndash;%&gt;--%>
 

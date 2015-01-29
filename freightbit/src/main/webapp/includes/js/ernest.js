@@ -870,7 +870,12 @@ function addTotalRate(){
             itemList.eq(i).empty().append('<font color="red">0.00</font>');
         }
     }
-    $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+    totalPhp = totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    if(totalPhp == 0.00 || totalPhp == 0 || totalPhp == 0.0){
+        totalPhp = '<font color="red">'+totalPhp+'</font>'
+    }
+
+    $('#totalRate').empty().append(totalPhp);
     $('.loadingDiv').hide();
     $('.tableDiv').fadeIn();
 }
@@ -1042,17 +1047,6 @@ function lclHideVesselSchedule(){
                 continue;
             }
         }
-
-        if(loop_arrivalDate > currentDate){
-            conso_arrivalDate.eq(i).closest('tr').hide();
-            continue;
-        }
-
-        if(lcl_deliveryDateValue < loop_deliveryDate){
-            conso_arrivalDate.eq(i).closest('tr').hide();
-            continue;
-        }
-
     }
 
     // SECOND STEP - END
@@ -1149,5 +1143,26 @@ function lclCheckboxFilter(item){
     }else{
         $('.warningMsg').show();
         $('.consolidateBtn').attr('disabled', true);
+    }
+}
+
+function actionConfirmation(icon, confirmBtn, modal){
+    icon.click(function(){
+        confirmBtn.attr('href', $(this).prev().attr('href'));
+        modal.modal('show');
+    });
+}
+
+function processDocumentStage(table, tableDiv, loadingDiv, stageColumn){
+    var stageFlag = $(table+' tbody tr td:nth-child('+stageColumn+')');
+    for(var i=0; i < stageFlag; i++){
+        switch(stageFlag.eq(i).text()){
+            case 0 :
+            case 1 :
+            case 2 :
+            case 3 :
+            case 4 :
+            case 5 :
+        }
     }
 }
