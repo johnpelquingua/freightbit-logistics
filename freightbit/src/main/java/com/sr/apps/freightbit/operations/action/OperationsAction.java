@@ -362,7 +362,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if ("".equals(orderItem.getEditItem())) {
 
             if (check == null) {
-                return INPUT;
+                return "NULL_INPUT";
 
             } else {
                 for (int i =0; i<check.length; i++) {
@@ -456,7 +456,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             orderItem.setEditItem("");
 
             if (check == null) {
-                return INPUT;
+                return "NULL_INPUT";
             } else {
                 for (int i =0; i<check.length; i++) {
 
@@ -545,7 +545,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
 
+                /*if(planning2.size() > 0 && planning3.size() >  0) {
+                    return "EDIT";
+                } else{
+                    return "errorInput";
+                }*/
                 return "EDIT";
+
             }
         }
     }
@@ -560,7 +566,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if ("".equals(orderItem.getEditItem())) {
 
             if (check == null) {
-                return INPUT;
+                return "NULL_INPUT";
 
             } else {
                 for (int i =0; i<check.length; i++) {
@@ -632,7 +638,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             } else if (planning3.size() > 0) {
                 return "PLANNING 3";
             } else{
-                return "input";
+                return "errorInput";
             }
 
         } else {
@@ -640,7 +646,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             orderItem.setEditItem("");
 
             if (check == null) {
-                return INPUT;
+                return "NULL_INPUT";
             } else {
                 for (int i =0; i<check.length; i++) {
 
@@ -708,7 +714,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 }
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
-                return "EDIT";
+                if(planning2.size() > 0 && planning3.size() >  0) {
+                    return "EDIT";
+                } else{
+                    return "errorInput";
+                }
             }
         }
     }
@@ -2076,6 +2086,50 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
+    public String viewSeaFreightItemListErrorInput() {
+        clearErrorsAndMessages();
+        addActionError("Status must be Planning 1 only.");
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
+
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParamSession);
+        order = transformToOrderFormBean(orderEntity);
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParamSession);
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        return SUCCESS;
+    }
+
+    public String viewInlandFreightItemListErrorInput() {
+        clearErrorsAndMessages();
+        addActionError("Status must be Planning 2 or Planning 3 only.");
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
+
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParamSession);
+        order = transformToOrderFormBean(orderEntity);
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParamSession);
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        return SUCCESS;
+    }
+
     // Error for null
     public String viewFreightItemListNullError() {
 

@@ -211,7 +211,7 @@
                             </div>
 
                         </s:form>
-                        <s:textfield cssClass="consolidateModalTextfield" id="consolidatedOrders" />
+                        <s:hidden cssClass="consolidateModalTextfield" id="consolidatedOrders" />
                         </div>
                     </div>
 
@@ -397,7 +397,7 @@
                     $('.consolidateModalTextfield').val($('.consolidateModalTextfield').val()+','+itemId);
                 }
             }
-alert($('#consolidatedOrders').val());
+//            alert($('#consolidatedOrders').val());
             $.ajax({
                 url: 'getConsolidateAction',
                 async: false,
