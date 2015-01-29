@@ -84,7 +84,7 @@
 
                                     <label class="col-lg-5  control-label" style="padding-top:0px;">Customer Information Sheet Number</label>
                                     <div class="col-lg-7" >
-                                        <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Customer Information Sheet Number" maxLength="30"/>
+                                        <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Customer Information Sheet Number" maxLength="30" />
                                     </div>
                                 </div>
                             </div>
