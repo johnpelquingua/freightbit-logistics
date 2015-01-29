@@ -34,6 +34,12 @@ $(document).ready(function(){
 
     addTotalRate();
     newlineHandler('itemListing', 8);
+    actionConfirmation($('.itemListingDeleteActionIcon'), $('.itemListingDeleteConfirmBtn'), $('#itemListingDeleteModal'));
+
+    if($('.cargoContainerSavingTable tbody tr').size() == 0){
+        $('.cargoContainerSavingTableDiv').hide()
+        $('.cargoContainerSavingTableLoadingDiv').show();
+    }
 });
 
 // function to check if adding item memory exists
