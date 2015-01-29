@@ -870,7 +870,12 @@ function addTotalRate(){
             itemList.eq(i).empty().append('<font color="red">0.00</font>');
         }
     }
-    $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+    totalPhp = totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    if(totalPhp == 0.00 || totalPhp == 0 || totalPhp == 0.0){
+        totalPhp = '<font color="red">'+totalPhp+'</font>'
+    }
+
+    $('#totalRate').empty().append(totalPhp);
     $('.loadingDiv').hide();
     $('.tableDiv').fadeIn();
 }
@@ -1150,4 +1155,11 @@ function lclCheckboxFilter(item){
         $('.warningMsg').show();
         $('.consolidateBtn').attr('disabled', true);
     }
+}
+
+function actionConfirmation(icon, confirmBtn, modal){
+    icon.click(function(){
+        confirmBtn.attr('href', $(this).prev().attr('href'));
+        modal.modal('show');
+    });
 }
