@@ -1512,12 +1512,10 @@
     $(document).ready(function () {
         $(window).load(function () {
             getThis();
-            var vendorId = $("#vendorListDestination").val();
+            var vendorId = $("#vendorListOrigin").val();
 
             $.getJSON('listVendorDriverAndTrucks', {
-                        vendorId: vendorId,
-                        async: false
-
+                        vendorId: vendorId
                     },
 
                     function (jsonResponse) {
@@ -1539,11 +1537,9 @@
                         });
 
                         var truckCode = $("#trucksList").val();
-                        if(truckCode != null){
+                        if(truckCode != null) {
                             $.getJSON('truckDetails', {
-                                        async:false,
                                         truckCodeParam: truckCode
-
                                     },
 
                                     function (jsonResponse) {
@@ -1560,15 +1556,16 @@
                                         select3.find('option').remove();
 
                                         // For Truck Type Auto-populate
-                                        $.each(jsonResponse.bodyTypeMap, function (key,value) {
+                                        $.each(jsonResponse.bodyTypeMap, function (key, value) {
 
                                             $('<option>').val(key).text(value).appendTo(select1);
                                             var bodyType = $("#bodyType").val();
                                             document.getElementById("bodyType_textfield").value = bodyType;
+
                                         });
 
                                         // For Plate Number Auto-populate
-                                        $.each(jsonResponse.plateNumberMap, function (key,value) {
+                                        $.each(jsonResponse.plateNumberMap, function (key, value) {
 
                                             $('<option>').val(key).text(value).appendTo(select2);
                                             var plateNumber = $("#plateNumber").val();
@@ -1577,7 +1574,7 @@
                                         });
 
                                         // For Gross Weight Auto-populate
-                                        $.each(jsonResponse.grossWeightMap, function (key,value) {
+                                        $.each(jsonResponse.grossWeightMap, function (key, value) {
 
                                             $('<option>').val(key).text(value).appendTo(select3);
                                             var grossWeight = $("#grossWeight").val();

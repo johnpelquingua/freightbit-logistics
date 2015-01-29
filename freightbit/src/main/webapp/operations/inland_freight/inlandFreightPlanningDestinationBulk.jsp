@@ -8,7 +8,7 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-                <h1><i class="fa fa-anchor"></i> Freight Plan </h1>
+                <h1><i class="fa fa-anchor"></i> Dispatch Plan : Destination</h1>
             </span>
         </legend>
         <ol class="breadcrumb">
@@ -889,14 +889,11 @@
         $(window).load(function () {
             getThis();
             var vendorId = $("#vendorListDestination").val();
-
             $.getJSON('listVendorDriverAndTrucks', {
-                        vendorId: vendorId,
-                        async: false
-
+                        vendorId : vendorId
                     },
 
-                    function (jsonResponse) {
+                    function(jsonResponse) {
 
                         var driver = $('#driverList');
 
@@ -906,20 +903,18 @@
 
                         truck.find('option').remove();
 
-                        $.each(jsonResponse.driverMap, function (key, value) {
+                        $.each(jsonResponse.driverMap, function(key, value) {
                             $('<option>').val(key).text(value).appendTo(driver);
                         });
 
-                        $.each(jsonResponse.trucksMap, function (key, value) {
+                        $.each(jsonResponse.trucksMap, function(key, value) {
                             $('<option>').val(key).text(value).appendTo(truck);
                         });
 
                         var truckCode = $("#trucksList").val();
-                        if(truckCode != null){
+                        if(truckCode != null) {
                             $.getJSON('truckDetails', {
-                                        async:false,
                                         truckCodeParam: truckCode
-
                                     },
 
                                     function (jsonResponse) {
@@ -936,15 +931,16 @@
                                         select3.find('option').remove();
 
                                         // For Truck Type Auto-populate
-                                        $.each(jsonResponse.bodyTypeMap, function (key,value) {
+                                        $.each(jsonResponse.bodyTypeMap, function (key, value) {
 
                                             $('<option>').val(key).text(value).appendTo(select1);
                                             var bodyType = $("#bodyType").val();
                                             document.getElementById("bodyType_textfield").value = bodyType;
+
                                         });
 
                                         // For Plate Number Auto-populate
-                                        $.each(jsonResponse.plateNumberMap, function (key,value) {
+                                        $.each(jsonResponse.plateNumberMap, function (key, value) {
 
                                             $('<option>').val(key).text(value).appendTo(select2);
                                             var plateNumber = $("#plateNumber").val();
@@ -953,7 +949,7 @@
                                         });
 
                                         // For Gross Weight Auto-populate
-                                        $.each(jsonResponse.grossWeightMap, function (key,value) {
+                                        $.each(jsonResponse.grossWeightMap, function (key, value) {
 
                                             $('<option>').val(key).text(value).appendTo(select3);
                                             var grossWeight = $("#grossWeight").val();

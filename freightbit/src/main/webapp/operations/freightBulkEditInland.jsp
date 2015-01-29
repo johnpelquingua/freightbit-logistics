@@ -1749,7 +1749,7 @@
                     <s:select emptyOption="true" id="vesselSchedule_originPort"
                               value="vesselSchedule.originPort"
                               name="vesselSchedule.originPort"
-                              list="portsList" listValue="value" listKey="key"order
+                              list="portsList" listValue="value" listKey="key"
                               cssClass="form-control"/>
 
                     <label>Destination Pier<span class="asterisk_red"></span></label>
@@ -2270,15 +2270,14 @@
     $(document).ready(function () {
         $(window).load(function () {
             getThis();
-            var vendorId = $("#vendorListDestination").val();
+
+            var vendorId = $("#vendorListOrigin").val();
 
             $.getJSON('listVendorDriverAndTrucks', {
-                        vendorId: vendorId,
-                        async: false
-
+                        vendorId : vendorId
                     },
 
-                    function (jsonResponse) {
+                    function(jsonResponse) {
 
                         var driver = $('#driverList');
 
@@ -2288,66 +2287,139 @@
 
                         truck.find('option').remove();
 
-                        $.each(jsonResponse.driverMap, function (key, value) {
+                        $.each(jsonResponse.driverMap, function(key, value) {
                             $('<option>').val(key).text(value).appendTo(driver);
                         });
 
-                        $.each(jsonResponse.trucksMap, function (key, value) {
+                        $.each(jsonResponse.trucksMap, function(key, value) {
                             $('<option>').val(key).text(value).appendTo(truck);
                         });
 
                         var truckCode = $("#trucksList").val();
-                        if(truckCode != null){
-                            $.getJSON('truckDetails', {
-                                        async:false,
-                                        truckCodeParam: truckCode
 
+                        $.getJSON('truckDetails', {
+                                    truckCodeParam: truckCode
+                                },
+
+                                function (jsonResponse) {
+                                    var select1 = $('#bodyType');
+
+                                    select1.find('option').remove();
+
+                                    var select2 = $('#plateNumber');
+
+                                    select2.find('option').remove();
+
+                                    var select3 = $('#grossWeight');
+
+                                    select3.find('option').remove();
+
+                                    // For Truck Type Auto-populate
+                                    $.each(jsonResponse.bodyTypeMap, function (key,value) {
+
+                                        $('<option>').val(key).text(value).appendTo(select1);
+                                        var bodyType = $("#bodyType").val();
+                                        document.getElementById("bodyType_textfield").value = bodyType;
+
+                                    });
+
+                                    // For Plate Number Auto-populate
+                                    $.each(jsonResponse.plateNumberMap, function (key,value) {
+
+                                        $('<option>').val(key).text(value).appendTo(select2);
+                                        var plateNumber = $("#plateNumber").val();
+                                        document.getElementById("plateNumber_textfield").value = plateNumber;
+
+                                    });
+
+                                    // For Gross Weight Auto-populate
+                                    $.each(jsonResponse.grossWeightMap, function (key,value) {
+
+                                        $('<option>').val(key).text(value).appendTo(select3);
+                                        var grossWeight = $("#grossWeight").val();
+                                        document.getElementById("grossWeight_textfield").value = grossWeight;
+
+                                    });
+                                });
+
+                    });
+
+            var vendorId = $("#vendorListDestination").val();
+
+            $.getJSON('listVendorDriverAndTrucks', {
+                        vendorId : vendorId
+                    },
+
+                    function(jsonResponse) {
+
+                        var driver = $('#driverListDestination');
+
+                        driver.find('option').remove();
+
+                        var truck = $('#trucksListDestination');
+
+                        truck.find('option').remove();
+
+                        $.each(jsonResponse.driverMap, function(key, value) {
+                            $('<option>').val(key).text(value).appendTo(driver);
+                        });
+
+                        $.each(jsonResponse.trucksMap, function(key, value) {
+                            $('<option>').val(key).text(value).appendTo(truck);
+                        });
+
+                        var truckCode = $("#trucksListDestination").val();
+                        if(truckCode != null) {
+                            $.getJSON('truckDetails', {
+                                        truckCodeParam: truckCode
                                     },
 
                                     function (jsonResponse) {
-                                        var select1 = $('#bodyType');
+                                        var select4 = $('#bodyTypeDestination');
 
-                                        select1.find('option').remove();
+                                        select4.find('option').remove();
 
-                                        var select2 = $('#plateNumber');
+                                        var select5 = $('#plateNumberDestination');
 
-                                        select2.find('option').remove();
+                                        select5.find('option').remove();
 
-                                        var select3 = $('#grossWeight');
+                                        var select6 = $('#grossWeightDestination');
 
-                                        select3.find('option').remove();
+                                        select6.find('option').remove();
 
                                         // For Truck Type Auto-populate
-                                        $.each(jsonResponse.bodyTypeMap, function (key,value) {
+                                        $.each(jsonResponse.bodyTypeMap, function (key, value) {
 
-                                            $('<option>').val(key).text(value).appendTo(select1);
-                                            var bodyType = $("#bodyType").val();
-                                            document.getElementById("bodyType_textfield").value = bodyType;
+                                            $('<option>').val(key).text(value).appendTo(select4);
+                                            var bodyType = $("#bodyTypeDestination").val();
+                                            document.getElementById("bodyType_Destination_textfield").value = bodyType;
+
                                         });
 
                                         // For Plate Number Auto-populate
-                                        $.each(jsonResponse.plateNumberMap, function (key,value) {
+                                        $.each(jsonResponse.plateNumberMap, function (key, value) {
 
-                                            $('<option>').val(key).text(value).appendTo(select2);
-                                            var plateNumber = $("#plateNumber").val();
-                                            document.getElementById("plateNumber_textfield").value = plateNumber;
+                                            $('<option>').val(key).text(value).appendTo(select5);
+                                            var plateNumber = $("#plateNumberDestination").val();
+                                            document.getElementById("plateNumber_Destination_textfield").value = plateNumber;
 
                                         });
 
                                         // For Gross Weight Auto-populate
-                                        $.each(jsonResponse.grossWeightMap, function (key,value) {
+                                        $.each(jsonResponse.grossWeightMap, function (key, value) {
 
-                                            $('<option>').val(key).text(value).appendTo(select3);
-                                            var grossWeight = $("#grossWeight").val();
-                                            document.getElementById("grossWeight_textfield").value = grossWeight;
+                                            $('<option>').val(key).text(value).appendTo(select6);
+                                            var grossWeight = $("#grossWeightDestination").val();
+                                            document.getElementById("grossWeight_Destination_textfield").value = grossWeight;
 
                                         });
                                     });
                         }
                         else{
-                            document.getElementById("bodyType_textfield").value = '';
-                            document.getElementById("plateNumber_textfield").value = '';
-                            document.getElementById("grossWeight_textfield").value = '';
+                            document.getElementById("bodyType_Destination_textfield").value = '';
+                            document.getElementById("plateNumber_Destination_textfield").value = '';
+                            document.getElementById("grossWeight_Destination_textfield").value = '';
+
                         }
                     });
             localStorage.clear();

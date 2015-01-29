@@ -312,6 +312,12 @@
             <result name="ON GOING" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
         </action>
 
+        <action name="editInlandFreightVendorInPlanningBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="reloadInlandFreightPlanningBulk">
+            <result name="PLANNING 2" type="tiles">operations.freightBulkEditInland.tiles</result>
+            <result name="PLANNING 3" type="tiles">operations.freightBulkEditInland.tiles</result>
+            <result name="ON GOING" type="tiles">operations.freightBulkEditInland.tiles</result>
+        </action>
+
         <action name="viewInfo" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewInfo">
             <result name="success" type="tiles">operations.viewInfo.tiles</result>
         </action>
@@ -449,18 +455,18 @@
         </action>
 
         <action name="addVendor" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
-            <result name="input" type="tiles">operations.freightBulkEdit.tiles</result>
-            <result name="success" type="redirect">reloadEditPage</result>
+            <result name="input" type="tiles">operations.freightBulkEditInland.tiles</result>
+            <result name="success" type="redirect">editInlandFreightVendorInPlanningBulk</result>
         </action>
 
         <action name="addTruck" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addTrucks">
-            <result name="success" type="redirect">reloadEditPage</result>
-            <result name="input" type="tiles">operations.freightBulkEdit.tiles</result>
+            <result name="success" type="redirect">editInlandFreightVendorInPlanningBulk</result>
+            <result name="input" type="tiles">operations.freightBulkEditInland.tiles</result>
         </action>
 
         <action name="addDriver" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addDriver">
-            <result name="success" type="redirect">reloadEditPage</result>
-            <result name="input" type="tiles">operations.freightBulkEdit.tiles</result>
+            <result name="success" type="redirect">editInlandFreightVendorInPlanningBulk</result>
+            <result name="input" type="tiles">operations.freightBulkEditInland.tiles</result>
         </action>
 
         <action name="addVesselScheduleEdit" class="com.sr.apps.freightbit.operations.action.OperationsAction"
