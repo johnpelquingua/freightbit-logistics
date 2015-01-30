@@ -91,7 +91,7 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column title="Action">
                                     <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
-                                        <i class="fa fa-ban"></i>
+                                        <i style="color: red;" class="fa fa-ban"></i>
                                     </s:if>
                                     <s:else>
                                         <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
@@ -350,6 +350,10 @@
                                 <td><i class='fa fa-check' ></i> Approve</td>
                                 <td><i class='fa fa-times' ></i> Cancel</td>
                             </tr>
+                            <tr>
+                                <td></td>
+                                <td><i style="color: red;" class='fa fa-ban'></i> Actions Disabled</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -433,7 +437,7 @@
 
         for(var i=0; i < $('#order tbody tr').size(); i++){
             if(freightStatus.eq(i).text() == 'INCOMPLETE'){
-                freightAction.eq(i).empty().append('<i class="fa fa-ban"></i>')
+                freightAction.eq(i).empty().append('<i style="color: red;" class="fa fa-ban"></i>')
             }
         }
 

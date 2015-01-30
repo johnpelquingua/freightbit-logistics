@@ -34,7 +34,7 @@
 
                     <table class="table leftAlign table-user-information">
                         <th style="font-size: 20px; border-top: none; width: 300px;">
-                            Booking Number
+                            <i class="fa fa-book"></i> Booking Number
                         </th>
                         <th style="font-size: 20px; border-top: none; width: 300px;">
                             <s:property value="order.orderNumber"/>
@@ -99,10 +99,10 @@
 
                     <table class="table leftAlign table-user-information">
 
-                        <th style="font-size: 20px; border-top: none; width: 300px;">Customer Information</th>
-
+                        <th style="font-size: 20px; border-top: none; width: 300px;">
+                            <i class="fa fa-user"></i> Customer Information
+                        </th>
                         <tbody>
-
                         <tr>
                             <td style="color: gray !important;">Customer Name</td>
                             <td><s:property value="order.customerName"/></td>
@@ -144,7 +144,7 @@
 
                     <table class="table leftAlign table-user-information">
 
-                        <th style="font-size: 20px; border-top: none; width: 300px;">Consignee Information</th>
+                        <th style="font-size: 20px; border-top: none; width: 300px;"><i class="fa fa-user"></i> Consignee Information</th>
 
                         <tbody>
 
