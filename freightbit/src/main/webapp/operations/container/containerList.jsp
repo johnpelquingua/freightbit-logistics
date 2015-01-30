@@ -1,7 +1,11 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
-
+<style>
+    .deleteContainerIcon {
+        cursor: pointer;
+    }
+</style>
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -89,7 +93,8 @@
                                         <s:url var="deleteContainerUrl" action="deleteContainer">
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
                                         </s:url>
-                                        <s:a href="%{deleteContainerUrl}" title="Delete Container" onclick="return confirm('Do you really want to delete?');" rel="tooltip"><i class="fa fa-trash-o"></i></s:a>
+                                        <s:a href="%{deleteContainerUrl}" title="Delete Container" onclick="return confirm('Do you really want to delete?');" rel="tooltip"></s:a>
+                                        <i class="fa fa-trash-o deleteContainerIcon"></i>
 
                                         <s:url var="viewContainerInfoUrl" action="viewContainerInfo">
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
@@ -170,6 +175,24 @@
     </div>
 </div>
 
+<div class="modal fade" id="deleteContainerModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Delete Container</span>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to <i style="color: #E74C3C;">DELETE</i> the container?<br/>
+                <i style="color: #E74C3C">* This container might have items associated to it. Please confirm cancellation.</i>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                <a href="" class="btn btn-danger confirmContainerDeleteModalBtn">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function generateReport(documentId,documentName) {
         /*alert(documentId);
@@ -194,5 +217,6 @@
     $(document).ready(function(){
         initTimestampAbbrev('containerTable', 4);
         initTimestampAbbrev('containerTable', 5);
+        actionConfirmation($('.deleteContainerIcon'), $('.confirmContainerDeleteModalBtn'), $('#deleteContainerModal'));
     });
 </script>

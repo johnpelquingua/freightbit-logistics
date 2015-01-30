@@ -2,6 +2,12 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<style>
+    .deleteCustomerIcon {
+        cursor: pointer;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12">
 
@@ -92,8 +98,8 @@
                                             <s:a class="icon-action-link" href="%{deleteCustomerUrl}" rel="tooltip"
                                                  title="Delete this Customer"
                                                  onclick="return confirm('Do you really want to delete?');">
-                                                <i class="fa fa-trash-o"></i>
                                             </s:a>
+                                            <i class="fa fa-trash-o deleteCustomerIcon"></i>
                                         </sec:authorize>
 
                                         <s:url var="customerInfoUrl" action="customerInfo">
@@ -150,6 +156,24 @@
     </div>
 </div>
 
+<div class="modal fade" id="deleteCustomerModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Delete Customer</span>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to <i style="color: #E74C3C;">DELETE</i> the customer?<br/>
+                <i style="color: #E74C3C">* This customer might have items, contacts, consignee and such associated to it. Please confirm cancellation.</i>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                <a href="" class="btn btn-danger confirmDeleteModalBtn">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
     $(document).ready(function() {
@@ -165,6 +189,8 @@
                 }
             }
         }
+
+        actionConfirmation($('.deleteCustomerIcon'), $('.confirmDeleteModalBtn'), $('#deleteCustomerModal'));
     });
 
     function showSearchFields() {
