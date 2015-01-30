@@ -40,8 +40,7 @@
             <result name="success" type="tiles">orders.booking-new.tiles</result>
         </action>
 
-        <action name="loadEditOrder" class="com.sr.apps.freightbit.order.action.OrderAction"
-                method="loadEditOrder">
+        <action name="loadEditOrder" class="com.sr.apps.freightbit.order.action.OrderAction" method="loadEditOrder">
             <result name="success" type="tiles">orders.orderEdit.tiles</result>
         </action>
 

@@ -631,6 +631,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             }
 
+            vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
+
+            vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
             sessionAttributes.put("nameSizeList", nameSizeList);
 
             /*return "PLANNING 1";*/
@@ -714,6 +717,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 }
 
+                vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
+
+                vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
                 sessionAttributes.put("nameSizeList", nameSizeList);
                 if(planning2.size() > 0 || planning3.size() >  0) {
                     return "EDIT";
@@ -951,6 +957,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             log.error("Update failed", e);
             return INPUT;
         }
+        vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
+
+        vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
         return SUCCESS;
     }
 

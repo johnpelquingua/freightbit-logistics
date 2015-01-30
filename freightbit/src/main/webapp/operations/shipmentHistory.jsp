@@ -257,7 +257,7 @@
         }
     }*/
     $(document).ready(function() {
-        var shipTable = $('.shipmentMonitoringTable tbody tr td:nth-child(2)');
+        var shipTable = $('.shipmentMonitoringTable tbody tr td:nth-child(3)');
         if (shipTable.size()) {
             for (var i = 0; i < shipTable.size(); i++) {
                 if(shipTable.eq(i).text() != 'CANCELLED' && shipTable.eq(i).text() != 'PENDING'){

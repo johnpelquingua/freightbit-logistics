@@ -2254,7 +2254,8 @@
 
     //    Read the value in cache
     function getThis() {
-        $("#vendorListDestination").val(localStorage.getItem("vendorListField"));
+        $("#vendorListOrigin").val(localStorage.getItem("vendorListOriginField"));
+        $("#vendorListDestination").val(localStorage.getItem("vendorListDestinationField"));
         $("#driverList").val(localStorage.getItem("driverListField"));
         $("#trucksList").val(localStorage.getItem("trucksListField"));
         $("#dropoff").val(localStorage.getItem("dropoffField"));
@@ -2262,16 +2263,16 @@
 
     //    Set the value in cache
     function setThis() {
-        localStorage.setItem("vendorListField", $("#vendorListDestination").val());
+        localStorage.setItem("vendorListOriginField", $("#vendorListOrigin").val());
+        localStorage.setItem("vendorListDestinationField", $("#vendorListDestination").val());
         localStorage.setItem("driverListField", $("#driverList").val());
         localStorage.setItem("trucksListField", $("#trucksList").val());
         localStorage.setItem("dropoffField", $("#dropoff").val());
     }
 
     $(document).ready(function () {
-        $(window).load(function () {
+        $(window).load(function() {
             getThis();
-
             var vendorId = $("#vendorListOrigin").val();
 
             $.getJSON('listVendorDriverAndTrucks', {
@@ -2342,7 +2343,6 @@
 
                                     });
                                 });
-
                     });
 
             var vendorId = $("#vendorListDestination").val();
