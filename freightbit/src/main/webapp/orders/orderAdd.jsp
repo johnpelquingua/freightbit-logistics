@@ -431,13 +431,13 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Cancel Booking</h4>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-warning" style="color: red;"></i> Cancel Booking</h4>
             </div>
             <div class="modal-body">
                 <p>Are you sure you want to cancel the booking?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
                 <%--<button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>--%>
                 <s:property value="order.orderId"/>
                 <s:url var="deleteOrderUrl" action="deleteOrder">

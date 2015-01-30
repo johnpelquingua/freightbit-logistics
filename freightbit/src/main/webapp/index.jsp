@@ -123,224 +123,224 @@
 
 </div>
 
-<div class="row">
+<%--<div class="row">--%>
 
-    <div class="col-lg-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-book"></i> Port Summary (LCL Only)</h3>
-            </div>
-            <div class="col-md-12 form-group pull-left" style="margin-top: 0.8em; margin-left: -5em; margin-bottom: 0em;">
-                <s:form action="changeOrigin" theme="bootstrap">
-                <label class="col-lg-2 control-label">Sort by Origin :</label>
-                <div class="col-lg-4">
-                    <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
-                      id="select1" list="portsList" listKey="key"
-                      listValue="value" name="originCity" onchange="$(this).closest('form').submit()" />
-                </div>
-                </s:form>
+    <%--<div class="col-lg-12">--%>
+        <%--<div class="panel panel-primary">--%>
+            <%--<div class="panel-heading">--%>
+                <%--<h3 class="panel-title"><i class="fa fa-book"></i> Port Summary (LCL Only)</h3>--%>
+            <%--</div>--%>
+            <%--<div class="col-md-12 form-group pull-left" style="margin-top: 0.8em; margin-left: -5em; margin-bottom: 0em;">--%>
+                <%--<s:form action="changeOrigin" theme="bootstrap">--%>
+                <%--<label class="col-lg-2 control-label">Sort by Origin :</label>--%>
+                <%--<div class="col-lg-4">--%>
+                    <%--<s:select cssClass="form-control" style="margin-bottom: 15px !important;"--%>
+                      <%--id="select1" list="portsList" listKey="key"--%>
+                      <%--listValue="value" name="originCity" onchange="$(this).closest('form').submit()" />--%>
+                <%--</div>--%>
+                <%--</s:form>--%>
 
-            </div>
+            <%--</div>--%>
 
-            <div class="panel-body">
-                <s:iterator value="test" >
-                    <li><s:property /></li>
-                </s:iterator>
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered text-center tablesorter table-striped">
-                        <thead>
-                            <th>DESTINATION</th>
-                            <th>Total Volume (m&#179;)</th>
-                            <th>Total Weight (kg.)</th>
-                            <th>Action</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Bacolod</td>
-                                <td><s:property value="bacolodVolume"/></td>
-                                <td><s:property value="bacolodWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Butuan</td>
-                                <td><s:property value="butuanVolume"/></td>
-                                <td><s:property value="butuanWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Cagayan</td>
-                                <td><s:property value="cagayanVolume"/></td>
-                                <td><s:property value="cagayanWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Cebu</td>
-                                <td><s:property value="cebuVolume"/></td>
-                                <td><s:property value="cebuWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Cotabato</td>
-                                <td><s:property value="cotabatoVolume"/></td>
-                                <td><s:property value="cotabatoWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Davao</td>
-                                <td><s:property value="davaoVolume"/></td>
-                                <td><s:property value="davaoWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dumaguete</td>
-                                <td><s:property value="dumagueteVolume"/></td>
-                                <td><s:property value="dumagueteWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>General Santos</td>
-                                <td><s:property value="gensanVolume"/></td>
-                                <td><s:property value="gensanWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Iligan</td>
-                                <td><s:property value="iliganVolume"/></td>
-                                <td><s:property value="iliganWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Iloilo</td>
-                                <td><s:property value="iloiloVolume"/></td>
-                                <td><s:property value="iloiloWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ozamis</td>
-                                <td><s:property value="ozamisVolume"/></td>
-                                <td><s:property value="ozamisWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Palawan</td>
-                                <td><s:property value="palawanVolume"/></td>
-                                <td><s:property value="palawanWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Roxas</td>
-                                <td><s:property value="roxasVolume"/></td>
-                                <td><s:property value="roxasWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Tagbilaran</td>
-                                <td><s:property value="tagbilaranVolume"/></td>
-                                <td><s:property value="tagbilaranWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Tacloban</td>
-                                <td><s:property value="taclobanVolume"/></td>
-                                <td><s:property value="taclobanWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Zamboanga</td>
-                                <td><s:property value="zamboangaVolume"/></td>
-                                <td><s:property value="zamboangaWeight"/></td>
-                                <td>
-                                    <i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <%--<div class="panel-body">--%>
+                <%--<s:iterator value="test" >--%>
+                    <%--<li><s:property /></li>--%>
+                <%--</s:iterator>--%>
+                <%--<div class="table-responsive">--%>
+                    <%--<table class="table table-hover table-bordered text-center tablesorter table-striped">--%>
+                        <%--<thead>--%>
+                            <%--<th>DESTINATION</th>--%>
+                            <%--<th>Total Volume (m&#179;)</th>--%>
+                            <%--<th>Total Weight (kg.)</th>--%>
+                            <%--<th>Action</th>--%>
+                        <%--</thead>--%>
+                        <%--<tbody>--%>
+                            <%--<tr>--%>
+                                <%--<td>Bacolod</td>--%>
+                                <%--<td><s:property value="bacolodVolume"/></td>--%>
+                                <%--<td><s:property value="bacolodWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Butuan</td>--%>
+                                <%--<td><s:property value="butuanVolume"/></td>--%>
+                                <%--<td><s:property value="butuanWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Cagayan</td>--%>
+                                <%--<td><s:property value="cagayanVolume"/></td>--%>
+                                <%--<td><s:property value="cagayanWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Cebu</td>--%>
+                                <%--<td><s:property value="cebuVolume"/></td>--%>
+                                <%--<td><s:property value="cebuWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Cotabato</td>--%>
+                                <%--<td><s:property value="cotabatoVolume"/></td>--%>
+                                <%--<td><s:property value="cotabatoWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Davao</td>--%>
+                                <%--<td><s:property value="davaoVolume"/></td>--%>
+                                <%--<td><s:property value="davaoWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Dumaguete</td>--%>
+                                <%--<td><s:property value="dumagueteVolume"/></td>--%>
+                                <%--<td><s:property value="dumagueteWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>General Santos</td>--%>
+                                <%--<td><s:property value="gensanVolume"/></td>--%>
+                                <%--<td><s:property value="gensanWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Iligan</td>--%>
+                                <%--<td><s:property value="iliganVolume"/></td>--%>
+                                <%--<td><s:property value="iliganWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Iloilo</td>--%>
+                                <%--<td><s:property value="iloiloVolume"/></td>--%>
+                                <%--<td><s:property value="iloiloWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Ozamis</td>--%>
+                                <%--<td><s:property value="ozamisVolume"/></td>--%>
+                                <%--<td><s:property value="ozamisWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Palawan</td>--%>
+                                <%--<td><s:property value="palawanVolume"/></td>--%>
+                                <%--<td><s:property value="palawanWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Roxas</td>--%>
+                                <%--<td><s:property value="roxasVolume"/></td>--%>
+                                <%--<td><s:property value="roxasWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Tagbilaran</td>--%>
+                                <%--<td><s:property value="tagbilaranVolume"/></td>--%>
+                                <%--<td><s:property value="tagbilaranWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Tacloban</td>--%>
+                                <%--<td><s:property value="taclobanVolume"/></td>--%>
+                                <%--<td><s:property value="taclobanWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>Zamboanga</td>--%>
+                                <%--<td><s:property value="zamboangaVolume"/></td>--%>
+                                <%--<td><s:property value="zamboangaWeight"/></td>--%>
+                                <%--<td>--%>
+                                    <%--<i class="fa fa-cubes" data-toggle="tooltip" data-placement="top" title="Tooltip on left"></i>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                        <%--</tbody>--%>
+                    <%--</table>--%>
 
-                        <%--<display:table id="order" name="lclTable"
-                                       requestURI="home.action" pagesize="10"
-                                       class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"
-                                       style="margin-top: 15px;empty-cells: hide;">
+                        <%--&lt;%&ndash;<display:table id="order" name="lclTable"--%>
+                                       <%--requestURI="home.action" pagesize="10"--%>
+                                       <%--class="lclTable table table-hover table-bordered text-center tablesorter table-condensed"--%>
+                                       <%--style="margin-top: 15px;empty-cells: hide;">--%>
 
-                            &lt;%&ndash;<td>
-                                <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
-                                    <s:checkbox theme="simple" name="check"
-                                                fieldValue="%{#attr.order.orderId}"/>
-                                </display:column>
-                            </td>&ndash;%&gt;
+                            <%--&lt;%&ndash;<td>--%>
+                                <%--<display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">--%>
+                                    <%--<s:checkbox theme="simple" name="check"--%>
+                                                <%--fieldValue="%{#attr.order.orderId}"/>--%>
+                                <%--</display:column>--%>
+                            <%--</td>&ndash;%&gt;--%>
 
-                            <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            &lt;%&ndash;<td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>&ndash;%&gt;
-                            &lt;%&ndash;<td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>&ndash;%&gt;
-                            <td><display:column property="orderWeight" title="Weight  <i class='fa fa-sort' />" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="orderVolume" title="Volume  <i class='fa fa-sort' />" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td>
-                                <display:column title="Action">
-                                    &lt;%&ndash;<s:if test="#attr.order.orderStatus=='PENDING'">
-                                        <i class="fa fa-ban"></i>
-                                    </s:if>
-                                    <s:else>&ndash;%&gt;
-                                       &lt;%&ndash; <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
-                                            <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                                             title="Update Status">
-                                            <i class="fa fa-edit" id="status"></i>
-                                        </s:a>&ndash;%&gt;
+                            <%--<td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"--%>
+                                                <%--style="text-align: center;"> </display:column></td>--%>
+                            <%--&lt;%&ndash;<td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"--%>
+                                                <%--style="text-align: center;"> </display:column></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"--%>
+                                                <%--style="text-align: center;"> </display:column></td>&ndash;%&gt;--%>
+                            <%--<td><display:column property="orderWeight" title="Weight  <i class='fa fa-sort' />" class="tb-font-black"--%>
+                                                <%--style="text-align: center;"> </display:column></td>--%>
+                            <%--<td><display:column property="orderVolume" title="Volume  <i class='fa fa-sort' />" class="tb-font-black"--%>
+                                                <%--style="text-align: center;"> </display:column></td>--%>
+                            <%--<td>--%>
+                                <%--<display:column title="Action">--%>
+                                    <%--&lt;%&ndash;<s:if test="#attr.order.orderStatus=='PENDING'">--%>
+                                        <%--<i class="fa fa-ban"></i>--%>
+                                    <%--</s:if>--%>
+                                    <%--<s:else>&ndash;%&gt;--%>
+                                       <%--&lt;%&ndash; <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">--%>
+                                            <%--<s:param name="orderIdParam" value="#attr.order.orderId"></s:param>--%>
+                                        <%--</s:url>--%>
+                                        <%--<s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"--%>
+                                             <%--title="Update Status">--%>
+                                            <%--<i class="fa fa-edit" id="status"></i>--%>
+                                        <%--</s:a>&ndash;%&gt;--%>
 
-                                        <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
-                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
-                                            <i class="fa fa-info-circle"></i>
-                                        </s:a>
-                                    &lt;%&ndash;</s:else>&ndash;%&gt;
-                                </display:column>
-                            </td>
+                                        <%--<s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">--%>
+                                            <%--<s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>--%>
+                                        <%--</s:url>--%>
+                                        <%--<s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">--%>
+                                            <%--<i class="fa fa-info-circle"></i>--%>
+                                        <%--</s:a>--%>
+                                    <%--&lt;%&ndash;</s:else>&ndash;%&gt;--%>
+                                <%--</display:column>--%>
+                            <%--</td>--%>
 
-                        </display:table>--%>
+                        <%--</display:table>&ndash;%&gt;--%>
 
-                </div>
-            </div>
+                <%--</div>--%>
+            <%--</div>--%>
 
-        </div>
-    </div>
+        <%--</div>--%>
+    <%--</div>--%>
 
-</div>
+<%--</div>--%>
 
 <script type="text/javascript">
 

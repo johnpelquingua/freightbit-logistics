@@ -81,7 +81,6 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
-
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-file-text"></i> Document Stages</h3>
             </div>
@@ -381,15 +380,17 @@
                             <%--</s:if>--%>
 
                             <s:if test=" documentTab == 'OUTBOUND_READY' ">
-
-                                <div class="table-responsive">
+                                <%--<div class="outboundTableLoadingMainDiv center-text" style="margin-top: 1.6em;">--%>
+                                    <%--Processing documents. Please Wait.<br/>--%>
+                                    <%--<i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>--%>
+                                <%--</div>--%>
+                                <div class="table-responsive outboundTableMainDiv">
                                     <s:form name="myform" action="processDocuments">
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
                                     <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
 
-                                    <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="outboundTable outbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="outboundTable outbound_table table table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
-
                                         <td>
                                             <%--<display:column title="<input type='checkbox' id='outboundCheckBox' name='outboundCheckBox'/>">--%>
                                                 <display:column title="">
@@ -432,28 +433,22 @@
 
                                             </display:column>
                                         </td>
-
                                         <td><display:column property="documentName" title="Document Name" class="tb-font-black" style="text-align: center;">
                                             </display:column>
                                         </td>
-
                                         <td><display:column property="referenceNumber" title="Series Number" class="tb-font-black" style="text-align: center;">
                                             </display:column>
                                         </td>
-
                                         <td><display:column property="vendorCode" title="Vendor" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
-
                                         <td><display:column property="documentStatus" title="Status" class="tb-font-black"
                                                             style="text-align: center;" > </display:column></td>
-
                                         <td><display:column property="documentComments" title="Comments" class="tb-font-black"
                                                             style="text-align: center;" > </display:column></td>
 
                                         <%--<td><display:column property="documentType" title="Comments" class="tb-font-black"
                                                             style="text-align: center;" > </display:column></td>--%>
-
                                         <td>
                                             <display:column title="Action" class="tb-font-black" style="text-align: center;" >
 
@@ -510,9 +505,13 @@
 
                                             </display:column>
                                         </td>
-
+                                        <td><display:column property="documentProcessed" title="PROCESS_FLAG_HIDE_THIS_OUTBOUND" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
                                     </display:table>
-
+                                    <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="OUTBOUND">
+                                        <button type="button" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i> Add Outbound Document</button>
+                                    </a>
                                 </div>
 
 
@@ -529,9 +528,7 @@
                                         </s:a>--%>
 
                                         <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'OUTBOUND');">--%>
-                                        <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="OUTBOUND">
-                                            <button type="button" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i> Add Outbound Document</button>
-                                        </a>
+
 
                                         <%--<s:url var="addOutboundDocumentUrl" action="addOutboundDocument">
                                             <s:param name="orderIdParam"
@@ -574,20 +571,20 @@
                                         <%--<s:textfield type="text" cssClass="form-control" name = "dateReturnedInbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>--%>
                                     <%--</div>--%>
                                 <%--</div>--%>
-
-                                <div class="table-responsive" style="clear:both;">
+                                <%--<div class="inboundTableMainDiv center-text" style="margin-top: 1.6em;">--%>
+                                    <%--Processing documents. Please Wait.<br/>--%>
+                                    <%--<i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>--%>
+                                <%--</div>--%>
+                                <div class="table-responsive inboundTableMainDiv" style="clear:both;">
                                     <s:form name="myform" action="processDocumentsInbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItemInbound" />
-                                    <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="inbound_table table table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
-
                                         <td>
                                             <%--<display:column title="<input type='checkbox' id='inboundCheckBox' />" class="tb-font-black" style="text-align: center;" >--%>
                                                 <display:column title="">
-
                                                 <%--<s:if test=" documentTabInbound == 'INBOUND_STAGE' ">--%>
-
                                                     <s:if test="#attr.document.documentProcessed <= 1">
                                                         <s:url var="checkDocumentInboundUrl" action="checkDocumentInbound">
                                                             <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
@@ -599,7 +596,6 @@
                                                     <s:else>
                                                         <i class="fa fa-check-square-o"></i>
                                                     </s:else>
-
                                                     <%--<s:if test="#attr.document.documentProcessed == 1">
                                                         <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
                                                     </s:if>
@@ -746,7 +742,9 @@
 
                                             </display:column>
                                         </td>
-
+                                        <td><display:column property="documentProcessed" title="PROCESS_FLAG_HIDE_THIS_INBOUND" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
                                     </display:table>
 
                                 <%--<s:if test=" documentTabInbound == 'INBOUND_STAGE' ">--%>
@@ -768,7 +766,6 @@
                                     </a>
 
                                 </s:form>
-
                                 </div>
 
                             </s:if>
@@ -809,12 +806,15 @@
                                         <%--<s:textfield type="text" cssClass="form-control" name = "finalOutboundTrackingNumber" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>--%>
                                     <%--</div>--%>
                                 <%--</div>--%>
-
-                                <div class="table-responsive" style="clear:both;">
+                                <%--<div class="finalOutboundTableLoadingMainDiv center-text" style="margin-top: 1.6em;">--%>
+                                    <%--Processing documents. Please Wait.<br/>--%>
+                                    <%--<i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>--%>
+                                <%--</div>--%>
+                                <div class="table-responsive finalOutboundTableMainDiv" style="clear:both;">
                                 <s:form name="myform" action="processDocumentsFinalOutbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItemFinalOutbound"></s:textfield>
-                                    <display:table id="document" name="finalOutboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="final_outbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="finalOutboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="final_outbound_table table table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
@@ -944,7 +944,9 @@
 
                                             </display:column>
                                         </td>
-
+                                        <td><display:column property="documentProcessed" title="PROCESS_FLAG_HIDE_THIS_FINALOUT" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
                                     </display:table>
                                     </div>
 
@@ -1009,12 +1011,15 @@
                                         <%--<s:textfield type="text" cssClass="form-control" name = "dateReturnedFinalInbound" cssStyle="margin-bottom: 15px;" disabled="true"></s:textfield>--%>
                                     <%--</div>--%>
                                 <%--</div>--%>
-
-                                <div class="table-responsive" style="clear:both;">
+                                <%--<div class="finalInboundTableLoadingMainDiv center-text" style="margin-top: 1.6em;">--%>
+                                    <%--Processing documents. Please Wait.<br/>--%>
+                                    <%--<i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>--%>
+                                <%--</div>--%>
+                                <div class="table-responsive finalInboundTableMainDiv" style="clear:both;">
                                     <s:form name="myform" action="processDocumentsFinalInbound">
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItemFinalInbound"></s:textfield>
-                                    <display:table id="document" name="finalInboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                    <display:table id="document" name="finalInboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="final_inbound_table table table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
                                         <td>
@@ -1123,7 +1128,9 @@
 
                                             </display:column>
                                         </td>
-
+                                        <td><display:column property="documentProcessed" title="PROCESS_FLAG_HIDE_THIS_FINALIN" class="tb-font-black" style="text-align: center;">
+                                        </display:column>
+                                        </td>
                                     </display:table>
                                 </div>
                                         <%--<s:if test=" documentTabFinalInbound == 'FINAL_INBOUND_STAGE' ">--%>
@@ -1161,14 +1168,17 @@
                         <div class="panel-body">
 
                             <s:if test=" documentTabComplete == 'COMPLETE_READY' || documentTabComplete == 'ARCHIVE_PENDING' ">
-
-                                <div class="table-responsive" style="clear:both;">
+                                <%--<div class="completeTableLoadingMainDiv center-text" style="margin-top: 1.6em;">--%>
+                                    <%--Processing documents. Please Wait.<br/>--%>
+                                    <%--<i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>--%>
+                                <%--</div>--%>
+                                <div class="table-responsive completeTableMainDiv" style="clear:both;">
 
                                 <s:form name="myform" action="processDocumentsComplete">
 
                                 <s:textfield type="hidden" name="orderIdParam" id="order-Id"/>
                                 <s:textfield type="hidden" name="document.documentItem" id="documentItemComplete"></s:textfield>
-                                <display:table id="document" name="completeDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="final_inbound_table table table-striped table-hover table-bordered text-center tablesorter"
+                                <display:table id="document" name="completeDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="completeTable table table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">
 
                                     <td>
@@ -1245,7 +1255,9 @@
                                         </display:column>
 
                                     </td>
-
+                                    <td><display:column property="documentProcessed" title="PROCESS_FLAG_HIDE_THIS_COMPLETE" class="tb-font-black" style="text-align: center;">
+                                    </display:column>
+                                    </td>
                                 </display:table>
                                 </div>
 
@@ -1298,9 +1310,26 @@
                     </div>
 
 <%------------------------------------------COMPLETE DOCUMENTS END-----------------------------------------------%>
-
             </div>
-
+            <div class="panel panel-footer" style="margin-bottom: 0em;">
+                <div class="table-responsive">
+                    <div class="col-lg-12">
+                        <table class="col-lg-12">
+                            <tr>
+                                <td style="width: 20%;"><label>LEGEND:</label></td>
+                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #d9534f;"></i> Outbound Complete</td>
+                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #f0ad4e;"></i> Inbound Complete</td>
+                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #9d009f;"></i> Final Outbound Complete</td>
+                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #428bca;"></i> Final Inbound Complete</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #5cb85c;"></i> Complete</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -1434,7 +1463,7 @@
                     <label style="margin-left: 0.5em;" class="control-label">Date Received</label>
                     <s:textfield type="text" cssClass="form-control" id="datepicker3" name="dateReturnedFinalInbound" required="true" placeholder="Select Returned date"></s:textfield>
                     <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
-                    <div style="margin-top: 1em;" class="pull-right">
+                    <div style="margin-top: 1em;" class="pull   -right">
                         <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
                         <s:submit name="submit" cssClass="btn btn-primary" value="Okay" onclick="addOrderId()" />
                     </div>
@@ -1451,6 +1480,7 @@
 
     $(document).ready(function(){
         documentsCheckbox();
+
 //        massCheckbox('outboundCheckBox', 'outboundTable');
 //        massCheckbox('inboundCheckBox', 'inbound_table');
 //        massCheckbox('foCheckBox', 'final_outbound_table');
@@ -1569,6 +1599,12 @@ $( window ).load(function() {
     }
 
 });
+
+    processDocumentStage('.outboundTable', $('.outboundTableMainDiv'), $('.outboundTableLoadingMainDiv'), 8);
+    processDocumentStage('.inbound_table', $('.inboundTableMainDiv'), $('.inboundTableLoadingMainDiv'), 8);
+    processDocumentStage('.final_outbound_table', $('.finalOutboundTableMainDiv'), $('.finalOutboundTableLoadingMainDiv'), 8);
+    processDocumentStage('.final_inbound_table', $('.finalInboundTableMainDiv'), $('.finalInboundTableLoadingMainDiv'), 8);
+    processDocumentStage('.completeTable', $('.completeTableMainDiv'), $('.completeTableLoadingMainDiv'), 8);
 
 });
 

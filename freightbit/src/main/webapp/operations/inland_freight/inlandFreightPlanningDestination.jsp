@@ -1205,11 +1205,13 @@
     });
 
     $(document).ready(function () {
-        $('#vendorListDestination').change(function (event) {
+            $('#vendorListDestination').change(function (event) {
             var vendorId = $("#vendorListDestination").val();
 
             $.getJSON('listVendorDriverAndTrucks', {
-                        vendorId: vendorId
+                        vendorId: vendorId,
+                        async: false
+
                 },
 
                 function (jsonResponse) {
@@ -1284,20 +1286,21 @@
                         document.getElementById("grossWeight_textfield").value = '';
                     }
                 });
-        });
+            });
     });
 
     $(document).ready(function () {
         $("#createVendorButton").click(function () {
+            setThis();
             $("#vendor_vendorName").val('');
             $("#vendor_vendorCode").val('');
-            getThis();
         })
     });
 
     $(document).ready(function () {
         $("#createDriverButton").click(function () {
             var vendorId = $("#vendorListDestination").val();
+            setThis();
             $("#driver_licenseNumber").val('');
             $("#driver_lastName").val('');
             $("#driver_firstName").val('');
@@ -1315,6 +1318,7 @@
     $(document).ready(function () {
         $("#createTruckButton").click(function () {
             var vendorId = $("#vendorListDestination").val();
+            setThis();
             $("#truck_plateNumber").val('');
             $("#truck_truckCode").val('');
             $("#truck_motorVehicleNumber").val('');
@@ -1360,23 +1364,106 @@
         startDate: 2
 
     });
-
-    function setThis() {
+//    Read the value in cache
+    function getThis() {
         $("#vendorListDestination").val(localStorage.getItem("vendorListField"));
         $("#driverList").val(localStorage.getItem("driverListField"));
         $("#trucksList").val(localStorage.getItem("trucksListField"));
         $("#dropoff").val(localStorage.getItem("dropoffField"));
     }
-    function getThis() {
+
+//    Set the value in cache
+    function setThis() {
         localStorage.setItem("vendorListField", $("#vendorListDestination").val());
         localStorage.setItem("driverListField", $("#driverList").val());
         localStorage.setItem("trucksListField", $("#trucksList").val());
         localStorage.setItem("dropoffField", $("#dropoff").val());
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $(window).load(function () {
-            setThis();
+            getThis();
+            var vendorId = $("#vendorListDestination").val();
+
+            $.getJSON('listVendorDriverAndTrucks', {
+                        vendorId: vendorId,
+                        async: false
+
+                    },
+
+                    function (jsonResponse) {
+
+                        var driver = $('#driverList');
+
+                        driver.find('option').remove();
+
+                        var truck = $('#trucksList');
+
+                        truck.find('option').remove();
+
+                        $.each(jsonResponse.driverMap, function (key, value) {
+                            $('<option>').val(key).text(value).appendTo(driver);
+                        });
+
+                        $.each(jsonResponse.trucksMap, function (key, value) {
+                            $('<option>').val(key).text(value).appendTo(truck);
+                        });
+
+                        var truckCode = $("#trucksList").val();
+                        if(truckCode != null){
+                            $.getJSON('truckDetails', {
+                                        async:false,
+                                        truckCodeParam: truckCode
+
+                                    },
+
+                                    function (jsonResponse) {
+                                        var select1 = $('#bodyType');
+
+                                        select1.find('option').remove();
+
+                                        var select2 = $('#plateNumber');
+
+                                        select2.find('option').remove();
+
+                                        var select3 = $('#grossWeight');
+
+                                        select3.find('option').remove();
+
+                                        // For Truck Type Auto-populate
+                                        $.each(jsonResponse.bodyTypeMap, function (key,value) {
+
+                                            $('<option>').val(key).text(value).appendTo(select1);
+                                            var bodyType = $("#bodyType").val();
+                                            document.getElementById("bodyType_textfield").value = bodyType;
+                                        });
+
+                                        // For Plate Number Auto-populate
+                                        $.each(jsonResponse.plateNumberMap, function (key,value) {
+
+                                            $('<option>').val(key).text(value).appendTo(select2);
+                                            var plateNumber = $("#plateNumber").val();
+                                            document.getElementById("plateNumber_textfield").value = plateNumber;
+
+                                        });
+
+                                        // For Gross Weight Auto-populate
+                                        $.each(jsonResponse.grossWeightMap, function (key,value) {
+
+                                            $('<option>').val(key).text(value).appendTo(select3);
+                                            var grossWeight = $("#grossWeight").val();
+                                            document.getElementById("grossWeight_textfield").value = grossWeight;
+
+                                        });
+                                    });
+                        }
+                        else{
+                            document.getElementById("bodyType_textfield").value = '';
+                            document.getElementById("plateNumber_textfield").value = '';
+                            document.getElementById("grossWeight_textfield").value = '';
+                        }
+                    });
+            localStorage.clear();
         });
     });
 </script>

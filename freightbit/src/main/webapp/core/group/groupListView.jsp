@@ -1,5 +1,12 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+
+<style>
+    .groupDeleteAction {
+        cursor: pointer;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -53,8 +60,8 @@
                                         <s:url var="deleteGroupUrl" action="deleteGroup">
                                             <s:param name="groupCodeParam" value="#attr.group.groupCode"></s:param>
                                         </s:url>
-                                        <s:a class="icon-action-link" href="%{deleteGroupUrl}" rel="tooltip" title="Delete this group" onclick="return confirm('Do you really want to delete?');">
-                                        <!-- <img src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>--><i class="fa fa-trash-o"></i>
+                                        <s:a class="icon-action-link" href="%{deleteGroupUrl}" rel="tooltip" title="Delete this group" onclick="return confirm('Do you really want to delete?');"></s:a>
+                                        <i class="fa fa-trash-o groupDeleteAction"></i>
                                     </display:column>
                                 </td>
                             </display:table>
@@ -91,6 +98,27 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="groupDeleteModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="font-size: 1.5em;"><i class="fa fa-warning" style="color: red;"></i> Confirm group deletion</div>
+            <div class="modal-body">
+                This group may contain members. Are you sure you want to delete this group?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <a class="groupDeleteBtn btn btn-danger" href="#">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        actionConfirmation($('.groupDeleteAction'), $('.groupDeleteBtn'), $('#groupDeleteModal'));
+    })
+</script>
 
 
 

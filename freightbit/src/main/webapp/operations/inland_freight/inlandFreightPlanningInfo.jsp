@@ -94,7 +94,7 @@
         <span class="pull-right">
         <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
              title="Update Status" >
-            <i class="fa fa-edit">Edit</i>
+            <i class="fa fa-edit"></i> Edit
         </s:a>
         </span>
     </div>
@@ -133,7 +133,7 @@
                     <span class="pull-right">
                     <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
                          title="Update Status" >
-                        <i class="fa fa-edit">Edit</i>
+                        <i class="fa fa-edit"></i> Edit
                     </s:a>
                     </span>
                 </div>
@@ -226,7 +226,7 @@
                     <span class="pull-right">
                     <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
                          title="Update Status" >
-                        <i class="fa fa-edit">Edit</i>
+                        <i class="fa fa-edit"></i> Edit
                     </s:a>
                     </span>
                 </div>
@@ -288,13 +288,13 @@
              title="Update Status">
 
             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                <button type="button" class="btn btn-default">
-                    Back to Dispatch Plan : Containers
+                <button type="button" class="btn btn-danger">
+                    <i class="fa fa-chevron-left"></i> Back to Dispatch Plan : Containers
                 </button>
             </s:if>
             <s:else>
-                <button type="button" class="btn btn-default">
-                    Back to Dispatch Plan : Items
+                <button type="button" class="btn btn-danger">
+                    <i class="fa fa-chevron-left"></i> Back to Dispatch Plan : Items
                 </button>
             </s:else>
         </s:a>

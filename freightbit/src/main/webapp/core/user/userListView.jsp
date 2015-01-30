@@ -3,6 +3,12 @@
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<style>
+    .userDeleteAction {
+        cursor: pointer;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -78,11 +84,14 @@
                                         </s:url>
                                         <s:a href="%{loadEditUserUrl}" class="icon-action-link" rel="tooltip" title="Edit this user">
                                         <!-- <img src="../includes/images/edit-user.png" class="icon-action circ-icon"> </s:a>--><i class="fa fa-pencil"></i>
+
                                         <s:url var="deleteUserUrl" action="deleteUser">
                                             <s:param name="userNameParam" value="#attr.user.userName"></s:param>
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{deleteUserUrl}" rel="tooltip" title="Delete this user" onclick="return confirm('Do you really want to delete?');">
-                                        <!-- <img src="../includes/images/remove-user.png" class="icon-action circ-icon"> </s:a>--> <i class="fa fa-trash-o"></i>
+                                        </s:a>
+                                        <i class="fa fa-trash-o userDeleteAction"></i>
+
                                         <s:url var="viewUserInfoUrl" action="viewUserInfo">
                                             <s:param name="userNameParam" value="#attr.user.userName"></s:param>
                                         </s:url>
@@ -146,6 +155,21 @@
     </div>
 </div>
 
+<div class="modal fade" id="userDeleteModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="font-size: 1.5em;"><i class="fa fa-warning" style="color: red;"></i> Confirm user deletion</div>
+            <div class="modal-body">
+                Are you sure you want to delete this user?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <a class="userDeleteBtn btn btn-danger" href="#">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function showSearchFields() {
         $.ajax({
@@ -160,6 +184,9 @@
                 alert('An error occurred! ' + thrownError);
             }
         });
-
     }
+
+    $(document).ready(function(){
+        actionConfirmation($('.userDeleteAction'), $('.userDeleteBtn'), $('#userDeleteModal'));
+    })
 </script>

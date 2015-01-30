@@ -150,9 +150,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     Date filterPickup;
     Date filterDelivery;
-    private String[] dummyMsg;
     private String[] check;
-    private String[] checkLCL;
+    private String checkLCL;
     private String originCity; // load table based on origin city
     private String destinationCity; // load table based on destination city
     private String originCityTruck; // load table based on origin city trucking
@@ -280,6 +279,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setVendorClass(vendorBean.getVendorClass());
         entity.setVendorName(vendorBean.getVendorName());
         entity.setVendorType(vendorBean.getVendorType());
+        entity.setServiceArea(vendorBean.getServiceArea());
         entity.setCreatedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimeStamp(new Date());
         entity.setVendorStatus("ACTIVE");
@@ -363,7 +363,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if ("".equals(orderItem.getEditItem())) {
 
             if (check == null) {
-                return INPUT;
+                return "NULL_INPUT";
 
             } else {
                 for (int i =0; i<check.length; i++) {
@@ -457,7 +457,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             orderItem.setEditItem("");
 
             if (check == null) {
-                return INPUT;
+                return "NULL_INPUT";
             } else {
                 for (int i =0; i<check.length; i++) {
 
@@ -546,7 +546,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
 
+                /*if(planning2.size() > 0 && planning3.size() >  0) {
+                    return "EDIT";
+                } else{
+                    return "errorInput";
+                }*/
                 return "EDIT";
+
             }
         }
     }
@@ -561,7 +567,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if ("".equals(orderItem.getEditItem())) {
 
             if (check == null) {
-                return INPUT;
+                return "NULL_INPUT";
 
             } else {
                 for (int i =0; i<check.length; i++) {
@@ -633,7 +639,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             } else if (planning3.size() > 0) {
                 return "PLANNING 3";
             } else{
-                return "input";
+                return "errorInput";
             }
 
         } else {
@@ -641,7 +647,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             orderItem.setEditItem("");
 
             if (check == null) {
-                return INPUT;
+                return "NULL_INPUT";
             } else {
                 for (int i =0; i<check.length; i++) {
 
@@ -709,7 +715,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 }
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
-                return "EDIT";
+                if(planning2.size() > 0 && planning3.size() >  0) {
+                    return "EDIT";
+                } else{
+                    return "errorInput";
+                }
             }
         }
     }
@@ -1623,6 +1633,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
             vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
         }
 
+        vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
+
+        vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
+
         clearErrorsAndMessages();
         addActionMessage("Vendor Added Successfully!");
 
@@ -1648,6 +1662,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
 
         order = transformToOrderFormBean(orderEntity);
+
+        vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
+
+        vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
 
         clearErrorsAndMessages();
         addActionMessage("Vendor Added Successfully!");
@@ -1810,9 +1828,24 @@ public class OperationsAction extends ActionSupport implements Preparable {
         System.out.println("BBBBBBBBBBBBBBBBBBBBBBBB " + vendorIdParam);
         System.out.println("CCCCCCCCCCCCCCCCCCCCCCCC " + checkLCL);
 
-//        for(int i=0; i == checkLCL.length; i++){
-//            System.out.println("DDDDDDDDDDDDDDDDDDDDDDDD " + checkLCL[i]);
-//        }
+        String str = checkLCL;
+
+        ArrayList aList = new ArrayList(Arrays.asList(str.split(",")));
+
+        for(int i=0; i<aList.size(); i++){
+            System.out.println(" ---------------------------> " + aList.get(i));
+
+            Integer OrderIdHolder = Integer.parseInt(aList.get(i).toString());
+            List<OrderItems> orderItemEntity = operationsService.findAllOrderItemsByOrderId(OrderIdHolder);
+
+            for(OrderItems orderItemElem : orderItemEntity){
+                orderItemElem.setVendorSea(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVendorCode());
+                orderItemElem.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
+                operationsService.updateOrderItem(orderItemElem);
+            }
+
+        }
+
 
         return SUCCESS;
     }
@@ -2062,6 +2095,50 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         return SUCCESS;
     }
+    public String viewSeaFreightItemListErrorInput() {
+        clearErrorsAndMessages();
+        addActionError("Status must be Planning 1 only.");
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
+
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParamSession);
+        order = transformToOrderFormBean(orderEntity);
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParamSession);
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        return SUCCESS;
+    }
+
+    public String viewInlandFreightItemListErrorInput() {
+        clearErrorsAndMessages();
+        addActionError("Status must be Planning 2 or Planning 3 only.");
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
+
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParamSession);
+        order = transformToOrderFormBean(orderEntity);
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParamSession);
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        return SUCCESS;
+    }
+
     // Error for null
     public String viewFreightItemListNullError() {
 
@@ -2301,8 +2378,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String consolidateAction(){
-
-        dummyMsg = checkLCL;
 
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA " + vesselScheduleIdParam);
         System.out.println("BBBBBBBBBBBBBBBBBBBBBBBB " + vendorIdParam);
@@ -4204,19 +4279,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
         this.filterPickup = filterPickup;
     }
 
-    public String[] getCheckLCL() {
+    public String getCheckLCL() {
         return checkLCL;
     }
 
-    public void setCheckLCL(String[] checkLCL) {
+    public void setCheckLCL(String checkLCL) {
         this.checkLCL = checkLCL;
     }
 
-    public String[] getDummyMsg() {
-        return dummyMsg;
-    }
-
-    public void setDummyMsg(String[] dummyMsg) {
-        this.dummyMsg = dummyMsg;
-    }
 }

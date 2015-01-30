@@ -870,7 +870,12 @@ function addTotalRate(){
             itemList.eq(i).empty().append('<font color="red">0.00</font>');
         }
     }
-    $('#totalRate').empty().append(totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+    totalPhp = totalPhp.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    if(totalPhp == 0.00 || totalPhp == 0 || totalPhp == 0.0){
+        totalPhp = '<font color="red">'+totalPhp+'</font>'
+    }
+
+    $('#totalRate').empty().append(totalPhp);
     $('.loadingDiv').hide();
     $('.tableDiv').fadeIn();
 }
@@ -1043,16 +1048,14 @@ function lclHideVesselSchedule(){
             }
         }
 
-        if(loop_arrivalDate > currentDate){
-            conso_arrivalDate.eq(i).closest('tr').hide();
-            continue;
+        // MODIFIED VERSION - REPLACE ABOVE CHECKING WITH THIS AND TEST/PLAY IT OUT - Jan (START)
+        if(lcl_pickupDateValue > loop_departureDate){
+            if(lcl_deliveryDateValue != loop_arrivalDate && lcl_deliveryDateValue > loop_arrivalDate){
+                conso_departureDate.eq(i).closest('tr').hide();
+                continue;
+            }
         }
-
-        if(lcl_deliveryDateValue < loop_deliveryDate){
-            conso_arrivalDate.eq(i).closest('tr').hide();
-            continue;
-        }
-
+        // MODIFIED VERSION - REPLACE ABOVE CHECKING WITH THIS AND TEST/PLAY IT OUT - Jan (END)
     }
 
     // SECOND STEP - END
@@ -1150,4 +1153,39 @@ function lclCheckboxFilter(item){
         $('.warningMsg').show();
         $('.consolidateBtn').attr('disabled', true);
     }
+}
+
+function actionConfirmation(icon, confirmBtn, modal){
+    icon.click(function(){
+        confirmBtn.attr('href', $(this).prev().attr('href'));
+        modal.modal('show');
+    });
+}
+
+function processDocumentStage(table, tableDiv, loadingDiv, stageColumn){
+    var stageFlag = $(table+' tbody tr td:nth-child('+stageColumn+')');
+
+    for(var i=0; i < stageFlag.size(); i++){
+        switch(stageFlag.eq(i).text()){
+            case '1' :
+                stageFlag.eq(i).closest('tr').css('background-color', '#ffc860');
+                break;
+            case '2' :
+                stageFlag.eq(i).closest('tr').css('background-color', '#ffd37e');
+                break;
+            case '3' :
+                stageFlag.eq(i).closest('tr').css('background-color', '#feabff');
+                break;
+            case '4' :
+                stageFlag.eq(i).closest('tr').css('background-color', '#c1c2ff');
+                break;
+            case '5' :
+                stageFlag.eq(i).closest('tr').css('background-color', '#a7ffad');
+                break;
+        }
+    }
+    $(table+' thead tr th:nth-child('+stageColumn+')').hide();
+    stageFlag.hide();
+    loadingDiv.hide();
+    tableDiv.fadeIn();
 }
