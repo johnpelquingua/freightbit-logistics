@@ -72,7 +72,8 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Code</label>
 
                         <div class="col-sm-10">
-                            <s:textfield required="true" name="groupBean.groupCode" cssClass="form-control"/>
+                            <s:textfield required="true" name="groupBean.groupCode" cssClass="form-control"
+                                    placeholder="Enter group code here" maxlength="3" pattern="^[A-Z]{3,}$" id="groupCode"/>
                         </div>
                     </div>
 
@@ -224,4 +225,10 @@
     </div>
 
 </s:form>
+<script>
+    $("#groupCode").keyup(function(){
+        this.value=this.value.toUpperCase();
+    });
+
+</script>
 

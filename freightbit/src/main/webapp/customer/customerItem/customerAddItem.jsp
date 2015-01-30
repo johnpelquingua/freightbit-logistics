@@ -58,7 +58,7 @@
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.weight" id="item.weight" required="true" cssStyle="width: 140%"
-                                             cssClass="addItemInput form-control" pattern="((\d+)((\.)?\d{1,2})[^0])" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
+                                             cssClass="addItemInput form-control" pattern="\d+(\.\d{1,2})?" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                         </div>

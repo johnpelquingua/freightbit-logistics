@@ -440,7 +440,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
             customerEntity.setModifiedTimestamp(new Date());
             customerService.updateCustomer(customerEntity);
         } catch (CustomerAlreadyExistsException e) {
-            addFieldError("customer.customerCode", getText("err.customerCode.already.exist"));
+            addFieldError("customer.customerCode", getText("Company Code Already Exists"));
             return INPUT;
         }
 
@@ -472,7 +472,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
             notificationService.addNotification(notificationEntity);
 
         }catch(CustomerAlreadyExistsException e) {
-            addFieldError("customer.customerCode", getText("err.customer.already.exist"));
+            addFieldError("customer.customerCode", getText("Company Code Already Exists"));
             return INPUT;
         }
 

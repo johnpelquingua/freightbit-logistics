@@ -70,18 +70,19 @@
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></span></label>
 
                         <div class="col-sm-10">
-                            <s:textfield placeholder="Enter group code here" required="true" name="groupBean.groupCode" cssClass="addGroupInput form-control"/>
+                            <s:textfield placeholder="Enter group code here" required="true" name="groupBean.groupCode" cssClass="addGroupInput form-control"
+                                    id="groupCode" maxlength="3" pattern="^[A-Z]{3,}$" />
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Name<span class="asterisk_red"></label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Name<span class="asterisk_red"></span></label>
 
                         <div class="col-sm-10">
-                            <s:textfield placeholder="Enter group name here" required="true" name="groupBean.groupName" cssClass="addGroupInput form-control"/>
+                            <s:textfield placeholder="Enter group name here" required="true" name="groupBean.groupName" cssClass="addGroupInput form-control" pattern="^[a-zA-Z]+$"/>
                         </div>
                     </div>
 
@@ -97,7 +98,7 @@
 
                 <span class="pull-right">
                     <a href="viewGroups" class="btn btn-danger ">Cancel</a>
-                    <s:submit name="submit" value="Save" cssClass="addGroupBtn btn btn-primary" disabled="true"/>
+                    <s:submit name="submit" value="Save" cssClass="addGroupBtn btn btn-primary"/>
                 </span>
 
                 </div>
@@ -218,8 +219,12 @@
 
 </s:form>
 <script>
-    $(document).ready(function(){
+    /*$(document).ready(function(){
         validationForm('addGroupInput', 'addGroupBtn')
-    })
+    });*/
+    $("#groupCode").keyup(function(){
+        this.value=this.value.toUpperCase();
+    });
+
 </script>
 
