@@ -286,8 +286,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             documentListString.add(documentAdd.getDocumentName());
         }
 
-//        System.out.println("ggggggggggggggggggggggggggggggggggggggggggg" + documentListString);
-//        System.out.println("ggggggggggggggggggggggggggggggggggggggggggg11111" + orderEntity.getServiceRequirement());
         // checker for documents missing
 
         if(orderEntity.getServiceMode().equals("DOOR TO DOOR")){
@@ -432,20 +430,20 @@ public class DocumentAction extends ActionSupport implements Preparable{
             for (Documents documentElem : inboundEntityList) {
                 inboundDocuments.add(transformDocumentsToFormBean(documentElem));
 
-                dateReturnedInbound = documentElem.getInboundReturned(); // to show the date on form when the inbound documents returned
+//                dateReturnedInbound = documentElem.getInboundReturned(); // to show the date on form when the inbound documents returned
             }
         /*FINAL OUTBOUND DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : finalOutboundEntityList) {
                 finalOutboundDocuments.add(transformDocumentsToFormBean(documentElem));
 
-                dateSentFinalOutbound = documentElem.getFinalOutboundSent(); // to show when was the date sent for final outbound
-                finalOutboundTrackingNumber = documentElem.getFinalOutboundLbc(); // to show the tracking number of the
+//                dateSentFinalOutbound = documentElem.getFinalOutboundSent(); // to show when was the date sent for final outbound
+//                finalOutboundTrackingNumber = documentElem.getFinalOutboundLbc(); // to show the tracking number of the
             }
         /*FINAL INBOUND DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : finalInboundEntityList) {
                 finalInboundDocuments.add(transformDocumentsToFormBean(documentElem));
 
-                dateReturnedFinalInbound = documentElem.getFinalInboundReturned();
+//                dateReturnedFinalInbound = documentElem.getFinalInboundReturned();
             }
         /*COMPLETE DOCUMENTS TABLE VIEW*/
             for (Documents documentElem : completeEntityList) {
@@ -854,7 +852,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     Documents documentIdEntity = documentsService.findDocumentById(documentId);
                     // Will trigger if Proforma Bill of Lading does not have a Reference Number
                     if (documentIdEntity.getDocumentName().equals("PROFORMA BILL OF LADING") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("PROFORMA BILL OF LADING") && documentIdEntity.getReferenceNumber() == null || "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getReferenceNumber() == null ) {
-                        documentIdEntity.setDocumentStatus("INPUT SERIES NUMBER");
+                        documentIdEntity.setDocumentStatus("NO SERIES NUMBER");
                         /*documentIdEntity.setDocumentProcessed(0);*/
                         /*Pass flag to view order documents*/
                         documentflag = 1; // Shows must enter reference number error
@@ -869,8 +867,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentflag = 2; // shows reference number entered successfully
                         sessionAttributes.put("documentflag", documentflag);
                     } else {
-                        documentIdEntity.setDocumentStatus("PRINTED");
-                        documentIdEntity.setInboundStage(0);
+                        documentIdEntity.setDocumentStatus("INBOUND");
+                        documentIdEntity.setInboundStage(1);
                         documentIdEntity.setDocumentProcessed(1);
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message

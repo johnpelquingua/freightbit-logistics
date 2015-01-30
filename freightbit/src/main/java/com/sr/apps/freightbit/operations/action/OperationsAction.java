@@ -3039,12 +3039,39 @@ public class OperationsAction extends ActionSupport implements Preparable {
             orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
         }
 
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
+
         List<Documents> documentsList = new ArrayList<Documents>();
 
         documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
 
         for (Documents documentElem : documentsList) {
             if(documentElem.getDocumentName().equals("PROFORMA BILL OF LADING") || documentElem.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || documentElem.getDocumentName().equals("ACCEPTANCE RECEIPT") || documentElem.getDocumentName().equals("RELEASE ORDER") ){
+                documents.add(transformDocumentsToFormBean(documentElem));
+            }
+        }
+
+        return SUCCESS;
+    }
+
+    public String viewDocumentListInland() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        // Order ID param pass value
+        if (orderIdParam == null) {
+            orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
+        }
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
+
+        List<Documents> documentsList = new ArrayList<Documents>();
+
+        documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
+
+        for (Documents documentElem : documentsList) {
+            if(documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ){
                 documents.add(transformDocumentsToFormBean(documentElem));
             }
         }
@@ -3234,8 +3261,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntityAuthorization.setCreatedDate(new Date());
                     documentEntityAuthorization.setDocumentStatus("FROM PLANNING");
                     documentEntityAuthorization.setVendorCode(itemVendor);
-                    documentEntityAuthorization.setOutboundStage(1);
-                    documentEntityAuthorization.setDocumentProcessed(0);
+                    documentEntityAuthorization.setFinalOutboundStage(1);
+                    documentEntityAuthorization.setDocumentProcessed(2);
                     documentEntityAuthorization.setCreatedBy(commonUtils.getUserNameFromSession());
                     // orderitem id should be set in orderitemid column WIP
 

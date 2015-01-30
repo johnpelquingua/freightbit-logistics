@@ -947,6 +947,7 @@ function vesselScheduleColor(tableClass, departureColumn){
 
 function documentsCheckbox(){
     $('.documentsCheckbox').click(function(){
+
         if($(this).parent().siblings().eq(1).text() == undefined || $(this).parent().siblings().eq(1).text() == '' || $(this).parent().siblings().eq(1).text() == null){
 //            alert('Please input SERIES NUMBER first before proceeding document');
             $('#warningModalContent').empty().append('Please input SERIES NUMBER first before proceeding document');

@@ -13,7 +13,7 @@
             <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
             <li class="active">
                 <%--<a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Containers / Items </a>--%>
-                    <s:property value="order.orderId"/>
+                    <s:hidden value="order.orderId"/>
                 <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
                     <%--<s:param name="orderIdParam"
                              value="#attr.order.orderId"></s:param>

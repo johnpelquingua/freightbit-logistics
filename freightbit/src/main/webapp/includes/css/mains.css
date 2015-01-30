@@ -987,15 +987,18 @@ span.pagination li{
 
 .padding-0-l {
     padding-left: 0px;
+    text-align: center;
 }
 
 .padding-0-r {
     padding-right: 0px;
+    text-align: center;
 }
 
 .padding-0-lr{
     padding-right: 0px;
     padding-left: 0px;
+    text-align: center;
 }
 
 .padding-10-lr{

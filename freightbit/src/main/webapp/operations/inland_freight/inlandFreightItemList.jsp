@@ -315,7 +315,7 @@
                 Create Inland Document(s)
             </s:a>
 
-            <s:url var="viewDocumentListUrl" action="viewDocumentList">
+            <s:url var="viewDocumentListUrl" action="viewDocumentListInland">
                 <s:param name="orderIdParam"
                          value="%{orderIdParam}">
                 </s:param>
