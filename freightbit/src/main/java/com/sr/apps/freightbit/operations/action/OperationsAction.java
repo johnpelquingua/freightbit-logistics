@@ -2427,37 +2427,49 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Orders orderCheck = orderService.findOrdersById(entity.getOrderId());
         if (orderCheck.getServiceMode().equals("PIER TO DOOR")){
             formBean.setVendorOrigin("N/A");
+            formBean.setVendorOriginName("N/A");
             formBean.setFinalPickupDate("N/A");
             formBean.setVendorDestination(entity.getVendorDestination());
+            formBean.setVendorDestinationName(vendorService.findVendorByVendorCode(entity.getVendorDestination()).getVendorName());
             formBean.setFinalDeliveryDate(entity.getFinalDeliveryDate());
         }else if(orderCheck.getServiceMode().equals("DOOR TO PIER")){
             formBean.setVendorOrigin(entity.getVendorOrigin());
+            formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
             formBean.setFinalPickupDate(entity.getFinalPickupDate());
             formBean.setVendorDestination("N/A");
+            formBean.setVendorDestinationName("N/A");
             formBean.setFinalDeliveryDate("N/A");
         }else if(orderCheck.getServiceMode().equals("PIER TO PIER")){
             formBean.setVendorOrigin("N/A");
+            formBean.setVendorOriginName("N/A");
             formBean.setFinalPickupDate("N/A");
             formBean.setVendorDestination("N/A");
+            formBean.setVendorDestinationName("N/A");
             formBean.setFinalDeliveryDate("N/A");
         }else if(orderCheck.getServiceType().equals("TRUCKING")){
             formBean.setVendorOrigin(entity.getVendorOrigin());
+            formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
             formBean.setFinalPickupDate(entity.getFinalPickupDate());
             formBean.setVendorDestination("N/A");
+            formBean.setVendorDestinationName("N/A");
             formBean.setFinalDeliveryDate("N/A");
         }else{
             if(entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin()) || "NONE".equals(entity.getVendorOrigin())){
                 formBean.setVendorOrigin("NONE");
+                formBean.setVendorOriginName("NONE");
                 formBean.setFinalPickupDate("NONE");
             }else{
                 formBean.setVendorOrigin(entity.getVendorOrigin());
+                formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
                 formBean.setFinalPickupDate(entity.getFinalPickupDate());
             }
             if(entity.getVendorDestination() == null || "".equals(entity.getVendorDestination()) || "NONE".equals(entity.getVendorDestination())){
                 formBean.setVendorDestination("NONE");
+                formBean.setVendorDestinationName("NONE");
                 formBean.setFinalDeliveryDate("NONE");
             }else{
                 formBean.setVendorDestination(entity.getVendorDestination());
+                formBean.setVendorDestinationName(vendorService.findVendorByVendorCode(entity.getVendorDestination()).getVendorName());
                 formBean.setFinalDeliveryDate(entity.getFinalDeliveryDate());
             }
         }
@@ -3311,6 +3323,147 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String createdInlandDocument(){
+        List<String> vendorOrigin = new ArrayList<String>();
+        List<String> vendorDestination = new ArrayList<String>();
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
+        order = transformToOrderFormBean(orderEntity);
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
+
+        // Origin vendors set will be stored in VendorCodeDocument Variable
+        for (OrderItems everyItem : orderItemsList) {
+            if (vendorOrigin.isEmpty()) {
+                vendorOrigin.add(everyItem.getVendorOrigin());
+            } else {
+                if (!vendorOrigin.contains(everyItem.getVendorOrigin())) {
+                    vendorOrigin.add(everyItem.getVendorOrigin());
+                }
+            }
+        }
+
+        // Destination vendors set will be stored in VendorCodeDocument Variable
+        for (OrderItems everyItem : orderItemsList) {
+            if (vendorDestination.isEmpty()) {
+                vendorDestination.add(everyItem.getVendorDestination());
+            } else {
+                if (!vendorDestination.contains(everyItem.getVendorDestination())) {
+                    vendorDestination.add(everyItem.getVendorDestination());
+                }
+            }
+        }
+
+        if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("TRUCKING") ){
+
+            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") || orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("DELIVERY") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+
+                List<Documents> waybillOrigin = documentsService.findDocumentNameAndId("HOUSE WAYBILL ORIGIN", orderIdParam);
+
+                for (String itemVendor : vendorOrigin) {
+                    if(itemVendor != null) { // house waybill origin document will be created if origin vendor is not null
+                        if (waybillOrigin.size() == 0) {
+                            Documents documentEntity = new Documents();
+
+                            Client client = clientService.findClientById(getClientId().toString());
+                            documentEntity.setClient(client);
+
+                            documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_ORIGIN);
+                            documentEntity.setReferenceId(orderEntity.getOrderId());
+                            documentEntity.setReferenceTable("ORDERS");
+                            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+                            documentEntity.setCreatedDate(new Date());
+                            documentEntity.setDocumentStatus("FROM PLANNING");
+                            documentEntity.setVendorCode(itemVendor);
+                            documentEntity.setOutboundStage(1);
+                            documentEntity.setDocumentProcessed(0);
+                            documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                            // orderitem id should be set in orderitemid column WIP
+
+                            documentsService.addDocuments(documentEntity);
+                        } else { // will prompt a message when attempting to create house waybill origin if one was already created
+                            clearErrorsAndMessages();
+                            addActionError("House Waybill Origin(s) already exists.");
+
+                            for (OrderItems orderItemsElem : orderItemsList) {
+                                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                            }
+                            return INPUT;
+                        }
+                    }else{ // if no origin vendor set will return an error message
+                        clearErrorsAndMessages();
+                        addActionError("Container(s) / Item(s) has no Trucking vendor set!");
+
+                        for(OrderItems orderItemsElem : orderItemsList) {
+                            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                        }
+
+                        return INPUT;
+                    }
+
+                }
+
+            }
+
+            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
+
+                List<Documents> waybillDestination = documentsService.findDocumentNameAndId("HOUSE WAYBILL DESTINATION", orderIdParam);
+
+                for (String itemVendor : vendorDestination) {
+                    if(itemVendor != null) { // house waybill destination document will be created if destination vendor is not null
+                        if (waybillDestination.size() == 0) {
+                            Documents documentEntity = new Documents();
+
+                            Client client = clientService.findClientById(getClientId().toString());
+                            documentEntity.setClient(client);
+
+                            documentEntity.setDocumentName(DocumentsConstants.HOUSE_WAYBILL_DESTINATION);
+                            documentEntity.setReferenceId(orderEntity.getOrderId());
+                            documentEntity.setReferenceTable("ORDERS");
+                            documentEntity.setOrderNumber(orderEntity.getOrderNumber());
+                            documentEntity.setCreatedDate(new Date());
+                            documentEntity.setDocumentStatus("FROM PLANNING");
+                            documentEntity.setVendorCode(itemVendor);
+                            documentEntity.setFinalOutboundStage(1);
+                            documentEntity.setDocumentProcessed(2);
+                            documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                            // orderitem id should be set in orderitemid column WIP
+
+                            documentsService.addDocuments(documentEntity);
+                        } else {
+                            clearErrorsAndMessages();
+                            addActionError("House Waybill Destination(s) already exists.");
+                            /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
+                            for (OrderItems orderItemsElem : orderItemsList) {
+                                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                            }
+                            return INPUT;
+                        }
+                    }else{ // if no destination vendor set will return an error message
+                        clearErrorsAndMessages();
+                        addActionError("Container(s) / Item(s) has no Trucking vendor set!");
+
+                        for(OrderItems orderItemsElem : orderItemsList) {
+                            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                        }
+
+                        return INPUT;
+                    }
+                }
+
+            }
+        }
+
+        clearErrorsAndMessages();
+        addActionMessage("SUCCESS! Document(s) has been created");
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        return SUCCESS;
+    }
+
     public String createdDocumentOrigin() {
         List<String> vendorCodeDocument = new ArrayList<String>();
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
@@ -3385,7 +3538,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String createdDocumentDestination() {
-        List<Documents> documentsList = new ArrayList<Documents>();
         List<String> vendorCodeDocument = new ArrayList<String>();
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 

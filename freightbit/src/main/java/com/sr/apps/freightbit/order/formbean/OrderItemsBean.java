@@ -26,7 +26,9 @@ public class OrderItemsBean {
     private String comments;
     private String vendorSea;
     private String vendorOrigin;
+    private String vendorOriginName;
     private String vendorDestination;
+    private String vendorDestinationName;
     private String vesselName;
     private String finalPickupDate;
     private String finalDeliveryDate;
@@ -39,7 +41,6 @@ public class OrderItemsBean {
     private String editItem;
     private String port;
     private String serviceRequirement;
-
     private String vendorName;
     private String voyageNumber;
     private String departureDate;
@@ -49,8 +50,8 @@ public class OrderItemsBean {
 
     }
 
-    public OrderItemsBean(String createdBy, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimestamp, Date modifiedTimestamp, String modifiedBy, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorDestination, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement, String vendorName, String voyageNumber, String departureDate, String arrivalDate) {
-        this.createdBy = createdBy;
+    public OrderItemsBean(Float rate, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorOriginName, String vendorDestination, String vendorDestinationName, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement, String vendorName, String voyageNumber, String departureDate, String arrivalDate) {
+        this.rate = rate;
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.quantity = quantity;
@@ -59,8 +60,8 @@ public class OrderItemsBean {
         this.declaredValue = declaredValue;
         this.weight = weight;
         this.remarks = remarks;
-        this.rate = rate;
         this.createdTimestamp = createdTimestamp;
+        this.createdBy = createdBy;
         this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
         this.nameSize = nameSize;
@@ -72,7 +73,9 @@ public class OrderItemsBean {
         this.comments = comments;
         this.vendorSea = vendorSea;
         this.vendorOrigin = vendorOrigin;
+        this.vendorOriginName = vendorOriginName;
         this.vendorDestination = vendorDestination;
+        this.vendorDestinationName = vendorDestinationName;
         this.vesselName = vesselName;
         this.finalPickupDate = finalPickupDate;
         this.finalDeliveryDate = finalDeliveryDate;
@@ -401,5 +404,21 @@ public class OrderItemsBean {
 
     public void setVendorName(String vendorName) {
         this.vendorName = vendorName;
+    }
+
+    public String getVendorOriginName() {
+        return vendorOriginName;
+    }
+
+    public void setVendorOriginName(String vendorOriginName) {
+        this.vendorOriginName = vendorOriginName;
+    }
+
+    public String getVendorDestinationName() {
+        return vendorDestinationName;
+    }
+
+    public void setVendorDestinationName(String vendorDestinationName) {
+        this.vendorDestinationName = vendorDestinationName;
     }
 }

@@ -614,6 +614,11 @@
             <result name="input" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
 
+        <action name="createdInlandDocument" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="createdInlandDocument">
+            <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
+            <result name="input" type="tiles">operations.inlandFreightItemList.tiles</result>
+        </action>
+
         <action name="createdDocumentOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="createdDocumentOrigin">
             <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>
             <result name="input" type="tiles">operations.inlandFreightItemList.tiles</result>

@@ -187,7 +187,7 @@
                                 </s:else>
                             </td>
 
-                            <td><display:column property="vendorOrigin" title="Origin Vendor <i class='fa fa-sort' />"
+                            <td><display:column property="vendorOriginName" title="Origin Vendor <i class='fa fa-sort' />"
                                                 class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
@@ -195,7 +195,7 @@
                                                 class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
-                            <td><display:column property="vendorDestination" title="Destination Vendor <i class='fa fa-sort' />"
+                            <td><display:column property="vendorDestinationName" title="Destination Vendor <i class='fa fa-sort' />"
                                                 class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
 
@@ -286,7 +286,7 @@
         </div>
         <div class="pull-right">
 
-            <s:url var="createdDocumentOriginUrl" action="createdDocumentOrigin">
+            <%--<s:url var="createdDocumentOriginUrl" action="createdDocumentOrigin">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId"></s:param>
             </s:url>
@@ -294,7 +294,7 @@
                  title="Create Documents">
                 Create House WayBill Origin
             </s:a>
-            <%--<s:property value="#attr.order.freightType" />--%>
+
             <s:if test="#attr.order.freightType!='TRUCKING'">
                 <s:url var="createdDocumentDestinationUrl" action="createdDocumentDestination">
                     <s:param name="orderIdParam"
@@ -304,7 +304,16 @@
                      title="Create Documents">
                     Create House Waybill Destination
                 </s:a>
-            </s:if>
+            </s:if>--%>
+
+            <s:url var="createdInlandDocumentUrl" action="createdInlandDocument">
+                <s:param name="orderIdParam"
+                         value="#attr.order.orderId"></s:param>
+            </s:url>
+            <s:a cssClass="btn btn-primary houseWaybillOriginBtn" href="%{createdInlandDocumentUrl}" rel="tooltip"
+                 title="Create Inland Document(s)">
+                Create Inland Document(s)
+            </s:a>
 
             <s:url var="viewDocumentListUrl" action="viewDocumentList">
                 <s:param name="orderIdParam"

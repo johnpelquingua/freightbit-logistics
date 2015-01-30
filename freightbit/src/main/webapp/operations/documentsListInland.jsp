@@ -10,25 +10,25 @@
         </legend>
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='home' />"> Dashboard </a></li>
-            <li class="active"><a href="<s:url action='viewSeaFreightList' />"> Freight Plan : Orders </a></li>
+            <li class="active"><a href="<s:url action='viewInlandFreightList' />"> Dispatch Plan : Orders </a></li>
             <li class="active">
                 <%--<a href="<s:url action='viewSeaFreightList' />"> Sea Freight Planning : Containers / Items </a>--%>
                     <s:property value="order.orderId"/>
-                <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
                     <%--<s:param name="orderIdParam"
                              value="#attr.order.orderId"></s:param>
                     <s:param name="orderNoParam"
                              value="#attr.order.orderNo"></s:param>--%>
                     <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
                 </s:url>
-                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
                      title="Update Status">
 
                     <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                        Freight Plan : Containers
+                        Dispatch Plan : Containers
                     </s:if>
                     <s:else>
-                        Freight Plan : Items
+                        Dispatch Plan : Items
                     </s:else>
                 </s:a>
             </li>
@@ -72,20 +72,6 @@
                         <td>
                             <display:column title="Action" class="tb-font-black" style="text-align: center;">
 
-                                <%--<s:if test="#attr.document.documentName=='PROFORMA BILL OF LADING'">--%>
-                                    <%--<a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">--%>
-                                        <%--<i class="fa fa-edit"></i>--%>
-                                    <%--</a>--%>
-                                    <%--<s:url var="deleteDocumentUrl" action="deleteDocument">--%>
-                                        <%--<s:param name="orderIdParam" value="%{orderIdParam}"></s:param>--%>
-                                        <%--<s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>--%>
-                                    <%--</s:url>--%>
-                                    <%--<s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">--%>
-                                        <%--<i class="fa fa-trash-o"></i>--%>
-                                    <%--</s:a>--%>
-                                <%--</s:if>--%>
-
-                                <%--<s:else>--%>
                                     <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
                                         <i class="fa fa-edit"></i>
                                     </a>
@@ -99,7 +85,6 @@
                                             <i class="fa fa-trash-o"></i>
                                         </s:a>
                                     </a>
-                                <%--</s:else>--%>
 
                             </display:column>
                         </td>
