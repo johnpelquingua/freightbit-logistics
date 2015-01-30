@@ -228,8 +228,7 @@
                 <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Cancel Booking</span>
             </div>
             <div class="modal-body">
-                Are you sure you want to cancel the booking?<br/>
-                <i style="color: #E74C3C">* This booking might have items, containers, vendors, customers and such associated to it. Please confirm cancellation.</i>
+                This booking might have items, containers, vendors, customers and such associated to it. Please confirm cancellation. Are you sure you want to cancel the booking?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
@@ -263,8 +262,7 @@
                 <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Delete Booking</span>
             </div>
             <div class="modal-body">
-                Are you sure you want to <i style="color: #E74C3C;">DELETE</i> the booking?<br/>
-                <i style="color: #E74C3C">* This booking might have items, containers, vendors, customers and such associated to it. Please confirm cancellation.</i>
+                This booking might have items, containers, vendors, customers and such associated to it. Please confirm cancellation. Are you sure you want to delete the booking?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
