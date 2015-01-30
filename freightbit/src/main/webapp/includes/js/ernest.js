@@ -655,17 +655,17 @@ function validationForm(inputClass, submitBtn, module){
     }
 
     function initValidation(){
-//        console.clear();
+        console.clear();
         var formInput = $('.'+inputClass+':enabled');
         var bool = 0;
 
         for(var i = 0; i < formInput.size(); i++){
             if(formInput.eq(i).val() != '' && formInput.eq(i).val() != undefined){
                 bool++;
-//                console.log('- '+formInput.eq(i).val())
+                console.log('- '+formInput.eq(i).val())
             }
         }
-//        console.log(bool+' out of '+formInput.size());
+        console.log(bool+' out of '+formInput.size());
 
         if(module == 'BOOKING'){
             if(bool == formInput.size() && notifBox_booking('notifBox')){

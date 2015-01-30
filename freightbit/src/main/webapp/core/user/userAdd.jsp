@@ -86,8 +86,8 @@
                                 <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">User Name<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-9">
-                                    <s:textfield required="true" name="user.userName" id="uUserName" cssClass="userAddForm form-control" maxlength="25" pattern="^[a-zA-Z ]{4,}$"
-                                                 placeholder="User Name" title="Username must have minimum 4 characters."/>
+                                    <s:textfield required="true" name="user.userName" id="uUserName" cssClass="userAddForm form-control" maxlength="25" pattern="[a-zA-Z0-9]+"
+                                                 placeholder="User Name" title="Username must have minimum 4 characters. No special characters allowed"/>
                                 </div>
                             </div>
 
@@ -172,7 +172,7 @@
             <div class="panel-footer">
                             <span class="pull-right">
                               <a href="viewUsers" class="btn btn-danger" id="users-add-btn">Cancel</a>
-                              <s:submit cssClass="btn btn-primary submitBtn" name="submit" value="Save" disabled="false"/>
+                              <s:submit cssClass="btn btn-primary submitBtn" name="submit" value="Save" disabled="true"/>
                             </span>
             </div>
              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
