@@ -789,8 +789,8 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderEntity.setOrderStatus("CANCELLED");
         orderService.updateOrder(orderEntity);
 
-        Documents bookingRequestFormEntity = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
-        documentsService.deleteDocument(bookingRequestFormEntity);
+//        Documents bookingRequestFormEntity = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
+//        documentsService.deleteDocument(bookingRequestFormEntity);
 
         clearErrorsAndMessages();
         addActionMessage("Booking cancelled.");

@@ -1045,3 +1045,10 @@ span.pagination li{
     margin-right: -4px; !important;
     margin-left: -4px; !important;
 }
+
+.btn {
+    /*border-radius: 0.0em; !important;*/
+    /*padding-top: 0.2em;*/
+    /*padding-bottom: 0.2em;*/
+    /*box-shadow: 2px 2px 2px #888888;*/
+}

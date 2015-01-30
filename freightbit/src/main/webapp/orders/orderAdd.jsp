@@ -418,7 +418,7 @@
             Cancel
         </button>
 
-        <s:submit name="submit" cssClass="btn btn-primary nextBtn" value="Next" disabled="true"/>;
+        <s:submit name="submit" cssClass="btn btn-primary nextBtn" value="Next" disabled="true"/>
         </s:form>
     </div>
 
