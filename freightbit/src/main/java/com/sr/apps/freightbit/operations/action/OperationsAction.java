@@ -2427,39 +2427,49 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Orders orderCheck = orderService.findOrdersById(entity.getOrderId());
         if (orderCheck.getServiceMode().equals("PIER TO DOOR")){
             formBean.setVendorOrigin("N/A");
+            formBean.setVendorOriginName("N/A");
             formBean.setFinalPickupDate("N/A");
-//            formBean.setVendorDestination(entity.getVendorDestination());
-            formBean.setVendorDestination(vendorService.findVendorByVendorCode(entity.getVendorDestination()).getVendorName());
+            formBean.setVendorDestination(entity.getVendorDestination());
+            formBean.setVendorDestinationName(vendorService.findVendorByVendorCode(entity.getVendorDestination()).getVendorName());
             formBean.setFinalDeliveryDate(entity.getFinalDeliveryDate());
         }else if(orderCheck.getServiceMode().equals("DOOR TO PIER")){
-//            formBean.setVendorOrigin(entity.getVendorOrigin());
-            formBean.setVendorOrigin(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
+            formBean.setVendorOrigin(entity.getVendorOrigin());
+            formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
             formBean.setFinalPickupDate(entity.getFinalPickupDate());
             formBean.setVendorDestination("N/A");
+            formBean.setVendorDestinationName("N/A");
             formBean.setFinalDeliveryDate("N/A");
         }else if(orderCheck.getServiceMode().equals("PIER TO PIER")){
             formBean.setVendorOrigin("N/A");
+            formBean.setVendorOriginName("N/A");
             formBean.setFinalPickupDate("N/A");
             formBean.setVendorDestination("N/A");
+            formBean.setVendorDestinationName("N/A");
             formBean.setFinalDeliveryDate("N/A");
         }else if(orderCheck.getServiceType().equals("TRUCKING")){
-            formBean.setVendorOrigin(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
+            formBean.setVendorOrigin(entity.getVendorOrigin());
+            formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
             formBean.setFinalPickupDate(entity.getFinalPickupDate());
             formBean.setVendorDestination("N/A");
+            formBean.setVendorDestinationName("N/A");
             formBean.setFinalDeliveryDate("N/A");
         }else{
             if(entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin()) || "NONE".equals(entity.getVendorOrigin())){
                 formBean.setVendorOrigin("NONE");
+                formBean.setVendorOriginName("NONE");
                 formBean.setFinalPickupDate("NONE");
             }else{
-                formBean.setVendorOrigin(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
+                formBean.setVendorOrigin(entity.getVendorOrigin());
+                formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
                 formBean.setFinalPickupDate(entity.getFinalPickupDate());
             }
             if(entity.getVendorDestination() == null || "".equals(entity.getVendorDestination()) || "NONE".equals(entity.getVendorDestination())){
                 formBean.setVendorDestination("NONE");
+                formBean.setVendorDestinationName("NONE");
                 formBean.setFinalDeliveryDate("NONE");
             }else{
-                formBean.setVendorDestination(vendorService.findVendorByVendorCode(entity.getVendorDestination()).getVendorName());
+                formBean.setVendorDestination(entity.getVendorDestination());
+                formBean.setVendorDestinationName(vendorService.findVendorByVendorCode(entity.getVendorDestination()).getVendorName());
                 formBean.setFinalDeliveryDate(entity.getFinalDeliveryDate());
             }
         }
