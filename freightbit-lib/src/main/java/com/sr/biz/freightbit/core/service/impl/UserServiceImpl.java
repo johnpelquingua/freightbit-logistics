@@ -1,17 +1,6 @@
 package com.sr.biz.freightbit.core.service.impl;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.sr.biz.freightbit.core.dao.ClientDao;
-import com.sr.biz.freightbit.core.dao.GroupDao;
 import com.sr.biz.freightbit.core.dao.GroupUserDao;
 import com.sr.biz.freightbit.core.dao.PermissionDao;
 import com.sr.biz.freightbit.core.dao.UserDao;
@@ -20,6 +9,15 @@ import com.sr.biz.freightbit.core.entity.PermissionUserGroup;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.exceptions.UserAlreadyExistsException;
 import com.sr.biz.freightbit.core.service.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class UserServiceImpl implements UserService {
@@ -49,7 +47,6 @@ public class UserServiceImpl implements UserService {
         	return userDao.addUser(user);
         }
     }
-
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)

@@ -143,6 +143,12 @@
             <version>1.3.2</version>
         </dependency>
 
+        <dependency>
+	      <groupId>com.dhtmlx.planner</groupId>
+	      <artifactId>javaplanner</artifactId>
+	      <version>1.5</version>
+	   </dependency>
+
 	   <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>

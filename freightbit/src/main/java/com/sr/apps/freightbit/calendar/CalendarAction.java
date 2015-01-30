@@ -1,4 +1,3 @@
-/*
 package com.sr.apps.freightbit.calendar;
 
 import com.dhtmlx.planner.DHXPlanner;
@@ -33,7 +32,6 @@ public class CalendarAction extends ActionSupport {
 		this.messageStore = messageStore;
 	}
 
-
 	public void setCalendarService(CalendarService calendarService) {
 		this.calendarService = calendarService;
 	}
@@ -66,14 +64,9 @@ public class CalendarAction extends ActionSupport {
 	}
 
 	public String events() throws Exception {
-CalendarEventsService evs = new CalendarEventsService(ServletActionContext.getRequest());
-		messageStore.setData(evs.run());
-		CalendarService cal = new CalendarService();
-		messageStore.setData("[{'id':1,'text':'NTY-002: MANILA-CEBU','end_date':'07/01/2014 00:00','start_date':'06/24/2014 00:00'},{'id':3,'text':'NTY-004: MANILA-CEBU','end_date':'07/03/2014 00:00','start_date':'06/26/2014 00:00'},{'id':10,'text':'JMX-0002: MANILA-MANILA','end_date':'07/03/2014 00:00','start_date':'06/26/2014 00:00'},{'id':11,'text':'JMX-0003: MANILA-MANILA','end_date':'07/03/2014 00:00','start_date':'06/26/2014 00:00'},{'id':12,'text':'JMX-0004: MANILA-MANILA','end_date':'07/03/2014 00:00','start_date':'06/26/2014 00:00'},{'id':13,'text':'JMX-0005: MANILA-BUTUAN','end_date':'07/03/2014 00:00','start_date':'06/26/2014 00:00'},{'id':14,'text':'JMX-0006: MANILA-BACOLOD','end_date':'07/03/2014 00:00','start_date':'06/26/2014 00:00'},{'id':24,'text':'#@#-0000: MANILA-CEBU','end_date':'08/31/2014 00:00','start_date':'08/30/2014 00:00'},{'id':25,'text':'#@#-0001: MANILA-BUTUAN','end_date':'08/30/2014 00:00','start_date':'08/29/2014 00:00'},{'id':27,'text':'#@#-0003: MANILA-BUTUAN','end_date':'08/30/2014 00:00','start_date':'08/29/2014 00:00'},{'id':28,'text':'#@#-0004: MANILA-BACOLOD','end_date':'08/29/2014 00:00','start_date':'08/28/2014 00:00'},{'id':29,'text':'#@#-0005: MANILA-BUTUAN','end_date':'08/28/2014 00:00','start_date':'08/28/2014 00:00'}]");
-
-List <CalendarDetailsDTO> calendarDetails = calendarService.getEvents(commonUtils.getClientId());
-		messageStore.setData(formatToJSON(calendarDetails));
-		return SUCCESS;
+		List <CalendarDetailsDTO> calendarDetails = calendarService.getEvents(commonUtils.getClientId());
+			messageStore.setData(formatToJSON(calendarDetails));
+			return SUCCESS;
 	}
 
 	private String formatToJSON(List <CalendarDetailsDTO> calendarDetails) {
@@ -99,4 +92,3 @@ List <CalendarDetailsDTO> calendarDetails = calendarService.getEvents(commonUtil
 		return dateFormatted;
 	}
 }
-*/

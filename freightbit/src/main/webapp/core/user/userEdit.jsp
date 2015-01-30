@@ -180,63 +180,61 @@
 
         $("#userTypeSelect").change(function() {
             if (this.value == "ADMIN") {
-                $("#customerCodeTextBox").prop("disabled", false);
-                $("#customerCodeTextBox").prop("required", true);
-                $("#permissionsSelected-1").prop("checked", true);
+                $("#customerCodeTextBox").prop("disabled", false).prop("required", true);
+                $("#permissionsSelected-1").prop("checked", true).prop("disabled", true);
             } else {
-                $("#customerCodeTextBox").prop("disabled", true);
-                $("#customerCodeTextBox").prop("required", false);
-                $("#permissionsSelected-1").prop("checked", false);
-            } if (this.value == "CUSTOMER RELATIONS DEPARTMENT") {
-                $("#customerCodeTextBox").prop("disabled", false);
-                $("#customerCodeTextBox").prop("required", true);
-                $("#permissionsSelected-2").prop("checked", true);
-            } else {
-                $("#customerCodeTextBox").prop("disabled", true);
-                $("#customerCodeTextBox").prop("required", false);
-                $("#permissionsSelected-2").prop("checked", false);
-            } if (this.value == "FREIGHT OPERATIONS OFFICER") {
-                $("#customerCodeTextBox").prop("disabled", false);
-                $("#customerCodeTextBox").prop("required", true);
-                $("#permissionsSelected-3").prop("checked", true);
-            } else {
-                $("#customerCodeTextBox").prop("disabled", true);
-                $("#customerCodeTextBox").prop("required", false);
-                $("#permissionsSelected-3").prop("checked", false);
-            } if (this.value == "FREIGHT OPERATIONS SPECIALIST") {
-                $("#customerCodeTextBox").prop("disabled", false);
-                $("#customerCodeTextBox").prop("required", true);
-                $("#permissionsSelected-5").prop("checked", true);
-            } else {
-                $("#customerCodeTextBox").prop("disabled", true);
-                $("#customerCodeTextBox").prop("required", false);
-                $("#permissionsSelected-5").prop("checked", false);
-            } if (this.value == "FREIGHT OPERATIONS MANAGER") {
-                $("#customerCodeTextBox").prop("disabled", false);
-                $("#customerCodeTextBox").prop("required", true);
-                $("#permissionsSelected-9").prop("checked", true);
-            } else {
-                $("#customerCodeTextBox").prop("disabled", true);
-                $("#customerCodeTextBox").prop("required", false);
-                $("#permissionsSelected-9").prop("checked", false);
-            } if (this.value == "FREIGHT DOCUMENTS SPECIALIST") {
-                $("#customerCodeTextBox").prop("disabled", false);
-                $("#customerCodeTextBox").prop("required", true);
-                $("#permissionsSelected-8").prop("checked", true);
-            } else {
-                $("#customerCodeTextBox").prop("disabled", true);
-                $("#customerCodeTextBox").prop("required", false);
-                $("#permissionsSelected-8").prop("checked", false);
+                $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
+                $("#permissionsSelected-1").prop("checked", false).prop("disabled", false);
             } if (this.value == "INLAND FREIGHT OFFICER") {
-                $("#customerCodeTextBox").prop("disabled", false);
-                $("#customerCodeTextBox").prop("required", true);
-                $("#permissionsSelected-4").prop("checked", true);
+                $("#customerCodeTextBox").prop("disabled", false).prop("required", true);
+                $("#permissionsSelected-4").prop("checked", true).prop("disabled", true);
             } else {
-                $("#customerCodeTextBox").prop("disabled", true);
-                $("#customerCodeTextBox").prop("required", false);
-                $("#permissionsSelected-4").prop("checked", false);
+                $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
+                $("#permissionsSelected-4").prop("checked", false).prop("disabled", false);
+            } if (this.value == "FREIGHT OPERATIONS OFFICER") {
+                $("#customerCodeTextBox").prop("disabled", false).prop("required", true);
+                $("#permissionsSelected-5").prop("checked", true).prop("disabled", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
+                $("#permissionsSelected-5").prop("checked", false).prop("disabled", false);
+            } if (this.value == "FREIGHT OPERATIONS SPECIALIST") {
+                $("#customerCodeTextBox").prop("disabled", false).prop("required", true);
+                $("#permissionsSelected-6").prop("checked", true).prop("disabled", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
+                $("#permissionsSelected-6").prop("checked", false).prop("disabled", false);
+            } if (this.value == "FREIGHT DOCUMENTS SPECIALIST") {
+                $("#customerCodeTextBox").prop("disabled", false).prop("required", true);
+                $("#permissionsSelected-7").prop("checked", true).prop("disabled", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
+                $("#permissionsSelected-7").prop("checked", false).prop("disabled", false);
+            } if (this.value == "SALES OFFICER") {
+                $("#customerCodeTextBox").prop("disabled", false).prop("required", true);
+                $("#permissionsSelected-8").prop("checked", true).prop("disabled", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
+                $("#permissionsSelected-8").prop("checked", false).prop("disabled", false);
+            }
+
+        }).change();
+
+        $("#userTypeSelect").change(function() {
+            if (this.value == "REGULAR CUSTOMER") {
+                $("#customerCodeTextBox").prop("disabled", false).prop("required", true);
+                $("#permissionsSelected-2").prop("checked", true).prop("disabled", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
+                $("#permissionsSelected-2").prop("checked", false).prop("disabled", false);
+            } if (this.value == "CUSTOMER RELATIONS DEPARTMENT") {
+                $("#customerCodeTextBox").prop("disabled", false).prop("required", true);
+                $("#permissionsSelected-3").prop("checked", true).prop("disabled", true);
+            } else {
+                $("#customerCodeTextBox").prop("disabled", true).prop("required", false);
+                $("#permissionsSelected-3").prop("checked", false).prop("disabled", false);
             }
         }).change();
+
         validationForm('userAddForm', 'submitBtn');
     });
 </script>

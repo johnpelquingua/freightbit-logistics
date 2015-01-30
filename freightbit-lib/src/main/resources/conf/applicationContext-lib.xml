@@ -291,6 +291,10 @@
 	<bean id="consolidationDao" class="com.sr.biz.freightbit.operations.dao.impl.ConsolidationDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+    <!-- Subect for deletion -->
+    <bean id="consolidationDaos" class="com.sr.biz.freightbit.operations.dao.impl.ContainerDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
 
     <tx:annotation-driven/>
     <bean id="transactionManager"

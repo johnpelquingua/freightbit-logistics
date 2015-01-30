@@ -287,7 +287,6 @@ public class GroupAction extends ActionSupport {
         this.users = users;
     }
 
-
     public String getGroupCodeParam() {
         return groupCodeParam;
     }
@@ -304,11 +303,9 @@ public class GroupAction extends ActionSupport {
         this.userNameParam = userNameParam;
     }
 
-
     public void setClientService(ClientService clientService) {
         this.clientService = clientService;
     }
-
 
     public void setGroupService(GroupService groupService) {
         this.groupService = groupService;
@@ -317,6 +314,4 @@ public class GroupAction extends ActionSupport {
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
-
-
 }
