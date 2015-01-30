@@ -349,8 +349,8 @@
             </s:url>
 
             <s:a cssClass="btn btn-primary" href="%{createdDocumentsSeaUrl}" rel="tooltip"
-                 title="Create Documents">
-                Create Document(s)
+                 title="Create Freight Document(s)">
+                Create Freight Document(s)
             </s:a>
 
             <s:url var="viewDocumentListUrl" action="viewDocumentList">
