@@ -293,9 +293,9 @@
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                                 <div class="col-lg-8">
                                     <div>
-                                        <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
+                                        <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
                                                   id="vendorListOrigin"
-                                                  listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                                  listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                                   emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
                                     </div>
                                 </div>
@@ -456,8 +456,8 @@
 
                                 <div class="col-lg-8">
                                     <div>
-                                        <s:select list="vendorTruckingList" name="operationsBean.vendorListDestination"
-                                                  id="vendorListDestination" listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                        <s:select list="vendorTruckingDestinationList" name="operationsBean.vendorListDestination"
+                                                  id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                                   emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
                                     </div>
                                 </div>
@@ -2135,6 +2135,7 @@
     $(document).ready(function () {
         $("#createDriverButton").click(function () {
             var vendorId = $("#vendorListOrigin").val();
+            alert(vendorId);
             setThis();
             $("#driver_licenseNumber").val('');
             $("#driver_lastName").val('');

@@ -173,8 +173,8 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                         <div class="col-lg-8">
                             <div>
-                                <s:select list="vendorTruckingList" name="operationsBean.vendorListDestination"
-                                          id="vendorListDestination" listKey="vendorId" listValue="vendorCode" cssClass="form-control"
+                                <s:select list="vendorTruckingDestinationList" name="operationsBean.vendorListDestination"
+                                          id="vendorListDestination" listKey="vendorId" listValue="vendorName" cssClass="form-control"
                                           emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
                             </div>
                         </div>
