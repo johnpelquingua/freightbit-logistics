@@ -636,6 +636,56 @@ public class OrderAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String loadEditItemListing() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        if (orderItemIdParam == null) {
+            orderItemIdParam = (Integer) sessionAttributes.get("orderItemIdParam");
+        }
+        // Display Order Data to form
+        Orders orderEntityForm = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdPass"));
+        order = transformToOrderFormBean(orderEntityForm);
+
+        OrderItems orderItemListingEntity = orderService.findOrderItemByOrderItemId(orderItemIdParam);
+        orderItem = transformToOrderItemsFormBean(orderItemListingEntity);
+        sessionAttributes.put("orderItemIdParam", orderItem.getOrderItemId());
+        return SUCCESS;
+    }
+
+    public String editItemListing() throws Exception {
+        OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
+        orderService.updateItemListing(orderItemEntity);
+        return SUCCESS;
+    }
+
+    public String loadSuccessEditItemListing() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Orders orderEntityForm = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdPass"));
+        // Display Order Data to form
+        order = transformToOrderFormBean(orderEntityForm);
+        // get contact id from shipper
+        Integer contactIdParam = orderEntityForm.getShipperContactId();
+        // shipper id from contact
+        Contacts contactEntity = customerService.findContactById(contactIdParam);
+        Customer customerEntity = customerService.findCustomerById(contactEntity.getReferenceId());
+        // get customer items
+        customerItems = customerService.findItemByCustomerId(customerEntity.getCustomerId());
+        // get order items on order edit module
+        List<OrderItems> orderItemEntityList = orderService.findAllItemByOrderId((Integer) sessionAttributes.get("orderIdPass"));
+
+        // display item listing in table
+        for (OrderItems orderItemElem : orderItemEntityList) {
+
+            orderItems.add(transformToOrderItemsFormBean(orderItemElem));
+        }
+
+        sessionAttributes.put("customerItems", customerItems);
+
+        clearErrorsAndMessages();
+        addActionMessage("Success! Container/Item listing has been updated.");
+        return SUCCESS;
+    }
+
     public String loadEditOrder() {
 
         //orderIdParam is Order ID passed from form
@@ -1309,6 +1359,9 @@ public class OrderAction extends ActionSupport implements Preparable {
 
         entity.setClientId(client.getClientId());
 
+        if(formBean.getOrderItemId() != null) {
+            entity.setOrderItemId(new Integer(formBean.getOrderItemId()));
+        }
         Map sessionAttributes = ActionContext.getContext().getSession();
         entity.setOrderId((Integer) sessionAttributes.get("orderIdPass"));
         entity.setCommodity(formBean.getDescription());

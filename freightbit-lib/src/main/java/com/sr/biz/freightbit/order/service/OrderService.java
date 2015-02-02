@@ -12,9 +12,6 @@ import com.sr.biz.freightbit.order.entity.Orders;
 
 import java.util.List;
 
-/**
- * Created by JMXPSX on 5/27/14.
- */
 public interface OrderService {
 
     public void addOrder(Orders orders);
@@ -22,6 +19,8 @@ public interface OrderService {
     public void deleteOrder(Orders orders);
 
     public void updateOrder(Orders orders);
+
+    public void updateItemListing(OrderItems orderItems);
 
     public List<Orders> findAllOrders();
 

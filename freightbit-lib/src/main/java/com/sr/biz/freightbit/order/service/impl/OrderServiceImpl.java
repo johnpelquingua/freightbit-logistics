@@ -88,6 +88,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void updateItemListing(OrderItems orderItems) {
+        orderDao.updateOrderItems(orderItems);
+    }
+
+    @Override
     public List<Orders> findAllOrders() {
         List<Orders> orders = orderDao.findAllOrders();
         return orders;

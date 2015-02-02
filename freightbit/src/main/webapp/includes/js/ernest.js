@@ -728,6 +728,22 @@ function showActualDateFields(statusId) {
     });
 }
 
+function showEditItemListingFields(orderItemId) {
+    $.ajax({
+        url: 'loadEditItemListing',
+        type: 'POST',
+        async: false,
+        data: { orderItemIdParam: orderItemId},
+        dataType: 'html',
+        success: function (html) {
+            $('#editItemListingInput').html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            alert('An error occurred! ' + thrownError);
+        }
+    });
+}
+
 // restrict a textfield for numbers only
 function restrictField_Numbers(fieldClass){
     $('.'+fieldClass).keypress(function(e) {
@@ -1067,7 +1083,7 @@ function lclHideVesselSchedule(){
         $('.consolidateLoadingDiv').append('Pulling up Schedules. Please Wait.<br/><i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>').hide();
         $('.consolidateTableDiv').fadeIn();
     }else{
-        $('.consolidateLoadingDiv').empty().append('<h3><i class="fa fa-warning" style="color: #ff0000"></i> No schedule(s found</h3><i><span style="color: red;">*</span> Please make sure you have existing/matching schedule(s).<br/>Click <a href="/freightbit/vendor/loadAddVendorPage">here</a> to create schedule(s)</i>').show();
+        $('.consolidateLoadingDiv').empty().append('<h3><i class="fa fa-warning" style="color: #ff0000"></i> No schedules found</h3><i><span style="color: red;">*</span> Please make sure you have existing/matching schedule(s).<br/>Click <a href="/operations/loadAddVesselSchedule">here</a> to create schedule(s)</i>').show();
         $('.consolidateTableDiv').hide();
     }
 

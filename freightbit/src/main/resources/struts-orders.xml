@@ -88,6 +88,18 @@
             <result name="success" type="tiles">orders.add-booking-info.tiles</result>
         </action>
 
+        <action name="loadEditItemListing" class="com.sr.apps.freightbit.order.action.OrderAction" method="loadEditItemListing">
+            <result name="success">/orders/editItemListing.jsp</result>
+        </action>
+
+        <action name="editItemListing" class="com.sr.apps.freightbit.order.action.OrderAction" method="editItemListing">
+            <result name="success" type="redirect">loadSuccessEditItemListing</result>
+        </action>
+
+        <action name="loadSuccessEditItemListing" class="com.sr.apps.freightbit.order.action.OrderAction" method="loadSuccessEditItemListing">
+            <result name="success" type="tiles">orders.add-booking-info.tiles</result>
+        </action>
+
         <action name="addItemsInTable" class="com.sr.apps.freightbit.order.action.OrderAction"
                 method="addItemsInTable">
             <result name="input" type="tiles">orders.add-booking-info.tiles</result>

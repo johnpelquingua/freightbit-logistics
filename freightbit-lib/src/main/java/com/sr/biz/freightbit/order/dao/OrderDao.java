@@ -17,11 +17,15 @@ public interface OrderDao {
 
     public void updateOrder(Orders order);
 
+    public void updateOrderItems(OrderItems orderItems);
+
     public List<Orders> findAllOrders();
 
     public List<Orders> findAllOrdersByClientId (Integer clientId);
 
     public Orders findOrdersById (Integer orderId);
+
+    public OrderItems findOrderItemByOrderItemId (Integer orderItemId);
 
     public List<Orders> findOrdersByOrderNumber (String orderNumber);
 

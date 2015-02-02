@@ -1913,12 +1913,13 @@
         preventDuplicatePort.call(this, select1, this.selectedIndex);
     };
 
-    $(document).ready(function() {
+    function vendorOriginRetrieval() {
         $('#vendorListOrigin').change(function(event) {
             var vendorId = $("#vendorListOrigin").val();
-
+            console.log(vendorId);
             $.getJSON('listVendorDriverAndTrucks', {
-                vendorId : vendorId
+                vendorId : vendorId,
+                async : false
             },
 
             function(jsonResponse) {
@@ -1988,14 +1989,15 @@
 
             });
         });
-    });
+    }
 
-    $(document).ready(function() {
+    function vendorDestinationRetrieval() {
         $('#vendorListDestination').change(function(event) {
             var vendorId = $("#vendorListDestination").val();
 
             $.getJSON('listVendorDriverAndTrucks', {
-                vendorId : vendorId
+                vendorId : vendorId,
+                async : false
             },
 
             function(jsonResponse) {
@@ -2071,7 +2073,7 @@
                 }
             });
         });
-    });
+    }
 
     var pickup = $('#pickup');
     var dropoff = $('#dropoff');
@@ -2272,8 +2274,9 @@
 
     $(document).ready(function () {
         $(window).load(function() {
-            getThis();
-            var vendorId = $("#vendorListOrigin").val();
+            vendorOriginRetrieval();
+            vendorDestinationRetrieval();
+            /*var vendorId = $("#vendorListOrigin").val();
 
             $.getJSON('listVendorDriverAndTrucks', {
                         vendorId : vendorId
@@ -2422,7 +2425,8 @@
                             document.getElementById("grossWeight_Destination_textfield").value = '';
 
                         }
-                    });
+                    });*/
+            getThis();
             localStorage.clear();
         });
     });

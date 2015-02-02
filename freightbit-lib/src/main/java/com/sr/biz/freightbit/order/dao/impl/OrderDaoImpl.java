@@ -59,6 +59,19 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
     }
 
     @Override
+    public void updateOrderItems(OrderItems orderItems) {
+        Log.debug("Update Booking items");
+        try{
+            Session session = getSessionFactory().getCurrentSession();
+            session.saveOrUpdate(orderItems);
+            Log.debug("update booking items successful");
+        }catch (RuntimeException re) {
+            Log.error("update failed", re);
+            throw re;
+        }
+    }
+
+    @Override
     public List<Orders> findDuplicateOrderByOrderCode(String orderNumber, Integer orderId){
         Log.debug("Finding duplicate order by order number");
         try{
@@ -149,6 +162,22 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
             throw re;
         }
     }
+
+    @Override
+    public OrderItems findOrderItemByOrderItemId(Integer orderItemId) {
+        Log.debug("getting OrderItem instance by id:"  + orderItemId);
+        try{
+            OrderItems instance = (OrderItems) getSessionFactory().getCurrentSession().get(OrderItems.class, orderItemId);
+            if (instance == null) {
+                Log.debug("get successful, no instance found");
+            }else {
+                Log.debug("get successful, instance found");
+            }
+            return instance;
+        }catch(RuntimeException re){
+            Log.error("get failed", re);
+            throw re;
+        }    }
 
     @Override
     public List<Orders> findOrdersByOrderNumber (String orderNumber){

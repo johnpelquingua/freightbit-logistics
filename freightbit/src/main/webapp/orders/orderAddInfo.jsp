@@ -631,6 +631,9 @@
                                 <td class="tb-font-black"><s:property value="remarks"/></td>
 
                                 <td class="tb-font-black">
+                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#editItemListingModal" onclick="showEditItemListingFields(${orderItemId});">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
 
                                     <s:url var="deleteItemUrl" action="deleteItem">
                                         <s:param name="orderItemIdParam" value="%{orderItemId}"></s:param>
@@ -1066,6 +1069,22 @@
         </div>
     </div>
 </div>
+</div>
+
+<div class="modal fade" id="editItemListingModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <%--<div class="modal-header">
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+            </div>--%>
+            <div class="modal-body">
+                <div id="editItemListingInput"> <%--Area where input fields will appear--%> </div>
+            </div>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>--%>
+        </div>
+    </div>
 </div>
 
 <div class="modal fade" id="itemListingDeleteModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">

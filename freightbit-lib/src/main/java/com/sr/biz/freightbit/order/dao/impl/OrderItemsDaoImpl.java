@@ -61,8 +61,7 @@ public class OrderItemsDaoImpl extends HibernateDaoSupport implements OrderItems
         Log.debug("getting Item instance with id: " + orderItemId);
 
         try{
-            OrderItems instance = (OrderItems) getSessionFactory().getCurrentSession().get(
-                    OrderItems.class, orderItemId);
+            OrderItems instance = (OrderItems) getSessionFactory().getCurrentSession().get(OrderItems.class, orderItemId);
             if (instance == null) {
                 Log.debug("get successful, no instance found");
             } else {
