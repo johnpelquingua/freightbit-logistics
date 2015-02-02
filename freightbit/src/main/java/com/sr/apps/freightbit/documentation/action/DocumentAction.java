@@ -919,16 +919,23 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                     Documents documentIdEntity = documentsService.findDocumentById(documentId);
 
-                    if (documentIdEntity.getDocumentName().equals("BOOKING REQUEST FORM") || documentIdEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN")){
-                        documentIdEntity.setDocumentProcessed(2);
+                    Orders orderEntity = orderService.findOrdersById(orderIdParam);
+
+                    if (documentIdEntity.getDocumentName().equals("BOOKING REQUEST FORM") || documentIdEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || documentIdEntity.getDocumentName().equals("ACCEPTANCE RECEIPT")){
+                        documentIdEntity.setDocumentProcessed(4);
                         documentIdEntity.setCompleteStage(1);
                         documentIdEntity.setDocumentStatus("RECEIVED WITH SIGNATURE");
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
                     }else if(documentIdEntity.getDocumentName().equals("HOUSE BILL OF LADING")){
-                        documentIdEntity.setDocumentProcessed(2);
-                        documentIdEntity.setFinalOutboundStage(1);
+                        if(orderEntity.getServiceMode().equals("PIER TO PIER")){
+                            documentIdEntity.setDocumentProcessed(4);
+                            documentIdEntity.setCompleteStage(1);
+                        }else{
+                            documentIdEntity.setDocumentProcessed(2);
+                            documentIdEntity.setFinalOutboundStage(1);
+                        }
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
@@ -936,7 +943,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentflag = 1; // Shows must enter reference number error
                         sessionAttributes.put("documentflag", documentflag);
                     }else if(documentIdEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
-                        documentIdEntity.setDocumentProcessed(2);
+                        documentIdEntity.setDocumentProcessed(4);
                         documentIdEntity.setCompleteStage(1);
                         documentIdEntity.setDocumentStatus("RECEIVED");
                         /*Pass flag to view order documents*/
@@ -946,8 +953,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentflag = 1; // Shows must enter reference number error
                         sessionAttributes.put("documentflag", documentflag);
                     }else if(documentIdEntity.getDocumentName().equals("MASTER BILL OF LADING")){
-                        documentIdEntity.setDocumentProcessed(2);
-                        documentIdEntity.setFinalOutboundStage(1);
+                        if(orderEntity.getServiceMode().equals("PIER TO PIER")){
+                            documentIdEntity.setDocumentProcessed(4);
+                            documentIdEntity.setCompleteStage(1);
+                        }else{
+                            documentIdEntity.setDocumentProcessed(2);
+                            documentIdEntity.setFinalOutboundStage(1);
+                        }
                         documentIdEntity.setDocumentStatus("RECEIVED");
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
@@ -956,8 +968,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentflag = 1; // Shows must enter reference number error
                         sessionAttributes.put("documentflag", documentflag);
                     }else {
-                        documentIdEntity.setDocumentProcessed(2);
-                        documentIdEntity.setFinalOutboundStage(1);
+                        if(orderEntity.getServiceMode().equals("PIER TO PIER") || orderEntity.getServiceType().equals("TRUCKING")){
+                            documentIdEntity.setDocumentProcessed(4);
+                            documentIdEntity.setCompleteStage(1);
+                        }else{
+                            documentIdEntity.setDocumentProcessed(2);
+                            documentIdEntity.setFinalOutboundStage(1);
+                        }
                         documentIdEntity.setDocumentStatus("RECEIVED");
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
@@ -1610,18 +1627,22 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         if(documentStageParam.equals("OUTBOUND")) {
             documentEntity.setOutboundStage(1);
+            documentEntity.setDocumentProcessed(0);
             documentEntity.setDocumentStatus("OUTBOUND");
         }else if(documentStageParam.equals("INBOUND")){
             documentEntity.setInboundStage(1);
+            documentEntity.setDocumentProcessed(1);
             documentEntity.setDocumentStatus("INBOUND");
-        }else if(documentStageParam.equals("FINAL INBOUND")){
-            documentEntity.setFinalInboundStage(1);
-            documentEntity.setDocumentStatus("FINAL INBOUND");
-        }else{
+        }else if(documentStageParam.equals("FINAL OUTBOUND")){
+            documentEntity.setDocumentProcessed(2);
             documentEntity.setFinalOutboundStage(1);
             documentEntity.setDocumentStatus("FINAL OUTBOUND");
+        }else{
+            documentEntity.setFinalInboundStage(1);
+            documentEntity.setDocumentProcessed(3);
+            documentEntity.setDocumentStatus("FINAL INBOUND");
         }
-        documentEntity.setDocumentProcessed(0);
+
         documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
         documentEntity.setReferenceNumber(document.getReferenceNumber());
         documentEntity.setDocumentComments(document.getDocumentComments());
@@ -2746,12 +2767,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             for (OrderItems orderItemElem : orderItemsEntity) {
                 // ---------------------------------------- NULL ERROR --------------------------------------
-                /*if(orderItemElem.getVendorOrigin().equals(null) || "".equals(orderItemElem.getVendorOrigin())){*/
+                if(orderItemElem.getVendorOrigin() != null || orderItemElem.getVendorOrigin() != "NONE"){
                     Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorOrigin());
                     formBean.setVendorCode(vendorEntity.getVendorName());
-                /*}else{
+                }else{
                     formBean.setVendorCode("NONE");
-                }*/
+                }
 
             }
 

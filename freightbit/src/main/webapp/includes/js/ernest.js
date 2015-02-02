@@ -902,39 +902,45 @@ function dateValidationInit(){
             departureDate = new Date($('.departureDate').val()),
             finalPickupDate = new Date($('.finalPickupDate').val()),
             finalSaveBtn = $('.finalSaveBtn'),
+            serviceMode = $('.serviceModeField').val(),
             formToSubmit = $('.originForm');
 
-        if(departureDate != 'Invalid Date' && pickupdate != 'Invalid Date'){
-            if(finalPickupDate.setHours(0,0,0,0) >= pickupdate.setHours(0,0,0,0) && finalPickupDate.setHours(0,0,0,0) <= departureDate.setHours(0,0,0,0)){
-                formToSubmit.submit();
-            }else{
-                pickupdate = pickupdate.getUTCFullYear()+'-'+(pickupdate.getMonth()+1)+'-'+pickupdate.getDate();
-                departureDate = departureDate.getUTCFullYear()+'-'+(departureDate.getMonth()+1)+'-'+departureDate.getDate();
-                var message = 'Date must be between <font color="red">'+pickupdate+'</font> and <font color="red">'+departureDate+'</font>';
-                $('#dateWarningModalBody').empty().append(message);
-                $('#dateWarningModal').modal('show');
+        if(serviceMode != 'DELIVERY') {
+            if (departureDate != 'Invalid Date' && pickupdate != 'Invalid Date') {
+                if (finalPickupDate.setHours(0, 0, 0, 0) >= pickupdate.setHours(0, 0, 0, 0) && finalPickupDate.setHours(0, 0, 0, 0) <= departureDate.setHours(0, 0, 0, 0)) {
+                    formToSubmit.submit();
+                } else {
+                    pickupdate = pickupdate.getUTCFullYear() + '-' + (pickupdate.getMonth() + 1) + '-' + pickupdate.getDate();
+                    departureDate = departureDate.getUTCFullYear() + '-' + (departureDate.getMonth() + 1) + '-' + departureDate.getDate();
+                    var message = 'Date must be between <font color="red">' + pickupdate + '</font> and <font color="red">' + departureDate + '</font>';
+                    $('#dateWarningModalBody').empty().append(message);
+                    $('#dateWarningModal').modal('show');
+                }
+            } else {
+                if (pickupdate != 'Invalid Date') {
+                    if (finalPickupDate.setHours(0, 0, 0, 0) >= pickupdate.setHours(0, 0, 0, 0)) {
+                        formToSubmit.submit();
+                    } else {
+                        pickupdate = pickupdate.getUTCFullYear() + '-' + (pickupdate.getMonth() + 1) + '-' + pickupdate.getDate();
+                        var message = 'Date must be no later than <font color="red">' + pickupdate + '</font>';
+                        $('#dateWarningModalBody').empty().append(message);
+                        $('#dateWarningModal').modal('show');
+                    }
+                } else {
+                    if (finalPickupDate.setHours(0, 0, 0, 0) >= departureDate.setHours(0, 0, 0, 0)) {
+                        formToSubmit.submit();
+                    } else {
+                        departureDate = departureDate.getUTCFullYear() + '-' + (departureDate.getMonth() + 1) + '-' + departureDate.getDate();
+                        var message = 'Date must be no later than <font color="red">' + departureDate + '</font>';
+                        $('#dateWarningModalBody').empty().append(message);
+                        $('#dateWarningModal').modal('show');
+                    }
+                }
             }
         }else{
-            if(pickupdate != 'Invalid Date'){
-                if(finalPickupDate.setHours(0,0,0,0) >= pickupdate.setHours(0,0,0,0)){
-                    formToSubmit.submit();
-                }else{
-                    pickupdate = pickupdate.getUTCFullYear()+'-'+(pickupdate.getMonth()+1)+'-'+pickupdate.getDate();
-                    var message = 'Date must be no later than <font color="red">'+pickupdate+'</font>';
-                    $('#dateWarningModalBody').empty().append(message);
-                    $('#dateWarningModal').modal('show');
-                }
-            }else{
-                if(finalPickupDate.setHours(0,0,0,0) >= departureDate.setHours(0,0,0,0)){
-                    formToSubmit.submit();
-                }else{
-                    departureDate = departureDate.getUTCFullYear()+'-'+(departureDate.getMonth()+1)+'-'+departureDate.getDate();
-                    var message = 'Date must be no later than <font color="red">'+departureDate+'</font>';
-                    $('#dateWarningModalBody').empty().append(message);
-                    $('#dateWarningModal').modal('show');
-                }
-            }
+            formToSubmit.submit();
         }
+
     })
 }
 
@@ -982,7 +988,7 @@ function preventSamePort(select1, select2) {
 function buttonControl(){
     switch($('.serviceModeInput').val()){
         case 'PIER TO DOOR' :
-            $('.houseWaybillOriginBtn').hide();
+            //$('.houseWaybillOriginBtn').hide();
             $('.houseWaybillDestinationBtn').show();
             break;
         case 'DOOR TO PIER' :
@@ -1184,8 +1190,11 @@ function processDocumentStage(table, tableDiv, loadingDiv, stageColumn){
 
     for(var i=0; i < stageFlag.size(); i++){
         switch(stageFlag.eq(i).text()){
+            case '0' :
+                stageFlag.eq(i).closest('tr').css('background-color', '#D0D0D0');
+                break;
             case '1' :
-                stageFlag.eq(i).closest('tr').css('background-color', '#ffc860');
+                stageFlag.eq(i).closest('tr').css('background-color', '#66CCFF');
                 break;
             case '2' :
                 stageFlag.eq(i).closest('tr').css('background-color', '#ffd37e');

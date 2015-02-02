@@ -3258,6 +3258,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 }
 
                 if(withdrawAuthorization.size() == 0){
+
                     Documents documentEntityAuthorization = new Documents();
 
                     Client client = clientService.findClientById(getClientId().toString());
@@ -3270,8 +3271,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     documentEntityAuthorization.setCreatedDate(new Date());
                     documentEntityAuthorization.setDocumentStatus("FROM PLANNING");
                     documentEntityAuthorization.setVendorCode(itemVendor);
-                    documentEntityAuthorization.setFinalOutboundStage(1);
-                    documentEntityAuthorization.setDocumentProcessed(2);
+                    if(orderEntity.getServiceMode().equals("PIER TO PIER")){
+                        documentEntityAuthorization.setOutboundStage(1);
+                        documentEntityAuthorization.setDocumentProcessed(0);
+                    }else{
+                        documentEntityAuthorization.setFinalOutboundStage(1);
+                        documentEntityAuthorization.setDocumentProcessed(2);
+                    }
                     documentEntityAuthorization.setCreatedBy(commonUtils.getUserNameFromSession());
                     // orderitem id should be set in orderitemid column WIP
 

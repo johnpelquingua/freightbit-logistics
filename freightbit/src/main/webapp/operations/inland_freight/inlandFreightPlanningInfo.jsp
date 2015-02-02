@@ -79,42 +79,47 @@
 
 </div>
 
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <i class="fa fa-anchor"></i>
-        <span class="panel-title">Freight Plan</span>
-        <s:url var="viewFreightPlanningUrl" action="viewEditSeaFreight">
-            <s:param name="orderItemIdParam"
-                     value="#attr.orderItem.orderItemId">
-            </s:param>
-            <s:param name="nameSizeParam"
-                     value="#attr.orderItem.nameSizeParam">
-            </s:param>
-        </s:url>
-        <span class="pull-right">
-        <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
-             title="Update Status" >
-            <i class="fa fa-edit"></i> Edit
-        </s:a>
-        </span>
-    </div>
-    <div class="panel-body form-horizontal">
-        <div class="form-group">
-            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.vendorSea}" name="book-num" disabled="true"></s:textfield>
+<s:if test="#attr.order.serviceType == 'TRUCKING'">
+
+    <div class="panel panel-primary">
+
+        <div class="panel-heading">
+            <i class="fa fa-anchor"></i>
+            <span class="panel-title">Freight Plan</span>
+            <s:url var="viewFreightPlanningUrl" action="viewEditSeaFreight">
+                <s:param name="orderItemIdParam"
+                         value="#attr.orderItem.orderItemId">
+                </s:param>
+                <s:param name="nameSizeParam"
+                         value="#attr.orderItem.nameSizeParam">
+                </s:param>
+            </s:url>
+            <span class="pull-right">
+            <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
+                 title="Update Status" >
+                <i class="fa fa-edit"></i> Edit
+            </s:a>
+            </span>
+        </div>
+        <div class="panel-body form-horizontal">
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                <div class="col-lg-10">
+                    <s:textfield cssClass="form-control" value="%{orderItem.vendorSea}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Voyage Number </label>
+                <div class="col-lg-10">
+                    <s:textfield cssClass="form-control" value="%{orderItem.vesselScheduleId}" name="book-num" disabled="true"></s:textfield>
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Voyage Number </label>
-            <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.vesselScheduleId}" name="book-num" disabled="true"></s:textfield>
-            </div>
-        </div>
     </div>
 
-</div>
+</s:if>
 
     <div class="row">
         <div class="col-lg-6">
@@ -130,12 +135,14 @@
                                  value="#attr.orderItem.nameSizeParam">
                         </s:param>
                     </s:url>
-                    <span class="pull-right">
-                    <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
-                         title="Update Status" >
-                        <i class="fa fa-edit"></i> Edit
-                    </s:a>
-                    </span>
+                    <s:if test="#attr.orderItem.vendorOrigin != 'NONE' ">
+                        <span class="pull-right">
+                        <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
+                             title="Update Status" >
+                            <i class="fa fa-edit"></i> Edit
+                        </s:a>
+                        </span>
+                    </s:if>
                 </div>
                 <div class="panel-body form-horizontal">
                     <div class="form-group">
@@ -209,6 +216,7 @@
             </div>
         </div>
 
+<s:if test="#attr.order.serviceType == 'TRUCKING'">
 
         <div class="col-lg-6">
             <div class="panel panel-primary">
@@ -276,6 +284,8 @@
             </div>
         </div>
     </div>
+
+</s:if>
 
     <div class="pull-right">
         <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">

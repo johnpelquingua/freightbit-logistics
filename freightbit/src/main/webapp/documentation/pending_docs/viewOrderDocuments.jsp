@@ -330,27 +330,31 @@
                         <a href="#inbound" role="tab" data-toggle="tab">Inbound</a>
                     </li>
                     <%--Redirects to Final Outbound Stage--%>
-                    <li id="fiOut" class="col-md-2 padding-0-lr">
-                        <%--<s:url var="finalOutboundStageUrl" action="viewOrderDocumentsFinalOutbound">
-                            <s:param name="orderIdParam"
-                                     value="#attr.order.orderId"></s:param>
-                        </s:url>
-                        <s:a class="icon-action-link" href="%{finalOutboundStageUrl}">
-                            Final Outbound
-                        </s:a>--%>
-                        <a href="#finalOutbound" role="tab" data-toggle="tab">Final Outbound</a>
-                    </li>
+                    <s:if test="#attr.order.freightType != 'SHIPPING' || #attr.order.freightType != 'TRUCKING' ">
+                        <li id="fiOut" class="col-md-2 padding-0-lr">
+                            <%--<s:url var="finalOutboundStageUrl" action="viewOrderDocumentsFinalOutbound">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{finalOutboundStageUrl}">
+                                Final Outbound
+                            </s:a>--%>
+                            <a href="#finalOutbound" role="tab" data-toggle="tab">Final Outbound</a>
+                        </li>
+                    </s:if>
                     <%--Redirects to Final Inbound Stage--%>
-                    <li id="fiIn" class="col-md-2 padding-0-lr">
-                        <%--<s:url var="finalInboundStageUrl" action="viewOrderDocumentsFinalInbound">
-                            <s:param name="orderIdParam"
-                                     value="#attr.order.orderId"></s:param>
-                        </s:url>
-                        <s:a class="icon-action-link" href="%{finalInboundStageUrl}">
-                            Final Inbound
-                        </s:a>--%>
-                        <a href="#finalInbound" role="tab" data-toggle="tab">Final Inbound</a>
-                    </li>
+                    <s:if test="#attr.order.freightType != 'SHIPPING' || #attr.order.freightType != 'TRUCKING' ">
+                        <li id="fiIn" class="col-md-2 padding-0-lr">
+                            <%--<s:url var="finalInboundStageUrl" action="viewOrderDocumentsFinalInbound">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{finalInboundStageUrl}">
+                                Final Inbound
+                            </s:a>--%>
+                            <a href="#finalInbound" role="tab" data-toggle="tab">Final Inbound</a>
+                        </li>
+                    </s:if>
                     <li id="comp" class="col-md-2 padding-0-l">
                         <a href="#complete" role="tab" data-toggle="tab">Complete</a>
                     </li>
@@ -480,7 +484,7 @@
                                                         </a>
                                                     <%--</s:if>--%>
                                                     <%--Print Document--%>
-                                                    <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='PROFORMA BILL OF LADING' ">
+                                                    <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='PROFORMA BILL OF LADING' || #attr.document.documentName=='RELEASE ORDER' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' ">
                                                         <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                             <i class="fa fa-print"></i>
                                                         </a>
@@ -718,7 +722,7 @@
                                                     </a>
                                                     <%--</s:if>--%>
                                                     <%--Print Document--%>
-                                                    <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='PROFORMA BILL OF LADING' ">
+                                                    <s:if test="#attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='PROFORMA BILL OF LADING' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='RELEASE ORDER' ">
                                                         <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                             <i class="fa fa-print"></i>
                                                         </a>
@@ -1260,7 +1264,7 @@
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <%--Print Document--%>
-                                            <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='PROFORMA BILL OF LADING' ">
+                                            <s:if test="#attr.document.documentName=='HOUSE BILL OF LADING' || #attr.document.documentName=='HOUSE RELEASE ORDER' || #attr.document.documentName=='HOUSE WAYBILL DESTINATION' || #attr.document.documentName=='AUTHORIZATION TO WITHDRAW' || #attr.document.documentName=='BOOKING REQUEST FORM' || #attr.document.documentName=='HOUSE WAYBILL ORIGIN' || #attr.document.documentName=='ACCEPTANCE RECEIPT' || #attr.document.documentName=='RELEASE ORDER' || #attr.document.documentName=='PROFORMA BILL OF LADING' ">
                                                 <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                                     <i class="fa fa-print"></i>
                                                 </a>
@@ -1339,14 +1343,16 @@
                         <table class="col-lg-12">
                             <tr>
                                 <td style="width: 20%;"><label>LEGEND:</label></td>
-                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #d9534f;"></i> Outbound Complete</td>
-                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #f0ad4e;"></i> Inbound Complete</td>
-                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #9d009f;"></i> Final Outbound Complete</td>
-                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #428bca;"></i> Final Inbound Complete</td>
+                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #D0D0D0;"></i> Outbound Stage</td>
+                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #66CCFF;"></i> Inbound Stage</td>
+                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #ffd37e;"></i> Final Outbound Stage</td>
+                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #feabff;"></i> Final Inbound Stage</td>
+
                             </tr>
                             <tr>
                                 <td></td>
-                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #5cb85c;"></i> Complete</td>
+                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #c1c2ff;"></i> Complete Stage</td>
+                                <td style="width: 20%;"><i class="fa fa-stop" style="color: #a7ffad;"></i> Document Completed</td>
                             </tr>
                         </table>
                     </div>

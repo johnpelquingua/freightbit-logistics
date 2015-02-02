@@ -371,7 +371,7 @@
                                                     <i class="fa fa-tasks" id="status"></i>
                                                 </s:a>
 
-                                                <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
+                                                <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderInland">
                                                     <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
@@ -420,7 +420,7 @@
                                                     <i class="fa fa-tasks" id="status"></i>
                                                 </s:a>
 
-                                                <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderSea">
+                                                <s:url var="viewInfoOrderUrl" action="../operations/viewInfoOrderInland">
                                                     <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
@@ -685,7 +685,7 @@
                                                 <s:a class="icon-action-link" href="%{viewInfoOrderUrl}" rel="tooltip" title="View Booking Information">
                                                     <i class="fa fa-info-circle"></i>
                                                 </s:a>
-                                            </s:else>g
+                                            </s:else>
                                         </display:column></td>
 
                                     </display:table>

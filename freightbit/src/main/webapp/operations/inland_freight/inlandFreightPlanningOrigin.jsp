@@ -174,9 +174,16 @@
 
                         <div class="col-lg-8">
                             <div>
-                                <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
-                                          id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
-                                          emptyOption="true" value="%{orderItem.vendorDestination}"></s:select>
+                                <s:if test="#attr.order.freightType == 'TRUCKING'">
+                                    <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
+                                              id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
+                                              emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                                </s:if>
+                                <s:else>
+                                    <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
+                                              id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
+                                              emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                                </s:else>
                             </div>
                         </div>
 
@@ -423,9 +430,16 @@
 
                 <div class="col-lg-8">
                     <div>
-                        <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
-                                  id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
-                                  emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                        <s:if test="#attr.order.freightType == 'TRUCKING'">
+                            <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
+                                      id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
+                                      emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                        </s:if>
+                        <s:else>
+                            <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
+                                      id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
+                                      emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                        </s:else>
                     </div>
                 </div>
 
@@ -763,11 +777,16 @@
 
                     <div class="col-lg-8">
                         <div>
-                            <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
-                                      id="vendorListOrigin"
-                                      listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
-                                      emptyOption="true" value="%{orderItem.vendorDestination}"
-                                    ></s:select>
+                            <s:if test="#attr.order.freightType == 'TRUCKING'">
+                                <s:select list="vendorTruckingList" name="operationsBean.vendorListOrigin"
+                                          id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
+                                          emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                            </s:if>
+                            <s:else>
+                                <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
+                                          id="vendorListOrigin" listKey="vendorId" listValue="vendorName" cssClass="dispatchInput form-control"
+                                          emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                            </s:else>
                         </div>
                     </div>
                     <div class="col-lg-2">
@@ -1491,7 +1510,7 @@
     $(document).ready(function(){
         validationForm('dispatchInput', 'finalSaveBtn');
         dateValidationInit();
-    })
+    });
 
     //    Read the value in cache
     function getThis() {
