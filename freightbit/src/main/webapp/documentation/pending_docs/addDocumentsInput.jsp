@@ -5,18 +5,20 @@
         <div class="modal-header margin-10-bot center-text" style="font-size: 1.5em; !important;">
             <i class="fa fa-plus"></i> Add New Documents
         </div>
+        <s:hidden value="%{order.freightType}" cssClass="serviceType"/>
+        <s:hidden value="%{order.modeOfService}" cssClass="serviceMode"/>
+
         <s:form action="addDocument" theme="bootstrap">
 
             <label class="col-lg-4 control-label" style="text-align: right;">Document Name</label>
             <div class="col-lg-8">
-                <s:textfield name="document.referenceId" value="%{orderIdParam}" />
-                <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
-                <s:textfield name="documentStageParam" value="%{documentStageParam}" />
-                <%--<s:textfield value="%{documentStageParam}" />--%>
-                <s:textfield value="%{order.freightType}" cssClass="serviceType"/>
-                <s:textfield value="%{order.modeOfService}" cssClass="serviceMode"/>
-                <s:hidden name="document.referenceId" value="orderIdParam" />
-                <%--<s:textfield cssClass="form-control" style="margin-bottom: 15px !important;" value="%{document.documentName}" disabled="true"></s:textfield>--%>
+
+                <%--<s:textfield name="document.referenceId" value="%{orderIdParam}" />--%>
+                <%--<s:param name="orderIdParam" value="%{orderIdParam}"></s:param>--%>
+                <s:hidden name="documentStageParam" value="%{documentStageParam}" />
+
+                <s:hidden name="document.referenceId" value="%{orderIdParam}" />
+
                     <input list="documents" id="documentName" name="document.documentName" class="form-control" maxLength="30" required="true" style="margin-bottom: 15px !important;" required="true"/>
                     <datalist id="documents" class="datalistDocuments">
                         <s:iterator value="documentNames">
