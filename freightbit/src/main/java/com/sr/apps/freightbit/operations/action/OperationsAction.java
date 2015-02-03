@@ -3445,10 +3445,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             clearErrorsAndMessages();
                             addActionError("House Waybill Origin(s) already exists.");
 
-                            for (OrderItems orderItemsElem : orderItemsList) {
-                                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
-                            }
-                            return INPUT;
+//                            for (OrderItems orderItemsElem : orderItemsList) {
+//                                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+//                            }
+//                            return INPUT;
                         }
                     }else{ // if no origin vendor set will return an error message
                         clearErrorsAndMessages();
@@ -3494,10 +3494,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             clearErrorsAndMessages();
                             addActionError("House Waybill Destination(s) already exists.");
                             /*addActionMessage("I have found out that there is a document with the same name. Please delete them first before creating a new one");*/
-                            for (OrderItems orderItemsElem : orderItemsList) {
-                                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
-                            }
-                            return INPUT;
+//                            for (OrderItems orderItemsElem : orderItemsList) {
+//                                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+//                            }
+//                            return INPUT;
                         }
                     }else{ // if no destination vendor set will return an error message
                         clearErrorsAndMessages();

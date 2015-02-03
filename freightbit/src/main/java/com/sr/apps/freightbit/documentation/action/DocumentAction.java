@@ -860,7 +860,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     // Will trigger if Proforma Bill of Lading has a Reference Number
                     } else if (documentIdEntity.getDocumentName().equals("PROFORMA BILL OF LADING") && documentIdEntity.getReferenceNumber() != null) {
                         documentIdEntity.setDocumentStatus("ENTERED SERIES NUMBER");
-                        documentIdEntity.setDocumentProcessed(1);
+                        documentIdEntity.setDocumentProcessed(4);
                         documentIdEntity.setCompleteStage(1);
                         /*documentIdEntity.setArchiveStage(0);*/
                         /*Pass flag to view order documents*/
@@ -919,20 +919,16 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                     Documents documentIdEntity = documentsService.findDocumentById(documentId);
 
-                    if (documentIdEntity.getDocumentName().equals("BOOKING REQUEST FORM")){
+                    if (documentIdEntity.getDocumentName().equals("BOOKING REQUEST FORM") || documentIdEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN")){
                         documentIdEntity.setDocumentProcessed(2);
+                        documentIdEntity.setCompleteStage(1);
                         documentIdEntity.setDocumentStatus("RECEIVED WITH SIGNATURE");
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
-                    }else if(documentIdEntity.getDocumentName().equals("HOUSE BILL OF LADING") || documentIdEntity.getDocumentName().equals("ACCEPTANCE RECEIPT")){
+                    }else if(documentIdEntity.getDocumentName().equals("HOUSE BILL OF LADING")){
                         documentIdEntity.setDocumentProcessed(2);
-                        /*Pass flag to view order documents*/
-                        documentflag = 5; // shows document check message
-                        sessionAttributes.put("documentflag", documentflag);
-                    }else if(documentIdEntity.getDocumentName().equals("HOUSE WAYBILL ORIGIN")){
-                        documentIdEntity.setDocumentProcessed(2);
-                        documentIdEntity.setDocumentStatus("RECEIVED WITH SIGNATURE");
+                        documentIdEntity.setFinalOutboundStage(1);
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
@@ -941,6 +937,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         sessionAttributes.put("documentflag", documentflag);
                     }else if(documentIdEntity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
                         documentIdEntity.setDocumentProcessed(2);
+                        documentIdEntity.setCompleteStage(1);
                         documentIdEntity.setDocumentStatus("RECEIVED");
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
@@ -950,15 +947,17 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         sessionAttributes.put("documentflag", documentflag);
                     }else if(documentIdEntity.getDocumentName().equals("MASTER BILL OF LADING")){
                         documentIdEntity.setDocumentProcessed(2);
+                        documentIdEntity.setFinalOutboundStage(1);
                         documentIdEntity.setDocumentStatus("RECEIVED");
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
-                    }else if(documentIdEntity.getDocumentName().equals("SALES INVOICE") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("SALES INVOICE") && documentIdEntity.getReferenceNumber() == null){
+                    }else if(documentIdEntity.getDocumentName().equals("SALES INVOICE") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("SALES INVOICE") && documentIdEntity.getReferenceNumber() == null || documentIdEntity.getDocumentName().equals("DELIVERY RECEIPT") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("DELIVERY RECEIPT") && documentIdEntity.getReferenceNumber() == null){
                         documentflag = 1; // Shows must enter reference number error
                         sessionAttributes.put("documentflag", documentflag);
-                    }else if(documentIdEntity.getDocumentName().equals("SALES INVOICE")){
+                    }else {
                         documentIdEntity.setDocumentProcessed(2);
+                        documentIdEntity.setFinalOutboundStage(1);
                         documentIdEntity.setDocumentStatus("RECEIVED");
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
@@ -1011,25 +1010,25 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                     if(documentIdEntity.getDocumentName().equals("HOUSE BILL OF LADING") || documentIdEntity.getDocumentName().equals("ACCEPTANCE RECEIPT") || documentIdEntity.getDocumentName().equals("RELEASE ORDER") ){
                         documentIdEntity.setDocumentProcessed(3);
-                        documentIdEntity.setFinalInboundStage(0);
+                        documentIdEntity.setFinalInboundStage(1);
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
-                    }else if(documentIdEntity.getDocumentName().equals("MASTER BILL OF LADING") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("MASTER BILL OF LADING") && documentIdEntity.getReferenceNumber() == null){
+                    }else if(documentIdEntity.getDocumentName().equals("MASTER BILL OF LADING") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("MASTER BILL OF LADING") && documentIdEntity.getReferenceNumber() == null || documentIdEntity.getDocumentName().equals("HOUSE WAYBILL DESTINATION") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("HOUSE WAYBILL DESTINATION") && documentIdEntity.getReferenceNumber() == null){
                         documentflag = 1; // Shows must enter reference number error
                         sessionAttributes.put("documentflag", documentflag);
                     }else if(documentIdEntity.getDocumentName().equals("MASTER BILL OF LADING")){
                         documentIdEntity.setDocumentProcessed(3);
-                        documentIdEntity.setFinalInboundStage(0);
+                        documentIdEntity.setFinalInboundStage(1);
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
-                    }else if(documentIdEntity.getDocumentName().equals("SALES INVOICE") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("SALES INVOICE") && documentIdEntity.getReferenceNumber() == null){
+                    }else if(documentIdEntity.getDocumentName().equals("SALES INVOICE") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("SALES INVOICE") && documentIdEntity.getReferenceNumber() == null || documentIdEntity.getDocumentName().equals("DELIVERY RECEIPT") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("DELIVERY RECEIPT") && documentIdEntity.getReferenceNumber() == null){
                         documentflag = 1; // Shows must enter reference number error
                         sessionAttributes.put("documentflag", documentflag);
-                    }else if(documentIdEntity.getDocumentName().equals("SALES INVOICE") || documentIdEntity.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || documentIdEntity.getDocumentName().equals("HOUSE WAYBILL DESTINATION") ){
+                    }else {
                         documentIdEntity.setDocumentProcessed(3);
-                        documentIdEntity.setFinalInboundStage(0);
+                        documentIdEntity.setFinalInboundStage(1);
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
                         sessionAttributes.put("documentflag", documentflag);
@@ -1085,6 +1084,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         sessionAttributes.put("documentflag", documentflag);
                     }else{
                         documentIdEntity.setDocumentProcessed(4);
+                        documentIdEntity.setCompleteStage(1);
                         documentIdEntity.setDocumentStatus("Checked!");
                         /*Pass flag to view order documents*/
                         documentflag = 5; // shows document check message
@@ -1594,7 +1594,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + document.getDocumentName());
         System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" + document.getReferenceNumber());
-        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" + document.getDocumentComments());
+//        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" + document.getDocumentComments());
         System.out.println("dddddddddddddddddddddddddddddd" + document.getReferenceId());
         System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee" + documentStageParam);
 
