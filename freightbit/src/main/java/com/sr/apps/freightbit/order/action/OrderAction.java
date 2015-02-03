@@ -261,6 +261,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         System.out.println("The number of  new booking is " + Booking);
 
         return SUCCESS;
+
     }
 
     public String viewOrdersBookingList() {
@@ -1200,10 +1201,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         }
         // for consignee contact person
         orderBean.setConsigneeContactPersonId(order.getConsigneeContactPersonId());
-        if (order.getConsigneeContactPersonId() != null) {
+        /*if (order.getConsigneeContactPersonId() != null) {
             Contacts contactElem = customerService.findContactById(order.getConsigneeContactPersonId());
             orderBean.setConsigneeContactName(contactElem.getFirstName() + " " + contactElem.getMiddleName() + " " + contactElem.getLastName());
-        }
+        }*/
 
         /*OUTBOUND DOCUMENTS*/
         /*outboundEntityList = documentsService.findDocumentByOutboundStageAndID(1, order.getOrderId());*/
