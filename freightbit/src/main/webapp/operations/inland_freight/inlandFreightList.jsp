@@ -107,8 +107,7 @@
 
                                         <td><display:column title="Action">
                                             <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
-                                                <i class="fa fa-ban"></i>
-                                            </s:if>
+                                                <i style="color: red;" class="fa fa-ban"></i>                                            </s:if>
                                             <s:else>
                                                 <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
                                                     <s:param name="orderIdParam" value="#attr.order.orderId"></s:param>

@@ -160,7 +160,7 @@
                         <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
                         <display:table id="orderItem" name="orderItems"
                                        requestURI="/viewSeaFreightItemList.action"
-                                       class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                       class="inlandOrderItemsTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                        style="margin-top: 15px;">
 
                             <td><display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
@@ -210,20 +210,7 @@
                             <td><display:column title="Action">
 
                                 <s:if test="#attr.orderItem.status=='ON GOING' || #attr.orderItem.status=='PLANNING 1'">
-                                    <%--<s:url var="viewInfoUrl" action="viewSeaFreightInfo">--%>
-                                        <%--<s:param name="orderItemIdParam"--%>
-                                                 <%--value="#attr.orderItem.orderItemId">--%>
-                                        <%--</s:param>--%>
-                                        <%--<s:param name="orderNoParam"--%>
-                                                 <%--value="orderNoParam">--%>
-                                        <%--</s:param>--%>
-                                    <%--</s:url>--%>
-                                    <%--<s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"--%>
-                                         <%--title="Show Information">--%>
-                                        <%--<i class="fa fa-info-circle"></i>--%>
-                                    <%--</s:a>--%>
-                                    <i class="fa fa-ban"></i>
-                                </s:if>
+                                    <i style="color: red;" class="fa fa-ban"></i>                                </s:if>
                                 <s:else>
                                     <s:url var="viewFreightPlanningUrl" action="viewFreightPlanningInland">
                                         <s:param name="orderItemIdParam"
@@ -368,19 +355,11 @@
                 $('#orderItem [type="checkbox"]').prop('checked', true);
             }
         })
-    });
 
-    function CheckAll(check)
-    {
+        var check = document.getElementById("check");
         for (i = 0; i < check.length; i++)
             check[i].checked = true ;
-    }
-
-    function UnCheckAll(check)
-    {
-        for (i = 0; i < check.length; i++)
-            check[i].checked = false ;
-    }
+    });
 
     function addText() {
         document.getElementById("edit").value = "edit";

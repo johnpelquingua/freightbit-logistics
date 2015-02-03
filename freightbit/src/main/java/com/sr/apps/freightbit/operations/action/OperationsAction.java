@@ -355,7 +355,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Integer> planning1 = new ArrayList();
         List<Integer> planning2 = new ArrayList();
         List<Integer> planning3 = new ArrayList();
-        List<Integer> planning4 = new ArrayList();
+        List<Integer> onGoing = new ArrayList();
 
         System.out.println("CHECK WORD PASS " + check);
         System.out.println("ORDER ID " + orderItemIdParam);
@@ -448,15 +448,20 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             sessionAttributes.put("nameSizeList", nameSizeList);
 
-//            return "PLANNING 1";
+            if(planning2.size() > 0 || planning3.size() > 0|| onGoing.size() > 0) {
+                return "errorInput";
+            }
+            else{
+                return SUCCESS;
+            }
             /*} else if (planning2.size() > 0) {
-                return "PLANNING 2";
+                return "PLNNING 2";
 //            } else if (planning3.size() > 0) {
                 return "PLANNING 3";
             } else {
                 return INPUT;
             }*/
-            return SUCCESS;
+//            return SUCCESS;
 
         } else {
 
@@ -492,7 +497,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         }
                     }
                     else if ("ON GOING".equals(entity.getStatus())) {
-                        planning4.add(orderItemId);
+                        onGoing.add(orderItemId);
                     }
                 }
 
@@ -528,14 +533,16 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         nameSizeList.add(orderItemEntity.getNameSize());
                     }
 
+                } else if (onGoing.size() > 0) {
+
+                    nameSizeList = new ArrayList<String>();
+
+                    for(int i = 0; i < onGoing.size(); i++){
+                        OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(onGoing.get(i));
+                        nameSizeList.add(orderItemEntity.getNameSize());
+                    }
+
                 }
-
-                /*nameSizeList = new ArrayList<String>();
-
-                for(int i = 0; i < planning4.size(); i++){
-                    OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planning4.get(i));
-                    nameSizeList.add(orderItemEntity.getNameSize());
-                }*/
 
                 List<OrderItems> orderItemsListing = orderService.findAllItemByOrderId(orderEntity.getOrderId());
 
@@ -552,13 +559,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
 
-                /*if(planning2.size() > 0 && planning3.size() >  0) {
+                if(planning1.size() > 0 || onGoing.size() > 0) {
                     return "EDIT";
-                } else{
+                }
+                else{
                     return "errorInput";
-                }*/
-                return "EDIT";
-
+                }
             }
         }
     }
@@ -568,7 +574,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         List<Integer> planning1 = new ArrayList();
         List<Integer> planning2 = new ArrayList();
         List<Integer> planning3 = new ArrayList();
-        List<Integer> planning4 = new ArrayList();
+        List<Integer> onGoing = new ArrayList();
 
         if ("".equals(orderItem.getEditItem())) {
 
@@ -599,6 +605,18 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     else if  ("PLANNING 3".equals(entity.getStatus())) {
                         planning3.add(orderItemId);
                         if (planning1.size() > 0 || planning2.size() > 0) {
+                            return INPUT;
+                        }
+                    }
+                    else if ("ON GOING".equals(entity.getStatus())) {
+                        onGoing.add(orderItemId);
+                        if (planning1.size() > 0 || planning2.size() > 0 || planning3.size() > 0) {
+                            return INPUT;
+                        }
+                    }
+                    else if  ("ON GOING".equals(entity.getStatus())) {
+                        onGoing.add(orderItemId);
+                        if (planning1.size() > 0 || planning2.size() > 0 || planning3.size() > 0) {
                             return INPUT;
                         }
                     }
@@ -642,12 +660,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
             vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
             sessionAttributes.put("nameSizeList", nameSizeList);
 
-            /*return "PLANNING 1";*/
             if (planning2.size() > 0) {
                 return "PLANNING 2";
-            } else if (planning3.size() > 0) {
+            }
+            else if (planning3.size() > 0) {
+                if(onGoing.size() > 0){
+                    return "errorInput";
+
+                }
                 return "PLANNING 3";
-            } else{
+            }
+            else{
                 return "errorInput";
             }
 
@@ -666,12 +689,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                     Integer orderItemId = Integer.parseInt(check[i]);
                     OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
-                    /*if ("PLANNING 1".equals(entity.getStatus())) {
-                        planning1.add(orderItemId);
-                        if (planning2.size() > 0 || planning3.size() > 0) {
-                            return INPUT;
-                        }
-                    }*/
                     if ("PLANNING 2".equals(entity.getStatus())) {
                         planning2.add(orderItemId);
                         if (planning1.size() > 0 || planning3.size() > 0) {
@@ -685,7 +702,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         }
                     }
                     else if ("ON GOING".equals(entity.getStatus())) {
-                        planning4.add(orderItemId);
+                        onGoing.add(orderItemId);
                     }
                 }
 
@@ -721,15 +738,25 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         nameSizeList.add(orderItemEntity.getNameSize());
                     }
 
+                } else if (onGoing.size() > 0) {
+
+                    nameSizeList = new ArrayList<String>();
+
+                    for(int i = 0; i < onGoing.size(); i++){
+                        OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(onGoing.get(i));
+                        nameSizeList.add(orderItemEntity.getNameSize());
+                    }
+
                 }
 
                 vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
 
                 vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
                 sessionAttributes.put("nameSizeList", nameSizeList);
-                if(planning2.size() > 0 || planning3.size() >  0) {
+                if(planning2.size() > 0 || planning3.size() >  0 || onGoing.size() > 0) {
                     return "EDIT";
-                } else{
+                }
+                else{
                     return "errorInput";
                 }
             }

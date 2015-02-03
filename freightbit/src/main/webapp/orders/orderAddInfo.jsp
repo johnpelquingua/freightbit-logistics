@@ -536,14 +536,18 @@
 
                     <div style="clear:both; margin-top: 20px;" class="pull-right">
                         <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
+                            <s:if test="order.orderStatus != 'ON GOING'">
                             <span>
                                 <s:submit name="submit" cssClass="addContainerToList btn btn-primary" id="submit_button" value="Add Container to List"/>
                             </span>
+                            </s:if>
                         </s:if>
                         <s:else>
+                            <s:if test="order.orderStatus != 'ON GOING'">
                             <span>
                                 <s:submit name="submit" cssClass="addItemToList btn btn-primary" id="submit_button" value="Add Item to List" />
                             </span>
+                            </s:if>
                         </s:else>
                     </div>
 

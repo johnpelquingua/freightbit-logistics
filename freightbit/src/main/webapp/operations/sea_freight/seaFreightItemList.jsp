@@ -171,7 +171,7 @@
                         <display:table id="orderItem" name="orderItems"
                                        requestURI="/viewSeaFreightItemList.action"
                                        class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple"
-                                       style="margin-top: 15px; empty-cells:hide !important;">
+                                       style="margin-top: 15px;">
                             <tr>
                                 <td>
                                     <display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">

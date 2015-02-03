@@ -146,9 +146,12 @@
                                     </s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip" title="View Shipment History">
-                                    <i class="fa fa-info-circle"></i>
+                                    <i class="fa fa-edit"></i>
                                 </s:a>
                                 </s:if>
+                                <s:else>
+                                    <i style="color: red;" class="fa fa-ban"></i>
+                                </s:else>
                             </display:column>
                         </td>
                     </tr>
@@ -160,7 +163,7 @@
                                          value="order.orderId"></s:param>
                             </s:url>
                             <s:if test="#attr.orderItem.status == 'ARRIVED' || #attr.orderItem.status == 'DELIVERED'">
-                                <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
+                                    <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
                                 <button type="button" id="Complete" class="btn btn-default">
                                     Complete The Service
                                 </button>
@@ -195,6 +198,10 @@
             $('#orderItem [type="checkbox"]').prop('checked', true);
         }
     })
+
+    var check = document.getElementById("check");
+    for (var i = 0; i < check.length; i++)
+        check[i].checked = true ;
 
     function addText() {
         document.getElementById("edit").value = "";
