@@ -13,7 +13,7 @@
    </global-method-security>
 
 	<!-- COMMON CORE -->
-    <http auto-config="true" access-denied-page="/deniedMofo.jsp">
+    <http auto-config="true" access-denied-page="/deniedMofo404.jsp">
     <intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <intercept-url pattern="/includes/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <intercept-url pattern="/struts/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
