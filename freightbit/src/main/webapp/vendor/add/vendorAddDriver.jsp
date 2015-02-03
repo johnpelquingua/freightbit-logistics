@@ -49,7 +49,7 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="vendorAddDriverInput form-control" placeholder="AXX-XX-XXXXXXX"
-                                             name="driver.licenseNumber" id="driver_licenseNumber" required="true"/>
+                                             name="driver.licenseNumber" id="driver_licenseNumber" required="true" maxLength="14" pattern=".{14,}"/>
                             </div>
 
                         </div>
@@ -60,7 +60,8 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control vendorAddDriverInput" placeholder="Last Name" name="driver.lastName"
-                                             id="driver.lastName" required="true"/>
+                                             id="driver.lastName" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                             title="Name should not contain special characters and/or numbers." maxlength="30"/>
                             </div>
 
                         </div>
@@ -71,7 +72,8 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control vendorAddDriverInput" placeholder="First Name" name="driver.firstName"
-                                             id="driver.firstName" required="true"/>
+                                             id="driver.firstName" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                             title="Name should not contain special characters and/or numbers." maxlength="30"/>
                             </div>
 
                         </div>
@@ -82,7 +84,8 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName"
-                                             id="driver.middleName" />
+                                             id="driver.middleName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                             title="Name should not contain special characters and/or numbers." maxlength="30"/>
                             </div>
 
                         </div>
@@ -93,7 +96,8 @@
 
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control vendorAddDriverInput" placeholder="Title" name="driver.title"
-                                             id="driver.title" required="true"/>
+                                             id="driver.title" required="true" maxLength="30" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                             title="Name should not contain special characters and/or numbers."/>
                             </div>
 
                         </div>

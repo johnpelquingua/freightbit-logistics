@@ -46,26 +46,37 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Position<span class="asterisk_red"></span></label>
+                            <div class="col-lg-10">
+                                <s:textfield cssClass="form-control" placeholder="Position" name="contact.position" required="true" maxlength="45"
+                                             pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
-                                         id="contact.lastName" patttern="[A-Za-z\s. ]+" title="Must be letters only" required="true"/>
+                            <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName" maxLength="30"
+                                         id="contact.lastName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="Name should not contain special characters and/or numbers." required="true"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">First Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                         id="contact.firstName" patttern="[A-Za-z\s. ]+" title="Must be letters only" required="true"/>
+                            <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName" maxLength="30"
+                                         id="contact.firstName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="Name should not contain special characters and/or numbers." required="true"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Middle Name</label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
-                                         id="contact.middleName" patttern="[A-Za-z\s. ]+" title="Must be letters only"/>
+                            <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName" maxLength="30"
+                                         id="contact.middleName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="Name should not contain special characters and/or numbers."/>
                             </div>
                         </div>
 
@@ -73,15 +84,15 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Telephone<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="(XXX)XXX-XXXX" name="contact.phone" maxLength="14" required="true"
-                            id="shipping_phone" title="(XXX)XXX-XXXX YTelephone Number should not contain special characters and/or letters."/>
+                            id="shipping_phone" title="(XXX)XXX-XXXX YTelephone Number should not contain special characters and/or letters." pattern=".{14,}"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Mobile<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="(+639XX) (XXX-XXXX)" name="contact.mobile" maxLength="19"
-                           id="shipping_mobile" required="true"
+                            <s:textfield cssClass="form-control" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile" maxLength="18"
+                           id="shipping_mobile" required="true" pattern=".{18,}"
                             title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
                             </div>
                         </div>
@@ -89,7 +100,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax</label>
                             <div class="col-lg-10">
-                            <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.fax" maxLength="14"
+                            <s:textfield cssClass="form-control" placeholder="(XXX) XXX-XXXX" name="contact.fax" maxLength="14" pattern=".{14,}"
                                          id="shipping_fax" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
                             </div>
                         </div>
@@ -100,18 +111,14 @@
 
                             <%--<s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email" type="email" id="emailfield" />--%>
 
-                            <s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email" type="email" maxLength="50" required="true"
-                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
+                            <s:textfield cssClass="form-control" placeholder="E-mail" name="contact.email" maxLength="50" required="true"
+                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                                         title="Example: example@domain.com"/>
 
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Position<span class="asterisk_red"></span></label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" placeholder="Position" name="contact.position" required="true"/>
-                            </div>
-                        </div>
+
 
                         <%--<div class="pull-right">
                             <s:submit cssClass="btn btn-info" name="submit" value="Save"/>

@@ -25,33 +25,38 @@
                 <s:hidden name="vendor.vendorId" value="%{vendor.vendorId}"/>
                 <s:hidden name="vendor.createdTimeStamp" value="%{vendor.createdTimeStamp}" />
                 <s:hidden name="vendor.createdBy" value="%{vendor.createdBy}" />
-                <div class="form-group">
-                    <label for="vendor.vendorName" class="col-lg-2 control-label" style="padding-top:0px;">Name<span class="asterisk_red"></span></label>
 
-                    <div class="col-lg-9">
-                        <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Vendor Name"
-                                     name="vendor.vendorName" maxlength="30"></s:textfield>
+                    <div class="form-group">
+                        <label for="vendor.vendorType" class="col-lg-2 control-label" style="padding-top:0px;">Type<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-9">
+                            <s:select cssClass="form-control" id="vendor.vendorType" list="vendorTypeList" listValue="value"
+                                      listKey="key"
+                                      name="vendor.vendorType"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
+
+                    <div class="form-group">
                     <label for="vendor.vendorCode" class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></span></label>
 
                     <div class="col-lg-9">
                         <s:textfield cssClass="form-control" id="vendor_vendorCode" placeholder="Vendor Code"
-                                     name="vendor.vendorCode" maxLength="3" pattern="[A-Z]+" title="Must be letters only and CAPS." onkeypress="return alphaKeyOnly(event)"></s:textfield>
+                                     name="vendor.vendorCode" maxLength="3" pattern="^[A-Z]{3,}$" title="Must be letters only and CAPS." onkeypress="return alphaKeyOnly(event)"></s:textfield>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="vendor.vendorType" class="col-lg-2 control-label" style="padding-top:0px;">Type<span class="asterisk_red"></span></label>
 
-                    <div class="col-lg-9">
-                        <s:select cssClass="form-control" id="vendor.vendorType" list="vendorTypeList" listValue="value"
-                                  listKey="key"
-                                  name="vendor.vendorType"/>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label for="vendor.vendorName" class="col-lg-2 control-label" style="padding-top:0px;">Company<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Company Name"
+                                         name="vendor.vendorName" maxlength="30" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"></s:textfield>
+                        </div>
+                    </div>
+
                 <div class="form-group">
-                    <label for="vendor.vendorClass" class="col-lg-2 control-label" style="padding-top:0px;">Class Name<span class="asterisk_red"></span></label>
+                    <label for="vendor.vendorClass" class="col-lg-2 control-label" style="padding-top:0px;">Class<span class="asterisk_red"></span></label>
 
                     <div class="col-lg-9">
                         <s:select cssClass="form-control" id="vendor.vendorClass" list="vendorClassList" listKey="key"

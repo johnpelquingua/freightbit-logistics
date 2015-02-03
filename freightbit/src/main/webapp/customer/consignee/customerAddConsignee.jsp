@@ -45,7 +45,7 @@
 
                             <s:textfield name="consignee.lastName" cssClass="addConsigneeInput form-control" id="consignee.lastName"
                                          placeholder="Last Name" maxLength="30" required="true" style="width:95%"
-                                         pattern="[a-zA-Z\s]+" autofocus="true"
+                                         pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" autofocus="true"
                                          title="Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                                  <div class="col-sm-10 " >
                                      <s:textfield name="consignee.firstName" cssClass="addConsigneeInput form-control" id="consignee.firstName"
                                                   placeholder="First Name" maxLength="30" required="true" style="width:95%"
-                                                  pattern="[a-zA-Z\s]+"
+                                                  pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
                                                   title="Name should not contain special characters and/or numbers." />
                                  </div>
                     </div>
@@ -70,7 +70,7 @@
 
                             <s:textfield name="consignee.middleName" cssClass="form-control"
                                          id="consignee.middleName"
-                                         placeholder="Middle Name" maxLength="30" pattern="[a-zA-Z\s]+" style="width:95%"
+                                         placeholder="Middle Name" maxLength="30" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" style="width:95%"
                                          title="Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                         <div class="col-lg-10" >
 
                             <s:textfield name="consignee.email" cssClass="addConsigneeInput form-control" id="consignee.email" style="width:95%"
-                                         placeholder="Email Address" type="email" required="true" maxLength="50" title="Must be a valid email"
+                                         placeholder="Email Address" required="true" maxLength="50" title="Example: example@domain.com"
                                          pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"
                                     />
                         </div>
@@ -131,7 +131,7 @@
 
                             <s:textfield name="consignee.addressLine1" cssClass="addConsigneeInput form-control"
                                          id="consignee.addressLine1" placeholder="Address 1" required="true" style="width:95%"
-                                         maxLength="50"/>
+                                         maxLength="50" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Address Line 1 should not contain special characters."/>
                         </div>
                     </div>
 
@@ -141,7 +141,7 @@
 
                         <div class="col-lg-10" >
                             <s:textfield name="consignee.addressLine2" cssClass="form-control" style="width:95%"
-                                         id="consignee.addressLine2" placeholder="Address 2" maxLength="50"/>
+                                         id="consignee.addressLine2" placeholder="Address 2" maxLength="50" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Address Line 2 should not contain special characters."/>
                         </div>
                     </div>
 
@@ -153,7 +153,7 @@
 
                             <s:textfield name="consignee.city" cssClass="addConsigneeInput form-control"
                                          id="consignee.city" placeholder="City" required="true" style="width:95%"
-                                         pattern="[a-zA-Z ]+" maxLength="50"
+                                         pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" maxLength="50"
                                          title="City should not contain special characters and/or numbers."/>
                         </div>
                     </div>
@@ -164,7 +164,7 @@
 
                         <div class="col-lg-10" >
                             <s:textfield name="consignee.state" cssClass="form-control"
-                                         id="consignee.state" placeholder="Region" maxLength="50" pattern="[a-zA-Z]+" style="width:95%"
+                                         id="consignee.state" placeholder="Region" maxLength="50" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" style="width:95%"
                                          title="State should not contain special characters and/or numbers."/>
                         </div>
                     </div>
@@ -177,7 +177,7 @@
 
                             <s:textfield name="consignee.zip" cssClass="addConsigneeInput form-control"
                                          id="consignee.zip" placeholder="ZIP" required="true"
-                                         pattern="[0-9]{4}" maxLength="4" style="width:95%"
+                                         pattern="^[0-9]{4}$" maxLength="4" style="width:95%"
 
                                          title="ZIP should not contain special characters and/or letters."
                                          onkeypress="return isNumberKey(event)"/>

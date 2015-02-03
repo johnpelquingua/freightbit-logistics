@@ -43,7 +43,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="vendorInput form-control" name="vendor.vendorCode" id="vendor_vendorCode" required="true"
-                                         placeholder="Code" maxLength="3" pattern="[A-Z]+" title="Must be letters only" onkeyup="this.value=this.value.toUpperCase();"/>
+                                         placeholder="Code" maxLength="3" pattern="^[A-Z]{3,}$" title="Must be letters only" onkeyup="this.value=this.value.toUpperCase();"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -51,7 +51,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="vendorInput form-control" placeholder="Company Name" name="vendor.vendorName"
-                                         id="vendor.vendorName" required="true"/>
+                                         id="vendor.vendorName" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
                         </div>
                     </div>
                     <div class="form-group">

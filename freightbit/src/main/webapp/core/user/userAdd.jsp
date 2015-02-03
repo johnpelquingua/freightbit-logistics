@@ -128,7 +128,7 @@
                                 <div class="col-lg-9">
                                     <s:textfield required="true" name="user.emailAddress" id="uEmailAddress" maxlength="50"
                                                  pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
-                                                 cssClass="userAddForm form-control" placeholder="E-mail"/>
+                                                 cssClass="userAddForm form-control" placeholder="E-mail" title="Example: example@domain.com"/>
                                 </div>
                             </div>
 

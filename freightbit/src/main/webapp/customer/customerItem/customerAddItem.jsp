@@ -76,7 +76,7 @@
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.length" id="item.length" required="true" cssStyle="width: 140%" cssClass="addItemInput form-control"
-                                             style="150px" pattern="((\d+)((\.)?\d{1,2})[^0])" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
+                                             style="150px" pattern="\d+(\.\d{1,2})?" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
@@ -93,7 +93,7 @@
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.height" id="item.height" required="true" cssStyle="width: 140%"
-                                             cssClass="addItemInput form-control" pattern="((\d+)((\.)?\d{1,2})[^0])" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
+                                             cssClass="addItemInput form-control" pattern="\d+(\.\d{1,2})?" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
