@@ -65,13 +65,14 @@
 	<intercept-url pattern="/vendor/vendorSearch**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
 
 	<!-- BOOKING MODULE -->
-	<intercept-url pattern="/orders/booking-save**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
-	<intercept-url pattern="/orders/orderAdd**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
-	<intercept-url pattern="/orders/orderAddInfo**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
-	<intercept-url pattern="/orders/orderEdit**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
-	<intercept-url pattern="/orders/orderInfo**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
-	<intercept-url pattern="/orders/orderList**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
-	<intercept-url pattern="/orders/orderSearch**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+	<intercept-url pattern="/orders/booking-save" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+	<intercept-url pattern="/orders/editItemListing" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+	<intercept-url pattern="/orders/orderAdd" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+	<intercept-url pattern="/orders/orderAddInfo" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+	<intercept-url pattern="/orders/orderEdit" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+	<intercept-url pattern="/orders/orderInfo" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+	<intercept-url pattern="/orders/orderList" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
+	<intercept-url pattern="/orders/orderSearch" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
 
 	<!-- OPERATIONS and YARD MODULE -->
 	<intercept-url pattern="/operations/consolidation/**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_OPERATIONS_MANAGER" />
