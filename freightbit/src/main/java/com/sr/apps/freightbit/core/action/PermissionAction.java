@@ -15,9 +15,6 @@ import org.apache.struts2.ServletActionContext;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
-/**
- * Created by ADMIN on 5/28/2014.
- */
 public class PermissionAction extends ActionSupport {
 
     private List<PermissionBean> permissions = new ArrayList<PermissionBean>();
@@ -42,13 +39,11 @@ public class PermissionAction extends ActionSupport {
         for (Permission permission : permissionList) {
             permissions.add(transformToFormBean(permission));
         }
-
         return SUCCESS;
     }
 
     public String loadEditPermissions() {
         populateGroupDropdown();
-
         if (sessionAttributes.get("selectedGroupIdAfterSave") != null  //Satisfied means, action invocation came from editPermissions()
                 && sessionAttributes.get("selectedUserIdAfterSave") != null) {
             selectedGroupId = (Integer) sessionAttributes.get("selectedGroupIdAfterSave");
@@ -57,7 +52,8 @@ public class PermissionAction extends ActionSupport {
             clearErrorsAndMessages();
             addActionMessage("Success! Permissions have been updated.");
         } else if (selectedGroupId == null) {
-            selectedGroupId = groupService.findGroupByGroupName("Admin", getClientId()).getGroupId(); // Default is Admin
+            //todo: Admin == ERNEST Admin
+            selectedGroupId = groupService.findGroupByGroupName("ERNEST Admin", getClientId()).getGroupId(); // Default is Admin
             selectedUserId = getUserId();
         }
 
@@ -408,5 +404,4 @@ public class PermissionAction extends ActionSupport {
     public void setUserChanged(String userChanged) {
         this.userChanged = userChanged;
     }
-
 }

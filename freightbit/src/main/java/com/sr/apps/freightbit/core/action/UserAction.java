@@ -177,9 +177,6 @@ public class UserAction extends ActionSupport implements Preparable {
     }
 
     public String editUser() throws Exception {
-       /// validateOnSubmit(user); 
-        //if (hasFieldErrors())
-         //   return INPUT;
     	populatePermissionsList(Integer.parseInt(user.getUserId()));
         try {
 	    	userService.updateUser(transformToEntityBean(user));
@@ -276,7 +273,7 @@ public class UserAction extends ActionSupport implements Preparable {
     		return INPUT;
     	}
     }
-    
+
     private void addPermissionsToUser(Integer userId) {
         PermissionUserGroup permissionUserGroup;
         //remove current permissions assigned to the user
@@ -287,22 +284,17 @@ public class UserAction extends ActionSupport implements Preparable {
                 permissionService.deletePermissionOfUser(permissionUserGroup);
             }
         }
-
-        //add newly selected permissions
-//        String[] permissionId = permissionsSelected.split("\\s*[,]");
-
         if (permissionsSelected == null) {
             System.out.print("Permission ID is NULL");
         } else {
             String permissionId = permissionsSelected.trim();
-//        for (String permissionId : permissionIdArray) {
 			permissionUserGroup = new PermissionUserGroup();
 			permissionUserGroup.setClientId(getClientId());
 			permissionUserGroup.setGroupId(getClientId());
 			permissionUserGroup.setUserId(userId);
 			permissionUserGroup.setPermissionId(Integer.parseInt(permissionId));
 			permissionService.addPermissionToUser(permissionUserGroup);
-//        }
+            System.out.print("Permission applied is: " + permissionsSelected + "=" + permissionUserGroup);
         }
     }
 
@@ -362,10 +354,10 @@ public class UserAction extends ActionSupport implements Preparable {
         }
         //Integer userId = -1;
         if (userId.equals(-1)) {
-        	User user = userService.findUserByUserName(userNameParam);
-        	if (user!=null)
-        		userId = user.getUserId();
-        } 
+            User user = userService.findUserByUserName(userNameParam);
+            if (user!=null)
+                userId = user.getUserId();
+        }
         findCurrentUserPermissions(userId); //populates preSelectedPermissions
     }
 
