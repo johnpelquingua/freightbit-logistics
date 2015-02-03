@@ -66,6 +66,8 @@
 
 	<!-- BOOKING MODULE -->
 	<intercept-url pattern="/orders/booking-save" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_SEA_FREIGHT" />
+	<intercept-url pattern="/com/sr/apps/freightbit/order/**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_SEA_FREIGHT" />
+	<intercept-url pattern="/com/sr/apps/freightbit/order/action/OrderAction" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_SEA_FREIGHT" />
 	<intercept-url pattern="/orders/editItemListing" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_SEA_FREIGHT" />
 	<intercept-url pattern="/orders/orderAdd" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_SEA_FREIGHT" />
 	<intercept-url pattern="/orders/orderAddInfo" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_SEA_FREIGHT" />
