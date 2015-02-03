@@ -70,19 +70,18 @@
                 <div class="panel-body">
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></span></label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Code<span class="asterisk_red"></label>
 
                         <div class="col-sm-10">
-                            <s:textfield placeholder="Enter group code here" required="true" name="groupBean.groupCode" cssClass="addGroupInput form-control"
-                                    id="groupCode" maxlength="3" pattern="^[A-Z]{3,}$" />
+                            <s:textfield placeholder="Enter group code here" required="true" name="groupBean.groupCode" cssClass="addGroupInput form-control"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-lg-2 control-label" style="padding-top:0px;">Name<span class="asterisk_red"></span></label>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Name<span class="asterisk_red"></label>
 
                         <div class="col-sm-10">
-                            <s:textfield placeholder="Enter group name here" required="true" name="groupBean.groupName" cssClass="addGroupInput form-control" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
+                            <s:textfield placeholder="Enter group name here" required="true" name="groupBean.groupName" cssClass="addGroupInput form-control"/>
                         </div>
                     </div>
 
@@ -90,7 +89,7 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Description</label>
 
                         <div class="col-sm-10">
-                            <s:textfield placeholder="Enter group description here" name="groupBean.description" cssClass="form-control" maxLength="255" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
+                            <s:textfield placeholder="Enter group description here" name="groupBean.description" cssClass="form-control"/>
                         </div>
                     </div>
 
@@ -98,7 +97,7 @@
 
                 <span class="pull-right">
                     <a href="viewGroups" class="btn btn-danger ">Cancel</a>
-                    <s:submit name="submit" value="Save" cssClass="addGroupBtn btn btn-primary"/>
+                    <s:submit name="submit" value="Save" cssClass="addGroupBtn btn btn-primary" disabled="true"/>
                 </span>
 
                 </div>
@@ -121,7 +120,7 @@
                         <tbody>
                         <table>
                             <tr>
-                                <display:table id="user" name="users" requestURI="loadAddGroupPage.action"
+                                <display:table id="user" name="users" requestURI="/loadEditGroupPage.action"
                                                pagesize="5"
                                                class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">
@@ -174,7 +173,7 @@
                             <table>
                                 <tr>
                                     <display:table id="groupMember" name="groupMembers"
-                                                   requestURI="loadAddGroupPage.action" pagesize="5"
+                                                   requestURI="/loadEditGroupPage.action" pagesize="5"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
                                         <td><display:column property="userId" title="User ID" class="tb-font-black"
@@ -219,12 +218,8 @@
 
 </s:form>
 <script>
-    /*$(document).ready(function(){
+    $(document).ready(function(){
         validationForm('addGroupInput', 'addGroupBtn')
-    });*/
-    $("#groupCode").keyup(function(){
-        this.value=this.value.toUpperCase();
-    });
-
+    })
 </script>
 
