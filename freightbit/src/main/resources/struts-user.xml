@@ -104,7 +104,8 @@
 
         <action name="addGroup" class="com.sr.apps.freightbit.core.action.GroupAction" method="addGroup">
             <result name="input" type="tiles">core.groupAdd.tiles</result>
-            <result name="success" type="tiles">core.groupSaveComplete.tiles</result>
+           <!-- <result name="success" type="tiles">core.groupSaveComplete.tiles</result>-->
+            <result name="success" type="tiles">core.groupListView.tiles</result>
         </action>
 
         <action name="loadEditGroupPage" class="com.sr.apps.freightbit.core.action.GroupAction"

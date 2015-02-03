@@ -840,8 +840,8 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     private Contacts transformToEntityBeanContacts(ContactBean contactBean) {
         Contacts entity = new Contacts();
-        /*Client client = clientService.findClientById(getClientId().toString());
-        entity.setClient(client);*/
+        Client client = clientService.findClientById(getClientId().toString());
+        entity.setClient(client);
 
         if (contactBean.getContactId() != null) {
             entity.setContactId(contactBean.getContactId());
@@ -860,6 +860,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setCreatedBy(contactBean.getCreatedBy());
         entity.setCreatedTimestamp(contactBean.getCreatedTimestamp());
         entity.setPosition(contactBean.getPosition());
+
         return entity;
     }
 

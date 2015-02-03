@@ -472,7 +472,7 @@
                             <label class="col-lg-3">Position<span class="asterisk_red"></span></label>
                             <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
-                                             type="text" required="true" maxlength="45"/>
+                                             type="text" required="true" maxlength="45" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -480,7 +480,7 @@
                             <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                              id="contact.lastName" required="true" maxLength="30" autofocus="true"
-                                             pattern="[a-zA-Z\s ]+"
+                                             pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
                                              title="Name should not contain special characters and/or numbers."/>
                             </div>
                         </div>
@@ -488,7 +488,7 @@
                             <label class="col-lg-3">First Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" placeholder="First Name" name="contact.firstName"
-                                             id="contact.firstName" maxLength="30" pattern="[a-zA-Z\s ]+"
+                                             id="contact.firstName" maxLength="30" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
                                              title="Name should not contain special characters and/or numbers."
                                              required="true"/>
                             </div>
@@ -575,14 +575,14 @@
                         <label class="col-lg-3" style="width: 26%;">Address Line 1<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control" required="true"
-                                    pattern="^[a-zA-Z0-9]*$"/>
+                                    pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"/>
                                 </div>
                             </div>
                         <div class="form-group">
                         <label class="col-lg-3" style="width: 26%;">Address Line 2</label>
                             <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.addressLine2" id="address.addressLine2" cssClass="form-control"
-                                         pattern="^[a-zA-Z0-9]*$"/>
+                                         pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"/>
                             </div>
                             </div>
                         <div class="form-group">

@@ -82,7 +82,7 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Name<span class="asterisk_red"></span></label>
 
                         <div class="col-sm-10">
-                            <s:textfield placeholder="Enter group name here" required="true" name="groupBean.groupName" cssClass="addGroupInput form-control" pattern="^[a-zA-Z]+$"/>
+                            <s:textfield placeholder="Enter group name here" required="true" name="groupBean.groupName" cssClass="addGroupInput form-control" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
                         </div>
                     </div>
 
@@ -90,7 +90,7 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Description</label>
 
                         <div class="col-sm-10">
-                            <s:textfield placeholder="Enter group description here" name="groupBean.description" cssClass="form-control"/>
+                            <s:textfield placeholder="Enter group description here" name="groupBean.description" cssClass="form-control" maxLength="255" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
                         </div>
                     </div>
 
@@ -121,7 +121,7 @@
                         <tbody>
                         <table>
                             <tr>
-                                <display:table id="user" name="users" requestURI="/loadEditGroupPage.action"
+                                <display:table id="user" name="users" requestURI="loadAddGroupPage.action"
                                                pagesize="5"
                                                class="table table-striped table-hover table-bordered text-center tablesorter"
                                                style="margin-top: 15px;">
@@ -174,7 +174,7 @@
                             <table>
                                 <tr>
                                     <display:table id="groupMember" name="groupMembers"
-                                                   requestURI="/loadEditGroupPage.action" pagesize="5"
+                                                   requestURI="loadAddGroupPage.action" pagesize="5"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
                                         <td><display:column property="userId" title="User ID" class="tb-font-black"

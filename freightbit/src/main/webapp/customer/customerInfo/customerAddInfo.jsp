@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-12 control-label" style="padding-top:0px !important; margin-top: 0px !important; text-align:left;">Company Name / Customer Name<span class="asterisk_red"></span></label>
                                     <div class="col-lg-12" >
-                                        <s:textfield placeholder="Enter Company / Customer name" required="true" name="customer.customerName" cssClass="customerInput form-control" id="customer.customerName" pattern="^[a-zA-Z]+$"/>
+                                        <s:textfield placeholder="Enter Company / Customer name" required="true" name="customer.customerName" cssClass="customerInput form-control" id="customer.customerName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
 
                                     <label class="col-lg-5  control-label" style="padding-top:0px;">Customer Information Sheet Number</label>
                                     <div class="col-lg-7" >
-                                        <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Customer Information Sheet Number"/>
+                                        <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Customer Information Sheet Number" maxLength="30"/>
                                     </div>
                                 </div>
                             </div>

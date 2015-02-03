@@ -71,13 +71,13 @@
             <div class="panel panel-primary">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit Group</h3>
+                    <h3 class="panel-title"><i class="fa fa-pencil"></i> Group</h3>
                 </div>
 
                 <div class="panel-body">
                     <s:form action="editGroup" method="post" cssClass="form-horizontal" theme="bootstrap">
                     <div class="form-group">
-                        <label for="code" class="col-lg-2 control-label" style="width:20%;">Code:</label>
+                        <label for="code" class="col-lg-2 control-label" style="width:20%;">Code</label>
 
                         <div class="col-sm-10" style="width:70%;">
                             <s:textfield required="true" name="groupBean.groupCode" cssClass="form-control"/>
@@ -85,7 +85,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="col-lg-2 control-label" style="width:20%;">Name:</label>
+                        <label for="name" class="col-lg-2 control-label" style="width:20%;">Name</label>
 
                         <div class="col-sm-10" style="width:70%;">
                             <s:textfield required="true" name="groupBean.groupName" cssClass="form-control"/>
@@ -93,7 +93,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="Description" class="col-lg-2 control-label" style="width:20%;">Description:</label>
+                        <label for="Description" class="col-lg-2 control-label" style="width:20%;">Description</label>
 
                         <div class="col-sm-10" style="width:70%;">
                             <s:textfield name="groupBean.description" cssClass="form-control"/>
@@ -103,8 +103,8 @@
                     <s:hidden name="groupBean.groupId" value="%{groupBean.groupId}"/>
 
                 <span class="pull-right">
-                    <a href="viewGroups" class="btn btn-default ">Cancel</a>
-                    <s:submit name="submit" value="Save" cssClass="btn btn-info"/>
+                    <a href="viewGroups" class="btn btn-danger ">Cancel</a>
+                    <s:submit name="submit" value="Save" cssClass="btn btn-primary"/>
                 </span>
 
                 </div>

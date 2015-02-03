@@ -43,7 +43,7 @@
                     <tbody>
                     <table>
                         <tr>
-                            <display:table id="group" name="groups" requestURI="/viewGroups.action" pagesize="10"
+                            <display:table id="group" name="groups" requestURI="viewGroups.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
                                            style="margin-top: 15px;">
                                 <td><display:column property="groupCode" title="Group Code <i class='fa fa-sort' />" class="tb-font-black"/></td>

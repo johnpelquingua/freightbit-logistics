@@ -153,6 +153,9 @@ public class GroupAction extends ActionSupport {
         Integer clientId = (Integer) sessionAttributes.get("clientId");
         users = userService.findAllUsers(clientId);
         removeMembersFromAllUsersList(groupMembers);
+
+        viewGroups();
+
         return SUCCESS;
     }
 

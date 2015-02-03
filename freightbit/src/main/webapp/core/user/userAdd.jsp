@@ -58,7 +58,7 @@
 
                                 <div class="col-lg-9">
                                     <s:textfield disabled="true" required="true" name="user.companyName" cssClass="userAddForm form-control"
-                                                 placeholder="Company Name"/>
+                                                 placeholder="Company Name" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
                                     <s:hidden name="user.companyName" value="%{user.companyName}"/>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
 
                                 <div class="col-lg-9">
                                     <s:textfield required="true" name="user.firstName" id="firstName" cssClass="userAddForm form-control" maxlength="25"
-                                                 placeholder="First Name" pattern="^[a-zA-Z]+$" title="First Name should not contain special characters and/or numbers."/>
+                                                 placeholder="First Name" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" title="First Name should not contain special characters and/or numbers."/>
                                 </div>
                             </div>
 
@@ -77,7 +77,7 @@
 
                                 <div class="col-lg-9">
                                     <s:textfield required="true" name="user.lastName" id="lastName" cssClass="userAddForm form-control" maxlength="25"
-                                                 placeholder="Last Name" pattern="^[a-zA-Z]+$" title="Last Name should not contain special characters and/or numbers."/>
+                                                 placeholder="Last Name" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" title="Last Name should not contain special characters and/or numbers."/>
                                 </div>
                             </div>
 
@@ -86,7 +86,7 @@
                                 <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">User Name<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-9">
-                                    <s:textfield required="true" name="user.userName" id="uUserName" cssClass="userAddForm form-control" maxlength="25" pattern="[a-zA-Z0-9]+"
+                                    <s:textfield required="true" name="user.userName" id="uUserName" cssClass="userAddForm form-control" maxlength="25" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
                                                  placeholder="User Name" title="Username must have minimum 4 characters. No special characters allowed"/>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
 
                                 <div class="col-lg-9">
                                     <s:textfield required="true" name="user.title" id="uTitle" cssClass="userAddForm form-control" maxlength="50"
-                                                 placeholder="Title"/>
+                                                 placeholder="Title" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
                                 </div>
                             </div>
 
@@ -136,7 +136,7 @@
                                 <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Contact Number<span class="asterisk_red"></span></label>
                                 <div class="col-lg-9">
                                     <s:textfield required="true" name="user.contactNumber" id="uContactNumber"
-                                                 cssClass="userAddForm form-control" placeholder="(XXX) XXX-XXXX" maxLength="14"
+                                                 cssClass="userAddForm form-control" placeholder="(XXX) XXX-XXXX" maxLength="14" pattern=".{14,}"
                                                  title="(XXX)XXX-XXXX Contact Number should not contain special characters and/or letters."/>
                                 </div>
                             </div>
