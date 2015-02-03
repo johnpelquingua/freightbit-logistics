@@ -24,6 +24,7 @@
     <intercept-url pattern="/core/changePassword**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_SPECIALIST, ROLE_DOCUMENT_SPECIALIST, ROLE_FREIGHT_OPERATIONS_MANAGER" />
     <intercept-url pattern="/core/**" access="ROLE_ADMIN" />
     <intercept-url pattern="/vendor/**" access="ROLE_ADMIN" />
+    <intercept-url pattern="/order/**" access="ROLE_ADMIN" />
     <intercept-url pattern="/orders/**" access="ROLE_ADMIN" />
     <intercept-url pattern="/documentation/**" access="ROLE_ADMIN" />
     <intercept-url pattern="/operations/**" access="ROLE_INLAND_FREIGHT, ROLE_ADMIN" />
