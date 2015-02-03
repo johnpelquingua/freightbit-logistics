@@ -108,7 +108,7 @@
     <csrf/>-->
 
 	<!-- SESSION MGMT-->
-	<session-management invalid-session-url="/sessionTimeout.htm" />
+	<!--<session-management invalid-session-url="/sessionTimeout.htm" />-->
 
 </http>
 	<!-- AUTH MANAGER -->
