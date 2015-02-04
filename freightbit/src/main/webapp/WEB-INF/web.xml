@@ -66,9 +66,9 @@
         <session-timeout>-1</session-timeout>
     </session-config>
 
-    <error-page>
+    <!--<error-page>
         <error-code>500</error-code>
         <location>/deniedMofo500.jsp</location>
-    </error-page>
+    </error-page>-->
 
 </web-app>
