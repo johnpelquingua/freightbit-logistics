@@ -2762,21 +2762,35 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 }
             }
 
-        }else if (entity.getDocumentName().equals("MASTER WAYBILL ORIGIN")){
-            List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
+        }else if (entity.getDocumentName().equals("MASTER WAYBILL ORIGIN")) {
+            List<OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
 
             for (OrderItems orderItemElem : orderItemsEntity) {
                 // ---------------------------------------- NULL ERROR --------------------------------------
-                if(orderItemElem.getVendorOrigin() != null || orderItemElem.getVendorOrigin() != "NONE"){
+                if (orderItemElem.getVendorOrigin() != null || orderItemElem.getVendorOrigin() != "NONE") {
                     Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorOrigin());
                     formBean.setVendorCode(vendorEntity.getVendorName());
-                }else{
+                } else {
+                    formBean.setVendorCode("NONE");
+                }
+            }
+
+
+        }else if(entity.getDocumentName().equals("MASTER WAYBILL DESTINATION")){
+            List<OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
+
+            for (OrderItems orderItemElem : orderItemsEntity) {
+                // ---------------------------------------- NULL ERROR --------------------------------------
+                if (orderItemElem.getVendorDestination() != null || orderItemElem.getVendorDestination() != "NONE") {
+                    Vendor vendorEntity = vendorService.findVendorByVendorCode(orderItemElem.getVendorDestination());
+                    formBean.setVendorCode(vendorEntity.getVendorName());
+                } else {
                     formBean.setVendorCode("NONE");
                 }
 
             }
 
-        }else if (entity.getDocumentName().equals("SALES INVOICE")){
+        }else if (entity.getDocumentName().equals("SALES INVOICE") || entity.getDocumentName().equals("DELIVERY RECEIPT")){
             Orders orderEntity = orderService.findOrdersById(entity.getReferenceId());
             Customer customerEntity = customerService.findCustomerById(orderEntity.getCustomerId());
             formBean.setVendorCode("CUSTOMER: " + customerEntity.getCustomerName());

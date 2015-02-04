@@ -691,7 +691,7 @@ $(document).ready(function(){
     $("#consignee_contact_mobile").mask("(+63999)(999-9999)");
     $("#consignee_contact_fax").mask("(999) 999-9999");
 
-    validationForm('bookingInput', 'nextBtn', 'BOOKING');
+    //validationForm('bookingInput', 'nextBtn', 'BOOKING');
 });
 
 function dynamicDropdown(select, index) {

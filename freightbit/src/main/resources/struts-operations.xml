@@ -228,6 +228,7 @@
 
         <action name="setLCLBulkSchedule" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="setLCLBulkSchedule">
             <result name="success" type="redirect">viewSeaFreightList</result>
+            <!--<result name="success" type="redirect">updateCompleteSeaPlanning</result>-->
         </action>
 
         <action name="checkOrderConsolidate" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="checkOrderConsolidate">

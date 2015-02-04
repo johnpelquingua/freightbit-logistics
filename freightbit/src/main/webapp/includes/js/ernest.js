@@ -680,6 +680,7 @@ function validationForm(inputClass, submitBtn, module){
                 submitBtn.prop('disabled', true);
             }
         }
+
     }
 }
 

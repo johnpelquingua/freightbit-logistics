@@ -330,7 +330,8 @@
                         <a href="#inbound" role="tab" data-toggle="tab">Inbound</a>
                     </li>
                     <%--Redirects to Final Outbound Stage--%>
-                    <s:if test="#attr.order.freightType != 'SHIPPING' || #attr.order.freightType != 'TRUCKING' ">
+                        <s:hidden value="%{order.freightType}" />
+                    <s:if test=" #attr.order.freightType == 'SHIPPING and TRUCKING' ">
                         <li id="fiOut" class="col-md-2 padding-0-lr">
                             <%--<s:url var="finalOutboundStageUrl" action="viewOrderDocumentsFinalOutbound">
                                 <s:param name="orderIdParam"
@@ -343,7 +344,7 @@
                         </li>
                     </s:if>
                     <%--Redirects to Final Inbound Stage--%>
-                    <s:if test="#attr.order.freightType != 'SHIPPING' || #attr.order.freightType != 'TRUCKING' ">
+                    <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' ">
                         <li id="fiIn" class="col-md-2 padding-0-lr">
                             <%--<s:url var="finalInboundStageUrl" action="viewOrderDocumentsFinalInbound">
                                 <s:param name="orderIdParam"
@@ -1756,65 +1757,5 @@ finalReturnedDate.datepicker({
     minDate: 0
 
 });
-
-/*function OutboundProgress(){
-    document.getElementById("out").className='active';
-    document.getElementById("in").className='';
-    document.getElementById("fiOut").className='';
-    document.getElementById("fiIn").className='';
-    document.getElementById("comp").className='';
-}
-
-function InboundProgress(){
-    document.getElementById("out").className='';
-    document.getElementById("in").className='active';
-    document.getElementById("fiOut").className='';
-    document.getElementById("fiIn").className='';
-    document.getElementById("comp").className='';
-}
-
-function finalOutboundProgress(){
-    document.getElementById("out").className='';
-    document.getElementById("in").className='';
-    document.getElementById("fiOut").className='active';
-    document.getElementById("fiIn").className='';
-    document.getElementById("comp").className='';
-}
-
-function finalInboundProgress() {
-    document.getElementById("out").className='';
-    document.getElementById("in").className='';
-    document.getElementById("fiOut").className='';
-    document.getElementById("fiIn").className='active';
-    document.getElementById("comp").className='';
-}
-
-function completeProgress() {
-    document.getElementById("out").className='';
-    document.getElementById("in").className='';
-    document.getElementById("fiOut").className='';
-    document.getElementById("fiIn").className='';
-    document.getElementById("comp").className='active';
-}*/
-
-/*function archiveProgress() {
-    document.getElementById("out").className='';
-    document.getElementById("in").className='';
-    document.getElementById("fiOut").className='';
-    document.getElementById("fiIn").className='';
-    document.getElementById("comp").className='';
-    document.getElementById("arch").className='active';
-    document.getElementById("bill").className='';
-}
-
-function BillingProgress() {
-    document.getElementById("out").className='';
-    document.getElementById("in").className='';
-    document.getElementById("fiOut").className='';
-    document.getElementById("fiIn").className='';
-    document.getElementById("comp").className='';
-    document.getElementById("arch").className='';
-    document.getElementById("bill").className='active';
-}*/
 
 </script>

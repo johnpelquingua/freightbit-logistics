@@ -151,6 +151,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     Date filterPickup;
     Date filterDelivery;
     private String[] check;
+    private String[] checkInland;
     private String checkLCL;
     private String originCity; // load table based on origin city
     private String destinationCity; // load table based on destination city
@@ -1864,6 +1865,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String setLCLBulkSchedule(){
 
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA " + vesselScheduleIdParam);
         System.out.println("BBBBBBBBBBBBBBBBBBBBBBBB " + vendorIdParam);
         System.out.println("CCCCCCCCCCCCCCCCCCCCCCCC " + checkLCL);
@@ -1876,15 +1879,35 @@ public class OperationsAction extends ActionSupport implements Preparable {
             System.out.println(" ---------------------------> " + aList.get(i));
 
             Integer OrderIdHolder = Integer.parseInt(aList.get(i).toString());
+
+            Orders orderEntity = orderService.findOrdersById(OrderIdHolder);
+            /*To update the status of the order*/
+            orderEntity.setOrderStatus("ON GOING");
+            orderService.updateOrder(orderEntity);
+
             List<OrderItems> orderItemEntity = operationsService.findAllOrderItemsByOrderId(OrderIdHolder);
 
             for(OrderItems orderItemElem : orderItemEntity){
                 orderItemElem.setVendorSea(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVendorCode());
                 orderItemElem.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
+
+                if("SHIPPING AND TRUCKING".equals(orderService.findOrdersById(OrderIdHolder).getServiceType())){
+                    if("DOOR TO DOOR".equals(orderService.findOrdersById(OrderIdHolder).getServiceMode())){
+                        orderItemElem.setStatus("PLANNING 2");
+                    }else if("DOOR TO PIER".equals(orderService.findOrdersById(OrderIdHolder).getServiceMode())){
+                        orderItemElem.setStatus("PLANNING 2");
+                    }else{
+                        orderItemElem.setStatus("PLANNING 3");
+                    }
+                }else{
+                    orderItemElem.setStatus("ON GOING");
+                }
+
                 operationsService.updateOrderItem(orderItemElem);
             }
 
         }
+
 
 
         return SUCCESS;
@@ -1955,7 +1978,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : fclTrucksOrders){
-            fclTruckTable.add(transformToOrderFormBean(orderElem));
+            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER") ){
+                fclTruckTable.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For LCL Trucking Origin
@@ -1969,7 +1994,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : lclTrucksOrders){
-            lclTruckTable.add(transformToOrderFormBean(orderElem));
+            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER") ) {
+                lclTruckTable.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For LCU Trucking Origin
@@ -1983,7 +2010,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : lcuTrucksOrders){
-            lcuTruckTable.add(transformToOrderFormBean(orderElem));
+            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER") ) {
+                lcuTruckTable.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For RCU Trucking Origin
@@ -1997,7 +2026,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : rcuTrucksOrders){
-            rcuTruckTable.add(transformToOrderFormBean(orderElem));
+            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("DOOR TO PIER") ) {
+                rcuTruckTable.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For FTL Requirement
@@ -2037,7 +2068,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : fclTrucksOrdersDes){
-            fclTruckTableDes.add(transformToOrderFormBean(orderElem));
+            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("PIER TO DOOR") ) {
+                fclTruckTableDes.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For LCL Trucking Destination
@@ -2051,7 +2084,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : lclTrucksOrdersDes){
-            lclTruckTableDes.add(transformToOrderFormBean(orderElem));
+            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("PIER TO DOOR") ) {
+                lclTruckTableDes.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For LCU Trucking Destination
@@ -2065,7 +2100,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : lcuTrucksOrdersDes){
-            lcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("PIER TO DOOR") ) {
+                lcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // For RCU Trucking Destination
@@ -2079,7 +2116,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
         }
 
         for (Orders orderElem : rcuTrucksOrdersDes){
-            rcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+            if(orderElem.getServiceMode().equals("DOOR TO DOOR") || orderElem.getServiceMode().equals("PIER TO DOOR") ) {
+                rcuTruckTableDes.add(transformToOrderFormBean(orderElem));
+            }
         }
 
         // Load all vessel schedules
@@ -2598,11 +2637,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public OrderItems transformOrderItemToEntityBeanSea (OperationsBean formBean) {
 
-        /*Map sessionAttributes = ActionContext.getContext().getSession();*/
-
         OrderItems entity = new OrderItems();
-
-        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + orderItemIdParam);
 
         Client client = clientService.findClientById(getClientId().toString());
         entity.setOrderItemId(orderItemIdParam);
@@ -2631,11 +2666,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
             } else {
                 entity.setStatus("PLANNING 3");
             }
-        }
-
-        if ("SHIPPING".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemIdParam).getOrderId()).getServiceType())) {
+        }else{
             entity.setStatus("ON GOING");
         }
+
+        /*if ("SHIPPING".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemIdParam).getOrderId()).getServiceType())) {
+            entity.setStatus("ON GOING");
+        }*/
 
         /*entity.setVendorSea(vendorService.findVendorById(Integer.parseInt(vendorSea)).getVendorCode());*/
         /*entity.setVendorSea(operationsService.findOrderItemById(orderItemIdParam).getVendorSea());*/
@@ -3368,8 +3405,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         documentEntityRelease.setCreatedDate(new Date());
                         documentEntityRelease.setDocumentStatus("FROM PLANNING");
                         documentEntityRelease.setVendorCode(itemVendor);
-                        documentEntityRelease.setOutboundStage(1);
-                        documentEntityRelease.setDocumentProcessed(0);
+                        if(orderEntity.getServiceMode().equals("PIER TO PIER")){
+                            documentEntityRelease.setOutboundStage(1);
+                            documentEntityRelease.setDocumentProcessed(0);
+                        }else{
+                            documentEntityRelease.setFinalOutboundStage(1);
+                            documentEntityRelease.setDocumentProcessed(2);
+                        }
                         documentEntityRelease.setCreatedBy(commonUtils.getUserNameFromSession());
                         // orderitem id should be set in orderitemid column WIP
 
@@ -3398,6 +3440,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 return INPUT;
             }
+
 
         }
 
@@ -4527,4 +4570,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         this.checkLCL = checkLCL;
     }
 
+    public String[] getCheckInland() {
+        return checkInland;
+    }
+
+    public void setCheckInland(String[] checkInland) {
+        this.checkInland = checkInland;
+    }
 }

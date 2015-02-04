@@ -163,6 +163,9 @@
                                        class="inlandOrderItemsTable table table-striped table-hover table-bordered text-center tablesorter table-condensed"
                                        style="margin-top: 15px;">
 
+                            <%--<td><display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
+                                <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
+                            </display:column></td>--%>
                             <td><display:column title="<input type='checkbox' id='mainCheckBox' name='mainCheckBox'/>">
                                 <s:checkbox theme="simple" name="check" fieldValue="%{#attr.orderItem.orderItemId}"/>
                             </display:column></td>
