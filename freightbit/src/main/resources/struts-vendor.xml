@@ -54,6 +54,9 @@
             <result name="success" type="tiles">vendor.vendorListView.tiles</result>
         </action>
 
+        <action name="loadDeleteVendorError" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadDeleteVendorError">
+            <result name="success" type="tiles">vendor.vendorListView.tiles</result>
+        </action>
 
         <action name="viewVendors" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="viewVendors">
             <result name="success" type="tiles">vendor.vendorListView.tiles</result>
@@ -65,6 +68,7 @@
 
         <action name="deleteVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="deleteVendor">
             <result name="success" type="redirect">loadSuccessDeleteVendor</result>
+            <result name="errorInput" type="redirect">loadDeleteVendorError</result>
         </action>
 
         <action name="loadSuccessDeleteVendor" class="com.sr.apps.freightbit.vendor.action.VendorAction" method="loadSuccessDeleteVendor">

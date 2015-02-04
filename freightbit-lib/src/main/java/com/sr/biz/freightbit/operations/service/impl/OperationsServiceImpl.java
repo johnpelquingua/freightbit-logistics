@@ -26,6 +26,8 @@ public class OperationsServiceImpl implements OperationsService{
         return operationsDao.findAllOrderItemsByOrderId(orderId);
     }
 
+
+
     @Override
     public List<OrderItems> findAllOrderItemsByOrderIdSea(Integer orderId) {
         return operationsDao.findAllOrderItemsByOrderIdSea(orderId);
@@ -44,6 +46,11 @@ public class OperationsServiceImpl implements OperationsService{
     @Override
     public List<VesselSchedules> findVesselScheduleByVendorId(Integer vendorId) {
         return operationsDao.findVesselScheduleByVendorId(vendorId);
+    }
+
+    @Override
+    public List<OrderItems> findAllOrderItemsByVoyageNumber(String vesselScheduleId) {
+        return operationsDao.findAllOrderItemsByVoyageNumber(vesselScheduleId);
     }
 
     @Override

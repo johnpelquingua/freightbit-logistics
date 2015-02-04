@@ -174,17 +174,22 @@
                             </s:url>
                             <sec:authorize access="hasRole('ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS')">
                                 <s:if test="#attr.orderItem.status == 'ARRIVED' || #attr.orderItem.status == 'DELIVERED'">
-                                        <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
-                                    <button type="button" id="Complete" class="btn btn-default">
-                                        Complete The Service
-                                    </button>
-                                </s:a>
+                                    <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
+                                        <button type="button" id="Complete" class="btn btn-default">
+                                            Set Service Complete
+                                        </button>
+                                    </s:a>
                                 </s:if>
-                                <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set All Status" onclick="addText();">
-                                    Set Status
-                                </button>--%>
+                                    <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set All Status" onclick="addText();">
+                                        Set Status
+                                    </button>--%>
                                 <s:submit cssClass="btn btn-success" value="Set Status" onclick="addText();"></s:submit>
                             </sec:authorize>
+                            <%--</s:if>--%>
+                            <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set All Status" onclick="addText();">
+                                Set Status
+                            </button>--%>
+                                <s:submit cssClass="btn btn-success" value="Set Status" onclick="addText();"></s:submit>
                         </div>
                     </s:form>
                 </div>
@@ -204,11 +209,11 @@
 <script>
     $(document).ready(function() {
         $('#mainCheckBox').click(function () {
-            if ($('#orderItem [type="checkbox"]:checked').length == $('#orderItem [type="checkbox"]').size()) {
-                $('#orderItem [type="checkbox"]').prop('checked', false);
-            } else {
-                $('#orderItem [type="checkbox"]').prop('checked', true);
-            }
+                if ($('#orderItem [type="checkbox"]:checked').length == $('#orderItem [type="checkbox"]').size()) {
+                    $('#orderItem [type="checkbox"]').prop('checked', false);
+                } else {
+                    $('#orderItem [type="checkbox"]').prop('checked', true);
+                }
         })
 
         var check = document.getElementById("check");
@@ -219,7 +224,6 @@
     function addText() {
         document.getElementById("edit").value = "";
     }
-
     /*$(document).ready(function(){
         $('.setStatusBtn').click(function(){
             var bulkStatus = $('.bulkItemStatus tbody tr td:nth-child(4)'),

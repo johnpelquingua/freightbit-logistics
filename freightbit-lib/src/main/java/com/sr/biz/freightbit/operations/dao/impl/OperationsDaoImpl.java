@@ -78,6 +78,20 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
     }
 
     @Override
+    public List<OrderItems> findAllOrderItemsByVoyageNumber(String vesselScheduleId) {
+        log.debug("Find initiated.");
+        try {
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderItems o where o.vesselScheduleId = :vesselScheduleId");
+            query.setParameter("vesselScheduleId", vesselScheduleId);
+            List<OrderItems> results = (List<OrderItems>) query.list();
+            return results;
+        } catch (Exception e) {
+            log.error("Find failed.", e);
+            throw e;
+        }    }
+
+    @Override
     public List<Orders> findOrdersByFCL() {
         log.debug("Find initiated.");
         try {
