@@ -77,7 +77,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Width (m)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control" pattern="[0-9.]+" title="Special characters in width is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?" title="Special characters in width is not valid" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Height (m)<span class="asterisk_red"></span></label>

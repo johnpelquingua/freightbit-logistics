@@ -1129,6 +1129,7 @@
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addVesselScheduleInPlanning">
 
                             <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
+                            <s:hidden value="%{#attr.orderItem.orderItemId}" name="orderItemIdParam" />
 
                             <label>Voyage Number<span class="asterisk_red"></span></label>
 

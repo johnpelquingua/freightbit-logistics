@@ -80,7 +80,7 @@
                         <label for="code" class="col-lg-2 control-label" style="width:20%;">Code</label>
 
                         <div class="col-sm-10" style="width:70%;">
-                            <s:textfield required="true" name="groupBean.groupCode" cssClass="form-control"/>
+                            <s:textfield required="true" name="groupBean.groupCode" cssClass="form-control" pattern="^[A-Z]{3,}$" id="groupCode"/>
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@
                         <label for="name" class="col-lg-2 control-label" style="width:20%;">Name</label>
 
                         <div class="col-sm-10" style="width:70%;">
-                            <s:textfield required="true" name="groupBean.groupName" cssClass="form-control"/>
+                            <s:textfield required="true" name="groupBean.groupName" cssClass="form-control" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" maxlength="50"/>
                         </div>
                     </div>
 
@@ -96,7 +96,7 @@
                         <label for="Description" class="col-lg-2 control-label" style="width:20%;">Description</label>
 
                         <div class="col-sm-10" style="width:70%;">
-                            <s:textfield name="groupBean.description" cssClass="form-control"/>
+                            <s:textfield name="groupBean.description" cssClass="form-control" maxLength="255" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
                         </div>
                     </div>
 
@@ -232,4 +232,10 @@
     </div>
 
 </s:form>
+<script>
+    $("#groupCode").keyup(function(){
+        this.value=this.value.toUpperCase();
+    });
+
+</script>
 

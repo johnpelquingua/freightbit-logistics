@@ -95,7 +95,7 @@
                                 <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Password<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-9">
-                                    <s:password required="true" name="user.password" id="uPassword" cssClass="userAddForm form-control" maxlength="25"
+                                    <s:password required="true" name="user.password" id="uPassword" cssClass="userAddForm form-control" maxlength="255"
                                                 pattern="[^\s]{4,25}" title="Password must have minimum 6 characters without spaces."   placeholder="Password"/>
                                 </div>
                             </div>

@@ -391,6 +391,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         if (planning1.size() > 0 || planning2.size() > 0) {
                             return INPUT;
                         }
+                    }else{
+                        planning4.add(orderItemId);
+                        return "errorInput";
                     }
                 }
             }
@@ -415,9 +418,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     planSize = planning2.size();
                     planningList = planning2;
                 }
-            }else {
+            }else if(planning1.size() > 0) {
                 planSize = planning1.size();
                 planningList = planning1;
+            }else{
+                planSize = planning4.size();
+                planningList = planning4;
             }
 
             for(int i = 0; i < planSize; i++){
@@ -876,7 +882,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 Integer orderItemId = Integer.parseInt(value);
                 OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(orderItemId);
                 orderItemEntity.setOrderItemId(orderItemId);
-                orderItemEntity.setVendorDestination(vendorService.findVendorById(operationsBean.getVendorListDestination()).getVendorName());
+                orderItemEntity.setVendorDestination(vendorService.findVendorById(operationsBean.getVendorListDestination()).getVendorCode());
                 orderItemEntity.setDriverDestination(operationsBean.getDriverDestination());
                 orderItemEntity.setTruckDestination(operationsBean.getTruckDestination());
                 orderItemEntity.setFinalDeliveryDate(operationsBean.getDeliveryDate());
@@ -982,6 +988,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("vendorIdPass", vendorIdPass);
         sessionAttributes.put("nameSizeParam", sessionAttributes.get("nameSizeParam"));
+        sessionAttributes.put("orderItemIdParam", orderItemIdParam);
 
         return SUCCESS;
     }

@@ -86,7 +86,7 @@
 
                             <div class="col-lg-3">
                                 <s:textfield name="item.width" id="item.width" required="true" cssStyle="width: 140%" cssClass="addItemInput form-control"
-                                             pattern="((\d+)((\.)?\d{1,2})[^0])" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
+                                             pattern="\d+(\.\d{1,2})?" title="XXXX.XX or enter an integer greater than 0" onkeypress="return isNumberKey(event)"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Height (m)<span class="asterisk_red"></span></label>

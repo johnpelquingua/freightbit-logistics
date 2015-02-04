@@ -89,7 +89,7 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Description</label>
 
                         <div class="col-sm-10">
-                            <s:textfield name="groupBean.description" cssClass="form-control" maxLength="255" paattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
+                            <s:textfield name="groupBean.description" cssClass="form-control" maxLength="255" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
                         </div>
                     </div>
 
