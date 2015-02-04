@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="row">
     <div class="col-lg-12">
@@ -171,17 +172,19 @@
                                 <s:param name="orderIdParam"
                                          value="order.orderId"></s:param>
                             </s:url>
-                            <s:if test="#attr.orderItem.status == 'ARRIVED' || #attr.orderItem.status == 'DELIVERED'">
-                                    <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
-                                <button type="button" id="Complete" class="btn btn-default">
-                                    Complete The Service
-                                </button>
-                            </s:a>
-                            </s:if>
-                            <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set All Status" onclick="addText();">
-                                Set Status
-                            </button>--%>
+                            <sec:authorize access="hasRole('ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS')">
+                                <s:if test="#attr.orderItem.status == 'ARRIVED' || #attr.orderItem.status == 'DELIVERED'">
+                                        <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
+                                    <button type="button" id="Complete" class="btn btn-default">
+                                        Complete The Service
+                                    </button>
+                                </s:a>
+                                </s:if>
+                                <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set All Status" onclick="addText();">
+                                    Set Status
+                                </button>--%>
                                 <s:submit cssClass="btn btn-success" value="Set Status" onclick="addText();"></s:submit>
+                            </sec:authorize>
                         </div>
                     </s:form>
                 </div>

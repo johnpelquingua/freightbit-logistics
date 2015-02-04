@@ -93,7 +93,8 @@
                         <div class="col-lg-10" >
                             <s:textfield cssClass="addContactInput form-control" placeholder="(XXX)XXX-XXXX" name="contact.phone"
                                          maxLength="14" required="true" id="contact_phone" pattern=".{14,}"
-										 title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+										 title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."
+                                         pattern=".{4}"/>
                         </div>
                     </div>
 
@@ -149,8 +150,6 @@
     </div>--%>
 
 </div>
-
-
 
 <script type="text/javascript">
     $(document).ready(function(){

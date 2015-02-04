@@ -34,7 +34,6 @@ public class GroupAction extends ActionSupport {
     private GroupService groupService;
     private UserService userService;
 
-
     public String viewGroups() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer clientId = (Integer) sessionAttributes.get("clientId");

@@ -456,7 +456,8 @@
         tablePropClass('DESTI_ORIG','lclTable', 9, 5, 0, 8, 6, 7);
         tablePropClass('DESTI_ORIG','lcuTable', 8, 6, 0, 7, 4, 5);
         tablePropClass('DESTI_ORIG','rcuTable', 8, 6, 0, 7, 4, 5);
-    });
+
+    })
 
     $(function () {
         $('#myTab a:first').tab('show')
