@@ -32,6 +32,15 @@
     </div>
 </s:if>
 
+<s:if test="hasActionErrors()">
+    <div class="col-lg-12">
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
     <div class="col-lg-12">
 
@@ -190,18 +199,19 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('#mainCheckBox').click(function () {
+            if ($('#orderItem [type="checkbox"]:checked').length == $('#orderItem [type="checkbox"]').size()) {
+                $('#orderItem [type="checkbox"]').prop('checked', false);
+            } else {
+                $('#orderItem [type="checkbox"]').prop('checked', true);
+            }
+        })
 
-    $('#mainCheckBox').click(function(){
-        if($('#orderItem [type="checkbox"]:checked').length == $('#orderItem [type="checkbox"]').size()){
-            $('#orderItem [type="checkbox"]').prop('checked', false);
-        }else{
-            $('#orderItem [type="checkbox"]').prop('checked', true);
-        }
-    })
-
-    var check = document.getElementById("check");
-    for (var i = 0; i < check.length; i++)
-        check[i].checked = true ;
+        var check = document.getElementById("check");
+        for (var i = 0; i < check.length; i++)
+            check[i].checked = true;
+    });
 
     function addText() {
         document.getElementById("edit").value = "";

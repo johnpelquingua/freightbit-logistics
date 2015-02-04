@@ -120,8 +120,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     }
 
     public String viewStatusListItemsNullError() {
-
-        addActionMessage("No Item(s) selected.");
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
         List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
@@ -137,12 +135,12 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
 
+        clearErrorsAndMessages();
+        addActionError("No Item(s) selected.");
         return SUCCESS;
     }
 
     public String viewStatusListItemsError() {
-
-        addActionMessage("Status must be the same.");
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
         List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
@@ -158,6 +156,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
 
+        clearErrorsAndMessages();
+        addActionError("Status must be the same.");
         return SUCCESS;
     }
 
@@ -240,40 +240,136 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                     //Use to check if the statuses being checked matched then it will store it to a variable called "check".
                     if ("ON GOING".equals(orderItemEntity.getStatus())) {
                         ongoingBulkItems.add(orderStatusItemId);
+                        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 ||
+                            planning3BulkItems.size() > 0 || deliveredBulkItems.size() > 0 ||
+                            pickupBulkItems.size() > 0 || positionedBulkItems.size() > 0 ||
+                            departureBulkItems.size() > 0 || transitBulkItems.size() > 0 ||
+                            arrivedBulkItems.size() > 0 || returnedBulkItems.size() > 0 ||
+                            consolidationBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
                     else if("PLANNING 1".equals(orderItemEntity.getStatus())) {
                         planning1BulkItems.add(orderStatusItemId);
+                        if(ongoingBulkItems.size() > 0 || planning2BulkItems.size() > 0 ||
+                            planning3BulkItems.size() > 0 || deliveredBulkItems.size() > 0 ||
+                            pickupBulkItems.size() > 0 || positionedBulkItems.size() > 0 ||
+                            departureBulkItems.size() > 0 || transitBulkItems.size() > 0 ||
+                            arrivedBulkItems.size() > 0 || returnedBulkItems.size() > 0 ||
+                            consolidationBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
                     else if("PLANNING 2".equals(orderItemEntity.getStatus())) {
                         planning2BulkItems.add(orderStatusItemId);
+                        if(planning1BulkItems.size() > 0 || ongoingBulkItems.size() > 0 ||
+                            planning3BulkItems.size() > 0 || deliveredBulkItems.size() > 0 ||
+                            pickupBulkItems.size() > 0 || positionedBulkItems.size() > 0 ||
+                            departureBulkItems.size() > 0 || transitBulkItems.size() > 0 ||
+                            arrivedBulkItems.size() > 0 || returnedBulkItems.size() > 0 ||
+                            consolidationBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
                     else if("PLANNING 3".equals(orderItemEntity.getStatus())) {
                         planning3BulkItems.add(orderStatusItemId);
+                        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 ||
+                            ongoingBulkItems.size() > 0 || deliveredBulkItems.size() > 0 ||
+                            pickupBulkItems.size() > 0 || positionedBulkItems.size() > 0 ||
+                            departureBulkItems.size() > 0 || transitBulkItems.size() > 0 ||
+                            arrivedBulkItems.size() > 0 || returnedBulkItems.size() > 0 ||
+                            consolidationBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
                     else if("DELIVERED".equals(orderItemEntity.getStatus())) {
                         deliveredBulkItems.add(orderStatusItemId);
+                        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 ||
+                            planning3BulkItems.size() > 0 || ongoingBulkItems.size() > 0 ||
+                            pickupBulkItems.size() > 0 || positionedBulkItems.size() > 0 ||
+                            departureBulkItems.size() > 0 || transitBulkItems.size() > 0 ||
+                            arrivedBulkItems.size() > 0 || returnedBulkItems.size() > 0 ||
+                            consolidationBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
                     else if("PICKUP".equals(orderItemEntity.getStatus())) {
                         pickupBulkItems.add(orderStatusItemId);
+                        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 ||
+                            planning3BulkItems.size() > 0 || deliveredBulkItems.size() > 0 ||
+                            ongoingBulkItems.size() > 0 || positionedBulkItems.size() > 0 ||
+                            departureBulkItems.size() > 0 || transitBulkItems.size() > 0 ||
+                            arrivedBulkItems.size() > 0 || returnedBulkItems.size() > 0 ||
+                            consolidationBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
                     else if("POSITIONED".equals(orderItemEntity.getStatus())) {
                         positionedBulkItems.add(orderStatusItemId);
+                        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 ||
+                            planning3BulkItems.size() > 0 || deliveredBulkItems.size() > 0 ||
+                            pickupBulkItems.size() > 0 || ongoingBulkItems.size() > 0 ||
+                            departureBulkItems.size() > 0 || transitBulkItems.size() > 0 ||
+                            arrivedBulkItems.size() > 0 || returnedBulkItems.size() > 0 ||
+                            consolidationBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
                     else if("QUEUE FOR DEPARTURE".equals(orderItemEntity.getStatus())) {
                         departureBulkItems.add(orderStatusItemId);
+                        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 ||
+                            planning3BulkItems.size() > 0 || deliveredBulkItems.size() > 0 ||
+                            pickupBulkItems.size() > 0 || positionedBulkItems.size() > 0 ||
+                            ongoingBulkItems.size() > 0 || transitBulkItems.size() > 0 ||
+                            arrivedBulkItems.size() > 0 || returnedBulkItems.size() > 0 ||
+                            consolidationBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
                     else if("IN-TRANSIT".equals(orderItemEntity.getStatus())) {
                         transitBulkItems.add(orderStatusItemId);
+                        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 ||
+                            planning3BulkItems.size() > 0 || deliveredBulkItems.size() > 0 ||
+                            pickupBulkItems.size() > 0 || positionedBulkItems.size() > 0 ||
+                            departureBulkItems.size() > 0 || ongoingBulkItems.size() > 0 ||
+                            arrivedBulkItems.size() > 0 || returnedBulkItems.size() > 0 ||
+                            consolidationBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
                     else if("ARRIVED".equals(orderItemEntity.getStatus())) {
                         arrivedBulkItems.add(orderStatusItemId);
+                        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 ||
+                            planning3BulkItems.size() > 0 || deliveredBulkItems.size() > 0 ||
+                            pickupBulkItems.size() > 0 || positionedBulkItems.size() > 0 ||
+                            departureBulkItems.size() > 0 || transitBulkItems.size() > 0 ||
+                            ongoingBulkItems.size() > 0 || returnedBulkItems.size() > 0 ||
+                            consolidationBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
                     else if("RETURNED TO ORIGIN".equals(orderItemEntity.getStatus())) {
                         returnedBulkItems.add(orderStatusItemId);
+                        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 ||
+                            planning3BulkItems.size() > 0 || deliveredBulkItems.size() > 0 ||
+                            pickupBulkItems.size() > 0 || positionedBulkItems.size() > 0 ||
+                            departureBulkItems.size() > 0 || transitBulkItems.size() > 0 ||
+                            arrivedBulkItems.size() > 0 || ongoingBulkItems.size() > 0 ||
+                            consolidationBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
 
                     else if("QUEUE FOR CONSOLIDATION".equals(orderItemEntity.getStatus())) {
                         consolidationBulkItems.add(orderStatusItemId);
+                        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 ||
+                            planning3BulkItems.size() > 0 || deliveredBulkItems.size() > 0 ||
+                            pickupBulkItems.size() > 0 || positionedBulkItems.size() > 0 ||
+                            departureBulkItems.size() > 0 || transitBulkItems.size() > 0 ||
+                            arrivedBulkItems.size() > 0 || returnedBulkItems.size() > 0 ||
+                            ongoingBulkItems.size() > 0) {
+                            return "input";
+                        }
                     }
                 }
 

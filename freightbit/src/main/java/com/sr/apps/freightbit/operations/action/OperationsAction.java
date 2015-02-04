@@ -391,9 +391,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         if (planning1.size() > 0 || planning2.size() > 0) {
                             return INPUT;
                         }
-                    }else{
+                    }else if ("ON GOING".equals(entity.getStatus())) {
                         onGoing.add(orderItemId);
-                        return "errorInput";
+                        if (planning1.size() > 0 || planning2.size() > 0 || planning3.size() > 0) {
+                            return INPUT;
+                        }
                     }
                 }
             }
@@ -454,14 +456,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
             else{
                 return SUCCESS;
             }
-            /*} else if (planning2.size() > 0) {
-                return "PLNNING 2";
-//            } else if (planning3.size() > 0) {
-                return "PLANNING 3";
-            } else {
-                return INPUT;
-            }*/
-//            return SUCCESS;
 
         } else {
 
@@ -609,12 +603,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         }
                     }
                     else if ("ON GOING".equals(entity.getStatus())) {
-                        onGoing.add(orderItemId);
-                        if (planning1.size() > 0 || planning2.size() > 0 || planning3.size() > 0) {
-                            return INPUT;
-                        }
-                    }
-                    else if  ("ON GOING".equals(entity.getStatus())) {
                         onGoing.add(orderItemId);
                         if (planning1.size() > 0 || planning2.size() > 0 || planning3.size() > 0) {
                             return INPUT;
