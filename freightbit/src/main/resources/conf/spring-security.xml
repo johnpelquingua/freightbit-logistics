@@ -36,12 +36,12 @@
     <intercept-url pattern="/core/loadChangePassword**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_SPECIALIST, ROLE_DOCUMENT_SPECIALIST, ROLE_SEA_FREIGHT" />
     <intercept-url pattern="/core/changePassword**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_SPECIALIST, ROLE_DOCUMENT_SPECIALIST, ROLE_SEA_FREIGHT" />
     <intercept-url pattern="/core/**" access="ROLE_ADMIN" />
-    <intercept-url pattern="/vendor/**" access="ROLE_ADMIN" />
+    <intercept-url pattern="/vendor/**" access="ROLE_ADMIN, ROLE_SEA_FREIGHT" />
     <intercept-url pattern="/customer/**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS" />
-    <intercept-url pattern="/order/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS" />
-    <intercept-url pattern="/orders/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS" />
-    <intercept-url pattern="/documentation/**" access="ROLE_ADMIN, ROLE_CUSTOMER" />
-    <intercept-url pattern="/operations/**" access="ROLE_CUSTOMER, ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS" />
+    <intercept-url pattern="/order/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES" />
+    <intercept-url pattern="/orders/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES" />
+    <intercept-url pattern="/documentation/**" access="ROLE_ADMIN, ROLE_CUSTOMER ROLE_DOCUMENT_SPECIALIST" />
+    <intercept-url pattern="/operations/**" access="ROLE_CUSTOMER, ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SEA_FREIGHT" />
 
 	<!-- CUSTOMER  MODULE -->
     <intercept-url pattern="/customer/address/customerAddAddress" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_SEA_FREIGHT" />
@@ -106,17 +106,17 @@
 	<intercept-url pattern="/operations/shipmentHistory**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_SEA_FREIGHT" />
 	<intercept-url pattern="/operations/statusListView**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_SEA_FREIGHT" />
 	<intercept-url pattern="/operations/statusListViewItems**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_SEA_FREIGHT" />
-	<intercept-url pattern="/operations/vesselScheduleAdd" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_SEA_FREIGHT" />
-	<intercept-url pattern="/operations/vesselScheduleEdit" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_SEA_FREIGHT" />
-	<intercept-url pattern="/operations/vesselScheduleSearch" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_SEA_FREIGHT" />
-	<intercept-url pattern="/operations/vesselSchedulesList" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_SEA_FREIGHT" />
+	<intercept-url pattern="/operations/vesselScheduleAdd" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SEA_FREIGHT, ROLE_SALES, ROLE_SEA_FREIGHT" />
+	<intercept-url pattern="/operations/vesselScheduleEdit" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SEA_FREIGHT, ROLE_SALES, ROLE_SEA_FREIGHT" />
+	<intercept-url pattern="/operations/vesselScheduleSearch" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SEA_FREIGHT, ROLE_SALES, ROLE_SEA_FREIGHT" />
+	<intercept-url pattern="/operations/vesselSchedulesList" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SEA_FREIGHT, ROLE_SALES, ROLE_SEA_FREIGHT" />
 
 	<!-- DOCUMENTATION MODULE -->
-	<intercept-url pattern="/documentation/archived_docs/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_SEA_FREIGHT" />
-	<intercept-url pattern="/documentation/forms/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_SEA_FREIGHT" />
-	<intercept-url pattern="/documentation/pending_docs/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES" />
-	<intercept-url pattern="/documentation/plain_docs/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_FREIGHT_SPECIALIST, ROLE_DOCUMENT_SPECIALIST" />
-	<intercept-url pattern="/documentation/result**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_FREIGHT_SPECIALIST, ROLE_DOCUMENT_SPECIALIST, ROLE_SEA_FREIGHT" />
+	<intercept-url pattern="/documentation/archived_docs/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_SEA_FREIGHT, ROLE_DOCUMENT_SPECIALIST" />
+	<intercept-url pattern="/documentation/forms/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_SEA_FREIGHT, ROLE_DOCUMENT_SPECIALIST" />
+	<intercept-url pattern="/documentation/pending_docs/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_DOCUMENT_SPECIALIST" />
+	<intercept-url pattern="/documentation/plain_docs/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_FREIGHT_SPECIALIST, ROLE_DOCUMENT_SPECIALIST, ROLE_DOCUMENT_SPECIALIST" />
+	<intercept-url pattern="/documentation/result**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_SALES, ROLE_FREIGHT_SPECIALIST, ROLE_DOCUMENT_SPECIALIST, ROLE_SEA_FREIGHT, ROLE_DOCUMENT_SPECIALIST" />
 
 	<!-- USER MODULE -->
 	<intercept-url pattern="/core/customer/**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS"	/>
