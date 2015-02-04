@@ -392,7 +392,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             return INPUT;
                         }
                     }else{
-                        planning4.add(orderItemId);
+                        onGoing.add(orderItemId);
                         return "errorInput";
                     }
                 }
@@ -422,8 +422,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 planSize = planning1.size();
                 planningList = planning1;
             }else{
-                planSize = planning4.size();
-                planningList = planning4;
+                planSize = onGoing.size();
+                planningList = onGoing;
             }
 
             for(int i = 0; i < planSize; i++){
