@@ -141,6 +141,27 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String viewStatusListItemsErrorInput() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
+        List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
+
+        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParamSession);
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById(orderIdParamSession);
+        bookingNumber = orderEntity.getOrderNumber();
+        order = transformToOrderFormBean(orderEntity);
+
+        for (OrderItems orderItemsElem : orderItemEntityList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionError("Statuses must not be Planning 1, Planning 2, and Planning 3.");
+        return SUCCESS;
+    }
+
     public String viewStatusListItemsError() {
         Map sessionAttributes = ActionContext.getContext().getSession();
         Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
@@ -460,7 +481,12 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                 sessionAttributes.put("nameSizeList", nameSizeList);
             }
         }
-        return "SET";
+        if(planning1BulkItems.size() > 0 || planning2BulkItems.size() > 0 || planning3BulkItems.size() > 0){
+            return "errorInput";
+        }
+        else{
+            return "SET";
+        }
     }
 
     public String updateBulkStatus() {
