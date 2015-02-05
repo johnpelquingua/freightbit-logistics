@@ -21,6 +21,7 @@ import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.core.service.ClientService;
 import com.sr.biz.freightbit.core.service.UserService;
+import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.vendor.entity.Driver;
 import com.sr.biz.freightbit.vendor.entity.Trucks;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
@@ -31,6 +32,8 @@ import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.exceptions.VesselAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.DriverService;
 import com.sr.biz.freightbit.vendor.service.VendorService;
+import com.sr.biz.freightbit.vendor.service.VesselService;
+import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -87,6 +90,8 @@ public class VendorAction extends ActionSupport implements Preparable {
     private UserService userService;
     private VendorService trucksService;
     private DriverService driverService;
+    private VesselService vesselService;
+    private OperationsService operationsService;
     private NotificationService notificationService;
     private CommonUtils commonUtils;
 
@@ -247,8 +252,16 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public String deleteVendor() {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
-        vendorService.deleteVendor(vendorEntity);
 
+        List<VesselSchedules> activeVesselSchedules = operationsService.findVesselScheduleByVendorId(vendorEntity.getVendorId());
+
+        if(activeVesselSchedules.size() > 0){
+
+            return "errorInput";
+        }
+        else{
+            vendorService.deleteVendor(vendorEntity);
+        }
         return SUCCESS;
     }
 
@@ -261,6 +274,25 @@ public class VendorAction extends ActionSupport implements Preparable {
         clearErrorsAndMessages();
         addActionMessage("Success! Vendor has been deleted.");
 
+        return SUCCESS;
+    }
+
+    public String loadDeleteVendorError() {
+        String column = getColumnFilter();
+        List<Vendor> vendorEntityList = new ArrayList<Vendor>();
+
+        if (StringUtils.isNotBlank(column)) {
+            vendorEntityList = vendorService.findVendorsByCriteria(column, vendor.getVendorKeyword(), getClientId());
+        } else {
+            vendorEntityList = vendorService.findAllVendorByClientId(getClientId());
+        }
+
+        for (Vendor vendorElem : vendorEntityList) {
+            vendors.add(transformToFormBean(vendorElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionError("Vendor cannot be deleted. A vessel schedule is associated.");
         return SUCCESS;
     }
 
@@ -1630,5 +1662,13 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public void setPortsList(List<Parameters> portsList) {
         this.portsList = portsList;
+    }
+
+    public void setVesselService(VesselService vesselService) {
+        this.vesselService = vesselService;
+    }
+
+    public void setOperationsService(OperationsService operationsService) {
+        this.operationsService = operationsService;
     }
 }

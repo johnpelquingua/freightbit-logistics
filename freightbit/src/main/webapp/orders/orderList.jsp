@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <style>
     /*.fa:hover {*/
         /*font-size: 180%; !important;*/
@@ -62,22 +63,26 @@
             <div class="panel-heading">
                 <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-list"></i> Booking List </h3>
                 <span class="pull-right">
-                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal1" onclick="showSearchFields();">
-                        <i class="fa fa-search"></i> Search Booking
-                    </button>
-                    <button type="button" class="btn btn-primary new-booking"
-                            onclick="location.href='loadAddOrderPage'">
-                        <i class="fa fa-book"></i> New Booking
-                    </button>
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                        <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal1" onclick="showSearchFields();">
+                            <i class="fa fa-search"></i> Search Booking
+                        </button>
+                    </sec:authorize>
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                        <button type="button" class="btn btn-primary new-booking"
+                                onclick="location.href='loadAddOrderPage'">
+                            <i class="fa fa-book"></i> New Booking
+                        </button>
+                    </sec:authorize>
                 </span>
             </div>
 
             <div class="panel-body">
                 <div class="table-responsive">
-                        <display:table id="order" name="orders" requestURI="viewOrders.action" pagesize="10" class="table table-hover table-bordered text-center tablesorter"
+                        <display:table id="order" name="orders" requestURI="viewOrders.action" class="table table-hover table-bordered text-center tablesorter"
                                        style="margin-top: 15px;">
 
-                            <td><display:column property="orderDate" title="Order Date <i class='fa fa-sort' />" class="tb-font-black"
+                            <td><display:column property="orderDate" title="Order Dates <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;" > </i></display:column></td>
@@ -85,11 +90,9 @@
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="consigneeName" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
-
                             <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black" style="text-align: center;">
                                 </display:column>
                             </td>
-
                             <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
@@ -104,6 +107,7 @@
                                 <display:column title="Actions">
 
                                         <%--edit booking--%>
+                                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                                         <s:url var="editOrderUrl" action="loadEditOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
@@ -111,15 +115,16 @@
                                             <i class="fa fa-pencil table-action-icons"></i>
                                         </s:a>
 
-                                    <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING' || #attr.order.orderStatus == 'INCOMPLETE' ">
-                                        <%--delete booking--%>
-                                        <s:url var="deleteOrderUrl" action="deleteOrder">
-                                            <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
-                                        </s:url>
-                                        <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip" title="Delete Booking" onclick="return confirm('Do you really want to delete?');">
-                                        </s:a>
-                                        <i class="fa fa-trash-o deleteBookingIcon table-action-icons"></i>
-                                    </s:if>
+                                        <s:if test=" #attr.order.orderStatus == 'CANCELLED' || #attr.order.orderStatus == 'PENDING' || #attr.order.orderStatus == 'INCOMPLETE' ">
+                                            <%--delete booking--%>
+                                            <s:url var="deleteOrderUrl" action="deleteOrder">
+                                                <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
+                                            </s:url>
+                                            <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip" title="Delete Booking" onclick="return confirm('Do you really want to delete?');">
+                                            </s:a>
+                                            <i class="fa fa-trash-o deleteBookingIcon table-action-icons"></i>
+                                        </s:if>
+                                    </sec:authorize>
 
                                         <%--info booking--%>
                                         <s:url var="viewInfoOrderUrl" action="viewInfoOrder">
@@ -130,11 +135,11 @@
                                         </s:a>
 
                                     <s:if test=" #attr.order.documentCheck == 'AVAILABLE' ">
-
-                                        <a id="print-icon" title="Print Booking Form" rel="tooltip" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM');">
-                                            <i class="fa fa-print table-action-icons"></i>
-                                        </a>
-
+                                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                                            <a id="print-icon" title="Print Booking Form" rel="tooltip" href="#" onclick="generateReport(${order.documentId},'BOOKING REQUEST FORM');">
+                                                <i class="fa fa-print table-action-icons"></i>
+                                            </a>
+                                        </sec:authorize>
                                     </s:if>
 
                                     <%--approve booking--%>

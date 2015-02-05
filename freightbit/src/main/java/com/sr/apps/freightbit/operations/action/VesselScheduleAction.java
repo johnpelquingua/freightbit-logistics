@@ -10,6 +10,8 @@ import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.service.ClientService;
+import com.sr.biz.freightbit.operations.service.OperationsService;
+import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.vendor.entity.Vendor;
 import com.sr.biz.freightbit.vendor.entity.Vessel;
 import com.sr.biz.freightbit.vendor.service.VendorService;
@@ -28,6 +30,7 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
     private VesselScheduleBean vesselSchedule = new VesselScheduleBean();
     private List<VesselScheduleBean> vesselSchedules = new ArrayList<VesselScheduleBean>();
     private VesselSchedulesService vesselSchedulesService;
+    private OperationsService operationsService;
 
     private Integer vendorId;
 
@@ -83,6 +86,18 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
+    public String loadSaveComplete() {
+        List <VesselSchedules> vesselSchedulesEntityList = new ArrayList<VesselSchedules>();
+        vesselSchedulesEntityList = vesselSchedulesService.findAllVesselSchedules();
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesEntityList) {
+            vesselSchedules.add(transformToFormBean(vesselScheduleElem));
+        }
+        clearErrorsAndMessages();
+        addActionMessage("Success! Vessel Schedule has been added.");
+        return SUCCESS;
+    }
+
     public String editVesselSchedule() {
         validateOnSubmit(vesselSchedule);
         if (hasFieldErrors()) {
@@ -101,24 +116,40 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
-    public String loadSaveComplete() {
+    public String loadEditVesselScheduleSuccess() {
         List <VesselSchedules> vesselSchedulesEntityList = new ArrayList<VesselSchedules>();
         vesselSchedulesEntityList = vesselSchedulesService.findAllVesselSchedules();
 
         for (VesselSchedules vesselScheduleElem : vesselSchedulesEntityList) {
             vesselSchedules.add(transformToFormBean(vesselScheduleElem));
         }
-
+        clearErrorsAndMessages();
+        addActionMessage("Success! Vessel Schedule has been updated.");
         return SUCCESS;
     }
 
     public String deleteVesselSchedule() {
         VesselSchedules entity = vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam);
-        vesselSchedulesService.deleteVesselSchedule(entity);
 
+        List<OrderItems> onGoingOrderItems = operationsService.findAllOrderItemsByVoyageNumber(entity.getVoyageNumber());
+        if(onGoingOrderItems.size() > 0){
+            return "errorInput";
+        }
+        else {
+            vesselSchedulesService.deleteVesselSchedule(entity);
+        }
+        return SUCCESS;
+    }
+
+    public String loadDeleteVesselScheduleError() {
+        List <VesselSchedules> vesselSchedulesEntityList = new ArrayList<VesselSchedules>();
+        vesselSchedulesEntityList = vesselSchedulesService.findAllVesselSchedules();
+
+        for (VesselSchedules vesselScheduleElem : vesselSchedulesEntityList) {
+            vesselSchedules.add(transformToFormBean(vesselScheduleElem));
+        }
         clearErrorsAndMessages();
-        addActionMessage("Success! Vessel Schedule has been deleted.");
-
+        addActionMessage("Vessel schedule cannot be deleted. A voyage number is associated.");
         return SUCCESS;
     }
 
@@ -350,5 +381,9 @@ public class VesselScheduleAction extends ActionSupport implements Preparable{
 
     public void setListVessel(List<Vessel> listVessel) {
         this.listVessel = listVessel;
+    }
+
+    public void setOperationsService(OperationsService operationsService) {
+        this.operationsService = operationsService;
     }
 }

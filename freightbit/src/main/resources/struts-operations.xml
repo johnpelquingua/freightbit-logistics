@@ -22,12 +22,13 @@
 
         <action name="editVesselSchedule" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
                 method="editVesselSchedule">
-            <result name="success" type="redirect">loadSaveComplete</result>
+            <result name="success" type="redirect">loadEditVesselScheduleSuccess</result>
             <result name="input" type="tiles">operations.vesselScheduleEdit.tiles</result>
         </action>
 
         <action name="deleteVesselSchedule" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
                 method="deleteVesselSchedule">
+            <result name="errorInput" type="redirect">loadDeleteVesselScheduleError</result>
             <result name="success" type="redirect">loadSaveComplete</result>
         </action>
 
@@ -53,6 +54,16 @@
 
         <action name="loadSaveComplete" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
                 method="loadSaveComplete">
+            <result name="success" type="tiles">operations.vesselScheduleList.tiles</result>
+        </action>
+
+        <action name="loadEditVesselScheduleSuccess" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
+                method="loadEditVesselScheduleSuccess">
+            <result name="success" type="tiles">operations.vesselScheduleList.tiles</result>
+        </action>
+
+        <action name="loadDeleteVesselScheduleError" class="com.sr.apps.freightbit.operations.action.VesselScheduleAction"
+                method="loadDeleteVesselScheduleError">
             <result name="success" type="tiles">operations.vesselScheduleList.tiles</result>
         </action>
         <!--Vessel Schedule Ends-->

@@ -28,6 +28,8 @@ public interface OperationsService {
 
     public List<OrderItems> findAllOrderItemsByOrderIdLand(Integer orderId);
 
+    public List<OrderItems> findAllOrderItemsByVoyageNumber(String vesselScheduleId);
+
     public List<Orders> findOrdersByFCL();
 
     public List<Orders> findOrdersByFCLTrucks();

@@ -126,7 +126,8 @@
                 </div>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update <span class="asterisk_red"></span></label>
-                    <s:if test="#attr.order.serviceRequirement == 'FULL CONTAINER LOAD' || #attr.order.serviceRequirement == 'LOOSE CARGO LOAD' ||
+
+                    <%--<s:if test="#attr.order.serviceRequirement == 'FULL CONTAINER LOAD' || #attr.order.serviceRequirement == 'LOOSE CARGO LOAD' ||
                                 #attr.order.serviceRequirement == 'ROLLING CARGO LOAD'">
                         <s:select cssClass="statusDropdown form-control"
                                   id="seaFreightStatus"
@@ -165,7 +166,16 @@
                                 />
                             </s:if>
                         </s:if>
-                    </s:elseif>
+                    </s:elseif>--%>
+
+                    <s:select cssClass="statusDropdown form-control"
+                              id="inlandFreightStatus"
+                              name="orderStatusLogsBean.status"
+                              list="allFreightStatusList"
+                              emptyOption="true"
+                              required="true"
+                            />
+
                 </div>
             </div>
 
