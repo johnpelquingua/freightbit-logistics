@@ -60,7 +60,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Email Address<span class="asterisk_red"></span></label>
                                     <div class="col-lg-7" >
-                                        <s:textfield required="true" name="customer.email" cssClass="customerInput form-control" id="customer.email" type="email" maxLength="50"
+                                        <s:textfield required="true" name="customer.email" cssClass="customerInput form-control" id="customer.email" maxLength="50"
                                                      placeholder="Email Address" pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"
                                                      title="Example: example@domain.com" />
                                     </div>
@@ -69,7 +69,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-5 control-label" style="padding-top:0px;">Website</label>
                                     <div class="col-lg-7" >
-                                        <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website" pattern="^[_A-Za-z0-9-\\+]*(\\.[A-Za-z]{3,})$" title="Proper Format: example.com" />
+                                        <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website" pattern="^([_A-Za-z0-9-\\]+)*(\\.[_A-Za-z]{3,})$" title="Proper Format: example.com" />
                                     </div>
                                 </div>
 

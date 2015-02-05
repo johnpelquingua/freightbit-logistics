@@ -180,12 +180,7 @@
                                         </button>
                                     </s:a>
                                 </s:if>
-                                    <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set All Status" onclick="addText();">
-                                        Set Status
-                                    </button>--%>
-                                <s:submit cssClass="btn btn-success" value="Set Status" onclick="addText();"></s:submit>
                             </sec:authorize>
-                            <%--</s:if>--%>
                             <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set All Status" onclick="addText();">
                                 Set Status
                             </button>--%>

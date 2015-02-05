@@ -271,7 +271,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type</label>
+                    <label class="col-lg-3 control-label" style="margin-top: 5px;">Notification Type<span class="asterisk_red"></span></label>
 
                     <div class="col-lg-9" style="text-align:left !important;">
                         <%--<s:select cssClass="form-control" style="margin-bottom: 15px !important;"

@@ -941,7 +941,7 @@
 
                     <s:form cssClass="form-horizontal" action="addDriverInland" theme="bootstrap">
 
-                    <s:hidden name = "driver.vendorId" id="vendorId" ></s:hidden>
+                    <s:hidden name = "driver.vendorId" id="vendorIdDriver" ></s:hidden>
                     <div class="form-group">
 
                         <label for="driver.licenseNumber" class="col-lg-3 control-label" style="padding-top:0px;">License<span
@@ -1453,7 +1453,7 @@
                 alert("Select a vendor first");
                 return false;
             }
-            $("#vendorId").val(vendorId);
+            $("#vendorIdDriver").val(vendorId);
         })
     });
 
@@ -1514,7 +1514,7 @@
 
     //    Read the value in cache
     function getThis() {
-        $("#vendorListDestination").val(localStorage.getItem("vendorListField"));
+        $("#vendorListOrigin").val(localStorage.getItem("vendorListField"));
         $("#driverList").val(localStorage.getItem("driverListField"));
         $("#trucksList").val(localStorage.getItem("trucksListField"));
         $("#dropoff").val(localStorage.getItem("dropoffField"));
@@ -1522,7 +1522,7 @@
 
     //    Set the value in cache
     function setThis() {
-        localStorage.setItem("vendorListField", $("#vendorListDestination").val());
+        localStorage.setItem("vendorListField", $("#vendorListOrigin").val());
         localStorage.setItem("driverListField", $("#driverList").val());
         localStorage.setItem("trucksListField", $("#trucksList").val());
         localStorage.setItem("dropoffField", $("#dropoff").val());

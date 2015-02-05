@@ -110,23 +110,12 @@
                         <table class="col-lg-12">
                             <tr>
                                 <td><label>LEGEND:</label></td>
-                                <td><i class='fa fa-anchor'></i> Shipping</td>
-                                <td><i class='fa fa-truck' ></i> Trucking</td>
-                                <td><i class='fa fa-info-circle' ></i> Information</td>
-                                <td><i class='fa fa-trash-o'></i> Delete</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class='fa fa-edit' ></i> Edit</td>
-                                <td><i class='fa fa-print' ></i> Print</td>
-                                <td><i class='fa fa-check' ></i> Approve</td>
-                                <td><i class='fa fa-times' ></i> Cancel</td>
-                            </tr>
-                            <tr>
-                                <td></td>
                                 <td><i class="fa fa-stop" style="color: #d9534f;"></i> Unavailable</td>
                                 <td><i class="fa fa-stop" style="color: #5cb85c;"></i> Available</td>
+                                <td><i class='fa fa-pencil' ></i> Edit</td>
+                                <td><i class='fa fa-trash-o'></i> Delete</td>
                             </tr>
+
                         </table>
                     </div>
                 </div>

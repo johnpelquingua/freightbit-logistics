@@ -535,7 +535,6 @@ public class VendorAction extends ActionSupport implements Preparable {
         }
 
         Integer vendorId = getSessionVendorId();
-
         entity.setVendorId(vendorId);
         entity.setTruckType(truckBean.getTruckType());
         entity.setPlateNumber(truckBean.getPlateNumber());
@@ -695,7 +694,6 @@ public class VendorAction extends ActionSupport implements Preparable {
     }
 
     public String loadAddDriverPage() {
-
         Integer vendorId = getSessionVendorId();
 
         List<Driver> driverEntityList = vendorService.findDriverByVendorId(vendorId);
@@ -781,7 +779,6 @@ public class VendorAction extends ActionSupport implements Preparable {
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         entity.setVendorId((Integer) sessionAttributes.get("vendorId"));
-
 //        entity.setDriverCode(driverBean.getDriverCode());
         entity.setLicenseNumber(driverBean.getLicenseNumber());
         entity.setLastName(driverBean.getLastName());

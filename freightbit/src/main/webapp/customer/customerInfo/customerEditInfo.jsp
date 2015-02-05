@@ -82,7 +82,7 @@
                             <div class="form-group">
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Website</label>
                                 <div class="col-lg-7" >
-                                    <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website" pattern="^[_A-Za-z0-9-\\+]*(\\.[A-Za-z]{3,})$" title="Proper Format: example.com"/>
+                                    <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website" pattern="^([_A-Za-z0-9-\\]+)*(\\.[_A-Za-z]{3,})$" title="Proper Format: example.com"/>
                                 </div>
                             </div>
 
@@ -90,7 +90,7 @@
                             <label class="col-lg-5  control-label" style="padding-top:0px;">DTI / SEC</label>
                             <div class="col-lg-7" >
                                 <s:textfield name="customer.dti" cssClass="form-control" id="customer_dti"
-                                             placeholder="XXXXXXXX" maxLength="8" pattern=".{8,}"/>
+                                             placeholder="XXXXXXXX" maxLength="8" pattern="^[0-9]{8,}$"/>
                             </div>
                             </div>
 
@@ -98,7 +98,7 @@
                             <div class="form-group">
                             <label class="col-lg-5  control-label" style="padding-top:0px;">Customer Information Sheet Number</label>
                             <div class="col-lg-7" >
-                                <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Customer Information Sheet Number" maxLength="30"/>
+                                <s:textfield name="customer.signatureCard" cssClass="form-control" id="customer_signatureCard" placeholder="Customer Information Sheet Number" maxLength="30" pattern=".{30,}"/>
                             </div>
 
                             </div>
@@ -149,7 +149,7 @@
                             <div class="form-group">
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Account Application Form Number</label>
                                 <div class="col-lg-7" >
-                                    <s:textfield name="customer.aaf" cssClass="form-control" id="customer_aaf" placeholder="Account Application Form Number" maxlength="30"/>
+                                    <s:textfield name="customer.aaf" cssClass="form-control" id="customer_aaf" placeholder="Account Application Form Number" maxlength="30" pattern=".{30,}"/>
                                 </div>
                             </div>
                         </div>

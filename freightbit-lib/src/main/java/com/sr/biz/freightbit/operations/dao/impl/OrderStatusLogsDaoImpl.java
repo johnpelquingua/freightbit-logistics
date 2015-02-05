@@ -7,6 +7,8 @@ import com.sr.biz.freightbit.order.entity.Orders;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,15 +79,6 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
     public List<Orders> findAllOrders() {
 
         List<String> statusList = new ArrayList<>();
-
-            /*statusList.add("APPROVED");
-            statusList.add("PENDING");
-            statusList.add("DISAPPROVED");
-            statusList.add("BOOKING ON PROCESS");
-            statusList.add("PLANNING 1");
-            statusList.add("PLANNING 2");
-            statusList.add("PLANNING 3");
-            statusList.add("SERVICE ACCOMPLISHED");*/
         statusList.add("ON GOING");
 
         log.debug("Finding orders with filter");
@@ -100,21 +93,6 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
             throw e;
         }
     }
-
-    /*@Override
-    public List<OrderItems> findAllItemsByOrderId(Integer orderId) {
-        log.debug("Finding orderItems via orderId");
-        try {
-            log.debug("Finding orderItems succeed");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderItems o where o.orderId = :orderId");
-            query.setParameter("orderId", orderId);
-            List<OrderItems> results = (List<OrderItems>) query.list();
-            return results;
-        } catch (Exception e) {
-            log.error("Finding orderItems failed");
-            throw e;
-        }
-    }*/
 
     @Override
     public List<OrderStatusLogs> findAllShipmentLogs(Integer orderItemId) {

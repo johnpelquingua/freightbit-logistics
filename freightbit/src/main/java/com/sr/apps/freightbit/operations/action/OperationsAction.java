@@ -297,9 +297,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             entity.setDriverId(driverBean.getDriverId());
         }
 
-        /*Map sessionAttributes = ActionContext.getContext().getSession();*/
+//        Map sessionAttributes = ActionContext.getContext().getSession();
         entity.setVendorId(driverBean.getVendorId());
-
+//        entity.setVendorId((Integer) sessionAttributes.get("vendorIdPass"));
         entity.setLicenseNumber(driverBean.getLicenseNumber());
         entity.setLastName(driverBean.getLastName());
         entity.setFirstName(driverBean.getFirstName());
@@ -1737,7 +1737,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         sessionAttributes.put("nameSizeParam", sessionAttributes.get("nameSizeParam"));
 
         // if Vessel Schedule Id is null and populates field with none value
-        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty()){
+        if(orderItem.getVesselScheduleId() == null || orderItem.getVesselScheduleId().equals("") || orderItem.getVesselScheduleId().length() == 0 || orderItem.getVesselScheduleId().isEmpty() || orderItem.getVesselScheduleId().equals("NONE") ){
             orderItem.setVendorSea("NONE");
             orderItem.setVesselScheduleId("NONE");
             vesselSchedule.setVesselName("NONE");
