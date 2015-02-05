@@ -77,7 +77,7 @@
                             <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
                                          id="contact.middleName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                         title="Name should not contain special characters and/or numbers." required="true" maxlength="30"/>
+                                         title="Name should not contain special characters and/or numbers." maxlength="30"/>
                             </div>
                         </div>
 
