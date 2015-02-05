@@ -51,7 +51,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" id="vendor.vendorName" placeholder="Company Name"
-                                         name="vendor.vendorName" maxlength="30" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"></s:textfield>
+                                         name="vendor.vendorName" maxlength="30" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"></s:textfield>
                         </div>
                     </div>
 

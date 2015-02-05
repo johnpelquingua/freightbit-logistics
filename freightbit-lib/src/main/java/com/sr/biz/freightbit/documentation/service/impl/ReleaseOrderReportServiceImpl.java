@@ -20,6 +20,7 @@ package com.sr.biz.freightbit.documentation.service.impl;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -42,9 +43,8 @@ import com.sr.biz.freightbit.documentation.service.ReportGeneratorService;
  * <li>There are no runtime report parameters used
  * </ol>
  */
-public class ReleaseOrderReportServiceImpl extends ReportGeneratorService  implements ReleaseOrderReportService
-{
-	private static final String RELEASE_ORDER = "ReleaseOrder";
+public class ReleaseOrderReportServiceImpl extends ReportGeneratorService  implements ReleaseOrderReportService {
+//	private static final String RELEASE_ORDER = "ReleaseOrder";
 
 
   /**
@@ -53,24 +53,24 @@ public class ReleaseOrderReportServiceImpl extends ReportGeneratorService  imple
    *
    * @return the loaded and parsed report definition to be used in report generation.
    */
-  public MasterReport getReportDefinition()
-  {
-    try
-    {
+  public MasterReport getReportDefinition() {
+    try {
       // Get the URL to the reportDefinition file
       final Class classVar = this.getClass();
       final URL reportDefinitionURL = classVar.getResource("/reports/Release_Order.prpt");
-      
+
       // Parse the report file
       final ResourceManager resourceManager = new ResourceManager();
       final Resource directly = resourceManager.createDirectly(reportDefinitionURL, MasterReport.class);
-      final MasterReport report = (MasterReport) directly.getResource();
-      report.setQuery(RELEASE_ORDER);
+      //final MasterReport report = (MasterReport) directly.getResource();
+      //report.setQuery(RELEASE_ORDER);
       //report.addPreProcessor(new RelationalAutoGeneratorPreProcessor());
-      return report;
-    }
-    catch (ResourceException e)
-    {
+
+      //return report;
+
+      return (MasterReport) directly.getResource();
+
+    } catch (ResourceException e) {
       e.printStackTrace();
     }
     return null;
@@ -81,7 +81,7 @@ public class ReleaseOrderReportServiceImpl extends ReportGeneratorService  imple
    *
    * @return the data factory used with the report generator
    */
-  public DataFactory getDataFactory(Map<String, String> params)
+  /*public DataFactory getDataFactory(Map<String, String> params)
   {
 	Properties prop = new Properties();
 	String propFileName = "jdbc.properties";
@@ -126,15 +126,26 @@ public class ReleaseOrderReportServiceImpl extends ReportGeneratorService  imple
     dataFactory.setQuery(RELEASE_ORDER,  query);
 
     return dataFactory;
+  }*/
+  public DataFactory getDataFactory(Map<String, String> whereClauseParameters) {
+    return null;
   }
 
   /**
-   * Returns the set of runtime report parameters. 
+   * Returns the set of runtime report parameters.
    *
    * @return <code>null</code> indicating the report generator does not use any report parameters
    */
-  public Map<String, Object> getReportParameters(Map<String, String> params)
-  {
+  /*public Map<String, Object> getReportParameters(Map<String, String> params) {
     return null;
+  }*/
+
+  public Map<String, Object> getReportParameters(Map<String, String> params) {
+    final Map parameters = new HashMap<String, Object>();
+    parameters.put("orderId", params.get("orderId"));
+    parameters.put("orderItemId", params.get("orderItemId"));
+    return parameters;
+
   }
+
 }

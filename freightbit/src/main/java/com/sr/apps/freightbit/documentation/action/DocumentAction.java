@@ -1611,42 +1611,108 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + document.getDocumentName());
         System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" + document.getReferenceNumber());
-//        System.out.println("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC" + document.getDocumentComments());
         System.out.println("dddddddddddddddddddddddddddddd" + document.getReferenceId());
         System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee" + documentStageParam);
 
-        Documents documentEntity = new Documents();
-        Client client = clientService.findClientById(getClientId().toString());
+        if(!document.getDocumentName().equals("MASTER BILL OF LADING")) {
 
-        documentEntity.setClient(client);
-        documentEntity.setDocumentName(document.getDocumentName());
-        documentEntity.setReferenceId(document.getReferenceId());
-        documentEntity.setReferenceTable("ORDERS");
-        documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
-        documentEntity.setCreatedDate(new Date());
+            Documents documentEntity = new Documents();
+            Client client = clientService.findClientById(getClientId().toString());
 
-        if(documentStageParam.equals("OUTBOUND")) {
-            documentEntity.setOutboundStage(1);
-            documentEntity.setDocumentProcessed(0);
-            documentEntity.setDocumentStatus("OUTBOUND");
-        }else if(documentStageParam.equals("INBOUND")){
-            documentEntity.setInboundStage(1);
-            documentEntity.setDocumentProcessed(1);
-            documentEntity.setDocumentStatus("INBOUND");
-        }else if(documentStageParam.equals("FINAL OUTBOUND")){
-            documentEntity.setDocumentProcessed(2);
-            documentEntity.setFinalOutboundStage(1);
-            documentEntity.setDocumentStatus("FINAL OUTBOUND");
-        }else{
-            documentEntity.setFinalInboundStage(1);
-            documentEntity.setDocumentProcessed(3);
-            documentEntity.setDocumentStatus("FINAL INBOUND");
+            documentEntity.setClient(client);
+            documentEntity.setDocumentName(document.getDocumentName());
+            documentEntity.setReferenceId(document.getReferenceId());
+            documentEntity.setReferenceTable("ORDERS");
+            documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+            documentEntity.setCreatedDate(new Date());
+
+            if (documentStageParam.equals("OUTBOUND")) {
+                documentEntity.setOutboundStage(1);
+                documentEntity.setDocumentProcessed(0);
+                documentEntity.setDocumentStatus("OUTBOUND");
+            } else if (documentStageParam.equals("INBOUND")) {
+                documentEntity.setInboundStage(1);
+                documentEntity.setDocumentProcessed(1);
+                documentEntity.setDocumentStatus("INBOUND");
+            } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                documentEntity.setDocumentProcessed(2);
+                documentEntity.setFinalOutboundStage(1);
+                documentEntity.setDocumentStatus("FINAL OUTBOUND");
+            } else {
+                documentEntity.setFinalInboundStage(1);
+                documentEntity.setDocumentProcessed(3);
+                documentEntity.setDocumentStatus("FINAL INBOUND");
+            }
+
+            documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            documentEntity.setReferenceNumber(document.getReferenceNumber());
+            documentEntity.setDocumentComments(document.getDocumentComments());
+            documentsService.addDocuments(documentEntity);
+
         }
 
-        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-        documentEntity.setReferenceNumber(document.getReferenceNumber());
-        documentEntity.setDocumentComments(document.getDocumentComments());
-        documentsService.addDocuments(documentEntity);
+        /*-------------------------------------FOR TESTING----------------------------------*/
+        else {
+            List<String> vendorSeaCodeList = new ArrayList<String>(); // placeholder for sea vendor codes
+
+            // order item list under order id
+            List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(document.getReferenceId());
+
+            // sea vendor codes will be stored in vendorSeaCodeList
+            for(OrderItems orderItem : orderItemList){
+                if(vendorSeaCodeList.isEmpty()){
+                    vendorSeaCodeList.add(orderItem.getVendorSea());
+                }else{
+                    if(!vendorSeaCodeList.contains(orderItem.getVendorSea())) {
+                        vendorSeaCodeList.add(orderItem.getVendorSea());
+                    }
+                }
+            }
+
+            List<Documents> proformaBillOfLading = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING", document.getReferenceId());
+
+            // Master Bill of Lading will be created based on Proforma Bill of Lading quantity
+            for (String seaVendor : vendorSeaCodeList) {
+                if (proformaBillOfLading.size() != 0) {
+                    // will check if there is already and existing master bill of lading under the same vendor
+                    List<Documents> documentMBL = documentsService.findDocumentNameAndId("MASTER BILL OF LADING",document.getReferenceId());
+
+                    if(documentMBL.size() == 0) { // will create master bill of lading if there are no master bill of lading created yet.
+
+                        for (Documents documentElem : proformaBillOfLading) {
+                            Documents documentMasterBillLading = new Documents();
+
+                            Client client = clientService.findClientById(getClientId().toString());
+                            documentMasterBillLading.setClient(client);
+
+                            documentMasterBillLading.setDocumentName(DocumentsConstants.MASTER_BILL_OF_LADING);
+                            documentMasterBillLading.setReferenceId(document.getReferenceId());
+                            documentMasterBillLading.setReferenceTable("ORDERS");
+                            documentMasterBillLading.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                            documentMasterBillLading.setCreatedDate(new Date());
+                            documentMasterBillLading.setVendorCode(seaVendor);
+                            documentMasterBillLading.setInboundStage(1);
+                            documentMasterBillLading.setDocumentProcessed(1);
+                            documentMasterBillLading.setDocumentStatus("INBOUND");
+                            // documentEntity.setInboundReturned(dateReturnedInbound);
+                            documentMasterBillLading.setCreatedBy(commonUtils.getUserNameFromSession());
+                            // orderitem id should be set in orderitemid column WIP
+
+                            documentsService.addDocuments(documentMasterBillLading);
+                        }
+
+                    } // else will not do anything
+
+                } else {
+                    /*SHOULD DO AN ERROR MESSAGE*/
+
+                    /*return INPUT;*/
+                    break;
+                }
+            }
+
+        }
+        /*-------------------------------------FOR TESTING----------------------------------*/
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderIdParam",  document.getReferenceId());
@@ -2486,7 +2552,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return null;
     }
     // Release Order
-    public String generateReleaseOrderReport() throws IOException {
+    public String generateReleaseOrderReport() {
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         String orderId = (documentEntity.getReferenceId()).toString();
 //        	String orderId = "26";

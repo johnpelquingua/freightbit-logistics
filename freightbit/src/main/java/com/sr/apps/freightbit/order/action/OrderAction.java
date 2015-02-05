@@ -1418,6 +1418,19 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setModifiedBy(commonUtils.getUserNameFromSession());
         entity.setCreatedTimestamp(new Date());
         entity.setModifiedTimestamp(new Date());
+        entity.setVesselScheduleId(formBean.getVesselScheduleId());
+        entity.setFinalDeliveryDate(formBean.getFinalDeliveryDate());
+        entity.setDriverOrigin(formBean.getDriverOrigin());
+        entity.setDriverDestination(formBean.getDriverDestination());
+        entity.setTruckOrigin(formBean.getTruckOrigin());
+        entity.setTruckDestination(formBean.getTruckDestination());
+        entity.setFinalPickupDate(formBean.getFinalPickupDate());
+        entity.setFinalDeliveryDate(formBean.getFinalDeliveryDate());
+        entity.setVendorOrigin(formBean.getVendorOrigin());
+        entity.setVendorDestination(formBean.getVendorDestination());
+        entity.setVendorSea(formBean.getVendorSea());
+        /*containerId abang mode muna*/
+        entity.setServiceRequirement(formBean.getServiceRequirement());
 
         return entity;
     }

@@ -30,7 +30,6 @@ public class OrderItems implements Serializable {
     private String nameSize;
     private String status;
     private Float volume;
-//    for planning
     private String vendorOrigin;
     private String vendorSea;
     /*private String vesselName;*/
@@ -43,9 +42,7 @@ public class OrderItems implements Serializable {
     private String truckOrigin;
     private String truckDestination;
     private Integer containerId;
-//
     private Integer documentId;
-
     private String serviceRequirement;
 
     public OrderItems() {

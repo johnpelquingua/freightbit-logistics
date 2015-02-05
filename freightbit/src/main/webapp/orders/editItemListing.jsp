@@ -13,6 +13,19 @@
         <div class="well" style="margin-top: 10px;">
           <s:form action="editItemListing" theme="bootstrap" cssClass="form-horizontal" >
           <s:hidden name="orderItem.orderItemId" value="%{orderItem.orderItemId}" />
+          <s:hidden name="orderItem.vesselScheduleId" value="%{orderItem.vesselScheduleId}" />
+          <s:hidden name="orderItem.finalDeliveryDate" value="%{orderItem.finalDeliveryDate}" />
+          <s:hidden name="orderItem.driverOrigin" value="%{orderItem.driverOrigin}" />
+          <s:hidden name="orderItem.driverDestination" value="%{orderItem.driverDestination}" />
+          <s:hidden name="orderItem.truckOrigin" value="%{orderItem.truckOrigin}" />
+          <s:hidden name="orderItem.truckDestination" value="%{orderItem.truckDestination}" />
+          <s:hidden name="orderItem.finalPickupDate" value="%{orderItem.finalPickupDate}" />
+          <s:hidden name="orderItem.finalDeliveryDate" value="%{orderItem.finalDeliveryDate}" />
+          <s:hidden name="orderItem.vendorOrigin" value="%{orderItem.vendorOrigin}" />
+          <s:hidden name="orderItem.vendorDestination" value="%{orderItem.vendorDestination}" />
+          <s:hidden name="orderItem.vendorSea" value="%{orderItem.vendorSea}" />
+          <s:hidden name="orderItem.serviceRequirement" value="%{orderItem.serviceRequirement}" />
+
           <s:hidden name="order.orderId" value="%{order.orderId}"/>
 
           <div class="form-group">
