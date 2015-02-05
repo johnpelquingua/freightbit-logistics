@@ -38,9 +38,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by ADMIN on 5/28/2014.
- */
 public class CustomerAction extends ActionSupport implements Preparable {
 
     private static final long serialVersionUID = 1L;
@@ -389,11 +386,13 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public String deleteCustomer() {
         List<Orders> orderEntityList = orderService.findCustomerWithBooking(customerIdParam);
+
         if(orderEntityList.size()>0){
             clearErrorsAndMessages();
             addActionError("You cannot delete a Customer associated with Booking");
             return INPUT;
         }
+
         Customer customerEntity = customerService.findCustomerByCustomerCode(customerCodeParam);
         customerService.deleteCustomer(customerEntity);
 
