@@ -603,7 +603,26 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         // Put Order Id to Order Id session
         sessionAttributes.put("orderIdPass", orderIdPass);
-        createReport();
+
+        // Booking Request Form will be created under pending documents start
+
+        Documents documentEntity = new Documents();
+        Client client = clientService.findClientById(getClientId().toString());
+        documentEntity.setClient(client);
+        documentEntity.setDocumentName(DocumentsConstants.BOOKING_REQUEST_FORM);
+        documentEntity.setReferenceId(orderEntity.getOrderId());
+        documentEntity.setReferenceTable("ORDERS");
+        documentEntity.setOrderNumber(orderService.findOrdersById(orderEntity.getOrderId()).getOrderNumber());
+        documentEntity.setCreatedDate(new Date());
+        documentEntity.setDocumentStatus("FROM BOOKING");
+        documentEntity.setDocumentProcessed(0);
+        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+        documentEntity.setOutboundStage(1);
+        documentEntity.setVendorCode("ELC");
+        /*documentEntity.setDocumentType("MASTER");*/
+        documentsService.addDocuments(documentEntity);
+
+        // Booking Request Form will be created under pending documents end
 
         return SUCCESS;
     }

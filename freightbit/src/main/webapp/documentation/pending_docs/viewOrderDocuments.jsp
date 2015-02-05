@@ -331,7 +331,7 @@
                     </li>
                     <%--Redirects to Final Outbound Stage--%>
                         <s:hidden value="%{order.freightType}" />
-                    <s:if test=" #attr.order.freightType == 'SHIPPING and TRUCKING' ">
+                    <s:if test=" #attr.order.freightType == 'SHIPPING AND TRUCKING' ">
                         <li id="fiOut" class="col-md-2 padding-0-lr">
                             <%--<s:url var="finalOutboundStageUrl" action="viewOrderDocumentsFinalOutbound">
                                 <s:param name="orderIdParam"

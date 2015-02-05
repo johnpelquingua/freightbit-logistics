@@ -371,7 +371,7 @@
                                       list="consigneeAddressList" listKey="addressId"
                                       listValue="addressLine1 + ' ' + addressLine2" required="true" />
 
-                            <s:textfield cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="consigneeAddress_textfield"/>
+                            <s:textfield cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="consigneeAddress_textfield" readonly="true"/>
 
                         </div>
 
@@ -418,7 +418,7 @@
             Cancel
         </button>
 
-        <s:submit name="submit" cssClass="btn btn-primary nextBtn" value="Next" />
+        <s:submit    name="submit" cssClass="btn btn-primary nextBtn" value="Next" />
         </s:form>
     </div>
 
@@ -439,15 +439,15 @@
                 <p>Are you sure you want to cancel the booking?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                <%--<button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>--%>
-                <s:property value="order.orderId"/>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
+                <%--<s:property value="order.orderId"/>
                 <s:url var="deleteOrderUrl" action="deleteOrder">
                     <s:param name="orderIdParam" value="order.orderId"></s:param>
                 </s:url>
                 <s:a class="icon-action-link" href="%{deleteOrderUrl}" rel="tooltip">
                     <button type="button" class="btn btn-danger">Yes</button>
-                </s:a>
+                </s:a>--%>
             </div>
         </div>
     </div>
