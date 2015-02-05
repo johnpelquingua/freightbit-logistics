@@ -89,7 +89,7 @@
                                                     style="text-align: center;"> </display:column></td>
 
                                 <td><display:column property="actualDate" title="Actual Date/Time <i class='fa fa-sort' />" class="tb-font-black"
-                                                   style="text-align: center;" format="{0,date,dd-MMM-yyyy HH:mm:ss a}"></display:column></td>
+                                                   style="text-align: center;" format="{0,date,dd-MMM-yyyy hh:mm a}"></display:column></td>
 
                                 <td><display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>

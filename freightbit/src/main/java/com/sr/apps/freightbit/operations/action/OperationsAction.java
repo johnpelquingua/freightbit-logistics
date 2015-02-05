@@ -297,9 +297,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
             entity.setDriverId(driverBean.getDriverId());
         }
 
-        /*Map sessionAttributes = ActionContext.getContext().getSession();*/
+//        Map sessionAttributes = ActionContext.getContext().getSession();
         entity.setVendorId(driverBean.getVendorId());
-
+//        entity.setVendorId((Integer) sessionAttributes.get("vendorIdPass"));
         entity.setLicenseNumber(driverBean.getLicenseNumber());
         entity.setLastName(driverBean.getLastName());
         entity.setFirstName(driverBean.getFirstName());

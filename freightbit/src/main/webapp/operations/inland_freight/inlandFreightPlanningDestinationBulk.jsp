@@ -400,7 +400,7 @@
 
                     <s:form cssClass="form-horizontal" action="addDriverInlandDestinationBulk" theme="bootstrap">
 
-                    <s:hidden name = "driver.vendorId" id="vendorId" ></s:hidden>
+                    <s:hidden name = "driver.vendorId" id="vendorIdDriver" ></s:hidden>
                     <div class="form-group">
 
                         <label for="driver.licenseNumber" class="col-lg-3 control-label" style="padding-top:0px;">License<span
@@ -815,7 +815,7 @@
                 alert("Select a vendor first");
                 return false;
             }
-            $("#vendorId").val(vendorId);
+            $("#vendorIdDriver").val(vendorId);
         })
     });
 

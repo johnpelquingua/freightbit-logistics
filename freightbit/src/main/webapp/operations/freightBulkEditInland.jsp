@@ -1410,7 +1410,7 @@
                 <div class="panel-body">
 
                     <s:form cssClass="form-horizontal" action="addDriver" theme="bootstrap">
-                        <s:hidden name = "driver.vendorId" id="vendorId" ></s:hidden>
+                        <s:hidden name = "driver.vendorId" id="vendorIdDriver" ></s:hidden>
 
                     <div class="form-group">
 
@@ -2149,7 +2149,7 @@
                 alert("Select a vendor first");
                 return false;
             }
-            $("#vendorId").val(vendorId);
+            $("#vendorIdDriver").val(vendorId);
         })
     });
 
@@ -2200,7 +2200,7 @@
                 alert("Select a vendor first");
                 return false;
             }
-            $("#vendorId").val(vendorId);
+            $("#vendorIdDriver").val(vendorId);
         })
     });
 

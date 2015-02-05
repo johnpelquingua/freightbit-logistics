@@ -322,8 +322,7 @@
                 <div class="panel-body">
 
                     <s:form cssClass="form-horizontal" action="addDriverInlandBulk" theme="bootstrap">
-
-                        <s:hidden name = "driver.vendorId" id="vendorId" ></s:hidden>
+                        <s:hidden name = "driver.vendorId" id="vendorIdDriver"></s:hidden>
                     <div class="form-group">
 
                         <label for="driver.licenseNumber" class="col-lg-3 control-label" style="padding-top:0px;">License<span class="asterisk_red"></span></label>
@@ -767,7 +766,7 @@
                 alert("Select a vendor first");
                 return false;
             }
-            $("#vendorId").val(vendorId);
+            $("#vendorIdDriver").val(vendorId);
         })
     });
 
@@ -829,52 +828,9 @@
         })
     });
 
-    $(document).ready(function () {
-        $("#createDriverButton").click(function () {
-            var vendorId = $("#vendorListDestination").val();
-            setThis();
-            $("#driver_licenseNumber").val('');
-            $("#driver_lastName").val('');
-            $("#driver_firstName").val('');
-            $("#driver_middleName").val('');
-            $("#driver_title").val('');
-
-            if (vendorId == "" || null) {
-                alert("Select a vendor first");
-                return false;
-            }
-            $("#vendorId").val(vendorId);
-        })
-    });
-
-    $(document).ready(function () {
-        $("#createTruckButton").click(function () {
-            var vendorId = $("#vendorListDestination").val();
-            setThis();
-            $("#truck_plateNumber").val('');
-            $("#truck_truckCode").val('');
-            $("#truck_motorVehicleNumber").val('');
-            $("#truck_modelNumber").val('');
-            $("#truck_ownerName").val('');
-            $("#truck_ownerAddress").val('');
-            $("#truck_officialReceipt").val('');
-            $("#truck_engineNumber").val('');
-            $("#truck_modelYear").val('');
-            $("#truck_grossWeight").val('');
-            $("#truck_netWeight").val('');
-            $("#truck_netCapacity").val('');
-
-            if (vendorId == "" || null) {
-                alert("Select a vendor first");
-                return false;
-            }
-            $("#vendorIdTruck").val(vendorId);
-        })
-    });
-
     //    Read the value in cache
     function getThis() {
-        $("#vendorListDestination").val(localStorage.getItem("vendorListField"));
+        $("#vendorListOrigin").val(localStorage.getItem("vendorListField"));
         $("#driverList").val(localStorage.getItem("driverListField"));
         $("#trucksList").val(localStorage.getItem("trucksListField"));
         $("#dropoff").val(localStorage.getItem("dropoffField"));
@@ -882,7 +838,7 @@
 
     //    Set the value in cache
     function setThis() {
-        localStorage.setItem("vendorListField", $("#vendorListDestination").val());
+        localStorage.setItem("vendorListField", $("#vendorListOrigin").val());
         localStorage.setItem("driverListField", $("#driverList").val());
         localStorage.setItem("trucksListField", $("#trucksList").val());
         localStorage.setItem("dropoffField", $("#dropoff").val());
