@@ -1,5 +1,6 @@
 package com.sr.biz.freightbit.order.dao.impl;
 
+import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
 import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.entity.Counter;
 import com.sr.biz.freightbit.order.entity.OrderItems;
@@ -12,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -200,7 +202,7 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
         Session session = getSessionFactory().getCurrentSession();
         List<Orders> orders = session.createCriteria(Orders.class)
                 .add(Restrictions.like(column, value, MatchMode.ANYWHERE))
-                //.add(Restrictions.eq("clientId", clientId))
+                .add(Restrictions.eq("orderStatus", "ON GOING"))
                 .list();
         return orders;
     }

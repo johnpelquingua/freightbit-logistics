@@ -230,11 +230,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
         clearErrorsAndMessages();
         addActionMessage("Success! Shipment Logs has been updated.");
-
+        nameSizeList = (List) sessionAttributes.get("nameSizeList");
         sessionAttributes.put("orderIdParam", orderEntity.getOrderId());
         sessionAttributes.put("orderItemIdParam", orderItemIdParam);
-
-//        orderStatusListing();
 
         return SUCCESS;
     }
@@ -429,6 +427,36 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
                     nameSizeList.add(orderItemEntity.getNameSize());
                 }
 
+                //for filtering order status shipment list
+
+                if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")){
+
+                    if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
+                        allFreightStatusList.add("PICKUP");
+                        allFreightStatusList.add("POSITIONED");
+                    }
+
+                    if(orderEntity.getServiceRequirement().equals("LESS CONTAINER LOAD")){
+                        allFreightStatusList.add("QUEUE FOR CONSOLIDATION");
+                    }
+
+                    allFreightStatusList.add("QUEUE FOR DEPARTURE");
+                    allFreightStatusList.add("IN-TRANSIT");
+                    allFreightStatusList.add("ARRIVED");
+                    allFreightStatusList.add("RETURNED TO ORIGIN");
+
+                    if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
+                        allFreightStatusList.add("DELIVERED");
+                    }
+
+                }else{
+                    if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+                        allFreightStatusList.add("PICKUP");
+                        allFreightStatusList.add("POSITIONED");
+                    }else{
+                        allFreightStatusList.add("DELIVERED");
+                    }
+                }
                 sessionAttributes.put("nameSizeList", nameSizeList);
             }
         }
@@ -478,9 +506,42 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         // Will show orderItem on second load without passing orderItemIdParam from table
         orderStatusLogsBean.setOrderItemId(orderItemEntity.getOrderItemId());
 
+        //for filtering order status shipment list
+
+        if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")){
+
+            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
+                allFreightStatusList.add("PICKUP");
+                allFreightStatusList.add("POSITIONED");
+            }
+
+            if(orderEntity.getServiceRequirement().equals("LESS CONTAINER LOAD")){
+                allFreightStatusList.add("QUEUE FOR CONSOLIDATION");
+            }
+
+            allFreightStatusList.add("QUEUE FOR DEPARTURE");
+            allFreightStatusList.add("IN-TRANSIT");
+            allFreightStatusList.add("ARRIVED");
+            allFreightStatusList.add("RETURNED TO ORIGIN");
+
+            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
+                allFreightStatusList.add("DELIVERED");
+            }
+
+        }else{
+            if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+                allFreightStatusList.add("PICKUP");
+                allFreightStatusList.add("POSITIONED");
+            }else{
+                allFreightStatusList.add("DELIVERED");
+            }
+        }
+
         clearErrorsAndMessages();
         addActionMessage("Success! Shipment Logs has been updated.");
         nameSizeList = (List) sessionAttributes.get("nameSizeList");
+        sessionAttributes.put("orderIdParam", orderEntity.getOrderId());
+        sessionAttributes.put("orderItemIdParam", orderItemIdParam);
         return SUCCESS;
 
     }
@@ -555,49 +616,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
 //        sessionAttributes.put("orderIdParam", orderEntity.getOrderId());
         sessionAttributes.put("orderItemIdParam", orderItemIdParam);
-
-//        orderStatusListing();
-
         return SUCCESS;
     }
 
-    /*public String orderStatusListing(){
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
-        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get(orderIdParam));
-
-        if(orderEntity.getServiceType().equals("SHIPPING AND TRUCKING") || orderEntity.getServiceType().equals("SHIPPING")){
-
-            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")){
-                allFreightStatusList.add("PICKUP");
-                allFreightStatusList.add("POSITIONED");
-            }
-
-            if(orderEntity.getServiceRequirement().equals("LESS CONTAINER LOAD")){
-                allFreightStatusList.add("QUEUE FOR CONSOLIDATION");
-            }
-
-            allFreightStatusList.add("QUEUE FOR DEPARTURE");
-            allFreightStatusList.add("IN-TRANSIT");
-            allFreightStatusList.add("ARRIVED");
-            allFreightStatusList.add("RETURNED TO ORIGIN");
-
-            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
-                allFreightStatusList.add("DELIVERED");
-            }
-
-        }else{
-            if(orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
-                allFreightStatusList.add("PICKUP");
-                allFreightStatusList.add("POSITIONED");
-            }else{
-                allFreightStatusList.add("DELIVERED");
-            }
-        }
-
-        return SUCCESS;
-    }*/
 
     public String updateStatus() {
         Map sessionAttributes = ActionContext.getContext().getSession();

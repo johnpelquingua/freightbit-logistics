@@ -1,5 +1,6 @@
 package com.sr.biz.freightbit.order.dao;
 
+import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
 import com.sr.biz.freightbit.order.entity.Counter;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;

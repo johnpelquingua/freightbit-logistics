@@ -11,6 +11,7 @@ import com.sr.biz.freightbit.customer.dao.ItemsDao;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.entity.Items;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
+import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
 import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.dao.OrderItemsDao;
 import com.sr.biz.freightbit.order.entity.Counter;
@@ -202,8 +203,7 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.findOrdersByCriteria(column, value, clientId);
     }
 
-
-// End Customers
+    // End Customers
 
 // Contacts
 

@@ -148,46 +148,13 @@
                 </div>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update <span class="asterisk_red"></span></label>
-                    <s:if test="#attr.order.serviceRequirement == 'FULL CONTAINER LOAD' || #attr.order.serviceRequirement == 'LOOSE CARGO LOAD' ||
-                                #attr.order.serviceRequirement == 'ROLLING CARGO LOAD'">
-                        <s:select cssClass="statusDropdown form-control"
-                                  id="seaFreightStatus"
-                                  name="orderStatusLogsBean.status"
-                                  list="seaFreightList"
-                                  listKey="key"
-                                  listValue="value"
-                                  emptyOption="true"
-                                  required="true"
-                                />
-                    </s:if>
-
-                    <s:elseif test="#attr.order.serviceRequirement == 'LESS CONTAINER LOAD'">
-                        <s:select cssClass="statusDropdown form-control"
-                                  id="seaFreightLCLStatus"
-                                  name="orderStatusLogsBean.status"
-                                  list="seaFreightLCLList"
-                                  listKey="key"
-                                  listValue="value"
-                                  emptyOption="true"
-                                  required="true"
-                                />
-                    </s:elseif>
-
-                    <s:elseif test="#attr.order.serviceRequirement == 'FULL TRUCK LOAD' || #attr.order.serviceRequirement == 'LESS TRUCK LOAD'">
-                        <s:if test="#attr.order.freightType == 'SHIPPING AND TRUCKING' || #attr.order.freightType == 'TRUCKING'">
-                            <s:if test="#attr.order.modeOfService == 'PICKUP' || #attr.order.modeOfService == 'DELIVERY' || #attr.order.modeOfService == 'INTER-WAREHOUSE'">
-                                <s:select cssClass="statusDropdown form-control"
-                                          id="inlandFreightStatus"
-                                          name="orderStatusLogsBean.status"
-                                          list="inlandFreightList"
-                                          listKey="key"
-                                          listValue="value"
-                                          emptyOption="true"
-                                          required="true"
-                                        />
-                            </s:if>
-                        </s:if>
-                    </s:elseif>
+                    <s:select cssClass="statusDropdown form-control"
+                              id="planningStatus"
+                              name="orderStatusLogsBean.status"
+                              list="allFreightStatusList"
+                              emptyOption="true"
+                              required="true"
+                            />
                 </div>
             </div>
 
