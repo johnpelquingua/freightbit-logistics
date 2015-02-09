@@ -45,6 +45,7 @@
         </div>
     </div>
 </s:if>
+
 <s:if test="hasActionErrors()">
    <div class="col-lg-12">
 	   <div class="alert alert-errors">
