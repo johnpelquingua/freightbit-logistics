@@ -172,18 +172,13 @@
                                 <s:param name="orderIdParam"
                                          value="order.orderId"></s:param>
                             </s:url>
-                            <sec:authorize access="hasRole('ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS')">
-                                <s:if test="#attr.orderItem.status == 'ARRIVED' || #attr.orderItem.status == 'DELIVERED'">
+                            <%--<sec:authorize access="hasRole('ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS')">--%>
                                     <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
-                                        <button type="button" id="Complete" class="btn btn-default">
+                                        <button type="button" id="Complete" class="btn btn-success">
                                             Set Service Complete
                                         </button>
                                     </s:a>
-                                </s:if>
-                            </sec:authorize>
-                            <%--<button type="button" id="Complete" class="col-lg-4 btn btn-default setStatusBtn" value="Set All Status" onclick="addText();">
-                                Set Status
-                            </button>--%>
+                            <%--</sec:authorize>--%>
                                 <s:submit cssClass="btn btn-success" value="Set Status" onclick="addText();"></s:submit>
                         </div>
                     </s:form>

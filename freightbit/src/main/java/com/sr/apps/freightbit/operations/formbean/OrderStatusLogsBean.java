@@ -8,7 +8,7 @@ public class OrderStatusLogsBean {
     private Integer orderId;
     private String status;
     private String createdBy;
-    private String createdTimestamp;
+    private Date createdTimestamp;
     private String nameSize;
     private Integer orderItemId;
     private Date actualDate;
@@ -61,11 +61,11 @@ public class OrderStatusLogsBean {
         this.orderItemId = orderItemId;
     }
 
-    public String getCreatedTimestamp() {
+    public Date getCreatedTimestamp() {
         return createdTimestamp;
     }
 
-    public void setCreatedTimestamp(String createdTimestamp) {
+    public void setCreatedTimestamp(Date createdTimestamp) {
         this.createdTimestamp = createdTimestamp;
     }
 

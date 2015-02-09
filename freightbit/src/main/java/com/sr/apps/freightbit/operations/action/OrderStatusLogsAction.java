@@ -183,18 +183,61 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String viewStatusListItemsErrorService() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
+        List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
+
+        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParamSession);
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById(orderIdParamSession);
+        bookingNumber = orderEntity.getOrderNumber();
+        order = transformToOrderFormBean(orderEntity);
+
+        for (OrderItems orderItemsElem : orderItemEntityList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        clearErrorsAndMessages();
+        addActionError("Statuses must be Arrived or Delivered.");
+        return SUCCESS;
+    }
+
     public String serviceAccomplishedStatus() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
-        orderService.updateOrder(orderEntity);
+        List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
+        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParam);
 
-        String column = getColumnFilter();
+        //To check if status is either Arrived or Delivered the counter will increase by 1.
+        Integer checkAllStatus = 0;
+        for (OrderItems orderItemsElem : orderItemEntityList) {
+            if(orderItemsElem.getStatus().equals("ARRIVED") || orderItemsElem.getStatus().equals("DELIVERED")){
+                checkAllStatus = checkAllStatus + 1;
+            }
+        }
 
-        List<Orders> orderEntityList = new ArrayList<Orders>();
-        if (StringUtils.isNotBlank(column)) {
-            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+        //If the order items status is either Arrived or Delivered, the service can be accomplished.
+        if(orderItemEntityList.size() == checkAllStatus && orderItemEntityList.size() > 1){
+                orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
+                orderService.updateOrder(orderEntity);
+                return SUCCESS;
         }
         else {
+            sessionAttributes.put("orderIdParam", orderIdParam);
+            return "errorStatus";
+        }
+    }
+
+    public String loadServiceAccomplished() {
+
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+        String column = getColumnFilter();
+
+        if (StringUtils.isNotBlank(column)) {
+            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+        } else {
             orderEntityList = orderStatusLogsService.findAllOrders();
         }
         for (Orders ordersElem : orderEntityList) {
@@ -502,6 +545,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
                 //Add both item's status' values in OrderStatusLogs table
                 OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
+                orderStatusLogsEntity.setCreatedTimestamp(new Date());
                 orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 orderStatusLogsService.addStatus(orderStatusLogsEntity);
 
@@ -653,6 +697,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         try {
                 OrderStatusLogs orderStatusLogsEntity = transformToOrderStatusLogsEntity(orderStatusLogsBean);
                 sessionAttributes.put("orderItemIdParam", orderStatusLogsEntity.getOrderItemId());
+                orderStatusLogsEntity.setCreatedTimestamp(new Date());
                 orderStatusLogsEntity.setCreatedBy(commonUtils.getUserNameFromSession());
                 orderStatusLogsService.addStatus(orderStatusLogsEntity);
 

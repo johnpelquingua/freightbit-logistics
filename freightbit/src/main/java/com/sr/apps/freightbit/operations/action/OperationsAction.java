@@ -297,9 +297,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             entity.setDriverId(driverBean.getDriverId());
         }
 
-//        Map sessionAttributes = ActionContext.getContext().getSession();
         entity.setVendorId(driverBean.getVendorId());
-//        entity.setVendorId((Integer) sessionAttributes.get("vendorIdPass"));
         entity.setLicenseNumber(driverBean.getLicenseNumber());
         entity.setLastName(driverBean.getLastName());
         entity.setFirstName(driverBean.getFirstName());
@@ -451,11 +449,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             sessionAttributes.put("nameSizeList", nameSizeList);
 
-            if(planning2.size() > 0 || planning3.size() > 0|| onGoing.size() > 0) {
-                return "errorInput";
+            if(planning1.size()> 0) {
+                return SUCCESS;
             }
             else{
-                return SUCCESS;
+                return "errorInput";
             }
 
         } else {
