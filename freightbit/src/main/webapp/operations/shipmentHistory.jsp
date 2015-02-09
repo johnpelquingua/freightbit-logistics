@@ -91,8 +91,8 @@
                                            class="shipmentMonitoringTable table table-striped table-hover table-bordered text-center tablesorter"
                                             style="margin-top: 15px;empty-cells: hide;">
 
-                                <td><display:column property="createdTimestamp" title="Date/Time <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;"></display:column></td>
+                                <td><display:column property="actualDate" title="Actual Date/Time <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;" format="{0,date,dd-MMM-yyyy HH:mm:ss a}"></display:column></td>
 
                                 <td>
                                     <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
@@ -108,20 +108,17 @@
                                 <td><display:column property="status" title="Shipment History <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="actualDate" title="Actual Date/Time <i class='fa fa-sort' />" class="tb-font-black"
-                                                    style="text-align: center;" format="{0,date,dd-MMM-yyyy HH:mm:ss a}"></display:column></td>
-
                                 <td><display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td>
+                                <%--<td>
                                     <display:column title="Action">
                                         <a id="edit-icon" href="#" data-toggle="modal" data-target="#actualModal" onclick="showActualDateFields(${orderStatusLogs.statusId});" title="Set Actual Date of this status" rel="tooltip">
                                             <i class="fa fa-edit"></i>
-                                                <%--<s:param name="orderItemIdParam" value="#attr.orderStatusLogs.orderItemId"></s:param>--%>
+                                                &lt;%&ndash;<s:param name="orderItemIdParam" value="#attr.orderStatusLogs.orderItemId"></s:param>&ndash;%&gt;
                                         </a>
                                     </display:column>
-                                </td>
+                                </td>--%>
 
                             </display:table>
                         </tr>
@@ -138,14 +135,24 @@
                 </s:else>
 
 
-                <div class="col-lg-3" style="text-align: center">
-                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Actual Date/Time </label>
-                    <s:textfield name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp" readonly="true">
-                        <s:param name="value">
-                            <s:date name="new java.util.Date()" format="dd-MMM-yyyy hh:mm a"/>
-                        </s:param>
-                    </s:textfield>
-                </div>
+                    <div class="col-lg-3" style="text-align: center">
+                        <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Actual Date/Time <span class="asterisk_red"></span></label>
+                            <%--<s:textfield name="orderStatusLogsBean.createdTimestamp" cssClass="form-control" id="createdTimestamp">
+                                <s:param name="value">
+                                    <s:date name="new java.util.Date()" format="dd-MMM-yyyy hh:mm a"/>
+                                </s:param>
+                            </s:textfield>--%>
+                        <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actualDate"/>
+                        <script>
+                            $(function () {
+                                var actDate = $('#actualDate');
+                                actDate.datetimepicker({
+                                    timeFormat: 'h:mm TT',
+                                    minDate: 0
+                                });
+                            });
+                        </script>
+                    </div>
                 <div class="col-lg-9" style="text-align: center">
                     <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Shipment Update <span class="asterisk_red"></span></label>
                     <s:select cssClass="statusDropdown form-control"
@@ -237,13 +244,4 @@
     /*    function sendOkStatus(){
      $('form').submit()
      }*/
-
-    /*$(function () {
-     var curDate = $('#createdTimestamp');
-
-     curDate.datetimepicker({
-     timeFormat: 'h:mm TT',
-     minDate: 0
-     });
-     });*/
 </script>

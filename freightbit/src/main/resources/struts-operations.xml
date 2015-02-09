@@ -94,6 +94,11 @@
             <result name="success" type="tiles">operations.statusListItems.tiles</result>
         </action>
 
+        <action name="viewStatusListItemsErrorService" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
+                method="viewStatusListItemsErrorService">
+            <result name="success" type="tiles">operations.statusListItems.tiles</result>
+        </action>
+
         <action name="loadUpdateStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
                 method="loadUpdateStatus">
             <result name="success" type="tiles">operations.updateStatus.tiles</result>
@@ -146,6 +151,12 @@
 
         <action name="serviceAccomplishedStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
                 method="serviceAccomplishedStatus">
+            <result name="errorStatus" type="redirect">viewStatusListItemsErrorService</result>
+            <result name="success" type="redirect">loadServiceAccomplished</result>
+        </action>
+
+        <action name="loadServiceAccomplished" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
+                method="loadServiceAccomplished">
             <result name="success" type="tiles">operations.statusList.tiles</result>
         </action>
 
