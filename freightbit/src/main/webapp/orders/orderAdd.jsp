@@ -54,7 +54,7 @@
                                 Basic Information
                             </span>
                         </legend>
-                        <s:form action="addOrder" theme="bootstrap">
+                        <s:form action="addOrder" theme="bootstrap" cssClass="addOrderForm" >
 
                         <div class="form-group">
                             <label class="col-lg-2 control-label">Freight Type<span class="asterisk_red"></span></label>
@@ -243,7 +243,7 @@
 
                     <label class="col-lg-3 control-label deliveryDateLabel" style="margin-top: 5px;">Delivery Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-3" >
-                        <input type="text" class=" deliveryDateInput to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;" readonly="true">
+                        <input type="text" class="deliveryDateInput to_date form-control" id="datepicker2" name="order.deliveryDate" required="true" placeholder="Select Delivery date" contenteditable="false" style="margin-bottom: 15px !important;" readonly="true">
                     </div>
 
                 </div>
@@ -418,7 +418,8 @@
             Cancel
         </button>
 
-        <s:submit    name="submit" cssClass="btn btn-primary nextBtn" value="Next" />
+        <%--<s:submit name="submit" cssClass="btn btn-primary nextBtn" value="Next" />--%>
+        <button class="btn btn-primary nextBtn" type="button">Next</button>
         </s:form>
     </div>
 
@@ -933,7 +934,25 @@
     </div>
 </div>
 
+<%-- MODAL FOR DATE SAME WARNING  -- START --%>
+<div class="modal fade" id="dateSameWarningModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="color: red"><i class="fa fa-warning"></i> WARNING</h4>
+            </div>
+            <div class="modal-body" id="dateSameWarningModalBody">
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btnNextSubmit">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%-- MODAL FOR DATE SAME WARNING  -- END --%>
 
 <script type="text/javascript" src="../includes/js/booking.js"></script>
 <%--<script type="text/javascript" src="../includes/js/booking.min.js"></script>--%>

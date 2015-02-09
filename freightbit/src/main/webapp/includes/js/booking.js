@@ -4,6 +4,7 @@
  * this will be included at the BOTTOM of the jsp page
  */
 $(document).ready(function() {
+
     $('.serviceModeDropdown').change(function(){
         $('.addAddressItems').prop('disabled', true);
         if($(this).val() == 'PIER TO DOOR' || $(this).val() == 'PIER TO PIER'){
@@ -678,6 +679,15 @@ $(document).ready(function(){
 
 /*Mask input fields*/
 $(document).ready(function(){
+
+    dateSameValidation();
+
+    var formToSubmit = $('.addOrderForm');
+
+    $('.btnNextSubmit').click(function(){
+        formToSubmit.submit();
+     })
+
     $("#contact_phone").mask("(999) 999-9999");
     $("#customer_phone").mask("(999) 999-9999");
     $("#contact_mobile").mask("(+63999)(999-9999)");
@@ -692,7 +702,24 @@ $(document).ready(function(){
     $("#consignee_contact_fax").mask("(999) 999-9999");
 
     //validationForm('bookingInput', 'nextBtn', 'BOOKING');
+
 });
+
+function dateSameValidation() {
+    $('.nextBtn').click(function(){
+        var firstDate = new Date($('.pickupDateInput').val()),
+            lastDate = new Date($('.deliveryDateInput').val()),
+            formToSubmit = $('.addOrderForm');
+
+        if(firstDate.setHours(0,0,0,0) == lastDate.setHours(0,0,0,0)){
+            var message = 'Pickup Date and Delivery Date is the same, are you sure you wish to proceed?';
+            $('#dateSameWarningModalBody').empty().append(message);
+            $('#dateSameWarningModal').modal('show');
+        }else{
+            formToSubmit.submit();
+        }
+    })
+}
 
 function dynamicDropdown(select, index) {
     var opt = select.options,

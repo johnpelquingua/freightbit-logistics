@@ -34,14 +34,12 @@ function serviceValidate(){
         document.getElementById("item-menu").style.display = 'none';
 	    document.getElementById("cargo-menu").style.display = 'block';
 
-
 	}
 	else if(pos == "LESS CARGO LOAD" || pos == "LOOSE CARGO LOAD" || pos == "ROLLING CARGO LOAD"){
 
         document.getElementById("cargo").style.display = 'none';
         document.getElementById("cargo-menu").style.display = 'none';
 	    document.getElementById("item-menu").style.display = 'block';
-
 
 	}
 }
