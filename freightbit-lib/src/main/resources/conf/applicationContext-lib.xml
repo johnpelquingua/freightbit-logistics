@@ -164,6 +164,8 @@
 
     <bean id="authorizationToWithdrawReportService" class="com.sr.biz.freightbit.documentation.service.impl.AuthorizationToWithdrawReportServiceImpl"/>
 
+    <bean id="proformaBillOfLading2GOReportService" class="com.sr.biz.freightbit.documentation.service.impl.ProformaBillOfLading2GOReportServiceImpl"/>
+
     <bean id="equipmentInterchangeReceipt1ReportService" class="com.sr.biz.freightbit.documentation.service.impl.EquipmentInterchangeReceipt1ReportServiceImpl"/>
 
     <bean id="equipmentInterchangeReceipt2ReportService" class="com.sr.biz.freightbit.documentation.service.impl.EquipmentInterchangeReceipt2ReportServiceImpl"/>
