@@ -12,6 +12,7 @@
                 <s:else>
                     <h1><i class="fa fa-truck"></i> Dispatch Plan : Items</h1>
                 </s:else>
+
             </span>
         </legend>
         <ol class="breadcrumb">
@@ -176,7 +177,7 @@
                                                 style="text-align: center;"></display:column></td>
 
                             <td>
-                                <s:if test="%{#attr.orderItem.serviceRequirement}=='FULL CONTAINER LOAD'">
+                                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
                                     <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;">

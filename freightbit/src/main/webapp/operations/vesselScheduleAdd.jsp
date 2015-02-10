@@ -174,7 +174,8 @@
             if (arrivalDate.val() != '') {
                 var testStartDate = departureDate.datepicker('getDate');
                 var testEndDate = departureDate.datepicker('getDate');
-
+                console.log(testStartDate);
+                console.log(testEndDate);
                 if (testStartDate > testEndDate)
                     arrivalDate.datepicker('setDate', testStartDate);
             }
@@ -218,15 +219,11 @@
 
     $('#arrivalTime').timepicker( {
         timeFormat: 'h:mm TT'
-
     });
 
     $('#departureTime').timepicker( {
         timeFormat: 'h:mm TT'
-
     });
-
-
 
     // Avoid selecting duplicate ports
 
@@ -287,4 +284,5 @@
         validationForm('vesselInput', 'submitBtn');
         restrictField_Numbers('inputNumbersOnly');
     });
+
 </script>
