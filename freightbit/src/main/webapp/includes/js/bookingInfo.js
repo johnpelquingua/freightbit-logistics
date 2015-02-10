@@ -7,19 +7,45 @@ $(document).ready(function(){
         var declaredValField = $('.automaticDeclaredValue');
         switch($(this).val()){
             case '10 FOOTER' :
-                declaredValField.val('250,000.00');
+                declaredValField.val('250000.00');
                 break;
             case '20 FOOTER' :
-                declaredValField.val('500,000.00');
+                declaredValField.val('500000.00');
                 break;
             case '40 STD FOOTER' :
-                declaredValField.val('1,000,000.00');
+                declaredValField.val('1000000.00');
                 break;
             case '40 HC FOOTER' :
-                declaredValField.val('1,000,000.00');
+                declaredValField.val('1000000.00');
                 break;
             default :
                 declaredValField.val('');
+        }
+    });
+
+    if($('.cargoContainerSavingTable tbody tr').size() == 0){
+        $('.cargoContainerSavingTableDiv').hide()
+        $('.cargoContainerSavingTableLoadingDiv').show();
+    }
+
+    $('.containerQuantityDropdown').change(function () {
+        var quantityFCL = document.getElementById('orderItem_quantityFCL').value;
+        var totalValue = 0;
+        if (document.getElementById('orderItem.nameSize').value == "10 FOOTER") {
+            totalValue = quantityFCL * 250000; // compute for total value
+            document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
+        }
+        else if (document.getElementById('orderItem.nameSize').value == "20 FOOTER") {
+            totalValue = quantityFCL * 500000; // compute for total value
+            document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
+        }
+        else if (document.getElementById('orderItem.nameSize').value == "40 STD FOOTER") {
+            totalValue = quantityFCL * 1000000; // compute for total value
+            document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
+        }
+        else if (document.getElementById('orderItem.nameSize').value == "40 HC FOOTER") {
+            totalValue = quantityFCL * 1000000; // compute for total value
+            document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
         }
     });
 
@@ -35,11 +61,6 @@ $(document).ready(function(){
     addTotalRate();
     newlineHandler('itemListing', 8);
     actionConfirmation($('.itemListingDeleteActionIcon'), $('.itemListingDeleteConfirmBtn'), $('#itemListingDeleteModal'));
-
-    if($('.cargoContainerSavingTable tbody tr').size() == 0){
-        $('.cargoContainerSavingTableDiv').hide()
-        $('.cargoContainerSavingTableLoadingDiv').show();
-    }
 });
 
 // function to check if adding item memory exists
@@ -59,6 +80,7 @@ $(function(){
 
 function getThis(){
     localStorage.setItem("itemQuantityField",$("#orderItem_quantity").val());
+    localStorage.setItem("itemQuantityFCLField",$("#orderItem_quantityFCL").val());
     localStorage.setItem("itemNameField",$("#itemName").val());
     localStorage.setItem("itemRateField",$("#orderItem_rate").val());
     localStorage.setItem("itemDescriptionField",$("#orderItem_description_textfield").val());
@@ -66,10 +88,12 @@ function getThis(){
     localStorage.setItem("itemVolumeField",$("#orderItem_volume_textfield").val());
     localStorage.setItem("itemRemarksField",$("#orderItem_remarks").val());
     localStorage.setItem("itemValueField",$("#orderItem_declaredValue_textfield").val());
+    localStorage.setItem("itemDeclaredValueField",$("#orderItem_declaredValues").val());
 }
 
 function setThis(){
     $("#orderItem_quantity").val(localStorage.getItem("itemQuantityField"));
+    $("#orderItem_quantityFCL").val(localStorage.getItem("itemQuantityFCLField"));
     $("#itemName").val(localStorage.getItem("itemNameField"));
     $("#orderItem_rate").val(localStorage.getItem("itemRateField"));
     $("#orderItem_description_textfield").val(localStorage.getItem("itemDescriptionField"));
@@ -77,6 +101,7 @@ function setThis(){
     $("#orderItem_volume_textfield").val(localStorage.getItem("itemVolumeField"));
     $("#orderItem_remarks").val(localStorage.getItem("itemRemarksField"));
     $("#orderItem_declaredValue_textfield").val(localStorage.getItem("itemValueField"));
+    $("#orderItem_declaredValues").val(localStorage.getItem("itemDeclaredValueField"));
 }
 
 $( window ).load(function() {

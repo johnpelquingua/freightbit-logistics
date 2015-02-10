@@ -24,10 +24,10 @@
             <div class="form-group">
               <label class="col-lg-4 control-label" style="padding-top:0px;">Actual Date/Time: </label>
               <div class="col-lg-7" >
-                <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actualDate"/>
+                <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actDate"/>
                 <script>
                   $(function () {
-                    var actDate = $('#actualDate');
+                    var actDate = $('#actDate');
                     actDate.datetimepicker({
                       timeFormat: 'h:mm TT',
                       minDate: 0

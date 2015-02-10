@@ -24,6 +24,25 @@
 
     </div>
 </div>
+
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
+<s:if test="hasActionErrors()">
+    <div class="col-lg-12">
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <!-- /.row -->
 
 <div class="row">
@@ -293,8 +312,8 @@
                         <div class="col-lg-3" >
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
                             <span>
-                                <s:select cssClass="form-control"
-                                          id="orderItem.quantity"
+                                <s:select cssClass="form-control containerQuantityDropdown"
+                                          id="orderItem_quantityFCL"
                                           name="orderItem.quantity"
                                           list="containerQuantity"
                                           emptyOption="true"
