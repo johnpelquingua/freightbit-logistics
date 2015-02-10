@@ -403,8 +403,8 @@
                                     <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="outboundTable outbound_table table table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
                                         <td>
-                                            <%--<display:column title="<input type='checkbox' id='outboundCheckBox' name='outboundCheckBox'/>">--%>
-                                                <display:column title="">
+                                            <display:column title="<input type='checkbox' id='outboundCheckBox' name='outboundCheckBox'/>">
+                                                <%--<display:column title="">--%>
 
                                                 <%--<s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>--%>
                                                 <%--<s:property value="%{#attr.document.documentId}"/>--%>
@@ -599,8 +599,8 @@
                                         <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="inbound_table table table-hover table-bordered text-center tablesorter"
                                                        style="margin-top: 15px;">
                                             <td>
-                                                <%--<display:column title="<input type='checkbox' id='inboundCheckBox' />" class="tb-font-black" style="text-align: center;" >--%>
-                                                    <display:column title="">
+                                                <display:column title="<input type='checkbox' id='inboundCheckBox' name='inboundCheckBox'/>">
+                                                    <%--<display:column title="">--%>
                                                     <%--<s:if test=" documentTabInbound == 'INBOUND_STAGE' ">--%>
                                                         <s:if test="#attr.document.documentProcessed <= 1">
                                                             <%--<s:url var="checkDocumentInboundUrl" action="checkDocumentInbound">--%>
@@ -842,8 +842,8 @@
                                                    style="margin-top: 15px;">
 
                                         <td>
-                                            <%--<display:column title="<input type='checkbox' id='foCheckBox'/>" class="tb-font-black" style="text-align: center;">--%>
-                                            <display:column title="">
+                                            <display:column title="<input type='checkbox' id='finalOutboundCheckBox' name='finalOutboundCheckBox'/>">
+                                            <%--<display:column title="">--%>
 
                                                 <%--<s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND_STAGE' || documentTabFinalOutbound == 'FINAL_OUTBOUND_PENDING' ">--%>
 
@@ -1051,8 +1051,8 @@
                                                        style="margin-top: 15px;">
 
                                             <td>
-                                                <%--<display:column title="<input type='checkbox' id='fiCheckBox' />" class="tb-font-black" style="text-align: center;">--%>
-                                                <display:column title="">
+                                                <display:column title="<input type='checkbox' id='finalInboundCheckBox' name='finalInboundCheckBox'/>">
+                                                <%--<display:column title="">--%>
 
                                                     <s:if test="#attr.document.documentProcessed <= 3">
                                                         <%--<s:url var="checkDocumentFinalInboundUrl" action="checkDocumentFinalInbound">--%>
@@ -1210,8 +1210,8 @@
 
                                     <td>
 
-                                            <display:column title="" class="tb-font-black" style="text-align: center;" >
-                                            <%--<display:column title="<input type='checkbox' id='fiCheckBox' />" class="tb-font-black" style="text-align: center;" >--%>
+                                            <%--<display:column title="" class="tb-font-black" style="text-align: center;" >--%>
+                                            <display:column title="<input type='checkbox' id='completeCheckBox' name='completeCheckBox'/>">
 
                                                 <%--<s:if test=" documentTabComplete == 'COMPLETE_STAGE_ACTIVE' ">--%>
 
@@ -1517,12 +1517,48 @@
 
         $('.checkBtn').click(function(){
             localStorage.setItem('checkDocuments', 'FOCUS');
-        })
+        });
 
         $('i[class="fa fa-edit"]').click(function () {
             localStorage.setItem('editDocuments', 'FOCUS');
-        })
-    })
+        });
+
+        $('#outboundCheckBox').click(function () {
+            if ($('#document [type="checkbox"]:checked').length == $('#document [type="checkbox"]').size()) {
+                $('#document [type="checkbox"]').prop('checked', false);
+            } else {
+                $('#document [type="checkbox"]').prop('checked', true);
+            }
+        });
+        $('#inboundCheckBox').click(function () {
+            if ($('#document [type="checkbox"]:checked').length == $('#document [type="checkbox"]').size()) {
+                $('#document [type="checkbox"]').prop('checked', false);
+            } else {
+                $('#document [type="checkbox"]').prop('checked', true);
+            }
+        });
+        $('#finalOutboundCheckBox').click(function () {
+            if ($('#document [type="checkbox"]:checked').length == $('#document [type="checkbox"]').size()) {
+                $('#document [type="checkbox"]').prop('checked', false);
+            } else {
+                $('#document [type="checkbox"]').prop('checked', true);
+            }
+        });
+        $('#finalInboundCheckBox').click(function () {
+            if ($('#document [type="checkbox"]:checked').length == $('#document [type="checkbox"]').size()) {
+                $('#document [type="checkbox"]').prop('checked', false);
+            } else {
+                $('#document [type="checkbox"]').prop('checked', true);
+            }
+        });
+        $('#completeCheckBox').click(function () {
+            if ($('#document [type="checkbox"]:checked').length == $('#document [type="checkbox"]').size()) {
+                $('#document [type="checkbox"]').prop('checked', false);
+            } else {
+                $('#document [type="checkbox"]').prop('checked', true);
+            }
+        });
+    });
 
     $(function() {
         $('#myTab a:first').tab('show');
@@ -1635,6 +1671,10 @@ $( window ).load(function() {
     processDocumentStage('.final_inbound_table', $('.finalInboundTableMainDiv'), $('.finalInboundTableLoadingMainDiv'), 8);
     processDocumentStage('.completeTable', $('.completeTableMainDiv'), $('.completeTableLoadingMainDiv'), 8);
 
+    var check = document.getElementById("check");
+    for (var i = 0; i < check.length; i++) {
+        check[i].checked = true;
+    }
 });
 
 /*Script that will trigger input area*/

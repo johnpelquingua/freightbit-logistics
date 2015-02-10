@@ -5,21 +5,27 @@
 $(document).ready(function(){
     $('.containerSizeDropdown').change(function(){
         var declaredValField = $('.automaticDeclaredValue');
+        var quantityClearField = $('#orderItem_quantityFCL');
         switch($(this).val()){
             case '10 FOOTER' :
                 declaredValField.val('250000.00');
+                quantityClearField.val('');
                 break;
             case '20 FOOTER' :
                 declaredValField.val('500000.00');
+                quantityClearField.val('');
                 break;
             case '40 STD FOOTER' :
                 declaredValField.val('1000000.00');
+                quantityClearField.val('');
                 break;
             case '40 HC FOOTER' :
                 declaredValField.val('1000000.00');
+                quantityClearField.val('');
                 break;
             default :
                 declaredValField.val('');
+                quantityClearField.val('');
         }
     });
 
