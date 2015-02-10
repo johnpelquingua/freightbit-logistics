@@ -117,6 +117,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     private OrderItemsBean orderItem = new OrderItemsBean();
     private List<OrderItemsBean> orderItemVesselSchedule = new ArrayList<OrderItemsBean>();
+    private List<OrderItemsBean> orderItemOriginVendor = new ArrayList<OrderItemsBean>();
+    private List<OrderItemsBean> orderItemDestinationVendor = new ArrayList<OrderItemsBean>();
     private OperationsBean operationsBean = new OperationsBean();
     private DocumentsBean document = new DocumentsBean();
     private OrderBean order = new OrderBean();
@@ -734,6 +736,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         nameSizeList.add(orderItemEntity.getNameSize());
                     }
 
+                }
+
+                List<OrderItems> orderItemsListing = orderService.findAllItemByOrderId(orderEntity.getOrderId());
+
+                for(OrderItems orderItemElem : orderItemsListing){
+                    orderItemOriginVendor.add(transformToOrderItemFormBean(orderItemElem));
+                    orderItemDestinationVendor.add(transformToOrderItemFormBean(orderItemElem));
                 }
 
                 vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
@@ -4526,6 +4535,22 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setOrderItemVesselSchedule(List<OrderItemsBean> orderItemVesselSchedule) {
         this.orderItemVesselSchedule = orderItemVesselSchedule;
+    }
+
+    public List<OrderItemsBean> getOrderItemOriginVendor() {
+        return orderItemOriginVendor;
+    }
+
+    public void setOrderItemOriginVendor(List<OrderItemsBean> orderItemOriginVendor) {
+        this.orderItemOriginVendor = orderItemOriginVendor;
+    }
+
+    public List<OrderItemsBean> getOrderItemDestinationVendor() {
+        return orderItemDestinationVendor;
+    }
+
+    public void setOrderItemDestinationVendor(List<OrderItemsBean> orderItemDestinationVendor) {
+        this.orderItemDestinationVendor = orderItemDestinationVendor;
     }
 
     public List<Vendor> getVendorTruckingOriginList() {

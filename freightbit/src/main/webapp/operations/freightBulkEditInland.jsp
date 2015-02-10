@@ -8,7 +8,7 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-                <h1><i class="fa fa-anchor"></i> Dispatch Plan </h1>
+                <h1><i class="fa fa-anchor"></i> Dispatch Plan XXX</h1>
             </span>
         </legend>
         <ol class="breadcrumb">
@@ -259,6 +259,47 @@
                         </display:table>
                     </div>
                 </div>--%>
+
+                <div class="well">
+                    <h4 style="text-align:center;">Current Inland Vendor(s)</h4>
+                    <display:table id="currentOriginVendor" name="orderItemOriginVendor"
+                                   requestURI="/checkItemStatusInland.action" pagesize="10"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                   style="margin-top: 15px;">
+
+                            <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"></display:column></td>
+
+                            <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <td><display:column property="nameSize" title="Container" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                            </s:if>
+                            <s:else>
+                                <td><display:column property="nameSize" title="Item" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                            </s:else>
+
+                            <td><display:column property="vendorOriginName" title="Vendor" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="finalPickupDate" title="Vendor" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="vendorDestinationName" title="Destination Vendor <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="finalDeliveryDate" title="Delivery Date <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                            <td><display:column property="status" title="Status <i class='fa fa-sort' />"
+                                                class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+
+                    </display:table>
+                </div>
 
                 <div class="panel panel-primary">
                     <div class="panel-heading">
