@@ -14,12 +14,13 @@
           <s:form action="editItemListing" theme="bootstrap" cssClass="form-horizontal" >
           <s:hidden name="orderItem.orderItemId" value="%{orderItem.orderItemId}" />
           <s:hidden name="orderItem.vesselScheduleId" value="%{orderItem.vesselScheduleId}" />
-          <s:hidden name="orderItem.finalDeliveryDate" value="%{orderItem.finalDeliveryDate}" />
           <s:hidden name="orderItem.driverOrigin" value="%{orderItem.driverOrigin}" />
           <s:hidden name="orderItem.driverDestination" value="%{orderItem.driverDestination}" />
           <s:hidden name="orderItem.truckOrigin" value="%{orderItem.truckOrigin}" />
           <s:hidden name="orderItem.truckDestination" value="%{orderItem.truckDestination}" />
           <s:hidden name="orderItem.finalPickupDate" value="%{orderItem.finalPickupDate}" />
+          <%--<s:textfield value="%{orderItem.finalPickupDate}" />
+          <s:textfield value="%{orderItem.finalDeliveryDate}" />--%>
           <s:hidden name="orderItem.finalDeliveryDate" value="%{orderItem.finalDeliveryDate}" />
           <s:hidden name="orderItem.vendorOrigin" value="%{orderItem.vendorOrigin}" />
           <s:hidden name="orderItem.vendorDestination" value="%{orderItem.vendorDestination}" />
@@ -63,14 +64,16 @@
             </s:if>
             <s:else>
               <label class="col-lg-4 control-label" style="padding-top:0px;">Name: </label>
+              <%--<s:textfield value="%{orderItem.nameSize}" cssClass="nameSizeTextField"/>--%>
               <div class="col-lg-7" >
-                <input list="items" id="itemName" name="orderItem.nameSize" class="form-control" maxLength="30" required="true"/>
+                <%--<input list="items" id="itemName" name="orderItem.nameSize" class="form-control" maxLength="30" required="true"/>
                 <datalist id="items">
                   <s:iterator value="customerItems">
-                    <option value=<s:property value="%{customerItemsId}" /> ><s:property value="%{itemName}" /> </option>
                     <option id=<s:property value="%{customerItemsId}" /> value=<s:property value="%{itemName}" /> />
                   </s:iterator>
-                </datalist>
+                </datalist>--%>
+                  <s:textfield cssClass="form-control" name="orderItem.nameSize" required="true"></s:textfield>
+
               </div>
             </s:else>
           </div>
@@ -80,13 +83,13 @@
               <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL'">
                 <s:textfield cssClass="form-control" name="orderItem.weight" id="orderItem_weight" maxLength="9" required="true"
                              placeholder="XXXXXX.XX"
-                             pattern="\d+(\.\d{2})?"
+                             pattern="\d+(\.\d{1,2})?"
                 />
               </s:if>
               <s:else>
                 <s:textfield cssClass="form-control" name="orderItem.weight" id="orderItem_weight_textfield" maxLength="9" required="true"
                              placeholder="XXXXXX.XX"
-                             pattern="\d+(\.\d{2})?"
+                             pattern="\d+(\.\d{1,2})?"
                 />
               </s:else>
             </div>
@@ -98,7 +101,8 @@
                 <s:textfield cssClass="form-control" id="orderItem-volume" name="orderItem.volume"/>
               </s:if>
               <s:else>
-                <s:textfield cssClass="form-control" name="orderItem.volume" id="orderItem_volume_textfield" required="true"/>
+                <s:textfield cssClass="form-control" name="orderItem.volume" id="orderItem_volume_textfield" required="true"
+                        pattern="\d+(\.\d{1,2})?" />
               </s:else>
             </div>
           </div>

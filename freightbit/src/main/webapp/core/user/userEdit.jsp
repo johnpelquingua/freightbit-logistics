@@ -85,7 +85,7 @@
                             <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">User Name <span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                                <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control" maxlength="25" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control" maxlength="25" pattern="^[A-Za-z0-9_-]{4,}$"
                                              placeholder="User Name" title="Username must have minimum 4 characters."/>
                             </div>
                         </div>

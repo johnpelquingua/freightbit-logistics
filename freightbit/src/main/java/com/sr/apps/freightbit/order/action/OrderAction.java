@@ -673,7 +673,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String editItemListing() throws Exception {
+    public String editItemListing() {
         OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
         orderService.updateItemListing(orderItemEntity);
         return SUCCESS;
@@ -1250,6 +1250,17 @@ public class OrderAction extends ActionSupport implements Preparable {
         OrderItemsBean orderItemBean = new OrderItemsBean();
 
         orderItemBean.setOrderItemId(orderItem.getOrderItemId());
+        orderItemBean.setVesselScheduleId(orderItem.getVesselScheduleId());
+        orderItemBean.setDriverOrigin(orderItem.getDriverOrigin());
+        orderItemBean.setDriverDestination(orderItem.getDriverDestination());
+        orderItemBean.setTruckOrigin(orderItem.getTruckOrigin());
+        orderItemBean.setTruckDestination(orderItem.getTruckDestination());
+        orderItemBean.setFinalPickupDate(orderItem.getFinalPickupDate());
+        orderItemBean.setFinalDeliveryDate(orderItem.getFinalDeliveryDate());
+        orderItemBean.setVendorOrigin(orderItem.getVendorOrigin());
+        orderItemBean.setVendorDestination(orderItem.getVendorDestination());
+        orderItemBean.setVendorSea(orderItem.getVendorSea());
+        orderItemBean.setServiceRequirement(orderItem.getServiceRequirement());
         orderItemBean.setQuantity(orderItem.getQuantity());
         orderItemBean.setNameSize(orderItem.getNameSize());
         orderItemBean.setWeight(orderItem.getWeight());
@@ -1259,6 +1270,9 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderItemBean.setRate(orderItem.getRate());
         orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
         orderItemBean.setRemarks(orderItem.getComments());
+
+
+
 
         return orderItemBean;
     }
@@ -1419,13 +1433,19 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setCreatedTimestamp(new Date());
         entity.setModifiedTimestamp(new Date());
         entity.setVesselScheduleId(formBean.getVesselScheduleId());
-        entity.setFinalDeliveryDate(formBean.getFinalDeliveryDate());
+        if(!formBean.getFinalPickupDate().equals("")){
+            entity.setFinalPickupDate(formBean.getFinalPickupDate());
+        }
+        if(!formBean.getFinalDeliveryDate().equals("")) {
+            entity.setFinalDeliveryDate(formBean.getFinalDeliveryDate());
+            System.out.println("11111111111111111111111111111111111111111111111");
+        }else{
+            System.out.println("222222222222222222222222222222222222222222222222");
+        }
         entity.setDriverOrigin(formBean.getDriverOrigin());
         entity.setDriverDestination(formBean.getDriverDestination());
         entity.setTruckOrigin(formBean.getTruckOrigin());
         entity.setTruckDestination(formBean.getTruckDestination());
-        entity.setFinalPickupDate(formBean.getFinalPickupDate());
-        entity.setFinalDeliveryDate(formBean.getFinalDeliveryDate());
         entity.setVendorOrigin(formBean.getVendorOrigin());
         entity.setVendorDestination(formBean.getVendorDestination());
         entity.setVendorSea(formBean.getVendorSea());
