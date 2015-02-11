@@ -120,7 +120,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="customerName"
-                                          cssClass="basicInfoInput form-control step1 bookingInput"
+                                          cssClass="basicInfoInput form-control bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.customerId"
                                           list="customerList"
@@ -140,7 +140,7 @@
                             <div class="col-lg-10">
 
                                 <s:select id="order_modeOfPayment"
-                                          cssClass="basicInfoInput form-control step1 bookingInput"
+                                          cssClass="basicInfoInput form-control bookingInput"
                                           style="margin-bottom: 15px !important;"
                                           name="order.modeOfPayment"
                                           list="modeOfPaymentList"

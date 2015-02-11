@@ -126,7 +126,7 @@
                 <%--<s:property value="%{order.modeOfPayment}" />--%>
                 <%--<s:hidden name="order.modeOfPayment" value="%{order.modeOfPayment}" />--%>
                 <s:select id="order.modeOfPayment"
-                          cssClass="form-control step1"
+                          cssClass="form-control"
                           style="margin-bottom: 15px !important;"
                           name="order.modeOfPayment"
                           list="modeOfPaymentList"

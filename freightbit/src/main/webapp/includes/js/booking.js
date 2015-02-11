@@ -3,6 +3,69 @@
  * This script belongs to orderAdd.jsp
  * this will be included at the BOTTOM of the jsp page
  */
+
+// Date Time Picker
+var fromDatePickUp = $('#datepicker1');
+var toDateDelivery = $('#datepicker2');
+var ServiceValue = $('#order_modeOfService');
+
+//pick up date validation
+fromDatePickUp.datepicker({
+    // on 5:00pm
+    timeFormat: 'h:mm TT',
+    format : 'd.m.Y',
+    minDate : 0,
+    maxDate: "+1m +1w",
+
+    onClose: function(dateText, inst) {
+
+        if(ServiceValue.val() != 'PICKUP'){
+
+            if (toDateDelivery.val() != '') {
+                var testStartDate = fromDatePickUp.datetimepicker('getDate'),
+                testEndDate = toDateDelivery.datetimepicker('getDate');
+
+            if (testStartDate > testEndDate)
+                toDateDelivery.datetimepicker('setDate', testStartDate);
+            }
+        }
+    },
+
+    onSelect: function (selectedDateTime){
+        toDateDelivery.datetimepicker('option', 'minDate', fromDatePickUp.datetimepicker('getDate'));
+    },
+
+    beforeShow: function(){
+        if(ServiceValue.val() == 'PICKUP') {
+            var beginDate = fromDatePickUp.datetimepicker("option", "maxDate");
+            beginDate.setDate(beginDate.getDate()+999);
+        }
+    }
+});
+
+// delivery date validation -jp
+toDateDelivery.datepicker({
+    // on 6:00pm
+    timeFormat: 'h:mm TT',
+    minDate: 0,
+
+    onClose: function(dateText, inst) {
+        if(ServiceValue.val() !='DELIVERY'){
+            if (fromDatePickUp.val() != '') {
+                var testStartDate = fromDatePickUp.datetimepicker('getDate');
+                var testEndDate = toDateDelivery.datetimepicker('getDate');
+
+                if (testStartDate > testEndDate)
+                    fromDatePickUp.datetimepicker('setDate', testEndDate);
+            }
+        }
+    },
+
+    onSelect: function (selectedDateTime){
+        fromDatePickUp.datetimepicker('option', 'maxDate', toDateDelivery.datetimepicker('getDate') );
+    }
+});
+
 $(document).ready(function() {
 
     $('.serviceModeDropdown').change(function(){
@@ -102,28 +165,34 @@ $(document).ready(function() {
                     case 'DOOR TO PIER' :
                         select2.prop('disabled', false);
                         select4.prop('disabled', true);
+                        $("#consigneeAddress_textfield").prop('disabled', true);
                         $('<option>').val(key).text(value).appendTo(select2);
                         break;
                     case 'PIER TO DOOR' :
                         select2.prop('disabled', true);
                         select4.prop('disabled', false);
+                        $("#consigneeAddress_textfield").prop('disabled', false);
                         break;
                     case 'PIER TO PIER' :
                         select4.prop('disabled', true);
                         select2.prop('disabled', true);
+                        $("#consigneeAddress_textfield").prop('disabled', true);
                         break;
                     case 'PICKUP' :
                         select2.prop('disabled', false);
                         select4.prop('disabled', true);
+                        $("#consigneeAddress_textfield").prop('disabled', true);
                         $('<option>').val(key).text(value).appendTo(select2);
                         break;
                     case 'DELIVERY' :
                         select4.prop('disabled', false);
                         select2.prop('disabled', true);
+                        $("#consigneeAddress_textfield").prop('disabled', false);
                         break;
                     default :
                         select2.prop('disabled', false);
                         select4.prop('disabled', false);
+                        $("#consigneeAddress_textfield").prop('disabled', false);
                         $('<option>').val(key).text(value).appendTo(select2);
                         break;
                 }
@@ -282,10 +351,10 @@ $(document).ready(function() {
         });
     });
 
-    // Date Time Picker
+   /* // Date Time Picker
     var fromDatePickUp = $('#datepicker1');
     var toDateDelivery = $('#datepicker2');
-    var ServiceValue= $('#order_modeOfService');
+    var ServiceValue = $('#order_modeOfService');
 
     //pick up date validation
     fromDatePickUp.datepicker({
@@ -293,7 +362,10 @@ $(document).ready(function() {
         timeFormat: 'h:mm TT',
         minDate: 0,
         onClose: function(dateText, inst) {
-            if(ServiceValue.val() !='PICKUP'){
+
+            alert(ServiceValue);
+
+            *//*if(ServiceValue.val() !='PICKUP'){
                 if (toDateDelivery.val() != '') {
                     var testStartDate = fromDatePickUp.datetimepicker('getDate'),
                         testEndDate = toDateDelivery.datetimepicker('getDate');
@@ -301,11 +373,11 @@ $(document).ready(function() {
                     if (testStartDate > testEndDate)
                         toDateDelivery.datetimepicker('setDate', testStartDate);
                 }
-            } },
+            } *//*
+        },
 
         onSelect: function (selectedDateTime){
-            toDateDelivery.datetimepicker('option', 'minDate', fromDatePickUp.datetimepicker('getDate') );
-        }
+            toDateDelivery.datetimepicker('option', 'minDate', fromDatePickUp.datetimepicker('getDate') );        }
     });
 
     // delivery date validation -jp
@@ -327,7 +399,7 @@ $(document).ready(function() {
             fromDatePickUp.datetimepicker('option', 'maxDate', toDateDelivery.datetimepicker('getDate') );
         }
 
-    });
+    });*/
 });
 
 var sReq = select = document.getElementById('order_serviceRequirement');
@@ -557,28 +629,34 @@ $(document).ready(function(){
                         case 'DOOR TO PIER' :
                             $("#shipperAddress").prop('disabled', false);
                             $("#consigneeAddress").prop('disabled', true);
+                            $("#consigneeAddress_textfield").prop('disabled', true);
                             $('<option>').val(key).text(value).appendTo(select2);
                             break;
                         case 'PIER TO DOOR' :
                             $("#shipperAddress").prop('disabled', true);
                             $("#consigneeAddress").prop('disabled', false);
+                            $("#consigneeAddress_textfield").prop('disabled', false);
                             break;
                         case 'PIER TO PIER' :
                             $("#consigneeAddress").prop('disabled', true);
+                            $("#consigneeAddress_textfield").prop('disabled', true);
                             $("#shipperAddress").prop('disabled', true);
                             break;
                         case 'PICKUP' :
                             $("#shipperAddress").prop('disabled', false);
                             $("#consigneeAddress").prop('disabled', true);
+                            $("#consigneeAddress_textfield").prop('disabled', true);
                             $('<option>').val(key).text(value).appendTo(select2);
                             break;
                         case 'DELIVERY' :
                             $("#consigneeAddress").prop('disabled', false);
+                            $("#consigneeAddress_textfield").prop('disabled', false);
                             $("#shipperAddress").prop('disabled', true);
                             break;
                         default :
                             $("#shipperAddress").prop('disabled', false);
                             $("#consigneeAddress").prop('disabled', false);
+                            $("#consigneeAddress_textfield").prop('disabled', false);
                             $('<option>').val(key).text(value).appendTo(select2);
                             break;
                     }
@@ -738,6 +816,13 @@ function dynamicDropdown(select, index) {
             $("#shipperConsignee").val('');
             $("#consigneeAddress").val('');
             $("#consigneeAddress").prop('disabled', true);
+            $("#customerPhone_textfield").val('');
+            $("#customerMobile_textfield").val('');
+            $("#customerEmail_textfield").val('');
+            $("#customerFax_textfield").val('');
+            $("#consigneeAddress_textfield").val('');
+            $("#consigneeAddress_textfield").prop('disabled', true);
+            $("#consigneeContact").val('');
             break;
         case 'PIER TO DOOR' :
             $("#customerName").val('');
@@ -747,6 +832,13 @@ function dynamicDropdown(select, index) {
             $("#shipperConsignee").val('');
             $("#consigneeAddress").prop('disabled', false);
             $("#consigneeAddress").val('');
+            $("#customerPhone_textfield").val('');
+            $("#customerMobile_textfield").val('');
+            $("#customerEmail_textfield").val('');
+            $("#customerFax_textfield").val('');
+            $("#consigneeAddress_textfield").val('');
+            $("#consigneeAddress_textfield").prop('disabled', false);
+            $("#consigneeContact").val('');
             break;
         default :
             $("#customerName").val('');
@@ -756,6 +848,13 @@ function dynamicDropdown(select, index) {
             $("#shipperConsignee").val('');
             $("#consigneeAddress").prop('disabled', false);
             $("#consigneeAddress").val('');
+            $("#customerPhone_textfield").val('');
+            $("#customerMobile_textfield").val('');
+            $("#customerEmail_textfield").val('');
+            $("#customerFax_textfield").val('');
+            $("#consigneeAddress_textfield").val('');
+            $("#consigneeAddress_textfield").prop('disabled', false);
+            $("#consigneeContact").val('');
             break;
     }
 
@@ -797,8 +896,6 @@ function dynamicDropdown(select, index) {
             break;
     }
 
-
-
     // If Service Mode is Pier to Pier
     if (select.options[ index ].value === 'PIER TO PIER') {
         for (var i = 0; i < sType.options.length; i++){
@@ -814,6 +911,8 @@ function dynamicDropdown(select, index) {
         $("#shipperConsignee").val('');
         $("#consigneeAddress").prop('disabled', true);
         $("#consigneeAddress").val('');
+        $("#consigneeAddress_textfield").prop('disabled', true);
+        $("#consigneeAddress_textfield").val('');
     }else{
         for (var i = 0; i < sType.options.length; i++){
             if(sType.options[i].value == "SHIPPING AND TRUCKING"){
@@ -839,6 +938,8 @@ function dynamicDropdown(select, index) {
         $("#customerEmail_textfield").val('');
         $("#customerFax_textfield").val('');
         $("#Comments").val('');
+        $('#consigneeAddress_textfield').prop('disabled' , false);
+        $("#consigneeAddress_textfield").val('');
         $("#consigneeContact").val('');
 
         for (var i = 0; i < sMode.options.length; i++){
@@ -877,6 +978,8 @@ function dynamicDropdown(select, index) {
         $("#customerEmail_textfield").val('');
         $("#customerFax_textfield").val('');
         $("#Comments").val('');
+        $("#consigneeAddress_textfield").val('');
+        $('#consigneeAddress_textfield').prop('disabled' , false);
         $("#consigneeContact").val('');
         for (var i = 0; i < sMode.options.length; i++) {
             $("#order_modeOfService").val('');
@@ -912,6 +1015,8 @@ function dynamicDropdown(select, index) {
         $("#customerEmail_textfield").val('');
         $("#customerFax_textfield").val('');
         $("#Comments").val('');
+        $("#consigneeAddress_textfield").val('');
+        $('#consigneeAddress_textfield').prop('disabled' , false);
         $("#consigneeContact").val('');
         for (var i = 0; i < sMode.options.length; i++){
             $("#order_modeOfService").val('');

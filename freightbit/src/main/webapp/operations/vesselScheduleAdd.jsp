@@ -191,7 +191,7 @@
         onClose: function(dateText, inst) {
             if (arrivalDate.val() != '') {
                 var testStartDate = departureDate.datepicker('getDate');
-                var testEndDate = arrivalDate.datepicker('getDate');
+                var testEndDate = departureDate.datepicker('getDate');
 
                 if (testStartDate > testEndDate)
                     arrivalDate.datepicker('setDate', testStartDate);

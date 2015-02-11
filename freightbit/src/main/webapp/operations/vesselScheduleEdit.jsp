@@ -74,8 +74,8 @@
                             <label for="vesselSchedule.departureDate" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Date<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                                <s:textfield cssClass="form-control" id="departureDate"
-                                             name="vesselSchedule.departureDate"/>
+                                <s:textfield cssClass="form-control vesselInput departureDate" id="departureDate"
+                                             name="vesselSchedule.departureDate" readonly="true" placeholder="Click here to set Departure Date"/>
                             </div>
 
                         </div>
@@ -96,7 +96,7 @@
                             <label for="vesselSchedule.arrivalDate" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
-                                <s:textfield cssClass="form-control" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true"/>
+                                <s:textfield cssClass="form-control vesselInput arrivalDate" id="arrivalDate" name="vesselSchedule.arrivalDate" readonly="true" placeholder="Click here to set Arrival Date"/>
                             </div>
 
                         </div>
@@ -149,7 +149,8 @@
                     <button type="button" id="Cancel" class="btn" data-toggle="modal" data-target="#cancelEdit">
                         Cancel
                     </button>
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                    <%--<s:submit cssClass="btn btn-primary" name="submit" value="Save"/>--%>
+                    <button class="btn btn-primary submitBtn" type="button" disabled>Save</button>
                     </s:form>
                 </div>
 
@@ -160,7 +161,7 @@
     </div>
 </div>
 
-<!-- Cancel Booking Modal -->
+<!-- Cancel Vessel Schedule Modal -->
 <div class="modal fade" id="cancelEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -178,6 +179,25 @@
         </div>
     </div>
 </div>
+
+<%-- MODAL FOR SAME DATE WARNING  -- START --%>
+<div class="modal fade" id="dateWarningModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="color: red"><i class="fa fa-warning"></i> WARNING</h4>
+            </div>
+            <div class="modal-body" id="dateWarningModalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%-- MODAL FOR SAME DATE WARNING  -- END --%>
 
 <script type="text/javascript">
 
@@ -283,6 +303,9 @@
     };
 
     $(document).ready(function() {
+
+        sameDateValidationInit();
+
         $('#vendorId').change(function(event) {
             var vendorId = $("#vendorId").val();
 
@@ -324,9 +347,10 @@
                     });
 
                 });
-
         });
 
+        validationForm('vesselInput', 'submitBtn');
+        restrictField_Numbers('inputNumbersOnly');
     });
 
 </script>

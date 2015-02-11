@@ -901,7 +901,7 @@
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
                     <div class="col-lg-8">
-                        <s:textfield cssClass="from_date form-control step2 finalPickupDate" value="%{orderItem.finalPickupdate}"
+                        <s:textfield cssClass="from_date form-control finalPickupDate" value="%{orderItem.finalPickupdate}"
                                      id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
                                      contenteditable="false" style="margin-bottom: 15px !important;"/>
                     </div>
@@ -1300,7 +1300,7 @@
         dateFormat: 'yy-mm-dd',
         minDate: 0,
         onClose: function (dateText, inst) {
-
+//            alert(pickup);
             if (dropoff.val() != '') {
                 var testStartDate = pickup.datepicker('getDate');
                 var testEndDate = dropoff.datepicker('getDate');
@@ -1346,7 +1346,6 @@
         onSelect: function (selectedDateTime) {
             pickup.datetimepicker('option', 'maxDate', dropoff.datetimepicker('getDate'));
         }
-
     });
 
     $(document).ready(function () {
