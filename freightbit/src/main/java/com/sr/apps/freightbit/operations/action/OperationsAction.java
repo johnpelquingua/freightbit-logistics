@@ -554,7 +554,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
 
-                if(planning1.size() > 0 || onGoing.size() > 0) {
+                if(planning1.size() > 0 || planning2.size() > 0 || onGoing.size() > 0) {
                     return "EDIT";
                 }
                 else{

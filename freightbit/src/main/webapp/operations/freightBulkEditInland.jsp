@@ -8,7 +8,7 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-                <h1><i class="fa fa-anchor"></i> Dispatch Plan XXX</h1>
+                <h1><i class="fa fa-anchor"></i> Dispatch Plan </h1>
             </span>
         </legend>
         <ol class="breadcrumb">

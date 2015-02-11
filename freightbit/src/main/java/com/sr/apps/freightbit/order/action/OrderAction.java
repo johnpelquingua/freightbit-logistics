@@ -676,6 +676,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     public String editItemListing() {
         OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
         orderService.updateItemListing(orderItemEntity);
+
         return SUCCESS;
     }
 
@@ -1433,15 +1434,17 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setCreatedTimestamp(new Date());
         entity.setModifiedTimestamp(new Date());
         entity.setVesselScheduleId(formBean.getVesselScheduleId());
-        if(!formBean.getFinalPickupDate().equals("") || formBean.getFinalPickupDate() != null){
-            entity.setFinalPickupDate(formBean.getFinalPickupDate());
+        entity.setFinalPickupDate(formBean.getFinalPickupDate());
+        entity.setFinalDeliveryDate(formBean.getFinalDeliveryDate());
+        /*if(!orderItem.getFinalPickupDate().equals("") || orderItem.getFinalPickupDate() != null){
+            entity.setFinalPickupDate(orderItem.getFinalPickupDate());
         }
-        if(!formBean.getFinalDeliveryDate().equals("") || formBean.getFinalDeliveryDate() != null) {
-            entity.setFinalDeliveryDate(formBean.getFinalDeliveryDate());
+        if(!orderItem.getFinalDeliveryDate().equals("") || orderItem.getFinalDeliveryDate() != null) {
+            entity.setFinalDeliveryDate(orderItem.getFinalDeliveryDate());
             System.out.println("11111111111111111111111111111111111111111111111");
         }else{
             System.out.println("222222222222222222222222222222222222222222222222");
-        }
+        }*/
         entity.setDriverOrigin(formBean.getDriverOrigin());
         entity.setDriverDestination(formBean.getDriverDestination());
         entity.setTruckOrigin(formBean.getTruckOrigin());
