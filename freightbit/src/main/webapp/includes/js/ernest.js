@@ -943,18 +943,22 @@ function dateValidationInit(){
     })
 }
 
-//function preventDuplicatePort(select, index) {
-//    var options = select.options,
-//        len = options.length;
-//
-//    select.options[ index ].disabled = true;
-//
-//    if (index === select.selectedIndex) {
-//        alert('You already selected the same port "' + select.options[index].text + '". Please choose another');
-//        this.selectedIndex = 0;
-//        select2.value = '';
-//    }
-//}
+function sameDateValidationInit(){
+    $('.submitBtn').click(function(){
+        var departureDate = new Date($('.departureDate').val()),
+            arrivalDate = new Date($('.arrivalDate').val()),
+            submitBtn = $('.submitBtn'),
+            formToSubmit = $('.vesselScheduleForm');
+
+        if(departureDate.setHours(0, 0, 0, 0) == arrivalDate.setHours(0, 0, 0, 0)) {
+            var message = 'Departure Date is the same with Arrival Date';
+            $('#dateWarningModalBody').empty().append(message);
+            $('#dateWarningModal').modal('show');
+        }else{
+            formToSubmit.submit();
+        }
+    })
+}
 
 function vesselScheduleColor(tableClass, departureColumn){
     var tableDepartureColumn = $('#'+tableClass+' tbody tr td:nth-child('+departureColumn+')');

@@ -29,7 +29,7 @@
 
             <div class="panel-body">
 
-                <s:form cssClass="form-horizontal" theme="bootstrap" action="addVesselSchedule">
+                <s:form cssClass="form-horizontal vesselScheduleForm" theme="bootstrap" action="addVesselSchedule">
                 <%--<s:hidden value="%{vesselSchedule.vesselScheduleId}" name="vesselSchedule.vesselScheduleId"/>--%>
                 <%--<s:hidden value="%{vesselSchedule.createdBy}" name="vesselSchedule.createdBy"/>--%>
                 <%--<s:hidden value="%{vesselSchedule.createdTimestamp}" name="vesselSchedule.createdTimestamp"/>--%>
@@ -64,7 +64,7 @@
                 <div class="form-group">
                     <label for="vesselSchedule.departureDate" class="col-lg-2 control-label" style="padding-top:0px;"> Departure Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-9">
-                        <s:textfield cssClass="form-control vesselInput" id="departureDate"
+                        <s:textfield cssClass="form-control vesselInput departureDate" id="departureDate"
                                      name="vesselSchedule.departureDate" readonly="true" placeholder="Click here to set Departure Date"/>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                 <div class="form-group">
                     <label for="vesselSchedule.arrivalDate" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date<span class="asterisk_red"></span></label>
                     <div class="col-lg-9">
-                        <s:textfield cssClass="form-control vesselInput"
+                        <s:textfield cssClass="form-control vesselInput arrivalDate"
                                      id="arrivalDate"
                                      name="vesselSchedule.arrivalDate"
                                      readonly="true"
@@ -130,7 +130,8 @@
                         Cancel
                     </button>
                     <%--<button class="btn btn-primary" name="submit" type="button" onclick="validateInputContent()">Save</button>--%>
-                    <s:submit cssClass="btn btn-primary submitBtn" name="submit" value="Save" disabled="true"/>
+                    <%--<s:submit cssClass="btn btn-primary submitBtn" name="submit" value="Save" disabled="true"/>--%>
+                    <button class="btn btn-primary submitBtn" type="button" disabled>Save</button>
                     </s:form>
                 </div>
             </div>
@@ -139,8 +140,7 @@
     </div>
 </div>
 
-
-<!-- Cancel Booking Modal -->
+<!-- Cancel Vessel Schedule Modal -->
 <div class="modal fade" id="cancelBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -159,6 +159,24 @@
     </div>
 </div>
 
+<%-- MODAL FOR SAME DATE WARNING  -- START --%>
+<div class="modal fade" id="dateWarningModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="color: red"><i class="fa fa-warning"></i> WARNING</h4>
+            </div>
+            <div class="modal-body" id="dateWarningModalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%-- MODAL FOR SAME DATE WARNING  -- END --%>
 
 <script type="text/javascript">
 
@@ -173,9 +191,8 @@
         onClose: function(dateText, inst) {
             if (arrivalDate.val() != '') {
                 var testStartDate = departureDate.datepicker('getDate');
-                var testEndDate = departureDate.datepicker('getDate');
-                console.log(testStartDate);
-                console.log(testEndDate);
+                var testEndDate = arrivalDate.datepicker('getDate');
+
                 if (testStartDate > testEndDate)
                     arrivalDate.datepicker('setDate', testStartDate);
             }
@@ -204,7 +221,6 @@
 
                 if (testStartDate > testEndDate)
                     departureDate.datepicker('setDate', testEndDate);
-
             }
 
             else {
@@ -260,6 +276,9 @@
     };
 
     $(document).ready(function() {
+
+        sameDateValidationInit();
+
         $('#vendorId').change(function(event) {
             var vendorId = $("#vendorId").val();
 
@@ -276,7 +295,6 @@
                         $.each(jsonResponse.vesselMap, function(key, value) {
                             $('<option>').val(key).text(value).appendTo(vessel);
                         });
-
 
                     });
         });

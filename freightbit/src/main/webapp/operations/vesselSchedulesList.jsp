@@ -2,6 +2,12 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+<style>
+    .deleteVesselScheduleIcon {
+        cursor: pointer;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12">
 
@@ -21,7 +27,7 @@
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
@@ -96,8 +102,8 @@
                                      onclick="return confirm('Do you really want to delete?');">
                                     <%--<img src="../includes/images/delete-booking.png" class="icon-action circ-icon"
                                          style="border-radius:25%;">--%>
-                                    <i class="fa fa-trash-o"></i>
                                 </s:a>
+                                    <i class="fa fa-trash-o deleteVesselScheduleIcon"></i>
 
                             </display:column>
                         </td>
@@ -140,8 +146,27 @@
     </div>
 </div>
 
+<div class="modal fade" id="deleteVesselScheduleModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Delete Vessel Schedule</span>
+            </div>
+            <div class="modal-body">
+                This Vessel Schedule might have bookings associated to it. Please confirm deletion. Are you sure you want to delete this Vessel Schedule?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                <a href="" class="btn btn-danger confirmDeleteModalBtn">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+
     $(document).ready(function () {
+        actionConfirmation($('.deleteVesselScheduleIcon'),$('.confirmDeleteModalBtn'),$('#deleteVesselScheduleModal'));
         tableProp('DESTI_ORIG', 'vesselSchedule', 0, 0, 0, 0, 4, 5, 0);
         vesselScheduleColor('vesselSchedule', 6);
         dateAbbrev_Format2('vesselSchedule', 6);
@@ -163,4 +188,5 @@
             }
         });
     }
+
 </script>
