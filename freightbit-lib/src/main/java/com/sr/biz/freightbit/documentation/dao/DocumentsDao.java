@@ -17,6 +17,8 @@ public interface DocumentsDao {
 
     public List<Documents> findDocumentsByOrderId(Integer orderId);
 
+    public List<Documents> findDocumentsByOrderNumber(String orderNumber);
+
     public List<Documents> findOperationDocumentsByOrderId(Integer orderId);
 
     public Documents findDocumentById(Integer documentId);

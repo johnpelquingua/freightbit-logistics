@@ -10,6 +10,7 @@ import com.sr.apps.freightbit.customer.formbean.CustomerBean;
 import com.sr.apps.freightbit.customer.formbean.ItemBean;
 import com.sr.apps.freightbit.customer.formbean.RatesBean;
 import com.sr.apps.freightbit.util.CommonUtils;
+import com.sr.apps.freightbit.util.DocumentsConstants;
 import com.sr.apps.freightbit.util.ParameterConstants;
 import com.sr.biz.freightbit.common.entity.Address;
 import com.sr.biz.freightbit.common.entity.Contacts;
@@ -17,6 +18,7 @@ import com.sr.biz.freightbit.common.entity.Notification;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.documentation.service.DocumentsService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
 import com.sr.biz.freightbit.core.service.ClientService;
@@ -26,11 +28,13 @@ import com.sr.biz.freightbit.customer.entity.Rates;
 import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.customer.service.ItemService;
+import com.sr.biz.freightbit.documentation.entity.Documents;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+import javax.persistence.criteria.Order;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -79,12 +83,13 @@ public class CustomerAction extends ActionSupport implements Preparable {
     private ContactBean consigneeContact = new ContactBean();
 
     private CustomerService itemService;
-    private ItemService itemServices;
+//    private ItemService itemServices;
     private CustomerService customerService;
     private ClientService clientService;
     private ParameterService parameterService;
     private NotificationService notificationService;
     private CommonUtils commonUtils;
+    private DocumentsService documentsService;
     private OrderService orderService;
 
     // customer module checkboxes values
@@ -385,7 +390,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String deleteCustomer() {
-        List<Orders> orderEntityList = orderService.findCustomerWithBooking(customerIdParam);
+        List<Orders> orderEntityList =   orderService.findCustomerWithBooking(customerIdParam);
 
         if(orderEntityList.size()>0){
             clearErrorsAndMessages();
@@ -434,10 +439,122 @@ public class CustomerAction extends ActionSupport implements Preparable {
         }
 
         try {
+            // to get the old customer code
+            Customer CustomerOldEntity = customerService.findCustomerById(customer.getCustomerId());
+            String oldCode = CustomerOldEntity.getCustomerCode();
+            // customer to save
             Customer customerEntity = transformToEntityBean(customer);
             customerEntity.setModifiedBy(commonUtils.getUserNameFromSession());
             customerEntity.setModifiedTimestamp(new Date());
             customerService.updateCustomer(customerEntity);
+            // loop to change all order number to the new code begin
+            if(oldCode != customerEntity.getCustomerCode()){
+                List <Orders> orderEntityList = orderService.findCustomerWithBooking(customerEntity.getCustomerId());
+                // All booking number will be changed to the new code
+                for(Orders orderParam : orderEntityList){
+
+                    /*--------------------- BOOKING ------------------------------*/
+                    String bookingNumber = orderParam.getOrderNumber();
+                    String changeCode = bookingNumber.replace(oldCode, customerEntity.getCustomerCode());
+                    Orders insideOrderEntity = orderService.findOrdersById(orderParam.getOrderId());
+
+                    Orders entity = new Orders();
+
+                    Client client = clientService.findClientById(getClientId().toString());
+                    entity.setClient(client);
+                    entity.setOrderNumber(changeCode);
+
+                    if(insideOrderEntity.getOrderId() != null){
+                        entity.setOrderId(new Integer((insideOrderEntity.getOrderId())));
+                    }
+
+                    entity.setServiceRequirement(insideOrderEntity.getServiceRequirement());
+                    entity.setServiceType(insideOrderEntity.getServiceType());
+                    entity.setOrderDate(insideOrderEntity.getOrderDate());
+                    entity.setServiceMode(insideOrderEntity.getServiceMode());
+                    entity.setNotificationType(insideOrderEntity.getNotificationType());
+                    entity.setPaymentMode(insideOrderEntity.getPaymentMode());
+                    entity.setOriginationPort(insideOrderEntity.getOriginationPort());
+                    entity.setDestinationPort(insideOrderEntity.getDestinationPort());
+                    entity.setComments(insideOrderEntity.getComments());
+
+                    if (insideOrderEntity.getOrderStatus() != null) {
+                        entity.setOrderStatus(insideOrderEntity.getOrderStatus());
+                    } else {
+                        entity.setOrderStatus("INCOMPLETE");
+                    }
+
+                    entity.setRates(00.00); // still to be updated
+                    entity.setCreatedBy(commonUtils.getUserNameFromSession());
+                    entity.setAccountRep(commonUtils.getUserNameFromSession());
+                    entity.setModifiedBy(commonUtils.getUserNameFromSession());
+                    entity.setCreatedTimestamp(insideOrderEntity.getCreatedTimestamp());
+                    entity.setModifiedTimestamp(new Date());
+                    entity.setShipperAddressId(insideOrderEntity.getShipperAddressId());
+                    entity.setShipperContactId(insideOrderEntity.getShipperContactId());
+                    entity.setConsigneeAddressId(insideOrderEntity.getConsigneeAddressId());
+                    entity.setConsigneeContactId(insideOrderEntity.getConsigneeContactId());
+                    entity.setDeliveryDate(insideOrderEntity.getDeliveryDate());
+                    entity.setPickupDate(insideOrderEntity.getPickupDate());
+                    entity.setConsigneeContactPersonId(insideOrderEntity.getConsigneeContactPersonId());
+                    entity.setCustomerId(insideOrderEntity.getCustomerId());
+
+                    orderService.updateOrder(entity);
+                    /*--------------------- BOOKING ------------------------------*/
+
+                    /*--------------------- DOCUMENTS ------------------------------*/
+
+                    /*List<Documents> documentsEntityList = documentsService.findDocumentsByOrderNumber(orderEntityList.get(0).getOrderNumber());
+
+                    for(Documents documentsElem : documentsEntityList){
+
+                        String bookingNumber = orderParam.getOrderNumber();
+                        String changeCode = bookingNumber.replace(oldCode, customerEntity.getCustomerCode());
+
+                        Documents insideDocumentEntity = documentsService.findDocumentById(documentsElem.getDocumentId());
+
+                        Documents documentEntity = new Documents();
+
+                        Client client = clientService.findClientById(getClientId().toString());
+                        documentEntity.setClient(client);
+
+                        documentEntity.setDocumentName(insideDocumentEntity.getDocumentName());
+                        documentEntity.setDocumentType(insideDocumentEntity.getDocumentType());
+                        documentEntity.setReferenceId(insideDocumentEntity.getReferenceId());
+                        documentEntity.setReferenceTable(insideDocumentEntity.getReferenceTable());
+                        documentEntity.setOrderNumber(changeCode);
+                        documentEntity.setCreatedDate(insideDocumentEntity.getCreatedDate());
+                        documentEntity.setDocumentStatus(insideDocumentEntity.getDocumentStatus());
+                        documentEntity.setDocumentProcessed(insideDocumentEntity.getDocumentProcessed());
+                        documentEntity.setReferenceNumber(insideDocumentEntity.getReferenceNumber());
+                        documentEntity.setOutboundStage(insideDocumentEntity.getOutboundStage());
+                        documentEntity.setInboundStage(insideDocumentEntity.getInboundStage());
+                        documentEntity.setFinalOutboundStage(insideDocumentEntity.getFinalOutboundStage());
+                        documentEntity.setFinalInboundStage(insideDocumentEntity.getFinalInboundStage());
+                        documentEntity.setCompleteStage(insideDocumentEntity.getCompleteStage());
+                        documentEntity.setArchiveStage(insideDocumentEntity.getArchiveStage());
+                        documentEntity.setBillingStage(insideDocumentEntity.getBillingStage());
+                        documentEntity.setInboundReturned(insideDocumentEntity.getInboundReturned());
+                        documentEntity.setFinalOutboundSent(insideDocumentEntity.getFinalOutboundSent());
+                        documentEntity.setFinalInboundReturned(insideDocumentEntity.getFinalInboundReturned());
+                        documentEntity.setFinalOutboundLbc(insideDocumentEntity.getFinalOutboundLbc());
+                        documentEntity.setFinalInboundReceivedBy(insideDocumentEntity.getFinalInboundReceivedBy());
+                        documentEntity.setCreatedBy(insideDocumentEntity.getCreatedBy());
+                        documentEntity.setDocumentComments(insideDocumentEntity.getDocumentComments());
+                        documentEntity.setVendorCode(insideDocumentEntity.getVendorCode());
+                        documentEntity.setOrderItemId(insideDocumentEntity.getOrderItemId());
+                        documentEntity.setAging(insideDocumentEntity.getAging());
+
+                        documentsService.addDocuments(documentEntity);
+                    }*/
+
+                    /*--------------------- DOCUMENTS ------------------------------*/
+
+                }
+
+            }
+            // loop to change all order number to the new code end
+
         } catch (CustomerAlreadyExistsException e) {
             addFieldError("customer.customerCode", getText("Company Code Already Exists"));
             return INPUT;
@@ -1786,5 +1903,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public void setConsigneeContact(ContactBean consigneeContact) {
         this.consigneeContact = consigneeContact;
+    }
+
+    public void setDocumentsService(DocumentsService documentsService) {
+        this.documentsService = documentsService;
     }
 }

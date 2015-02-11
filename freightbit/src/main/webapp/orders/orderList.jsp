@@ -152,7 +152,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{approveOrderUrl}" rel="tooltip" title="Approve Booking" onclick="return confirm('Approve Booking?');">
                                         </s:a>
-                                        <i class="fa fa-check approveBookingIcon table-action-icons"></i>
+                                        <i class="fa fa-check approveBookingIcon"></i>
                                     </s:if>
                                     <s:if test=" #attr.order.orderStatus == 'APPROVED' || #attr.order.orderStatus == 'INCOMPLETE' || #attr.order.orderStatus == 'ON GOING'">
                                         | <%--separator--%>
@@ -162,7 +162,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{cancelOrderUrl}" rel="tooltip" title="Cancel Booking" onclick="return confirm('Cancel Booking?');">
                                         </s:a>
-                                        <i class="fa fa-times cancelBookingIcon table-action-icons"></i>
+                                        <i class="fa fa-times cancelBookingIcon"></i>
                                     </s:if>
 
                                 </display:column>

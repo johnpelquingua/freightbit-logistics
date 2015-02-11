@@ -397,7 +397,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Orders> findCustomerWithBooking(Integer customerId) {
-        List<Orders> result=orderDao.findCustomerWithBooking(customerId);
+        List<Orders> result = orderDao.findCustomerWithBooking(customerId);
         return result;
     }
 }

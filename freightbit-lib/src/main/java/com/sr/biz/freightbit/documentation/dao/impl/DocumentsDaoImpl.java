@@ -109,6 +109,21 @@ public class DocumentsDaoImpl extends HibernateDaoSupport implements DocumentsDa
     }
 
     @Override
+    public List<Documents> findDocumentsByOrderNumber(String orderNumber) {
+        log.debug("getting Documents instance by order id:"  + orderNumber);
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Documents d where d.orderNumber = :orderNumber");
+            query.setParameter("orderNumber", orderNumber);
+            List<Documents> results = (List<Documents>) query.list();
+            log.debug("find by order id successful, result size:" + results.size());
+            return results;
+        }catch (RuntimeException re){
+            log.error("get failed", re);
+            throw re;
+        }
+    }
+
+    @Override
     public List<Documents> findOperationDocumentsByOrderId(Integer orderId) {
 
         List<String> documentNameList = new ArrayList<>();

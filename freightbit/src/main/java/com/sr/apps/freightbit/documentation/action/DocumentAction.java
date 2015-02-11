@@ -775,8 +775,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             archiveDocuments.add(transformDocumentsToFormBean(documentElem));
         }
 
-
-
         return SUCCESS;
     }
 

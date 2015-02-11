@@ -197,7 +197,7 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    @Column(name = "comments", nullable = false)
+    @Column(name = "comments")
     public String getComments() {
         return this.comments;
     }

@@ -252,11 +252,9 @@ public class VendorAction extends ActionSupport implements Preparable {
 
     public String deleteVendor() {
         Vendor vendorEntity = vendorService.findVendorByVendorCode(vendorCodeParam);
-
         List<VesselSchedules> activeVesselSchedules = operationsService.findVesselScheduleByVendorId(vendorEntity.getVendorId());
 
         if(activeVesselSchedules.size() > 0){
-
             return "errorInput";
         }
         else{
