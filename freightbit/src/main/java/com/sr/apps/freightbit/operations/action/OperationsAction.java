@@ -554,11 +554,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 sessionAttributes.put("nameSizeList", nameSizeList);
 
-                if(planning1.size() > 0 || planning2.size() > 0 || onGoing.size() > 0) {
+                if(planning1.size() > 0 || planning2.size() > 0 || planning3.size() > 0 || onGoing.size() > 0) {
                     return "EDIT";
                 }
                 else{
-                    return "errorInput";
+                    return "errorEditInput";
                 }
             }
         }
@@ -751,6 +751,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 sessionAttributes.put("nameSizeList", nameSizeList);
                 if(planning2.size() > 0 || planning3.size() >  0 || onGoing.size() > 0) {
                     return "EDIT";
+                }
+                else if(planning1.size() > 0) {
+                    return "errorEditInput";
                 }
                 else{
                     return "errorInput";
@@ -2203,9 +2206,53 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String viewSeaFreightItemListErrorEditInput() {
+        clearErrorsAndMessages();
+        addActionError("Status must be Planning 1 to 3 and On Going only.");
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
+
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParamSession);
+        order = transformToOrderFormBean(orderEntity);
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParamSession);
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        return SUCCESS;
+    }
+
     public String viewInlandFreightItemListErrorInput() {
         clearErrorsAndMessages();
         addActionError("Status must be Planning 2 or Planning 3 only.");
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        Integer orderIdParamSession = (Integer) sessionAttributes.get("orderIdParam");
+
+        List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
+
+        Orders orderEntity = orderService.findOrdersById(orderIdParamSession);
+        order = transformToOrderFormBean(orderEntity);
+
+        orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParamSession);
+
+        for(OrderItems orderItemsElem : orderItemsList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        return SUCCESS;
+    }
+
+    public String viewInlandFreightItemListErrorEditInput() {
+        clearErrorsAndMessages();
+        addActionError("Planning 1 should only be editable in Freight Planning only.");
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
