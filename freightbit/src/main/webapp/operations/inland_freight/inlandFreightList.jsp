@@ -106,7 +106,7 @@
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
                                                 <i style="color: red;" class="fa fa-ban"></i>                                            </s:if>
                                             <s:else>
                                                 <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
@@ -163,8 +163,8 @@
 
                                         <td>
                                             <display:column title="Action">
-                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
-                                                    <i class="fa fa-ban"></i>
+                                                <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                    <i style="color: red;" class="fa fa-ban"></i>
                                                 </s:if>
                                                 <s:else>
                                                     <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
@@ -223,8 +223,8 @@
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
-                                                <i class="fa fa-ban"></i>
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
                                                 <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
@@ -280,8 +280,8 @@
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
-                                                <i class="fa fa-ban"></i>
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
                                                 <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
@@ -358,8 +358,8 @@
                                         <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
-                                                <i class="fa fa-ban"></i>
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
                                                 <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
@@ -407,8 +407,8 @@
                                         <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
-                                                <i class="fa fa-ban"></i>
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
                                                 <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
@@ -498,8 +498,8 @@
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
-                                                <i class="fa fa-ban"></i>
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
                                                 <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
@@ -554,8 +554,8 @@
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
-                                                <i class="fa fa-ban"></i>
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
                                                 <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
@@ -612,8 +612,8 @@
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
-                                                <i class="fa fa-ban"></i>
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
                                                 <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
@@ -667,8 +667,8 @@
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column title="Action">
-                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE'">
-                                                <i class="fa fa-ban"></i>
+                                            <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
+                                                <i style="color: red;" class="fa fa-ban"></i>
                                             </s:if>
                                             <s:else>
                                                 <s:url var="viewFreightItemListUrl" action="viewInlandFreightItemList">
@@ -719,6 +719,10 @@
                                 <td><i class='fa fa-print' ></i> Print</td>
                                 <td><i class='fa fa-check' ></i> Approve</td>
                                 <td><i class='fa fa-times' ></i> Cancel</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><i style="color: red;" class='fa fa-ban'></i> Actions Disabled</td>
                             </tr>
                         </table>
                     </div>

@@ -1433,10 +1433,10 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setCreatedTimestamp(new Date());
         entity.setModifiedTimestamp(new Date());
         entity.setVesselScheduleId(formBean.getVesselScheduleId());
-        if(!formBean.getFinalPickupDate().equals("")){
+        if(!formBean.getFinalPickupDate().equals("") || formBean.getFinalPickupDate() != null){
             entity.setFinalPickupDate(formBean.getFinalPickupDate());
         }
-        if(!formBean.getFinalDeliveryDate().equals("")) {
+        if(!formBean.getFinalDeliveryDate().equals("") || formBean.getFinalDeliveryDate() != null) {
             entity.setFinalDeliveryDate(formBean.getFinalDeliveryDate());
             System.out.println("11111111111111111111111111111111111111111111111");
         }else{
