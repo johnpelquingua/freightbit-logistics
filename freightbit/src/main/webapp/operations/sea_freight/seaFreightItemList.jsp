@@ -249,7 +249,7 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewFreightPlanningUrl}" rel="tooltip"
                                              title="Set Schedule">
-                                            <i class="fa fa-edit"></i>
+                                            <i class="fa fa-tasks"></i>
                                         </s:a>
 
                                         <s:url var="viewInfoUrl" action="viewSeaFreightInfo">

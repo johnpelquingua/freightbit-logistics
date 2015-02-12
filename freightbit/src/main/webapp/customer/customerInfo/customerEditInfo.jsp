@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <label class="col-lg-12 control-label" style="padding-top:0px !important; margin-top: 0px !important; text-align:left;">Company Name / Customer Name<span class="asterisk_red"></span></label>
                                 <div class="col-lg-12" >
-                                    <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" />
+                                    <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" />
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                             <div class="form-group">
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Website</label>
                                 <div class="col-lg-7" >
-                                    <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website" pattern="^([_A-Za-z0-9-\\]+)*(\\.[_A-Za-z]{3,})$" title="Proper Format: example.com"/>
+                                    <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website" pattern="^([_W-Ww-w-\\.])*([A-Za-z0-9]+)*(\\.[A-Za-z]{3,3})$" title="Proper Format: example.com"/>
                                 </div>
                             </div>
 

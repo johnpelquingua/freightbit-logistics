@@ -616,7 +616,7 @@
                     <div class="form-group">
                         <label class="col-lg-3" style="width: 26%;">Zip<span class="asterisk_red"></span></label>
                         <div class="col-lg-9" style="width: 74%;">
-                            <s:textfield name="address.zip" id="address.zip" cssClass="form-control" required="true"
+                            <s:textfield name="address.zip" id="address.zip" cssClass="form-control" required="true" maxLength="4"
                                     pattern="^[0-9]{4,}$" title="Zip Code should not contain letters or special characters."/>
                         </div>
                     </div>

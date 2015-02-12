@@ -84,7 +84,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Zip Code<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield name="address.zip" id="address.zip" cssClass="form-control" pattern="^[0-9]{3,}$" maxlength="4" required="true" title="Zip Code is required. Must be 4 digits only"/>
+                                <s:textfield name="address.zip" id="address.zip" cssClass="form-control" pattern="^[0-9]{4,}$" maxlength="4" required="true" title="Zip Code is required. Must be 4 digits only"/>
                             </div>
                         </div>
                         <s:property value="%{vendorIdParam}"/>

@@ -481,7 +481,7 @@
                             <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" placeholder="Last Name" name="contact.lastName"
                                              id="contact.lastName" required="true" maxLength="30" autofocus="true"
-                                             pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                             pattern="^(\s*[a-zA-Z\xD1-\xF1]+(([\'\-\+\s]\s*[a-zA-Z\xD1-\xF1])?[a-zA-Z\xD1-\xF1]*)\s*)+$"
                                              title="Name should not contain special characters and/or numbers."/>
                             </div>
                         </div>
