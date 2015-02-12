@@ -200,7 +200,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         }
 
         clearErrorsAndMessages();
-        addActionError("Statuses must be Arrived or Delivered.");
+        addActionError("Statuses of all items must be Arrived/Delivered or one Returned to Origin.");
         return SUCCESS;
     }
 
@@ -216,14 +216,20 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
             if(orderItemsElem.getStatus().equals("ARRIVED") || orderItemsElem.getStatus().equals("DELIVERED")){
                 checkAllStatus = checkAllStatus + 1;
             }
+            else if(orderItemsElem.getStatus().equals("RETURNED TO ORIGIN")) {
+                orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
+                orderService.updateOrder(orderEntity);
+                return SUCCESS;
+            }
         }
 
         //If the order items status is either Arrived or Delivered, the service can be accomplished.
         if(orderItemEntityList.size() == checkAllStatus && orderItemEntityList.size() > 1){
-                orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
-                orderService.updateOrder(orderEntity);
-                return SUCCESS;
+            orderEntity.setOrderStatus("SERVICE ACCOMPLISHED");
+            orderService.updateOrder(orderEntity);
+            return SUCCESS;
         }
+
         else {
             sessionAttributes.put("orderIdParam", orderIdParam);
             return "errorStatus";
@@ -276,8 +282,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
             allFreightStatusList.add("QUEUE FOR DEPARTURE");
             allFreightStatusList.add("IN-TRANSIT");
-            allFreightStatusList.add("ARRIVED");
             allFreightStatusList.add("RETURNED TO ORIGIN");
+            allFreightStatusList.add("ARRIVED");
 
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
                 allFreightStatusList.add("DELIVERED");
@@ -506,8 +512,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
                     allFreightStatusList.add("QUEUE FOR DEPARTURE");
                     allFreightStatusList.add("IN-TRANSIT");
-                    allFreightStatusList.add("ARRIVED");
                     allFreightStatusList.add("RETURNED TO ORIGIN");
+                    allFreightStatusList.add("ARRIVED");
 
                     if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
                         allFreightStatusList.add("DELIVERED");
@@ -591,8 +597,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
             allFreightStatusList.add("QUEUE FOR DEPARTURE");
             allFreightStatusList.add("IN-TRANSIT");
-            allFreightStatusList.add("ARRIVED");
             allFreightStatusList.add("RETURNED TO ORIGIN");
+            allFreightStatusList.add("ARRIVED");
 
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
                 allFreightStatusList.add("DELIVERED");
@@ -667,8 +673,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
             allFreightStatusList.add("QUEUE FOR DEPARTURE");
             allFreightStatusList.add("IN-TRANSIT");
-            allFreightStatusList.add("ARRIVED");
             allFreightStatusList.add("RETURNED TO ORIGIN");
+            allFreightStatusList.add("ARRIVED");
 
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
                 allFreightStatusList.add("DELIVERED");
