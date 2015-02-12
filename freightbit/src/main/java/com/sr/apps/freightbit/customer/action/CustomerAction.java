@@ -454,6 +454,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
                 for(Orders orderParam : orderEntityList){
 
                     /*--------------------- BOOKING ------------------------------*/
+
                     String bookingNumber = orderParam.getOrderNumber();
                     String changeCode = bookingNumber.replace(oldCode, customerEntity.getCustomerCode());
                     Orders insideOrderEntity = orderService.findOrdersById(orderParam.getOrderId());
@@ -500,24 +501,24 @@ public class CustomerAction extends ActionSupport implements Preparable {
                     entity.setCustomerId(insideOrderEntity.getCustomerId());
 
                     orderService.updateOrder(entity);
+
                     /*--------------------- BOOKING ------------------------------*/
 
                     /*--------------------- DOCUMENTS ------------------------------*/
 
-                    /*List<Documents> documentsEntityList = documentsService.findDocumentsByOrderNumber(orderEntityList.get(0).getOrderNumber());
+                    List<Documents> documentsEntityList = documentsService.findDocumentsByOrderNumber(bookingNumber);
 
                     for(Documents documentsElem : documentsEntityList){
-
-                        String bookingNumber = orderParam.getOrderNumber();
-                        String changeCode = bookingNumber.replace(oldCode, customerEntity.getCustomerCode());
 
                         Documents insideDocumentEntity = documentsService.findDocumentById(documentsElem.getDocumentId());
 
                         Documents documentEntity = new Documents();
 
-                        Client client = clientService.findClientById(getClientId().toString());
-                        documentEntity.setClient(client);
+                        if(insideDocumentEntity.getDocumentId() != null){
+                            documentEntity.setDocumentId(new Integer(insideDocumentEntity.getDocumentId()));
+                        }
 
+                        documentEntity.setClient(client);
                         documentEntity.setDocumentName(insideDocumentEntity.getDocumentName());
                         documentEntity.setDocumentType(insideDocumentEntity.getDocumentType());
                         documentEntity.setReferenceId(insideDocumentEntity.getReferenceId());
@@ -545,13 +546,10 @@ public class CustomerAction extends ActionSupport implements Preparable {
                         documentEntity.setOrderItemId(insideDocumentEntity.getOrderItemId());
                         documentEntity.setAging(insideDocumentEntity.getAging());
 
-                        documentsService.addDocuments(documentEntity);
-                    }*/
-
+                        documentsService.updateDocument(documentEntity);
+                        }
                     /*--------------------- DOCUMENTS ------------------------------*/
-
                 }
-
             }
             // loop to change all order number to the new code end
 
