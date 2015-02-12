@@ -390,8 +390,8 @@ public class VendorServiceImpl implements VendorService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addVessel(Vessel vessel) throws VesselAlreadyExistsException {
-        if (vesselDao.findDuplicateByVesselNumber(vessel.getVesselNumber()).size() > 0)
-            throw new VesselAlreadyExistsException(vessel.getVesselNumber());
+        if (vesselDao.findVesselByName(vessel.getVesselName()).size() > 0)
+            throw new VesselAlreadyExistsException(vessel.getVesselName());
         else
             vesselDao.addVessel(vessel);
     }

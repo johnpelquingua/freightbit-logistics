@@ -886,7 +886,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             vesselEntity.setCreatedTimestamp(new Date());
             vendorService.addVessel(vesselEntity);
         } catch(VesselAlreadyExistsException e) {
-            addFieldError("vessel.vesselNumber", getText("err.vessel.already.exists"));
+            addFieldError("vessel.vesselName", getText("err.vessel.already.exists"));
             return INPUT;
         }
 
@@ -906,7 +906,7 @@ public class VendorAction extends ActionSupport implements Preparable {
             vesselEntity.setModifiedTimestamp(new Date());
             vendorService.updateVessel(vesselEntity);
         }catch (VesselAlreadyExistsException e){
-            addFieldError("vessel.vesselNumber", getText("err.vessel.already.exists"));
+            addFieldError("vessel.vesselName", getText("err.vessel.already.exists"));
             return INPUT;
         }
 
