@@ -40,7 +40,7 @@
                         <div class="form-group" >
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-8">
-                                <s:textfield name="item.itemName" id="item.itemName" required="true" cssClass="form-control" pattern="[A-Za-z ]+" title="Must be letters only"/>
+                                <s:textfield name="item.itemName" id="item.itemName" required="true" cssClass="form-control" pattern="^(\s*[a-zA-Z0-9]+(([a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Must be letters only"/>
                             </div>
                         </div>
                         <div class="form-group">

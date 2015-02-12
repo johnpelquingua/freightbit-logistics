@@ -41,7 +41,7 @@
 
                             <div class="col-lg-8">
                                 <s:textfield name="item.itemName" id="item.itemName" class="itemName" required="true" cssStyle="width: 115%"
-                                             cssClass="addItemInput form-control" pattern="[A-Za-z ]+" title="Must be letters only" maxlength="50"/>
+                                             cssClass="addItemInput form-control" pattern="^(\s*[a-zA-Z0-9]+(([a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Must be letters only" maxlength="50"/>
                             </div>
                         </div>
 

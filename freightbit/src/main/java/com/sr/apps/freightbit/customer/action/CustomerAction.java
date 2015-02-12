@@ -831,7 +831,8 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public String loadSuccessDeleteAddress() {
         Integer customerId = getCustomerSessionId();
         List<Address> addressEntityList = new ArrayList<Address>();
-        addressEntityList = customerService.findAllAddressByRefId(customerId);
+//        addressEntityList = customerService.findAllAddressByRefId(customerId);
+        addressEntityList = customerService.findAddressByShipper("CONSIGNEE", customerId);
         for (Address addressElem : addressEntityList) {
             addresss.add(transformToFormBeanAddress(addressElem));
         }
