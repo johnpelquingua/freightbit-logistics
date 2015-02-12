@@ -2368,7 +2368,6 @@
     $(document).ready(function () {
         $("#createDriverButton").click(function () {
             var vendorId = $("#vendorListOrigin").val();
-            alert(vendorId);
             setThis();
             $("#driver_licenseNumber").val('');
             $("#driver_lastName").val('');
