@@ -2043,8 +2043,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         // For FTL Requirement
         List<Orders> ftlOrders = new ArrayList<Orders>();
-
-        if(originCity != null){
+        System.out.println("+++++++++++++++++++++++++++++++++++++ " + originCityTruck );
+        if(originCityTruck != null){
             ftlOrders = operationsService.findOrdersByOriginFTL(originCityTruck);
         }else{
             ftlOrders = operationsService.findOrdersByFTL();
@@ -2057,7 +2057,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // For LTL Requirement
         List<Orders> ltlOrders = new ArrayList<Orders>();
 
-        if(originCity != null && destinationCity != null){
+        if(originCityTruck != null){
             ltlOrders = operationsService.findOrdersByOriginLTL(originCityTruck);
         }else{
             ltlOrders = operationsService.findOrdersByLTL();

@@ -1671,10 +1671,10 @@ $( window ).load(function() {
     processDocumentStage('.final_inbound_table', $('.finalInboundTableMainDiv'), $('.finalInboundTableLoadingMainDiv'), 8);
     processDocumentStage('.completeTable', $('.completeTableMainDiv'), $('.completeTableLoadingMainDiv'), 8);
 
-    var check = document.getElementById("check");
+    /*var check = document.getElementById("check");
     for (var i = 0; i < check.length; i++) {
         check[i].checked = true;
-    }
+    }*/
 });
 
 /*Script that will trigger input area*/

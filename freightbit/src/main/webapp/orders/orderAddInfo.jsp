@@ -88,7 +88,14 @@
                                 <td style="text-align: left !important;"><s:property value="order.modeOfService"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Origin Port</td>
+                                <%--<td style="font-weight: normal; font-size: 12px; text-align:left !important;">Origin Port</td>--%>
+                                <s:if test="order.freightType == 'TRUCKING'">
+                                    <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Location</td>
+                                </s:if>
+                                <s:else>
+                                    <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Origin Port</td>
+                                </s:else>
+
                                 <td style="text-align: left !important;"><s:property value="order.originationPort"/></td>
                             </tr>
                             <tr>
@@ -920,7 +927,12 @@
                                         <td><s:property value="order.orderDate"/></td>
                                     </tr>
                                     <tr>
-                                        <td style="color: gray !important;">Origin Port</td>
+                                        <s:if test="order.freightType == 'TRUCKING'">
+                                            <td style="color: gray !important;">Location</td>
+                                        </s:if>
+                                        <s:else>
+                                            <td style="color: gray !important;">Origin Port</td>
+                                        </s:else>
                                         <td><s:property value="order.originationPort"/></td>
                                     </tr>
                                     <tr>

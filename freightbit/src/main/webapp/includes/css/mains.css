@@ -1039,11 +1039,11 @@ span.pagination li{
 }
 
 .table-action-icons:hover {
-    font-size: 180%; !important;
+    /*font-size: 180%; !important;
     margin-top: -7px; !important;
     margin-bottom: -7px; !important;
     margin-right: -4px; !important;
-    margin-left: -4px; !important;
+    margin-left: -4px; !important;*/
 }
 
 .btn {

@@ -36,7 +36,8 @@ fromDatePickUp.datepicker({
     },
 
     beforeShow: function(){
-        if(ServiceValue.val() == 'PICKUP') {
+        console.log(fromDatePickUp.val());
+        if(ServiceValue.val() == 'PICKUP' && fromDatePickUp.val() != '') {
             var beginDate = fromDatePickUp.datetimepicker("option", "maxDate");
             beginDate.setDate(beginDate.getDate()+999);
         }
@@ -165,6 +166,7 @@ $(document).ready(function() {
                     case 'DOOR TO PIER' :
                         select2.prop('disabled', false);
                         select4.prop('disabled', true);
+                        $("#consigneeAddress_textfield").val('');
                         $("#consigneeAddress_textfield").prop('disabled', true);
                         $('<option>').val(key).text(value).appendTo(select2);
                         break;
@@ -176,6 +178,7 @@ $(document).ready(function() {
                     case 'PIER TO PIER' :
                         select4.prop('disabled', true);
                         select2.prop('disabled', true);
+                        $("#consigneeAddress_textfield").val('');
                         $("#consigneeAddress_textfield").prop('disabled', true);
                         break;
                     case 'PICKUP' :
@@ -206,7 +209,7 @@ $(document).ready(function() {
             // populate customer consignee address list
             $.each(jsonResponse.consigneeAddressMap, function(key, value) {
                 if(select4.val() != ''){
-                    if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER' || $("#order_modeOfService").val() == 'PICKUP'){
+                    if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER' || $("#order_modeOfService").val() == 'PICKUP' ){
                         $('<option>').val(null).text("").appendTo(select4);
                     }
                     $('<option>').val(key).text(value).appendTo(select4);
@@ -260,10 +263,13 @@ $(document).ready(function() {
                 select9.find('option').remove();
 
                 // populate consignee address
-                $.each(jsonResponse.consigneeAddressMap, function(key, value) {
-                    console.log(key);
-                    console.log(value);
-                    if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'PICKUP' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
+                //$.each(jsonResponse.consigneeAddressMap, function(key, value) {
+
+                    /*console.log(key);
+                    console.log(value);*/
+
+                    /*if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'PICKUP' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
+                        alert("YES 2");
                         if ($("#shipperConsignee").val() != '') {
                             $('<option>').val(key).text(value).appendTo(select4);
                             $("#consigneeAddress_textfield").val(value);
@@ -273,8 +279,9 @@ $(document).ready(function() {
                                 }
                             $('<option>').val(key).text(value).appendTo(select4);
                         }
-                    }
-                });
+                    }*/
+
+                //});
 
                 // populate consignee contacts
                 $.each(jsonResponse.consigneeContactMap, function(key, value) {
@@ -1001,9 +1008,12 @@ function dynamicDropdown(select, index) {
     }
     // If Service Type is Trucking
     if (select.options[ index ].value === 'TRUCKING'){
+        var originPortLabel = $('.originPort');
+
         $('#select1').val('');
         $('#select2').val('');
-        $("#select1").prop('disabled', true);
+        //$("#select1").prop('disabled', true);
+        originPortLabel.empty().append('Location');
         $("#select2").prop('disabled', true);
         $('#datepicker1').val('');
         $('#datepicker2').val('');
