@@ -105,13 +105,11 @@
             <div class="panel-body">
 
                 <div class="table-responsive">
-                    <div class="row">
                         <s:form name="myform" action="setBulkItemStatus" theme="bootstrap" cssClass="setStatusForm">
                         <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
                         <s:hidden value="%{#attr.order.orderId}" name="orderStatusLogsBean.orderId"/>
                         <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                         <s:property value="#attr.orderItem.orderItemId"></s:property>
-                    </div>
                     <display:table id="orderItem" name="orderItems"
                                    requestURI="viewStatusListItems.action" pagesize="10"
                                    class="bulkItemStatus table table-striped table-hover table-bordered text-center tablesorter tabled-condensed"
@@ -206,9 +204,9 @@
                 }
         })
 
-        var check = document.getElementById("check");
+        /*var check = document.getElementById("check");
         for (var i = 0; i < check.length; i++)
-            check[i].checked = true;
+            check[i].checked = true;*/
     });
 
     function addText() {
