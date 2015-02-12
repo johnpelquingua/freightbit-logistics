@@ -14,6 +14,10 @@
         </repository>
     </repositories>
 
+    <scm>
+        <connection>scm:git:https://github.com/johnpelquingua/freightbit-logistics</connection>
+    </scm>
+
     <build>
         <plugins>
             <plugin>
@@ -61,9 +65,62 @@
                 </configuration>
             </plugin>
 
+            <!-- GIT NUMBER BUILD-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.3</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                   <!-- <format>{0,date,yyyy-MM-dd HH:mm:ss}</format>
+                    <items>
+                        <item>buildNumber0</item>
+                        <item>buildNumber1</item>
+                        <item>buildNumber2</item>
+                    </items>-->
+                    <shortRevisionLength>5</shortRevisionLength>
+                </configuration>
+            </plugin>
+            <!-- END -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                <configuration>
+                    <webResources>
+                        <webResource>
+                            <directory>${basedir}/src/main/webapp/</directory>
+                            <filtering>true</filtering>
+                        </webResource>
+                    </webResources>
+
+                </configuration>
+
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.9.2</version>
+                <configuration>
+                    <goals>install</goals>
+                </configuration>
+
+
+
+            </plugin>
         </plugins>
 
     </build>
+
     <dependencies>
         <!-- Spring framework -->
         <dependency>
@@ -234,7 +291,6 @@
 		  <artifactId>pentaho-reporting-engine-wizard-core</artifactId>
 		  <version>5.0.5</version>
 		</dependency>
-		
 		        
     </dependencies>
 

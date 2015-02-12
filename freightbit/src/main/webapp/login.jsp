@@ -1,6 +1,9 @@
+<%@ page import="java.util.Properties" %>
+<%@ page import="static org.apache.struts2.ServletActionContext.getServletContext" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
     <title>ERNEST Logistics Corporation</title>
@@ -76,6 +79,17 @@
                     </form>
                 </div>
 
+            </div>
+        </div>
+    </div>
+    <div id="footer-ver" class="categories">
+        <div class="footerwrap-ver" >
+            <div id="copyright-ver" >
+            developed and designed by: <a href="http://www.solutionsresource.com" rel="license">Solutions Resource Inc.</a>
+            </div>
+            <div id="svnrev">
+            version 2015.e752ae1
+                <!-- GIT ID: ${buildNumber} -->
             </div>
         </div>
     </div>

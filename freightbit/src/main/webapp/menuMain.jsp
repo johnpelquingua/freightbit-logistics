@@ -102,6 +102,17 @@
         </ul>
     </li>
 
+    <div id="footer-ver2" class="categories">
+        <div class="footerwrap-ver2" >
+            <div id="copyright-ver2" >
+                developed and designed by: <br />
+                <a href="http://www.solutionsresource.com" rel="license">Solutions Resource Inc.</a>
+            </div>
+            <div id="svnrev2" >
+                version 2015.e752ae1
+            </div>
+        </div>
+    </div>
     <!-- FINANCE -->
 <%--
     <li class="dropdown">

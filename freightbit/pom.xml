@@ -13,6 +13,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <scm>
+        <connection>scm:git:https://github.com/johnpelquingua/freightbit-logistics</connection>
+    </scm>
 
     <!-- DO NOT ADD UNNECESSARY DEPENDENCIES UNLESS YOU TELL THE TEAM LEAD-->
     <dependencies>
@@ -46,7 +49,7 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 			<version>3.2.4.RELEASE</version>
-		</dependency>	
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -218,7 +221,7 @@
 		          <groupId>org.slf4j</groupId>
 		          <artifactId>slf4j-api</artifactId>
 		        </exclusion>
-           </exclusions> 
+           </exclusions>
         </dependency>
     </dependencies>
 
@@ -265,6 +268,55 @@
                     <outputDirectory>${basedir}/target/surefire-reports/*.xml</outputDirectory>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.3</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                   <!-- <format>{0,date,yyyy-MM-dd HH:mm:ss}</format>
+                    <items>
+                        <item>buildNumber0</item>
+                        <item>buildNumber1</item>
+                        <item>buildNumber2</item>
+                    </items>-->
+                    <shortRevisionLength>5</shortRevisionLength>
+                </configuration>
+            </plugin>
+            <!-- END -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                  <configuration>
+                    <webResources>
+                        <webResource>
+                            <directory>${basedir}/src/main/webapp/</directory>
+                            <filtering>true</filtering>
+                        </webResource>
+                    </webResources>
+
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.9.2</version>
+                <configuration>
+                    <goals>install</goals>
+                </configuration>
+
+            </plugin>
+
 
         </plugins>
     </build>

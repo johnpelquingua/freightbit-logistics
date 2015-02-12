@@ -94,7 +94,17 @@
             <li><a href="<s:url action='../reports/salesReport'/>"> <i class="fa fa-caret-right fa-fw"></i> Sales</a></li>
         </ul>
     </li>
-
+    <div id="footer-ver2" class="categories">
+        <div class="footerwrap-ver2" >
+            <div id="copyright-ver2" >
+                developed and designed by: <br />
+                <a href="http://www.solutionsresource.com" rel="license">Solutions Resource Inc.</a>
+            </div>
+            <div id="svnrev2" >
+                version 2015.e752ae1
+            </div>
+        </div>
+    </div>
     <%--<li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="menu-style-a"><i class="fa fa-money"></i> Finance <b class="caret"></b></a>
         <ul class="dropdown-menu">
