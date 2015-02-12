@@ -591,7 +591,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                             return INPUT;
                         }
                     }
-                    if ("PLANNING 2".equals(entity.getStatus())) {
+                    else if ("PLANNING 2".equals(entity.getStatus())) {
                         planning2.add(orderItemId);
                         if (planning1.size() > 0 || planning3.size() > 0) {
                             return INPUT;

@@ -457,6 +457,31 @@
                             </div>
                         </s:form>
                     </div>
+                    <div class="panel-footer">
+                        <div class="pull-right">
+                            <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                                <s:param name="orderNoParam"
+                                         value="#attr.order.orderNo"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
+                                 title="Update Status">
+
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                    <button type="button" class="btn">
+                                        Back to Dispatch Plan : Containers
+                                    </button>
+                                </s:if>
+                                <s:else>
+                                    <button type="button" class="btn">
+                                        Back to Dispatch Plan : Items
+                                    </button>
+                                </s:else>
+
+                            </s:a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="panel panel-primary">
@@ -770,38 +795,203 @@
                     </div>
                 </div>--%>
 
+                <div class="well">
+                    <h4 style="text-align:center;">Current Inland Vendor(s)</h4>
+                    <display:table id="currentOriginVendor" name="orderItemOriginVendor"
+                                   requestURI="/checkItemStatusInland.action" pagesize="10"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter"
+                                   style="margin-top: 15px;">
+
+                        <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="text-align: center;"></display:column></td>
+
+                        <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <td><display:column property="nameSize" title="Container" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                        </s:if>
+                        <s:else>
+                            <td><display:column property="nameSize" title="Item" class="tb-font-black"
+                                                style="text-align: center;"> </display:column></td>
+                        </s:else>
+
+                        <td><display:column property="vendorOriginName" title="Vendor" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="finalPickupDate" title="Vendor" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="vendorDestinationName" title="Destination Vendor <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="finalDeliveryDate" title="Delivery Date <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column property="status" title="Status <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                    </display:table>
+                </div>
+
                 <%--Origin--%>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-truck"></i>
                         <span class="panel-title">Dispatch Plan : Origin</span>
                     </div>
-                    <div class="panel-body form-horizontal">
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
+                    <div class="panel-body">
+                        <s:form cssClass="form-horizontal" theme="bootstrap" action="editBulkItemsInlandOrigin">
+                            <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
+                            <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
+                            <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
+                            <s:hidden name="operationsBean.orderId" value="%{orderItem.orderId}" />
+                            <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
+                            <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
+                            <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
+                            <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
+                            <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
+                            <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
+                            <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
+                            <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
+                            <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
+                            <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
+                            <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
+                            <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
+                            <s:hidden name="operationsBean.vendorOrigin" value="%{orderItem.vendorOrigin}" />
+                            <s:hidden name="operationsBean.vendorSea" value="%{orderItem.vendorSea}" />
+                            <s:hidden name="operationsBean.vesselScheduleId" value="%{orderItem.vesselScheduleId}" />
+                            <s:hidden name="order.orderId" value="%{orderItem.orderId}" />
+                            <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
+                            <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
+                                <div class="col-lg-8">
+                                    <div>
+                                        <s:select list="vendorTruckingOriginList" name="operationsBean.vendorListOrigin"
+                                                  id="vendorListOrigin"
+                                                  listKey="vendorId" listValue="vendorName" cssClass="form-control"
+                                                  emptyOption="true" value="%{orderItem.vendorDestination}" ></s:select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div>
+                                        <a data-toggle="modal" data-target="#createVendor" id="createVendorButton" class="btn btn-info">
+                                            Add Vendor
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
+                                <div class="col-lg-8">
+                                    <div>
+                                        <s:select list="listDrivers" name="operationsBean.driverOrigin"
+                                                  id="driverList"
+                                                  listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
+                                                  emptyOption="true" value="%{orderItem.driverDestination}"></s:select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div>
+                                        <a data-toggle="modal" data-target="#createDriver" id="createDriverButton" class="btn btn-info" style="width:100px !important;">
+                                            Add Driver
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
-                            </div>
-                        </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
 
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-                            <div class="col-lg-10">
-                                <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
+                                <div class="col-lg-8">
+                                    <div>
+                                        <s:select list="listDrivers" name="operationsBean.truckOrigin"
+                                                  id="trucksList"
+                                                  listKey="truckId" listValue="truckCode" cssClass="form-control"
+                                                  emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div>
+                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckButton" class="btn btn-info" style="width:100px !important;">
+                                            Add Truck
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
+
+                                <div class="col-lg-8">
+                                    <div>
+                                        <s:select cssClass="form-control"
+                                                  id="bodyType"
+                                                  list="#{bodyType}"
+                                                  value="%{bodyType}"
+                                                  style="display:none"
+                                                />
+                                        <s:textfield cssClass="form-control"
+                                                     id="bodyType_textfield"
+                                                     disabled="true"
+                                                />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
+
+                                <div class="col-lg-8">
+                                    <div>
+                                        <s:select cssClass="form-control"
+                                                  id="plateNumber"
+                                                  list="#{plateNumber}"
+                                                  value="%{plateNumber}"
+                                                  style="display:none"
+                                                />
+                                        <s:textfield cssClass="form-control"
+                                                     id="plateNumber_textfield"
+                                                     disabled="true"
+                                                />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
+
+                                <div class="col-lg-8">
+                                    <div>
+                                        <s:select cssClass="form-control"
+                                                  id="grossWeight"
+                                                  list="#{grossWeight}"
+                                                  value="%{grossWeight}"
+                                                  style="display:none"
+                                                />
+                                        <s:textfield cssClass="form-control"
+                                                     id="grossWeight_textfield"
+                                                     disabled="true"
+                                                />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+                                <div class="col-lg-8">
+                                    <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalPickupdate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                                </div>
+                            </div>
+                            <div style="float: right; margin: -65px 50px 5px 0px;">
+                                <button class="btn btn-primary"  style=" padding: 7px 32px; ">Save</button>
+                            </div>
+                        </s:form>
                     </div>
                     <div class="panel-footer">
                         <div class="pull-right">
