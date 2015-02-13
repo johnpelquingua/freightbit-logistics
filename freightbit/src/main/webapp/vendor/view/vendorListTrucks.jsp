@@ -94,9 +94,9 @@
                                                 <s:a class="icon-action-link" href="%{deleteTruckUrl}" rel="tooltip"
                                                      title="Delete Truck"
                                                      onclick="return confirm('Do you really want to delete?');">
-                                                     <i class="fa fa-trash-o"></i>
-                                                </s:a>
 
+                                                </s:a>
+                                                <i class="fa fa-trash-o deleteVendorTruckingTruckIcon"></i>
                                                 <s:url var="viewInfoTruckUrl" action="viewInfoTruck">
                                                     <s:param name="truckCodeParam" value="#attr.truck.truckCode"></s:param>
                                                 </s:url>
@@ -181,3 +181,26 @@
     </div>--%>
 
 </div>
+
+<div class="modal fade" id="deleteVendorTruckingTruckModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Delete Trucking Vendor Truck</span>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this trucking vendor truck ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                <a href="" class="btn btn-danger confirmDeleteModalBtn">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        actionConfirmation($('.deleteVendorTruckingTruckIcon'), $('.confirmDeleteModalBtn'), $('#deleteVendorTruckingTruckModal'));
+    });
+</script>

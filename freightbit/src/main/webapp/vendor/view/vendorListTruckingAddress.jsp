@@ -100,8 +100,9 @@
                                                      title="Delete this Vendor Address"
                                                      onclick="return confirm('Do you really want to delete?');">
                                                     <%--<img src="../includes/images/remove-user.png" class="icon-action circ-icon">--%>
-                                                    <i class="fa fa-trash-o"></i>
+
                                                 </s:a>
+                                                <i class="fa fa-trash-o deleteVendorTruckingAddressIcon"></i>
 
                                             </display:column>
                                         </td>
@@ -181,3 +182,26 @@
     </div>--%>
 
 </div>
+
+<div class="modal fade" id="deleteVendorTruckingAddressModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Delete Trucking Vendor Address</span>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this trucking vendor address ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                <a href="" class="btn btn-danger confirmDeleteModalBtn">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        actionConfirmation($('.deleteVendorTruckingAddressIcon'), $('.confirmDeleteModalBtn'), $('#deleteVendorTruckingAddressModal'));
+    });
+</script>

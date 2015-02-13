@@ -1114,7 +1114,7 @@
 <div class="modal fade" id="itemListingDeleteModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="font-size: 1.5em;"><i class="fa fa-warning" style="color: red;"></i> Confirm item deletion</div>
+            <div class="modal-header" style="font-size: 1.5em;"><i class="fa fa-warning" style="color: red;"></i> Confirm Item Deletion</div>
             <div class="modal-body">
                 Are you sure you want to delete this item?
             </div>

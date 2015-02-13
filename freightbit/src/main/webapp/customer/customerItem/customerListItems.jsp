@@ -108,8 +108,9 @@
                                                 <s:a class="icon-action-link" href="%{deleteItemUrl}" rel="tooltip"
                                                      title="Delete this Item?"
                                                      onclick="return confirm('Do you really want to delete?');">
-                                                    <i class="fa fa-trash-o"></i>
+
                                                 </s:a>
+                                                <i class="fa fa-trash-o deleteCustomerItemsIcon"></i>
                                             </display:column>
                                         </td>
                                     </display:table>
@@ -188,3 +189,26 @@
     </div>
 
 </div>
+
+<div class="modal fade" id="deleteCustomerItemsModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Delete Customer Item</span>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this customer item ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                <a href="" class="btn btn-danger confirmDeleteModalBtn">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        actionConfirmation($('.deleteCustomerItemsIcon'), $('.confirmDeleteModalBtn'), $('#deleteCustomerItemsModal'));
+    });
+</script>
