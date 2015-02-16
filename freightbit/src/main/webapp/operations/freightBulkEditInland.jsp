@@ -360,7 +360,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div>
-                                        <a data-toggle="modal" data-target="#createDriver" id="createDriverButton" class="btn btn-info" style="width:100px !important;">
+                                        <a data-toggle="modal" data-target="#createDriver" id="createDriverOriginBtn" class="btn btn-info" style="width:100px !important;">
                                             Add Driver
                                         </a>
                                     </div>
@@ -379,7 +379,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div>
-                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckButton" class="btn btn-info" style="width:100px !important;">
+                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckOriginBtn" class="btn btn-info" style="width:100px !important;">
                                             Add Truck
                                         </a>
                                     </div>
@@ -548,7 +548,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div>
-                                        <a data-toggle="modal" data-target="#createDriver" class="btn btn-info" id="createDriverButton" style="width:100px !important;">
+                                        <a data-toggle="modal" data-target="#createDriver" class="btn btn-info" id="createDriverDestinationBtn" style="width:100px !important;">
                                             Add Driver
                                         </a>
                                     </div>
@@ -566,7 +566,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div>
-                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckButton" class="btn btn-info" style="width:100px !important;">
+                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckDestinationBtn" class="btn btn-info" style="width:100px !important;">
                                             Add Truck
                                         </a>
                                     </div>
@@ -896,7 +896,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div>
-                                        <a data-toggle="modal" data-target="#createDriver" id="createDriverButton" class="btn btn-info" style="width:100px !important;">
+                                        <a data-toggle="modal" data-target="#createDriver" id="createDriverOrigBtn" class="btn btn-info" style="width:100px !important;">
                                             Add Driver
                                         </a>
                                     </div>
@@ -915,7 +915,7 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div>
-                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckButton" class="btn btn-info" style="width:100px !important;">
+                                        <a data-toggle="modal" data-target="#createTruck" id="createTruckOrigBtn" class="btn btn-info" style="width:100px !important;">
                                             Add Truck
                                         </a>
                                     </div>
@@ -2306,6 +2306,63 @@
         });
     }
 
+    $(document).ready(function() {
+        $('#trucksList').change(function (event) {
+            var truckCode = $("#trucksList").val();
+            if (truckCode != null) {
+                $.getJSON('truckDetails', {
+                            truckCodeParam: truckCode
+                        },
+
+                        function (jsonResponse) {
+                            var select1 = $('#bodyType');
+
+                            select1.find('option').remove();
+
+                            var select2 = $('#plateNumber');
+
+                            select2.find('option').remove();
+
+                            var select3 = $('#grossWeight');
+
+                            select3.find('option').remove();
+
+                            // For Truck Type Auto-populate
+                            $.each(jsonResponse.bodyTypeMap, function (key, value) {
+
+                                $('<option>').val(key).text(value).appendTo(select1);
+                                var bodyType = $("#bodyType").val();
+                                document.getElementById("bodyType_textfield").value = bodyType;
+
+                            });
+
+                            // For Plate Number Auto-populate
+                            $.each(jsonResponse.plateNumberMap, function (key, value) {
+
+                                $('<option>').val(key).text(value).appendTo(select2);
+                                var plateNumber = $("#plateNumber").val();
+                                document.getElementById("plateNumber_textfield").value = plateNumber;
+
+                            });
+
+                            // For Gross Weight Auto-populate
+                            $.each(jsonResponse.grossWeightMap, function (key, value) {
+
+                                $('<option>').val(key).text(value).appendTo(select3);
+                                var grossWeight = $("#grossWeight").val();
+                                document.getElementById("grossWeight_textfield").value = grossWeight;
+
+                            });
+                        });
+            }
+            else {
+                document.getElementById("bodyType_textfield").value = '';
+                document.getElementById("plateNumber_textfield").value = '';
+                document.getElementById("grossWeight_textfield").value = '';
+            }
+        });
+    });
+
     var pickup = $('#pickup');
     var dropoff = $('#dropoff');
 
@@ -2366,7 +2423,7 @@
     });
 
     $(document).ready(function () {
-        $("#createDriverButton").click(function () {
+        $("#createDriverOriginBtn").click(function () {
             var vendorId = $("#vendorListOrigin").val();
             setThis();
             $("#driver_licenseNumber").val('');
@@ -2384,7 +2441,50 @@
     });
 
     $(document).ready(function () {
-        $("#createTruckButton").click(function () {
+        $("#createDriverOrigBtn").click(function () {
+            var vendorId = $("#vendorListOrigin").val();
+            setThis();
+            $("#driver_licenseNumber").val('');
+            $("#driver_lastName").val('');
+            $("#driver_firstName").val('');
+            $("#driver_middleName").val('');
+            $("#driver_title").val('');
+
+            if (vendorId == "" || null) {
+                alert("Select a vendor first");
+                return false;
+            }
+            $("#vendorIdDriver").val(vendorId);
+        })
+    });
+
+    $(document).ready(function () {
+        $("#createTruckOriginBtn").click(function () {
+            var vendorId = $("#vendorListOrigin").val();
+            setThis();
+            $("#truck_plateNumber").val('');
+            $("#truck_truckCode").val('');
+            $("#truck_motorVehicleNumber").val('');
+            $("#truck_modelNumber").val('');
+            $("#truck_ownerName").val('');
+            $("#truck_ownerAddress").val('');
+            $("#truck_officialReceipt").val('');
+            $("#truck_engineNumber").val('');
+            $("#truck_modelYear").val('');
+            $("#truck_grossWeight").val('');
+            $("#truck_netWeight").val('');
+            $("#truck_netCapacity").val('');
+
+            if (vendorId == "" || null) {
+                alert("Select a vendor first");
+                return false;
+            }
+            $("#vendorIdTruck").val(vendorId);
+        })
+    });
+
+    $(document).ready(function () {
+        $("#createTruckOrigBtn").click(function () {
             var vendorId = $("#vendorListOrigin").val();
             setThis();
             $("#truck_plateNumber").val('');
@@ -2417,7 +2517,7 @@
     });
 
     $(document).ready(function () {
-        $("#createDriverButton").click(function () {
+        $("#createDriverDestinationBtn").click(function () {
             var vendorId = $("#vendorListDestination").val();
             setThis();
             $("#driver_licenseNumber").val('');
@@ -2435,7 +2535,7 @@
     });
 
     $(document).ready(function () {
-        $("#createTruckButton").click(function () {
+        $("#createTruckDestinationBtn").click(function () {
             var vendorId = $("#vendorListDestination").val();
             setThis();
             $("#truck_plateNumber").val('');
