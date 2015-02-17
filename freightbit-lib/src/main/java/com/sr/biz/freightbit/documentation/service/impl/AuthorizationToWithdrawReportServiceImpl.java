@@ -14,8 +14,6 @@ import java.util.Map;
 
 public class AuthorizationToWithdrawReportServiceImpl extends ReportGeneratorService implements AuthorizationToWithdrawReportService
 {
-
-
     public MasterReport getReportDefinition()
     {
         try {

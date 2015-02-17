@@ -437,7 +437,7 @@
 
                     <label>Voyage Number<span class="asterisk_red"></span></label>
 
-                    <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber" required="true"/>
+                    <s:textfield cssClass="form-control voyageNumber" name="vesselSchedule.voyageNumber" required="true"/>
 
                     <label>Vessel<span class="asterisk_red"></span></label>
 
@@ -445,7 +445,7 @@
                               value="vesselSchedule.vesselName"
                               name="vesselSchedule.vesselName"
                               list="vesselList" listValue="value" listKey="key"
-                              cssClass="form-control" required="true"/>
+                              cssClass="form-control vesselName" required="true"/>
 
                     <label> Departure Date<span class="asterisk_red"></span></label>
 
@@ -508,6 +508,19 @@
 
     // User must choose a vendor first before adding vessel schedule
     $(document).ready(function(){
+
+        $('#createSchedule').click(function() {
+            $('.vendorIdPass').val('');
+            $('.voyageNumber').val('');
+            $('.vesselName').val('');
+            $('#departureDate').val('');
+            $('#departureTime').val('');
+            $('#arrivalDate').val('');
+            $('#arrivalTime').val('');
+            $('#vesselSchedule_originPort').val('');
+            $('#vesselSchedule_destinationPort').val('');
+        });
+
         window.location.href = '#focusHere';
         hideVesselSchedule();
 

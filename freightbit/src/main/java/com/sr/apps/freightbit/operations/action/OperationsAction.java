@@ -1044,6 +1044,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String addVesselSchedule(){
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
         try {
             VesselSchedules entity = transformToVesselScheduleEntityBean(vesselSchedule);
             entity.setCreatedBy(commonUtils.getUserNameFromSession());

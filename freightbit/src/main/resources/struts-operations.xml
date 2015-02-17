@@ -736,6 +736,46 @@
                 <param name="bufferSize">4096</param>
             </result>
         </action>
+        <!--Proforma Bill of Lading-->
+        <action name="generate2GOProformaReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generate2GOProformaReport">
+            <result name="success" type="redirect">viewPlainDocuments</result>
+            <result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
+        <!--Authorization to Withdraw-->
+        <action name="generateAuthorizationToWithdrawReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateAuthorizationToWithdrawReport">
+            <result name="success" type="redirect">viewPlainDocuments</result>
+            <result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
+        <!--Acceptance Receipt-->
+        <action name="generateAcceptanceReceiptReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateAcceptanceReceiptReport">
+            <result name="success" type="redirect">viewPlainDocuments</result>
+            <result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
+        <!--Release Order-->
+        <action name="generateReleaseOrderReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateReleaseOrderReport">
+            <result name="success" type="redirect">viewPlainDocuments</result>
+            <result name="download" type="stream">
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
 
     </package>
 

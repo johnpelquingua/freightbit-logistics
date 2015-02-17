@@ -48,7 +48,7 @@
 
             <div class="panel-body">
 
-                <div class="table-responsive">
+                <div class="table-responsive" id="focusHere" tabindex="-1">
                     <display:table id="document" name="documents"
                                    requestURI="viewDocumentList.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
@@ -168,28 +168,30 @@
     }
 
     function generateReport(documentId,documentName) {
-        if (documentName == "BOOKING REQUEST FORM") {
-            var win = window.open('documentations/generateBookingRequestReport?documentIdParam=' + documentId, 'bookingRequest', 'width=910,height=800');
+
+        if (documentName == "PROFORMA BILL OF LADING") {
+            var win = window.open('documentations/generate2GOProformaReport?documentIdParam=' + documentId, 'Proforma Bill of Lading', 'width=910,height=800');
             win.onload = function () {
-                this.document.title = "Booking Request Form";
+                this.document.title = "Proforma Bill of Lading";
+                window.location.href = '#focusHere';
             }
-        }
-        else if (documentName == "HOUSE WAYBILL ORIGIN") {
-            var win = window.open('documentations/generateHouseWayBillReport?documentIdParam=' + documentId, 'HouseWayBillOrigin', 'width=910,height=800');
+        } else if (documentName == "AUTHORIZATION TO WITHDRAW") {
+            var win = window.open('documentations/generateAuthorizationToWithdrawReport?documentIdParam=' + documentId, 'Authorization to Withdraw', 'width=910,height=800');
             win.onload = function () {
-                this.document.title = " House Way Bill Origin";
+                this.document.title = "Authorization to Withdraw";
+                window.location.href = '#focusHere';
             }
-        }
-        else if (documentName == "HOUSE WAYBILL DESTINATION") {
-            var win = window.open('documentations/generateHouseWayBillDestinationReport?documentIdParam=' + documentId, 'HouseWayBillDestination', 'width=910,height=800');
-            win.onload = function () {
-                this.document.title = " House Way Bill Destination";
-            }
-        }
-        else if (documentName == "ACCEPTANCE RECEIPT") {
+        } else if (documentName == "ACCEPTANCE RECEIPT") {
             var win = window.open('documentations/generateAcceptanceReceiptReport?documentIdParam=' + documentId, 'Acceptance Receipt', 'width=910,height=800');
             win.onload = function () {
                 this.document.title = " Acceptance Receipt";
+                window.location.href = '#focusHere';
+            }
+        } else if (documentName == "RELEASE ORDER") {
+            var win = window.open('documentations/generateReleaseOrderReport?documentIdParam=' + documentId, 'Release Order', 'width=910,height=800');
+            win.onload = function() {
+                this.document.title = "Release Order";
+                window.location.href = '#focusHere';
             }
         }
     }

@@ -14,7 +14,6 @@ import java.util.Map;
 
 public class ProformaBillOfLading2GOReportServiceImpl extends ReportGeneratorService implements ProformaBillOfLading2GOReportService
 {
-
     public MasterReport getReportDefinition()
     {
         try {

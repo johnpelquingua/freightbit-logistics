@@ -2605,6 +2605,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
             // Generate the report
             MasterReport report = authorizationToWithdrawReportService.generateReport(params);
 
+
+
             HttpServletResponse response = ServletActionContext.getResponse();
             responseOut = new BufferedOutputStream(response.getOutputStream());
             byteArray = new ByteArrayOutputStream();
@@ -2624,12 +2626,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     /*2GO Proforma Bill of Lading*/
     public String generate2GOProformaReport(){
-
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>orderIdParam " + orderIdParam);
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>documentIdParam " + documentIdParam);
 
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         String orderId = (documentEntity.getReferenceId()).toString();
-
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>orderId " + orderId);
         Map<String, String> params = new HashMap();
         params.put("orderId", orderId);
 
@@ -2640,6 +2642,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             final File outputFile = new File("Proforma Bill of Lading - 2GO.pdf");
 
             MasterReport report = proformaBillOfLading2GOReportService.generateReport(params);
+
 
             HttpServletResponse response = ServletActionContext.getResponse();
             responseOut = new BufferedOutputStream(response.getOutputStream());

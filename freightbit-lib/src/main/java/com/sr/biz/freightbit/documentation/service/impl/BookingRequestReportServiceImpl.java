@@ -32,7 +32,6 @@ import java.util.Map;
 public class BookingRequestReportServiceImpl extends ReportGeneratorService  implements BookingRequestReportService
 {
 
-
   public MasterReport getReportDefinition()
   {
 	    try
