@@ -71,7 +71,7 @@ public interface OrderService {
 
     public Address findAddressById(Integer addressId);
 
-    public List<Address> findAddressInBooking(Integer addressId);
+    public List<Orders> findAddressInBooking(Integer shipperAddressId);
 
     public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId);
 

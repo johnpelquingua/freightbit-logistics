@@ -2643,7 +2643,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             MasterReport report = proformaBillOfLading2GOReportService.generateReport(params);
 
-
             HttpServletResponse response = ServletActionContext.getResponse();
             responseOut = new BufferedOutputStream(response.getOutputStream());
             byteArray = new ByteArrayOutputStream();

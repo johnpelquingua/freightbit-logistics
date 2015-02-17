@@ -286,8 +286,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Address> findAddressInBooking(Integer addressId) {
-        return addressDao.findAddressInBooking(addressId);
+    public List<Orders> findAddressInBooking(Integer shipperAddressId) {
+        List<Orders> result = orderDao.findAddressInBooking(shipperAddressId);
+        return result;
     }
 
     @Override
