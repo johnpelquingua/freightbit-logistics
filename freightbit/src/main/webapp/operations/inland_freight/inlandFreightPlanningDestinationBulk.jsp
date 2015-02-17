@@ -793,6 +793,63 @@
         });
     });
 
+    $(document).ready(function() {
+        $('#trucksList').change(function (event) {
+            var truckCode = $("#trucksList").val();
+            if (truckCode != null) {
+                $.getJSON('truckDetails', {
+                            truckCodeParam: truckCode
+                        },
+
+                        function (jsonResponse) {
+                            var select1 = $('#bodyType');
+
+                            select1.find('option').remove();
+
+                            var select2 = $('#plateNumber');
+
+                            select2.find('option').remove();
+
+                            var select3 = $('#grossWeight');
+
+                            select3.find('option').remove();
+
+                            // For Truck Type Auto-populate
+                            $.each(jsonResponse.bodyTypeMap, function (key, value) {
+
+                                $('<option>').val(key).text(value).appendTo(select1);
+                                var bodyType = $("#bodyType").val();
+                                document.getElementById("bodyType_textfield").value = bodyType;
+
+                            });
+
+                            // For Plate Number Auto-populate
+                            $.each(jsonResponse.plateNumberMap, function (key, value) {
+
+                                $('<option>').val(key).text(value).appendTo(select2);
+                                var plateNumber = $("#plateNumber").val();
+                                document.getElementById("plateNumber_textfield").value = plateNumber;
+
+                            });
+
+                            // For Gross Weight Auto-populate
+                            $.each(jsonResponse.grossWeightMap, function (key, value) {
+
+                                $('<option>').val(key).text(value).appendTo(select3);
+                                var grossWeight = $("#grossWeight").val();
+                                document.getElementById("grossWeight_textfield").value = grossWeight;
+
+                            });
+                        });
+            }
+            else {
+                document.getElementById("bodyType_textfield").value = '';
+                document.getElementById("plateNumber_textfield").value = '';
+                document.getElementById("grossWeight_textfield").value = '';
+            }
+        });
+    });
+
     $(document).ready(function () {
         $("#createVendorButton").click(function () {
             setThis();
