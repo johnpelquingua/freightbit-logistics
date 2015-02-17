@@ -85,8 +85,14 @@
         <action name="loadSuccessDeleteCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadSuccessDeleteCustomer">
             <result name="success" type="tiles">customer.customerList.tiles</result>
         </action>
+
         <action name="loadFailedDeleteCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadFailedDeleteCustomer">
             <result name="success" type="tiles">customer.customerList.tiles</result>
+        </action>
+
+        <action name="loadFailedDeleteConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="loadFailedDeleteConsignee">
+            <!--<result name="success" type="tiles">customer.customerList.tiles</result>-->
+            <result name="success" type="tiles">customer.customerListConsignee.tiles</result>
         </action>
 
         <action name="addCustomer" class="com.sr.apps.freightbit.customer.action.CustomerAction"
@@ -336,6 +342,7 @@
         <action name="deleteConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="deleteConsignee">
             <result name="success" type="redirect">loadSuccessDeleteConsignee</result>
+            <result name="input" type="redirect">loadFailedDeleteConsignee</result>
         </action>
 
         <action name="loadSuccessDeleteConsignee" class="com.sr.apps.freightbit.customer.action.CustomerAction"

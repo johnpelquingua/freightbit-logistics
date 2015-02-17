@@ -253,10 +253,26 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
                     "from Orders d where d.customerId = :customerId");
             query.setParameter("customerId", customerId);
             List<Orders> results = (List<Orders>) query.list();
-            Log.debug("Find by driverCode successful, result size: " + results.size());
+            Log.debug("Find by customer successful, result size: " + results.size());
             return results;
         } catch (RuntimeException re) {
             Log.error("Find by customer Failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+    public List<Orders> findConsigneeInBooking(Integer consigneeContactId) {
+        Log.debug("Find consignee with Booking.");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Orders d where d.consigneeContactId = :consigneeContactId");
+            query.setParameter("consigneeContactId", consigneeContactId);
+            List<Orders> results = (List<Orders>) query.list();
+            Log.debug("Find by consignee successful, result size: " + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            Log.error("Find by consignee Failed", re);
             throw re;
         }
     }

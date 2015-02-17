@@ -97,6 +97,8 @@ public interface OrderService {
 
     public List<Orders> findCustomerWithBooking (Integer customerId);
 
+    public List<Orders> findConsigneeInBooking (Integer consigneeContactId);
+
     public List<Orders> findAllOrdersByAging(Integer aging);
 
     public List<OrderItems> findAllOrdersByOrderIdAndDestination(Integer orderId, String destinationPort);

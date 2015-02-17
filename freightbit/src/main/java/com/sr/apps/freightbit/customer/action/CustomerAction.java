@@ -394,7 +394,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         if(orderEntityList.size()>0){
             clearErrorsAndMessages();
-            addActionError("You cannot delete a Customer associated with Booking");
+            addActionError("You cannot delete a Customer associated with a Booking");
             return INPUT;
         }
 
@@ -423,6 +423,29 @@ public class CustomerAction extends ActionSupport implements Preparable {
         }
         clearErrorsAndMessages();
         addActionError("You cannot delete a Customer with an on-going booking");
+        return SUCCESS;
+    }
+
+    public String loadFailedDeleteConsignee() {
+        /*List<Customer> customerEntityList = customerService.findAllCustomer();
+        for (Customer customerElem : customerEntityList) {
+            customers.add(transformToFormBean(customerElem));
+        }*/
+
+        Integer customerId = getCustomerSessionId();
+        List<Contacts> contactsList = customerService.findContactByParameterMap(customerId, "CONSIGNEE", getClientId());
+
+        if (contactsList != null) {
+            for (int i = 0; i < contactsList.size(); i++) {
+                Contacts contactConsignee = contactsList.get(i);
+                Address addressConsignee = customerService.findAddressByParameterMap(customerId, "CONSIGNEE", getClientId(), contactConsignee.getContactId());
+                consignees.add(transformToFormBeanConsignee(addressConsignee, contactConsignee));
+            }
+        }
+
+        clearErrorsAndMessages();
+        addActionError("You cannot delete a Consignee with an on-going booking");
+
         return SUCCESS;
     }
 
@@ -1155,6 +1178,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public String deleteConsigneeContact(){
 
         Contacts contactEntity = customerService.findContactById(consigneeContactCodeParam);
+
         customerService.deleteContact(contactEntity);
 
         Map sessionAttributes = ActionContext.getContext().getSession();
@@ -1413,6 +1437,15 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public String deleteConsignee() {
         Contacts contactEntity = customerService.findContactById(contactCodeParam);
         Address addressEntity = customerService.findAddressById(addressIdParam);
+
+        List <Orders> orderEntityList = orderService.findConsigneeInBooking(contactEntity.getContactId());
+
+        if(orderEntityList.size() > 0 ){
+            clearErrorsAndMessages();
+            addActionError("You cannot delete a Consignee associated with a Booking");
+            return INPUT;
+        }
+
         customerService.deleteConsignee(contactEntity, addressEntity);
         return SUCCESS;
     }

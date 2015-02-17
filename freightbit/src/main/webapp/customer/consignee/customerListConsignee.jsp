@@ -2,6 +2,12 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<style>
+    .deleteCustomerConsigneeIcon {
+        cursor: pointer;
+    }
+</style>
+
 <div class="row" style="margin-top: -15px;">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -30,6 +36,7 @@
         </div>
     </div>
 </s:if>
+
 <s:if test="hasActionErrors()">
    <div class="col-lg-12">
 	   <div class="alert alert-errors">
@@ -85,6 +92,7 @@
                                                             style="text-align: center;"> </display:column></td>
                                         <td class="tb-font-black" style="text-align: center;">
                                             <display:column title="Actions">
+
                                                 <s:url var="loadEditConsigneeUrl" action="loadEditConsignee">
                                                     <s:param name="contactCodeParam"
                                                              value="%{#attr.consignee.contactId}"></s:param>
@@ -93,7 +101,6 @@
                                                 </s:url>
                                                 <s:a href="%{loadEditConsigneeUrl}" class="icon-action-link" rel="tooltip"
                                                      title="Edit this Vendor Address">
-                                                    <%--<img src="../includes/images/edit-user.png" class="icon-action circ-icon">--%>
                                                     <i class="fa fa-pencil"></i>
                                                 </s:a>
 
@@ -106,10 +113,9 @@
                                                 <s:a class="icon-action-link" href="%{deleteConsigneeUrl}" rel="tooltip"
                                                      title="Delete this Consignee"
                                                      onclick="return confirm('Do you really want to delete?');">
-                                                    <%--<img src="../includes/images/remove-user.png" class="icon-action circ-icon">--%>
-
                                                 </s:a>
                                                 <i class="fa fa-trash-o deleteCustomerConsigneeIcon"></i>
+
                                                 <s:url var="consigneeInfoUrl" action="consigneeInfo">
                                                     <s:param name="contactCodeParam"
                                                              value="%{#attr.consignee.contactId}"></s:param>
@@ -117,9 +123,9 @@
                                                              value="%{#attr.consignee.addressId}"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{consigneeInfoUrl}" rel="tooltip">
-                                                    <%--<img src="../includes/images/info-b.png" class="icon-action circ-icon">--%>
                                                     <i class="fa fa-info-circle"></i>
                                                 </s:a>
+
                                             </display:column>
                                         </td>
                                     </display:table>

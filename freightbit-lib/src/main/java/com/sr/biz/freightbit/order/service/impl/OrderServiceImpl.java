@@ -400,4 +400,11 @@ public class OrderServiceImpl implements OrderService {
         List<Orders> result = orderDao.findCustomerWithBooking(customerId);
         return result;
     }
+
+    @Override
+    public List<Orders> findConsigneeInBooking(Integer consigneeContactId) {
+        List<Orders> result = orderDao.findConsigneeInBooking(consigneeContactId);
+        return result;
+    }
+
 }
