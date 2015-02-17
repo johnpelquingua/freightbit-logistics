@@ -107,8 +107,8 @@
                                 <td style="text-align: left !important;"><s:property value="order.orderStatus"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Comments</td>
-                                <td style="text-align: left !important; word-wrap: break-word; !important;"><s:property value="order.comments"/></td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Commentsss</td>
+                                <td style="text-align: left !important;" id="comment-wrapper" class="comment-wrapper" ><s:property value="order.comments"/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -950,7 +950,7 @@
                                     </tr>
                                     <tr>
                                         <td style="color: gray !important;">Comments</td>
-                                        <td><s:property value="order.comments"/></td>
+                                        <td id="comment-wrapper" class="comment-wrapper" ><s:property value="order.comments"/></td>
                                     </tr>
 
                                     </tbody>

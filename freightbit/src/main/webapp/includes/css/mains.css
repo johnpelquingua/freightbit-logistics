@@ -1077,3 +1077,6 @@ span.pagination li{
  .footerwrap-ver2{width: 1000px !important; margin: 0 auto !important; text-align: left !important; box-sizing: content-box !important;}
  #copyright-ver2{clear: both !important; font-size: 11px !important; padding-top: 10px !important; font-weight: 400 !important; text-align: left !important; color: #777;}
  #svnrev2{text-align: left !important;  font-size: 10px !important; margin-bottom: 10px !important; color: #ccc;}
+
+ td.comment-wrapper{white-space: pre !important;}
+ td#comment-wrapper{white-space: pre !important;}

@@ -149,7 +149,7 @@ public class OperationsBean {
     }
 
     public String getComments() {
-        return comments;
+        return comments/*.replaceAll("\n", "\n")*/;
     }
 
     public void setComments(String comments) {

@@ -83,7 +83,7 @@
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Comments</td>
-                            <td><s:property value="order.comments"/></td>
+                            <td id="comment-wrapper" class="comment-wrapper" ><s:property value="order.comments"/></td>
                         </tr>
 
                         </tbody>

@@ -293,8 +293,8 @@
     <div class="form-group">
         <label class="col-lg-3 control-label" style="margin-top: 5px; clear:both;">Comments </label>
         <%--<s:property value="%{order.comments}" />--%>
-        <div class="col-lg-9">
-            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="Comments" maxLength="255"/>
+        <div class="col-lg-9 comment-wrapper" >
+            <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="Comments" class="comment-wrapper"  maxLength="255"/>
         </div>
     </div>
 

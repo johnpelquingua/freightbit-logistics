@@ -287,7 +287,7 @@
                     <label class="col-lg-3 control-label" style="margin-top: 5px; clear:both;">Comments </label>
 
                     <div class="col-lg-9">
-                        <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="Comments"  maxLength="255"/>
+                        <s:textarea  name="order.comments" cssClass="form-control" cssStyle="resize: none; margin-bottom: 15px !important; height: 100px;" id="Comments" class="comment-wrapper"   maxLength="255"/>
                     </div>
 
                 </div>

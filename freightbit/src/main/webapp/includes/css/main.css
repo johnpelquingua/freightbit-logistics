@@ -727,3 +727,7 @@ color: #ff0000;
      display: inline;
      margin: 5px;
      list-style-type: circle !important;}
+
+
+ td.comment-wrapper{white-space: pre !important;}
+ td#comment-wrapper{white-space: pre !important;}
