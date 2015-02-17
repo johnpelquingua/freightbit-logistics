@@ -37,7 +37,7 @@
                     <form class="form-horizontal" role="form" theme="bootstrap"  action="<c:url value='j_spring_security_check' />" method='POST'>
 						<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
 						      <font color="red">
-						        <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+						        <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>
                                     <%--<c:out value="Invalid Username/Password"/>.--%>
 						      </font>
 						</c:if>

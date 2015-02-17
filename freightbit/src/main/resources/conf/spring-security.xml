@@ -42,7 +42,7 @@
     <intercept-url pattern="/order/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES" />
     <intercept-url pattern="/orders/**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES" />
     <intercept-url pattern="/documentation/**" access="ROLE_ADMIN, ROLE_CUSTOMER ROLE_DOCUMENT_SPECIALIST" />
-    <intercept-url pattern="/operations/**" access="ROLE_CUSTOMER, ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SEA_FREIGHT" />
+    <intercept-url pattern="/operations/**" access="ROLE_CUSTOMER, ROLE_ADMIN, ROLE_INLAND_FREIGHT, ROLE_CUSTOMER_RELATIONS, ROLE_SEA_FREIGHT" />
 
 	<!-- CUSTOMER  MODULE -->
     <intercept-url pattern="/customer/address/customerAddAddress" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_SEA_FREIGHT" />
