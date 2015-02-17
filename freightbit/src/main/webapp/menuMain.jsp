@@ -55,7 +55,7 @@
     </sec:authorize>
 
     <!-- CUSTOMER -->
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS')">
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES')">
         <li >
             <a href="<s:url action='customers/customerList' />" class="menu-style-a"><i class="fa fa-male"></i> Customer </a>
             <%--<ul class="dropdown-menu">--%>

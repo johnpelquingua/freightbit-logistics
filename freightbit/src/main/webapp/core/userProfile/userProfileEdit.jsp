@@ -42,7 +42,8 @@
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.title" id="uTitle" cssClass="form-control" maxlength="50"
-                                         placeholder="Title"/>
+                                         placeholder="Title" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="Title should not contain numbers or special characters."/>
                         </div>
                     </div>
 
@@ -52,7 +53,7 @@
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.emailAddress" id="uEmailAddress" maxlength="50"
-                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+                                         pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$"
                                          cssClass="form-control" placeholder="Email Address"/>
                         </div>
                     </div>
@@ -63,8 +64,8 @@
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.contactNumber" id="uContactNumber"
-                                         cssClass="form-control" placeholder="Contact Number" maxLength="11"
-                                         pattern="\d{7,11}" title="Contact Number should not contain special characters and/or letters."/>
+                                         cssClass="form-control" placeholder="(XXX) XXX-XXXX" maxLength="14"
+                                         pattern=".{14,}" title="Contact Number should not contain special characters and/or letters."/>
                         </div>
                     </div>
                 </div>
@@ -74,7 +75,8 @@
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.firstName" id="firstName" cssClass="form-control" maxlength="25"
-                                         placeholder="First Name"/>
+                                         placeholder="First Name" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="First Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
 
@@ -83,7 +85,8 @@
 
                         <div class="col-lg-9">
                             <s:textfield required="true" name="user.lastName" id="lastName" cssClass="form-control" maxlength="25"
-                                         placeholder="Last Name"/>
+                                         placeholder="Last Name" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="Last Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
 
@@ -92,7 +95,7 @@
                         <label for="uUserName" class="col-lg-3 control-label" id="users-add-label">User Name:</label>
 
                         <div class="col-lg-9">
-                            <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control" maxlength="25" pattern="[^\s]{4,25}"
+                            <s:textfield required="true" name="user.userName" id="uUserName" cssClass="form-control" maxlength="25" pattern="^[A-Za-z0-9_-]{4,}$"
                                          placeholder="User Name" title="Username must have minimum 4 characters."/>
                         </div>
                     </div>
@@ -120,3 +123,9 @@
         </div>
     </div>
 </s:form>
+
+<script>
+    $(document).ready(function(){
+        $("#uContactNumber").mask("(999) 999-9999");
+    });
+</script>
