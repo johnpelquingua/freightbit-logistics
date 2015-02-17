@@ -959,9 +959,9 @@ span.pagelinks {
 
 
 .alert-errors {
-color: #ff0000;
-background-color:#ff6767;
-border-color: #ff0000;
+color: #ff3232;
+background-color:#ffb2b2;
+border-color: #ffb2b2;
 }
 
 .alert-errors hr {
