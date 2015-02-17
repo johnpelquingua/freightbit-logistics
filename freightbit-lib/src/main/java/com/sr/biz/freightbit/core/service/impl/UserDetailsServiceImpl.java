@@ -36,12 +36,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user != null) {
             List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
             List<String> permissionNames = findPermissionByUser(user.getClient().getClientId(), user.getUserId());
+
             for (String permissionName : permissionNames) {
                 authList.add(new GrantedAuthorityImpl(permissionName));
                 System.out.println("Permissions: [" + permissionName + "]\n");
             }
             UserDetails userDetails = new org.springframework.security.core.userdetails.User(username, user.getPassword(), true, true, true, true, authList);
             return userDetails;
+        }
+        if(user == null){
+            throw new UsernameNotFoundException("User " + username + " not found!");
         }
         return null;
     }
