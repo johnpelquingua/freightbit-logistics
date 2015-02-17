@@ -170,6 +170,7 @@
         <action name="deleteAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="deleteAddress">
             <result name="success" type="redirect">loadSuccessDeleteAddress</result>
+            <result name="input" type="tiles">customer.customerListAddress.tiles</result>
         </action>
 
         <action name="loadSuccessDeleteAddress" class="com.sr.apps.freightbit.customer.action.CustomerAction"

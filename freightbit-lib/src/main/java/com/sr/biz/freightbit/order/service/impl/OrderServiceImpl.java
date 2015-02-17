@@ -286,6 +286,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Address> findAddressInBooking(Integer addressId) {
+        return addressDao.findAddressInBooking(addressId);
+    }
+
+    @Override
     public List<Address> findAddressByRefIdAndType(String addressType, Integer customerId) {
         return addressDao.findAddressByRefTableAndIdAndType("CUSTOMERS", customerId, addressType);
     }

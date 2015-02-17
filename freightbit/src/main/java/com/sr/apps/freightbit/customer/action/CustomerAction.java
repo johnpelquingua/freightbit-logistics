@@ -390,7 +390,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String deleteCustomer() {
-        List<Orders> orderEntityList =   orderService.findCustomerWithBooking(customerIdParam);
+        List<Orders> orderEntityList = orderService.findCustomerWithBooking(customerIdParam);
 
         if(orderEntityList.size()>0){
             clearErrorsAndMessages();
@@ -845,6 +845,24 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public String deleteAddress() {
         Address addressEntity = customerService.findAddressById(addressIdParam);
+
+        List<Address> addressInBookingList = orderService.findAddressInBooking(addressIdParam);
+
+        if(addressInBookingList.size() > 0){
+
+            Integer customerId = getCustomerSessionId();
+
+            List<Address> addressEntityList = customerService.findAddressByShipper("CONSIGNEE", customerId);
+
+            for (Address addressElem : addressEntityList) {
+                addresss.add(transformToFormBeanAddress(addressElem));
+            }
+
+            clearErrorsAndMessages();
+            addActionError("You cannot delete an address of a Customer associated with a Booking");
+            return INPUT;
+        }
+
         customerService.deleteAddress(addressEntity);
         return SUCCESS;
     }

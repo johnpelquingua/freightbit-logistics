@@ -109,6 +109,29 @@ public class AddressDaoImpl extends HibernateDaoSupport implements AddressDao {
     }
 
     @Override
+    public List<Address> findAddressInBooking(Integer addressId) {
+        log.debug("getting Address instance with id: " + addressId);
+        try {
+            /*Address instance = (Address) getSessionFactory().getCurrentSession().get(
+                    Address.class, addressId);
+            if (instance == null) {
+                log.debug("get successful, no instance found");
+            } else {
+                log.debug("get successful, instance found");
+            }
+            return instance;*/
+
+            Query query = getSessionFactory().getCurrentSession().createQuery(" from Address a where addressId = :addressId");
+            query.setParameter("addressId", addressId);
+            return query.list();
+
+        } catch (RuntimeException re) {
+            log.error("get failed", re);
+            throw re;
+        }
+    }
+
+    @Override
     public Address findAddressByRefId(Integer contactId) {
         log.debug("getting Address instance with id: " + contactId);
         try {
