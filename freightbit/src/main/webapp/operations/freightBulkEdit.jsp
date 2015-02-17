@@ -139,7 +139,7 @@
 
         <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
             <s:if test="order.modeOfService=='DOOR TO DOOR'">
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" id="focusHere" tabindex="-1">
                     <div class="panel-heading">
                         <i class="fa fa-anchor"></i>
                         <span class="panel-title"> Freight Plan </span>
@@ -281,13 +281,15 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="originPort" title="Origin" class="tb-font-black"
+                                <td><display:column property="originPort" title="ORI" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
-                                <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
+                                <td><display:column property="destinationPort" title="DES" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="departureDate" title="Departure" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column title="Action">
                                     <s:url var="editBulkItemsUrl" action="editBulkItems">
@@ -318,12 +320,14 @@
                             <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
 
                                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn">
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>
                                         Back to Freight Plan : Containers
                                     </button>
                                 </s:if>
                                 <s:else>
-                                    <button type="button" class="btn">
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>
                                         Back to Freight Plan : Items
                                     </button>
                                 </s:else>
@@ -653,7 +657,7 @@
                 </div>--%>
             </s:if>
             <s:elseif test="order.modeOfService=='DOOR TO PIER'">
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" id="focusHere" tabindex="-1">
                     <div class="panel-heading">
                         <i class="fa fa-anchor"></i>
                         <span class="panel-title">Freight Plan</span>
@@ -906,7 +910,7 @@
                 <%--</div>--%>
             </s:elseif>
             <s:elseif test="order.modeOfService=='PIER TO DOOR'">
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" id="focusHere" tabindex="-1">
                     <div class="panel-heading">
                         <i class="fa fa-anchor"></i>
                         <span class="panel-title">Freight Plan</span>
@@ -1120,7 +1124,7 @@
 
         <s:if test="order.freightType=='SHIPPING'">
             <s:if test="order.modeOfService=='PIER TO PIER'">
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" id="focusHere" tabindex="-1">
                     <div class="panel-heading">
                         <i class="fa fa-anchor"></i>
                         <span class="panel-title">Freight Plan</span>
@@ -1300,12 +1304,14 @@
                             <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
 
                                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn">
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>
                                         Back to Freight Plan : Containers
                                     </button>
                                 </s:if>
                                 <s:else>
-                                    <button type="button" class="btn">
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>
                                         Back to Freight Plan : Items
                                     </button>
                                 </s:else>
@@ -1918,9 +1924,15 @@
 
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addVesselScheduleEdit">
 
+                    <label>Vendor<span class="asterisk_red"></span></label>
+
+                    <s:select list="vendorShippingListClass" name="vesselSchedule.vendorId"
+                              listKey="vendorId" listValue="vendorName" cssClass="form-control addScheduleInput"
+                              emptyOption="true" required="true"></s:select>
+
                     <label>Voyage Number<span class="asterisk_red"></span></label>
 
-                    <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber"/>
+                    <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber" required="true"/>
 
                     <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
 
@@ -1930,7 +1942,7 @@
                               value="vesselSchedule.vesselName"
                               name="vesselSchedule.vesselName"
                               list="vesselList" listValue="value" listKey="key"
-                              cssClass="form-control" required="true"/>
+                              cssClass="form-control vendorIdPass" required="true"/>
 
                     <label> Departure Date<span class="asterisk_red"></span></label>
 
@@ -1993,9 +2005,32 @@
 
     // User must choose a vendor first before adding vessel schedule
     $(document).ready(function(){
+        window.location.href = '#focusHere';
         hideVesselSchedule();
-        $("#createSchedule").click(function() {
-            var vendorId = $("#operationsBean_vendorList").val();
+
+        $(".vendorIdPass").change(function() {
+            var vendorId = $(".vendorIdPass").val();
+
+            $.getJSON('listVessel', {
+                vendorId: vendorId
+            },
+
+            function (jsonResponse) {
+
+                var vessel = $('#vesselList');
+
+                vessel.find('option').remove();
+
+                $.each(jsonResponse.vesselMap, function (key, value) {
+                    $('<option>').val(key).text(value).appendTo(vessel);
+                });
+
+            });
+
+        });
+
+        /*$("#createSchedule").click(function() {
+            *//*var vendorId = $("#operationsBean_vendorList").val();
 
             if (vendorId == "" || null){
                 alert("Select a vendor first");
@@ -2003,7 +2038,7 @@
                 return false;
             }
 
-            $("#vendorIdHolder").val(vendorId);
+            $("#vendorIdHolder").val(vendorId);*//*
             // To get the vessel list of the vendor
             $.getJSON('listVessel', {
                 vendorId: vendorId
@@ -2020,7 +2055,8 @@
                 });
 
             });
-        });
+        });*/
+
     });
 
     var departureDate = $('#departureDate');

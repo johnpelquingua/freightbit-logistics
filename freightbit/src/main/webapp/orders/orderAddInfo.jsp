@@ -72,7 +72,7 @@
                 <div class="row">
 
                     <div class="col-lg-6 ">
-                        <table class="table table-user-information" style="table-layout: fixed;">
+                        <table class="table table-user-information orderTable" style="table-layout: fixed;">
                             <tbody>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none; width: 30%">Booking Number</td>
@@ -108,7 +108,7 @@
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Comments</td>
-                                <td style="text-align: left; word-wrap: break-word; !important;"><s:property value="order.comments"/></td>
+                                <td style="text-align: left !important; word-wrap: break-word; !important;"><s:property value="order.comments"/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -1139,4 +1139,5 @@
 </div>
 
 <script type="text/javascript" src="../includes/js/bookingInfo.js"></script>
+
 <%--<script type="text/javascript" src="../includes/js/bookingInfo.min.js"></script>--%>

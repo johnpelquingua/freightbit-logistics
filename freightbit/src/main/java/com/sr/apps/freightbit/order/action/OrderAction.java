@@ -1353,6 +1353,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setPaymentMode(formBean.getModeOfPayment());
         entity.setOriginationPort(formBean.getOriginationPort());
         entity.setDestinationPort(formBean.getDestinationPort());
+
         entity.setComments(formBean.getComments());
         /*entity.setOrderStatus(formBean.getOrderStatus());*/  // still to be updated
         if (formBean.getOrderStatus() != null) {

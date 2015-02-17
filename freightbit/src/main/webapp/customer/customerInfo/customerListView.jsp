@@ -129,7 +129,7 @@
 
                 </div>
             </div>
-            <div class="panel-footer">
+            <%--<div class="panel-footer">
 
                 <div class="table-responsive" >
                     <div class="col-lg-12" style="position:relative;margin-top: -28px;">
@@ -143,7 +143,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div>--%>
         </div>
     </div>
 </div>

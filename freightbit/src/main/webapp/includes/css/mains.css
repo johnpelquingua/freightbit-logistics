@@ -23,7 +23,7 @@ body {
 }
 
 .wwFormTable {
-    margin: 150 auto;
+    margin: 150px auto;
 }
 
 /*
@@ -565,9 +565,9 @@ button.ui-datepicker-trigger img {
     background: -ms-linear-gradient(top, #5d6167 0%, #393939 100%);
 }
 
-.sidebar {
+/*.sidebar {
     background: #414243 url(../includes/images/sidebar-gradient.png) repeat-y top right;
-}
+}*/
 
 .panel {
     border-radius: 5px !important;
@@ -930,7 +930,7 @@ span.pagelinks {
 
 /*Style for scrollable table*/
 /*If it does not work paste this code to each tables*/
- html,body{width:100%;height:100%;}
+/* html,body{width:100%;height:100%;}
  div.horizontal{display:block;width:100%;height:100%;overflow:hidden;position:static}
  div.scroller{display:block;width:100%;height:100%;overflow:hidden;position:static}
  .table{display:table;width:150%;height:100%}
@@ -938,7 +938,7 @@ span.pagelinks {
  .TableContainer{overflow:scroll;overflow-x: overlay;}
  article{width:800px;height:400px;display:table-cell;background:#e3e3e3;vertical-align:middle;text-align:center}
  article:nth-child(2n+2){background:#d1d1d1}
- .table-bordered > thead > tr > th{padding: 10px;}
+ .table-bordered > thead > tr > th{padding: 10px;}*/
 
  .notification_bubble {
      position:absolute;
@@ -1073,7 +1073,7 @@ span.pagination li{
      position: relative;
      top: 70px;
  }
- }
+
  .footerwrap-ver2{width: 1000px !important; margin: 0 auto !important; text-align: left !important; box-sizing: content-box !important;}
  #copyright-ver2{clear: both !important; font-size: 11px !important; padding-top: 10px !important; font-weight: 400 !important; text-align: left !important; color: #777;}
  #svnrev2{text-align: left !important;  font-size: 10px !important; margin-bottom: 10px !important; color: #ccc;}

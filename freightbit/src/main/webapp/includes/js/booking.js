@@ -184,6 +184,7 @@ $(document).ready(function() {
                     case 'PICKUP' :
                         select2.prop('disabled', false);
                         select4.prop('disabled', true);
+                        $("#consigneeAddress_textfield").val('');
                         $("#consigneeAddress_textfield").prop('disabled', true);
                         $('<option>').val(key).text(value).appendTo(select2);
                         break;
@@ -212,7 +213,8 @@ $(document).ready(function() {
                     if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER' || $("#order_modeOfService").val() == 'PICKUP' ){
                         $('<option>').val(null).text("").appendTo(select4);
                     }
-                    $('<option>').val(key).text(value).appendTo(select4);
+                    /*$("#consigneeAddress_textfield").val('');
+                    $('<option>').val(key).text(value).appendTo(select4);*/
                 }else{
                     $('<option>').val(key).text(value).appendTo(select4);
                     $("#consigneeAddress_textfield").val(value);
@@ -263,25 +265,23 @@ $(document).ready(function() {
                 select9.find('option').remove();
 
                 // populate consignee address
-                //$.each(jsonResponse.consigneeAddressMap, function(key, value) {
+                $.each(jsonResponse.consigneeAddressMap, function(key, value) {
 
-                    /*console.log(key);
-                    console.log(value);*/
+                    if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
 
-                    /*if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'PICKUP' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
-                        alert("YES 2");
                         if ($("#shipperConsignee").val() != '') {
+
                             $('<option>').val(key).text(value).appendTo(select4);
                             $("#consigneeAddress_textfield").val(value);
                         } else {
                             if ($("#consigneeAddress").val() != '') {
                                 $('<option>').val(null).text("").appendTo(select4);
                                 }
-                            $('<option>').val(key).text(value).appendTo(select4);
+                            //$('<option>').val(key).text(value).appendTo(select4);
                         }
-                    }*/
+                    }
 
-                //});
+                });
 
                 // populate consignee contacts
                 $.each(jsonResponse.consigneeContactMap, function(key, value) {
@@ -879,6 +879,8 @@ function dynamicDropdown(select, index) {
             $("#shipperConsignee").val('');
             $("#consigneeAddress").val('');
             $("#consigneeAddress").prop('disabled', true);
+            $("#consigneeAddress_textfield").val('');
+            $("#consigneeAddress_textfield").prop('disabled', true);
             break;
         case 'DELIVERY' :
             $("#customerName").val('');

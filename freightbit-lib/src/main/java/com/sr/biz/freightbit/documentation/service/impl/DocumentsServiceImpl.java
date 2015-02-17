@@ -116,6 +116,11 @@ public class DocumentsServiceImpl implements DocumentsService {
     }
 
     @Override
+    public List<Documents> findAllFreightDocuments(Integer referenceId){
+        return documentsDao.findAllFreightDocuments(referenceId);
+    }
+
+    @Override
     public Documents findDocumentNameAndOrderId (String documentName, Integer referenceId){
         return documentsDao.findDocumentNameAndOrderId(documentName, referenceId);
     }

@@ -367,7 +367,7 @@
 
                         <div class="col-lg-7">
 
-                            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important; " name="order.consigneeAddressId" id="consigneeAddress"
+                            <s:select cssClass="bookingInput form-control" style="margin-bottom: 15px !important; display:none;" name="order.consigneeAddressId" id="consigneeAddress"
                                       list="consigneeAddressList" listKey="addressId"
                                       listValue="addressLine1 + ' ' + addressLine2" required="true" />
 

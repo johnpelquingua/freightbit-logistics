@@ -3,6 +3,7 @@
  */
 // AUTHORED BY Jan Sarmiento -- START
 $(document).ready(function(){
+
     $('.containerSizeDropdown').change(function(){
         var declaredValField = $('.automaticDeclaredValue');
         var quantityClearField = $('#orderItem_quantityFCL');
@@ -491,7 +492,8 @@ var sQuantity = select = document.getElementById('orderItem.quantity');
 sContainer.onchange = function () {
     dynamicDropdown.call(this, sContainer, this.selectedIndex);
 };
-
-sQuantity.onchange = function () {
-    dynamicDropdown.call(this, sQuantity, this.selectedIndex);
-};
+if(sQuantity != null){
+    sQuantity.onchange = function () {
+        dynamicDropdown.call(this, sQuantity, this.selectedIndex);
+    };
+}

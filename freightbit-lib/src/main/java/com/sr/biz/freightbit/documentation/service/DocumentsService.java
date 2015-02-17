@@ -43,6 +43,8 @@ public interface DocumentsService {
 
     public List<Documents> findDocumentNameAndId(String documentName, Integer referenceId);
 
+    public List<Documents> findAllFreightDocuments(Integer referenceId);
+
     public Documents findDocumentNameAndOrderId(String documentName, Integer referenceId);
 
     public void deleteDocument(Documents documents);

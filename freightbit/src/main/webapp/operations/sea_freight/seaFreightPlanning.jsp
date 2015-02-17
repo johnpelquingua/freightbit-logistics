@@ -138,7 +138,7 @@
 
     <s:if test="order.freightType=='SHIPPING'">
         <s:if test="order.modeOfService=='PIER TO PIER'">
-            <div class="panel panel-primary">
+            <div class="panel panel-primary" id="focusHere" tabindex="-1">
                 <div class="panel-heading">
                     <i class="fa fa-anchor"></i>
                     <span class="panel-title">Freight Plan</span>
@@ -303,7 +303,7 @@
 
     <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
         <s:if test="order.modeOfService=='DOOR TO DOOR'">
-            <div class="panel panel-primary">
+            <div class="panel panel-primary" id="focusHere" tabindex="-1">
                 <div class="panel-heading">
                     <i class="fa fa-anchor"></i>
                     <span class="panel-title">Freight Plan</span>
@@ -454,7 +454,6 @@
                                 </s:param>
                             </s:url>
                             <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
-                               <%-- Choose this vessel...--%>
                                 <i class="fa fa-arrow-circle-down"></i>
                             </s:a>
                         </display:column></td>
@@ -473,12 +472,14 @@
                         <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip" >
 
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                <button type="button" class="btn">
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa fa-chevron-left"></i>
                                     Back to Freight Plan : Containers
                                 </button>
                             </s:if>
                             <s:else>
-                                <button type="button" class="btn">
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa fa-chevron-left"></i>
                                     Back to Freight Plan : Items
                                 </button>
                             </s:else>
@@ -556,7 +557,7 @@
             <%--Destination--%>
         </s:if>
         <s:elseif test="order.modeOfService=='DOOR TO PIER'">
-            <div class="panel panel-primary">
+            <div class="panel panel-primary" id="focusHere" tabindex="-1">
                 <div class="panel-heading">
                     <i class="fa fa-anchor"></i>
                     <span class="panel-title">Freight Plan</span>
@@ -784,7 +785,7 @@
             <%--</div>--%>
         </s:elseif>
         <s:elseif test="order.modeOfService=='PIER TO DOOR'">
-            <div class="panel panel-primary">
+            <div class="panel panel-primary" id="focusHere" tabindex="-1">
                 <div class="panel-heading">
                     <i class="fa fa-anchor"></i>
                     <span class="panel-title">Freight Plan</span>
@@ -1128,12 +1129,18 @@
 
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addVesselScheduleInPlanning">
 
-                            <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
+                            <%--<s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />--%>
                             <s:hidden value="%{#attr.orderItem.orderItemId}" name="orderItemIdParam" />
+
+                            <label>Vendor<span class="asterisk_red"></span></label>
+
+                            <s:select list="vendorShippingListClass" name="vesselSchedule.vendorId"
+                                  listKey="vendorId" listValue="vendorName" cssClass="form-control addScheduleInput vendorIdPass"
+                                  emptyOption="true" required="true"></s:select>
 
                             <label>Voyage Number<span class="asterisk_red"></span></label>
 
-                            <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber"/>
+                            <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber" required="true"/>
 
                             <label>Vessel<span class="asterisk_red"></span></label>
 
@@ -1204,10 +1211,32 @@
 
     // User must choose a vendor first before adding vessel schedule
     $(document).ready(function(){
+        window.location.href = '#focusHere';
         hideVesselSchedule();
 
-        $("#createSchedule").click(function() {
-            var vendorId = $("#operationsBean_vendorList").val();
+        $(".vendorIdPass").change(function() {
+            var vendorId = $(".vendorIdPass").val();
+
+            $.getJSON('listVessel', {
+                vendorId: vendorId
+            },
+
+            function (jsonResponse) {
+
+                var vessel = $('#vesselList');
+
+                vessel.find('option').remove();
+
+                $.each(jsonResponse.vesselMap, function (key, value) {
+                    $('<option>').val(key).text(value).appendTo(vessel);
+                });
+
+            });
+
+        });
+
+        /*$("#createSchedule").click(function() {
+            *//*var vendorId = $("#operationsBean_vendorList").val();
 
             if (vendorId == "" || null){
                 alert("Select a vendor first");
@@ -1215,7 +1244,7 @@
                 return false;
             }
 
-            $("#vendorIdHolder").val(vendorId);
+            $("#vendorIdHolder").val(vendorId);*//*
             // To get the vessel list of the vendor
             $.getJSON('listVessel', {
                 vendorId: vendorId
@@ -1232,7 +1261,8 @@
                 });
 
             });
-        });
+        });*/
+
     });
 
     var departureDate = $('#departureDate');

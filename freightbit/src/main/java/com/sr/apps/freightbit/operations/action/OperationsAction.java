@@ -963,6 +963,53 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
         operationsService.updateOrderItem(entity);
 
+        // will set all remaining order items under the same shipping vendor
+        List<OrderItems> OrderItemsPlanning = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
+
+        for(OrderItems orderItemElem : OrderItemsPlanning ){
+
+            OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemElem.getOrderItemId());
+
+            OrderItems newEntity = new OrderItems();
+
+            Client client = clientService.findClientById(getClientId().toString());
+
+            newEntity.setOrderItemId(orderItemEntity.getOrderItemId());
+            newEntity.setClientId(client.getClientId());
+            newEntity.setNameSize(orderItemEntity.getNameSize());
+            newEntity.setOrderId(orderItemEntity.getOrderId());
+            newEntity.setQuantity(orderItemEntity.getQuantity());
+            newEntity.setClassification(orderItemEntity.getClassification());
+            newEntity.setDeclaredValue(orderItemEntity.getDeclaredValue());
+            newEntity.setRate(orderItemEntity.getRate());
+            newEntity.setCreatedBy(orderItemEntity.getCreatedBy());
+            newEntity.setModifiedBy(orderItemEntity.getModifiedBy());
+            newEntity.setComments(orderItemEntity.getComments());
+            newEntity.setCommodity(orderItemEntity.getCommodity());
+            newEntity.setCreatedTimestamp(orderItemEntity.getCreatedTimestamp());
+            newEntity.setModifiedTimestamp(orderItemEntity.getModifiedTimestamp());
+            newEntity.setWeight(orderItemEntity.getWeight());
+            newEntity.setVolume(orderItemEntity.getVolume());
+            newEntity.setServiceRequirement(orderItemEntity.getServiceRequirement());
+
+            newEntity.setVendorSea(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVendorCode());
+            newEntity.setVesselScheduleId(vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam).getVoyageNumber());
+
+            if("SHIPPING AND TRUCKING".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemEntity.getOrderItemId()).getOrderId()).getServiceType())) {
+                if ("DOOR TO DOOR".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemEntity.getOrderItemId()).getOrderId()).getServiceMode())) {
+                    newEntity.setStatus("PLANNING 2");
+                } else if ("DOOR TO PIER".equals(orderService.findOrdersById(operationsService.findOrderItemById(orderItemEntity.getOrderItemId()).getOrderId()).getServiceMode())) {
+                    newEntity.setStatus("PLANNING 2");
+                } else {
+                    newEntity.setStatus("PLANNING 3");
+                }
+            }else{
+                newEntity.setStatus("ON GOING");
+            }
+
+            operationsService.updateOrderItem(newEntity);
+        }
+
         Map sessionAttributes = ActionContext.getContext().getSession();
 
         sessionAttributes.put("vendorIdParam", vendorIdParam);
@@ -1198,9 +1245,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
             vesselSchedule.setArrivalTime("NONE");
             vesselSchedule.setOriginPort("NONE");
             vesselSchedule.setDestinationPort("NONE");
+            scheduleExists = "FALSE";
         }else{
             VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
             vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+            scheduleExists = "TRUE";
         }
 
         // if Truck Origin Code is null and populates field with none value
@@ -3233,6 +3282,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         entity.setInboundReturned(formBean.getInboundReturned());
         entity.setDocumentComments(formBean.getDocumentComments());
         entity.setAging(formBean.getAging());
+        entity.setVendorCode(documentsService.findDocumentById(subEntity.getDocumentId()).getVendorCode());
 
         return entity;
     }
@@ -3313,7 +3363,19 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String createdDocumentsSea() {
 
-//        List<Documents> documentsList = new ArrayList<Documents>();
+        // will delete all existing document and resets all freight documents begin
+
+        List<Documents> freightDocuments = documentsService.findDocumentsByOrderId(orderIdParam);
+
+        for (Documents freightDocumentElem : freightDocuments){
+            if(freightDocumentElem.getDocumentName().equals("PROFORMA BILL OF LADING") || freightDocumentElem.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || freightDocumentElem.getDocumentName().equals("ACCEPTANCE RECEIPT") || freightDocumentElem.getDocumentName().equals("RELEASE ORDER") ){
+                Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+                documentsService.deleteDocument(documentEntity);
+            }
+        }
+
+        // will delete all existing document and resets all freight documents end
+
         List<String> vendorCodeDocument = new ArrayList<String>();
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
@@ -3799,12 +3861,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         documentsService.deleteDocument(documentEntity);
 
-        List<Documents> documentsList = new ArrayList<Documents>();
-
-        documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
+        List<Documents> documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
 
         for (Documents documentElem : documentsList) {
-            documents.add(transformDocumentsToFormBean(documentElem));
+            if(documentElem.getDocumentName().equals("PROFORMA BILL OF LADING") || documentElem.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || documentElem.getDocumentName().equals("ACCEPTANCE RECEIPT") || documentElem.getDocumentName().equals("RELEASE ORDER")  ){
+                documents.add(transformDocumentsToFormBean(documentElem));
+            }
         }
 
         Map sessionAttributes = ActionContext.getContext().getSession();

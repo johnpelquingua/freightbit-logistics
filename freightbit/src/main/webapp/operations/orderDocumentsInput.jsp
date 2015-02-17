@@ -23,7 +23,6 @@
 
                         <s:hidden name="document.documentId" value="%{document.documentId}" />
                         <s:hidden name="document.documentName" value="%{document.documentName}" id="documentName" />
-                        <s:hidden name="document.vendorCode" value="%{document.vendorCode}" />
                         <s:hidden name="document.referenceId" value="%{document.referenceId}" />
                         <s:hidden name="document.referenceTable" value="%{document.referenceTable}" />
                         <s:hidden name="document.orderNumber" value="%{document.orderNumber}" />

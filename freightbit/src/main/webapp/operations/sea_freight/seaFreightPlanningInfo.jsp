@@ -23,7 +23,7 @@
                 <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
                      title="Update Status">
 
-                    <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                         Freight Plan : Containers
                     </s:if>
                     <s:else>
@@ -162,7 +162,7 @@
         <div class="form-group">
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
             <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.vendorSea}" name="book-num" disabled="true"></s:textfield>
+                <s:textfield cssClass="form-control" value="%{orderItem.vendorName}" name="book-num" disabled="true"></s:textfield>
             </div>
         </div>
 
@@ -221,11 +221,11 @@
                 <s:param name="orderNoParam"
                          value="#attr.order.orderNo"></s:param>
             </s:url>
-            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
-                 title="Update Status">
+            <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
 
-                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                     <button type="button" class="btn btn-danger">
+                        <i class="fa fa-chevron-left"></i>
                         Back to Freight Plan : Containers
                     </button>
                 </s:if>
