@@ -2,6 +2,13 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
+
+<style>
+    .deleteVendorTruckingContactIcon {
+        cursor: pointer;
+    }
+</style>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">

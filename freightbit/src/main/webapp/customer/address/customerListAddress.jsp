@@ -2,6 +2,13 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<style>
+    .deleteCustomerAddressIcon {
+        cursor: pointer;
+    }
+</style>
+
+
 <div class="row" style="margin-top: -15px;">
     <div class="col-lg-12">
         <legend style="text-align: left;">
