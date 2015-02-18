@@ -1054,7 +1054,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             entity.setModifiedTimestamp(new Date());
             vesselSchedulesService.addVesselSchedule(entity);
         } catch (Exception e) {
-            addFieldError("vesselSchedule.voyageNumber", "Voyage Number already exists");
+            addFieldError("vesselSchedule.voyageNumber", getText("err.voyagenumber.already.exist"));
             return INPUT;
         }
 
