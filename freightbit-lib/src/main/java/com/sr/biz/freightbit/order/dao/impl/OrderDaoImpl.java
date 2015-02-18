@@ -246,6 +246,22 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
     }
 
     @Override
+    public List<Orders> findAddressInBooking(Integer shipperAddressId) {
+        Log.debug("Find customer with Booking.");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Orders d where d.shipperAddressId = :shipperAddressId");
+            query.setParameter("shipperAddressId", shipperAddressId);
+            List<Orders> results = (List<Orders>) query.list();
+            Log.debug("Find by address successful, result size: " + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            Log.error("Find by address Failed", re);
+            throw re;
+        }
+    }
+
+    @Override
     public List<Orders> findCustomerWithBooking(Integer customerId) {
         Log.debug("Find customer with Booking.");
         try {

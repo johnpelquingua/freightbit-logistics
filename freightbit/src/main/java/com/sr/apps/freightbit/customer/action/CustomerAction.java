@@ -846,7 +846,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public String deleteAddress() {
         Address addressEntity = customerService.findAddressById(addressIdParam);
 
-        List<Address> addressInBookingList = orderService.findAddressInBooking(addressIdParam);
+        List<Orders> addressInBookingList = orderService.findAddressInBooking(addressIdParam);
 
         if(addressInBookingList.size() > 0){
 

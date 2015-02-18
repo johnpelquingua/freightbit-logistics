@@ -38,6 +38,8 @@ public interface OrderDao {
 
     public void addCounterType(Counter counter);
 
+    public List<Orders> findAddressInBooking(Integer shipperAddressId);
+
     public List<Orders> findCustomerWithBooking(Integer customerId);
 
     public List<Orders> findConsigneeInBooking(Integer consigneeContactId);
