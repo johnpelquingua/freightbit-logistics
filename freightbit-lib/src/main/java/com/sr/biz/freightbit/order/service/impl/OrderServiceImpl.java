@@ -213,6 +213,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Orders> findContactInBooking(Integer shipperContactId) {
+        List<Orders> result = orderDao.findContactInBooking(shipperContactId);
+        return result;
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void addContact(Contacts contacts) throws ContactAlreadyExistsException {
         if (contactsDao.findContactById(contacts.getContactId()) != null) {
@@ -364,6 +370,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<OrderItems> findOrderItemByName(String nameSize) {
+        return orderItemsDao.findOrderItemByName(nameSize);
+    }
+
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<OrderItems> findAllOrderItemLCL() {
         return orderItemsDao.findAllOrderItemLCL();
     }
@@ -410,6 +423,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Orders> findConsigneeInBooking(Integer consigneeContactId) {
         List<Orders> result = orderDao.findConsigneeInBooking(consigneeContactId);
+        return result;
+    }
+
+    @Override
+    public List<Orders> findConsigneeContactInBooking(Integer consigneeContactPersonId) {
+        List<Orders> result = orderDao.findConsigneeContactInBooking(consigneeContactPersonId);
         return result;
     }
 

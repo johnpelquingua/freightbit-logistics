@@ -42,7 +42,11 @@ public interface OrderDao {
 
     public List<Orders> findCustomerWithBooking(Integer customerId);
 
+    public List<Orders> findContactInBooking(Integer shipperContactId);
+
     public List<Orders> findConsigneeInBooking(Integer consigneeContactId);
+
+    public List<Orders> findConsigneeContactInBooking(Integer consigneeContactPersonId);
 
     public List<Orders> findAllOrdersByAging (Integer aging);
 

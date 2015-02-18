@@ -51,6 +51,8 @@ public interface OrderService {
 
     public Contacts findContactById(Integer contactId);
 
+    public List<Orders> findContactInBooking(Integer shipperContactId);
+
     public void addContact(Contacts contacts) throws ContactAlreadyExistsException;
 
     public void deleteContact(Contacts contacts);
@@ -93,6 +95,8 @@ public interface OrderService {
 
     public List<OrderItems> findAllItemByOrderId(Integer orderId);
 
+    public List<OrderItems> findOrderItemByName(String nameSize);
+
     public String findNextBookingNo(Integer clientId, String companyCode);
 
     public void addCounterType(Counter counter);
@@ -100,6 +104,8 @@ public interface OrderService {
     public List<Orders> findCustomerWithBooking (Integer customerId);
 
     public List<Orders> findConsigneeInBooking (Integer consigneeContactId);
+
+    public List<Orders> findConsigneeContactInBooking (Integer consigneeContactPersonId);
 
     public List<Orders> findAllOrdersByAging(Integer aging);
 

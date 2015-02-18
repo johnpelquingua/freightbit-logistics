@@ -211,7 +211,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Delete Customer Consignee</span>
+                <span style="font-size: 1.4em;"><i class="fa fa-warning" style="color: red;"></i> Delete Consignee Contact Person </span>
             </div>
             <div class="modal-body">
                 Are you sure you want to delete this customer consignee ?
