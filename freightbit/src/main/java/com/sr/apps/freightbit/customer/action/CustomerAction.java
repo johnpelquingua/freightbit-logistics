@@ -168,9 +168,9 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
         Matcher matcher = pattern3.matcher(itemBean.getItemCode());
         //Matcher matcher1 = pattern2.matcher(itemBean.getSrp());
-        if (!matcher.matches()) {
+        /*if (!matcher.matches()) {
             addFieldError("item.itemCode", getText("err.regex.validation.itemcode"));
-        }
+        }*/
 
         Matcher matcher1 = pattern4.matcher(itemBean.getItemName());
         if(!matcher1.matches()){

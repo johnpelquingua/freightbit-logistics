@@ -36,7 +36,9 @@
                             <div class="form-group">
                                 <label class="col-lg-12 control-label" style="padding-top:0px !important; margin-top: 0px !important; text-align:left;">Company Name / Customer Name<span class="asterisk_red"></span></label>
                                 <div class="col-lg-12" >
-                                    <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" />
+                                    <s:textfield  required="true" name="customer.customerName" cssClass="form-control" id="customer.customerName"
+                                                  pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
+                                                  title="Company / Customer name must not contain special charatcters."/>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +55,7 @@
                                 <div class="col-lg-7" >
 
                                     <s:textfield required="true" maxLength="3" name="customer.customerCode" cssClass="form-control" id="customerCode" onkeypress="return alphaKeyOnly(event)"
-                                                 pattern="^[A-Z]{3,}$" title="Company Code Must be 3 Capital Letters Only"/>
+                                                 pattern="^[A-Z0-9]{3,}$" title="Company Code must not contain special characters."/>
                                 </div>
                             </div>
                             <%--<div class="form-group">
@@ -82,7 +84,8 @@
                             <div class="form-group">
                                 <label class="col-lg-5 control-label" style="padding-top:0px;">Website</label>
                                 <div class="col-lg-7" >
-                                    <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website" pattern="^([_W-Ww-w-\\.])*([A-Za-z0-9]+)*(\\.[A-Za-z]{3,3})$" title="Proper Format: example.com"/>
+                                    <s:textfield name="customer.website" cssClass="form-control" placeholder="example.com" id="customer.website"
+                                                 pattern="^([_W-Ww-w-\\.])*([A-Za-z0-9]+)*(\\.[A-Za-z]{3,3})$" title="Proper Format: example.com or www.example.com"/>
                                 </div>
                             </div>
 
@@ -250,13 +253,13 @@
         this.value=this.value.toUpperCase();
     });
 
-    function alphaKeyOnly(evt)
+    /*function alphaKeyOnly(evt)
     {
         var charCode = (evt.which) ? evt.which : event.keyCode
         if ((charCode > 32 && charCode < 57)||(charCode > 57 && charCode <65) || (charCode > 90 && charCode < 97) )
             return false;
 
         return true;
-    }
+    }*/
 
 </script>

@@ -53,7 +53,7 @@
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName"
                                              id="driver.lastName" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                             title="Name should not contain special characters and/or numbers." maxlength="30"/>
+                                             title="Last Name should not contain special characters and/or numbers." maxlength="30"/>
                             </div>
 
                         </div>
@@ -65,7 +65,7 @@
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName"
                                              id="driver.firstName" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                             title="Name should not contain special characters and/or numbers." maxlength="30"/>
+                                             title="First Name should not contain special characters and/or numbers." maxlength="30"/>
                             </div>
 
                         </div>
@@ -77,7 +77,7 @@
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName"
                                              id="driver.middleName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                             title="Name should not contain special characters and/or numbers." maxlength="30"/>
+                                             title="Middle Name should not contain special characters and/or numbers." maxlength="30"/>
                             </div>
 
                         </div>
@@ -89,7 +89,7 @@
                             <div class="col-lg-10">
                                 <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"
                                              id="driver.title" maxLength="30" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                             title="Name should not contain special characters and/or numbers." required="true"/>
+                                             title="Title should not contain special characters and/or numbers." required="true"/>
                             </div>
 
                         </div>

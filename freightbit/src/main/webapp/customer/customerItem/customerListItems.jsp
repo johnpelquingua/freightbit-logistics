@@ -103,7 +103,7 @@
                                                              value="%{#attr.item.customerItemsId}"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{editItemUrl}" rel="tooltip"
-                                                     title="Edit this driver">
+                                                     title="Edit this item">
                                                     <i class="fa fa-pencil"></i>
                                                 </s:a>
 

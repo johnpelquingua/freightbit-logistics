@@ -40,18 +40,22 @@
                         <div class="form-group" >
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name<span class="asterisk_red"></span></label>
                             <div class="col-lg-8">
-                                <s:textfield name="item.itemName" id="item.itemName" required="true" cssClass="form-control" pattern="^(\s*[a-zA-Z0-9]+(([a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Must be letters only"/>
+                                <s:textfield name="item.itemName" id="item.itemName" required="true" cssClass="form-control" pattern="^(\s*[a-zA-Z0-9]+(([a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
+                                             title="Item Name should not contain special characters" maxlength="50"  tabindex="1"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Item Code<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.itemCode" id="item_itemCode" required="true" cssClass="form-control" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
+                                <s:textfield name="item.itemCode" id="itemCode" required="true" cssClass="form-control" maxLength="3"
+                                             pattern="[A-Z0-9]+" title="Item Code should not contain special characters"
+                                             onkeypress="return alphaKeyOnly(event)" tabindex="2"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Weight (kg)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.weight" id="item_weight" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?" title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.weight" id="item_weight" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?"
+                                             title="Special characters in Price is not valid" onkeypress="return isNumberKey(event)" tabindex="4"/>
                             </div>
 
                             <%--<label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)</label>--%>
@@ -66,34 +70,38 @@
                             <%--</div>--%>
                             <label class="col-lg-2 control-label" style="padding-top:0px;">SRP (Php)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield  name="item.srp" id="item_srp" required="true" cssClass="form-control" pattern="[0-9.,]+" title="Special characters in SRP is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield  name="item.srp" id="item_srp" required="true" cssClass="form-control" pattern="[0-9.,]+"
+                                              title="Special characters in SRP is not valid" onkeypress="return isNumberKey(event)" tabindex="3"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Length (m)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.length" id="item.length" required="true" cssClass="form-control" style="150px" pattern="\d+(\.\d{1,2})?" title="Special characters in Length is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.length" id="item.length" required="true" cssClass="form-control" style="150px" pattern="\d+(\.\d{1,2})?"
+                                             title="Special characters in Length is not valid" onkeypress="return isNumberKey(event)" tabindex="5"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Width (m)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?" title="Special characters in width is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.width" id="item.width" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?"
+                                             title="Special characters in width is not valid" onkeypress="return isNumberKey(event)" tabindex="6"/>
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Height (m)<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.height" id="item.height" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?" title="Special characters in height is not valid" onkeypress="return isNumberKey(event)"/>
+                                <s:textfield name="item.height" id="item.height" required="true" cssClass="form-control" pattern="\d+(\.\d{1,2})?"
+                                             title="Special characters in height is not valid" onkeypress="return isNumberKey(event)" tabindex="7"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Description</label>
                             <div class="col-lg-3">
-                                <s:textarea name="item.description" id="item.description" resize="none" style="resize:none" rows="3" cssClass="form-control" maxlength="50" />
+                                <s:textarea name="item.description" id="item.description" resize="none" style="resize:none" rows="3" cssClass="form-control" maxlength="50" tabindex="8" />
                             </div>
 
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Note</label>
                             <div class="col-lg-3">
-                                <s:textarea name="item.note" id="item.note" cssClass="form-control" style="resize:none" rows="3" maxlength="50" />
+                                <s:textarea name="item.note" id="item.note" cssClass="form-control" style="resize:none" rows="3" maxlength="50" tabindex="9" />
                             </div>
                         </div>
                 </div>
@@ -137,19 +145,19 @@
         $("#item_srp").maskMoney();
     });
 
-    $("#item_itemCode").keyup(function(){
+    $("#itemCode").keyup(function(){
         this.value=this.value.toUpperCase();
     });
 
 
-    function alphaKeyOnly(evt)
+    /*function alphaKeyOnly(evt)
     {
         var charCode = (evt.which) ? evt.which : event.keyCode
         if ((charCode > 32 && charCode < 57)||(charCode > 57 && charCode <65) || (charCode > 90 && charCode < 97) )
             return false;
 
         return true;
-    }
+    }*/
 
 function isNumberKey(evt)
 {
