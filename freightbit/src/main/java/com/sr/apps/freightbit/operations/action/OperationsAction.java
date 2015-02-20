@@ -45,6 +45,7 @@ import com.sr.biz.freightbit.vendor.exceptions.TrucksAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.exceptions.VendorAlreadyExistsException;
 import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.vesselSchedule.entity.VesselSchedules;
+import com.sr.biz.freightbit.vesselSchedule.exception.VesselSchedulesAlreadyExistsException;
 import com.sr.biz.freightbit.vesselSchedule.service.VesselSchedulesService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -350,6 +351,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return clientId;
     }
 
+    public void validateOnSubmit(VesselScheduleBean vesselSchedule) {
+        clearErrorsAndMessages();
+
+        if (StringUtils.isBlank(vesselSchedule.getVoyageNumber())) {
+            addFieldError("vesselSchedule.voyageNumber", "Voyage Number is required");
+        }
+
+    }
+
     // method for bulk setting and editing of vendors
     public String checkItemStatus() {
 
@@ -544,6 +554,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 for(OrderItems orderItemElem : orderItemsListing){
                     orderItemVesselSchedule.add(transformToOrderItemFormBean(orderItemElem));
                 }
+
+                vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
 
                 // Vessel schedules filtered by origin and destination
                 List<VesselSchedules> vesselSchedulesList = operationsService.findVesselScheduleByOriDesClass(order.getOriginationPort(), order.getDestinationPort());
@@ -740,11 +752,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 }
 
-                List<OrderItems> orderItemsListing = orderService.findAllItemByOrderId(orderEntity.getOrderId());
-
-                for(OrderItems orderItemElem : orderItemsListing){
-                    orderItemOriginVendor.add(transformToOrderItemFormBean(orderItemElem));
-                    orderItemDestinationVendor.add(transformToOrderItemFormBean(orderItemElem));
+                for(int x = 0; x < check.length; x++) {
+                    OrderItems orderItemsListing = orderService.findOrderItemByOrderItemId(Integer.parseInt(check[x]));
+                    orderItemOriginVendor.add(transformToOrderItemFormBean(orderItemsListing));
+                    orderItemDestinationVendor.add(transformToOrderItemFormBean(orderItemsListing));
                 }
 
                 vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
@@ -1044,10 +1055,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    public String addVesselSchedule(){
-
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-
+    public String addVesselSchedule() throws Exception{
+        validateOnSubmit(vesselSchedule);
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
         try {
             VesselSchedules entity = transformToVesselScheduleEntityBean(vesselSchedule);
             entity.setCreatedBy(commonUtils.getUserNameFromSession());
@@ -1055,8 +1067,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
             entity.setModifiedBy(commonUtils.getUserNameFromSession());
             entity.setModifiedTimestamp(new Date());
             vesselSchedulesService.addVesselSchedule(entity);
-        } catch (Exception e) {
-            addFieldError("vesselSchedule.voyageNumber", getText("err.voyagenumber.already.exist"));
+        }  catch (VesselSchedulesAlreadyExistsException e) {
+            addFieldError("vesselSchedule.vesselScheduleId", getText("err.voyageNumber.already.exists"));
             return INPUT;
         }
 

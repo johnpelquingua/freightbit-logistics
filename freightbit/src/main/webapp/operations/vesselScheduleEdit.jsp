@@ -149,8 +149,8 @@
                     <button type="button" id="Cancel" class="btn" data-toggle="modal" data-target="#cancelEdit">
                         Cancel
                     </button>
-                    <%--<s:submit cssClass="btn btn-primary" name="submit" value="Save"/>--%>
-                    <button class="btn btn-primary submitBtn" type="button" disabled>Save</button>
+                    <s:submit cssClass="btn btn-primary submitBtn" name="submit" value="Save" type="submit" disabled="true"/>
+                    <%--<button class="btn btn-primary submitBtn" type="button" disabled>Save</button>--%>
                     </s:form>
                 </div>
 

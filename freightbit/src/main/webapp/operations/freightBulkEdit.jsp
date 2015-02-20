@@ -223,7 +223,7 @@
                         <%--<s:if test="scheduleExists == 'TRUE' ">--%>
 
                         <div class="well">
-                            <h4 style="text-align:center;">Current Schedule</h4>
+                            <h4 style="text-align:center;">Current Schedules</h4>
                             <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
                                            requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
@@ -741,7 +741,7 @@
                             <%--<s:if test="scheduleExists == 'TRUE' ">--%>
 
                         <div class="well">
-                            <h4 style="text-align:center;">Current Schedule</h4>
+                            <h4 style="text-align:center;">Current Schedules</h4>
                             <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
                                            requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
@@ -1207,7 +1207,7 @@
                         <%--<s:if test="scheduleExists == 'TRUE' ">--%>
 
                         <div class="well">
-                            <h4 style="text-align:center;">Current Schedule</h4>
+                            <h4 style="text-align:center;">Current Schedules</h4>
                             <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
                                            requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                            class="table table-striped table-hover table-bordered text-center tablesorter"
@@ -1861,12 +1861,12 @@
                         <label class="col-lg-3 control-label" style="padding-top:0px;">Type<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9"></span>
-                            <s:select list="vendorTypeList" name="vendor.vendorType" id="vendor.vendorType"
-                                      listKey="key" listValue="value" cssClass="form-control" />
-                            <%--<s:hidden type="hidden" cssClass="form-control" value="SHIPPING" name="vendor.vendorType"
+                            <%--<s:select list="vendorTypeList" name="vendor.vendorType" id="vendorTypeId"
+                                      listKey="key" listValue="value" cssClass="vendorInput form-control" />--%>
+                            <s:hidden type="hidden" cssClass="form-control" value="SHIPPING" name="vendor.vendorType"
                                       id="vendor.vendorType"/>
                             <s:textfield cssClass="form-control" value="Shipping" name="vendor_vendorType"
-                                         id="vendor_vendorType" disabled="true"/>--%>
+                                         id="vendor_vendorType" disabled="true"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -1893,6 +1893,14 @@
                                       id="vendor.vendorClass" name="vendor.vendorClass"/>
                         </div>
                     </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" style="padding-top:0px;">Service Area<span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                                <s:select list="portsList" listKey="key" listValue="value" cssClass="vendorInput form-control"
+                                          id="serviceAreaId" name="vendor.serviceArea" emptyOption="true"/>
+                            </div>
+                        </div>
 
 
                 </div>
@@ -1926,15 +1934,13 @@
 
                     <label>Vendor<span class="asterisk_red"></span></label>
 
-                    <s:select list="vendorShippingListClass" name="vesselSchedule.vendorId"
-                              listKey="vendorId" listValue="vendorName" cssClass="form-control addScheduleInput"
+                    <s:select list="vendorShippingListClass" id="vesselSchedule_vendorName" name="vesselSchedule.vendorId"
+                              listKey="vendorId" listValue="vendorName" cssClass="form-control addScheduleInput vendorIdPass"
                               emptyOption="true" required="true"></s:select>
 
                     <label>Voyage Number<span class="asterisk_red"></span></label>
 
-                    <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber" required="true"/>
-
-                    <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
+                    <s:textfield cssClass="form-control" id="voyageNumber" name="vesselSchedule.voyageNumber" required="true"/>
 
                     <label>Vessel<span class="asterisk_red"></span></label>
 
@@ -2057,6 +2063,17 @@
             });
         });*/
 
+        $("#createSchedule").click(function() {
+            $("#vesselSchedule_vendorName").val('');
+            $("#voyageNumber").val('');
+            $("#vesselList").val('');
+            $("#departureDate").val('');
+            $("#departureTime").val('');
+            $("#arrivalDate").val('');
+            $("#arrivalTime").val('');
+            $("#vesselSchedule_originPort").val('');
+            $("#vesselSchedule_destinationPort").val('');
+        });
     });
 
     var departureDate = $('#departureDate');
@@ -2157,160 +2174,6 @@
         preventDuplicatePort.call(this, select1, this.selectedIndex);
     };
 
-    $(document).ready(function() {
-        $('#vendorListOrigin').change(function(event) {
-            var vendorId = $("#vendorListOrigin").val();
-
-            $.getJSON('listVendorDriverAndTrucks', {
-                vendorId : vendorId
-            },
-
-            function(jsonResponse) {
-
-                var driver = $('#driverList');
-
-                driver.find('option').remove();
-
-                var truck = $('#trucksList');
-
-                truck.find('option').remove();
-
-                $.each(jsonResponse.driverMap, function(key, value) {
-                    $('<option>').val(key).text(value).appendTo(driver);
-                });
-
-                $.each(jsonResponse.trucksMap, function(key, value) {
-                    $('<option>').val(key).text(value).appendTo(truck);
-                });
-
-                var truckCode = $("#trucksList").val();
-
-                $.getJSON('truckDetails', {
-                    truckCodeParam: truckCode
-                },
-
-                function (jsonResponse) {
-                    var select1 = $('#bodyType');
-
-                    select1.find('option').remove();
-
-                    var select2 = $('#plateNumber');
-
-                    select2.find('option').remove();
-
-                    var select3 = $('#grossWeight');
-
-                    select3.find('option').remove();
-
-                    // For Truck Type Auto-populate
-                    $.each(jsonResponse.bodyTypeMap, function (key,value) {
-
-                        $('<option>').val(key).text(value).appendTo(select1);
-                        var bodyType = $("#bodyType").val();
-                        document.getElementById("bodyType_textfield").value = bodyType;
-
-                    });
-
-                    // For Plate Number Auto-populate
-                    $.each(jsonResponse.plateNumberMap, function (key,value) {
-
-                        $('<option>').val(key).text(value).appendTo(select2);
-                        var plateNumber = $("#plateNumber").val();
-                        document.getElementById("plateNumber_textfield").value = plateNumber;
-
-                    });
-
-                    // For Gross Weight Auto-populate
-                    $.each(jsonResponse.grossWeightMap, function (key,value) {
-
-                        $('<option>').val(key).text(value).appendTo(select3);
-                        var grossWeight = $("#grossWeight").val();
-                        document.getElementById("grossWeight_textfield").value = grossWeight;
-
-                    });
-                });
-
-            });
-        });
-    });
-
-    $(document).ready(function() {
-        $('#vendorListDestination').change(function(event) {
-            var vendorId = $("#vendorListDestination").val();
-
-            $.getJSON('listVendorDriverAndTrucks', {
-                vendorId : vendorId
-            },
-
-            function(jsonResponse) {
-
-                var driver = $('#driverListDestination');
-
-                driver.find('option').remove();
-
-                var truck = $('#trucksListDestination');
-
-                truck.find('option').remove();
-
-                $.each(jsonResponse.driverMap, function(key, value) {
-                    $('<option>').val(key).text(value).appendTo(driver);
-                });
-
-                $.each(jsonResponse.trucksMap, function(key, value) {
-                    $('<option>').val(key).text(value).appendTo(truck);
-                });
-
-                var truckCode = $("#trucksListDestination").val();
-
-                $.getJSON('truckDetails', {
-                    truckCodeParam: truckCode
-                },
-
-                function (jsonResponse) {
-                    var select4 = $('#bodyTypeDestination');
-
-                    select4.find('option').remove();
-
-                    var select5 = $('#plateNumberDestination');
-
-                    select5.find('option').remove();
-
-                    var select6 = $('#grossWeightDestination');
-
-                    select6.find('option').remove();
-
-                    // For Truck Type Auto-populate
-                    $.each(jsonResponse.bodyTypeMap, function (key,value) {
-
-                        $('<option>').val(key).text(value).appendTo(select4);
-                        var bodyType = $("#bodyTypeDestination").val();
-                        document.getElementById("bodyType_Destination_textfield").value = bodyType;
-
-                    });
-
-                    // For Plate Number Auto-populate
-                    $.each(jsonResponse.plateNumberMap, function (key,value) {
-
-                        $('<option>').val(key).text(value).appendTo(select5);
-                        var plateNumber = $("#plateNumberDestination").val();
-                        document.getElementById("plateNumber_Destination_textfield").value = plateNumber;
-
-                    });
-
-                    // For Gross Weight Auto-populate
-                    $.each(jsonResponse.grossWeightMap, function (key,value) {
-
-                        $('<option>').val(key).text(value).appendTo(select6);
-                        var grossWeight = $("#grossWeightDestination").val();
-                        document.getElementById("grossWeight_Destination_textfield").value = grossWeight;
-
-                    });
-                });
-
-            });
-        });
-    });
-
     var pickup = $('#pickup');
     var dropoff = $('#dropoff');
 
@@ -2371,90 +2234,9 @@
     });
 
     $(document).ready(function () {
-        $("#createDriverButton").click(function () {
-            var vendorId = $("#vendorListOrigin").val();
-            $("#driver_licenseNumber").val('');
-            $("#driver_lastName").val('');
-            $("#driver_firstName").val('');
-            $("#driver_middleName").val('');
-            $("#driver_title").val('');
-
-            if (vendorId == "" || null) {
-                alert("Select a vendor first");
-                return false;
-            }
-            $("#vendorId").val(vendorId);
-        })
-    });
-
-    $(document).ready(function () {
-        $("#createTruckButton").click(function () {
-            var vendorId = $("#vendorListOrigin").val();
-            $("#truck_plateNumber").val('');
-            $("#truck_truckCode").val('');
-            $("#truck_motorVehicleNumber").val('');
-            $("#truck_modelNumber").val('');
-            $("#truck_ownerName").val('');
-            $("#truck_ownerAddress").val('');
-            $("#truck_officialReceipt").val('');
-            $("#truck_engineNumber").val('');
-            $("#truck_modelYear").val('');
-            $("#truck_grossWeight").val('');
-            $("#truck_netWeight").val('');
-            $("#truck_netCapacity").val('');
-
-            if (vendorId == "" || null) {
-                alert("Select a vendor first");
-                return false;
-            }
-            $("#vendorIdTruck").val(vendorId);
-        })
-    });
-    $(document).ready(function () {
         $("#createVendorButton").click(function () {
             $("#vendor_vendorName").val('');
             $("#vendor_vendorCode").val('');
-        })
-    });
-
-    $(document).ready(function () {
-        $("#createDriverButton").click(function () {
-            var vendorId = $("#vendorListDestination").val();
-            $("#driver_licenseNumber").val('');
-            $("#driver_lastName").val('');
-            $("#driver_firstName").val('');
-            $("#driver_middleName").val('');
-            $("#driver_title").val('');
-
-            if (vendorId == "" || null) {
-                alert("Select a vendor first");
-                return false;
-            }
-            $("#vendorId").val(vendorId);
-        })
-    });
-
-    $(document).ready(function () {
-        $("#createTruckButton").click(function () {
-            var vendorId = $("#vendorListDestination").val();
-            $("#truck_plateNumber").val('');
-            $("#truck_truckCode").val('');
-            $("#truck_motorVehicleNumber").val('');
-            $("#truck_modelNumber").val('');
-            $("#truck_ownerName").val('');
-            $("#truck_ownerAddress").val('');
-            $("#truck_officialReceipt").val('');
-            $("#truck_engineNumber").val('');
-            $("#truck_modelYear").val('');
-            $("#truck_grossWeight").val('');
-            $("#truck_netWeight").val('');
-            $("#truck_netCapacity").val('');
-
-            if (vendorId == "" || null) {
-                alert("Select a vendor first");
-                return false;
-            }
-            $("#vendorIdTruck").val(vendorId);
         })
     });
 
@@ -2495,5 +2277,4 @@
             });
         });
     });
-
 </script>

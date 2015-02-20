@@ -1,6 +1,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <style>
     label {
@@ -14,6 +15,38 @@
         margin: 0 !important;
     }
 </style>
+
+<script>
+    $(document).ready(function(){
+  if (window.localStorage) {
+  $('.notifBox').on('click',':checkbox',function(){
+  var name = this.name;
+  var value = this.value;
+
+  if($(this).is(':checked')){
+  oTable.fnFilter(name, value,false,true,false,true);
+  //shorthand to check that localStorage exists
+  localStorage && localStorage.setItem(this.name,'checked');
+
+  } else {
+  oTable.fnFilter('',value,false,true,false,true);
+  //shorthand to check that localStorage exists
+  localStorage && localStorage.removeItem(this.name);
+  }
+  });
+
+
+  $(document).ready(function () {
+  $(':checkbox').each(function() {
+  $(this).prop('checked',localStorage.getItem(this.name) == 'checked');
+  });
+  });
+  }
+    });
+
+
+
+</script>
 
 <div class="row">
     <div class="col-lg-12">
@@ -276,7 +309,7 @@
                     <div class="col-lg-9" style="text-align:left !important;">
                         <%--<s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                   name="order.notifyBy" list="notifyByList" listKey="key" listValue="value" id ="notification_type"/>--%>
-                        <s:checkboxlist cssClass="notifBox" list="notifyByList" listKey="key" listValue="value" name="order.notifyBy" id="notifyBy" />
+                        <s:checkboxlist cssClass="notifBox" list="notifyByList" listKey="key" value="" listValue="value" name="notifyBy" id="notifyBy" ></s:checkboxlist>
 
                     </div>
 

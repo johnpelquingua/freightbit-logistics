@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
@@ -218,7 +219,7 @@
         <%--<s:if test="scheduleExists == 'TRUE' ">--%>
 
         <div class="well">
-            <h4 style="text-align:center;">Current Schedule</h4>
+            <h4 style="text-align:center;">Current Schedules</h4>
             <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
                            requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                            class="table table-striped table-hover table-bordered text-center tablesorter"
@@ -427,18 +428,20 @@
 
                     <s:form cssClass="form-horizontal" theme="bootstrap" action="addVesselScheduleInPlanningBulk">
 
-                    <s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />
+                    <%--<s:hidden id="vendorIdHolder" name="vesselSchedule.vendorId" />--%>
 
-                    <label>Vendor<span class="asterisk_red"></span></label>
+                        <label>Vendor<span class="asterisk_red"></span></label>
 
-                    <s:select list="vendorShippingListClass" name="vesselSchedule.vendorId"
+                    <s:select list="vendorShippingListClass" id="vesselSchedule_vendorName" name="vesselSchedule.vendorId"
                               listKey="vendorId" listValue="vendorName" cssClass="form-control addScheduleInput vendorIdPass"
                               emptyOption="true" required="true"></s:select>
 
                     <label>Voyage Number<span class="asterisk_red"></span></label>
 
-                    <s:textfield cssClass="form-control voyageNumber" name="vesselSchedule.voyageNumber" required="true"/>
+                    <s:textfield cssClass="form-control voyageNumber" id="voyageNumber" name="vesselSchedule.voyageNumber" required="true"/>
 
+                        <%--<s:textfield value="%{vesselSchedule.vendorId}"></s:textfield>
+                        <s:textfield value="%{vesselSchedule.vesselScheduleId}"></s:textfield>--%>
                     <label>Vessel<span class="asterisk_red"></span></label>
 
                     <s:select emptyOption="true" id="vesselList"
@@ -509,18 +512,6 @@
     // User must choose a vendor first before adding vessel schedule
     $(document).ready(function(){
 
-        $('#createSchedule').click(function() {
-            $('.vendorIdPass').val('');
-            $('.voyageNumber').val('');
-            $('.vesselName').val('');
-            $('#departureDate').val('');
-            $('#departureTime').val('');
-            $('#arrivalDate').val('');
-            $('#arrivalTime').val('');
-            $('#vesselSchedule_originPort').val('');
-            $('#vesselSchedule_destinationPort').val('');
-        });
-
         window.location.href = '#focusHere';
         hideVesselSchedule();
 
@@ -572,6 +563,18 @@
 
             });
         });*/
+
+        $("#createSchedule").click(function() {
+            $("#vesselSchedule_vendorName").val('');
+            $("#voyageNumber").val('');
+            $("#vesselList").val('');
+            $("#departureDate").val('');
+            $("#departureTime").val('');
+            $("#arrivalDate").val('');
+            $("#arrivalTime").val('');
+            $("#vesselSchedule_originPort").val('');
+            $("#vesselSchedule_destinationPort").val('');
+        });
 
     });
 

@@ -71,6 +71,8 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="vendorClass" title="Class <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+                                <td><display:column property="serviceArea" title="Service Area <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
                                 <td class="tb-font-black" style="text-align: center;">
                                     <display:column title="Actions">
 
