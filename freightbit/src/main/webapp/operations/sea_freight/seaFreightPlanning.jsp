@@ -234,7 +234,7 @@
                 <s:if test="scheduleExists == 'TRUE' ">
 
                     <div class="well">
-                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedule</h4>
+                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedules</h4>
                         <display:table id="vesselSchedule" name="vesselSchedule"
                                        requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                        class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable"
@@ -399,7 +399,7 @@
             <s:if test="scheduleExists == 'TRUE' ">
 
                 <div class="well">
-                    <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedule</h4>
+                    <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedules</h4>
                     <display:table id="vesselSchedule" name="vesselSchedule"
                                    requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable">
@@ -653,7 +653,7 @@
                 <%--<s:textfield value="%{scheduleExists}" />--%>
                 <s:if test="scheduleExists == 'TRUE' ">
                 <div class="well">
-                    <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedule</h4>
+                    <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedules</h4>
                     <display:table id="vesselSchedule" name="vesselSchedule"
                                    requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                                    class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable"
@@ -880,7 +880,7 @@
 
                     <s:if test="scheduleExists == 'TRUE' ">
                     <div class="well">
-                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedule</h4>
+                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedules</h4>
                         <hr>
                         <display:table id="vesselSchedule" name="vesselSchedule"
                                        requestURI="/viewSeaFreightPlanning.action" pagesize="10"

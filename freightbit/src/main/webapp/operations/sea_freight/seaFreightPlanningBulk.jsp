@@ -219,7 +219,7 @@
         <%--<s:if test="scheduleExists == 'TRUE' ">--%>
 
         <div class="well">
-            <h4 style="text-align:center;">Current Schedule</h4>
+            <h4 style="text-align:center;">Current Schedules</h4>
             <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
                            requestURI="/viewSeaFreightPlanning.action" pagesize="10"
                            class="table table-striped table-hover table-bordered text-center tablesorter"
