@@ -105,6 +105,7 @@ $(document).ready(function(){
     $('.containerQuantityDropdown').change(function () {
         var quantityFCL = document.getElementById('orderItem_quantityFCL').value;
         var totalValue = 0;
+
         if (document.getElementById('orderItem.nameSize').value == "10 FOOTER") {
             totalValue = quantityFCL * 250000; // compute for total value
             document.getElementById("orderItem_declaredValues").value = totalValue.toFixed(2); // set total value to the order item value textfield
@@ -487,7 +488,7 @@ $(document).ready(function(){
 });
 
 var sContainer = select = document.getElementById('orderItem.nameSize');
-var sQuantity = select = document.getElementById('orderItem.quantity');
+var sQuantity = select = document.getElementById('orderItem_quantityFCL');
 
 sContainer.onchange = function () {
     dynamicDropdown.call(this, sContainer, this.selectedIndex);

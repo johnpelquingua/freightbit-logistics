@@ -617,8 +617,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
             sessionAttributes.put("checkedItemsInSession", check);
             order = transformToOrderFormBean(orderEntity);
 
-            /*if (planning1.size() > 0) {*/
-
             nameSizeList = new ArrayList<String>();
 
             Integer planSize;
@@ -641,7 +639,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             for(int i = 0; i < planSize; i++){
                 OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planningList.get(i));
                 nameSizeList.add(orderItemEntity.getNameSize());
-
+                orderItems.add(transformToOrderItemFormBean(orderItemEntity));
             }
 
             vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
@@ -707,6 +705,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     for(int i = 0; i < planning1.size(); i++){
                         OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planning1.get(i));
                         nameSizeList.add(orderItemEntity.getNameSize());
+                        orderItems.add(transformToOrderItemFormBean(orderItemEntity));
                     }
 
                 } else if (planning2.size() > 0) {
@@ -716,6 +715,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     for(int i = 0; i < planning2.size(); i++){
                         OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planning2.get(i));
                         nameSizeList.add(orderItemEntity.getNameSize());
+                        orderItems.add(transformToOrderItemFormBean(orderItemEntity));
                     }
 
                 } else if (planning3.size() > 0) {
@@ -725,6 +725,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     for(int i = 0; i < planning3.size(); i++){
                         OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(planning3.get(i));
                         nameSizeList.add(orderItemEntity.getNameSize());
+                        orderItems.add(transformToOrderItemFormBean(orderItemEntity));
                     }
 
                 } else if (onGoing.size() > 0) {
@@ -734,6 +735,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     for(int i = 0; i < onGoing.size(); i++){
                         OrderItems orderItemEntity = orderService.findOrderItemByOrderItemId(onGoing.get(i));
                         nameSizeList.add(orderItemEntity.getNameSize());
+                        orderItems.add(transformToOrderItemFormBean(orderItemEntity));
                     }
 
                 }
@@ -3867,6 +3869,24 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         for (Documents documentElem : documentsList) {
             if(documentElem.getDocumentName().equals("PROFORMA BILL OF LADING") || documentElem.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || documentElem.getDocumentName().equals("ACCEPTANCE RECEIPT") || documentElem.getDocumentName().equals("RELEASE ORDER")  ){
+                documents.add(transformDocumentsToFormBean(documentElem));
+            }
+        }
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        sessionAttributes.put("orderIdParam", orderIdParam);
+
+        return SUCCESS;
+    }
+
+    public String deleteDocumentInland() {
+        Documents documentEntity = documentsService.findDocumentById(documentIdParam);
+        documentsService.deleteDocument(documentEntity);
+
+        List<Documents> documentsList = documentsService.findDocumentsByOrderId(orderIdParam);
+
+        for (Documents documentElem : documentsList) {
+            if(documentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION")){
                 documents.add(transformDocumentsToFormBean(documentElem));
             }
         }

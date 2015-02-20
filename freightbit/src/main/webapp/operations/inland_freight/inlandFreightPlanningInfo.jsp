@@ -52,15 +52,21 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Mode</label>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Type</label>
             <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num" disabled="true"></s:textfield>
+                <s:textfield cssClass="form-control" value="%{order.freightType}" name="book-num" disabled="true"></s:textfield>
             </div>
         </div>
         <div class="form-group">
-            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Type</label>
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Requirement</label>
             <div class="col-lg-10">
                 <s:textfield cssClass="form-control" value="%{order.serviceRequirement}" name="book-num" disabled="true"></s:textfield>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Service Mode</label>
+            <div class="col-lg-10">
+                <s:textfield cssClass="form-control" value="%{order.modeOfService}" name="book-num" disabled="true"></s:textfield>
             </div>
         </div>
         <div class="form-group">
@@ -79,7 +85,31 @@
 
 </div>
 
-<s:if test="#attr.order.serviceType == 'TRUCKING'">
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-list"></i>
+        <span class="panel-title">Cargo</span>
+    </div>
+
+    <div class="panel-body form-horizontal">
+        <div class="form-group">
+            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+            </s:if>
+            <s:else>
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+            </s:else>
+            <div class="col-lg-10">
+                <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
+                             disabled="true"></s:textfield>
+            </div>
+        </div>
+    </div>
+</div>
+
+<s:hidden value="%{order.freightType}" />
+
+<s:if test="#attr.order.freightType != 'TRUCKING'">
 
     <div class="panel panel-primary">
 
@@ -94,18 +124,18 @@
                          value="#attr.orderItem.nameSizeParam">
                 </s:param>
             </s:url>
-            <span class="pull-right">
+            <%--<span class="pull-right">
             <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
                  title="Update Status" >
                 <i class="fa fa-edit"></i> Edit
             </s:a>
-            </span>
+            </span>--%>
         </div>
         <div class="panel-body form-horizontal">
             <div class="form-group">
                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                 <div class="col-lg-10">
-                    <s:textfield cssClass="form-control" value="%{orderItem.vendorSea}" name="book-num" disabled="true"></s:textfield>
+                    <s:textfield cssClass="form-control" value="%{orderItem.vendorName}" name="book-num" disabled="true"></s:textfield>
                 </div>
             </div>
 
@@ -115,6 +145,47 @@
                     <s:textfield cssClass="form-control" value="%{orderItem.vesselScheduleId}" name="book-num" disabled="true"></s:textfield>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Vessel Name </label>
+                <div class="col-lg-10">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.vesselName}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Date </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control departureDate" value="%{vesselSchedule.departureDate}" name="book-num" disabled="true"></s:textfield>
+                </div>
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date <Port></Port> </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.arrivalDate}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Time </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.departureTime}" name="book-num" disabled="true"></s:textfield>
+                </div>
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Time <Port></Port> </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.arrivalTime}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Origin Port </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.originPort}" name="book-num" disabled="true"></s:textfield>
+                </div>
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Destination <Port></Port> </label>
+                <div class="col-lg-4">
+                    <s:textfield cssClass="form-control" value="%{vesselSchedule.destinationPort}" name="book-num" disabled="true"></s:textfield>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -136,12 +207,12 @@
                         </s:param>
                     </s:url>
                     <s:if test="#attr.orderItem.vendorOrigin != 'NONE' ">
-                        <span class="pull-right">
+                        <%--<span class="pull-right">
                         <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
                              title="Update Status" >
                             <i class="fa fa-edit"></i> Edit
                         </s:a>
-                        </span>
+                        </span>--%>
                     </s:if>
                 </div>
                 <div class="panel-body form-horizontal">
@@ -216,7 +287,7 @@
             </div>
         </div>
 
-<s:if test="#attr.order.serviceType == 'TRUCKING'">
+<s:if test="#attr.order.freightType != 'TRUCKING'">
 
         <div class="col-lg-6">
             <div class="panel panel-primary">
@@ -231,12 +302,12 @@
                                  value="#attr.orderItem.nameSizeParam">
                         </s:param>
                     </s:url>
-                    <span class="pull-right">
+                    <%--<span class="pull-right">
                     <s:a cssClass="btn btn-primary new-booking" href="%{viewFreightPlanningUrl}" rel="tooltip"
                          title="Update Status" >
                         <i class="fa fa-edit"></i> Edit
                     </s:a>
-                    </span>
+                    </span>--%>
                 </div>
                 <div class="panel-body form-horizontal">
 
@@ -267,6 +338,36 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Body Type</label>
+
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" value="%{truckDestination.truckType}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Plate Number</label>
+
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" value="%{truckDestination.plateNumber}" disabled="true" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="col-lg-3 control-label" style="padding-top:0px;">Gross Weight</label>
+
+                        <div class="col-lg-9">
+                            <s:textfield cssClass="form-control" value="%{truckDestination.grossWeight}" disabled="true" />
                         </div>
 
                     </div>

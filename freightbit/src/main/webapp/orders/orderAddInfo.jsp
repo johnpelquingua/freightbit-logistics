@@ -107,7 +107,7 @@
                                 <td style="text-align: left !important;"><s:property value="order.orderStatus"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Commentsss</td>
+                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Comments</td>
                                 <td style="text-align: left !important;" id="comment-wrapper" class="comment-wrapper" ><s:property value="order.comments"/></td>
                             </tr>
                             </tbody>
@@ -479,7 +479,7 @@
                         </div>
 
                         <label class="col-lg-3 control-label" style="padding-top: 0px;">
-                            Volume (m&#179;)<span class="asterisk_red"/>
+                            Volume (cbm)<span class="asterisk_red"/>
                         </label>
                         <div class="col-lg-3" >
 
@@ -639,7 +639,7 @@
                             </span>
                             </s:else>
                             <th class="tb-font-black">Weight <br /> (kg) </th>
-                            <th class="tb-font-black">Volume <br /> (m&#179;) </th>
+                            <th class="tb-font-black">Volume <br /> (cbm) </th>
                             <th class="tb-font-black">Commodity</th>
                             <th class="tb-font-black">Value <br /> (Php) </th>
                             <th class="tb-font-black">Rate <br /> (Php) </th>
@@ -1060,7 +1060,7 @@
                             <thead>
                             <tr class="header_center" style="background-color: #fff;">
                                 <th class="tb-font-black">Quantity</th>
-                                <s:if test="order.serviceRequirement=='FULL CARGO LOAD'">
+                                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                             <span>
                                 <th class="tb-font-black">Size</th>
                             </span>
@@ -1071,7 +1071,7 @@
                             </span>
                                 </s:else>
                                 <th class="tb-font-black">Weight <br /> (kg) </th>
-                                <th class="tb-font-black">Volume <br /> (m&#179;) </th>
+                                <th class="tb-font-black">Volume <br /> (cbm) </th>
                                 <th class="tb-font-black">Commodity</th>
                                 <th class="tb-font-black">Value <br /> (Php) </th>
                                 <th class="tb-font-black">Rate <br /> (Php) </th>

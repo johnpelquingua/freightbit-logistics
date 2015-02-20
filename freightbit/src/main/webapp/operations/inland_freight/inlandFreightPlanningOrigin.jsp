@@ -137,6 +137,29 @@
 </div>
 
 <s:if test="order.freightType=='TRUCKING'">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-list"></i>
+                <span class="panel-title">Cargo</span>
+            </div>
+
+            <div class="panel-body form-horizontal">
+                <div class="form-group">
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                    </s:if>
+                    <s:else>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                    </s:else>
+                    <div class="col-lg-10">
+                        <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
+                                     disabled="true"></s:textfield>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <%--<s:if test="order.modeOfService=='PICKUP'">--%>
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -301,7 +324,7 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
                         <div class="col-lg-8">
-                            <s:textfield cssClass="from_date form-control step2 finalPickupDate" value="%{orderItem.finalPickupdate}"
+                            <s:textfield cssClass="from_date form-control finalPickupDate" value="%{orderItem.finalPickupdate}"
                                          id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
                                          contenteditable="false" style="margin-bottom: 15px !important;"/>
                         </div>
@@ -324,12 +347,60 @@
 
                 </s:form>
             </div>
+
+            <div class="panel-footer">
+                <div class="pull-right">
+                    <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
+                        <s:param name="orderIdParam"
+                                 value="#attr.order.orderId"></s:param>
+                        <s:param name="orderNoParam"
+                                 value="#attr.order.orderNo"></s:param>
+                    </s:url>
+                    <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                         title="Update Status">
+                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
+                            </button>
+                        </s:if>
+                        <s:else>
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
+                            </button>
+                        </s:else>
+                    </s:a>
+                </div>
+            </div>
+
         </div>
     <%--</s:if>--%>
 </s:if>
 
 <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
 <s:if test="order.modeOfService=='DOOR TO DOOR'">
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-list"></i>
+        <span class="panel-title">Cargo</span>
+    </div>
+
+    <div class="panel-body form-horizontal">
+        <div class="form-group">
+            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+            </s:if>
+            <s:else>
+                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+            </s:else>
+            <div class="col-lg-10">
+                <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
+                             disabled="true"></s:textfield>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         <i class="fa fa-anchor"></i>
@@ -340,7 +411,7 @@
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
 
             <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.vendorSea}" name="book-num"
+                <s:textfield cssClass="form-control" value="%{orderItem.vendorName}" name="book-num"
                              disabled="true"></s:textfield>
             </div>
         </div>
@@ -554,7 +625,7 @@
                 <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
 
                 <div class="col-lg-8">
-                    <s:textfield cssClass="from_date form-control step2 finalPickupDate" value="%{orderItem.finalPickupdate}"
+                    <s:textfield cssClass="from_date form-control finalPickupDate" value="%{orderItem.finalPickupdate}"
                                  id="pickup" name="operationsBean.pickupDate" placeholder="Select start date"
                                  contenteditable="false" style="margin-bottom: 15px !important;"/>
                 </div>
@@ -679,6 +750,29 @@
 
 </s:if>
 <s:elseif test="order.modeOfService=='DOOR TO PIER'">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="fa fa-list"></i>
+            <span class="panel-title">Cargo</span>
+        </div>
+
+        <div class="panel-body form-horizontal">
+            <div class="form-group">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                </s:if>
+                <s:else>
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                </s:else>
+                <div class="col-lg-10">
+                    <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
+                                 disabled="true"></s:textfield>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-anchor"></i>
@@ -921,6 +1015,29 @@
                     <button class="btn btn-primary finalSaveBtn" type="button" disabled>Save</button>
                 </div>
             </s:form>
+        </div>
+        <div class="panel-footer">
+            <div class="pull-right">
+                <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
+                    <s:param name="orderIdParam"
+                             value="#attr.order.orderId"></s:param>
+                    <s:param name="orderNoParam"
+                             value="#attr.order.orderNo"></s:param>
+                </s:url>
+                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                     title="Update Status">
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        <button type="button" class="btn btn-danger">
+                            <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
+                        </button>
+                    </s:if>
+                    <s:else>
+                        <button type="button" class="btn btn-danger">
+                            <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
+                        </button>
+                    </s:else>
+                </s:a>
+            </div>
         </div>
     </div>
 </s:elseif>
@@ -1280,7 +1397,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary forceSubmit" data-dismiss="modal">Yes</button>
             </div>
         </div>
     </div>
@@ -1307,9 +1425,7 @@
 
                 if (testStartDate > testEndDate)
                     dropoff.datepicker('setDate', testStartDate);
-
             }
-
             else {
                 dropoff.val(dateText);
             }
@@ -1318,7 +1434,6 @@
         onSelect: function (selectedDateTime) {
             dropoff.datetimepicker('option', 'minDate', pickup.datetimepicker('getDate'));
         }
-
     });
 
     // delivery date validation -jp
@@ -1349,6 +1464,11 @@
     });
 
     $(document).ready(function () {
+        // for the form to force submit without regards to date validation
+        $('.forceSubmit').click(function(){
+            $('.originForm').submit();
+        });
+
         $('#vendorListOrigin').change(function (event) {
             var vendorId = $("#vendorListOrigin").val();
 

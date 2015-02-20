@@ -1272,9 +1272,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
         orderItemBean.setRemarks(orderItem.getComments());
 
-
-
-
         return orderItemBean;
     }
 

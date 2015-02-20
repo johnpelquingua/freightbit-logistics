@@ -1,5 +1,6 @@
 function fcl(){
     var containerVolume = document.getElementById("orderItem.volume").value;
+    alert(containerVolume);
 
     if(containerVolume != ''){
         var containerQuantity = document.getElementById("orderItem.quantity").value;
@@ -22,6 +23,7 @@ function fcl(){
         document.getElementById("orderItem.volume").value = totalVolume;
         document.getElementById("orderItemVolume").value = totalVolume;
     }
+
 }
 
 
@@ -911,7 +913,7 @@ function dateValidationInit(){
                 } else {
                     pickupdate = pickupdate.getUTCFullYear() + '-' + (pickupdate.getMonth() + 1) + '-' + pickupdate.getDate();
                     departureDate = departureDate.getUTCFullYear() + '-' + (departureDate.getMonth() + 1) + '-' + departureDate.getDate();
-                    var message = 'Date must be between <font color="red">' + pickupdate + '</font> and <font color="red">' + departureDate + '</font>';
+                    var message = 'Date must be between <font color="red">' + pickupdate + '</font> and <font color="red">' + departureDate + '</font> <br/>Do you still wish to proceed?';
                     $('#dateWarningModalBody').empty().append(message);
                     $('#dateWarningModal').modal('show');
                 }
@@ -926,7 +928,7 @@ function dateValidationInit(){
                         $('#dateWarningModal').modal('show');
                     }
                 } else {
-                    if (finalPickupDate.setHours(0, 0, 0, 0) >= departureDate.setHours(0, 0, 0, 0)) {
+                    if (finalPickupDate.setHours(0, 0, 0, 0) <= departureDate.setHours(0, 0, 0, 0)) {
                         formToSubmit.submit();
                     } else {
                         departureDate = departureDate.getUTCFullYear() + '-' + (departureDate.getMonth() + 1) + '-' + departureDate.getDate();
@@ -938,6 +940,61 @@ function dateValidationInit(){
             }
         }else{
             formToSubmit.submit();
+        }
+
+    })
+}
+
+function dateValidationInitDes(){
+    $('.finalSaveBtnDes').click(function(){
+
+        var deliveryDate = new Date($('.deliveryDate').val()),
+            arrivalDate = new Date($('.arrivalDate').val()),
+            finalDeliveryDate = new Date($('.finalDeliveryDate').val()),
+            finalSaveBtnDes = $('.finalSaveBtnDes').val(),
+            formToSubmit = $('.destinationForm').val();
+
+        /*alert('Delivery Date ' + deliveryDate);
+        alert('Final Delivery Date ' + finalDeliveryDate);
+        alert('Arrival Date ' + arrivalDate);*/
+
+        console.log('Delivery Date ' + deliveryDate);
+        console.log('Final Delivery Date ' + finalDeliveryDate);
+        console.log('Arrival Date ' + arrivalDate);
+
+        if(arrivalDate != 'Invalid Date' && deliveryDate != 'Invalid Date'){
+            if(deliveryDate.setHours(0,0,0,0) >= finalDeliveryDate.setHours(0,0,0,0) && arrivalDate.setHours(0,0,0,0) <= finalDeliveryDate.setHours(0,0,0,0)){
+                formToSubmit.submit();
+                //alert(1);
+            }else{
+                deliveryDate = deliveryDate.getUTCFullYear() + '-' + (deliveryDate.getMonth() + 1) + '-' + deliveryDate.getDate();
+                arrivalDate = arrivalDate.getUTCFullYear() + '-' + (arrivalDate.getMonth() + 1) + '-' + arrivalDate.getDate();
+                var message = 'Date must be between <font color="red">' + arrivalDate + '</font> and <font color="red">' + deliveryDate + '</font> <br/>Do you still wish to proceed?';
+                $('#dateWarningModalBodyDes').empty().append(message);
+                $('#dateWarningModalDes').modal('show');
+            }
+        }else{
+            if(deliveryDate != 'Invalid Date'){
+                if(deliveryDate.setHours(0,0,0,0) >= finalDeliveryDate.setHours(0,0,0,0)){
+                    formToSubmit.submit();
+                    //alert(2);
+                }else{
+                    deliveryDate = deliveryDate.getUTCFullYear() + '-' + (deliveryDate.getMonth() + 1) + '-' + deliveryDate.getDate();
+                    var message = 'Date must be no later than <font color="red">' + deliveryDate + '</font>';
+                    $('#dateWarningModalBodyDes').empty().append(message);
+                    $('#dateWarningModalDes').modal('show');
+                }
+            }else{
+                if(arrivalDate.setHours(0,0,0,0) <= finalDeliveryDate.setHours(0,0,0,0)){
+                    formToSubmit.submit();
+                    //alert(3);
+                }else{
+                    arrivalDate = arrivalDate.getUTCFullYear() + '-' + (arrivalDate.getMonth() + 1) + '-' + arrivalDate.getDate();
+                    var message = 'Date must be on or after <font color="red">' + arrivalDate + '</font>';
+                    $('#dateWarningModalBodyDes').empty().append(message);
+                    $('#dateWarningModalDes').modal('show');
+                }
+            }
         }
 
     })
@@ -1006,6 +1063,72 @@ function buttonControl(){
             $('.houseWaybillDestinationBtn').show();
             $('.houseWaybillOriginBtn').show();
     }
+}
+
+function dispatchFilterScheduleOrigin() {
+    $('.dispatchSaveBtn').click(function() {
+        var dispatchFreightTable = $('.freightTableBulk tbody tr'),
+            scheduleDeparture = $('.freightTableBulk tbody tr td:nth-child(6)'),
+            dispatchFinalPickup = new Date($('.dispatchFinalPickup').val()),
+            formToSubmit = $('.dispatchOriginForm'),
+            finalDeparture,
+            selectedDeparture;
+
+        for (var i = 0; i < dispatchFreightTable.size(); i++) {
+            var loop_schedDeparture = new Date(scheduleDeparture.eq(i).text()).setHours(0, 0, 0, 0);
+
+            if (i == 0) {
+                selectedDeparture = loop_schedDeparture;
+            }
+
+            if (loop_schedDeparture <= selectedDeparture) {
+                selectedDeparture = loop_schedDeparture;
+            }
+        }
+
+        if(selectedDeparture >= dispatchFinalPickup.setHours(0,0,0,0)){
+            formToSubmit.submit();
+        }else{
+            finalDeparture = new Date(selectedDeparture);
+            finalDeparture = finalDeparture.getUTCFullYear() + '-' + (finalDeparture.getMonth() + 1) + '-' + finalDeparture.getDate();
+            var message = 'Date must be no later than <font color="red">' + finalDeparture + '</font> <br/> Do you still wish to proceed?';
+            $('#dateWarningModalBody').empty().append(message);
+            $('#dateWarningModal').modal('show');
+        }
+    })
+}
+
+function dispatchFilterScheduleDestination() {
+    $('.dispatchSaveBtnDes').click(function() {
+        var dispatchFreightTable = $('.freightTableBulk tbody tr'),
+            scheduleArrival = $('.freightTableBulk tbody tr td:nth-child(7)'),
+            dispatchFinalDelivery = new Date($('.dispatchFinalDelivery').val()),
+            formToSubmit = $('.dispatchDestinationForm'),
+            finalArrival,
+            selectedArrival;
+
+        for (var i = 0; i < dispatchFreightTable.size(); i++){
+            var loop_schedArrival = new Date(scheduleArrival.eq(i).text()).setHours(0,0,0,0);
+
+            if(i == 0){
+                selectedArrival = loop_schedArrival;
+            }
+
+            if(loop_schedArrival <= selectedArrival){
+                selectedArrival = loop_schedArrival;
+            }
+        }
+
+        if(selectedArrival <= dispatchFinalDelivery.setHours(0,0,0,0)){
+            formToSubmit.submit();
+        }else{
+            finalArrival = new Date(selectedArrival);
+            finalArrival = finalArrival.getUTCFullYear() + '-' + (finalArrival.getMonth() + 1) + '-' + finalArrival.getDate();
+            var message = 'Date must be on or after <font color="red">' + finalArrival + '</font> <br/> Do you still wish to proceed?';
+            $('#dateWarningModalBodyDes').empty().append(message);
+            $('#dateWarningModalDes').modal('show');
+        }
+    })
 }
 
 function lclHideVesselSchedule(){

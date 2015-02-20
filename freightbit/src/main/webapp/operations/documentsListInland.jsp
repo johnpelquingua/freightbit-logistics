@@ -77,7 +77,7 @@
                                     </a>
                                     <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
                                         <i class="fa fa-print"></i>
-                                        <s:url var="deleteDocumentUrl" action="deleteDocument">
+                                        <s:url var="deleteDocumentUrl" action="deleteDocumentInland">
                                             <s:param name="orderIdParam" value="%{orderIdParam}"></s:param>
                                             <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                         </s:url>
@@ -92,6 +92,31 @@
                 </div>
 
             </div>
+
+            <div class="panel-footer">
+                <div class="pull-right">
+                    <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
+                        <s:param name="orderIdParam"
+                                 value="#attr.order.orderId"></s:param>
+                        <s:param name="orderNoParam"
+                                 value="#attr.order.orderNo"></s:param>
+                    </s:url>
+                    <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                         title="Update Status">
+                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
+                            </button>
+                        </s:if>
+                        <s:else>
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
+                            </button>
+                        </s:else>
+                    </s:a>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

@@ -72,7 +72,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private AcceptanceReceiptReportService acceptanceReceiptReportService;
     private HouseWayBillDestinationReportService houseWayBillDestinationReportService;
     private AuthorizationToWithdrawReportService authorizationToWithdrawReportService;
-    private ProformaBillOfLading2GOReportService proformaBillOfLading2GOReportService;
+    private ProformaBillOfLadingReportService proformaBillOfLadingReportService;
     private EquipmentInterchangeReceipt1ReportService equipmentInterchangeReceipt1ReportService;
     private EquipmentInterchangeReceipt2ReportService equipmentInterchangeReceipt2ReportService;
     private CustomerService customerService;
@@ -2625,7 +2625,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     }
 
     /*2GO Proforma Bill of Lading*/
-    public String generate2GOProformaReport(){
+    public String generateProformaReport(){
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>orderIdParam " + orderIdParam);
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>documentIdParam " + documentIdParam);
 
@@ -2641,7 +2641,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         try{
             final File outputFile = new File("Proforma Bill of Lading - 2GO.pdf");
 
-            MasterReport report = proformaBillOfLading2GOReportService.generateReport(params);
+            MasterReport report = proformaBillOfLadingReportService.generateReport(params);
 
             HttpServletResponse response = ServletActionContext.getResponse();
             responseOut = new BufferedOutputStream(response.getOutputStream());
@@ -3435,7 +3435,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         this.vendorCodeParam = vendorCodeParam;
     }
 
-    public void setProformaBillOfLading2GOReportService(ProformaBillOfLading2GOReportService proformaBillOfLading2GOReportService) {
-        this.proformaBillOfLading2GOReportService = proformaBillOfLading2GOReportService;
+    public void setProformaBillOfLadingReportService(ProformaBillOfLadingReportService proformaBillOfLadingReportService) {
+        this.proformaBillOfLadingReportService = proformaBillOfLadingReportService;
     }
 }

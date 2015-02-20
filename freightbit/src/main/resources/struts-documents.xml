@@ -299,7 +299,7 @@
             </result>
         </action>
 
-        <action name="generate2GOProformaReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generate2GOProformaReport">
+        <action name="generateProformaReport" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="generateProformaReport">
             <result name="success" type="tiles">documentation.viewPlainDocuments.tiles</result>
             <result name="download" type="stream">
                 <param name="contentDisposition">attachment;filename="${fileName}"</param>

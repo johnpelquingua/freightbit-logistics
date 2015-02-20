@@ -137,128 +137,64 @@
 
         <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
             <s:if test="order.modeOfService=='DOOR TO DOOR'">
-                <%--<div class="panel panel-primary">
+
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <i class="fa fa-anchor"></i>
-                        <span class="panel-title"> Freight Plan </span>
+                        <span class="panel-title">Freight Plan</span>
                     </div>
-                    <div class="panel-body">
-                        <s:form cssClass="form-horizontal" action="findVesselScheduleBulk" theme="bootstrap" style="margin-bottom: -50px;">
-                            &lt;%&ndash;<c:out value="${sessionScope.vendorIdPass}" />&ndash;%&gt;
-                            <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
-                            <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
-                            <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
-                            <s:hidden name="operationsBean.orderId" value="%{order.orderId}" />
-                            <s:hidden name="operationsBean.quantity" value="%{orderItem.quantity}" />
-                            <s:hidden name="operationsBean.classification" value="%{orderItem.classification}" />
-                            <s:hidden name="operationsBean.commodity" value="%{orderItem.commodity}" />
-                            <s:hidden name="operationsBean.declaredValue" value="%{orderItem.declaredValue}" />
-                            <s:hidden name="operationsBean.comments" value="%{orderItem.comments}" />
-                            <s:hidden name="operationsBean.rate" value="%{orderItem.rate}" />
-                            <s:hidden name="operationsBean.createdTimestamp" value="%{orderItem.createdTimestamp}" />
-                            <s:hidden name="operationsBean.createdBy" value="%{orderItem.createdBy}" />
-                            <s:hidden name="operationsBean.modifiedTimestamp" value="%{orderItem.modifiedTimestamp}" />
-                            <s:hidden name="operationsBean.modifiedBy" value="%{orderItem.modifiedBy}" />
-                            <s:hidden name="operationsBean.status" value="%{orderItem.status}" />
-                            <s:hidden name="operationsBean.weight" value="%{orderItem.weight}" />
-                            <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
-                            <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
+                    <div class="panel-body form-horizontal">
 
-                            <div class="form-group">
-                                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
-                                </s:if>
-                                <s:else>
-                                    <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
-                                </s:else>
-                                <div class="col-lg-10">
-                                    &lt;%&ndash;<div class="form-control">&ndash;%&gt;
-                                        &lt;%&ndash;<c:out value="${sessionScope.nameSizeParam}"/>&ndash;%&gt;
-                                        <ol>
-                                            <s:iterator value="nameSizeList" >
-                                                <li><s:property /></li>
-                                            </s:iterator>
-                                        </ol>
-                                    &lt;%&ndash;</div>&ndash;%&gt;
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="operationsBean.vendorList" class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-                                <div class="col-lg-4">
-                                    <div>
-                                        <s:select list="vendorShippingList" name="operationsBean.vendorList"
-                                                  id="operationsBean_vendorList"
-                                                  listKey="vendorId" listValue="vendorName" cssClass="form-control"
-                                                  emptyOption="true"></s:select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2" style="text-align: center;">
-                                    <div>
-                                        <a href="#" style="width: 135px;">
-                                            <s:submit cssClass="btn btn-primary" name="submit" value="Filter by Vendor"/>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
-                                            Add Vendor
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2" style="text-align: center;">
-                                    <div>
-                                        <a data-toggle="modal" data-target="#addSchedule" id="createSchedule" class="btn btn-info" style="width: 135px;">
-                                            Add Schedule
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </s:form>
-                        <div class="form-group" style="padding-top: 50px;">
-                            <hr>
-                            <h4 style="text-align:center;">List of Schedules</h4>
-                            <hr>
-                        </div>
-                        <s:if test="hasActionMessages()">
-                            <div class="col-lg-12" id="successDiv">
-                                <div class="alert alert-success">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                                    <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
-                                </div>
-                            </div>
-                        </s:if>
-                        <display:table id="vesselSchedule" name="vesselSchedules"
-                                       requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                       class="table table-striped table-hover table-bordered text-center tablesorter"
+                        <display:table id="orderItem" name="orderItems"
+                                       requestURI="/viewSeaFreightItemList.action"
+                                       class="table table-striped table-hover table-bordered text-center tablesorter table-condensed simple freightTableBulk"
                                        style="margin-top: 15px;">
-                            <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="originPort" title="Origin" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="destinationPort" title="Destination" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                                style="text-align: center;"> </display:column></td>
-                            <td><display:column title="Action">
-                                <s:url var="editBulkItemsUrl" action="editBulkItems">
-                                    <s:param name="vesselScheduleIdParam"
-                                             value="#attr.vesselSchedule.vesselScheduleId">
-                                    </s:param>
-                                    <s:param name="vendorIdParam"
-                                             value="#attr.vesselSchedule.vendorId">
-                                    </s:param>
-                                </s:url>
-                                <s:a class="icon-action-link" href="%{editBulkItemsUrl}" rel="tooltip"
-                                     title="Update Status">
-                                    Choose this vessel...
-                                </s:a>
-                            </display:column></td>
+                            <tr>
+                                    <%--Change Header based on Service Requirement--%>
+                                <td><display:column property="quantity" title="QTY <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;"></display:column>
+                                </td>
+                                <td>
+                                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                        <display:column property="nameSize" title="Size <i class='fa fa-sort' />"
+                                                        class="tb-font-black"
+                                                        style="text-align: center;">
+                                        </display:column>
+                                    </s:if>
+                                    <s:else>
+                                        <display:column property="nameSize" title="Name <i class='fa fa-sort' />"
+                                                        class="tb-font-black"
+                                                        style="text-align: center;">
+                                        </display:column>
+                                    </s:else>
+                                </td>
+
+                                <td><display:column property="vendorName" title="Vendor <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+
+                                <td><display:column property="vesselScheduleId" title="Voyage # <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+
+                                <td><display:column property="vesselName" title="Vessel Name <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+
+                                <td><display:column property="departureDate" title="Departure Date <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+
+                                <td><display:column property="arrivalDate" title="Arrival Date <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+
+                            </tr>
                         </display:table>
+
                     </div>
-                </div>--%>
+                </div>
 
                 <div class="well">
                     <h4 style="text-align:center;">Current Inland Vendor(s)</h4>
@@ -307,7 +243,7 @@
                         <span class="panel-title">Dispatch Plan : Origin</span>
                     </div>
                     <div class="panel-body">
-                        <s:form cssClass="form-horizontal" theme="bootstrap" action="editBulkItemsInlandOrigin">
+                        <s:form cssClass="form-horizontal dispatchOriginForm" theme="bootstrap" action="editBulkItemsInlandOrigin">
                             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                             <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                             <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -449,14 +385,17 @@
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
                                 <div class="col-lg-8">
-                                    <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalPickupdate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                                    <s:textfield cssClass="from_date form-control dispatchFinalPickup" value="%{orderItem.finalPickupdate}" id="pickup" name="operationsBean.pickupDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                                 </div>
                             </div>
                             <div style="float: right; margin: -65px 50px 5px 0px;">
-                                <button class="btn btn-primary"  style=" padding: 7px 32px; ">Save</button>
+                                <button class="btn btn-primary dispatchSaveBtn" type="button" style=" padding: 7px 32px; ">Save</button>
                             </div>
                         </s:form>
                     </div>
+
+                <s:if test="order.modeOfService!='DOOR TO DOOR'">
+
                     <div class="panel-footer">
                         <div class="pull-right">
                             <s:url var="viewInlandFreightItemListUrl" action="viewInlandFreightItemList">
@@ -466,22 +405,25 @@
                                          value="#attr.order.orderNo"></s:param>
                             </s:url>
                             <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
-                                 title="Update Status">
+                                 title="Update Vendor">
 
                                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn">
-                                        Back to Dispatch Plan : Containers
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
                                     </button>
                                 </s:if>
                                 <s:else>
-                                    <button type="button" class="btn">
-                                        Back to Dispatch Plan : Items
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
                                     </button>
                                 </s:else>
 
                             </s:a>
                         </div>
                     </div>
+
+                </s:if>
+
                 </div>
 
                 <div class="panel panel-primary">
@@ -490,7 +432,7 @@
                         <span class="panel-title">Dispatch Plan : Destination</span>
                     </div>
                     <div class="panel-body">
-                        <s:form cssClass="form-horizontal" theme="bootstrap" action="editBulkItemsInlandDestination">
+                        <s:form cssClass="form-horizontal dispatchDestinationForm" theme="bootstrap" action="editBulkItemsInlandDestination">
                             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                             <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                             <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -636,11 +578,11 @@
                             <div class="form-group" style="margin-bottom: 0px !important;">
                                 <label for="dropoff" class="col-sm-2 control-label">Drop off Date</label>
                                 <div class="col-sm-8" style="padding: 0px; width: 64.5% !important; position: relative; left: 15px;">
-                                    <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
+                                    <s:textfield cssClass="from_date form-control dispatchFinalDelivery" value="%{orderItem.finalDeliveryDate}" id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date" contenteditable="false" style="margin-bottom: 15px !important;" />
                                 </div>
                             </div>
                             <div style="float: right; margin: -50px 50px 5px 0px;">
-                                <button class="btn btn-primary"  style=" padding: 7px 32px; ">Save</button>
+                                <button class="btn btn-primary dispatchSaveBtnDes" type="button" style=" padding: 7px 32px; ">Save</button>
                             </div>
                         </s:form>
                     </div>
@@ -653,16 +595,16 @@
                                          value="#attr.order.orderNo"></s:param>
                             </s:url>
                             <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
-                                 title="Update Status">
+                                 title="Update Vendor">
 
                                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn">
-                                        Back to Dispatch Plan : Containers
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
                                     </button>
                                 </s:if>
                                 <s:else>
-                                    <button type="button" class="btn">
-                                        Back to Dispatch Plan : Items
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
                                     </button>
                                 </s:else>
 
@@ -843,7 +785,7 @@
                         <span class="panel-title">Dispatch Plan : Origin</span>
                     </div>
                     <div class="panel-body">
-                        <s:form cssClass="form-horizontal" theme="bootstrap" action="editBulkItemsInlandOrigin">
+                        <s:form cssClass="form-horizontal dispatchOriginForm" theme="bootstrap" action="editBulkItemsInlandOrigin">
                             <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}" />
                             <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}" />
                             <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}" />
@@ -1002,16 +944,16 @@
                                          value="#attr.order.orderNo"></s:param>
                             </s:url>
                             <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
-                                 title="Update Status">
+                                 title="Update Vendor">
 
                                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn">
-                                        Back to Dispatch Plan : Containers
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
                                     </button>
                                 </s:if>
                                 <s:else>
-                                    <button type="button" class="btn">
-                                        Back to Dispatch Plan : Items
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
                                     </button>
                                 </s:else>
 
@@ -1185,16 +1127,16 @@
                                          value="#attr.order.orderNo"></s:param>
                             </s:url>
                             <s:a class="icon-action-link" href="%{viewInlandFreightItemListUrl}" rel="tooltip"
-                                 title="Update Status">
+                                 title="Update Vendor">
 
                                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn">
-                                        Back to Dispatch Plan : Containers
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
                                     </button>
                                 </s:if>
                                 <s:else>
-                                    <button type="button" class="btn">
-                                        Back to Dispatch Plan : Items
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
                                     </button>
                                 </s:else>
 
@@ -2006,7 +1948,65 @@
 
 <%--End Add Schedule--%>
 
+<%--MODAL FOR DATE VALIDATION START--%>
+
+<div class="modal fade" id="dateWarningModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="color: red"><i class="fa fa-warning"></i> WARNING</h4>
+            </div>
+            <div class="modal-body" id="dateWarningModalBody">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary forceSubmit" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--MODAL FOR DATE VALIDATION END--%>
+
+<%--MODAL FOR DATE VALIDATION DESTINATION START--%>
+
+<div class="modal fade" id="dateWarningModalDes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="color: red"><i class="fa fa-warning"></i> WARNING</h4>
+            </div>
+            <div class="modal-body" id="dateWarningModalBodyDes">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary forceSubmitDes" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--MODAL FOR DATE VALIDATION DESTINATION END--%>
+
 <script type="text/javascript">
+
+    $(document).ready(function(){
+        dispatchFilterScheduleOrigin();
+        dispatchFilterScheduleDestination();
+
+        $('.forceSubmit').click(function(){
+            $('.dispatchOriginForm').submit();
+        });
+
+        $('.forceSubmitDes').click(function(){
+            $('.dispatchDestinationForm').submit();
+        });
+
+    });
 
     $("#date").datepicker({dateFormat: 'yy-dd-mm'});
 
@@ -2606,6 +2606,7 @@
         $(window).load(function() {
             vendorOriginRetrieval();
             vendorDestinationRetrieval();
+
             /*var vendorId = $("#vendorListOrigin").val();
 
             $.getJSON('listVendorDriverAndTrucks', {

@@ -107,7 +107,7 @@
             </div>
             <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
             <div class="col-lg-4">
-                <s:textfield cssClass="form-control" value="%{order.deliveryDate}"
+                <s:textfield cssClass="form-control deliveryDate" value="%{order.deliveryDate}"
                              disabled="true"></s:textfield>
             </div>
         </div>
@@ -130,13 +130,36 @@
 
 <s:if test="order.freightType=='TRUCKING'">
     <s:if test="order.modeOfService=='DELIVERY'">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-list"></i>
+                <span class="panel-title">Cargo</span>
+            </div>
+
+            <div class="panel-body form-horizontal">
+                <div class="form-group">
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                    </s:if>
+                    <s:else>
+                        <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                    </s:else>
+                    <div class="col-lg-10">
+                        <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
+                                     disabled="true"></s:textfield>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <i class="fa fa-truck"></i>
                 <span class="panel-title">Dispatch Plan : Destination</span>
             </div>
             <div class="panel-body">
-                <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsDestination">
+                <s:form cssClass="form-horizontal destinationForm" theme="bootstrap" action="editOrderItemsDestination">
                     <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}"/>
                     <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}"/>
                     <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}"/>
@@ -218,7 +241,7 @@
 
                         <div class="col-sm-10"
                              style="padding: 0px; width: 75.5% !important; position: relative; left: 15px;">
-                            <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalDeliveryDate}"
+                            <s:textfield cssClass="from_date form-control finalDeliveryDate" value="%{orderItem.finalDeliveryDate}"
                                          id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date"
                                          contenteditable="false" style="margin-bottom: 15px !important;"/>
                         </div>
@@ -239,12 +262,58 @@
                     </div>
                 </s:form>
             </div>
+            <div class="panel-footer">
+                <div class="pull-right">
+                    <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
+                        <s:param name="orderIdParam"
+                                 value="#attr.order.orderId"></s:param>
+                        <s:param name="orderNoParam"
+                                 value="#attr.order.orderNo"></s:param>
+                    </s:url>
+                    <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                         title="Update Status">
+                        <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
+                            </button>
+                        </s:if>
+                        <s:else>
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
+                            </button>
+                        </s:else>
+                    </s:a>
+                </div>
+            </div>
         </div>
     </s:if>
 </s:if>
 
 <s:if test="order.freightType=='SHIPPING AND TRUCKING'">
 <s:if test="order.modeOfService=='DOOR TO DOOR'">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="fa fa-list"></i>
+            <span class="panel-title">Cargo</span>
+        </div>
+
+        <div class="panel-body form-horizontal">
+            <div class="form-group">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                </s:if>
+                <s:else>
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                </s:else>
+                <div class="col-lg-10">
+                    <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
+                                 disabled="true"></s:textfield>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-anchor"></i>
@@ -281,7 +350,7 @@
                 </div>
                 <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date <Port></Port> </label>
                 <div class="col-lg-4">
-                    <s:textfield cssClass="form-control" value="%{vesselSchedule.arrivalDate}" name="book-num" disabled="true"></s:textfield>
+                    <s:textfield cssClass="form-control arrivalDate" value="%{vesselSchedule.arrivalDate}" name="book-num" disabled="true"></s:textfield>
                 </div>
             </div>
 
@@ -307,83 +376,8 @@
                 </div>
             </div>
         </div>
+
     </div>
-
-    <%--<div class="panel panel-primary">
-        <div class="panel-heading">
-            <i class="fa fa-truck"></i>
-            <span class="panel-title">Dispatch Plan: Origin</span>
-        </div>
-        <div class="panel-body form-horizontal">
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Code</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Body Type</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{truck.truckType}" disabled="true" />
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{truck.plateNumber}" disabled="true" />
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>
-
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{truck.grossWeight}" disabled="true" />
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
-                    <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />
-                    </div>
-                </div>
-
-        </div>
-    </div>--%>
 
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -391,7 +385,7 @@
             <span class="panel-title">Dispatch Plan : Destination</span>
         </div>
         <div class="panel-body form-horizontal">
-            <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsDestination">
+            <s:form cssClass="form-horizontal destinationForm" theme="bootstrap" action="editOrderItemsDestination">
                 <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}"/>
                 <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}"/>
                 <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}"/>
@@ -539,7 +533,7 @@
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
 
                     <div class="col-lg-8">
-                        <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalDeliveryDate}"
+                        <s:textfield cssClass="from_date form-control finalDeliveryDate" value="%{orderItem.finalDeliveryDate}"
                                      id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date"
                                      contenteditable="false" style="margin-bottom: 15px !important;"/>
                     </div>
@@ -556,14 +550,60 @@
                             Cancel
                         </button>
                     </s:a>
-                    <button class="btn btn-primary">Save</button>
+                    <button class="btn btn-primary finalSaveBtnDes" type="button">Save</button>
                 </div>
 
             </s:form>
         </div>
+        <div class="panel-footer">
+            <div class="pull-right">
+                <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
+                    <s:param name="orderIdParam"
+                             value="#attr.order.orderId"></s:param>
+                    <s:param name="orderNoParam"
+                             value="#attr.order.orderNo"></s:param>
+                </s:url>
+                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                     title="Update Status">
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        <button type="button" class="btn btn-danger">
+                            <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
+                        </button>
+                    </s:if>
+                    <s:else>
+                        <button type="button" class="btn btn-danger">
+                            <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
+                        </button>
+                    </s:else>
+                </s:a>
+            </div>
+        </div>
     </div>
 </s:if>
 <s:elseif test="order.modeOfService=='PIER TO DOOR'">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="fa fa-list"></i>
+            <span class="panel-title">Cargo</span>
+        </div>
+
+        <div class="panel-body form-horizontal">
+            <div class="form-group">
+                <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                </s:if>
+                <s:else>
+                    <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                </s:else>
+                <div class="col-lg-10">
+                    <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
+                                 disabled="true"></s:textfield>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="panel panel-primary">
         <div class="panel-heading">
             <i class="fa fa-anchor"></i>
@@ -634,7 +674,7 @@
             <span class="panel-title">Dispatch Plan : Destination</span>
         </div>
         <div class="panel-body">
-            <s:form cssClass="form-horizontal" theme="bootstrap" action="editOrderItemsDestination">
+            <s:form cssClass="form-horizontal destinationForm" theme="bootstrap" action="editOrderItemsDestination">
                 <s:hidden name="operationsBean.orderItemId" value="%{orderItem.orderItemId}"/>
                 <s:hidden name="operationsBean.clientId" value="%{orderItem.clientId}"/>
                 <s:hidden name="operationsBean.nameSize" value="%{orderItem.nameSize}"/>
@@ -774,7 +814,7 @@
                     <label class="col-sm-2 control-label">Delivery Date</label>
 
                     <div class="col-lg-8">
-                        <s:textfield cssClass="from_date form-control step2" value="%{orderItem.finalDeliveryDate}"
+                        <s:textfield cssClass="from_date form-control finalDeliveryDate" value="%{orderItem.finalDeliveryDate}"
                                      id="dropoff" name="operationsBean.deliveryDate" placeholder="Select start date"
                                      contenteditable="false" style="margin-bottom: 15px !important;"/>
                     </div>
@@ -791,9 +831,32 @@
                             Cancel
                         </button>
                     </s:a>
-                    <button class="btn btn-primary">Save</button>
+                    <button class="btn btn-primary finalSaveBtnDes" type="button">Save</button>
                 </div>
             </s:form>
+        </div>
+        <div class="panel-footer">
+            <div class="pull-right">
+                <s:url var="viewSeaFreightItemListUrl" action="viewInlandFreightItemList">
+                    <s:param name="orderIdParam"
+                             value="#attr.order.orderId"></s:param>
+                    <s:param name="orderNoParam"
+                             value="#attr.order.orderNo"></s:param>
+                </s:url>
+                <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip"
+                     title="Update Status">
+                    <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                        <button type="button" class="btn btn-danger">
+                            <i class="fa fa-chevron-left"></i> Dispatch Plan : Containers
+                        </button>
+                    </s:if>
+                    <s:else>
+                        <button type="button" class="btn btn-danger">
+                            <i class="fa fa-chevron-left"></i>  Dispatch Plan : Items
+                        </button>
+                    </s:else>
+                </s:a>
+            </div>
         </div>
     </div>
 </s:elseif>
@@ -1140,6 +1203,26 @@
     </div>
 </div>
 
+<%-- MODAL FOR DATE WARNING  -- START --%>
+<div class="modal fade" id="dateWarningModalDes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="color: red"><i class="fa fa-warning"></i> WARNING</h4>
+            </div>
+            <div class="modal-body" id="dateWarningModalBodyDes">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary forceSubmitDes" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%-- MODAL FOR DATE WARNING  -- END --%>
+
 <script type="text/javascript">
 
     var pickup = $('#pickup');
@@ -1205,6 +1288,12 @@
     });
 
     $(document).ready(function () {
+
+            // for the form to force submit without regards to date validation
+            $('.forceSubmit').click(function(){
+                $('.destinationForm').submit();
+            });
+
             $('#vendorListDestination').change(function (event) {
             var vendorId = $("#vendorListDestination").val();
 
@@ -1421,6 +1510,12 @@
         startDate: 2
 
     });
+
+    $(document).ready(function(){
+//        validationForm('dispatchInput', 'finalSaveBtn');
+        dateValidationInitDes();
+    });
+
 //    Read the value in cache
     function getThis() {
         $("#vendorListDestination").val(localStorage.getItem("vendorListField"));

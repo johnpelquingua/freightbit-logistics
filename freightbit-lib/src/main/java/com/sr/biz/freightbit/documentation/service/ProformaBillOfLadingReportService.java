@@ -5,7 +5,7 @@ import org.pentaho.reporting.engine.classic.core.MasterReport;
 
 import java.util.Map;
 
-public interface ProformaBillOfLading2GOReportService {
+public interface ProformaBillOfLadingReportService {
     public DataFactory getDataFactory(Map<String, String> params);
     public Map<String, Object> getReportParameters(Map<String, String> params);
     public MasterReport getReportDefinition();
