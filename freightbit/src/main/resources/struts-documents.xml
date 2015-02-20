@@ -110,6 +110,7 @@
 
         <action name="addDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addDocument">
             <result name="success" type="redirect">viewOrderDocuments</result>
+            <result name="input" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="getInputFieldActionInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="orderDocumentsInboundInput">

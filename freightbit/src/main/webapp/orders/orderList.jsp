@@ -69,7 +69,7 @@
                             <i class="fa fa-search"></i> Search Booking
                         </button>
                     </sec:authorize>
-                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS' 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
+                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER', 'ROLE_SALES')">
                         <button type="button" class="btn btn-primary new-booking"
                                 onclick="location.href='loadAddOrderPage'">
                             <i class="fa fa-book"></i> New Booking

@@ -1683,7 +1683,239 @@ public class DocumentAction extends ActionSupport implements Preparable{
         System.out.println("dddddddddddddddddddddddddddddd" + document.getReferenceId());
         System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee" + documentStageParam);
 
-        if(!document.getDocumentName().equals("MASTER BILL OF LADING")) {
+        List<String> vendorSea = new ArrayList<String>();
+        List<String> vendorOrigin = new ArrayList<String>();
+        List<String> vendorDestination = new ArrayList<String>();
+        List <Documents> bookingDocuments = documentsService.findDocumentsByOrderId(document.getReferenceId());
+
+        Orders orderEntity = orderService.findOrdersById(document.getReferenceId());
+        order = transformToOrderFormBean(orderEntity);
+        List<OrderItems> orderItemsList = operationsService.findAllOrderItemsByOrderId(document.getReferenceId());
+
+        // Shipping vendors set will be stored in VendorSea variable
+        Integer vendorSeaCount = 0;
+        for (OrderItems everyItem : orderItemsList) {
+            if (vendorSea.isEmpty()) {
+                vendorSea.add(everyItem.getVendorSea());
+                vendorSeaCount = vendorSeaCount + 1;
+            } else {
+                if (!vendorSea.contains(everyItem.getVendorSea())) {
+                    vendorSea.add(everyItem.getVendorSea());
+                    vendorSeaCount = vendorSeaCount + 1;
+                }
+            }
+        }
+
+        // Origin vendors set will be stored in VendorOrigin Variable
+        Integer vendorOriginCount = 0;
+        for (OrderItems everyItem : orderItemsList) {
+            if (vendorOrigin.isEmpty()) {
+                vendorOrigin.add(everyItem.getVendorOrigin());
+                vendorOriginCount = vendorOriginCount + 1;
+            } else {
+                if (!vendorOrigin.contains(everyItem.getVendorOrigin())) {
+                    vendorOrigin.add(everyItem.getVendorOrigin());
+                    vendorOriginCount = vendorOriginCount + 1;
+                }
+            }
+        }
+
+        // Destination vendors set will be stored in VendorDestination Variable
+        Integer vendorDestinationCount = 0;
+        for (OrderItems everyItem : orderItemsList) {
+            if (vendorDestination.isEmpty()) {
+                vendorDestination.add(everyItem.getVendorDestination());
+                vendorDestinationCount = vendorDestinationCount + 1;
+            } else {
+                if (!vendorDestination.contains(everyItem.getVendorDestination())) {
+                    vendorDestination.add(everyItem.getVendorDestination());
+                    vendorDestinationCount = vendorDestinationCount + 1;
+                }
+            }
+        }
+
+        // Count Proforma Bill of Lading documents
+        Integer countProforma = 0;
+        for(Documents ProformaDocs : bookingDocuments){
+            if(ProformaDocs.getDocumentName().equals("PROFORMA BILL OF LADING")){
+                countProforma = countProforma + 1;
+            }
+        }
+
+        String documentName = document.getDocumentName().toUpperCase();
+
+        if(documentName.equals("BOOKING REQUEST FORM") || documentName.equals("HOUSE WAYBILL ORIGIN") || documentName.equals("PROFORMA BILL OF LADING") || documentName.equals("HOUSE WAYBILL DESTINATION")){
+            clearErrorsAndMessages();
+            addActionError("Document cannot be created!");
+
+            return INPUT;
+
+        }else if(documentName.equals("HOUSE BILL OF LADING")) {
+
+            // will delete all existing House Bill of Lading document
+            for (Documents freightDocumentElem : bookingDocuments){
+                String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                if(docName.equals("HOUSE BILL OF LADING")){
+                    Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+                    documentsService.deleteDocument(documentEntity);
+                }
+            }
+
+            // Add House Bill of Lading based on number for Proforma Bill of Lading
+
+                for(String seaVendor : vendorSea){
+                    if(seaVendor != null){
+
+                        Documents documentEntity = new Documents();
+                        Client client = clientService.findClientById(getClientId().toString());
+
+                        documentEntity.setClient(client);
+                        documentEntity.setDocumentName(documentName);
+                        documentEntity.setReferenceId(document.getReferenceId());
+                        documentEntity.setReferenceTable("ORDERS");
+                        documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                        documentEntity.setCreatedDate(new Date());
+
+                        if (documentStageParam.equals("OUTBOUND")) {
+                            documentEntity.setOutboundStage(1);
+                            documentEntity.setDocumentProcessed(0);
+                            documentEntity.setDocumentStatus("OUTBOUND");
+                        } else if (documentStageParam.equals("INBOUND")) {
+                            documentEntity.setInboundStage(1);
+                            documentEntity.setDocumentProcessed(1);
+                            documentEntity.setDocumentStatus("INBOUND");
+                        } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                            documentEntity.setDocumentProcessed(2);
+                            documentEntity.setFinalOutboundStage(1);
+                            documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                        } else {
+                            documentEntity.setFinalInboundStage(1);
+                            documentEntity.setDocumentProcessed(3);
+                            documentEntity.setDocumentStatus("FINAL INBOUND");
+                        }
+
+                        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                        documentEntity.setReferenceNumber(document.getReferenceNumber());
+                        documentEntity.setDocumentComments(document.getDocumentComments());
+
+                        documentsService.addDocuments(documentEntity);
+
+
+                    }else{
+                        clearErrorsAndMessages();
+                        addActionError("No Shipping vendor set!");
+
+                        return INPUT;
+                    }
+                }
+
+        }else if(documentName.equals("MASTER BILL OF LADING")){
+
+            // will delete all existing Master Bill of Lading document
+            for (Documents freightDocumentElem : bookingDocuments){
+                String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                if(docName.equals("MASTER BILL OF LADING")){
+                    Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+                    documentsService.deleteDocument(documentEntity);
+                }
+            }
+
+            // Add Master Bill of Lading based on number for Proforma Bill of Lading
+
+            for(String seaVendor : vendorSea){
+                if(seaVendor != null){
+
+                    Documents documentEntity = new Documents();
+                    Client client = clientService.findClientById(getClientId().toString());
+
+                    documentEntity.setClient(client);
+                    documentEntity.setDocumentName(documentName);
+                    documentEntity.setReferenceId(document.getReferenceId());
+                    documentEntity.setReferenceTable("ORDERS");
+                    documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                    documentEntity.setCreatedDate(new Date());
+
+                    if (documentStageParam.equals("OUTBOUND")) {
+                        documentEntity.setOutboundStage(1);
+                        documentEntity.setDocumentProcessed(0);
+                        documentEntity.setDocumentStatus("OUTBOUND");
+                    } else if (documentStageParam.equals("INBOUND")) {
+                        documentEntity.setInboundStage(1);
+                        documentEntity.setDocumentProcessed(1);
+                        documentEntity.setDocumentStatus("INBOUND");
+                    } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                        documentEntity.setDocumentProcessed(2);
+                        documentEntity.setFinalOutboundStage(1);
+                        documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                    } else {
+                        documentEntity.setFinalInboundStage(1);
+                        documentEntity.setDocumentProcessed(3);
+                        documentEntity.setDocumentStatus("FINAL INBOUND");
+                    }
+
+                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                    documentEntity.setReferenceNumber(document.getReferenceNumber());
+                    documentEntity.setDocumentComments(document.getDocumentComments());
+
+                    documentsService.addDocuments(documentEntity);
+
+
+                }else{
+                    clearErrorsAndMessages();
+                    addActionError("No Shipping vendor set!");
+
+                    return INPUT;
+                }
+            }
+
+        }else{
+
+            Documents documentEntity = new Documents();
+            Client client = clientService.findClientById(getClientId().toString());
+
+            documentEntity.setClient(client);
+            documentEntity.setDocumentName(documentName);
+            documentEntity.setReferenceId(document.getReferenceId());
+            documentEntity.setReferenceTable("ORDERS");
+            documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+            documentEntity.setCreatedDate(new Date());
+
+            if (documentStageParam.equals("OUTBOUND")) {
+                documentEntity.setOutboundStage(1);
+                documentEntity.setDocumentProcessed(0);
+                documentEntity.setDocumentStatus("OUTBOUND");
+            } else if (documentStageParam.equals("INBOUND")) {
+                documentEntity.setInboundStage(1);
+                documentEntity.setDocumentProcessed(1);
+                documentEntity.setDocumentStatus("INBOUND");
+            } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                documentEntity.setDocumentProcessed(2);
+                documentEntity.setFinalOutboundStage(1);
+                documentEntity.setDocumentStatus("FINAL OUTBOUND");
+            } else {
+                documentEntity.setFinalInboundStage(1);
+                documentEntity.setDocumentProcessed(3);
+                documentEntity.setDocumentStatus("FINAL INBOUND");
+            }
+
+            documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+            documentEntity.setReferenceNumber(document.getReferenceNumber());
+            documentEntity.setDocumentComments(document.getDocumentComments());
+
+            documentsService.addDocuments(documentEntity);
+        }
+
+
+
+
+
+
+
+
+
+
+
+        /*if(!document.getDocumentName().equals("MASTER BILL OF LADING")) {
 
             Documents documentEntity = new Documents();
             Client client = clientService.findClientById(getClientId().toString());
@@ -1718,10 +1950,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
             documentEntity.setDocumentComments(document.getDocumentComments());
             documentsService.addDocuments(documentEntity);
 
-        }
+        }*/
 
         /*-------------------------------------FOR TESTING----------------------------------*/
-        else {
+
+        /*else {
             List<String> vendorSeaCodeList = new ArrayList<String>(); // placeholder for sea vendor codes
 
             // order item list under order id
@@ -1773,14 +2006,15 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     } // else will not do anything
 
                 } else {
-                    /*SHOULD DO AN ERROR MESSAGE*/
+                    *//*SHOULD DO AN ERROR MESSAGE*//*
 
-                    /*return INPUT;*/
+                    *//*return INPUT;*//*
                     break;
                 }
             }
 
-        }
+        }*/
+
         /*-------------------------------------FOR TESTING----------------------------------*/
 
         Map sessionAttributes = ActionContext.getContext().getSession();
