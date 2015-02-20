@@ -36,6 +36,7 @@
     <intercept-url pattern="/core/loadChangePassword**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_SPECIALIST, ROLE_DOCUMENT_SPECIALIST, ROLE_SEA_FREIGHT" />
     <intercept-url pattern="/core/changePassword**" access="ROLE_ADMIN, ROLE_CUSTOMER, ROLE_CUSTOMER_RELATIONS, ROLE_SALES, ROLE_FREIGHT_SPECIALIST, ROLE_DOCUMENT_SPECIALIST, ROLE_SEA_FREIGHT" />
     <intercept-url pattern="/core/**" access="ROLE_ADMIN" />
+    <intercept-url pattern="/operations/container/**" access="ROLE_ADMIN, ROLE_SALES, ROLE_SEA_FREIGHT" />
     <intercept-url pattern="/vendor/**" access="ROLE_ADMIN, ROLE_SEA_FREIGHT" />
     <intercept-url pattern="/customers/**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS" />
     <intercept-url pattern="/customer/**" access="ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS" />
