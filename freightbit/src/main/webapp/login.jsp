@@ -1,5 +1,3 @@
-<%@ page import="java.util.Properties" %>
-<%@ page import="static org.apache.struts2.ServletActionContext.getServletContext" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
