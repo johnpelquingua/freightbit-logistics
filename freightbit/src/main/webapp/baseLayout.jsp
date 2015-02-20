@@ -22,12 +22,9 @@
     <link rel="stylesheet" href="../includes/css/sb-admin.css">
     <link rel="stylesheet" href="../includes/css/datepicker.css">
     <link rel="stylesheet" href="../includes/css/bootstrap-datetimepicker.min.css">
-<%--
-    <link rel="stylesheet" href="../includes/font-awesome/css/font-awesome.css">--%>
+    <link rel="stylesheet" href="../includes/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-<%--
     <link rel="stylesheet" href="../includes/font-awesome/css/font-awesome.min.css">
---%>
 
     <link rel="stylesheet" href="../includes/css/jquery-ui.css">
     <link rel="stylesheet" href="../includes/css/jquery-ui.min.css">
