@@ -72,38 +72,38 @@
                 <div class="row">
 
                     <div class="col-lg-6 ">
-                        <table class="table table-user-information orderTable" style="table-layout: fixed;">
+                        <table class="table table-user-information" style="table-layout: fixed;">
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none; width: 30%">Booking Number</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important; border-top: none; width: 30%">Booking Number</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.orderNumber"/></td>
                             </tr>
 
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Freight Type</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Freight Type</td>
                                 <td style="text-align: left !important;"><s:property value="order.freightType"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Service Mode</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Service Mode</td>
                                 <td style="text-align: left !important;"><s:property value="order.modeOfService"/></td>
                             </tr>
                             <tr>
                                 <%--<td style="font-weight: normal; font-size: 12px; text-align:left !important;">Origin Port</td>--%>
                                 <s:if test="order.freightType == 'TRUCKING'">
-                                    <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Location</td>
+                                    <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Location</td>
                                 </s:if>
                                 <s:else>
-                                    <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Origin Port</td>
+                                    <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Origin Port</td>
                                 </s:else>
 
                                 <td style="text-align: left !important;"><s:property value="order.originationPort"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Notification Type</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Notification Type</td>
                                 <td style="text-align: left !important;"><s:property value="order.notifyBy"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Status</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Status</td>
                                 <td style="text-align: left !important;"><s:property value="order.orderStatus"/></td>
                             </tr>
                             <tr>
@@ -118,28 +118,28 @@
                         <table class="table table-user-information" style="table-layout: fixed;">
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none; width: 30%">Booking Date</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important; border-top: none; width: 30%">Booking Date</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.orderDate"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Service Requirement</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Service Requirement</td>
                                 <td style="text-align: left !important;" class="serviceReq"><s:property value="order.serviceRequirement"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Payment Mode</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Payment Mode</td>
                                 <td style="text-align: left !important;"><s:property value="order.modeOfPayment"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Destination Port</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Destination Port</td>
                                 <td style="text-align: left !important;"><s:property value="order.destinationPort"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Total Rate</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Total Rate</td>
                                 <%--<td style="text-align: left !important;"><s:property value="order.rates"/></td>--%>
                                 <td style="text-align: left !important;">"N/A"</td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Prepared By</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Prepared By</td>
                                 <td style="text-align: left !important;"><s:property value="order.accountRep"/></td>
                             </tr>
                             </tbody>
@@ -172,35 +172,35 @@
                             <%--<s:property value="%{order.customerId}"/>--%>
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none; width: 30%">Customer Name</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important; border-top: none; width: 30%">Customer Name</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.customerName"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Person</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Contact Person</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.name"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Number</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Contact Number</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.phone"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Mobile</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Mobile</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.mobile"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Fax</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Fax</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.fax"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Email Address</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Email Address</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoContact.email"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Pickup Date</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Pickup Date</td>
                                 <td style="text-align: left !important;"><s:property value="order.pickupDate"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Pickup Address</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Pickup Address</td>
                                 <td style="text-align: left !important;"><s:property value="order.shipperInfoAddress.address"/></td>
                             </tr>
                             </tbody>
@@ -230,35 +230,35 @@
 
                             <tbody>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important; border-top: none; width: 28%">Consignee Name</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important; border-top: none; width: 30%">Consignee Name</td>
                                 <td style="border-top: none; text-align: left !important;"><s:property value="order.consigneeInfoContact.name"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Person</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Contact Person</td>
                                 <td style="text-align: left !important;"><s:property value="order.ConsigneeContactName"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Contact Number</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Contact Number</td>
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.phone"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Mobile</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Mobile</td>
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.mobile"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Fax</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Fax</td>
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.fax"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Email Address</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Email Address</td>
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoContact.email"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Delivery Date</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Delivery Date</td>
                                 <td style="text-align: left !important;"><s:property value="order.deliveryDate"/></td>
                             </tr>
                             <tr>
-                                <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Delivery Address</td>
+                                <td style="font-weight: normal; font-size: 13px; text-align:left !important;">Delivery Address</td>
                                 <td style="text-align: left !important;"><s:property value="order.consigneeInfoAddress.address"/></td>
                             </tr>
                             </tbody>
@@ -1139,5 +1139,4 @@
 </div>
 
 <script type="text/javascript" src="../includes/js/bookingInfo.js"></script>
-
 <%--<script type="text/javascript" src="../includes/js/bookingInfo.min.js"></script>--%>

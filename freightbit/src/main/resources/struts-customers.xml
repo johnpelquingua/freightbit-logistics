@@ -125,6 +125,7 @@
 
         <action name="deleteItem" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="deleteItem">
             <result name="success" type="redirect">viewItem</result>
+            <result name="input" type="tiles">customer.customerListItems.tiles</result>
         </action>
 
         <action name="addItem" class="com.sr.apps.freightbit.customer.action.CustomerAction" method="addItem">
@@ -282,11 +283,13 @@
         <action name="deleteCustomerContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="deleteContact">
             <result name="success" type="redirect">loadSuccessContactsDelete</result>
+            <result name="input" type="tiles">customer.customerListContact.tiles</result>
         </action>
 
         <action name="deleteConsigneeContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="deleteConsigneeContact">
             <result name="success" type="redirect">consigneeInfo</result>
+            <result name="input" type="tiles">customer.customerInfoConsignee.tiles</result>
         </action>
 
         <action name="loadSuccessContactsDelete" class="com.sr.apps.freightbit.customer.action.CustomerAction"

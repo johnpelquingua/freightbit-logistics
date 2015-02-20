@@ -31,6 +31,21 @@ public class OrderItemsDaoImpl extends HibernateDaoSupport implements OrderItems
     }
 
     @Override
+    public List<OrderItems> findOrderItemByName(String nameSize) {
+        Log.debug("finding Items by orderId");
+        try{
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderItems o where o.nameSize = :nameSize");
+            query.setParameter("nameSize", nameSize);
+            List<OrderItems> results = (List<OrderItems>) query.list();
+            Log.debug("find by items successful, result size:" + results.size());
+            return results;
+        }catch(RuntimeException re){
+            Log.error("find by client id failed",re);
+            throw re;
+        }
+    }
+
+    @Override
     public void addItems(OrderItems orderItems) {
         Log.debug("adding a new item");
         try {

@@ -29,6 +29,7 @@ import com.sr.biz.freightbit.customer.exceptions.CustomerAlreadyExistsException;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.customer.service.ItemService;
 import com.sr.biz.freightbit.documentation.entity.Documents;
+import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
 import org.apache.commons.lang3.StringUtils;
@@ -239,6 +240,25 @@ public class CustomerAction extends ActionSupport implements Preparable {
 
     public String deleteItem() {
         Items itemEntity = customerService.findItemByCustomerItemsId(customersItemIdParam);
+
+        List<OrderItems> orderItemsInBooking = orderService.findOrderItemByName(itemEntity.getItemName());
+
+        for(OrderItems orderItemElem : orderItemsInBooking){
+            Orders orderEntity = orderService.findOrdersById(orderItemElem.getOrderId());
+            if(orderEntity.getCustomerId() == itemEntity.getCustomerId()){
+
+                Integer customerId = getCustomerSessionId();
+                List<Items> itemEntityList = customerService.findItemByCustomerId(customerId);
+                for (Items itemsElem : itemEntityList) {
+                    items.add(transformToFormBeanItem(itemsElem));
+                }
+
+                clearErrorsAndMessages();
+                addActionError("You cannot delete a Customer item associated with a Booking");
+                return INPUT;
+            }
+        }
+
         customerService.deleteItem(itemEntity);
         return SUCCESS;
     }
@@ -1189,20 +1209,51 @@ public class CustomerAction extends ActionSupport implements Preparable {
     public String deleteContact() {
 
         Contacts contactEntity = customerService.findContactById(contactCodeParam);
+
+        List<Orders> contactInBookingList = orderService.findContactInBooking(contactCodeParam);
+
+        if(contactInBookingList.size() > 0){
+            Integer customerId = getCustomerSessionId();
+
+            List<Contacts> contactEntityList = customerService.findContactByReferenceId(customerId);
+
+            for (Contacts contactElem : contactEntityList) {
+                contacts.add(transformToFormBeanContacts(contactElem));
+            }
+
+            clearErrorsAndMessages();
+            addActionError("You cannot delete an Customer Contact Person that is associated with a Booking");
+            return INPUT;
+        }
         customerService.deleteContact(contactEntity);
         return SUCCESS;
     }
 
     public String deleteConsigneeContact(){
-
-        Contacts contactEntity = customerService.findContactById(consigneeContactCodeParam);
-
-        customerService.deleteContact(contactEntity);
-
         Map sessionAttributes = ActionContext.getContext().getSession();
+        Contacts consigneeContactEntity = customerService.findContactById(consigneeContactCodeParam);
+        List<Orders> consigneeContactInBookingList = orderService.findConsigneeContactInBooking(consigneeContactCodeParam);
+
+        if(consigneeContactInBookingList.size() > 0){
+
+            Contacts contactEntity = customerService.findContactById(contactCodeParam);
+            Address addressEntity = customerService.findAddressById(addressIdParam);
+            consignee = transformToFormBeanConsignee(addressEntity, contactEntity);
+
+            List<Contacts> contactEntityList = customerService.findContactByConsignee(contactEntity.getContactId(), "C_CONTACT", getClientId());
+            for (Contacts contactElem : contactEntityList) {
+                contacts.add(transformToFormBeanContacts(contactElem));
+            }
+
+            clearErrorsAndMessages();
+            addActionError("You cannot delete a Consignee Contact Person that is associated with a Booking");
+            return INPUT;
+        }
+
+        customerService.deleteContact(consigneeContactEntity);
+
         sessionAttributes.put("contactCodeParam", contactCodeParam);
         sessionAttributes.put("addressIdParam", addressIdParam);
-
         return SUCCESS;
     }
 

@@ -278,6 +278,22 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
     }
 
     @Override
+    public List<Orders> findContactInBooking(Integer shipperContactId) {
+        Log.debug("Find customer contact person with Booking.");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Orders d where d.shipperContactId = :shipperContactId");
+            query.setParameter("shipperContactId", shipperContactId);
+            List<Orders> results = (List<Orders>) query.list();
+            Log.debug("Find by address successful, result size: " + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            Log.error("Find by address Failed", re);
+            throw re;
+        }
+    }
+
+    @Override
     public List<Orders> findConsigneeInBooking(Integer consigneeContactId) {
         Log.debug("Find consignee with Booking.");
         try {
@@ -289,6 +305,22 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
             return results;
         } catch (RuntimeException re) {
             Log.error("Find by consignee Failed", re);
+            throw re;
+        }
+    }
+
+    @Override
+    public List<Orders> findConsigneeContactInBooking(Integer consigneeContactPersonId) {
+        Log.debug("Find consignee contact person with Booking.");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery(
+                    "from Orders d where d.consigneeContactPersonId = :consigneeContactPersonId");
+            query.setParameter("consigneeContactPersonId", consigneeContactPersonId);
+            List<Orders> results = (List<Orders>) query.list();
+            Log.debug("Find by consignee contact person successful, result size: " + results.size());
+            return results;
+        } catch (RuntimeException re) {
+            Log.error("Find by consignee contact person Failed", re);
             throw re;
         }
     }
