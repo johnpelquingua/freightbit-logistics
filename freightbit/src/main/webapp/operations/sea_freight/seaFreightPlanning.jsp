@@ -4,6 +4,24 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
 
+<s:if test="hasActionMessages()">
+    <div class="col-lg-12">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
+<s:if test="hasActionErrors()">
+    <div class="col-lg-12">
+        <div class="alert alert-errors">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <strong><s:actionerror cssStyle="margin-bottom: 0px;"/></strong>
+        </div>
+    </div>
+</s:if>
+
 <div class="row">
     <div class="col-lg-12">
         <legend style="text-align: left;">
@@ -1134,13 +1152,13 @@
 
                             <label>Vendor<span class="asterisk_red"></span></label>
 
-                            <s:select list="vendorShippingListClass" name="vesselSchedule.vendorId"
+                            <s:select list="vendorShippingListClass" id="vesselSchedule_vendorName" name="vesselSchedule.vendorId"
                                   listKey="vendorId" listValue="vendorName" cssClass="form-control addScheduleInput vendorIdPass"
                                   emptyOption="true" required="true"></s:select>
 
                             <label>Voyage Number<span class="asterisk_red"></span></label>
 
-                            <s:textfield cssClass="form-control voyageNumber" name="vesselSchedule.voyageNumber" required="true"/>
+                            <s:textfield cssClass="form-control voyageNumber" id="voyageNumber" name="vesselSchedule.voyageNumber" required="true"/>
 
                             <label>Vessel<span class="asterisk_red"></span></label>
 
@@ -1212,18 +1230,6 @@
     // User must choose a vendor first before adding vessel schedule
     $(document).ready(function(){
 
-        $('#createSchedule').click(function() {
-            $('.vendorIdPass').val('');
-            $('.voyageNumber').val('');
-            $('.vesselName').val('');
-            $('#departureDate').val('');
-            $('#departureTime').val('');
-            $('#arrivalDate').val('');
-            $('#arrivalTime').val('');
-            $('#vesselSchedule_originPort').val('');
-            $('#vesselSchedule_destinationPort').val('');
-        });
-
         window.location.href = '#focusHere';
         hideVesselSchedule();
 
@@ -1275,7 +1281,17 @@
 
             });
         });*/
-
+        $("#createSchedule").click(function() {
+            $("#vesselSchedule_vendorName").val('');
+            $("#voyageNumber").val('');
+            $("#vesselList").val('');
+            $("#departureDate").val('');
+            $("#departureTime").val('');
+            $("#arrivalDate").val('');
+            $("#arrivalTime").val('');
+            $("#vesselSchedule_originPort").val('');
+            $("#vesselSchedule_destinationPort").val('');
+        });
     });
 
     var departureDate = $('#departureDate');

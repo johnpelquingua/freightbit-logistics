@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface VesselSchedulesDao {
 
-    public void addVesselSchedule(VesselSchedules vesselSchedules);
+    public Integer addVesselSchedule(VesselSchedules vesselSchedules);
 
     public void deleteVesselSchedule(VesselSchedules vesselSchedules);
 

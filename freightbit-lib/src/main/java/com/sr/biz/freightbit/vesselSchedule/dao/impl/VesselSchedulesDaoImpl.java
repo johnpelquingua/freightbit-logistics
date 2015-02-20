@@ -23,13 +23,14 @@ public class VesselSchedulesDaoImpl extends HibernateDaoSupport implements Vesse
     private static final Logger log = Logger.getLogger(VesselSchedulesDaoImpl.class);
 
     @Override
-    public void addVesselSchedule(VesselSchedules vesselSchedules) {
+    public Integer addVesselSchedule(VesselSchedules vesselSchedules) {
         log.debug("Adding new Vessel Schedule");
         try {
             Session session = getSessionFactory().getCurrentSession();
-            session.save(vesselSchedules);
+            Integer vesselScheduleId = (Integer) session.save(vesselSchedules);
             log.debug("Vessel Schedule added successfully");
-        } catch (Exception e) {
+            return vesselScheduleId;
+        } catch (RuntimeException e) {
             log.error("Adding new Vessel Schedule failed", e);
             throw e;
         }
@@ -131,7 +132,7 @@ public class VesselSchedulesDaoImpl extends HibernateDaoSupport implements Vesse
             List<VesselSchedules> results = (List<VesselSchedules>) query.list();
             log.debug("Find Vessel Schedules by Id successful" + results.size());
             return results;
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             log.error("Finding Vessel Schedule failed");
             throw e;
         }

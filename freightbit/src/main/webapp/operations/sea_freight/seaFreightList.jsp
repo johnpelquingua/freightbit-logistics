@@ -42,6 +42,7 @@
 
                     </div>
                     <s:submit name="submit" cssClass="btn btn-primary" value="Sort" />
+                    <a href="viewSeaFreightList" class="btn btn-primary" id ="groups-btn">Display All</a>
                 </s:form>
 
             </div>
@@ -469,8 +470,40 @@
         if (lastTab) { $('a[href="'+lastTab+'"]').click(); }
     });
 
-    $('#select1').change(function(){ preventSamePort($(this), $('#select2')); })
-    $('#select2').change(function(){ preventSamePort($(this), $('#select1')); })
+    /*$('#select1').change(function(){ preventSamePort($(this), $('#select2')); })
+    $('#select2').change(function(){ preventSamePort($(this), $('#select1')); })*/
 
+    // Avoid selecting duplicate ports
 
+    function preventDuplicatePort(select, index) {
+
+        var options = select.options,
+                len = options.length;
+
+        while ( len-- ){
+            options[ len ].disabled = false;
+        }
+
+        select.options[ index ].disabled = true;
+
+        if( index === select.selectedIndex ){
+            alert('You already selected the same port "' + select.options[index].text + '". Please choose another' );
+            /*this.selectedIndex = 0;*/
+            select2.value = '';
+        }
+
+    }
+
+    var select1 = select = document.getElementById('select1');
+    var select2 = select = document.getElementById('select2');
+
+    select2.value = '';
+
+    select1.onchange = function() {
+        preventDuplicatePort.call(this, select2, this.selectedIndex);
+    };
+
+    select2.onchange = function() {
+        preventDuplicatePort.call(this, select1, this.selectedIndex);
+    };
 </script>

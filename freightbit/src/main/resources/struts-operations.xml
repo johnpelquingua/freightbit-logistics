@@ -437,7 +437,7 @@
 
         <action name="addVesselScheduleInPlanningBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction"
                 method="addVesselSchedule">
-            <result name="input" type="tiles">operations.seaFreightPlanning.tiles</result>
+            <result name="input" type="tiles">operations.seaFreightPlanningBulk.tiles</result>
             <result name="success" type="redirect">addSeaFreightVendorInPlanningBulk</result>
         </action>
 
