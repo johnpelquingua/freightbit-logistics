@@ -603,10 +603,17 @@ function showInputFields(referenceId,documentId) {
         }
     }
     else if (documentName == "PROFORMA BILL OF LADING") {
-        var win = window.open('documentations/generateAuthorizationToWithdrawReport?documentIdParam=' + documentId, 'Proforma Bill of Lading', 'width=910,height=800');
+        var win = window.open('documentations/generateProformaReport?documentIdParam=' + documentId, 'Proforma Bill of Lading', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Authorization to Withdraw";
             window.location.href = '#documentTab';
+        }
+    }
+    else if (documentName == "RELEASE ORDER") {
+        var win = window.open('documentations/generateReleaseOrderReport?documentIdParam=' + documentId, 'Release Order', 'width=910,height=800');
+        win.onload = function() {
+            this.document.title = "Release Order";
+            window.location.href = '#focusHere';
         }
     }
 }

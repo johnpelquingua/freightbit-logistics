@@ -45,6 +45,8 @@ public interface DocumentsDao {
 
     public Documents findDocumentByNameAndVendorCode(String documentName, String vendorCode);
 
+    public List<Documents> findDocumentNameVendorCodeOrderId(String documentName, String vendorCode, Integer referenceId);
+
     public List<Documents> findDocumentNameAndId(String documentName, Integer orderItemId);
 
     public List<Documents> findAllFreightDocuments(Integer referenceId);

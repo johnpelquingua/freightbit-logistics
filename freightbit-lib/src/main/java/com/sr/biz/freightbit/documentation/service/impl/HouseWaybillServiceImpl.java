@@ -43,7 +43,7 @@ public class HouseWaybillServiceImpl extends ReportGeneratorService implements H
     public Map<String, Object> getReportParameters(Map<String, String> params) {
         final Map parameters = new HashMap<String, Object>();
         parameters.put("orderId", params.get("orderId"));
-        parameters.put("orderItemId",params.get("orderItemId"));
+        parameters.put("documentId",params.get("documentId"));
         return parameters;
 
     }

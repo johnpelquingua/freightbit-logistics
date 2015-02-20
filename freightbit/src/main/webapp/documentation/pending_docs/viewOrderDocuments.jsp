@@ -1755,7 +1755,7 @@ function showInputFields(referenceId,documentId) {
         }
     }
     else if (documentName == "PROFORMA BILL OF LADING") {
-        var win = window.open('documentations/generate2GOProformaReport?documentIdParam=' + documentId, 'Proforma Bill of Lading', 'width=910,height=800');
+        var win = window.open('documentations/generateProformaReport?documentIdParam=' + documentId, 'Proforma Bill of Lading', 'width=910,height=800');
         win.onload = function () {
             this.document.title = "Proforma Bill of Lading";
             window.location.href = '#focusHere';

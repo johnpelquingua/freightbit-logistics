@@ -35,6 +35,7 @@ public class DocumentsBean {
     private Integer documentIdParam;
     private Integer orderIdParam;
     private String documentItem;
+    private String vendorName;
 
     public DocumentsBean() {
     }
@@ -295,5 +296,11 @@ public class DocumentsBean {
         this.completeStage = completeStage;
     }
 
+    public String getVendorName() {
+        return vendorName;
+    }
 
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
+    }
 }

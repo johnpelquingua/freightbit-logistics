@@ -363,7 +363,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
             for (OrderItems orderItemCheck : orderItemEntityList) { // check order items under the booking number
 
-                for (Documents documentCheck : documentsList) { // will check all documents inside outbound stage
+                /*for (Documents documentCheck : documentsList) { // will check all documents inside outbound stage
 
                     if (documentCheck.getVendorCode() != null && !documentCheck.getDocumentName().equals("BOOKING REQUEST FORM") || documentCheck.getVendorCode() != null && !documentCheck.getDocumentName().equals("HOUSE BILL OF LADING")) { // will check if there are vendor codes
                         // Will check if any documents assigned to the shipping vendor
@@ -416,10 +416,81 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                     }
 
-                }
+                }*/
 
             }
 
+            List<String> vendorSea = new ArrayList<String>();
+            List<String> vendorOrigin = new ArrayList<String>();
+            List<String> vendorDestination = new ArrayList<String>();
+            Integer vendorSeaCount = 0;
+            Integer vendorOriginCount = 0;
+            Integer vendorDestinationCount = 0;
+            List<Documents> documentProformaEntity = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING",orderEntity.getOrderId());
+            List<Documents> documentWaybillOriginEntity = documentsService.findDocumentNameAndId("HOUSE WAYBILL ORIGIN",orderEntity.getOrderId());
+            List<Documents> documentWaybillDestinationEntity = documentsService.findDocumentNameAndId("HOUSE WAYBILL DESTINATION",orderEntity.getOrderId());
+
+            // Shipping vendors set will be stored in VendorSea variable
+            for (OrderItems everyItem : orderItemEntityList) {
+                if (vendorSea.isEmpty()) {
+                    vendorSea.add(everyItem.getVendorSea());
+                    vendorSeaCount = vendorSeaCount + 1;
+                } else {
+                    if (!vendorSea.contains(everyItem.getVendorSea())) {
+                        vendorSea.add(everyItem.getVendorSea());
+                        vendorSeaCount = vendorSeaCount + 1;
+                    }
+                }
+            }
+
+            // Origin vendors set will be stored in VendorOrigin Variable
+            for (OrderItems everyItem : orderItemEntityList) {
+                if (vendorOrigin.isEmpty()) {
+                    vendorOrigin.add(everyItem.getVendorOrigin());
+                    vendorOriginCount = vendorOriginCount + 1;
+                } else {
+                    if (!vendorOrigin.contains(everyItem.getVendorOrigin())) {
+                        vendorOrigin.add(everyItem.getVendorOrigin());
+                        vendorOriginCount = vendorOriginCount + 1;
+                    }
+                }
+            }
+
+            // Destination vendors set will be stored in VendorDestination Variable
+            for (OrderItems everyItem : orderItemEntityList) {
+                if (vendorDestination.isEmpty()) {
+                    vendorDestination.add(everyItem.getVendorDestination());
+                    vendorDestinationCount = vendorDestinationCount + 1;
+                } else {
+                    if (!vendorDestination.contains(everyItem.getVendorDestination())) {
+                        vendorDestination.add(everyItem.getVendorDestination());
+                        vendorDestinationCount = vendorDestinationCount + 1;
+                    }
+                }
+            }
+
+            // To count for shipping vendors and proforma bill of lading equivalent
+            if(vendorSeaCount != documentProformaEntity.size()) {
+                clearErrorsAndMessages();
+                addActionMessage("PROFORMA BILL OF LADING NOT YET CREATED!");
+                documentTab = "OUTBOUND_MISSING";
+            }
+            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER")) {
+                // To count for origin vendors and house waybill origin equivalent
+                if(vendorOriginCount != documentWaybillOriginEntity.size()){
+                    clearErrorsAndMessages();
+                    addActionMessage("HOUSE WAYBILL(S) ORIGIN MISSING!");
+                    documentTab = "OUTBOUND_MISSING";
+                }
+            }
+            if(orderEntity.getServiceMode().equals("PIER TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO DOOR")) {
+                // To count for origin vendors and house waybill origin equivalent
+                if (vendorDestinationCount != documentWaybillDestinationEntity.size()) {
+                    clearErrorsAndMessages();
+                    addActionMessage("HOUSE WAYBILL(S) DESTINATION MISSING!");
+                    documentTab = "OUTBOUND_MISSING";
+                }
+            }
         }
 
         /*OUTBOUND DOCUMENTS TABLE VIEW*/
@@ -2452,9 +2523,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         String orderId = (documentEntity.getReferenceId()).toString();
+        String documentId = (documentEntity.getDocumentId().toString());
 
         Map<String, String> params = new HashMap();
         params.put("orderId", orderId);
+        params.put("documentId", documentId);
 
         ByteArrayOutputStream byteArray = null;
         BufferedOutputStream responseOut = null;
@@ -2486,9 +2559,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         String orderId = (documentEntity.getReferenceId()).toString();
+        String documentId = (documentEntity.getDocumentId().toString());
 
         Map<String, String> params = new HashMap();
         params.put("orderId", orderId);
+        params.put("documentId", documentId);
 
         ByteArrayOutputStream byteArray = null;
         BufferedOutputStream responseOut = null;
@@ -2587,14 +2662,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
     // Authorization to Withdraw
     public String generateAuthorizationToWithdrawReport() {
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>documentIdParam " + documentIdParam);
-//        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>documentIdParam " + vendorCodeParam);
-
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         String orderId = (documentEntity.getReferenceId()).toString();
+        String documentId = (documentEntity.getDocumentId()).toString();
 
         Map<String, String> params = new HashMap();
         params.put("orderId", orderId);
+        params.put("documentId", documentId);
 
         ByteArrayOutputStream byteArray = null;
         BufferedOutputStream responseOut = null;
@@ -2604,8 +2678,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             final File outputFile = new File("Authorization to Withdraw.pdf");
             // Generate the report
             MasterReport report = authorizationToWithdrawReportService.generateReport(params);
-
-
 
             HttpServletResponse response = ServletActionContext.getResponse();
             responseOut = new BufferedOutputStream(response.getOutputStream());

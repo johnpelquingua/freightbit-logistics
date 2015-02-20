@@ -49,7 +49,7 @@ public class AuthorizationToWithdrawReportServiceImpl extends ReportGeneratorSer
     {
         final Map parameters = new HashMap<String, Object>();
         parameters.put("orderId", params.get("orderId"));
-        parameters.put("orderItemId", params.get("orderItemId"));
+        parameters.put("documentId",params.get("documentId"));
         return parameters;
     }
 

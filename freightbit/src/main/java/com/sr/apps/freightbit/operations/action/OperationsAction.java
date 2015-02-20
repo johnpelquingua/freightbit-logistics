@@ -3316,7 +3316,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setAging(entity.getAging());
         formBean.setCreatedDate(entity.getCreatedDate());
-        formBean.setVendorCode(vendorService.findVendorByVendorCode(entity.getVendorCode()).getVendorName());
+        formBean.setVendorCode(entity.getVendorCode());
+        formBean.setVendorName(vendorService.findVendorByVendorCode(entity.getVendorCode()).getVendorName());
 
 //        Integer orderItemIdPass; // Variable to store Order Item ID
 //        // Condition if order item id if null or not
@@ -3381,6 +3382,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         // will delete all existing document and resets all freight documents end
 
         List<String> vendorCodeDocument = new ArrayList<String>();
+        List<String> vendorDestination = new ArrayList<String>();
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
 
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
@@ -3394,6 +3396,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
             } else {
                 if (!vendorCodeDocument.contains(everyItem.getVendorSea())) {
                     vendorCodeDocument.add(everyItem.getVendorSea());
+                }
+            }
+        }
+
+        // Destination vendors set will be stored in VendorDestination Variable
+        for (OrderItems everyItem : orderItemsList) {
+            if (vendorDestination.isEmpty()) {
+                vendorDestination.add(everyItem.getVendorDestination());
+            } else {
+                if (!vendorDestination.contains(everyItem.getVendorDestination())) {
+                    vendorDestination.add(everyItem.getVendorDestination());
                 }
             }
         }
@@ -3433,10 +3446,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                     }
 
-//                    return INPUT;
                 }
 
-                if(withdrawAuthorization.size() == 0){
+                /*if(withdrawAuthorization.size() == 0){
 
                     Documents documentEntityAuthorization = new Documents();
 
@@ -3470,8 +3482,50 @@ public class OperationsAction extends ActionSupport implements Preparable {
                         orderItems.add(transformToOrderItemFormBean(orderItemsElem));
                     }
 
-//                    return INPUT;
-                }
+                }*/
+
+
+
+                    for (String vendorDes : vendorDestination){
+                        if(vendorDes != null){
+                            if(withdrawAuthorization.size() == 0){
+                                Documents documentEntityAuthorization = new Documents();
+
+                                Client client = clientService.findClientById(getClientId().toString());
+                                documentEntityAuthorization.setClient(client);
+
+                                documentEntityAuthorization.setDocumentName(DocumentsConstants.AUTHORIZATION_TO_WITHDRAW);
+                                documentEntityAuthorization.setReferenceId(orderEntity.getOrderId());
+                                documentEntityAuthorization.setReferenceTable("ORDERS");
+                                documentEntityAuthorization.setOrderNumber(orderEntity.getOrderNumber());
+                                documentEntityAuthorization.setCreatedDate(new Date());
+                                documentEntityAuthorization.setDocumentStatus("FROM PLANNING");
+                                documentEntityAuthorization.setVendorCode(vendorDes);
+                                if(orderEntity.getServiceMode().equals("PIER TO PIER")){
+                                    documentEntityAuthorization.setOutboundStage(1);
+                                    documentEntityAuthorization.setDocumentProcessed(0);
+                                }else{
+                                    documentEntityAuthorization.setFinalOutboundStage(1);
+                                    documentEntityAuthorization.setDocumentProcessed(2);
+                                }
+                                documentEntityAuthorization.setCreatedBy(commonUtils.getUserNameFromSession());
+                                // orderitem id should be set in orderitemid column WIP
+
+                                documentsService.addDocuments(documentEntityAuthorization);
+
+                            } else {
+                                clearErrorsAndMessages();
+                                addActionError("Authorization to Withdraw(s) already exists.");
+
+                                for(OrderItems orderItemsElem : orderItemsList) {
+                                    orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+                                }
+                            }
+                        }
+                    }
+
+
+
 
                 if(orderEntity.getServiceMode().equals("PIER TO PIER") || orderEntity.getServiceMode().equals("PIER TO DOOR")){
 
@@ -3575,6 +3629,18 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String createdInlandDocument(){
+
+        // will delete all existing document and resets all inland documents begin
+
+        List<Documents> freightDocuments = documentsService.findDocumentsByOrderId(orderIdParam);
+
+        for (Documents freightDocumentElem : freightDocuments){
+            if(freightDocumentElem.getDocumentName().equals("HOUSE WAYBILL ORIGIN") || freightDocumentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION")){
+                Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+                documentsService.deleteDocument(documentEntity);
+            }
+        }
+
         List<String> vendorOrigin = new ArrayList<String>();
         List<String> vendorDestination = new ArrayList<String>();
         List<OrderItems> orderItemsList = new ArrayList<OrderItems>();
@@ -3583,7 +3649,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         order = transformToOrderFormBean(orderEntity);
         orderItemsList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
 
-        // Origin vendors set will be stored in VendorCodeDocument Variable
+        // Origin vendors set will be stored in VendorOrigin Variable
         for (OrderItems everyItem : orderItemsList) {
             if (vendorOrigin.isEmpty()) {
                 vendorOrigin.add(everyItem.getVendorOrigin());
@@ -3594,7 +3660,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
         }
 
-        // Destination vendors set will be stored in VendorCodeDocument Variable
+        // Destination vendors set will be stored in VendorDestination Variable
         for (OrderItems everyItem : orderItemsList) {
             if (vendorDestination.isEmpty()) {
                 vendorDestination.add(everyItem.getVendorDestination());

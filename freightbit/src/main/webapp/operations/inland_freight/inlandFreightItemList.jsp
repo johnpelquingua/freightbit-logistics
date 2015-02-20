@@ -245,6 +245,18 @@
 
                                     <s:if test="#attr.orderItem.status=='ON GOING' || #attr.orderItem.status=='PLANNING 1'">
                                         <i style="color: red;" class="fa fa-ban"></i>
+                                        <s:url var="viewInfoUrl" action="viewInlandFreightInfo">
+                                            <s:param name="orderItemIdParam"
+                                                     value="#attr.orderItem.orderItemId">
+                                            </s:param>
+                                            <s:param name="orderNoParam"
+                                                     value="orderNoParam">
+                                            </s:param>
+                                        </s:url>
+                                        <s:a class="icon-action-link" href="%{viewInfoUrl}" rel="tooltip"
+                                             title="Show Information">
+                                            <i class="fa fa-info-circle"></i>
+                                        </s:a>
                                     </s:if>
                                     <s:else>
                                         <s:url var="viewFreightPlanningUrl" action="viewFreightPlanningInland">
