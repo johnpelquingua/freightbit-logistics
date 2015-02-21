@@ -60,7 +60,7 @@
 
                             <div class="col-lg-10" >
 
-                                <s:textfield required="true" name="rate.rate" cssClass="form-control" id="rates.rate"
+                                <s:textfield required="true" name="rate.rate" cssClass="form-control" id="rates.rate" pattern="[0-9.,]+"
                                              placeholder="Rate" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>

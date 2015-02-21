@@ -46,7 +46,7 @@
                             <s:textfield name="consignee.lastName" cssClass="addConsigneeInput form-control" id="consignee.lastName"
                                          placeholder="Last Name" maxLength="30" required="true" style="width:95%"
                                          pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" autofocus="true"
-                                         title="Name should not contain special characters and/or numbers."/>
+                                         title="Last Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
 
@@ -58,20 +58,18 @@
                                      <s:textfield name="consignee.firstName" cssClass="addConsigneeInput form-control" id="consignee.firstName"
                                                   placeholder="First Name" maxLength="30" required="true" style="width:95%"
                                                   pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                                  title="Name should not contain special characters and/or numbers." />
+                                                  title="First Name should not contain special characters and/or numbers." />
                                  </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="consignee.middleName" class="col-lg-2 control-label" style="padding-top:0px;">Middle
-                            Name
-                        </label>
+                        <label for="consignee.middleName" class="col-lg-2 control-label" style="padding-top:0px;">Middle Name </label>
                         <div class="col-lg-10" >
 
                             <s:textfield name="consignee.middleName" cssClass="form-control"
                                          id="consignee.middleName"
                                          placeholder="Middle Name" maxLength="30" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" style="width:95%"
-                                         title="Name should not contain special characters and/or numbers."/>
+                                         title="Middle Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
 
@@ -96,7 +94,7 @@
 
                             <s:textfield name="consignee.phone" cssClass="addConsigneeInput form-control" id="consignee_phone"
                                          placeholder="(XXX) XXX-XXXX" maxLength="14" required="true" style="width:95%" pattern=".{14,}"
-                                         title="(XXX) XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                         title="Phone number should contain 10 digits including local city code."/>
                         </div>
                     </div>
 
@@ -108,7 +106,7 @@
 
                             <s:textfield name="consignee.mobile" cssClass="addConsigneeInput form-control" id="consignee_mobile"
                                          placeholder="(+639XX) (XXX-XXXX)" maxLength="18" required="true" style="width:95%" pattern=".{18,}"
-                                         title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                                         title="Mobile number should contain 11 digits."/>
                         </div>
                     </div>
 
@@ -119,7 +117,7 @@
 
                             <s:textfield name="consignee.fax" cssClass="form-control" id="consignee_fax"
                                          placeholder="(XXX) XXX-XXXX" maxLength="14" style="width:95%" pattern=".{14,}"
-                                         title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                                         title="Fax number should contain 10 digits including local city codes."/>
                         </div>
                     </div>
 
@@ -131,7 +129,8 @@
 
                             <s:textfield name="consignee.addressLine1" cssClass="addConsigneeInput form-control"
                                          id="consignee.addressLine1" placeholder="Address 1" required="true" style="width:95%"
-                                         maxLength="50" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Address Line 1 should not contain special characters."/>
+                                         maxLength="50" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
+                                         title="Address Line 1 should not contain special characters."/>
                         </div>
                     </div>
 
@@ -141,7 +140,9 @@
 
                         <div class="col-lg-10" >
                             <s:textfield name="consignee.addressLine2" cssClass="form-control" style="width:95%"
-                                         id="consignee.addressLine2" placeholder="Address 2" maxLength="50" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Address Line 2 should not contain special characters."/>
+                                         id="consignee.addressLine2" placeholder="Address 2" maxLength="50"
+                                         pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
+                                         title="Address Line 2 should not contain special characters."/>
                         </div>
                     </div>
 
@@ -164,7 +165,8 @@
 
                         <div class="col-lg-10" >
                             <s:textfield name="consignee.state" cssClass="form-control"
-                                         id="consignee.state" placeholder="Region" maxLength="50" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" style="width:95%"
+                                         id="consignee.state" placeholder="Region" maxLength="50"
+                                         pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" style="width:95%"
                                          title="State should not contain special characters and/or numbers."/>
                         </div>
                     </div>

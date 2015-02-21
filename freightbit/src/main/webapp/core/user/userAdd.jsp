@@ -64,15 +64,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">First Name<span class="asterisk_red"></span></label>
-
-                                <div class="col-lg-9">
-                                    <s:textfield required="true" name="user.firstName" id="firstName" cssClass="userAddForm form-control" maxlength="25"
-                                                 placeholder="First Name" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" title="First Name should not contain special characters and/or numbers."/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span></label>
 
                                 <div class="col-lg-9">
@@ -81,6 +72,14 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">First Name<span class="asterisk_red"></span></label>
+
+                                <div class="col-lg-9">
+                                    <s:textfield required="true" name="user.firstName" id="firstName" cssClass="userAddForm form-control" maxlength="25"
+                                                 placeholder="First Name" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" title="First Name should not contain special characters and/or numbers."/>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">User Name<span class="asterisk_red"></span></label>

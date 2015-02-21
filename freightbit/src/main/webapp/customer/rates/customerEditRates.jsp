@@ -61,10 +61,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="rates.rate" class="col-lg-2 control-label" style="padding-top:0px;">Rate<span class="asterisk_red"></span></label>
+                            <label for="rates.rate" class="col-lg-2 control-label" style="padding-top:0px;">Rate (Php)<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield name="rate.rate" cssClass="form-control" id="rates.rate"
+                                <s:textfield name="rate.rate" cssClass="form-control" id="rates.rate" pattern="[0-9.,]+"
+                                             title="Special characters in Rate is not valid"
                                              placeholder="Rate" onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>

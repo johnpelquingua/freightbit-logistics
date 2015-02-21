@@ -48,7 +48,9 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Position<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
-                                <s:textfield cssClass="form-control addTruckingContactInput" placeholder="Position" name="contact.position" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" maxLength="45"/>
+                                <s:textfield cssClass="form-control addTruckingContactInput" placeholder="Position" name="contact.position" required="true"
+                                             pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" maxLength="45"
+                                             title="Position should not contain special characters and/or numbers."/>
                             </div>
                         </div>
 
@@ -57,7 +59,7 @@
                             <div class="col-lg-10">
                             <s:textfield cssClass="addTruckingContactInput form-control" placeholder="Last Name" name="contact.lastName"
                                          id="contact.lastName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                         title="Name should not contain special characters and/or numbers." required="true" maxlength="30"/>
+                                         title="Last Name should not contain special characters and/or numbers." required="true" maxlength="30"/>
                             </div>
                         </div>
 
@@ -66,7 +68,7 @@
                             <div class="col-lg-10">
                             <s:textfield cssClass="form-control addTruckingContactInput" placeholder="First Name" name="contact.firstName"
                                          id="contact.firstName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                         title="Name should not contain special characters and/or numbers." required="true" maxlength="30"/>
+                                         title="First Name should not contain special characters and/or numbers." required="true" maxlength="30"/>
                             </div>
                         </div>
 
@@ -75,15 +77,15 @@
                             <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="contact.middleName"
                                          id="contact.middleName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                         title="Name should not contain special characters and/or numbers." maxlength="30"/>
+                                         title="Middle Name should not contain special characters and/or numbers." maxlength="30"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Telephone<span class="asterisk_red"></span></label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Phone<span class="asterisk_red"></span></label>
                             <div class="col-lg-10">
                             <s:textfield cssClass="form-control addTruckingContactInput" placeholder="(XXX)XXX-XXXX" name="contact.phone" maxLength="14" required="true"
-                                         id="trucking_phone" title="(XXX) XXX-XXXX Telephone Number should not contain special characters and/or letters." pattern=".{14,}"/>
+                                         id="trucking_phone" title="Phone number should contain 10 digits including local city code." pattern=".{14,}"/>
                             </div>
                         </div>
 
@@ -92,7 +94,7 @@
                             <div class="col-lg-10">
                             <s:textfield cssClass="form-control addTruckingContactInput" placeholder="(+639XX)(XXX-XXXX)" name="contact.mobile" maxLength="18"
                                          id="trucking_mobile" required="true" pattern=".{18,}"
-                                         title="(+639XX) (XXX-XXXX) Mobile should not contain special characters and/or letters."/>
+                                         title="Mobile number should contain 11 digits."/>
                             </div>
                         </div>
 
@@ -100,7 +102,7 @@
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Fax</label>
                             <div class="col-lg-10">
                             <s:textfield cssClass="form-control" placeholder="(XXX)XXX-XXXX" name="contact.fax" maxLength="14" pattern=".{14,}"
-                                        id="trucking_fax" title="(XXX) XXX-XXXX Fax should not contain special characters and/or letters."/>
+                                        id="trucking_fax" title="Fax number should contain 10 digits including local city codes."/>
                             </div>
                         </div>
 

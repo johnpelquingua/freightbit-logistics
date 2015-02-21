@@ -63,15 +63,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">First Name <span class="asterisk_red"></span></label>
-
-                            <div class="col-lg-9">
-                                <s:textfield required="true" name="user.firstName" id="firstName" cssClass="form-control" maxlength="25" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                             placeholder="First Name" title="First Name should not contain special characters and/or numbers."/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">Last Name <span class="asterisk_red"></span></label>
 
                             <div class="col-lg-9">
@@ -80,6 +71,14 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">First Name <span class="asterisk_red"></span></label>
+
+                            <div class="col-lg-9">
+                                <s:textfield required="true" name="user.firstName" id="firstName" cssClass="form-control" maxlength="25" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                             placeholder="First Name" title="First Name should not contain special characters and/or numbers."/>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label" id="users-add-label" style="padding-top:0px;">User Name <span class="asterisk_red"></span></label>

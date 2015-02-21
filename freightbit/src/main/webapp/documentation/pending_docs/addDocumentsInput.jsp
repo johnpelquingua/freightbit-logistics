@@ -39,7 +39,7 @@
             <label class="col-lg-4 control-label" style="text-align: right; clear:both;">Comments</label>
             <div class="col-lg-8" >
                 <s:textarea cssClass="form-control modalTextArea" name="document.documentComments" style="margin-bottom: 15px !important; resize:none; height: 200px;"
-                            id="document_documentComments" />
+                            id="document_documentComments" maxLength="255"/>
             </div>
 
             <div style="clear:both;" class="modal-footer">
