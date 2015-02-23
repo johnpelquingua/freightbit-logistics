@@ -500,13 +500,16 @@
                                                         </a>
                                                     </s:if>
 
-                                                    <s:url var="deleteDocumentUrl" action="deleteDocument">
-                                                        <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
-                                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                                    </s:url>
-                                                    <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                                        <i class="fa fa-trash-o"></i>
-                                                    </s:a>
+                                                    <s:if test="#attr.document.documentName!='BOOKING REQUEST FORM'">
+                                                        <s:url var="deleteDocumentUrl" action="deleteDocument">
+                                                            <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
+                                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                        </s:url>
+                                                        <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </s:a>
+                                                    </s:if>
+
                                                     <%--Move Document--%>
                                                     <%--<s:url var="moveDocumentUrl" action="moveDocument">
                                                         <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
@@ -738,13 +741,15 @@
                                                         </a>
                                                     </s:if>
 
-                                                    <s:url var="deleteDocumentUrl" action="deleteDocument">
-                                                        <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
-                                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                                    </s:url>
-                                                    <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                                        <i class="fa fa-trash-o"></i>
-                                                    </s:a>
+                                                    <s:if test="#attr.document.documentName!='BOOKING REQUEST FORM'">
+                                                        <s:url var="deleteDocumentUrl" action="deleteDocument">
+                                                            <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
+                                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                        </s:url>
+                                                        <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </s:a>
+                                                    </s:if>
 
                                                     <%--Move Document--%>
                                                     <%--<s:url var="moveDocumentInboundUrl" action="moveDocumentInbound">
@@ -960,13 +965,15 @@
                                                     </a>
                                                 </s:if>
 
-                                                <s:url var="deleteDocumentUrl" action="deleteDocument">
-                                                    <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
-                                                    <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                                </s:url>
-                                                <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                                    <i class="fa fa-trash-o"></i>
-                                                </s:a>
+                                                <s:if test="#attr.document.documentName!='BOOKING REQUEST FORM'">
+                                                    <s:url var="deleteDocumentUrl" action="deleteDocument">
+                                                        <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
+                                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                    </s:url>
+                                                    <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </s:a>
+                                                </s:if>
 
                                                 <%--Move Document--%>
                                                 <%--<s:url var="moveDocumentFinalOutboundUrl" action="moveDocumentFinalOutbound">
@@ -1147,13 +1154,15 @@
                                                         </a>
                                                     </s:if>
 
-                                                    <s:url var="deleteDocumentUrl" action="deleteDocument">
-                                                        <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
-                                                        <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                                    </s:url>
-                                                    <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                                        <i class="fa fa-trash-o"></i>
-                                                    </s:a>
+                                                    <s:if test="#attr.document.documentName!='BOOKING REQUEST FORM'">
+                                                        <s:url var="deleteDocumentUrl" action="deleteDocument">
+                                                            <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
+                                                            <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                        </s:url>
+                                                        <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
+                                                            <i class="fa fa-trash-o"></i>
+                                                        </s:a>
+                                                    </s:if>
 
                                                     <%--Move Document--%>
                                                     <%--<s:url var="moveDocumentFinalOutboundUrl" action="moveDocumentFinalOutbound">
@@ -1280,13 +1289,15 @@
                                                 </a>
                                             </s:if>
 
-                                            <s:url var="deleteDocumentUrl" action="deleteDocument">
-                                                <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
-                                                <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
-                                            </s:url>
-                                            <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                                <i class="fa fa-trash-o"></i>
-                                            </s:a>
+                                            <s:if test="#attr.document.documentName!='BOOKING REQUEST FORM'">
+                                                <s:url var="deleteDocumentUrl" action="deleteDocument">
+                                                    <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
+                                                    <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
+                                                </s:url>
+                                                <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </s:a>
+                                            </s:if>
 
                                         </display:column>
 

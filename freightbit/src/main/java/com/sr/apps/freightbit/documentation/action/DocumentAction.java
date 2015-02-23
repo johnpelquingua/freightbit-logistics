@@ -1742,9 +1742,17 @@ public class DocumentAction extends ActionSupport implements Preparable{
             }
         }
 
+        // Count House Waybill Origin documents
+        Integer countWaybillOrigin = 0;
+        for(Documents waybillOriginDocs : bookingDocuments) {
+            if(waybillOriginDocs.getDocumentName().equals("HOUSE WAYBILL ORIGIN")){
+                countWaybillOrigin = countWaybillOrigin + 1;
+            }
+        }
+
         String documentName = document.getDocumentName().toUpperCase();
 
-        if(documentName.equals("BOOKING REQUEST FORM") || documentName.equals("HOUSE WAYBILL ORIGIN") || documentName.equals("PROFORMA BILL OF LADING") || documentName.equals("HOUSE WAYBILL DESTINATION")){
+        if(documentName.equals("BOOKING REQUEST FORM") || documentName.equals("HOUSE WAYBILL ORIGIN") || documentName.equals("PROFORMA BILL OF LADING") || documentName.equals("HOUSE WAYBILL DESTINATION") || documentName.equals("AUTHORIZATION TO WITHDRAW") || documentName.equals("ACCEPTANCE RECEIPT") || documentName.equals("RELEASE ORDER")){
             clearErrorsAndMessages();
             addActionError("Document cannot be created!");
 
@@ -1775,6 +1783,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentEntity.setReferenceTable("ORDERS");
                         documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
                         documentEntity.setCreatedDate(new Date());
+                        documentEntity.setVendorCode(seaVendor);
 
                         if (documentStageParam.equals("OUTBOUND")) {
                             documentEntity.setOutboundStage(1);
@@ -1821,7 +1830,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             }
 
             // Add Master Bill of Lading based on number for Proforma Bill of Lading
-
             for(String seaVendor : vendorSea){
                 if(seaVendor != null){
 
@@ -1834,6 +1842,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentEntity.setReferenceTable("ORDERS");
                     documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
                     documentEntity.setCreatedDate(new Date());
+                    documentEntity.setVendorCode(seaVendor);
 
                     if (documentStageParam.equals("OUTBOUND")) {
                         documentEntity.setOutboundStage(1);
@@ -1859,10 +1868,125 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                     documentsService.addDocuments(documentEntity);
 
-
                 }else{
                     clearErrorsAndMessages();
                     addActionError("No Shipping vendor set!");
+
+                    return INPUT;
+                }
+            }
+
+        }else if(documentName.equals("MASTER WAYBILL ORIGIN")){
+
+            // will delete all existing House Waybill Origin documents
+            for (Documents freightDocumentElem : bookingDocuments){
+                String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                if(docName.equals("MASTER WAYBILL ORIGIN")){
+                    Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+                    documentsService.deleteDocument(documentEntity);
+                }
+            }
+
+            // Add Master Waybill Origin based on number for House Waybill Origin
+            for(String originVendor : vendorOrigin){
+                if(originVendor != null){
+
+                    Documents documentEntity = new Documents();
+                    Client client = clientService.findClientById(getClientId().toString());
+
+                    documentEntity.setClient(client);
+                    documentEntity.setDocumentName(documentName);
+                    documentEntity.setReferenceId(document.getReferenceId());
+                    documentEntity.setReferenceTable("ORDERS");
+                    documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                    documentEntity.setCreatedDate(new Date());
+                    documentEntity.setVendorCode(originVendor);
+
+                    if (documentStageParam.equals("OUTBOUND")) {
+                        documentEntity.setOutboundStage(1);
+                        documentEntity.setDocumentProcessed(0);
+                        documentEntity.setDocumentStatus("OUTBOUND");
+                    } else if (documentStageParam.equals("INBOUND")) {
+                        documentEntity.setInboundStage(1);
+                        documentEntity.setDocumentProcessed(1);
+                        documentEntity.setDocumentStatus("INBOUND");
+                    } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                        documentEntity.setDocumentProcessed(2);
+                        documentEntity.setFinalOutboundStage(1);
+                        documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                    } else {
+                        documentEntity.setFinalInboundStage(1);
+                        documentEntity.setDocumentProcessed(3);
+                        documentEntity.setDocumentStatus("FINAL INBOUND");
+                    }
+
+                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                    documentEntity.setReferenceNumber(document.getReferenceNumber());
+                    documentEntity.setDocumentComments(document.getDocumentComments());
+
+                    documentsService.addDocuments(documentEntity);
+
+                }else{
+                    clearErrorsAndMessages();
+                    addActionError("No Origin vendor set!");
+
+                    return INPUT;
+                }
+            }
+
+        }else if(documentName.equals("MASTER WAYBILL DESTINATION")) {
+
+            // will delete all existing House Waybill Destination documents
+            for (Documents freightDocumentElem : bookingDocuments){
+                String docName = freightDocumentElem.getDocumentName().toUpperCase();
+                if(docName.equals("MASTER WAYBILL DESTINATION")){
+                    Documents documentEntity = documentsService.findDocumentById(freightDocumentElem.getDocumentId());
+                    documentsService.deleteDocument(documentEntity);
+                }
+            }
+
+            // Add Master Waybill Destination based on number for House Waybill Destination
+            for(String destinationVendor : vendorDestination){
+                if(destinationVendor != null){
+
+                    Documents documentEntity = new Documents();
+                    Client client = clientService.findClientById(getClientId().toString());
+
+                    documentEntity.setClient(client);
+                    documentEntity.setDocumentName(documentName);
+                    documentEntity.setReferenceId(document.getReferenceId());
+                    documentEntity.setReferenceTable("ORDERS");
+                    documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
+                    documentEntity.setCreatedDate(new Date());
+                    documentEntity.setVendorCode(destinationVendor);
+
+                    if (documentStageParam.equals("OUTBOUND")) {
+                        documentEntity.setOutboundStage(1);
+                        documentEntity.setDocumentProcessed(0);
+                        documentEntity.setDocumentStatus("OUTBOUND");
+                    } else if (documentStageParam.equals("INBOUND")) {
+                        documentEntity.setInboundStage(1);
+                        documentEntity.setDocumentProcessed(1);
+                        documentEntity.setDocumentStatus("INBOUND");
+                    } else if (documentStageParam.equals("FINAL OUTBOUND")) {
+                        documentEntity.setDocumentProcessed(2);
+                        documentEntity.setFinalOutboundStage(1);
+                        documentEntity.setDocumentStatus("FINAL OUTBOUND");
+                    } else {
+                        documentEntity.setFinalInboundStage(1);
+                        documentEntity.setDocumentProcessed(3);
+                        documentEntity.setDocumentStatus("FINAL INBOUND");
+                    }
+
+                    documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
+                    documentEntity.setReferenceNumber(document.getReferenceNumber());
+                    documentEntity.setDocumentComments(document.getDocumentComments());
+
+                    documentsService.addDocuments(documentEntity);
+
+                }else{
+                    clearErrorsAndMessages();
+                    addActionError("No Origin vendor set!");
 
                     return INPUT;
                 }
@@ -1903,119 +2027,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
             documentEntity.setDocumentComments(document.getDocumentComments());
 
             documentsService.addDocuments(documentEntity);
+
         }
-
-
-
-
-
-
-
-
-
-
-
-        /*if(!document.getDocumentName().equals("MASTER BILL OF LADING")) {
-
-            Documents documentEntity = new Documents();
-            Client client = clientService.findClientById(getClientId().toString());
-
-            documentEntity.setClient(client);
-            documentEntity.setDocumentName(document.getDocumentName());
-            documentEntity.setReferenceId(document.getReferenceId());
-            documentEntity.setReferenceTable("ORDERS");
-            documentEntity.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
-            documentEntity.setCreatedDate(new Date());
-
-            if (documentStageParam.equals("OUTBOUND")) {
-                documentEntity.setOutboundStage(1);
-                documentEntity.setDocumentProcessed(0);
-                documentEntity.setDocumentStatus("OUTBOUND");
-            } else if (documentStageParam.equals("INBOUND")) {
-                documentEntity.setInboundStage(1);
-                documentEntity.setDocumentProcessed(1);
-                documentEntity.setDocumentStatus("INBOUND");
-            } else if (documentStageParam.equals("FINAL OUTBOUND")) {
-                documentEntity.setDocumentProcessed(2);
-                documentEntity.setFinalOutboundStage(1);
-                documentEntity.setDocumentStatus("FINAL OUTBOUND");
-            } else {
-                documentEntity.setFinalInboundStage(1);
-                documentEntity.setDocumentProcessed(3);
-                documentEntity.setDocumentStatus("FINAL INBOUND");
-            }
-
-            documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-            documentEntity.setReferenceNumber(document.getReferenceNumber());
-            documentEntity.setDocumentComments(document.getDocumentComments());
-            documentsService.addDocuments(documentEntity);
-
-        }*/
-
-        /*-------------------------------------FOR TESTING----------------------------------*/
-
-        /*else {
-            List<String> vendorSeaCodeList = new ArrayList<String>(); // placeholder for sea vendor codes
-
-            // order item list under order id
-            List<OrderItems> orderItemList = operationsService.findAllOrderItemsByOrderId(document.getReferenceId());
-
-            // sea vendor codes will be stored in vendorSeaCodeList
-            for(OrderItems orderItem : orderItemList){
-                if(vendorSeaCodeList.isEmpty()){
-                    vendorSeaCodeList.add(orderItem.getVendorSea());
-                }else{
-                    if(!vendorSeaCodeList.contains(orderItem.getVendorSea())) {
-                        vendorSeaCodeList.add(orderItem.getVendorSea());
-                    }
-                }
-            }
-
-            List<Documents> proformaBillOfLading = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING", document.getReferenceId());
-
-            // Master Bill of Lading will be created based on Proforma Bill of Lading quantity
-            for (String seaVendor : vendorSeaCodeList) {
-                if (proformaBillOfLading.size() != 0) {
-                    // will check if there is already and existing master bill of lading under the same vendor
-                    List<Documents> documentMBL = documentsService.findDocumentNameAndId("MASTER BILL OF LADING",document.getReferenceId());
-
-                    if(documentMBL.size() == 0) { // will create master bill of lading if there are no master bill of lading created yet.
-
-                        for (Documents documentElem : proformaBillOfLading) {
-                            Documents documentMasterBillLading = new Documents();
-
-                            Client client = clientService.findClientById(getClientId().toString());
-                            documentMasterBillLading.setClient(client);
-
-                            documentMasterBillLading.setDocumentName(DocumentsConstants.MASTER_BILL_OF_LADING);
-                            documentMasterBillLading.setReferenceId(document.getReferenceId());
-                            documentMasterBillLading.setReferenceTable("ORDERS");
-                            documentMasterBillLading.setOrderNumber(orderService.findOrdersById(document.getReferenceId()).getOrderNumber());
-                            documentMasterBillLading.setCreatedDate(new Date());
-                            documentMasterBillLading.setVendorCode(seaVendor);
-                            documentMasterBillLading.setInboundStage(1);
-                            documentMasterBillLading.setDocumentProcessed(1);
-                            documentMasterBillLading.setDocumentStatus("INBOUND");
-                            // documentEntity.setInboundReturned(dateReturnedInbound);
-                            documentMasterBillLading.setCreatedBy(commonUtils.getUserNameFromSession());
-                            // orderitem id should be set in orderitemid column WIP
-
-                            documentsService.addDocuments(documentMasterBillLading);
-                        }
-
-                    } // else will not do anything
-
-                } else {
-                    *//*SHOULD DO AN ERROR MESSAGE*//*
-
-                    *//*return INPUT;*//*
-                    break;
-                }
-            }
-
-        }*/
-
-        /*-------------------------------------FOR TESTING----------------------------------*/
 
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderIdParam",  document.getReferenceId());
@@ -3119,7 +3132,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
             // Vendor Code for Vessel Company will show based from voyage number information
 
             // Search all order Items with the same order id
-            List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
+            /*List <OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
 
             for (OrderItems orderItemElem : orderItemsEntity) {
                 // ---------------------------------------- NULL ERROR --------------------------------------
@@ -3132,10 +3145,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     formBean.setVendorCode("NONE");
 
                 }
-            }
+            }*/
+
+            Vendor vendorEntity = vendorService.findVendorByVendorCode(entity.getVendorCode());
+            formBean.setVendorCode(vendorEntity.getVendorName());
 
         }else if (entity.getDocumentName().equals("MASTER WAYBILL ORIGIN")) {
-            List<OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
+            /*List<OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
 
             for (OrderItems orderItemElem : orderItemsEntity) {
                 // ---------------------------------------- NULL ERROR --------------------------------------
@@ -3145,11 +3161,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 } else {
                     formBean.setVendorCode("NONE");
                 }
-            }
+            }*/
 
+            Vendor vendorEntity = vendorService.findVendorByVendorCode(entity.getVendorCode());
+            formBean.setVendorCode(vendorEntity.getVendorName());
 
         }else if(entity.getDocumentName().equals("MASTER WAYBILL DESTINATION")){
-            List<OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
+
+            /*List<OrderItems> orderItemsEntity = orderService.findAllItemByOrderId(entity.getReferenceId());
 
             for (OrderItems orderItemElem : orderItemsEntity) {
                 // ---------------------------------------- NULL ERROR --------------------------------------
@@ -3160,9 +3179,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     formBean.setVendorCode("NONE");
                 }
 
-            }
+            }*/
+
+            Vendor vendorEntity = vendorService.findVendorByVendorCode(entity.getVendorCode());
+            formBean.setVendorCode(vendorEntity.getVendorName());
 
         }else if (entity.getDocumentName().equals("SALES INVOICE") || entity.getDocumentName().equals("DELIVERY RECEIPT")){
+
             Orders orderEntity = orderService.findOrdersById(entity.getReferenceId());
             Customer customerEntity = customerService.findCustomerById(orderEntity.getCustomerId());
             formBean.setVendorCode("CUSTOMER: " + customerEntity.getCustomerName());
