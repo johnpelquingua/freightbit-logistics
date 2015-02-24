@@ -288,7 +288,8 @@
                 <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                     style="text-align: center;"> </display:column></td>
                 <td><display:column title="Action">
-                    <s:url var="editBulkItemsUrl" action="editBulkItems">
+
+                    <%--<s:url var="editBulkItemsUrl" action="editBulkItems">
                         <s:param name="vesselScheduleIdParam"
                                  value="#attr.vesselSchedule.vesselScheduleId">
                         </s:param>
@@ -297,10 +298,15 @@
                         </s:param>
                     </s:url>
                     <s:a class="icon-action-link" href="%{editBulkItemsUrl}" rel="tooltip" title="Set Schedule">
-                        <%--Choose this vessel...--%>
                         <i class="fa fa-arrow-circle-down"></i>
-                    </s:a>
+                    </s:a>--%>
+
+                    <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${vesselSchedule.vesselScheduleId})">
+                        <i class="fa fa-arrow-circle-down"></i>
+                    </a>
+
                 </display:column></td>
+
             </display:table>
         </div>
     </div>
@@ -500,6 +506,23 @@
 
 <%--End Add Schedule--%>
 
+<!-- Confirm Vendor Modal -->
+<div class="modal fade" id="saveFreightPlanning" role="dialog" aria-labelledby="myModalLabel1" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-check"></i> Confirm Freight Plan Details</h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="inputDiv"/>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
     $("#date").datepicker({dateFormat: 'yy-dd-mm'});
@@ -507,6 +530,21 @@
     // Anchor on successDiv on every schedule load
     if ($('#successDiv').length !== 0){
         window.location.href = '#anchorDiv';
+    }
+
+    function confirmFreightPlan(vesselScheduleId) {
+        $.ajax({
+            url: 'getConfirmModalBulkAction',
+            type: 'POST',
+            data: {vesselScheduleIdParam: vesselScheduleId},
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert('An error occured! ' + thrownError);
+            }
+        });
     }
 
     // User must choose a vendor first before adding vessel schedule

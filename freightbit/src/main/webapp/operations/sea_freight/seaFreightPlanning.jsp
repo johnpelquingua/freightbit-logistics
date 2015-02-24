@@ -4,6 +4,13 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
 
+<style>
+    .fa-arrow-circle-down {
+        cursor: pointer;
+        color: #428bca;
+    }
+</style>
+
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
         <div class="alert alert-success">
@@ -297,7 +304,7 @@
                             <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column title="Action">
-                                <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
                                     <s:param name="orderItemIdParam"
                                              value="#attr.orderItem.orderItemId">
                                     </s:param>
@@ -310,11 +317,42 @@
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
                                     <i class="fa fa-arrow-circle-down"></i>
-                                </s:a>
+                                </s:a>--%>
+                                <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${orderItem.orderItemId},${vesselSchedule.vesselScheduleId},${vesselSchedule.vendorId})">
+                                    <i class="fa fa-arrow-circle-down"></i>
+                                </a>
                             </display:column></td>
                         </display:table>
                     </div>
                 </div>
+
+                <div class="panel-footer">
+                    <div class="pull-right">
+                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
+
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa fa-chevron-left"></i>
+                                    Back to Freight Plan : Containers
+                                </button>
+                            </s:if>
+                            <s:else>
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa fa-chevron-left"></i>
+                                    Back to Freight Plan : Items
+                                </button>
+                            </s:else>
+
+                        </s:a>
+                    </div>
+                </div>
+
             </div>
         </s:if>
     </s:if>
@@ -460,7 +498,7 @@
                         <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                             style="text-align: center;"> </display:column></td>
                         <td><display:column title="Action">
-                            <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                            <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
                                 <s:param name="orderItemIdParam"
                                          value="#attr.orderItem.orderItemId">
                                 </s:param>
@@ -473,7 +511,10 @@
                             </s:url>
                             <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
                                 <i class="fa fa-arrow-circle-down"></i>
-                            </s:a>
+                            </s:a>--%>
+                            <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${orderItem.orderItemId},${vesselSchedule.vesselScheduleId},${vesselSchedule.vendorId})">
+                                <i class="fa fa-arrow-circle-down"></i>
+                            </a>
                         </display:column></td>
                     </display:table>
                     </div>
@@ -632,21 +673,6 @@
                                     </a>
                                 </div>
                             </div>
-                            <%--<div class="col-lg-2" style="text-align: center;">--%>
-                                <%--<div>--%>
-                                    <%--<a data-toggle="modal" data-target="#createVendor" class="btn btn-info" id="createVendor" style="width: 135px;">--%>
-                                        <%--Add Vendor--%>
-                                    <%--</a>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                            <%--<div class="col-lg-2" style="text-align: center;">--%>
-                                <%--<div>--%>
-                                    <%--<a data-toggle="modal" data-target="#addSchedule" id="createSchedule" class="btn btn-info" style="width: 135px;">--%>
-                                        <%--Add Schedule--%>
-                                    <%--</a>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
                         </div>
                     </s:form>
     <%---------------------------------------------------------------------------------------------%>
@@ -716,7 +742,7 @@
                             <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column title="Action">
-                                <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
                                     <s:param name="orderItemIdParam"
                                              value="#attr.orderItem.orderItemId">
                                     </s:param>
@@ -728,79 +754,44 @@
                                     </s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
-                                    <%--Choose this vessel...--%>
+                                    <i class="fa fa-arrow-circle-down" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${},${},${})"></i>
+                                </s:a>--%>
+                                <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${orderItem.orderItemId},${vesselSchedule.vesselScheduleId},${vesselSchedule.vendorId})">
                                     <i class="fa fa-arrow-circle-down"></i>
-                                </s:a>
+                                </a>
                             </display:column></td>
                         </display:table>
                     </div>
                 </div>
+
+                <div class="panel-footer">
+                    <div class="pull-right">
+                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
+
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa fa-chevron-left"></i>
+                                    Back to Freight Plan : Containers
+                                </button>
+                            </s:if>
+                            <s:else>
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa fa-chevron-left"></i>
+                                    Back to Freight Plan : Items
+                                </button>
+                            </s:else>
+
+                        </s:a>
+                    </div>
+                </div>
+
             </div>
-
-            <%--Origin--%>
-            <%--<div class="panel panel-primary">--%>
-                <%--<div class="panel-heading">--%>
-                    <%--<i class="fa fa-truck"></i>--%>
-                    <%--<span class="panel-title">Dispatch Plan : Origin</span>--%>
-                <%--</div>--%>
-                <%--<div class="panel-body form-horizontal">--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>--%>
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{orderItem.vendorOrigin}" disabled="true" />--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>--%>
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{orderItem.driverOrigin}" disabled="true" />--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>--%>
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{orderItem.truckOrigin}" disabled="true" />--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-
-                    <%--<div class="form-group">--%>
-
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Body Type</label>--%>
-
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{truck.truckType}" disabled="true" />--%>
-                        <%--</div>--%>
-
-                    <%--</div>--%>
-
-                    <%--<div class="form-group">--%>
-
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>--%>
-
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{truck.plateNumber}" disabled="true" />--%>
-                        <%--</div>--%>
-
-                    <%--</div>--%>
-
-                    <%--<div class="form-group">--%>
-
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>--%>
-
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{truck.grossWeight}" disabled="true" />--%>
-                        <%--</div>--%>
-
-                    <%--</div>--%>
-
-                    <%--<div class="form-group">--%>
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>--%>
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{orderItem.finalPickupDate}" disabled="true" />--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
         </s:elseif>
         <s:elseif test="order.modeOfService=='PIER TO DOOR'">
             <div class="panel panel-primary" id="focusHere" tabindex="-1">
@@ -944,7 +935,7 @@
                             <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                                 style="text-align: center;"> </display:column></td>
                             <td><display:column title="Action">
-                                <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
                                     <s:param name="orderItemIdParam"
                                              value="#attr.orderItem.orderItemId">
                                     </s:param>
@@ -956,102 +947,45 @@
                                     </s:param>
                                 </s:url>
                                 <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip" title="Set Schedule">
-                                    <%--Choose this vessel...--%>
+                                    &lt;%&ndash;Choose this vessel...&ndash;%&gt;
                                     <i class="fa fa-arrow-circle-down"></i>
-                                </s:a>
+                                </s:a>--%>
+                                <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${orderItem.orderItemId},${vesselSchedule.vesselScheduleId},${vesselSchedule.vendorId})">
+                                    <i class="fa fa-arrow-circle-down"></i>
+                                </a>
                             </display:column></td>
                         </display:table>
                     </div>
                 </div>
+
+                <div class="panel-footer">
+                    <div class="pull-right">
+                        <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
+                            <s:param name="orderIdParam"
+                                     value="#attr.order.orderId"></s:param>
+                            <s:param name="orderNoParam"
+                                     value="#attr.order.orderNo"></s:param>
+                        </s:url>
+                        <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
+
+                            <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa fa-chevron-left"></i>
+                                    Back to Freight Plan : Containers
+                                </button>
+                            </s:if>
+                            <s:else>
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa fa-chevron-left"></i>
+                                    Back to Freight Plan : Items
+                                </button>
+                            </s:else>
+
+                        </s:a>
+                    </div>
+                </div>
+
             </div>
-
-            <%--Destination--%>
-            <%--<div class="panel panel-primary">--%>
-                <%--<div class="panel-heading">--%>
-                    <%--<i class="fa fa-truck"></i>--%>
-                    <%--<span class="panel-title">Dispatch Plan : Destination</span>--%>
-                <%--</div>--%>
-                <%--<div class="panel-body form-horizontal">--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>--%>
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{orderItem.vendorDestination}" disabled="true" />--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Driver</label>--%>
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{orderItem.driverDestination}" disabled="true" />--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Truck</label>--%>
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{orderItem.truckDestination}" disabled="true" />--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Body Type</label>--%>
-
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{truckDestination.truckType}" disabled="true" />--%>
-                        <%--</div>--%>
-
-                    <%--</div>--%>
-
-                    <%--<div class="form-group">--%>
-
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Plate Number</label>--%>
-
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{truckDestination.plateNumber}" disabled="true" />--%>
-                        <%--</div>--%>
-
-                    <%--</div>--%>
-
-                    <%--<div class="form-group">--%>
-
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Gross Weight</label>--%>
-
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{truckDestination.grossWeight}" disabled="true" />--%>
-                        <%--</div>--%>
-
-                    <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label class="col-lg-2 control-label" style="padding-top:0px;">Dropoff Date</label>--%>
-                        <%--<div class="col-lg-10">--%>
-                            <%--<s:textfield cssClass="form-control" value="%{orderItem.finalDeliveryDate}" disabled="true" />--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-
-                <%--<div class="panel-footer">--%>
-                    <%--<div class="pull-right">--%>
-                        <%--<s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">--%>
-                            <%--<s:param name="orderIdParam"--%>
-                                     <%--value="#attr.order.orderId"></s:param>--%>
-                            <%--<s:param name="orderNoParam"--%>
-                                     <%--value="#attr.order.orderNo"></s:param>--%>
-                        <%--</s:url>--%>
-                        <%--<s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip" >--%>
-
-                            <%--<s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">--%>
-                                <%--<button type="button" class="btn">--%>
-                                    <%--Back to Freight Plan : Containers--%>
-                                <%--</button>--%>
-                            <%--</s:if>--%>
-                            <%--<s:else>--%>
-                                <%--<button type="button" class="btn">--%>
-                                    <%--Back to Freight Plan : Items--%>
-                                <%--</button>--%>
-                            <%--</s:else>--%>
-
-                        <%--</s:a>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
         </s:elseif>
     </s:if>
     </div>
@@ -1218,6 +1152,23 @@
 
 <%--End Add Schedule--%>
 
+<!-- Confirm Vendor Modal -->
+<div class="modal fade" id="saveFreightPlanning" role="dialog" aria-labelledby="myModalLabel1" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-check"></i> Confirm Freight Plan Details</h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="inputDiv"/>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
     $("#date").datepicker({dateFormat: 'yy-dd-mm'});
@@ -1227,8 +1178,23 @@
         window.location.href = '#anchorDiv';
     }
 
-    // User must choose a vendor first before adding vessel schedule
+    function confirmFreightPlan(orderItemId,vesselScheduleId,vendorId) {
+        $.ajax({
+            url: 'getConfirmModalAction',
+            type: 'POST',
+            data: {orderItemIdParam: orderItemId, vesselScheduleIdParam: vesselScheduleId, vendorIdParam: vendorId},
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert('An error occured! ' + thrownError);
+            }
+        });
+    }
+
     $(document).ready(function(){
+    // User must choose a vendor first before adding vessel schedule
 
         window.location.href = '#focusHere';
         hideVesselSchedule();

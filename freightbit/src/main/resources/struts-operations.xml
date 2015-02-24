@@ -302,6 +302,14 @@
             <result name="success" type="tiles">operations.seaFreightItemList.tiles</result>
         </action>
 
+        <action name="getConfirmModalAction" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsSeaConfirm">
+            <result name="success">/operations/sea_freight/freightPlanConfirm.jsp</result>
+        </action>
+
+        <action name="getConfirmModalBulkAction" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkOrderItemsSeaConfirm">
+            <result name="success">/operations/sea_freight/freightPlanConfirm.jsp</result>
+        </action>
+
         <!--Inland Freight (Dispatch Plan) Validation Errors-->
         <action name="viewInlandFreightItemList" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="viewFreightItemList">
             <result name="success" type="tiles">operations.inlandFreightItemList.tiles</result>

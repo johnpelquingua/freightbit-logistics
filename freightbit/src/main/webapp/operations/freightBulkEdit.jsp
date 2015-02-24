@@ -292,7 +292,7 @@
                                 <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column title="Action">
-                                    <s:url var="editBulkItemsUrl" action="editBulkItems">
+                                    <%--<s:url var="editBulkItemsUrl" action="editBulkItems">
                                         <s:param name="vesselScheduleIdParam"
                                                  value="#attr.vesselSchedule.vesselScheduleId">
                                         </s:param>
@@ -302,13 +302,19 @@
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editBulkItemsUrl}" rel="tooltip"
                                          title="Update Status">
-                                        <%--Choose this vessel...--%>
+                                        &lt;%&ndash;Choose this vessel...&ndash;%&gt;
                                         <i class="fa fa-arrow-circle-down"></i>
-                                    </s:a>
+                                    </s:a>--%>
+
+                                    <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${vesselSchedule.vesselScheduleId})">
+                                        <i class="fa fa-arrow-circle-down"></i>
+                                    </a>
+
                                 </display:column></td>
                             </display:table>
                         </div>
                     </div>
+
                     <div class="panel-footer">
                         <div class="pull-right">
                             <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
@@ -331,9 +337,11 @@
                                         Back to Freight Plan : Items
                                     </button>
                                 </s:else>
+
                             </s:a>
                         </div>
                     </div>
+
                 </div>
 
                 <%--<div class="panel panel-primary">
@@ -809,7 +817,7 @@
                                 <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column title="Action">
-                                    <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                    <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
                                         <s:param name="vesselScheduleIdParam"
                                                  value="#attr.vesselSchedule.vesselScheduleId">
                                         </s:param>
@@ -819,13 +827,19 @@
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
                                          title="Update Status">
-                                        <%--Choose this vessel...--%>
+                                        &lt;%&ndash;Choose this vessel...&ndash;%&gt;
                                         <i class="fa fa-arrow-circle-down"></i>
-                                    </s:a>
+                                    </s:a>--%>
+
+                                    <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${vesselSchedule.vesselScheduleId})">
+                                        <i class="fa fa-arrow-circle-down"></i>
+                                    </a>
+
                                 </display:column></td>
                             </display:table>
                         </div>
                     </div>
+
                     <div class="panel-footer">
                         <div class="pull-right">
                             <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
@@ -837,18 +851,22 @@
                             <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
 
                                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn">
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>
                                         Back to Freight Plan : Containers
                                     </button>
                                 </s:if>
                                 <s:else>
-                                    <button type="button" class="btn">
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>
                                         Back to Freight Plan : Items
                                     </button>
                                 </s:else>
+
                             </s:a>
                         </div>
                     </div>
+
                 </div>
 
                 <%--Origin--%>
@@ -1018,7 +1036,7 @@
                                 <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column title="Action">
-                                    <s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
+                                    <%--<s:url var="editOrderItemsSeaUrl" action="editOrderItemsSea">
                                         <s:param name="vesselScheduleIdParam"
                                                  value="#attr.vesselSchedule.vesselScheduleId">
                                         </s:param>
@@ -1028,13 +1046,19 @@
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editOrderItemsSeaUrl}" rel="tooltip"
                                          title="Update Status">
-                                        <%--Choose this vessel...--%>
+                                        &lt;%&ndash;Choose this vessel...&ndash;%&gt;
                                         <i class="fa fa-arrow-circle-down"></i>
-                                    </s:a>
+                                    </s:a>--%>
+
+                                    <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${vesselSchedule.vesselScheduleId})">
+                                        <i class="fa fa-arrow-circle-down"></i>
+                                    </a>
+
                                 </display:column></td>
                             </display:table>
                         </div>
                     </div>
+
                     <div class="panel-footer">
                         <div class="pull-right">
                             <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
@@ -1046,18 +1070,22 @@
                             <s:a class="icon-action-link" href="%{viewSeaFreightItemListUrl}" rel="tooltip">
 
                                 <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <button type="button" class="btn">
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>
                                         Back to Freight Plan : Containers
                                     </button>
                                 </s:if>
                                 <s:else>
-                                    <button type="button" class="btn">
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fa fa-chevron-left"></i>
                                         Back to Freight Plan : Items
                                     </button>
                                 </s:else>
+
                             </s:a>
                         </div>
                     </div>
+
                 </div>
 
                 <%--Destination--%>
@@ -1276,7 +1304,7 @@
                                 <td><display:column property="vendorClass" title="Class" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column title="Action">
-                                    <s:url var="editBulkItemsUrl" action="editBulkItems">
+                                    <%--<s:url var="editBulkItemsUrl" action="editBulkItems">
                                         <s:param name="vesselScheduleIdParam"
                                                  value="#attr.vesselSchedule.vesselScheduleId">
                                         </s:param>
@@ -1286,13 +1314,19 @@
                                     </s:url>
                                     <s:a class="icon-action-link" href="%{editBulkItemsUrl}" rel="tooltip"
                                          title="Update Status">
-                                        <%--Choose this vessel...--%>
+                                        &lt;%&ndash;Choose this vessel...&ndash;%&gt;
                                         <i class="fa fa-arrow-circle-down"></i>
-                                    </s:a>
+                                    </s:a>--%>
+
+                                    <a class="icon-action-link" rel="tooltip" title="Set Schedule" data-toggle="modal" data-target="#saveFreightPlanning" onclick="confirmFreightPlan(${vesselSchedule.vesselScheduleId})">
+                                        <i class="fa fa-arrow-circle-down"></i>
+                                    </a>
+
                                 </display:column></td>
                             </display:table>
                         </div>
                     </div>
+
                     <div class="panel-footer">
                         <div class="pull-right">
                             <s:url var="viewSeaFreightItemListUrl" action="viewSeaFreightItemList">
@@ -1315,9 +1349,11 @@
                                         Back to Freight Plan : Items
                                     </button>
                                 </s:else>
+
                             </s:a>
                         </div>
                     </div>
+
                 </div>
             </s:if>
         </s:if>
@@ -2000,6 +2036,23 @@
 
 <%--End Add Schedule--%>
 
+<!-- Confirm Vendor Modal -->
+<div class="modal fade" id="saveFreightPlanning" role="dialog" aria-labelledby="myModalLabel1" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-check"></i> Confirm Freight Plan Details</h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="inputDiv"/>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
     $("#date").datepicker({dateFormat: 'yy-dd-mm'});
@@ -2007,6 +2060,21 @@
     // Anchor on successDiv on every schedule load
     if ($('#successDiv').length !== 0){
         window.location.href = '#anchorDiv';
+    }
+
+    function confirmFreightPlan(vesselScheduleId) {
+        $.ajax({
+            url: 'getConfirmModalBulkAction',
+            type: 'POST',
+            data: {vesselScheduleIdParam: vesselScheduleId},
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert('An error occured! ' + thrownError);
+            }
+        });
     }
 
     // User must choose a vendor first before adding vessel schedule

@@ -958,6 +958,55 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String editOrderItemsSeaConfirm() {
+
+        System.out.println("OrderItemId " + orderItemIdParam);
+        System.out.println("VesselScheduleId " + vesselScheduleIdParam);
+        System.out.println("vendorId " + vendorIdParam);
+
+        OrderItems entity = operationsService.findOrderItemById(orderItemIdParam);
+
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
+        order = transformToOrderFormBean(orderEntity);
+
+        List <OrderItems> orderItemsList = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
+
+        for(OrderItems orderItemsElem : orderItemsList){
+            if(entity.getOrderItemId() == orderItemsElem.getOrderItemId()){
+                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+            }
+        }
+
+        VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam);
+        vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+
+        return SUCCESS;
+    }
+
+    public String editBulkOrderItemsSeaConfirm() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        check = (String[]) sessionAttributes.get("checkedItemsInSession");
+
+        for (int i=0; i<check.length; i++) {
+            System.out.println("CHECK ITEMS >>>>>>>>>>>>>>>>>" + check[i]);
+
+            Integer orderItemId = Integer.parseInt(check[i]);
+            OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemId);
+
+            orderItems.add(transformToOrderItemFormBean(orderItemEntity));
+        }
+
+        System.out.println("VesselScheduleId " + vesselScheduleIdParam);
+
+        VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesById(vesselScheduleIdParam);
+        vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+
+        return SUCCESS;
+    }
+
     public String editOrderItemsSea() {
         /*Client client = clientService.findClientById(getClientId().toString());*/
 
@@ -2709,6 +2758,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setTruckOrigin(entity.getTruckOrigin());
         formBean.setTruckDestination(entity.getTruckDestination());
         formBean.setVolume(entity.getVolume());
+        formBean.setContainerId(entity.getContainerId());
 
         return formBean;
     }

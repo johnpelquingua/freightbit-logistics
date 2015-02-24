@@ -3,13 +3,6 @@
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <style>
-    /*.fa:hover {*/
-        /*font-size: 180%; !important;*/
-        /*margin-top: -7px; !important;*/
-        /*margin-bottom: -7px; !important;*/
-        /*margin-right: -4px; !important;*/
-        /*margin-left: -4px; !important;*/
-    /*}*/
     .cancelBookingIcon {
         cursor: pointer;
         color: red;

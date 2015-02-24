@@ -45,13 +45,18 @@ public class OrderItemsBean {
     private String voyageNumber;
     private String departureDate;
     private String arrivalDate;
+    private Integer containerId;
+    private String containerNumber;
+    private String sealNumber;
+    private String bulletSeal;
+    private String vendorSeal;
 
     public OrderItemsBean(){
 
     }
 
-    public OrderItemsBean(Float rate, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Date createdTimestamp, String createdBy, Date modifiedTimestamp, String modifiedBy, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorOriginName, String vendorDestination, String vendorDestinationName, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement, String vendorName, String voyageNumber, String departureDate, String arrivalDate) {
-        this.rate = rate;
+    public OrderItemsBean(Date modifiedTimestamp, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimestamp, String createdBy, String modifiedBy, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorOriginName, String vendorDestination, String vendorDestinationName, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement, String vendorName, String voyageNumber, String departureDate, String arrivalDate, Integer containerId, String containerNumber, String sealNumber, String bulletSeal, String vendorSeal) {
+        this.modifiedTimestamp = modifiedTimestamp;
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.quantity = quantity;
@@ -60,9 +65,9 @@ public class OrderItemsBean {
         this.declaredValue = declaredValue;
         this.weight = weight;
         this.remarks = remarks;
+        this.rate = rate;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
-        this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
         this.nameSize = nameSize;
         this.status = status;
@@ -92,6 +97,11 @@ public class OrderItemsBean {
         this.voyageNumber = voyageNumber;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
+        this.containerId = containerId;
+        this.containerNumber = containerNumber;
+        this.sealNumber = sealNumber;
+        this.bulletSeal = bulletSeal;
+        this.vendorSeal = vendorSeal;
     }
 
     public String getVendorSea() {
@@ -420,5 +430,45 @@ public class OrderItemsBean {
 
     public void setVendorDestinationName(String vendorDestinationName) {
         this.vendorDestinationName = vendorDestinationName;
+    }
+
+    public Integer getContainerId() {
+        return containerId;
+    }
+
+    public void setContainerId(Integer containerId) {
+        this.containerId = containerId;
+    }
+
+    public String getContainerNumber() {
+        return containerNumber;
+    }
+
+    public void setContainerNumber(String containerNumber) {
+        this.containerNumber = containerNumber;
+    }
+
+    public String getSealNumber() {
+        return sealNumber;
+    }
+
+    public void setSealNumber(String sealNumber) {
+        this.sealNumber = sealNumber;
+    }
+
+    public String getBulletSeal() {
+        return bulletSeal;
+    }
+
+    public void setBulletSeal(String bulletSeal) {
+        this.bulletSeal = bulletSeal;
+    }
+
+    public String getVendorSeal() {
+        return vendorSeal;
+    }
+
+    public void setVendorSeal(String vendorSeal) {
+        this.vendorSeal = vendorSeal;
     }
 }
