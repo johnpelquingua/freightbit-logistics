@@ -108,7 +108,7 @@
                                 <display:column title="Actions">
 
                                         <%--edit booking--%>
-                                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                                         <s:url var="editOrderUrl" action="loadEditOrder">
                                             <s:param name="orderIdParam" value="%{#attr.order.orderId}"></s:param>
                                         </s:url>
