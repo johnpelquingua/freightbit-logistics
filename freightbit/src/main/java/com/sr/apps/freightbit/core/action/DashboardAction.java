@@ -1,19 +1,24 @@
 package com.sr.apps.freightbit.core.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sr.apps.freightbit.common.formbean.AddressBean;
 import com.sr.apps.freightbit.common.formbean.ContactBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.util.ParameterConstants;
+import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.core.service.UserService;
+import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
+import com.sr.biz.freightbit.operations.service.OrderStatusLogsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -29,6 +34,8 @@ public class DashboardAction extends ActionSupport implements SessionAware {
     private String password;
     private String originCity;
     private List<OrderBean> lclTable = new ArrayList<OrderBean>();
+    private List<OrderBean> orders = new ArrayList<OrderBean>();
+    private OrderBean order = new OrderBean();
     private Map<String, Object> sessionAttributes = null;
     private List<Parameters> portsList = new ArrayList<Parameters>();
     private ContactBean contact = new ContactBean();
@@ -70,6 +77,7 @@ public class DashboardAction extends ActionSupport implements SessionAware {
     private UserService userService;
     private OrderService orderService;
     private OperationsService operationsService;
+    private OrderStatusLogsService orderStatusLogsService;
     private CustomerService customerService;
     private ParameterService parameterService;
     private NotificationService notificationService;
@@ -91,9 +99,87 @@ public class DashboardAction extends ActionSupport implements SessionAware {
         System.out.println("The Number of all Notification is "+AllNotification);
 
         changeOrigin();
+        viewStatusList();
 
         return SUCCESS;
 
+    }
+
+    public String viewStatusList() {
+
+        List<Orders> orderEntityList = new ArrayList<Orders>();
+        String column = getColumnFilter();
+
+        if (StringUtils.isNotBlank(column)) {
+            orderEntityList = orderService.findOrdersByCriteria(column, order.getOrderKeyword(), getClientId());
+        } else {
+            orderEntityList = orderStatusLogsService.findAllOrders();
+        }
+        for (Orders ordersElem : orderEntityList) {
+            orders.add(transformToOrderFormBean(ordersElem));
+        }
+        return SUCCESS;
+    }
+
+    public String getColumnFilter() {
+
+        String column = "";
+        if (order == null) {
+            System.out.println("ok");
+            return column;
+        } else {
+            if ("BOOKING NUMBER".equals(order.getOrderSearchCriteria())) {
+                column = "orderNumber";
+            }
+            return column;
+        }
+
+    }
+
+    private Integer getClientId() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        Integer clientId = (Integer) sessionAttributes.get("clientId");
+        return clientId;
+    }
+
+    public OrderBean transformToOrderFormBean(Orders entity) {
+
+        OrderBean formBean = new OrderBean();
+        formBean.setOrderId(entity.getOrderId());
+        formBean.setOrderDate(entity.getOrderDate());
+        formBean.setOrderNumber(entity.getOrderNumber());
+        formBean.setOriginationPort(entity.getOriginationPort());
+        formBean.setDestinationPort(entity.getDestinationPort());
+        formBean.setOrderStatus(entity.getOrderStatus());
+        /*formBean.setCustomerName(entity.getShipperCode());*/
+        //get shipper's name
+        Contacts shipperContactName = customerService.findContactById(entity.getShipperContactId());
+        com.sr.biz.freightbit.customer.entity.Customer customerName = customerService.findCustomerById(shipperContactName.getReferenceId());
+        formBean.setCustomerName((customerName.getCustomerName()));
+        //get consignee name
+        Contacts consigneeName = customerService.findContactById(entity.getConsigneeContactId());
+        formBean.setConsigneeCode(getFullName(consigneeName.getLastName(), consigneeName.getFirstName(), consigneeName.getMiddleName()));
+
+        formBean.setOrderStatus(entity.getOrderStatus());
+        formBean.setFreightType(entity.getServiceType());
+        formBean.setModeOfService(entity.getServiceMode());
+        formBean.setServiceRequirement(entity.getServiceRequirement());
+
+        return formBean;
+    }
+
+    private String getFullName(String lastName, String firstName, String middleName) {
+        StringBuilder fullName = new StringBuilder("");
+        if (StringUtils.isNotBlank(lastName)) {
+            fullName.append(lastName + ", ");
+        }
+        if (StringUtils.isNotBlank(firstName)) {
+            fullName.append(firstName + " ");
+        }
+        if (StringUtils.isNotBlank(middleName)) {
+            fullName.append(middleName);
+        }
+        return fullName.toString();
     }
 
     public String changeOrigin(){
@@ -833,5 +919,25 @@ public class DashboardAction extends ActionSupport implements SessionAware {
 
     public void setZamboangaVolume(Float zamboangaVolume) {
         this.zamboangaVolume = zamboangaVolume;
+    }
+
+    public List<OrderBean> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderBean> orders) {
+        this.orders = orders;
+    }
+
+    public OrderBean getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderBean order) {
+        this.order = order;
+    }
+
+    public void setOrderStatusLogsService(OrderStatusLogsService orderStatusLogsService) {
+        this.orderStatusLogsService = orderStatusLogsService;
     }
 }

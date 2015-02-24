@@ -145,7 +145,7 @@
                                             style="text-align: center;"> </display:column>
                         </td>
 
-
+                        <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                         <td>
                             <display:column title="Action">
                                 <s:if test="#attr.orderItem.status != 'PLANNING 1' && #attr.orderItem.status != 'PLANNING 2' && #attr.orderItem.status != 'PLANNING 3'">
@@ -153,15 +153,16 @@
                                     <s:param name="orderItemIdParam" value="#attr.orderItem.orderItemId">
                                     </s:param>
                                 </s:url>
-                                <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip" title="View Shipment History">
+                                    <s:a class="icon-action-link" href="%{loadUpdateStatusUrl}" rel="tooltip" title="View Shipment History">
                                     <i class="fa fa-edit"></i>
-                                </s:a>
+                                    </s:a>
                                 </s:if>
                                 <s:else>
                                     <i style="color: red;" class="fa fa-ban"></i>
                                 </s:else>
                             </display:column>
                         </td>
+                        </sec:authorize>
                     </tr>
                     </display:table>
                             <%--<s:textfield  style="display: none" cssClass="col-lg-6" name="orderItem.editItem" id="edit"></s:textfield>--%>
@@ -170,23 +171,23 @@
                                 <s:param name="orderIdParam"
                                          value="order.orderId"></s:param>
                             </s:url>
-                            <%--<sec:authorize access="hasRole('ROLE_ADMIN, ROLE_CUSTOMER_RELATIONS')">--%>
+                            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                                     <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
                                         <button type="button" id="Complete" class="btn btn-success">
                                             Set Service Complete
                                         </button>
                                     </s:a>
-                            <%--</sec:authorize>--%>
-                                <s:submit cssClass="btn btn-success" value="Set Status" onclick="addText();"></s:submit>
+                            </sec:authorize>
+                            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                            <s:submit cssClass="btn btn-success" value="Set Status" onclick="addText();"></s:submit>
+                            </sec:authorize>
                         </div>
                     </s:form>
                 </div>
             </div>
             <div class="panel-footer">
                 <span class="pull-right">
-                    <button type="button" class="btn btn-primary new-booking" onclick="location.href='viewStatusList'">
-                        On-Going Booking List
-                    </button>
+                    <a href="../operations/viewStatusList" class="btn btn-primary" id ="groups-btn">On-Going Booking List</a>
                 </span>
             </div>
 

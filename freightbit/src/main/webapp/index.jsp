@@ -119,8 +119,108 @@
                 <iframe height="500" width="925" name="sample" seamless="seamless"></iframe>
             </div>
         </div>
-    </div>
 
+            <sec:authorize access="hasAnyRole('ROLE_CUSTOMER_RELATIONS')">
+            <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <i class="fa fa-list"></i>
+                <span class="panel-title">On-Going Booking List</span>
+                <span class="pull-right">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                    <button type="button" class="btn btn-success new-booking" data-toggle="modal" data-target="#inputModal" onclick="showSearchFields();">
+                        <i class="fa fa-search"></i> Search Booking Number
+                    </button>
+                </sec:authorize>
+                </span>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="table-responsive">
+                    <display:table id="order" name="orders"
+                                   requestURI="home.action" pagesize="10"
+                                   class="table table-striped table-hover table-bordered text-center tablesorter table-condensed"
+                                   style="margin-top: 15px;">
+                        <%--Booking Date--%>
+                        <td><display:column property="orderDate" title="Booking Date <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="width: 10%; text-align: center;"> </display:column></td>
+                        <%--Order Number--%>
+                        <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="width: 10%; text-align: center;"> </display:column></td>
+
+                        <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="width: 15%; text-align: center;"> </display:column></td>
+
+                        <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="width: 25%; text-align: center;"> </display:column></td>
+                        <%--ORIGIN--%>
+                        <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="width: 5%; text-align: center;"> </display:column></td>
+                        <%--DESTINATION--%>
+                        <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="width: 5%; text-align: center;"> </display:column></td>
+                        <%--Freight Type--%>
+                        <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="width: 5%; text-align: center;"> </display:column></td>
+
+                        <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />"
+                                            class="tb-font-black"
+                                            style="width: 5%; text-align: center;"> </display:column></td>
+
+                        <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column></td>
+
+                        <td><display:column title="Action">
+                            <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
+                                <s:param name="orderIdParam"
+                                         value="#attr.order.orderId"></s:param>
+                                <s:param name="orderNoParam"
+                                         value="#attr.order.orderNo"></s:param>
+                            </s:url>
+                            <s:a class="icon-action-link" href="%{viewStatusListItemsUrl}" rel="tooltip"
+                                 title="Update Status">
+                                <%--<img src="../includes/images/edit-booking.png" class="icon-action circ-icon"
+                                style="border-radius:25%;">--%>
+                                <i class="fa fa-edit"></i>
+                            </s:a>
+
+                        </display:column></td>
+
+                    </display:table>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="table-responsive">
+                    <div class="col-lg-12">
+                        <table class="col-lg-2">
+                            <tr>
+                                <td><label>LEGEND:</label></td>
+                                <td><i class='fa fa-edit' ></i> Edit</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </sec:authorize>
+    </div>
+</div>
+
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <%--<div class="modal-header">
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+            </div>--%>
+            <div class="modal-body">
+                <div id="inputDiv"> <%--Area where input fields will appear--%> </div>
+            </div>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>--%>
+        </div>
+    </div>
 </div>
 
 <%--<div class="row">--%>
@@ -418,4 +518,23 @@
 	}
 	/*setInterval('doAjaxCall();', 5000);*/
 
+    $(document).ready(function(){
+        tableProp('DESTI_ORIG','order',0 ,7, 8, 9, 5, 6, 1);
+    });
+
+    function showSearchFields() {
+        $.ajax({
+            url: 'loadSearchBookingPage',
+            type: 'POST',
+            dataType: 'html',
+            success: function (html) {
+                $('#inputDiv').html(html);
+                /*window.location.href = '#sixth';*/
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert('An error occurred! ' + thrownError);
+            }
+        });
+
+    }
 </script>

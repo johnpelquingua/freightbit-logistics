@@ -157,7 +157,7 @@
                             Back to Booking Item List
                         </button>
                     </s:a>
-                    <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status" />
+                    <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary submitBtn" value="Update Status" onclick="return confirm('Are you sure you want to update this status?');"/>
 <%--                        <button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
                         <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
                 </div>
@@ -208,6 +208,8 @@
      $('form').submit()
      }
      }*/
+
+
     $(document).ready(function() {
         var shipTable = $('.shipmentMonitoringTable tbody tr td:nth-child(2)');
         if (shipTable.size()) {
