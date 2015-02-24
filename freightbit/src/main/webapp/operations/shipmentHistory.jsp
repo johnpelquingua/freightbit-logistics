@@ -111,14 +111,14 @@
                                 <td><display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td>
+                                <%--<td>
                                     <display:column title="Action">
                                         <a id="edit-icon" href="#" data-toggle="modal" data-target="#actualModal" onclick="showActualDateFields(${orderStatusLogs.statusId});" title="Set Actual Date of this status" rel="tooltip">
                                             <i class="fa fa-edit"></i>
-                                                <%--<s:param name="orderItemIdParam" value="#attr.orderStatusLogs.orderItemId"></s:param>--%>
+                                                &lt;%&ndash;<s:param name="orderItemIdParam" value="#attr.orderStatusLogs.orderItemId"></s:param>&ndash;%&gt;
                                         </a>
                                     </display:column>
-                                </td>
+                                </td>--%>
 
                             </display:table>
                         </tr>
@@ -179,7 +179,7 @@
                             Back to Booking Item List
                             </button>
                         </s:a>
-                    <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status" />
+                    <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status" onclick="return confirm('Are you sure you want to update this status?');"/>
                     <%--<button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
                     <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
             </div>
