@@ -18,6 +18,8 @@ import com.sr.biz.freightbit.order.entity.Counter;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
 import com.sr.biz.freightbit.order.service.OrderService;
+import com.sr.biz.freightbit.vendor.dao.TrucksDao;
+import com.sr.biz.freightbit.vendor.entity.Trucks;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,6 +38,7 @@ public class OrderServiceImpl implements OrderService {
     private ContactsDao contactsDao;
     private AddressDao addressDao;
     private ItemsDao itemsDao;
+    private TrucksDao trucksDao;
 
 
     public void setOrderItemsDao(OrderItemsDao orderItemsDao) {
@@ -110,6 +113,14 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.findAllOrdersByAging(aging);    }
 
     @Override
+    public Trucks findOrderItemsByPlateNumber(String plateNumber) {
+        List<Trucks> result = trucksDao.findOrderItemsByPlateNumber(plateNumber);
+        if (result != null && !result.isEmpty())
+            return result.get(0);
+        return null;
+    }
+
+    @Override
     public List<OrderItems> findAllOrdersByOrderIdAndDestination(Integer orderId, String destinationPort) {
         return orderDao.findAllOrdersByOrderIdAndDestination(orderId, destinationPort);    }
 
@@ -118,6 +129,10 @@ public class OrderServiceImpl implements OrderService {
     public Orders findOrdersById(Integer orderId) {
         return orderDao.findOrdersById(orderId);
     }
+
+    @Override
+    public OrderItems findOrderItemByOrderId(Integer orderId) {
+        return orderDao.findOrderItemByOrderId(orderId);    }
 
     @Override
     public Orders findOrdersByOrderNumber(String orderNumber) {

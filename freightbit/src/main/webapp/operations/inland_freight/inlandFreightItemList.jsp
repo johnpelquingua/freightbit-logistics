@@ -222,6 +222,11 @@
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
+                                <td><display:column property="plateNumber"
+                                                    title="Plate Number <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+
                                 <td><display:column property="finalPickupDate"
                                                     title="Pick-up Date <i class='fa fa-sort' />"
                                                     class="tb-font-black"
@@ -231,6 +236,11 @@
                                                     title="Destination Vendor <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+
+                                <%--<td><display:column property="plateNumber"
+                                                    title="Plate Number <i class='fa fa-sort' />"
+                                                    class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>--%>
 
                                 <td><display:column property="finalDeliveryDate"
                                                     title="Delivery Date <i class='fa fa-sort' />"

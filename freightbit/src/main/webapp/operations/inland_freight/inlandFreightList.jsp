@@ -95,6 +95,9 @@
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
+                                        <td><display:column property="plateNumberOri" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+
                                         <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
                                                             class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
@@ -149,6 +152,9 @@
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+
+                                        <td><display:column property="plateNumberOri" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
@@ -212,6 +218,9 @@
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
+                                        <td><display:column property="plateNumberOri" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+
                                         <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
                                                             class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
@@ -267,6 +276,9 @@
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+
+                                        <td><display:column property="plateNumberOri" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
@@ -487,6 +499,9 @@
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
+                                        <td><display:column property="plateNumberDes" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+
                                         <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
                                                             class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
@@ -541,6 +556,9 @@
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+
+                                        <td><display:column property="plateNumberDes" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
@@ -601,6 +619,9 @@
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
+                                        <td><display:column property="plateNumberDes" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+
                                         <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
                                                             class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
@@ -654,6 +675,9 @@
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+
+                                        <td><display:column property="plateNumberDes" title="Plate Number <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
 
                                         <td><display:column property="serviceRequirement" title="Rqt. <i class='fa fa-sort' />"
@@ -734,10 +758,10 @@
 
 <script>
     $(document).ready(function(){
-        tablePropClass('NONE', 'lclTable', 7, 4, 5, 6, 0, 0);
-        tablePropClass('NONE', 'fclTable', 7, 4, 5, 6, 0, 0);
-        tablePropClass('NONE', 'lcuTable', 7, 4, 5, 6, 0, 0);
-        tablePropClass('NONE', 'rcuTable', 7, 4, 5, 6, 0, 0);
+        tablePropClass('NONE', 'lclTable', 8, 4, 6, 7, 0, 0);
+        tablePropClass('NONE', 'fclTable', 8, 4, 6, 7, 0, 0);
+        tablePropClass('NONE', 'lcuTable', 8, 4, 6, 7, 0, 0);
+        tablePropClass('NONE', 'rcuTable', 8, 4, 6, 7, 0, 0);
     });
 
     $(function () { $('#myTab a:first').tab('show') });

@@ -141,8 +141,12 @@
                             />
 
                 </div>
-            </div>
+                <%--<div class="col-lg-12" style="text-align: center">
+                    <label class="control-label header" style="padding-top:0px;font-size: 14px;font-weight: bold;">Container Number <span class="asterisk_red"></span></label>
 
+                    <s:textfield required="true" name="orderStatusLogsBean.containerNumber" cssClass="form-control" id="containerNumber"/>
+                </div>--%>
+            </div>
             <div class="panel-footer">
                 <div class="pull-right">
                     <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">

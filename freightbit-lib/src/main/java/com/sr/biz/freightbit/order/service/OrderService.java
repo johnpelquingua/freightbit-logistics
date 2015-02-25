@@ -10,6 +10,7 @@ import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
 import com.sr.biz.freightbit.order.entity.Counter;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
+import com.sr.biz.freightbit.vendor.entity.Trucks;
 
 import java.util.List;
 
@@ -28,6 +29,8 @@ public interface OrderService {
     public List<Orders> findAllOrdersByClientId(Integer clientId);
 
     public Orders findOrdersById(Integer orderId);
+
+    public OrderItems findOrderItemByOrderId(Integer orderId);
 
     public Orders findOrdersByOrderNumber(String orderNumber);
 
@@ -114,5 +117,7 @@ public interface OrderService {
     public List<OrderItems> findAllOrderItemLCL();
 
     public List<OrderItems> findAllOrderItemsByContainerId(Integer containerId);
+
+    public Trucks findOrderItemsByPlateNumber(String plateNumber);
 }
 

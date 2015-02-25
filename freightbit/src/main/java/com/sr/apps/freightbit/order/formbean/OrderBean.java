@@ -63,7 +63,8 @@ public class OrderBean {
     private Float orderVolume;
     private Double orderWeight;
     private Integer aging;
-
+    private String plateNumberOri;
+    private String plateNumberDes;
 	private AddressBean shipperInfoAddress;
 	private ContactBean shipperInfoContact;
 	private AddressBean consigneeInfoAddress;
@@ -499,5 +500,19 @@ public class OrderBean {
         this.orderWeight = orderWeight;
     }
 
+    public String getPlateNumberOri() {
+        return plateNumberOri;
+    }
 
+    public void setPlateNumberOri(String plateNumberOri) {
+        this.plateNumberOri = plateNumberOri;
+    }
+
+    public String getPlateNumberDes() {
+        return plateNumberDes;
+    }
+
+    public void setPlateNumberDes(String plateNumberDes) {
+        this.plateNumberDes = plateNumberDes;
+    }
 }

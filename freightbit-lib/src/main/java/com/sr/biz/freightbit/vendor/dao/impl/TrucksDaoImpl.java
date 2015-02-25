@@ -111,6 +111,20 @@ public class TrucksDaoImpl extends HibernateDaoSupport implements TrucksDao {
     }
 
     @Override
+    public List<Trucks> findOrderItemsByPlateNumber(String plateNumber) {
+        log.debug("Finding Trucks instance");
+        try {
+            Query query = getSessionFactory().getCurrentSession().createQuery("from Trucks t where t.plateNumber = :plateNumber");
+            query.setParameter("plateNumber", plateNumber);
+            List<Trucks> results = (List<Trucks>) query.list();
+            log.debug("Find by plateNumber successful, result size: " + results.size());
+            return results;
+        } catch (RuntimeException e) {
+            log.error("Find by plateNumber failed", e);
+            throw e;
+        }    }
+
+    @Override
     public Trucks findTruckByCode(String truckCode) {
         log.debug("Finding Trucks instance");
         try {

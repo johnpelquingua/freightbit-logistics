@@ -21,6 +21,8 @@ public interface TrucksDao {
 
     public List <Trucks> findTrucksByTruckCode(String truckCode);
 
+    public List <Trucks> findOrderItemsByPlateNumber(String plateNumber);
+
     public Trucks findTruckByCode(String truckCode);
 
     public List<Trucks> findTrucksByPlateNumber(String plateNumber, Integer vendorId);

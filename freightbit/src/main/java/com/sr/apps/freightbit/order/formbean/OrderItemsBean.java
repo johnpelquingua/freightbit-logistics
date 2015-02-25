@@ -45,6 +45,7 @@ public class OrderItemsBean {
     private String voyageNumber;
     private String departureDate;
     private String arrivalDate;
+    private String plateNumber;
     private Integer containerId;
     private String containerNumber;
     private String sealNumber;
@@ -68,6 +69,7 @@ public class OrderItemsBean {
         this.rate = rate;
         this.createdTimestamp = createdTimestamp;
         this.createdBy = createdBy;
+        this.modifiedTimestamp = modifiedTimestamp;
         this.modifiedBy = modifiedBy;
         this.nameSize = nameSize;
         this.status = status;
@@ -97,6 +99,7 @@ public class OrderItemsBean {
         this.voyageNumber = voyageNumber;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
+        this.plateNumber = plateNumber;
         this.containerId = containerId;
         this.containerNumber = containerNumber;
         this.sealNumber = sealNumber;
@@ -430,6 +433,14 @@ public class OrderItemsBean {
 
     public void setVendorDestinationName(String vendorDestinationName) {
         this.vendorDestinationName = vendorDestinationName;
+    }
+
+    public String getPlateNumber() {
+        return plateNumber;
+    }
+
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
 
     public Integer getContainerId() {

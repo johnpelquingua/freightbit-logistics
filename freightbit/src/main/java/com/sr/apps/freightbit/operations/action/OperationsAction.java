@@ -2503,6 +2503,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     public OrderBean transformToOrderFormBean(Orders entity) {
 
         OrderBean formBean = new OrderBean();
+
         formBean.setOrderNumber(entity.getOrderNumber());
         //get shipper's name
         Contacts shipperContactName = customerService.findContactById(entity.getShipperContactId());
@@ -2621,6 +2622,53 @@ public class OperationsAction extends ActionSupport implements Preparable {
             formBean.setConsigneeContactName(contactElem.getFirstName() + " " + contactElem.getMiddleName() + " " + contactElem.getLastName());
         }
 
+
+
+//        OrderItems truckEntity = orderService.findOrderItemByOrderItemId(entity.getOrderId());
+        List<OrderItems> orderItemEntity = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
+        /*Integer vendorCtrOri = 0;
+        Integer vendorCtrDes = 0;
+        for(OrderItems orderItemsElem : orderItemEntity){
+            if(orderItemsElem.getVendorOrigin() != null){
+                vendorCtrOri += 1;
+            }
+            if(orderItemsElem.getVendorDestination() != null){
+                vendorCtrDes += 1;
+            }
+        }*/
+
+        if(orderItemEntity.size() > 1){
+            if(orderItemEntity.get(0).getTruckOrigin() != null){
+                Trucks truckEntityOri = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckOrigin());
+                formBean.setPlateNumberOri(truckEntityOri.getPlateNumber());
+            }
+            else{
+                formBean.setPlateNumberOri("NONE");
+            }
+            if(orderItemEntity.get(0).getTruckDestination() != null){
+                Trucks truckEntityDes = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckDestination());
+                formBean.setPlateNumberDes(truckEntityDes.getPlateNumber());
+
+            }
+            else {
+                formBean.setPlateNumberDes("NONE");
+            }
+        }
+        /*else{
+            if(vendorCtrOri != 0){
+                formBean.setPlateNumberOri(vendorCtrOri + " / " + orderItemEntity.size());
+            }
+            else{
+                formBean.setPlateNumberOri("NONE");
+            }
+            if(vendorCtrDes != 0){
+                formBean.setPlateNumberDes(vendorCtrDes + " / " + orderItemEntity.size());
+            }
+            else{
+                formBean.setPlateNumberDes("NONE");
+            }
+        }*/
+
         return formBean;
     }
 
@@ -2647,6 +2695,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public OrderItemsBean transformToOrderItemFormBean(OrderItems entity) {
         OrderItemsBean formBean = new OrderItemsBean();
+        Trucks truckEntityOri = vendorService.findTrucksByTruckCode(entity.getTruckOrigin());
+        Trucks truckEntityDes = vendorService.findTrucksByTruckCode(entity.getTruckDestination());
         formBean.setNameSize(entity.getNameSize());
         formBean.setStatus(entity.getStatus());
         formBean.setOrderItemId(entity.getOrderItemId());
@@ -2665,6 +2715,18 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
         formBean.setStatus(entity.getStatus());
         formBean.setWeight(entity.getWeight());
+        if(truckEntityOri == null || truckEntityOri.equals("")) {
+            formBean.setPlateNumber("NONE");
+        }
+        else{
+            formBean.setPlateNumber(vendorService.findTrucksByTruckCode(entity.getTruckOrigin()).getPlateNumber());
+        }
+        /*if(truckEntityDes == null || truckEntityDes.equals("")) {
+            formBean.setPlateNumber("NONE");
+        }
+        else{
+            formBean.setPlateNumber(vendorService.findTrucksByTruckCode(entity.getTruckDestination()).getPlateNumber());
+        }*/
         if(entity.getVendorSea() == null || "".equals(entity.getVendorSea()) || "NONE".equals(entity.getVendorSea())){
             formBean.setVendorSea("NONE");
         }else{

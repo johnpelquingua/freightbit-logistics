@@ -5,6 +5,7 @@ import com.sr.biz.freightbit.order.dao.OrderDao;
 import com.sr.biz.freightbit.order.entity.Counter;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
+import com.sr.biz.freightbit.vendor.entity.Trucks;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -164,6 +165,22 @@ public class OrderDaoImpl extends HibernateDaoSupport implements OrderDao{
             throw re;
         }
     }
+
+    @Override
+    public OrderItems findOrderItemByOrderId(Integer orderId) {
+        Log.debug("getting Order instance by id:"  + orderId);
+        try{
+            OrderItems instance = (OrderItems) getSessionFactory().getCurrentSession().get(OrderItems.class, orderId);
+            if (instance == null) {
+                Log.debug("get successful, no instance found");
+            }else {
+                Log.debug("get successful, instance found");
+            }
+            return instance;
+        }catch(RuntimeException re){
+            Log.error("get failed", re);
+            throw re;
+        }    }
 
     @Override
     public OrderItems findOrderItemByOrderItemId(Integer orderItemId) {
