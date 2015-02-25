@@ -289,3 +289,14 @@
 
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#contact_phone").mask("(999) 999-9999");
+        $("#contact_mobile").mask("(+63999)(999-9999)");
+        $("#contact_fax").mask("(999) 999-9999");
+
+    });
+
+</script>

@@ -80,9 +80,9 @@
                                                    pagesize="10"
                                                    class="table table-striped table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
-                                        <td><display:column property="firstName" title="First Name <i class='fa fa-sort'" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
                                         <td><display:column property="lastName" title="Last Name <i class='fa fa-sort'" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="firstName" title="First Name <i class='fa fa-sort'" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
                                         <td><display:column property="phone" title="Phone <i class='fa fa-sort'" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>
