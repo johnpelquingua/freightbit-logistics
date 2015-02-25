@@ -19,6 +19,7 @@ import com.sr.biz.freightbit.common.entity.Contacts;
 import com.sr.biz.freightbit.common.entity.Parameters;
 import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
+import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.core.entity.Client;
 import com.sr.biz.freightbit.core.entity.User;
 import com.sr.biz.freightbit.core.exceptions.ContactAlreadyExistsException;
@@ -82,6 +83,7 @@ public class OrderAction extends ActionSupport implements Preparable {
     private List<Documents> outboundEntityList = new ArrayList<Documents>();
     private Integer orderIdParam;
     private Integer orderItemIdParam;
+    private OperationsService operationsService;
     private OrderService orderService;
     private CustomerService customerService;
     private ParameterService parameterService;
@@ -409,7 +411,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderService.updateOrder(orderEntityForm);
 
         //get quantity of item from form
-        Integer orderItemEntityQuantity = orderItemEntity.getQuantity();
+        Integer orderItemEntityQuantity = orderItem.getQuantity();
         //count quantity of item from form and from database
         Integer orderItemQuantityGrandTotal = orderItemQuantityTotal + orderItemEntityQuantity;
 
@@ -421,7 +423,19 @@ public class OrderAction extends ActionSupport implements Preparable {
 
             } else {
                 // Add order items to database
-                orderService.addItem(orderItemEntity);
+                if(orderItem.getQuantity() == 1){
+                    orderItemEntity.setQuantity(1);
+                    orderService.addItem(orderItemEntity);
+                }else{
+                    Integer saveLoop = orderItem.getQuantity();
+                    System.out.println("aaaaaaa" + saveLoop);
+                    for(int i = 0; i < saveLoop; i++ ){
+                        orderItemEntity.setQuantity(1);
+                        orderService.addItem(orderItemEntity);
+                    }
+                }
+
+
                 String messageFlag = "FCL_OK";
                 sessionAttributes.put("messageFlag", messageFlag);
             }
@@ -1400,7 +1414,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         Map sessionAttributes = ActionContext.getContext().getSession();
         entity.setOrderId((Integer) sessionAttributes.get("orderIdPass"));
         entity.setCommodity(formBean.getDescription());
-        entity.setQuantity(formBean.getQuantity());
+        /*entity.setQuantity(formBean.getQuantity());*/
         entity.setClassification(formBean.getClassification());
         entity.setDeclaredValue(formBean.getDeclaredValue());
         entity.setWeight(formBean.getWeight());
@@ -1434,15 +1448,6 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setVesselScheduleId(formBean.getVesselScheduleId());
         entity.setFinalPickupDate(formBean.getFinalPickupDate());
         entity.setFinalDeliveryDate(formBean.getFinalDeliveryDate());
-        /*if(!orderItem.getFinalPickupDate().equals("") || orderItem.getFinalPickupDate() != null){
-            entity.setFinalPickupDate(orderItem.getFinalPickupDate());
-        }
-        if(!orderItem.getFinalDeliveryDate().equals("") || orderItem.getFinalDeliveryDate() != null) {
-            entity.setFinalDeliveryDate(orderItem.getFinalDeliveryDate());
-            System.out.println("11111111111111111111111111111111111111111111111");
-        }else{
-            System.out.println("222222222222222222222222222222222222222222222222");
-        }*/
         entity.setDriverOrigin(formBean.getDriverOrigin());
         entity.setDriverDestination(formBean.getDriverDestination());
         entity.setTruckOrigin(formBean.getTruckOrigin());
@@ -2293,6 +2298,10 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public void setContainerList(List<Parameters> containerList) {
         this.containerList = containerList;
+    }
+
+    public void setOperationsService(OperationsService operationsService) {
+        this.operationsService = operationsService;
     }
 }
 
