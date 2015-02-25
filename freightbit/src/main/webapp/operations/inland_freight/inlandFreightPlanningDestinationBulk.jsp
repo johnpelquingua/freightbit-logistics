@@ -274,7 +274,7 @@
                         <div class="col-lg-8">
                             <div>
                                 <s:select list="listDrivers" name="operationsBean.driverDestination"
-                                          id="driverList" listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
+                                          id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
                                           emptyOption="true" value="%{orderItem.driverDestination}"></s:select>
                             </div>
                         </div>
@@ -291,7 +291,7 @@
                         <div class="col-lg-8">
                             <div>
                                 <s:select list="listDrivers" name="operationsBean.truckDestination"
-                                          id="trucksList" listKey="truckId" listValue="truckCode" cssClass="form-control"
+                                          id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="form-control"
                                           emptyOption="true" value="%{orderItem.truckDestination}"></s:select>
                             </div>
                         </div>
@@ -779,6 +779,23 @@
 
 <%--MODAL FOR DATE VALIDATION END--%>
 
+<!-- Confirm Vendor Modal -->
+<div class="modal fade" id="saveDispatchPlanning" role="dialog" aria-labelledby="myModalLabel1" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-check"></i> Confirm Dispatch Plan Details</h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="inputDiv"/>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
     var pickup = $('#pickup');
@@ -842,8 +859,15 @@
 
     $(document).ready(function() {
 
-        $('.forceSubmit').click(function(){
-            $('.dispatchDestinationForm').submit();
+        $('.forceSubmitDes').click(function(){
+            /*$('.dispatchDestinationForm').submit();*/
+            var dispatchFinalDelivery = new Date($('.dispatchFinalDelivery').val()),
+                destinationVendor = $('#vendorListDestination').val(),
+                destinationDriver = $('#driverListDestination').val(),
+                destinationTruck = $('#trucksListDestination').val();
+
+            finalDeliveryDateBulkModal(destinationVendor,destinationDriver,destinationTruck,dispatchFinalDelivery);
+            $('#saveDispatchPlanning').modal('show');
         });
 
         $('#vendorListDestination').change(function(event) {
@@ -854,11 +878,11 @@
 
                 function(jsonResponse) {
 
-                    var driver = $('#driverList');
+                    var driver = $('#driverListDestination');
 
                     driver.find('option').remove();
 
-                    var truck = $('#trucksList');
+                    var truck = $('#trucksListDestination');
 
                     truck.find('option').remove();
 
@@ -870,7 +894,7 @@
                         $('<option>').val(key).text(value).appendTo(truck);
                     });
 
-                    var truckCode = $("#trucksList").val();
+                    var truckCode = $("#trucksListDestination").val();
                     if(truckCode != null) {
                         $.getJSON('truckDetails', {
                             truckCodeParam: truckCode
@@ -1089,11 +1113,11 @@
 
                     function(jsonResponse) {
 
-                        var driver = $('#driverList');
+                        var driver = $('#driverListDestination');
 
                         driver.find('option').remove();
 
-                        var truck = $('#trucksList');
+                        var truck = $('#trucksListDestination');
 
                         truck.find('option').remove();
 
@@ -1105,7 +1129,7 @@
                             $('<option>').val(key).text(value).appendTo(truck);
                         });
 
-                        var truckCode = $("#trucksList").val();
+                        var truckCode = $("#trucksListDestination").val();
                         if(truckCode != null) {
                             $.getJSON('truckDetails', {
                                         truckCodeParam: truckCode

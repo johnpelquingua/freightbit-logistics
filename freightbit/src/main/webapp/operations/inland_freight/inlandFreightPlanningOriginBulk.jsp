@@ -733,6 +733,23 @@
 
 <%--MODAL FOR DATE VALIDATION END--%>
 
+<!-- Confirm Vendor Modal -->
+<div class="modal fade" id="saveDispatchPlanning" role="dialog" aria-labelledby="myModalLabel1" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-check"></i> Confirm Dispatch Plan Details</h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="inputDiv"/>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
     $("#date").datepicker({dateFormat: 'yy-dd-mm'});
@@ -740,7 +757,14 @@
     $(document).ready(function() {
 
         $('.forceSubmit').click(function(){
-            $('.dispatchOriginForm').submit();
+            /*$('.dispatchOriginForm').submit();*/
+            var dispatchFinalPickup = new Date($('.dispatchFinalPickup').val()),
+                originVendor = $('#vendorListOrigin').val(),
+                originDriver = $('#driverList').val(),
+                originTruck = $('#trucksList').val();
+
+            finalPickupDateBulkModal(originVendor,originDriver,originTruck,dispatchFinalPickup);
+            $('#saveDispatchPlanning').modal('show');
         });
 
         $('#vendorListOrigin').change(function(event) {

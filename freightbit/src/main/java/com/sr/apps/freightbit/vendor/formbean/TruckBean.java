@@ -25,11 +25,15 @@ public class TruckBean {
     private String ownerAddress;
     private String officialReceipt;
 
+    private String vendorName;
+    private String driverName;
+    private String pickupDate;
+
     public TruckBean() {
     }
 
-    public TruckBean(Integer vendorId, Integer truckId, String truckCode, String truckType, String plateNumber, String modelNumber, Integer modelYear, String engineNumber, Integer grossWeight, Date createdTimeStamp, String createdBy, Date modifiedTimeStamp, String modifiedBy, String motorVehicleNumber, Date issueDate, Integer netWeight, Integer netCapacity, String ownerName, String ownerAddress, String officialReceipt) {
-        this.vendorId = vendorId;
+    public TruckBean(Date modifiedTimeStamp, Integer truckId, String truckCode, String truckType, String plateNumber, String modelNumber, Integer modelYear, String engineNumber, Integer grossWeight, Integer vendorId, Date createdTimeStamp, String createdBy, String modifiedBy, String motorVehicleNumber, Date issueDate, Integer netWeight, Integer netCapacity, String ownerName, String ownerAddress, String officialReceipt, String vendorName, String driverName, String pickupDate) {
+        this.modifiedTimeStamp = modifiedTimeStamp;
         this.truckId = truckId;
         this.truckCode = truckCode;
         this.truckType = truckType;
@@ -38,9 +42,9 @@ public class TruckBean {
         this.modelYear = modelYear;
         this.engineNumber = engineNumber;
         this.grossWeight = grossWeight;
+        this.vendorId = vendorId;
         this.createdTimeStamp = createdTimeStamp;
         this.createdBy = createdBy;
-        this.modifiedTimeStamp = modifiedTimeStamp;
         this.modifiedBy = modifiedBy;
         this.motorVehicleNumber = motorVehicleNumber;
         this.issueDate = issueDate;
@@ -49,6 +53,9 @@ public class TruckBean {
         this.ownerName = ownerName;
         this.ownerAddress = ownerAddress;
         this.officialReceipt = officialReceipt;
+        this.vendorName = vendorName;
+        this.driverName = driverName;
+        this.pickupDate = pickupDate;
     }
 
     public Integer getTruckId() {
@@ -211,6 +218,27 @@ public class TruckBean {
         this.officialReceipt = officialReceipt;
     }
 
+    public String getPickupDate() {
+        return pickupDate;
+    }
 
+    public void setPickupDate(String pickupDate) {
+        this.pickupDate = pickupDate;
+    }
 
+    public String getVendorName() {
+        return vendorName;
+    }
+
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
+    }
+
+    public String getDriverName() {
+        return driverName;
+    }
+
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
 }

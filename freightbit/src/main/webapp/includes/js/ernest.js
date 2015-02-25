@@ -904,12 +904,17 @@ function dateValidationInit(){
             finalPickupDate = new Date($('.finalPickupDate').val()),
             finalSaveBtn = $('.finalSaveBtn'),
             serviceMode = $('.serviceModeField').val(),
-            formToSubmit = $('.originForm');
+            formToSubmit = $('.originForm'),
+            originVendor = $('#vendorListOrigin').val(),
+            originDriver = $('#driverList').val(),
+            originTruck = $('#trucksList').val();
 
         if(serviceMode != 'DELIVERY') {
             if (departureDate != 'Invalid Date' && pickupdate != 'Invalid Date') {
                 if (finalPickupDate.setHours(0, 0, 0, 0) >= pickupdate.setHours(0, 0, 0, 0) && finalPickupDate.setHours(0, 0, 0, 0) <= departureDate.setHours(0, 0, 0, 0)) {
-                    formToSubmit.submit();
+                    finalPickupDateModal(originVendor,originDriver,originTruck,finalPickupDate);
+                    $('#saveDispatchPlanning').modal('show');
+                    //formToSubmit.submit();
                 } else {
                     pickupdate = pickupdate.getUTCFullYear() + '-' + (pickupdate.getMonth() + 1) + '-' + pickupdate.getDate();
                     departureDate = departureDate.getUTCFullYear() + '-' + (departureDate.getMonth() + 1) + '-' + departureDate.getDate();
@@ -920,7 +925,9 @@ function dateValidationInit(){
             } else {
                 if (pickupdate != 'Invalid Date') {
                     if (finalPickupDate.setHours(0, 0, 0, 0) >= pickupdate.setHours(0, 0, 0, 0)) {
-                        formToSubmit.submit();
+                        finalPickupDateModal(originVendor,originDriver,originTruck,finalPickupDate);
+                        $('#saveDispatchPlanning').modal('show');
+                        //formToSubmit.submit();
                     } else {
                         pickupdate = pickupdate.getUTCFullYear() + '-' + (pickupdate.getMonth() + 1) + '-' + pickupdate.getDate();
                         var message = 'Date must be no later than <font color="red">' + pickupdate + '</font>';
@@ -929,7 +936,9 @@ function dateValidationInit(){
                     }
                 } else {
                     if (finalPickupDate.setHours(0, 0, 0, 0) <= departureDate.setHours(0, 0, 0, 0)) {
-                        formToSubmit.submit();
+                        finalPickupDateModal(originVendor,originDriver,originTruck,finalPickupDate);
+                        $('#saveDispatchPlanning').modal('show');
+                        //formToSubmit.submit();
                     } else {
                         departureDate = departureDate.getUTCFullYear() + '-' + (departureDate.getMonth() + 1) + '-' + departureDate.getDate();
                         var message = 'Date must be no later than <font color="red">' + departureDate + '</font>';
@@ -939,7 +948,9 @@ function dateValidationInit(){
                 }
             }
         }else{
-            formToSubmit.submit();
+            finalPickupDateModal(originVendor,originDriver,originTruck,finalPickupDate);
+            $('#saveDispatchPlanning').modal('show');
+            //formToSubmit.submit();
         }
 
     })
@@ -952,20 +963,16 @@ function dateValidationInitDes(){
             arrivalDate = new Date($('.arrivalDate').val()),
             finalDeliveryDate = new Date($('.finalDeliveryDate').val()),
             finalSaveBtnDes = $('.finalSaveBtnDes').val(),
-            formToSubmit = $('.destinationForm').val();
-
-        /*alert('Delivery Date ' + deliveryDate);
-        alert('Final Delivery Date ' + finalDeliveryDate);
-        alert('Arrival Date ' + arrivalDate);*/
-
-        console.log('Delivery Date ' + deliveryDate);
-        console.log('Final Delivery Date ' + finalDeliveryDate);
-        console.log('Arrival Date ' + arrivalDate);
+            formToSubmit = $('.destinationForm').val(),
+            destinationVendor = $('#vendorListDestination').val(),
+            destinationDriver = $('#driverListDestination').val(),
+            destinationTruck = $('#trucksListDestination').val();
 
         if(arrivalDate != 'Invalid Date' && deliveryDate != 'Invalid Date'){
             if(deliveryDate.setHours(0,0,0,0) >= finalDeliveryDate.setHours(0,0,0,0) && arrivalDate.setHours(0,0,0,0) <= finalDeliveryDate.setHours(0,0,0,0)){
-                formToSubmit.submit();
-                //alert(1);
+                /*formToSubmit.submit();*/
+                finalDeliveryDateModal(destinationVendor,destinationDriver,destinationTruck,finalDeliveryDate);
+                $('#saveDispatchPlanning').modal('show');
             }else{
                 deliveryDate = deliveryDate.getUTCFullYear() + '-' + (deliveryDate.getMonth() + 1) + '-' + deliveryDate.getDate();
                 arrivalDate = arrivalDate.getUTCFullYear() + '-' + (arrivalDate.getMonth() + 1) + '-' + arrivalDate.getDate();
@@ -976,8 +983,9 @@ function dateValidationInitDes(){
         }else{
             if(deliveryDate != 'Invalid Date'){
                 if(deliveryDate.setHours(0,0,0,0) >= finalDeliveryDate.setHours(0,0,0,0)){
-                    formToSubmit.submit();
-                    //alert(2);
+                    /*formToSubmit.submit();*/
+                    finalDeliveryDateModal(destinationVendor,destinationDriver,destinationTruck,finalDeliveryDate);
+                    $('#saveDispatchPlanning').modal('show');
                 }else{
                     deliveryDate = deliveryDate.getUTCFullYear() + '-' + (deliveryDate.getMonth() + 1) + '-' + deliveryDate.getDate();
                     var message = 'Date must be no later than <font color="red">' + deliveryDate + '</font>';
@@ -986,8 +994,9 @@ function dateValidationInitDes(){
                 }
             }else{
                 if(arrivalDate.setHours(0,0,0,0) <= finalDeliveryDate.setHours(0,0,0,0)){
-                    formToSubmit.submit();
-                    //alert(3);
+                    /*formToSubmit.submit();*/
+                    finalDeliveryDateModal(destinationVendor,destinationDriver,destinationTruck,finalDeliveryDate);
+                    $('#saveDispatchPlanning').modal('show');
                 }else{
                     arrivalDate = arrivalDate.getUTCFullYear() + '-' + (arrivalDate.getMonth() + 1) + '-' + arrivalDate.getDate();
                     var message = 'Date must be on or after <font color="red">' + arrivalDate + '</font>';
@@ -998,6 +1007,83 @@ function dateValidationInitDes(){
         }
 
     })
+}
+
+function finalPickupDateModal(originVendor,originDriver,originTruck,finalPickupDate){
+
+    finalPickupDate = finalPickupDate.getUTCFullYear() + '-' + (finalPickupDate.getMonth() + 1) + '-' + finalPickupDate.getDate();
+
+    $.ajax({
+        url: 'getConfirmModalDispatchAction',
+        type: 'POST',
+        data: {vendorId : originVendor, driverCodeParam: originDriver, truckCodeParam : originTruck, finalPickupParam : finalPickupDate},
+        dataType: 'html',
+        success: function (html) {
+            $('#inputDiv').html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert('An error occured! ' + thrownError);
+        }
+    });
+}
+
+function finalDeliveryDateModal(destinationVendor,destinationDriver,destinationTruck,finalDeliveryDate){
+
+    finalDeliveryDate = finalDeliveryDate.getUTCFullYear() + '-' + (finalDeliveryDate.getMonth() + 1) + '-' + finalDeliveryDate.getDate();
+
+    $.ajax({
+        url: 'getConfirmModalDispatchActionDes',
+        type: 'POST',
+        data: {vendorId : destinationVendor, driverCodeParam: destinationDriver, truckCodeParam : destinationTruck, finalDeliveryParam : finalDeliveryDate},
+        dataType: 'html',
+        success: function (html) {
+            $('#inputDiv').html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert('An error occured! ' + thrownError);
+        }
+    });
+}
+
+
+function finalPickupDateBulkModal(originVendor,originDriver,originTruck,dispatchFinalPickup){
+    /*alert(originVendor);
+     alert(originDriver);
+     alert(originTruck);
+     alert(finalPickupDate);*/
+
+    dispatchFinalPickup = dispatchFinalPickup.getUTCFullYear() + '-' + (dispatchFinalPickup.getMonth() + 1) + '-' + dispatchFinalPickup.getDate();
+
+    $.ajax({
+        url: 'getConfirmModalDispatchBulkAction',
+        type: 'POST',
+        data: {vendorId : originVendor, driverCodeParam: originDriver, truckCodeParam : originTruck, finalPickupParam : dispatchFinalPickup},
+        dataType: 'html',
+        success: function (html) {
+            $('#inputDiv').html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert('An error occured! ' + thrownError);
+        }
+    });
+}
+
+function finalDeliveryDateBulkModal(destinationVendor,destinationDriver,destinationTruck,dispatchFinalDelivery){
+
+    dispatchFinalDelivery = dispatchFinalDelivery.getUTCFullYear() + '-' + (dispatchFinalDelivery.getMonth() + 1) + '-' + dispatchFinalDelivery.getDate();
+
+    $.ajax({
+        url: 'getConfirmModalDispatchBulkActionDes',
+        type: 'POST',
+        data: {vendorId : destinationVendor, driverCodeParam: destinationDriver, truckCodeParam : destinationTruck, finalDeliveryParam : dispatchFinalDelivery},
+        dataType: 'html',
+        success: function (html) {
+            $('#inputDiv').html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert('An error occured! ' + thrownError);
+        }
+    });
 }
 
 function sameDateValidationInit(){
@@ -1072,7 +1158,10 @@ function dispatchFilterScheduleOrigin() {
             dispatchFinalPickup = new Date($('.dispatchFinalPickup').val()),
             formToSubmit = $('.dispatchOriginForm'),
             finalDeparture,
-            selectedDeparture;
+            selectedDeparture,
+            originVendor = $('#vendorListOrigin').val(),
+            originDriver = $('#driverList').val(),
+            originTruck = $('#trucksList').val();
 
         for (var i = 0; i < dispatchFreightTable.size(); i++) {
             var loop_schedDeparture = new Date(scheduleDeparture.eq(i).text()).setHours(0, 0, 0, 0);
@@ -1086,15 +1175,18 @@ function dispatchFilterScheduleOrigin() {
             }
         }
 
-        if(selectedDeparture >= dispatchFinalPickup.setHours(0,0,0,0)){
-            formToSubmit.submit();
-        }else{
+        if (selectedDeparture >= dispatchFinalPickup.setHours(0, 0, 0, 0)) {
+            /*formToSubmit.submit();*/
+            finalPickupDateBulkModal(originVendor, originDriver, originTruck, dispatchFinalPickup);
+            $('#saveDispatchPlanning').modal('show');
+        } else {
             finalDeparture = new Date(selectedDeparture);
             finalDeparture = finalDeparture.getUTCFullYear() + '-' + (finalDeparture.getMonth() + 1) + '-' + finalDeparture.getDate();
             var message = 'Date must be no later than <font color="red">' + finalDeparture + '</font> <br/> Do you still wish to proceed?';
             $('#dateWarningModalBody').empty().append(message);
             $('#dateWarningModal').modal('show');
         }
+
     })
 }
 
@@ -1105,7 +1197,10 @@ function dispatchFilterScheduleDestination() {
             dispatchFinalDelivery = new Date($('.dispatchFinalDelivery').val()),
             formToSubmit = $('.dispatchDestinationForm'),
             finalArrival,
-            selectedArrival;
+            selectedArrival,
+            destinationVendor = $('#vendorListDestination').val(),
+            destinationDriver = $('#driverListDestination').val(),
+            destinationTruck = $('#trucksListDestination').val();
 
         for (var i = 0; i < dispatchFreightTable.size(); i++){
             var loop_schedArrival = new Date(scheduleArrival.eq(i).text()).setHours(0,0,0,0);
@@ -1120,7 +1215,9 @@ function dispatchFilterScheduleDestination() {
         }
 
         if(selectedArrival <= dispatchFinalDelivery.setHours(0,0,0,0)){
-            formToSubmit.submit();
+            /*formToSubmit.submit();*/
+            finalDeliveryDateBulkModal(destinationVendor, destinationDriver, destinationTruck, dispatchFinalDelivery);
+            $('#saveDispatchPlanning').modal('show');
         }else{
             finalArrival = new Date(selectedArrival);
             finalArrival = finalArrival.getUTCFullYear() + '-' + (finalArrival.getMonth() + 1) + '-' + finalArrival.getDate();

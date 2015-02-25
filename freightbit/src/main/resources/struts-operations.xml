@@ -241,6 +241,20 @@
 
         <action name="editOrderItemsDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsDestination">
             <result name="success" type="redirect">updateCompleteInlandPlanning</result>
+            <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+        </action>
+
+        <action name="editOrderItemsOriginModal" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsOriginModal">
+            <result name="success" type="redirect">updateCompleteInlandPlanning</result>
+            <!--<result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>-->
+        </action>
+
+        <action name="editOrderItemsDestinationModal" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsDestinationModal">
+            <result name="success" type="redirect">updateCompleteInlandPlanning</result>
+        </action>
+
+        <action name="editOrderItemsDestination" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsDestination">
+            <result name="success" type="redirect">updateCompleteInlandPlanning</result>
             <result name="input" type="tiles">operations.inlandFreightPlanningDestination.tiles</result>
         </action>
 
@@ -306,8 +320,24 @@
             <result name="success">/operations/sea_freight/freightPlanConfirm.jsp</result>
         </action>
 
+        <action name="getConfirmModalDispatchAction" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsOriginConfirm">
+            <result name="success">/operations/inland_freight/dispatchPlanConfirm.jsp</result>
+        </action>
+
+        <action name="getConfirmModalDispatchActionDes" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editOrderItemsDestinationConfirm">
+            <result name="success">/operations/inland_freight/dispatchPlanConfirmDes.jsp</result>
+        </action>
+
         <action name="getConfirmModalBulkAction" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkOrderItemsSeaConfirm">
             <result name="success">/operations/sea_freight/freightPlanConfirm.jsp</result>
+        </action>
+
+        <action name="getConfirmModalDispatchBulkAction" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkOrderItemsOriginConfirm">
+            <result name="success">/operations/inland_freight/dispatchPlanConfirm.jsp</result>
+        </action>
+
+        <action name="getConfirmModalDispatchBulkActionDes" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="editBulkOrderItemsOriginConfirmDes">
+            <result name="success">/operations/inland_freight/dispatchPlanConfirmDes.jsp</result>
         </action>
 
         <!--Inland Freight (Dispatch Plan) Validation Errors-->

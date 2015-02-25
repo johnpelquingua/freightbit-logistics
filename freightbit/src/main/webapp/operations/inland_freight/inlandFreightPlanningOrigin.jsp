@@ -1341,8 +1341,8 @@
                             class="asterisk_red"></span></label>
 
                     <div class="col-lg-8">
-                        <s:textfield cssClass="form-control" placeholder=" e.g. 1999, 2012, etc." name="truck_modelYear"
-                                     id="truck.modelYear" required="true" maxLength="4"/>
+                        <s:textfield cssClass="form-control" placeholder=" e.g. 1999, 2012, etc." name="truck.modelYear"
+                                     id="truck_modelYear" required="true" maxLength="4"/>
                     </div>
                 </div>
                     <%--Gross Weight = grossWeight--%>
@@ -1351,8 +1351,8 @@
                             class="asterisk_red"></span></label>
 
                     <div class="col-lg-8">
-                        <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck_grossWeight"
-                                     id="truck.grossWeight" required="true"/>
+                        <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
+                                     id="truck_grossWeight" required="true"/>
                     </div>
                 </div>
                     <%--Net Weight = netWeight--%>
@@ -1404,6 +1404,23 @@
     </div>
 </div>
 <%-- MODAL FOR DATE WARNING  -- END --%>
+
+<!-- Confirm Vendor Modal -->
+<div class="modal fade" id="saveDispatchPlanning" role="dialog" aria-labelledby="myModalLabel1" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-check"></i> Confirm Dispatch Plan Details</h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="inputDiv"/>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 
@@ -1466,7 +1483,14 @@
     $(document).ready(function () {
         // for the form to force submit without regards to date validation
         $('.forceSubmit').click(function(){
-            $('.originForm').submit();
+            /*$('.originForm').submit();*/
+            var finalPickupDate = new Date($('.finalPickupDate').val()),
+                originVendor = $('#vendorListOrigin').val(),
+                originDriver = $('#driverList').val(),
+                originTruck = $('#trucksList').val();
+
+            finalPickupDateModal(originVendor,originDriver,originTruck,finalPickupDate);
+            $('#saveDispatchPlanning').modal('show');
         });
 
         $('#vendorListOrigin').change(function (event) {

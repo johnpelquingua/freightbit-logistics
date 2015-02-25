@@ -70,7 +70,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
     private String editParam;
     private Integer documentIdParam;
     private Integer containerIdParam;
+    private String driverCodeParam;
     private String truckCodeParam;
+    private String finalPickupParam;
+    private String finalDeliveryParam;
     private String scheduleExists;
 
     private List<Parameters> truckTypeList = new ArrayList<Parameters>();
@@ -599,19 +602,19 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
                     if ("PLANNING 1".equals(entity.getStatus())) {
                         planning1.add(orderItemId);
-                        if (planning2.size() > 0 || planning3.size() > 0) {
+                        if (planning2.size() > 0 || planning3.size() > 0 || onGoing.size() > 0) {
                             return INPUT;
                         }
                     }
                     else if ("PLANNING 2".equals(entity.getStatus())) {
                         planning2.add(orderItemId);
-                        if (planning1.size() > 0 || planning3.size() > 0) {
+                        if (planning1.size() > 0 || planning3.size() > 0 || onGoing.size() > 0) {
                             return INPUT;
                         }
                     }
                     else if  ("PLANNING 3".equals(entity.getStatus())) {
                         planning3.add(orderItemId);
-                        if (planning1.size() > 0 || planning2.size() > 0) {
+                        if (planning1.size() > 0 || planning2.size() > 0 || onGoing.size() > 0) {
                             return INPUT;
                         }
                     }
@@ -690,13 +693,13 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     OrderItems entity = orderService.findOrderItemByOrderItemId(orderItemId);
                     if ("PLANNING 2".equals(entity.getStatus())) {
                         planning2.add(orderItemId);
-                        if (planning1.size() > 0 || planning3.size() > 0) {
+                        if (planning1.size() > 0 || planning3.size() > 0 || onGoing.size() > 0) {
                             return INPUT;
                         }
                     }
                     else if  ("PLANNING 3".equals(entity.getStatus())) {
                         planning3.add(orderItemId);
-                        if (planning1.size() > 0 || planning2.size() > 0) {
+                        if (planning1.size() > 0 || planning2.size() > 0 || onGoing.size() > 0) {
                             return INPUT;
                         }
                     }
@@ -1007,6 +1010,66 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String editBulkOrderItemsOriginConfirm() {
+
+        System.out.println("Vendor  >>>>>>>>>>>>>>>>>> " + vendorId);
+        System.out.println("Driver  >>>>>>>>>>>>>>>>>> " + driverCodeParam);
+        System.out.println("Truck  >>>>>>>>>>>>>>>>>> " + truckCodeParam);
+        System.out.println("Pickup Date  >>>>>>>>>>>>>>>>>> " + finalPickupParam);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        check = (String[]) sessionAttributes.get("checkedItemsInSession");
+
+        for (int i=0; i<check.length; i++) {
+            System.out.println("CHECK ITEMS >>>>>>>>>>>>>>>>>" + check[i]);
+
+            Integer orderItemId = Integer.parseInt(check[i]);
+            OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemId);
+
+            orderItems.add(transformToOrderItemFormBean(orderItemEntity));
+        }
+
+        Vendor vendorEntity = vendorService.findVendorById(vendorId);
+        vendor.setVendorId(vendorEntity.getVendorId());
+        vendor.setVendorName(vendorEntity.getVendorName());
+
+        Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
+        truck = transformToFormBeanTrucks(truckEntity);
+
+        return SUCCESS;
+    }
+
+    public String editBulkOrderItemsOriginConfirmDes() {
+
+        System.out.println("Vendor  >>>>>>>>>>>>>>>>>> " + vendorId);
+        System.out.println("Driver  >>>>>>>>>>>>>>>>>> " + driverCodeParam);
+        System.out.println("Truck  >>>>>>>>>>>>>>>>>> " + truckCodeParam);
+        System.out.println("Pickup Date  >>>>>>>>>>>>>>>>>> " + finalDeliveryParam);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        check = (String[]) sessionAttributes.get("checkedItemsInSession");
+
+        for (int i=0; i<check.length; i++) {
+            System.out.println("CHECK ITEMS >>>>>>>>>>>>>>>>>" + check[i]);
+
+            Integer orderItemId = Integer.parseInt(check[i]);
+            OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemId);
+
+            orderItems.add(transformToOrderItemFormBean(orderItemEntity));
+        }
+
+        Vendor vendorEntity = vendorService.findVendorById(vendorId);
+        vendor.setVendorId(vendorEntity.getVendorId());
+        vendor.setVendorName(vendorEntity.getVendorName());
+
+        Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
+        truck = transformToFormBeanTrucks(truckEntity);
+
+        return SUCCESS;
+    }
+
     public String editOrderItemsSea() {
         /*Client client = clientService.findClientById(getClientId().toString());*/
 
@@ -1079,6 +1142,73 @@ public class OperationsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String editOrderItemsOriginConfirm() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        System.out.println("Vendor  >>>>>>>>>>>>>>>>>> " + vendorId);
+        System.out.println("Driver  >>>>>>>>>>>>>>>>>> " + driverCodeParam);
+        System.out.println("Truck  >>>>>>>>>>>>>>>>>> " + truckCodeParam);
+        System.out.println("Pickup Date  >>>>>>>>>>>>>>>>>> " + finalPickupParam);
+
+        OrderItems entity = operationsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
+
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
+        order = transformToOrderFormBean(orderEntity);
+
+        List <OrderItems> orderItemsList = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
+
+        for(OrderItems orderItemsElem : orderItemsList){
+            if(entity.getOrderItemId() == orderItemsElem.getOrderItemId()){
+                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+            }
+        }
+
+        Vendor vendorEntity = vendorService.findVendorById(vendorId);
+        vendor.setVendorId(vendorEntity.getVendorId());
+        vendor.setVendorName(vendorEntity.getVendorName());
+
+        Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
+        truck = transformToFormBeanTrucks(truckEntity);
+
+        return SUCCESS;
+    }
+
+    public String editOrderItemsDestinationConfirm() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        System.out.println("Vendor  >>>>>>>>>>>>>>>>>> " + vendorId);
+        System.out.println("Driver  >>>>>>>>>>>>>>>>>> " + driverCodeParam);
+        System.out.println("Truck  >>>>>>>>>>>>>>>>>> " + truckCodeParam);
+        System.out.println("Delivery Date  >>>>>>>>>>>>>>>>>> " + finalDeliveryParam);
+
+        OrderItems entity = operationsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
+
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
+        order = transformToOrderFormBean(orderEntity);
+
+        List <OrderItems> orderItemsList = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
+
+        for(OrderItems orderItemsElem : orderItemsList){
+            if(entity.getOrderItemId() == orderItemsElem.getOrderItemId()){
+                orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+            }
+        }
+
+        Vendor vendorEntity = vendorService.findVendorById(vendorId);
+        vendor.setVendorId(vendorEntity.getVendorId());
+        vendor.setVendorName(vendorEntity.getVendorName());
+
+        Trucks truckEntity = vendorService.findTrucksByTruckCode(truckCodeParam);
+        truck = transformToFormBeanTrucks(truckEntity);
+
+        return SUCCESS;
+    }
+
     public String editOrderItemsOrigin() {
         try {
             OrderItems entity = transformOrderItemToEntityBeanOrigin(operationsBean);
@@ -1087,6 +1217,266 @@ public class OperationsAction extends ActionSupport implements Preparable {
             log.error( "update failed", e);
             return INPUT;
         }
+        return SUCCESS;
+    }
+
+    public String editOrderItemsOriginModal() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        System.out.println("OrderID  >>>>>>>>>>>>>>>>>> " + (Integer) sessionAttributes.get("orderIdParam"));
+        System.out.println("OrderItemID  >>>>>>>>>>>>>>>>>> " + (Integer) sessionAttributes.get("orderItemIdParam"));
+        System.out.println("Vendor  >>>>>>>>>>>>>>>>>> " + vendorId);
+        System.out.println("Driver  >>>>>>>>>>>>>>>>>> " + driverCodeParam);
+        System.out.println("Truck  >>>>>>>>>>>>>>>>>> " + truckCodeParam);
+        System.out.println("Pickup Date  >>>>>>>>>>>>>>>>>> " + finalPickupParam);
+
+        Integer orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
+        Integer orderItemId = (Integer) sessionAttributes.get("orderItemIdParam");
+        check = (String[]) sessionAttributes.get("checkedItemsInSession");
+
+        if(check != null) {
+
+            for (int i=0; i<check.length; i++) {
+                System.out.println("CHECK ITEMS >>>>>>>>>>>>>>>>>" + check[i]);
+
+                Integer orderItemIdCheck = Integer.parseInt(check[i]);
+                /*OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemIdCheck);*/
+
+                /*orderItems.add(transformToOrderItemFormBean(orderItemEntity));*/
+
+                OrderItems entity = operationsService.findOrderItemById(orderItemIdCheck);
+                OrderItems saveEntity = operationsService.findOrderItemById(orderItemIdCheck);
+
+                entity.setVendorOrigin(vendorService.findVendorById(vendorId).getVendorCode());
+                entity.setVendorDestination(saveEntity.getVendorDestination());
+                entity.setFinalPickupDate(finalPickupParam);
+                entity.setFinalDeliveryDate(saveEntity.getFinalDeliveryDate());
+                entity.setOrderItemId(orderItemIdCheck);
+                entity.setClientId(saveEntity.getClientId());
+                entity.setNameSize(saveEntity.getNameSize());
+                entity.setOrderId(saveEntity.getOrderId());
+                entity.setQuantity(saveEntity.getQuantity());
+                entity.setClassification(saveEntity.getClassification());
+                entity.setCommodity(saveEntity.getCommodity());
+                entity.setDeclaredValue(saveEntity.getDeclaredValue());
+                entity.setComments(saveEntity.getComments());
+                entity.setRate(saveEntity.getRate());
+                entity.setCreatedBy(saveEntity.getCreatedBy());
+                entity.setModifiedBy(saveEntity.getModifiedBy());
+                entity.setCreatedTimestamp(saveEntity.getCreatedTimestamp());
+                entity.setModifiedTimestamp(saveEntity.getModifiedTimestamp());
+                entity.setWeight(saveEntity.getWeight());
+                entity.setDriverOrigin(driverCodeParam);
+                entity.setDriverDestination(saveEntity.getDriverDestination());
+                entity.setTruckOrigin(truckCodeParam);
+                entity.setTruckDestination(saveEntity.getTruckDestination());
+                entity.setVendorSea(saveEntity.getVendorSea());
+                entity.setVesselScheduleId(saveEntity.getVesselScheduleId());
+                entity.setCommodity(saveEntity.getCommodity());
+                entity.setComments(saveEntity.getComments());
+                entity.setWeight(saveEntity.getWeight());
+                entity.setVolume(saveEntity.getVolume());
+                entity.setServiceRequirement(saveEntity.getServiceRequirement());
+
+                Orders orderEntity = orderService.findOrdersById(saveEntity.getOrderId());
+
+                if ("SHIPPING AND TRUCKING".equals(orderEntity.getServiceType())) {
+                    if ("DOOR TO PIER".equals(orderEntity.getServiceMode())) {
+                        entity.setStatus("ON GOING");
+                    } else {
+                        entity.setStatus("PLANNING 3");
+                    }
+                } else {
+                    entity.setStatus("ON GOING");
+                }
+
+                operationsService.updateOrderItem(entity);
+            }
+
+        }else{
+
+            OrderItems entity = operationsService.findOrderItemById(orderItemId);
+            OrderItems saveEntity = operationsService.findOrderItemById(orderItemId);
+
+            entity.setVendorOrigin(vendorService.findVendorById(vendorId).getVendorCode());
+            entity.setVendorDestination(saveEntity.getVendorDestination());
+            entity.setFinalPickupDate(finalPickupParam);
+            entity.setFinalDeliveryDate(saveEntity.getFinalDeliveryDate());
+            entity.setOrderItemId(orderItemId);
+            entity.setClientId(saveEntity.getClientId());
+            entity.setNameSize(saveEntity.getNameSize());
+            entity.setOrderId(saveEntity.getOrderId());
+            entity.setQuantity(saveEntity.getQuantity());
+            entity.setClassification(saveEntity.getClassification());
+            entity.setCommodity(saveEntity.getCommodity());
+            entity.setDeclaredValue(saveEntity.getDeclaredValue());
+            entity.setComments(saveEntity.getComments());
+            entity.setRate(saveEntity.getRate());
+            entity.setCreatedBy(saveEntity.getCreatedBy());
+            entity.setModifiedBy(saveEntity.getModifiedBy());
+            entity.setCreatedTimestamp(saveEntity.getCreatedTimestamp());
+            entity.setModifiedTimestamp(saveEntity.getModifiedTimestamp());
+            entity.setWeight(saveEntity.getWeight());
+            entity.setDriverOrigin(driverCodeParam);
+            entity.setDriverDestination(saveEntity.getDriverDestination());
+            entity.setTruckOrigin(truckCodeParam);
+            entity.setTruckDestination(saveEntity.getTruckDestination());
+            entity.setVendorSea(saveEntity.getVendorSea());
+            entity.setVesselScheduleId(saveEntity.getVesselScheduleId());
+            entity.setCommodity(saveEntity.getCommodity());
+            entity.setComments(saveEntity.getComments());
+            entity.setWeight(saveEntity.getWeight());
+            entity.setVolume(saveEntity.getVolume());
+            entity.setServiceRequirement(saveEntity.getServiceRequirement());
+
+            Orders orderEntity = orderService.findOrdersById(saveEntity.getOrderId());
+
+            if ("SHIPPING AND TRUCKING".equals(orderEntity.getServiceType())) {
+                if ("DOOR TO PIER".equals(orderEntity.getServiceMode())) {
+                    entity.setStatus("ON GOING");
+                } else {
+                    entity.setStatus("PLANNING 3");
+                }
+            } else {
+                entity.setStatus("ON GOING");
+            }
+
+            operationsService.updateOrderItem(entity);
+        }
+
+        sessionAttributes.put("orderIdParam", orderIdParam);
+        sessionAttributes.put("orderItemIdParam", orderItemId);
+
+        return SUCCESS;
+    }
+
+    public String editOrderItemsDestinationModal() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        System.out.println("OrderID  >>>>>>>>>>>>>>>>>> " + (Integer) sessionAttributes.get("orderIdParam"));
+        System.out.println("OrderItemID  >>>>>>>>>>>>>>>>>> " + (Integer) sessionAttributes.get("orderItemIdParam"));
+        System.out.println("Vendor  >>>>>>>>>>>>>>>>>> " + vendorId);
+        System.out.println("Driver  >>>>>>>>>>>>>>>>>> " + driverCodeParam);
+        System.out.println("Truck  >>>>>>>>>>>>>>>>>> " + truckCodeParam);
+        System.out.println("Delivery Date  >>>>>>>>>>>>>>>>>> " + finalDeliveryParam);
+
+        Integer orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
+        Integer orderItemId = (Integer) sessionAttributes.get("orderItemIdParam");
+        check = (String[]) sessionAttributes.get("checkedItemsInSession");
+
+        if(check != null) {
+
+            for (int i=0; i<check.length; i++) {
+                System.out.println("CHECK ITEMS >>>>>>>>>>>>>>>>>" + check[i]);
+
+                Integer orderItemIdCheck = Integer.parseInt(check[i]);
+
+                OrderItems entity = operationsService.findOrderItemById(orderItemIdCheck);
+                OrderItems saveEntity = operationsService.findOrderItemById(orderItemIdCheck);
+
+                entity.setVendorOrigin(saveEntity.getVendorOrigin());
+                entity.setVendorDestination(vendorService.findVendorById(vendorId).getVendorCode());
+                entity.setFinalPickupDate(saveEntity.getFinalPickupDate());
+                entity.setFinalDeliveryDate(finalDeliveryParam);
+                entity.setOrderItemId(orderItemIdCheck);
+                entity.setClientId(saveEntity.getClientId());
+                entity.setNameSize(saveEntity.getNameSize());
+                entity.setOrderId(saveEntity.getOrderId());
+                entity.setQuantity(saveEntity.getQuantity());
+                entity.setClassification(saveEntity.getClassification());
+                entity.setCommodity(saveEntity.getCommodity());
+                entity.setDeclaredValue(saveEntity.getDeclaredValue());
+                entity.setComments(saveEntity.getComments());
+                entity.setRate(saveEntity.getRate());
+                entity.setCreatedBy(saveEntity.getCreatedBy());
+                entity.setModifiedBy(saveEntity.getModifiedBy());
+                entity.setCreatedTimestamp(saveEntity.getCreatedTimestamp());
+                entity.setModifiedTimestamp(saveEntity.getModifiedTimestamp());
+                entity.setWeight(saveEntity.getWeight());
+                entity.setDriverOrigin(saveEntity.getDriverOrigin());
+                entity.setDriverDestination(driverCodeParam);
+                entity.setTruckOrigin(saveEntity.getTruckOrigin());
+                entity.setTruckDestination(truckCodeParam);
+                entity.setVendorSea(saveEntity.getVendorSea());
+                entity.setVesselScheduleId(saveEntity.getVesselScheduleId());
+                entity.setCommodity(saveEntity.getCommodity());
+                entity.setComments(saveEntity.getComments());
+                entity.setWeight(saveEntity.getWeight());
+                entity.setVolume(saveEntity.getVolume());
+                entity.setServiceRequirement(saveEntity.getServiceRequirement());
+
+                Orders orderEntity = orderService.findOrdersById(saveEntity.getOrderId());
+
+                /*if ("SHIPPING AND TRUCKING".equals(orderEntity.getServiceType())) {
+                    if ("DOOR TO PIER".equals(orderEntity.getServiceMode())) {
+                        entity.setStatus("ON GOING");
+                    } else {
+                        entity.setStatus("PLANNING 3");
+                    }
+                } else {
+                    entity.setStatus("ON GOING");
+                }*/
+                entity.setStatus("ON GOING");
+                operationsService.updateOrderItem(entity);
+            }
+
+        } else {
+
+            OrderItems entity = operationsService.findOrderItemById(orderItemId);
+            OrderItems saveEntity = operationsService.findOrderItemById(orderItemId);
+
+            entity.setVendorOrigin(saveEntity.getVendorOrigin());
+            entity.setVendorDestination(vendorService.findVendorById(vendorId).getVendorCode());
+            entity.setFinalPickupDate(saveEntity.getFinalPickupDate());
+            entity.setFinalDeliveryDate(finalDeliveryParam);
+            entity.setOrderItemId(orderItemId);
+            entity.setClientId(saveEntity.getClientId());
+            entity.setNameSize(saveEntity.getNameSize());
+            entity.setOrderId(saveEntity.getOrderId());
+            entity.setQuantity(saveEntity.getQuantity());
+            entity.setClassification(saveEntity.getClassification());
+            entity.setCommodity(saveEntity.getCommodity());
+            entity.setDeclaredValue(saveEntity.getDeclaredValue());
+            entity.setComments(saveEntity.getComments());
+            entity.setRate(saveEntity.getRate());
+            entity.setCreatedBy(saveEntity.getCreatedBy());
+            entity.setModifiedBy(saveEntity.getModifiedBy());
+            entity.setCreatedTimestamp(saveEntity.getCreatedTimestamp());
+            entity.setModifiedTimestamp(saveEntity.getModifiedTimestamp());
+            entity.setWeight(saveEntity.getWeight());
+            entity.setDriverOrigin(saveEntity.getDriverOrigin());
+            entity.setDriverDestination(driverCodeParam);
+            entity.setTruckOrigin(saveEntity.getTruckOrigin());
+            entity.setTruckDestination(truckCodeParam);
+            entity.setVendorSea(saveEntity.getVendorSea());
+            entity.setVesselScheduleId(saveEntity.getVesselScheduleId());
+            entity.setCommodity(saveEntity.getCommodity());
+            entity.setComments(saveEntity.getComments());
+            entity.setWeight(saveEntity.getWeight());
+            entity.setVolume(saveEntity.getVolume());
+            entity.setServiceRequirement(saveEntity.getServiceRequirement());
+
+            Orders orderEntity = orderService.findOrdersById(saveEntity.getOrderId());
+
+            /*if ("SHIPPING AND TRUCKING".equals(orderEntity.getServiceType())) {
+                if ("DOOR TO PIER".equals(orderEntity.getServiceMode())) {
+                    entity.setStatus("ON GOING");
+                } else {
+                    entity.setStatus("PLANNING 3");
+                }
+            } else {
+                entity.setStatus("ON GOING");
+            }*/
+            entity.setStatus("ON GOING");
+            operationsService.updateOrderItem(entity);
+
+        }
+
+        sessionAttributes.put("orderIdParam", orderIdParam);
+        sessionAttributes.put("orderItemIdParam", orderItemId);
+
         return SUCCESS;
     }
 
@@ -4920,5 +5310,29 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public void setCheckInland(String[] checkInland) {
         this.checkInland = checkInland;
+    }
+
+    public String getFinalPickupParam() {
+        return finalPickupParam;
+    }
+
+    public void setFinalPickupParam(String finalPickupParam) {
+        this.finalPickupParam = finalPickupParam;
+    }
+
+    public String getDriverCodeParam() {
+        return driverCodeParam;
+    }
+
+    public void setDriverCodeParam(String driverCodeParam) {
+        this.driverCodeParam = driverCodeParam;
+    }
+
+    public String getFinalDeliveryParam() {
+        return finalDeliveryParam;
+    }
+
+    public void setFinalDeliveryParam(String finalDeliveryParam) {
+        this.finalDeliveryParam = finalDeliveryParam;
     }
 }

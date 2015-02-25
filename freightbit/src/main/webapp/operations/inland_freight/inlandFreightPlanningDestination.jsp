@@ -208,7 +208,7 @@
                         <div class="col-sm-10">
                             <div style="width:90%;float:left;padding-right:10px;">
                                 <s:select list="listDrivers" name="operationsBean.driverDestination"
-                                          id="driverList"
+                                          id="driverListDestination"
                                           listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
                                           emptyOption="true" value="%{orderItem.driverDestination}" ></s:select>
                             </div>
@@ -225,7 +225,7 @@
                         <div class="col-sm-10">
                             <div style="width:90%;float:left;padding-right:10px;">
                                 <s:select list="listDrivers" name="operationsBean.truckDestination"
-                                          id="trucksList"
+                                          id="trucksListDestination"
                                           listKey="truckId" listValue="truckCode" cssClass="form-control"
                                           emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                             </div>
@@ -437,7 +437,7 @@
                     <div class="col-lg-8">
                         <div>
                             <s:select list="listDrivers" name="operationsBean.driverDestination"
-                                      id="driverList" listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
+                                      id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
                                       emptyOption="true" value="%{orderItem.driverDestination}"></s:select>
                         </div>
                     </div>
@@ -456,7 +456,7 @@
                     <div class="col-lg-8">
                         <div>
                             <s:select list="listDrivers" name="operationsBean.truckDestination"
-                                      id="trucksList" listKey="truckId" listValue="truckCode" cssClass="form-control"
+                                      id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="form-control"
                                       emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                         </div>
                     </div>
@@ -721,7 +721,7 @@
                     <div class="col-lg-8">
                         <div>
                             <s:select list="listDrivers" name="operationsBean.driverDestination"
-                                      id="driverList" listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
+                                      id="driverListDestination" listKey="driverId" listValue="firstName + lastName" cssClass="form-control"
                                       emptyOption="true" value="%{orderItem.driverDestination}" ></s:select>
                         </div>
                     </div>
@@ -739,7 +739,7 @@
                     <div class="col-lg-8">
                         <div>
                             <s:select list="listDrivers" name="operationsBean.truckDestination"
-                                      id="trucksList" listKey="truckId" listValue="truckCode" cssClass="form-control"
+                                      id="trucksListDestination" listKey="truckId" listValue="truckCode" cssClass="form-control"
                                       emptyOption="true" value="%{orderItem.truckDestination}" ></s:select>
                         </div>
                     </div>
@@ -833,6 +833,7 @@
                     </s:a>
                     <button class="btn btn-primary finalSaveBtnDes" type="button">Save</button>
                 </div>
+
             </s:form>
         </div>
         <div class="panel-footer">
@@ -1223,11 +1224,27 @@
 </div>
 <%-- MODAL FOR DATE WARNING  -- END --%>
 
+<!-- Confirm Vendor Modal -->
+<div class="modal fade" id="saveDispatchPlanning" role="dialog" aria-labelledby="myModalLabel1" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-check"></i> Confirm Dispatch Plan Details</h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="inputDiv"/>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
     var pickup = $('#pickup');
     var dropoff = $('#dropoff');
-
 
     //pick up date validation
     pickup.datepicker({
@@ -1290,8 +1307,15 @@
     $(document).ready(function () {
 
             // for the form to force submit without regards to date validation
-            $('.forceSubmit').click(function(){
-                $('.destinationForm').submit();
+            $('.forceSubmitDes').click(function(){
+                /*$('.destinationForm').submit();*/
+                var finalDeliveryDate = new Date($('.finalDeliveryDate').val()),
+                    destinationVendor = $('#vendorListDestination').val(),
+                    destinationDriver = $('#driverListDestination').val(),
+                    destinationTruck = $('#trucksListDestination').val();
+
+                finalDeliveryDateModal(destinationVendor,destinationDriver,destinationTruck,finalDeliveryDate);
+                $('#saveDispatchPlanning').modal('show');
             });
 
             $('#vendorListDestination').change(function (event) {
@@ -1305,11 +1329,11 @@
 
                 function (jsonResponse) {
 
-                    var driver = $('#driverList');
+                    var driver = $('#driverListDestination');
 
                     driver.find('option').remove();
 
-                    var truck = $('#trucksList');
+                    var truck = $('#trucksListDestination');
 
                     truck.find('option').remove();
 
@@ -1321,7 +1345,7 @@
                         $('<option>').val(key).text(value).appendTo(truck);
                     });
 
-                    var truckCode = $("#trucksList").val();
+                    var truckCode = $("#trucksListDestination").val();
                     if(truckCode != null){
                         $.getJSON('truckDetails', {
                             async:false,
@@ -1380,7 +1404,7 @@
 
     $(document).ready(function() {
         $('#trucksList').change(function (event) {
-            var truckCode = $("#trucksList").val();
+            var truckCode = $("#trucksListDestination").val();
             if (truckCode != null) {
                 $.getJSON('truckDetails', {
                             truckCodeParam: truckCode
@@ -1519,16 +1543,16 @@
 //    Read the value in cache
     function getThis() {
         $("#vendorListDestination").val(localStorage.getItem("vendorListField"));
-        $("#driverList").val(localStorage.getItem("driverListField"));
-        $("#trucksList").val(localStorage.getItem("trucksListField"));
+        $("#driverListDestination").val(localStorage.getItem("driverListField"));
+        $("#trucksListDestination").val(localStorage.getItem("trucksListField"));
         $("#dropoff").val(localStorage.getItem("dropoffField"));
     }
 
 //    Set the value in cache
     function setThis() {
         localStorage.setItem("vendorListField", $("#vendorListDestination").val());
-        localStorage.setItem("driverListField", $("#driverList").val());
-        localStorage.setItem("trucksListField", $("#trucksList").val());
+        localStorage.setItem("driverListField", $("#driverListDestination").val());
+        localStorage.setItem("trucksListField", $("#trucksListDestination").val());
         localStorage.setItem("dropoffField", $("#dropoff").val());
     }
 
@@ -1545,11 +1569,11 @@
 
                     function (jsonResponse) {
 
-                        var driver = $('#driverList');
+                        var driver = $('#driverListDestination');
 
                         driver.find('option').remove();
 
-                        var truck = $('#trucksList');
+                        var truck = $('#trucksListDestination');
 
                         truck.find('option').remove();
 
