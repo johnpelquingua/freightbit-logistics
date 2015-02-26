@@ -455,12 +455,22 @@
 
         <action name="addVendorInlandOrigin" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
             <result name="success" type="redirect">addInlandFreightVendorInPlanning</result>
-            <result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+            <!--<result name="input" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>-->
+            <result name="input" type="redirect">addVendorInPlanningError</result>
         </action>
 
         <action name="addVendorInlandOriginBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">
             <result name="success" type="redirect">addInlandFreightVendorInPlanningBulk</result>
-            <result name="input" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
+            <!--<result name="input" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>-->
+            <result name="input" type="redirect">addVendorInPlanningErrorBulk</result>
+        </action>
+
+        <action name="addVendorInPlanningError" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendorInPlanningError">
+            <result name="success" type="tiles">operations.inlandFreightPlanningOrigin.tiles</result>
+        </action>
+
+        <action name="addVendorInPlanningErrorBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendorInPlanningErrorBulk">
+            <result name="success" type="tiles">operations.inlandFreightPlanningOriginBulk.tiles</result>
         </action>
 
         <action name="addVendorInlandDestinationBulk" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addVendor">

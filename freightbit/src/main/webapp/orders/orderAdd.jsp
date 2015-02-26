@@ -506,7 +506,7 @@
                             <label class="col-lg-3">Position<span class="asterisk_red"></span></label>
                             <div class="col-lg-9">
                                 <s:textfield cssClass="form-control" placeholder="Position" name="contact.position" title="Position must not contain special character."
-                                             type="text" required="true" maxlength="45" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
+                                             type="text" required="true" maxlength="30" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -733,7 +733,8 @@
                             <div class="col-lg-9" style="width: 74%;">
                                 <s:textfield name="consignee.addressLine1" cssClass="form-control"
                                  id="consignee.addressLine1" placeholder="Address Line 1" required="true"
-                                 maxLength="50" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"/>
+                                 maxLength="50" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
+                                 title="Address Line 1 should not contain special characters."/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -741,7 +742,8 @@
                             <div class="col-lg-9" style="width: 74%;">
                                 <s:textfield name="consignee.addressLine2" cssClass="form-control"
                                  id="consignee.addressLine2" placeholder="Address Line 2" maxLength="50"
-                                 pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"/>
+                                 pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
+                                 title="Address Line 2 should not contain special characters."/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -868,8 +870,9 @@
                     <div class="form-group">
                         <label class="col-lg-3">Position<span class="asterisk_red"></span></label>
                         <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position"
-                                         type="text" required="true"/>
+                            <s:textfield cssClass="form-control" placeholder="Position" name="contact.position" maxLength="30"
+                                         type="text" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="Position must not contain numbers and/or special characters."/>
                         </div>
                     </div>
                     <div class="form-group">

@@ -48,8 +48,9 @@
                             <label for="driver.licenseNumber" class="col-lg-2 control-label" style="padding-top:0px;">License<span class="asterisk_red"></span></label>
 
                             <div class="col-lg-10">
-                                <s:textfield cssClass="vendorAddDriverInput form-control" placeholder="AXX-XX-XXXXXXX"
-                                             name="driver.licenseNumber" id="driver_licenseNumber" required="true" maxLength="14" pattern=".{14,}"/>
+                                <s:textfield cssClass="vendorAddDriverInput form-control" placeholder="AXX-XX-XXXXXX"
+                                             name="driver.licenseNumber" id="driver_licenseNumber" required="true" maxLength="13" pattern=".{13,}"
+                                             title="Example:L03-12-002XXX"/>
                             </div>
 
                         </div>

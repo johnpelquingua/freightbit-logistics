@@ -513,8 +513,9 @@
                                 class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
-                            <s:textfield cssClass="form-control" placeholder="AXX-XX-XXXXXXX"
-                                         name="driver.licenseNumber" id="driver_licenseNumber" required="true"/>
+                            <s:textfield cssClass="form-control" placeholder="AXX-XX-XXXXXX"
+                                         name="driver.licenseNumber" id="driver_licenseNumber" required="true" maxLength="13" pattern=".{13,}"
+                                         title="Example:L03-12-002XXX"/>
                         </div>
 
                     </div>
@@ -525,7 +526,8 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Last Name" name="driver.lastName"
-                                         id="driver_lastName" required="true"/>
+                                         id="driver_lastName" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="Last Name should not contain special characters and/or numbers." maxlength="30"/>
                         </div>
 
                     </div>
@@ -537,7 +539,8 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="First Name" name="driver.firstName"
-                                         id="driver_firstName" required="true"/>
+                                         id="driver_firstName" required="true" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="First Name should not contain special characters and/or numbers." maxlength="30"/>
                         </div>
 
                     </div>
@@ -548,7 +551,8 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Middle Name" name="driver.middleName"
-                                         id="driver_middleName"/>
+                                         id="driver_middleName" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="Middle Name should not contain special characters and/or numbers." maxlength="30"/>
                         </div>
 
                     </div>
@@ -560,7 +564,9 @@
 
                         <div class="col-lg-9">
                             <s:textfield cssClass="form-control" placeholder="Title" name="driver.title"
-                                         id="driver_title" required="true"/>
+                                         id="driver_title" required="true" maxlength="50"
+                                         pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                         title="Title should not contain special characters and/or numbers."/>
                         </div>
 
                     </div>
@@ -609,7 +615,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="e.g. ABC-123, XYZ-7890, etc."
-                                     name="truck.plateNumber"
+                                     name="truck.plateNumber" pattern=".{7,8}" title="Example: ABC-123,XYZ-7890"
                                      id="truck_plateNumber" required="true"/>
                     </div>
                 </div>
@@ -620,7 +626,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
-                                     id="truck_truckCode" required="true" maxlength="10"/>
+                                     id="truck_truckCode" required="true" maxlength="10" title="Input your LTO Certificate Number"/>
                     </div>
                 </div>
                     <%--MV File Number--%>
@@ -630,7 +636,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="MV File Number"
-                                     name="truck.motorVehicleNumber"
+                                     name="truck.motorVehicleNumber" title="Input your MV File Number"
                                      id="truck_motorVehicleNumber" required="true"/>
                     </div>
                 </div>
@@ -641,7 +647,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="e.g. 4Runner, Yukon, Silverado, etc."
-                                     name="truck.modelNumber"
+                                     name="truck.modelNumber" title="Example: 4Runner, Yukon, Silverado"
                                      id="truck_modelNumber" required="true"/>
                     </div>
                 </div>
@@ -652,7 +658,8 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Owner's Name" name="truck.ownerName"
-                                     id="truck_ownerName" required="true"/>
+                                     id="truck_ownerName" required="true" pattern="^(\s*[a-zA-Z\xD1-\xF1]+(([\'\-\+\s]\s*[a-zA-Z\xD1-\xF1])?[a-zA-Z\xD1-\xF1]*)\s*)+$"
+                                     title="Owner's Name should not contain special characters and/or numbers." maxLength="50"/>
                     </div>
                 </div>
                     <%--Owner's Address = ownerAddress--%>
@@ -662,7 +669,8 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Owner's Address" name="truck.ownerAddress"
-                                     id="truck_ownerAddress" required="true"/>
+                                     id="truck_ownerAddress" required="true" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
+                                     title="Owner's Address should not contain special characters."/>
                     </div>
                 </div>
                     <%--O.R. Number = officialReceipt--%>
@@ -672,7 +680,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="O.R. Number" name="truck.officialReceipt"
-                                     id="truck_officialReceipt" required="true"/>
+                                     id="truck_officialReceipt" required="true" title="Please Input Valid O.R. Number"/>
                     </div>
                 </div>
                     <%--CR Date of Issue--%>
@@ -692,7 +700,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="e.g. Toyota, GMC, Chevrolet, etc."
-                                     name="truck.engineNumber"
+                                     name="truck.engineNumber" title="Example: Toyota, GMC, Chevrolet."
                                      id="truck_engineNumber" required="true"/>
                     </div>
                 </div>
@@ -713,7 +721,7 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder=" e.g. 1999, 2012, etc." name="truck.modelYear"
-                                     id="truck_modelYear" required="true" maxLength="4"/>
+                                     id="truck_modelYear" required="true" maxLength="4" title="Example: 1999, 2012"/>
                     </div>
                 </div>
                     <%--Gross Weight = grossWeight--%>
@@ -723,7 +731,8 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Gross Weight" name="truck.grossWeight"
-                                     id="truck_grossWeight" required="true"/>
+                                     id="truck_grossWeight" required="true" pattern="^[0-9]*$"
+                                     title="Gross Weight will not accept letters or special characters."/>
                     </div>
                 </div>
                     <%--Net Weight = netWeight--%>
@@ -733,7 +742,8 @@
 
                     <div class="col-lg-8">
                         <s:textfield cssClass="form-control" placeholder="Net Weight" name="truck.netWeight"
-                                     id="truck_netWeight" required="true"/>
+                                     id="truck_netWeight" required="true" pattern="^[0-9]*$"
+                                     title="Gross Weight will not accept letters or special characters."/>
                     </div>
                 </div>
                     <%--Net Capacity = netCapacity--%>

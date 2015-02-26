@@ -50,7 +50,7 @@
                                    style="margin-top: 15px;">
                         <%--Booking Date--%>
                         <td><display:column property="orderDate" title="Booking Date <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="width: 10%; text-align: center;"> </display:column></td>
+                                            style="width: 15%; text-align: center;"> </display:column></td>
                         <%--Order Number--%>
                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
                                             style="width: 10%; text-align: center;"> </display:column></td>
@@ -62,20 +62,20 @@
                                             style="width: 25%; text-align: center;"> </display:column></td>
                         <%--ORIGIN--%>
                         <td><display:column property="originationPort" title="ORI <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="width: 5%; text-align: center;"> </display:column></td>
+                                            style="width: 6%; text-align: center;"> </display:column></td>
                         <%--DESTINATION--%>
                         <td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="width: 5%; text-align: center;"> </display:column></td>
+                                            style="width: 6%; text-align: center;"> </display:column></td>
                         <%--Freight Type--%>
                         <td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="width: 5%; text-align: center;"> </display:column></td>
+                                            style="width: 6%; text-align: center;"> </display:column></td>
 
                         <td><display:column property="serviceRequirement" title="Req't <i class='fa fa-sort' />"
                                             class="tb-font-black"
-                                            style="width: 5%; text-align: center;"> </display:column></td>
+                                            style="width: 8%; text-align: center;"> </display:column></td>
 
                         <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
-                                            style="text-align: center;"> </display:column></td>
+                                            style="text-align: center; width: 8%;"> </display:column></td>
 
                         <td><display:column title="Action">
                             <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">

@@ -32,11 +32,11 @@
 
                 <div class="panel panel-info ">
 
-                    <table class="table leftAlign table-user-information">
-                        <th style="font-size: 20px; border-top: none; width: 300px;">
+                    <table class="table leftAlign table-user-information" style="table-layout: fixed;">
+                        <th style="font-size: 20px; border-top: none; width: 250px;">
                             <i class="fa fa-book"></i> Booking Number
                         </th>
-                        <th style="font-size: 20px; border-top: none; width: 300px;">
+                        <th style="font-size: 20px; border-top: none; width: 250px;">
                             <s:property value="order.orderNumber"/>
                         </th>
                         <tbody>
@@ -83,7 +83,7 @@
                         </tr>
                         <tr>
                             <td style="color: gray !important;">Comments</td>
-                            <td id="comment-wrapper" class="comment-wrapper" ><s:property value="order.comments"/></td>
+                            <td id="comment-wrapper" class="comment-wrapper" style="word-wrap: break-word;" ><s:property value="order.comments"/></td>
                         </tr>
 
                         </tbody>

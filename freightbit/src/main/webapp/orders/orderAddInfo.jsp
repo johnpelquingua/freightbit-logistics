@@ -108,7 +108,7 @@
                             </tr>
                             <tr>
                                 <td style="font-weight: normal; font-size: 12px; text-align:left !important;">Comments</td>
-                                <td style="text-align: left !important;" id="comment-wrapper" class="comment-wrapper" ><s:property value="order.comments"/></td>
+                                <td style="text-align: left !important;word-wrap: break-word;" id="comment-wrapper" class="comment-wrapper"><s:property value="order.comments"/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -893,7 +893,7 @@
                         <div class="col-lg-12">
                             <div class="panel panel-info ">
                                 <br/>
-                                <table class="table leftAlign table-user-information">
+                                <table class="table leftAlign table-user-information" style="table-layout: fixed;">
                                     <th style="font-size: 20px; border-top: none;">
                                         <i class="fa fa-book"></i> Booking Number
                                         <%--<s:property value="order.orderId"/>--%>
@@ -950,7 +950,7 @@
                                     </tr>
                                     <tr>
                                         <td style="color: gray !important;">Comments</td>
-                                        <td id="comment-wrapper" class="comment-wrapper" ><s:property value="order.comments"/></td>
+                                        <td id="comment-wrapper" class="comment-wrapper" style="word-wrap: break-word;"><s:property value="order.comments"/></td>
                                     </tr>
 
                                     </tbody>

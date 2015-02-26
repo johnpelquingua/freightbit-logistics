@@ -31,7 +31,7 @@
                         <a href="#oriTab" role="tab" data-toggle="tab"><i class="fa fa-truck"></i> Origin</a>
                     </li>
                     <li class="col-md-4 padding-0-lr" id="truck">
-                        <a href="#truckTab" role="tab" data-toggle="tab"><i class="fa fa-automobile"></i> Trucking</a>
+                        <a href="#truckTab" role="tab" data-toggle="tab"><i class="fa fa-flip-horizontal fa-truck"></i> Trucking</a>
                     </li>
                     <li id="des" class="col-md-4 padding-0-l">
                         <a href="#desTab" role="tab" data-toggle="tab"><i class="fa fa-flip-horizontal fa-truck"></i> Destination</a>
