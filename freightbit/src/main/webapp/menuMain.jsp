@@ -21,7 +21,7 @@
                     <li><a href="<s:url action='operations/viewInlandFreightList' />"> <i class="fa fa-caret-right fa-fw"></i> Dispatch Plan</a></li>
                 </sec:authorize>
                 <%--<li><a href="<s:url action='operations/viewShipmentMonitoringList' />"> <i class="fa fa-caret-right fa-fw"></i> Shipment Monitoring</a></li>--%>
-                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
+                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER', 'ROLE_SEA_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                     <li><a href="<s:url action='operations/viewVesselSchedules' />"> <i class="fa fa-caret-right fa-fw"></i> Vessel Schedule</a></li>
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">

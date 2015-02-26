@@ -145,7 +145,7 @@
 
                     <table class="table leftAlign table-user-information">
 
-                        <th style="font-size: 20px; border-top: none; width: 400px;">Consignee Information</th>
+                        <th style="font-size: 20px; border-top: none; width: 300px;">Consignee Information</th>
 
                         <tbody>
 
