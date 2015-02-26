@@ -12,21 +12,26 @@
 
         <default-action-ref name="Documentation"/>
 
+        <action name="processDocumentsDecision" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsDecision">
+            <result name="OUTBOUND" type="redirect">processDocuments</result>
+            <result name="INBOUND" type="redirect">processDocumentsInbound</result>
+            <result name="FINAL OUTBOUND" type="redirect">processDocumentsFinalOutbound</result>
+            <result name="FINAL INBOUND" type="redirect">processDocumentsFinalInbound</result>
+            <result name="COMPLETE" type="redirect">processDocumentsComplete</result>
+            <result name="INPUT" type="redirect">viewOrderDocuments</result>
+        </action>
+
         <action name="processDocuments" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocuments">
             <result name="input" type="redirect">viewOrderDocuments</result>
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="processDocumentsInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsInbound">
-            <!--<result name="input" type="redirect">viewOrderDocumentsInbound</result>
-            <result name="success" type="redirect">viewOrderDocumentsInbound</result>-->
             <result name="input" type="redirect">viewOrderDocuments</result>
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
         <action name="processDocumentsFinalOutbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsFinalOutbound">
-            <!--<result name="input" type="redirect">viewOrderDocumentsFinalOutbound</result>
-            <result name="success" type="redirect">viewOrderDocumentsFinalOutbound</result>-->
             <result name="input" type="redirect">viewOrderDocuments</result>
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
@@ -41,11 +46,6 @@
             <result name="success" type="redirect">viewOrderDocuments</result>
         </action>
 
-        <!--<action name="processDocumentsArchive" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="processDocumentsArchive">
-            <result name="input" type="redirect">viewOrderDocuments</result>
-            <result name="success" type="redirect">viewOrderDocuments</result>
-        </action>-->
-
         <action name="dateReceivedInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedInbound">
             <result name="success" type="redirect">viewOrderDocuments</result>
             <result name="input" type="redirect">viewOrderDocuments</result>
@@ -56,7 +56,6 @@
         </action>
 
         <action name="dateReceivedFinalInbound" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="dateReceivedFinalInbound">
-            <!--<result name="success" type="redirect">viewOrderDocumentsFinalInbound</result>-->
             <result name="success" type="redirect">viewOrderDocuments</result>
             <result name="input" type="redirect">viewOrderDocuments</result>
         </action>
@@ -106,6 +105,10 @@
 
         <action name="getAddDocumentAction" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addDocumentsInput">
             <result name="success">/documentation/pending_docs/addDocumentsInput.jsp</result>
+        </action>
+
+        <action name="confirmDocumentModal" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="confirmDocumentModal">
+            <result name="success">/documentation/pending_docs/confirmDocuments.jsp</result>
         </action>
 
         <action name="addDocument" class="com.sr.apps.freightbit.documentation.action.DocumentAction" method="addDocument">

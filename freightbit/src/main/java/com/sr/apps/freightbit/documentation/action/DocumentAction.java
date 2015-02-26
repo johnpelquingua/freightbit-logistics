@@ -52,6 +52,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private List<DocumentsBean> completeDocuments = new ArrayList<DocumentsBean>();
     private List<DocumentsBean> archiveDocuments = new ArrayList<DocumentsBean>();
     private List<DocumentsBean> billingDocuments = new ArrayList<DocumentsBean>();
+    private List<DocumentsBean> confirmDocuments = new ArrayList<DocumentsBean>();
     private OrderBean order = new OrderBean();
     private ContactBean contact = new ContactBean();
     private List<OrderBean> orders = new ArrayList<OrderBean>();
@@ -119,6 +120,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private String documentTabArchive;
     private String documentTabBilling;
     private String documentItem;
+    private String checkString;
     private String[] check;
     private Date dateReturnedInbound; // variable to capture return date of inbound documents
     private Integer quantitySI_DR; // variable to capture quantity of sales invoice and delivery receipt documents
@@ -531,7 +533,16 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 billingDocuments.add(transformDocumentsToFormBean(documentElem));
             }
 
-            //DOCUMENT TAB OUTBOUND VALUE BEGIN================================================================================================================
+        /*Booking Request Form data view*/
+
+        Documents brfDocument = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
+
+        dateReturnedInbound = brfDocument.getInboundReturned();
+        dateSentFinalOutbound = brfDocument.getFinalOutboundSent();
+        finalOutboundTrackingNumber = brfDocument.getFinalOutboundLbc();
+        dateReturnedFinalInbound = brfDocument.getFinalInboundReturned();
+
+        //DOCUMENT TAB OUTBOUND VALUE BEGIN================================================================================================================
 
             if (sessionAttributes.get("documentTab") == null || "".equals(sessionAttributes.get("documentTab"))) {
                 // Loop will count for documents already processed
@@ -897,34 +908,39 @@ public class DocumentAction extends ActionSupport implements Preparable{
     public String processDocuments(){
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        System.out.println(".............................CHECK WORD PASS " + check);
+        checkString = sessionAttributes.get("checkString").toString();
 
-        System.out.println(".............................DOCUMENT ITEM " + document.getDocumentItem());
+        documentItem = sessionAttributes.get("documentItem").toString();
 
-        System.out.println(".............................ORDER ID PARAM " + orderIdParam);
+        orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
 
-        System.out.println(".............................ORDER ID SESSION " + (Integer)sessionAttributes.get("orderIdParam"));
+        documentStageParam = sessionAttributes.get("documentStageParam").toString();
 
-        if (check != null) { // Check has value
+        if (checkString != null) { // Check has value
 
-            if(document.getDocumentItem().equals("check")) { // if word passed is equals to check
+            if(documentItem.equals("check")) { // if word passed is equals to check
 
-                for (int i = 0; i < check.length; i++) { // loop of how many values in check
+                String str = checkString;
 
-                    if(check[i].equals("false") || check[i].equals(null)|| "".equals(check[i])){ // catches error when no values inside check
+                ArrayList outList = new ArrayList(Arrays.asList(str.split(",")));
+
+                for (int i = 0; i < outList.size(); i++) { // loop of how many values in check
+
+                    if(outList.get(i).equals("false") || outList.get(i).equals(null)|| "".equals(outList.get(i))){ // catches error when no values inside check
                         sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
                         documentflag = 7; // Shows error that no document was checked
                         sessionAttributes.put("documentflag", documentflag);
                         return INPUT;
                     }
                     // will execute if document item is equals to check
-                    Integer documentId = Integer.parseInt(check[i]);
+                    /*Integer documentId = Integer.parseInt(check[i]);*/
 
-                    Documents documentIdEntity = documentsService.findDocumentById(documentId);
+                    Integer documentIdHolder = Integer.parseInt(outList.get(i).toString());
+
+                    Documents documentIdEntity = documentsService.findDocumentById(documentIdHolder);
                     // Will trigger if Proforma Bill of Lading does not have a Reference Number
                     if (documentIdEntity.getDocumentName().equals("PROFORMA BILL OF LADING") && "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getDocumentName().equals("PROFORMA BILL OF LADING") && documentIdEntity.getReferenceNumber() == null || "".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getReferenceNumber() == null ) {
                         documentIdEntity.setDocumentStatus("NO SERIES NUMBER");
-                        /*documentIdEntity.setDocumentProcessed(0);*/
                         /*Pass flag to view order documents*/
                         documentflag = 1; // Shows must enter reference number error
                         sessionAttributes.put("documentflag", documentflag);
@@ -933,7 +949,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                         documentIdEntity.setDocumentStatus("ENTERED SERIES NUMBER");
                         documentIdEntity.setDocumentProcessed(4);
                         documentIdEntity.setCompleteStage(1);
-                        /*documentIdEntity.setArchiveStage(0);*/
                         /*Pass flag to view order documents*/
                         documentflag = 2; // shows reference number entered successfully
                         sessionAttributes.put("documentflag", documentflag);
@@ -953,32 +968,36 @@ public class DocumentAction extends ActionSupport implements Preparable{
                 }
             }
         }else {
-
-                sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
-                documentflag = 4; // all documents must be checked before processing
-                sessionAttributes.put("documentflag", documentflag);
-                return INPUT;
+            sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
+            documentflag = 4; // all documents must be checked before processing
+            sessionAttributes.put("documentflag", documentflag);
+            return INPUT;
         }
-
         return SUCCESS;
     }
 
     public String processDocumentsInbound(){
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        System.out.println("CHECK WORD PASS " + check);
+        checkString = sessionAttributes.get("checkString").toString();
 
-        System.out.println("DOCUMENT ITEM " + document.getDocumentItem());
+        documentItem = sessionAttributes.get("documentItem").toString();
 
-        System.out.println("ORDER ID " + orderIdParam);
+        orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
 
-        if (check != null) {
+        documentStageParam = sessionAttributes.get("documentStageParam").toString();
 
-            if(document.getDocumentItem().equals("check")) {
+        if (checkString != null) {
 
-                for (int i = 0; i < check.length; i++) {
+            if(documentItem.equals("check")) {
+
+                String str = checkString;
+
+                ArrayList inList = new ArrayList(Arrays.asList(str.split(",")));
+
+                for (int i = 0; i < inList.size(); i++) {
                     // if no checkbox are selected
-                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){
+                    if(inList.get(i).equals("false") || inList.get(i).equals("null")|| "".equals(inList.get(i))){
                         sessionAttributes.put("orderIdParam", orderIdParam );
                         documentflag = 7; // Shows error that no document was checked
                         sessionAttributes.put("documentflag", documentflag);
@@ -986,9 +1005,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     }
 
                     // will execute if document item is equals to check
-                    Integer documentId = Integer.parseInt(check[i]);
+                    Integer documentIdHolder = Integer.parseInt(inList.get(i).toString());
 
-                    Documents documentIdEntity = documentsService.findDocumentById(documentId);
+                    Documents documentIdEntity = documentsService.findDocumentById(documentIdHolder);
 
                     Orders orderEntity = orderService.findOrdersById(orderIdParam);
 
@@ -1065,26 +1084,31 @@ public class DocumentAction extends ActionSupport implements Preparable{
             sessionAttributes.put("documentflag", documentflag);
             return INPUT;
         }
-
         return SUCCESS;
     }
 
     public String processDocumentsFinalOutbound(){
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        System.out.println("CHECK WORD PASS " + check);
+        checkString = sessionAttributes.get("checkString").toString();
 
-        System.out.println("DOCUMENT ITEM " + document.getDocumentItem());
+        documentItem = sessionAttributes.get("documentItem").toString();
 
-        System.out.println("ORDER ID " + orderIdParam);
+        orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
 
-        if (check != null) {
+        documentStageParam = sessionAttributes.get("documentStageParam").toString();
 
-            if(document.getDocumentItem().equals("check")) {
+        if (checkString != null) {
 
-                for (int i = 0; i < check.length; i++) {
+            if(documentItem.equals("check")) {
+
+                String str = checkString;
+
+                ArrayList fiOutList = new ArrayList(Arrays.asList(str.split(",")));
+
+                for (int i = 0; i < fiOutList.size(); i++) {
                     // if no checkbox are selected
-                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){
+                    if(fiOutList.get(i).equals("false") || fiOutList.get(i).equals("null")|| "".equals(fiOutList.get(i))){
                         sessionAttributes.put("orderIdParam", orderIdParam);
                         documentflag = 7; // Shows error that no document was checked
                         sessionAttributes.put("documentflag", documentflag);
@@ -1092,9 +1116,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     }
 
                     // will execute if document item is equals to check
-                    Integer documentId = Integer.parseInt(check[i]);
+                    Integer documentIdHolder = Integer.parseInt(fiOutList.get(i).toString());
 
-                    Documents documentIdEntity = documentsService.findDocumentById(documentId);
+                    Documents documentIdEntity = documentsService.findDocumentById(documentIdHolder);
 
                     if(documentIdEntity.getDocumentName().equals("HOUSE BILL OF LADING") || documentIdEntity.getDocumentName().equals("ACCEPTANCE RECEIPT") || documentIdEntity.getDocumentName().equals("RELEASE ORDER") ){
                         documentIdEntity.setDocumentProcessed(3);
@@ -1128,33 +1152,37 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
                 }
             }
-
         }else{
             sessionAttributes.put("orderIdParam", orderIdParam);
             documentflag = 4; // all documents must be checked before processing
             sessionAttributes.put("documentflag", documentflag);
             return INPUT;
         }
-
         return SUCCESS;
     }
 
     public String processDocumentsFinalInbound(){
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiCHECK WORD PASS " + check);
+        checkString = sessionAttributes.get("checkString").toString();
 
-        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiDOCUMENT ITEM " + document.getDocumentItem());
+        documentItem = sessionAttributes.get("documentItem").toString();
 
-        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiORDER ID " + orderIdParam);
+        orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
 
-        if (check != null) {
+        documentStageParam = sessionAttributes.get("documentStageParam").toString();
 
-            if(document.getDocumentItem().equals("check")) {
+        if (checkString != null) {
 
-                for (int i = 0; i < check.length; i++) {
+            if(documentItem.equals("check")) {
+
+                String str = checkString;
+
+                ArrayList fiInList = new ArrayList(Arrays.asList(str.split(",")));
+
+                for (int i = 0; i < fiInList.size(); i++) {
                     // if no checkbox are selected
-                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){
+                    if(fiInList.get(i).equals("false") || fiInList.get(i).equals("null")|| "".equals(fiInList.get(i))){
                         sessionAttributes.put("orderIdParam", orderIdParam);
                         documentflag = 7; // Shows error that no document was checked
                         sessionAttributes.put("documentflag", documentflag);
@@ -1162,9 +1190,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     }
 
                     // will execute if document item is equals to check
-                    Integer documentId = Integer.parseInt(check[i]);
+                    Integer documentIdHolder = Integer.parseInt(fiInList.get(i).toString());
 
-                    Documents documentIdEntity = documentsService.findDocumentById(documentId);
+                    Documents documentIdEntity = documentsService.findDocumentById(documentIdHolder);
 
                     if("".equals(documentIdEntity.getReferenceNumber()) || documentIdEntity.getReferenceNumber() == null ){
                         documentIdEntity.setDocumentStatus("INPUT SERIES NUMBER");
@@ -1201,19 +1229,25 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiCHECK WORD PASS " + check);
+        checkString = sessionAttributes.get("checkString").toString();
 
-        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiDOCUMENT ITEM " + document.getDocumentItem());
+        documentItem = sessionAttributes.get("documentItem").toString();
 
-        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiORDER ID " + orderIdParam);
+        orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
 
-        if (check != null) {
+        documentStageParam = sessionAttributes.get("documentStageParam").toString();
 
-            if(document.getDocumentItem().equals("check")) {
+        if (checkString != null) {
 
-                for (int i = 0; i < check.length; i++) {
+            if(documentItem.equals("check")) {
+
+                String str = checkString;
+
+                ArrayList completeList = new ArrayList(Arrays.asList(str.split(",")));
+
+                for (int i = 0; i < completeList.size(); i++) {
                     // if no checkbox are selected
-                    if(check[i].equals("false") || check[i].equals("null")|| "".equals(check[i])){
+                    if(completeList.get(i).equals("false") || completeList.get(i).equals("null")|| "".equals(completeList.get(i))){
                         sessionAttributes.put("orderIdParam", orderIdParam);
                         documentflag = 7; // Shows error that no document was checked
                         sessionAttributes.put("documentflag", documentflag);
@@ -1221,9 +1255,9 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     }
 
                     // will execute if document item is equals to check
-                    Integer documentId = Integer.parseInt(check[i]);
+                    Integer documentIdHolder = Integer.parseInt(completeList.get(i).toString());
 
-                    Documents documentIdEntity = documentsService.findDocumentById(documentId);
+                    Documents documentIdEntity = documentsService.findDocumentById(documentIdHolder);
 
                     documentIdEntity.setDocumentProcessed(5);
                     /*Pass flag to view order documents*/
@@ -1234,7 +1268,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
                     documentsService.updateDocument(documentIdEntity);
                     // session pass order id
                     sessionAttributes.put("orderIdParam", documentIdEntity.getReferenceId());
-
                 }
             }
 
@@ -1244,7 +1277,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
             sessionAttributes.put("documentflag", documentflag);
             return INPUT;
         }
-
         return SUCCESS;
     }
 
@@ -2201,6 +2233,58 @@ public class DocumentAction extends ActionSupport implements Preparable{
         return SUCCESS;
     }
 
+    public String processDocumentsDecision() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        System.out.println(".............................CHECK WORD PASS " + checkString);
+
+        System.out.println(".............................DOCUMENT ITEM " + documentItem);
+
+        System.out.println(".............................ORDER ID PARAM " + orderIdParam);
+
+        System.out.println(".............................STAGE PARAM " + documentStageParam);
+
+        if(checkString != null){
+            if(documentStageParam.equals("OUTBOUND")){
+                sessionAttributes.put("checkString", checkString);
+                sessionAttributes.put("documentItem", documentItem);
+                sessionAttributes.put("orderIdParam", orderIdParam);
+                sessionAttributes.put("documentStageParam", documentStageParam);
+                return "OUTBOUND";
+            }else if(documentStageParam.equals("INBOUND")){
+                sessionAttributes.put("checkString", checkString);
+                sessionAttributes.put("documentItem", documentItem);
+                sessionAttributes.put("orderIdParam", orderIdParam);
+                sessionAttributes.put("documentStageParam", documentStageParam);
+                return "INBOUND";
+            }else if(documentStageParam.equals("FINAL OUTBOUND")){
+                sessionAttributes.put("checkString", checkString);
+                sessionAttributes.put("documentItem", documentItem);
+                sessionAttributes.put("orderIdParam", orderIdParam);
+                sessionAttributes.put("documentStageParam", documentStageParam);
+                return "FINAL OUTBOUND";
+            }else if(documentStageParam.equals("FINAL INBOUND")){
+                sessionAttributes.put("checkString", checkString);
+                sessionAttributes.put("documentItem", documentItem);
+                sessionAttributes.put("orderIdParam", orderIdParam);
+                sessionAttributes.put("documentStageParam", documentStageParam);
+                return "FINAL INBOUND";
+            }else{
+                sessionAttributes.put("checkString", checkString);
+                sessionAttributes.put("documentItem", documentItem);
+                sessionAttributes.put("orderIdParam", orderIdParam);
+                sessionAttributes.put("documentStageParam", documentStageParam);
+                return "COMPLETE";
+            }
+        }else{
+            sessionAttributes.put("orderIdParam", orderIdParam);
+            documentflag = 7; // Shows error that no document was checked
+            sessionAttributes.put("documentflag", documentflag);
+
+            return "INPUT";
+        }
+    }
+
     public String deleteDocument() {
         Documents documentEntity = documentsService.findDocumentById(documentIdParam);
         documentsService.deleteDocument(documentEntity);
@@ -2208,6 +2292,38 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Map sessionAttributes = ActionContext.getContext().getSession();
         sessionAttributes.put("orderIdParam", orderIdParam);
 
+        return SUCCESS;
+    }
+
+    public String confirmDocumentModal(){
+
+        System.out.println(".............................CHECK WORD PASS " + checkString);
+
+        System.out.println(".............................DOCUMENT ITEM " + documentItem);
+
+        System.out.println(".............................ORDER ID PARAM " + orderIdParam);
+
+        System.out.println(".............................STAGE PARAM " + documentStageParam);
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        if(checkString != null){
+            String str = checkString;
+
+            ArrayList docsList = new ArrayList(Arrays.asList(str.split(",")));
+
+            for(int i=0; i<docsList.size(); i++){
+
+                System.out.println(" ---------------------------> " + docsList.get(i));
+
+                Integer documentIdHolder = Integer.parseInt(docsList.get(i).toString());
+
+                Documents documentEntity = documentsService.findDocumentById(documentIdHolder);
+
+                confirmDocuments.add(transformDocumentsToFormBean(documentEntity));
+
+            }
+        }
         return SUCCESS;
     }
 
@@ -2220,16 +2336,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
         System.out.println("------------------DATE SENT" + dateSentFinalOutbound);
 
         System.out.println("------------------TRACKING NUMBER" + finalOutboundTrackingNumber);
-        // count all documents in final outbound stage
-        finalOutboundEntityList = documentsService.findDocumentByFinalOutboundStageAndID(1, orderIdParam);
-        // saves date sent for final outbound and tracking number for all documents
-        for(Documents documentElem : finalOutboundEntityList){
-            documentElem.setFinalOutboundSent(dateSentFinalOutbound);
-            documentElem.setFinalOutboundLbc(finalOutboundTrackingNumber);
-            documentElem.setDocumentStatus("DOCUMENT SENT!");
 
-            documentsService.updateDocument(documentElem);
-        }
+        Documents brfDocument = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
+
+        brfDocument.setFinalOutboundSent(dateSentFinalOutbound);
+        brfDocument.setFinalOutboundLbc(finalOutboundTrackingNumber);
+
+        documentsService.updateDocument(brfDocument);
 
         sessionAttributes.put("orderIdParam", orderIdParam);
 
@@ -2261,200 +2374,16 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         System.out.println("----------------------------------------date" + dateReturnedInbound);
 
-        System.out.println("----------------------------------------quantity" + quantitySI_DR );
-
         System.out.println("---------------------------------------=====" + orderIdParam);
-
-        outboundEntityList = documentsService.findDocumentByOutboundStageAndID(1, orderIdParam);
-
-        outboundCount = outboundEntityList.size();
-
-        inboundEntityList = documentsService.findDocumentByInboundStageAndID(0, orderIdParam); // count inbound documents with 0 value
-
-        inboundCount = inboundEntityList.size();
-
-        // updates all existing inbound documents at this point and adds return date to them
-        for (Documents documentInboundElem : inboundEntityList) {
-            documentInboundElem.setInboundStage(1);
-            documentInboundElem.setInboundReturned(dateReturnedInbound);
-            documentInboundElem.setDocumentStatus("PENDING");
-
-            documentsService.updateDocument(documentInboundElem);
-        }
 
         Map sessionAttributes = ActionContext.getContext().getSession();
 
-        List<String> vendorSeaCodeList = new ArrayList<String>(); // placeholder for sea vendor codes
-        List<String> vendorOriginCodeList = new ArrayList<String>(); // placeholder for origin vendor codes
+        Documents brfDocument = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
 
-        List<OrderItems> orderItemList = new ArrayList<OrderItems>();
+        brfDocument.setInboundReturned(dateReturnedInbound);
 
-        Orders orderEntity = orderService.findOrdersById(orderIdParam);
-        // order item list under order id
-        orderItemList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
-        // sea vendor codes will be stored in vendorSeaCodeList
-        for(OrderItems orderItem : orderItemList){
-            if(vendorSeaCodeList.isEmpty()){
-                vendorSeaCodeList.add(orderItem.getVendorSea());
-            }else{
-                if(!vendorSeaCodeList.contains(orderItem.getVendorSea())) {
-                    vendorSeaCodeList.add(orderItem.getVendorSea());
-                }
-            }
+        documentsService.updateDocument(brfDocument);
 
-        }
-        // origin vendor codes will be stored in vendorOriginCodeList
-        for(OrderItems orderItem : orderItemList) {
-            if(vendorOriginCodeList.isEmpty()){
-                vendorOriginCodeList.add(orderItem.getVendorOrigin());
-            }else{
-                if(!vendorOriginCodeList.contains(orderItem.getVendorOrigin())){
-                    vendorOriginCodeList.add(orderItem.getVendorOrigin());
-                }
-            }
-        }
-
-        List<Documents> proformaBillOfLading = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING", orderIdParam);
-        List<Documents> houseWaybillOrigin = documentsService.findDocumentNameAndId("HOUSE WAYBILL ORIGIN", orderIdParam);
-
-        // Master Bill of Lading will be created based on Proforma Bill of Lading quantity
-        for (String seaVendor : vendorSeaCodeList) {
-            if (proformaBillOfLading.size() != 0) {
-                // will check if there is already and existing master bill of lading under the same vendor
-                List<Documents> documentMBL = documentsService.findDocumentNameAndId("MASTER BILL OF LADING",orderIdParam);
-
-                if(documentMBL.size() == 0) { // will create master bill of lading if there are no master bill of lading created yet.
-
-                    for (Documents documentElem : proformaBillOfLading) {
-                        Documents documentEntity = new Documents();
-
-                        Client client = clientService.findClientById(getClientId().toString());
-                        documentEntity.setClient(client);
-
-                        documentEntity.setDocumentName(DocumentsConstants.MASTER_BILL_OF_LADING);
-                        documentEntity.setReferenceId(orderEntity.getOrderId());
-                        documentEntity.setReferenceTable("ORDERS");
-                        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-                        documentEntity.setCreatedDate(new Date());
-                        documentEntity.setDocumentStatus("PENDING");
-                        documentEntity.setVendorCode(seaVendor);
-                        documentEntity.setInboundStage(1);
-                        documentEntity.setDocumentProcessed(1);
-                        documentEntity.setInboundReturned(dateReturnedInbound);
-                        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                        // orderitem id should be set in orderitemid column WIP
-
-                        documentsService.addDocuments(documentEntity);
-                    }
-
-                } // else will not do anything
-
-            } else {
-                documentflag = 6; // Proforma Bill of Lading does not exist
-                sessionAttributes.put("documentflag", documentflag);
-                sessionAttributes.put("orderIdParam", orderIdParam);
-
-                /*return INPUT;*/
-                break;
-            }
-        }
-
-        for (String originVendor : vendorOriginCodeList) {
-            if(houseWaybillOrigin.size() != 0){
-
-                // will check if there is already and existing master waybill origin under the same vendor
-                List<Documents> documentMWO = documentsService.findDocumentNameAndId("MASTER WAYBILL ORIGIN",orderIdParam);
-
-                if(documentMWO.size() == 0) { // will create master waybill origin if there are no master waybill origin created yet.
-
-                    for (Documents documentElem : houseWaybillOrigin) {
-                        Documents documentEntity = new Documents();
-
-                        Client client = clientService.findClientById(getClientId().toString());
-                        documentEntity.setClient(client);
-
-                        documentEntity.setDocumentName(DocumentsConstants.MASTER_WAYBILL_ORIGIN);
-                        documentEntity.setReferenceId(orderEntity.getOrderId());
-                        documentEntity.setReferenceTable("ORDERS");
-                        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-                        documentEntity.setCreatedDate(new Date());
-                        documentEntity.setDocumentStatus("PENDING");
-                        documentEntity.setVendorCode(originVendor);
-                        documentEntity.setInboundStage(1);
-                        documentEntity.setDocumentProcessed(1);
-                        documentEntity.setInboundReturned(dateReturnedInbound);
-                        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                        // orderitem id should be set in orderitemid column WIP
-
-                        documentsService.addDocuments(documentEntity);
-                    }
-
-                }// else will not create a document
-
-            }else{
-                documentflag = 10; // One or more House WayBill Origin does not exist
-                sessionAttributes.put("documentflag", documentflag);
-                sessionAttributes.put("orderIdParam", orderIdParam);
-
-                /*return INPUT;*/
-                break;
-            }
-        }
-
-        //will check if there is already an existing sales invoice / delivery receipt created under the booking
-        List <Documents> documentSI_DR = documentsService.findDocumentNameAndId("SALES INVOICE",orderIdParam);
-
-        if(documentSI_DR != null){
-            // delete documents before creating
-            for(Documents documentDelete : documentSI_DR){
-                documentsService.deleteDocument(documentDelete);
-            }
-
-            // To create Sales Invoice / Delivery Receipt by quantity specified
-            for (int i=0; i < quantitySI_DR; i++) {
-                Documents documentEntity = new Documents();
-
-                Client client = clientService.findClientById(getClientId().toString());
-                documentEntity.setClient(client);
-
-                documentEntity.setDocumentName(DocumentsConstants.SALES_INVOICE);
-                documentEntity.setReferenceId(orderEntity.getOrderId());
-                documentEntity.setReferenceTable("ORDERS");
-                documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-                documentEntity.setCreatedDate(new Date());
-                documentEntity.setDocumentStatus("PENDING");
-                documentEntity.setInboundStage(1);
-                documentEntity.setDocumentProcessed(1);
-                documentEntity.setInboundReturned(dateReturnedInbound);
-
-                documentsService.addDocuments(documentEntity);
-            }
-
-        }else{
-            // create documents right away
-            // To create Sales Invoice / Delivery Receipt by quantity specified
-            for (int i=0; i <= quantitySI_DR; i++) {
-                Documents documentEntity = new Documents();
-
-                Client client = clientService.findClientById(getClientId().toString());
-                documentEntity.setClient(client);
-
-                documentEntity.setDocumentName(DocumentsConstants.SALES_INVOICE);
-                documentEntity.setReferenceId(orderEntity.getOrderId());
-                documentEntity.setReferenceTable("ORDERS");
-                documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-                documentEntity.setCreatedDate(new Date());
-                documentEntity.setDocumentStatus("PENDING");
-                documentEntity.setInboundStage(1);
-                documentEntity.setDocumentProcessed(1);
-                documentEntity.setInboundReturned(dateReturnedInbound);
-
-                documentsService.addDocuments(documentEntity);
-            }
-        }
-
-        documentflag = 9; // Return Date of Inbound documents saved
-        sessionAttributes.put("documentflag", documentflag);
         sessionAttributes.put("orderIdParam", orderIdParam);
 
         return SUCCESS;
@@ -2483,72 +2412,11 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         System.out.println("Date Returned final inbound----------------------------------" + dateReturnedFinalInbound);
 
-        List<Documents> allDocuments = documentsService.findDocumentsByOrderId(orderIdParam);
+        Documents brfDocument = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
 
-        List<Documents> finalInboundDocuments = documentsService.findDocumentByFinalInboundStageAndID(0, orderIdParam);
+        brfDocument.setFinalInboundReturned(dateReturnedFinalInbound);
 
-        for (Documents documentElem : finalInboundDocuments){
-            if(documentElem.getDocumentName().equals("HOUSE BILL OF LADING") || documentElem.getDocumentName().equals("MASTER BILL OF LADING") || documentElem.getDocumentName().equals("SALES INVOICE") || documentElem.getDocumentName().equals("AUTHORIZATION TO WITHDRAW") || documentElem.getDocumentName().equals("ACCEPTANCE RECEIPT") || documentElem.getDocumentName().equals("RELEASE ORDER")){
-                documentElem.setFinalInboundStage(1);
-                documentElem.setFinalInboundReturned(dateReturnedFinalInbound);
-                documentElem.setFinalInboundReceivedBy(commonUtils.getUserNameFromSession());
-                documentsService.updateDocument(documentElem);
-            }else if(documentElem.getDocumentName().equals("HOUSE WAYBILL DESTINATION")){
-                documentElem.setDocumentStatus("FROM FINAL OUTBOUND");
-                documentElem.setFinalInboundStage(1);
-                documentElem.setFinalInboundReturned(dateReturnedFinalInbound);
-                documentElem.setFinalInboundReceivedBy(commonUtils.getUserNameFromSession());
-                documentsService.updateDocument(documentElem);
-
-                List<String> vendorDestinationCodeList = new ArrayList<String>(); // placeholder for destination vendor codes
-                List<OrderItems> orderItemList = new ArrayList<OrderItems>();
-
-                // order item list under order id
-                orderItemList = operationsService.findAllOrderItemsByOrderId(orderIdParam);
-
-                // destination vendor codes will be stored in vendorDestinationCodeList
-                for(OrderItems orderItem : orderItemList){
-                    if(vendorDestinationCodeList.isEmpty()){
-                        vendorDestinationCodeList.add(orderItem.getVendorDestination());
-                    }else{
-                        if(!vendorDestinationCodeList.contains(orderItem.getVendorDestination())){
-                            vendorDestinationCodeList.add(orderItem.getVendorDestination());
-                        }
-                    }
-                }
-                // List all master waybill already in the documents
-                List<Documents> masterWaybillDestination = documentsService.findDocumentNameAndId("MASTER WAYBILL DESTINATION", orderIdParam);
-
-                for (String destinationVendor : vendorDestinationCodeList) {
-                    if(masterWaybillDestination.size() == 0) {
-                        // Create Master Waybill Destination Start
-                        Orders orderEntity = orderService.findOrdersById(orderIdParam);
-                        Documents documentEntity = new Documents();
-
-                        Client client = clientService.findClientById(getClientId().toString());
-                        documentEntity.setClient(client);
-
-                        documentEntity.setDocumentName(DocumentsConstants.MASTER_WAYBILL_DESTINATION);
-                        documentEntity.setReferenceId(orderEntity.getOrderId());
-                        documentEntity.setReferenceTable("ORDERS");
-                        documentEntity.setOrderNumber(orderEntity.getOrderNumber());
-                        documentEntity.setCreatedDate(new Date());
-                        documentEntity.setVendorCode(destinationVendor);
-                        documentEntity.setDocumentStatus("PENDING");
-                        documentEntity.setFinalInboundStage(1);
-                        documentEntity.setDocumentProcessed(3);
-                        documentEntity.setCreatedBy(commonUtils.getUserNameFromSession());
-                        documentEntity.setFinalInboundReturned(dateReturnedFinalInbound);
-                        // orderitem id should be set in orderitemid column WIP
-
-                        documentsService.addDocuments(documentEntity);
-                    }
-                }
-
-                // Create Master Waybill Destination End
-            }
-
-        }
+        documentsService.updateDocument(brfDocument);
 
         sessionAttributes.put("orderIdParam", orderIdParam);
 
@@ -3814,5 +3682,21 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setOriginVendorFlag(String originVendorFlag) {
         this.originVendorFlag = originVendorFlag;
+    }
+
+    public String getCheckString() {
+        return checkString;
+    }
+
+    public void setCheckString(String checkString) {
+        this.checkString = checkString;
+    }
+
+    public List<DocumentsBean> getConfirmDocuments() {
+        return confirmDocuments;
+    }
+
+    public void setConfirmDocuments(List<DocumentsBean> confirmDocuments) {
+        this.confirmDocuments = confirmDocuments;
     }
 }

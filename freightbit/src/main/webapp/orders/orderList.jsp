@@ -279,7 +279,6 @@
         actionConfirmation($('.approveBookingIcon'), $('.confirmApproveModalBtn'), $('#approveBookingModal'));
         actionConfirmation($('.deleteBookingIcon'), $('.confirmDeleteModalBtn'), $('#deleteBookingModal'));
 
-
 //        $('.cancelBookingIcon').click(function(){
 //            $('.confirmCancelModalBtn').attr('href', $(this).prev().attr('href'));
 //            $('#cancelBookingModal').modal('show');
@@ -327,7 +326,6 @@
                 alert('An error occurred! ' + thrownError);
             }
         });
-
     }
 
 </script>

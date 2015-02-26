@@ -6,10 +6,10 @@
     .pagebanner, .pagelinks {
         display: none;
     }
-    #inboundReceivedModal{
-        top:50%;
+    /*#inboundReceivedModal, #sendFinalOutbound, #finalInboundReceivedModal{
+        top:25%;
         outline: none;
-    }
+    }*/
     .documentsCheckbox {
         cursor: pointer;
     }
@@ -352,6 +352,11 @@
                                 </s:a>--%>
 
                             <%--</s:if>--%>
+                            <div class="col-lg-2 pull-right">
+                                <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="OUTBOUND">
+                                    <button type="button" class="btn btn-primary pull-right" style="margin-bottom: 15px;"> <i class="fa fa-plus"></i> Add Outbound Document</button>
+                                </a>
+                            </div>
 
                             <s:if test=" documentTab == 'OUTBOUND_READY' ">
                                 <%--<div class="outboundTableLoadingMainDiv center-text" style="margin-top: 1.6em;">--%>
@@ -363,9 +368,9 @@
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItem"></s:textfield>
                                     <s:param name="orderIdParam" value="%{#attr.document.referenceId}"></s:param>
 
-                                    <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="OUTBOUND">
+                                    <%--<a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="OUTBOUND">
                                         <button type="button" class="btn btn-primary pull-right" style="margin-bottom: 15px;"> <i class="fa fa-plus"></i> Add Outbound Document</button>
-                                    </a>
+                                    </a>--%>
 
                                     <display:table id="document" name="outboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="outboundTable outbound_table table table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
@@ -386,7 +391,7 @@
                                                         <%--</s:a>--%>
                                                         <%--<i class="fa fa-square-o documentsCheckbox"></i>--%>
 
-                                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"> </s:checkbox>
+                                                        <s:checkbox theme="simple" name="check" cssClass="checkOutbound" fieldValue="%{#attr.document.documentId}"> </s:checkbox>
                                                     </s:if>
 
                                                     <s:else>
@@ -489,11 +494,16 @@
                                         <td><display:column property="documentProcessed" title="PROCESS_FLAG_HIDE_THIS_OUTBOUND" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
+                                        <td><display:column property="documentId" title="PROCESS_FLAG_HIDE_THIS_OUTBOUND" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column>
+                                        </td>
                                     </display:table>
 
                                 </div>
 
-                                    <s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckText()"> </s:submit>
+                                    <%--<s:submit cssClass="btn btn-primary pull-right" value="Check Document(s)" onclick="addCheckText()"> </s:submit>--%>
+
+                                    <button type="button" class="btn btn-primary pull-right checkDocument" onclick="addCheckText()"><i class="fa fa-check"></i> Check Document(s)</button>
 
                                     <%--<s:if test=" documentTab == 'OUTBOUND_STAGE' ">--%>
 
@@ -521,6 +531,7 @@
                                     <%--</s:if>--%>
 
                                 </s:form>
+                                <s:hidden cssClass="outboundDocumentIds" id="outboundDocumentArray" />
                             </s:if>
                         </div>
 
@@ -542,7 +553,22 @@
 
                             </s:if>--%>
 
+                                <label class="col-lg-2 control-label">Date Received : </label>
+                                <div class="col-lg-2">
+                                    <s:textfield cssClass="form-control" name="dateReturnedInbound" disabled="true"></s:textfield>
+                                </div>
 
+                                <div class="col-lg-2">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inboundReceivedModal">
+                                        <i class="fa fa-plus"></i> Add Information
+                                    </button>
+                                </div>
+
+                                <div class="col-lg-2 pull-right">
+                                    <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="INBOUND">
+                                        <button type="button" class="btn btn-primary pull-right" style="margin-bottom: 15px;"><i class="fa fa-plus"></i> Add Inbound Document</button>
+                                    </a>
+                                </div>
 
                                 <s:if test=" documentTabInbound == 'INBOUND_READY' && documentTab != 'OUTBOUND_MISSING' ">
 
@@ -557,14 +583,15 @@
                                         <%--Processing documents. Please Wait.<br/>--%>
                                         <%--<i style="padding: 10px; font-size: 2em; color: #95A5A6;" class="fa fa-circle-o-notch fa-spin"></i>--%>
                                     <%--</div>--%>
+
                                     <div class="table-responsive inboundTableMainDiv" style="clear:both;">
                                         <s:form name="myform" action="processDocumentsInbound">
                                         <s:textfield type="hidden" name="orderIdParam" value="%{#attr.document.referenceId}"   />
                                         <s:textfield type="hidden" name="document.documentItem" id="documentItemInbound" />
 
-                                        <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="INBOUND">
+                                        <%--<a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="INBOUND">
                                             <button type="button" class="btn btn-primary pull-right" style="margin-bottom: 15px;"><i class="fa fa-plus"></i> Add Inbound Document</button>
-                                        </a>
+                                        </a>--%>
 
                                         <display:table id="document" name="inboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="inbound_table table table-hover table-bordered text-center tablesorter"
                                                        style="margin-top: 15px;">
@@ -579,7 +606,7 @@
                                                             <%--<s:a class="icon-action-link" href="%{checkDocumentInboundUrl}" rel="tooltip" title ="Check Document">--%>
                                                             <%--</s:a>--%>
                                                             <%--<i class="fa fa-square-o documentsCheckbox"></i>--%>
-                                                            <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"> </s:checkbox>
+                                                            <s:checkbox theme="simple" name="check" cssClass="checkInbound" fieldValue="%{#attr.document.documentId}"> </s:checkbox>
                                                         </s:if>
                                                         <s:else>
                                                             <i class="fa fa-check-square-o"></i>
@@ -736,11 +763,16 @@
                                             <td><display:column property="documentProcessed" title="PROCESS_FLAG_HIDE_THIS_INBOUND" class="tb-font-black" style="text-align: center;">
                                             </display:column>
                                             </td>
+                                            <td><display:column property="documentId" title="PROCESS_FLAG_HIDE_THIS_OUTBOUND" class="tb-font-black"
+                                                                style="text-align: center;"> </display:column>
+                                            </td>
                                         </display:table>
 
-                                            <s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckTextInbound()"></s:submit>
+                                            <%--<s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckTextInbound()"></s:submit>--%>
 
-                                    <%--<s:if test=" documentTabInbound == 'INBOUND_STAGE' ">--%>
+                                            <button type="button" class="btn btn-primary pull-right checkInboundDocument" onclick="addCheckTextInbound()"><i class="fa fa-check"></i> Check Document(s)</button>
+
+                                        <%--<s:if test=" documentTabInbound == 'INBOUND_STAGE' ">--%>
 
                                         <%--<s:url var="completeDocumentsInboundUrl" action="completeDocumentsInbound">
                                             <s:param name="orderIdParam"
@@ -750,16 +782,15 @@
                                             <button type="button" class="btn btn-primary pull-right">Complete Inbound Stage</button>
                                         </s:a>--%>
 
-                                    <%--</s:if>--%>
+                                        <%--</s:if>--%>
 
                                         <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'INBOUND');">--%>
 
                                     </s:form>
+                                    <s:hidden cssClass="inboundDocumentIds" id="inboundDocumentArray" />
                                     </div>
 
                                 </s:if>
-
-
 
                         </div>
 
@@ -782,6 +813,28 @@
                                     <button type="button" class="btn btn-primary">Activate Final Outbound Documents</button>
                                 </s:a>
                             </s:if>--%>
+
+                            <label class="col-lg-1 control-label">Date Sent : </label>
+                            <div class="col-lg-2">
+                                <s:textfield cssClass="form-control" name="dateSentFinalOutbound" disabled="true"></s:textfield>
+                            </div>
+
+                            <label class="col-lg-2 control-label">Tracking Number : </label>
+                            <div class="col-lg-2">
+                                <s:textfield cssClass="form-control" name="finalOutboundTrackingNumber" disabled="true"></s:textfield>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sendFinalOutbound">
+                                    <i class="fa fa-plus"></i> Add Information
+                                </button>
+                            </div>
+
+                            <div class="col-lg-2 pull-right">
+                                <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="FINAL OUTBOUND">
+                                    <button type="button" class="btn btn-primary pull-right" style="margin-bottom: 15px;"><i class="fa fa-plus"></i> Add Final Outbound Document</button>
+                                </a>
+                            </div>
 
                             <s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND_READY' && documentTab != 'OUTBOUND_MISSING' ">
 
@@ -806,10 +859,6 @@
                                     <s:textfield type="hidden" name="orderIdParam" id="order-Id"   />
                                     <s:textfield type="hidden" name="document.documentItem" id="documentItemFinalOutbound"></s:textfield>
 
-                                    <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="FINAL OUTBOUND">
-                                        <button type="button" class="btn btn-primary pull-right" style="margin-bottom: 15px;"><i class="fa fa-plus"></i> Add Final Outbound Document</button>
-                                    </a>
-
                                     <display:table id="document" name="finalOutboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="final_outbound_table table table-hover table-bordered text-center tablesorter"
                                                    style="margin-top: 15px;">
 
@@ -826,7 +875,7 @@
                                                         <%--<s:a class="icon-action-link" href="%{checkDocumentFinalOutboundUrl}">--%>
                                                         <%--</s:a>--%>
                                                         <%--<i class="fa fa-square-o documentsCheckbox"></i>--%>
-                                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"> </s:checkbox>
+                                                        <s:checkbox theme="simple" name="check" cssClass="checkFinalOutbound" fieldValue="%{#attr.document.documentId}"> </s:checkbox>
                                                     </s:if>
                                                     <s:else>
                                                         <i class="fa fa-check-square-o"></i>
@@ -946,8 +995,12 @@
                                         <td><display:column property="documentProcessed" title="PROCESS_FLAG_HIDE_THIS_FINALOUT" class="tb-font-black" style="text-align: center;">
                                         </display:column>
                                         </td>
+                                        <td><display:column property="documentId" title="PROCESS_FLAG_HIDE_THIS_OUTBOUND" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column>
+                                        </td>
                                     </display:table>
-                                        <s:submit cssClass="btn btn-primary pull-right" value="Check Document(s)" onclick="addCheckTextFinalOutbound()"></s:submit>
+                                        <%--<s:submit cssClass="btn btn-primary pull-right" value="Check Document(s)" onclick="addCheckTextFinalOutbound()"></s:submit>--%>
+                                        <button type="button" class="btn btn-primary pull-right checkFinalOutboundDocument" onclick="addCheckTextFinalOutbound()"><i class="fa fa-check"></i> Check Document(s)</button>
                                     </div>
 
                                     <%--<s:if test=" documentTabFinalOutbound == 'FINAL_OUTBOUND_STAGE' || documentTabFinalOutbound == 'FINAL_OUTBOUND_PENDING' ">--%>
@@ -976,7 +1029,7 @@
                                     <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'FINAL OUTBOUND');">--%>
 
                                 </s:form>
-
+                                <s:hidden cssClass="finalOutboundDocumentIds" id="finalOutboundDocumentArray" />
                             </s:if>
 
                         </div>
@@ -999,6 +1052,23 @@
 
                             </s:if>--%>
 
+                            <label class="col-lg-2 control-label">Date Received : </label>
+                            <div class="col-lg-2">
+                                <s:textfield cssClass="form-control" name="dateReturnedFinalInbound" disabled="true"></s:textfield>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#finalInboundReceivedModal">
+                                    <i class="fa fa-plus"></i> Add Information
+                                </button>
+                            </div>
+
+                            <div class="col-lg-2 pull-right">
+                                <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="FINAL INBOUND">
+                                    <button type="button" class="btn btn-primary pull-right" style="margin-bottom: 15px;"><i class="fa fa-plus"></i> Add Final Inbound Document</button>
+                                </a>
+                            </div>
+
                             <s:if test=" documentTabFinalInbound == 'FINAL_INBOUND_READY' && documentTab != 'OUTBOUND_MISSING' ">
 
                                 <%--<div class="form-group" style="padding-left: 15px;">--%>
@@ -1017,10 +1087,6 @@
                                         <s:textfield type="hidden" name="orderIdParam" id="order-Id"></s:textfield>
                                         <s:textfield type="hidden" name="document.documentItem" id="documentItemFinalInbound"></s:textfield>
 
-                                        <a class="addDocTrigger" id="add-document" data-referenceId="${order.orderId}" data-stage="FINAL INBOUND">
-                                            <button type="button" class="btn btn-primary pull-right" style="margin-bottom: 15px;"><i class="fa fa-plus"></i> Add Final Inbound Document</button>
-                                        </a>
-
                                         <display:table id="document" name="finalInboundDocuments" requestURI="viewOrderDocuments.action" pagesize="50" class="final_inbound_table table table-hover table-bordered text-center tablesorter"
                                                        style="margin-top: 15px;">
 
@@ -1035,7 +1101,7 @@
                                                         <%--<s:a class="icon-action-link" href="%{checkDocumentFinalInboundUrl}" rel="tooltip" title ="Check Document">--%>
                                                         <%--</s:a>--%>
                                                         <%--<i class="fa fa-square-o documentsCheckbox"></i>--%>
-                                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                        <s:checkbox theme="simple" name="check" cssClass="checkFinalInbound" fieldValue="%{#attr.document.documentId}"/>
                                                     </s:if>
 
                                                     <s:else>
@@ -1135,8 +1201,12 @@
                                             <td><display:column property="documentProcessed" title="PROCESS_FLAG_HIDE_THIS_FINALIN" class="tb-font-black" style="text-align: center;">
                                             </display:column>
                                             </td>
+                                            <td><display:column property="documentId" title="PROCESS_FLAG_HIDE_THIS_OUTBOUND" class="tb-font-black"
+                                                                style="text-align: center;"> </display:column>
+                                            </td>
                                         </display:table>
-                                        <s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckTextFinalInbound()"></s:submit>
+                                        <%--<s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckTextFinalInbound()"></s:submit>--%>
+                                        <button type="button" class="btn btn-primary pull-right checkFinalInboundDocument" onclick="addCheckTextFinalInbound()"><i class="fa fa-check"></i> Check Document(s)</button>
                                 </div>
                                         <%--<s:if test=" documentTabFinalInbound == 'FINAL_INBOUND_STAGE' ">--%>
                                             <%--<s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckTextFinalInbound()"></s:submit>--%>
@@ -1155,7 +1225,7 @@
                                         <%--<a id="add-document" href="#" data-toggle="modal" data-target="#addDocumentModal" onclick="addDocument(${order.orderId},'FINAL INBOUND');">--%>
 
                                     </s:form>
-
+                                <s:hidden cssClass="finalInboundDocumentIds" id="finalInboundDocumentArray" />
                             </s:if>
 
                         </div>
@@ -1192,7 +1262,7 @@
                                                 <%--<s:if test=" documentTabComplete == 'COMPLETE_STAGE_ACTIVE' ">--%>
 
                                                     <s:if test="#attr.document.documentProcessed <= 4">
-                                                        <s:checkbox theme="simple" name="check" fieldValue="%{#attr.document.documentId}"/>
+                                                        <s:checkbox theme="simple" name="check" cssClass="checkComplete"  fieldValue="%{#attr.document.documentId}"/>
                                                         <%--<s:url var="checkDocumentCompleteUrl" action="checkDocumentComplete">
                                                             <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                         </s:url>
@@ -1263,16 +1333,21 @@
                                     <td><display:column property="documentProcessed" title="PROCESS_FLAG_HIDE_THIS_COMPLETE" class="tb-font-black" style="text-align: center;">
                                     </display:column>
                                     </td>
+                                    <td><display:column property="documentId" title="PROCESS_FLAG_HIDE_THIS_OUTBOUND" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column>
+                                    </td>
                                 </display:table>
                                 </div>
 
                                 <s:if test=" documentTabComplete == 'COMPLETE_READY' ">
 
-                                    <s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckTextComplete()"></s:submit>
+                                    <%--<s:submit cssClass="btn btn-primary pull-right"  value="Check Document(s)" onclick="addCheckTextComplete()"></s:submit>--%>
+                                    <button type="button" class="btn btn-primary pull-right checkCompleteDocument" onclick="addCheckTextComplete()"><i class="fa fa-check"></i> Check Document(s)</button>
 
                                 </s:if>
 
                                 </s:form>
+                                <s:hidden cssClass="completeDocumentIds" id="completeDocumentArray" />
 
                                 <s:if test=" documentTabComplete == 'ARCHIVE_PENDING' ">
 
@@ -1397,26 +1472,29 @@
 </div>
 
 <!-- Modal for Inbound documents received-->
-<div class="modal fade" id="inboundReceivedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-left: 15em; margin-top: -10em; overflow-y: hidden">
+<div class="modal fade" id="inboundReceivedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <div class="modal-body row">
+            <div class="modal-header">
+                <h4 class="modal-title">Inbound Documents</h4>
+            </div>
+            <div class="modal-body" style="margin-top: -10px;">
                 <s:form action="dateReceivedInbound" theme="bootstrap">
                     <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
                     <div class="col-md-12">
-                        <label class="control-label" >Date Received</label>
+                        <label class="control-label" >Date Received :</label>
                         <div>
-                            <s:textfield type="text" cssClass="form-control" id="datepicker" name="dateReturnedInbound" required="true" placeholder="Select Returned date"></s:textfield>
+                            <s:textfield type="text" cssClass="form-control" id="datepicker" name="dateReturnedInbound" required="true" placeholder="Select Receive date"></s:textfield>
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <%--<div class="col-md-12">
                         <label class="control-label" style="padding-top:0px;">No. of SI / DR documents returned</label>
                         <div>
                             <s:select cssClass="form-control" name="quantitySI_DR" cssStyle="margin-bottom: 15px !important; resize: none;" list="documentQuantity" emptyOption="true" required="true" />
                         </div>
-                    </div>
+                    </div>--%>
 
                     <div style="float: right; margin-right: 1em; margin-top: 2em;">
                         <s:submit name="submit" cssClass="btn btn-primary" value="Okay" onclick="addOrderId()" />
@@ -1432,8 +1510,10 @@
 <div class="modal fade" id="sendFinalOutbound" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-
-            <div class="modal-body row">
+            <div class="modal-header">
+                <h4 class="modal-title">Final Outbound Documents</h4>
+            </div>
+            <div class="modal-body" style="margin-top: -10px;">
                 <s:form action="finalOutboundSent" theme="bootstrap">
                     <div class="col-md-12">
                         <label class="control-label" >Date Sent</label>
@@ -1467,11 +1547,10 @@
             </div>
             <div class="modal-body" style="margin-top: -10px;">
                 <s:form action="dateReceivedFinalInbound" theme="bootstrap">
-                    <label style="margin-left: 0.5em;" class="control-label">Date Received</label>
-                    <s:textfield type="text" cssClass="form-control" id="datepicker3" name="dateReturnedFinalInbound" required="true" placeholder="Select Returned date"></s:textfield>
+                    <label class="control-label">Date Received :</label>
+                    <s:textfield type="text" cssClass="form-control" id="datepicker3" name="dateReturnedFinalInbound" required="true" placeholder="Select Received date"></s:textfield>
                     <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
-                    <div style="margin-top: 1em;" class="pull   -right">
-                        <%--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--%>
+                    <div style="float: right; margin-right: 1em; margin-top: 2em;">
                         <s:submit name="submit" cssClass="btn btn-primary" value="Okay" onclick="addOrderId()" />
                     </div>
                 </s:form>
@@ -1495,10 +1574,133 @@
     </div>
 </div>
 
+<div class="modal fade" id="confirmDocumentProcess" role="dialog" aria-labelledby="myModalLabel1" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-check"></i> Proceed with processing of documents?</h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="documentListDiv"/>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script>
 
     $(document).ready(function(){
-        documentsCheckbox();
+
+        /*FOR OUTBOUND MODAL*/
+        $('.checkDocument').click(function(){
+            var documentItem = $('#documentItem').val(),
+                orderIdPass = $('[name = "orderIdParam"]').val(),
+                outboundCheckBox = $('.checkOutbound:checked'),
+                stageParam = "OUTBOUND",
+                checkedBox;
+
+            for(var i=0; i < outboundCheckBox.size(); i++){
+                var documentId = outboundCheckBox.eq(i).closest('tr').find('td').eq(8).text();
+                if(i == 0){
+                    $('.outboundDocumentIds').val(documentId);
+                }else{
+                    $('.outboundDocumentIds').val($('.outboundDocumentIds').val()+','+documentId);
+                }
+                checkedBox = $('.outboundDocumentIds').val();
+            }
+
+            checkDocumentModal(documentItem,orderIdPass,checkedBox,stageParam);
+        });
+
+        /*FOR INBOUND MODAL*/
+        $('.checkInboundDocument').click(function(){
+            var documentItem = $('#documentItemInbound').val(),
+                orderIdPass = $('[name = "orderIdParam"]').val(),
+                inboundCheckBox = $('.checkInbound:checked'),
+                stageParam = "INBOUND",
+                checkedBox;
+
+            for(var i=0; i < inboundCheckBox.size(); i++){
+                var documentId = inboundCheckBox.eq(i).closest('tr').find('td').eq(8).text();
+                if(i == 0){
+                    $('.inboundDocumentIds').val(documentId);
+                }else{
+                    $('.inboundDocumentIds').val($('.inboundDocumentIds').val()+','+documentId);
+                }
+                checkedBox = $('.inboundDocumentIds').val();
+            }
+
+            checkDocumentModal(documentItem,orderIdPass,checkedBox,stageParam);
+        });
+
+        /*FOR FINAL OUTBOUND MODAL*/
+        $('.checkFinalOutboundDocument').click(function(){
+            var documentItem = $('#documentItemFinalOutbound').val(),
+                orderIdPass = $('[name = "orderIdParam"]').val(),
+                finalOutboundCheckBox = $('.checkFinalOutbound:checked'),
+                stageParam = "FINAL OUTBOUND",
+                checkedBox;
+
+            for(var i=0; i < finalOutboundCheckBox.size(); i++){
+                var documentId = finalOutboundCheckBox.eq(i).closest('tr').find('td').eq(8).text();
+                if(i == 0){
+                    $('.finalOutboundDocumentIds').val(documentId);
+                }else{
+                    $('.finalOutboundDocumentIds').val($('.finalOutboundDocumentIds').val()+','+documentId);
+                }
+                checkedBox = $('.finalOutboundDocumentIds').val();
+            }
+
+            checkDocumentModal(documentItem,orderIdPass,checkedBox,stageParam);
+        });
+
+        /*FOR FINAL INBOUND MODAL*/
+        $('.checkFinalInboundDocument').click(function(){
+            var documentItem = $('#documentItemFinalInbound').val(),
+                orderIdPass = $('[name = "orderIdParam"]').val(),
+                finalInboundCheckBox = $('.checkFinalInbound:checked'),
+                stageParam = "FINAL INBOUND",
+                checkedBox;
+
+            for(var i=0; i < finalInboundCheckBox.size(); i++){
+                var documentId = finalInboundCheckBox.eq(i).closest('tr').find('td').eq(8).text();
+                if(i == 0){
+                    $('.finalInboundDocumentIds').val(documentId);
+                }else{
+                    $('.finalInboundDocumentIds').val($('.finalInboundDocumentIds').val()+','+documentId);
+                }
+                checkedBox = $('.finalInboundDocumentIds').val();
+            }
+
+            checkDocumentModal(documentItem,orderIdPass,checkedBox,stageParam);
+        });
+
+        /*FOR COMPLETE MODAL*/
+        $('.checkCompleteDocument').click(function(){
+            var documentItem = $('#documentItemComplete').val(),
+                orderIdPass = $('[name = "orderIdParam"]').val(),
+                completeCheckBox = $('.checkComplete:checked'),
+                stageParam = "COMPLETE",
+                checkedBox;
+
+            for(var i=0; i < completeCheckBox.size(); i++){
+                var documentId = completeCheckBox.eq(i).closest('tr').find('td').eq(8).text();
+                if(i == 0){
+                    $('.completeDocumentIds').val(documentId);
+                }else{
+                    $('.completeDocumentIds').val($('.completeDocumentIds').val()+','+documentId);
+                }
+                checkedBox = $('.completeDocumentIds').val();
+            }
+
+            checkDocumentModal(documentItem,orderIdPass,checkedBox,stageParam);
+        });
+
+
+        /*documentsCheckbox();*/
 
 //        massCheckbox('outboundCheckBox', 'outboundTable');
 //        massCheckbox('inboundCheckBox', 'inbound_table');
@@ -1658,11 +1860,11 @@ $( window ).load(function() {
 
 });
 
-    processDocumentStage('.outboundTable', $('.outboundTableMainDiv'), $('.outboundTableLoadingMainDiv'), 8);
-    processDocumentStage('.inbound_table', $('.inboundTableMainDiv'), $('.inboundTableLoadingMainDiv'), 8);
-    processDocumentStage('.final_outbound_table', $('.finalOutboundTableMainDiv'), $('.finalOutboundTableLoadingMainDiv'), 8);
-    processDocumentStage('.final_inbound_table', $('.finalInboundTableMainDiv'), $('.finalInboundTableLoadingMainDiv'), 8);
-    processDocumentStage('.completeTable', $('.completeTableMainDiv'), $('.completeTableLoadingMainDiv'), 8);
+    processDocumentStage('.outboundTable', $('.outboundTableMainDiv'), $('.outboundTableLoadingMainDiv'), 8,9);
+    processDocumentStage('.inbound_table', $('.inboundTableMainDiv'), $('.inboundTableLoadingMainDiv'), 8,9);
+    processDocumentStage('.final_outbound_table', $('.finalOutboundTableMainDiv'), $('.finalOutboundTableLoadingMainDiv'), 8,9);
+    processDocumentStage('.final_inbound_table', $('.finalInboundTableMainDiv'), $('.finalInboundTableLoadingMainDiv'), 8,9);
+    processDocumentStage('.completeTable', $('.completeTableMainDiv'), $('.completeTableLoadingMainDiv'), 8,9);
 
 });
 
@@ -1757,7 +1959,6 @@ function showInputFields(referenceId,documentId,documentName) {
             this.document.title = "Release Order";
             window.location.href = '#focusHere';
         }
-
     }
 }
 
@@ -1767,24 +1968,18 @@ var sentDate = $('#datepicker2');
 var finalReturnedDate = $('#datepicker3');
 
 returnedDate.datepicker({
-
     timeFormat: 'h:mm TT',
     minDate: 0
-
 });
 
 sentDate.datepicker({
-
     timeFormat: 'h:mm TT',
     minDate: 0
-
 });
 
 finalReturnedDate.datepicker({
-
     timeFormat: 'h:mm TT',
     minDate: 0
-
 });
 
 </script>

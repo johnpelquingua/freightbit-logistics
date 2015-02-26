@@ -1147,7 +1147,7 @@ function changeDocumentInputLabels(documentName) {
     }
 }
 
-function documentsCheckbox(){
+/*function documentsCheckbox(){
     $('.documentsCheckbox').click(function(){
 
         if($(this).parent().siblings().eq(1).text() == undefined || $(this).parent().siblings().eq(1).text() == '' || $(this).parent().siblings().eq(1).text() == null){
@@ -1158,7 +1158,7 @@ function documentsCheckbox(){
             window.location = $(this).prev().attr('href');
         }
     });
-}
+}*/
 
 function preventSamePort(select1, select2) {
     select2.find('option').show();
@@ -1442,8 +1442,25 @@ function actionConfirmation(icon, confirmBtn, modal){
     });
 }
 
-function processDocumentStage(table, tableDiv, loadingDiv, stageColumn){
-    var stageFlag = $(table+' tbody tr td:nth-child('+stageColumn+')');
+function checkDocumentModal(documentItem,orderIdPass,checkedBox,stageParam) {
+    $.ajax({
+        url: 'confirmDocumentModal',
+        type: 'POST',
+        data: { documentItem: documentItem, orderIdParam: orderIdPass, checkString: checkedBox, documentStageParam: stageParam },
+        dataType: 'html',
+        success: function (html) {
+            $('#documentListDiv').html(html);
+            $('#confirmDocumentProcess').modal('show');
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            alert('An error occurred! ' + thrownError);
+        }
+    });
+}
+
+function processDocumentStage(table, tableDiv, loadingDiv, stageColumn, idColumn){
+    var stageFlag = $(table+' tbody tr td:nth-child('+stageColumn+')'),
+        idFlag = $(table+' tbody tr td:nth-child('+idColumn+')');
 
     for(var i=0; i < stageFlag.size(); i++){
         switch(stageFlag.eq(i).text()){
@@ -1468,7 +1485,9 @@ function processDocumentStage(table, tableDiv, loadingDiv, stageColumn){
         }
     }
     $(table+' thead tr th:nth-child('+stageColumn+')').hide();
+    $(table+' thead tr th:nth-child('+idColumn+')').hide();
     stageFlag.hide();
+    idFlag.hide();
     loadingDiv.hide();
     tableDiv.fadeIn();
 }
