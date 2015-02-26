@@ -81,7 +81,6 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{editVendorUrl}" rel="tooltip"
                                              title="Edit this vendor">
-                                            <%--<img src="../includes/images/edit-user.png" class="icon-action circ-icon">--%>
                                             <i class="fa fa-pencil"></i>
                                         </s:a>
 
@@ -91,7 +90,6 @@
                                         <s:a class="icon-action-link" href="%{deleteVendorUrl}" rel="tooltip"
                                              title="Delete this Vendor"
                                              onclick="return confirm('Do you really want to delete?');">
-                                            <%--<img src="../includes/images/remove-user.png" class="icon-action circ-icon">--%>
                                         </s:a>
                                         <i class="fa fa-trash-o vendorDeleteAction"></i>
 
@@ -100,7 +98,6 @@
                                         </s:url>
                                         <s:a class="icon-action-link" href="%{viewInfoVendorUrl}" rel="tooltip"
                                              title="View Vendor Info">
-                                            <%--<img src="../includes/images/info-b.png" class="icon-action circ-icon">--%>
                                             <i class="fa fa-info-circle"></i>
                                         </s:a>
                                     </display:column>
@@ -112,21 +109,6 @@
 
                 </div>
             </div>
-            <%--<div class="panel-footer">
-
-                <div class="table-responsive" >
-                    <div class="col-lg-12" style="position:relative;margin-top: -28px;">
-                        <table class="col-lg-6">
-                            <tr>
-                                <td><label>Legend:</label></td>
-                                <td><i class="fa fa-pencil"></i> Edit</td>
-                                <td><i class="fa fa-trash-o"></i> Delete</td>
-                                <td><i class="fa fa-info-circle"></i> Information</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>--%>
         </div>
     </div>
 </div>

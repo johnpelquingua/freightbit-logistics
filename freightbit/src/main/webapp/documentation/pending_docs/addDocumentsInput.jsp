@@ -8,6 +8,9 @@
         <s:hidden value="%{order.freightType}" cssClass="serviceType"/>
         <s:hidden value="%{order.modeOfService}" cssClass="serviceMode"/>
 
+        <s:hidden cssClass="originVendorFlag" value="%{originVendorFlag}" />
+        <s:hidden cssClass="destinationVendorFlag" value="%{destinationVendorFlag}" />
+
         <s:form action="addDocument" theme="bootstrap">
 
             <label class="col-lg-4 control-label" style="text-align: right;">Document Name</label>
@@ -57,6 +60,58 @@
 
 <script>
     $(document).ready(function(){
+
+        $('#documentName').change(function(){
+            var documentName = $(this).val(),
+            originVendorFlag = $('.originVendorFlag').val(),
+            destinationVendorFlag = $('.destinationVendorFlag').val(),
+            referenceNumber = $('.modalComment'),
+            commentsBox = $('.modalTextArea');
+
+            switch(documentName){
+                case 'MASTER WAYBILL ORIGIN' :
+                    if(originVendorFlag = 'MULTI'){
+                        referenceNumber.prop('disabled', true);
+                        commentsBox.prop('disabled', true);
+                    }else{
+                        referenceNumber.prop('disabled', false);
+                        commentsBox.prop('disabled', false);
+                    }
+                    break;
+                case 'MASTER WAYBILL DESTINATION' :
+                    if(originVendorFlag = 'MULTI'){
+                        referenceNumber.prop('disabled', true);
+                        commentsBox.prop('disabled', true);
+                    }else{
+                        referenceNumber.prop('disabled', false);
+                        commentsBox.prop('disabled', false);
+                    }
+                    break;
+                default :
+                    referenceNumber.prop('disabled', false);
+                    commentsBox.prop('disabled', false);
+                    break;
+            }
+
+            /*if(documentName = 'MASTER WAYBILL ORIGIN'){
+                if(originVendorFlag = 'MULTI'){
+                    referenceNumber.prop('disabled', true);
+                    commentsBox.prop('disabled', true);
+                }else{
+                    referenceNumber.prop('disabled', false);
+                    commentsBox.prop('disabled', false);
+                }
+            }else{
+                referenceNumber.prop('disabled', false);
+                commentsBox.prop('disabled', false);
+            }*/
+
+        });
+
+    });
+
+    $(document).ready(function(){
+
         for(var i=0; i < $('.datalistDocuments option').size(); i++){
             if($('.datalistDocuments option').eq(i).val() == ''){
                 $('.datalistDocuments option').eq(i).remove();
@@ -137,6 +192,7 @@
                 }
             }
         }
+
     });
 </script>
 

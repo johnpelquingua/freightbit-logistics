@@ -1113,6 +1113,40 @@ function vesselScheduleColor(tableClass, departureColumn){
     }
 }
 
+function changeDocumentInputLabels(documentName) {
+    var documentSeries = $('.documentSeries');
+
+    switch(documentName){
+        case 'BOOKING REQUEST FORM' :
+            documentSeries.empty().append('BRF Number <span class="asterisk_red"></span>');
+            break;
+        case 'PROFORMA BILL OF LADING' :
+            documentSeries.empty().append('Bill of Lading Number <span class="asterisk_red"></span>');
+            break;
+        case 'MASTER BILL OF LADING' :
+            documentSeries.empty().append('Bill of Lading Number <span class="asterisk_red"></span>');
+            break;
+        case 'HOUSE BILL OF LADING' :
+            documentSeries.empty().append('Bill of Lading Number <span class="asterisk_red"></span>');
+            break;
+        case 'HOUSE WAYBILL ORIGIN' :
+            documentSeries.empty().append('Waybill Number <span class="asterisk_red"></span>');
+            break;
+        case 'MASTER WAYBILL ORIGIN' :
+            documentSeries.empty().append('Waybill Number <span class="asterisk_red"></span>');
+            break;
+        case 'HOUSE WAYBILL DESTINATION' :
+            documentSeries.empty().append('Waybill Number <span class="asterisk_red"></span>');
+            break;
+        case 'MASTER WAYBILL DESTINATION' :
+            documentSeries.empty().append('Waybill Number <span class="asterisk_red"></span>');
+            break;
+        default :
+            break;
+
+    }
+}
+
 function documentsCheckbox(){
     $('.documentsCheckbox').click(function(){
 

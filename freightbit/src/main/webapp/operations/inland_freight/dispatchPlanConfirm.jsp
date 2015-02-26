@@ -133,11 +133,16 @@
 
         <%--<s:textfield value="%{#attr.truck.plateNumber}" />--%>
 
+        <s:hidden value="%{originConfirmFlag}" />
+
         <div class="pull-right">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
             <s:url var="editOrderItemsDispatchUrl" action="editOrderItemsOriginModal">
 
+                <s:param name="originConfirmFlag"
+                         value="originConfirmFlag">
+                </s:param>
                 <s:param name="vendorId"
                          value="#attr.vendor.vendorId">
                 </s:param>

@@ -99,6 +99,8 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private Integer completeCount;
     private Integer archiveCount;
     private Integer billingCount;
+    private String originVendorFlag;
+    private String destinationVendorFlag;
 
     private List<Documents> outboundEntityList = new ArrayList<Documents>();
     private List<Documents> inboundEntityList = new ArrayList<Documents>();
@@ -1649,29 +1651,59 @@ public class DocumentAction extends ActionSupport implements Preparable{
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + orderIdParam);
         System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" + documentStageParam);
 
-//        OrderBean orderBean = new OrderBean();
-//
-//        orderBean.setServiceType(orderService.findOrdersById(orderIdParam).getServiceType());
-//        orderBean.setModeOfService(orderService.findOrdersById(orderIdParam).getServiceMode());
-
         // Display correct Order Number in breadcrumb
         Orders orderEntity = orderService.findOrdersById(orderIdParam);
         order = transformToOrderFormBean(orderEntity);
+        List<OrderItems> orderItemsList = operationsService.findAllOrderItemsByOrderId(orderEntity.getOrderId());
+
+        List<String> vendorOrigin = new ArrayList<String>();
+        List<String> vendorDestination = new ArrayList<String>();
+
+        // Origin vendors set will be stored in VendorOrigin Variable
+        Integer vendorOriginCount = 0;
+        for (OrderItems everyItem : orderItemsList) {
+            if (vendorOrigin.isEmpty()) {
+                vendorOrigin.add(everyItem.getVendorOrigin());
+                vendorOriginCount = vendorOriginCount + 1;
+            } else {
+                if (!vendorOrigin.contains(everyItem.getVendorOrigin())) {
+                    vendorOrigin.add(everyItem.getVendorOrigin());
+                    vendorOriginCount = vendorOriginCount + 1;
+                }
+            }
+        }
+
+        // Destination vendors set will be stored in VendorDestination Variable
+        Integer vendorDestinationCount = 0;
+        for (OrderItems everyItem : orderItemsList) {
+            if (vendorDestination.isEmpty()) {
+                vendorDestination.add(everyItem.getVendorDestination());
+                vendorDestinationCount = vendorDestinationCount + 1;
+            } else {
+                if (!vendorDestination.contains(everyItem.getVendorDestination())) {
+                    vendorDestination.add(everyItem.getVendorDestination());
+                    vendorDestinationCount = vendorDestinationCount + 1;
+                }
+            }
+        }
+
+        if(vendorOriginCount == 1){
+            originVendorFlag = "SINGLE";
+        }else if(vendorOriginCount > 1){
+            originVendorFlag = "MULTI";
+        }else{
+            originVendorFlag = "NONE";
+        }
+
+        if(vendorDestinationCount == 1){
+            destinationVendorFlag = "SINGLE";
+        }else if(vendorDestinationCount > 1){
+            destinationVendorFlag = "MULTI";
+        }else{
+            destinationVendorFlag = "NONE";
+        }
 
         documentNames = parameterService.getParameterMap(ParameterConstants.DOCUMENT, ParameterConstants.DOCUMENT_NAME);
-
-//        documentNameList.add("HOUSE BILL OF LADING");
-//        documentNameList.add("afdad");
-
-//        for (int i=0; i == documentNames.size(); i++){
-//            System.out.println(">>>>>>>" + documentNames.get(i).getReferenceColumn());
-//
-//        }
-
-//        if(documentStageParam.equals("OUTBOUND")){
-//            documentNames.add("HOUSE BILL OF LADING");
-//            documentNames.add("HOUSE BILL OF LADING2");
-//        }
 
         return SUCCESS;
     }
@@ -3766,5 +3798,21 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setProformaBillOfLadingReportService(ProformaBillOfLadingReportService proformaBillOfLadingReportService) {
         this.proformaBillOfLadingReportService = proformaBillOfLadingReportService;
+    }
+
+    public String getDestinationVendorFlag() {
+        return destinationVendorFlag;
+    }
+
+    public void setDestinationVendorFlag(String destinationVendorFlag) {
+        this.destinationVendorFlag = destinationVendorFlag;
+    }
+
+    public String getOriginVendorFlag() {
+        return originVendorFlag;
+    }
+
+    public void setOriginVendorFlag(String originVendorFlag) {
+        this.originVendorFlag = originVendorFlag;
     }
 }

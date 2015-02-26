@@ -725,7 +725,8 @@
         </action>
 
         <action name="addReferenceNumber" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="addReferenceNumber">
-            <result name="success" type="redirect">viewDocumentList</result>
+            <result name="FREIGHT" type="redirect">viewDocumentList</result>
+            <result name="DISPATCH" type="redirect">viewDocumentListInland</result>
         </action>
 
         <!--DOCUMENTS PAGE-->

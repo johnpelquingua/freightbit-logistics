@@ -2,50 +2,6 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<%--<script>
-
-    $(document).ready(function() {
-
-        $( window ).load(function() {
-
-            var outbound_tab = $("#documentTab").val();
-
-            if(outbound_tab == "OUTBOUND_COMPLETE"){
-
-                $("#first").toggleClass('active complete');
-                $("#second").toggleClass('disabled active');
-            }
-
-            var inbound_tab = $("#documentTabInbound").val();
-
-            if(inbound_tab == "INBOUND_COMPLETE"){
-
-                $("#second").toggleClass('active complete');
-                $("#third").toggleClass('disabled active');
-            }
-
-            var final_outbound_tab = $("#documentTabFinalOutbound").val();
-
-            if(final_outbound_tab == "FINAL_OUTBOUND_SENT" ){
-
-                $("#third").toggleClass('active complete');
-                $("#fourth").toggleClass('disabled active');
-            }
-
-            var final_inbound_tab = $("#documentTabFinalInbound").val();
-
-            if(final_inbound_tab == "FINAL_INBOUND_COMPLETE" ){
-
-                $("#fourth").toggleClass('active complete');
-                $("#fifth").toggleClass('disabled active');
-            }
-
-        });
-
-    });
-
-</script>--%>
-
 <style>
     .pagebanner, .pagelinks {
         display: none;
@@ -54,8 +10,10 @@
         top:50%;
         outline: none;
     }
-
     .documentsCheckbox {
+        cursor: pointer;
+    }
+    .documentDeleteAction {
         cursor: pointer;
     }
 </style>
@@ -489,7 +447,7 @@
                                                         <s:a id="edit-icon" class="icon-action-link" href="%{addReferenceNumberUrl}" rel="tooltip" title ="Add Reference Number">
                                                             <i class="fa fa-edit"></i>
                                                         </s:a>--%>
-                                                        <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                                        <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}','${document.documentName}');">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
                                                     <%--</s:if>--%>
@@ -506,8 +464,8 @@
                                                             <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                         </s:url>
                                                         <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                                            <i class="fa fa-trash-o"></i>
                                                         </s:a>
+                                                        <i class="fa fa-trash-o documentDeleteAction"></i>
                                                     </s:if>
 
                                                     <%--Move Document--%>
@@ -730,7 +688,7 @@
                                                         <i class="fa fa-edit"></i>
                                                     </s:a>--%>
 
-                                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}','${document.documentName}');">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <%--</s:if>--%>
@@ -747,8 +705,8 @@
                                                             <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                         </s:url>
                                                         <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                                            <i class="fa fa-trash-o"></i>
                                                         </s:a>
+                                                        <i class="fa fa-trash-o documentDeleteAction"></i>
                                                     </s:if>
 
                                                     <%--Move Document--%>
@@ -955,7 +913,7 @@
                                                     <i class="fa fa-fax"></i>
                                                 </s:a>
                                             </s:if>--%>
-                                                <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                                <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}','${document.documentName}');">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 <%--Print Document--%>
@@ -971,8 +929,8 @@
                                                         <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                     </s:url>
                                                     <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                                        <i class="fa fa-trash-o"></i>
                                                     </s:a>
+                                                    <i class="fa fa-trash-o documentDeleteAction"></i>
                                                 </s:if>
 
                                                 <%--Move Document--%>
@@ -1144,7 +1102,7 @@
                                                             <i class="fa fa-edit"></i>
                                                         </s:a>--%>
                                                     <%--</s:if>--%>
-                                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}','${document.documentName}');">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                     <%--Print Document--%>
@@ -1160,8 +1118,8 @@
                                                             <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                         </s:url>
                                                         <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                                            <i class="fa fa-trash-o"></i>
                                                         </s:a>
+                                                        <i class="fa fa-trash-o documentDeleteAction"></i>
                                                     </s:if>
 
                                                     <%--Move Document--%>
@@ -1279,7 +1237,7 @@
 
                                         <display:column title="Action" class="tb-font-black" style="text-align: center;" >
 
-                                            <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                            <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}','${document.documentName}');">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <%--Print Document--%>
@@ -1295,8 +1253,8 @@
                                                     <s:param name="documentIdParam" value="%{#attr.document.documentId}"></s:param>
                                                 </s:url>
                                                 <s:a class="icon-action-link" href="%{deleteDocumentUrl}" rel="tooltip" title="Delete Document" onclick="return confirm('Delete this document?');">
-                                                    <i class="fa fa-trash-o"></i>
                                                 </s:a>
+                                                <i class="fa fa-trash-o documentDeleteAction"></i>
                                             </s:if>
 
                                         </display:column>
@@ -1522,8 +1480,20 @@
     </div>
 </div>
 
-<%--<s:textfield type="hidden" value="%{archiveCount}" id="archiveCount" />
-<s:textfield type="hidden" value="%{billingCount}" id="billingCount" />--%>
+<div class="modal fade" id="documentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="font-size: 1.5em;"><i class="fa fa-warning" style="color: red;"></i> Confirm Document Deletion</div>
+            <div class="modal-body">
+                Are you sure you want to delete this document?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <a class="documentDeleteBtn btn btn-danger" href="#">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
 
@@ -1578,6 +1548,9 @@
                 $('#document [type="checkbox"]').prop('checked', true);
             }
         });
+
+        actionConfirmation($('.documentDeleteAction'), $('.documentDeleteBtn'), $('#documentDeleteModal'));
+
     });
 
     $(function() {
@@ -1680,7 +1653,7 @@ $( window ).load(function() {
     /*Anchor on inbound tab click*/
 
     if (outbound_tab == "OUTBOUND" || outbound_tab == "OUTBOUND_COMPLETE") {
-        window.location.href = '#documentTab';
+        window.location.href = '#focusHere';
     }
 
 });
@@ -1691,15 +1664,11 @@ $( window ).load(function() {
     processDocumentStage('.final_inbound_table', $('.finalInboundTableMainDiv'), $('.finalInboundTableLoadingMainDiv'), 8);
     processDocumentStage('.completeTable', $('.completeTableMainDiv'), $('.completeTableLoadingMainDiv'), 8);
 
-    /*var check = document.getElementById("check");
-    for (var i = 0; i < check.length; i++) {
-        check[i].checked = true;
-    }*/
 });
 
 /*Script that will trigger input area*/
 
-function showInputFields(referenceId,documentId) {
+function showInputFields(referenceId,documentId,documentName) {
     $.ajax({
         url: 'getInputFieldAction',
         type: 'POST',
@@ -1707,6 +1676,7 @@ function showInputFields(referenceId,documentId) {
         dataType: 'html',
         success: function (html) {
             $('#inputDiv').html(html);
+            changeDocumentInputLabels(documentName);
         },
         error: function(xhr, ajaxOptions, thrownError){
             alert('An error occurred! ' + thrownError);
@@ -1790,14 +1760,6 @@ function showInputFields(referenceId,documentId) {
 
     }
 }
-
-/*function generateReleaseOrderReport(){
-
-    var win = window.open('documentations/generateReleaseOrderReport','bookingRequest','width=910,height=800');
-    win.onload = function() { this.document.title = "Release Order"; }
-
-}
-*/
 
 // Date Time Picker
 var returnedDate = $('#datepicker');

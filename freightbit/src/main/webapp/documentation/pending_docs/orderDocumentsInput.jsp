@@ -19,7 +19,7 @@
                     </div>
                 <%--</div>
                 <div class="form-group">--%>
-                    <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Series Number<span class="asterisk_red"></span></label>
+                    <label class="col-lg-4 control-label documentSeries" style="clear:both; text-align: right; clear:both;">Series Number<span class="asterisk_red"></span></label>
                     <div class="col-lg-8" >
                         <%--<s:property value="%{document.vendorCode}" />
                         <s:property value="%{document.documentType}" />--%>

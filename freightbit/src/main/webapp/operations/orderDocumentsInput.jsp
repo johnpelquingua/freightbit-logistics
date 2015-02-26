@@ -18,7 +18,7 @@
                         <s:textfield cssClass="form-control" style="margin-bottom: 15px !important;" value="%{document.vendorCode}" disabled="true"></s:textfield>
                     </div>
 
-                    <label class="col-lg-4 control-label" style="clear:both; text-align: right; clear:both;">Series Number<span class="asterisk_red"></span></label>
+                    <label class="col-lg-4 control-label documentSeries" style="clear:both; text-align: right; clear:both;">Series Number<span class="asterisk_red"></span></label>
                     <div class="col-lg-8" >
 
                         <s:hidden name="document.documentId" value="%{document.documentId}" />

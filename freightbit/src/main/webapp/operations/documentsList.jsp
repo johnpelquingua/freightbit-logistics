@@ -86,7 +86,7 @@
                                 <%--</s:if>--%>
 
                                 <%--<s:else>--%>
-                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}');">
+                                    <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showInputFields(${document.referenceId},'${document.documentId}','${document.documentName}');">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a id="print-icon" href="#" onclick="generateReport(${document.documentId},'${document.documentName}');">
@@ -152,7 +152,8 @@
 <script>
     /*Script that will trigger input area*/
 
-    function showInputFields(referenceId,documentId) {
+    function showInputFields(referenceId,documentId,documentName) {
+
         $.ajax({
             url: 'getInputFieldAction',
             type: 'POST',
@@ -160,6 +161,7 @@
             dataType: 'html',
             success: function (html) {
                 $('#inputDiv').html(html);
+                changeDocumentInputLabels(documentName);
             },
             error: function(xhr, ajaxOptions, thrownError){
                 alert('An error occurred! ' + thrownError);
