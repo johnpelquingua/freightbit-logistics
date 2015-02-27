@@ -99,6 +99,15 @@
             <result name="success" type="tiles">operations.statusListItems.tiles</result>
         </action>
 
+        <action name="updateContainerDetails" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction" method="updateContainerDetails">
+            <result name="input" type="tiles">operations.statusListItems.tiles</result>
+            <result name="success" type="redirect">loadUpdateContainerSuccess</result>
+        </action>
+
+        <action name="loadUpdateContainerSuccess" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction" method="loadUpdateContainerSuccess">
+            <result name="success" type="tiles">operations.statusListItems.tiles</result>
+        </action>
+
         <action name="loadUpdateStatus" class="com.sr.apps.freightbit.operations.action.OrderStatusLogsAction"
                 method="loadUpdateStatus">
             <result name="success" type="tiles">operations.updateStatus.tiles</result>

@@ -14,8 +14,6 @@ public class OrderStatusLogs implements Serializable {
     private String createdBy;
     private Date createdTimestamp;
     private Date actualDate;
-//    private String containerNumber;
-
     public OrderStatusLogs() {
     }
 
@@ -94,12 +92,4 @@ public class OrderStatusLogs implements Serializable {
         this.actualDate = actualDate;
     }
 
-    /*@Column(name = "containerNumber")
-    public String getContainerNumber() {
-        return containerNumber;
-    }
-
-    public void setContainerNumber(String containerNumber) {
-        this.containerNumber = containerNumber;
-    }*/
 }

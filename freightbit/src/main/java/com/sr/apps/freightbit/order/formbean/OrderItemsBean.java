@@ -50,13 +50,13 @@ public class OrderItemsBean {
     private String containerNumber;
     private String sealNumber;
     private String bulletSeal;
-    private String vendorSeal;
+    private String shippingSeal;
 
     public OrderItemsBean(){
 
     }
 
-    public OrderItemsBean(Date modifiedTimestamp, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimestamp, String createdBy, String modifiedBy, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorOriginName, String vendorDestination, String vendorDestinationName, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement, String vendorName, String voyageNumber, String departureDate, String arrivalDate, Integer containerId, String containerNumber, String sealNumber, String bulletSeal, String vendorSeal) {
+    public OrderItemsBean(Date modifiedTimestamp, Integer orderItemId, Integer orderId, Integer quantity, String classification, String description, Double declaredValue, Double weight, String remarks, Float rate, Date createdTimestamp, String createdBy, String modifiedBy, String nameSize, String status, String shipmentStatus, Float volume, Integer clientId, String commodity, String comments, String vendorSea, String vendorOrigin, String vendorOriginName, String vendorDestination, String vendorDestinationName, String vesselName, String finalPickupDate, String finalDeliveryDate, String driverOrigin, String driverDestination, String truckOrigin, String truckDestination, String vesselScheduleId, String orderNum, String editItem, String port, String serviceRequirement, String vendorName, String voyageNumber, String departureDate, String arrivalDate, Integer containerId, String containerNumber, String sealNumber, String bulletSeal, String shippingSeal) {
         this.modifiedTimestamp = modifiedTimestamp;
         this.orderItemId = orderItemId;
         this.orderId = orderId;
@@ -104,7 +104,7 @@ public class OrderItemsBean {
         this.containerNumber = containerNumber;
         this.sealNumber = sealNumber;
         this.bulletSeal = bulletSeal;
-        this.vendorSeal = vendorSeal;
+        this.shippingSeal = shippingSeal;
     }
 
     public String getVendorSea() {
@@ -475,11 +475,11 @@ public class OrderItemsBean {
         this.bulletSeal = bulletSeal;
     }
 
-    public String getVendorSeal() {
-        return vendorSeal;
+    public String getShippingSeal() {
+        return shippingSeal;
     }
 
-    public void setVendorSeal(String vendorSeal) {
-        this.vendorSeal = vendorSeal;
+    public void setShippingSeal(String shippingSeal) {
+        this.shippingSeal = shippingSeal;
     }
 }

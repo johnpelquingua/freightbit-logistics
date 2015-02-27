@@ -1158,7 +1158,7 @@
                             class="asterisk_red"></span></label>
 
                     <div class="col-lg-8">
-                        <s:select list="truckTypeList" name="truck_truckType" listKey="key" listValue="value"
+                        <s:select list="truckTypeList" name="truck.truckType" listKey="key" listValue="value"
                                   cssClass="form-control"/>
                     </div>
                 </div>
@@ -1413,8 +1413,9 @@
     });
 
     $(document).ready(function() {
-        $('#trucksList').change(function (event) {
+        $('#trucksListDestination').change(function (event) {
             var truckCode = $("#trucksListDestination").val();
+
             if (truckCode != null) {
                 $.getJSON('truckDetails', {
                             truckCodeParam: truckCode
@@ -1595,7 +1596,7 @@
                             $('<option>').val(key).text(value).appendTo(truck);
                         });
 
-                        var truckCode = $("#trucksList").val();
+                        var truckCode = $("#trucksListDestination").val();
                         if(truckCode != null){
                             $.getJSON('truckDetails', {
                                         async:false,

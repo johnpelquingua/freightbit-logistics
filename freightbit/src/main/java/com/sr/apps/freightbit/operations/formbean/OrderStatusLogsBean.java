@@ -12,7 +12,6 @@ public class OrderStatusLogsBean {
     private String nameSize;
     private Integer orderItemId;
     private Date actualDate;
-    private String containerNumber;
 
     public Integer getStatusId() {
         return statusId;
@@ -78,11 +77,4 @@ public class OrderStatusLogsBean {
         this.actualDate = actualDate;
     }
 
-    public String getContainerNumber() {
-        return containerNumber;
-    }
-
-    public void setContainerNumber(String containerNumber) {
-        this.containerNumber = containerNumber;
-    }
 }

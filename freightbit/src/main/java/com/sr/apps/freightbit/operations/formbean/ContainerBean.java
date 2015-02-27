@@ -34,6 +34,8 @@ public class ContainerBean {
     private String containerStatus;
 
     private String sealNumber;
+    private String bulletSeal;
+    private String shippingSeal;
     private String vanLocation;
     private String ladenEmpty;
     private String forkliftOperator;
@@ -50,7 +52,7 @@ public class ContainerBean {
     public ContainerBean() {
     }
 
-    public ContainerBean(Integer containerId, Client clientId, String eirType, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept, String sealNumber, String vanLocation, String ladenEmpty, String containerType, String containerSearchCriteria, String containerKeyword) {
+    public ContainerBean(Integer containerId, Client clientId, String eirType, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerStatus, String forkliftOperator, String operationsDept, String sealNumber, String bulletSeal, String shippingSeal, String vanLocation, String ladenEmpty, String containerType, String containerSearchCriteria, String containerKeyword) {
         this.containerId = containerId;
         this.clientId = clientId;
         this.eirType = eirType;
@@ -78,6 +80,8 @@ public class ContainerBean {
         this.operationsDept = operationsDept;
         this.containerSize = containerType;
         this.containerSize = sealNumber;
+        this.bulletSeal = bulletSeal;
+        this.shippingSeal = shippingSeal;
         this.containerSize = vanLocation;
         this.containerSize = ladenEmpty;
         this.containerSearchCriteria = containerSearchCriteria;
@@ -275,6 +279,22 @@ public class ContainerBean {
 
     public void setSealNumber(String sealNumber) {
         this.sealNumber = sealNumber;
+    }
+
+    public String getBulletSeal() {
+        return bulletSeal;
+    }
+
+    public void setBulletSeal(String bulletSeal) {
+        this.bulletSeal = bulletSeal;
+    }
+
+    public String getShippingSeal() {
+        return shippingSeal;
+    }
+
+    public void setShippingSeal(String shippingSeal) {
+        this.shippingSeal = shippingSeal;
     }
 
     public String getVanLocation() {

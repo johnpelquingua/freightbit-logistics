@@ -232,6 +232,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
     }
 
     public String addDriver() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
         try {
             Driver driverEntity = transformToEntityBeanDriver(driver);
             driverEntity.setModifiedBy(commonUtils.getUserNameFromSession());
@@ -240,12 +241,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
             vendorService.addDriver(driverEntity);
         }catch (DriverAlreadyExistsException e) {
             addFieldError("driver.licenseNumber", getText("err.driver.already.exists"));
+            sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
             return INPUT;
         }
+        sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
         return SUCCESS;
     }
 
     public String addTrucks() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
         try {
             Trucks truckEntity = transformToEntityBeanTrucks(truck);
             truckEntity.setModifiedBy(commonUtils.getUserNameFromSession());
@@ -254,13 +258,15 @@ public class OperationsAction extends ActionSupport implements Preparable {
             vendorService.addTrucks(truckEntity);
         }catch (TrucksAlreadyExistsException e) {
             addFieldError("truck.truckCode", getText("err.truck.already.exists"));
+            sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
             return INPUT;
         }
+        sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
         return SUCCESS;
     }
 
     public String addVendor(){
-
+        Map sessionAttributes = ActionContext.getContext().getSession();
         try {
             Vendor vendorEntity = transformVendorToEntityBean(vendor);
             vendorEntity.setCreatedBy(commonUtils.getUserNameFromSession());
@@ -269,10 +275,11 @@ public class OperationsAction extends ActionSupport implements Preparable {
             vendorService.addVendor(vendorEntity);
 
         } catch (VendorAlreadyExistsException e) {
+            sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
             addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
             return INPUT;
         }
-
+        sessionAttributes.put("orderIdParam", sessionAttributes.get("orderIdParam"));
         return SUCCESS;
     }
 
@@ -631,7 +638,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
 
             Map sessionAttributes = ActionContext.getContext().getSession();
-            Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+            Orders orderEntity = orderService.findOrdersById(orderIdParam);
             sessionAttributes.put("checkedItemsInSession", check);
             order = transformToOrderFormBean(orderEntity);
 
@@ -2131,7 +2138,8 @@ public class OperationsAction extends ActionSupport implements Preparable {
         OrderItems entity = operationsService.findOrderItemById(orderItemIdParam);
         orderItem = transformToOrderItemFormBean(entity);
 
-        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        /*Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));*/
+        Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
         order = transformToOrderFormBean(orderEntity);
 
         // if Vessel Schedule Id is null and populates field with none value
@@ -2182,6 +2190,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
 
+        sessionAttributes.put("orderIdParam", entity.getOrderId());
         sessionAttributes.put("orderItemIdParam", entity.getOrderItemId());
         sessionAttributes.put("nameSizeParam", entity.getNameSize());
 

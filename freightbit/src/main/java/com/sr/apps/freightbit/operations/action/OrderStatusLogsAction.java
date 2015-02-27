@@ -3,6 +3,7 @@ package com.sr.apps.freightbit.operations.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+import com.sr.apps.freightbit.operations.formbean.ContainerBean;
 import com.sr.apps.freightbit.operations.formbean.OrderStatusLogsBean;
 import com.sr.apps.freightbit.order.formbean.OrderBean;
 import com.sr.apps.freightbit.order.formbean.OrderItemsBean;
@@ -14,7 +15,9 @@ import com.sr.biz.freightbit.common.service.NotificationService;
 import com.sr.biz.freightbit.common.service.ParameterService;
 import com.sr.biz.freightbit.customer.entity.Customer;
 import com.sr.biz.freightbit.customer.service.CustomerService;
+import com.sr.biz.freightbit.operations.entity.Container;
 import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
+import com.sr.biz.freightbit.operations.service.ContainerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
 import com.sr.biz.freightbit.operations.service.OrderStatusLogsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
@@ -39,6 +42,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private List<Parameters> seaFreightList = new ArrayList<Parameters>();
     private List<String> allFreightStatusList = new ArrayList<String>();
     private CommonUtils commonUtils = new CommonUtils();
+    private ContainerBean container = new ContainerBean();
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OrderStatusLogsBean orderStatusLogsBean = new OrderStatusLogsBean();
     private OrderStatusLogsService orderStatusLogsService;
@@ -47,6 +51,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private OperationsService operationsService;
     private CustomerService customerService;
     private OrderService orderService;
+    private ContainerService containerService;
     private Integer orderIdParam;
     private String orderNoParam;
     private Integer orderItemIdParam;
@@ -744,15 +749,134 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String updateContainerDetails() throws Exception {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        if (hasFieldErrors()) {
+            return INPUT;
+        }
+        try {
+            Container containerEntity = transformContainerToEntityBean(container);
+            containerService.updateContainer(containerEntity);
+
+            OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemIdParam);
+            orderItemEntity.setContainerId(containerEntity.getContainerId());
+            operationsService.updateOrderItem(orderItemEntity);
+        }
+        catch(Exception e) {
+            addActionError("Failed to update container details.");
+            return INPUT;
+        }
+
+        sessionAttributes.put("orderIdParam", orderIdParam);
+        sessionAttributes.put("orderItemIdParam", orderItemIdParam);
+        return SUCCESS;
+    }
+
+    public String loadUpdateContainerSuccess() {
+        Map sessionAttributes = ActionContext.getContext().getSession();
+        List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
+
+        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId((Integer) sessionAttributes.get("orderIdParam"));
+
+        // Display correct Order Number in breadcrumb
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        bookingNumber = orderEntity.getOrderNumber();
+        order = transformToOrderFormBean(orderEntity);
+
+        for (OrderItems orderItemsElem : orderItemEntityList) {
+            orderItems.add(transformToOrderItemFormBean(orderItemsElem));
+        }
+
+        addActionMessage("Container details has been updated.");
+        return SUCCESS;
+    }
+
+    private Container   transformContainerToEntityBean(ContainerBean formBean){
+
+        Container entity = new Container();
+        if(formBean.getContainerId() != null) {
+            entity.setContainerId(new Integer(formBean.getContainerId()));
+        }
+
+        entity.setEirType(formBean.getEirType());
+        entity.setEirNumber(formBean.getEirNumber());
+        entity.setReceiptNumber(formBean.getReceiptNumber());
+        entity.setGateInTime(formBean.getGateInTime());
+        entity.setGateOutTime(formBean.getGateOutTime());
+        entity.setShipping(formBean.getShipping());
+        entity.setVanNumber(formBean.getVanNumber());
+        entity.setVanLocation(formBean.getVanLocation());
+        entity.setTrucking(formBean.getTrucking());
+        entity.setPlateNumber(formBean.getPlateNumber());
+        entity.setDriver(formBean.getDriver());
+        entity.setSealNumber(formBean.getSealNumber());
+        entity.setOrderNumber(formBean.getOrderNumber());
+        entity.setRemarks(formBean.getRemarks());
+        entity.setLadenEmpty(formBean.getLadenEmpty());
+        entity.setVanTo(formBean.getVanTo());
+        entity.setVanFrom(formBean.getVanFrom());
+        entity.setForkliftOperator(formBean.getForkliftOperator());
+        entity.setOperationsDept(formBean.getOperationsDept());
+        entity.setContainerNumber(formBean.getContainerNumber());
+        entity.setContainerSize(formBean.getContainerSize());
+        entity.setContainerType(formBean.getContainerType());
+        entity.setContainerStatus(formBean.getContainerStatus());
+        entity.setSealNumber(formBean.getSealNumber());
+        entity.setLadenEmpty(formBean.getLadenEmpty());
+        entity.setSealNumber(formBean.getSealNumber());
+        entity.setCreatedBy(commonUtils.getUserNameFromSession());
+        entity.setModifiedBy(commonUtils.getUserNameFromSession());
+        entity.setCreatedTimestamp(new Date());
+        entity.setModifiedTimestamp(new Date());
+
+        return entity;
+    }
+
+    public ContainerBean transformContainerToFormBean(Container entity) {
+
+        ContainerBean formBean = new ContainerBean();
+        formBean.setContainerId(entity.getContainerId());
+        formBean.setEirNumber(entity.getEirNumber());
+        formBean.setGateInTime(entity.getGateInTime());
+        formBean.setGateOutTime(entity.getGateOutTime());
+        formBean.setShipping(entity.getShipping());
+        formBean.setTrucking(entity.getTrucking());
+        formBean.setPlateNumber(entity.getPlateNumber());
+        formBean.setVanNumber(entity.getVanNumber());
+        formBean.setDriver(entity.getDriver());
+        formBean.setOrderNumber(entity.getOrderNumber());
+        formBean.setRemarks(entity.getRemarks());
+        formBean.setVanTo(entity.getVanTo());
+        formBean.setVanFrom(entity.getVanFrom());
+        formBean.setContainerNumber(entity.getContainerNumber());
+        formBean.setContainerSize(entity.getContainerSize());
+        formBean.setContainerType(entity.getContainerType());
+        formBean.setEirType(entity.getEirType());
+        formBean.setSealNumber(entity.getSealNumber());
+        formBean.setVanLocation(entity.getVanLocation());
+        formBean.setLadenEmpty(entity.getLadenEmpty());
+        formBean.setReceiptNumber(entity.getReceiptNumber());
+        formBean.setLadenEmpty(entity.getLadenEmpty());
+        formBean.setForkliftOperator(entity.getForkliftOperator());
+        formBean.setOperationsDept(entity.getOperationsDept());
+        formBean.setContainerStatus(entity.getContainerStatus());
+        formBean.setSealNumber(entity.getSealNumber());
+        formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
+        formBean.setCreatedBy(entity.getCreatedBy());
+        formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
+        formBean.setModifiedBy(entity.getModifiedBy());
+
+        return formBean;
+    }
+
     public OrderItems transformToOrderItemEntity (OrderItemsBean formBean) {
-        OrderItems entity = orderStatusLogsService.findOrderItemById(formBean.getOrderItemId());
+        OrderItems entity = orderStatusLogsService.findOrderItemById(orderItemIdParam);
         entity.setStatus(formBean.getStatus());
         entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
         return entity;
     }
 
     public OrderStatusLogs transformToOrderStatusLogsEntity (OrderStatusLogsBean formBean) {
-
 
         OrderStatusLogs entity = new OrderStatusLogs();
         entity.setOrderItemId(formBean.getOrderItemId());
@@ -822,6 +946,20 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setCreatedBy(entity.getCreatedBy());
 
+        if(entity.getContainerId() != null){
+            Container containerNumEntity = containerService.findContainerById(entity.getContainerId());
+            formBean.setContainerNumber(containerNumEntity.getContainerNumber());
+            formBean.setSealNumber(containerNumEntity.getSealNumber());
+            formBean.setBulletSeal(containerNumEntity.getBulletSeal());
+            formBean.setShippingSeal(containerNumEntity.getShippingSeal());
+        }
+        else{
+            formBean.setContainerNumber("NONE");
+            formBean.setSealNumber("NONE");
+            formBean.setBulletSeal("NONE");
+            formBean.setShippingSeal("NONE");
+        }
+
         return formBean;
     }
 
@@ -836,6 +974,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         formBean.setNameSize(orderService.findOrderItemByOrderItemId(entity.getOrderItemId()).getNameSize());
         formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setOrderId(operationsService.findOrderItemById(entity.getOrderItemId()).getOrderId());
+
 //        formBean.setContainerNumber(entity.getContainerNumber());
         /*if(entity.getActualDate() == null || (entity.getActualDate().equals("")){
             formBean.setActualDate("NONE");
@@ -1040,5 +1179,21 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setAllFreightStatusList(List<String> allFreightStatusList) {
         this.allFreightStatusList = allFreightStatusList;
+    }
+
+    public ContainerBean getContainer() {
+        return container;
+    }
+
+    public void setContainer(ContainerBean container) {
+        this.container = container;
+    }
+
+    public ContainerService getContainerService() {
+        return containerService;
+    }
+
+    public void setContainerService(ContainerService containerService) {
+        this.containerService = containerService;
     }
 }

@@ -181,6 +181,7 @@
                     <div class="table-responsive">
                             <s:form name="myform" action="checkItemStatusInland" theme="bootstrap">
                         <s:hidden name="orderItem.editItem" id="edit"></s:hidden>
+                                <s:hidden value="%{order.orderId}" name="orderIdParam"/>
                         <display:table id="orderItem" name="orderItems"
                                        requestURI="/viewSeaFreightItemList.action"
                                        class="inlandOrderItemsTable table table-striped table-hover table-bordered text-center tablesorter table-condensed simple"
@@ -270,6 +271,9 @@
                                     </s:if>
                                     <s:else>
                                         <s:url var="viewFreightPlanningUrl" action="viewFreightPlanningInland">
+                                            <s:param name="orderIdParam"
+                                                     value="#attr.orderItem.orderId">
+                                            </s:param>
                                             <s:param name="orderItemIdParam"
                                                      value="#attr.orderItem.orderItemId">
                                             </s:param>

@@ -37,6 +37,8 @@ public class Container implements Serializable{
     private String containerSize;
     private String containerType;
     private String sealNumber;
+    private String bulletSeal;
+    private String shippingSeal;
     private String vanLocation;
     private String ladenEmpty;
     private String containerStatus;
@@ -46,7 +48,7 @@ public class Container implements Serializable{
     public Container() {
     }
 
-    public Container(Integer containerId, Client clientId, String eirType, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String sealNumber, String vanLocation, String ladenEmpty, String containerStatus, String forkliftOperator, String operationsDept) {
+    public Container(Integer containerId, Client clientId, String eirType, String eirNumber, String receiptNumber, Date gateInTime, Date gateOutTime, String shipping, String trucking, String plateNumber, String vanNumber, String driver, String orderNumber, String remarks, String vanTo, String vanFrom, String createdBy, Date createdTimestamp, String modifiedBy, Date modifiedTimestamp, String containerNumber, String containerSize, String containerType, String sealNumber, String bulletSeal, String shippingSeal, String vanLocation, String ladenEmpty, String containerStatus, String forkliftOperator, String operationsDept) {
         this.containerId = containerId;
         this.clientId = clientId;
         this.eirType = eirType;
@@ -71,6 +73,8 @@ public class Container implements Serializable{
         this.containerSize = containerSize;
         this.containerType = containerType;
         this.sealNumber = sealNumber;
+        this.bulletSeal = bulletSeal;
+        this.shippingSeal = shippingSeal;
         this.vanLocation = vanLocation;
         this.ladenEmpty = ladenEmpty;
         this.containerStatus = containerStatus;
@@ -286,6 +290,24 @@ public class Container implements Serializable{
 
     public void setSealNumber(String sealNumber) {
         this.sealNumber = sealNumber;
+    }
+
+    @Column(name="bulletSeal")
+    public String getBulletSeal() {
+        return bulletSeal;
+    }
+
+    public void setBulletSeal(String bulletSeal) {
+        this.bulletSeal = bulletSeal;
+    }
+
+    @Column(name="shippingSeal")
+    public String getShippingSeal() {
+        return shippingSeal;
+    }
+
+    public void setShippingSeal(String shippingSeal) {
+        this.shippingSeal = shippingSeal;
     }
 
     @Column(name="vanLocation")

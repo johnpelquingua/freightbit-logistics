@@ -136,6 +136,26 @@
                         </td>
 
                         <td>
+                            <display:column property="containerNumber" title="Container Number <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column>
+                        </td>
+
+                        <td>
+                            <display:column property="sealNumber" title="Seal Number <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column>
+                        </td>
+
+                        <td>
+                            <display:column property="bulletSeal" title="Bullet Seal <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column>
+                        </td>
+
+                        <td>
+                            <display:column property="shippingSeal" title="Shipping Seal <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center;"> </display:column>
+                        </td>
+
+                        <td>
                             <display:column property="status" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center;"> </display:column>
                         </td>
@@ -160,6 +180,10 @@
                                 <s:else>
                                     <i style="color: red;" class="fa fa-ban"></i>
                                 </s:else>
+
+                                <a data-toggle="modal" data-target="#updateContainerDetails" id="createContainer" rel="tooltip" title="Set container details">
+                                    <i class="fa fa-edit"></i>
+                                </a>
                             </display:column>
                         </td>
                         </sec:authorize>
@@ -191,6 +215,51 @@
                 </span>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateContainerDetails" role="form" aria-labelledby="containerModal">
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="containerModal">Update Container Details</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="panel-body">
+
+                    <s:form cssClass="form-horizontal" theme="bootstrap" action="updateContainerDetails">
+
+                    <s:hidden value="%{#attr.orderItem.orderId}" name="orderIdParam" />
+                    <s:hidden value="%{#attr.orderItem.orderItemId}" name="orderItemIdParam" />
+
+                    <label>Container Number<span class="asterisk_red"></span></label>
+
+                    <s:textfield cssClass="form-control containerNumber" id="containerNumber" name="container.containerNumber" required="true"/>
+
+                    <label>Seal Number<span class="asterisk_red"></span></label>
+
+                    <s:textfield cssClass="form-control sealNumber" id="sealNumber" name="container.sealNumber" required="true"/>
+
+                    <label>Bullet Seal<span class="asterisk_red"></span></label>
+
+                    <s:textfield cssClass="form-control bulletSeal" id="bulletSeal" name="container.bulletSeal" required="true"/>
+
+                    <label>Shipping Seal<span class="asterisk_red"></span></label>
+
+                    <s:textfield cssClass="form-control shippingSeal" id="shippingSeal" name="container.shippingSeal" required="true"/>
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div>
+                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
+                    </s:form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
