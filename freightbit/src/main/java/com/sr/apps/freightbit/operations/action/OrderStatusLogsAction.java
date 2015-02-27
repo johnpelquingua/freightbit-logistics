@@ -111,9 +111,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         bookingNumber = orderEntity.getOrderNumber();
         order = transformToOrderFormBean(orderEntity);
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
-        List<OrderStatusLogs> orderStatusLogsEntityList = orderStatusLogsService.findAllShipmentLogs((Integer) sessionAttributes.get("orderItemIdParam"));
-
         for (OrderItems orderItemsElem : orderItemEntityList) {
             orderItems.add(transformToOrderItemFormBean(orderItemsElem));
         }
@@ -791,6 +788,14 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         formBean.setModeOfService(entity.getServiceMode());
         formBean.setServiceRequirement(entity.getServiceRequirement());
 
+        List<OrderItems> orderStatusEntity = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
+        if(orderStatusEntity.size() >= 1) {
+            if (orderStatusEntity.get(0).getOrderItemId() == null || orderStatusEntity.get(0).getOrderItemId().equals("")) {
+                formBean.setOrderItemStatus("NONE");
+            } else {
+                formBean.setOrderItemStatus(orderStatusEntity.get(0).getStatus());
+            }
+        }
         return formBean;
     }
 

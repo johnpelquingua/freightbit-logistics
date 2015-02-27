@@ -104,7 +104,7 @@
                     </tbody>
                 </div>
 
-                <s:form cssClass="form-horizontal" theme="bootstrap" action="updateStatus" >
+                <s:form cssClass="form-horizontal statusForm" theme="bootstrap" action="updateStatus" >
                 <s:if test="orderItemIdParam != null">
                     <s:hidden value="%{orderItemIdParam}" name="orderStatusLogsBean.orderItemId"/>
                 </s:if>
@@ -119,7 +119,7 @@
                             <s:date name="new java.util.Date()" format="dd-MMM-yyyy hh:mm a"/>
                         </s:param>
                     </s:textfield>--%>
-                    <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actualDate"/>
+                    <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="statusDropdown form-control" id="actualDate"/>
                     <script>
                         $(function () {
                             var actDate = $('#actualDate');
@@ -161,8 +161,9 @@
                             Back to Booking Item List
                         </button>
                     </s:a>
-                    <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary submitBtn" value="Update Status" onclick="return confirm('Are you sure you want to update this status?');"/>
-<%--                        <button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
+                    <%--<s:submit id="saveBtn" name="submit" cssClass="btn btn-primary submitBtn" value="Update Status" />--%>
+                    <button class="btn btn-primary submitBtn" type="button" disabled="true">Update Status</button>
+                <%--                        <button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
                         <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
                 </div>
             </div>
@@ -186,6 +187,29 @@
             <%--<div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
             </div>--%>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmStatModal" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+                </div>
+            <div class="modal-body">
+                <div id="confirmStatId">
+                        <%--<label id="actualLabel" class="control-label header">Actual Date/Time: <span class="asterisk_red"></span></label>
+                        <div class="pull-center" style="padding-top:0px;">
+                            <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actualDate" />
+                        </div>--%>
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary submitFormStat" data-dismiss="modal">Yes</button>
+                </div>
         </div>
     </div>
 </div>
@@ -225,7 +249,19 @@
         }
     });
 
-/*    function sendOkStatus(){
+    $(document).ready(function(){
+        confirmStatusMsg();
+        validationForm('statusDropdown','submitBtn');
+    });
+
+    $(document).ready(function () {
+        $('.submitFormStat').click(function(){
+            $('.statusForm').submit();
+        });
+
+    });
+
+    function sendOkStatus(){
         $('form').submit()
-    }*/
+    }
 </script>

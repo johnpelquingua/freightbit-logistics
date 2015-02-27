@@ -77,6 +77,9 @@
                         <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
                                             style="text-align: center; width: 8%;"> </display:column></td>
 
+                        <td><display:column property="orderItemStatus" title="Current Status <i class='fa fa-sort' />" class="tb-font-black"
+                                            style="text-align: center; width: 8%;"> </display:column></td>
+
                         <td><display:column title="Action">
                             <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                                 <s:param name="orderIdParam"

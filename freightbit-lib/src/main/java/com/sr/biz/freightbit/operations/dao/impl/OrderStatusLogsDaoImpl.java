@@ -116,7 +116,7 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
         log.debug("Finding orderItems via orderId");
         try {
             log.debug("Finding orderItems succeed");
-            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderItems o where o.orderId = :orderId");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderItems o where o.orderId = :orderId order by createdTimestamp asc");
             query.setParameter("orderId", orderId);
             List<OrderItems> results = (List<OrderItems>) query.list();
             return results;
@@ -158,7 +158,7 @@ public class OrderStatusLogsDaoImpl extends HibernateDaoSupport implements Order
             }
             return instance;*/
             Query query = getSessionFactory().getCurrentSession().createQuery(
-                    "from OrderStatusLogs o where o.orderItemId = :orderItemId");
+                    "from OrderStatusLogs o where o.orderItemId = :orderItemId order by createdTimestamp asc");
             query.setParameter("orderItemId", orderItemId);
             List<OrderStatusLogs> results = (List<OrderStatusLogs>) query.list();
             if (results != null && results.size() > 0) {

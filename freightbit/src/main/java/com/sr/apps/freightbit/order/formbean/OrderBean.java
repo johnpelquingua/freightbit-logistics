@@ -25,6 +25,7 @@ public class OrderBean {
 	private String sealNo;
 	private String bookedBy;
 	private String orderStatus;
+    private String orderItemStatus;
 	private String shipperCode;
 	private String consigneeCode;
     private Date pickupDate;
@@ -514,5 +515,13 @@ public class OrderBean {
 
     public void setPlateNumberDes(String plateNumberDes) {
         this.plateNumberDes = plateNumberDes;
+    }
+
+    public String getOrderItemStatus() {
+        return orderItemStatus;
+    }
+
+    public void setOrderItemStatus(String orderItemStatus) {
+        this.orderItemStatus = orderItemStatus;
     }
 }

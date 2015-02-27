@@ -1491,3 +1491,11 @@ function processDocumentStage(table, tableDiv, loadingDiv, stageColumn, idColumn
     loadingDiv.hide();
     tableDiv.fadeIn();
 }
+
+function confirmStatusMsg(){
+    $('.submitBtn').click(function() {
+        var message = 'Are you sure you want to update this status?';
+        $('#confirmStatId').empty().append(message);
+        $('#confirmStatModal').modal('show');
+    });
+}

@@ -3116,7 +3116,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             }
         }*/
 
-        if(orderItemEntity.size() > 1){
+        if(orderItemEntity.size() >= 1){
             if(orderItemEntity.get(0).getTruckOrigin() != null){
                 Trucks truckEntityOri = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckOrigin());
                 formBean.setPlateNumberOri(truckEntityOri.getPlateNumber());

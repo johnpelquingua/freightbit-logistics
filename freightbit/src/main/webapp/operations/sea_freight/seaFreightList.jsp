@@ -485,7 +485,7 @@
             options[ len ].disabled = false;
         }
 
-        select.options[ index ].disabled = true;
+            select.options[index].disabled = true;
 
         if( index === select.selectedIndex ){
             alert('You already selected the same port "' + select.options[index].text + '". Please choose another' );
@@ -498,7 +498,7 @@
     var select1 = select = document.getElementById('select1');
     var select2 = select = document.getElementById('select2');
 
-    select2.value = '';
+//    select2.value = '';
 
     select1.onchange = function() {
         preventDuplicatePort.call(this, select2, this.selectedIndex);
