@@ -41,7 +41,7 @@
 
                                 <div class="col-lg-8">
                                     <s:textfield cssClass="vendorAddTruckInput form-control" placeholder="e.g. ABC-123, XYZ-7890, etc." name="truck.plateNumber"
-                                                 id="truck_plateNumber" required="true" />
+                                                 id="truck_plateNumber" required="true" pattern=".{7,8}" title="Example: ABC-123,XYZ-7890"/>
                                 </div>
 
                             </div>
@@ -53,7 +53,7 @@
 
                                 <div class="col-lg-8">
                                     <s:textfield cssClass="vendorAddTruckInput form-control" placeholder="LTO Certificate Number" name="truck.truckCode"
-                                                 id="truck.truckCode" required="true" maxlength="10"/>
+                                                 id="truck.truckCode" required="true" maxlength="10" title="Input your LTO Certificate Number"/>
                                 </div>
 
                             </div>
@@ -64,7 +64,7 @@
 
                                         <div class="col-lg-8">
                                             <s:textfield cssClass="vendorAddTruckInput form-control" placeholder="MV File Number" name="truck.motorVehicleNumber"
-                                                         id="truck_motorVehicleNumber" required="true" />
+                                                         id="truck_motorVehicleNumber" required="true" title="Input your MV File Number" />
                                         </div>
                                     </div>
 
@@ -75,7 +75,7 @@
 
                                         <div class="col-lg-8">
                                             <s:textfield cssClass="vendorAddTruckInput form-control" placeholder="e.g. 4Runner, Yukon, Silverado, etc." name="truck.modelNumber"
-                                                         id="truck.modelNumber" required="true"/>
+                                                         id="truck.modelNumber" required="true" title="Example: 4Runner, Yukon, Silverado"/>
                                         </div>
 
                                     </div>
@@ -87,7 +87,8 @@
 
                                         <div class="col-lg-8">
                                             <s:textfield cssClass="vendorAddTruckInput form-control" placeholder="Owner's Name" name="truck.ownerName"
-                                                         id="truck.ownerName" required="true"/>
+                                                         id="truck.ownerName" required="true" pattern="^(\s*[a-zA-Z\xD1-\xF1]+(([\'\-\+\s]\s*[a-zA-Z\xD1-\xF1])?[a-zA-Z\xD1-\xF1]*)\s*)+$"
+                                                         title="Owner's Name should not contain special characters and/or numbers." maxLength="50"/>
                                         </div>
                                     </div>
 
@@ -97,7 +98,8 @@
 
                                         <div class="col-lg-8">
                                             <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="Owner's Address" name="truck.ownerAddress"
-                                                         id="truck.ownerAddress" required="true"/>
+                                                         id="truck.ownerAddress" required="true" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
+                                                         title="Owner's Address should not contain special characters."/>
                                         </div>
                                     </div>
 
@@ -108,7 +110,7 @@
 
                                         <div class="col-lg-8">
                                             <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="O.R. Number" name="truck.officialReceipt"
-                                                         id="truck.officialReceipt" required="true"/>
+                                                         id="truck.officialReceipt" required="true" title="Please Input Valid O.R. Number"/>
                                         </div>
                                     </div>
 
@@ -133,7 +135,7 @@
 
                                         <div class="col-lg-8">
                                             <s:textfield cssClass="vendorAddTruckInput form-control" placeholder="e.g. Toyota, GMC, Chevrolet, etc."
-                                                         name="truck.engineNumber"
+                                                         name="truck.engineNumber" title="Example: Toyota, GMC, Chevrolet."
                                                          id="truck.engineNumber" required="true"/>
                                         </div>
 
@@ -156,7 +158,7 @@
 
                                         <div class="col-lg-8">
                                             <s:textfield cssClass="vendorAddTruckInput form-control" placeholder=" e.g. 1999, 2012, etc." name="truck.modelYear"
-                                                         id="truck.modelYear" required="true" maxLength="4"/>
+                                                         id="truck.modelYear" required="true" maxLength="4" title="Example: 1999, 2012"/>
                                         </div>
 
                                     </div>
@@ -167,7 +169,8 @@
 
                                         <div class="col-lg-8">
                                             <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="Gross Weight" name="truck.grossWeight"
-                                                         id="truck.grossWeight" required="true"/>
+                                                         id="truck.grossWeight" required="true" pattern="^[0-9]*$"
+                                                         title="Gross Weight will not accept letters or special characters."/>
                                         </div>
                                     </div>
 
@@ -177,7 +180,8 @@
 
                                         <div class="col-lg-8">
                                             <s:textfield cssClass="form-control vendorAddTruckInput" placeholder="Net Weight" name="truck.netWeight"
-                                                         id="truck.netWeight" required="true"/>
+                                                         id="truck.netWeight" required="true" pattern="^[0-9]*$"
+                                                         title="Gross Weight will not accept letters or special characters."/>
                                         </div>
                                     </div>
 

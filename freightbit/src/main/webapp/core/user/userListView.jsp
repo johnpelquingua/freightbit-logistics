@@ -114,10 +114,7 @@
                                 <td><label>LEGEND:</label></td>
                                 <td><i class='fa fa-pencil' ></i> Edit</td>
                                 <td><i class='fa fa-trash-o' ></i> Delete</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><i class='fa fa-info-circle' ></i> Information</td>
+                                <td><i class="fa fa-info-circle"></i> Information</td>
                             </tr>
                         </table>
                     </div>

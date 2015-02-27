@@ -109,6 +109,20 @@
 
                 </div>
             </div>
+            <div class="panel-footer">
+                <div class="table-responsive" >
+                    <div class="col-lg-12">
+                        <table class="col-lg-12">
+                            <tr>
+                                <td><label>Legend:</label></td>
+                                <td><i class="fa fa-pencil"></i> Edit</td>
+                                <td><i class="fa fa-trash-o"></i> Delete</td>
+                                <td><i class="fa fa-info-circle"></i> Information</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

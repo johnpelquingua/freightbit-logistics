@@ -116,7 +116,8 @@
 
                                 <div class="col-lg-9">
                                     <s:textfield required="true" name="user.title" id="uTitle" cssClass="userAddForm form-control" maxlength="50"
-                                                 placeholder="Title" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"/>
+                                                 placeholder="Title" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
+                                                 title="Title should not contain special characters and/or numbers."/>
                                 </div>
                             </div>
 
@@ -136,7 +137,7 @@
                                 <div class="col-lg-9">
                                     <s:textfield required="true" name="user.contactNumber" id="uContactNumber"
                                                  cssClass="userAddForm form-control" placeholder="(XXX) XXX-XXXX" maxLength="14" pattern=".{14,}"
-                                                 title="(XXX)XXX-XXXX Contact Number should not contain special characters and/or letters."/>
+                                                 title="Contact number should contain 10 digits including local city code."/>
                                 </div>
                             </div>
 

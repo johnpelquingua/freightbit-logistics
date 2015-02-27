@@ -267,6 +267,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             vendorEntity.setCreatedTimeStamp(new Date());
             vendorEntity.setModifiedBY(commonUtils.getUserNameFromSession());
             vendorService.addVendor(vendorEntity);
+
         } catch (VendorAlreadyExistsException e) {
             addFieldError("vendor.vendorCode", getText("err.vendorCode.already.exists"));
             return INPUT;
@@ -663,6 +664,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
             vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
             sessionAttributes.put("nameSizeList", nameSizeList);
+            sessionAttributes.put("orderItems", orderItems);
+            sessionAttributes.put("orderIdParam", orderIdParam);
+            sessionAttributes.put("orderItemIdParam", orderItemIdParam);
 
             if (planning2.size() > 0) {
                 return "PLANNING 2";
@@ -766,7 +770,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
 
                 vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
+
                 sessionAttributes.put("nameSizeList", nameSizeList);
+                sessionAttributes.put("orderItems", orderItems);
+                sessionAttributes.put("orderIdParam", orderIdParam);
+                sessionAttributes.put("orderItemIdParam", orderItemIdParam);
+
                 if(planning2.size() > 0 || planning3.size() >  0 || onGoing.size() > 0) {
                     return "EDIT";
                 }
@@ -2204,6 +2213,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
 
+        nameSizeList = (List) sessionAttributes.get("nameSizeList");
+        orderItems = (List) sessionAttributes.get("orderItems");
+
         clearErrorsAndMessages();
         addActionMessage("Vendor Added Successfully!");
 
@@ -2234,6 +2246,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
 
+        nameSizeList = (List) sessionAttributes.get("nameSizeList");
+        orderItems = (List) sessionAttributes.get("orderItems");
+
         clearErrorsAndMessages();
         addActionMessage("Vendor Added Successfully!");
 
@@ -2244,6 +2259,68 @@ public class OperationsAction extends ActionSupport implements Preparable {
         } else {
             return "ON GOING";
         }
+    }
+
+    public String addVendorInPlanningError() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        OrderItems entity = operationsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));
+
+        orderItem = transformToOrderItemFormBean(entity);
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        order = transformToOrderFormBean(orderEntity);
+
+        if(orderItem.getVesselScheduleId() != null ){
+            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
+            vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+        }
+
+        vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
+
+        vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
+
+        nameSizeList = (List) sessionAttributes.get("nameSizeList");
+        orderItems = (List) sessionAttributes.get("orderItems");
+
+        clearErrorsAndMessages();
+        addActionMessage("Vendor Already Exists!");
+
+        return SUCCESS;
+    }
+
+    public String addVendorInPlanningErrorBulk() {
+
+        Map sessionAttributes = ActionContext.getContext().getSession();
+
+        String[] check = (String[]) sessionAttributes.get("checkedItemsInSession");
+
+        /*OrderItems entity = operationsService.findOrderItemById((Integer) sessionAttributes.get("orderItemIdParam"));*/
+
+        /*orderItem = transformToOrderItemFormBean(entity);*/
+
+        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+
+        order = transformToOrderFormBean(orderEntity);
+
+        if(orderItem.getVesselScheduleId() != null ){
+            VesselSchedules vesselScheduleEntity = vesselSchedulesService.findVesselSchedulesByIdVoyageNumber(orderItem.getVesselScheduleId());
+            vesselSchedule = transformToFormBeanVesselSchedule(vesselScheduleEntity);
+        }
+
+        vendorTruckingOriginList = vendorService.findVendorTruckByLocation(order.getOriginationPort()); // for filtering of trucking vendor on origin location
+
+        vendorTruckingDestinationList = vendorService.findVendorTruckByLocation(order.getDestinationPort()); // for filtering of trucking vendor on destination location
+
+        nameSizeList = (List) sessionAttributes.get("nameSizeList");
+        orderItems = (List) sessionAttributes.get("orderItems");
+
+        clearErrorsAndMessages();
+        addActionMessage("Vendor Already Exists!");
+
+        return SUCCESS;
     }
 
     public String reloadSeaFreightPlanning() {

@@ -52,7 +52,7 @@
                             <s:textfield name="consignee.lastName" cssClass="form-control" id="consignee.lastName"
                                          placeholder="Last Name" maxLength="30" required="true"
                                          pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                         title="Name should not contain special characters and/or numbers."/>
+                                         title="Last Name should not contain special characters and/or numbers."/>
                         </div>
                     </div>
 

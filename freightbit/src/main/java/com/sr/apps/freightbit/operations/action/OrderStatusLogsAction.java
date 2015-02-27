@@ -764,7 +764,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         entity.setCreatedBy(formBean.getCreatedBy());
         entity.setCreatedTimestamp(formBean.getCreatedTimestamp());
         entity.setActualDate(formBean.getActualDate());
-        entity.setContainerNumber(formBean.getContainerNumber());
+//        entity.setContainerNumber(formBean.getContainerNumber());
         return entity;
     }
 
@@ -831,7 +831,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         formBean.setNameSize(orderService.findOrderItemByOrderItemId(entity.getOrderItemId()).getNameSize());
         formBean.setOrderItemId(entity.getOrderItemId());
         formBean.setOrderId(operationsService.findOrderItemById(entity.getOrderItemId()).getOrderId());
-        formBean.setContainerNumber(entity.getContainerNumber());
+//        formBean.setContainerNumber(entity.getContainerNumber());
         /*if(entity.getActualDate() == null || (entity.getActualDate().equals("")){
             formBean.setActualDate("NONE");
         }*/
