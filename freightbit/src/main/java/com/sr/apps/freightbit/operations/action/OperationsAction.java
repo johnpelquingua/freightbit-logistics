@@ -3114,7 +3114,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
 //        OrderItems truckEntity = orderService.findOrderItemByOrderItemId(entity.getOrderId());
         List<OrderItems> orderItemEntity = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
-        /*Integer vendorCtrOri = 0;
+        Integer vendorCtrOri = 0;
         Integer vendorCtrDes = 0;
         for(OrderItems orderItemsElem : orderItemEntity){
             if(orderItemsElem.getVendorOrigin() != null){
@@ -3123,39 +3123,50 @@ public class OperationsAction extends ActionSupport implements Preparable {
             if(orderItemsElem.getVendorDestination() != null){
                 vendorCtrDes += 1;
             }
-        }*/
+        }
 
+        Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
         if(orderItemEntity.size() >= 1){
-            if(orderItemEntity.get(0).getTruckOrigin() != null){
-                Trucks truckEntityOri = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckOrigin());
-                formBean.setPlateNumberOri(truckEntityOri.getPlateNumber());
+            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") ||
+                orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+                if(orderItemEntity.get(0).getTruckOrigin() != null || "".equals(orderItemEntity.get(0).getTruckOrigin())){
+                    Trucks truckEntityOri = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckOrigin());
+                    formBean.setPlateNumberOri(truckEntityOri.getPlateNumber());
+                }
+                else{
+                    formBean.setPlateNumberOri("NONE");
+                }
             }
-            else{
-                formBean.setPlateNumberOri("NONE");
-            }
-            if(orderItemEntity.get(0).getTruckDestination() != null){
-                Trucks truckEntityDes = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckDestination());
-                formBean.setPlateNumberDes(truckEntityDes.getPlateNumber());
+            else if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR") ||
+                    orderEntity.getServiceMode().equals("DELIVERY") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
+                if(orderItemEntity.get(0).getTruckDestination() != null || "".equals(orderItemEntity.get(0).getTruckDestination())){
+                    Trucks truckEntityDes = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckDestination());
+                    formBean.setPlateNumberDes(truckEntityDes.getPlateNumber());
 
-            }
-            else {
-                formBean.setPlateNumberDes("NONE");
+                }
+                else {
+                    formBean.setPlateNumberDes("NONE");
+                }
             }
         }
-        /*else{
-            if(vendorCtrOri != 0){
-                formBean.setPlateNumberOri(vendorCtrOri + " / " + orderItemEntity.size());
+        else{
+            if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") ||
+                    orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")) {
+                if (vendorCtrOri != 0) {
+                    formBean.setPlateNumberOri(vendorCtrOri + " / " + orderItemEntity.size());
+                } else {
+                    formBean.setPlateNumberOri("NONE");
+                }
             }
-            else{
-                formBean.setPlateNumberOri("NONE");
+            else if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR") ||
+                    orderEntity.getServiceMode().equals("DELIVERY") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")) {
+                if (vendorCtrDes != 0) {
+                    formBean.setPlateNumberDes(vendorCtrDes + " / " + orderItemEntity.size());
+                } else {
+                    formBean.setPlateNumberDes("NONE");
+                }
             }
-            if(vendorCtrDes != 0){
-                formBean.setPlateNumberDes(vendorCtrDes + " / " + orderItemEntity.size());
-            }
-            else{
-                formBean.setPlateNumberDes("NONE");
-            }
-        }*/
+        }
 
         return formBean;
     }

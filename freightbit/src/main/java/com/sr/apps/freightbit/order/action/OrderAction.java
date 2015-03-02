@@ -689,6 +689,7 @@ public class OrderAction extends ActionSupport implements Preparable {
 
     public String editItemListing() {
         OrderItems orderItemEntity = transformToOrderItemsEntityBean(orderItem);
+        orderItemEntity.setQuantity(orderItem.getQuantity());
         orderService.updateItemListing(orderItemEntity);
 
         return SUCCESS;

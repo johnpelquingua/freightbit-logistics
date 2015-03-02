@@ -156,7 +156,7 @@
 
                         <s:a href="%{viewStatusListItemsUrl}" rel="tooltip" title="Update Status">
                             <button type="button" id="Cancel" class="btn btn-danger">
-                                Back to Booking Item List
+                                <i class="fa fa-chevron-left"></i>Back to Booking Item List
                             </button>
                         </s:a>
                             <%--<s:submit id="saveBtn" name="submit" cssClass="btn btn-primary submitBtn" value="Update Status" />--%>
@@ -215,13 +215,6 @@
                             </div>
                         </div>
                     </div>
-                            <i class="fa fa-chevron-left"></i>Back to Booking Item List
-                        </button>
-                    </s:a>
-                    <%--<s:submit id="saveBtn" name="submit" cssClass="btn btn-primary submitBtn" value="Update Status" />--%>
-                    <button class="btn btn-primary submitBtn" type="button" disabled="true">Update Status</button>
-                <%--                        <button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
-                        <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
                 </div>
             </div>
         </div>

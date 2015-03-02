@@ -389,7 +389,7 @@
     $(document).ready(function(){
         // START
 
-        if($('.lclTable tbody tr').size() > 1){ filterLclTable(); }
+        if($('.lclTable tbody tr').size() >= 1){ filterLclTable(); }
 
         $('.consolidateBtn').click(function(){
 

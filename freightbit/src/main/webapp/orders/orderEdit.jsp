@@ -380,7 +380,7 @@
                       list="consigneeAddressList" listKey="addressId"
                       listValue="addressLine1 + ' ' + addressLine2" required="true"/>
 
-            <s:textfield cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="consigneeAddress_textfield" readonly="true"/>
+            <s:textfield cssClass="bookingInput form-control" style="margin-bottom: 15px !important;" id="consigneeAddress_textfield" disabled="true"/>
 
         </div>
 

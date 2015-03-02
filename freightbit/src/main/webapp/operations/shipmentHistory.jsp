@@ -163,10 +163,7 @@
                               required="true"
                             />
                 </div>
-            </div>
-
-            <div class="panel-footer">
-                <div class="pull-right">
+                    <div class="pull-right">
                         <s:url var="viewStatusListItemsUrl" action="viewStatusListItems">
                             <s:param name="orderIdParam"
                                      value="order.orderId"></s:param>
@@ -179,11 +176,62 @@
                                 <i class="fa fa-chevron-left"></i>Back to Booking Item List
                             </button>
                         </s:a>
-                    <%--<s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status" onclick="return confirm('Are you sure you want to update this status?');"/>--%>
-                    <button class="btn btn-primary submitBtn" type="button" disabled="true">Update Status</button>
-                <%--<button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
-                    <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
+                            <%--<s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Update Status" onclick="return confirm('Are you sure you want to update this status?');"/>--%>
+                        <button class="btn btn-primary submitBtn" type="button" disabled="true">Update Status</button>
+                            <%--<button type="button" class="btn btn-primary" onclick="checkUpStatus()">Update Status</button>
+                                <button id="modalTrigger" style="display: none" data-toggle="modal"></button>--%>
+                    </div>
             </div>
+
+            <div class="panel-footer">
+                <div class="table-responsive" >
+                    <div class="col-lg-12">
+                        <table class="col-lg-12">
+                            <tr>
+                                <td><label>Legend: </label></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><strong> PICK UP</strong> <br>The shipment was pulled out from the area of the shipper.</td>
+                                <td><strong> POSITIONED</strong> <br>The container was positioned at the area of the shipper for stuffing.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><strong> QUEUE FOR DEPARTURE</strong> <br>The shipment is at the port of origin waiting for departure.</td>
+                                <td><strong> IN-TRANSIT</strong> <br>The shipment is on board the cargo vessel and is in-transit to port of destination.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><strong> RETURNED TO ORIGIN</strong> <br>The shipment was not successfully delivered and is to return to origin.</td>
+                                <td><strong> ARRIVED</strong> <br>The shipment has arrived at the port of destination.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><strong> DELIVERED</strong> <br>The shipment was delivered to the consignee.</td>
+                                <td><strong> IN TRANSIT TO DELIVERY</strong> <br>The truck is in-transit to delivery area.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><strong> QUEUE FOR DELIVERY</strong> <br>The delivery requirement is lined-up for service action.</td>
+                                <td><strong> QUEUE FOR PICK UP</strong> <br>The pick-up requirement is lined-up for service action.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><strong> CANCELED</strong> <br>The booking was cancelled.</td>
+                                <td><strong> PENDING</strong> <br>The booking request is pending for action.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><strong> CONSOLIDATION</strong> <br>The shipment is for consolidation at Ernest warehouse.</td>
+                                <td><strong> IN TRANSIT TO PICK UP</strong> <br>The truck is in-transit to pickup area.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><strong> SERVICE ACCOMPLISHED</strong> <br>The booking request has been accomplished.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
