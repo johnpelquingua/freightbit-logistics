@@ -325,17 +325,20 @@
                 <div class="tab-pane fade" id="truckTab">
                     <div class="padding-10-top">
                         <s:form action="changeTruckOrigin" theme="bootstrap">
-                            <label class="col-lg-2 col-lg-offset-2 control-label">Filter by Location :</label>
+                            <label class="col-lg-2 col-lg-offset-1 control-label">Filter by Location :</label>
                             <div class="col-lg-3">
                                 <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                           id="select1" list="portsList" listKey="key"
                                           listValue="value" name="originCityTruck" emptyOption="true" required="true"
                                           onchange="$(this).closest('form').submit()"
                                         />
+
                             </div>
+                            <a href="viewInlandFreightList" class="btn btn-primary" id ="groups-btn">Display All</a>
                         </s:form>
                     </div>
-
+                    <div class="pull-right">
+                    </div>
                     <ul class="nav nav-tabs padding-10-lr center-text" role="tablist" style="clear:both;">
                         <li class="active col-md-6 padding-0-lr" id="ftlOri">
                             <a href="#ftlTab" role="tab" data-toggle="tab">Full Truck Load (FTL)</a>
