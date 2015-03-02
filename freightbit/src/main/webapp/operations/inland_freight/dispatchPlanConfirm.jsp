@@ -92,43 +92,43 @@
         <label class="col-lg-3 control-label" style="padding-top:0px; text-align: center;">Vendor</label>
 
         <div class="col-lg-9">
-            <s:textfield cssClass="form-control dispatch-form" value="%{#attr.vendor.vendorName}" />
+            <s:textfield cssClass="form-control dispatch-form" value="%{#attr.vendor.vendorName}" readonly="true"/>
         </div>
 
         <label class="col-lg-3 control-label" style="padding-top:0px; text-align: center;">Driver</label>
 
         <div class="col-lg-9">
-            <s:textfield cssClass="form-control dispatch-form" value="%{driverCodeParam}"  />
+            <s:textfield cssClass="form-control dispatch-form" value="%{driverCodeParam}" readonly="true" />
         </div>
 
         <label class="col-lg-3 control-label" style="padding-top:0px; text-align: center;">Truck</label>
 
         <div class="col-lg-9">
-            <s:textfield cssClass="form-control dispatch-form" value="%{truckCodeParam}"  />
+            <s:textfield cssClass="form-control dispatch-form" value="%{truckCodeParam}" readonly="true" />
         </div>
 
         <label class="col-lg-3 control-label" style="padding-top:0px; text-align: center;">Truck Type</label>
 
         <div class="col-lg-9">
-            <s:textfield cssClass="form-control dispatch-form" value="%{#attr.truck.truckType}"  />
+            <s:textfield cssClass="form-control dispatch-form" value="%{#attr.truck.truckType}" readonly="true" />
         </div>
 
         <label class="col-lg-3 control-label" style="padding-top:0px; text-align: center;">Plate Number</label>
 
         <div class="col-lg-9">
-            <s:textfield cssClass="form-control dispatch-form" value="%{#attr.truck.plateNumber}"  />
+            <s:textfield cssClass="form-control dispatch-form" value="%{#attr.truck.plateNumber}" readonly="true" />
         </div>
 
         <label class="col-lg-3 control-label" style="padding-top:0px; text-align: center;">Gross Weight</label>
 
         <div class="col-lg-9">
-            <s:textfield cssClass="form-control dispatch-form" value="%{#attr.truck.grossWeight}" />
+            <s:textfield cssClass="form-control dispatch-form" value="%{#attr.truck.grossWeight}" readonly="true" />
         </div>
 
         <label class="col-lg-3 control-label" style="padding-top:0px; text-align: center;">Pickup Date</label>
 
         <div class="col-lg-9">
-            <s:textfield cssClass="form-control dispatch-form" value="%{finalPickupParam}"  />
+            <s:textfield cssClass="form-control dispatch-form" value="%{finalPickupParam}" readonly="true" />
         </div>
 
         <%--<s:textfield value="%{#attr.truck.plateNumber}" />--%>

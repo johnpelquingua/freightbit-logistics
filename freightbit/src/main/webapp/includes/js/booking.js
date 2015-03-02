@@ -144,15 +144,15 @@ $(document).ready(function() {
                 select8 = $('#customerFax'),
                 select9 = $('#consigneeContact');
 
-            select.find('option').remove();
-            select2.find('option').remove();
-            select3.find('option').remove();
-            select4.find('option').remove();
-            select5.find('option').remove();
-            select6.find('option').remove();
-            select7.find('option').remove();
-            select8.find('option').remove();
-            select9.find('option').remove();
+                select.find('option').remove();
+                select2.find('option').remove();
+                select3.find('option').remove();
+                select4.find('option').remove();
+                select5.find('option').remove();
+                select6.find('option').remove();
+                select7.find('option').remove();
+                select8.find('option').remove();
+                select9.find('option').remove();
 
             // populate customer contacts list
             $.each(jsonResponse.customerContactsMap, function(key, value) {
@@ -305,8 +305,8 @@ $(document).ready(function() {
             var select4 = $('#consigneeAddress'),
                 select9 = $('#consigneeContact');
 
-            select4.find('option').remove();
-            select9.find('option').remove();
+                select4.find('option').remove();
+                select9.find('option').remove();
 
             // populate consignee address
             $.each(jsonResponse.consigneeAddressMap, function(key, value) {
@@ -419,14 +419,20 @@ $( window ).load(function() {
 
     //prevents from loading different dropdown values if Trucking is selected as requirement
     for (var i = 0; i < sMode.options.length; i++) {
-        if (document.getElementById('order_freightType').value != "TRUCKING") {
-            if (sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE") {
-                sMode.options[i].style.display = "none";
-            } else {
+        if (document.getElementById('order_freightType').value == "SHIPPING AND TRUCKING") {
+            if(sMode.options[i].value == "DOOR TO DOOR" || sMode.options[i].value == "DOOR TO PIER" || sMode.options[i].value == "PIER TO DOOR"){
                 sMode.options[i].style.display = "block";
+            }else{
+                sMode.options[i].style.display = "none";
+            }
+        }else if (document.getElementById('order_freightType').value == "TRUCKING"){
+            if (sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE") {
+                sMode.options[i].style.display = "block";
+            } else {
+                sMode.options[i].style.display = "none";
             }
         }else{
-            if (sMode.options[i].value == "PICKUP" || sMode.options[i].value == "DELIVERY" || sMode.options[i].value == "INTER-WAREHOUSE") {
+            if (sMode.options[i].value == "PIER TO PIER") {
                 sMode.options[i].style.display = "block";
             } else {
                 sMode.options[i].style.display = "none";
@@ -615,15 +621,15 @@ $(document).ready(function(){
                     select8 = $('#customerFax'),
                     select9 = $('#consigneeContact');
 
-                select.find('option').remove();
-                select2.find('option').remove();
-                select3.find('option').remove();
-                select4.find('option').remove();
-                select5.find('option').remove();
-                select6.find('option').remove();
-                select7.find('option').remove();
-                select8.find('option').remove();
-                select9.find('option').remove();
+                    select.find('option').remove();
+                    select2.find('option').remove();
+                    select3.find('option').remove();
+                    select4.find('option').remove();
+                    select5.find('option').remove();
+                    select6.find('option').remove();
+                    select7.find('option').remove();
+                    select8.find('option').remove();
+                    select9.find('option').remove();
 
                 // populate customer consignee list
                 $.each(jsonResponse.customerContactsMap, function(key, value) {
@@ -632,35 +638,62 @@ $(document).ready(function(){
 
                 // populate customer address list
                 $.each(jsonResponse.customerAddressMap, function(key, value) {
+                    var originPortLabel = $('.originPort');
+
                     switch($("#order_modeOfService").val()){
                         case 'DOOR TO PIER' :
+                            select2.prop('disabled', false);
+                            select4.prop('disabled', true);
                             $("#shipperAddress").prop('disabled', false);
                             $("#consigneeAddress").prop('disabled', true);
+                            $("#consigneeAddress_textfield").val('');
                             $("#consigneeAddress_textfield").prop('disabled', true);
                             $('<option>').val(key).text(value).appendTo(select2);
                             break;
                         case 'PIER TO DOOR' :
+                            select2.prop('disabled', true);
+                            select4.prop('disabled', false);
                             $("#shipperAddress").prop('disabled', true);
                             $("#consigneeAddress").prop('disabled', false);
                             $("#consigneeAddress_textfield").prop('disabled', false);
                             break;
                         case 'PIER TO PIER' :
+                            select4.prop('disabled', true);
+                            select2.prop('disabled', true);
                             $("#consigneeAddress").prop('disabled', true);
                             $("#consigneeAddress_textfield").prop('disabled', true);
                             $("#shipperAddress").prop('disabled', true);
                             break;
                         case 'PICKUP' :
+                            select2.prop('disabled', false);
+                            select4.prop('disabled', true);
+                            $("#datepicker1").prop('disabled', false);
+                            $("#datepicker2").prop('disabled', true);
+                            originPortLabel.empty().append('Location');
+                            $("#select1").prop('disabled', false);
+                            $("#select2").prop('disabled', true);
                             $("#shipperAddress").prop('disabled', false);
+                            $("#consigneeAddress").val('');
                             $("#consigneeAddress").prop('disabled', true);
+                            $("#consigneeAddress_textfield").val('');
                             $("#consigneeAddress_textfield").prop('disabled', true);
                             $('<option>').val(key).text(value).appendTo(select2);
                             break;
                         case 'DELIVERY' :
+                            select4.prop('disabled', false);
+                            select2.prop('disabled', true);
+                            $("#datepicker1").prop('disabled', true);
+                            $("#datepicker2").prop('disabled', false);
+                            originPortLabel.empty().append('Location');
+                            $("#select1").prop('disabled', false);
+                            $("#select2").prop('disabled', true);
                             $("#consigneeAddress").prop('disabled', false);
                             $("#consigneeAddress_textfield").prop('disabled', false);
                             $("#shipperAddress").prop('disabled', true);
                             break;
                         default :
+                            select2.prop('disabled', false);
+                            select4.prop('disabled', false);
                             $("#shipperAddress").prop('disabled', false);
                             $("#consigneeAddress").prop('disabled', false);
                             $("#consigneeAddress_textfield").prop('disabled', false);
@@ -738,7 +771,7 @@ $(document).ready(function(){
 
                     // populate consignee address
                     $.each(jsonResponse.consigneeAddressMap, function(key, value) {
-                        if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'PICKUP' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
+                        if($("#order_modeOfService").val() == 'DOOR TO DOOR' || $("#order_modeOfService").val() == 'PIER TO DOOR' || $("#order_modeOfService").val() == 'DELIVERY' || $("#order_modeOfService").val() == 'INTER-WAREHOUSE' ) {
                             if ($("#shipperConsignee").val() != '') {
                                 $('<option>').val(key).text(value).appendTo(select4);
                                 $("#consigneeAddress_textfield").val(value);
