@@ -4,7 +4,9 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1><i class="fa fa-truck"></i> Dispatch Plan : Destination</h1>
+        <legend style="text-align: left;">
+            <h1><i class="fa fa-truck"></i> Dispatch Plan : Destination</h1>
+        </legend>
 
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='../home' />"> Dashboard </a></li>
@@ -187,7 +189,6 @@
                     <s:hidden name="operationsBean.freightType" value="%{order.freightType}"/>
                     <div class="form-group">
                         <label for="operationsBean.vendorListDestination" class="col-sm-2 control-label">Vendor:</label>
-
                         <div class="col-sm-10">
                             <div style="width:90%;float:left;padding-right:10px;">
                                 <s:select list="vendorTruckingDestinationList" name="operationsBean.vendorListDestination"
@@ -735,7 +736,6 @@
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Truck Code</label>
-
                     <div class="col-lg-8">
                         <div>
                             <s:select list="listDrivers" name="operationsBean.truckDestination"

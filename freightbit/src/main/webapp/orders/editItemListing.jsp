@@ -109,7 +109,7 @@
           <div class="form-group">
             <label class="col-lg-4 control-label" style="padding-top:0px;">Commodity: </label>
             <div class="col-lg-7" >
-              <s:textfield required="true" name="orderItem.description" cssClass="form-control" id="commodity" />
+              <s:textfield name="orderItem.description" cssClass="form-control" id="commodity" />
             </div>
           </div>
           <div class="form-group">

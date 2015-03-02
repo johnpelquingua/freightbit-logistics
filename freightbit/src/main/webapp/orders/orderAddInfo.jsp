@@ -761,7 +761,7 @@
 
                             <div class="col-lg-9">
                                 <s:textfield name="item.itemCode" id="item_itemCode" required="true"
-                                             cssClass="form-control addItemInput" maxLength="3" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
+                                             cssClass="form-control addItemInput" maxLength="10" pattern="[A-Z]+" title="Must be capital letters only" onkeypress="return alphaKeyOnly(event)"/>
                             </div>
 
                         </div>

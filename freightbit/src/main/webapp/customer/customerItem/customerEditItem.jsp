@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label class="col-lg-2 control-label" style="padding-top:0px;">Item Code<span class="asterisk_red"></span></label>
                             <div class="col-lg-3">
-                                <s:textfield name="item.itemCode" id="itemCode" required="true" cssClass="form-control" maxLength="3"
+                                <s:textfield name="item.itemCode" id="itemCode" required="true" cssClass="form-control" maxLength="15"
                                              pattern="[A-Z0-9]+" title="Item Code should not contain special characters"
                                              onkeypress="return alphaKeyOnly(event)" tabindex="2"/>
                             </div>
