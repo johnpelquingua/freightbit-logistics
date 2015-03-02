@@ -148,7 +148,7 @@ public class Orders implements java.io.Serializable {
         this.serviceRequirement = serviceRequirement;
     }
 
-    @Column(name = "serviceType", nullable = false, length = 10)
+    @Column(name = "serviceType", nullable = true, length = 10)
     public String getServiceType() {
         return this.serviceType;
     }
@@ -158,7 +158,7 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    @Column(name = "serviceMode", nullable = false, length = 10)
+    @Column(name = "serviceMode", nullable = true, length = 10)
     public String getServiceMode() {
         return this.serviceMode;
     }
@@ -177,7 +177,7 @@ public class Orders implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "orderDate", nullable = false, length = 10)
+    @Column(name = "orderDate", nullable = true, length = 10)
     public Date getOrderDate() {
         return this.orderDate;
     }
@@ -187,7 +187,7 @@ public class Orders implements java.io.Serializable {
     }
 
 
-    @Column(name = "paymentMode", nullable = false)
+    @Column(name = "paymentMode", nullable = true)
     public String getPaymentMode() {
         return this.paymentMode;
     }

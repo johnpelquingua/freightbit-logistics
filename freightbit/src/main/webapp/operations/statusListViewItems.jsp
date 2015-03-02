@@ -181,8 +181,8 @@
                                     <i style="color: red;" class="fa fa-ban"></i>
                                 </s:else>
 
-                                <a data-toggle="modal" data-target="#updateContainerDetails" id="createContainer" rel="tooltip" title="Set container details">
-                                    <i class="fa fa-edit"></i>
+                                <a data-toggle="modal" data-target="#updateContainerDetails" id="createContainer" href="#" rel="tooltip" title="Set container details" onclick="showContainerDetails(${orderItem.orderItemId});">
+                                    <i class="fa fa-clipboard"></i>
                                 </a>
                             </display:column>
                         </td>
@@ -197,7 +197,7 @@
                             </s:url>
                             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT', 'ROLE_FREIGHT_OPERATIONS_OFFICER')">
                                     <s:a href="%{accStatus}" rel="tooltip" title="Service Accomplished" onclick="return confirm('Are you sure you really want to complete the service?');">
-                                        <button type="button" id="Complete" class="btn btn-success">
+                                        <button type="button" id="Complete" class="btn btn-primary">
                                             Set Service Complete
                                         </button>
                                     </s:a>
@@ -206,12 +206,11 @@
                             <s:submit cssClass="btn btn-success" value="Set Status" onclick="addText();"></s:submit>
                             </sec:authorize>
                         </div>
-                    </s:form>
                 </div>
             </div>
             <div class="panel-footer">
                 <span class="pull-right">
-                    <a href="../operations/viewStatusList" class="btn btn-primary" id ="groups-btn">On-Going Booking List</a>
+                    <a href="../operations/viewStatusList" class="btn btn-danger" id ="groups-btn"><i class="fa fa-chevron-left"></i> On-Going Booking List</a>
                 </span>
             </div>
 
@@ -219,50 +218,27 @@
     </div>
 </div>
 
-<div class="modal fade" id="updateContainerDetails" role="form" aria-labelledby="containerModal">
-    <div class="modal-dialog modal-form">
+<div class="modal fade" id="updateContainerDetails" tabindex="-1" role="dialog" aria-labelledby="alertlabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" id="containerModal">Update Container Details</h4>
-            </div>
-
+            <%--<div class="modal-header">
+                <center><h4 class="modal-title" id="alertlabel"><li class="fa fa-info"/> Warning</h4></center>
+            </div>--%>
             <div class="modal-body">
-                <div class="panel-body">
-
-                    <s:form cssClass="form-horizontal" theme="bootstrap" action="updateContainerDetails">
-
-                    <s:hidden value="%{#attr.orderItem.orderId}" name="orderIdParam" />
-                    <s:hidden value="%{#attr.orderItem.orderItemId}" name="orderItemIdParam" />
-
-                    <label>Container Number<span class="asterisk_red"></span></label>
-
-                    <s:textfield cssClass="form-control containerNumber" id="containerNumber" name="container.containerNumber" required="true"/>
-
-                    <label>Seal Number<span class="asterisk_red"></span></label>
-
-                    <s:textfield cssClass="form-control sealNumber" id="sealNumber" name="container.sealNumber" required="true"/>
-
-                    <label>Bullet Seal<span class="asterisk_red"></span></label>
-
-                    <s:textfield cssClass="form-control bulletSeal" id="bulletSeal" name="container.bulletSeal" required="true"/>
-
-                    <label>Shipping Seal<span class="asterisk_red"></span></label>
-
-                    <s:textfield cssClass="form-control shippingSeal" id="shippingSeal" name="container.shippingSeal" required="true"/>
-
+                <div id="containerInput">
+                    <%--<label id="actualLabel" class="control-label header">Actual Date/Time: <span class="asterisk_red"></span></label>
+                    <div class="pull-center" style="padding-top:0px;">
+                        <s:textfield required="true" name="orderStatusLogsBean.actualDate" cssClass="form-control" id="actualDate" />
+                    </div>--%>
                 </div>
             </div>
-
-            <div class="modal-footer">
-                <div>
-                    <s:submit cssClass="btn btn-primary" name="submit" value="Save"/>
-                    </s:form>
-                </div>
-            </div>
+            <%--<div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="sendOkStatus()">Ok</button>
+            </div>--%>
         </div>
     </div>
 </div>
+</s:form>
 
 <script>
     $(document).ready(function() {

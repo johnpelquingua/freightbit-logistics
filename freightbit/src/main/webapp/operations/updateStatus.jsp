@@ -158,7 +158,7 @@
 
                     <s:a href="%{viewStatusListItemsUrl}" rel="tooltip" title="Update Status">
                         <button type="button" id="Cancel" class="btn btn-danger">
-                            Back to Booking Item List
+                            <i class="fa fa-chevron-left"></i>Back to Booking Item List
                         </button>
                     </s:a>
                     <%--<s:submit id="saveBtn" name="submit" cssClass="btn btn-primary submitBtn" value="Update Status" />--%>

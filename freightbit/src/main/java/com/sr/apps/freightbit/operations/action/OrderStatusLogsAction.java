@@ -749,37 +749,38 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
+    public String loadContainerDetails() {
+        OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemIdParam);
+        orderItem = transformToOrderItemFormBean(orderItemEntity);
+
+        return SUCCESS;
+    }
+
     public String updateContainerDetails() throws Exception {
         Map sessionAttributes = ActionContext.getContext().getSession();
-        if (hasFieldErrors()) {
-            return INPUT;
-        }
-        try {
-            Container containerEntity = transformContainerToEntityBean(container);
-            containerService.updateContainer(containerEntity);
+        Container containerEntity = transformContainerToEntityBean(container);
+        containerService.updateContainer(containerEntity);
 
-            OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemIdParam);
-            orderItemEntity.setContainerId(containerEntity.getContainerId());
-            operationsService.updateOrderItem(orderItemEntity);
-        }
-        catch(Exception e) {
-            addActionError("Failed to update container details.");
-            return INPUT;
-        }
+        OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemIdParam);
+        orderItemEntity.setContainerId(containerEntity.getContainerId());
+        operationsService.updateOrderItem(orderItemEntity);
 
-        sessionAttributes.put("orderIdParam", orderIdParam);
+        Orders orderEntity = orderService.findOrdersById(orderItemEntity.getOrderId());
+
         sessionAttributes.put("orderItemIdParam", orderItemIdParam);
+        sessionAttributes.put("orderIdParam", orderEntity.getOrderId());
+
         return SUCCESS;
     }
 
     public String loadUpdateContainerSuccess() {
         Map sessionAttributes = ActionContext.getContext().getSession();
-        List<OrderItems> orderItemEntityList = new ArrayList<OrderItems>();
+        Integer orderIdParam = (Integer) sessionAttributes.get("orderIdParam");
 
-        orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId((Integer) sessionAttributes.get("orderIdParam"));
+        List<OrderItems> orderItemEntityList = orderStatusLogsService.findAllItemsByOrderId(orderIdParam);
 
         // Display correct Order Number in breadcrumb
-        Orders orderEntity = orderService.findOrdersById((Integer) sessionAttributes.get("orderIdParam"));
+        Orders orderEntity = orderService.findOrdersById(orderIdParam);
         bookingNumber = orderEntity.getOrderNumber();
         order = transformToOrderFormBean(orderEntity);
 
@@ -818,6 +819,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         entity.setForkliftOperator(formBean.getForkliftOperator());
         entity.setOperationsDept(formBean.getOperationsDept());
         entity.setContainerNumber(formBean.getContainerNumber());
+        entity.setSealNumber(formBean.getSealNumber());
+        entity.setBulletSeal(formBean.getBulletSeal());
+        entity.setShippingSeal(formBean.getShippingSeal());
         entity.setContainerSize(formBean.getContainerSize());
         entity.setContainerType(formBean.getContainerType());
         entity.setContainerStatus(formBean.getContainerStatus());
@@ -853,6 +857,8 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         formBean.setContainerType(entity.getContainerType());
         formBean.setEirType(entity.getEirType());
         formBean.setSealNumber(entity.getSealNumber());
+        formBean.setBulletSeal(entity.getBulletSeal());
+        formBean.setShippingSeal(entity.getShippingSeal());
         formBean.setVanLocation(entity.getVanLocation());
         formBean.setLadenEmpty(entity.getLadenEmpty());
         formBean.setReceiptNumber(entity.getReceiptNumber());
@@ -860,7 +866,6 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         formBean.setForkliftOperator(entity.getForkliftOperator());
         formBean.setOperationsDept(entity.getOperationsDept());
         formBean.setContainerStatus(entity.getContainerStatus());
-        formBean.setSealNumber(entity.getSealNumber());
         formBean.setCreatedTimestamp(entity.getCreatedTimestamp());
         formBean.setCreatedBy(entity.getCreatedBy());
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());

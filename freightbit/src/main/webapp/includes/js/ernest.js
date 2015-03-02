@@ -745,6 +745,21 @@ function showEditItemListingFields(orderItemId) {
     });
 }
 
+function showContainerDetails(orderItemId) {
+    $.ajax({
+        url: 'loadContainerDetails',
+        type: 'POST',
+        data: { orderItemIdParam: orderItemId },
+        dataType: 'html',
+        success: function (html) {
+            $('#containerInput').html(html);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            alert('An error occurred! ' + thrownError);
+        }
+    });
+}
+
 // restrict a textfield for numbers only
 function restrictField_Numbers(fieldClass){
     $('.'+fieldClass).keypress(function(e) {
