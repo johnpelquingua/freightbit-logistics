@@ -3114,7 +3114,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
 //        OrderItems truckEntity = orderService.findOrderItemByOrderItemId(entity.getOrderId());
         List<OrderItems> orderItemEntity = operationsService.findAllOrderItemsByOrderId(entity.getOrderId());
-        Integer vendorCtrOri = 0;
+        /*Integer vendorCtrOri = 0;
         Integer vendorCtrDes = 0;
         for(OrderItems orderItemsElem : orderItemEntity){
             if(orderItemsElem.getVendorOrigin() != null){
@@ -3123,7 +3123,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             if(orderItemsElem.getVendorDestination() != null){
                 vendorCtrDes += 1;
             }
-        }
+        }*/
 
         Orders orderEntity = orderService.findOrdersById(entity.getOrderId());
         if(orderItemEntity.size() >= 1){
@@ -3149,7 +3149,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                 }
             }
         }
-        else{
+        /*else{
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") ||
                     orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")) {
                 if (vendorCtrOri != 0) {
@@ -3166,7 +3166,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                     formBean.setPlateNumberDes("NONE");
                 }
             }
-        }
+        }*/
 
         return formBean;
     }
