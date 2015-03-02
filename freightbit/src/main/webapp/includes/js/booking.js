@@ -691,6 +691,19 @@ $(document).ready(function(){
                             $("#consigneeAddress_textfield").prop('disabled', false);
                             $("#shipperAddress").prop('disabled', true);
                             break;
+                        case 'INTER-WAREHOUSE' :
+                            select4.prop('disabled', true);
+                            select2.prop('disabled', true);
+                            $("#datepicker1").prop('disabled', false);
+                            $("#datepicker2").prop('disabled', false);
+                            originPortLabel.empty().append('Location');
+                            $("#select1").prop('disabled', false);
+                            $("#select2").prop('disabled', true);
+                            $("#consigneeAddress").prop('disabled', false);
+                            $("#consigneeAddress_textfield").prop('disabled', false);
+                            $("#shipperAddress").prop('disabled', false);
+                            $('<option>').val(key).text(value).appendTo(select2);
+                            break;
                         default :
                             select2.prop('disabled', false);
                             select4.prop('disabled', false);

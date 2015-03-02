@@ -13,7 +13,7 @@
         <div class="well" style="margin-top: 10px;">
           <s:form action="updateContainerDetails" theme="bootstrap" cssClass="form-horizontal" >
           <s:hidden name="orderItemIdParam" value="%{orderItem.orderItemId}" />
-
+          <s:hidden name="container.containerId" value="%{container.containerId}" />
           <div class="form-group">
             <label class="col-lg-4 control-label" style="padding-top:0px;">Container Number: </label>
             <div class="col-lg-7" >

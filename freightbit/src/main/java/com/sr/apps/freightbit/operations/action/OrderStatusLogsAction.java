@@ -753,6 +753,10 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemIdParam);
         orderItem = transformToOrderItemFormBean(orderItemEntity);
 
+        if(orderItemEntity.getContainerId() != null){
+            container.setContainerId(orderItemEntity.getContainerId());
+        }
+
         return SUCCESS;
     }
 
@@ -792,7 +796,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         return SUCCESS;
     }
 
-    private Container   transformContainerToEntityBean(ContainerBean formBean){
+    private Container transformContainerToEntityBean(ContainerBean formBean){
 
         Container entity = new Container();
         if(formBean.getContainerId() != null) {

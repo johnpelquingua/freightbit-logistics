@@ -12,7 +12,7 @@
         <ol class="breadcrumb">
             <li class="active"><a href="<s:url action='home' />"> Dashboard </a></li>
             <li class="active"><a href="<s:url action='../operations/viewStatusList' />"> On-Going Booking List </a></li>
-            <%--<li class="active"> On-Going Booking List</li>--%>
+
             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
                 <li class="active"> Booking <s:property value="bookingNumber"/> Container List</li>
             </s:if>
@@ -27,7 +27,7 @@
 <s:if test="hasActionMessages()">
     <div class="col-lg-12">
         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
             <strong><s:actionmessage cssStyle="margin-bottom: 0px;"/></strong>
         </div>
     </div>
