@@ -352,23 +352,23 @@
                                 <div class="table-responsive">
                                     <display:table id="order" name="ftlTable"
                                                    requestURI="viewSeaFreightList.action" pagesize="10"
-                                                   class="table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="ftlTable table table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells: hide;">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                                            style="text-align: center;width: 15%;"> </display:column></td>
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                                            style="text-align: center;width: 20%;"> </display:column></td>
                                         <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                                            style="text-align: center;width: 25%;"> </display:column></td>
                                         <%--<td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>--%>
                                         <%--<td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>--%>
                                         <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                                            style="text-align: center;width: 15%;"> </display:column></td>
                                         <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                                            style="text-align: center;width: 15%;"> </display:column></td>
                                         <td><display:column title="Action">
                                             <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
                                                 <i style="color: red;" class="fa fa-ban"></i>
@@ -401,23 +401,23 @@
                                 <div class="table-responsive">
                                     <display:table id="order" name="ltlTable"
                                                    requestURI="viewSeaFreightList.action" pagesize="10"
-                                                   class="table table-hover table-bordered text-center tablesorter table-condensed"
+                                                   class="ltlTable table table-hover table-bordered text-center tablesorter table-condensed"
                                                    style="margin-top: 15px;empty-cells: hide;">
 
                                         <td><display:column property="orderNumber" title="Order # <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                                            style="text-align: center;width: 15%;"> </display:column></td>
                                         <td><display:column property="customerName" title="Customer <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                                            style="text-align: center;width: 20%;"> </display:column></td>
                                         <td><display:column property="consigneeCode" title="Consignee <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                                            style="text-align: center;width: 25%;"> </display:column></td>
                                         <%--<td><display:column property="freightType" title="Type <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>--%>
                                         <%--<td><display:column property="destinationPort" title="DES <i class='fa fa-sort' />" class="tb-font-black"
                                                             style="text-align: center;"> </display:column></td>--%>
                                         <td><display:column property="modeOfService" title="Mode <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                                            style="text-align: center;width: 15%;"> </display:column></td>
                                         <td><display:column property="orderStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
-                                                            style="text-align: center;"> </display:column></td>
+                                                            style="text-align: center;width: 15%;"> </display:column></td>
                                         <td><display:column title="Action">
                                             <s:if test="#attr.order.orderStatus=='PENDING' || #attr.order.orderStatus=='INCOMPLETE' || #attr.order.orderStatus=='CANCELLED'">
                                                 <i style="color: red;" class="fa fa-ban"></i>
@@ -762,6 +762,8 @@
         tablePropClass('NONE', 'fclTable', 8, 4, 6, 7, 0, 0);
         tablePropClass('NONE', 'lcuTable', 8, 4, 6, 7, 0, 0);
         tablePropClass('NONE', 'rcuTable', 8, 4, 6, 7, 0, 0);
+        tablePropClass('NONE', 'ftlTable', 5, 0, 0, 4, 0, 0);
+        tablePropClass('NONE', 'ltlTable', 5, 0, 0, 4, 0, 0);
     });
 
     $(function () { $('#myTab a:first').tab('show') });
