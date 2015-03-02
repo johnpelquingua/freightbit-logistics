@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-12 form-group pull-left" style="margin-top: 0.8em; margin-bottom: 0em;">
                 <s:form action="changeOrigin" theme="bootstrap">
-                    <label class="col-lg-2 control-label">Sort by Origin :</label>
+                    <label class="col-lg-2 control-label">Filter by Origin :</label>
                     <div class="col-lg-3">
                         <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                   id="select1" list="portsList" listKey="key"
@@ -35,14 +35,14 @@
                                   <%--onchange="$(this).closest('form').submit()"
                                   />--%>
                     </div>
-                    <label class="col-lg-2 control-label">Sort by Destination :</label>
+                    <label class="col-lg-2 control-label">Filter by Destination :</label>
                     <div class="col-lg-3">
                         <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                   id="select2" list="portsList" listKey="key"
                                   listValue="value" name="destinationCity" emptyOption="true" required="true" />
 
                     </div>
-                    <s:submit name="submit" cssClass="btn btn-primary" value="Sort" />
+                    <s:submit name="submit" cssClass="btn btn-primary" value="Filter" />
                     <a href="viewSeaFreightList" class="btn btn-primary" id ="groups-btn">Display All</a>
                 </s:form>
 
