@@ -428,7 +428,6 @@ public class OrderAction extends ActionSupport implements Preparable {
                     orderService.addItem(orderItemEntity);
                 }else{
                     Integer saveLoop = orderItem.getQuantity();
-                    System.out.println("aaaaaaa" + saveLoop);
                     for(int i = 0; i < saveLoop; i++ ){
                         orderItemEntity.setQuantity(1);
                         orderService.addItem(orderItemEntity);
@@ -446,6 +445,7 @@ public class OrderAction extends ActionSupport implements Preparable {
                 sessionAttributes.put("messageFlag", messageFlag);
             } else {
                 // Add order items to database
+                orderItemEntity.setQuantity(orderItem.getQuantity());
                 orderService.addItem(orderItemEntity);
                 String messageFlag = "OTHERS_OK";
                 sessionAttributes.put("messageFlag", messageFlag);
@@ -492,7 +492,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         } else {
             // Success Add item
             clearErrorsAndMessages();
-			addActionError("Success! Booking Item has been added.");
+			addActionMessage("Success! Booking Item has been added.");
         }
 
         return SUCCESS;
