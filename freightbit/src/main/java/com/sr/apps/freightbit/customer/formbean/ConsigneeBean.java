@@ -2,9 +2,6 @@ package com.sr.apps.freightbit.customer.formbean;
 
 import java.util.Date;
 
-/**
- * Created by Clarence C. Victoria on 6/24/14.
- */
 public class ConsigneeBean {
 
     private Integer addressId;
@@ -28,12 +25,13 @@ public class ConsigneeBean {
     private String createdBy1;
     private Date createdTimeStamp2;
     private String createdBy2;
+    private Integer contactReferenceId;
 
     public ConsigneeBean() {
     }
 
-    public ConsigneeBean(String addressLine1, Integer addressId, Integer contactId, String firstName, String middleName, String lastName, String phone, String mobile, String email, String fax, String addressType, String addressLine2, String city, String state, String zip, Integer referenceId1, Integer referenceId2, Date createdTimeStamp1, String createdBy1, Date createdTimeStamp2, String createdBy2) {
-        this.addressLine1 = addressLine1;
+    public ConsigneeBean(String addressType, Integer addressId, Integer contactId, String firstName, String middleName, String lastName, String phone, String mobile, String email, String fax, String addressLine1, String addressLine2, String city, String state, String zip, Integer referenceId1, Integer referenceId2, Date createdTimeStamp1, String createdBy1, Date createdTimeStamp2, String createdBy2, Integer contactReferenceId) {
+        this.addressType = addressType;
         this.addressId = addressId;
         this.contactId = contactId;
         this.firstName = firstName;
@@ -43,7 +41,7 @@ public class ConsigneeBean {
         this.mobile = mobile;
         this.email = email;
         this.fax = fax;
-        this.addressType = addressType;
+        this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.city = city;
         this.state = state;
@@ -54,6 +52,7 @@ public class ConsigneeBean {
         this.createdBy1 = createdBy1;
         this.createdTimeStamp2 = createdTimeStamp2;
         this.createdBy2 = createdBy2;
+        this.contactReferenceId = contactReferenceId;
     }
 
     public String getFirstName() {
@@ -222,5 +221,13 @@ public class ConsigneeBean {
 
     public void setReferenceId2(Integer referenceId2) {
         this.referenceId2 = referenceId2;
+    }
+
+    public Integer getContactReferenceId() {
+        return contactReferenceId;
+    }
+
+    public void setContactReferenceId(Integer contactReferenceId) {
+        this.contactReferenceId = contactReferenceId;
     }
 }

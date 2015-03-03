@@ -26,20 +26,21 @@
           <s:hidden name="orderItem.vendorDestination" value="%{orderItem.vendorDestination}" />
           <s:hidden name="orderItem.vendorSea" value="%{orderItem.vendorSea}" />
           <s:hidden name="orderItem.serviceRequirement" value="%{orderItem.serviceRequirement}" />
-
+          <s:hidden name="orderItem.containerId" value="%{orderItem.containerId}" />
           <s:hidden name="order.orderId" value="%{order.orderId}"/>
 
           <div class="form-group">
-            <label class="col-lg-4 control-label" style="padding-top:0px;">Quantity: </label>
             <div class="col-lg-7" >
               <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
                 <s:select cssClass="form-control" id="orderItem.quantity" name="orderItem.quantity" list="containerQuantity"
                           emptyOption="true"
                           required="true"
                           onchange="fcl()"
+                          cssStyle="display:none"
                 />
               </s:if>
               <s:else>
+                <label class="col-lg-4 control-label" style="padding-top:0px;">Quantity: </label>
                 <s:select cssClass="form-control" id="orderItem_quantity" name="orderItem.quantity" list="itemQuantity"
                           emptyOption="true"
                           required="true"

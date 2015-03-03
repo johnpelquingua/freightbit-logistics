@@ -3993,16 +3993,23 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         // Destination vendors set will be stored in VendorDestination Variable
         for (OrderItems everyItem : orderItemsList) {
-            if(everyItem.getVendorDestination() != null){
+            if (vendorDestination.isEmpty()) {
+                vendorDestination.add(everyItem.getVendorDestination());
+            } else {
+                if (!vendorDestination.contains(everyItem.getVendorDestination())) {
+                    vendorDestination.add(everyItem.getVendorDestination());
+                }
+            }
+            /*if(everyItem.getVendorDestination() != null){
                 vendorDestination.add(everyItem.getVendorDestination()+"-"+everyItem.getOrderItemId());
             }
-//            if (vendorDestination.isEmpty()) {
-//
-//            } else {
-//                if (!vendorDestination.contains(everyItem.getVendorDestination())) {
-//                    vendorDestination.add(everyItem.getVendorDestination()+"-"+everyItem.getOrderItemId());
-//                }
-//            }
+            if (vendorDestination.isEmpty()) {
+
+            } else {
+                if (!vendorDestination.contains(everyItem.getVendorDestination())) {
+                    vendorDestination.add(everyItem.getVendorDestination()+"-"+everyItem.getOrderItemId());
+                }
+            }*/
         }
 
         List<Documents> proforma = documentsService.findDocumentNameAndId("PROFORMA BILL OF LADING", orderIdParam);
@@ -4066,7 +4073,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
                                 documentEntityAuthorization.setDocumentProcessed(2);
                             }
                             documentEntityAuthorization.setCreatedBy(commonUtils.getUserNameFromSession());
-                            documentEntityAuthorization.setOrderItemId(Integer.parseInt(vendorDes.split("-")[1]));
+                            /*documentEntityAuthorization.setOrderItemId(Integer.parseInt(vendorDes.split("-")[1]));*/
 
                             documentsService.addDocuments(documentEntityAuthorization);
 

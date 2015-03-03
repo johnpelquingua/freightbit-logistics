@@ -1286,6 +1286,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         orderItemBean.setRate(orderItem.getRate());
         orderItemBean.setDeclaredValue(orderItem.getDeclaredValue());
         orderItemBean.setRemarks(orderItem.getComments());
+        orderItemBean.setContainerId(orderItem.getContainerId());
 
         return orderItemBean;
     }
@@ -1456,7 +1457,7 @@ public class OrderAction extends ActionSupport implements Preparable {
         entity.setVendorOrigin(formBean.getVendorOrigin());
         entity.setVendorDestination(formBean.getVendorDestination());
         entity.setVendorSea(formBean.getVendorSea());
-        /*containerId abang mode muna*/
+        entity.setContainerId(formBean.getContainerId());
         entity.setServiceRequirement(formBean.getServiceRequirement());
 
         return entity;

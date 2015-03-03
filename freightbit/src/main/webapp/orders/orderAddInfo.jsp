@@ -1099,7 +1099,6 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <%--<button type="button" class="btn btn-primary" href="#"><a style="color: #fff; text-decoration: none;" href="<s:url action='../orders/viewOrders' />">Yes</a></button>--%>
                 <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Save</button>
             </div>
         </div>

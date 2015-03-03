@@ -1341,8 +1341,6 @@ public class CustomerAction extends ActionSupport implements Preparable {
         Address addressEntity = customerService.findAddressById(addressIdParam);
         consignee = transformToFormBeanConsignee(addressEntity, contactEntity);
 
-        System.out.println("========================================================= " + consigneeContactCodeParam);
-
         Contacts consigneeContactEntity = customerService.findContactById(consigneeContactCodeParam);
         consigneeContact = transformToFormBeanContacts(consigneeContactEntity);
 
@@ -1642,6 +1640,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         entity.setZip(formBean.getZip());
         entity.setCreatedTimestamp(formBean.getCreatedTimeStamp2());
         entity.setCreatedBy(formBean.getCreatedBy2());
+        entity.setContactReferenceId(formBean.getContactReferenceId());
         /*entity.setModifiedTimestamp(new Date());
         entity.setModifiedBy(commonUtils.getUserNameFromSession());*/
 
@@ -1699,6 +1698,7 @@ public class CustomerAction extends ActionSupport implements Preparable {
         formBean.setCreatedBy2(address.getCreatedBy());
         formBean.setCreatedTimeStamp2(address.getCreatedTimestamp());
         formBean.setReferenceId2(address.getReferenceId());
+        formBean.setContactReferenceId(address.getContactReferenceId());
 
         return formBean;
     }

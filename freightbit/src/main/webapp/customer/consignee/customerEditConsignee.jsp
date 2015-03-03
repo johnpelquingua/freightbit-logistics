@@ -43,6 +43,7 @@
                     <s:hidden name="consignee.createdBy2" value="%{consignee.createdBy2}" />
                     <s:hidden name="consignee.referenceId1" value="%{consignee.referenceId1}" />
                     <s:hidden name="consignee.referenceId2" value="%{consignee.referenceId2}" />
+                    <s:hidden name="consignee.contactReferenceId" value="%{consignee.ContactReferenceId}" />
 
                     <div class="form-group">
                         <label for="consignee.lastName" class="col-lg-2 control-label" style="padding-top:0px;">Last Name<span class="asterisk_red"></span>
