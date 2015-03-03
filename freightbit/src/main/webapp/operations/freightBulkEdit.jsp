@@ -222,40 +222,33 @@
 
                         <%--<s:if test="scheduleExists == 'TRUE' ">--%>
 
-                        <div class="well">
-                            <h4 style="text-align:center;">Current Schedules</h4>
-                            <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
-                                           requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter"
-                                           style="margin-top: 15px;">
-
-                                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <td><display:column property="nameSize" title="Container" class="tb-font-black"
+                            <div class="well">
+                                <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedules</h4>
+                                <display:table id="vesselSchedule" name="vesselSchedules"
+                                               requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                               class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable">
+                                    <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
                                                         style="text-align: center;"> </display:column></td>
-                                </s:if>
-                                <s:else>
-                                    <td><display:column property="nameSize" title="Item" class="tb-font-black"
+                                    <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
                                                         style="text-align: center;"> </display:column></td>
-                                </s:else>
-                                <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vesselScheduleId" title="Voyage #" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                            </display:table>
-                        </div>
+                                    <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="destinationPort" title="DES" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                </display:table>
+                            </div>
                         <%--</s:if>--%>
 
                             <%---------------------------------------------------------------------------------------------%>
 
                         <div class="form-group">
-                            <h4 style="text-align:center;">List of Schedules</h4>
+                            <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> List of Schedules</h4>
                             <hr>
                         </div>
                         <s:if test="hasActionMessages()">
@@ -746,42 +739,35 @@
 
                             <%---------------------------------------------------------------------------------------------%>
 
-                            <%--<s:if test="scheduleExists == 'TRUE' ">--%>
+                        <%--<s:if test="scheduleExists == 'TRUE' ">--%>
 
-                        <div class="well">
-                            <h4 style="text-align:center;">Current Schedules</h4>
-                            <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
-                                           requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter"
-                                           style="margin-top: 15px;">
-                                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <td><display:column property="nameSize" title="Container" class="tb-font-black"
+                            <div class="well">
+                                <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedules</h4>
+                                <display:table id="vesselSchedule" name="vesselSchedules"
+                                               requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                               class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable">
+                                    <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
                                                         style="text-align: center;"> </display:column></td>
-                                </s:if>
-                                <s:else>
-                                    <td><display:column property="nameSize" title="Item" class="tb-font-black"
+                                    <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
                                                         style="text-align: center;"> </display:column></td>
-                                </s:else>
-                                <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vesselScheduleId" title="Voyage #" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                            </display:table>
-                        </div>
-
-                            <%--</s:if>--%>
+                                    <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="destinationPort" title="DES" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                    <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                        style="text-align: center;"> </display:column></td>
+                                </display:table>
+                            </div>
+                        <%--</s:if>--%>
 
                             <%---------------------------------------------------------------------------------------------%>
 
                         <div class="form-group">
-                            <h4 style="text-align:center;">List of Schedules</h4>
+                            <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> List of Schedules</h4>
                         </div>
                         <s:if test="hasActionMessages()">
                             <div class="col-lg-12" id="successDiv">
@@ -1006,7 +992,7 @@
                             </div>
                         </s:form>
                         <div class="form-group">
-                            <h4 style="text-align:center;">List of Schedules</h4>
+                            <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> List of Schedules</h4>
                         </div>
                         <s:if test="hasActionMessages()">
                             <div class="col-lg-12" id="successDiv">
@@ -1232,43 +1218,36 @@
 
                         <%---------------------------------------------------------------------------------------------%>
 
-                        <%--<s:if test="scheduleExists == 'TRUE' ">--%>
+                            <%--<s:if test="scheduleExists == 'TRUE' ">--%>
 
-                        <div class="well">
-                            <h4 style="text-align:center;">Current Schedules</h4>
-                            <display:table id="currentVesselSchedule" name="orderItemVesselSchedule"
-                                           requestURI="/viewSeaFreightPlanning.action" pagesize="10"
-                                           class="table table-striped table-hover table-bordered text-center tablesorter"
-                                           style="margin-top: 15px;">
-                                <s:if test="#attr.order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                    <td><display:column property="nameSize" title="Container" class="tb-font-black"
-                                                        style="text-align: center;"> </display:column></td>
-                                </s:if>
-                                <s:else>
-                                    <td><display:column property="nameSize" title="Item" class="tb-font-black"
-                                                        style="text-align: center;"> </display:column></td>
-                                </s:else>
-                                <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vesselScheduleId" title="Voyage #" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="departureDate" title="Departure" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-                                <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>
-
-                            </display:table>
-                        </div>
-
-                        <%--</s:if>--%>
+                                <div class="well">
+                                    <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> Current Schedules</h4>
+                                    <display:table id="vesselSchedule" name="vesselSchedules"
+                                                   requestURI="/viewSeaFreightPlanning.action" pagesize="10"
+                                                   class="table table-striped table-hover table-bordered text-center tablesorter currentSchedulesTable">
+                                        <td><display:column property="vendorName" title="Vendor" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="voyageNumber" title="Voyage #" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="vesselName" title="Vessel" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="originPort" title="ORI" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="destinationPort" title="DES" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="departureDate" title="Departure" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                        <td><display:column property="arrivalDate" title="Arrival" class="tb-font-black"
+                                                            style="text-align: center;"> </display:column></td>
+                                    </display:table>
+                                </div>
+                            <%--</s:if>--%>
 
                         <%---------------------------------------------------------------------------------------------%>
 
                         </s:form>
                         <div class="form-group">
-                            <h4 style="text-align:center;">List of Schedules</h4>
+                            <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> List of Schedules</h4>
                         </div>
                         <s:if test="hasActionMessages()">
                             <div class="col-lg-12" id="successDiv">

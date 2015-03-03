@@ -37,7 +37,7 @@
 <div class="col-lg-12">
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <i class="fa fa-truck"></i>
+        <i class="fa fa-book"></i>
         <span class="panel-title">Booking Information</span>
     </div>
     <div class="panel-body form-horizontal">
@@ -148,8 +148,7 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
                     </s:else>
                     <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
-                                     disabled="true"></s:textfield>
+                        <s:property value="orderItem.nameSize"/>
                     </div>
                 </div>
             </div>
@@ -308,8 +307,7 @@
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
                 </s:else>
                 <div class="col-lg-10">
-                    <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
-                                 disabled="true"></s:textfield>
+                    <s:property value="orderItem.nameSize"/>
                 </div>
             </div>
         </div>
@@ -598,8 +596,7 @@
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
                 </s:else>
                 <div class="col-lg-10">
-                    <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
-                                 disabled="true"></s:textfield>
+                    <s:property value="orderItem.nameSize"/>
                 </div>
             </div>
         </div>

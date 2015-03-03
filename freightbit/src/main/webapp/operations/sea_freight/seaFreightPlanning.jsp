@@ -131,12 +131,12 @@
             </div>
 
             <div class="form-group">
-                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Pickup Date</label>
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Departure Date</label>
                 <div class="col-lg-4">
                     <s:textfield cssClass="form-control pickupDate" value="%{order.pickupDate}"
                                  disabled="true"></s:textfield>
                 </div>
-                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Delivery Date</label>
+                <label for="book-num" class="col-lg-2 control-label" style="padding-top:0px;">Arrival Date</label>
                 <div class="col-lg-4">
                     <s:textfield cssClass="form-control deliveryDate" value="%{order.deliveryDate}"
                                  disabled="true"></s:textfield>
@@ -192,15 +192,16 @@
 
                         <div class="form-group">
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                                <label class="col-lg-2 control-label " style="padding-top:0px;font-size: 13px;">Container Size: </label>
                             </s:if>
                             <s:else>
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                                <label class="col-lg-2 control-label " style="padding-top:0px;font-size: 13px;">Item Name: </label>
                             </s:else>
                             <div class="col-lg-10">
-                                <div class="form-control">
+                              <%--  <div class="form-control">
                                     <c:out value="${sessionScope.nameSizeParam}"/>
-                                </div>
+                                </div>--%>
+                              <s:property value="orderItem.nameSize"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -267,7 +268,7 @@
 <%---------------------------------------------------------------------------------------------%>
                     <div class="form-group" style="padding-top: 50px;">
                         <hr>
-                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i>  List of Schedules</h4>
+                        <h4 style="text-align:center;"><i class="fa fa-clock-o"></i> List of Schedules</h4>
                         <hr>
                     </div>
                     <s:if test="hasActionMessages()">
@@ -388,15 +389,13 @@
 
                         <div class="form-group">
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                                <label class="col-lg-2 control-label " style="padding-top:0px;font-size: 13px;">Container Size: </label>
                             </s:if>
                             <s:else>
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                                <label class="col-lg-2 control-label " style="padding-top:0px;font-size: 13px;">Item Name: </label>
                             </s:else>
                             <div class="col-lg-10">
-                                <div class="form-control">
-                                    <c:out value="${sessionScope.nameSizeParam}"/>
-                                </div>
+                                <s:property value="orderItem.nameSize"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -645,15 +644,13 @@
 
                         <div class="form-group">
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                                <label class="col-lg-2 control-label " style="padding-top:0px;font-size: 13px;">Container Size: </label>
                             </s:if>
                             <s:else>
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                                <label class="col-lg-2 control-label " style="padding-top:0px;font-size: 13px;">Item Name: </label>
                             </s:else>
                             <div class="col-lg-10">
-                                <div class="form-control">
-                                    <c:out value="${sessionScope.nameSizeParam}"/>
-                                </div>
+                                <s:property value="orderItem.nameSize"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -670,6 +667,20 @@
                                 <div>
                                     <a href="#" style="width: 135px;">
                                         <s:submit cssClass="btn btn-primary" name="submit" value="Filter by Vendor"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a data-toggle="modal" data-target="#createVendor" class="btn btn-info" style="width: 135px;">
+                                        Add Vendor
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2" style="text-align: center;">
+                                <div>
+                                    <a data-toggle="modal" data-target="#addSchedule" id="createSchedule" class="btn btn-info" style="width: 135px;">
+                                        Add Schedule
                                     </a>
                                 </div>
                             </div>
@@ -822,15 +833,13 @@
                         <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
                         <div class="form-group">
                             <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD'">
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Container Size</label>
+                                <label class="col-lg-2 control-label " style="padding-top:0px;font-size: 13px;">Container Size: </label>
                             </s:if>
                             <s:else>
-                                <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
+                                <label class="col-lg-2 control-label " style="padding-top:0px;font-size: 13px;">Item Name: </label>
                             </s:else>
                             <div class="col-lg-10">
-                                <div class="form-control">
-                                    <c:out value="${sessionScope.nameSizeParam}"/>
-                                </div>
+                                <s:property value="orderItem.nameSize"/>
                             </div>
                         </div>
                         <div class="form-group">

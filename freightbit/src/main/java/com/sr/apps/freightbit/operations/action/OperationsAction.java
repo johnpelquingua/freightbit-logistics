@@ -562,10 +562,9 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
                 }
 
-                List<OrderItems> orderItemsListing = orderService.findAllItemByOrderId(orderEntity.getOrderId());
-
-                for(OrderItems orderItemElem : orderItemsListing){
-                    orderItemVesselSchedule.add(transformToOrderItemFormBean(orderItemElem));
+                for(int x = 0; x < check.length; x++) {
+                    OrderItems orderItemsListing = orderService.findOrderItemByOrderItemId(Integer.parseInt(check[x]));
+                    orderItemVesselSchedule.add(transformToOrderItemFormBean(orderItemsListing));
                 }
 
                 vendorShippingListClass = vendorService.findShippingVendorClass(customerService.findCustomerById(order.getCustomerId()).getCustomerType());
@@ -3214,6 +3213,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModifiedTimestamp(entity.getModifiedTimestamp());
         formBean.setStatus(entity.getStatus());
         formBean.setWeight(entity.getWeight());
+
         if(truckEntityOri == null || truckEntityOri.equals("")) {
             formBean.setPlateNumber("NONE");
         }
@@ -3237,21 +3237,21 @@ public class OperationsAction extends ActionSupport implements Preparable {
             formBean.setVendorOrigin("N/A");
             formBean.setVendorOriginName("N/A");
             formBean.setFinalPickupDate("N/A");
-            if(entity.getVendorDestination() != null){
-                formBean.setVendorDestination(entity.getVendorDestination());
-                formBean.setVendorDestinationName(vendorService.findVendorByVendorCode(entity.getVendorDestination()).getVendorName());
-            }else{
+            if(entity.getVendorDestination() == null || "".equals(entity.getVendorDestination())){
                 formBean.setVendorDestination("NONE");
                 formBean.setVendorDestinationName("NONE");
+            }else{
+                formBean.setVendorDestination(entity.getVendorDestination());
+                formBean.setVendorDestinationName(vendorService.findVendorByVendorCode(entity.getVendorDestination()).getVendorName());
             }
             formBean.setFinalDeliveryDate(entity.getFinalDeliveryDate());
         }else if(orderCheck.getServiceMode().equals("DOOR TO PIER")){
-            if(entity.getVendorOrigin() != null){
-                formBean.setVendorOrigin(entity.getVendorOrigin());
-                formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
-            }else{
+            if(entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin())){
                 formBean.setVendorOrigin("NONE");
                 formBean.setVendorOriginName("NONE");
+            }else{
+                formBean.setVendorOrigin(entity.getVendorOrigin());
+                formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
             }
             formBean.setFinalPickupDate(entity.getFinalPickupDate());
             formBean.setVendorDestination("N/A");
@@ -3265,12 +3265,12 @@ public class OperationsAction extends ActionSupport implements Preparable {
             formBean.setVendorDestinationName("N/A");
             formBean.setFinalDeliveryDate("N/A");
         }else if(orderCheck.getServiceType().equals("TRUCKING")){
-            if(entity.getVendorOrigin() != null){
-                formBean.setVendorOrigin(entity.getVendorOrigin());
-                formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
-            }else{
+            if(entity.getVendorOrigin() == null || "".equals(entity.getVendorOrigin())){
                 formBean.setVendorOrigin("NONE");
                 formBean.setVendorOriginName("NONE");
+            }else{
+                formBean.setVendorOrigin(entity.getVendorOrigin());
+                formBean.setVendorOriginName(vendorService.findVendorByVendorCode(entity.getVendorOrigin()).getVendorName());
             }
             formBean.setFinalPickupDate(entity.getFinalPickupDate());
             formBean.setVendorDestination("N/A");

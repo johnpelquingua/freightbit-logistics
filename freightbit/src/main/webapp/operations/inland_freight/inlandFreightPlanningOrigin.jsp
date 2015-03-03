@@ -153,8 +153,7 @@
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
                     </s:else>
                     <div class="col-lg-10">
-                        <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
-                                     disabled="true"></s:textfield>
+                        <s:property value="orderItem.nameSize"/>
                     </div>
                 </div>
             </div>
@@ -394,8 +393,7 @@
                 <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
             </s:else>
             <div class="col-lg-10">
-                <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
-                             disabled="true"></s:textfield>
+                <s:property value="orderItem.nameSize"/>
             </div>
         </div>
     </div>
@@ -766,8 +764,7 @@
                     <label class="col-lg-2 control-label" style="padding-top:0px;">Item Name</label>
                 </s:else>
                 <div class="col-lg-10">
-                    <s:textfield cssClass="form-control" value="%{orderItem.nameSize}" name="book-num"
-                                 disabled="true"></s:textfield>
+                    <s:property value="orderItem.nameSize"/>
                 </div>
             </div>
         </div>

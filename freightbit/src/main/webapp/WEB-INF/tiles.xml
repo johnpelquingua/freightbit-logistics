@@ -101,7 +101,7 @@
     </definition>
 
     <definition name="operations.seaFreightPlanning.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Freight Plan"/>
+        <put-attribute name="title" value="Edit Freight Planning"/>
         <put-attribute name="body" value="/operations/sea_freight/seaFreightPlanning.jsp"/>
     </definition>
 
