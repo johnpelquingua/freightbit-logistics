@@ -8,7 +8,7 @@
     <div class="col-lg-12">
         <legend style="text-align: left;">
             <span >
-                <h1><i class="fa fa-anchor"></i> Dispatch Plan : Destination</h1>
+                <h1><i class="fa fa-truck"></i> Dispatch Plan : Destination</h1>
             </span>
         </legend>
         <ol class="breadcrumb">
@@ -31,7 +31,7 @@
                     </s:else>
                 </s:a>
             </li>
-            <li class="active"> Dispatch Plan </li>
+            <li class="active"> Dispatch Plan : Destination </li>
         </ol>
 
     </div>
@@ -251,7 +251,6 @@
                     <s:hidden name="operationsBean.truckOrigin" value="%{orderItem.truckOrigin}" />
                     <s:hidden name="operationsBean.modeOfService" value="%{order.modeOfService}" />
                     <s:hidden name="operationsBean.freightType" value="%{order.freightType}" />
-
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Vendor</label>
                         <div class="col-lg-8">
@@ -303,7 +302,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-lg-2 control-label" style="padding-top:0px;">Truck Type</label>
 
