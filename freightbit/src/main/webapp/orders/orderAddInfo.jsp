@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <%@taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <style>
     .itemListingDeleteActionIcon {
@@ -664,7 +665,7 @@
                                     <a id="edit-icon" href="#" data-toggle="modal" data-target="#editItemListingModal" onclick="showEditItemListingFields(${orderItemId});">
                                         <i class="fa fa-edit"></i>
                                     </a>
-
+                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
                                     <s:url var="deleteItemUrl" action="deleteItem">
                                         <s:param name="orderItemIdParam" value="%{orderItemId}"></s:param>
                                     </s:url>
@@ -673,6 +674,7 @@
                                          onclick="return confirm('Do you really want to delete this item?');">
                                     </s:a>
                                     <i class="fa fa-trash-o itemListingDeleteActionIcon"></i>
+                                    </sec:authorize>
                                 </td>
                             </tr>
                         </s:iterator>
@@ -865,7 +867,7 @@
                 <p>Are you sure you want to cancel the booking?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                 <button type="button" class="btn btn-primary" onclick="location.href='viewOrders'">Yes</button>
                 <%--<s:property value="order.orderId"/>--%>
                 <%--<s:url var="deleteOrderUrl" action="deleteOrder">
