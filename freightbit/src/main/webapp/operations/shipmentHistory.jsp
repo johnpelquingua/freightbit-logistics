@@ -111,15 +111,15 @@
                                 <td><display:column property="createdBy" title="Updated By <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <%--<td>
+                                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                <td>
                                     <display:column title="Action">
                                         <a id="edit-icon" href="#" data-toggle="modal" data-target="#actualModal" onclick="showActualDateFields(${orderStatusLogs.statusId});" title="Set Actual Date of this status" rel="tooltip">
                                             <i class="fa fa-edit"></i>
-                                                &lt;%&ndash;<s:param name="orderItemIdParam" value="#attr.orderStatusLogs.orderItemId"></s:param>&ndash;%&gt;
                                         </a>
                                     </display:column>
-                                </td>--%>
-
+                                </td>
+                                </sec:authorize>
                             </display:table>
                         </tr>
                     </table>
