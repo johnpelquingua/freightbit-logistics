@@ -223,7 +223,7 @@
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <td><display:column property="plateNumber"
+                                <td><display:column property="plateNumberOri"
                                                     title="Plate Number <i class='fa fa-sort' />"
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
@@ -238,10 +238,10 @@
                                                     class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
 
-                                <%--<td><display:column property="plateNumber"
+                                <td><display:column property="plateNumberDes"
                                                     title="Plate Number <i class='fa fa-sort' />"
                                                     class="tb-font-black"
-                                                    style="text-align: center;"> </display:column></td>--%>
+                                                    style="text-align: center;"> </display:column></td>
 
                                 <td><display:column property="finalDeliveryDate"
                                                     title="Delivery Date <i class='fa fa-sort' />"

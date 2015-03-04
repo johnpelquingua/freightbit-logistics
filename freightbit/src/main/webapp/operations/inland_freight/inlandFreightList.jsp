@@ -52,6 +52,7 @@
                                           onchange="$(this).closest('form').submit()"
                                         />
                             </div>
+                            <a href="viewInlandFreightList" class="btn btn-primary" id ="groups-btn">Display All</a>
                         </s:form>
                     </div>
                     <ul class="nav nav-tabs center-text padding-0-bot" role="tablist" style="clear:both;">
@@ -325,7 +326,7 @@
                 <div class="tab-pane fade" id="truckTab">
                     <div class="padding-10-top">
                         <s:form action="changeTruckOrigin" theme="bootstrap">
-                            <label class="col-lg-2 col-lg-offset-1 control-label">Filter by Location :</label>
+                            <label class="col-lg-2 col-lg-offset-2 control-label">Filter by Location :</label>
                             <div class="col-lg-3">
                                 <s:select cssClass="form-control" style="margin-bottom: 15px !important;"
                                           id="select1" list="portsList" listKey="key"
@@ -465,6 +466,7 @@
                                           onchange="$(this).closest('form').submit()"
                                         />
                             </div>
+                            <a href="viewInlandFreightList" class="btn btn-primary" id ="groups-btn">Display All</a>
                         </s:form>
                     </div>
                     <ul class="nav nav-tabs center-text padding-0-bot" role="tablist" style="clear:both;">

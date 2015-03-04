@@ -142,6 +142,8 @@
 
                                         <div class="panel-body">
                                             <s:form action="addConsigneeContact" cssClass="form-horizontal" theme="bootstrap">
+                                            <s:hidden value="%{contactCodeParam}" name="contactCodeParam"/>
+                                            <s:hidden value="%{addressIdParam}" name="addressIdParam"/>
 
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label" style="padding-top:0px;">Position<span class="asterisk_red"></span></label>

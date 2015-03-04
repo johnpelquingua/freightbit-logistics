@@ -264,7 +264,8 @@
 
         <action name="addConsigneeContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="addConsigneeContact">
-            <result name="success" type="redirect">consigneeInfo</result>
+            <!--<result name="success" type="redirect">consigneeInfo</result>-->
+            <result name="success" type="tiles">customer.customerInfoConsignee.tiles</result>
             <result name="input" type="tiles">customer.consigneeAddContact.tiles</result>
         </action>
 
@@ -288,7 +289,8 @@
 
         <action name="deleteConsigneeContact" class="com.sr.apps.freightbit.customer.action.CustomerAction"
                 method="deleteConsigneeContact">
-            <result name="success" type="redirect">consigneeInfo</result>
+            <!--<result name="success" type="redirect">consigneeInfo</result>-->
+            <result name="success" type="tiles">customer.customerInfoConsignee.tiles</result>
             <result name="input" type="tiles">customer.customerInfoConsignee.tiles</result>
         </action>
 

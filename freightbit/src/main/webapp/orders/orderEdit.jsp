@@ -392,6 +392,7 @@
         <div class="col-lg-7">
             <%--<s:property value="%{order.consigneeContactName}" />
             <s:property value="%{order.consigneeContactPersonId}" />--%>
+            <%--<s:textfield value="%{order.consigneeContactPersonId}"></s:textfield>--%>
             <s:select cssClass="form-control" style="margin-bottom: 15px !important;" id="consigneeContact" name="order.consigneeContactPersonId" value="order.consigneeContactPersonId"
                       list="consigneeContactsList" listKey="contactId" listValue="firstName +' '+ middleName +' '+ lastName" required="true"/>
         </div>

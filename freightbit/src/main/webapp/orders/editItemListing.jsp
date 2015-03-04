@@ -30,23 +30,27 @@
           <s:hidden name="order.orderId" value="%{order.orderId}"/>
 
           <div class="form-group">
-            <div class="col-lg-7" >
+
               <s:if test="order.serviceRequirement=='FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">
-                <s:select cssClass="form-control" id="orderItem.quantity" name="orderItem.quantity" list="containerQuantity"
-                          emptyOption="true"
-                          required="true"
-                          onchange="fcl()"
-                          cssStyle="display:none"
-                />
+                <label class="col-lg-4 control-label" style="padding-top:0px; display:none;">Quantity: </label>
+                <div class="col-lg-7" >
+                  <s:select cssClass="form-control" id="orderItem.quantity" name="orderItem.quantity" list="containerQuantity"
+                            emptyOption="true"
+                            required="true"
+                            onchange="fcl()"
+                            cssStyle="display:none"
+                  />
+                </div>
               </s:if>
               <s:else>
                 <label class="col-lg-4 control-label" style="padding-top:0px;">Quantity: </label>
-                <s:select cssClass="form-control" id="orderItem_quantity" name="orderItem.quantity" list="itemQuantity"
-                          emptyOption="true"
-                          required="true"
-                />
+                <div class="col-lg-7" >
+                  <s:select cssClass="form-control" id="orderItem_quantity" name="orderItem.quantity" list="itemQuantity"
+                            emptyOption="true"
+                            required="true"
+                  />
+                </div>
               </s:else>
-            </div>
           </div>
           <div class="form-group">
             <s:if test="order.serviceRequirement == 'FULL CONTAINER LOAD' || order.serviceRequirement=='FCL' ">

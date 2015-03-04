@@ -3128,23 +3128,22 @@ public class OperationsAction extends ActionSupport implements Preparable {
         if(orderItemEntity.size() >= 1){
             if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("DOOR TO PIER") ||
                 orderEntity.getServiceMode().equals("PICKUP") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
-                if(orderItemEntity.get(0).getTruckOrigin() != null || "".equals(orderItemEntity.get(0).getTruckOrigin())){
-                    Trucks truckEntityOri = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckOrigin());
-                    formBean.setPlateNumberOri(truckEntityOri.getPlateNumber());
+                if(orderItemEntity.get(0).getTruckOrigin() == null || "".equals(orderItemEntity.get(0).getTruckOrigin())){
+                    formBean.setPlateNumberOri("NONE");
                 }
                 else{
-                    formBean.setPlateNumberOri("NONE");
+                    Trucks truckEntityOri = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckOrigin());
+                    formBean.setPlateNumberOri(truckEntityOri.getPlateNumber());
                 }
             }
             else if(orderEntity.getServiceMode().equals("DOOR TO DOOR") || orderEntity.getServiceMode().equals("PIER TO DOOR") ||
                     orderEntity.getServiceMode().equals("DELIVERY") || orderEntity.getServiceMode().equals("INTER-WAREHOUSE")){
-                if(orderItemEntity.get(0).getTruckDestination() != null || "".equals(orderItemEntity.get(0).getTruckDestination())){
-                    Trucks truckEntityDes = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckDestination());
-                    formBean.setPlateNumberDes(truckEntityDes.getPlateNumber());
-
+                if(orderItemEntity.get(0).getTruckDestination() == null || "".equals(orderItemEntity.get(0).getTruckDestination())){
+                    formBean.setPlateNumberDes("NONE");
                 }
                 else {
-                    formBean.setPlateNumberDes("NONE");
+                    Trucks truckEntityDes = vendorService.findTrucksByTruckCode(orderItemEntity.get(0).getTruckDestination());
+                    formBean.setPlateNumberDes(truckEntityDes.getPlateNumber());
                 }
             }
         }
@@ -3215,17 +3214,17 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setWeight(entity.getWeight());
 
         if(truckEntityOri == null || truckEntityOri.equals("")) {
-            formBean.setPlateNumber("NONE");
+            formBean.setPlateNumberOri("NONE");
         }
         else{
-            formBean.setPlateNumber(vendorService.findTrucksByTruckCode(entity.getTruckOrigin()).getPlateNumber());
+            formBean.setPlateNumberOri(vendorService.findTrucksByTruckCode(entity.getTruckOrigin()).getPlateNumber());
         }
-        /*if(truckEntityDes == null || truckEntityDes.equals("")) {
-            formBean.setPlateNumber("NONE");
+        if(truckEntityDes == null || truckEntityDes.equals("")) {
+            formBean.setPlateNumberDes("NONE");
         }
         else{
-            formBean.setPlateNumber(vendorService.findTrucksByTruckCode(entity.getTruckDestination()).getPlateNumber());
-        }*/
+            formBean.setPlateNumberDes(vendorService.findTrucksByTruckCode(entity.getTruckDestination()).getPlateNumber());
+        }
         if(entity.getVendorSea() == null || "".equals(entity.getVendorSea()) || "NONE".equals(entity.getVendorSea())){
             formBean.setVendorSea("NONE");
         }else{
