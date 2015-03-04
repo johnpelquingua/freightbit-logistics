@@ -36,6 +36,8 @@ import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.Pdf
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DocumentAction extends ActionSupport implements Preparable{
@@ -122,10 +124,14 @@ public class DocumentAction extends ActionSupport implements Preparable{
     private String documentItem;
     private String checkString;
     private String[] check;
+    private String strReturnedInbound;
     private Date dateReturnedInbound; // variable to capture return date of inbound documents
     private Integer quantitySI_DR; // variable to capture quantity of sales invoice and delivery receipt documents
+    private String strSentFinalOutbound;
     private Date dateSentFinalOutbound; // variable to capture sent date of final outbound
     private String finalOutboundTrackingNumber; // variable to store tracking number of final outbound documents
+    private String finalInboundTrackingNumber;
+    private String strReturnedFinalInbound;
     private Date dateReturnedFinalInbound; // variable to save date of documents returned for final inbound
 
     @Override
@@ -537,10 +543,17 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         Documents brfDocument = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
 
-        dateReturnedInbound = brfDocument.getInboundReturned();
-        dateSentFinalOutbound = brfDocument.getFinalOutboundSent();
+        Date returnedInbound = brfDocument.getInboundReturned();
+        Date sentFinalOutbound = brfDocument.getFinalOutboundSent();
+        Date returnedFinalInbound = brfDocument.getFinalInboundReturned();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
+        strReturnedInbound = formatter.format(returnedInbound);
+        strSentFinalOutbound = formatter.format(sentFinalOutbound);
         finalOutboundTrackingNumber = brfDocument.getFinalOutboundLbc();
-        dateReturnedFinalInbound = brfDocument.getFinalInboundReturned();
+        strReturnedFinalInbound = formatter.format(returnedFinalInbound);
+        finalInboundTrackingNumber = brfDocument.getFinalInboundLbc();
 
         //DOCUMENT TAB OUTBOUND VALUE BEGIN================================================================================================================
 
@@ -1527,6 +1540,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         sessionAttributes.put("outboundCount", outboundCount); // Puts outbound count in session before forwarding to transformDocumentsToFormBean
 
+
         for (Documents documentElem : outboundEntityList) {
             outboundDocuments.add(transformDocumentsToFormBean(documentElem));
         }
@@ -2305,8 +2319,6 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         System.out.println(".............................STAGE PARAM " + documentStageParam);
 
-        Map sessionAttributes = ActionContext.getContext().getSession();
-
         if(checkString != null){
             String str = checkString;
 
@@ -2415,6 +2427,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         Documents brfDocument = documentsService.findDocumentNameAndOrderId("BOOKING REQUEST FORM",orderIdParam);
 
         brfDocument.setFinalInboundReturned(dateReturnedFinalInbound);
+        brfDocument.setFinalInboundLbc(finalInboundTrackingNumber);
 
         documentsService.updateDocument(brfDocument);
 
@@ -3010,6 +3023,7 @@ public class DocumentAction extends ActionSupport implements Preparable{
         formBean.setInboundReturned(entity.getInboundReturned());
         formBean.setFinalOutboundSent(entity.getFinalOutboundSent());
         formBean.setFinalOutboundLbc(entity.getFinalOutboundLbc());
+        formBean.setFinalInboundLbc(entity.getFinalInboundLbc());
         formBean.setFinalInboundReturned(entity.getFinalInboundReturned());
         formBean.setFinalInboundReceivedBy(entity.getFinalInboundReceivedBy());
         formBean.setCreatedBy(entity.getCreatedBy());
@@ -3468,12 +3482,52 @@ public class DocumentAction extends ActionSupport implements Preparable{
         this.quantitySI_DR = quantitySI_DR;
     }
 
+    public Date getDateReturnedFinalInbound() {
+        return dateReturnedFinalInbound;
+    }
+
+    public void setDateReturnedFinalInbound(Date dateReturnedFinalInbound) {
+        this.dateReturnedFinalInbound = dateReturnedFinalInbound;
+    }
+
+    public String getStrReturnedFinalInbound() {
+        return strReturnedFinalInbound;
+    }
+
+    public void setStrReturnedFinalInbound(String strReturnedFinalInbound) {
+        this.strReturnedFinalInbound = strReturnedFinalInbound;
+    }
+
+    public Date getDateSentFinalOutbound() {
+        return dateSentFinalOutbound;
+    }
+
+    public void setDateSentFinalOutbound(Date dateSentFinalOutbound) {
+        this.dateSentFinalOutbound = dateSentFinalOutbound;
+    }
+
+    public String getStrSentFinalOutbound() {
+        return strSentFinalOutbound;
+    }
+
+    public void setStrSentFinalOutbound(String strSentFinalOutbound) {
+        this.strSentFinalOutbound = strSentFinalOutbound;
+    }
+
     public Date getDateReturnedInbound() {
         return dateReturnedInbound;
     }
 
     public void setDateReturnedInbound(Date dateReturnedInbound) {
         this.dateReturnedInbound = dateReturnedInbound;
+    }
+
+    public String getStrReturnedInbound() {
+        return strReturnedInbound;
+    }
+
+    public void setStrReturnedInbound(String strReturnedInbound) {
+        this.strReturnedInbound = strReturnedInbound;
     }
 
     public List<Integer> getDocumentQuantity() {
@@ -3504,28 +3558,12 @@ public class DocumentAction extends ActionSupport implements Preparable{
         this.finalOutboundTrackingNumber = finalOutboundTrackingNumber;
     }
 
-    public Date getDateSentFinalOutbound() {
-        return dateSentFinalOutbound;
-    }
-
-    public void setDateSentFinalOutbound(Date dateSentFinalOutbound) {
-        this.dateSentFinalOutbound = dateSentFinalOutbound;
-    }
-
     public String getDocumentTabFinalInbound() {
         return documentTabFinalInbound;
     }
 
     public void setDocumentTabFinalInbound(String documentTabFinalInbound) {
         this.documentTabFinalInbound = documentTabFinalInbound;
-    }
-
-    public Date getDateReturnedFinalInbound() {
-        return dateReturnedFinalInbound;
-    }
-
-    public void setDateReturnedFinalInbound(Date dateReturnedFinalInbound) {
-        this.dateReturnedFinalInbound = dateReturnedFinalInbound;
     }
 
     public String getDocumentItem() {
@@ -3698,5 +3736,13 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
     public void setConfirmDocuments(List<DocumentsBean> confirmDocuments) {
         this.confirmDocuments = confirmDocuments;
+    }
+
+    public String getFinalInboundTrackingNumber() {
+        return finalInboundTrackingNumber;
+    }
+
+    public void setFinalInboundTrackingNumber(String finalInboundTrackingNumber) {
+        this.finalInboundTrackingNumber = finalInboundTrackingNumber;
     }
 }

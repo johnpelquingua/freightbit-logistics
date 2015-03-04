@@ -33,6 +33,7 @@ public class Documents implements Serializable {
     private Date finalOutboundSent;
     private Date finalInboundReturned;
     private String finalOutboundLbc;
+    private String finalInboundLbc;
     private String finalInboundReceivedBy;
     private String createdBy;
     private String documentComments;
@@ -251,6 +252,15 @@ public class Documents implements Serializable {
 
     public void setFinalOutboundLbc(String finalOutboundLbc) {
         this.finalOutboundLbc = finalOutboundLbc;
+    }
+
+    @Column(name = "finalInboundLbc")
+    public String getFinalInboundLbc() {
+        return finalInboundLbc;
+    }
+
+    public void setFinalInboundLbc(String finalInboundLbc) {
+        this.finalInboundLbc = finalInboundLbc;
     }
 
     @Column(name = "finalInboundReceivedBy")

@@ -30,6 +30,7 @@ $(document).ready(function(){
                 }
                 else{
                     declaredValField.val('250000.00');
+                    document.getElementById('orderItem_quantityFCL').value = 1;
                 }
                 break;
             case '20 FOOTER' :
@@ -50,6 +51,7 @@ $(document).ready(function(){
                 }
                 else{
                     declaredValField.val('500000.00');
+                    document.getElementById('orderItem_quantityFCL').value = 1;
                 }
                 break;
             case '40 STD FOOTER' :
@@ -70,6 +72,7 @@ $(document).ready(function(){
                 }
                 else{
                     declaredValField.val('1000000.00');
+                    document.getElementById('orderItem_quantityFCL').value = 1;
                 }
                 break;
             case '40 HC FOOTER' :
@@ -90,6 +93,7 @@ $(document).ready(function(){
                 }
                 else{
                     declaredValField.val('1000000.00');
+                    document.getElementById('orderItem_quantityFCL').value = 1;
                 }
                 break;
             default :
@@ -334,10 +338,10 @@ $(document).ready(function() {
                 select3 = $('#orderItem_declaredValue'),
                 select4 = $('#orderItem_weight');
 
-            select.find('option').remove();
-            select2.find('option').remove();
-            select3.find('option').remove();
-            select4.find('option').remove();
+                select.find('option').remove();
+                select2.find('option').remove();
+                select3.find('option').remove();
+                select4.find('option').remove();
 
             // populate item volume based on length X Width X Height
             $.each(jsonResponse.shipperItemVolumeMap, function (key, value) {

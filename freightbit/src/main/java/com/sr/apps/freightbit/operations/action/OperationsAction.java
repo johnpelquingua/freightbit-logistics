@@ -3647,7 +3647,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModifiedBy(entity.getModifiedBy());
 
         // FOR EIR 1 and 2 DOCUMENTS
-        String docName;
+        /*String docName;
 
         if(entity.getEirType().equals("EIR FORM 1")){
             docName = "EQUIPMENT INTERCHANGE RECEIPT 1";
@@ -3662,7 +3662,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             for(Documents documentElem : documentList ){
                 formBean.setDocumentId(documentElem.getDocumentId());
             }
-        }
+        }*/
 
         return formBean;
     }

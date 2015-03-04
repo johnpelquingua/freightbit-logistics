@@ -553,9 +553,9 @@
 
                             </s:if>--%>
 
-                                <label class="col-lg-2 control-label">Date Received : </label>
+                                <label class="col-lg-2 control-label">Received : </label>
                                 <div class="col-lg-2">
-                                    <s:textfield cssClass="form-control" name="dateReturnedInbound" disabled="true"></s:textfield>
+                                    <s:textfield cssClass="form-control" name="strReturnedInbound" disabled="true"></s:textfield>
                                 </div>
 
                                 <div class="col-lg-2">
@@ -814,9 +814,9 @@
                                 </s:a>
                             </s:if>--%>
 
-                            <label class="col-lg-1 control-label">Date Sent : </label>
+                            <label class="col-lg-1 control-label">Sent : </label>
                             <div class="col-lg-2">
-                                <s:textfield cssClass="form-control" name="dateSentFinalOutbound" disabled="true"></s:textfield>
+                                <s:textfield cssClass="form-control" name="strSentFinalOutbound" disabled="true"></s:textfield>
                             </div>
 
                             <label class="col-lg-2 control-label">Tracking Number : </label>
@@ -1052,9 +1052,14 @@
 
                             </s:if>--%>
 
-                            <label class="col-lg-2 control-label">Date Received : </label>
+                            <label class="col-lg-1 control-label">Received : </label>
                             <div class="col-lg-2">
-                                <s:textfield cssClass="form-control" name="dateReturnedFinalInbound" disabled="true"></s:textfield>
+                                <s:textfield cssClass="form-control" name="strReturnedFinalInbound" disabled="true"></s:textfield>
+                            </div>
+
+                            <label class="col-lg-2 control-label">Tracking Number : </label>
+                            <div class="col-lg-2">
+                                <s:textfield cssClass="form-control" name="finalInboundTrackingNumber" disabled="true"></s:textfield>
                             </div>
 
                             <div class="col-lg-2">
@@ -1485,7 +1490,7 @@
                     <div class="col-md-12">
                         <label class="control-label" >Date Received :</label>
                         <div>
-                            <s:textfield type="text" cssClass="form-control" id="datepicker" name="dateReturnedInbound" required="true" placeholder="Select Receive date"></s:textfield>
+                            <s:textfield type="text" cssClass="form-control" id="datepicker" name="dateReturnedInbound" value="%{strReturnedInbound}" required="true" placeholder="Select Receive date"></s:textfield>
                         </div>
                     </div>
 
@@ -1518,7 +1523,7 @@
                     <div class="col-md-12">
                         <label class="control-label" >Date Sent</label>
                         <div>
-                            <s:textfield type="text" cssClass="form-control" id="datepicker2" name = "dateSentFinalOutbound" cssStyle="margin-bottom: 15px;" required="true" placeholder="Select Date Sent"></s:textfield>
+                            <s:textfield type="text" cssClass="form-control" id="datepicker2" name = "dateSentFinalOutbound" value="%{strSentFinalOutbound}" cssStyle="margin-bottom: 15px;" required="true" placeholder="Select Date Sent"></s:textfield>
                         </div>
                     </div>
                     <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
@@ -1547,12 +1552,20 @@
             </div>
             <div class="modal-body" style="margin-top: -10px;">
                 <s:form action="dateReceivedFinalInbound" theme="bootstrap">
-                    <label class="control-label">Date Received :</label>
-                    <s:textfield type="text" cssClass="form-control" id="datepicker3" name="dateReturnedFinalInbound" required="true" placeholder="Select Received date"></s:textfield>
                     <s:textfield cssClass="form-control"  id="order-Id" name="orderIdParam" type="hidden" />
+
+                    <label class="control-label">Date Received :</label>
+                    <s:textfield type="text" cssClass="form-control" id="datepicker3" name="dateReturnedFinalInbound" value="%{strReturnedFinalInbound}" required="true" placeholder="Select Received date"></s:textfield>
+
+                    <label class="control-label" >Tracking Number</label>
+                    <div>
+                        <s:textfield type="text" cssClass="form-control" name = "finalInboundTrackingNumber" cssStyle="margin-bottom: 15px !important;" required="true" placeholder="Input Tracking Number"></s:textfield>
+                    </div>
+
                     <div style="float: right; margin-right: 1em; margin-top: 2em;">
                         <s:submit name="submit" cssClass="btn btn-primary" value="Okay" onclick="addOrderId()" />
                     </div>
+
                 </s:form>
             </div>
         </div>

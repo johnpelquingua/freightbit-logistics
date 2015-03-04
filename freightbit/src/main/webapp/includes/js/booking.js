@@ -208,19 +208,21 @@ $(document).ready(function() {
             });
 
             // populate customer consignee address list
-            $.each(jsonResponse.consigneeAddressMap, function(key, value) {
-                if(select4.val() != ''){
-                    if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER' || $("#order_modeOfService").val() == 'PICKUP' ){
+            if(select4.val() != ''){
+
+                if($("#order_modeOfService").val() == 'PIER TO PIER' || $("#order_modeOfService").val() == 'DOOR TO PIER' || $("#order_modeOfService").val() == 'PICKUP' ){
+                    $.each(jsonResponse.consigneeAddressMap, function(key, value) {
                         $('<option>').val(null).text("").appendTo(select4);
-                    }
-                    /*$("#consigneeAddress_textfield").val('');
-                    $('<option>').val(key).text(value).appendTo(select4);*/
-                }else{
-                    $('<option>').val(key).text(value).appendTo(select4);
-                    $("#consigneeAddress_textfield").val(value);
+                        $("#consigneeAddress_textfield").val('');
+                    });
                 }
 
-            });
+            }else{
+                $.each(jsonResponse.consigneeAddressMap, function(key, value) {
+                    $('<option>').val(key).text(value).appendTo(select4);
+                    $("#consigneeAddress_textfield").val(value);
+                });
+            }
 
             // populate customer phone
             $.each(jsonResponse.customerPhoneMap, function(key, value) {

@@ -25,6 +25,7 @@ public class DocumentsBean {
     private Date finalOutboundSent;
     private Date finalInboundReturned;
     private String finalOutboundLbc;
+    private String finalInboundLbc;
     private String finalInboundReceivedBy;
     private String createdBy;
     private String documentComments;
@@ -320,5 +321,13 @@ public class DocumentsBean {
 
     public void setNextStage(String nextStage) {
         this.nextStage = nextStage;
+    }
+
+    public String getFinalInboundLbc() {
+        return finalInboundLbc;
+    }
+
+    public void setFinalInboundLbc(String finalInboundLbc) {
+        this.finalInboundLbc = finalInboundLbc;
     }
 }
