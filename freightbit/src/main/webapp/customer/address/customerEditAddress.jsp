@@ -54,7 +54,8 @@
 
                             <div class="col-lg-10" >
                                 <s:textfield name="address.addressLine1" id="address.addressLine1"
-                                             cssClass="form-control" maxlength="50" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Address Line 1 should not contain special characters."/>
+                                             cssClass="form-control" maxlength="50" pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
+                                             title="Address Line 1 will only accept alphanumeric and will only allow # , and . as special characters."/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,7 +63,8 @@
 
                             <div class="col-lg-10" >
                                 <s:textfield name="address.addressLine2" id="address.addressLine2"
-                                             cssClass="form-control" maxlength="50" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Address Line 2 should not contain special characters."/>
+                                             cssClass="form-control" maxlength="50" pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
+                                             title="Address Line 2 will only accept alphanumeric and will only allow # , and . as special characters."/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -75,10 +77,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-2 control-label" style="padding-top:0px;">Region</label>
+                            <label class="col-lg-2 control-label" style="padding-top:0px;">Region<span class="asterisk_red"></label>
 
                             <div class="col-lg-10" >
-                                <s:textfield name="address.state" id="address.state" cssClass="form-control" maxlength="50" required="true"
+                                <s:textfield name="address.state" id="address.state" cssClass="form-control" maxlength="50"
                                              pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$" title="Region should not contain special characters."/>
                             </div>
                         </div>

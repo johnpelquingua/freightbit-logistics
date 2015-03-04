@@ -49,7 +49,8 @@
 
                             <div class="col-lg-10" >
                                 <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="addAddressInput form-control" required="true" maxLength="50"
-                                             pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Address Line 1 should not contain special characters."/>
+                                             pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
+                                             title="Address Line 1 will only accept alphanumeric and will only allow # , and . as special characters."/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -57,7 +58,8 @@
 
                             <div class="col-lg-10" >
                                 <s:textfield name="address.addressLine2" id="address.addressLine2" cssClass="form-control" maxLength="50"
-                                             pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Address Line 2 should not contain special characters."/>
+                                             pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
+                                             title="Address Line 2 will only accept alphanumeric and will only allow # , and . as special characters."/>
                             </div>
                         </div>
                         <div class="form-group">

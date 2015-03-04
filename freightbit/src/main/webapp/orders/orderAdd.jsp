@@ -609,14 +609,16 @@
                         <label class="col-lg-3" style="width: 26%;">Address Line 1<span class="asterisk_red"></span></label>
                             <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.addressLine1" id="address.addressLine1" cssClass="form-control" required="true" maxLength="50"
-                                    pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Address Line 1 should not contain special characters."/>
+                                         pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
+                                         title="Address Line 1 will only accept alphanumeric and will only allow # , and . as special characters."/>
                                 </div>
                             </div>
                         <div class="form-group">
                         <label class="col-lg-3" style="width: 26%;">Address Line 2</label>
                             <div class="col-lg-9" style="width: 74%;">
                             <s:textfield name="address.addressLine2" id="address.addressLine2" cssClass="form-control" maxLength="50"
-                                         pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$" title="Address Line 2 should not contain special characters."/>
+                                         pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
+                                         title="Address Line 2 will only accept alphanumeric and will only allow # , and . as special characters."/>
                             </div>
                             </div>
                         <div class="form-group">
@@ -733,8 +735,8 @@
                             <div class="col-lg-9" style="width: 74%;">
                                 <s:textfield name="consignee.addressLine1" cssClass="form-control"
                                  id="consignee.addressLine1" placeholder="Address Line 1" required="true"
-                                 maxLength="50" pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
-                                 title="Address Line 1 should not contain special characters."/>
+                                 maxLength="50" pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
+                                 title="Address Line 1 will only accept alphanumeric and will only allow # , and . as special characters."/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -742,8 +744,8 @@
                             <div class="col-lg-9" style="width: 74%;">
                                 <s:textfield name="consignee.addressLine2" cssClass="form-control"
                                  id="consignee.addressLine2" placeholder="Address Line 2" maxLength="50"
-                                 pattern="^(\s*[a-zA-Z0-9]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9]*)\s*)+$"
-                                 title="Address Line 2 should not contain special characters."/>
+                                 pattern="^(\s*[\#a-zA-Z0-9\.\,]+(([\'\-\+\s]\s*[a-zA-Z0-9])?[a-zA-Z0-9\.\,\#]*)\s*)+$"
+                                 title="Address Line 2 will only accept alphanumeric and will only allow # , and . as special characters."/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -760,7 +762,7 @@
                             <div class="col-lg-9" style="width: 74%;">
                                 <s:textfield name="consignee.state" cssClass="form-control"
                                  id="consignee.state" placeholder="Region" maxLength="50" pattern="^(\s*[a-zA-Z]+(([\'\-\+\s]\s*[a-zA-Z])?[a-zA-Z]*)\s*)+$"
-                                 title="State should not contain special characters and/or numbers."/>
+                                 title="Region should not contain special characters and/or numbers."/>
                             </div>
                         </div>
                         <div class="form-group">
