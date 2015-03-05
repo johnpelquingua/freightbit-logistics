@@ -592,6 +592,7 @@
 
         <action name="deleteContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="deleteContainer">
             <result name="success" type="redirect">loadSuccessDeleteContainer</result>
+            <result name="error" type="redirect">viewContainerList</result>
         </action>
 
         <action name="loadSuccessDeleteContainer" class="com.sr.apps.freightbit.operations.action.OperationsAction" method="loadSuccessDeleteContainer">

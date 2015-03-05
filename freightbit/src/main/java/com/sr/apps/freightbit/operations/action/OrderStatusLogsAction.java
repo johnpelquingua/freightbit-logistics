@@ -19,6 +19,7 @@ import com.sr.biz.freightbit.operations.entity.Container;
 import com.sr.biz.freightbit.operations.entity.OrderStatusLogs;
 import com.sr.biz.freightbit.operations.service.ContainerService;
 import com.sr.biz.freightbit.operations.service.OperationsService;
+import com.sr.biz.freightbit.vendor.service.VendorService;
 import com.sr.biz.freightbit.operations.service.OrderStatusLogsService;
 import com.sr.biz.freightbit.order.entity.OrderItems;
 import com.sr.biz.freightbit.order.entity.Orders;
@@ -46,6 +47,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
     private OrderItemsBean orderItem = new OrderItemsBean();
     private OrderStatusLogsBean orderStatusLogsBean = new OrderStatusLogsBean();
     private OrderStatusLogsService orderStatusLogsService;
+    private VendorService vendorService;
     private ParameterService parameterService;
     private NotificationService notificationService;
     private OperationsService operationsService;
@@ -762,10 +764,17 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public String updateContainerDetails() throws Exception {
         Map sessionAttributes = ActionContext.getContext().getSession();
+        OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemIdParam);
+
         Container containerEntity = transformContainerToEntityBean(container);
+        if(orderItemEntity.getNameSize().equals("10 FOOTER") || orderItemEntity.getNameSize().equals("20 FOOTER") || orderItemEntity.getNameSize().equals("40 STD FOOTER") || orderItemEntity.getNameSize().equals("40 HC FOOTER")){
+            containerEntity.setContainerSize(orderItemEntity.getNameSize());
+        }
+        containerEntity.setContainerStatus("FROM SHIPMENT MONITORING");
+        containerEntity.setShipping(vendorService.findVendorByVendorCode(orderItemEntity.getVendorSea()).getVendorName());
+        containerEntity.setEirType("NONE");
         containerService.updateContainer(containerEntity);
 
-        OrderItems orderItemEntity = operationsService.findOrderItemById(orderItemIdParam);
         orderItemEntity.setContainerId(containerEntity.getContainerId());
         operationsService.updateOrderItem(orderItemEntity);
 
@@ -808,7 +817,7 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         entity.setReceiptNumber(formBean.getReceiptNumber());
         entity.setGateInTime(formBean.getGateInTime());
         entity.setGateOutTime(formBean.getGateOutTime());
-        entity.setShipping(formBean.getShipping());
+        /*entity.setShipping(formBean.getShipping());*/
         entity.setVanNumber(formBean.getVanNumber());
         entity.setVanLocation(formBean.getVanLocation());
         entity.setTrucking(formBean.getTrucking());
@@ -826,9 +835,9 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
         entity.setSealNumber(formBean.getSealNumber());
         entity.setBulletSeal(formBean.getBulletSeal());
         entity.setShippingSeal(formBean.getShippingSeal());
-        entity.setContainerSize(formBean.getContainerSize());
+        /*entity.setContainerSize(formBean.getContainerSize());*/
         entity.setContainerType(formBean.getContainerType());
-        entity.setContainerStatus(formBean.getContainerStatus());
+        /*entity.setContainerStatus(formBean.getContainerStatus());*/
         entity.setSealNumber(formBean.getSealNumber());
         entity.setLadenEmpty(formBean.getLadenEmpty());
         entity.setSealNumber(formBean.getSealNumber());
@@ -1204,5 +1213,13 @@ public class OrderStatusLogsAction extends ActionSupport implements Preparable {
 
     public void setContainerService(ContainerService containerService) {
         this.containerService = containerService;
+    }
+
+    public void setNotificationService(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
+
+    public void setVendorService(VendorService vendorService) {
+        this.vendorService = vendorService;
     }
 }

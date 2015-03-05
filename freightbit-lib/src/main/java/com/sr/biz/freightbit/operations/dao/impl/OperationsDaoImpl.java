@@ -48,6 +48,21 @@ public class OperationsDaoImpl extends HibernateDaoSupport implements Operations
     }
 
     @Override
+    public List<OrderItems> findAllOrderItemsWithContainer(Integer containerId) {
+        log.debug("Find initiated.");
+        try{
+            log.debug("Find succeeded.");
+            Query query = getSessionFactory().getCurrentSession().createQuery("from OrderItems o where o.containerId = :containerId order by createdTimestamp desc");
+            query.setParameter("containerId", containerId);
+            List<OrderItems> results = (List<OrderItems>) query.list();
+            return results;
+        }catch(Exception e){
+            log.error("Find failed.", e);
+            throw e;
+        }
+    }
+
+    @Override
     public List<OrderItems> findAllOrderItemsByOrderIdSea(Integer orderId) {
         log.debug("Find initiated.");
         try {

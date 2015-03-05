@@ -12,6 +12,8 @@ public interface OperationsDao {
 
     public List<OrderItems> findAllOrderItemsByOrderId(Integer orderId);
 
+    public List<OrderItems> findAllOrderItemsWithContainer(Integer containerId);
+
     public OrderItems findOrderItemById(Integer orderItemId);
 
     public List<VesselSchedules> findVesselScheduleByVendorId(Integer vendorId);

@@ -41,21 +41,27 @@
         <div class="panel panel-primary">
 
             <div class="panel-heading">
-                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> EIR Form</h3>
+                <h3 class="panel-title" style="float:left;top: 10px;"><i class="fa fa-info-circle"></i> Container Details</h3>
                 <span class="pull-right">
+
                     <s:url var="editContainerUrl" action="loadEditFormPage">
                         <s:param name="containerIdParam"
                                  value="#attr.container.containerId"></s:param>
                     </s:url>
-                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
-                        <s:if test="#attr.container.containerStatus == 'OPEN' || #attr.container.containerStatus == 'CONSOLIDATED' || #attr.container.containerStatus == 'FINAL'">
+
+                    <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">--%>
+
                         <s:a href="%{editContainerUrl}" cssClass="btn btn-success new-booking" rel="tooltip"
                              title="Edit this EIR Form">
-                            <i class="fa fa-pencil"></i> Edit EIR Form
+                            <i class="fa fa-pencil"></i> Edit Container
                         </s:a>
+
+                        <s:if test="#attr.container.containerStatus != 'FROM SHIPMENT MONITORING'">
+                            <a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${container.documentId},'${container.eirType}')"> <i class="fa fa-print"></i> Print Booking</a>
                         </s:if>
-                    </sec:authorize>
-                    <a class="btn btn-info" title="Print Booking" href="#" onclick="generateReport(${container.documentId},'${container.eirType}')"> <i class="fa fa-print"></i> Print Booking</a>
+
+                    <%--</sec:authorize>--%>
+
                 </span>
             </div>
 
@@ -71,7 +77,7 @@
 
                                     <div class="col-lg-12">
 
-                                        <table class="table table-user-information profile" style="margin-top: 10px;">
+                                        <table class="table table-user-information profile" style="margin-top: 0px; margin-bottom: 0px;">
                                             <tbody>
                                             <tr>
                                                 <td class="header" style="font-weight:Bold; font-size: 12px; text-align: left !important;">Container Number:</td>

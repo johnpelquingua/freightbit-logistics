@@ -193,7 +193,9 @@ public class ConsolidationAction extends ActionSupport implements Preparable {
             containerList = containerService.findAllContainer();
         }
             for (Container containerElem : containerList) {
-                containers.add(transformContainerToFormBean(containerElem));
+                if(!containerElem.getContainerStatus().equals("FROM SHIPMENT MONITORING")){
+                    containers.add(transformContainerToFormBean(containerElem));
+                }
             }
         return SUCCESS;
     }

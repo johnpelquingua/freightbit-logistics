@@ -219,8 +219,8 @@
                         <table class="col-lg-12">
                             <tr>
                                 <td><label>Legend:</label></td>
-                                <td><i class="fa fa-edit"></i>View Shipment History</td>
-                                <td><i class="fa fa-clipboard"></i>Set container details</td>
+                                <td><i class="fa fa-edit"></i> View Shipment History</td>
+                                <td><i class="fa fa-clipboard"></i> Set container details</td>
                             </tr>
                             <tr>
                                 <td></td>

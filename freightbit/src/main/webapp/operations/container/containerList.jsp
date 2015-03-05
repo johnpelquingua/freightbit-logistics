@@ -74,22 +74,25 @@
                                                     style="text-align: center;"> </display:column></td>
                                 <td><display:column property="containerStatus" title="Status <i class='fa fa-sort' />" class="tb-font-black"
                                                     style="text-align: center;"> </display:column></td>
+                                <%--<td><display:column property="documentId" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>
+                                <td><display:column property="documentCheck" title="Status <i class='fa fa-sort' />" class="tb-font-black"
+                                                    style="text-align: center;"> </display:column></td>--%>
 
                                 <td>
                                     <display:column title="Action">
-                                        <s:if test="#attr.container.containerStatus == 'OPEN' || #attr.container.containerStatus == 'CONSOLIDATED' || #attr.container.containerStatus == 'FINAL'">
+                                        <%--<s:if test="#attr.container.containerStatus == 'OPEN' || #attr.container.containerStatus == 'CONSOLIDATED' || #attr.container.containerStatus == 'FINAL'">--%>
                                         <s:url var="editContainerUrl" action="loadEditFormPage">
                                             <s:param name="containerIdParam"
                                                      value="#attr.container.containerId"></s:param>
                                         </s:url>
-                                        <sec:authorize
-                                                access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">
+                                        <%--<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CUSTOMER_RELATIONS', 'ROLE_SALES', 'ROLE_CUSTOMER')">--%>
                                             <s:a href="%{editContainerUrl}" class="icon-action-link" rel="tooltip"
                                                  title="Edit this Container">
                                                 <i class="fa fa-pencil"></i>
                                             </s:a>
-                                        </sec:authorize>
-                                        </s:if>
+                                        <%--</sec:authorize>--%>
+                                        <%--</s:if>--%>
                                         <s:url var="deleteContainerUrl" action="deleteContainer">
                                             <s:param name="containerIdParam" value="#attr.container.containerId"></s:param>
                                         </s:url>
@@ -101,18 +104,27 @@
                                         </s:url>
                                         <s:a href="%{viewContainerInfoUrl}" title="Container Info" rel="tooltip" ><i class="fa fa-info-circle"></i></s:a>
 
-                                        <a id="print-icon" href="#" onclick="generateReport(${container.documentId},'${container.eirType}');">
-                                            <i class="fa fa-print"></i>
-                                        </a>
-
-                                        <s:if test="#attr.container.containerStatus == 'FINAL'">
+                                        <s:if test="#attr.container.containerStatus == 'OPEN'">
+                                            <a id="print-icon" href="#" onclick="generateReport(${container.documentId},'${container.eirType}');">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                        </s:if>
+                                        <s:elseif test="#attr.container.containerStatus == 'CONSOLIDATED'">
+                                            <a id="print-icon" href="#" onclick="generateReport(${container.documentId},'${container.eirType}');">
+                                                <i class="fa fa-print"></i>
+                                            </a>
+                                        </s:elseif>
+                                        <s:elseif test="#attr.container.containerStatus == 'FINAL'">
+                                            <a id="print-icon" href="#" onclick="generateReport(${container.documentId},'${container.eirType}');">
+                                                <i class="fa fa-print"></i>
+                                            </a>
                                             <a id="edit-icon" href="#" data-toggle="modal" data-target="#inputModal" onclick="showGateOutFields(${container.containerId});">
                                                 <i class="fa fa-sign-out"></i>
                                                 <s:param name="containerIdParam"
-                                                         value="#attr.container.containerId"></s:param>
+                                                         value="#attr.container.containerId">
+                                                </s:param>
                                             </a>
-
-                                        </s:if>
+                                        </s:elseif>
                                     </display:column>
                                 </td>
                             </display:table>
@@ -206,6 +218,7 @@
                 this.document.title = "Equipment Interchange Receipt 1";
             }
         }else{
+            alert(1);
             var win = window.open('documentations/generateEIR2RequestReport?documentIdParam=' + documentId, 'eir2', 'width=910,height=800');
             win.onload = function () {
                 this.document.title = "Equipment Interchange Receipt 2";

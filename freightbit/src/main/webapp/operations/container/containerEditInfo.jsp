@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Clarence C. Victoria
-  Date: 11/17/2014
-  Time: 10:48 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
@@ -28,7 +21,7 @@
   <div class="col-lg-12">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit EIR Form</h3>
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> Edit Container</h3>
       </div>
       <div class="panel-body">
         <div class="table-responsive list-table">
@@ -37,6 +30,7 @@
               <s:hidden name="container.modifiedBy" value="%{container.modifiedBy}"/>
               <s:hidden name="container.modifiedTimestamp" value="%{container.modifiedTimestamp}"/>
               <s:hidden name="container.eirType" value="%{container.eirType}"/>
+              <s:hidden name="container.containerStatus" value="%{container.containerStatus}"/>
 
                   <div class="form-group">
                       <label class="col-lg-2 control-label" style="padding-top:0px;">Container Van Number: <span class="asterisk_red"></span></label>
@@ -112,10 +106,10 @@
                   </div>
               </div>
             </div>
-        </div>
+        <%--</div>--%>
       <div class="panel-footer">
         <div class="pull-right">
-          <a href="viewContainerList" class="btn btn-default" id ="groups-btn">Cancel</a>
+          <a href="viewContainerList" class="btn btn-danger" id ="groups-btn">Cancel</a>
           <s:submit id="saveBtn" name="submit" cssClass="btn btn-primary" value="Save"/>
         </div>
       </div>

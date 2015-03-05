@@ -549,10 +549,16 @@ public class DocumentAction extends ActionSupport implements Preparable{
 
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
-        strReturnedInbound = formatter.format(returnedInbound);
-        strSentFinalOutbound = formatter.format(sentFinalOutbound);
+        if(returnedInbound != null){
+            strReturnedInbound = formatter.format(returnedInbound);
+        }
+        if(sentFinalOutbound != null){
+            strSentFinalOutbound = formatter.format(sentFinalOutbound);
+        }
+        if(returnedFinalInbound != null){
+            strReturnedFinalInbound = formatter.format(returnedFinalInbound);
+        }
         finalOutboundTrackingNumber = brfDocument.getFinalOutboundLbc();
-        strReturnedFinalInbound = formatter.format(returnedFinalInbound);
         finalInboundTrackingNumber = brfDocument.getFinalInboundLbc();
 
         //DOCUMENT TAB OUTBOUND VALUE BEGIN================================================================================================================

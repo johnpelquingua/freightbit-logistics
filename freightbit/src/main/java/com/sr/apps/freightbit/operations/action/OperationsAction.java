@@ -3547,12 +3547,6 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String loadSearchContainerPage(){ return SUCCESS; }
 
-    /*public String generate() {
-        Container containerEntity  = transformContainerToEntityBean(container);
-        containerService.updateContainer(containerEntity);
-        return SUCCESS;
-    }*/
-
     public String viewContainerList() {
 
         String column = getColumnFilter();
@@ -3571,7 +3565,16 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
     public String deleteContainer() {
         Container containerEntity = containerService.findContainerById(containerIdParam);
-        containerService.deleteContainer(containerEntity);
+
+        List <OrderItems> orderItemListing = operationsService.findAllOrderItemsWithContainer(containerIdParam);
+
+        if(orderItemListing.size() > 0){
+            clearErrorsAndMessages();
+            addActionMessage("Container cannot be deleted. One or more booking is associated with it");
+            return "error";
+        }else{
+            containerService.deleteContainer(containerEntity);
+        }
 
         return SUCCESS;
     }
@@ -3647,22 +3650,24 @@ public class OperationsAction extends ActionSupport implements Preparable {
         formBean.setModifiedBy(entity.getModifiedBy());
 
         // FOR EIR 1 and 2 DOCUMENTS
-        /*String docName;
+        if(!entity.getEirType().equals("NONE")){
+            String docName;
 
-        if(entity.getEirType().equals("EIR FORM 1")){
-            docName = "EQUIPMENT INTERCHANGE RECEIPT 1";
-        }else{
-            docName = "EQUIPMENT INTERCHANGE RECEIPT 2";
-        }
-
-        List<Documents> documentList = documentsService.findEIRAndRefId(docName,entity.getContainerId(),"CONTAINERS");
-
-        if(documentList != null){
-            formBean.setDocumentCheck("AVAILABLE");
-            for(Documents documentElem : documentList ){
-                formBean.setDocumentId(documentElem.getDocumentId());
+            if(entity.getEirType().equals("EIR FORM 1")){
+                docName = "EQUIPMENT INTERCHANGE RECEIPT 1";
+            }else{
+                docName = "EQUIPMENT INTERCHANGE RECEIPT 2";
             }
-        }*/
+
+            List<Documents> documentList = documentsService.findEIRAndRefId(docName,entity.getContainerId(),"CONTAINERS");
+
+            if(documentList != null){
+                formBean.setDocumentCheck("AVAILABLE");
+                for(Documents documentElem : documentList ){
+                    formBean.setDocumentId(documentElem.getDocumentId());
+                }
+            }
+        }
 
         return formBean;
     }
@@ -3709,8 +3714,10 @@ public class OperationsAction extends ActionSupport implements Preparable {
 
         if ("CONSOLIDATED".equals(formBean.getContainerStatus())) {
             entity.setContainerStatus("CONSOLIDATED");
-        } else {
+        } else if ("OPEN".equals(formBean.getContainerStatus())){
             entity.setContainerStatus("OPEN");
+        } else{
+            entity.setContainerStatus(formBean.getContainerStatus());
         }
 
 
@@ -4563,6 +4570,7 @@ public class OperationsAction extends ActionSupport implements Preparable {
             Container containerEntity = transformContainerToEntityBean(container);
             containerEntity.setCreatedBy(commonUtils.getUserNameFromSession());
             containerEntity.setCreatedTimestamp(new Date());
+            containerEntity.setContainerStatus("OPEN");
             containerService.addContainer(containerEntity);
 
             /*Notification notificationEntity = new Notification();

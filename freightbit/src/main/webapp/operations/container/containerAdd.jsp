@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Clarence C. Victoria
-  Date: 11/17/2014
-  Time: 10:48 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
@@ -31,7 +24,7 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-pencil"></i> EIR Form</h3>
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> Add Container</h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive list-table">
@@ -154,6 +147,7 @@
         </s:form>
     </div>
 </div>
+
 <script>
     $(document).ready(function(){
         validationForm('containerInput', 'submitBtn');

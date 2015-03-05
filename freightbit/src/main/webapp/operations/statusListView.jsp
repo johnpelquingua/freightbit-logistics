@@ -105,7 +105,7 @@
                         <table class="col-lg-12">
                             <tr>
                                 <td><label>Legend: </label></td>
-                                <td><i class="fa fa-edit"></i>Update Status </td>
+                                <td><i class="fa fa-edit"></i> Update Status </td>
                             </tr>
                             <tr>
                                 <td></td>

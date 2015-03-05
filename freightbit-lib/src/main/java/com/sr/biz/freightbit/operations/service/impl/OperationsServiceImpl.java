@@ -26,7 +26,10 @@ public class OperationsServiceImpl implements OperationsService{
         return operationsDao.findAllOrderItemsByOrderId(orderId);
     }
 
-
+    @Override
+    public List<OrderItems> findAllOrderItemsWithContainer(Integer containerId) {
+        return operationsDao.findAllOrderItemsWithContainer(containerId);
+    }
 
     @Override
     public List<OrderItems> findAllOrderItemsByOrderIdSea(Integer orderId) {
