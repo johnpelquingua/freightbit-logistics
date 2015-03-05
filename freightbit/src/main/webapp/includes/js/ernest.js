@@ -646,7 +646,7 @@ function validationForm(inputClass, submitBtn, module){
 
     classInput.hover(function(){
         initValidation();
-    })
+    });
 
     if(module == 'BOOKING'){
         $('.notifBox').click(function(){
@@ -1411,6 +1411,7 @@ function filterLclTable(){
 
     $('.lclTable td:nth-child(15)').hide();
     $('.lclTable th:nth-child(15)').hide();
+    //$('.lclTable tbody tr').hide();
     $('.lclMainLoadingDiv').hide();
     $('.lclMainTable').fadeIn();
 }

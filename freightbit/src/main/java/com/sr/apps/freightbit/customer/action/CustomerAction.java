@@ -1596,6 +1596,11 @@ public class CustomerAction extends ActionSupport implements Preparable {
     }
 
     public String consigneeInfo() {
+        if(contactCodeParam == null && addressIdParam == null){
+            contactCodeParam = (Integer) sessionAttributes.get("contactCodeParam");
+            addressIdParam = (Integer) sessionAttributes.get("addressIdParam");
+        }
+
         Contacts contactEntity = customerService.findContactById(contactCodeParam);
         Address addressEntity = customerService.findAddressById(addressIdParam);
         consignee = transformToFormBeanConsignee(addressEntity, contactEntity);

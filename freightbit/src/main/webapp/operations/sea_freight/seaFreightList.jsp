@@ -390,6 +390,7 @@
         // START
 
         if($('.lclTable tbody tr').size() >= 1){ filterLclTable(); }
+        else{$('.lclMainLoadingDiv').hide();}
 
         $('.consolidateBtn').click(function(){
 

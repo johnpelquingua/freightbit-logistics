@@ -363,6 +363,11 @@
                 Create Inland Document(s)
             </s:a>
 
+            <a href="viewInlandFreightList" class="btn btn-danger" id ="groups-btn">
+                <i class="fa fa-chevron-left"></i>
+                Back to Dispatch Plan : Orders
+            </a>
+
             <s:url var="viewDocumentListUrl" action="viewDocumentListInland">
                 <s:param name="orderIdParam"
                          value="%{orderIdParam}">
