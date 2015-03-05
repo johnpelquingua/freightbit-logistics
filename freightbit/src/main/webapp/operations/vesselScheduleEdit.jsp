@@ -34,13 +34,12 @@
                         <s:hidden value="%{vesselSchedule.createdBy}" name="vesselSchedule.createdBy"/>
                         <s:hidden value="%{vesselSchedule.createdTimestamp}" name="vesselSchedule.createdTimestamp"/>
                         <div class="form-group">
-
                             <label for="vesselSchedule.voyageNumber" class="col-lg-2 control-label" style="padding-top:0px;">Voyage Number<span class="asterisk_red"></span></label>
-
                             <div class="col-lg-9">
-                                <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber"/>
+                                <s:textfield cssClass="form-control" name="vesselSchedule.voyageNumber" pattern="[a-zA-Z0-9]+"
+                                             maxLength="10" placeholder="Alphanumeric input only e.g. a-z, A-Z, 0-9"
+                                             title="Voyage Number will only accept alphanumeric input only e.g. a-z, A-Z, 0-9" required="true"/>
                             </div>
-
                         </div>
 
                         <div class="form-group">

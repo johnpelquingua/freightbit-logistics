@@ -63,7 +63,7 @@
         </li>
     </sec:authorize>
 
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT')">
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_SEA_FREIGHT', 'ROLE_INLAND_FREIGHT')">
         <li>
             <a href="<s:url action='../vendor/viewVendors' />" class="menu-style-a"><i class="fa fa-building-o"></i> Vendor </a>
                 <%--<ul class="dropdown-menu">--%>
@@ -101,7 +101,7 @@
                 <a href="http://www.solutionsresource.com" rel="license">Solutions Resource Inc.</a>
             </div>
             <div id="svnrev2" >
-                version 2015.e752ae1
+                version 2015.3c10be0
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <div class="row">
     <div class="col-lg-12">
@@ -124,9 +125,21 @@
                                                  </tr>
                                                  <tr>
                                                      <td class="header" style="font-weight:bold; font-size: 12px; text-align: left !important;">Permissions</td>
-                                                     <td><table><s:iterator value="preSelectedPermissionNames" var="permName">
-                                                        <tr><td><i class="fa fa-check-square-o"></i><s:property value="permName"/></td></tr>
-                                                    </s:iterator></table></td>
+                                                     <td>
+                                                         <table>
+                                                         <%--<s:iterator value="preSelectedPermissionNames" var="permName">
+                                                            <tr>
+                                                                <td>
+                                                                    <i class="fa fa-check-square-o"></i>
+                                                                    <s:property value="permName"/>
+                                                                </td>
+                                                            </tr>
+                                                         </s:iterator>--%>
+                                                             <div class="col-lg-9">
+                                                                 <s:checkboxlist list="permissionsList"  name="permissionsSelected" value="preSelectedPermissions" listKey="permissionId" listValue="permissionName"/>
+                                                             </div>
+                                                        </table>
+                                                     </td>
                                                  </tr>
                                                  </tbody>
                                              </table>

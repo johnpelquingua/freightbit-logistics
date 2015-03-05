@@ -341,7 +341,6 @@
         </div>
 
         <div class="pull-right">
-
             <s:url var="createdDocumentsSeaUrl" action="createdDocumentsSea">
                 <s:param name="orderIdParam"
                          value="#attr.order.orderId"></s:param>
@@ -352,6 +351,11 @@
                  title="Create Freight Document(s)">
                 Create Freight Document(s)
             </s:a>
+
+            <a href="viewSeaFreightList" class="btn btn-danger" id ="groups-btn">
+                <i class="fa fa-chevron-left"></i>
+                Back to Freight Plan : Orders
+            </a>
 
             <s:url var="viewDocumentListUrl" action="viewDocumentList">
                 <s:param name="orderIdParam"

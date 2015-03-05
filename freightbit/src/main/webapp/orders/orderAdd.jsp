@@ -452,7 +452,7 @@
         </button>
 
         <%--<s:submit name="submit" cssClass="btn btn-primary nextBtn" value="Next" />--%>
-        <button class="btn btn-primary nextBtn" type="button">Next</button>
+        <button class="btn btn-primary nextBtn" type="button" disabled>Next</button>
         </s:form>
     </div>
 

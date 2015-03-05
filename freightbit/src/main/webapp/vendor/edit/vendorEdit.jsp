@@ -30,7 +30,7 @@
                         <label for="vendor.vendorType" class="col-lg-2 control-label" style="padding-top:0px;">Type<span class="asterisk_red"></span></label>
 
                         <div class="col-lg-9">
-                            <s:select cssClass="form-control" id="vendor.vendorType" list="vendorTypeList" listValue="value"
+                            <s:select cssClass="vendorInput form-control" id="vendorTypeId" list="vendorTypeList" listValue="value"
                                       listKey="key"
                                       name="vendor.vendorType"/>
                         </div>
@@ -64,15 +64,31 @@
                                   name="vendor.vendorClass"/>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="vendor.serviceArea" class="col-lg-2 control-label" style="padding-top:0px;">Service Area<span class="asterisk_red"></span></label>
 
-                    <div class="col-lg-9">
-                        <s:select cssClass="form-control" id="vendor.serviceArea" list="portsList" listKey="key"
-                                  listValue="value"
-                                  name="vendor.serviceArea"/>
+                <s:if test="vendor.vendorType == 'SHIPPING'">
+                    <div class="form-group">
+                        <label for="vendor.serviceArea" class="col-lg-2 control-label" style="padding-top:0px;">Service Area<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-9">
+                            <s:select cssClass="vendorInput form-control" id="serviceAreaId" list="portsList" listKey="key"
+                                      listValue="value"
+                                      name="vendor.serviceArea"
+                                      emptyOption="true"
+                                      disabled="true"/>
+                        </div>
                     </div>
-                </div>
+                </s:if>
+                <s:elseif test="vendor.vendorType == 'TRUCKING'">
+                    <div class="form-group">
+                        <label for="vendor.serviceArea" class="col-lg-2 control-label" style="padding-top:0px;">Service Area<span class="asterisk_red"></span></label>
+
+                        <div class="col-lg-9">
+                            <s:select cssClass="vendorInput form-control" id="serviceAreaId" list="portsList" listKey="key"
+                                      listValue="value"
+                                      name="vendor.serviceArea"/>
+                        </div>
+                    </div>
+                </s:elseif>
                 <%--<div class="form-group">--%>
                     <%--<label for="vendor.vendorStatus" class="col-lg-2 control-label" style="padding-top:0px;">Status<span class="asterisk_red"></span></label>--%>
 
@@ -111,4 +127,17 @@
 
         return true;
     }
+
+    $(document).ready(function(){
+        $("#vendorTypeId").change(function(){
+            if($('.vendorInput').val() == 'SHIPPING'){
+                $("#serviceAreaId").prop('disabled', true);
+                $("#serviceAreaId").val('');
+            }
+            else{
+                $("#serviceAreaId").prop('disabled', false);
+
+            }
+        });
+    });
 </script>
